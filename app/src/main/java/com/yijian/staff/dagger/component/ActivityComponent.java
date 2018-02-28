@@ -22,7 +22,6 @@ public interface ActivityComponent {
     Activity getActivity();
 
 
-
     void inject(MainActivity mainActivity);
     void inject(SplashActivity splashActivity);
     void inject(LoginActivity loginActivity);

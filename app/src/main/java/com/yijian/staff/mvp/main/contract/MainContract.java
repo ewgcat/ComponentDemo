@@ -1,7 +1,7 @@
 package com.yijian.staff.mvp.main.contract;
 
-import com.yijian.staff.viewmodel.base.BasePresenter;
-import com.yijian.staff.viewmodel.base.BaseView;
+import com.yijian.staff.mvp.base.BasePresenter;
+import com.yijian.staff.mvp.base.BaseView;
 
 
 public interface MainContract {

@@ -14,15 +14,12 @@ import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
-import com.yijian.staff.model.bean.SplashBean;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.NotificationsUtil;
-import com.yijian.staff.viewmodel.base.BaseActivity;
-import com.yijian.staff.viewmodel.splash.SplashContract;
-import com.yijian.staff.viewmodel.splash.SplashPresenter;
+import com.yijian.staff.mvp.base.BaseActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -85,12 +82,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     }
 
 
-    @Override
-    public void showSplashView(SplashBean splashBean) {
-        ImageLoader.load(this, splashBean.getImg(), ivSplashBg);
-        ivSplashBg.animate().scaleX(1.12f).scaleY(1.12f).setDuration(2000).setStartDelay(100).start();
-        tvSplashAuthor.setText(splashBean.getText());
-    }
+
 
 
 

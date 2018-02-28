@@ -11,6 +11,10 @@ import android.widget.EditText;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.httpmanager.HttpManager;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -46,6 +50,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (id){
             case R.id.ll_login:
+                JSONObject jsonObject = new JSONObject();
+                HttpManager.postLogin(jsonObject, new ResultObserver() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+
+                    }
+                });
                 Intent i = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(i);
 

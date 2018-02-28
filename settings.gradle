@@ -1,1 +1,1 @@
-include ':app', ':okhttputils', ':sharelib','photoview-master'
+include ':app',':retrofit2'

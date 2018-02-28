@@ -1,11 +1,23 @@
 [
     {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
         "merged": "/Users/lishuaihua/Downloads/MVPExample-master/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_template_custom_big.xml",
         "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_template_custom_big.xml"
     },
     {
         "merged": "/Users/lishuaihua/Downloads/MVPExample-master/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_action_tombstone.xml",
         "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_action.xml",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_action.xml"
     },
     {
         "merged": "/Users/lishuaihua/Downloads/MVPExample-master/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_template_icon_group.xml",
@@ -14,5 +26,9 @@
     {
         "merged": "/Users/lishuaihua/Downloads/MVPExample-master/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_action.xml",
         "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/layout-v21/notification_template_icon_group.xml"
     }
 ]

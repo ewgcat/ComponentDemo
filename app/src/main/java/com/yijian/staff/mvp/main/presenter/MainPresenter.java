@@ -1,7 +1,8 @@
 package com.yijian.staff.mvp.main.presenter;
 
-import com.yijian.staff.model.DataManager;
-import com.yijian.staff.viewmodel.base.RxPresenter;
+import android.content.Context;
+
+import com.yijian.staff.mvp.base.RxPresenter;
 import com.yijian.staff.mvp.main.contract.MainContract;
 
 import javax.inject.Inject;
@@ -9,11 +10,11 @@ import javax.inject.Inject;
 
 public class MainPresenter extends RxPresenter<MainContract.View> implements MainContract.Presenter{
 
-    private DataManager mDataManager;
+    private Context context;
 
     @Inject
-    public MainPresenter(DataManager mDataManager) {
-        this.mDataManager = mDataManager;
+    public MainPresenter() {
+
     }
 
     @Override

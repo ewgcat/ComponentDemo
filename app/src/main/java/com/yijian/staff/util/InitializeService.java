@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.tencent.smtt.sdk.QbSdk;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.model.db.DBManager;
+import com.yijian.staff.db.DBManager;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.squareup.leakcanary.LeakCanary;
 import com.yijian.staff.widget.AppBlockCanaryContext;

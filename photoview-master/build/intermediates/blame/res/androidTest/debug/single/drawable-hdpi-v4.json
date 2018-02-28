@@ -16,7 +16,27 @@
         "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
         "merged": "/Users/lishuaihua/Downloads/MVPExample-master/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
         "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/lishuaihua/Desktop/YiJianStaff/photoview-master/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/drawable-hdpi-v4/notification_bg_normal.9.png"
     }
 ]

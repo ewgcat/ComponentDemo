@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -17,7 +16,7 @@ import com.yijian.staff.mvp.mine.MineFragment;
 import com.yijian.staff.mvp.report.ReportingFragment;
 import com.yijian.staff.mvp.work.WorkFragment;
 import com.yijian.staff.util.system.StatusBarUtil;
-import com.yijian.staff.viewmodel.base.BaseActivity;
+import com.yijian.staff.mvp.base.BaseActivity;
 import com.yijian.staff.mvp.main.contract.MainContract;
 import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;

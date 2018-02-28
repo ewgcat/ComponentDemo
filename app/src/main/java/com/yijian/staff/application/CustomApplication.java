@@ -13,11 +13,11 @@ import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import com.yijian.staff.BuildConfig;
+import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.util.InitializeService;
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
-import com.yijian.staff.dagger.module.HttpModule;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -57,7 +57,7 @@ public class CustomApplication extends TinkerApplication {
         //初始化屏幕宽高
         getScreenSize();
 
-
+        RetrofitClient.init(this);
 
         //在子线程中完成其他初始化
         InitializeService.start(this);
@@ -110,7 +110,6 @@ public class CustomApplication extends TinkerApplication {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(instance))
-                    .httpModule(new HttpModule())
                     .build();
         }
         return appComponent;

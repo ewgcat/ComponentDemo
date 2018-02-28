@@ -140,17 +140,14 @@ public class FileUtil {
 
     public static void writeToFile(String path, String content) {
         try {
-            CommonLogger.e("文件地址" + path);
             File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(content.getBytes());
-            CommonLogger.e("写入成功");
         } catch (IOException e) {
             e.printStackTrace();
-            CommonLogger.e("c" + e.getMessage());
         }
     }
 

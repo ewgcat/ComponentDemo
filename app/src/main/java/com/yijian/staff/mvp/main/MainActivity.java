@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,16 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.example.commonlibrary.utils.system.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.fragment.MessageFragment;
-import com.yijian.staff.mvp.main.fragment.MineFragment;
-import com.yijian.staff.mvp.main.fragment.ReportingFragment;
-import com.yijian.staff.mvp.main.fragment.WorkFragment;
+import com.yijian.staff.mvp.message.MessageFragment;
+import com.yijian.staff.mvp.mine.MineFragment;
+import com.yijian.staff.mvp.report.ReportingFragment;
+import com.yijian.staff.mvp.work.WorkFragment;
+import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.viewmodel.base.BaseActivity;
+import com.yijian.staff.mvp.main.contract.MainContract;
+import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;
 
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View  , Bottombar.OnClickBottomButtonListener {
 
-public class MainActivity extends AppCompatActivity implements Bottombar.OnClickBottomButtonListener {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements Bottombar.OnClick
         super.onCreate(savedInstanceState);
         StatusBarUtil.setLightStatusBar(this, Color.parseColor("#3699FC"));
 
-        setContentView(R.layout.activity_main);
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);
 
@@ -168,6 +171,22 @@ public class MainActivity extends AppCompatActivity implements Bottombar.OnClick
         if (fragment.isAdded()) {
             fragmentTransaction.hide(fragment);
         }
+    }
+
+
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initEventAndData() {
+
+    }
+
+    protected void initInject() {
+        getActivityComponent().inject(this);
     }
 
 

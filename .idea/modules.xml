@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MVPExample-master.iml" filepath="$PROJECT_DIR$/MVPExample-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/commonlibrary/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary/commonlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yijian.iml" filepath="$PROJECT_DIR$/yijian.iml" />
+      <module fileurl="file://$PROJECT_DIR$/okhttputils/okhttputils.iml" filepath="$PROJECT_DIR$/okhttputils/okhttputils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photoview-master/photoview-master.iml" filepath="$PROJECT_DIR$/photoview-master/photoview-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sharelib/sharelib.iml" filepath="$PROJECT_DIR$/sharelib/sharelib.iml" />
     </modules>
   </component>
 </project>

@@ -1,35 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.yijian.staff">
+
+    <uses-sdk tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".application.CustomApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".mvp.login.LoginActivity">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme">
+        //主类
+        <activity
+            android:name=".mvp.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.main.MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
-            android:name="com.tencent.bugly.beta.ui.BetaActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|locale"
-            android:theme="@android:style/Theme.Translucent" />
+            android:name=".mvp.main.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <activity android:name=".mvp.login.LoginActivity" />
+        <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity"/>
+        <activity android:name=".mvp.reception.ReceptionActivity"/>
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity" />
-        <activity android:name=".mvp.reception.ReceptionActivity"></activity>
+
+
+
+
     </application>
 
 </manifest>

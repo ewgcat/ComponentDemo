@@ -1,1 +1,1 @@
-include ':commonlibrary', ':app'
+include ':app', ':okhttputils', ':sharelib','photoview-master'

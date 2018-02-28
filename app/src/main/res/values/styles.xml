@@ -1,3 +1,28 @@
 <resources>
 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
+
+    </style>
+    <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="fontPath">fonts/Jet Pilot Regular.ttf</item>
+    </style>
+
+    <style name="TextAppearance.ExpandedTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
 </resources>

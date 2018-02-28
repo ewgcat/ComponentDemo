@@ -1,167 +1,119 @@
 package com.yijian.staff.application;
 
-import android.annotation.TargetApi;
-import android.app.Application;
+import android.app.Activity;
 import android.content.Context;
-import android.os.StrictMode;
-import android.support.multidex.MultiDex;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
-import com.example.commonlibrary.BaseApplication;
-import com.example.commonlibrary.BuildConfig;
-import com.example.commonlibrary.module.IAppLife;
-import com.example.commonlibrary.module.IModuleConfig;
+
 import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.interfaces.BetaPatchListener;
-import com.tencent.bugly.beta.upgrade.UpgradeStateListener;
-import com.yijian.staff.dagger.BaseAppComponent;
-import com.yijian.staff.dagger.BaseAppModule;
-import com.yijian.staff.dagger.DaggerBaseAppComponent;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
+
+import com.yijian.staff.BuildConfig;
+import com.yijian.staff.util.InitializeService;
+import com.yijian.staff.dagger.component.AppComponent;
+import com.yijian.staff.dagger.component.DaggerAppComponent;
+import com.yijian.staff.dagger.module.AppModule;
+import com.yijian.staff.dagger.module.HttpModule;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
-import java.util.List;
-import java.util.Locale;
+public class CustomApplication extends TinkerApplication {
 
-
-public class CustomApplication extends BaseApplication implements IModuleConfig, IAppLife{
     private static CustomApplication instance;
-    private static BaseAppComponent baseAppComponent;
+    public static AppComponent appComponent;
+    private Set<Activity> allActivities;
+
+    public static int SCREEN_WIDTH = -1;
+    public static int SCREEN_HEIGHT = -1;
+    public static float DIMEN_RATE = -1.0F;
+    public static int DIMEN_DPI = -1;
+
+    public CustomApplication() {
+        super(ShareConstants.TINKER_ENABLE_ALL, "com.yijian.staff.application.CustomApplicationLike",
+                "com.tencent.tinker.loader.TinkerLoader", false);
+    }
 
     public static synchronized CustomApplication getInstance() {
         return instance;
     }
 
+    static {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO);
+    }
 
-    private void init() {
-        setStrictMode();
-        // 设置是否开启热更新能力，默认为true
-        Beta.enableHotfix = true;
-        // 设置是否自动下载补丁
-        Beta.canAutoDownloadPatch = true;
-        // 设置是否提示用户重启
-        Beta.canNotifyUserRestart = true;
-        // 设置是否自动合成补丁
-        Beta.canAutoPatch = true;
-
-        /**
-         *  全量升级状态回调
-         */
-        Beta.upgradeStateListener = new UpgradeStateListener() {
-            @Override
-            public void onUpgradeFailed(boolean b) {
-
-            }
-
-            @Override
-            public void onUpgradeSuccess(boolean b) {
-
-            }
-
-            @Override
-            public void onUpgradeNoVersion(boolean b) {
-                Toast.makeText(getApplicationContext(), "最新版本", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUpgrading(boolean b) {
-                Toast.makeText(getApplicationContext(), "onUpgrading", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDownloadCompleted(boolean b) {
-
-            }
-        };
-
-        /**
-         * 补丁回调接口，可以监听补丁接收、下载、合成的回调
-         */
-        Beta.betaPatchListener = new BetaPatchListener() {
-            @Override
-            public void onPatchReceived(String patchFileUrl) {
-                Toast.makeText(getApplicationContext(), patchFileUrl, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDownloadReceived(long savedLength, long totalLength) {
-                Toast.makeText(getApplicationContext(), String.format(Locale.getDefault(),
-                        "%s %d%%",
-                        Beta.strNotificationDownloading,
-                        (int) (totalLength == 0 ? 0 : savedLength * 100 / totalLength)), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDownloadSuccess(String patchFilePath) {
-                Toast.makeText(getApplicationContext(), patchFilePath, Toast.LENGTH_SHORT).show();
-                Beta.applyDownloadedPatch();
-            }
-
-            @Override
-            public void onDownloadFailure(String msg) {
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onApplySuccess(String msg) {
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onApplyFailure(String msg) {
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onPatchRollback() {
-                Toast.makeText(getApplicationContext(), "onPatchRollback", Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId,调试时将第三个参数设置为true
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
         Bugly.init(this, "9de22ca904", BuildConfig.DEBUG);
 
+        //初始化屏幕宽高
+        getScreenSize();
+
+
+
+        //在子线程中完成其他初始化
+        InitializeService.start(this);
+
     }
 
-    @Override
-    public void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        // you must install multiDex whatever tinker is installed!
-        MultiDex.install(base);
 
-        // 安装tinker
-        Beta.installTinker();
+    public void addActivity(Activity act) {
+        if (allActivities == null) {
+            allActivities = new HashSet<>();
+        }
+        allActivities.add(act);
     }
 
-    @Override
-    public void onCreate(Application application) {
-        instance=this;
-        baseAppComponent = DaggerBaseAppComponent.builder().appComponent(BaseApplication.getAppComponent())
-                .baseAppModule(new BaseAppModule()).build();
-        init();
-    }
-
-    @Override
-    public void onTerminate(Application application) {
-        if (baseAppComponent != null) {
-            baseAppComponent = null;
+    public void removeActivity(Activity act) {
+        if (allActivities != null) {
+            allActivities.remove(act);
         }
     }
 
-    @TargetApi(9)
-    protected void setStrictMode() {
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitAll().build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+    public void exitApp() {
+        if (allActivities != null) {
+            synchronized (allActivities) {
+                for (Activity act : allActivities) {
+                    act.finish();
+                }
+            }
+        }
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
-
-    @Override
-    public void injectAppLifecycle(Context context, List<IAppLife> iAppLifes) {
-        iAppLifes.add(this);
+    public void getScreenSize() {
+        WindowManager windowManager = (WindowManager)this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        Display display = windowManager.getDefaultDisplay();
+        display.getMetrics(dm);
+        DIMEN_RATE = dm.density / 1.0F;
+        DIMEN_DPI = dm.densityDpi;
+        SCREEN_WIDTH = dm.widthPixels;
+        SCREEN_HEIGHT = dm.heightPixels;
+        if(SCREEN_WIDTH > SCREEN_HEIGHT) {
+            int t = SCREEN_HEIGHT;
+            SCREEN_HEIGHT = SCREEN_WIDTH;
+            SCREEN_WIDTH = t;
+        }
     }
 
-    @Override
-    public void injectActivityLifecycle(Context context, List<ActivityLifecycleCallbacks> lifecycleCallbackses) {
-
+    public static AppComponent getAppComponent(){
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(instance))
+                    .httpModule(new HttpModule())
+                    .build();
+        }
+        return appComponent;
     }
+
 }

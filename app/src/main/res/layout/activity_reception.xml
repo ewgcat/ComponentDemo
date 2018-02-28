@@ -5,8 +5,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yijian.staff.mvp.reception.ReceptionActivity">
+
     <include
         android:id="@+id/reception_activity_navigation_bar"
         layout="@layout/view_navigation_bar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <include
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/timebar1"
+            layout="@layout/view_time" />
+        <include
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/timebar2"
+            layout="@layout/view_time" />
+        <include
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/timebar3"
+            layout="@layout/view_time" />
+        <include
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/timebar4"
+            layout="@layout/view_time" />
+        <include
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/timebar5"
+            layout="@layout/view_time" />
+
+    </LinearLayout>
+
 </LinearLayout>
+
+

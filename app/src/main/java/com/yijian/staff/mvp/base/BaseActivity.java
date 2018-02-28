@@ -1,11 +1,15 @@
 package com.yijian.staff.mvp.base;
 
+import android.content.Context;
+
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.dagger.component.ActivityComponent;
 import com.yijian.staff.dagger.component.DaggerActivityComponent;
 import com.yijian.staff.dagger.module.ActivityModule;
 
 import javax.inject.Inject;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by codeest on 2016/8/2.
@@ -42,7 +46,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
         super.onDestroy();
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     protected abstract void initInject();
 }

@@ -10,7 +10,7 @@
 
     </style>
     <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
-        <item name="fontPath">fonts/Jet Pilot Regular.ttf</item>
+        <item name="fontPath">fonts/font.ttf</item>
     </style>
 
     <style name="TextAppearance.ExpandedTitle"

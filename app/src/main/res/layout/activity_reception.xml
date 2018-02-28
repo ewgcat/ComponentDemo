@@ -11,11 +11,13 @@
         layout="@layout/view_navigation_bar" />
 
     <LinearLayout
+        android:id="@+id/timebarGroup"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
         android:orientation="horizontal">
-
-        <include
+<!--        <include
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -44,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/timebar5"
-            layout="@layout/view_time" />
+            layout="@layout/view_time" />-->
 
     </LinearLayout>
 

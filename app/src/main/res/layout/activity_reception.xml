@@ -33,6 +33,7 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_stopJieDai"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -153,6 +154,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_jiedai"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"

@@ -29,10 +29,10 @@
 
         <ImageView
             android:id="@+id/iv_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginLeft="4dp"
-            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:scaleType="fitCenter"
             android:src="@mipmap/lg_man" />
 
@@ -143,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="问卷: "
+            android:text="体测报告: "
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -180,7 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="手机: "
+            android:text="选择产品: "
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />

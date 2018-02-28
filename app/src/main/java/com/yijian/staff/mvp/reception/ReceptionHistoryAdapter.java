@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.reception;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.mvp.physical.PhysicalReportActivity;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -48,13 +53,15 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         holder.wenJuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(context,QuestionnaireResultActivity.class);
+                context.startActivity(i);
             }
         });
         holder.tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(context,PhysicalReportActivity.class);
+                context.startActivity(i);
             }
         });
 

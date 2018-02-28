@@ -115,7 +115,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     compile 'me.iwf.photopicker:PhotoPicker:0.9.12@aar'
-    compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
+    compile('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
 

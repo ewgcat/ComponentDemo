@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:duplicateParentState="true">
+
         </RelativeLayout>
+
     </RelativeLayout>
 
     <TextView
@@ -73,13 +75,11 @@
         </TextView>
 
         <TextView
-            android:visibility="gone"
-            android:id="@+id/navigationbar_revoke"
+            android:id="@+id/navigationbar_right_tv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textColor="#fff"
-            android:text="撤销"
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>

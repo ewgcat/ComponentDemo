@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
 
@@ -18,7 +20,8 @@ public class NavigationBar extends RelativeLayout {
     protected RelativeLayout mRightClickAreaLayout = null;
     protected TextView mTitleView = null;
     protected TextView mMessageView = null;
-    protected TextView mRevokeView = null;
+    protected TextView mRightTv = null;
+    protected ImageView secondLeftIv = null;
     protected RelativeLayout mContentRl;
     protected String message;
 
@@ -63,9 +66,9 @@ public class NavigationBar extends RelativeLayout {
         mTitleView = (TextView) findViewById(R.id.navigationbar_title_text);
         mMessageView = (TextView) findViewById(R.id.navigationbar_message_show);
         mContentRl = (RelativeLayout) findViewById(R.id.navigationbar);
-        mRevokeView = (TextView) findViewById(R.id.navigationbar_revoke);
+        mRightTv = (TextView) findViewById(R.id.navigationbar_right_tv);
+        secondLeftIv = (ImageView) findViewById(R.id.iv_second_left);
     }
-
 
 
     /*
@@ -132,7 +135,7 @@ public class NavigationBar extends RelativeLayout {
     }
 
 
-    public void setTitle(String title,String textColor) {
+    public void setTitle(String title, String textColor) {
         if (title == null) {
             return;
         }
@@ -174,8 +177,12 @@ public class NavigationBar extends RelativeLayout {
      *
      * @return
      */
-    public TextView getmRevokeView() {
-        return mRevokeView;
+    public TextView getmRightTextView() {
+        return mRightTv;
+    }
+
+    public ImageView getSecondLeftIv() {
+        return secondLeftIv;
     }
 
 }

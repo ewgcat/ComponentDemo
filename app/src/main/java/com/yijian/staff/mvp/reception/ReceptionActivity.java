@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.system.StatusBarUtil;
 import com.yijian.staff.widget.NavigationBar;
@@ -43,6 +45,9 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 
+        findViewById(R.id.tv_jiedai).setOnClickListener(this);
+        findViewById(R.id.tv_stopJieDai).setOnClickListener(this);
+
         recyclerView = findViewById(R.id.recyclerview_jiedai_history);
 
 
@@ -77,7 +82,22 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        int id = v.getId();
 
+        switch (id){
+            case R.id.tv_stopJieDai:
+                //TODO 结束接待
+
+
+
+                break;
+            case R.id.tv_jiedai:
+                //TODO 接待流程
+                Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity.class);
+                startActivity(intent);
+
+                break;
+        }
     }
 
 }

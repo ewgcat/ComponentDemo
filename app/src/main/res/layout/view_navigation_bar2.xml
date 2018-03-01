@@ -10,16 +10,16 @@
 
         <ImageView
             android:id="@+id/iv_first_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
             android:src="@mipmap/black_arrow_back" />
 
         <ImageView
             android:id="@+id/iv_second_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/lg_close" />

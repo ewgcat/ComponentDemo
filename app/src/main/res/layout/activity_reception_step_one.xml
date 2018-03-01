@@ -8,6 +8,8 @@
     <include
         android:id="@+id/reception_step_one_navigation_bar"
         layout="@layout/view_navigation_bar" />
-
+    <include
+        android:id="@+id/step_one_timebar"
+        layout="@layout/view_time_bar"/>
 </LinearLayout>
 

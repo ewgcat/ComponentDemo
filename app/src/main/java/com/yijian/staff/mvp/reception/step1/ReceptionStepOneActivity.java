@@ -13,6 +13,7 @@ import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity;
 import com.yijian.staff.util.system.StatusBarUtil;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
+import com.yijian.staff.widget.TimeBar;
 
 public class ReceptionStepOneActivity extends AppCompatActivity {
 
@@ -43,5 +44,8 @@ public class ReceptionStepOneActivity extends AppCompatActivity {
 
             }
         });
+
+        TimeBar timeBar=findViewById(R.id.step_one_timebar);
+        timeBar.showTimeBar(1);
     }
 }

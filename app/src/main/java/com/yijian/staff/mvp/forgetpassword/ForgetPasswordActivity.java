@@ -24,7 +24,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReceptionActivity.actionStart(ForgetPasswordActivity.this);
             }
         });
     }

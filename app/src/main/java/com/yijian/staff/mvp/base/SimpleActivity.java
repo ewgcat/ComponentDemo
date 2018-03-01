@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * 无MVP的activity基类

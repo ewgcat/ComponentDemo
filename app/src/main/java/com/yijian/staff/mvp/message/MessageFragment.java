@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.message;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.util.system.StatusBarUtils;
 
 import java.io.File;
 
@@ -32,6 +35,7 @@ public class MessageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        StatusBarUtils.setLightStatusBar(getActivity(), Color.parseColor("#3699FC"));
 
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 

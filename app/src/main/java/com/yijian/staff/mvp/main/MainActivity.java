@@ -15,7 +15,7 @@ import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
 import com.yijian.staff.mvp.report.ReportingFragment;
 import com.yijian.staff.mvp.work.WorkFragment;
-import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.mvp.base.BaseActivity;
 import com.yijian.staff.mvp.main.contract.MainContract;
 import com.yijian.staff.mvp.main.presenter.MainPresenter;
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setLightStatusBar(this, Color.parseColor("#3699FC"));
+        StatusBarUtils.setLightStatusBar(this, Color.parseColor("#3699FC"));
 
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);

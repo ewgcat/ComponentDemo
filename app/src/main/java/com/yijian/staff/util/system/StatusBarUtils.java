@@ -14,7 +14,7 @@ import qiu.niorgai.StatusBarCompat;
 /**
  * Created by 赵晨璞
  */
-public class StatusBarUtil {
+public class StatusBarUtils {
 
     /**
      * 设置状态栏黑色字体图标，

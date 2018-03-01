@@ -13,10 +13,13 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.system.ScreenUtil;
 
 @SuppressLint("ValidFragment")
 public class WorkFragment extends Fragment implements View.OnClickListener {
@@ -35,7 +38,7 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        StatusBarUtil.setLightStatusBar(getActivity(), Color.parseColor("#3699FC"));
+        StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
         view = inflater.inflate(R.layout.fragment_work, container, false);
         init();
         return view;
@@ -47,6 +50,13 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
+
+        LinearLayout contentView = view.findViewById(R.id.top_view);
+        int statusBarHeight = CommonUtil.getStatusBarHeight(getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, statusBarHeight, 0, 0);
+        contentView.setLayoutParams(params);
+
         view.findViewById(R.id.rl_jiedai).setOnClickListener(this);
         etSearch = view.findViewById(R.id.et_search);
         ivRotate = view.findViewById(R.id.iv_rotate);

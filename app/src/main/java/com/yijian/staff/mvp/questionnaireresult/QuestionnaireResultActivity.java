@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.yijian.staff.R;
-import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -15,7 +15,7 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setLightStatusBar(this, 0xffffff);
+        StatusBarUtils.setLightStatusBar(this, 0xffffff);
 
         setContentView(R.layout.activity_questionnaire_result);
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.questionnaire_result_navigation_bar);

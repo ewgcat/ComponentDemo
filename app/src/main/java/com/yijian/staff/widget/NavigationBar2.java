@@ -87,5 +87,9 @@ public class NavigationBar2 extends LinearLayout {
         mRightTv.setTextColor(color);
     }
 
+    public void setSecondLeftIvVisiable(int i){
+        secondLeftIv.setVisibility(i);
+    }
+
 
 }

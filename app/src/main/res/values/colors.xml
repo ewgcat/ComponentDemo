@@ -16,6 +16,7 @@
     <color name="drawer_header_text">#2c2c2c</color>
     <color name="toast_bg">#dddfe0</color>
     <color name="black_bg">#d0000000</color>
+    <color name="time_bar">#cccccc</color>
     <color name="bottom_text">#a9a9a9</color>
     <color name="news_unread">#000000</color>
     <color name="news_read">#898989</color>

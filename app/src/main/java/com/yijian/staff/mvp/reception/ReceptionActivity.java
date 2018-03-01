@@ -12,15 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.system.StatusBarUtil;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
-
 public class ReceptionActivity extends AppCompatActivity {
+
+    NavigationBar navigationBar;
+    String[] titles = new String[]{"查看问卷", "体侧录入", "产品报价", "订单详情", "成交"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,13 @@ public class ReceptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reception);
         StatusBarUtil.setLightStatusBar(this, 0xffffff);
 
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
+        navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
         navigationBar.setTitle("接待", "#000000");
         navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 
-        showStatu(4);
+        show(getPosition());
     }
 
     /**
@@ -42,21 +42,28 @@ public class ReceptionActivity extends AppCompatActivity {
      */
     //todo 通过接口数据获取位置，这里是假数据
     public int getPosition() {
-        return 1;
+        return 3;
     }
 
-    public void showStatu(int position) {
+    public void show(int position) {
+        if (position < 1 || position > 5) {
+            Logger.e(ReceptionActivity.class.getName() + "---show(position)");
+            return;
+        }
+        showTitleBar(position);
+        showTimeBar(position);
+        showContent(position);
+    }
+
+    private void showTitleBar(int position) {
+        navigationBar.setTitle(titles[getPosition() - 1], "#000000");
+    }
+
+    private void showTimeBar(int position) {
         ViewGroup timebarGroup = findViewById(R.id.timebarGroup);
         for (int i = 0; i < 5; i++) {
             LayoutInflater.from(this).inflate(R.layout.view_time, timebarGroup, true);
         }
-
-        List<String> descs = new ArrayList<>();
-        descs.add("查看问卷");
-        descs.add("体侧录入");
-        descs.add("产品报价");
-        descs.add("订单详情");
-        descs.add("成交");
 
         for (int i = 0; i < timebarGroup.getChildCount(); i++) {
             View view = timebarGroup.getChildAt(i);
@@ -65,7 +72,7 @@ public class ReceptionActivity extends AppCompatActivity {
             ImageView img = view.findViewById(R.id.img);
             TextView desc = view.findViewById(R.id.desc);
 
-            desc.setText(descs.get(i));
+            desc.setText(titles[i]);
 
             if (i == 0) {
                 lineLeft.setVisibility(View.INVISIBLE);
@@ -89,59 +96,13 @@ public class ReceptionActivity extends AppCompatActivity {
                 desc.setTextColor(getResources().getColor(R.color.black_bg));
                 img.setImageResource(R.drawable.time_bar_dot_gray);
             }
-
         }
     }
 
-//    public void showStatu(int position) {
-//        List<View> timebars = new ArrayList<>();
-//        timebars.add(findViewById(R.id.timebar1));
-//        timebars.add(findViewById(R.id.timebar2));
-//        timebars.add(findViewById(R.id.timebar3));
-//        timebars.add(findViewById(R.id.timebar4));
-//        timebars.add(findViewById(R.id.timebar5));
-//
-//        List<String> descs = new ArrayList<>();
-//        descs.add("查看问卷");
-//        descs.add("体侧录入");
-//        descs.add("产品报价");
-//        descs.add("订单详情");
-//        descs.add("成交");
-//
-//        for (int i = 0; i < timebars.size(); i++) {
-//            View view = timebars.get(i);
-//            View lineLeft = view.findViewById(R.id.lineLeft);
-//            View lineRight = view.findViewById(R.id.lineRight);
-//            ImageView img = view.findViewById(R.id.img);
-//            TextView desc = view.findViewById(R.id.desc);
-//
-//            desc.setText(descs.get(i));
-//
-//            if (i == 0) {
-//                lineLeft.setVisibility(View.INVISIBLE);
-//            } else if (i == 4) {
-//                lineRight.setVisibility(View.INVISIBLE);
-//            }
-//
-//            if (position - i == 1) {
-//                lineLeft.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                lineRight.setBackgroundColor(getResources().getColor(R.color.gray));
-//                desc.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                img.setImageResource(R.drawable.time_bar_dot_blue);
-//            } else if (position - i > 1) {
-//                lineLeft.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                lineRight.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                desc.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                img.setImageResource(R.drawable.time_bar_dot_blue);
-//            } else {
-//                lineLeft.setBackgroundColor(getResources().getColor(R.color.gray));
-//                lineRight.setBackgroundColor(getResources().getColor(R.color.gray));
-//                desc.setTextColor(getResources().getColor(R.color.black_bg));
-//                img.setImageResource(R.drawable.time_bar_dot_gray);
-//            }
-//
-//        }
-//    }
+    //todo 根据position 加载不同的布局
+    private void showContent(int position) {
+
+    }
 
     public static void actionStart(Activity activity) {
         activity.startActivity(new Intent(activity, ReceptionActivity.class));

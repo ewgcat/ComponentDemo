@@ -14,41 +14,48 @@
         android:id="@+id/timebarGroup"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:orientation="horizontal"
         android:paddingLeft="7dp"
-        android:paddingRight="7dp"
-        android:orientation="horizontal">
-<!--        <include
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/timebar1"
-            layout="@layout/view_time" />
-        <include
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/timebar2"
-            layout="@layout/view_time" />
-        <include
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/timebar3"
-            layout="@layout/view_time" />
-        <include
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/timebar4"
-            layout="@layout/view_time" />
-        <include
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/timebar5"
-            layout="@layout/view_time" />-->
+        android:paddingRight="7dp">
+        <!--        <include
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timebar1"
+                    layout="@layout/view_time" />
+                <include
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timebar2"
+                    layout="@layout/view_time" />
+                <include
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timebar3"
+                    layout="@layout/view_time" />
+                <include
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timebar4"
+                    layout="@layout/view_time" />
+                <include
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timebar5"
+                    layout="@layout/view_time" />-->
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </LinearLayout>
 

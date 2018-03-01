@@ -18,7 +18,7 @@ public class PhysicalReportActivity extends AppCompatActivity {
         StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_physical_report);
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.physical_report_navigation_bar);
-        navigationBar.setTitle("体测报告", "#000000");
+        navigationBar.setTitle("查看体测数据", "#000000");
         navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));

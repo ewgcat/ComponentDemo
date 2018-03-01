@@ -19,7 +19,7 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_questionnaire_result);
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.questionnaire_result_navigation_bar);
-        navigationBar.setTitle("问卷结果", "#000000");
+        navigationBar.setTitle("查看问卷", "#000000");
         navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));

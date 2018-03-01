@@ -2,8 +2,10 @@ package com.yijian.staff.mvp.forgetpassword;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -19,5 +21,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 
+        findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReceptionActivity.actionStart(ForgetPasswordActivity.this);
+            }
+        });
     }
 }

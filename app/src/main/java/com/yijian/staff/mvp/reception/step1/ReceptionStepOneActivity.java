@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -34,6 +35,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
     List<RadioGroup> infoSourceGroups = new ArrayList<>();
     EditText etElse;
     EditText etCare;
+    Button save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
 
         etElse = findViewById(R.id.et_else);
         etCare = findViewById(R.id.et_care);
+        save = findViewById(R.id.btn_save);
     }
 
     @Override
@@ -105,10 +108,9 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
             RadioButton radioButton = group.findViewById(checkedId);
             if (radioButton.isChecked()) {
                 etElse.setVisibility(View.VISIBLE);
-            } else {
-                etElse.setVisibility(View.GONE);
             }
+        } else {
+            etElse.setVisibility(View.GONE);
         }
     }
-
 }

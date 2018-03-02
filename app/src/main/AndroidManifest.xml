@@ -55,7 +55,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".mvp.questionnaireresult.QuestionnaireResultActivity" />
         <activity android:name=".mvp.physical.PhysicalReportActivity" />
-        <activity android:name=".mvp.reception.step1.ReceptionStepOneActivity" />
+        <activity android:name=".mvp.reception.step1.ReceptionStepOneActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
         <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />
         <activity android:name=".mvp.reception.step4.ReceptionStepFourActivity" />

@@ -274,11 +274,15 @@
             android:text="(3)  您身体的哪一部分的曲线是您最在乎的，最关心的呢？" />
 
         <EditText
+            android:gravity="top"
             android:id="@+id/et_care"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:textSize="14sp"
             android:background="@drawable/query_questions_edit_bg" />
     </LinearLayout>
 

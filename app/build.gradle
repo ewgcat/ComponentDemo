@@ -119,4 +119,6 @@ dependencies {
         exclude group: 'com.android.support'
     })
     compile 'com.jaeger.statusbarutil:library:1.4.0'
+
+    compile 'com.github.huangyanbin:SmartTable:1.8.8'
 }

@@ -118,6 +118,8 @@ public class PhysicalReportActivity extends AppCompatActivity {
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }
 
+
+
     @OnClick({R.id.tv_titaipinggudetail_controller, R.id.tv_jichuceliangdetail_controller, R.id.tv_rentichenfendetail_controller})
     public void onViewClicked(View view) {
         switch (view.getId()) {

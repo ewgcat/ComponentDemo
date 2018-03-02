@@ -96,17 +96,30 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_height"
+                    <LinearLayout
+                        android:id="@+id/ll_shengao"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="175"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="175"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_shengao"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@mipmap/lg_arrow" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,17 +142,31 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_age"
+                    <LinearLayout
+                        android:id="@+id/ll_age"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="24"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="24"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_age"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@mipmap/lg_arrow" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -147,7 +174,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
@@ -193,347 +219,437 @@
 
                 <LinearLayout
                     android:id="@+id/ll_rentichengfen"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#f2f2f2" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f2f2f2" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="体重(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="体重(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="55"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        <LinearLayout
+                            android:id="@+id/ll_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="55"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_weight"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="体脂肪(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_tizhifang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_tizhifang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="12"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_tizhifang"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="身体水分含量(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_body_water_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_body_water_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="34"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_body_water_weight"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="去脂体重(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_quzhi_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_quzhi_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="23"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_quzhi_weight"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="身体质量指数BMI(kg/m2)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_bmi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="23"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="体质百分比PBF(%)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_pbf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="23"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="腰臀比"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_yaotunbi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="0.81"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="基础代谢"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:background="@drawable/gray_stroke_bg"
+                            android:layout_width="wrap_content"
+                            android:minWidth="80dp"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/et_jichudaixie"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:padding="2dp"
+                                android:text="1109"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="肌肉控制(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:id="@+id/ll_jiroukongzhi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_jiroukongzhi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="+4.2"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_jiroukongzhi"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="脂肪控制(kg)"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_zhifangkongzhi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_zhifangkongzhi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="-3.2"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_zhifangkongzhi"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="体脂肪(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_tizhifang"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="12"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="身体水分含量(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_body_water_weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="34"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="去脂体重(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_quzhi_weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="23"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="身体质量指数BMI(kg/m2)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_bmi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="23"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="体质百分比PBF(%)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_pbf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="23"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="腰臀比"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_yaotunbi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="0.81"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="基础代谢"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_jichudaixie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="1109"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="肌肉控制(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_jiroukongzhi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="+4.2"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gray_stroke_bg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="脂肪控制(kg)"
-                        android:textColor="#999999"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_zhifangkongzhi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="-3.2"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-
-            </LinearLayout>
             </LinearLayout>
 
             <!--  基础测量数据  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
@@ -585,9 +701,9 @@
 
                 <LinearLayout
                     android:id="@+id/ll_jichuceliang"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
 
                     <LinearLayout
@@ -609,17 +725,32 @@
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_yaowei"
+
+                        <LinearLayout
+                            android:id="@+id/ll_yaowei"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="55"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_yaowei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="55"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_yaowei"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -641,17 +772,32 @@
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_pizhihoudu"
+
+                        <LinearLayout
+                            android:id="@+id/ll_pizhihoudu"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="12"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_pizhihoudu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="12"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_pizhihoudu"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -673,17 +819,33 @@
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_zuobi"
+
+                        <LinearLayout
+                            android:id="@+id/ll_zuobi"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="34"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_zuobi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="34"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_zuobi"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
 
 
                     </LinearLayout>
@@ -707,17 +869,34 @@
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_youbi"
+
+                        <LinearLayout
+                            android:id="@+id/ll_youbi"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="23"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_youbi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="23"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_youbi"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -739,17 +918,33 @@
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_zuodatui"
+
+                        <LinearLayout
+                            android:id="@+id/ll_zuodatui"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="23"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_zuodatui"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="23"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_zuodatui"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -770,18 +965,32 @@
                             android:textColor="#999999"
                             android:textSize="13sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_youdatui"
+                        <LinearLayout
+                            android:id="@+id/ll_youdatui"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="23"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_youdatui"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="23"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_youdatui"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -802,18 +1011,32 @@
                             android:textColor="#999999"
                             android:textSize="13sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_zuoxiaotui"
+                        <LinearLayout
+                            android:id="@+id/ll_zuoxiaotui"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="23"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_zuoxiaotui"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="23"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_zuoxiaotui"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -834,18 +1057,32 @@
                             android:textColor="#999999"
                             android:textSize="13sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_youxiaotui"
+                        <LinearLayout
+                            android:id="@+id/ll_youxiaotui"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="0.81"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_youxiaotui"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="0.81"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_youxiaotui"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -866,18 +1103,31 @@
                             android:textColor="#999999"
                             android:textSize="13sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_xueya"
+                        <LinearLayout
+                            android:id="@+id/ll_xueya"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="87"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_xueya"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="87"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_xueya"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -899,18 +1149,32 @@
                             android:textColor="#999999"
                             android:textSize="13sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_jitaixintiaolv"
+                        <LinearLayout
+                            android:id="@+id/ll_jitaixintiaolv"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="16dp"
-                            android:gravity="center"
-                            android:padding="2dp"
-                            android:text="110"
-                            android:textColor="#333333"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/tv_jitaixintiaolv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="110"
+                                android:textColor="#333333"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_jitaixintiaolv"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/lg_arrow" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -922,7 +1186,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
@@ -953,7 +1216,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_titaipinggudetail_controller"
+                        android:id="@+id/tv_titaipinggucemiandetail_controller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="24dp"
@@ -973,10 +1236,11 @@
                     android:background="#f2f2f2" />
 
                 <LinearLayout
-                    android:id="@+id/ll_titai"
-                    android:orientation="vertical"
+                    android:id="@+id/ll_titai_cemian"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -997,7 +1261,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_tou"
+                            android:id="@+id/tv_tou_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1029,7 +1293,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_jingzhui"
+                            android:id="@+id/tv_jingzhui_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1061,7 +1325,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_jianjiagu"
+                            android:id="@+id/tv_jianjiagu_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1095,7 +1359,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_xiongzhui"
+                            android:id="@+id/tv_xiongzhui_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1127,7 +1391,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_yaozhui"
+                            android:id="@+id/tv_yaozhui_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1159,7 +1423,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_gupen"
+                            android:id="@+id/tv_gupen_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1191,7 +1455,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_kuanguanjie"
+                            android:id="@+id/tv_kuanguanjie_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1223,7 +1487,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_xiguanjie"
+                            android:id="@+id/tv_xiguanjie_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1255,7 +1519,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_huaiguanjie"
+                            android:id="@+id/tv_huaiguanjie_cemian"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginLeft="16dp"
@@ -1303,6 +1567,333 @@
 
             </LinearLayout>
 
+
+            <!--  体态评估-背面  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:background="#1997F8" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="体态评估-背面"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_titaipinggubeimiandetail_controller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24dp"
+                        android:background="@drawable/gray_bg"
+                        android:drawableRight="@mipmap/lg_shouqi"
+                        android:gravity="center"
+                        android:text="收起"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f2f2f2" />
+
+                <LinearLayout
+                    android:id="@+id/ll_titai_beimian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="头"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_tou_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="中立位"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="肩部"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_jingzhui_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="肩胛骨"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_jianjiagu_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="胸腰椎"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_xiongyaozhui_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@mipmap/lg_arrow" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="骨盆"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_gupen_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="髋关节"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_kuanguanjie_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="膝关节"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_xiguanjie_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gray_stroke_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="足部"
+                            android:textColor="#999999"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_foot_beimian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text=""
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

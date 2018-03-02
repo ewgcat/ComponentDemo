@@ -70,34 +70,54 @@ public class PhysicalReportActivity extends AppCompatActivity {
     TextView tvXueya;
     @BindView(R.id.tv_jitaixintiaolv)
     TextView tvJitaixintiaolv;
-    @BindView(R.id.tv_titaipinggudetail_controller)
-    TextView tvTitaipinggudetailController;
-    @BindView(R.id.tv_tou)
-    TextView tvTou;
-    @BindView(R.id.tv_jingzhui)
-    TextView tvJingzhui;
-    @BindView(R.id.tv_jianjiagu)
-    TextView tvJianjiagu;
-    @BindView(R.id.tv_xiongzhui)
-    TextView tvXiongzhui;
-    @BindView(R.id.tv_yaozhui)
-    TextView tvYaozhui;
-    @BindView(R.id.tv_gupen)
-    TextView tvGupen;
-    @BindView(R.id.tv_kuanguanjie)
-    TextView tvKuanguanjie;
-    @BindView(R.id.tv_xiguanjie)
-    TextView tvXiguanjie;
-    @BindView(R.id.tv_huaiguanjie)
-    TextView tvHuaiguanjie;
-    @BindView(R.id.tv_feiguwaike)
-    TextView tvFeiguwaike;
     @BindView(R.id.ll_rentichengfen)
     LinearLayout llRentichengfen;
     @BindView(R.id.ll_jichuceliang)
     LinearLayout llJichuceliang;
-    @BindView(R.id.ll_titai)
-    LinearLayout llTitai;
+    @BindView(R.id.tv_titaipinggucemiandetail_controller)
+    TextView tvTitaipinggucemiandetailController;
+    @BindView(R.id.tv_tou_cemian)
+    TextView tvTouCemian;
+    @BindView(R.id.tv_jingzhui_cemian)
+    TextView tvJingzhuiCemian;
+    @BindView(R.id.tv_jianjiagu_cemian)
+    TextView tvJianjiaguCemian;
+    @BindView(R.id.tv_xiongzhui_cemian)
+    TextView tvXiongzhuiCemian;
+    @BindView(R.id.tv_yaozhui_cemian)
+    TextView tvYaozhuiCemian;
+    @BindView(R.id.tv_gupen_cemian)
+    TextView tvGupenCemian;
+    @BindView(R.id.tv_kuanguanjie_cemian)
+    TextView tvKuanguanjieCemian;
+    @BindView(R.id.tv_xiguanjie_cemian)
+    TextView tvXiguanjieCemian;
+    @BindView(R.id.tv_huaiguanjie_cemian)
+    TextView tvHuaiguanjieCemian;
+    @BindView(R.id.tv_feiguwaike)
+    TextView tvFeiguwaike;
+    @BindView(R.id.ll_titai_cemian)
+    LinearLayout llTitaiCemian;
+    @BindView(R.id.tv_titaipinggubeimiandetail_controller)
+    TextView tvTitaipinggubeimiandetailController;
+    @BindView(R.id.tv_tou_beimian)
+    TextView tvTouBeimian;
+    @BindView(R.id.tv_jingzhui_beimian)
+    TextView tvJingzhuiBeimian;
+    @BindView(R.id.tv_jianjiagu_beimian)
+    TextView tvJianjiaguBeimian;
+    @BindView(R.id.tv_xiongyaozhui_beimian)
+    TextView tvXiongyaozhuiBeimian;
+    @BindView(R.id.tv_gupen_beimian)
+    TextView tvGupenBeimian;
+    @BindView(R.id.tv_kuanguanjie_beimian)
+    TextView tvKuanguanjieBeimian;
+    @BindView(R.id.tv_xiguanjie_beimian)
+    TextView tvXiguanjieBeimian;
+    @BindView(R.id.tv_foot_beimian)
+    TextView tvFootBeimian;
+    @BindView(R.id.ll_titai_beimian)
+    LinearLayout llTitaiBeimian;
 
 
     @Override
@@ -119,38 +139,41 @@ public class PhysicalReportActivity extends AppCompatActivity {
     }
 
 
-
-    @OnClick({R.id.tv_titaipinggudetail_controller, R.id.tv_jichuceliangdetail_controller, R.id.tv_rentichenfendetail_controller})
+    @OnClick({R.id.tv_titaipinggucemiandetail_controller, R.id.tv_titaipinggubeimiandetail_controller, R.id.tv_jichuceliangdetail_controller, R.id.tv_rentichenfendetail_controller})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_rentichenfendetail_controller:
-                changeDetailShow(llRentichengfen,tvRentichenfendetailController);
+                changeDetailShow(llRentichengfen, tvRentichenfendetailController);
                 break;
             case R.id.tv_jichuceliangdetail_controller:
-                changeDetailShow(llJichuceliang,tvJichuceliangdetailController);
+                changeDetailShow(llJichuceliang, tvJichuceliangdetailController);
                 break;
-            case R.id.tv_titaipinggudetail_controller:
-                changeDetailShow(llTitai,tvTitaipinggudetailController);
+            case R.id.tv_titaipinggucemiandetail_controller:
+                changeDetailShow(llTitaiCemian, tvTitaipinggucemiandetailController);
                 break;
+            case R.id.tv_titaipinggubeimiandetail_controller:
+                changeDetailShow(llTitaiBeimian, tvTitaipinggubeimiandetailController);
+                break;
+
         }
     }
 
-    private void changeDetailShow(LinearLayout linearLayout,TextView textView){
-        if (linearLayout.getVisibility()==View.VISIBLE){
+    private void changeDetailShow(LinearLayout linearLayout, TextView textView) {
+        if (linearLayout.getVisibility() == View.VISIBLE) {
             linearLayout.setVisibility(View.GONE);
             textView.setText("展开");
             Drawable icon_zhankai = getResources().getDrawable(R.mipmap.lg_zhankai);
-            icon_zhankai.setBounds(0, 0, icon_zhankai.getMinimumWidth(),icon_zhankai.getMinimumHeight());
+            icon_zhankai.setBounds(0, 0, icon_zhankai.getMinimumWidth(), icon_zhankai.getMinimumHeight());
             textView.setCompoundDrawables(null, null, icon_zhankai, null);
-        }else {
+        } else {
             linearLayout.setVisibility(View.VISIBLE);
             textView.setText("收起");
             Drawable icon_shouqi = getResources().getDrawable(R.mipmap.lg_shouqi);
-            icon_shouqi.setBounds(0, 0, icon_shouqi.getMinimumWidth(),icon_shouqi.getMinimumHeight());
+            icon_shouqi.setBounds(0, 0, icon_shouqi.getMinimumWidth(), icon_shouqi.getMinimumHeight());
 
             textView.setCompoundDrawables(null, null, icon_shouqi, null);
         }
     }
-
-
 }
+
+

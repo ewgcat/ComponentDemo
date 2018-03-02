@@ -82,6 +82,8 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         TextView wenJuan;
         TextView tiCeBaoGao;
         TextView product;
+        TextView jiedaiName;
+        TextView jiedaiCoachName;
 
         public ViewHolder(View view) {
             super(view);
@@ -92,6 +94,8 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
             product=     view.findViewById(R.id.tv_product);
             wenJuan=     view.findViewById(R.id.tv_wenjuan);
             tiCeBaoGao=     view.findViewById(R.id.tv_ticebaogao);
+            jiedaiName=     view.findViewById(R.id.tv_jiedai_name);
+            jiedaiCoachName=     view.findViewById(R.id.tv_coach_name);
 
         }
     }

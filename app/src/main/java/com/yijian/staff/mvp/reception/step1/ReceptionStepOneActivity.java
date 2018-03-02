@@ -14,9 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity;
-import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 import com.yijian.staff.widget.TimeBar;
@@ -40,7 +39,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setLightStatusBar(this, 0xffffff);
+        StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_reception_step_one);
 
         initView();

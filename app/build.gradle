@@ -118,5 +118,7 @@ dependencies {
     compile('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
 
+    compile 'com.github.huangyanbin:SmartTable:1.8.8'
 }

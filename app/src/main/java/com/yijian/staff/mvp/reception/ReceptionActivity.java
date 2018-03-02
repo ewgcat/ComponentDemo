@@ -11,7 +11,7 @@ import android.view.View;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.util.system.StatusBarUtil;
+import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -31,7 +31,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception);
-        StatusBarUtil.setLightStatusBar(this, 0xffffff);
+        StatusBarUtils.setLightStatusBar(this, 0xffffff);
 
         initView();
 

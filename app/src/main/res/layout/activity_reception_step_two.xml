@@ -7,12 +7,55 @@
 
     <include
         android:id="@+id/step_two_navigation_bar2"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar2" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/step_two_timebar"
-        layout="@layout/view_time_bar"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <include
+                android:id="@+id/step_two_timebar"
+                layout="@layout/view_time_bar" />
+
+            <RelativeLayout
+                android:layout_width="190dp"
+                android:layout_height="313dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="46dp"
+                android:layout_marginTop="46dp"
+                android:background="@mipmap/lg_fangkuang">
+
+                <com.yijian.staff.widget.ManAnimtor
+                    android:id="@+id/man_animtor"
+                    android:layout_width="186dp"
+                    android:layout_height="308dp"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:text="教练正在录入体测数据\n请稍等" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="39dp"
+                android:layout_marginBottom="39dp"
+                android:text="跳过"
+                android:textSize="16sp"
+                android:textColor="#1997f8" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 

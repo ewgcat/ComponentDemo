@@ -42,8 +42,8 @@ public class PhysicalReportActivity extends AppCompatActivity {
     TextView tvPbf;
     @BindView(R.id.tv_yaotunbi)
     TextView tvYaotunbi;
-    @BindView(R.id.tv_jichudaixie)
-    TextView tvJichudaixie;
+//    @BindView(R.id.tv_jichudaixie)
+//    TextView tvJichudaixie;
     @BindView(R.id.tv_jiroukongzhi)
     TextView tvJiroukongzhi;
     @BindView(R.id.tv_zhifangkongzhi)

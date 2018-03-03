@@ -29,12 +29,11 @@ public class ScanBodyView extends View {
     private Paint paint;
     private Bitmap bitmap_line;
     private ObjectAnimator animator;
+    private int position_y;
 
     public ScanBodyView(Context context) {
         this(context,null);
     }
-
-
 
     public ScanBodyView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs,0);
@@ -43,7 +42,6 @@ public class ScanBodyView extends View {
     public ScanBodyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
-
     }
 
     private void init() {
@@ -51,14 +49,11 @@ public class ScanBodyView extends View {
         bitmap_upper = BitmapFactory.decodeResource(getResources(), R.mipmap.lg_blueren);
         bitmap_bottom = BitmapFactory.decodeResource(getResources(), R.mipmap.lg_blackman);
         bitmap_line = BitmapFactory.decodeResource(getResources(), R.mipmap.lg_blueline);
-
         animator = ObjectAnimator.ofInt(this, "PositionY", 0, 100);
         animator.setInterpolator(new LinearInterpolator());
         animator.setDuration(2000);
         animator.setRepeatCount(ValueAnimator.INFINITE);
     }
-
-    private int position_y;
 
     public int getPositionY() {
         return position_y;

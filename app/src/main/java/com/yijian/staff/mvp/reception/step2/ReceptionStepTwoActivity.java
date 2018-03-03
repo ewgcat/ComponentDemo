@@ -59,7 +59,7 @@ public class ReceptionStepTwoActivity extends AppCompatActivity implements View.
                 break;
             case R.id.right_tv:
                 Intent intent = new Intent(ReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
-                startActivity(intent);
+//                startActivity(intent);
                 scanBodyView.stopScan();
                 break;
         }

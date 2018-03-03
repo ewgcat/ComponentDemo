@@ -13,11 +13,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     <include
         android:id="@+id/physical_report_body_test_report"
         layout="@layout/view_body_test_report"/>
-
-
     </ScrollView>
+
+
 </LinearLayout>

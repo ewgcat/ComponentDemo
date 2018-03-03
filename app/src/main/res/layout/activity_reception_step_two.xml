@@ -7,12 +7,25 @@
 
     <include
         android:id="@+id/step_two_navigation_bar2"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar2" />
 
 
     <include
         android:id="@+id/step_two_timebar"
-        layout="@layout/view_time_bar"/>
+        layout="@layout/view_time_bar" />
+
+    <!-- 教练录入体测数据时显示-->
+    <ScrollView
+        android:id="@+id/sv_jianlianluru"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include layout="@layout/view_body_test_report" />
+    </ScrollView>
+
+
+
 
 </LinearLayout>
 

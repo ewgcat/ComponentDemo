@@ -1,23 +1,35 @@
 package com.yijian.staff.mvp.reception.step2;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.ScanBodyView;
 import com.yijian.staff.widget.TimeBar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final java.lang.String TAG = ReceptionStepTwoActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_reception_step_two);
+        ButterKnife.bind(this);
         initView();
     }
 
@@ -30,6 +42,20 @@ public class ReceptionStepTwoActivity extends AppCompatActivity implements View.
         navigationBar2.setmRightTvText("下一步");
         TimeBar timeBar = findViewById(R.id.step_two_timebar);
         timeBar.showTimeBar(2);
+
+        initScanAnimation();
+
+    }
+
+    private void initScanAnimation() {
+//        ScanBodyView scanBodyView = findViewById(R.id.scan_view);
+//        ObjectAnimator animator = ObjectAnimator.ofInt(scanBodyView, "PositionY", 0, 100);
+//        animator.setInterpolator(new LinearInterpolator());
+//        animator.setDuration(2000);
+//        animator.setRepeatCount(ValueAnimator.INFINITE);
+//        animator.start();
+
+
 
     }
 

@@ -13,5 +13,10 @@
     <include
         android:id="@+id/step_three_timebar"
         layout="@layout/view_time_bar"/>
+
+    <include
+        android:id="@+id/layout1"
+        layout="@layout/view_huiji_step3_layout1"/>
+
 </LinearLayout>
 

@@ -42,11 +42,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:textSize="16sp"
                 android:textColor="#333333"
                 android:text="教练正在录入体测数据\n请稍等" />
 
             <TextView
+                android:id="@+id/tv_next_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

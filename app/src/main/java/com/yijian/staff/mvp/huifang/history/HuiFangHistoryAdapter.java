@@ -1,8 +1,7 @@
-package com.yijian.staff.mvp.reception;
+package com.yijian.staff.mvp.huifang.history;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.login.LoginActivity;
-import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.util.Logger;
@@ -25,30 +22,30 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/2/28 17:08:17
  */
-public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHistoryAdapter.ViewHolder> {
-    private List<ReceptionInfo> mReceptionInfoList;
+public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAdapter.ViewHolder> {
+    private List<HuiFangInfo> mHuiFangInfoList;
     private Context context;
 
-    public ReceptionHistoryAdapter(Context context, List<ReceptionInfo> mReceptionInfoList) {
-        this.mReceptionInfoList = mReceptionInfoList;
+    public HuiFangHistoryAdapter(Context context, List<HuiFangInfo> mHuiFangInfoList) {
+        this.mHuiFangInfoList = mHuiFangInfoList;
         this.context = context;
     }
 
     @Override
-    public ReceptionHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_reception_history, parent, false);
+    public HuiFangHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hui_fang_history, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ReceptionHistoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(HuiFangHistoryAdapter.ViewHolder holder, int position) {
         Logger.i("HuiFangHistoryAdapter","position: "+position);
-        ReceptionInfo receptionInfo = mReceptionInfoList.get(position);
-        holder.viperName.setText(receptionInfo.getName());
-        holder.receptionStatus.setText(receptionInfo.getStatus());
-        holder.viperPhone.setText(receptionInfo.getPhone());
-        holder.product.setText(receptionInfo.getProduct());
+        HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
+        holder.viperName.setText(huiFangInfo.getName());
+        holder.receptionStatus.setText(huiFangInfo.getStatus());
+        holder.viperPhone.setText(huiFangInfo.getPhone());
+        holder.product.setText(huiFangInfo.getProduct());
         Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
         holder.wenJuan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +66,7 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
 
     @Override
     public int getItemCount() {
-        return mReceptionInfoList.size();
+        return mHuiFangInfoList.size();
     }
 
 

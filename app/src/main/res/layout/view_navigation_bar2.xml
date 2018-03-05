@@ -48,9 +48,10 @@
             android:text="下一步"
             android:textColor="#1997f8" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#f2f2f2" />
+
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2" />
 </com.yijian.staff.widget.NavigationBar2>

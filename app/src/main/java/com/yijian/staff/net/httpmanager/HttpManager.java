@@ -36,4 +36,6 @@ public class HttpManager {
     public static void postLogin(JSONObject jsonObject, Observer<JSONObject> observer) {
         Observable<JSONObject> loginObservable = apiService.login(jsonObject.toString());
     }
+
+
 }

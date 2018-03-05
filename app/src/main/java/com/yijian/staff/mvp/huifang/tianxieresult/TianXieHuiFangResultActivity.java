@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang;
+package com.yijian.staff.mvp.huifang.tianxieresult;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,12 +57,10 @@ public class TianXieHuiFangResultActivity extends AppCompatActivity implements V
                 TimePickerView pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View view) {
-                        String result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+                        String result = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
                         tvNextHuiFangTime.setText(result);
-
                     }
                 }).build();
-
                 pickerView.show();
                 break;
             case R.id.right_tv:

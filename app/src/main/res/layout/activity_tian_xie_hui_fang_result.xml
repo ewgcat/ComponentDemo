@@ -16,6 +16,7 @@
         android:background="@drawable/white_bg">
 
         <EditText
+            android:id="@+id/et_hui_fang_result"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,6 +29,7 @@
 
 
     <CheckBox
+        android:id="@+id/checkbox"
         android:button="@drawable/check_state"
         android:text="需要进行复访"
         android:textColor="#666666"

@@ -62,13 +62,16 @@
         <activity android:name=".mvp.goodsdetail.GoodsDetaiActivity" />
         <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
         <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity">
+
+        </activity>
+        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity"></activity>
     </application>
 
 </manifest>

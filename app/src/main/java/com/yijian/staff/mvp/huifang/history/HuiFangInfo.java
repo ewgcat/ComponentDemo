@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception;
+package com.yijian.staff.mvp.huifang.history;
 
 import com.yijian.staff.util.JsonUtil;
 
@@ -9,14 +9,14 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/2/28 17:22:37
  */
-public class ReceptionInfo {
+public class HuiFangInfo {
     private String name;
     private String phone;
     private String sex;
     private String product;
     private String status;
 
-    public ReceptionInfo(JSONObject jsonObject){
+    public HuiFangInfo(JSONObject jsonObject){
       this.name=  JsonUtil.getString(jsonObject,"name");
       this.phone=  JsonUtil.getString(jsonObject,"phone");
       this.sex=  JsonUtil.getString(jsonObject,"sex");

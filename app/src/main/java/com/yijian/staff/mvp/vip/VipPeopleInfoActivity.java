@@ -3,6 +3,8 @@ package com.yijian.staff.mvp.vip;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.yijian.staff.R;
+
 public class VipPeopleInfoActivity extends AppCompatActivity {
 
     @Override

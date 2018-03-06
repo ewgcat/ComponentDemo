@@ -5,11 +5,14 @@ import android.os.Bundle;
 
 import com.yijian.staff.R;
 
-public class VipPeopleInfoActivity extends AppCompatActivity {
+/**
+ * 潜在会员基本信息
+ */
+public class VipPotentialPeopleInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_people_info);
+        setContentView(R.layout.activity_vip_potential_people_info);
     }
 }

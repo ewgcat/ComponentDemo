@@ -16,6 +16,9 @@ import java.util.Date;
 
 import butterknife.ButterKnife;
 
+/**
+ * 过期会员
+ */
 public class VipOverActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override

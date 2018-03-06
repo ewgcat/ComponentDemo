@@ -22,12 +22,21 @@ import java.util.List;
 
 /**
  * Created by yangk on 2018/3/6.
+ * 全部会员信息
  */
 
-public class VipAllPeopleInfo extends Fragment {
+public class VipAllPeopleInfoFragment extends Fragment {
 
     private RecyclerView rv_vip_all;
     private List<VipPeopleInfo> vipPeopleInfoList=new ArrayList<>();
+
+    private static VipAllPeopleInfoFragment vipAllPeopleInfoFragment;
+    public static VipAllPeopleInfoFragment getInstance(){
+        if(vipAllPeopleInfoFragment == null){
+            vipAllPeopleInfoFragment = new VipAllPeopleInfoFragment();
+        }
+        return vipAllPeopleInfoFragment;
+    }
 
     @Nullable
     @Override
@@ -62,8 +71,8 @@ public class VipAllPeopleInfo extends Fragment {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
             //设置RecyclerView 布局
             rv_vip_all.setLayoutManager(layoutmanager);
-            VipIntentionAdapter vipIntentionAdapter = new VipIntentionAdapter(getActivity(), vipPeopleInfoList);
-            rv_vip_all.setAdapter(vipIntentionAdapter);
+            VipPeopleInfoAdapter vipPeopleInfoAdapter = new VipPeopleInfoAdapter(getActivity(), vipPeopleInfoList,true);
+            rv_vip_all.setAdapter(vipPeopleInfoAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 

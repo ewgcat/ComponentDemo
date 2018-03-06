@@ -8,6 +8,12 @@ import android.view.Display;
 import android.view.WindowManager;
 
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.bugly.Bugly;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
@@ -27,6 +33,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class CustomApplication extends TinkerApplication {
+
+
 
     private static CustomApplication instance;
     public static AppComponent appComponent;

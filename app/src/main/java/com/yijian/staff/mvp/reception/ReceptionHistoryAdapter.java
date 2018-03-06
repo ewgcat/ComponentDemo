@@ -43,7 +43,7 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
 
     @Override
     public void onBindViewHolder(ReceptionHistoryAdapter.ViewHolder holder, int position) {
-        Logger.i("HuiFangHistoryAdapter","position: "+position);
+        Logger.i("HuiFangTaskAdapter","position: "+position);
         ReceptionInfo receptionInfo = mReceptionInfoList.get(position);
         holder.viperName.setText(receptionInfo.getName());
         holder.receptionStatus.setText(receptionInfo.getStatus());

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
     <include
-        android:id="@+id/hui_fang_history_navigation_bar"
-        layout="@layout/view_navigation_bar"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rlv"
+        android:id="@+id/hui_fang_task_navigation_bar"
+        layout="@layout/view_navigation_bar" />
+
+    <com.gxz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/colorAccent"
+        app:pstsIndicatorHeight="5dp"
+        app:pstsShouldExpand="false"
+        android:background="@color/white"
+        app:pstsTextSelectedColor="@color/colorAccent"
+        app:pstsUnderlineColor="@android:color/transparent" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -53,4 +68,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>

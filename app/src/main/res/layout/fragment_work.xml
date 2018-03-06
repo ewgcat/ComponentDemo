@@ -289,7 +289,7 @@
                 app:flexWrap="wrap">
 
                 <LinearLayout
-                    android:id="@+id/ll_work_custom_post_it"
+                    android:id="@+id/ll_work_hui_ji_jie_dai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -315,7 +315,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_work_indoor_post_it"
+                    android:id="@+id/ll_work_yao_yue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -342,7 +342,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_work_business"
+                    android:id="@+id/ll_work_tian_jia_qian_zai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -368,7 +368,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_work_decision_support"
+                    android:id="@+id/ll_work_tou_su_chu_li"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -394,7 +394,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_work_meter_read"
+                    android:id="@+id/ll_work_hui_yuan_xin_xi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -420,7 +420,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_main_opendoor"
+                    android:id="@+id/ll_main_yi_xiang_hui_yuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -446,7 +446,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_work_xuexi_zhongxin"
+                    android:id="@+id/ll_work_kao_qin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -471,7 +471,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_work_p_plus_cloud"
+                    android:id="@+id/ll_work_all_gong_neng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

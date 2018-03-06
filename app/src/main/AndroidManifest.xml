@@ -37,7 +37,12 @@
             android:name=".mvp.main.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".mvp.login.LoginActivity" />
         <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity" />
         <activity android:name=".mvp.reception.ReceptionActivity" />
@@ -65,10 +70,7 @@
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
 
         <activity android:name=".mvp.huifang.task.HuiFangTaskActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity" />

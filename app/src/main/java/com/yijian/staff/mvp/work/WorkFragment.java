@@ -17,14 +17,19 @@ import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.system.ScreenUtil;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 @SuppressLint("ValidFragment")
-public class WorkFragment extends Fragment implements View.OnClickListener {
+public class WorkFragment extends Fragment  {
 
     public static WorkFragment mWorkFragment = null;
+    Unbinder unbinder;
     private ImageView ivRotate;
     private EditText etSearch;
     private View view;
@@ -40,6 +45,7 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
         view = inflater.inflate(R.layout.fragment_work, container, false);
+        unbinder = ButterKnife.bind(this, view);
         init();
         return view;
     }
@@ -57,7 +63,6 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
         params.setMargins(0, statusBarHeight, 0, 0);
         contentView.setLayoutParams(params);
 
-        view.findViewById(R.id.rl_jiedai).setOnClickListener(this);
         etSearch = view.findViewById(R.id.et_search);
         ivRotate = view.findViewById(R.id.iv_rotate);
         etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
@@ -68,20 +73,6 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
         startRotateAnimation();
     }
 
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-        switch (id) {
-            case R.id.rl_jiedai:
-                Intent i = new Intent(getActivity(), ReceptionActivity.class);
-                startActivity(i);
-
-                break;
-
-        }
-    }
 
 
     /**
@@ -103,5 +94,43 @@ public class WorkFragment extends Fragment implements View.OnClickListener {
      */
     private void clearRotateAnimation() {
         ivRotate.clearAnimation();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.rl_jiedai,R.id.ll_work_hui_ji_jie_dai,
+            R.id.ll_work_yao_yue, R.id.ll_work_tian_jia_qian_zai,
+            R.id.ll_work_tou_su_chu_li, R.id.ll_work_hui_yuan_xin_xi,
+            R.id.ll_main_yi_xiang_hui_yuan, R.id.ll_work_kao_qin,
+            R.id.ll_work_all_gong_neng})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.rl_jiedai:
+                Intent i1 = new Intent(getActivity(), ReceptionActivity.class);
+                startActivity(i1);
+                break;
+           case R.id.ll_work_hui_ji_jie_dai:
+               Intent i2 = new Intent(getActivity(), HuiFangTaskActivity.class);
+               startActivity(i2);
+                break;
+            case R.id.ll_work_yao_yue:
+                break;
+            case R.id.ll_work_tian_jia_qian_zai:
+                break;
+            case R.id.ll_work_tou_su_chu_li:
+                break;
+            case R.id.ll_work_hui_yuan_xin_xi:
+                break;
+            case R.id.ll_main_yi_xiang_hui_yuan:
+                break;
+            case R.id.ll_work_kao_qin:
+                break;
+            case R.id.ll_work_all_gong_neng:
+                break;
+        }
     }
 }

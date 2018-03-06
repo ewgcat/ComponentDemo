@@ -16,6 +16,7 @@ public class VipDetailInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vip_detail_info);
+        initView();
     }
 
     private void initView() {

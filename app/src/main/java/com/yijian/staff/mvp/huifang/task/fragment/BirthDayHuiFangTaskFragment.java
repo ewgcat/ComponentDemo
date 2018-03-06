@@ -3,8 +3,26 @@ package com.yijian.staff.mvp.huifang.task.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
+import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
+import com.yijian.staff.util.Logger;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * author：李帅华
@@ -13,13 +31,16 @@ import com.yijian.staff.R;
  */
 @SuppressLint("ValidFragment")
 public class BirthDayHuiFangTaskFragment extends CommonHuiFangTaskFragment {
+
     public BirthDayHuiFangTaskFragment() {
         super();
-        viewId = R.layout.fragment_birthday_hui_fang_list;
     }
 
     public BirthDayHuiFangTaskFragment(Context context, int type) {
-        super(context, R.layout.fragment_birthday_hui_fang_list, type);
+        super(context,  type);
     }
 
+
+
 }
+

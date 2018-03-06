@@ -234,8 +234,9 @@
             android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_outdate_time"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
@@ -249,7 +250,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
 
 
         <View
@@ -269,9 +269,11 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_outdate_reason"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
@@ -285,7 +287,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
 
 
         <View

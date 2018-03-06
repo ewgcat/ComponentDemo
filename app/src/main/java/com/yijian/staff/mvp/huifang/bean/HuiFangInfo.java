@@ -21,7 +21,21 @@ public class HuiFangInfo {
     private String outdateTime;
     private String outdateReason;
     private String huifangType;
+    private String shengri;
+    private String shengriType;
+    private String hetongYuEr;
+    private String heTongDaoQiRi;
+    private String cardName;
+    private String cardType;
+    private String zuijinJianShen;
+    private String chenMoTianShu;
+    private String preFangWenRiqi;
+    private String fufangReason;
+    private String preJianShenTime;
+    private String weiJianShenTime;
     private String huifangReason;
+
+
 
 
 
@@ -39,6 +53,19 @@ public class HuiFangInfo {
         this.outdateReason = JsonUtil.getString(jsonObject, "outdateReason");
         this.huifangType = JsonUtil.getString(jsonObject, "huifangType");
         this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
+        this.shengri = JsonUtil.getString(jsonObject, "shengri");
+        this.shengriType = JsonUtil.getString(jsonObject, "shengriType");
+        this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
+        this.heTongDaoQiRi = JsonUtil.getString(jsonObject, "heTongDaoQiRi");
+        this.cardName = JsonUtil.getString(jsonObject, "cardName");
+        this.cardType = JsonUtil.getString(jsonObject, "cardType");
+        this.zuijinJianShen = JsonUtil.getString(jsonObject, "zuijinJianShen");
+        this.chenMoTianShu = JsonUtil.getString(jsonObject, "chenMoTianShu");
+        this.preFangWenRiqi = JsonUtil.getString(jsonObject, "preFangWenRiqi");
+        this.fufangReason  = JsonUtil.getString(jsonObject, "fufangReason");
+        this.preJianShenTime  = JsonUtil.getString(jsonObject, "preJianShenTime");
+        this.weiJianShenTime  = JsonUtil.getString(jsonObject, "weiJianShenTime");
+
     }
 
     public String getHeadUrl() {
@@ -87,5 +114,57 @@ public class HuiFangInfo {
 
     public String getCarName() {
         return carName;
+    }
+
+    public String getXingquAihao() {
+        return xingquAihao;
+    }
+
+    public String getShengri() {
+        return shengri;
+    }
+
+    public String getShengriType() {
+        return shengriType;
+    }
+
+    public String getHetongYuEr() {
+        return hetongYuEr;
+    }
+
+    public String getHeTongDaoQiRi() {
+        return heTongDaoQiRi;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public String getZuijinJianShen() {
+        return zuijinJianShen;
+    }
+
+    public String getChenMoTianShu() {
+        return chenMoTianShu;
+    }
+
+    public String getPreFangWenRiqi() {
+        return preFangWenRiqi;
+    }
+
+    public String getFufangReason() {
+        return fufangReason;
+    }
+
+    public String getPreJianShenTime() {
+        return preJianShenTime;
+    }
+
+    public String getWeiJianShenTime() {
+        return weiJianShenTime;
     }
 }

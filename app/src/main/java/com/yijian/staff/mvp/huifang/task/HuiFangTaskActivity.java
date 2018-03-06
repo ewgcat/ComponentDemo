@@ -11,6 +11,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
 import com.yijian.staff.mvp.huifang.task.fragment.AllHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.fragment.BirthDayHuiFangTaskFragment;
+import com.yijian.staff.mvp.huifang.task.fragment.CommonHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
@@ -60,10 +61,20 @@ public class HuiFangTaskActivity extends AppCompatActivity {
         List<String> mTitleList = new ArrayList<>();
         mTitleList.add("全部");
         mTitleList.add("生日");
+        mTitleList.add("昨日到访");
+        mTitleList.add("昨日开卡");
+        mTitleList.add("潜在会员");
+        mTitleList.add("沉寂会员");
+        mTitleList.add("恢复健身");
+        mTitleList.add("复放");
+        mTitleList.add("过期");
+        mTitleList.add("快到期");
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new AllHuiFangTaskFragment(this, 0));
-        fragmentList.add(new BirthDayHuiFangTaskFragment(this, 1));
+        fragmentList.add(new CommonHuiFangTaskFragment(this, 0));
+        fragmentList.add(new CommonHuiFangTaskFragment(this, 1));
+
+
         HuiFangPagerAdapter huiFangPagerAdapter = new HuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(huiFangPagerAdapter);
         tabs.setViewPager(viewPager);

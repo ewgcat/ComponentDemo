@@ -14,14 +14,16 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_head"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="4dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="4dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/wt_boysmall" />
+
         <TextView
             android:id="@+id/tv_viper_name"
             android:layout_width="wrap_content"
@@ -36,8 +38,8 @@
             android:id="@+id/iv_sex"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="4dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="4dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/lg_man" />
 
@@ -67,7 +69,6 @@
             android:textStyle="bold" />
 
 
-
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -87,6 +88,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_outdate_time"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="16dp"
@@ -102,7 +104,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
 
 
         <View
@@ -122,7 +123,9 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_outdate_reason"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="16dp"
@@ -138,7 +141,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
 
 
         <View
@@ -158,6 +160,7 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -174,7 +177,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
 
 
         <View
@@ -196,6 +198,7 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -211,9 +214,6 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:textStyle="bold" />
-
-
-
 
 
         <TextView

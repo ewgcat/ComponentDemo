@@ -54,13 +54,18 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         holder.viperName.setText(huiFangInfo.getName());
         Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
         holder.tvQuanyi.setText(huiFangInfo.getQuanyi());
-        holder.tvOutdateTime.setText(huiFangInfo.getOutdateTime());
-        holder.tvHuifangType.setText(huiFangInfo.getHuifangType());
+
 
         if (position==0){
             holder.tv.setText("填写回访结果");
             Glide.with(context).load(R.mipmap.wt_huifangjieguo).into(holder.iv);
-
+            holder.llOutdateTime.setVisibility(View.VISIBLE);
+            holder.llOutdateReason.setVisibility(View.VISIBLE);
+            holder.tvOutdateTime.setText(huiFangInfo.getOutdateTime());
+            holder.tvHuifangType.setText(huiFangInfo.getHuifangType());
+        }else {
+            holder.llOutdateTime.setVisibility(View.GONE);
+            holder.llOutdateReason.setVisibility(View.GONE);
         }
         holder.llBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +97,9 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         TextView tvJianshenAihao;
         TextView tvCarName;
         TextView tvQuanyi;
+
+        LinearLayout llOutdateReason;
+        LinearLayout llOutdateTime;
         TextView tvOutdateTime;
         TextView tvOutdateReason;
         TextView tvHuifangType;
@@ -112,6 +120,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             tvCarName = view.findViewById(R.id.tv_car_name);
 
             tvQuanyi = view.findViewById(R.id.tv_quanyi);
+            llOutdateTime = view.findViewById(R.id.ll_outdate_time);
+            llOutdateReason = view.findViewById(R.id.ll_outdate_reason);
             tvOutdateTime = view.findViewById(R.id.tv_outdate_time);
             tvOutdateReason = view.findViewById(R.id.tv_outdate_reason);
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);

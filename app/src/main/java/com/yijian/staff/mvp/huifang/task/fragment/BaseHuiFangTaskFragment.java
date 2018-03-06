@@ -37,7 +37,9 @@ import java.util.List;
  * time: 2018/3/5 19:39:24
  */
 @SuppressLint("ValidFragment")
-public class CommonHuiFangTaskFragment extends Fragment {
+public class BaseHuiFangTaskFragment extends Fragment {
+
+
     private RefreshLayout refreshLayout;
     private List<HuiFangInfo> huiFangInfoList=new ArrayList<>();
     private RecyclerView recyclerView;
@@ -48,18 +50,14 @@ public class CommonHuiFangTaskFragment extends Fragment {
     private int defaultViewId= R.layout.common_hui_fang_task;
 
 
-    public CommonHuiFangTaskFragment(Context context, int viewId, int type) {
-        this.context = context;
-        this.viewId = viewId;
-        this.type = type;
-    }
-    public CommonHuiFangTaskFragment(Context context, int type) {
+
+    public BaseHuiFangTaskFragment(Context context, int type) {
         this.context = context;
         this.viewId = defaultViewId;
         this.type = type;
     }
 
-    public CommonHuiFangTaskFragment() {
+    public BaseHuiFangTaskFragment() {
         super();
     }
 
@@ -122,6 +120,16 @@ public class CommonHuiFangTaskFragment extends Fragment {
                 jsonObject.put("shentiStatus","正常");
                 jsonObject.put("jianshenAihao","哑铃");
                 jsonObject.put("xingquAihao","游泳");
+                jsonObject.put("huifangType","体验课回访");
+                jsonObject.put("huifangReason","　　中新社北京3月5日电 (记者 唐贵江)农业部部长韩长赋5日在全国两会“部长通道”回答媒体记者提问时表示，近年来中国粮食连年丰收，粮食产量连续5年稳定在1.2万亿斤的台阶上，化肥的使用对粮食增长有重要作用，但不能说是化肥“喂”出来的。2017年，中国的化肥使用实现了负增长，提前三年实现了“十三五”目标，也就是化肥农药使用量的零增长");
+
+            }else if (type==2){
+                jsonObject.put("name","朱沙");
+                jsonObject.put("headUrl","headUrl");
+                jsonObject.put("sex","男");
+                jsonObject.put("shentiStatus","正常");
+                jsonObject.put("jianshenAihao","哑铃");
+                jsonObject.put("xingquAihao","游泳");
                 jsonObject.put("huifangType","生日回访");
                 jsonObject.put("huifangReason","　　中新社北京3月5日电 (记者 唐贵江)农业部部长韩长赋5日在全国两会“部长通道”回答媒体记者提问时表示，近年来中国粮食连年丰收，粮食产量连续5年稳定在1.2万亿斤的台阶上，化肥的使用对粮食增长有重要作用，但不能说是化肥“喂”出来的。2017年，中国的化肥使用实现了负增长，提前三年实现了“十三五”目标，也就是化肥农药使用量的零增长");
 
@@ -133,7 +141,7 @@ public class CommonHuiFangTaskFragment extends Fragment {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(context);
             //设置RecyclerView 布局
             recyclerView.setLayoutManager(layoutmanager);
-            huiFangTaskAdapter = new HuiFangTaskAdapter(context, huiFangInfoList);
+            huiFangTaskAdapter = new HuiFangTaskAdapter(context, huiFangInfoList,type);
             recyclerView.setAdapter(huiFangTaskAdapter);
         } catch (JSONException e) {
             Logger.i("TEST","JSONException: "+e);

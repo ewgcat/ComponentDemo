@@ -55,26 +55,29 @@
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity"/>
+        <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
         <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />
         <activity android:name=".mvp.reception.step4.ReceptionStepFourActivity" />
         <activity android:name=".mvp.reception.step5.ReceptionStepFiveActivity" />
         <activity android:name=".mvp.goodsdetail.GoodsDetaiActivity" />
         <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
-        <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"/>
-        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity"/>
+        <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity" />
+        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
 
-         <activity android:name=".mvp.huifang.task.HuiFangTaskActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity">
+        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity" />
+        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity" />
+        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity" />
+        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity" />
+        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity" />
+        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity">
+
         </activity>
     </application>
 

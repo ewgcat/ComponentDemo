@@ -18,6 +18,7 @@ public class GoodsInfo {
     public GoodsInfo(JSONObject jsonObject){
         this.goodsName=  JsonUtil.getString(jsonObject,"goodsName");
         this.jianshenplace=  JsonUtil.getString(jsonObject,"jianshenplace");
+
         this.yuer=  JsonUtil.getString(jsonObject,"yuer");
         this.chuzhiyouhui=  JsonUtil.getString(jsonObject,"chuzhiyouhui");
         this.price=  JsonUtil.getString(jsonObject,"price");

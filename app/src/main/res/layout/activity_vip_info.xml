@@ -33,6 +33,7 @@
                 android:textSize="16sp" />
 
             <View
+                android:id="@+id/view_all"
                 android:layout_width="60dp"
                 android:layout_height="3dp"
                 android:layout_alignParentBottom="true"
@@ -57,11 +58,13 @@
                 android:textSize="16sp" />
 
             <View
+                android:id="@+id/view_today_visit"
                 android:layout_width="60dp"
                 android:layout_height="3dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="#31a4fc" />
+                android:background="#31a4fc"
+                android:visibility="gone"/>
         </RelativeLayout>
 
     </LinearLayout>

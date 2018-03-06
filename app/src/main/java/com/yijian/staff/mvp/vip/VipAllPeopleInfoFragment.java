@@ -57,7 +57,7 @@ public class VipAllPeopleInfoFragment extends Fragment {
             jsonObject.put("cardType", "时间卡");
             jsonObject.put("privateCoach", "邹市明");
             jsonObject.put("likeLesson", "健身课");
-            jsonObject.put("likeTeacher", "陈周奇老师");
+            jsonObject.put("likeTeacher", "陈周奇老师1");
             jsonObject.put("registTime", "2017-12-25");
             jsonObject.put("contractOverTime","2018-12-05");
             jsonObject.put("contractBalance","20天");

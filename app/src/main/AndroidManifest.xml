@@ -64,7 +64,13 @@
         <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"/>
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity"/>
 
-         <activity android:name=".mvp.huifang.task.HuiFangTaskActivity">
+         <activity android:name=".mvp.huifang.task.HuiFangTaskActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

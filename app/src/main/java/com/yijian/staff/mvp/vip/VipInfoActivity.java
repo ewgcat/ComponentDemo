@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -20,13 +21,17 @@ import butterknife.OnClick;
 public class VipInfoActivity extends AppCompatActivity {
 
     @BindView(R.id.lin_all_vip)
-    LinearLayout lin_all_vip;
+    RelativeLayout lin_all_vip;
     @BindView(R.id.lin_today_visit)
-    LinearLayout lin_today_visit;
+    RelativeLayout lin_today_visit;
     @BindView(R.id.tv_label_all)
     TextView tv_label_all;
     @BindView(R.id.tv_label_visit)
     TextView tv_label_visit;
+    @BindView(R.id.view_all)
+    View view_all;
+    @BindView(R.id.view_today_visit)
+    View view_today_visit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +69,16 @@ public class VipInfoActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if(status == 0){
-            tv_label_visit.setTextColor(Color.parseColor("#31a4fc"));
-            tv_label_all.setTextColor(Color.parseColor("#666666"));
+            tv_label_all.setTextColor(Color.parseColor("#31a4fc"));
+            tv_label_visit.setTextColor(Color.parseColor("#666666"));
+            view_all.setVisibility(View.VISIBLE);
+            view_today_visit.setVisibility(View.GONE);
             fragmentTransaction.replace(R.id.fl_content,VipAllPeopleInfoFragment.getInstance());
         }else{
-            tv_label_visit.setTextColor(Color.parseColor("#666666"));
+            tv_label_all.setTextColor(Color.parseColor("#666666"));
             tv_label_visit.setTextColor(Color.parseColor("#31a4fc"));
+            view_all.setVisibility(View.GONE);
+            view_today_visit.setVisibility(View.VISIBLE);
             fragmentTransaction.replace(R.id.fl_content,VipTodayVisitInfoFragment.getInstance());
         }
         fragmentTransaction.commit();

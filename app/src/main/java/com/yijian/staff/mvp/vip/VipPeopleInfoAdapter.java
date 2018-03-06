@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -41,8 +42,8 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
     @Override
     public void onBindViewHolder(VipPeopleInfoAdapter.ViewHolder holder, int position) {
         VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
-        holder.tv_be_present_time.setVisibility(isAllVipInfo?View.VISIBLE:View.GONE);
-        holder.tv_be_departure_time.setVisibility(isAllVipInfo?View.GONE:View.VISIBLE);
+        holder.rel_be_present_time.setVisibility(isAllVipInfo?View.GONE:View.VISIBLE);
+        holder.rel_be_departure_time.setVisibility(isAllVipInfo?View.GONE:View.VISIBLE);
 
         holder.tv_name.setText(vipPeopleInfo.getName());
         holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
@@ -82,6 +83,8 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         TextView tv_buy_count;
         TextView tv_be_present_time;
         TextView tv_be_departure_time;
+        RelativeLayout rel_be_present_time;
+        RelativeLayout rel_be_departure_time;
         LinearLayout lin_query_contract;
         LinearLayout lin_query_question;
 
@@ -102,6 +105,8 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
             tv_buy_count =     view.findViewById(R.id.tv_buy_count);
             tv_be_present_time =     view.findViewById(R.id.tv_be_present_time);
             tv_be_departure_time =     view.findViewById(R.id.tv_be_departure_time);
+            rel_be_present_time =     view.findViewById(R.id.rel_be_present_time);
+            rel_be_departure_time =     view.findViewById(R.id.rel_be_departure_time);
             lin_query_contract =     view.findViewById(R.id.lin_query_contract);
             lin_query_question =     view.findViewById(R.id.lin_query_question);
         }

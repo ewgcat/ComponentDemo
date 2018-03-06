@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/YiJianStaff.iml" filepath="$PROJECT_DIR$/YiJianStaff.iml" />
-      <module fileurl="file://E:\com_yijian_workspace\YiJianStaff\YiJianStaff.iml" filepath="E:\com_yijian_workspace\YiJianStaff\YiJianStaff.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\com_yijian_workspace\YiJianStaff\app\app.iml" filepath="E:\com_yijian_workspace\YiJianStaff\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/retrofit2/retrofit2.iml" filepath="$PROJECT_DIR$/retrofit2/retrofit2.iml" />
-      <module fileurl="file://E:\com_yijian_workspace\YiJianStaff\retrofit2\retrofit2.iml" filepath="E:\com_yijian_workspace\YiJianStaff\retrofit2\retrofit2.iml" />
     </modules>
   </component>
 </project>

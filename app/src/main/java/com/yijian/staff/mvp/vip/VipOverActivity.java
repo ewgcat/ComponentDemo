@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
@@ -35,6 +36,14 @@ public class VipOverActivity extends AppCompatActivity implements View.OnClickLi
         navigationBar.setTitle("过期会员","#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        View view = getLayoutInflater().inflate(R.layout.view_header_filter,null);
+        navigationBar.setRightButtonView(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.i("筛选");
+            }
+        });
     }
 
     @Override

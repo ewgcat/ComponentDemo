@@ -65,17 +65,17 @@
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity"/>
 
          <activity android:name=".mvp.huifang.task.HuiFangTaskActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity"/>
-        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity">
+        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity"/>
+        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity"/>
     </application>
 
 </manifest>

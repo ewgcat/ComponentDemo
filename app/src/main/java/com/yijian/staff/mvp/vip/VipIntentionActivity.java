@@ -56,6 +56,14 @@ public class VipIntentionActivity extends AppCompatActivity {
         navigationBar.setTitle("意向会员","#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        View view = getLayoutInflater().inflate(R.layout.view_header_filter,null);
+        navigationBar.setRightButtonView(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.i("筛选");
+            }
+        });
     }
 
     private void initVipPeopleList(){

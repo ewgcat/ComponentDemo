@@ -45,8 +45,8 @@ public class VipInfoActivity extends AppCompatActivity {
         changeFragment(0);
     }
 
-    @OnClick({R.id.lin_today_visit, R.id.lin_today_visit})
-    private void click(View view) {
+    @OnClick({R.id.lin_all_vip, R.id.lin_today_visit})
+    public void click(View view) {
 
         switch (view.getId()){
             case R.id.lin_all_vip:

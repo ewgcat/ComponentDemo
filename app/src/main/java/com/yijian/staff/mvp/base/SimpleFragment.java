@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * 无MVP的Fragment基类
  */
 
-public abstract class SimpleFragment extends SupportFragment {
+public abstract class SimpleFragment extends Fragment {
 
     protected View mView;
     protected Activity mActivity;
@@ -42,14 +42,11 @@ public abstract class SimpleFragment extends SupportFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mUnBinder = ButterKnife.bind(this, view);
+        initEventAndData();
+
     }
 
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        isInited = true;
-        initEventAndData();
-    }
+
 
     @Override
     public void onDestroyView() {

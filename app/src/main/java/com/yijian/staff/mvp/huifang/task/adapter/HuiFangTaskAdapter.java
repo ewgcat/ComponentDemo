@@ -1,16 +1,22 @@
 package com.yijian.staff.mvp.huifang.task.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
+import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -51,6 +57,23 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         holder.tvOutdateTime.setText(huiFangInfo.getOutdateTime());
         holder.tvHuifangType.setText(huiFangInfo.getHuifangType());
 
+        if (position==0){
+            holder.tv.setText("填写回访结果");
+            Glide.with(context).load(R.mipmap.wt_huifangjieguo).into(holder.iv);
+
+        }
+        holder.llBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = holder.tv.getText().toString();
+                if (text.equals("回访")){
+                    CommonUtil.callPhone(context,"13386170640");
+                }else {
+                    Intent i = new Intent(context,TianXieHuiFangResultActivity.class);
+                    context.startActivity(i);
+                }
+            }
+        });
     }
 
     @Override
@@ -75,6 +98,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
         ImageView iv;
         TextView tv;
+        LinearLayout llBt;
 
 
         public ViewHolder(View view) {
@@ -92,6 +116,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             tvOutdateReason = view.findViewById(R.id.tv_outdate_reason);
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);
 
+            llBt = view.findViewById(R.id.ll_bt);
             iv = view.findViewById(R.id.iv);
             tv = view.findViewById(R.id.tv);
         }

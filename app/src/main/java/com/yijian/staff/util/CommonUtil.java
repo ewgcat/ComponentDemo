@@ -1,12 +1,14 @@
 package com.yijian.staff.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -286,6 +288,10 @@ public class CommonUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void callPhone(Context context,String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+        context.startActivity(intent);
     }
 
 }

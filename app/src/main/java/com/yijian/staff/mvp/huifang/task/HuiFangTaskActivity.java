@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.gxz.PagerSlidingTabStrip;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huifang.task.fragment.AllHuiFangTaskFragment;
-import com.yijian.staff.mvp.huifang.task.fragment.BirthDayHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.fragment.CommonHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.util.system.StatusBarUtils;

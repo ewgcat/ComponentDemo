@@ -56,7 +56,7 @@
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
-        <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />
+        <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity"/>
         <activity android:name=".mvp.reception.step4.ReceptionStepFourActivity" />
         <activity android:name=".mvp.reception.step5.ReceptionStepFiveActivity" />
         <activity android:name=".mvp.goodsdetail.GoodsDetaiActivity" />
@@ -73,13 +73,26 @@
         </activity>
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
         <activity android:name=".mvp.vip.VipOverActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".mvp.vip.VipPotentialPeopleInfoActivity" />
+        <activity android:name=".mvp.vip.VipDetailInfoActivity" />
+        <activity android:name=".mvp.vip.VipIntentionActivity" />
+        <activity android:name=".mvp.vip.VipPeopleInfoActivity" />
+        <activity android:name=".mvp.vip.VipInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.vip.VipPeopleInfoActivity"></activity>
     </application>
 
 </manifest>

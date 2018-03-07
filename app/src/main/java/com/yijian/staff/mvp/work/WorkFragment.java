@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.util.CommonUtil;
@@ -128,6 +129,7 @@ public class WorkFragment extends Fragment  {
             case R.id.ll_main_yi_xiang_hui_yuan:
                 break;
             case R.id.ll_work_kao_qin:
+                startActivity(new Intent(getActivity(), DailyWorkActivity.class));
                 break;
             case R.id.ll_work_all_gong_neng:
                 break;

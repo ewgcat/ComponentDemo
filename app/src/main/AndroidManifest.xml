@@ -69,14 +69,15 @@
         <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
         <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity" />
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
-        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity"></activity>
+        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity" />
         <activity android:name=".mvp.vip.edit.VipInfoEditActivity" />
         <activity android:name=".mvp.vip.info.VipInfoActivity" />
         <activity android:name=".mvp.vip.intent.VipIntentionActivity" />
         <activity android:name=".mvp.vip.outdate.OutdateViperListActivity" />
         <activity android:name=".mvp.vip.detail.ViperDetailActivity" />
-        <activity android:name=".mvp.vip.protential.PotentialViperListActivity"></activity>
-        <activity android:name=".mvp.all.AllFunctionActivity"></activity>
+        <activity android:name=".mvp.vip.protential.PotentialViperListActivity" />
+        <activity android:name=".mvp.all.AllFunctionActivity" />
+        <activity android:name=".mvp.dailywork.DailyWorkActivity"></activity>
     </application>
 
 </manifest>

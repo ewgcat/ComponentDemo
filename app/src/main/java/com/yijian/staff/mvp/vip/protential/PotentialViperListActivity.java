@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.protential;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,14 +6,13 @@ import android.os.Bundle;
 import com.yijian.staff.R;
 
 /**
- * 会员个人详情页
+ * 潜在会员基本信息
  */
-public class VipPeopleInfoActivity extends AppCompatActivity {
+public class PotentialViperListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_people_info);
-
+        setContentView(R.layout.activity_potential_viper_list);
     }
 }

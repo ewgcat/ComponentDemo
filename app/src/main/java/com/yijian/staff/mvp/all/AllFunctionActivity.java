@@ -1,18 +1,15 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.all;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.yijian.staff.R;
 
-/**
- * 潜在会员基本信息
- */
-public class VipPotentialPeopleInfoActivity extends AppCompatActivity {
+public class AllFunctionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_potential_people_info);
+        setContentView(R.layout.activity_all_function);
     }
 }

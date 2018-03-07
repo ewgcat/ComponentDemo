@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.info;
 
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;

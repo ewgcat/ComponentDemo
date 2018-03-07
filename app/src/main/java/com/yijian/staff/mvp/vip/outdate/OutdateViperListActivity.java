@@ -1,31 +1,25 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.outdate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.ButterKnife;
 
 /**
  * 过期会员
  */
-public class VipOverActivity extends AppCompatActivity implements View.OnClickListener {
+public class OutdateViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_over);
+        setContentView(R.layout.activity_outdate_viper_list);
         ButterKnife.bind(this);
 
         initView();

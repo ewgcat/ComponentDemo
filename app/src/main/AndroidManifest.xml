@@ -40,6 +40,7 @@
             android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -68,19 +69,14 @@
         <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
         <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity" />
         <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
-
-        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity">
-
-        </activity>
-
-        <activity android:name="com.yijian.staff.mvp.vip.VipDetailInfoActivity" />
-        <activity android:name="com.yijian.staff.mvp.vip.VipInfoActivity" />
-        <activity android:name="com.yijian.staff.mvp.vip.VipIntentionActivity" />
-        <activity android:name="com.yijian.staff.mvp.vip.VipOverActivity" />
-        <activity android:name="com.yijian.staff.mvp.vip.VipPeopleInfoActivity" />
-        <activity android:name="com.yijian.staff.mvp.vip.VipPotentialPeopleInfoActivity">
-
-        </activity>
+        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity"></activity>
+        <activity android:name=".mvp.vip.edit.VipInfoEditActivity" />
+        <activity android:name=".mvp.vip.info.VipInfoActivity" />
+        <activity android:name=".mvp.vip.intent.VipIntentionActivity" />
+        <activity android:name=".mvp.vip.outdate.OutdateViperListActivity" />
+        <activity android:name=".mvp.vip.detail.ViperDetailActivity" />
+        <activity android:name=".mvp.vip.protential.PotentialViperListActivity"></activity>
+        <activity android:name=".mvp.all.AllFunctionActivity"></activity>
     </application>
 
 </manifest>

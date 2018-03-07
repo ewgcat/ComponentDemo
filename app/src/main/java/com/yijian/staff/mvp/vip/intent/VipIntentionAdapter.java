@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.intent;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

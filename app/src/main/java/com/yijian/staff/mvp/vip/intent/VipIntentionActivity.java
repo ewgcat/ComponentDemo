@@ -1,23 +1,12 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.intent;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step3.GoodsInfo;
-import com.yijian.staff.mvp.reception.step3.Step3GoodsListAdapter;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip;
+package com.yijian.staff.mvp.vip.info;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

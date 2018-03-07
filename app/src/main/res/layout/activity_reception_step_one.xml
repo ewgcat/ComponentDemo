@@ -10,10 +10,11 @@
 
     <include
         android:id="@+id/step_one_timebar"
+        android:layout_marginTop="10dp"
         layout="@layout/view_time_bar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/reception_step_one_navigation_bar" />
+        android:layout_height="60dp"
+        android:layout_below="@id/reception_step_one_navigation_bar" />
 
     <ScrollView
         android:layout_width="match_parent"

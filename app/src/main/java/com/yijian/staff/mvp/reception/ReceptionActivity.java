@@ -38,7 +38,6 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private void initView() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
         navigationBar.setTitle("接待", "#ffffff");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#1997F8"));
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 

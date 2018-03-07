@@ -8,12 +8,6 @@ import android.view.Display;
 import android.view.WindowManager;
 
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.bugly.Bugly;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
@@ -21,6 +15,8 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
+import com.yijian.staff.tab.MenuHelper;
+import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.InitializeService;
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
@@ -77,6 +73,10 @@ public class CustomApplication extends TinkerApplication {
 
         //在子线程中完成其他初始化
         InitializeService.start(this);
+        ContextUtil.init(getApplicationContext());
+        if(!MenuHelper.hasEverInit()){
+            MenuHelper.init();
+        }
 
     }
 

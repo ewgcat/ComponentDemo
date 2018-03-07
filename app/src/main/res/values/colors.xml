@@ -31,4 +31,17 @@
     <color name="topic_text">#afafaf</color>
     <color name="white">#ffffff</color>
     <color name="red_50">#fed1d6</color>
+
+    <color name="red">#FF0000</color>
+
+    <color name="gray_text_desc">#808080</color>
+    <color name="gray_switch_track">#66999999</color>
+    <color name="gray_switch_thumb">#f1999999</color>
+    <color name="black_text_title">#222222</color>
+    <color name="gray_divide_line">#e5e5e5</color>
+    <color name="gray_bg">#f1f3f5</color>
+    <color name="cyan_main">#27b5ce</color>
+    <color name="cyan_main_66">#6627b5ce</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

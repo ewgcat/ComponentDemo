@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,26 +16,41 @@ import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.all.AllFunctionActivity;
 import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.tab.MenuHelper;
+import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
+import com.yijian.staff.tab.entity.MenuItem;
+import com.yijian.staff.tab.recyclerview.OnRecyclerItemClickListener;
 import com.yijian.staff.util.CommonUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
 @SuppressLint("ValidFragment")
-public class WorkFragment extends Fragment  {
+public class WorkFragment extends Fragment  implements OnRecyclerItemClickListener<MenuItem> {
+
 
     public static WorkFragment mWorkFragment = null;
     Unbinder unbinder;
     private ImageView ivRotate;
     private EditText etSearch;
     private View view;
+
+    private RecyclerView mRecyclerView;
+    private List<MenuItem> mFavList;
+    private MenuRecyclerGridAdapter mAdapter;
+    private int ID_ALL_ITEM=-1;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -69,13 +86,38 @@ public class WorkFragment extends Fragment  {
         etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
     }
 
-    protected void initData() {
+
+    private void initData(){
 
         startRotateAnimation();
+
+        if(mFavList!=null){
+            mFavList.clear();
+        }else{
+            mFavList=new ArrayList<>();
+        }
+        MenuItem add=new MenuItem();
+        add.setName("编辑");
+        add.setIcon("add");
+        add.setItemId(ID_ALL_ITEM);
+        mFavList.add(add);
+
+        mRecyclerView= (RecyclerView) view.findViewById(R.id.recycler_display);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+        mAdapter=new MenuRecyclerGridAdapter(mFavList,getContext());
+        mAdapter.setOnRecyclerItemClickListener(this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-
-
+    @Override
+    public void onItemClick(View v, MenuItem item, int position, int segment) {
+        if(item.getItemId()==ID_ALL_ITEM){
+            Intent i=new Intent(getContext(),AllFunctionActivity.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(getContext(),item.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
     /**
      * 开始动画
      */
@@ -136,3 +178,13 @@ public class WorkFragment extends Fragment  {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

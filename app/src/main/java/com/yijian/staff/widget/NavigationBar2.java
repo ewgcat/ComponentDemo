@@ -1,6 +1,7 @@
 package com.yijian.staff.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -20,8 +21,10 @@ public class NavigationBar2 extends LinearLayout {
     private Context context;
     private ImageView firstLeftIv;
     private ImageView secondLeftIv;
+    private ImageView mRightIv;
     private TextView mTitleView;
     private TextView mRightTv;
+    private LinearLayout navigationbar2;
 
     public NavigationBar2(Context context) {
         this(context, null);
@@ -39,14 +42,18 @@ public class NavigationBar2 extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        navigationbar2 = (LinearLayout) findViewById(R.id.navigationbar2);
 
         firstLeftIv = (ImageView) findViewById(R.id.iv_first_left);
         secondLeftIv = (ImageView) findViewById(R.id.iv_second_left);
         mTitleView = findViewById(R.id.title_tv);
+        mRightIv = (ImageView) findViewById(R.id.iv_right);
         mRightTv = (TextView) findViewById(R.id.right_tv);
     }
 
-
+    public void setNavigationBarBackgroudColor(int id) {
+        navigationbar2.setBackgroundColor(id);
+    }
     /*
     * @see android.view.View#getBottomFadingEdgeStrength()
     */
@@ -61,6 +68,10 @@ public class NavigationBar2 extends LinearLayout {
 
     public ImageView getSecondLeftIv() {
         return secondLeftIv;
+    }
+
+    public ImageView getmRightIv() {
+        return mRightIv;
     }
 
     public TextView getmTitleView() {
@@ -87,7 +98,7 @@ public class NavigationBar2 extends LinearLayout {
         mRightTv.setTextColor(color);
     }
 
-    public void setSecondLeftIvVisiable(int i){
+    public void setSecondLeftIvVisiable(int i) {
         secondLeftIv.setVisibility(i);
     }
 

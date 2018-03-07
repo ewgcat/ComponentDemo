@@ -9,8 +9,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.tab.adapter.holder.MenuRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
-import com.yijian.staff.tab.tools.DrawableKit;
-import com.yijian.staff.tab.tools.ImageKit;
 
 import java.util.List;
 

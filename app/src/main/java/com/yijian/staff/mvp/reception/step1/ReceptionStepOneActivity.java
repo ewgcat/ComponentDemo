@@ -7,23 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 import com.yijian.staff.widget.TimeBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class ReceptionStepOneActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     RadioGroup infoSourceGroup1;
     RadioGroup infoSourceGroup2;
@@ -39,7 +42,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
+
         setContentView(R.layout.activity_reception_step_one);
 
         initView();
@@ -47,22 +50,15 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
     }
 
     private void initView() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_step_one_navigation_bar);
-        navigationBar.setTitle("填写问卷(1/5)", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        TextView rightTextView = navigationBar.getmRightTextView();
-        rightTextView.setText("下一步");
-        rightTextView.setTextColor(Color.parseColor("#1997f8"));
-        rightTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity.class);
-                startActivity(intent);
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_step_one_navigation_bar);
 
-            }
-        });
+        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#1997F8"));
+        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar2.getmRightTv().setOnClickListener(this);
+        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        navigationBar2.setTitle("填写问卷(1/5)");
+        navigationBar2.setmRightTvText("下一步");
+
 
         TimeBar timeBar = findViewById(R.id.step_one_timebar);
         timeBar.showTimeBar(1);
@@ -110,6 +106,24 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
             }
         } else {
             etElse.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.iv_first_left:
+                finish();
+                break;
+
+            case R.id.right_tv:
+                Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity.class);
+                startActivity(intent);
+
+                break;
+
         }
     }
 }

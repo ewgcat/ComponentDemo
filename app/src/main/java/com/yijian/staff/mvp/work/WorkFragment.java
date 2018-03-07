@@ -24,6 +24,8 @@ import com.yijian.staff.mvp.all.AllFunctionActivity;
 import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.vip.info.VipInfoActivity;
+import com.yijian.staff.mvp.vip.intent.VipIntentionActivity;
 import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
@@ -167,13 +169,17 @@ public class WorkFragment extends Fragment  implements OnRecyclerItemClickListen
             case R.id.ll_work_tou_su_chu_li:
                 break;
             case R.id.ll_work_hui_yuan_xin_xi:
+                startActivity(new Intent(getActivity(), VipInfoActivity.class));
                 break;
             case R.id.ll_main_yi_xiang_hui_yuan:
+                startActivity(new Intent(getActivity(), VipIntentionActivity.class));
                 break;
             case R.id.ll_work_kao_qin:
                 startActivity(new Intent(getActivity(), DailyWorkActivity.class));
                 break;
             case R.id.ll_work_all_gong_neng:
+                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
+
                 break;
         }
     }

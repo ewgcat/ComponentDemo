@@ -3,8 +3,7 @@
     android:id="@+id/navigationbar"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="44dp"
-    android:background="@color/colorPrimary">
+    android:layout_height="44dp">
 
     <RelativeLayout
         android:id="@+id/navigationbar_leftbtn_clickarea_layout"

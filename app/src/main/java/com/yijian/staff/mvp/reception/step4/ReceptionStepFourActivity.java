@@ -24,18 +24,18 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_reception_step_four);
         initView();
     }
     private void initView() {
 
         NavigationBar2 navigationBar2 = findViewById(R.id.step_four_navigation_bar2);
-        navigationBar2.findViewById(R.id.iv_first_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.iv_second_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
+        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        navigationBar2.getSecondLeftIv().setOnClickListener(this);
+        navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setTitle("订单详情(4/5)");
         navigationBar2.setmRightTvText("下一步");
+
         TimeBar timeBar = findViewById(R.id.step_four_timebar);
         timeBar.showTimeBar(4);
 

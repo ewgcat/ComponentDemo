@@ -1,24 +1,31 @@
 package com.yijian.staff.mvp.vip.info;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
+import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
+import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
 import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class VipInfoActivity extends AppCompatActivity {
+public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -43,11 +50,19 @@ public class VipInfoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("会员信息","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+
+
+
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar);
+        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar2.getmRightTv().setOnClickListener(this);
+        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        ImageView rightIv = navigationBar2.getmRightIv();
+        Glide.with(this).load(R.mipmap.wt_shuaixuan).into(rightIv);
+        navigationBar2.setTitle("会员信息");
+        navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
+
     }
 
     @OnClick({R.id.lin_all_vip, R.id.lin_today_visit})
@@ -84,4 +99,20 @@ public class VipInfoActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.iv_first_left:
+                finish();
+                break;
+
+            case R.id.right_tv:
+
+
+                break;
+
+        }
+    }
 }

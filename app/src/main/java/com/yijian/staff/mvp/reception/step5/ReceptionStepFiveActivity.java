@@ -24,10 +24,12 @@ public class ReceptionStepFiveActivity extends AppCompatActivity implements View
     }
 
     private void initView() {
+
+
         NavigationBar2 navigationBar2 = findViewById(R.id.step_five_navigation_bar2);
-        navigationBar2.findViewById(R.id.iv_first_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.iv_second_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
+        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        navigationBar2.getSecondLeftIv().setOnClickListener(this);
+        navigationBar2.getmRightTv().setOnClickListener(this);
 
         navigationBar2.setTitle("合同签订(5/5)");
         navigationBar2.setmRightTvText("完成");

@@ -2,13 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    tools:context="com.yijian.staff.mvp.physical.PhysicalReportActivity">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/reception_step_one_navigation_bar"
-        layout="@layout/view_navigation_bar" />
+        layout="@layout/view_navigation_bar2" />
 
     <include
         android:id="@+id/step_one_timebar"

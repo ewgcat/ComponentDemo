@@ -30,19 +30,16 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_reception);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
-
         initView();
-
-
     }
 
     private void initView() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
-        navigationBar.setTitle("接待", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
+        navigationBar.setTitle("接待", "#ffffff");
+        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#1997F8"));
+        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 
         findViewById(R.id.tv_jiedai).setOnClickListener(this);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.yijian.staff.widget.NavigationBar2 xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/navigationbar"
+    android:id="@+id/navigationbar2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -14,16 +14,17 @@
 
         <ImageView
             android:id="@+id/iv_first_left"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
-            android:src="@mipmap/black_arrow_back" />
+            android:src="@mipmap/white_arrow_back" />
+
 
         <ImageView
             android:id="@+id/iv_second_left"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/lg_close" />
@@ -36,17 +37,31 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="产品报价(3/5)"
-            android:textColor="#000000"
+            android:text="标题"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/right_tv"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="下一步"
-            android:textColor="#1997f8" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
+            <TextView
+                android:id="@+id/right_tv"
+                android:text="右边"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
 
 
     </LinearLayout>

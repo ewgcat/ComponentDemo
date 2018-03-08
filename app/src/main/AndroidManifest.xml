@@ -79,7 +79,8 @@
         <activity android:name=".mvp.all.AllFunctionActivity" />
         <activity android:name=".mvp.dailywork.DailyWorkActivity" />
         <activity android:name=".mvp.dailywork.LeaveApprovalActivity" />
-        <activity android:name=".mvp.dailywork.LeaveApplyActivity"></activity>
+        <activity android:name=".mvp.dailywork.LeaveApplyActivity" />
+        <activity android:name=".mvp.invitation.InvitationActivity"/>
     </application>
 
 </manifest>

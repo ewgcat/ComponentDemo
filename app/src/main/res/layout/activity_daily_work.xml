@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yijian.staff.mvp.dailywork.DailyWorkActivity">
+    android:background="@color/gray">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/vip_over_navigation_bar"
+        layout="@layout/view_navigation_bar"/>
+
+    <RadioGroup
+        android:id="@+id/vg_dailywork"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_approval"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="审批"
+            android:button="@null"
+            android:gravity="center"
+            android:checked="true"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_txt_blue_gray"
+            android:drawableTop="@drawable/selector_img_approval"
+            android:paddingTop="2dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_dailyworkstatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="考勤情况"
+            android:button="@null"
+            android:gravity="center"
+            android:checked="false"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_txt_blue_gray"
+            android:drawableTop="@drawable/selector_img_dailywork"
+            android:paddingTop="2dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_mydailywork"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="我的考勤"
+            android:button="@null"
+            android:gravity="center"
+            android:checked="false"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_txt_blue_gray"
+            android:drawableTop="@drawable/selector_img_mdailywork"
+            android:paddingTop="2dp"/>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fl_dailywork"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/vip_over_navigation_bar"
+        android:layout_above="@id/vg_dailywork"/>
+
+</RelativeLayout>

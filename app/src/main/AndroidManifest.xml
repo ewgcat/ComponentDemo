@@ -77,7 +77,9 @@
         <activity android:name=".mvp.vip.detail.ViperDetailActivity" />
         <activity android:name=".mvp.vip.protential.PotentialViperListActivity" />
         <activity android:name=".mvp.all.AllFunctionActivity" />
-        <activity android:name=".mvp.dailywork.DailyWorkActivity"></activity>
+        <activity android:name=".mvp.dailywork.DailyWorkActivity" />
+        <activity android:name=".mvp.dailywork.LeaveApprovalActivity" />
+        <activity android:name=".mvp.dailywork.LeaveApplyActivity"></activity>
     </application>
 
 </manifest>

@@ -35,7 +35,6 @@ public class MessageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        StatusBarUtils.setLightStatusBar(getActivity(), Color.parseColor("#3699FC"));
 
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 

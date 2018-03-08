@@ -22,6 +22,7 @@ public class NavigationBar extends RelativeLayout {
     protected TextView mMessageView = null;
     protected TextView mRightTv = null;
     protected ImageView secondLeftIv = null;
+    protected ImageView bottomIv = null;
     protected RelativeLayout mContentRl;
     protected String message;
 
@@ -68,9 +69,12 @@ public class NavigationBar extends RelativeLayout {
         mContentRl = (RelativeLayout) findViewById(R.id.navigationbar);
         mRightTv = (TextView) findViewById(R.id.navigationbar_right_tv);
         secondLeftIv = (ImageView) findViewById(R.id.iv_second_left);
+        bottomIv = (ImageView) findViewById(R.id.iv_bottom);
     }
 
-
+    public void hideBottomLine(){
+        bottomIv.setVisibility(GONE);
+    }
     /*
      * @see android.view.View#getBottomFadingEdgeStrength()
      */

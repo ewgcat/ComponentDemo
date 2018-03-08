@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.vip.info;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +16,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
+import com.yijian.staff.mvp.message.MessageFragment;
+import com.yijian.staff.mvp.mine.MineFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
+import com.yijian.staff.mvp.report.ReportingFragment;
+import com.yijian.staff.mvp.work.WorkFragment;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -39,6 +44,8 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
     View view_all;
     @BindView(R.id.view_today_visit)
     View view_today_visit;
+    private VipTodayVisitInfoFragment vipTodayVisitInfoFragment;
+    private VipAllPeopleInfoFragment vipAllPeopleInfoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,21 +90,47 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
     private void changeFragment(int status){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        hideAllIndex(fragmentTransaction);
         if(status == 0){
             tv_label_all.setTextColor(Color.parseColor("#31a4fc"));
             tv_label_visit.setTextColor(Color.parseColor("#666666"));
             view_all.setVisibility(View.VISIBLE);
             view_today_visit.setVisibility(View.GONE);
-            fragmentTransaction.replace(R.id.fl_content,VipAllPeopleInfoFragment.getInstance());
+            if (vipAllPeopleInfoFragment == null) {
+                vipAllPeopleInfoFragment = VipAllPeopleInfoFragment.getInstance();
+                fragmentTransaction.add(R.id.fl_content, vipAllPeopleInfoFragment);
+            } else {
+                fragmentTransaction.show(vipAllPeopleInfoFragment);
+            }
         }else{
             tv_label_all.setTextColor(Color.parseColor("#666666"));
             tv_label_visit.setTextColor(Color.parseColor("#31a4fc"));
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
-            fragmentTransaction.replace(R.id.fl_content,VipTodayVisitInfoFragment.getInstance());
+            if (vipTodayVisitInfoFragment == null) {
+                vipTodayVisitInfoFragment = VipTodayVisitInfoFragment.getInstance();
+                fragmentTransaction.add(R.id.fl_content, vipTodayVisitInfoFragment);
+            } else {
+                fragmentTransaction.show(vipTodayVisitInfoFragment);
+            }
         }
         fragmentTransaction.commit();
+
+
+
     }
+    //隐藏所有的Fragment
+    public void hideAllIndex(FragmentTransaction fragmentTransaction) {
+        Fragment fragment = VipAllPeopleInfoFragment.getInstance();
+        if (fragment.isAdded()) {
+            fragmentTransaction.hide(fragment);
+        }
+        fragment = VipTodayVisitInfoFragment.getInstance();
+        if (fragment.isAdded()) {
+            fragmentTransaction.hide(fragment);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {

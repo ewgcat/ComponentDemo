@@ -1,16 +1,17 @@
-package com.yijian.staff.mvp.vip.intent;
+package com.yijian.staff.mvp.vip.potentialandintent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.widget.NavigationBarItemFactory;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,9 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 意向会员 /  潜在会员 公用一个页面
+ * 潜在会员或意向会员 列表
  */
-public class VipIntentionActivity extends AppCompatActivity {
+public class PotentialAndIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
@@ -33,7 +34,7 @@ public class VipIntentionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_intention);
+        setContentView(R.layout.activity_potential_and_intent_viper_list);
         ButterKnife.bind(this);
 
         initView();
@@ -41,18 +42,18 @@ public class VipIntentionActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("意向会员","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        View view = getLayoutInflater().inflate(R.layout.view_header_filter,null);
-        navigationBar.setRightButtonView(view);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logger.i("筛选");
-            }
-        });
+
+        String title = getIntent().getStringExtra("title");
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.getmRightTv().setOnClickListener(this);
+        navigationBar2.setBackClickListener(this);
+        ImageView rightIv = navigationBar2.getmRightIv();
+        Glide.with(this).load(R.mipmap.wt_shuaixuan).into(rightIv);
+        navigationBar2.setTitle(title);
+        navigationBar2.setmRightTvText("筛选");
+
+
     }
 
     private void initVipPeopleList(){
@@ -77,8 +78,8 @@ public class VipIntentionActivity extends AppCompatActivity {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_vip_intention.setLayoutManager(layoutmanager);
-            VipIntentionAdapter vipIntentionAdapter = new VipIntentionAdapter(this, vipPeopleInfoList);
-            rv_vip_intention.setAdapter(vipIntentionAdapter);
+            PotentialAndIntentViperListAdapter potentialAndIntentViperListAdapter = new PotentialAndIntentViperListAdapter(this, vipPeopleInfoList);
+            rv_vip_intention.setAdapter(potentialAndIntentViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 
@@ -86,4 +87,8 @@ public class VipIntentionActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

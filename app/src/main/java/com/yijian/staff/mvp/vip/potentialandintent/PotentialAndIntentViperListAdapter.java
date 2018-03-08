@@ -1,6 +1,7 @@
-package com.yijian.staff.mvp.vip.intent;
+package com.yijian.staff.mvp.vip.potentialandintent;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,25 +18,25 @@ import java.util.List;
  * Created by yangk on 2018/3/5.
  */
 
-public class VipIntentionAdapter extends RecyclerView.Adapter<VipIntentionAdapter.ViewHolder> {
+public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<PotentialAndIntentViperListAdapter.ViewHolder> {
 
     private List<VipPeopleInfo> vipPeopleInfoList;
     private Context context;
 
-    public VipIntentionAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList){
+    public PotentialAndIntentViperListAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList){
         this.context = context;
         this.vipPeopleInfoList = vipPeopleInfoList;
     }
 
     @Override
-    public VipIntentionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PotentialAndIntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
-        VipIntentionAdapter.ViewHolder holder = new VipIntentionAdapter.ViewHolder(view);
+        PotentialAndIntentViperListAdapter.ViewHolder holder = new PotentialAndIntentViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(VipIntentionAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PotentialAndIntentViperListAdapter.ViewHolder holder, int position) {
         VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
         holder.tv_name.setText(vipPeopleInfo.getName());
         holder.tv_birth.setText(vipPeopleInfo.getBirth());
@@ -46,6 +47,14 @@ public class VipIntentionAdapter extends RecyclerView.Adapter<VipIntentionAdapte
         holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
         holder.tv_useCar.setText(vipPeopleInfo.getUseCar());
         holder.lin_input_questionnaire.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.VISIBLE:View.GONE);
+
+        holder.ll_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,PotentialAndIntentViperDetailActivity.class));
+            }
+        });
+
     }
 
     @Override
@@ -67,6 +76,7 @@ public class VipIntentionAdapter extends RecyclerView.Adapter<VipIntentionAdapte
         LinearLayout lin_input_questionnaire;
         LinearLayout lin_visit;
         LinearLayout lin_invitation;
+        LinearLayout ll_content;
 
 
         public ViewHolder(View view) {
@@ -83,6 +93,7 @@ public class VipIntentionAdapter extends RecyclerView.Adapter<VipIntentionAdapte
             lin_input_questionnaire  =     view.findViewById(R.id.lin_input_questionnaire);
             lin_visit =     view.findViewById(R.id.lin_visit);
             lin_invitation =     view.findViewById(R.id.lin_invitation);
+            ll_content =     view.findViewById(R.id.ll_content);
         }
     }
 

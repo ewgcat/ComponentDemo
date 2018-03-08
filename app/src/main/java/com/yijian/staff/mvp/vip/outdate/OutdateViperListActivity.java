@@ -12,7 +12,7 @@ import com.yijian.staff.widget.NavigationBarItemFactory;
 import butterknife.ButterKnife;
 
 /**
- * 过期会员
+ * 过期会员列表
  */
 public class OutdateViperListActivity extends AppCompatActivity implements View.OnClickListener {
 

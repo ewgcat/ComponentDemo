@@ -120,8 +120,8 @@ dependencies {
 
     compile 'com.nineoldandroids:library:2.4.0'
 
-    implementation ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar'){
-        transitive=true
+    implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
+        transitive = true
     }
 
 }

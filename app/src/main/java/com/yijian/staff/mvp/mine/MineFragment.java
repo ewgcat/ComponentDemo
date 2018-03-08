@@ -27,7 +27,6 @@ public class MineFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        StatusBarUtils.setLightStatusBar(getActivity(), Color.parseColor("#3699FC"));
 
         return inflater.inflate(R.layout.fragment_mine, container, false);
     }

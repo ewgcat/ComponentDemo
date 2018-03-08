@@ -84,6 +84,7 @@
 
     </RelativeLayout>
     <ImageView
+        android:id="@+id/iv_bottom"
         android:layout_alignParentBottom="true"
         android:background="@color/gray"
         android:layout_width="match_parent"

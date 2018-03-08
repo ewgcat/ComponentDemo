@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.vip.info;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.contract.ContractActivity;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 
 import java.util.List;
@@ -19,13 +23,13 @@ import java.util.List;
  * Created by yangk on 2018/3/6.
  */
 
-public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdapter.ViewHolder>{
+public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdapter.ViewHolder> {
 
     private List<VipPeopleInfo> vipPeopleInfoList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public VipPeopleInfoAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList, boolean isAllVipInfo){
+    public VipPeopleInfoAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList, boolean isAllVipInfo) {
         this.context = context;
         this.vipPeopleInfoList = vipPeopleInfoList;
         this.isAllVipInfo = isAllVipInfo;
@@ -42,11 +46,11 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
     @Override
     public void onBindViewHolder(VipPeopleInfoAdapter.ViewHolder holder, int position) {
         VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
-        holder.rel_be_present_time.setVisibility(isAllVipInfo?View.GONE:View.VISIBLE);
-        holder.rel_be_departure_time.setVisibility(isAllVipInfo?View.GONE:View.VISIBLE);
+        holder.rel_be_present_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
+        holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
         holder.tv_name.setText(vipPeopleInfo.getName());
-        holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_cardName.setText(vipPeopleInfo.getCardName());
         holder.tv_card_type.setText(vipPeopleInfo.getCardType());
         holder.tv_private_coach.setText(vipPeopleInfo.getPrivateCoach());
@@ -58,13 +62,30 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         holder.tv_buy_count.setText(vipPeopleInfo.getBuyCount());
         holder.tv_be_present_time.setText(vipPeopleInfo.getBePresentTime());
         holder.tv_be_departure_time.setText(vipPeopleInfo.getDepartureTime());
-
+        holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ContractActivity.class));
+            }
+        });
+        holder.lin_query_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
+            }
+        });
+        holder.lin_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ViperDetailActivity.class));
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return vipPeopleInfoList==null?0:vipPeopleInfoList.size();
+        return vipPeopleInfoList == null ? 0 : vipPeopleInfoList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -87,28 +108,29 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         RelativeLayout rel_be_departure_time;
         LinearLayout lin_query_contract;
         LinearLayout lin_query_question;
-
+        LinearLayout lin_content;
 
         public ViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_cardName  =     view.findViewById(R.id.tv_cardName);
-            tv_card_type  =     view.findViewById(R.id.tv_card_type);
-            tv_private_coach =     view.findViewById(R.id.tv_private_coach);
-            tv_like_lesson =     view.findViewById(R.id.tv_like_lesson);
-            tv_like_teacher =     view.findViewById(R.id.tv_like_teacher);
-            tv_regist_time =     view.findViewById(R.id.tv_regist_time);
-            tv_contract_overTime  =     view.findViewById(R.id.tv_contract_overTime);
-            tv_contract_balance  =     view.findViewById(R.id.tv_contract_balance);
-            tv_buy_count =     view.findViewById(R.id.tv_buy_count);
-            tv_be_present_time =     view.findViewById(R.id.tv_be_present_time);
-            tv_be_departure_time =     view.findViewById(R.id.tv_be_departure_time);
-            rel_be_present_time =     view.findViewById(R.id.rel_be_present_time);
-            rel_be_departure_time =     view.findViewById(R.id.rel_be_departure_time);
-            lin_query_contract =     view.findViewById(R.id.lin_query_contract);
-            lin_query_question =     view.findViewById(R.id.lin_query_question);
+            lin_content=view.findViewById(R.id.lin_content);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_cardName = view.findViewById(R.id.tv_cardName);
+            tv_card_type = view.findViewById(R.id.tv_card_type);
+            tv_private_coach = view.findViewById(R.id.tv_private_coach);
+            tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
+            tv_like_teacher = view.findViewById(R.id.tv_like_teacher);
+            tv_regist_time = view.findViewById(R.id.tv_regist_time);
+            tv_contract_overTime = view.findViewById(R.id.tv_contract_overTime);
+            tv_contract_balance = view.findViewById(R.id.tv_contract_balance);
+            tv_buy_count = view.findViewById(R.id.tv_buy_count);
+            tv_be_present_time = view.findViewById(R.id.tv_be_present_time);
+            tv_be_departure_time = view.findViewById(R.id.tv_be_departure_time);
+            rel_be_present_time = view.findViewById(R.id.rel_be_present_time);
+            rel_be_departure_time = view.findViewById(R.id.rel_be_departure_time);
+            lin_query_contract = view.findViewById(R.id.lin_query_contract);
+            lin_query_question = view.findViewById(R.id.lin_query_question);
         }
     }
 

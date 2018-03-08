@@ -1,9 +1,11 @@
 package com.yijian.staff.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ public class NavigationBar2 extends LinearLayout {
     private TextView mTitleView;
     private TextView mRightTv;
     private LinearLayout navigationbar2;
+    private View bottomLine;
 
     public NavigationBar2(Context context) {
         this(context, null);
@@ -49,11 +52,13 @@ public class NavigationBar2 extends LinearLayout {
         mTitleView = findViewById(R.id.title_tv);
         mRightIv = (ImageView) findViewById(R.id.iv_right);
         mRightTv = (TextView) findViewById(R.id.right_tv);
+        bottomLine = findViewById(R.id.bottom_line);
     }
 
     public void setNavigationBarBackgroudColor(int id) {
         navigationbar2.setBackgroundColor(id);
     }
+
     /*
     * @see android.view.View#getBottomFadingEdgeStrength()
     */
@@ -100,6 +105,19 @@ public class NavigationBar2 extends LinearLayout {
 
     public void setSecondLeftIvVisiable(int i) {
         secondLeftIv.setVisibility(i);
+    }
+
+
+    public void hideBottomLine() {bottomLine.setVisibility(GONE);}
+    public void hideLeftSecondIv() {secondLeftIv.setVisibility(GONE);}
+    public void setBackClickListener(Activity activity){
+        firstLeftIv.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
     }
 
 

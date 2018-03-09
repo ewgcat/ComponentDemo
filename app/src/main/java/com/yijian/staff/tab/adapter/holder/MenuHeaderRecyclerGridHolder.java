@@ -1,7 +1,7 @@
 package com.yijian.staff.tab.adapter.holder;
 
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableItemStateFlags;
@@ -21,14 +21,14 @@ import com.yijian.staff.R;
  * @version 1.0
  */
 public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder implements DraggableItemViewHolder {
-    public TextView tv_delete;
+    public ImageView iv_delete;
 
     @DraggableItemStateFlags
     private int mDragStateFlags;
 
     public MenuHeaderRecyclerGridHolder(View itemView) {
         super(itemView);
-        tv_delete= (TextView) itemView.findViewById(R.id.delete);
+        iv_delete= (ImageView) itemView.findViewById(R.id.delete);
     }
 
     @Override

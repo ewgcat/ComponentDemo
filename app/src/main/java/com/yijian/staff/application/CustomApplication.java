@@ -8,6 +8,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.bugly.Bugly;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
@@ -59,6 +60,12 @@ public class CustomApplication extends TinkerApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        if (BuildConfig.DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this);
         Bugly.init(this, "9de22ca904", BuildConfig.DEBUG);
 
         //初始化屏幕宽高

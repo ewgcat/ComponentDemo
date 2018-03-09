@@ -27,6 +27,27 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     private String icon;
     private String desc;
     private String group;
+    private int  type;//0 已添加在常用列表，1未添加在常用列表
+
+    private int viewType;
+    private int itemId;
+
+    @Override
+    public int getViewType() {
+        return viewType;
+    }
+
+    @Override
+    public long getItemId() {
+        return itemId;
+    }
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;
@@ -60,18 +81,7 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
         this.group = group;
     }
 
-    private int viewType;
-    private int itemId;
 
-    @Override
-    public int getViewType() {
-        return viewType;
-    }
-
-    @Override
-    public long getItemId() {
-        return itemId;
-    }
 
     public void setViewType(int viewType) {
         this.viewType = viewType;
@@ -81,15 +91,4 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
         this.itemId = itemId;
     }
 
-    @Override
-    public String toString() {
-        return "MenuItem{" +
-                "name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", desc='" + desc + '\'' +
-                ", group='" + group + '\'' +
-                ", viewType=" + viewType +
-                ", itemId=" + itemId +
-                '}';
-    }
 }

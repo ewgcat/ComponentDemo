@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/selector_menu_item_touch"
-              android:gravity="center">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/light_black_stroke_bg"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@mipmap/icon_delete"
+         />
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@mipmap/icon_add" />
+
 
     <LinearLayout
         android:id="@+id/item_grid"
@@ -12,7 +29,6 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="3dp">
-
 
 
         <ImageView
@@ -28,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
-            android:textSize="14sp"
             android:gravity="center"
-            android:text="全部功能" />
+            android:text="全部功能"
+            android:textSize="14sp" />
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

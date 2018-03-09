@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * 潜在会员或意向会员 列表
  */
+@Route(path = "/test/activity")
 public class PotentialAndIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.rv_vip_intention)

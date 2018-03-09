@@ -20,10 +20,14 @@ import com.yijian.staff.R;
 public class MenuRecyclerGridHolder extends RecyclerView.ViewHolder {
     public TextView tv_name;
     public ImageView iv_icon;
+    public ImageView iv_delete;
+    public ImageView iv_add;
 
     public MenuRecyclerGridHolder(View itemView) {
         super(itemView);
         tv_name= (TextView) itemView.findViewById(R.id.desc);
         iv_icon= (ImageView) itemView.findViewById(R.id.pic);
+        iv_delete= (ImageView) itemView.findViewById(R.id.delete);
+        iv_add= (ImageView) itemView.findViewById(R.id.add);
     }
 }

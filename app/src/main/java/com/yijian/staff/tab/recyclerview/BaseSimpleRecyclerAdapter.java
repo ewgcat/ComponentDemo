@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
+import com.yijian.staff.R;
+import com.yijian.staff.tab.entity.MenuItem;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
  */
 public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHolder,RI extends BaseRecyclerItem> extends RecyclerView.Adapter<VH> {
     protected List<RI> mRecyclerItems;
-    protected OnRecyclerItemClickListener<RI> mOnRecyclerItemClickListener;
+
     protected OnRecyclerItemLongClickListener<RI> mOnRecyclerItemLongClickListener;
 
     /**
@@ -60,21 +62,6 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
         });
     }
 
-    /**
-     * 获取列表条目单击监听器
-     * @return
-     */
-    public OnRecyclerItemClickListener getOnRecyclerItemClickListener() {
-        return mOnRecyclerItemClickListener;
-    }
-
-    /**
-     * 设置列表条目单击监听器
-     * @param onRecyclerItemClickListener
-     */
-    public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener onRecyclerItemClickListener) {
-        mOnRecyclerItemClickListener = onRecyclerItemClickListener;
-    }
 
     public OnRecyclerItemLongClickListener getOnRecyclerItemLongClickListener() {
         return mOnRecyclerItemLongClickListener;
@@ -94,14 +81,7 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
         final int p=position;
         final RI item=mRecyclerItems.get(p);
         bindViewHolder(holder,item);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mOnRecyclerItemClickListener !=null){
-                    mOnRecyclerItemClickListener.onItemClick(v,item,p, AbstractHeaderFooterWrapperAdapter.SEGMENT_TYPE_NORMAL);
-                }
-            }
-        });
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -122,4 +102,6 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
     public long getItemId(int position) {
         return mRecyclerItems.get(position).getItemId();
     }
+
+
 }

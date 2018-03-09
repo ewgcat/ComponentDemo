@@ -54,16 +54,11 @@ public class MenuHelper {
         favoriteList=parseJSONList(dataJson,GROUP_FAVORITE);
         coldList=parseJSONList(dataJson,GROUP_COLD_WEAPON);
         modernList=parseJSONList(dataJson,GROUP_MODERN_WEAPON);
-        miscList=parseJSONList(dataJson,GROUP_MISC);
-        eqtList=parseJSONList(dataJson,GROUP_EQUIPMENT);
-        personList=parseJSONList(dataJson,GROUP_PERSON);
+
 
         savePreferFavoriteList(favoriteList);
         savePreferColdWeaponList(coldList);
-        savePreferEqtList(eqtList);
-        savePreferMiscList(miscList);
         savePreferModernWeaponList(modernList);
-        savePreferPersonList(personList);
     }
 
     private List<MenuItem> parseJSONList(JSONObject dataJSON,String group){

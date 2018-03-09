@@ -9,8 +9,9 @@ import com.yijian.staff.R;
 import com.yijian.staff.tab.adapter.holder.MenuEditRecyclerListHolder;
 import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
+import com.yijian.staff.tab.listener.OnAddListener;
+import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
-import com.yijian.staff.tab.recyclerview.OnRecyclerItemClickListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,11 +28,28 @@ import java.util.Map;
  */
 public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditRecyclerListHolder, EditItem> {
     private Map<String, MenuRecyclerGridAdapter> mAdapterMap = new HashMap<>();//用于存放子列表的adapter的map
-    private OnRecyclerItemClickListener<MenuItem> mChildItemClickListener;
     private Context context;
+    private  boolean showEditIcon;
 
-    public void setChildItemClickListener(OnRecyclerItemClickListener<MenuItem> childItemClickListener) {
-        mChildItemClickListener = childItemClickListener;
+    private OnDeleteListener onDeleteListener;
+    private OnAddListener onAddListener;
+    private MenuRecyclerGridAdapter adapter;
+
+    public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
+        this.onDeleteListener = onDeleteListener;
+    }
+
+    public void setOnAddListener(OnAddListener onAddListener) {
+        this.onAddListener = onAddListener;
+    }
+
+    public void setShowEditIcon(boolean showEditIcon){
+        this.showEditIcon=showEditIcon;
+        if (adapter!=null){
+            adapter.setShowEditIcon(showEditIcon);
+
+        }
+
     }
 
     public MenuRecyclerListAdapter(List<EditItem> recyclerItems, Context context) {
@@ -47,8 +65,9 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
     @Override
     public void bindViewHolder(MenuEditRecyclerListHolder holder, EditItem item) {
         holder.tv_group_name.setText(item.getGroupTitle());
-        MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(item.getMenuItemList(),context);
-        adapter.setOnRecyclerItemClickListener(mChildItemClickListener);
+        adapter = new MenuRecyclerGridAdapter(item.getMenuItemList(),context);
+        adapter.setOnAddListener(onAddListener);
+        adapter.setOnDeleteListener(onDeleteListener);
         holder.recyclerView.setLayoutManager(new GridLayoutManager(holder.recyclerView.getContext(), 4));
         holder.recyclerView.setAdapter(adapter);
         mAdapterMap.put(item.getGroup(), adapter);
@@ -80,7 +99,10 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
         MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
         if (adapter != null) {
             adapter.getRecyclerItems().remove(item);
+            //TODO
             adapter.notifyDataSetChanged();
         }
     }
+
+
 }

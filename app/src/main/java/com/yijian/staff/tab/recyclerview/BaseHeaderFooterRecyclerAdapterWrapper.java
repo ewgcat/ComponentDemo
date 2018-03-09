@@ -65,8 +65,6 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
      */
     protected List<HI> mHeaderItems;
 
-    protected OnRecyclerItemClickListener mOnHeaderItemClickListener;
-    protected OnRecyclerItemClickListener mOnFooterItemClickListener;
 
     protected OnRecyclerItemLongClickListener mOnHeaderItemLongClickListener;
     protected OnRecyclerItemLongClickListener mOnFooterItemLongClickListener;
@@ -80,14 +78,6 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
         setHasStableIds(true);
         mFooterItems = new ArrayList<>();
         mHeaderItems = new ArrayList<>();
-    }
-
-    public void setOnHeaderItemClickListener(OnRecyclerItemClickListener onHeaderItemClickListener) {
-        mOnHeaderItemClickListener = onHeaderItemClickListener;
-    }
-
-    public void setOnFooterItemClickListener(OnRecyclerItemClickListener onFooterItemClickListener) {
-        mOnFooterItemClickListener = onFooterItemClickListener;
     }
 
     public void setOnHeaderItemLongClickListener(OnRecyclerItemLongClickListener onHeaderItemLongClickListener) {
@@ -151,14 +141,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
         final int position=localPosition;
         final FI item=mFooterItems.get(localPosition);
         bindFooterViewHolder(holder,item);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mOnFooterItemClickListener!=null){
-                    mOnFooterItemClickListener.onItemClick(v,item,position,SEGMENT_TYPE_FOOTER);
-                }
-            }
-        });
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -175,14 +158,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
         final int position=localPosition;
         final HI item=mHeaderItems.get(localPosition);
         bindHeaderViewHolder(holder,item);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mOnHeaderItemClickListener !=null){
-                    mOnHeaderItemClickListener.onItemClick(v,item,position,SEGMENT_TYPE_HEADER);
-                }
-            }
-        });
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

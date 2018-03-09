@@ -14,8 +14,8 @@ import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.adapter.holder.MenuEditRecyclerListHolder;
 import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
+import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseHeaderFooterRecyclerAdapterWrapper;
-import com.yijian.staff.tab.recyclerview.OnRecyclerItemClickListener;
 
 
 /**
@@ -28,20 +28,26 @@ import com.yijian.staff.tab.recyclerview.OnRecyclerItemClickListener;
  * @version 1.0
  */
 public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapterWrapper<EditItem,EditItem,MenuEditRecyclerListHolder,MenuEditRecyclerListHolder> implements RecyclerViewDragDropManager.OnItemDragEventListener {
-    private OnRecyclerItemClickListener<MenuItem> mOnChildItemClickListener;
-    private MenuHeaderRecyclerGridAdapter.OnDeleteClickListener mOnDeleteClickListener;
+    private OnDeleteListener onDeleteClickListener;
     private RecyclerViewDragDropManager mDragDropManager;
     private MenuHeaderRecyclerGridAdapter adapter;//原装适配器
     private RecyclerView.Adapter dragAdapter;//对原装适配器封装包裹后的实现了拖拽功能的适配器
     private int itemMoveMode= RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT;
     private boolean hasDragChanged;//优化刷新数据的参数，是否发生过拖拽
+    private  MenuRecyclerListAdapter listAdapter;
+    private  boolean showEditIcon;
+    public void setShowEditIcon(boolean showEditIcon){
+        this.showEditIcon=showEditIcon;
+        if (adapter!=null){
+            adapter.setShowEditIcon(showEditIcon);
+            listAdapter.setShowEditIcon(showEditIcon);
 
-    public void setOnChildItemClickListener(OnRecyclerItemClickListener<MenuItem> onChildItemClickListener) {
-        mOnChildItemClickListener = onChildItemClickListener;
+        }
     }
 
-    public void setOnDeleteClickListener(MenuHeaderRecyclerGridAdapter.OnDeleteClickListener onDeleteClickListener) {
-        mOnDeleteClickListener = onDeleteClickListener;
+
+    public void setOnDeleteListener(OnDeleteListener onDeleteClickListener) {
+        this.onDeleteClickListener = onDeleteClickListener;
     }
 
     /**
@@ -51,6 +57,7 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
      */
     public MenuRecyclerListHeaderWrapper(RecyclerView.Adapter adapter) {
         super(adapter);
+        this.listAdapter= (MenuRecyclerListAdapter) adapter;
     }
 
     @Override
@@ -66,9 +73,8 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     @Override
     public void bindHeaderViewHolder(MenuEditRecyclerListHolder headerViewHolder, EditItem headerItem) {
         headerViewHolder.tv_group_name.setText(headerItem.getGroup());
-        adapter=new MenuHeaderRecyclerGridAdapter(headerItem.getMenuItemList(),headerViewHolder.recyclerView,true,headerViewHolder.recyclerView.getContext());
-        adapter.setOnRecyclerItemClickListener(mOnChildItemClickListener);
-        adapter.setOnDeleteClickListener(mOnDeleteClickListener);
+        adapter=new MenuHeaderRecyclerGridAdapter(headerItem.getMenuItemList(),headerViewHolder.recyclerView,headerViewHolder.recyclerView.getContext());
+        adapter.setOnDeleteListener(onDeleteClickListener);
         mDragDropManager=new RecyclerViewDragDropManager();
         mDragDropManager.setItemMoveMode(itemMoveMode);
         // Start dragging after long press

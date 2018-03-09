@@ -30,4 +30,6 @@ public class MineFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_mine, container, false);
     }
+
+
 }

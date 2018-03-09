@@ -1,51 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <Button
-        android:id="@+id/btn_select_ptoto"
+
+    <LinearLayout
+        android:background="@mipmap/status_bar_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="选取照片" />
-    <Button
-        android:id="@+id/btn_compress"
+        android:layout_height="wrap_content" />
+    <com.yijian.staff.widget.PagerSlidingTabStrip
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="压缩" />
-
-
-
-    <ScrollView
+        android:layout_height="40dp"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/colorAccent"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsShouldExpand="true"
+        app:pstsTabPaddingLeftRight="16dp"
+        android:background="@color/white"
+        app:pstsTextSelectedColor="@color/colorAccent"
+        app:pstsUnderlineColor="@android:color/transparent" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="压缩前的图片" />
-            <ImageView
-                android:id="@+id/iv1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="压缩后的图片" />
-            <ImageView
-                android:id="@+id/iv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 </LinearLayout>

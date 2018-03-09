@@ -80,7 +80,9 @@
         <activity android:name=".mvp.dailywork.DailyWorkActivity" />
         <activity android:name=".mvp.dailywork.LeaveApprovalActivity" />
         <activity android:name=".mvp.dailywork.LeaveApplyActivity" />
-        <activity android:name=".mvp.invitation.InvitationActivity"/>
+        <activity android:name=".mvp.invitation.InvitationActivity" />
+        <activity android:name=".mvp.complaint.handling.ComplaintHandlingActivity" />
+        <activity android:name=".mvp.complaint.list.ComplaintListActivity"></activity>
     </application>
 
 </manifest>

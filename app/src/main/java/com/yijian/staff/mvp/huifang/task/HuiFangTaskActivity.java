@@ -34,7 +34,6 @@ public class HuiFangTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_hui_fang_task);
         ButterKnife.bind(this);
         initView();
@@ -48,8 +47,7 @@ public class HuiFangTaskActivity extends AppCompatActivity {
 
     private void initNavigation() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
-        navigationBar.setTitle("回访任务", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
+        navigationBar.setTitle("回访任务", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.adapter.MenuHeaderRecyclerGridAdapter;
 import com.yijian.staff.tab.adapter.MenuRecyclerListAdapter;
@@ -24,7 +25,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllFunctionActivity extends AppCompatActivity implements OnDeleteListener, View.OnClickListener {
+public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private List<MenuItem> mFavList;
@@ -89,8 +90,30 @@ public class AllFunctionActivity extends AppCompatActivity implements OnDeleteLi
                 mListHeaderWrapper.notifyDataSetChanged();
             }
         });
+
         mListHeaderWrapper = new MenuRecyclerListHeaderWrapper(mListAdapter);
-        mListHeaderWrapper.setOnDeleteListener(this);
+        mListHeaderWrapper.setOnDeleteListener(new OnDeleteListener() {
+            @Override
+            public void onDeleteClick(View v, MenuItem item, int position) {
+                //从常用中删除
+                String group = item.getGroup();
+                for (int i = 0; i < mEditList.size(); i++) {
+                    EditItem editItem = mEditList.get(i);
+                    if (editItem.getGroup().equals(group)){
+                        List<MenuItem> menuItemList = editItem.getMenuItemList();
+                        for (int j = 0; j < menuItemList.size(); j++) {
+                            if (menuItemList.get(j).getName().equals(item.getName())){
+                                menuItemList.get(j).setType(1);
+                                mListAdapter.notifyChildDataChanged(group, menuItemList.get(j));
+
+                            }
+                        }
+                    }
+                }
+                mFavList.remove(item);
+                mListHeaderWrapper.notifyDataSetChanged();
+            }
+        });
         mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FAVORITE, getString(R.string.favorite), mFavList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
@@ -107,13 +130,7 @@ public class AllFunctionActivity extends AppCompatActivity implements OnDeleteLi
         super.onDestroy();
     }
 
-    @Override
-    public void onDeleteClick(View v, MenuItem item, int position) {
-        Toast.makeText(AllFunctionActivity.this, "从最爱里面移除" + item.getName(), Toast.LENGTH_SHORT).show();
-        mFavList.remove(item);
-        mListHeaderWrapper.notifyDataSetChanged();
-        //TODO 删除
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -128,8 +145,9 @@ public class AllFunctionActivity extends AppCompatActivity implements OnDeleteLi
 
                 break;
             case R.id.right_tv:
-                mListHeaderWrapper.setShowEditIcon(true);
-
+                SharePreferenceUtil.setShowEditIcon(true);
+                mListAdapter.notifyDataSetChanged();
+                mListHeaderWrapper.notifyDataSetChanged();
                 break;
         }
     }

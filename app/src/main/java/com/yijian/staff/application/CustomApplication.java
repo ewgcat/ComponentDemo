@@ -18,6 +18,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.tools.ContextUtil;
+import com.yijian.staff.util.ApplicationHolder;
 import com.yijian.staff.util.InitializeService;
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
@@ -67,6 +68,7 @@ public class CustomApplication extends TinkerApplication {
         }
         ARouter.init(this);
         Bugly.init(this, "9de22ca904", BuildConfig.DEBUG);
+        ApplicationHolder.setmApplication(this);
 
         //初始化屏幕宽高
         getScreenSize();

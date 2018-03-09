@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuHeaderRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnDeleteListener;
+import com.yijian.staff.tab.listener.OnShowEditIconListener;
 import com.yijian.staff.tab.recyclerview.BaseDraggableRecyclerAdapter;
 
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
  * @version 1.0
  */
 public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<MenuHeaderRecyclerGridHolder, MenuItem> {
-    private boolean showEditIcon;
+
     private Context context;
 
     private OnDeleteListener onDeleteListener;
@@ -31,6 +33,7 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
     }
+
 
     /**
      * 可以拖拽的RecyclerView适配器
@@ -43,10 +46,7 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
         this.context=context;
     }
 
-    public void setShowEditIcon(boolean showEditIcon){
-        this.showEditIcon=showEditIcon;
-        notifyDataSetChanged();
-    }
+
     @Override
     public MenuHeaderRecyclerGridHolder createRecyclerViewHolder(ViewGroup parent, int viewType) {
         return new MenuHeaderRecyclerGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_frequently_menu_grid,parent,false));
@@ -54,6 +54,8 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
 
     @Override
     public void bindViewHolder(final MenuHeaderRecyclerGridHolder holder, MenuItem item) {
+        boolean showEditIcon= SharePreferenceUtil.getShowEditIcon();
+
         Log.i("TEST","MenuHeaderRecyclerGridAdapter   showEditIcon="+showEditIcon);
         final MenuItem menuItem=item;
         holder.iv_delete.setVisibility(showEditIcon? View.VISIBLE:View.GONE);

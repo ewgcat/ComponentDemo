@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
+import com.yijian.staff.tab.listener.OnShowEditIconListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
 
 import java.util.List;
@@ -22,7 +24,6 @@ import java.util.List;
  */
 public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyclerGridHolder, MenuItem> {
     private Context context;
-    private boolean showEditIcon = false;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
 
@@ -48,6 +49,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
 
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
+        boolean showEditIcon= SharePreferenceUtil.getShowEditIcon();
         Log.i("TEST","MenuRecyclerGridAdapter  showEditIcon ="+showEditIcon);
 
         Glide.with(context).load(item.getIcon()).into(holder.iv_icon);
@@ -96,10 +98,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         return mRecyclerItems == null ? 0 : mRecyclerItems.size();
     }
 
-    public void setShowEditIcon(boolean showEditIcon){
-        this.showEditIcon=showEditIcon;
-        notifyDataSetChanged();
-    }
+
 
 
 

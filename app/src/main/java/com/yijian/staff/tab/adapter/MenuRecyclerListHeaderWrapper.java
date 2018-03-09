@@ -35,15 +35,8 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     private int itemMoveMode= RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT;
     private boolean hasDragChanged;//优化刷新数据的参数，是否发生过拖拽
     private  MenuRecyclerListAdapter listAdapter;
-    private  boolean showEditIcon;
-    public void setShowEditIcon(boolean showEditIcon){
-        this.showEditIcon=showEditIcon;
-        if (adapter!=null){
-            adapter.setShowEditIcon(showEditIcon);
-            listAdapter.setShowEditIcon(showEditIcon);
+    private  boolean showEditIcon=true;
 
-        }
-    }
 
 
     public void setOnDeleteListener(OnDeleteListener onDeleteClickListener) {

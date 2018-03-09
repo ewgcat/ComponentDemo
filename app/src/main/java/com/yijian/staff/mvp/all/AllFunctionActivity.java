@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
@@ -41,6 +42,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private MenuRecyclerListHeaderWrapper mListHeaderWrapper;
 
     private boolean hasChangedListData;
+    private TextView rightTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +57,11 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         NavigationBar2 navigationBar2 = findViewById(R.id.all_function_navigation_bar);
         navigationBar2.findViewById(R.id.iv_first_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.iv_second_left).setVisibility(View.GONE);
-        navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
+        navigationBar2.hideLeftSecondIv();
+        rightTv = navigationBar2.findViewById(R.id.right_tv);
+        rightTv.setOnClickListener(this);
         navigationBar2.setTitle("全部功能");
-        navigationBar2.setmRightTvText("完成");
+        navigationBar2.setmRightTvText("编辑");
         mRecyclerView = (RecyclerView) findViewById(R.id.edit);
     }
 
@@ -78,16 +81,51 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mListAdapter.setOnAddListener(new OnAddListener() {
             @Override
             public void onAddClick(View v, MenuItem item, int position) {
-                mFavList.add(item);
-                mListHeaderWrapper.notifyDataSetChanged();
+                boolean isContain=false;
+                String group = item.getGroup();
+                for (int i = 0; i < mFavList.size(); i++) {
+                    MenuItem favMenuItem = mFavList.get(i);
+                    if (favMenuItem.getGroup().equals(group)&&favMenuItem.getName().equals(item.getName())) {
+                       isContain=true;
+                       break;
+                    }
+                }
+                if (!isContain){
+                    mFavList.add(item);
+                    mListHeaderWrapper.notifyDataSetChanged();
+                }
+
 
             }
         });
         mListAdapter.setOnDeleteListener(new OnDeleteListener() {
             @Override
             public void onDeleteClick(View v, MenuItem item, int position) {
-                mFavList.remove(item);
-                mListHeaderWrapper.notifyDataSetChanged();
+
+                //从常用中删除
+                String group = item.getGroup();
+                for (int i = 0; i < mEditList.size(); i++) {
+                    EditItem editItem = mEditList.get(i);
+                    if (editItem.getGroup().equals(group)) {
+                        List<MenuItem> menuItemList = editItem.getMenuItemList();
+                        for (int j = 0; j < menuItemList.size(); j++) {
+                            if (menuItemList.get(j).getName().equals(item.getName())) {
+                                menuItemList.get(j).setType(1);
+                                mListAdapter.notifyChildDataChanged(group, menuItemList.get(j));
+                            }
+                        }
+                    }
+                }
+
+                for (int i = 0; i < mFavList.size(); i++) {
+                    MenuItem favMenuItem = mFavList.get(i);
+                    if (favMenuItem.getGroup().equals(group)&&favMenuItem.getName().equals(item.getName())) {
+                            mFavList.remove(favMenuItem);
+                            mListHeaderWrapper.notifyDataSetChanged();
+                    }
+                }
+
+
             }
         });
 
@@ -99,10 +137,10 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 String group = item.getGroup();
                 for (int i = 0; i < mEditList.size(); i++) {
                     EditItem editItem = mEditList.get(i);
-                    if (editItem.getGroup().equals(group)){
+                    if (editItem.getGroup().equals(group)) {
                         List<MenuItem> menuItemList = editItem.getMenuItemList();
                         for (int j = 0; j < menuItemList.size(); j++) {
-                            if (menuItemList.get(j).getName().equals(item.getName())){
+                            if (menuItemList.get(j).getName().equals(item.getName())) {
                                 menuItemList.get(j).setType(1);
                                 mListAdapter.notifyChildDataChanged(group, menuItemList.get(j));
 
@@ -131,23 +169,33 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
         switch (id) {
             case R.id.iv_first_left:
+                String s1 = rightTv.getText().toString();
+                if (s1.equals("完成")){
+                    SharePreferenceUtil.setShowEditIcon(false);
+                    mListAdapter.notifyDataSetChanged();
+                    mListHeaderWrapper.notifyDataSetChanged();
+                }
                 finish();
                 break;
-            case R.id.iv_second_left:
-
-
-                break;
             case R.id.right_tv:
-                SharePreferenceUtil.setShowEditIcon(true);
-                mListAdapter.notifyDataSetChanged();
-                mListHeaderWrapper.notifyDataSetChanged();
+                String s = rightTv.getText().toString();
+                if (s.equals("编辑")){
+                    SharePreferenceUtil.setShowEditIcon(true);
+                    mListAdapter.notifyDataSetChanged();
+                    mListHeaderWrapper.notifyDataSetChanged();
+                    rightTv.setText("完成");
+                }else if (s.equals("完成")){
+                    SharePreferenceUtil.setShowEditIcon(false);
+                    mListAdapter.notifyDataSetChanged();
+                    mListHeaderWrapper.notifyDataSetChanged();
+                    rightTv.setText("编辑");
+                }
+
                 break;
         }
     }

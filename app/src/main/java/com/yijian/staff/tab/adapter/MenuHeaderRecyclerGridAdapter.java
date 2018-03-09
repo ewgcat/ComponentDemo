@@ -2,7 +2,6 @@ package com.yijian.staff.tab.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuHeaderRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnDeleteListener;
-import com.yijian.staff.tab.listener.OnShowEditIconListener;
 import com.yijian.staff.tab.recyclerview.BaseDraggableRecyclerAdapter;
 
 import java.util.List;
@@ -56,7 +54,6 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
     public void bindViewHolder(final MenuHeaderRecyclerGridHolder holder, MenuItem item) {
         boolean showEditIcon= SharePreferenceUtil.getShowEditIcon();
 
-        Log.i("TEST","MenuHeaderRecyclerGridAdapter   showEditIcon="+showEditIcon);
         final MenuItem menuItem=item;
         holder.iv_delete.setVisibility(showEditIcon? View.VISIBLE:View.GONE);
         holder.iv_delete.setOnClickListener(new View.OnClickListener() {

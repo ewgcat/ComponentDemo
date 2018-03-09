@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
@@ -13,7 +14,6 @@ import com.yijian.staff.tab.adapter.holder.MenuRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
-import com.yijian.staff.tab.listener.OnShowEditIconListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
 
 import java.util.List;
@@ -26,6 +26,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     private Context context;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
+
 
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
@@ -49,8 +50,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
 
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
-        boolean showEditIcon= SharePreferenceUtil.getShowEditIcon();
-        Log.i("TEST","MenuRecyclerGridAdapter  showEditIcon ="+showEditIcon);
+        boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
 
         Glide.with(context).load(item.getIcon()).into(holder.iv_icon);
         holder.tv_name.setText(item.getName());
@@ -59,48 +59,41 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
             if (type == 0) {
                 holder.iv_add.setVisibility(View.GONE);
                 holder.iv_delete.setVisibility(View.VISIBLE);
-                holder.iv_delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        item.setType(1);
-                        holder.iv_delete.setVisibility(View.GONE);
-                        holder.iv_add.setVisibility(View.VISIBLE);
-                        if (onDeleteListener != null) {
-                            onDeleteListener.onDeleteClick(v, item, holder.getAdapterPosition());
-                        }
-                    }
-                });
             } else {
                 holder.iv_delete.setVisibility(View.GONE);
                 holder.iv_add.setVisibility(View.VISIBLE);
-                holder.iv_add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        item.setType(0);
-                        holder.iv_add.setVisibility(View.GONE);
-                        holder.iv_delete.setVisibility(View.VISIBLE);
-                        if (onAddListener != null) {
-                            onAddListener.onAddClick(v, item, holder.getAdapterPosition());
-                        }
-                    }
-                });
             }
         } else {
             holder.iv_add.setVisibility(View.GONE);
             holder.iv_delete.setVisibility(View.GONE);
         }
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.iv_add.getVisibility() == View.VISIBLE) {
+                    item.setType(0);
+                    holder.iv_add.setVisibility(View.GONE);
+                    holder.iv_delete.setVisibility(View.VISIBLE);
+                    if (onAddListener != null) {
+                        onAddListener.onAddClick(v, item, holder.getAdapterPosition());
+                    }
+                } else if (holder.iv_delete.getVisibility() == View.VISIBLE) {
+                    item.setType(1);
+                    holder.iv_delete.setVisibility(View.GONE);
+                    holder.iv_add.setVisibility(View.VISIBLE);
+                    if (onDeleteListener != null) {
+                        onDeleteListener.onDeleteClick(v, item, holder.getAdapterPosition());
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return mRecyclerItems == null ? 0 : mRecyclerItems.size();
     }
-
-
-
-
 
 
 }

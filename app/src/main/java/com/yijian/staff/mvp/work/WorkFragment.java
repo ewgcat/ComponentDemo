@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.all.AllFunctionActivity;
+import com.yijian.staff.mvp.complaint.handling.ComplaintHandlingActivity;
+import com.yijian.staff.mvp.complaint.list.ComplaintListActivity;
 import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.invitation.InvitationActivity;
@@ -60,6 +62,7 @@ public class WorkFragment extends Fragment  implements OnRecyclerItemClickListen
         }
         return mWorkFragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -171,6 +174,9 @@ public class WorkFragment extends Fragment  implements OnRecyclerItemClickListen
                 startActivity(intent);
                 break;
             case R.id.ll_work_tou_su_chu_li:
+
+                startActivity(new Intent(getActivity(), ComplaintListActivity.class));
+
                 break;
             case R.id.ll_work_hui_yuan_xin_xi:
                 startActivity(new Intent(getActivity(), VipInfoActivity.class));

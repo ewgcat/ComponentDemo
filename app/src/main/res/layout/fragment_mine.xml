@@ -48,7 +48,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/white_stroke_bg"
                 android:gravity="center_vertical"
-                android:text="会籍"
+                android:text="会籍顾问"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -86,9 +86,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="180dp"
         android:background="@drawable/white_bg"
         android:orientation="horizontal">
@@ -109,14 +109,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
                 android:gravity="center"
                 android:text="俱乐部" />
         </LinearLayout>
 
         <View
             android:layout_width="1dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:background="@color/gray" />
 
@@ -136,14 +136,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
                 android:gravity="center"
                 android:text="资格证书" />
         </LinearLayout>
 
         <View
             android:layout_width="1dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:background="@color/gray" />
 
@@ -163,7 +163,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
 
                 android:gravity="center"
 
@@ -172,7 +172,7 @@
 
         <View
             android:layout_width="1dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:background="@color/gray" />
 
@@ -192,7 +192,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
                 android:gravity="center"
 
                 android:text="二维码" />
@@ -243,7 +243,7 @@
             android:id="@+id/ll_about_us"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@color/white"
             android:orientation="horizontal">
 

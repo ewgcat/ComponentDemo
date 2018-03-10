@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuRecyclerGridHolder;
@@ -16,6 +17,7 @@ import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
+import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 
 import java.util.List;
 
@@ -27,7 +29,10 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     private Context context;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
-
+    protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
+    public void setOnRecyclerItemLongClickListener(OnRecyclerItemLongClickListener onRecyclerItemLongClickListener) {
+        mOnRecyclerItemLongClickListener = onRecyclerItemLongClickListener;
+    }
 
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
@@ -92,6 +97,16 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
                 }
             }
         });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(mOnRecyclerItemLongClickListener!=null){
+                    mOnRecyclerItemLongClickListener.onItemLongClick(v,item,holder.getAdapterPosition(), AbstractHeaderFooterWrapperAdapter.SEGMENT_TYPE_NORMAL);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -100,8 +115,4 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     }
 
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
 }

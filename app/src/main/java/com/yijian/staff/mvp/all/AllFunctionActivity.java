@@ -147,6 +147,19 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+        mListAdapter.setOnRecyclerItemLongClickListener(new OnRecyclerItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View v, BaseRecyclerItem item, int position, int segment) {
+
+                String s = rightTv.getText().toString();
+                if (s.equals("编辑")) {
+                    SharePreferenceUtil.setShowEditIcon(true);
+                    mListAdapter.notifyDataSetChanged();
+                    mListHeaderWrapper.notifyDataSetChanged();
+                    rightTv.setText("完成");
+                }
+            }
+        });
         mListHeaderWrapper = new MenuRecyclerListHeaderWrapper(mListAdapter);
         mListHeaderWrapper.setOnDeleteListener(new OnDeleteListener() {
             @Override
@@ -170,8 +183,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 mListHeaderWrapper.notifyDataSetChanged();
             }
         });
-        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY,
-                "常用管理", frequentlyList));
+        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, "常用管理", frequentlyList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
 

@@ -45,5 +45,8 @@
 
     <color name="transparent">#00000000</color>
     <color name="black333333">#333333</color>
+    <color name="blue1997f8">#1997f8</color>
+    <color name="gray666666">#666666</color>
+
 
 </resources>

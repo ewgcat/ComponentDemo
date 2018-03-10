@@ -30,7 +30,6 @@ public class DailyWorkActivity extends AppCompatActivity {
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
     private int selectedIndex = 0;
-    protected long mExitTime;
 
     private ApprovalFragment approvalFragment;
     private DailyWorkStatusFragment dailyWorkStatusFragment;

@@ -13,6 +13,7 @@ import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
+import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,6 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
 
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
-    private AdapterView.OnItemClickListener onItemClickListener;
 
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
@@ -43,11 +43,12 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
     public void setOnAddListener(OnAddListener onAddListener) {
         this.onAddListener = onAddListener;
     }
-
-
-    public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
+    public void setOnRecyclerItemLongClickListener(OnRecyclerItemLongClickListener onRecyclerItemLongClickListener) {
+        mOnRecyclerItemLongClickListener = onRecyclerItemLongClickListener;
     }
+
+
 
 
     public MenuRecyclerListAdapter(List<EditItem> recyclerItems, Context context) {
@@ -66,6 +67,8 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
         MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(item.getMenuItemList(), context);
         adapter.setOnAddListener(onAddListener);
         adapter.setOnDeleteListener(onDeleteListener);
+        adapter.setOnRecyclerItemLongClickListener(mOnRecyclerItemLongClickListener);
+        adapter.setHasStableIds(true);
         holder.recyclerView.setLayoutManager(new GridLayoutManager(holder.recyclerView.getContext(), 4));
         holder.recyclerView.setAdapter(adapter);
         mAdapterMap.put(item.getGroup(), adapter);
@@ -83,24 +86,7 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
         }
     }
 
-    public void notifyChildDataAdded(String group, MenuItem item) {
-        MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
-        if (adapter != null) {
-            if (!adapter.getRecyclerItems().contains(item)) {
-                adapter.getRecyclerItems().add(item);
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }
 
-    public void notifyChildDataRemoved(String group, MenuItem item) {
-        MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
-        if (adapter != null) {
-            adapter.getRecyclerItems().remove(item);
-            //TODO
-            adapter.notifyDataSetChanged();
-        }
-    }
 
 
 }

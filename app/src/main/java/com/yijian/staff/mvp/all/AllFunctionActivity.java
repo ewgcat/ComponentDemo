@@ -19,6 +19,8 @@ import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
+import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
+import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 import com.yijian.staff.util.ConstantUtil;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
@@ -47,9 +49,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
 
         setContentView(R.layout.activity_all_function);
+        SharePreferenceUtil.setShowEditIcon(false);
         initView();
         initEvents();
     }
@@ -66,6 +68,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initEvents() {
+        //TODO 更换数据来源
         mFavList = MenuHelper.getPreferFavoriteList();
         mColdList = MenuHelper.getPreferColdWeaponList();
         mModernList = MenuHelper.getPreferModernWeaponList();
@@ -157,6 +160,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mRecyclerView.setAdapter(mListHeaderWrapper);
 
 
+
     }
 
     @Override
@@ -175,11 +179,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         switch (id) {
             case R.id.iv_first_left:
                 String s1 = rightTv.getText().toString();
-                if (s1.equals("完成")){
-                    SharePreferenceUtil.setShowEditIcon(false);
-                    mListAdapter.notifyDataSetChanged();
-                    mListHeaderWrapper.notifyDataSetChanged();
-                }
+                SharePreferenceUtil.setShowEditIcon(false);
                 finish();
                 break;
             case R.id.right_tv:

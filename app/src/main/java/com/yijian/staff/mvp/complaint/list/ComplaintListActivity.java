@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.complaint.list;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +14,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.complaint.handling.HandTaskAdapter;
 import com.yijian.staff.mvp.complaint.handling.HandTaskInfo;
+import com.yijian.staff.mvp.message.MessageListAdapter;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
@@ -58,20 +66,11 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
 
     @BindView(R.id.rv_complaint)
     RecyclerView rv_complaint;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+
     private List<HandTaskInfo> handTaskInfoList = new ArrayList<>();
     private NavigationBar2 navigationBar2;
-
-    private static final int VIDEO_CONTENT_DESC_MAX_LINE = 3;// 默认展示最大行数3行
-    private static final int SHOW_CONTENT_NONE_STATE = 0;// 扩充
-    private static final int SHRINK_UP_STATE = 1;// 收起状态
-    private static final int SPREAD_STATE = 2;// 展开状态
-    private static int mState = SHRINK_UP_STATE;//默认收起状态
-
-    private TextView mContentText;// 展示文本内容
-    private RelativeLayout mShowMore;// 展示更多
-    private ImageView mImageSpread;// 展开
-    private ImageView mImageShrinkUp;// 收起
-
 
     private int roleFlag = 1; // 作为虚拟角色的标志位， 0 用户身份1，1 用户身份2
 
@@ -141,6 +140,7 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
     public void initView(){
         linStaff.setVisibility(roleFlag == 0 ? View.VISIBLE:View.GONE);
         linCoach.setVisibility(roleFlag == 0 ? View.GONE:View.VISIBLE);
+        initComponent();
     }
 
     @OnClick({R.id.lin_handling_condition, R.id.lin_handling_task,R.id.lin_feipei_condition, R.id.lin_feipei_task})
@@ -209,5 +209,27 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
                     R.color.gray666666:R.color.blue1997f8));
         }
     }
+
+    public void initComponent() {
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(ComplaintListActivity.this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(ComplaintListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+    }
+
 
 }

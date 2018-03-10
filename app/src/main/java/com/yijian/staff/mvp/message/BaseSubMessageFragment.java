@@ -105,7 +105,7 @@ public class BaseSubMessageFragment extends Fragment {
 
     public void refresh(boolean isShowLoading) {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(context);
-        //设置RecyclerView 布局
+        //设置RecyclerView 布局,,,
         recyclerView.setLayoutManager(layoutmanager);
         messageListAdapter = new MessageListAdapter(context, messageInfoList,type);
         recyclerView.setAdapter(messageListAdapter);

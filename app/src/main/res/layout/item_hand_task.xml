@@ -234,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:isIndicator="false"
+                    android:isIndicator="true"
                     android:maxHeight="16dp"
                     android:minHeight="16dp"
                     android:rating="0"

@@ -44,6 +44,7 @@ public class CommentFlowLayout extends ViewGroup
 	
 
 	public void setLayoutChild(Context context,List<String> strList){
+		removeAllViews();
         MarginLayoutParams parentMP = (MarginLayoutParams) getLayoutParams(); 
 		MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         lp.leftMargin = 10;

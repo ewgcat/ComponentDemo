@@ -104,6 +104,7 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
             taskCommentArray.put("太差了");
             taskCommentArray.put("用了之后还挺爽的");
             jsonObject.put("evaluateContentList", taskCommentArray);
+            jsonObject.put("evaluateGrade","2");
 
             JSONObject handResultJsonObj = new JSONObject();
             handResultJsonObj.put("headerUrl","");

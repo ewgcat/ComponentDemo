@@ -1,21 +1,21 @@
 {
   "favorite": [
     {
-      "type":0,//0 常用,1 不常用
-      "name": "手枪",//功能图标名字
-      "icon": "ic_modern_1",//功能图标路径
-      "desc": "/test/1",//功能标识 用于app点击路由跳转
-      "group": "modern_weapon"//分组
+      "type": 0,
+      "name": "手枪",
+      "icon": "ic_modern_1",
+      "desc": "/test/1",
+      "group": "modern_weapon"
     },
     {
-      "type":0,
+      "type": 0,
       "name": "大锤",
       "icon": "ic_cold_3",
       "desc": "对，我不是那个王大锤，我是真的可以杀人的",
       "group": "cold_weapon"
     },
     {
-      "type":0,
+      "type": 0,
       "name": "匕首",
       "icon": "ic_cold_1",
       "desc": "传说的匕首,杀人于无形",
@@ -24,42 +24,42 @@
   ],
   "cold_weapon": [
     {
-      "type":0,
+      "type": 0,
       "name": "匕首",
       "icon": "ic_cold_1",
       "desc": "传说的匕首,杀人于无形",
       "group": "cold_weapon"
     },
     {
-      "type":0,
+      "type": 0,
       "name": "大锤",
       "icon": "ic_cold_3",
       "desc": "对，我不是那个王大锤，我是真的可以杀人的",
       "group": "cold_weapon"
     },
     {
-      "type":1,//不常用
+      "type": 1,
       "name": "弓",
       "icon": "ic_cold_4",
       "desc": "大漠苍穹，金戈铁马,射大雕必备神器",
       "group": "cold_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "弩",
       "icon": "ic_cold_5",
       "desc": "冷兵器时代的冲锋枪",
       "group": "cold_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "矛",
       "icon": "ic_cold_6",
       "desc": "以子之矛,灭子之心。",
       "group": "cold_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "法杖",
       "icon": "ic_cold_7",
       "desc": "来自艾泽拉斯的勇气召唤",
@@ -68,35 +68,35 @@
   ],
   "modern_weapon": [
     {
-      "type":0,
+      "type": 0,
       "name": "手枪",
       "icon": "ic_modern_1",
       "desc": "沙鹰的力量，等你见识到了，已经晚了",
       "group": "modern_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "霰弹枪",
       "icon": "ic_modern_2",
       "desc": "我读xian弹枪,不读san弹枪",
       "group": "modern_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "冲锋枪",
       "icon": "ic_modern_3",
       "desc": "古时候的弩是俺的祖先,但是俺的威力是他的1000倍",
       "group": "modern_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "自动步枪",
       "icon": "ic_modern_4",
       "desc": "威力与实力并存,人手一把，所向披靡",
       "group": "modern_weapon"
     },
     {
-      "type":1,
+      "type": 1,
       "name": "火箭筒",
       "icon": "ic_modern_6",
       "desc": "没有事情是我一发炮弹不能解决的，如果有,那就再来一发",

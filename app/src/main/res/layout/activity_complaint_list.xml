@@ -8,11 +8,18 @@
     <include
         android:id="@+id/complaint_list_navigation_bar"
         layout="@layout/view_navigation_bar2" />
-    <FrameLayout
+    <!--<FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"/>
+
     <LinearLayout
         android:id="@+id/lin_staff"
         android:layout_width="match_parent"
@@ -87,14 +94,15 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/ts_chuli"/>
+
             <TextView
                 android:id="@+id/tv_feipei_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="分配情况"
+                android:layout_marginLeft="5dp"
                 android:gravity="center"
-                android:textSize="12sp"
-                android:layout_marginLeft="5dp"/>
+                android:text="分配情况"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

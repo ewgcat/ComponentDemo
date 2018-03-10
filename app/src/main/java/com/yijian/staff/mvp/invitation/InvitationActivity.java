@@ -25,13 +25,12 @@ public class InvitationActivity extends AppCompatActivity {
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final String[] FRAGMENT_TAG = {"ApprovalFragment", "DailyWorkStatusFragment", "MyDailyWorkFragment"};
+    private static final String[] FRAGMENT_TAG = {"InvitationRecordFragment", "InvitationResultFragment"};
     /**
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
     private int selectedIndex = 0;
-    protected long mExitTime;
 
     private InvitationRecordFragment invitationRecordFragment;
     private InvitationResultFragment invitationResultFragment;

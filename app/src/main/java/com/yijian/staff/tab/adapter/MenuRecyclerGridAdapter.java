@@ -100,4 +100,8 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     }
 
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

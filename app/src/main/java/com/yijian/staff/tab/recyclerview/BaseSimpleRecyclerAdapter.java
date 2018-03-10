@@ -104,4 +104,5 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
     }
 
 
+
 }

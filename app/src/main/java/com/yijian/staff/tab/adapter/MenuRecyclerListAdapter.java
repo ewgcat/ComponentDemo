@@ -66,6 +66,7 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
         MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(item.getMenuItemList(), context);
         adapter.setOnAddListener(onAddListener);
         adapter.setOnDeleteListener(onDeleteListener);
+        adapter.setHasStableIds(true);
         holder.recyclerView.setLayoutManager(new GridLayoutManager(holder.recyclerView.getContext(), 4));
         holder.recyclerView.setAdapter(adapter);
         mAdapterMap.put(item.getGroup(), adapter);
@@ -83,24 +84,7 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
         }
     }
 
-    public void notifyChildDataAdded(String group, MenuItem item) {
-        MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
-        if (adapter != null) {
-            if (!adapter.getRecyclerItems().contains(item)) {
-                adapter.getRecyclerItems().add(item);
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }
 
-    public void notifyChildDataRemoved(String group, MenuItem item) {
-        MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
-        if (adapter != null) {
-            adapter.getRecyclerItems().remove(item);
-            //TODO
-            adapter.notifyDataSetChanged();
-        }
-    }
 
 
 }

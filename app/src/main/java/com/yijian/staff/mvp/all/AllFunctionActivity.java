@@ -31,12 +31,15 @@ import java.util.List;
 public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
-    private List<MenuItem> mFavList;
-    private List<MenuItem> mColdList;
-    private List<MenuItem> mModernList;
-    private List<MenuItem> mMiscList;
-    private List<MenuItem> mPersonList;
-    private List<MenuItem> mEqtList;
+    /*分组数据的缓存列表，初始化分组的时候用*/
+    private List<MenuItem> frequentlyList;
+    private List<MenuItem> vipmanagerList;
+    private List<MenuItem> huijikefuList;
+    private List<MenuItem> coachList;
+    private List<MenuItem> caokeList;
+    private List<MenuItem> admList;
+    private List<MenuItem> audittaskList;
+    private List<MenuItem> otherList;
 
     private List<EditItem> mEditList;
 
@@ -67,16 +70,27 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mRecyclerView = (RecyclerView) findViewById(R.id.edit);
     }
 
+
     private void initEvents() {
         //TODO 更换数据来源
-        mFavList = MenuHelper.getPreferFavoriteList();
-        mColdList = MenuHelper.getPreferColdWeaponList();
-        mModernList = MenuHelper.getPreferModernWeaponList();
+        frequentlyList = MenuHelper.getPreferFrequentlyList();
+        vipmanagerList = MenuHelper.getPreferVipManageList();
+        huijikefuList = MenuHelper.getPreferHuiJiKeFuList();
+        coachList = MenuHelper.getPreferCoachList();
+        caokeList = MenuHelper.getPreferCaoKeList();
+        admList = MenuHelper.getPreferAdmList();
+        audittaskList = MenuHelper.getPreferAuditTaskList();
+        otherList = MenuHelper.getPreferOtherList();
 
 
         mEditList = new ArrayList<>();
-        mEditList.add(new EditItem(MenuHelper.GROUP_COLD_WEAPON, getString(R.string.cold_weapon), mColdList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_MODERN_WEAPON, getString(R.string.modern_weapon), mModernList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, "会员管理", vipmanagerList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, "会籍", huijikefuList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_COCAH, "教练", coachList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE, "操课", caokeList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, "行政", admList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK, "审核任务", audittaskList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, "其他", otherList));
 
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);
 
@@ -84,23 +98,24 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mListAdapter.setOnAddListener(new OnAddListener() {
             @Override
             public void onAddClick(View v, MenuItem item, int position) {
-                boolean isContain=false;
+                boolean isContain = false;
                 String group = item.getGroup();
-                for (int i = 0; i < mFavList.size(); i++) {
-                    MenuItem favMenuItem = mFavList.get(i);
-                    if (favMenuItem.getGroup().equals(group)&&favMenuItem.getName().equals(item.getName())) {
-                       isContain=true;
-                       break;
+                for (int i = 0; i < frequentlyList.size(); i++) {
+                    MenuItem favMenuItem = frequentlyList.get(i);
+                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                        isContain = true;
+                        break;
                     }
                 }
-                if (!isContain){
-                    mFavList.add(item);
+                if (!isContain) {
+                    frequentlyList.add(item);
                     mListHeaderWrapper.notifyDataSetChanged();
                 }
 
 
             }
         });
+
         mListAdapter.setOnDeleteListener(new OnDeleteListener() {
             @Override
             public void onDeleteClick(View v, MenuItem item, int position) {
@@ -120,11 +135,11 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     }
                 }
 
-                for (int i = 0; i < mFavList.size(); i++) {
-                    MenuItem favMenuItem = mFavList.get(i);
-                    if (favMenuItem.getGroup().equals(group)&&favMenuItem.getName().equals(item.getName())) {
-                            mFavList.remove(favMenuItem);
-                            mListHeaderWrapper.notifyDataSetChanged();
+                for (int i = 0; i < frequentlyList.size(); i++) {
+                    MenuItem favMenuItem = frequentlyList.get(i);
+                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                        frequentlyList.remove(favMenuItem);
+                        mListHeaderWrapper.notifyDataSetChanged();
                     }
                 }
 
@@ -151,14 +166,14 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                         }
                     }
                 }
-                mFavList.remove(item);
+                frequentlyList.remove(item);
                 mListHeaderWrapper.notifyDataSetChanged();
             }
         });
-        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FAVORITE, getString(R.string.favorite), mFavList));
+        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY,
+                "常用管理", frequentlyList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
-
 
 
     }
@@ -184,12 +199,12 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.right_tv:
                 String s = rightTv.getText().toString();
-                if (s.equals("编辑")){
+                if (s.equals("编辑")) {
                     SharePreferenceUtil.setShowEditIcon(true);
                     mListAdapter.notifyDataSetChanged();
                     mListHeaderWrapper.notifyDataSetChanged();
                     rightTv.setText("完成");
-                }else if (s.equals("完成")){
+                } else if (s.equals("完成")) {
                     SharePreferenceUtil.setShowEditIcon(false);
                     mListAdapter.notifyDataSetChanged();
                     mListHeaderWrapper.notifyDataSetChanged();

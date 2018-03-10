@@ -25,7 +25,7 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
 
     private String name;
     private String icon;
-    private String desc;
+    private String path;
     private String group;
     private int  type;//0 已添加在常用列表，1未添加在常用列表
 
@@ -65,12 +65,12 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
         this.icon = icon;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getPath() {
+        return path;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getGroup() {

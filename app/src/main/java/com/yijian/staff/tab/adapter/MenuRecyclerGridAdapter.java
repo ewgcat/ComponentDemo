@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -85,6 +86,9 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
                     if (onDeleteListener != null) {
                         onDeleteListener.onDeleteClick(v, item, holder.getAdapterPosition());
                     }
+                }else {//非编辑状态
+                    ARouter.getInstance().build(item.getPath()).navigation();
+
                 }
             }
         });

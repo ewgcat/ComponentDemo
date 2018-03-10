@@ -109,7 +109,7 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     public void onItemDragFinished(int fromPosition, int toPosition, boolean result) {
         if(fromPosition!=toPosition && result){
             if(adapter!=null){
-                MenuHelper.savePreferFavoriteList(adapter.getRecyclerItems());
+                MenuHelper.savePreferFrequentlyList(adapter.getRecyclerItems());
                 hasDragChanged=true;
             }
         }

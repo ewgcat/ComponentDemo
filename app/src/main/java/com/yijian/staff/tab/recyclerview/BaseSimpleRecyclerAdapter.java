@@ -81,16 +81,6 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
         final int p=position;
         final RI item=mRecyclerItems.get(p);
         bindViewHolder(holder,item);
-//
-//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if(mOnRecyclerItemLongClickListener!=null){
-//                    mOnRecyclerItemLongClickListener.onItemLongClick(v,item,p, AbstractHeaderFooterWrapperAdapter.SEGMENT_TYPE_NORMAL);
-//                }
-//                return true;
-//            }
-//        });
     }
 
     @Override

@@ -34,6 +34,16 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         mOnRecyclerItemLongClickListener = onRecyclerItemLongClickListener;
     }
 
+    public void update(MenuItem item){
+        for (int i = 0; i < mRecyclerItems.size(); i++) {
+            MenuItem menuItem = mRecyclerItems.get(i);
+            if (menuItem.getName().equals(item.getName())){
+                menuItem.setType(item.getType());
+            }
+        }
+        notifyDataSetChanged();
+
+    }
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
     }

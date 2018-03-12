@@ -494,6 +494,30 @@
                         android:text="全部功能" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_work_fen_pei_resource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_flexBasisPercent="25%">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/lg_all" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:text="分配资源" />
+
+                </LinearLayout>
 
 
 

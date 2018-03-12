@@ -82,7 +82,7 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
     public void notifyChildDataChanged(String group, MenuItem item) {
         MenuRecyclerGridAdapter adapter = mAdapterMap.get(group);
         if (adapter != null) {
-            adapter.notifyDataSetChanged();
+            adapter.update(item);
         }
     }
 

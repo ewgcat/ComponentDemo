@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/reception_step_one_navigation_bar"
+        layout="@layout/view_navigation_bar2" />
+
+    <include
+        android:id="@+id/step_one_timebar"
+        android:layout_marginTop="10dp"
+        layout="@layout/view_time_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/reception_step_one_navigation_bar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/step_one_timebar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <include
+            android:id="@+id/questionsGroup"
+            layout="@layout/view_query_questions_ycm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:background="@drawable/register_button_bg"
+        android:text="保存（已完成）"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
+

@@ -41,6 +41,7 @@ public class PhysicalReportActivity extends AppCompatActivity {
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
 
         BodyTestReportView bodyTestReportView=   findViewById(R.id.physical_report_body_test_report);
+
     }
 
 

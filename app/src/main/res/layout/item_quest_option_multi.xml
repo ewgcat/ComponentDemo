@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <CheckedTextView
+        android:id="@+id/ctv_multi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="72dp"
+        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="center"
+        android:textAllCaps="true"
+        tools:text="Artist Name" />
+</RelativeLayout>

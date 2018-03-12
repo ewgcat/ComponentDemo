@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
+import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity_ycm;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
@@ -89,7 +90,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.tv_jiedai:
                 //TODO 接待流程
-                Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity.class);
+//                Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity.class);
+                Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity_ycm.class);
                 startActivity(intent);
 
                 break;

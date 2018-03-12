@@ -59,7 +59,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.reception.step1.ReceptionStepOneActivity"
+            android:name=".mvp.reception.step1.ReceptionStepOneActivity_ycm"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
         <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />

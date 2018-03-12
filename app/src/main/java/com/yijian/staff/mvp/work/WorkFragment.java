@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jaeger.library.StatusBarUtil;
@@ -109,7 +107,6 @@ public class WorkFragment extends Fragment {
     }
 
 
-
     /**
      * 开始动画
      */
@@ -141,7 +138,7 @@ public class WorkFragment extends Fragment {
             R.id.ll_work_yao_yue, R.id.ll_work_tian_jia_qian_zai,
             R.id.ll_work_tou_su_chu_li, R.id.ll_work_hui_yuan_xin_xi,
             R.id.ll_main_yi_xiang_hui_yuan, R.id.ll_work_kao_qin,
-            R.id.ll_work_all_gong_neng})
+            R.id.ll_work_all_gong_neng,R.id.ll_work_fen_pei_resource})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_jiedai:
@@ -160,11 +157,10 @@ public class WorkFragment extends Fragment {
 //                intent.putExtra("title", "潜在会员");
 //                startActivity(intent);
 
-              // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
+                // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
                 Bundle params = new Bundle();
                 params.putString("title", "潜在会员");
                 ARouter.getInstance().build("/test/activity").with(params).navigation();
-
 
 
                 break;
@@ -177,13 +173,9 @@ public class WorkFragment extends Fragment {
                 startActivity(new Intent(getActivity(), VipInfoActivity.class));
                 break;
             case R.id.ll_main_yi_xiang_hui_yuan:
-
-
                 Bundle params1 = new Bundle();
                 params1.putString("title", "意向会员");
                 ARouter.getInstance().build("/test/activity").with(params1).navigation();
-
-
                 break;
             case R.id.ll_work_kao_qin:
                 startActivity(new Intent(getActivity(), DailyWorkActivity.class));
@@ -191,8 +183,14 @@ public class WorkFragment extends Fragment {
             case R.id.ll_work_all_gong_neng:
                 startActivity(new Intent(getActivity(), AllFunctionActivity.class));
                 break;
+            case R.id.ll_work_fen_pei_resource:
+                //TODO 分配资源
+//                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
+                break;
         }
     }
+
+
 }
 
 

@@ -71,9 +71,29 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        /**** 系统消息 ***/
+        TextView tv_system_msg_content; //系统消息内容
+        TextView tv_system_msg_time; //系统消息发送的时间
+
+        /***  业务消息  **/
+        ImageView iv_bussiness_msg_header; //业务消息发送者头像
+        TextView iv_bussiness_msg_name; //业务消息发送者姓名
+        TextView tv_business_msg_type; //业务消息的处理状态
+        TextView tv_business_msg_content; //业务消息内容
+        TextView tv_business_msg_time; //业务消息发送的时间
 
         public ViewHolder(View view) {
             super(view);
+            /**** 系统消息 ***/
+            tv_system_msg_content = view.findViewById(R.id.tv_system_msg_content);
+            tv_system_msg_time = view.findViewById(R.id.tv_system_msg_time);
+
+            /***  业务消息  **/
+            iv_bussiness_msg_header = view.findViewById(R.id.iv_bussiness_msg_header);
+            iv_bussiness_msg_name = view.findViewById(R.id.iv_bussiness_msg_name);
+            tv_business_msg_type = view.findViewById(R.id.tv_business_msg_type);
+            tv_business_msg_content = view.findViewById(R.id.tv_business_msg_content);
+            tv_business_msg_time = view.findViewById(R.id.tv_business_msg_time);
 
         }
     }

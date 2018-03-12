@@ -1,11 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="业务消息"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/white_bg"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp">
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <ImageView
+                 android:id="@+id/iv_bussiness_msg_header"
+                 android:layout_width="45dp"
+                 android:layout_height="45dp"
+                 android:src="@mipmap/people"
+                 android:layout_centerVertical="true"/>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:layout_toRightOf="@id/iv_bussiness_msg_header"
+                 android:layout_centerVertical="true"
+                 >
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:gravity="center">
+                     <TextView
+                         android:id="@+id/iv_bussiness_msg_name"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="8dp"
+                         android:text="刘葛岩"
+                         android:textColor="#333333"
+                         android:textSize="16sp" />
+                     <ImageView
+                         android:id="@+id/iv_gender"
+                         android:layout_width="16dp"
+                         android:layout_height="16dp"
+                         android:layout_marginLeft="8dp"
+                         android:src="@mipmap/lg_man" />
+                 </LinearLayout>
+
+                 <TextView
+                     android:id="@+id/tv_business_msg_content"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="8dp"
+                     android:layout_marginTop="8dp"
+                     android:text="原力10周年健身卡"
+                     android:textColor="#333333"
+                     android:textSize="16sp"/>
+
+             </LinearLayout>
+
+             <TextView
+                 android:id="@+id/tv_business_msg_type"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="8dp"
+                 android:text="已成交"
+                 android:textColor="#31a4fc"
+                 android:layout_alignParentRight="true"
+                 android:textSize="16sp"/>
+
+         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_business_msg_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            android:text="2018-03-06 10:00"
+            android:textColor="#999999"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>

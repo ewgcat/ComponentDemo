@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.yijian.staff.R;
 
@@ -43,6 +44,7 @@ public class HandTaskAdapter extends RecyclerView.Adapter<HandTaskAdapter.ViewHo
         this.flagHand = flagHand;
         this.roleFlag = roleFlag;
         mTextStateList = new SparseArray<>();
+//        setHasStableIds(true);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class HandTaskAdapter extends RecyclerView.Adapter<HandTaskAdapter.ViewHo
         holder.tv_result_handTaskTime.setText(handTaskInfo.getHandTaskResultInfo().getHandTaskTime());
         holder.img_hand_task.setImgs(handTaskInfo.getTaskImgs());
         holder.fl_comment.setLayoutChild(context,handTaskInfo.getEvaluateContentList());
-
+        holder.rb.setRating(Float.valueOf(handTaskInfo.getEvaluateGrade()));
 
         /******************** START 设置任务内容的展开和收起 **********************/
         int state=mTextStateList.get(position,STATE_UNKNOW);
@@ -175,6 +177,11 @@ public class HandTaskAdapter extends RecyclerView.Adapter<HandTaskAdapter.ViewHo
         return handTaskInfoList == null ? 0 : handTaskInfoList.size();
     }
 
+  /*  @Override
+    public long getItemId(int position) {
+        return position;
+    }*/
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header; //任务分配者的头像
@@ -194,6 +201,7 @@ public class HandTaskAdapter extends RecyclerView.Adapter<HandTaskAdapter.ViewHo
         LinearLayout lin_evaluate; //客户评价
         LinearLayout lin_score; //客户评分
         CommentFlowLayout fl_comment; //客户评价内容
+        RatingBar rb; // 星级评分
         TextView expandOrCollapse;
         LinearLayout lin_expand_or_collapse;
         ImageView iv_expand_or_collapse;
@@ -218,6 +226,7 @@ public class HandTaskAdapter extends RecyclerView.Adapter<HandTaskAdapter.ViewHo
             lin_score  =     view.findViewById(R.id.lin_score);
             view_line  =     view.findViewById(R.id.view_line);
             fl_comment  =     view.findViewById(R.id.fl_comment);
+            rb  =     view.findViewById(R.id.rb);
             expandOrCollapse = view.findViewById(R.id.tv_expand_or_collapse);
             lin_expand_or_collapse = view.findViewById(R.id.lin_expand_or_collapse);
             iv_expand_or_collapse = view.findViewById(R.id.iv_expand_or_collapse);

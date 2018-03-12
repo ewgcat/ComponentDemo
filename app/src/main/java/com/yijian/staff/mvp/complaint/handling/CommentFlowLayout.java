@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.yijian.staff.R;
 
 public class CommentFlowLayout extends ViewGroup
@@ -48,6 +44,7 @@ public class CommentFlowLayout extends ViewGroup
 	
 
 	public void setLayoutChild(Context context,List<String> strList){
+		removeAllViews();
         MarginLayoutParams parentMP = (MarginLayoutParams) getLayoutParams(); 
 		MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         lp.leftMargin = 10;

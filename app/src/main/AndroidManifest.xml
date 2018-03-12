@@ -82,7 +82,10 @@
         <activity android:name=".mvp.dailywork.LeaveApplyActivity" />
         <activity android:name=".mvp.invitation.InvitationActivity" />
         <activity android:name=".mvp.complaint.handling.ComplaintHandlingActivity" />
-        <activity android:name=".mvp.complaint.list.ComplaintListActivity"></activity>
+        <activity android:name=".mvp.complaint.list.ComplaintListActivity" />
+        <activity android:name=".mvp.resourceallocation.ResourceAllocationActivity" />
+        <activity android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity" />
+        <activity android:name=".mvp.resourceallocation.SelectHuiJiActivity"></activity>
     </application>
 
 </manifest>

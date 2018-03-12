@@ -46,8 +46,8 @@
       "type": 0,
       "name": "考勤",
       "icon": "url",
-      "path": "/test/2",
-      "group": "会员管理"
+      "path": "/test/29",
+      "group": "审核任务"
     }
   ],
   "会员管理": [
@@ -65,14 +65,14 @@
       "path": "/test/2",
       "group": "会员管理"
     }, {
-      "type": 0,
+      "type": 1,
       "name": "潜在会员",
       "icon": "url",
       "path": "/test/3",
       "group": "会员管理"
     },
     {
-      "type": 0,
+      "type": 1,
       "name": "过期会员",
       "icon": "url",
       "path": "/test/4",
@@ -259,10 +259,10 @@
     },
     {
       "type": 0,
-      "name": "考勤 ",
+      "name": "考勤",
       "icon": "url",
       "path": "/test/29",
-      "group": "审核任务 "
+      "group": "审核任务"
     }
   ],
   "其他": [

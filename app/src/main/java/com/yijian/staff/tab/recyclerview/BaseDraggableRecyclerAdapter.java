@@ -14,6 +14,7 @@ import java.util.List;
 public abstract class BaseDraggableRecyclerAdapter<VH extends RecyclerView.ViewHolder,RI extends BaseRecyclerItem> extends BaseSimpleRecyclerAdapter<VH,RI> implements DraggableItemAdapter<VH> {
     static final int INVALID_POSITION=-1;
     private int mItemMoveMode = RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT;
+//    private int mItemMoveMode = RecyclerViewDragDropManager.ITEM_MOVE_MODE_SWAP;
     private RI mLastRemovedData;
     private int mLastRemovedPosition = INVALID_POSITION;
     private RecyclerView mRecyclerView;
@@ -54,16 +55,15 @@ public abstract class BaseDraggableRecyclerAdapter<VH extends RecyclerView.ViewH
         }
         if(mItemMoveMode== RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT){
             moveItem(fromPosition, toPosition);
-            notifyItemMoved(fromPosition, toPosition);
         }else{
             swapItem(fromPosition, toPosition);
-            mRecyclerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    notifyDataSetChanged();
-                }
-            });
         }
+        mRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                notifyDataSetChanged();
+            }
+        });
     }
 
     /**
@@ -100,4 +100,6 @@ public abstract class BaseDraggableRecyclerAdapter<VH extends RecyclerView.ViewH
         Collections.swap(mRecyclerItems, toPosition, fromPosition);
         mLastRemovedPosition = INVALID_POSITION;
     }
+
+
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/gray"
     android:orientation="vertical">
 
@@ -14,20 +14,24 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/white_bg"
         android:orientation="vertical"
+        android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="15dp">
+        >
 
          <RelativeLayout
              android:layout_width="match_parent"
-             android:layout_height="wrap_content">
+             android:layout_height="wrap_content"
+
+             >
 
              <ImageView
                  android:id="@+id/iv_bussiness_msg_header"
                  android:layout_width="45dp"
                  android:layout_height="45dp"
                  android:src="@mipmap/people"
+                 android:scaleType="fitXY"
                  android:layout_centerVertical="true"/>
 
              <LinearLayout
@@ -50,6 +54,7 @@
                          android:layout_marginLeft="8dp"
                          android:text="刘葛岩"
                          android:textColor="#333333"
+                         android:paddingTop="4dp"
                          android:textSize="16sp" />
                      <ImageView
                          android:id="@+id/iv_gender"
@@ -64,7 +69,7 @@
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:layout_marginLeft="8dp"
-                     android:layout_marginTop="8dp"
+                     android:paddingTop="7dp"
                      android:text="原力10周年健身卡"
                      android:textColor="#333333"
                      android:textSize="16sp"/>
@@ -79,6 +84,7 @@
                  android:text="已成交"
                  android:textColor="#31a4fc"
                  android:layout_alignParentRight="true"
+                 android:paddingTop="5dp"
                  android:textSize="16sp"/>
 
          </RelativeLayout>
@@ -88,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
             android:text="2018-03-06 10:00"
             android:textColor="#999999"
             android:layout_alignParentRight="true"

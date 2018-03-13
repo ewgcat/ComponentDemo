@@ -10,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
@@ -27,6 +33,7 @@ import java.util.List;
 
 public class VipAllPeopleInfoFragment extends Fragment {
 
+    SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
     private List<VipPeopleInfo> vipPeopleInfoList=new ArrayList<>();
 
@@ -42,9 +49,15 @@ public class VipAllPeopleInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_vip_all_people_info,container,false);
-        rv_vip_all = view.findViewById(R.id.rv_vip_all);
+        initView(view);
         initVipPeopleList();
         return view;
+    }
+
+    private void initView(View view){
+        rv_vip_all = view.findViewById(R.id.rv_vip_all);
+        refreshLayout = view.findViewById(R.id.refreshLayout);
+        initComponent();
     }
 
     private void initVipPeopleList(){
@@ -77,6 +90,27 @@ public class VipAllPeopleInfoFragment extends Fragment {
             Logger.i("TEST", "JSONException: " + e);
 
         }
+    }
+
+    public void initComponent() {
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
     }
 
 }

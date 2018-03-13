@@ -25,6 +25,7 @@ import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.invitation.InvitationActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.resourceallocation.HistoryResourceAllocationActivity;
 import com.yijian.staff.mvp.vip.info.VipInfoActivity;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
@@ -153,10 +154,16 @@ public class WorkFragment extends Fragment {
                 startActivity(new Intent(getActivity(), InvitationActivity.class));
                 break;
             case R.id.ll_work_tian_jia_qian_zai:
+//                Intent intent = new Intent(getActivity(), PotentialAndIntentViperListActivity.class);
+//                intent.putExtra("title", "潜在会员");
+//                startActivity(intent);
+
                 // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
                 Bundle params = new Bundle();
                 params.putString("title", "潜在会员");
                 ARouter.getInstance().build("/test/activity").with(params).navigation();
+
+
                 break;
             case R.id.ll_work_tou_su_chu_li:
 
@@ -179,7 +186,8 @@ public class WorkFragment extends Fragment {
                 break;
             case R.id.ll_work_fen_pei_resource:
                 //TODO 分配资源
-                ARouter.getInstance().build("/test/10").navigation();
+//                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
+                startActivity(new Intent(getActivity(), HistoryResourceAllocationActivity.class));
                 break;
         }
     }

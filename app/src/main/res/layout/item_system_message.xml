@@ -12,16 +12,18 @@
         android:background="@drawable/white_bg"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="15dp"
+
         android:paddingBottom="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp">
+
         <TextView
             android:id="@+id/tv_system_msg_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="15dp"
             android:textSize="14sp"
             android:textColor="#333333"
             android:text="你已经成功登录易健健身管理系"
@@ -34,7 +36,7 @@
             android:textSize="12sp"
             android:textColor="#666666"
             android:text="2017-10-22 12:00"
-            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
             />
 
     </LinearLayout>

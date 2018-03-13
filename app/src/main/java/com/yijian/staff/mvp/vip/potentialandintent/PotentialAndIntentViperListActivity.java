@@ -56,6 +56,7 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
 
         String title = getIntent().getStringExtra("title");
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
+        navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setBackClickListener(this);

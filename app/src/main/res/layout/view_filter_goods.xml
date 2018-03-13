@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/tv_time_card"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/tv_cishu_card"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -73,7 +73,7 @@
 
                 <TextView
                     android:id="@+id/tv_chuzhi_card"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -87,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/tv_huiyuan_card"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -118,7 +118,7 @@
 
                 <TextView
                     android:id="@+id/tv_price1"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -134,7 +134,7 @@
 
                 <TextView
                     android:id="@+id/tv_price2"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -155,7 +155,7 @@
 
                 <TextView
                     android:id="@+id/tv_price3"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -169,7 +169,7 @@
 
                 <TextView
                     android:id="@+id/tv_price4"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -200,7 +200,7 @@
 
                 <TextView
                     android:id="@+id/tv_youyong_place"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -212,7 +212,7 @@
 
                 <TextView
                     android:id="@+id/tv_jianshen_place"
-                    android:layout_width="100dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"

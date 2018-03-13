@@ -47,6 +47,8 @@ public class HuiJiProductQuotationFragment extends Fragment {
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
     private HuiJiProductQuotationListAdapter goodsListAdapter;
     private FilterDialog filterDialog;
+    private GoodsInfo selectedGoodsInfo;
+
 
     public HuiJiProductQuotationFragment() {
 
@@ -65,7 +67,13 @@ public class HuiJiProductQuotationFragment extends Fragment {
         goodsRcv.setAdapter(goodsListAdapter);
         initGoodsList();
         filterDialog = new FilterDialog(getActivity());
+        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v,GoodsInfo goodsInfo) {
+                selectedGoodsInfo=goodsInfo;
 
+            }
+        });
         return view;
     }
 
@@ -90,7 +98,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
+    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan, R.id.ll_to_cocah})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_zong_he:
@@ -101,6 +109,10 @@ public class HuiJiProductQuotationFragment extends Fragment {
                 break;
             case R.id.ll_shai_xuan:
                 selectShaixuan();
+                break;
+            case R.id.ll_to_cocah:
+                //TODO 转给教练
+
                 break;
         }
     }
@@ -118,7 +130,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
             drawablePrice.setBounds(0, 0, drawablePrice.getMinimumWidth(), drawablePrice.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawablePrice, null);
 
-            Drawable drawableShaixuan = getContext().getResources().getDrawable(R.mipmap.shaixuan_black);
+            Drawable drawableShaixuan = getContext().getResources().getDrawable(R.mipmap.shaixuan_blue);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             showFilterDialog();

@@ -44,9 +44,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.login.LoginActivity" />
-        <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity" />
-        <activity android:name=".mvp.reception.ReceptionActivity" />
+        <activity
+            android:name=".mvp.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.ReceptionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -60,32 +66,84 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
+            android:screenOrientation="portrait"
+
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
-        <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />
-        <activity android:name=".mvp.reception.step4.ReceptionStepFourActivity" />
-        <activity android:name=".mvp.reception.step5.ReceptionStepFiveActivity" />
-        <activity android:name=".mvp.goodsdetail.GoodsDetaiActivity" />
-        <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
-        <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity" />
-        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
-        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity" />
-        <activity android:name=".mvp.vip.edit.VipInfoEditActivity" />
-        <activity android:name=".mvp.vip.info.VipInfoActivity" />
-        <activity android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperListActivity" />
-        <activity android:name=".mvp.vip.outdate.OutdateViperListActivity" />
-        <activity android:name=".mvp.vip.detail.ViperDetailActivity" />
-        <activity android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperDetailActivity" />
-        <activity android:name=".mvp.all.AllFunctionActivity" />
-        <activity android:name=".mvp.dailywork.DailyWorkActivity" />
-        <activity android:name=".mvp.dailywork.LeaveApprovalActivity" />
-        <activity android:name=".mvp.dailywork.LeaveApplyActivity" />
-        <activity android:name=".mvp.invitation.InvitationActivity" />
-        <activity android:name=".mvp.complaint.handling.ComplaintHandlingActivity" />
-        <activity android:name=".mvp.complaint.list.ComplaintListActivity" />
-        <activity android:name=".mvp.resourceallocation.ResourceAllocationActivity" />
-        <activity android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity" />
-        <activity android:name=".mvp.resourceallocation.SelectHuiJiActivity"></activity>
+        <activity
+            android:name=".mvp.reception.step2.ReceptionStepTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step3.ReceptionStepThreeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step4.ReceptionStepFourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.goodsdetail.GoodsDetaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.goodsdetail.GoodsRightSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.history.HuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.task.HuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.edit.VipInfoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.info.VipInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.outdate.OutdateViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.detail.ViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.all.AllFunctionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.DailyWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.LeaveApprovalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.LeaveApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.invitation.InvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.complaint.handling.ComplaintHandlingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.complaint.list.ComplaintListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.ResourceAllocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.SelectHuiJiActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

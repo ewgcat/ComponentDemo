@@ -4,19 +4,20 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
     android:orientation="vertical">
+
     <LinearLayout
-        android:background="@color/white"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="30dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
 
 
         <LinearLayout
             android:id="@+id/ll_zong_he"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent">
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tv_zong_he"
@@ -27,74 +28,98 @@
                 android:padding="2dp"
                 android:text="综合排序"
                 android:textColor="#666666"
-                android:textSize="14sp"
-                />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
 
 
         <View
-            android:layout_gravity="center_vertical"
             android:layout_width="2dp"
             android:layout_height="10dp"
-            android:background="@color/gray"/>
+            android:layout_gravity="center_vertical"
+            android:background="@color/gray" />
+
         <LinearLayout
             android:id="@+id/ll_price"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent">
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
+                android:drawableRight="@mipmap/jd_normal_arrow"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="价格"
                 android:textColor="#666666"
-                android:textSize="14sp"
-                android:drawableRight="@mipmap/jd_normal_arrow"
-                />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
 
         <View
-            android:layout_gravity="center_vertical"
             android:layout_width="2dp"
             android:layout_height="10dp"
-            android:background="@color/gray"/>
+            android:layout_gravity="center_vertical"
+            android:background="@color/gray" />
+
         <LinearLayout
             android:id="@+id/ll_shai_xuan"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent">
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tv_shaixuan"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
+                android:drawableEnd="@mipmap/shaixuan_black"
                 android:gravity="center"
                 android:padding="2dp"
-                android:drawableEnd="@mipmap/shaixuan_black"
                 android:text="筛选"
                 android:textColor="#666666"
-                android:textSize="14sp"
-                />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
 
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/goods_rcv"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/ll_to_cocah"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/register_button_bg"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TO"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </LinearLayout>

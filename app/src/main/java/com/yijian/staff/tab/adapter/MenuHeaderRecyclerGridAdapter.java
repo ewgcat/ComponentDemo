@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuHeaderRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseDraggableRecyclerAdapter;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import java.util.List;
 
@@ -65,7 +69,12 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
             }
         });
         holder.tv_name.setText(item.getName());
-        Glide.with(context).load(item.getIcon()).into(holder.iv_icon);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(item.getIcon()).apply(options).into(holder.iv_icon);
     }
 
     @Override

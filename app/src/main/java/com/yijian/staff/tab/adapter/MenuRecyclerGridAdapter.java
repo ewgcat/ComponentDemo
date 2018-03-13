@@ -9,6 +9,9 @@ import android.widget.AdapterView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -18,6 +21,7 @@ import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import java.util.List;
 
@@ -67,8 +71,12 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
         boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
-
-        Glide.with(context).load(item.getIcon()).into(holder.iv_icon);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(item.getIcon()).apply(options).into(holder.iv_icon);
         holder.tv_name.setText(item.getName());
         int type = item.getType();
         if (showEditIcon) {

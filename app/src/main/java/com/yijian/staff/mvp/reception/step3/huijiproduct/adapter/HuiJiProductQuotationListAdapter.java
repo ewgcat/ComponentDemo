@@ -51,6 +51,11 @@ public class HuiJiProductQuotationListAdapter extends RecyclerView.Adapter<HuiJi
         return mGoodsInfoList.size();
     }
 
+    public void update(List<GoodsInfo> mGoodsInfoList) {
+        this.mGoodsInfoList=mGoodsInfoList;
+        notifyDataSetChanged();
+    }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 

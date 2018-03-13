@@ -56,14 +56,9 @@
                 android:text="价格"
                 android:textColor="#666666"
                 android:textSize="14sp"
+                android:drawableRight="@mipmap/jd_normal_arrow"
                 />
 
-            <ImageView
-                android:id="@+id/iv_price"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/jd_normal_arrow" />
         </LinearLayout>
 
 
@@ -80,12 +75,13 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tv_shaixuan"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:drawableStart="@mipmap/shaixuan_black"
+                android:drawableEnd="@mipmap/shaixuan_black"
                 android:text="筛选"
                 android:textColor="#666666"
                 android:textSize="14sp"

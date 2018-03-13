@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.vip.potentialandintent;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,12 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
@@ -29,6 +36,8 @@ import butterknife.ButterKnife;
 @Route(path = "/test/activity")
 public class PotentialAndIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
     private List<VipPeopleInfo> vipPeopleInfoList=new ArrayList<>();
@@ -55,7 +64,7 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
         navigationBar2.setTitle(title);
         navigationBar2.setmRightTvText("筛选");
 
-
+        initComponent();
     }
 
     private void initVipPeopleList(){
@@ -91,6 +100,26 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
 
     @Override
     public void onClick(View v) {
+    }
 
+    public void initComponent() {
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(PotentialAndIntentViperListActivity.this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(PotentialAndIntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
     }
 }

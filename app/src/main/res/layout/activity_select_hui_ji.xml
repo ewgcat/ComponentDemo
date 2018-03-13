@@ -1,9 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yijian.staff.mvp.resourceallocation.SelectHuiJiActivity">
+    android:orientation="vertical"
+    android:background="@color/gray">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/vip_over_navigation_bar"
+        layout="@layout/view_navigation_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <LinearLayout
+            android:id="@+id/lin_comment_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_comment_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评分排序"
+                android:textColor="#666666"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
+                <ImageView
+                    android:id="@+id/iv_comment_order_up"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_shang"/>
+                <ImageView
+                    android:id="@+id/iv_comment_order_down"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_xia"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_businees_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_business_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="业绩排序"
+                android:textColor="#666666"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
+                <ImageView
+                    android:id="@+id/iv_business_order_up"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_shang"/>
+                <ImageView
+                    android:id="@+id/iv_business_order_down"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_xia"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_letter_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_letter_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字母排序"
+                android:textColor="#666666"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
+                <ImageView
+                    android:id="@+id/iv_letter_order_up"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_shang"/>
+                <ImageView
+                    android:id="@+id/iv_letter_order_down"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@mipmap/fp_xia"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rev_select_huiji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

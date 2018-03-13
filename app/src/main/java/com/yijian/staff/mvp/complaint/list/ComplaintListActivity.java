@@ -37,6 +37,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 投诉列表
+ */
 public class ComplaintListActivity extends AppCompatActivity implements View.OnClickListener{
 
     /*@BindView(R.id.fl_content)
@@ -136,6 +139,7 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.getFirstLeftIv().setOnClickListener(this);
         navigationBar2.setmRightTvText("");
+        navigationBar2.hideBottomLine();
     }
 
     public void initView(){

@@ -25,6 +25,7 @@ import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
 import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
 import com.yijian.staff.mvp.invitation.InvitationActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.resourceallocation.HistoryResourceAllocationActivity;
 import com.yijian.staff.mvp.vip.info.VipInfoActivity;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
@@ -186,6 +187,7 @@ public class WorkFragment extends Fragment {
             case R.id.ll_work_fen_pei_resource:
                 //TODO 分配资源
 //                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
+                startActivity(new Intent(getActivity(), HistoryResourceAllocationActivity.class));
                 break;
         }
     }

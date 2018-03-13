@@ -51,7 +51,7 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
         navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.wt_shuaixuan).into(rightIv);
+        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
         navigationBar2.setTitle(title);
         navigationBar2.setmRightTvText("筛选");
 

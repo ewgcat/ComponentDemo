@@ -90,8 +90,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
             case R.id.tv_jiedai:
                 //TODO 接待流程
                 Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
                 break;
         }
     }

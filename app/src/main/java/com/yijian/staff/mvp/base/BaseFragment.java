@@ -33,7 +33,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        initInject();
         mPresenter.attachView(this);
         super.onViewCreated(view, savedInstanceState);
     }
@@ -46,5 +45,4 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
 
 
-    protected abstract void initInject();
 }

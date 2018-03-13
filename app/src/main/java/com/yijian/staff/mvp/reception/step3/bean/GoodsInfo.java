@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3;
+package com.yijian.staff.mvp.reception.step3.bean;
 
 import com.yijian.staff.util.JsonUtil;
 

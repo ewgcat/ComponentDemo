@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
@@ -51,6 +52,9 @@ public class ReceptionStepFiveActivity extends AppCompatActivity implements View
             case R.id.iv_second_left:
 
 
+                Intent i = new Intent(this,ReceptionActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 break;
             case R.id.right_tv:
 

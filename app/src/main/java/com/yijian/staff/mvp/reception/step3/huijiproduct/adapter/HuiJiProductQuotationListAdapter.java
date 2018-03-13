@@ -1,19 +1,14 @@
-package com.yijian.staff.mvp.reception.step3;
+package com.yijian.staff.mvp.reception.step3.huijiproduct.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.reception.ReceptionInfo;
+import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -23,25 +18,25 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/3 17:08:17
  */
-public class Step3GoodsListAdapter extends RecyclerView.Adapter<Step3GoodsListAdapter.ViewHolder> {
+public class HuiJiProductQuotationListAdapter extends RecyclerView.Adapter<HuiJiProductQuotationListAdapter.ViewHolder> {
     private List<GoodsInfo> mGoodsInfoList;
     private Context context;
 
-    public Step3GoodsListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
+    public HuiJiProductQuotationListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
         this.mGoodsInfoList = mGoodsInfoList;
         this.context = context;
     }
 
     @Override
-    public Step3GoodsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HuiJiProductQuotationListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(Step3GoodsListAdapter.ViewHolder holder, int position) {
-        Logger.i("Step3GoodsListAdapter","position: "+position);
+    public void onBindViewHolder(HuiJiProductQuotationListAdapter.ViewHolder holder, int position) {
+        Logger.i("HuiJiProductQuotationListAdapter","position: "+position);
 
         GoodsInfo goodsInfo = mGoodsInfoList.get(position);
         holder.tvGoodsName.setText(goodsInfo.getGoodsName());

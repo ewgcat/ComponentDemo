@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.huijiproduct;
+package com.yijian.staff.mvp.reception.step3.kefu;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,11 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
-import com.yijian.staff.mvp.reception.step3.huijiproduct.adapter.HuiJiProductQuotationListAdapter;
+import com.yijian.staff.mvp.reception.step3.kefu.adapter.HuiJiProductQuotationListAdapter;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -30,6 +32,10 @@ import butterknife.Unbinder;
 
 public class HuiJiProductQuotationFragment extends Fragment {
 
+    @BindView(R.id.rl_goods)
+    RelativeLayout rlGoods;
+    @BindView(R.id.tv_send_to_status)
+    TextView tvSendToStatus;
 
     @BindView(R.id.tv_zong_he)
     TextView tvZongHe;
@@ -41,7 +47,11 @@ public class HuiJiProductQuotationFragment extends Fragment {
     @BindView(R.id.goods_rcv)
     RecyclerView goodsRcv;
 
+
+
+
     Unbinder unbinder;
+
 
 
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
@@ -69,9 +79,8 @@ public class HuiJiProductQuotationFragment extends Fragment {
         filterDialog = new FilterDialog(getActivity());
         goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View v,GoodsInfo goodsInfo) {
-                selectedGoodsInfo=goodsInfo;
-
+            public void onItemClick(View v, GoodsInfo goodsInfo) {
+                selectedGoodsInfo = goodsInfo;
             }
         });
         return view;
@@ -98,7 +107,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan, R.id.ll_to_cocah})
+    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan, R.id.ll_to_coach})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_zong_he:
@@ -110,8 +119,14 @@ public class HuiJiProductQuotationFragment extends Fragment {
             case R.id.ll_shai_xuan:
                 selectShaixuan();
                 break;
-            case R.id.ll_to_cocah:
+            case R.id.ll_to_coach:
                 //TODO 转给教练
+                if (selectedGoodsInfo != null) {
+                    rlGoods.setVisibility(View.GONE);
+                    tvSendToStatus.setVisibility(View.VISIBLE);
+                } else {
+                    Toast.makeText(getContext(), "请先点击选取一个产品,再TO给教练!", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
         }

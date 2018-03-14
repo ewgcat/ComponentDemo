@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.huijiproduct.adapter;
+package com.yijian.staff.mvp.reception.step3.kefu.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

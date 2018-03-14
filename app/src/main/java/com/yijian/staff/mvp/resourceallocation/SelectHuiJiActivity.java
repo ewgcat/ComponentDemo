@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.resourceallocation;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
 import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
@@ -33,6 +40,8 @@ import butterknife.OnClick;
  */
 public class SelectHuiJiActivity extends AppCompatActivity {
 
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     @BindView(R.id.rev_select_huiji)
     RecyclerView rev_select_huiji;
     private List<HuijiInfo> huijiInfoList=new ArrayList<>();
@@ -69,11 +78,12 @@ public class SelectHuiJiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hui_ji);
         ButterKnife.bind(this);
+        initTitle();
         initView();
         initHuijiInfoList();
     }
 
-    private void initView() {
+    private void initTitle() {
         NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
         navigationBar.setTitle("选择会籍","#ffffff");
         navigationBar.getmRightTextView().setText("确定");
@@ -85,6 +95,10 @@ public class SelectHuiJiActivity extends AppCompatActivity {
         });
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+    }
+
+    private void initView() {
+        initComponent();
     }
 
     private void initHuijiInfoList() {
@@ -178,6 +192,27 @@ public class SelectHuiJiActivity extends AppCompatActivity {
                 break;
         }
         orderResId = selectId;
+    }
+
+    public void initComponent() {
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(SelectHuiJiActivity.this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(SelectHuiJiActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
     }
 
 }

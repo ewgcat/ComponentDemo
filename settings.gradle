@@ -1,1 +1,1 @@
-include ':app',':retrofit2',':PhotoPicker'
+include ':app',':retrofit2',':PhotoPicker',':photoview'

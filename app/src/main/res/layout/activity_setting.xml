@@ -74,12 +74,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="朱沙" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/icon_black_right_arrow" />
+
         </LinearLayout>
 
         <View
@@ -110,12 +105,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="男" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/icon_black_right_arrow" />
+
         </LinearLayout>
 
         <View
@@ -146,12 +136,6 @@
                 android:layout_gravity="center_vertical"
                 android:text="23" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/icon_black_right_arrow" />
         </LinearLayout>
 
         <View
@@ -182,12 +166,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="9999999" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/icon_black_right_arrow" />
+
         </LinearLayout>
 
     </LinearLayout>

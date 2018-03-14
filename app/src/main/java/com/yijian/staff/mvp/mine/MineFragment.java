@@ -10,7 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.seepic.SeePicActivity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,9 +63,13 @@ public class MineFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_user_head:
+                Intent intent = new Intent(getContext(), SeePicActivity.class);
+                ArrayList<String> picList = new ArrayList<>();
+                intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+                startActivity(intent);
                 break;
             case R.id.ll_more:
-                startActivity(new Intent(getContext(),SettingActivity.class));
+                startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.ll_club:
                 break;

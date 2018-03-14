@@ -145,10 +145,18 @@
         <activity
             android:name=".mvp.resourceallocation.SelectHuiJiActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.SettingActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".mvp.contract.ContractActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".mvp.mine.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.contract.ContractActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yijian.staff.mvp.seepic.SeePicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yijian.staff.mvp.mine.selectheadicon.ClipActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

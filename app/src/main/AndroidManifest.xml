@@ -144,7 +144,7 @@
         <activity
             android:name=".mvp.resourceallocation.SelectHuiJiActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.SettingActivity"></activity>
+        <activity android:name=".mvp.mine.SettingActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait"></activity>

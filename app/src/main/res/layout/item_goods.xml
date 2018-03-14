@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/item_view"
         android:orientation="horizontal"
         android:layout_margin="16dp"
         android:background="@drawable/white_bg"

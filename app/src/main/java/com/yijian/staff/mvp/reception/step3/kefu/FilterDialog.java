@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.huijiproduct;
+package com.yijian.staff.mvp.reception.step3.kefu;
 
 import android.app.Activity;
 import android.app.Dialog;

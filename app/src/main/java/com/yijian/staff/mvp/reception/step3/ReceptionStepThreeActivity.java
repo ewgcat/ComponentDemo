@@ -4,30 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.step3.huijiproduct.HuiJiProductQuotationFragment;
+import com.yijian.staff.mvp.reception.step3.coach.CoachProductFragment;
+import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductQuotationFragment;
+import com.yijian.staff.mvp.reception.step3.leader.LeaderProductFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ReceptionStepThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,7 +38,9 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         TimeBar timeBar = findViewById(R.id.step_three_timebar);
         timeBar.showTimeBar(3);
 
-        HuiJiProductQuotationFragment huiJiProductQuotationFragment = new HuiJiProductQuotationFragment();
+//        HuiJiProductQuotationFragment huiJiProductQuotationFragment = new HuiJiProductQuotationFragment();
+//        CoachProductFragment huiJiProductQuotationFragment = new CoachProductFragment();
+        LeaderProductFragment huiJiProductQuotationFragment = new LeaderProductFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fl_content,huiJiProductQuotationFragment).commit();
     }

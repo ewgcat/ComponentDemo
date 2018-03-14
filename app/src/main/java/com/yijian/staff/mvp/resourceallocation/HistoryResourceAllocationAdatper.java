@@ -72,7 +72,14 @@ public class HistoryResourceAllocationAdatper extends RecyclerView.Adapter<Histo
         holder.lin_allocation_huiji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,SelectHuiJiActivity.class));
+                SelectHuiJiActivity.startToActivity("选择会籍",context);
+            }
+        });
+
+        holder.lin_allocation_coach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectHuiJiActivity.startToActivity("选择教练",context);
             }
         });
     }

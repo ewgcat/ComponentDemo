@@ -86,6 +86,7 @@
         <activity android:name=".mvp.resourceallocation.ResourceAllocationActivity" />
         <activity android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity" />
         <activity android:name=".mvp.resourceallocation.SelectHuiJiActivity"></activity>
+        <activity android:name=".mvp.contract.ContractActivity"></activity>
     </application>
 
 </manifest>

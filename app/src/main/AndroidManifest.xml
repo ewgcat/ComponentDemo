@@ -67,7 +67,6 @@
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:screenOrientation="portrait"
-
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".mvp.reception.step2.ReceptionStepTwoActivity"
@@ -143,7 +142,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.resourceallocation.SelectHuiJiActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.mine.SettingActivity"></activity>
     </application>
 
 </manifest>

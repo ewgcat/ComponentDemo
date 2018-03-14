@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,17 +19,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
+import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 import me.iwf.photopicker.PhotoPicker;
 
 public class SettingActivity extends AppCompatActivity {
@@ -46,6 +51,14 @@ public class SettingActivity extends AppCompatActivity {
     TextView tvPhone;
     private Dialog dialog;
 
+    String[] permissions = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    private int index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +69,8 @@ public class SettingActivity extends AppCompatActivity {
         navigationBar.setTitle("设置", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        initDialog();
 
+        initDialog();
     }
 
     @OnClick({R.id.ll_head, R.id.ll_username, R.id.ll_sex, R.id.ll_age, R.id.ll_phone, R.id.tv_exit_login})
@@ -80,8 +93,6 @@ public class SettingActivity extends AppCompatActivity {
     }
 
 
-
-
     private void initDialog() {
         final View view = LayoutInflater.from(this).inflate(R.layout.view_add_pic_dialog, null);
         dialog = new Dialog(this, R.style.custom_dialog);
@@ -95,14 +106,54 @@ public class SettingActivity extends AppCompatActivity {
         //拍照
         cameraBtn.setOnClickListener(view1 -> {
             dialog.dismiss();
-            capturePhoto();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+                    //没有权限，提示设置权限
+                    RxPermissions rxPermissions = new RxPermissions(this);
 
+                    rxPermissions
+                            .request(Manifest.permission.CAMERA)
+                            .subscribe(granted -> {
+                                if (granted) {
+                                    capturePhoto();
+                                } else {
+                                    Toast.makeText(this, "请到手机设置里给应用分配相机权限,否则无法使用手机拍照功能", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                } else {
+                    //有权限，调用相机拍照
+                    capturePhoto();
+
+                }
+            } else {
+                capturePhoto();
+            }
         });
 
         //相册
         albumBtn.setOnClickListener(view2 -> {
             dialog.dismiss();
-            selectNewAlbum();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    //没有权限
+                    RxPermissions rxPermissions = new RxPermissions(this);
+
+                    rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            .subscribe(granted -> {
+                                if (granted) {
+                                    selectNewAlbum();
+                                } else {
+                                    Toast.makeText(this, "请到手机设置里给应用分配读写权限,否则应用无法正常使用", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    //有权限
+                    selectNewAlbum();
+                }
+            } else {
+                selectNewAlbum();
+            }
         });
 
         //取消
@@ -116,7 +167,7 @@ public class SettingActivity extends AppCompatActivity {
         PhotoPicker.builder()
                 .setPhotoCount(1)
                 .isCamera(true)
-                .setShowGif(true)
+                .setShowGif(false)
                 .setPreviewEnabled(false)
                 .start(this, PhotoPicker.REQUEST_CODE);
     }
@@ -131,6 +182,14 @@ public class SettingActivity extends AppCompatActivity {
                 .setPreviewEnabled(false)
                 .start(this, PhotoPicker.REQUEST_CODE);
     }
+
+    /**
+     * 运行时请求权限
+     */
+    private void initRxPermissions(int i, String[] permissions) {
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

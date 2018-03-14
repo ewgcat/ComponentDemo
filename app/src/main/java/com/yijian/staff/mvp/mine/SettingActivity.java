@@ -44,7 +44,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
 
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar);
         navigationBar.setTitle("设置", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));

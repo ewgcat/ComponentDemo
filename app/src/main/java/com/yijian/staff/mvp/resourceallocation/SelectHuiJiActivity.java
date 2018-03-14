@@ -1,5 +1,8 @@
 package com.yijian.staff.mvp.resourceallocation;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +42,13 @@ import butterknife.OnClick;
  * 选择会籍
  */
 public class SelectHuiJiActivity extends AppCompatActivity {
+
+    private static String titleCenter;
+    public static void startToActivity(String title, Context context){
+        titleCenter = title;
+        Intent intent = new Intent(context,SelectHuiJiActivity.class);
+        context.startActivity(intent);
+    }
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -85,7 +95,7 @@ public class SelectHuiJiActivity extends AppCompatActivity {
 
     private void initTitle() {
         NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("选择会籍","#ffffff");
+        navigationBar.setTitle(titleCenter,"#ffffff");
         navigationBar.getmRightTextView().setText("确定");
         navigationBar.getmRightTextView().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray"
@@ -10,7 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/white_bg"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
 
 
         <RelativeLayout
@@ -62,7 +69,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <RatingBar
+                    <!--<RatingBar
                         android:id="@+id/rb_grate"
                         style="@style/RadingStyle"
                         android:layout_width="wrap_content"
@@ -72,7 +79,21 @@
                         android:maxHeight="16dp"
                         android:minHeight="16dp"
                         android:rating="0"
-                        android:stepSize="0.5" />
+                        android:stepSize="0.5"/>-->
+
+
+                    <com.yijian.staff.mvp.resourceallocation.RatingBar
+                        android:id="@+id/rb_grate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        app:starCount="5"
+                        app:starEmpty="@mipmap/ts_huixing"
+                        app:starFill="@mipmap/ts_xingxing"
+                        app:starHalf="@mipmap/ts_banxing"
+                        app:starImageSize="15dp"
+                        app:starPadding="6dp"
+                        app:starStep="1.5"
+                        app:stepSize="Half"></com.yijian.staff.mvp.resourceallocation.RatingBar>
 
                     <TextView
                         android:id="@+id/tv_comment_grade"

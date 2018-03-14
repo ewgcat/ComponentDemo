@@ -1,22 +1,16 @@
 package com.yijian.staff.mvp.resourceallocation;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
-import com.yijian.staff.util.DensityUtil;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +25,6 @@ public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.
 
     private List<HuijiInfo> huijiInfoList = new ArrayList<>();
     private Context context;
-    private int ITEM_TOP = 1, ITEM_CENTER = 2, ITEM_BOTTOM = 3, ITEM_TOP_BOTTOM = 4;
     private Map<Integer, Boolean> checkMap;
 
 
@@ -44,43 +37,6 @@ public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.
     @Override
     public SelectHuiJiAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_select_huiji, parent, false);
-        LinearLayout lin_select_huiji_contain = view.findViewById(R.id.lin_select_huiji_contain);
-        if(viewType == ITEM_TOP){
-            lin_select_huiji_contain.setBackgroundResource(R.drawable.shape_selhuiji_item_top);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) lin_select_huiji_contain.getLayoutParams();
-            lp.setMargins(DensityUtil.dip2px(context,20),DensityUtil.dip2px(context,15),
-                    DensityUtil.dip2px(context,20),0);
-            lin_select_huiji_contain.setLayoutParams(lp);
-            View view_lin = view.findViewById(R.id.view_lin);
-            LinearLayout.LayoutParams view_line_lp = (LinearLayout.LayoutParams) view_lin.getLayoutParams();
-            view_line_lp.height = DensityUtil.dip2px(context,8);
-            view_lin.setLayoutParams(view_line_lp);
-            view_lin.setVisibility(View.VISIBLE);
-        }else if(viewType == ITEM_BOTTOM){
-            lin_select_huiji_contain.setBackgroundResource(R.drawable.shape_selhuiji_item_bottom);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) lin_select_huiji_contain.getLayoutParams();
-            lp.setMargins(DensityUtil.dip2px(context,20),0,
-                    DensityUtil.dip2px(context,20),DensityUtil.dip2px(context,15));
-            lin_select_huiji_contain.setLayoutParams(lp);
-            View view_lin = view.findViewById(R.id.view_lin);
-            view_lin.setVisibility(View.GONE);
-        }else if(viewType == ITEM_CENTER){
-            lin_select_huiji_contain.setBackgroundResource(R.drawable.shape_selhuiji_item_center);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) lin_select_huiji_contain.getLayoutParams();
-            lp.setMargins(DensityUtil.dip2px(context,20),0,
-                    DensityUtil.dip2px(context,20), 0);
-            lin_select_huiji_contain.setLayoutParams(lp);
-            View view_lin = view.findViewById(R.id.view_lin);
-            view_lin.setVisibility(View.VISIBLE);
-        }else if(viewType == ITEM_TOP_BOTTOM){
-            lin_select_huiji_contain.setBackgroundResource(R.drawable.shape_selhuiji_item_top_bottom);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) lin_select_huiji_contain.getLayoutParams();
-            lp.setMargins(DensityUtil.dip2px(context,20),DensityUtil.dip2px(context,15),
-                    DensityUtil.dip2px(context,20),DensityUtil.dip2px(context,15));
-            lin_select_huiji_contain.setLayoutParams(lp);
-            View view_lin = view.findViewById(R.id.view_lin);
-            view_lin.setVisibility(View.GONE);
-        }
         SelectHuiJiAdapter.ViewHolder holder = new SelectHuiJiAdapter.ViewHolder(view);
         return holder;
     }
@@ -91,7 +47,10 @@ public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.
         holder.tv_name.setText(huijiInfo.getName());
         holder.iv_gender.setImageResource(huijiInfo.getGender());
         holder.tv_comment_grade.setText(huijiInfo.getCommentGrade() + "分");
-        holder.rb_grate.setRating(Float.valueOf(huijiInfo.getCommentGrade()));
+        holder.rb_grate.setClickable(false);//设置可否点击
+        holder.rb_grate.setStar(Float.valueOf(huijiInfo.getCommentGrade()));//设置显示的星星个数
+        holder.rb_grate.setStepSize(RatingBar.StepSize.Half);//设置每次点击增加一颗星还是半颗星
+
         holder.tv_businessProgress.setText(huijiInfo.getBusinessProgress());
         holder.tv_vipServiceNum.setText(huijiInfo.getVipServiceNum() + "人");
         holder.tv_actionTargetProgress.setText(huijiInfo.getActionTargetProgress());
@@ -122,28 +81,12 @@ public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.
         return huijiInfoList == null ? 0 : huijiInfoList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if(huijiInfoList.size()==1){
-            return ITEM_TOP_BOTTOM;
-        }else if(huijiInfoList.size()>1){
-            if (position == 0) {
-                return ITEM_TOP;
-            } else if (position == (huijiInfoList.size()-1)) {
-                return ITEM_BOTTOM;
-            }else {
-                return ITEM_CENTER;
-            }
-        }
-        return ITEM_CENTER;
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        RatingBar rb_grate; //评分等级星星
+        com.yijian.staff.mvp.resourceallocation.RatingBar rb_grate; //评分等级星星
         TextView tv_comment_grade; //评分等级
         TextView tv_businessProgress; //业务完成度
         TextView tv_vipServiceNum; //会员服务数

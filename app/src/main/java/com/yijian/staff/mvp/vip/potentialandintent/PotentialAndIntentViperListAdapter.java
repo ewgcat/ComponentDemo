@@ -46,7 +46,11 @@ public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<Pot
         holder.tv_interestHobby.setText(vipPeopleInfo.getInterestHobby());
         holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
         holder.tv_useCar.setText(vipPeopleInfo.getUseCar());
-        holder.lin_input_questionnaire.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.VISIBLE:View.GONE);
+        holder.lin_input_questionnaire.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.GONE:View.VISIBLE);  // 0 意向会员  ，1  潜在会员
+        holder.lin_protect_seven.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.VISIBLE:View.GONE);
+        holder.lin_visit.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.GONE:View.VISIBLE);
+
+
 
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +77,11 @@ public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<Pot
         TextView tv_bodybuildingHobby;
         TextView tv_interestHobby;
         TextView tv_useCar;
-        LinearLayout lin_input_questionnaire;
-        LinearLayout lin_visit;
-        LinearLayout lin_invitation;
-        LinearLayout ll_content;
+        LinearLayout lin_input_questionnaire; //录入问卷
+        LinearLayout lin_visit; //回访
+        LinearLayout lin_invitation; //邀请
+        LinearLayout ll_content; //真个Item条目
+        LinearLayout lin_protect_seven; //保护7天
 
 
         public ViewHolder(View view) {
@@ -94,6 +99,7 @@ public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<Pot
             lin_visit =     view.findViewById(R.id.lin_visit);
             lin_invitation =     view.findViewById(R.id.lin_invitation);
             ll_content =     view.findViewById(R.id.ll_content);
+            lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
         }
     }
 

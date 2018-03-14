@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-land/values-land.xml",
+            "outputFile": "E:\\com_yijian_workspace\\YiJianStaff\\PhotoPicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/design-27.0.2.aar/64d163832c479aab69ffd77e444f26e0/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\f809d7a92d45406df6114c05023989e6\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0c1ccded65ea4f1f5033504eea3cdc38\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

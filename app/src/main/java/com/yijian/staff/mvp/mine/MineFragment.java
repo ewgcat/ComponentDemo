@@ -66,10 +66,12 @@ public class MineFragment extends Fragment {
             case R.id.ll_club:
                 break;
             case R.id.ll_my_zhengshu:
+                startActivity(new Intent(getContext(),MyQualificationActivity.class));
                 break;
             case R.id.ll_my_date:
                 break;
             case R.id.ll_erweima:
+                startActivity(new Intent(getContext(),MyQRCodeActivity.class));
                 break;
             case R.id.ll_edit_password:
                 break;

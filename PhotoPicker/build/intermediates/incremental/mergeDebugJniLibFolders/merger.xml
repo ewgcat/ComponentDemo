@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\com_yijian_workspace\YiJianStaff\PhotoPicker\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\com_yijian_workspace\YiJianStaff\PhotoPicker\src\debug\jniLibs"/></dataSet></merger>

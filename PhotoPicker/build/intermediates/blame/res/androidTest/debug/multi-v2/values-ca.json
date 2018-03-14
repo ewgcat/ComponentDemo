@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-ca/values-ca.xml",
+            "outputFile": "E:\\com_yijian_workspace\\YiJianStaff\\PhotoPicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ca\\values-ca.xml",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-ca/values-ca.xml",
+                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\a7b8c654c98f14eb5626228400a4ae58\\res\\values-ca\\values-ca.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-ca/values-ca.xml",
+                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0c1ccded65ea4f1f5033504eea3cdc38\\res\\values-ca\\values-ca.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

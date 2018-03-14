@@ -176,7 +176,7 @@ public class SettingActivity extends AppCompatActivity {
     //相册
     public void selectNewAlbum() {
         PhotoPicker.builder()
-                .setPhotoCount(1)
+                .setPhotoCount(3)
                 .isCamera(false)
                 .setShowGif(true)
                 .setPreviewEnabled(false)

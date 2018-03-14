@@ -53,8 +53,7 @@ public class SettingActivity extends AppCompatActivity {
 
     String[] permissions = {
             Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE
     };
 
     private int index = 0;
@@ -111,8 +110,7 @@ public class SettingActivity extends AppCompatActivity {
                     //没有权限，提示设置权限
                     RxPermissions rxPermissions = new RxPermissions(this);
 
-                    rxPermissions
-                            .request(Manifest.permission.CAMERA)
+                    rxPermissions.request(Manifest.permission.CAMERA)
                             .subscribe(granted -> {
                                 if (granted) {
                                     capturePhoto();
@@ -124,7 +122,6 @@ public class SettingActivity extends AppCompatActivity {
                 } else {
                     //有权限，调用相机拍照
                     capturePhoto();
-
                 }
             } else {
                 capturePhoto();

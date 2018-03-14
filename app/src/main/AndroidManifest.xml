@@ -138,7 +138,8 @@
         <activity
             android:name=".mvp.resourceallocation.SelectHuiJiActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".mvp.contract.ContractActivity"></activity>
+        <activity android:name=".mvp.contract.ContractActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -21,6 +21,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
+import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.Logger;
@@ -51,13 +53,8 @@ public class SettingActivity extends AppCompatActivity {
     TextView tvPhone;
     private Dialog dialog;
 
-    String[] permissions = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
 
-    private int index = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +108,7 @@ public class SettingActivity extends AppCompatActivity {
                     //没有权限，提示设置权限
                     RxPermissions rxPermissions = new RxPermissions(this);
 
-                    rxPermissions
-                            .request(Manifest.permission.CAMERA)
+                    rxPermissions.request(Manifest.permission.CAMERA)
                             .subscribe(granted -> {
                                 if (granted) {
                                     capturePhoto();
@@ -124,7 +120,6 @@ public class SettingActivity extends AppCompatActivity {
                 } else {
                     //有权限，调用相机拍照
                     capturePhoto();
-
                 }
             } else {
                 capturePhoto();
@@ -183,12 +178,7 @@ public class SettingActivity extends AppCompatActivity {
                 .start(this, PhotoPicker.REQUEST_CODE);
     }
 
-    /**
-     * 运行时请求权限
-     */
-    private void initRxPermissions(int i, String[] permissions) {
 
-    }
 
 
     @Override
@@ -203,7 +193,17 @@ public class SettingActivity extends AppCompatActivity {
                         .transform(new GlideCircleTransform())
                         .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(this).load(photos.get(0)).apply(options).into(ivHead);
+
+                Intent intent = new Intent(this, ClipActivity.class);
+                intent.putExtra("path",photos.get(0));
+                startActivityForResult(intent,1000);
             }
+        }else if (resultCode == RESULT_OK && requestCode ==1000){
+            Intent intent = new Intent(this, SeePicActivity.class);
+            ArrayList<String> picList = new ArrayList<>();
+            picList.add(getExternalCacheDir().toString() + "/head/head.png");
+            intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+            startActivity(intent);
         }
 
     }

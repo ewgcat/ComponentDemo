@@ -67,6 +67,7 @@ dependencies {
     //network
     implementation project(':retrofit2')
     implementation project(':PhotoPicker')
+    implementation project(':photoview')
 
     implementation "com.android.support:support-annotations:${rootProject.supportLibVersion}"
     compile "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
@@ -78,7 +79,7 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.0'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'net.opacapp:multiline-collapsingtoolbar:1.3.1'
-    compile 'com.github.chrisbanes:PhotoView:1.3.0'
+//    implementation 'com.github.chrisbanes:PhotoView:1.3.0'
     compile 'jp.wasabeef:glide-transformations:3.0.1'
     compile 'org.sufficientlysecure:html-textview:3.1'
     compile 'com.google.android:flexbox:0.3.1'

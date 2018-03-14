@@ -95,33 +95,14 @@ public class SettingActivity extends AppCompatActivity {
         //拍照
         cameraBtn.setOnClickListener(view1 -> {
             dialog.dismiss();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-                    //没有权限，提示设置权限
-                    Toast.makeText(this, "请到手机设置里给应用分配相机权限,否则无法使用手机拍照功能", Toast.LENGTH_SHORT).show();
-                } else {
-                    //有权限，调用相机拍照
-                    capturePhoto();
-                }
-            } else {
-                capturePhoto();
-            }
+            capturePhoto();
+
         });
 
         //相册
         albumBtn.setOnClickListener(view2 -> {
             dialog.dismiss();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                    //没有权限
-                    Toast.makeText(this, "请到手机设置里给应用分配读写权限,否则应用无法正常使用", Toast.LENGTH_SHORT).show();
-                } else {
-                    //有权限
-                    selectNewAlbum();
-                }
-            } else {
-                selectNewAlbum();
-            }
+            selectNewAlbum();
         });
 
         //取消

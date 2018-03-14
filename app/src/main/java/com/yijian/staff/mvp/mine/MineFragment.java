@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.mine;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -60,6 +61,7 @@ public class MineFragment extends Fragment {
             case R.id.iv_user_head:
                 break;
             case R.id.ll_more:
+                startActivity(new Intent(getContext(),SettingActivity.class));
                 break;
             case R.id.ll_club:
                 break;

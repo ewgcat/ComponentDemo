@@ -44,9 +44,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.login.LoginActivity" />
-        <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity" />
-        <activity android:name=".mvp.reception.ReceptionActivity" />
+        <activity
+            android:name=".mvp.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.ReceptionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -137,6 +143,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.resourceallocation.SelectHuiJiActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.mine.SettingActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait"></activity>

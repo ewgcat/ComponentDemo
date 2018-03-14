@@ -1,11 +1,18 @@
 package com.yijian.staff.mvp.mine;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -37,6 +44,7 @@ public class SettingActivity extends AppCompatActivity {
     TextView tvAge;
     @BindView(R.id.tv_phone)
     TextView tvPhone;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,7 @@ public class SettingActivity extends AppCompatActivity {
         navigationBar.setTitle("设置", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        initDialog();
 
     }
 
@@ -55,7 +64,7 @@ public class SettingActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
-                PhotoPicker.builder().setShowCamera(true).setPhotoCount(9).start(this,1000);
+                dialog.show();
                 break;
             case R.id.ll_username:
                 break;
@@ -68,6 +77,78 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.tv_exit_login:
                 break;
         }
+    }
+
+
+
+
+    private void initDialog() {
+        final View view = LayoutInflater.from(this).inflate(R.layout.view_add_pic_dialog, null);
+        dialog = new Dialog(this, R.style.custom_dialog);
+
+        dialog.setOwnerActivity(this);
+        dialog.setContentView(view);
+        Button cameraBtn = (Button) view.findViewById(R.id.item_popupwindows_camera);
+        Button albumBtn = (Button) view.findViewById(R.id.item_popupwindows_photo);
+        Button cancelBtn = (Button) view.findViewById(R.id.item_popupwindows_cancel);
+
+        //拍照
+        cameraBtn.setOnClickListener(view1 -> {
+            dialog.dismiss();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+                    //没有权限，提示设置权限
+                    Toast.makeText(this, "请到手机设置里给应用分配相机权限,否则无法使用手机拍照功能", Toast.LENGTH_SHORT).show();
+                } else {
+                    //有权限，调用相机拍照
+                    capturePhoto();
+                }
+            } else {
+                capturePhoto();
+            }
+        });
+
+        //相册
+        albumBtn.setOnClickListener(view2 -> {
+            dialog.dismiss();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    //没有权限
+                    Toast.makeText(this, "请到手机设置里给应用分配读写权限,否则应用无法正常使用", Toast.LENGTH_SHORT).show();
+                } else {
+                    //有权限
+                    selectNewAlbum();
+                }
+            } else {
+                selectNewAlbum();
+            }
+        });
+
+        //取消
+        cancelBtn.setOnClickListener(view3 -> dialog.dismiss());
+
+    }
+
+
+    //拍照
+    public void capturePhoto() {
+        PhotoPicker.builder()
+                .setPhotoCount(1)
+                .isCamera(true)
+                .setShowGif(true)
+                .setPreviewEnabled(false)
+                .start(this, PhotoPicker.REQUEST_CODE);
+    }
+
+
+    //相册
+    public void selectNewAlbum() {
+        PhotoPicker.builder()
+                .setPhotoCount(1)
+                .isCamera(false)
+                .setShowGif(true)
+                .setPreviewEnabled(false)
+                .start(this, PhotoPicker.REQUEST_CODE);
     }
 
     @Override

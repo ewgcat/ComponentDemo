@@ -66,6 +66,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //network
     implementation project(':retrofit2')
+    implementation project(':PhotoPicker')
 
     implementation "com.android.support:support-annotations:${rootProject.supportLibVersion}"
     compile "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
@@ -108,7 +109,6 @@ dependencies {
     compile 'org.greenrobot:greendao-generator:3.2.2'
     //字体
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-    compile 'me.iwf.photopicker:PhotoPicker:0.9.12@aar'
     compile('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })

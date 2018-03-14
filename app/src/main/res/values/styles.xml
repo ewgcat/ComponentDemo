@@ -47,4 +47,12 @@
         <item name="android:windowEnterAnimation">@anim/popupwindow_enter</item>
         <item name="android:windowExitAnimation">@anim/popupwindow_exit</item>
     </style>
+
+    <style name="custom_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
 </resources>

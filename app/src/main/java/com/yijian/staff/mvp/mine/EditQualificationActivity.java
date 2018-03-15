@@ -92,8 +92,8 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
             dialog.show();
         }else{
             Intent intent = new Intent(this, SeePicActivity.class);
-
-            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, qualifacatioinList.get(position));
+            String path="";
+            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
             startActivity(intent);
         }
     }

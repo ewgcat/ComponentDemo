@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.seepic;
 
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -31,7 +32,7 @@ public class SeePicActivity extends AppCompatActivity implements ViewPager.OnPag
     protected NavigationBar mNavigationbar;
     protected CustomViewpager mPager;
     protected ArrayList<String> mdatas = new ArrayList<>();
-    protected List<PhotoView> photoViews = new ArrayList<>();
+    protected List<ImageView> imageViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +83,25 @@ public class SeePicActivity extends AppCompatActivity implements ViewPager.OnPag
     class ImageAdapter extends PagerAdapter {
         public ImageAdapter() {
             for (int i = 0; i < mdatas.size(); i++) {
-                PhotoView photoView = new PhotoView(SeePicActivity.this);
-                photoView.setImageURI(Uri.parse(mdatas.get(i)));
-                photoViews.add(photoView);
+                ImageView imageView = new ImageView(SeePicActivity.this);
+
+
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.mipmap.placeholder)
+                        .error(R.mipmap.placeholder)
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(SeePicActivity.this).load(mdatas.get(i)).apply(options).into(imageView);
+                PhotoViewAttacher mAttacher = new PhotoViewAttacher(imageView);
+
+                imageViews.add(imageView);
+
+               
             }
         }
 
         @Override
         public int getCount() {
-            return photoViews.size();
+            return imageViews.size();
         }
 
         @Override
@@ -105,8 +116,8 @@ public class SeePicActivity extends AppCompatActivity implements ViewPager.OnPag
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(photoViews.get(position));
-            return photoViews.get(position);
+            container.addView(imageViews.get(position));
+            return imageViews.get(position);
         }
     }
 

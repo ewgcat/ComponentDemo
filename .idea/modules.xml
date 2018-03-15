@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
-      <module fileurl="file://E:\com_yijian_workspace\YiJianStaff\PhotoPicker\PhotoPicker.iml" filepath="E:\com_yijian_workspace\YiJianStaff\PhotoPicker\PhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/YiJianStaff.iml" filepath="$PROJECT_DIR$/YiJianStaff.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />

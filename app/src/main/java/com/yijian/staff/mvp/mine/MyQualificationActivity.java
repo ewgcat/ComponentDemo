@@ -43,20 +43,20 @@ public class MyQualificationActivity extends AppCompatActivity {
         list.add("北京市健美协会全能私人教练证书");
         qualificationContent.setContent(list);
         ImageView iv1 = new ImageView(this);
-        LinearLayout.LayoutParams ivFlp1 = new LinearLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
+        FrameLayout.LayoutParams ivFlp1 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp1.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv1.setLayoutParams(ivFlp1);
-        iv1.setImageResource(R.mipmap.test1);
+        iv1.setImageResource(R.mipmap.placeholder);
 
         ImageView iv2 = new ImageView(this);
-        LinearLayout.LayoutParams ivFlp2 = new LinearLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
+        FrameLayout.LayoutParams ivFlp2 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp2.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv2.setLayoutParams(ivFlp2);
-        iv2.setImageResource(R.mipmap.test1);
+        iv2.setImageResource(R.mipmap.placeholder);
 
         ImageView iv3 = new ImageView(this);
-        iv3.setImageResource(R.mipmap.test1);
-        LinearLayout.LayoutParams ivFlp3 = new LinearLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
+        iv3.setImageResource(R.mipmap.placeholder);
+        FrameLayout.LayoutParams ivFlp3 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp3.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv3.setLayoutParams(ivFlp3);
 
@@ -75,16 +75,8 @@ public class MyQualificationActivity extends AppCompatActivity {
         navigationBar.setRightButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MyQualificationActivity.this,EditQualificationActivity.class),100);
+                startActivity(new Intent(MyQualificationActivity.this,EditQualificationActivity.class));
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 100 && resultCode == 101){
-            //如果编辑页面成功提交了，返回时应该刷新页面
-
-        }
     }
 }

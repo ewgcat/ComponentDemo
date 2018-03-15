@@ -29,6 +29,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.mvp.mine.qualification.ConflictGridView;
+import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ScreenSwitchUtils;
 import com.yijian.staff.util.system.ScreenUtil;
@@ -46,7 +48,7 @@ import me.iwf.photopicker.PhotoPicker;
 public class EditQualificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.gv_qualification)
-    GridView gv_qualification;
+    ConflictGridView gv_qualification;
     private Dialog dialog;
     QualificationImgAdapter qualificationImgAdapter;
     private List<String> qualifacatioinList = new ArrayList<String>();
@@ -78,6 +80,7 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
         navigationBar.setRightButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(101);
                 finish();
             }
         });
@@ -85,9 +88,14 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        GridView parentView = (GridView) parent;
         if (position == qualifacatioinList.size()) {//点击“+”号位置添加图片
             dialog.show();
+        }else{
+            Intent intent = new Intent(this, SeePicActivity.class);
+            ArrayList<String> picList = new ArrayList<>();
+            picList.addAll(qualifacatioinList);
+            intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+            startActivity(intent);
         }
     }
 

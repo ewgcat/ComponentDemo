@@ -151,7 +151,7 @@
         <activity
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.MyQRCodeActivity" />
+        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
         <activity android:name=".mvp.mine.MyQualificationActivity" />
         <activity android:name=".mvp.mine.EditQualificationActivity"></activity>
         <activity

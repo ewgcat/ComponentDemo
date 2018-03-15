@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.qrcode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

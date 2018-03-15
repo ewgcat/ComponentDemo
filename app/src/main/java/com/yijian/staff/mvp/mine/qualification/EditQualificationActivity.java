@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -84,8 +83,8 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
             dialog.show();
         }else{
             Intent intent = new Intent(this, SeePicActivity.class);
-
-            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, qualifacatioinList.get(position));
+            String path="";
+            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
             startActivity(intent);
         }
     }

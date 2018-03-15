@@ -1,23 +1,19 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.qualification;
 
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -29,11 +25,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.mvp.mine.qualification.ConflictGridView;
+import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
-import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.ScreenSwitchUtils;
-import com.yijian.staff.util.system.ScreenUtil;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -42,7 +35,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 import me.iwf.photopicker.PhotoPicker;
 
 public class EditQualificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {

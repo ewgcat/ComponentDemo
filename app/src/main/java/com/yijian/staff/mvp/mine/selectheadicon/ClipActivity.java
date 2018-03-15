@@ -10,18 +10,15 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.BundleKeyConstant;
+import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.util.FileUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.PictureUtil;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClipActivity extends Activity implements View.OnClickListener {
     private ClipImageLayout mClipImageLayout;

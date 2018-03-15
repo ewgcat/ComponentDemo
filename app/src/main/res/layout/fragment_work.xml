@@ -53,6 +53,8 @@
                     android:layout_height="20dp"
                     android:textSize="14sp"
                     android:textColor="#ffffff"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
                     android:layout_gravity="center_vertical"
                     android:background="@null" />
 

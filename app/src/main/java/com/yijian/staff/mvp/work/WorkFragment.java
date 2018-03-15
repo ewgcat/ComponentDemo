@@ -6,15 +6,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jaeger.library.StatusBarUtil;
@@ -30,6 +33,7 @@ import com.yijian.staff.mvp.vip.info.VipInfoActivity;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +90,20 @@ public class WorkFragment extends Fragment {
         etSearch = view.findViewById(R.id.et_search);
         ivRotate = view.findViewById(R.id.iv_rotate);
         etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch(actionId){
+                    case EditorInfo.IME_ACTION_SEARCH:
+
+                        //TODO 点击搜索键,触发搜索请求
+
+                        break;
+
+                }
+
+                return true;            }
+        });
     }
 
 
@@ -93,16 +111,8 @@ public class WorkFragment extends Fragment {
 
         startRotateAnimation();
 
-        if (mFavList != null) {
-            mFavList.clear();
-        } else {
-            mFavList = new ArrayList<>();
-        }
-        MenuItem add = new MenuItem();
-        add.setName("编辑");
-        add.setIcon("add");
-        add.setItemId(ID_ALL_ITEM);
-        mFavList.add(add);
+
+
 
 
     }

@@ -46,16 +46,16 @@ public class MyQualificationActivity extends AppCompatActivity {
         FrameLayout.LayoutParams ivFlp1 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp1.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv1.setLayoutParams(ivFlp1);
-        iv1.setImageResource(R.mipmap.test1);
+        iv1.setImageResource(R.mipmap.placeholder);
 
         ImageView iv2 = new ImageView(this);
         FrameLayout.LayoutParams ivFlp2 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp2.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv2.setLayoutParams(ivFlp2);
-        iv2.setImageResource(R.mipmap.test1);
+        iv2.setImageResource(R.mipmap.placeholder);
 
         ImageView iv3 = new ImageView(this);
-        iv3.setImageResource(R.mipmap.test1);
+        iv3.setImageResource(R.mipmap.placeholder);
         FrameLayout.LayoutParams ivFlp3 = new FrameLayout.LayoutParams(DensityUtil.dip2px(this,200), FrameLayout.LayoutParams.MATCH_PARENT);
         ivFlp3.setMargins(DensityUtil.dip2px(this,13),0,0,0);
         iv3.setLayoutParams(ivFlp3);

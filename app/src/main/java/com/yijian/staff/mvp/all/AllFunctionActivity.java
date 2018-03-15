@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.MenuHelper;
@@ -28,6 +29,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = "/test/all")
 public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
@@ -84,13 +86,13 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
 
 
         mEditList = new ArrayList<>();
-        mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, "会员管理", vipmanagerList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, "会籍", huijikefuList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_COCAH, "教练", coachList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE, "操课", caokeList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, "行政", admList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK, "审核任务", audittaskList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, "其他", otherList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_COCAH,  coachList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE,  caokeList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, admList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK,  audittaskList));
+        mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
 
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);
 
@@ -99,10 +101,10 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onAddClick(View v, MenuItem item, int position) {
                 boolean isContain = false;
-                String group = item.getGroup();
+                String group = item.getTitle();
                 for (int i = 0; i < frequentlyList.size(); i++) {
                     MenuItem favMenuItem = frequentlyList.get(i);
-                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                    if (favMenuItem.getTitle().equals(group) && favMenuItem.getName().equals(item.getName())) {
                         isContain = true;
                         break;
                     }
@@ -121,7 +123,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             public void onDeleteClick(View v, MenuItem item, int position) {
 
                 //从常用中删除
-                String group = item.getGroup();
+                String group = item.getTitle();
                 for (int i = 0; i < mEditList.size(); i++) {
                     EditItem editItem = mEditList.get(i);
                     if (editItem.getGroup().equals(group)) {
@@ -137,7 +139,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
 
                 for (int i = 0; i < frequentlyList.size(); i++) {
                     MenuItem favMenuItem = frequentlyList.get(i);
-                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                    if (favMenuItem.getTitle().equals(group) && favMenuItem.getName().equals(item.getName())) {
                         frequentlyList.remove(favMenuItem);
                         mListHeaderWrapper.notifyDataSetChanged();
                     }
@@ -165,7 +167,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onDeleteClick(View v, MenuItem item, int position) {
                 //从常用中删除
-                String group = item.getGroup();
+                String group = item.getTitle();
                 for (int i = 0; i < mEditList.size(); i++) {
                     EditItem editItem = mEditList.get(i);
                     if (editItem.getGroup().equals(group)) {
@@ -183,7 +185,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 mListHeaderWrapper.notifyDataSetChanged();
             }
         });
-        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, "常用管理", frequentlyList));
+        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY,  frequentlyList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
 

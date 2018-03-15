@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/delete"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -16,10 +17,22 @@
 
     <ImageView
         android:id="@+id/add"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:src="@mipmap/icon_add" />
+    <TextView
+        android:id="@+id/tv_count"
+        android:text="99+"
+        android:gravity="center"
+        android:background="@drawable/red_circle_bg"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="end"
+         />
 
 
     <LinearLayout

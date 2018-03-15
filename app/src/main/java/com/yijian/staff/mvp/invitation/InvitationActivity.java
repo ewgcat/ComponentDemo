@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.dailywork.ApprovalFragment;
 import com.yijian.staff.mvp.dailywork.DailyWorkStatusFragment;
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/test/6")
 public class InvitationActivity extends AppCompatActivity {
 
     /**

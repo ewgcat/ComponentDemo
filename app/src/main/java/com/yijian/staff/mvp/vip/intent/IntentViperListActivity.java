@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.potentialandintent;
+package com.yijian.staff.mvp.vip.intent;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,10 +31,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 潜在会员或意向会员 列表
+ *潜在会员  列表
  */
-@Route(path = "/test/activity")
-public class PotentialAndIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
+@Route(path = "/test/3")
+public class IntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -45,7 +45,7 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_potential_and_intent_viper_list);
+        setContentView(R.layout.activity_intent_viper_list);
         ButterKnife.bind(this);
 
         initView();
@@ -54,7 +54,6 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
 
     private void initView() {
 
-        String title = getIntent().getStringExtra("title");
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
@@ -62,7 +61,7 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
         navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
-        navigationBar2.setTitle(title);
+        navigationBar2.setTitle("潜在会员");
         navigationBar2.setmRightTvText("筛选");
 
         initComponent();
@@ -90,8 +89,8 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_vip_intention.setLayoutManager(layoutmanager);
-            PotentialAndIntentViperListAdapter potentialAndIntentViperListAdapter = new PotentialAndIntentViperListAdapter(this, vipPeopleInfoList);
-            rv_vip_intention.setAdapter(potentialAndIntentViperListAdapter);
+            IntentViperListAdapter intentViperListAdapter = new IntentViperListAdapter(this, vipPeopleInfoList);
+            rv_vip_intention.setAdapter(intentViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 
@@ -105,11 +104,11 @@ public class PotentialAndIntentViperListActivity extends AppCompatActivity imple
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
-        BezierRadarHeader header = new BezierRadarHeader(PotentialAndIntentViperListActivity.this).setEnableHorizontalDrag(true);
+        BezierRadarHeader header = new BezierRadarHeader(IntentViperListActivity.this).setEnableHorizontalDrag(true);
         header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
-        BallPulseFooter footer = new BallPulseFooter(PotentialAndIntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
+        BallPulseFooter footer = new BallPulseFooter(IntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {

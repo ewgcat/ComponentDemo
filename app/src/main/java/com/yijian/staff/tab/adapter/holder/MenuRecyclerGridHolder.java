@@ -22,9 +22,11 @@ public class MenuRecyclerGridHolder extends RecyclerView.ViewHolder {
     public ImageView iv_icon;
     public ImageView iv_delete;
     public ImageView iv_add;
+    public TextView tv_count;
 
     public MenuRecyclerGridHolder(View itemView) {
         super(itemView);
+        tv_count= (TextView) itemView.findViewById(R.id.tv_count);
         tv_name= (TextView) itemView.findViewById(R.id.desc);
         iv_icon= (ImageView) itemView.findViewById(R.id.pic);
         iv_delete= (ImageView) itemView.findViewById(R.id.delete);

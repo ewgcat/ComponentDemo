@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -40,6 +41,7 @@ import butterknife.OnClick;
 /**
  * 投诉列表
  */
+@Route(path = "/test/8")
 public class ComplaintListActivity extends AppCompatActivity implements View.OnClickListener{
 
     /*@BindView(R.id.fl_content)

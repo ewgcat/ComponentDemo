@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.widget.NavigationBar2;
@@ -19,6 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+@Route(path = "/test/1")
 public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.lin_all_vip)

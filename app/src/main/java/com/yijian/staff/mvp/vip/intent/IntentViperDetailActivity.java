@@ -1,7 +1,7 @@
-package com.yijian.staff.mvp.vip.potentialandintent;
+package com.yijian.staff.mvp.vip.intent;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jaeger.library.StatusBarUtil;
@@ -10,7 +10,7 @@ import com.yijian.staff.R;
 /**
  * 潜在会员或意向会员 基本信息
  */
-public class PotentialAndIntentViperDetailActivity extends AppCompatActivity {
+public class IntentViperDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

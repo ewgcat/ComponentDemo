@@ -104,7 +104,13 @@
             android:name=".mvp.vip.info.VipInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperListActivity"
+            android:name=".mvp.vip.potential.PotentialViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.outdate.OutdateViperListActivity"
@@ -113,7 +119,7 @@
             android:name=".mvp.vip.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperDetailActivity"
+            android:name=".mvp.vip.potential.PotentialViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.all.AllFunctionActivity"

@@ -252,6 +252,25 @@
             android:paddingBottom="16dp">
 
             <LinearLayout
+                android:id="@+id/lin_protect_seven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="保护7天"
+                    android:drawableLeft="@mipmap/wt_luru"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lin_input_questionnaire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

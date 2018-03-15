@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
@@ -54,17 +55,19 @@ public class ReceptionStepTwoActivity extends AppCompatActivity implements View.
 
         switch (id) {
             case R.id.iv_first_left:
-                scanBodyView.stopScan();
                 finish();
                 break;
             case R.id.iv_second_left:
-                scanBodyView. startScan();
 
+
+                Intent i = new Intent(this,ReceptionActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 break;
             case R.id.right_tv:
                 Intent intent = new Intent(ReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-//                scanBodyView.stopScan();
                 break;
         }
     }

@@ -14,9 +14,14 @@
         android:id="@+id/step_three_timebar"
         layout="@layout/view_time_bar"/>
 
-    <include
-        android:id="@+id/layout1"
-        layout="@layout/view_huiji_step3_layout1"/>
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+
 
 </LinearLayout>
 

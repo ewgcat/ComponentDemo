@@ -1,278 +1,306 @@
-{
-  "常用功能": [
-    {
-      "type": 0,
-      "name": "会籍回访",
-      "icon": "url",
-      "path": "/test/5",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "邀约",
-      "icon": "url",
-      "path": "/test/6 ",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "添加潜在",
-      "icon": "url",
-      "path": "/test/7",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "投诉处理",
-      "icon": "url",
-      "path": "/test/8",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "会员信息",
-      "icon": "url",
-      "path": "/test/1",
-      "group": "会员管理"
-    },
-    {
-      "type": 0,
-      "name": "意向会员",
-      "icon": "url",
-      "path": "/test/2",
-      "group": "会员管理"
-    },
-    {
-      "type": 0,
-      "name": "考勤",
-      "icon": "url",
-      "path": "/test/29",
-      "group": "审核任务"
-    }
-  ],
-  "会员管理": [
-    {
-      "type": 0,
-      "name": "会员信息",
-      "icon": "url",
-      "path": "/test/1",
-      "group": "会员管理"
-    },
-    {
-      "type": 0,
-      "name": "意向会员",
-      "icon": "url",
-      "path": "/test/2",
-      "group": "会员管理"
-    }, {
-      "type": 1,
-      "name": "潜在会员",
-      "icon": "url",
-      "path": "/test/3",
-      "group": "会员管理"
-    },
-    {
-      "type": 1,
-      "name": "过期会员",
-      "icon": "url",
-      "path": "/test/4",
-      "group": "会员管理"
-    }
+[{"title":"常用功能","item":[
+  {
+    "type": 0,
+    "name": "会籍回访",
+    "icon": "url",
+    "path": "/test/5",
+    "title": "会籍(客服)",
+    "count":99
+  },
+  {
+    "type": 0,
+    "name": "邀约",
+    "icon": "url",
+    "path": "/test/6",
+    "title": "会籍(客服)",
+    "count":1
+  },
+  {
+    "type": 0,
+    "name": "添加潜在",
+    "icon": "url",
+    "path": "/test/7",
+    "title": "会籍(客服)",
+    "count":200
+  },
+  {
+    "type": 0,
+    "name": "投诉处理",
+    "icon": "url",
+    "path": "/test/8",
+    "title": "会籍(客服)",
+    "count":0
+  },
+  {
+    "type": 0,
+    "name": "会员信息",
+    "icon": "url",
+    "path": "/test/1",
+    "title": "会员管理",
+    "count":0
+  },
+  {
+    "type": 0,
+    "name": "意向会员",
+    "icon": "url",
+    "path": "/test/2",
+    "title": "会员管理",
+    "count":0
+  },
+  {
+    "type": 0,
+    "name": "考勤",
+    "icon": "url",
+    "path": "/test/29",
+    "title": "审核任务",
+    "count":0
+  }
+]},{"title":"会员管理","item":[
+  {
+    "type": 0,
+    "name": "会员信息",
+    "icon": "url",
+    "path": "/test/1",
+    "title": "会员管理",
+    "count":0
+  },
+  {
+    "type": 0,
+    "name": "意向会员",
+    "icon": "url",
+    "path": "/test/2",
+    "title": "会员管理",
+    "count":0
+  }, {
+    "type": 1,
+    "name": "潜在会员",
+    "icon": "url",
+    "path": "/test/3",
+    "title": "会员管理",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "过期会员",
+    "icon": "url",
+    "path": "/test/4",
+    "title": "会员管理",
+    "count":0
+  }
 
-  ],
-  "会籍": [
-    {
-      "type": 0,
-      "name": "会籍回访",
-      "icon": "url",
-      "path": "/test/5",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "邀约",
-      "icon": "url",
-      "path": "/test/6 ",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "添加潜在",
-      "icon": "url",
-      "path": "/test/7",
-      "group": "会籍"
-    },
-    {
-      "type": 0,
-      "name": "投诉处理",
-      "icon": "url",
-      "path": "/test/8",
-      "group": "会籍"
-    },
-    {
-      "type": 1,
-      "name": "产品报价",
-      "icon": "url",
-      "path": "/test/9",
-      "group": "会籍"
-    },
-    {
-      "type": 1,
-      "name": "问卷调查",
-      "icon": "url",
-      "path": "/test/10",
-      "group": "会籍"
-    },
-    {
-      "type": 1,
-      "name": "分配资源",
-      "icon": "url",
-      "path": "/test/10",
-      "group": "会籍"
-    },
-    {
-      "type": 1,
-      "name": "会商内容",
-      "icon": "url",
-      "path": "/test/11",
-      "group": "会籍"
-    }
-  ],
-  "教练": [
-    {
-      "type": 1,
-      "name": "教练回访",
-      "icon": "url",
-      "path": "/test/12",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "课程评论",
-      "icon": "url",
-      "path": "/test/13",
-      "group": "教练 "
-    },
-    {
-      "type": 1,
-      "name": "教练巡场",
-      "icon": "url",
-      "path": "/test/15",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "备课",
-      "icon": "url",
-      "path": "/test/16",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "约课",
-      "icon": "url",
-      "path": "/test/17",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "存课",
-      "icon": "url",
-      "path": "/test/18",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "体验课",
-      "icon": "url",
-      "path": "/test/19",
-      "group": "教练"
-    },
-    {
-      "type": 1,
-      "name": "会商内容",
-      "icon": "url",
-      "path": "/test/20",
-      "group": "教练"
-    }
-  ],
-  "操课": [
-    {
-      "type": 1,
-      "name": "约课情况",
-      "icon": "url",
-      "path": "/test/21",
-      "group": "操课"
-    },
-    {
-      "type": 1,
-      "name": "课程评论",
-      "icon": "url",
-      "path": "/test/22",
-      "group": "操课 "
-    },
-    {
-      "type": 1,
-      "name": "人气排行",
-      "icon": "url",
-      "path": "/test/23",
-      "group": "操课"
-    },
-    {
-      "type": 1,
-      "name": "课程调查",
-      "icon": "url",
-      "path": "/test/24",
-      "group": "操课"
-    }
-  ],
-  "行政": [
-    {
-      "type": 1,
-      "name": "行政巡场",
-      "icon": "url",
-      "path": "/test/25",
-      "group": "行政"
-    },
-    {
-      "type": 1,
-      "name": "任务达成",
-      "icon": "url",
-      "path": "/test/26",
-      "group": "行政 "
-    },
-    {
-      "type": 1,
-      "name": "会商内容",
-      "icon": "url",
-      "path": "/test/27",
-      "group": "行政"
-    }
-  ],
-  "审核任务": [
-    {
-      "type": 1,
-      "name": "打卡签到",
-      "icon": "url",
-      "path": "/test/28",
-      "group": "审核任务"
-    },
-    {
-      "type": 0,
-      "name": "考勤",
-      "icon": "url",
-      "path": "/test/29",
-      "group": "审核任务"
-    }
-  ],
-  "其他": [
-    {
-      "type": 1,
-      "name": "建议反馈",
-      "icon": "url",
-      "path": "/test/30",
-      "group": "其他"
-    }
-  ]
-
-}
+]},{"title":"会籍(客服)","item": [
+  {
+    "type": 0,
+    "name": "会籍回访",
+    "icon": "url",
+    "path": "/test/5",
+    "title": "会籍(客服)",
+    "count":10
+  },
+  {
+    "type": 0,
+    "name": "邀约",
+    "icon": "url",
+    "path": "/test/6",
+    "title": "会籍(客服)",
+    "count":1
+  },
+  {
+    "type": 0,
+    "name": "添加潜在",
+    "icon": "url",
+    "path": "/test/7",
+    "title": "会籍(客服)",
+    "count":200
+  },
+  {
+    "type": 0,
+    "name": "投诉处理",
+    "icon": "url",
+    "path": "/test/8",
+    "title": "会籍(客服)",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "产品报价",
+    "icon": "url",
+    "path": "/test/9",
+    "title": "会籍(客服)",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "问卷调查",
+    "icon": "url",
+    "path": "/test/10",
+    "title": "会籍(客服)",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "分配资源",
+    "icon": "url",
+    "path": "/test/10",
+    "title": "会籍(客服)",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "会商内容",
+    "icon": "url",
+    "path": "/test/11",
+    "title": "会籍(客服)",
+    "count":0
+  }
+]},{"title":"教练","item":[
+  {
+    "type": 1,
+    "name": "教练回访",
+    "icon": "url",
+    "path": "/test/12",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "课程评论",
+    "icon": "url",
+    "path": "/test/13",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "教练巡场",
+    "icon": "url",
+    "path": "/test/15",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "备课",
+    "icon": "url",
+    "path": "/test/16",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "约课",
+    "icon": "url",
+    "path": "/test/17",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "存课",
+    "icon": "url",
+    "path": "/test/18",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "体验课",
+    "icon": "url",
+    "path": "/test/19",
+    "title": "教练",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "会商内容",
+    "icon": "url",
+    "path": "/test/20",
+    "title": "教练",
+    "count":0
+  }
+]},{"title":"操课","item":[
+  {
+    "type": 1,
+    "name": "约课情况",
+    "icon": "url",
+    "path": "/test/21",
+    "title": "操课",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "课程评论",
+    "icon": "url",
+    "path": "/test/22",
+    "title": "操课 ",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "人气排行",
+    "icon": "url",
+    "path": "/test/23",
+    "title": "操课",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "课程调查",
+    "icon": "url",
+    "path": "/test/24",
+    "title": "操课",
+    "count":0
+  }
+]},{"title":"行政","item":[
+  {
+    "type": 1,
+    "name": "行政巡场",
+    "icon": "url",
+    "path": "/test/25",
+    "title": "行政",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "任务达成",
+    "icon": "url",
+    "path": "/test/26",
+    "title": "行政",
+    "count":0
+  },
+  {
+    "type": 1,
+    "name": "会商内容",
+    "icon": "url",
+    "path": "/test/27",
+    "title": "行政",
+    "count":0
+  }
+]},{"title":"审核任务","item":[
+  {
+    "type": 1,
+    "name": "打卡签到",
+    "icon": "url",
+    "path": "/test/28",
+    "title": "审核任务",
+    "count":0
+  },
+  {
+    "type": 0,
+    "name": "考勤",
+    "icon": "url",
+    "path": "/test/29",
+    "title": "审核任务",
+    "count":0
+  }
+]},{"title":"其他","item":[
+  {
+    "type": 1,
+    "name": "建议反馈",
+    "icon": "url",
+    "path": "/test/30",
+    "title": "其他",
+    "count":0
+  }
+]
+}]

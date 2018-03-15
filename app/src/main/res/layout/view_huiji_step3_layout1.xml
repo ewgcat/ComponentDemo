@@ -19,23 +19,18 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_card_type"
+                android:id="@+id/tv_zong_he"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="卡类型"
+                android:text="综合排序"
                 android:textColor="#666666"
                 android:textSize="14sp"
                  />
 
-            <ImageView
-                android:id="@+id/iv_card_type"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/lg_arrow" />
+
         </LinearLayout>
         
         
@@ -67,7 +62,7 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/lg_arrow" />
+                android:src="@mipmap/jd_normal_arrow" />
         </LinearLayout>
 
 
@@ -77,7 +72,7 @@
             android:layout_height="10dp"
             android:background="@color/gray"/>
         <LinearLayout
-            android:id="@+id/ll_changguan"
+            android:id="@+id/ll_shai_xuan"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -89,17 +84,13 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="场馆"
+                android:drawableStart="@mipmap/shaixuan_black"
+                android:text="筛选"
                 android:textColor="#666666"
                 android:textSize="14sp"
                  />
 
-            <ImageView
-                android:id="@+id/iv_changguan"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/lg_arrow" />
+
         </LinearLayout>
 
     </LinearLayout>

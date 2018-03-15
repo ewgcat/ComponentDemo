@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.vip.info;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,27 +8,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
-import com.yijian.staff.mvp.message.MessageFragment;
-import com.yijian.staff.mvp.mine.MineFragment;
-import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
-import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
-import com.yijian.staff.mvp.report.ReportingFragment;
-import com.yijian.staff.mvp.work.WorkFragment;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+@Route(path = "/test/1")
 public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.lin_all_vip)
@@ -65,7 +57,7 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
         navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.getFirstLeftIv().setOnClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.wt_shuaixuan).into(rightIv);
+        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
         navigationBar2.setTitle("会员信息");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);

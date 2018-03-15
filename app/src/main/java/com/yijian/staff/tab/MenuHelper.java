@@ -30,7 +30,7 @@ public class MenuHelper {
     /*分组的标签*/
     public static final String GROUP_FREQUENTLY = "常用功能";
     public static final String GROUP_VIP_MANAGER = "会员管理";
-    public static final String GROUP_HUI_JI_KE_FU = "会籍";
+    public static final String GROUP_HUI_JI_KE_FU = "会籍(客服)";
     public static final String GROUP_COCAH = "教练";
     public static final String GROUP_CAO_KE = "操课";
     public static final String GROUP_ADM = "行政";
@@ -54,15 +54,47 @@ public class MenuHelper {
      */
     private void parseJSONData() {
         String jsonStr = IOKit.getStringFromAssets(ContextUtil.getContext(), "dummy.json");//获取到assets目录下的报文
-        JSONObject dataJson = JSON.parseObject(jsonStr);//将报文string转换为JSON
-        frequentlyList = parseJSONList(dataJson, GROUP_FREQUENTLY);
-        vipmanagerList = parseJSONList(dataJson, GROUP_VIP_MANAGER);
-        huijikefuList = parseJSONList(dataJson, GROUP_HUI_JI_KE_FU);
-        coachList = parseJSONList(dataJson, GROUP_COCAH);
-        caokeList = parseJSONList(dataJson, GROUP_CAO_KE);
-        admList = parseJSONList(dataJson, GROUP_ADM);
-        audittaskList = parseJSONList(dataJson, GROUP_AUDIT_TASK);
-        otherList = parseJSONList(dataJson, GROUP_OTHER);
+        JSONArray dataJsonArray = JSON.parseArray(jsonStr);
+//        JSONObject dataJson = JSON.parseObject(jsonStr);//将报文string转换为JSON
+        for (int i = 0; i < dataJsonArray.size(); i++) {
+            JSONObject o = (JSONObject) dataJsonArray.get(i);
+            String title = o.getString("title");
+            JSONArray items = o.getJSONArray("item");
+
+            switch (title) {
+                case GROUP_FREQUENTLY:
+                    frequentlyList = parseJSONList(items);
+
+                    break;
+                case GROUP_VIP_MANAGER:
+                    vipmanagerList = parseJSONList(items);
+
+                    break;
+                case GROUP_HUI_JI_KE_FU:
+                    huijikefuList = parseJSONList(items);
+
+                    break;
+                case GROUP_COCAH:
+                    coachList = parseJSONList(items);
+
+                    break;
+                case GROUP_CAO_KE:
+                    caokeList = parseJSONList(items);
+
+                    break;
+                case GROUP_ADM:
+                    admList = parseJSONList(items);
+
+                    break;
+                case GROUP_AUDIT_TASK:
+                    audittaskList = parseJSONList(items);
+
+                    break;
+                case GROUP_OTHER:
+                    otherList = parseJSONList(items);
+                    break;
+            }
+        }
 
 
         savePreferFrequentlyList(frequentlyList);
@@ -89,6 +121,20 @@ public class MenuHelper {
         }
         return list;
     }
+
+    private List<MenuItem> parseJSONList(JSONArray array) {
+        List<MenuItem> list = new ArrayList<>();
+        int size = array.size();
+        for (int i = 0; i < size; i++, itemCounter++) {
+            JSONObject object = array.getJSONObject(i);
+            //之所以没有在array层就进行JSON到java对象的转换，是为了进入内部遍历，产生id,并将id赋值给menuItem
+            MenuItem item = JSON.toJavaObject(object, MenuItem.class);
+            item.setItemId(itemCounter);
+            list.add(item);
+        }
+        return list;
+    }
+
 
     /**
      * 初始化数据

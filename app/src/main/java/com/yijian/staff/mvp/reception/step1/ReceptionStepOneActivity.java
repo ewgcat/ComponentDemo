@@ -120,6 +120,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
 
             case R.id.right_tv:
                 Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
                 break;

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
@@ -22,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = "/test/5")
 public class HuiFangTaskActivity extends AppCompatActivity {
 
     @BindView(R.id.tabs)
@@ -48,7 +50,7 @@ public class HuiFangTaskActivity extends AppCompatActivity {
     private void initNavigation() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
         navigationBar.setTitle("回访任务", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
+        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }
 

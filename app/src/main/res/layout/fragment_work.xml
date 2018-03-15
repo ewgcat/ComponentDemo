@@ -2,7 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f1f2f6">
 
     <ImageView
@@ -53,6 +52,8 @@
                     android:layout_height="20dp"
                     android:textSize="14sp"
                     android:textColor="#ffffff"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
                     android:layout_gravity="center_vertical"
                     android:background="@null" />
 
@@ -69,6 +70,7 @@
                 android:src="@mipmap/icon_scan" />
 
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="32dp"
@@ -142,7 +144,6 @@
                         android:layout_gravity="center_horizontal"
                         android:text="50%"
                         android:gravity="center"
-
                         android:textColor="#f1523d"
                         android:textSize="16sp" />
 
@@ -152,7 +153,6 @@
                         android:layout_gravity="center_horizontal"
                         android:text="业绩完成度"
                         android:gravity="center"
-
                         android:textColor="#999999"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -281,252 +281,13 @@
                 android:background="#f1f2f6" />
 
 
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                app:flexWrap="wrap">
 
-                <LinearLayout
-                    android:id="@+id/ll_work_hui_ji_jie_dai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_huijihuifang" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="会籍回访" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_work_yao_yue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_yaoyue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="邀约" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_work_tian_jia_qian_zai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_tianjiaqianzai" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="添加潜在" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_work_tou_su_chu_li"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_tousu" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="投诉处理" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_work_hui_yuan_xin_xi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_viper" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="会员信息" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_main_yi_xiang_hui_yuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_yixianghuiyuan" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="意向会员" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_work_kao_qin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_kaoqing" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="考勤" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_work_all_gong_neng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_all" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="全部功能" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_work_fen_pei_resource"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_flexBasisPercent="25%">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/lg_all" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:text="分配资源" />
-
-                </LinearLayout>
-
-
-
-            </com.google.android.flexbox.FlexboxLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_display"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
 

@@ -20,17 +20,26 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
      * name : 匕首
      * icon : ic_cold_1
      * desc : 传说的匕首,杀人于无形
-     * group : cold_weapon
+     * title : cold_weapon
      */
 
     private String name;
     private String icon;
     private String path;
-    private String group;
+    private String title;
+    private int count;
     private int  type;//0 已添加在常用列表，1未添加在常用列表
 
     private int viewType;
     private int itemId;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     @Override
     public int getViewType() {
@@ -73,12 +82,12 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
         this.path = path;
     }
 
-    public String getGroup() {
-        return group;
+    public String getTitle() {
+        return title;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 

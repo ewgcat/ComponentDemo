@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".application.CustomApplication"
@@ -44,9 +45,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.login.LoginActivity" />
-        <activity android:name=".mvp.forgetpassword.ForgetPasswordActivity" />
-        <activity android:name=".mvp.reception.ReceptionActivity" />
+        <activity
+            android:name=".mvp.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.ReceptionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -61,31 +68,105 @@
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity_ycm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".mvp.reception.step2.ReceptionStepTwoActivity" />
-        <activity android:name=".mvp.reception.step3.ReceptionStepThreeActivity" />
-        <activity android:name=".mvp.reception.step4.ReceptionStepFourActivity" />
-        <activity android:name=".mvp.reception.step5.ReceptionStepFiveActivity" />
-        <activity android:name=".mvp.goodsdetail.GoodsDetaiActivity" />
-        <activity android:name=".mvp.goodsdetail.GoodsRightSupportActivity" />
-        <activity android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity" />
-        <activity android:name=".mvp.huifang.history.HuiFangHistoryActivity" />
-        <activity android:name=".mvp.huifang.task.HuiFangTaskActivity" />
-        <activity android:name=".mvp.vip.edit.VipInfoEditActivity" />
-        <activity android:name=".mvp.vip.info.VipInfoActivity" />
-        <activity android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperListActivity" />
-        <activity android:name=".mvp.vip.outdate.OutdateViperListActivity" />
-        <activity android:name=".mvp.vip.detail.ViperDetailActivity" />
-        <activity android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperDetailActivity" />
-        <activity android:name=".mvp.all.AllFunctionActivity" />
-        <activity android:name=".mvp.dailywork.DailyWorkActivity" />
-        <activity android:name=".mvp.dailywork.LeaveApprovalActivity" />
-        <activity android:name=".mvp.dailywork.LeaveApplyActivity" />
-        <activity android:name=".mvp.invitation.InvitationActivity" />
-        <activity android:name=".mvp.complaint.handling.ComplaintHandlingActivity" />
-        <activity android:name=".mvp.complaint.list.ComplaintListActivity" />
-        <activity android:name=".mvp.resourceallocation.ResourceAllocationActivity" />
-        <activity android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity" />
-        <activity android:name=".mvp.resourceallocation.SelectHuiJiActivity"></activity>
+        <activity
+            android:name=".mvp.reception.step2.ReceptionStepTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step3.ReceptionStepThreeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step4.ReceptionStepFourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.goodsdetail.GoodsDetaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.goodsdetail.GoodsRightSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.history.HuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.task.HuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.edit.VipInfoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.info.VipInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.potential.PotentialViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.outdate.OutdateViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.detail.ViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.potential.PotentialViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.all.AllFunctionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.DailyWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.LeaveApprovalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.dailywork.LeaveApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.invitation.InvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.complaint.handling.ComplaintHandlingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.complaint.list.ComplaintListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.ResourceAllocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.resourceallocation.SelectHuiJiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.mine.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.contract.ContractActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
+        <activity android:name=".mvp.mine.qualification.MyQualificationActivity" />
+        <activity android:name=".mvp.mine.qualification.EditQualificationActivity"></activity>
+        <activity
+            android:name="com.yijian.staff.mvp.seepic.SeePicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yijian.staff.mvp.mine.selectheadicon.ClipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yijian.staff.mvp.mine.club.ClubActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import com.bin.david.form.utils.DensityUtils;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.KeCheng;
 import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
@@ -40,7 +41,7 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         timeBar.showTimeBar(4);
 
 
-        FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 5));
+        FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 10));
         SmartTable table = (SmartTable<KeCheng>) findViewById(R.id.table);
         List<KeCheng> keChengList = new ArrayList<KeCheng>();
         KeCheng keCheng1 = new KeCheng("12:00-18:00", "30", "30", "30", "30", "30", "30", "30");
@@ -66,16 +67,19 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
                 break;
             case R.id.iv_second_left:
 
+                Intent i = new Intent(this,ReceptionActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
 
                 break;
             case R.id.right_tv:
                 Intent intent = new Intent(ReceptionStepFourActivity.this, ReceptionStepFiveActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
                 break;
                 case R.id.tv_chakanxiangqing:
-                Intent i = new Intent(ReceptionStepFourActivity.this, GoodsRightSupportActivity.class);
-                startActivity(i);
+                startActivity(new Intent(ReceptionStepFourActivity.this, GoodsRightSupportActivity.class));
 
                 break;
         }

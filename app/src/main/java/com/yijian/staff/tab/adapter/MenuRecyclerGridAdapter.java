@@ -9,6 +9,9 @@ import android.widget.AdapterView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -18,6 +21,8 @@ import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
+import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.Logger;
 
 import java.util.List;
 
@@ -27,23 +32,26 @@ import java.util.List;
  */
 public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyclerGridHolder, MenuItem> {
     private Context context;
+    private Boolean isWorkMenu=false;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
     protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
+
     public void setOnRecyclerItemLongClickListener(OnRecyclerItemLongClickListener onRecyclerItemLongClickListener) {
         mOnRecyclerItemLongClickListener = onRecyclerItemLongClickListener;
     }
 
-    public void update(MenuItem item){
+    public void update(MenuItem item) {
         for (int i = 0; i < mRecyclerItems.size(); i++) {
             MenuItem menuItem = mRecyclerItems.get(i);
-            if (menuItem.getName().equals(item.getName())){
+            if (menuItem.getName().equals(item.getName())) {
                 menuItem.setType(item.getType());
             }
         }
         notifyDataSetChanged();
 
     }
+
     public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
         this.onDeleteListener = onDeleteListener;
     }
@@ -58,6 +66,12 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         this.context = context;
 
     }
+    public MenuRecyclerGridAdapter(List<MenuItem> recyclerItems, Context context,Boolean isWorkMenu) {
+        super(recyclerItems, context);
+        this.context = context;
+        this.isWorkMenu = isWorkMenu;
+
+    }
 
     @Override
     public MenuRecyclerGridHolder createRecyclerViewHolder(ViewGroup parent, int viewType) {
@@ -66,12 +80,22 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
 
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
+        if (isWorkMenu){
+            holder.fl_item_view.setBackground(null);
+        }else {
+            holder.fl_item_view.setBackground(context.getDrawable(R.drawable.light_black_stroke_bg));
+        }
         boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
-
-        Glide.with(context).load(item.getIcon()).into(holder.iv_icon);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(item.getIcon()).apply(options).into(holder.iv_icon);
         holder.tv_name.setText(item.getName());
         int type = item.getType();
         if (showEditIcon) {
+            holder.tv_count.setVisibility(View.GONE);
             if (type == 0) {
                 holder.iv_add.setVisibility(View.GONE);
                 holder.iv_delete.setVisibility(View.VISIBLE);
@@ -82,6 +106,21 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         } else {
             holder.iv_add.setVisibility(View.GONE);
             holder.iv_delete.setVisibility(View.GONE);
+            int count = item.getCount();
+            Logger.i("TEST","count="+count);
+            if (count > 0) {
+                if (count < 100) {
+                    holder.tv_count.setText(""+count);
+                }else {
+                    holder.tv_count.setText("99+");
+                }
+                holder.tv_count.setVisibility(View.VISIBLE);
+
+
+            } else {
+                holder.tv_count.setVisibility(View.GONE);
+            }
+
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +140,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
                     if (onDeleteListener != null) {
                         onDeleteListener.onDeleteClick(v, item, holder.getAdapterPosition());
                     }
-                }else {//非编辑状态
+                } else {//非编辑状态
                     ARouter.getInstance().build(item.getPath()).navigation();
 
                 }
@@ -111,8 +150,8 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(mOnRecyclerItemLongClickListener!=null){
-                    mOnRecyclerItemLongClickListener.onItemLongClick(v,item,holder.getAdapterPosition(), AbstractHeaderFooterWrapperAdapter.SEGMENT_TYPE_NORMAL);
+                if (mOnRecyclerItemLongClickListener != null) {
+                    mOnRecyclerItemLongClickListener.onItemLongClick(v, item, holder.getAdapterPosition(), AbstractHeaderFooterWrapperAdapter.SEGMENT_TYPE_NORMAL);
                 }
                 return true;
             }

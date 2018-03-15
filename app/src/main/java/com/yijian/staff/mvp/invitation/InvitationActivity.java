@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.dailywork.ApprovalFragment;
 import com.yijian.staff.mvp.dailywork.DailyWorkStatusFragment;
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/test/6")
 public class InvitationActivity extends AppCompatActivity {
 
     /**
@@ -70,6 +72,7 @@ public class InvitationActivity extends AppCompatActivity {
         navigationBar.setTitle("邀约记录","#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        navigationBar.hideBottomLine();
     }
 
     @OnClick({R.id.lin_invitation_record,R.id.lin_invitation_result})

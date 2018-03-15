@@ -32,6 +32,7 @@ import java.util.List;
  */
 public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyclerGridHolder, MenuItem> {
     private Context context;
+    private Boolean isWorkMenu=false;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
     protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
@@ -65,6 +66,12 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         this.context = context;
 
     }
+    public MenuRecyclerGridAdapter(List<MenuItem> recyclerItems, Context context,Boolean isWorkMenu) {
+        super(recyclerItems, context);
+        this.context = context;
+        this.isWorkMenu = isWorkMenu;
+
+    }
 
     @Override
     public MenuRecyclerGridHolder createRecyclerViewHolder(ViewGroup parent, int viewType) {
@@ -73,6 +80,11 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
 
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
+        if (isWorkMenu){
+            holder.fl_item_view.setBackground(null);
+        }else {
+            holder.fl_item_view.setBackground(context.getDrawable(R.drawable.light_black_stroke_bg));
+        }
         boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
         RequestOptions options = new RequestOptions()
                 .centerCrop()

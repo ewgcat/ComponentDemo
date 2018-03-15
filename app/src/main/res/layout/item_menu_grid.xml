@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:id="@+id/fl_item_view"
+    android:layout_width="60dp"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="6dp"
     android:background="@drawable/light_black_stroke_bg"
     android:gravity="center">
 
@@ -13,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:src="@mipmap/icon_delete"
-         />
+        />
 
     <ImageView
         android:id="@+id/add"
@@ -32,7 +35,7 @@
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_gravity="end"
-         />
+        />
 
 
     <LinearLayout
@@ -48,7 +51,7 @@
             android:id="@+id/pic"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/lg_all" />
 

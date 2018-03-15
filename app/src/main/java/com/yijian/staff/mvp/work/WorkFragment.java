@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -101,6 +102,7 @@ public class WorkFragment extends Fragment {
             }
         });
         menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
+        menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
         MenuItem menuItem = new MenuItem();
         menuItem.setCount(0);
         menuItem.setName("全部");
@@ -109,8 +111,8 @@ public class WorkFragment extends Fragment {
         String path = uri.toString();
         menuItem.setIcon(path);
         menuItemList.add(menuItem);
-        MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(menuItemList, getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(),true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         recyclerView.setAdapter(adapter);
 
 

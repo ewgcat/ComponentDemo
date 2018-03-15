@@ -6,11 +6,9 @@
 
     <include layout="@layout/view_navigation_bar"></include>
 
-    <com.yijian.staff.widget.CustomViewpager
-        android:id="@+id/vp_see_pic"
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photo_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </com.yijian.staff.widget.CustomViewpager>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

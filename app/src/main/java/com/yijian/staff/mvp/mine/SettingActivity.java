@@ -200,9 +200,8 @@ public class SettingActivity extends AppCompatActivity {
             }
         }else if (resultCode == RESULT_OK && requestCode ==1000){
             Intent intent = new Intent(this, SeePicActivity.class);
-            ArrayList<String> picList = new ArrayList<>();
-            picList.add(getExternalCacheDir().toString() + "/head/head.png");
-            intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+
+            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, getExternalCacheDir().toString() + "/head/head.png");
             startActivity(intent);
         }
 

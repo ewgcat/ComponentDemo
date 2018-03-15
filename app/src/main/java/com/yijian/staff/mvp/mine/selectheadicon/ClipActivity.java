@@ -94,11 +94,9 @@ public class ClipActivity extends Activity implements View.OnClickListener {
      */
     private void uploadHeadIcon() {
         String uploadheadIconPath = getExternalCacheDir().toString() + "/head/upload/head.png";
-        //上传
-        ArrayList<String> picList = new ArrayList<>();
-        picList.add(uploadheadIconPath);
+
         Intent intent = new Intent();
-        intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY,picList);
+        intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH,uploadheadIconPath);
         setResult(RESULT_OK, intent);
         finish();
 

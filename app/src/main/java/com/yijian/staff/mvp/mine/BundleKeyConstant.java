@@ -7,5 +7,5 @@ package com.yijian.staff.mvp.mine;
  */
 public class BundleKeyConstant {
 
-    public static final String KEY_SEE_PIC_ARRAY = "KEY_SEE_PIC_ARRAY";
+    public static final String KEY_SEE_PIC_PATH = "KEY_SEE_PIC_PATH";
 }

@@ -51,7 +51,7 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
     ConflictGridView gv_qualification;
     private Dialog dialog;
     QualificationImgAdapter qualificationImgAdapter;
-    private List<String> qualifacatioinList = new ArrayList<String>();
+    private ArrayList<String> qualifacatioinList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +92,8 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
             dialog.show();
         }else{
             Intent intent = new Intent(this, SeePicActivity.class);
-            ArrayList<String> picList = new ArrayList<>();
-            picList.addAll(qualifacatioinList);
-            intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+
+            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, qualifacatioinList.get(position));
             startActivity(intent);
         }
     }

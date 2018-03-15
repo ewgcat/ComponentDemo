@@ -64,8 +64,8 @@ public class MineFragment extends Fragment {
         switch (view.getId()) {
             case R.id.iv_user_head:
                 Intent intent = new Intent(getContext(), SeePicActivity.class);
-                ArrayList<String> picList = new ArrayList<>();
-                intent.putStringArrayListExtra(BundleKeyConstant.KEY_SEE_PIC_ARRAY, picList);
+                String path="";
+                intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
                 startActivity(intent);
                 break;
             case R.id.ll_more:

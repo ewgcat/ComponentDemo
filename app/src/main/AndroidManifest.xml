@@ -68,7 +68,6 @@
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:screenOrientation="portrait"
-
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".mvp.reception.step2.ReceptionStepTwoActivity"
@@ -159,16 +158,17 @@
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
         <activity android:name=".mvp.mine.qualification.MyQualificationActivity" />
-        <activity android:name=".mvp.mine.qualification.EditQualificationActivity"></activity>
+        <activity android:name=".mvp.mine.qualification.EditQualificationActivity" />
         <activity
-            android:name="com.yijian.staff.mvp.seepic.SeePicActivity"
+            android:name=".mvp.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.yijian.staff.mvp.mine.selectheadicon.ClipActivity"
+            android:name=".mvp.mine.selectheadicon.ClipActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.yijian.staff.mvp.mine.club.ClubActivity"
+            android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.vip.potential.AddPotentialActivity"></activity>
     </application>
 
 </manifest>

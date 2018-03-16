@@ -31,9 +31,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *潜在会员  列表
+ *意向会员  列表
  */
-@Route(path = "/test/3")
+@Route(path = "/test/2")
 public class IntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.refreshLayout)
@@ -61,7 +61,7 @@ public class IntentViperListActivity extends AppCompatActivity implements View.O
         navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
-        navigationBar2.setTitle("潜在会员");
+        navigationBar2.setTitle("意向会员");
         navigationBar2.setmRightTvText("筛选");
 
         initComponent();

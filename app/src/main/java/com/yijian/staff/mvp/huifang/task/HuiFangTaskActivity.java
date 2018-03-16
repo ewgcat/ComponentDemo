@@ -88,8 +88,12 @@ public class HuiFangTaskActivity extends AppCompatActivity {
         HuiFangPagerAdapter huiFangPagerAdapter = new HuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(huiFangPagerAdapter);
         tabs.setViewPager(viewPager);
+        tabs.updateBubbleNum(0,12);
+
         //初始化显示第一页
         viewPager.setCurrentItem(0);
+
+
     }
 
 

@@ -3,6 +3,7 @@ package com.yijian.staff.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
@@ -32,6 +33,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import q.rorbin.badgeview.QBadgeView;
 
 /****
  * Android-导航栏特效，主要是导航栏字体大小和颜色的渐变特效
@@ -237,7 +240,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                         String s = pager.getAdapter().getPageTitle(i).toString();
                         //计算所有tab的实际字体的宽
                         mPaintTabText.setTextSize(tabTextSize);
-                        mTabsTextWidth += (int) mPaintTabText.measureText(s,0,s.length());
+                        mTabsTextWidth += (int) mPaintTabText.measureText(s, 0, s.length());
                     }
                     if (mTabsTextWidth > 0) {
                         tabPadding = (getMeasuredWidth() - mTabsTextWidth) / tabCount / 2;
@@ -249,6 +252,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         });
     }
 
+
+    ArrayList<Integer> countList = new ArrayList<>();
+
+
+
+
     private void addTextTab(final int position, String title) {
         TextView tab = new TextView(getContext());
         tab.setText(title);
@@ -256,19 +265,47 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tab.setSingleLine();
         tab.setIncludeFontPadding(false);
 
+
+
+
         TextView tab2 = new TextView(getContext());
         tab2.setText(title);
         tab2.setGravity(Gravity.CENTER);
         tab2.setSingleLine();
         tab2.setIncludeFontPadding(false);
 
+
         addTab(position, tab, tab2);
+
+        titleViewArrayList1.add(tab);
+        titleViewArrayList2.add(tab2);
     }
 
     private void addIconTab(final int position, int resId) {
         ImageButton tab = new ImageButton(getContext());
         tab.setImageResource(resId);
         addTab(position, tab, null);
+    }
+    private ArrayList<TextView> titleViewArrayList1=new ArrayList<>();
+    private ArrayList<TextView> titleViewArrayList2=new ArrayList<>();
+    public void updateBubbleNum(int position,int count){
+        Context context = getContext();
+        if (context != null) {
+
+            if (count > 0&&titleViewArrayList1.size()>position) {
+                TextView targetView = titleViewArrayList1.get(position);
+                new QBadgeView(context)
+                        .bindTarget(targetView)
+                        .setBadgeBackgroundColor(Color.parseColor("#ff6347"))
+                        .setBadgeTextColor(Color.parseColor("#ffffffff")).
+                        setBadgeTextSize(6, true)
+                        .setBadgeGravity(Gravity.END | Gravity.TOP)
+                        .setGravityOffset(-0.4f, 1f, true)
+                        .setBadgeNumber(count);
+                targetView.setTextColor(Color.parseColor("#666666"));
+            }
+
+        }
     }
 
     private void addTab(final int position, View tab, View tab2) {
@@ -281,11 +318,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         titleView.addView(tab2, 1, matchParentTabLayoutParams);
         tabsContainer.addView(titleView, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
 
+
         titleView.setDoubleSingleClickListener(new TitleView.DoubleSingleClickListener() {
             @Override
-            public void  onDoubleTap(MotionEvent e) {
+            public void onDoubleTap(MotionEvent e) {
                 //cb
-                if (mOnPagerTitleItemClickListener!=null){
+                if (mOnPagerTitleItemClickListener != null) {
                     mOnPagerTitleItemClickListener.onDoubleClickItem(position);
                 }
             }
@@ -297,7 +335,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                 currentPosition = position;
                 scrollToChild(position, 0);//滚动HorizontalScrollView
                 //cb
-                if (mOnPagerTitleItemClickListener!=null){
+                if (mOnPagerTitleItemClickListener != null) {
                     mOnPagerTitleItemClickListener.onSingleClickItem(position);
                 }
             }
@@ -420,10 +458,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
         }
 
-        if (indicatorWrap){
-            canvas.drawRect(lineLeft+tabPadding, height - indicatorHeight, lineRight-tabPadding, height, rectPaint);
-        }else{
-            canvas.drawRect(lineLeft+tabPadding, height - indicatorHeight, lineRight-tabPadding, height, rectPaint);
+        if (indicatorWrap) {
+            canvas.drawRect(lineLeft + tabPadding, height - indicatorHeight, lineRight - tabPadding, height, rectPaint);
+        } else {
+            canvas.drawRect(lineLeft + tabPadding, height - indicatorHeight, lineRight - tabPadding, height, rectPaint);
         }
 
 
@@ -790,15 +828,19 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     }
 
     //-----title-click-Single-Double
-    private  OnPagerTitleItemClickListener mOnPagerTitleItemClickListener;
-    public  interface  OnPagerTitleItemClickListener{
+    private OnPagerTitleItemClickListener mOnPagerTitleItemClickListener;
+
+    public interface OnPagerTitleItemClickListener {
         /**
          * 单击,不需做切换处理了,内部已经处理
+         *
          * @param position position
          */
         void onSingleClickItem(int position);
+
         /**
          * 双击
+         *
          * @param position position
          */
         void onDoubleClickItem(int position);
@@ -808,8 +850,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
      * 设置title的单击/双击事件的监听器
      * @param mOnPagerTitleItemClickListener mOnPagerTitleItemClickListener
      */
-    public  void setOnPagerTitleItemClickListener(OnPagerTitleItemClickListener mOnPagerTitleItemClickListener){
-        this.mOnPagerTitleItemClickListener=mOnPagerTitleItemClickListener;
+    public void setOnPagerTitleItemClickListener(OnPagerTitleItemClickListener mOnPagerTitleItemClickListener) {
+        this.mOnPagerTitleItemClickListener = mOnPagerTitleItemClickListener;
     }
 
 }

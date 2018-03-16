@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 
@@ -77,6 +78,7 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(),MyQualificationActivity.class));
                 break;
             case R.id.ll_my_date:
+                startActivity(new Intent(getContext(),CalendarTableActivity.class));
                 break;
             case R.id.ll_erweima:
                 startActivity(new Intent(getContext(),MyQRCodeActivity.class));

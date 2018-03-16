@@ -6,7 +6,7 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public  class ChildObjBean {
+public  class ChildOptBean {
 
 
     /**

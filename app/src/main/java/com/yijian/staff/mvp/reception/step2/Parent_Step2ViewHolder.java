@@ -8,14 +8,14 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.expandablerecyclerview.ParentViewHolder;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ParentObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 
 
 /**
  * Created by The_P on 2018/3/13.
  */
 
-public class Parent_DemoViewHolder extends ParentViewHolder {
+public class Parent_Step2ViewHolder extends ParentViewHolder {
 
     private final TextView tvQuestion;
     private final View itemView;
@@ -27,7 +27,7 @@ public class Parent_DemoViewHolder extends ParentViewHolder {
      *
      * @param itemView The {@link View} being hosted in this ViewHolder
      */
-    public Parent_DemoViewHolder(@NonNull View itemView) {
+    public Parent_Step2ViewHolder(@NonNull View itemView) {
         super(itemView);
         this.itemView=itemView;
         tvQuestion = (TextView) itemView.findViewById(R.id.tv_question);
@@ -36,7 +36,7 @@ public class Parent_DemoViewHolder extends ParentViewHolder {
 
     }
 
-    public void bind(ParentObjBean parent) {
+    public void bind(ParentQuestionBean parent) {
         tvQuestion.setText(parent.getTitle());
     }
 

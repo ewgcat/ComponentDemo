@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.expandablerecyclerview.ChildViewHolder;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ChildObjBean;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ParentObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by The_P on 2018/3/13.
  */
 
-public class Child_DemoViewHolder_normal extends ChildViewHolder {
+public class Child_Step2ViewHolder_normal extends ChildViewHolder {
 
     private final TextView tvKey;
     private final TextView tvValue;
@@ -28,7 +28,7 @@ public class Child_DemoViewHolder_normal extends ChildViewHolder {
      *
      * @param itemView The {@link View} being hosted in this ViewHolder
      */
-    public Child_DemoViewHolder_normal(@NonNull View itemView) {
+    public Child_Step2ViewHolder_normal(@NonNull View itemView) {
         super(itemView);
         tvKey = (TextView) itemView.findViewById(R.id.tv_key);
         tvValue = (TextView) itemView.findViewById(R.id.tv_value);
@@ -36,7 +36,7 @@ public class Child_DemoViewHolder_normal extends ChildViewHolder {
         this.itemView= itemView;
     }
 
-    public void bind(ChildObjBean child, final int childPosition, final int parentPosition, List<ParentObjBean> parentList) {
+    public void bind(ChildOptBean child, final int childPosition, final int parentPosition, List<ParentQuestionBean> parentList) {
 
         tvKey.setText(child.getQustion());
         tvValue.setText(child.getDefaultValue());

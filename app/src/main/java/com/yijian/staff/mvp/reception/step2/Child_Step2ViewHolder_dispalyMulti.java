@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.expandablerecyclerview.ChildViewHolder;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ChildObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-class Child_DemoViewHolder_dispalyMulti extends ChildViewHolder implements MultiAdapter.ChildMultiListener {
+class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implements MultiAdapter.ChildMultiListener {
 
     private final TextView name;
     private final RecyclerView recyclerview;
@@ -32,7 +32,7 @@ class Child_DemoViewHolder_dispalyMulti extends ChildViewHolder implements Multi
      *  @param itemView The {@link View} being hosted in this ViewHolder
      * @param
      */
-    public Child_DemoViewHolder_dispalyMulti(@NonNull View itemView, Activity mContext) {
+    public Child_Step2ViewHolder_dispalyMulti(@NonNull View itemView, Activity mContext) {
         super(itemView);
         name = (TextView) itemView.findViewById(R.id.tv_name);
         recyclerview = (RecyclerView) itemView.findViewById(R.id.recyclerview);
@@ -45,7 +45,7 @@ class Child_DemoViewHolder_dispalyMulti extends ChildViewHolder implements Multi
         multiAdapter.setChildMultiListener(this);
     }
 
-    public void bind(ChildObjBean child, int childPosition, int parentPosition, Activity mContext) {
+    public void bind(ChildOptBean child, int childPosition, int parentPosition, Activity mContext) {
         name.setText(child.getQustion());
 
         List<MultiOptBean> multiOptBeans = child.getMultiOptBeans();

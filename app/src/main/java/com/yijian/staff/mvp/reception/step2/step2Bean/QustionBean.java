@@ -14,13 +14,13 @@ public class QustionBean {
                 '}';
     }
 
-    private List<ParentObjBean> parentObj;
+    private List<ParentQuestionBean> parentObj;
 
-    public List<ParentObjBean> getParentObj() {
+    public List<ParentQuestionBean> getParentObj() {
         return parentObj;
     }
 
-    public void setParentObj(List<ParentObjBean> parentObj) {
+    public void setParentObj(List<ParentQuestionBean> parentObj) {
         this.parentObj = parentObj;
     }
 

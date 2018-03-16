@@ -9,7 +9,7 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public  class ParentObjBean implements Parent<ChildObjBean> {
+public  class ParentQuestionBean implements Parent<ChildOptBean> {
 
     /**
      * title : 体测数据
@@ -17,7 +17,7 @@ public  class ParentObjBean implements Parent<ChildObjBean> {
      */
 
     private String title;
-    private List<ChildObjBean> childObj;
+    private List<ChildOptBean> childObj;
 
     public String getTitle() {
         return title;
@@ -28,13 +28,13 @@ public  class ParentObjBean implements Parent<ChildObjBean> {
     }
 
 
-    public void setChildObj(List<ChildObjBean> childObj) {
+    public void setChildObj(List<ChildOptBean> childObj) {
         this.childObj = childObj;
     }
 
 
     @Override
-    public List<ChildObjBean> getChildList() {
+    public List<ChildOptBean> getChildList() {
         return childObj;
     }
 

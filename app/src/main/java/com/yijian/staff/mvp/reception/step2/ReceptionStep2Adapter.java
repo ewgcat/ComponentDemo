@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.expandablerecyclerview.ChildViewHolder;
 import com.yijian.staff.mvp.reception.step2.expandablerecyclerview.ExpandableRecyclerAdapter;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ChildObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ParentObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +24,10 @@ import java.util.Map;
  * Created by The_P on 2018/3/13.
  */
 
-public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBean, ChildObjBean, Parent_DemoViewHolder, ChildViewHolder> implements Child_DemoViewHolder_normal.ChildNormalListener, Child_DemoViewHolder_write.ChildWriteListener, Child_DemoViewHolder_dispalyMulti.ItemMultiListener {
+public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuestionBean, ChildOptBean, Parent_Step2ViewHolder, ChildViewHolder> implements Child_Step2ViewHolder_normal.ChildNormalListener, Child_Step2ViewHolder_write.ChildWriteListener, Child_Step2ViewHolder_dispalyMulti.ItemMultiListener {
 
     private LayoutInflater mInflater;
-    private List<ParentObjBean> parentList;
+    private List<ParentQuestionBean> parentList;
     private Activity mContext;
     private static final String TAG = "DemoAdapter";
     /**
@@ -46,7 +46,7 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
      * @param parentList List of all parents to be displayed in the RecyclerView that this
      *                   adapter is linked to
      */
-    public ReceptionStep2Adapter(@NonNull List<ParentObjBean> parentList, Activity context) {
+    public ReceptionStep2Adapter(@NonNull List<ParentQuestionBean> parentList, Activity context) {
         super(parentList);
         this.parentList = parentList;
         mInflater = LayoutInflater.from(context);
@@ -55,10 +55,10 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
 
     @NonNull
     @Override
-    public Parent_DemoViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
+    public Parent_Step2ViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
         View inflate = mInflater.inflate(R.layout.item_parent_demo, parentViewGroup, false);
 
-        Parent_DemoViewHolder parent_demoViewHolder = new Parent_DemoViewHolder(inflate);
+        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate);
 //        parent_demoViewHolder.setExpanded(true);
         return parent_demoViewHolder;
     }
@@ -72,8 +72,8 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
         switch (viewType){
             case 3:
                 View view0 = mInflater.inflate(R.layout.item_child_type_normal, childViewGroup, false);
-                childViewHolder=new Child_DemoViewHolder_normal(view0);
-                ((Child_DemoViewHolder_normal)childViewHolder).setChildNormalListener(this);
+                childViewHolder=new Child_Step2ViewHolder_normal(view0);
+                ((Child_Step2ViewHolder_normal)childViewHolder).setChildNormalListener(this);
                 break;
 //            case 4:
 //                View view1 = mInflater.inflate(R.layout.item_child_type_multi, childViewGroup, false);
@@ -83,13 +83,13 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
 
             case 5:
                 View view2 = mInflater.inflate(R.layout.item_child_type_write, childViewGroup, false);
-                childViewHolder=new Child_DemoViewHolder_write(view2);
-                ((Child_DemoViewHolder_write)childViewHolder).setChildWriteListener(this);
+                childViewHolder=new Child_Step2ViewHolder_write(view2);
+                ((Child_Step2ViewHolder_write)childViewHolder).setChildWriteListener(this);
                 break;
             default:
             case 6:
                 View view3 = mInflater.inflate(R.layout.item_child_type_display, childViewGroup, false);
-                childViewHolder=new Child_DemoViewHolder_dispaly(view3);
+                childViewHolder=new Child_Step2ViewHolder_dispaly(view3);
                 break;
 
 //            case 7:
@@ -99,8 +99,8 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
 
             case 8:
                 View view8 = mInflater.inflate(R.layout.item_child_type_display_multi, childViewGroup, false);
-                childViewHolder=new Child_DemoViewHolder_dispalyMulti(view8,mContext);
-                ((Child_DemoViewHolder_dispalyMulti)childViewHolder).setChildMultiListener(this);
+                childViewHolder=new Child_Step2ViewHolder_dispalyMulti(view8,mContext);
+                ((Child_Step2ViewHolder_dispalyMulti)childViewHolder).setChildMultiListener(this);
                 break;
         }
 
@@ -108,20 +108,20 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
     }
 
     @Override
-    public void onBindParentViewHolder(@NonNull Parent_DemoViewHolder parentViewHolder, int parentPosition, @NonNull ParentObjBean parent) {
+    public void onBindParentViewHolder(@NonNull Parent_Step2ViewHolder parentViewHolder, int parentPosition, @NonNull ParentQuestionBean parent) {
         parentViewHolder.bind(parent);
     }
 
     @Override
-    public void onBindChildViewHolder(@NonNull ChildViewHolder childViewHolder, int parentPosition, int childPosition, @NonNull ChildObjBean child) {
-        if (childViewHolder instanceof Child_DemoViewHolder_normal){
-            ((Child_DemoViewHolder_normal) childViewHolder).bind(child,childPosition,parentPosition,parentList);
-        }else if (childViewHolder instanceof Child_DemoViewHolder_write){
-            ((Child_DemoViewHolder_write) childViewHolder).bind(child,childPosition,parentPosition,parentList);
-        }else if (childViewHolder instanceof Child_DemoViewHolder_dispaly){
-            ((Child_DemoViewHolder_dispaly) childViewHolder).bind(child,childPosition,parentPosition);
-        }else if(childViewHolder instanceof Child_DemoViewHolder_dispalyMulti){
-            ((Child_DemoViewHolder_dispalyMulti) childViewHolder).bind(child,childPosition,parentPosition,mContext);
+    public void onBindChildViewHolder(@NonNull ChildViewHolder childViewHolder, int parentPosition, int childPosition, @NonNull ChildOptBean child) {
+        if (childViewHolder instanceof Child_Step2ViewHolder_normal){
+            ((Child_Step2ViewHolder_normal) childViewHolder).bind(child,childPosition,parentPosition,parentList);
+        }else if (childViewHolder instanceof Child_Step2ViewHolder_write){
+            ((Child_Step2ViewHolder_write) childViewHolder).bind(child,childPosition,parentPosition,parentList);
+        }else if (childViewHolder instanceof Child_Step2ViewHolder_dispaly){
+            ((Child_Step2ViewHolder_dispaly) childViewHolder).bind(child,childPosition,parentPosition);
+        }else if(childViewHolder instanceof Child_Step2ViewHolder_dispalyMulti){
+            ((Child_Step2ViewHolder_dispalyMulti) childViewHolder).bind(child,childPosition,parentPosition,mContext);
         }
     }
 
@@ -130,7 +130,7 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentObjBe
 
         int type;
 
-        ChildObjBean childObjBean = parentList.get(parentPosition).getChildList().get(childPosition);
+        ChildOptBean childObjBean = parentList.get(parentPosition).getChildList().get(childPosition);
         switch (childObjBean.getQusType()){
             case "normal":
                 type=3;

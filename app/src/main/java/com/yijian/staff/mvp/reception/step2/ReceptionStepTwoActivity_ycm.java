@@ -15,11 +15,10 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ChildObjBean;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.OptionItemData;
-import com.yijian.staff.mvp.reception.step2.step2Bean.ParentObjBean;
-import com.yijian.staff.mvp.reception.step2.step2Bean.Parent_Demo;
+import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.widget.NavigationBar2;
@@ -34,10 +33,9 @@ import java.util.List;
 
 public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements View.OnClickListener {
 
-    private List<Parent_Demo> recipes;
     private OptionItemData optionItemData;
     private static final String TAG = "DemoActivity";
-    private List<ParentObjBean> parentObj;
+    private List<ParentQuestionBean> parentObj;
     private ArrayList<String> symbol;
     private ArrayList<String> decimal;
     private ReceptionStep2Adapter demoAdapter;
@@ -91,7 +89,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
 
 
     public void showBottomView(int childPosition, int parentPosition) {
-        ChildObjBean childObjBean = parentObj.get(parentPosition).getChildList().get(childPosition);
+        ChildOptBean childObjBean = parentObj.get(parentPosition).getChildList().get(childPosition);
         String qusType = childObjBean.getQusType();
         if (!"normal".equals(qusType)) return;
         boolean valueIsNum = childObjBean.isValueIsNum();
@@ -116,7 +114,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
     }
 
     @Nullable
-    private ArrayList<String> getIntegerRange(ChildObjBean childObjBean) {
+    private ArrayList<String> getIntegerRange(ChildOptBean childObjBean) {
         String minValue = childObjBean.getMinValue();
         String maxValue = childObjBean.getMaxValue();
         ArrayList<String> integerRange = optionItemData.getOptionDataFactory().initIntegerRange(Integer.valueOf(minValue), Integer.valueOf(maxValue));
@@ -130,7 +128,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
      * @param symbol       选项数组——符号(+/-)
      */
     private void showPickerView(final ArrayList<String> optArrays, final ArrayList<String> integerRange, final ArrayList<String> decimal
-            , final ArrayList<String> symbol, final ChildObjBean childObjBean, final int childPosition, final int parentPosition) {
+            , final ArrayList<String> symbol, final ChildOptBean childObjBean, final int childPosition, final int parentPosition) {
         int type = 0;
         if (integerRange != null && decimal != null && symbol != null) {
             type = 1;////选项是数字，有符号，有小数

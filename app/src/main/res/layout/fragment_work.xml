@@ -138,14 +138,33 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="50%"
+                    <LinearLayout
                         android:gravity="center"
-                        android:textColor="#f1523d"
-                        android:textSize="16sp" />
+
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_yeji_wanchengdu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@style/TextAppearance.FontPath"
+                            android:text="50"
+                            android:gravity="bottom"
+                            android:textColor="#f1523d"
+                            android:textSize="30sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@style/TextAppearance.FontPath"
+                            android:text="%"
+                            android:gravity="bottom"
+                            android:textColor="#f1523d"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -169,14 +188,35 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="80%"
+
+
+
+                    <LinearLayout
                         android:gravity="center"
-                        android:textColor="#2cc821"
-                        android:textSize="16sp" />
+
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_today_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@style/TextAppearance.FontPath"
+                            android:text="80"
+                            android:gravity="bottom"
+                            android:textColor="#2cc821"
+                            android:textSize="30sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@style/TextAppearance.FontPath"
+                            android:text="%"
+                            android:gravity="bottom"
+                            android:textColor="#2cc821"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,7 +261,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="业绩排名:"
                     android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -236,7 +276,7 @@
                     android:text="第7名"
                     android:layout_marginRight="10dp"
                     android:textColor="#333333"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

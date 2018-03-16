@@ -74,11 +74,6 @@ public class CustomApplication extends TinkerApplication {
 
         RetrofitClient.init(this);
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/font.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build());
-
         //在子线程中完成其他初始化
         InitializeService.start(this);
         ContextUtil.init(getApplicationContext());

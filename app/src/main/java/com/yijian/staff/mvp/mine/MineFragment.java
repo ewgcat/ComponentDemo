@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.mine.club.ClubActivity;
 import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
+import com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.mine.setting.SettingActivity;
@@ -89,6 +90,7 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(),MyQRCodeActivity.class));
                 break;
             case R.id.ll_edit_password:
+                startActivity(new Intent(getContext(),EditPasswordActivity .class));
                 break;
             case R.id.ll_about_us:
                 break;

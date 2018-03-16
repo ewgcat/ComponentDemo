@@ -300,7 +300,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                         .setBadgeTextColor(Color.parseColor("#ffffffff")).
                         setBadgeTextSize(6, true)
                         .setBadgeGravity(Gravity.END | Gravity.TOP)
-                        .setGravityOffset(-0.4f, 1f, true)
+                        .setGravityOffset(-0.4f, 4f, true)
                         .setBadgeNumber(count);
                 targetView.setTextColor(Color.parseColor("#666666"));
             }

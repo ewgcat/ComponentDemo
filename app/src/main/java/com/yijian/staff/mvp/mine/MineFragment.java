@@ -11,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.mvp.mine.club.ClubActivity;
 import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
+import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
+import com.yijian.staff.mvp.mine.setting.SettingActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 
 import java.util.ArrayList;
@@ -73,6 +77,7 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.ll_club:
+                startActivity(new Intent(getContext(),ClubActivity.class));
                 break;
             case R.id.ll_my_zhengshu:
                 startActivity(new Intent(getContext(),MyQualificationActivity.class));

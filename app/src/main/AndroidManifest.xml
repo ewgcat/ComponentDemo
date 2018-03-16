@@ -68,6 +68,7 @@
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:screenOrientation="portrait"
+
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".mvp.reception.step2.ReceptionStepTwoActivity"
@@ -103,7 +104,13 @@
             android:name=".mvp.vip.info.VipInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperListActivity"
+            android:name=".mvp.vip.potential.PotentialViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.vip.intent.IntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.outdate.OutdateViperListActivity"
@@ -112,7 +119,7 @@
             android:name=".mvp.vip.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potentialandintent.PotentialAndIntentViperDetailActivity"
+            android:name=".mvp.vip.potential.PotentialViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.all.AllFunctionActivity"
@@ -154,11 +161,15 @@
         <activity android:name=".mvp.mine.MyQualificationActivity" />
         <activity android:name=".mvp.mine.EditQualificationActivity" />
         <activity
-            android:name=".mvp.seepic.SeePicActivity"
+            android:name="com.yijian.staff.mvp.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.mine.selectheadicon.ClipActivity"
+            android:name="com.yijian.staff.mvp.mine.selectheadicon.ClipActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.mine.club.ClubActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.vip.potential.AddPotentialActivity"></activity>
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait"></activity>

@@ -1,16 +1,17 @@
-package com.yijian.staff.mvp.vip.potentialandintent;
+package com.yijian.staff.mvp.vip.potential;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 
 /**
  * 潜在会员或意向会员 基本信息
  */
-public class PotentialAndIntentViperDetailActivity extends AppCompatActivity {
+public class PotentialViperDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,7 @@ public class PotentialAndIntentViperDetailActivity extends AppCompatActivity {
         StatusBarUtil.setTranslucentForImageView(this, 0, null);
         setContentView(R.layout.activity_potential_and_intent_viper_detail);
 
-        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ll_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

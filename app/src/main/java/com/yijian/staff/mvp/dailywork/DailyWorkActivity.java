@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 /**
  * 考勤
  */
+@Route(path = "/test/29")
 public class DailyWorkActivity extends AppCompatActivity {
 
     /**

@@ -1,11 +1,10 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.qualification;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 

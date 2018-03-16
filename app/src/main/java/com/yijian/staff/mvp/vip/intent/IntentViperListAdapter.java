@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.potentialandintent;
+package com.yijian.staff.mvp.vip.intent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 
@@ -18,25 +19,25 @@ import java.util.List;
  * Created by yangk on 2018/3/5.
  */
 
-public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<PotentialAndIntentViperListAdapter.ViewHolder> {
+public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperListAdapter.ViewHolder> {
 
     private List<VipPeopleInfo> vipPeopleInfoList;
     private Context context;
 
-    public PotentialAndIntentViperListAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList){
+    public IntentViperListAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList){
         this.context = context;
         this.vipPeopleInfoList = vipPeopleInfoList;
     }
 
     @Override
-    public PotentialAndIntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public IntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
-        PotentialAndIntentViperListAdapter.ViewHolder holder = new PotentialAndIntentViperListAdapter.ViewHolder(view);
+        IntentViperListAdapter.ViewHolder holder = new IntentViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(PotentialAndIntentViperListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(IntentViperListAdapter.ViewHolder holder, int position) {
         VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
         holder.tv_name.setText(vipPeopleInfo.getName());
         holder.tv_birth.setText(vipPeopleInfo.getBirth());
@@ -55,7 +56,7 @@ public class PotentialAndIntentViperListAdapter extends RecyclerView.Adapter<Pot
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,PotentialAndIntentViperDetailActivity.class));
+                context.startActivity(new Intent(context,IntentViperDetailActivity.class));
             }
         });
 

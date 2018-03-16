@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.qualification;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -24,7 +24,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.mvp.mine.qualification.ConflictGridView;
+import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -34,7 +34,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 import me.iwf.photopicker.PhotoPicker;
 
 public class EditQualificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {

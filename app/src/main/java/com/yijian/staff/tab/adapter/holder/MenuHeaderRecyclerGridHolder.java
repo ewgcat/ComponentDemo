@@ -2,6 +2,7 @@ package com.yijian.staff.tab.adapter.holder;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableItemStateFlags;
@@ -22,6 +23,7 @@ import com.yijian.staff.R;
  */
 public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder implements DraggableItemViewHolder {
     public ImageView iv_delete;
+    public TextView tv_count;
 
     @DraggableItemStateFlags
     private int mDragStateFlags;
@@ -29,6 +31,8 @@ public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder impleme
     public MenuHeaderRecyclerGridHolder(View itemView) {
         super(itemView);
         iv_delete= (ImageView) itemView.findViewById(R.id.delete);
+        tv_count= (TextView) itemView.findViewById(R.id.tv_head_count);
+
     }
 
     @Override

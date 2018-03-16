@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\com_yijian_workspace\\YiJianStaff\\PhotoPicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-pt\\values-pt.xml",
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0c1ccded65ea4f1f5033504eea3cdc38\\res\\values-pt\\values-pt.xml",
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "33",
+                        "startColumns": "4",
+                        "startOffsets": "2788",
+                        "endColumns": "100",
+                        "endOffsets": "2884"
+                    }
+                },
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "E:\\com_yijian_workspace\\YiJianStaff\\PhotoPicker\\build\\intermediates\\bundles\\debug\\res\\values-pt\\values-pt.xml",
+                    "source": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/bundles/debug/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "105,168,221,292,344,416,477,544,598,657,757,808,859",
                         "endColumns": "62,52,70,51,71,60,66,53,58,99,50,50,44",
                         "endOffsets": "163,216,287,339,411,472,539,593,652,752,803,854,899"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\yangk\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\a7b8c654c98f14eb5626228400a4ae58\\res\\values-pt\\values-pt.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "33",
-                        "startColumns": "4",
-                        "startOffsets": "2788",
-                        "endColumns": "100",
-                        "endOffsets": "2884"
                     }
                 }
             ]

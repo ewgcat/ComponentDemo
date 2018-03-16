@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.constant;
 
 /**
  * author：李帅华

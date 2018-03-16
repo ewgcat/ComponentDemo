@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -30,6 +31,7 @@ import butterknife.ButterKnife;
 /**
  * 资源分配(员工角色)
  */
+@Route(path = "/test/10")
 public class ResourceAllocationActivity extends AppCompatActivity {
 
     @BindView(R.id.refreshLayout)

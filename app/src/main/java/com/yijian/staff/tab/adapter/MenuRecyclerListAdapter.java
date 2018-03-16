@@ -63,7 +63,7 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
 
     @Override
     public void bindViewHolder(MenuEditRecyclerListHolder holder, EditItem item) {
-        holder.tv_group_name.setText(item.getGroupTitle());
+        holder.tv_group_name.setText(item.getGroup());
         MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(item.getMenuItemList(), context);
         adapter.setOnAddListener(onAddListener);
         adapter.setOnDeleteListener(onDeleteListener);

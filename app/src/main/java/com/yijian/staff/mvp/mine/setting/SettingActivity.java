@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.setting;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,21 +20,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
+import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
-import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
 import me.iwf.photopicker.PhotoPicker;
 
 public class SettingActivity extends AppCompatActivity {

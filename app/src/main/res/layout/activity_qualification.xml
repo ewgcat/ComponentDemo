@@ -30,7 +30,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp"/>
 
-            <com.yijian.staff.mvp.mine.MyQualificatioinContent
+            <com.yijian.staff.mvp.mine.qualification.MyQualificatioinContent
                 android:id="@+id/qualificationContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

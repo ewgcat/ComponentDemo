@@ -17,16 +17,14 @@ import java.util.List;
  */
 public class EditItem implements BaseRecyclerItem,Serializable{
     private String mGroup;
-    private String mGroupTitle;
     private List<MenuItem> mMenuItemList;
 
     public EditItem() {
     }
 
-    public EditItem(String group, String groupTitle,List<MenuItem> menuItemList) {
+    public EditItem(String group, List<MenuItem> menuItemList) {
         mGroup = group;
         mMenuItemList = menuItemList;
-        mGroupTitle=groupTitle;
     }
 
     public String getGroup() {
@@ -37,13 +35,6 @@ public class EditItem implements BaseRecyclerItem,Serializable{
         mGroup = group;
     }
 
-    public String getGroupTitle() {
-        return mGroupTitle;
-    }
-
-    public void setGroupTitle(String groupTitle) {
-        mGroupTitle = groupTitle;
-    }
 
     public List<MenuItem> getMenuItemList() {
         return mMenuItemList;

@@ -3,8 +3,11 @@ package com.yijian.staff.mvp.work;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -19,25 +22,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.all.AllFunctionActivity;
-import com.yijian.staff.mvp.complaint.list.ComplaintListActivity;
-import com.yijian.staff.mvp.dailywork.DailyWorkActivity;
-import com.yijian.staff.mvp.huifang.task.HuiFangTaskActivity;
-import com.yijian.staff.mvp.invitation.InvitationActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.resourceallocation.HistoryResourceAllocationActivity;
-import com.yijian.staff.mvp.vip.info.VipInfoActivity;
+import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -48,14 +44,16 @@ public class WorkFragment extends Fragment {
 
     public static WorkFragment mWorkFragment = null;
     Unbinder unbinder;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+
     private ImageView ivRotate;
     private EditText etSearch;
     private View view;
 
-    private RecyclerView mRecyclerView;
-    private List<MenuItem> mFavList;
+    private List<MenuItem> menuItemList=new ArrayList<>();
+
     private MenuRecyclerGridAdapter mAdapter;
-    private int ID_ALL_ITEM = -1;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -93,26 +91,36 @@ public class WorkFragment extends Fragment {
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                switch(actionId){
+                switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
 
                         //TODO 点击搜索键,触发搜索请求
 
                         break;
-
                 }
-
-                return true;            }
+                return true;
+            }
         });
+        menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
+        MenuItem menuItem = new MenuItem();
+        menuItem.setCount(0);
+        menuItem.setName("全部");
+        menuItem.setPath("/test/all");
+        Uri uri = Uri.parse("android.resource://" + getContext().getApplicationContext().getPackageName() + "/" + R.mipmap.lg_all);
+        String path = uri.toString();
+        menuItem.setIcon(path);
+        menuItemList.add(menuItem);
+        MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(),true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        recyclerView.setAdapter(adapter);
+
+
     }
 
 
     private void initData() {
 
         startRotateAnimation();
-
-
-
 
 
     }
@@ -145,60 +153,13 @@ public class WorkFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.rl_jiedai, R.id.ll_work_hui_ji_jie_dai,
-            R.id.ll_work_yao_yue, R.id.ll_work_tian_jia_qian_zai,
-            R.id.ll_work_tou_su_chu_li, R.id.ll_work_hui_yuan_xin_xi,
-            R.id.ll_main_yi_xiang_hui_yuan, R.id.ll_work_kao_qin,
-            R.id.ll_work_all_gong_neng,R.id.ll_work_fen_pei_resource})
+    @OnClick({R.id.rl_jiedai})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_jiedai:
-                Intent i1 = new Intent(getActivity(), ReceptionActivity.class);
-                startActivity(i1);
+                startActivity(new Intent(getActivity(), ReceptionActivity.class));
                 break;
-            case R.id.ll_work_hui_ji_jie_dai:
-                Intent i2 = new Intent(getActivity(), HuiFangTaskActivity.class);
-                startActivity(i2);
-                break;
-            case R.id.ll_work_yao_yue:
-                startActivity(new Intent(getActivity(), InvitationActivity.class));
-                break;
-            case R.id.ll_work_tian_jia_qian_zai:
-//                Intent intent = new Intent(getActivity(), PotentialAndIntentViperListActivity.class);
-//                intent.putExtra("title", "潜在会员");
-//                startActivity(intent);
 
-                // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
-                Bundle params = new Bundle();
-                params.putString("title", "潜在会员");
-                ARouter.getInstance().build("/test/activity").with(params).navigation();
-
-
-                break;
-            case R.id.ll_work_tou_su_chu_li:
-
-                startActivity(new Intent(getActivity(), ComplaintListActivity.class));
-
-                break;
-            case R.id.ll_work_hui_yuan_xin_xi:
-                startActivity(new Intent(getActivity(), VipInfoActivity.class));
-                break;
-            case R.id.ll_main_yi_xiang_hui_yuan:
-                Bundle params1 = new Bundle();
-                params1.putString("title", "意向会员");
-                ARouter.getInstance().build("/test/activity").with(params1).navigation();
-                break;
-            case R.id.ll_work_kao_qin:
-                startActivity(new Intent(getActivity(), DailyWorkActivity.class));
-                break;
-            case R.id.ll_work_all_gong_neng:
-                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
-                break;
-            case R.id.ll_work_fen_pei_resource:
-                //TODO 分配资源
-//                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
-                startActivity(new Intent(getActivity(), HistoryResourceAllocationActivity.class));
-                break;
         }
     }
 

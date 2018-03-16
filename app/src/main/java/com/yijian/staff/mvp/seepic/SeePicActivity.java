@@ -1,23 +1,17 @@
 package com.yijian.staff.mvp.seepic;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.BundleKeyConstant;
+import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class SeePicActivity extends AppCompatActivity {

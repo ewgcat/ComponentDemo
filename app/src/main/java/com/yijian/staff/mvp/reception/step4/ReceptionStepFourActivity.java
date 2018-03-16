@@ -41,7 +41,7 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         timeBar.showTimeBar(4);
 
 
-        FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 5));
+        FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 10));
         SmartTable table = (SmartTable<KeCheng>) findViewById(R.id.table);
         List<KeCheng> keChengList = new ArrayList<KeCheng>();
         KeCheng keCheng1 = new KeCheng("12:00-18:00", "30", "30", "30", "30", "30", "30", "30");

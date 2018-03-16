@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine;
+package com.yijian.staff.mvp.mine.qualification;
 
 import android.content.Context;
 import android.graphics.Color;

@@ -7,7 +7,7 @@ import android.view.View;
 
 
 /**
- * ViewHolder for a {@link Parent}
+ * ViewHolder for a {@link ParentImp}
  * Keeps track of expanded state and holds callbacks which can be used to
  * trigger expansion-based events.
  *
@@ -15,11 +15,11 @@ import android.view.View;
  * @version 1.0
  * @since 5/27/2015
  */
-public class ParentViewHolder<P extends Parent<C>, C> extends RecyclerView.ViewHolder {
+public class ParentViewHolderGroup<P extends ParentImp<C>, C> extends RecyclerView.ViewHolder {
 
 
     P mParent;
-    ExpandableRecyclerAdapter mExpandableAdapter;
+    ExpandableRecyclerAdapterGroup mExpandableAdapter;
 
 
 
@@ -29,7 +29,7 @@ public class ParentViewHolder<P extends Parent<C>, C> extends RecyclerView.ViewH
      * @param itemView The {@link View} being hosted in this ViewHolder
      */
     @UiThread
-    public ParentViewHolder(@NonNull View itemView) {
+    public ParentViewHolderGroup(@NonNull View itemView) {
         super(itemView);
 
     }

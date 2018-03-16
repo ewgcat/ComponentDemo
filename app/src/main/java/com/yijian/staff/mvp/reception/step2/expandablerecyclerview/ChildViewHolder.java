@@ -1,11 +1,9 @@
-package com.yijian.staff.mvp.reception.step1.recyclerView;
+package com.yijian.staff.mvp.reception.step2.expandablerecyclerview;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
 
 /**
  * ViewHolder for a child list item.
@@ -69,6 +67,4 @@ public class ChildViewHolder<C> extends RecyclerView.ViewHolder {
 
         return mExpandableAdapter.getChildPosition(flatPosition);
     }
-
-
 }

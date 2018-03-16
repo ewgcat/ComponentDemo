@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.reception.step1.bean;
 
-import com.yijian.staff.mvp.reception.step1.recyclerView.Parent;
+import com.yijian.staff.mvp.reception.step1.recyclerView.ParentImp;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionEntry implements Parent<QuestionOption> {
+public class QuestionEntry implements ParentImp<QuestionOption> {
     private String name;
     private int id;
 

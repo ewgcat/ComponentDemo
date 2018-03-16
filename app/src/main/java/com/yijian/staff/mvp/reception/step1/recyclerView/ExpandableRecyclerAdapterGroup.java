@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.reception.step1.recyclerView;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.List;
  * methods and not the notify methods of RecyclerView.Adapter.
  *
  */
-public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH extends ParentViewHolder, CVH extends ChildViewHolder>
+public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, PVH extends ParentViewHolderGroup, CVH extends ChildViewHolderGroup>
         extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "ExpandableRecyclerAdapt";
@@ -39,10 +38,10 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     /**
      * A {@link List} of all currently expanded parents and their children, in order.
      * Changes to this list should be made through the add/remove methods
-     * available in {@link ExpandableRecyclerAdapter}.
+     * available in {@link ExpandableRecyclerAdapterGroup}.
      */
     @NonNull
-    protected List<ExpandableWrapper<P, C>> mFlatItemList;
+    protected List<ExpandableWrapperGroup<P, C>> mFlatItemList;
 
     @NonNull
     private List<P> mParentList;
@@ -66,7 +65,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * @param parentList List of all parents to be displayed in the RecyclerView that this
      *                       adapter is linked to
      */
-    public ExpandableRecyclerAdapter(@NonNull List<P> parentList) {
+    public ExpandableRecyclerAdapterGroup(@NonNull List<P> parentList) {
         super();
         mParentList = parentList;
         mFlatItemList = generateFlattenedParentChildList(parentList);
@@ -105,8 +104,8 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * Implementation of Adapter.onBindViewHolder(RecyclerView.ViewHolder, int)
      * that determines if the list item is a parent or a child and calls through
      * to the appropriate implementation of either
-     * {@link #onBindParentViewHolder(ParentViewHolder, int, Parent)} or
-     * {@link #onBindChildViewHolder(ChildViewHolder, int, int, Object, int)}.
+     * {@link #onBindParentViewHolder(ParentViewHolderGroup, int, ParentImp)} or
+     * {@link #onBindChildViewHolder(ChildViewHolderGroup, int, int, Object, int)}.
      *
      * @param holder The RecyclerView.ViewHolder to bind data to
      * @param flatPosition The index in the merged list of children and parents at which to bind
@@ -120,7 +119,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
                     + " flatPosition " + flatPosition + ". Was the data changed without a call to notify...()?");
         }
 
-        ExpandableWrapper<P, C> listItem = mFlatItemList.get(flatPosition);
+        ExpandableWrapperGroup<P, C> listItem = mFlatItemList.get(flatPosition);
         if (listItem.isParent()) {
             PVH parentViewHolder = (PVH) holder;
 
@@ -206,7 +205,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     @Override
     @UiThread
     public int getItemViewType(int flatPosition) {
-        ExpandableWrapper<P, C> listItem = mFlatItemList.get(flatPosition);
+        ExpandableWrapperGroup<P, C> listItem = mFlatItemList.get(flatPosition);
         if (listItem.isParent()) {
             return getParentViewType(getNearestParentPosition(flatPosition));
         } else {
@@ -285,7 +284,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     /**
      * Implementation of Adapter#onAttachedToRecyclerView(RecyclerView).
      * <p>
-     * Called when this {@link ExpandableRecyclerAdapter} is attached to a RecyclerView.
+     * Called when this {@link ExpandableRecyclerAdapterGroup} is attached to a RecyclerView.
      *
      * @param recyclerView The {@code RecyclerView} this {@code ExpandableRecyclerAdapter}
      *                     is being attached to
@@ -333,7 +332,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
         int parentCount = -1;
         for (int i = 0; i <= flatPosition; i++) {
-            ExpandableWrapper<P, C> listItem = mFlatItemList.get(i);
+            ExpandableWrapperGroup<P, C> listItem = mFlatItemList.get(i);
             if (listItem.isParent()) {
                 parentCount++;
             }
@@ -355,7 +354,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
         int childCount = 0;
         for (int i = 0; i < flatPosition; i++) {
-            ExpandableWrapper<P, C> listItem = mFlatItemList.get(i);
+            ExpandableWrapperGroup<P, C> listItem = mFlatItemList.get(i);
             if (listItem.isParent()) {
                 childCount = 0;
             } else {
@@ -373,11 +372,11 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * Generates a full list of all parents and their children, in order.
      *
      * @param parentList A list of the parents from
-     *                   the {@link ExpandableRecyclerAdapter}
+     *                   the {@link ExpandableRecyclerAdapterGroup}
      * @return A list of all parents and their children, expanded
      */
-    private List<ExpandableWrapper<P, C>> generateFlattenedParentChildList(List<P> parentList) {
-        List<ExpandableWrapper<P, C>> flatItemList = new ArrayList<>();
+    private List<ExpandableWrapperGroup<P, C>> generateFlattenedParentChildList(List<P> parentList) {
+        List<ExpandableWrapperGroup<P, C>> flatItemList = new ArrayList<>();
 
         int parentCount = parentList.size();
         for (int i = 0; i < parentCount; i++) {
@@ -390,19 +389,19 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
 
 
-    private void generateParentWrapper(List<ExpandableWrapper<P, C>> flatItemList, P parent) {
-        ExpandableWrapper<P, C> parentWrapper = new ExpandableWrapper<>(parent);
+    private void generateParentWrapper(List<ExpandableWrapperGroup<P, C>> flatItemList, P parent) {
+        ExpandableWrapperGroup<P, C> parentWrapper = new ExpandableWrapperGroup<>(parent);
         flatItemList.add(parentWrapper);
         generateExpandedChildren(flatItemList, parentWrapper);
     }
 
-    private void generateExpandedChildren(List<ExpandableWrapper<P, C>> flatItemList, ExpandableWrapper<P, C> parentWrapper) {
+    private void generateExpandedChildren(List<ExpandableWrapperGroup<P, C>> flatItemList, ExpandableWrapperGroup<P, C> parentWrapper) {
 //        parentWrapper.setExpanded(true);
 
-        List<ExpandableWrapper<P, C>> wrappedChildList = parentWrapper.getWrappedChildList();
+        List<ExpandableWrapperGroup<P, C>> wrappedChildList = parentWrapper.getWrappedChildList();
         int childCount = wrappedChildList.size();
         for (int j = 0; j < childCount; j++) {
-            ExpandableWrapper<P, C> childWrapper = wrappedChildList.get(j);
+            ExpandableWrapperGroup<P, C> childWrapper = wrappedChildList.get(j);
             flatItemList.add(childWrapper);
         }
     }

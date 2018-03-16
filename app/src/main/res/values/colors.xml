@@ -48,5 +48,10 @@
     <color name="blue1997f8">#1997f8</color>
     <color name="gray666666">#666666</color>
 
+    <color name="text_black1">#333333</color>
+    <color name="text_black2">#666666</color>
+    <color name="text_black3">#999999</color>
+    <color name="division">#eaeaea</color>
+
 
 </resources>

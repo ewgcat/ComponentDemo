@@ -5,14 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools">
     <CheckedTextView
         android:id="@+id/ctv_multi"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="72dp"
-        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+        android:layout_height="36dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:drawableLeft="@drawable/selector_quest_item_drawable"
+        android:drawablePadding="6dp"
+        android:background="@drawable/shape_fillet_gray_5"
         android:gravity="center"
-        android:textAllCaps="true"
-        tools:text="Artist Name" />
+        tools:text="Artist Name"  />
+
 </RelativeLayout>

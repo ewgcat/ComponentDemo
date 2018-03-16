@@ -11,20 +11,20 @@ import java.util.List;
  * @param <P> Parent list item
  * @param <C> Child list item
  */
-public class ExpandableWrapper<P extends Parent<C>, C> {
+public class ExpandableWrapperGroup<P extends ParentImp<C>, C> {
 
     private P mParent;
     private C mChild;
     private boolean mWrappedParent;
 
-    private List<ExpandableWrapper<P, C>> mWrappedChildList;
+    private List<ExpandableWrapperGroup<P, C>> mWrappedChildList;
 
     /**
      * Constructor to wrap a parent object of type {@link P}.
      *
      * @param parent The parent object to wrap
      */
-    public ExpandableWrapper(@NonNull P parent) {
+    public ExpandableWrapperGroup(@NonNull P parent) {
         mParent = parent;
         mWrappedParent = true;
 
@@ -36,7 +36,7 @@ public class ExpandableWrapper<P extends Parent<C>, C> {
      *
      * @param child The child object to wrap
      */
-    public ExpandableWrapper(@NonNull C child) {
+    public ExpandableWrapperGroup(@NonNull C child) {
         mChild = child;
         mWrappedParent = false;
     }
@@ -69,7 +69,7 @@ public class ExpandableWrapper<P extends Parent<C>, C> {
      * @return The list of children of a parent
      * @throws IllegalStateException If a parent isn't being wrapped
      */
-    public List<ExpandableWrapper<P, C>> getWrappedChildList() {
+    public List<ExpandableWrapperGroup<P, C>> getWrappedChildList() {
         if (!mWrappedParent) {
             throw new IllegalStateException("Parent not wrapped");
         }
@@ -77,11 +77,11 @@ public class ExpandableWrapper<P extends Parent<C>, C> {
         return mWrappedChildList;
     }
 
-    private List<ExpandableWrapper<P, C>> generateChildItemList(P parentListItem) {
-        List<ExpandableWrapper<P, C>> childItemList = new ArrayList<>();
+    private List<ExpandableWrapperGroup<P, C>> generateChildItemList(P parentListItem) {
+        List<ExpandableWrapperGroup<P, C>> childItemList = new ArrayList<>();
 
         for (C child : parentListItem.getChildList()) {
-            childItemList.add(new ExpandableWrapper<P, C>(child));
+            childItemList.add(new ExpandableWrapperGroup<P, C>(child));
         }
 
         return childItemList;
@@ -92,7 +92,7 @@ public class ExpandableWrapper<P extends Parent<C>, C> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final ExpandableWrapper<?, ?> that = (ExpandableWrapper<?, ?>) o;
+        final ExpandableWrapperGroup<?, ?> that = (ExpandableWrapperGroup<?, ?>) o;
 
         if (mParent != null ? !mParent.equals(that.mParent) : that.mParent != null)
             return false;

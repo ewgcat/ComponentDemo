@@ -1,27 +1,30 @@
 package com.yijian.staff.mvp.huifang.task;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.yijian.staff.widget.PagerSlidingTabStrip;
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
+import com.yijian.staff.mvp.huifang.history.HuiFangHistoryActivity;
 import com.yijian.staff.mvp.huifang.task.fragment.BaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
-import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.widget.NavigationBarItemFactory;
-
+import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 @Route(path = "/test/5")
 public class HuiFangTaskActivity extends AppCompatActivity {
@@ -31,7 +34,7 @@ public class HuiFangTaskActivity extends AppCompatActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    private List<HuiFangInfo> huiFangInfoList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +51,11 @@ public class HuiFangTaskActivity extends AppCompatActivity {
 
 
     private void initNavigation() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
-        navigationBar.setTitle("回访任务", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_task_navigation_bar);
+        navigationBar2.setTitle("回访任务");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+
     }
 
 
@@ -88,7 +92,7 @@ public class HuiFangTaskActivity extends AppCompatActivity {
         HuiFangPagerAdapter huiFangPagerAdapter = new HuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(huiFangPagerAdapter);
         tabs.setViewPager(viewPager);
-        tabs.updateBubbleNum(0,12);
+        tabs.updateBubbleNum(0, 12);
 
         //初始化显示第一页
         viewPager.setCurrentItem(0);
@@ -96,6 +100,16 @@ public class HuiFangTaskActivity extends AppCompatActivity {
 
     }
 
+
+    @OnClick({ R.id.ll_hui_fang_ji_lu})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+
+            case R.id.ll_hui_fang_ji_lu:
+                startActivity(new Intent(HuiFangTaskActivity.this,HuiFangHistoryActivity.class));
+                break;
+        }
+    }
 
 }
 

@@ -1,18 +1,24 @@
 package com.yijian.staff.mvp.vip.potential;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,14 +29,14 @@ import butterknife.OnClick;
 public class AddPotentialActivity extends AppCompatActivity {
 
     @BindView(R.id.et_name)
-    EditText etName;
+    LastInputEditText etName;
     @BindView(R.id.tv_sex)
     TextView tvSex;
     @BindView(R.id.et_phone)
-    EditText etPhone;
-//    @BindView(R.id.tv_time)
-//    TextView tvTime;
+    LastInputEditText etPhone;
+    private OptionsPickerView optionsPickerView;
 
+    private int sex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,25 +59,52 @@ public class AddPotentialActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+        ArrayList<String> sexDescList=new ArrayList<>();
+        sexDescList.add("男");
+        sexDescList.add("女");
+
+        optionsPickerView = new OptionsPickerView.Builder(AddPotentialActivity.this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                tvSex.setText(sexDescList.get(options1));
+                sex=options1;
+            }
+        }).build();
+        optionsPickerView.setPicker(sexDescList);
+
     }
 
     @OnClick({R.id.tv_sex})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_sex:
-
+                hideKeyBoard(view);
+                optionsPickerView.show();
                 break;
-//            case R.id.tv_time:
-//                //提交结果
-//                TimePickerView pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
-//                    @Override
-//                    public void onTimeSelect(Date date, View view) {
-//                        String result = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-//                        tvTime.setText(result);
-//                    }
-//                }).build();
-//                pickerView.show();
-//                break;
+        }
+    }
+
+    /**
+     *  隐藏键盘
+     */
+    public void hideKeyBoard(View v) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     *  显示键盘
+     */
+    public void showKeyBoard(View v) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(v,0);
+
         }
     }
 }

@@ -9,6 +9,11 @@
         <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
 
     </style>
+
+    <style name="TextAppearance.FontPath" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/font.ttf</item>
+    </style>
     <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
         <item name="fontPath">fonts/font.ttf</item>
     </style>
@@ -56,9 +61,24 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
-    <style name="CustomDayTextAppearance"
-        parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/mcv_text_date_light</item>
+    <!--MaterialCalendarWidget-->
+    <style name="MyTextAppearance_MaterialCalendarWidget_Header"
+        parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="MyTextAppearance_MaterialCalendarWidget_Date"
+        parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@drawable/selector_calendar_item_text</item>
+    </style>
+
+    <style name="MyTextAppearance_MaterialCalendarWidget_WeekDay"
+        parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_black1</item>
+    </style>
+    <!--MaterialCalendarWidget-->
+
 
 </resources>

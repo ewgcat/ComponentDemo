@@ -40,7 +40,7 @@ public class PictureUtil {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/baolimanager");
+        File storageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/yijian");
         if (!storageDir.exists()) {
             storageDir.mkdirs();
         }
@@ -424,7 +424,7 @@ public class PictureUtil {
      * @return
      */
     public static File getAlbumDir() {
-        File dir = new File(Environment.getExternalStorageDirectory().getPath() + "/baolimanager");
+        File dir = new File(Environment.getExternalStorageDirectory().getPath() + "/yijian");
         if (!dir.exists()) {
             dir.mkdirs();
         }

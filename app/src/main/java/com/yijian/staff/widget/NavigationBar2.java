@@ -110,9 +110,15 @@ public class NavigationBar2 extends LinearLayout {
     }
 
 
-    public void hideBottomLine() {bottomLine.setVisibility(GONE);}
-    public void hideLeftSecondIv() {secondLeftIv.setVisibility(GONE);}
-    public void setBackClickListener(Activity activity){
+    public void hideBottomLine() {
+        bottomLine.setVisibility(GONE);
+    }
+
+    public void hideLeftSecondIv() {
+        secondLeftIv.setVisibility(GONE);
+    }
+
+    public void setBackClickListener(Activity activity) {
         backLL.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -120,6 +126,10 @@ public class NavigationBar2 extends LinearLayout {
                 activity.finish();
             }
         });
+    }
+
+    public void setmRightTvClickListener(View.OnClickListener listener) {
+        mRightTv.setOnClickListener(listener);
     }
 
 

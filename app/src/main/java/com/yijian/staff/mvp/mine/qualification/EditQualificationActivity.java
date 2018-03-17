@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -26,8 +27,8 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
-import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.widget.NavigationBarItemFactory;
+import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +39,9 @@ import me.iwf.photopicker.PhotoPicker;
 
 public class EditQualificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    @BindView(R.id.gv_qualification)
-    ConflictGridView gv_qualification;
+    @BindView(R.id.choose_photo_view)
+    ChoosePhotoView choosePhotoView;
     private Dialog dialog;
-    QualificationImgAdapter qualificationImgAdapter;
     private ArrayList<String> qualifacatioinList = new ArrayList<String>();
 
     @Override
@@ -55,35 +55,49 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
 
     private void initData() {
         initDialog();
-        qualificationImgAdapter = new QualificationImgAdapter(this, qualifacatioinList);
-        gv_qualification.setOnItemClickListener(this);
-        gv_qualification.setAdapter(qualificationImgAdapter);
-        qualificationImgAdapter.setList(qualifacatioinList);
+
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
-        navigationBar.setTitle("资格证书", "#ffffff");
-        navigationBar.getmRightTextView().setText("完成");
-        navigationBar.hideBottomLine();
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        navigationBar.setRightButtonClickListener(new View.OnClickListener() {
+
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.edit_activity_navigation_bar);
+        navigationBar2.setTitle("资格证书");
+        navigationBar2.setmRightTvText("完成");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(101);
                 finish();
             }
         });
+
+
+        choosePhotoView.setMode(ChoosePhotoView.MODE_NORMAL);
+        choosePhotoView.setChoosePhotoViewListener(new ChoosePhotoView.OnChoosePhotoViewListener() {
+            @Override
+            public void hadChangedGridView() {
+            }
+
+            @Override
+            public void hadAddToPath(String path) {
+            }
+
+            @Override
+            public void hadDeletePath(String path) {
+            }
+        });
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == qualifacatioinList.size()) {//点击“+”号位置添加图片
             dialog.show();
-        }else{
+        } else {
             Intent intent = new Intent(this, SeePicActivity.class);
-            String path="";
+            String path = "";
             intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
             startActivity(intent);
         }
@@ -97,16 +111,18 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
         public QualificationImgAdapter() {
             super();
         }
+
         /**
          * 获取列表数据
+         *
          * @param list
          */
-        public void setList(List<String> list){
+        public void setList(List<String> list) {
             this.list = list;
             this.notifyDataSetChanged();
         }
 
-        public QualificationImgAdapter(Context mContext,List<String> list) {
+        public QualificationImgAdapter(Context mContext, List<String> list) {
             super();
             this.mContext = mContext;
             this.list = list;
@@ -114,30 +130,24 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
 
         @Override
         public int getCount() {
-            if(list==null){
+            if (list == null) {
                 return 1;
-            }else if(list.size()==6){
+            } else if (list.size() == 6) {
                 return 6;
-            }else{
-                return list.size()+1;
+            } else {
+                return list.size() + 1;
             }
         }
 
         @Override
         public Object getItem(int position) {
             if (list != null
-                    && list.size() == 6)
-            {
+                    && list.size() == 6) {
                 return list.get(position);
-            }
-
-            else if (list == null || position - 1 < 0
-                    || position > list.size())
-            {
+            } else if (list == null || position - 1 < 0
+                    || position > list.size()) {
                 return null;
-            }
-            else
-            {
+            } else {
                 return list.get(position - 1);
             }
         }
@@ -150,25 +160,22 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;
-            if(convertView==null){
+            if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.item_qualification_image, null);
                 holder = new ViewHolder();
                 holder.iv = (ImageView) convertView.findViewById(R.id.item_grid_image);
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) holder.iv.getLayoutParams();
-                lp.width = CustomApplication.SCREEN_WIDTH/3-20;
-                lp.height = CustomApplication.SCREEN_WIDTH/3-20;
+                lp.width = CustomApplication.SCREEN_WIDTH / 3 - 20;
+                lp.height = CustomApplication.SCREEN_WIDTH / 3 - 20;
                 holder.iv.setLayoutParams(lp);
                 convertView.setTag(holder);
-            }else{
+            } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            if (isShowAddItem(position))
-            {
+            if (isShowAddItem(position)) {
                 holder.iv.setImageResource(R.mipmap.ic_launcher);
-            }
-            else
-            {
+            } else {
                 RequestOptions options = new RequestOptions()
                         .centerCrop()
                         .placeholder(R.mipmap.placeholder)
@@ -179,13 +186,12 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
             return convertView;
         }
 
-        private boolean isShowAddItem(int position)
-        {
+        private boolean isShowAddItem(int position) {
             int size = list == null ? 0 : list.size();
             return position == size;
         }
 
-        class ViewHolder{
+        class ViewHolder {
             ImageView iv;
         }
 
@@ -287,16 +293,7 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PhotoPicker.REQUEST_CODE && data != null) {
-            ArrayList<String> photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-            if (photos != null && photos.size() > 0) {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.mipmap.placeholder)
-                        .error(R.mipmap.placeholder)
-                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                qualifacatioinList.addAll(photos);
-                qualificationImgAdapter.setList(qualifacatioinList);
-            }
+            choosePhotoView.judgeResult(requestCode, resultCode, data);
         }
 
     }

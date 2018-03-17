@@ -134,11 +134,11 @@ public class HuiJiProductQuotationFragment extends Fragment {
 
     //点击筛选
     private void selectShaixuan() {
-        if (tvShaixuan.getTextColors().getDefaultColor() == getContext().getResources().getColor(R.color.colorPrimary)) {
+        if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997F8")) {
             showFilterDialog();
 
         } else {
-            tvShaixuan.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+            tvShaixuan.setTextColor(Color.parseColor("#1997F8"));
             tvZongHe.setTextColor(Color.parseColor("#666666"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
             Drawable drawablePrice = getContext().getResources().getDrawable(R.mipmap.jd_normal_arrow);
@@ -157,7 +157,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
 
     //点击价格
     private void selectPrice() {
-        if (tvPrice.getTextColors().getDefaultColor() == getContext().getResources().getColor(R.color.colorPrimary)) {
+        if (tvPrice.getTextColors().getDefaultColor() == Color.parseColor("#1997F8")) {
             if (priceUp) {
                 Drawable drawable = getContext().getResources().getDrawable(R.mipmap.jd_down_arrow);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -172,7 +172,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
                 //TODO 请求 (价格从低到高）
             }
         } else {
-            tvPrice.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+            tvPrice.setTextColor(Color.parseColor("#1997F8"));
             tvZongHe.setTextColor(Color.parseColor("#666666"));
             tvShaixuan.setTextColor(Color.parseColor("#666666"));
             Drawable drawable = getContext().getResources().getDrawable(R.mipmap.jd_up_arrow);
@@ -186,10 +186,10 @@ public class HuiJiProductQuotationFragment extends Fragment {
     }
 
     private void selectZongHe() {
-        if (tvZongHe.getTextColors().getDefaultColor() == getContext().getResources().getColor(R.color.colorPrimary)) {
+        if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997F8")) {
 
         } else {
-            tvZongHe.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+            tvZongHe.setTextColor(Color.parseColor("#1997F8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
             tvShaixuan.setTextColor(Color.parseColor("#666666"));
             Drawable drawable = getContext().getResources().getDrawable(R.mipmap.jd_normal_arrow);

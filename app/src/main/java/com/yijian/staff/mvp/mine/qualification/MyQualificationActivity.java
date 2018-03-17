@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.yijian.staff.R;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -65,13 +66,12 @@ public class MyQualificationActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
-        navigationBar.setTitle("资格证书", "#ffffff");
-        navigationBar.getmRightTextView().setText("编辑");
-        navigationBar.hideBottomLine();
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        navigationBar.setRightButtonClickListener(new View.OnClickListener() {
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_activity_navigation_bar);
+        navigationBar2.setTitle("资格证书");
+        navigationBar2.setmRightTvText("编辑");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyQualificationActivity.this,EditQualificationActivity.class));

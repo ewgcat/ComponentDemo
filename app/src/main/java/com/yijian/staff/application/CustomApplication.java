@@ -7,22 +7,19 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
-
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.tencent.bugly.Bugly;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
-
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.dagger.component.AppComponent;
+import com.yijian.staff.dagger.component.DaggerAppComponent;
+import com.yijian.staff.dagger.module.AppModule;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.ApplicationHolder;
 import com.yijian.staff.util.InitializeService;
-import com.yijian.staff.dagger.component.AppComponent;
-import com.yijian.staff.dagger.component.DaggerAppComponent;
-import com.yijian.staff.dagger.module.AppModule;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -73,11 +70,6 @@ public class CustomApplication extends TinkerApplication {
         getScreenSize();
 
         RetrofitClient.init(this);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/font.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build());
 
         //在子线程中完成其他初始化
         InitializeService.start(this);

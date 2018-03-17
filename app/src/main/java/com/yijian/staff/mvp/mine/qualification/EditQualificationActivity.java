@@ -75,7 +75,7 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
 
 
         choosePhotoView.setMode(ChoosePhotoView.MODE_NORMAL);
-        choosePhotoView.setChangeHorizontalListViewListener(new ChoosePhotoView.ChangeHorizontalListViewListener() {
+        choosePhotoView.setChoosePhotoViewListener(new ChoosePhotoView.OnChoosePhotoViewListener() {
             @Override
             public void hadChangedGridView() {
             }

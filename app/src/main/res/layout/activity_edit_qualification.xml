@@ -128,14 +128,8 @@
             android:layout_marginTop="20dp"/>
 
 
-        <com.yijian.staff.widget.selectphoto.ChoosePhotoView
-            android:layout_width="match_parent"
-            android:id="@+id/choose_photo_view"
-            android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content">
-
-        </com.yijian.staff.widget.selectphoto.ChoosePhotoView>
-
+        <include layout="@layout/view_choose_photo"
+            android:id="@+id/choose_photo_view"/>
     </LinearLayout>
 
 </ScrollView>

@@ -7,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.BaseActivity;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.PictureUtil;
 
@@ -50,15 +48,13 @@ public class ChoosePhotoView extends RelativeLayout {
 
     protected Dialog dialog;
 
-    private int count = 3;
 
-    protected HorizontalListView horizontalListView;
-    protected PostPhotoAdapter mAdapter;
+    protected ChoosePhotoAdapter choosePhotoAdapter;
 
     protected int mMode = MODE_NORMAL;
 
 
-    public interface ChangeHorizontalListViewListener {
+    public interface OnChoosePhotoViewListener {
         void hadChangedGridView();
 
         void hadAddToPath(String path);
@@ -67,35 +63,34 @@ public class ChoosePhotoView extends RelativeLayout {
     }
 
 
-    private ChangeHorizontalListViewListener listener;
+    private OnChoosePhotoViewListener listener;
 
-    public void setChangeHorizontalListViewListener(ChangeHorizontalListViewListener listener) {
+    public void setChoosePhotoViewListener(OnChoosePhotoViewListener listener) {
         this.listener = listener;
     }
 
     protected List<String> mPhotoPathList = new ArrayList<>();
 
-    public ChoosePhotoView(Context context) {
-        super(context);
-        init(context);
+    public ChoosePhotoView(Activity context) {
+        this(context, null);
     }
 
     public ChoosePhotoView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+        this(context, null, 0);
     }
 
     public ChoosePhotoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        this.context = context;
+
     }
 
     public void setMode(int mMode) {
         this.mMode = mMode;
         if (mMode == MODE_ONLY_SHOW) {
-            mAdapter.setmIsAllowAdd(false, true);
+            choosePhotoAdapter.setmIsAllowAdd(false, true);
         } else {
-            mAdapter.setmIsAllowAdd(true, false);
+            choosePhotoAdapter.setmIsAllowAdd(true, false);
         }
     }
 
@@ -103,10 +98,13 @@ public class ChoosePhotoView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        horizontalListView = (HorizontalListView) this.findViewById(R.id.gv_photo_view);
-        mAdapter = new PostPhotoAdapter(context);
-        horizontalListView.setAdapter(mAdapter);
-        mAdapter.setListener(new OnUpdatePhotoAdapterListener() {
+
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        choosePhotoAdapter = new ChoosePhotoAdapter(context, 6);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerView.setAdapter(choosePhotoAdapter);
+        choosePhotoAdapter.setListener(new OnUpdatePhotoAdapterListener() {
             @Override
             public void addPhoto() {
                 initDialog();
@@ -193,13 +191,6 @@ public class ChoosePhotoView extends RelativeLayout {
     }
 
 
-    private void init(Context context) {
-        this.context = context;
-        View layout = LayoutInflater.from(context).inflate(R.layout.view_photo_gridview, this, false);
-        addView(layout);
-    }
-
-
     public void showDialog() {
         if (dialog != null && !dialog.isShowing()) {
             dialog.show();
@@ -240,7 +231,6 @@ public class ChoosePhotoView extends RelativeLayout {
     }
 
 
-
     //根据路径压缩图片
     private void compress(String path) {
         File soureFile = new File(path);
@@ -278,18 +268,15 @@ public class ChoosePhotoView extends RelativeLayout {
         Logger.i(TAG, "压缩文件大小：" + (float) desFile.length() / 1024 + "K");
 
 
-            mPhotoPathList.add(desFile.getPath());
-            mAdapter.addPhoto(desFile.getPath());
-            mAdapter.notifyDataSetChanged();
-            if (listener != null) {
-                listener.hadAddToPath(soureFile.getPath());
-            }
+        mPhotoPathList.add(desFile.getPath());
+        choosePhotoAdapter.addPhoto(desFile.getPath());
+        choosePhotoAdapter.notifyDataSetChanged();
+        if (listener != null) {
+            listener.hadAddToPath(soureFile.getPath());
+        }
 
 
     }
-
-
-
 
 
     //获取图片路径
@@ -300,7 +287,7 @@ public class ChoosePhotoView extends RelativeLayout {
 
     //设置图片路径
     public void setmPhotoPathList(List<String> datas) {
-        mAdapter.setmPhotoUrlList(datas);
+        choosePhotoAdapter.setmPhotoUrlList(datas);
     }
 
 }

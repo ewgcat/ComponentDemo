@@ -64,6 +64,10 @@
         "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
+        "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout-v16\\notification_template_custom_big.xml"
+    },
+    {
         "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_action.xml.flat",
         "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout-v21\\notification_action.xml"
     },
@@ -80,6 +84,14 @@
         "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
+        "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
         "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
@@ -90,6 +102,10 @@
     {
         "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action.xml.flat",
+        "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\layout\\notification_action.xml"
     },
     {
         "merged": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",

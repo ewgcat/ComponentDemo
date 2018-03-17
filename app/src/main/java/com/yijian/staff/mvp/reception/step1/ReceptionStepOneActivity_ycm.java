@@ -19,17 +19,13 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
 import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
 import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
-import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity_ycm;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -78,10 +74,10 @@ public class ReceptionStepOneActivity_ycm extends AppCompatActivity implements V
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<Integer, Integer> singleCheck = adapter.getSingleCheck();
+                Map<String, Integer> singleCheck = adapter.getSingleCheck();
                 Log.e(TAG, "onClick: singleCheck"+singleCheck.toString() );
 
-                Map<Integer, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
+                Map<String, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
                 Log.e(TAG, "onClick: multiCheck"+multiCheck.toString() );
 
                 Map<Integer, String> write = adapter.getWrite();
@@ -122,52 +118,6 @@ public class ReceptionStepOneActivity_ycm extends AppCompatActivity implements V
 
     List<QuestionEntry> datas;
     private void mockData() {
-//        ArrayList<QuestionOption> type0 = new ArrayList<>();
-//        ArrayList<QuestionOption> type1 = new ArrayList<>();
-//        ArrayList<QuestionOption> type2 = new ArrayList<>();
-//
-//        ArrayList<QuestionOption> type3 = new ArrayList<>();
-//        ArrayList<QuestionOption> type4 = new ArrayList<>();
-//        ArrayList<QuestionOption> type5 = new ArrayList<>();
-//        ArrayList<QuestionOption> type6 = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type0.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type1.add(questionOption_type1);
-//        }
-//
-//        type2.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type4.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type3.add(questionOption_type1);
-//        }
-//
-//        type5.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//        type6.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        QuestionEntry questionEntry0 = new QuestionEntry("这是一个单选",0,type0);
-//        QuestionEntry questionEntry1 = new QuestionEntry("这是一个多选多选1",1,type1);
-//        QuestionEntry questionEntry2 = new QuestionEntry("这是一个填空2",2,type2);
-//        QuestionEntry questionEntry3 = new QuestionEntry("这是一个填空6",3,type6);
-//        QuestionEntry questionEntry4 = new QuestionEntry("这是一个填空5",4,type5);
-//        QuestionEntry questionEntry5 = new QuestionEntry("这是一个单选4",5,type4);
-//        QuestionEntry questionEntry6 = new QuestionEntry("这是一个多选多选3",6,type3);
-//
-//        datas = Arrays.asList(questionEntry0,questionEntry1,questionEntry2,questionEntry3,questionEntry4,questionEntry5,questionEntry6);
         Step1WrapBean bean = new Gson().fromJson(Step1MockData.step1Data, Step1WrapBean.class);
         step1bean = bean.getStep1();
 

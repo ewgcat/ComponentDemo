@@ -60,7 +60,10 @@
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".mvp.questionnaireresult.QuestionnaireResultActivity" />
+        <activity
+            android:name=".mvp.questionnaireresult.QuestionnaireResultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"

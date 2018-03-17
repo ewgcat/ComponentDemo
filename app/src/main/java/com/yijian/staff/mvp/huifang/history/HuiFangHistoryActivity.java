@@ -2,10 +2,16 @@ package com.yijian.staff.mvp.huifang.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
 import com.yijian.staff.util.Logger;
@@ -45,6 +51,26 @@ public class HuiFangHistoryActivity extends AppCompatActivity {
         navigationBar2.setBackClickListener(this);
         RecyclerView recyclerView = findViewById(R.id.rlv);
 
+
+        RefreshLayout   refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(Color.parseColor("#1997F8"));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(Color.parseColor("#1997F8"));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
 
         JSONObject jsonObject = new JSONObject();
         try {

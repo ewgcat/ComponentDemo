@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-night-v8_values-night-v8.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-night-v8/values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,125,209,293,389,491,593",
+                        "endColumns": "69,83,83,95,101,101,93",
+                        "endOffsets": "120,204,288,384,486,588,682"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-kn_values-kn.arsc.flat",
             "map": [
                 {
@@ -28,21 +43,6 @@
                         "startOffsets": "105,223,335,448,536,643,770,847,924,1006,1122,1233,1332,1445,1549,1663,1827,1927",
                         "endColumns": "117,111,112,87,106,126,76,76,81,115,110,98,112,103,113,163,99,81",
                         "endOffsets": "218,330,443,531,638,765,842,919,1001,1117,1228,1327,1440,1544,1658,1822,1922,2004"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-night-v8_values-night-v8.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-night-v8/values-night-v8.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,125,209,293,389,491,593",
-                        "endColumns": "69,83,83,95,101,101,93",
-                        "endOffsets": "120,204,288,384,486,588,682"
                     }
                 }
             ]
@@ -320,33 +320,16 @@
             ]
         },
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-iw_values-iw.arsc.flat",
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-en-rCA_values-en-rCA.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-iw/values-iw.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "102",
-                        "endOffsets": "153"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1888",
-                        "endColumns": "102",
-                        "endOffsets": "1986"
-                    }
-                },
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-iw/values-iw.xml",
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,209,308,416,500,600,714,792,870,951,1053,1157,1255,1358,1459,1559,1711,1807",
-                        "endColumns": "103,98,107,83,99,113,77,77,80,101,103,97,102,100,99,151,95,80",
-                        "endOffsets": "204,303,411,495,595,709,787,865,946,1048,1152,1250,1353,1454,1554,1706,1802,1883"
+                        "startOffsets": "105,209,309,417,501,601,716,793,869,951,1054,1158,1257,1362,1465,1569,1725,1825",
+                        "endColumns": "103,99,107,83,99,114,76,75,81,102,103,98,104,102,103,155,99,81",
+                        "endOffsets": "204,304,412,496,596,711,788,864,946,1049,1153,1252,1357,1460,1564,1720,1820,1902"
                     }
                 }
             ]
@@ -443,48 +426,33 @@
             ]
         },
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-en-rCA_values-en-rCA.arsc.flat",
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-iw_values-iw.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-en-rCA/values-en-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,209,309,417,501,601,716,793,869,951,1054,1158,1257,1362,1465,1569,1725,1825",
-                        "endColumns": "103,99,107,83,99,114,76,75,81,102,103,98,104,102,103,155,99,81",
-                        "endOffsets": "204,304,412,496,596,711,788,864,946,1049,1153,1252,1357,1460,1564,1720,1820,1902"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-eu_values-eu.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-eu/values-eu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,214,312,422,508,614,738,825,909,991,1100,1210,1309,1418,1524,1635,1806,1905",
-                        "endColumns": "108,97,109,85,105,123,86,83,81,108,109,98,108,105,110,170,98,81",
-                        "endOffsets": "209,307,417,503,609,733,820,904,986,1095,1205,1304,1413,1519,1630,1801,1900,1982"
-                    }
-                },
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-eu/values-eu.xml",
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-iw/values-iw.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "endColumns": "102",
+                        "endOffsets": "153"
                     },
                     "to": {
                         "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1987",
-                        "endColumns": "100",
-                        "endOffsets": "2083"
+                        "startOffsets": "1888",
+                        "endColumns": "102",
+                        "endOffsets": "1986"
+                    }
+                },
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,209,308,416,500,600,714,792,870,951,1053,1157,1255,1358,1459,1559,1711,1807",
+                        "endColumns": "103,98,107,83,99,113,77,77,80,101,103,97,102,100,99,151,95,80",
+                        "endOffsets": "204,303,411,495,595,709,787,865,946,1048,1152,1250,1353,1454,1554,1706,1802,1883"
                     }
                 }
             ]
@@ -517,6 +485,38 @@
                         "startOffsets": "1809",
                         "endColumns": "100",
                         "endOffsets": "1905"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-eu_values-eu.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-eu/values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,214,312,422,508,614,738,825,909,991,1100,1210,1309,1418,1524,1635,1806,1905",
+                        "endColumns": "108,97,109,85,105,123,86,83,81,108,109,98,108,105,110,170,98,81",
+                        "endOffsets": "209,307,417,503,609,733,820,904,986,1095,1205,1304,1413,1519,1630,1801,1900,1982"
+                    }
+                },
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-eu/values-eu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1987",
+                        "endColumns": "100",
+                        "endOffsets": "2083"
                     }
                 }
             ]
@@ -1282,38 +1282,6 @@
             ]
         },
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-ru_values-ru.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-ru/values-ru.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1973",
-                        "endColumns": "100",
-                        "endOffsets": "2069"
-                    }
-                },
-                {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-ru/values-ru.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,220,322,434,520,625,745,824,902,982,1088,1196,1294,1403,1509,1617,1792,1892",
-                        "endColumns": "114,101,111,85,104,119,78,77,79,105,107,97,108,105,107,174,99,80",
-                        "endOffsets": "215,317,429,515,620,740,819,897,977,1083,1191,1289,1398,1504,1612,1787,1887,1968"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-en-rIN_values-en-rIN.arsc.flat",
             "map": [
                 {
@@ -1341,6 +1309,38 @@
                         "startOffsets": "105,209,309,417,501,601,716,793,869,951,1054,1158,1257,1362,1465,1569,1725,1825",
                         "endColumns": "103,99,107,83,99,114,76,75,81,102,103,98,104,102,103,155,99,81",
                         "endOffsets": "204,304,412,496,596,711,788,864,946,1049,1153,1252,1357,1460,1564,1720,1820,1902"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/res/merged/androidTest/debug/values-ru_values-ru.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values-ru/values-ru.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1973",
+                        "endColumns": "100",
+                        "endOffsets": "2069"
+                    }
+                },
+                {
+                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-ru/values-ru.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,220,322,434,520,625,745,824,902,982,1088,1196,1294,1403,1509,1617,1792,1892",
+                        "endColumns": "114,101,111,85,104,119,78,77,79,105,107,97,108,105,107,174,99,80",
+                        "endOffsets": "215,317,429,515,620,740,819,897,977,1083,1191,1289,1398,1504,1612,1787,1887,1968"
                     }
                 }
             ]

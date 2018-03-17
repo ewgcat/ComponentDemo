@@ -7,12 +7,19 @@
     <include
         android:id="@+id/hui_fang_history_navigation_bar"
         layout="@layout/view_navigation_bar2"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rlv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
 
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rlv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     <View
         android:id="@+id/bottom_line"
         android:layout_width="match_parent"

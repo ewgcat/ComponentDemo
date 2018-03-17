@@ -167,7 +167,8 @@
 
         <activity
             android:name="com.yijian.staff.mvp.mine.qualification.EditQualificationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
             android:name="com.yijian.staff.mvp.seepic.SeePicActivity"

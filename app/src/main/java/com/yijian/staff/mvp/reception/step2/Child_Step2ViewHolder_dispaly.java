@@ -32,7 +32,7 @@ class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
-        tvValue.setText(child.getDefaultValue());
+//        tvValue.setText(child.getDefaultValue());
         tvValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -82,6 +82,11 @@ class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implements Mult
         if (listener!=null)listener.onItemMultiClick(child_demo,multiItemPosition,childPosition,parentPosition);
     }
 
+    @Override
+    public void onMixWrited() {
+
+    }
+
     public interface ItemMultiListener{
         void onItemMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition);
     }

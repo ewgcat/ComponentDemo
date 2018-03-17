@@ -57,9 +57,7 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
     @Override
     public Parent_Step2ViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
         View inflate = mInflater.inflate(R.layout.item_parent_demo, parentViewGroup, false);
-
-        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate);
-//        parent_demoViewHolder.setExpanded(true);
+        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate,mContext);
         return parent_demoViewHolder;
     }
 

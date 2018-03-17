@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -40,6 +42,13 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
     private ArrayList<String> decimal;
     private ReceptionStep2Adapter demoAdapter;
     private RecyclerView recyclerView;
+    private TextView tvName;
+    private TextView tvHeight;
+    private TextView tvAge;
+    public static final int TYPE_0 = 0;//选项是数字，有符号，有小数
+    public static final int TYPE_1 = 1;//选项是数字，有小数
+    public static final int TYPE_2 = 2;//选项是数字
+    public static final int TYPE_3 = 3;//选项是StringArray
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,11 +73,21 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
         TimeBar timeBar = findViewById(R.id.step_two_timebar);
         timeBar.showTimeBar(2);
 
+        RelativeLayout rlName = findViewById(R.id.rl_name);
+        RelativeLayout rlHeight = findViewById(R.id.rl_height);
+        RelativeLayout rlAge = findViewById(R.id.rl_age);
+        tvName = findViewById(R.id.tv_name);
+        tvHeight = findViewById(R.id.tv_height);
+        tvAge = findViewById(R.id.tv_age);
+
+        rlName.setOnClickListener(this);
+        rlHeight.setOnClickListener(this);
+        rlAge.setOnClickListener(this);
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
-
-
 
 
     }
@@ -101,118 +120,85 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
         boolean hasSymbol = childObjBean.isHasSymbol();
         boolean hasDecimal = childObjBean.isHasDecimal();
         if (valueIsNum && hasSymbol && hasDecimal) {//选项是数字，有符号，有小数
-            ArrayList<String> integerRange = getIntegerRange(childObjBean);
-            showPickerView(null, integerRange, decimal, symbol,childObjBean,childPosition,parentPosition);
+            showPickerView(TYPE_0, childObjBean, childPosition, parentPosition);
         } else if (valueIsNum && hasDecimal) {////选项是数字，有小数
-            ArrayList<String> integerRange = getIntegerRange(childObjBean);
-            showPickerView(null, integerRange, decimal, null,childObjBean,childPosition,parentPosition);
+            showPickerView(TYPE_1, childObjBean, childPosition, parentPosition);
         } else if (valueIsNum) {//选项是数字
-            ArrayList<String> integerRange = getIntegerRange(childObjBean);
-            showPickerView(null, integerRange, null, null,childObjBean,childPosition,parentPosition);
+            showPickerView(TYPE_2, childObjBean, childPosition, parentPosition);
         } else {//选项是StringArray
-            List<String> valueList = childObjBean.getValueArray();
-            ArrayList<String> valueArray = new ArrayList<>();
-            valueArray.addAll(valueList);
-            showPickerView(valueArray, null, null, null,childObjBean,childPosition,parentPosition);
+            showPickerView(TYPE_3, childObjBean, childPosition, parentPosition);
         }
+
 
     }
 
+    private void showPickerView(int type, ChildOptBean childObjBean, int childPosition, int parentPosition) {
 
-
-    /**
-     * @param optArrays    选项数组——String
-     * @param integerRange 选项数组——Integer
-     * @param decimal      选项数组——小数
-     * @param symbol       选项数组——符号(+/-)
-     */
-    private void showPickerView(final ArrayList<String> optArrays, final ArrayList<String> integerRange, final ArrayList<String> decimal
-            , final ArrayList<String> symbol, final ChildOptBean childObjBean, final int childPosition, final int parentPosition) {
-        int type = 0;
-        if (integerRange != null && decimal != null && symbol != null) {
-            type = 1;////选项是数字，有符号，有小数
-        } else if (integerRange != null && decimal != null) {
-            type = 2;//选项是数字，有小数
-        } else if (integerRange != null) {
-            type = 3;//选项是数字
-        } else if (optArrays.size() != 0) {
-            type = 4;
-        } else {
-            return;
-        }
-
-
-        final int finalType = type;
         OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String str = "";
-                switch (finalType) {
-                    case 1:
-                        str = "symbol:" + symbol.get(options1) + "integerRange:" + integerRange.get(options2) + "decimal:" + decimal.get(options3);
-                        childObjBean.setUserValue(""+symbol.get(options1)+integerRange.get(options2)+decimal.get(options3));
+                switch (type) {
+                    case TYPE_0:
+                            str = "symbol:" + symbol.get(options1) + "integerRange:" + getOptRange(childObjBean).get(options2) + "decimal:" + decimal.get(options3);
+                            childObjBean.setUserValue("" + symbol.get(options1) + getOptRange(childObjBean).get(options2) + decimal.get(options3));
                         break;
-                    case 2:
-                        str = "integerRange:" + integerRange.get(options1) + "decimal:" + decimal.get(options2);
-                        childObjBean.setUserValue(""+integerRange.get(options1)+decimal.get(options2));
+                    case TYPE_1:
+                            str = "integerRange:" + getOptRange(childObjBean).get(options1) + "decimal:" + decimal.get(options2);
+                            childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1) + decimal.get(options2));
                         break;
-                    case 3:
-                        str = "integerRange:" + integerRange.get(options1);
-                        childObjBean.setUserValue(""+integerRange.get(options1));
+                    case TYPE_2:
+                    case TYPE_3:
+                            str = "integerRange:" + getOptRange(childObjBean).get(options1);
+                            childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1));
                         break;
-                    case 4:
-                        str = "integerRange:" + optArrays.get(options1);
-                        childObjBean.setUserValue(""+optArrays.get(options1));
-                        break;
+
                 }
 
                 Toast.makeText(ReceptionStepTwoActivity_ycm.this, str, Toast.LENGTH_SHORT).show();
-                demoAdapter.notifyChildChanged(parentPosition,childPosition);
-
+                    demoAdapter.notifyChildChanged(parentPosition, childPosition);
             }
         }).build();
 
-        String defaultValue = childObjBean.getDefaultValue();
-
-
 
         switch (type) {
-            case 1:
-                pvNoLinkOptions.setNPicker(symbol, integerRange, decimal);
-                int i = integerRange.indexOf(defaultValue);
-                if (i<0)i=0;
-                pvNoLinkOptions.setSelectOptions(0,i,0);
+            case TYPE_0:
+                pvNoLinkOptions.setNPicker(symbol, getOptRange(childObjBean), decimal);
+                int i = getOptRange(childObjBean).indexOf(childObjBean.getDefaultValue());
+                if (i < 0) i = 0;
+                pvNoLinkOptions.setSelectOptions(0, i, 0);
                 break;
-            case 2:
-                pvNoLinkOptions.setNPicker(integerRange, decimal, null);
-                int i1 = integerRange.indexOf(defaultValue);
-                if (i1<0)i1=0;
-                pvNoLinkOptions.setSelectOptions(i1,0);
+            case TYPE_1:
+                pvNoLinkOptions.setNPicker(getOptRange(childObjBean), decimal, null);
+                int i1 = getOptRange(childObjBean).indexOf(childObjBean.getDefaultValue());
+                if (i1 < 0) i1 = 0;
+                pvNoLinkOptions.setSelectOptions(i1, 0);
                 break;
-            case 3:
-                pvNoLinkOptions.setNPicker(integerRange, null, null);
-                int i2 = integerRange.indexOf(defaultValue);
-                if (i2<0)i2=0;
+            case TYPE_2:
+            case TYPE_3:
+                pvNoLinkOptions.setNPicker(getOptRange(childObjBean), null, null);
+                int i2 = getOptRange(childObjBean).indexOf(childObjBean.getDefaultValue());
+                if (i2 < 0) i2 = 0;
                 pvNoLinkOptions.setSelectOptions(i2);
-                break;
-            case 4:
-                pvNoLinkOptions.setNPicker(optArrays, null, null);
-                int i3 = optArrays.indexOf(defaultValue);
-                if (i3<0)i3=0;
-                pvNoLinkOptions.setSelectOptions(i3);
                 break;
         }
         pvNoLinkOptions.show();
     }
 
-    @Nullable
-    private ArrayList<String> getIntegerRange(ChildOptBean childObjBean) {
-        String minValue = childObjBean.getMinValue();
-        String maxValue = childObjBean.getMaxValue();
-        ArrayList<String> integerRange = optionItemData.getOptionDataFactory().initIntegerRange(Integer.valueOf(minValue), Integer.valueOf(maxValue));
-        return integerRange;
-    }
 
+    @Nullable
+    private ArrayList<String> getOptRange(ChildOptBean childObjBean) {
+
+        if (childObjBean.isValueIsNum()) {
+            ArrayList<String> integerRange = optionItemData.getOptionDataFactory().initIntegerRange(Integer.valueOf(childObjBean.getMinValue()), Integer.valueOf(childObjBean.getMaxValue()));
+            return integerRange;
+        } else {
+            ArrayList<String> optRange = new ArrayList<>();
+            List<String> valueList = childObjBean.getValueArray();
+            optRange.addAll(valueList);
+            return optRange;
+        }
+    }
 
 
     @Override
@@ -226,7 +212,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
             case R.id.iv_second_left:
 
 
-                Intent i = new Intent(this,ReceptionActivity.class);
+                Intent i = new Intent(this, ReceptionActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
@@ -235,9 +221,31 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
+
+
+            case R.id.rl_height:
+                ArrayList<String> heightRange = optionItemData.getOptionDataFactory().initIntegerRange(120, 300);
+                manualPickedView(heightRange,"170",tvHeight);
+                break;
+
+            case R.id.rl_age:
+                ArrayList<String> ageRange = optionItemData.getOptionDataFactory().initIntegerRange(18, 100);
+                manualPickedView(ageRange,"20",tvAge);
+                break;
+
         }
     }
 
+    private void manualPickedView(ArrayList<String> opts, String defaultValue, TextView name) {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                name.setText(opts.get(options1));
+            }
+        }).build();
 
-
+        pvNoLinkOptions.setNPicker(opts, null, null);
+        pvNoLinkOptions.setSelectOptions(opts.indexOf(defaultValue));
+        pvNoLinkOptions.show();
+    }
 }

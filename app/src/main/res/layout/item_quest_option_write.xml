@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="101dp">
+    android:layout_height="wrap_content">
     <!--<EditText-->
     <!--android:gravity="top"-->
     <!--android:id="@+id/et_write"-->
@@ -26,8 +26,21 @@
 
     <!--android:textSize="14sp"-->
     <!--android:background="@color/colorPrimaryDark" />-->
-
+    <TextView
+        android:id="@+id/tv_question_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:lineSpacingMultiplier="1.1"
+        android:textSize="14sp"
+        android:textColor="@color/text_black3"
+        android:text="(2)  您希望通过健身运动来帮助您完成什么目标吗？(多选)" />
+    <RelativeLayout
+        android:layout_below="@+id/tv_question_title"
+        android:layout_width="match_parent"
+        android:layout_height="101dp">
     <EditText
+
         android:id="@+id/et_write"
         android:layout_width="match_parent"
         android:layout_height="81dp"
@@ -51,4 +64,5 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:text="0字"/>
+    </RelativeLayout>
 </RelativeLayout>

@@ -15,7 +15,7 @@ import com.yijian.staff.mvp.reception.step1.recyclerView.ParentViewHolderGroup;
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionViewHolder extends ParentViewHolderGroup<Step1Bean,QuestOptBean> {
+public class QuestionViewHolder extends AbsParentViewHolder{
 
     private final TextView tvTitle;
 

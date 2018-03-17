@@ -39,7 +39,7 @@ public class Child_Step2ViewHolder_normal extends ChildViewHolder {
     public void bind(ChildOptBean child, final int childPosition, final int parentPosition, List<ParentQuestionBean> parentList) {
 
         tvKey.setText(child.getQustion());
-        tvValue.setText(child.getDefaultValue());
+        tvValue.setText(child.getUserValue());
         tvValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,13 +10,16 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
+import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ChildViewHolderGroup;
+import com.yijian.staff.mvp.reception.step1.recyclerView.ParentViewHolderGroup;
 
 /**
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionWriteViewHolder extends ChildViewHolderGroup {
+public class QuestionWriteViewHolder extends AbsParentViewHolder {
+    private final TextView tvTitle;
     private EditText editText;
     private final TextView tvLimit;
     private static final String TAG = "QuestionWriteViewHolder";
@@ -25,9 +28,13 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
         super(itemView);
         editText=(EditText)itemView.findViewById(R.id.et_write);
         tvLimit = itemView.findViewById(R.id.tv_limit);
+        tvTitle = itemView.findViewById(R.id.tv_question_title);
     }
 
-    public void bind(QuestOptBean child, int parentPosition, int childPosition) {
+
+    public void bind(Step1Bean child, int parentPosition) {
+        tvTitle.setText(child.getQuestName());
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

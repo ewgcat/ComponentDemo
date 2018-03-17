@@ -33,6 +33,15 @@ public  class ChildOptBean {
     private List<String> valueArray;
     private boolean isSelected;
     private List<MultiOptBean> multiOpt;
+    private String userValue;
+
+    public String getUserValue() {
+        return userValue;
+    }
+
+    public void setUserValue(String userValue) {
+        this.userValue = userValue;
+    }
 
     public List<MultiOptBean> getMultiOptBeans() {
         return multiOpt;
@@ -120,5 +129,23 @@ public  class ChildOptBean {
 
     public void setValueArray(List<String> valueArray) {
         this.valueArray = valueArray;
+    }
+
+    @Override
+    public String toString() {
+        return "ChildOptBean{" +
+                "qustion='" + qustion + '\'' +
+                ", qusType='" + qusType + '\'' +
+                ", valueIsNum=" + valueIsNum +
+                ", minValue='" + minValue + '\'' +
+                ", maxValue='" + maxValue + '\'' +
+                ", hasSymbol=" + hasSymbol +
+                ", hasDecimal=" + hasDecimal +
+                ", defaultValue='" + defaultValue + '\'' +
+                ", valueArray=" + valueArray +
+                ", isSelected=" + isSelected +
+                ", multiOpt=" + multiOpt +
+                ", userValue='" + userValue + '\'' +
+                '}';
     }
 }

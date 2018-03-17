@@ -2,7 +2,10 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +27,13 @@ import java.util.Map;
  * Created by The_P on 2018/3/12.
  */
 
-public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean, QuestOptBean, QuestionViewHolder, ChildViewHolderGroup> implements QuestionSingleCheckViewHolder.SingleCheckListener, QuestionMultiCheckViewHolder.MultiCheckListener {
+public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean, QuestOptBean,AbsParentViewHolder, ChildViewHolderGroup> implements QuestionSingleCheckViewHolder.SingleCheckListener, QuestionWriteViewHolder.WriteListener {
     private static final String TAG = "Step1QuestAdapter";
     private static final int SINGLECHECK = 3;
     private static final int MULTICHECK =4;
     private static final int WRITE = 5;
+    public static final int CHILDNORMAL=6;
+    public static final int CHILDMIX=7;
 
     private LayoutInflater mInflater;
     private List<Step1Bean> QuestionList;
@@ -49,136 +54,127 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
 
     @NonNull
     @Override
-    public QuestionViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
-        View titleview = mInflater.inflate(R.layout.item_quest_title, parentViewGroup, false);
+    public AbsParentViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
 
-        return new QuestionViewHolder(titleview);
+        switch (viewType){
+            default:
+            case SINGLECHECK:
+            case MULTICHECK:
+                View titleview = mInflater.inflate(R.layout.item_quest_title, parentViewGroup, false);
+                return new QuestionViewHolder(titleview);
+            case WRITE:
+                View titleview1 = mInflater.inflate(R.layout.item_quest_option_write, parentViewGroup, false);
+                QuestionWriteViewHolder questionWriteViewHolder = new QuestionWriteViewHolder(titleview1);
+
+                questionWriteViewHolder.setWriteListener(this);
+                return questionWriteViewHolder;
+        }
     }
 
     @NonNull
     @Override
     public ChildViewHolderGroup onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
         ChildViewHolderGroup viewHolder;
-        switch (viewType) {
-
-            case SINGLECHECK:
+        switch (viewType){
+            default:
+            case CHILDNORMAL:
                 View singleView = mInflater.inflate(R.layout.item_quest_option_single, childViewGroup, false);
                 QuestionSingleCheckViewHolder viewHolder0 = new QuestionSingleCheckViewHolder(singleView);
                 viewHolder0.setSingleCheckListener(this);
                 viewHolder = viewHolder0;
                 break;
-            case MULTICHECK:
-                View multiView = mInflater.inflate(R.layout.item_quest_option_multi, childViewGroup, false);
-                QuestionMultiCheckViewHolder viewHolder1 = new QuestionMultiCheckViewHolder(multiView);
-                viewHolder1.setSingleCheckListener(this);
+
+            case CHILDMIX:
+                View mixView = mInflater.inflate(R.layout.item_quest_option_mix, childViewGroup, false);
+                QuestionOptMixViewHolder viewHolder1 = new QuestionOptMixViewHolder(mixView);
+//                viewHolder1.setMixCheckListener(this);
                 viewHolder = viewHolder1;
                 break;
-            default:
-            case WRITE:
-                View writeView = mInflater.inflate(R.layout.item_quest_option_write, childViewGroup, false);
-                QuestionWriteViewHolder viewHolder2 = new QuestionWriteViewHolder(writeView);
-//                viewHolder2.setWriteListener(this);
-                viewHolder=viewHolder2;
-                break;
-
         }
 
         return viewHolder;
     }
 
     @Override
-    public void onBindParentViewHolder(@NonNull QuestionViewHolder parentViewHolder, int parentPosition, @NonNull Step1Bean parent) {
-        parentViewHolder.bind(parent,parentPosition);
+    public void onBindParentViewHolder(@NonNull AbsParentViewHolder parentViewHolder, int parentPosition, @NonNull Step1Bean parent) {
+       if (parentViewHolder instanceof QuestionViewHolder){
+           ((QuestionViewHolder)parentViewHolder) .bind(parent,parentPosition);
+       }else if (parentViewHolder instanceof QuestionWriteViewHolder){
+           ((QuestionWriteViewHolder)parentViewHolder)  .bind(parent,parentPosition);
+        }
+
     }
 
     @Override
     public void onBindChildViewHolder(@NonNull ChildViewHolderGroup childViewHolder, int parentPosition, int childPosition,
                                       @NonNull QuestOptBean child, int flatPosition) {
+
         if (childViewHolder instanceof QuestionSingleCheckViewHolder){
-//            Log.e(TAG, "onBindChildViewHolder:QuestionSingleCheckViewHolder  parentPosition "+ parentPosition);
             ((QuestionSingleCheckViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionMultiCheckViewHolder){
-//            Log.e(TAG, "onBindChildViewHolder:QuestionMultiCheckViewHolder  parentPosition "+ parentPosition);
-            ((QuestionMultiCheckViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionWriteViewHolder){
-            ((QuestionWriteViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
+        }else if (childViewHolder instanceof QuestionOptMixViewHolder){
+            ((QuestionOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
         }
+
     }
 
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
+        int type=CHILDNORMAL;
+        String childType = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
 
-//        int type=WRITE;
-//        switch (questionOption.getType()){
-//            case QuestionOption.TYPE_SINGLECHECK:
-//                type=SINGLECHECK;
-//                break;
-//              case QuestionOption.TYPE_MULTICHECK:
-//                  type=MULTICHECK;
-//                break;
-//              case QuestionOption.TYPE_WRITE:
-//                  type=WRITE;
-//                break;
-//        }
-//        return type;
+        switch (childType){
+            case "normal":
+                type=CHILDNORMAL;
+                break;
+            case "mix":
+                type=CHILDMIX;
+                break;
+        }
 
+        return type;
+    }
+
+    @Override
+    public int getParentViewType(int parentPosition) {
         int type=WRITE;
-        Step1Bean step1Bean = QuestionList.get(parentPosition);
-        String type1 = step1Bean.getType();
-        switch (type1){
+        String parentType = QuestionList.get(parentPosition).getType();
+        switch (parentType){
             case "singleCheck":
                 type=SINGLECHECK;
                 break;
-              case "multiCheck":
-                  type=MULTICHECK;
+            case "multiCheck":
+                type=MULTICHECK;
                 break;
-              case "write":
-                  type=WRITE;
+            case "write":
+                type=WRITE;
                 break;
         }
         return type;
     }
 
-
-
     @Override
-    public void onMultiClick(QuestOptBean child, int parentPosition,int childPosition) {
-//        Toast.makeText(mContext,"QuestionOption=="+child.getmName()+" ,parentPosition"+parentPosition,Toast.LENGTH_SHORT).show();
-
-        child.setSelected(child.isSelected()?false:true);
-        notifyDataSetChanged();
-
-
-//        HashSet<Integer> integers = multiCheck.get(QuestionList.get(parentPosition).getId());
-//        if (child.isSelected()){
-//            if (integers==null)integers =new HashSet<>();
-//            integers.add(childPosition);
-//
-//        }else {
-//            if (integers==null)return;
-//            integers.remove(childPosition);
-//        }
-//        multiCheck.put(QuestionList.get(parentPosition).getId(),integers);
+    public boolean isParentViewType(int viewType) {
+        return viewType==SINGLECHECK||viewType==MULTICHECK||viewType==WRITE;
     }
+
 
     @Override
     public void onSingleClick(QuestOptBean child, int parentPosition,int childPosition) {
 //        Toast.makeText(mContext,"QuestionOption=="+child.getmName()+" ,parentPosition"+parentPosition,Toast.LENGTH_SHORT).show();
-        Step1Bean questionEntry = QuestionList.get(parentPosition);
-        for (QuestOptBean ingredient1:questionEntry.getChildList() ) {
-            ingredient1.setSelected(false);
-        }
-        child.setSelected(true);
-        notifyDataSetChanged();
+        String type = QuestionList.get(parentPosition).getType();
+
+
+//        Step1Bean questionEntry = QuestionList.get(parentPosition);
+//        for (QuestOptBean ingredient1:questionEntry.getChildList() ) {
+//            ingredient1.setSelected(false);
+//        }
+//        child.setSelected(true);
+//        notifyDataSetChanged();
 
 //        singleCheck.put(QuestionList.get(parentPosition).getId(),childPosition);
 
     }
 
-//    @Override
-//    public void onWrited(int parentPosition, Editable s) {
-//        write.put(QuestionList.get(parentPosition).getId(),s.toString());
-//    }
 
 
     public Map<Integer, Integer> getSingleCheck() {
@@ -194,4 +190,8 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
     }
 
 
+    @Override
+    public void onWrited(int parentPosition, Editable s) {
+        Log.e(TAG, "onWrited: parentPosition=="+parentPosition+"s=="+s );
+    }
 }

@@ -80,7 +80,9 @@ public class ExpandableWrapperGroup<P extends ParentImp<C>, C> {
     private List<ExpandableWrapperGroup<P, C>> generateChildItemList(P parentListItem) {
         List<ExpandableWrapperGroup<P, C>> childItemList = new ArrayList<>();
 
-        for (C child : parentListItem.getChildList()) {
+        List<C> childList = parentListItem.getChildList();
+        if (childList==null)return childItemList;
+        for (C child : childList) {
             childItemList.add(new ExpandableWrapperGroup<P, C>(child));
         }
 

@@ -155,9 +155,19 @@
         <activity
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
-        <activity android:name=".mvp.mine.qualification.MyQualificationActivity" />
-        <activity android:name=".mvp.mine.qualification.EditQualificationActivity"></activity>
+        <activity
+            android:name=".mvp.mine.qrcode.MyQRCodeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.yijian.staff.mvp.mine.qualification.MyQualificationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.yijian.staff.mvp.mine.qualification.EditQualificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name="com.yijian.staff.mvp.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
@@ -165,8 +175,15 @@
             android:name="com.yijian.staff.mvp.mine.selectheadicon.ClipActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.yijian.staff.mvp.mine.club.ClubActivity"
+            android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.vip.potential.AddPotentialActivity"></activity>
+        <activity
+            android:name=".mvp.mine.calendartable.CalendarTableActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

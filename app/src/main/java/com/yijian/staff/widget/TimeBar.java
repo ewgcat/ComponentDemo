@@ -1,6 +1,7 @@
 package com.yijian.staff.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -66,19 +67,19 @@ public class TimeBar extends LinearLayout {
             }
 
             if (position - i == 1) {
-                lineLeft.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                lineRight.setBackgroundColor(getResources().getColor(R.color.time_bar));
-                desc.setTextColor(getResources().getColor(R.color.colorPrimary));
+                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
+                lineRight.setBackgroundColor(Color.parseColor("#cccccc"));
+                desc.setTextColor(Color.parseColor("#1997F8"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else if (position - i > 1) {
-                lineLeft.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                lineRight.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                desc.setTextColor(getResources().getColor(R.color.colorPrimary));
+                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
+                lineRight.setBackgroundColor(Color.parseColor("#1997F8"));
+                desc.setTextColor(Color.parseColor("#1997F8"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else {
-                lineLeft.setBackgroundColor(getResources().getColor(R.color.time_bar));
-                lineRight.setBackgroundColor(getResources().getColor(R.color.time_bar));
-                desc.setTextColor(getResources().getColor(R.color.black_bg));
+                lineLeft.setBackgroundColor(Color.parseColor("#cccccc"));
+                lineRight.setBackgroundColor(Color.parseColor("#cccccc"));
+                desc.setTextColor(Color.parseColor("#d0000000"));
                 img.setImageResource(R.drawable.time_bar_dot_gray);
             }
         }

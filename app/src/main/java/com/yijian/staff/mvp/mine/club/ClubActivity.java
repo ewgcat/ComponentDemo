@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 
 import butterknife.BindView;
@@ -29,6 +30,7 @@ public class ClubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club);
         ButterKnife.bind(this);
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
 
 
     }

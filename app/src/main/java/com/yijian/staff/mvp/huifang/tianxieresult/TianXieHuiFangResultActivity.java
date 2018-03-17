@@ -25,7 +25,6 @@ public class TianXieHuiFangResultActivity extends AppCompatActivity implements V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_tian_xie_hui_fang_result);
         ButterKnife.bind(this);
 
@@ -34,11 +33,12 @@ public class TianXieHuiFangResultActivity extends AppCompatActivity implements V
 
     private void initView() {
         NavigationBar2 navigationBar2 = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
-        navigationBar2.findViewById(R.id.iv_first_left).setOnClickListener(this);
-        navigationBar2.findViewById(R.id.iv_second_left).setVisibility(View.GONE);
-        navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("填写回访结果");
         navigationBar2.setmRightTvText("完成");
+        navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
+
 
 
         findViewById(R.id.ll_next_hui_fang).setOnClickListener(this);

@@ -27,6 +27,7 @@ public class NavigationBar2 extends LinearLayout {
     private TextView mTitleView;
     private TextView mRightTv;
     private LinearLayout navigationbar2;
+    private LinearLayout backLL;
     private View bottomLine;
 
     public NavigationBar2(Context context) {
@@ -46,6 +47,7 @@ public class NavigationBar2 extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         navigationbar2 = (LinearLayout) findViewById(R.id.navigationbar2);
+        backLL = (LinearLayout) findViewById(R.id.ll_back);
 
         firstLeftIv = (ImageView) findViewById(R.id.iv_first_left);
         secondLeftIv = (ImageView) findViewById(R.id.iv_second_left);
@@ -108,16 +110,26 @@ public class NavigationBar2 extends LinearLayout {
     }
 
 
-    public void hideBottomLine() {bottomLine.setVisibility(GONE);}
-    public void hideLeftSecondIv() {secondLeftIv.setVisibility(GONE);}
-    public void setBackClickListener(Activity activity){
-        firstLeftIv.setOnClickListener(new OnClickListener() {
+    public void hideBottomLine() {
+        bottomLine.setVisibility(GONE);
+    }
+
+    public void hideLeftSecondIv() {
+        secondLeftIv.setVisibility(GONE);
+    }
+
+    public void setBackClickListener(Activity activity) {
+        backLL.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 activity.finish();
             }
         });
+    }
+
+    public void setmRightTvClickListener(View.OnClickListener listener) {
+        mRightTv.setOnClickListener(listener);
     }
 
 

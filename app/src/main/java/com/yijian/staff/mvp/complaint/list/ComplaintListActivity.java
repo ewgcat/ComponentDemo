@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.complaint.list;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -220,11 +221,11 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(ComplaintListActivity.this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        header.setPrimaryColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(ComplaintListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        footer.setAnimatingColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

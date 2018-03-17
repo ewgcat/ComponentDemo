@@ -180,13 +180,13 @@ public class FilterDialog extends Dialog {
     }
 
     private void changeTextViewStyle(TextView textView) {
-        if (textView.getTextColors().getDefaultColor() == getContext().getResources().getColor(R.color.colorPrimary)) {
+        if (textView.getTextColors().getDefaultColor() == Color.parseColor("#1997F8")) {
             textView.setTextColor(Color.parseColor("#666666"));
-            textView.setBackgroundColor(getContext().getResources().getColor(R.color.gray));
+            textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
             textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             textView.setCompoundDrawables(null, null, null, null);
         } else {
-            textView.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+            textView.setTextColor(Color.parseColor("#1997F8"));
             textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());

@@ -207,11 +207,11 @@ public class SelectHuiJiActivity extends AppCompatActivity {
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(SelectHuiJiActivity.this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        header.setPrimaryColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(SelectHuiJiActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        footer.setAnimatingColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

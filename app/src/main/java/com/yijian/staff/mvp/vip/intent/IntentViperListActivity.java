@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vip.intent;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *潜在会员  列表
+ *意向会员  列表
  */
-@Route(path = "/test/3")
+@Route(path = "/test/2")
 public class IntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.refreshLayout)
@@ -61,7 +62,7 @@ public class IntentViperListActivity extends AppCompatActivity implements View.O
         navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
-        navigationBar2.setTitle("潜在会员");
+        navigationBar2.setTitle("意向会员");
         navigationBar2.setmRightTvText("筛选");
 
         initComponent();
@@ -105,11 +106,11 @@ public class IntentViperListActivity extends AppCompatActivity implements View.O
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(IntentViperListActivity.this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        header.setPrimaryColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(IntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(getResources().getColor(R.color.colorPrimary));
+        footer.setAnimatingColor(Color.parseColor("#1997F8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

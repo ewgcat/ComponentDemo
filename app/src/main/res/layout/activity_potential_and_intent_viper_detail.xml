@@ -331,11 +331,16 @@
 
 
     </ScrollView>
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="16dp"
-        android:src="@mipmap/white_arrow_back"
-        android:layout_width="16dp"
-        android:layout_height="16dp" />
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="50dp"
+        android:layout_height="60dp">
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/white_arrow_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
 </RelativeLayout>

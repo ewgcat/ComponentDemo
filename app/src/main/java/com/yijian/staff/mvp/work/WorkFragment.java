@@ -102,7 +102,6 @@ public class WorkFragment extends Fragment {
             }
         });
         menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
-        menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
         MenuItem menuItem = new MenuItem();
         menuItem.setCount(0);
         menuItem.setName("全部");

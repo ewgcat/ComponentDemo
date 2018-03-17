@@ -1,8 +1,7 @@
-package com.yijian.staff.mvp.resourceallocation;
+package com.yijian.staff.mvp.resourceallocation.selecthuiji;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
+import com.yijian.staff.mvp.resourceallocation.widget.RatingBar;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +87,7 @@ public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        com.yijian.staff.mvp.resourceallocation.RatingBar rb_grate; //评分等级星星
+        RatingBar rb_grate; //评分等级星星
         TextView tv_comment_grade; //评分等级
         TextView tv_businessProgress; //业务完成度
         TextView tv_vipServiceNum; //会员服务数

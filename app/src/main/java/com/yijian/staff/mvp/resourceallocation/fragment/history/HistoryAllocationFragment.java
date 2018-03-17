@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation;
+package com.yijian.staff.mvp.resourceallocation.fragment.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.resourceallocation.adapter.ResourceAllocationAdatper;
 import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
 import com.yijian.staff.util.Logger;
 
@@ -27,28 +28,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 资源分配
+ * 历史分配
  */
-public class ResourceAllocationFragment extends Fragment {
+public class HistoryAllocationFragment extends Fragment {
 
-    private static ResourceAllocationFragment resourceAllocationFragment;
-    public static ResourceAllocationFragment getInstance(){
-        if(resourceAllocationFragment == null){
-            resourceAllocationFragment = new ResourceAllocationFragment();
+    private static HistoryAllocationFragment historyAllocationFragment;
+    public static HistoryAllocationFragment getInstance(){
+        if(historyAllocationFragment == null){
+            historyAllocationFragment = new HistoryAllocationFragment();
         }
-        return resourceAllocationFragment;
+        return historyAllocationFragment;
     }
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
     private List<HistoryResourceAllocationInfo> resourceAllocationInfoList=new ArrayList<>();
-    public HistoryResourceAllocationAdatper historyResourceAllocationAdatper;
+    public ResourceAllocationAdatper resourceAllocationAdatper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_resource_allocation, container, false);
+        View view = inflater.inflate(R.layout.fragment_history_allocation, container, false);
         initView(view);
         initResourceAllocationInfoList();
         return view;
@@ -81,8 +82,8 @@ public class ResourceAllocationFragment extends Fragment {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
             //设置RecyclerView 布局
             rv_resource_allocation.setLayoutManager(layoutmanager);
-            historyResourceAllocationAdatper = new HistoryResourceAllocationAdatper(getActivity(), resourceAllocationInfoList,HistoryResourceAllocationAdatper.RESOURCE_TYPE);
-            rv_resource_allocation.setAdapter(historyResourceAllocationAdatper);
+            resourceAllocationAdatper = new ResourceAllocationAdatper(getActivity(), resourceAllocationInfoList, ResourceAllocationAdatper.HISTORY_TYPE);
+            rv_resource_allocation.setAdapter(resourceAllocationAdatper);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 
@@ -110,5 +111,6 @@ public class ResourceAllocationFragment extends Fragment {
             }
         });
     }
+
 
 }

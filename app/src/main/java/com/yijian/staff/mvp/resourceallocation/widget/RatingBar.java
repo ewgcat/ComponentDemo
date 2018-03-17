@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation;
+package com.yijian.staff.mvp.resourceallocation.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

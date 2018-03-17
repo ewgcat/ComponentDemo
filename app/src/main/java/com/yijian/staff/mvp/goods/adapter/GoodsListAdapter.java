@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.kefu.adapter;
+package com.yijian.staff.mvp.goods.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
+import com.yijian.staff.mvp.goods.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -19,32 +19,27 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/3 17:08:17
  */
-public class HuiJiProductQuotationListAdapter extends RecyclerView.Adapter<HuiJiProductQuotationListAdapter.ViewHolder> {
+public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.ViewHolder> {
     private List<GoodsInfo> mGoodsInfoList;
     private Context context;
     private int clickIndex=-1;
 
-    public HuiJiProductQuotationListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
+    public GoodsListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
         this.mGoodsInfoList = mGoodsInfoList;
         this.context = context;
     }
 
     @Override
-    public HuiJiProductQuotationListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GoodsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(HuiJiProductQuotationListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(GoodsListAdapter.ViewHolder holder, int position) {
         Logger.i("GoodsListAdapter", "position: " + position);
-        if (clickIndex==position){
-            holder.itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 
-        }else {
-            holder.itemView.setBackgroundResource(R.drawable.white_bg);
-        }
 
         GoodsInfo goodsInfo = mGoodsInfoList.get(position);
         holder.tvGoodsName.setText(goodsInfo.getGoodsName());
@@ -98,7 +93,7 @@ public class HuiJiProductQuotationListAdapter extends RecyclerView.Adapter<HuiJi
   private   OnItemClickListener onItemClickListener;
     public interface OnItemClickListener{
 
-       void onItemClick(View v,GoodsInfo goodsInfo);
+       void onItemClick(View v, GoodsInfo goodsInfo);
     }
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener=onItemClickListener;

@@ -38,9 +38,9 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         TimeBar timeBar = findViewById(R.id.step_three_timebar);
         timeBar.showTimeBar(3);
 
-//        HuiJiProductQuotationFragment huiJiProductQuotationFragment = new HuiJiProductQuotationFragment();
+        HuiJiProductQuotationFragment huiJiProductQuotationFragment = new HuiJiProductQuotationFragment();
 //        CoachProductFragment huiJiProductQuotationFragment = new CoachProductFragment();
-        LeaderProductFragment huiJiProductQuotationFragment = new LeaderProductFragment();
+//        LeaderProductFragment huiJiProductQuotationFragment = new LeaderProductFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fl_content,huiJiProductQuotationFragment).commit();
     }

@@ -1,6 +1,5 @@
-package com.yijian.staff.mvp.resourceallocation;
+package com.yijian.staff.mvp.resourceallocation.selecthuiji;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -21,7 +19,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
 import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
@@ -29,7 +26,6 @@ import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

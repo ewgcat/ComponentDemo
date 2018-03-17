@@ -1,7 +1,6 @@
-package com.yijian.staff.mvp.resourceallocation;
+package com.yijian.staff.mvp.resourceallocation.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.invitation.InvitationInfo;
+import com.yijian.staff.mvp.resourceallocation.selecthuiji.SelectHuiJiActivity;
 import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
  * 这里的Adapter 是资源分配和历史分配以及不同角色的资源分配公用的
  * 通过 flag_type字段标识决定是哪个模块使用的
  */
-public class HistoryResourceAllocationAdatper extends RecyclerView.Adapter<HistoryResourceAllocationAdatper.ViewHolder> {
+public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllocationAdatper.ViewHolder> {
 
     private List<HistoryResourceAllocationInfo> historyResourceAllocationInfoList;
     private Context context;
@@ -29,7 +28,7 @@ public class HistoryResourceAllocationAdatper extends RecyclerView.Adapter<Histo
     public static int HISTORY_TYPE = 1;//历史分配
     public static int ROLE_RESOURCE_TYPE = 2;//不同角色的资源分配
 
-    public HistoryResourceAllocationAdatper(Context context, List<HistoryResourceAllocationInfo> historyResourceAllocationInfoList,int flag_type){
+    public ResourceAllocationAdatper(Context context, List<HistoryResourceAllocationInfo> historyResourceAllocationInfoList, int flag_type){
         this.context = context;
         this.historyResourceAllocationInfoList = historyResourceAllocationInfoList;
         this.flag_type = flag_type;
@@ -40,14 +39,14 @@ public class HistoryResourceAllocationAdatper extends RecyclerView.Adapter<Histo
     }
 
     @Override
-    public HistoryResourceAllocationAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ResourceAllocationAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_history_resource_allocation, parent, false);
-        HistoryResourceAllocationAdatper.ViewHolder holder = new HistoryResourceAllocationAdatper.ViewHolder(view);
+        ResourceAllocationAdatper.ViewHolder holder = new ResourceAllocationAdatper.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(HistoryResourceAllocationAdatper.ViewHolder holder, int position) {
+    public void onBindViewHolder(ResourceAllocationAdatper.ViewHolder holder, int position) {
         HistoryResourceAllocationInfo historyResourceAllocationInfo = historyResourceAllocationInfoList.get(position);
         holder.tv_name.setText(historyResourceAllocationInfo.getName());
         holder.iv_gender.setImageResource(historyResourceAllocationInfo.getGender());

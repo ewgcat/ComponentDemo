@@ -30,7 +30,7 @@ public class AdviceActivity extends AppCompatActivity {
         navigationBar2.setTitle("建议与反馈");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightTvText("完成");
+        navigationBar2.setmRightTvText("发送");
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

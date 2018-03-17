@@ -36,7 +36,7 @@ public class TianXieHuiFangResultActivity extends AppCompatActivity implements V
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("填写回访结果");
-        navigationBar2.setmRightTvText("完成");
+        navigationBar2.setmRightTvText("发送");
         navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
 
 

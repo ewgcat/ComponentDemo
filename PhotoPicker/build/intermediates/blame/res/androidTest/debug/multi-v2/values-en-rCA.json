@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/PhotoPicker/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\PhotoPicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/7c66eee095f3965ffd6403c7b0efb6dc/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\771b8c2f851a16531b81dc4f1f84894b\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

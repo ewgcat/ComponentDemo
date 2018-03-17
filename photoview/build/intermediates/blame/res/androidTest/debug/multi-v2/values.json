@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/lishuaihua/Desktop/YiJianStaff/photoview/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+            "outputFile": "C:\\Users\\Shinelon\\Desktop\\YiJianStaff\\photoview\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "/Users/lishuaihua/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/1461c74b7609f0873a8fe7420ef6d90e/res/values/values.xml",
+                    "source": "C:\\Users\\Shinelon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\1de05f5aee440dfac9378dd7e2661233\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,54,55,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

@@ -22,7 +22,7 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
 import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
 import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
-import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
+import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity_ycm;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
@@ -75,10 +75,10 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<Integer, Integer> singleCheck = adapter.getSingleCheck();
+                Map<String, Integer> singleCheck = adapter.getSingleCheck();
                 Log.e(TAG, "onClick: singleCheck"+singleCheck.toString() );
 
-                Map<Integer, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
+                Map<String, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
                 Log.e(TAG, "onClick: multiCheck"+multiCheck.toString() );
 
                 Map<Integer, String> write = adapter.getWrite();
@@ -180,7 +180,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
                 break;
 
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
+                Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity_ycm.class);
                 startActivity(intent);
 
                 break;

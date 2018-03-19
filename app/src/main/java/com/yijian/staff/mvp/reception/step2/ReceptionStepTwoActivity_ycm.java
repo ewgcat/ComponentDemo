@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by The_P on 2018/3/13.
+ * Created by The_P on 2018/3/19.
  */
 
 public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements View.OnClickListener {
@@ -140,23 +140,23 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
                 String str = "";
                 switch (type) {
                     case TYPE_0:
-                            str = "symbol:" + symbol.get(options1) + "integerRange:" + getOptRange(childObjBean).get(options2) + "decimal:" + decimal.get(options3);
-                            childObjBean.setUserValue("" + symbol.get(options1) + getOptRange(childObjBean).get(options2) + decimal.get(options3));
+                        str = "symbol:" + symbol.get(options1) + "integerRange:" + getOptRange(childObjBean).get(options2) + "decimal:" + decimal.get(options3);
+                        childObjBean.setUserValue("" + symbol.get(options1) + getOptRange(childObjBean).get(options2) + decimal.get(options3));
                         break;
                     case TYPE_1:
-                            str = "integerRange:" + getOptRange(childObjBean).get(options1) + "decimal:" + decimal.get(options2);
-                            childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1) + decimal.get(options2));
+                        str = "integerRange:" + getOptRange(childObjBean).get(options1) + "decimal:" + decimal.get(options2);
+                        childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1) + decimal.get(options2));
                         break;
                     case TYPE_2:
                     case TYPE_3:
-                            str = "integerRange:" + getOptRange(childObjBean).get(options1);
-                            childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1));
+                        str = "integerRange:" + getOptRange(childObjBean).get(options1);
+                        childObjBean.setUserValue("" + getOptRange(childObjBean).get(options1));
                         break;
 
                 }
 
                 Toast.makeText(ReceptionStepTwoActivity_ycm.this, str, Toast.LENGTH_SHORT).show();
-                    demoAdapter.notifyChildChanged(parentPosition, childPosition);
+                demoAdapter.notifyChildChanged(parentPosition, childPosition);
             }
         }).build();
 
@@ -249,3 +249,4 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
         pvNoLinkOptions.show();
     }
 }
+

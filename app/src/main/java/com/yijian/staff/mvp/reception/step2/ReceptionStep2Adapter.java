@@ -167,7 +167,7 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
      */
     @Override
     public void onChildNormalClick(int childPosition, int parentPosition) {
-        ((CoachReceptionStepTwoActivity) mContext).showBottomView(childPosition,parentPosition);
+        ((ReceptionStepTwoActivity_ycm) mContext).showBottomView(childPosition,parentPosition);
 
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -20,12 +21,16 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implements MultiAdapter.ChildMultiListener {
+public class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implements MultiAdapter.ChildMultiListener {
 
     private final TextView name;
     private final RecyclerView recyclerview;
     private static final String TAG = "Child_DemoViewHolder_di";
     private final MultiAdapter multiAdapter;
+
+    public MultiAdapter getMultiAdapter() {
+        return multiAdapter;
+    }
 
     /**
      * Default constructor.
@@ -83,12 +88,13 @@ class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implements Mult
     }
 
     @Override
-    public void onMixWrited() {
-
+    public void onMixWrited(MultiOptBean multiOptBean, int multiItemPosition, int childPosition, int parentPosition, Editable s) {
+            if (listener!=null)listener.onItemMultiWrited(multiOptBean,multiItemPosition,childPosition,parentPosition,s);
     }
 
     public interface ItemMultiListener{
         void onItemMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition);
+        void onItemMultiWrited(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition, Editable s);
     }
 
     private ItemMultiListener listener;

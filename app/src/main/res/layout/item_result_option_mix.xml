@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <CheckedTextView
+        android:id="@+id/ctv_mix"
+        android:layout_centerVertical="true"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:drawableLeft="@drawable/selector_quest_item_drawable"
+        android:drawablePadding="6dp"
+        android:gravity="center"
+        tools:text="Artist Name"  />
+
+    <TextView
+        android:id="@+id/tv_mix"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/ctv_mix"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_fillet_gray_5"
+        />
+</RelativeLayout>

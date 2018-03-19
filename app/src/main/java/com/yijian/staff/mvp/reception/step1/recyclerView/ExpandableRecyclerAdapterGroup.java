@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.reception.step1.recyclerView;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
 
 
+
+
     @NonNull
     private List<RecyclerView> mAttachedRecyclerViewPool;
 
@@ -70,8 +73,18 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
         mParentList = parentList;
         mFlatItemList = generateFlattenedParentChildList(parentList);
         mAttachedRecyclerViewPool = new ArrayList<>();
-
     }
+
+
+    @UiThread
+    public void setParentList(@NonNull List<P> parentList) {
+        mParentList = parentList;
+        mFlatItemList = generateFlattenedParentChildList(mParentList);
+        notifyDataSetChanged();
+    }
+
+
+
 
     /**
      * Implementation of Adapter.onCreateViewHolder(ViewGroup, int)
@@ -205,6 +218,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     @Override
     @UiThread
     public int getItemViewType(int flatPosition) {
+//        Log.e(TAG, "getItemViewType: "+ mFlatItemList.size());
         ExpandableWrapperGroup<P, C> listItem = mFlatItemList.get(flatPosition);
         if (listItem.isParent()) {
             return getParentViewType(getNearestParentPosition(flatPosition));
@@ -377,7 +391,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      */
     private List<ExpandableWrapperGroup<P, C>> generateFlattenedParentChildList(List<P> parentList) {
         List<ExpandableWrapperGroup<P, C>> flatItemList = new ArrayList<>();
-
+        if (parentList==null||parentList.size()==0)return flatItemList;
         int parentCount = parentList.size();
         for (int i = 0; i < parentCount; i++) {
             P parent = parentList.get(i);

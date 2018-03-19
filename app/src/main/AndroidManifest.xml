@@ -222,7 +222,15 @@
         <activity
             android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity"></activity>
+        <activity android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity" />
+        <activity
+            android:name=".mvp.experienceclass.template.Template1ClassActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.experienceclass.template.Template2ClassActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

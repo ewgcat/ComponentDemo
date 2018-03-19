@@ -23,11 +23,8 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.step_one_navigation_bar2);
 
         navigationBar2.hideLeftSecondIv();
-
         navigationBar2.setBackClickListener(this);
-
         navigationBar2.setTitle("体验课流程");
-
 
         ClassTimeBar timeBar = findViewById(R.id.step_one_timebar);
         timeBar.showTimeBar(1);

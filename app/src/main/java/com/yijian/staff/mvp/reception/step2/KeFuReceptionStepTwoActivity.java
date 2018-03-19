@@ -1,23 +1,18 @@
 package com.yijian.staff.mvp.reception.step2;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
-import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.ScanBodyView;
 import com.yijian.staff.widget.TimeBar;
 
-public class ReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
+public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ScanBodyView scanBodyView;
 
@@ -65,7 +60,7 @@ public class ReceptionStepTwoActivity extends AppCompatActivity implements View.
                 startActivity(i);
                 break;
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
+                Intent intent = new Intent(KeFuReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;

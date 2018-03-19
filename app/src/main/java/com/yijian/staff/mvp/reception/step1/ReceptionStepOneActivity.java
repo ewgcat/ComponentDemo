@@ -2,42 +2,41 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step2.ReceptionStepTwoActivity;
-import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
+import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
+import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
+import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
+import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
+import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 import com.yijian.staff.widget.TimeBar;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener {
 
-    RadioGroup infoSourceGroup1;
-    RadioGroup infoSourceGroup2;
-    RadioGroup infoSourceGroup3;
-    RadioGroup infoSourceGroup4;
-    LinearLayout targetGroup1;
-    LinearLayout targetGroup2;
-    List<RadioGroup> infoSourceGroups = new ArrayList<>();
-    EditText etElse;
-    EditText etCare;
-    Button save;
+    private static final String TAG = ReceptionStepOneActivity.class.getSimpleName();
+
+    private Step1QuestAdapter adapter;
+    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
+    private List<Step1Bean> step1bean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,53 +59,115 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
         navigationBar2.setmRightTvText("下一步");
 
 
+        mockData();
         TimeBar timeBar = findViewById(R.id.step_one_timebar);
         timeBar.showTimeBar(1);
 
-        infoSourceGroup1 = findViewById(R.id.infoSourceGroup1);
-        infoSourceGroup2 = findViewById(R.id.infoSourceGroup2);
-        infoSourceGroup3 = findViewById(R.id.infoSourceGroup3);
-        infoSourceGroup4 = findViewById(R.id.infoSourceGroup4);
-        infoSourceGroups.add(infoSourceGroup1);
-        infoSourceGroups.add(infoSourceGroup2);
-        infoSourceGroups.add(infoSourceGroup3);
-        infoSourceGroups.add(infoSourceGroup4);
-        infoSourceGroup1.setOnCheckedChangeListener(this);
-        infoSourceGroup2.setOnCheckedChangeListener(this);
-        infoSourceGroup3.setOnCheckedChangeListener(this);
-        infoSourceGroup4.setOnCheckedChangeListener(this);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_request);
+        recyclerView.setNestedScrollingEnabled(false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new Step1QuestAdapter(step1bean,this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
-        targetGroup1 = findViewById(R.id.targetGroup1);
-        targetGroup2 = findViewById(R.id.targetGroup2);
 
-        etElse = findViewById(R.id.et_else);
-        etCare = findViewById(R.id.et_care);
-        save = findViewById(R.id.btn_save);
+        Button btnSave = findViewById(R.id.btn_save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<Integer, Integer> singleCheck = adapter.getSingleCheck();
+                Log.e(TAG, "onClick: singleCheck"+singleCheck.toString() );
+
+                Map<Integer, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
+                Log.e(TAG, "onClick: multiCheck"+multiCheck.toString() );
+
+                Map<Integer, String> write = adapter.getWrite();
+                Log.e(TAG, "onClick: write"+write.toString() );
+
+            }
+        });
+
+
+        MaterialCalendarView calendarView = findViewById(R.id.calendarView);
+        initCalendarView(calendarView);
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        infoSourceGroups.remove(group);
+    private void initCalendarView(MaterialCalendarView widget) {
+        widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
+        widget.setPagingEnabled(false);
+        widget.setTopbarVisible(false);
+        widget.setWeekDayLabels(new String[]{"日","一","二","三","四","五","六"});
 
-        for (RadioGroup radioGroup : infoSourceGroups) {
-            radioGroup.setOnCheckedChangeListener(null);
-            radioGroup.clearCheck();
-        }
+        widget.setWeekDayTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_WeekDay);
+        widget.setDateTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_Date);
+        widget.addDecorators( new MySelectorDecorator(this),oneDayDecorator);
 
-        for (RadioGroup radioGroup : infoSourceGroups) {
-            radioGroup.setOnCheckedChangeListener(this);
-        }
+        widget.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+//                List<CalendarDay> selectedDates = widget.getSelectedDates();
+//                for (int i = 0; i < selectedDates.size(); i++) {
+//                    oneDayDecorator.setDate(selectedDates.get(i).getDate());
+//                }
+//                widget.invalidateDecorators();
+                oneDayDecorator.setDate(date.getDate());
 
-        infoSourceGroups.add(group);
-
-        if (group == infoSourceGroup4) {
-            RadioButton radioButton = group.findViewById(checkedId);
-            if (radioButton.isChecked()) {
-                etElse.setVisibility(View.VISIBLE);
             }
-        } else {
-            etElse.setVisibility(View.GONE);
-        }
+        });
+    }
+
+
+    List<QuestionEntry> datas;
+    private void mockData() {
+//        ArrayList<QuestionOption> type0 = new ArrayList<>();
+//        ArrayList<QuestionOption> type1 = new ArrayList<>();
+//        ArrayList<QuestionOption> type2 = new ArrayList<>();
+//
+//        ArrayList<QuestionOption> type3 = new ArrayList<>();
+//        ArrayList<QuestionOption> type4 = new ArrayList<>();
+//        ArrayList<QuestionOption> type5 = new ArrayList<>();
+//        ArrayList<QuestionOption> type6 = new ArrayList<>();
+//        for (int i = 0; i < 5; i++) {
+//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
+//            type0.add(questionOption_type0);
+//        }
+//
+//        for (int i = 0; i < 7; i++) {
+//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
+//            type1.add(questionOption_type1);
+//        }
+//
+//        type2.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
+//
+//
+//
+//        for (int i = 0; i < 5; i++) {
+//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
+//            type4.add(questionOption_type0);
+//        }
+//
+//        for (int i = 0; i < 7; i++) {
+//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
+//            type3.add(questionOption_type1);
+//        }
+//
+//        type5.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
+//        type6.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
+//
+//
+//
+//        QuestionEntry questionEntry0 = new QuestionEntry("这是一个单选",0,type0);
+//        QuestionEntry questionEntry1 = new QuestionEntry("这是一个多选多选1",1,type1);
+//        QuestionEntry questionEntry2 = new QuestionEntry("这是一个填空2",2,type2);
+//        QuestionEntry questionEntry3 = new QuestionEntry("这是一个填空6",3,type6);
+//        QuestionEntry questionEntry4 = new QuestionEntry("这是一个填空5",4,type5);
+//        QuestionEntry questionEntry5 = new QuestionEntry("这是一个单选4",5,type4);
+//        QuestionEntry questionEntry6 = new QuestionEntry("这是一个多选多选3",6,type3);
+//
+//        datas = Arrays.asList(questionEntry0,questionEntry1,questionEntry2,questionEntry3,questionEntry4,questionEntry5,questionEntry6);
+        Step1WrapBean bean = new Gson().fromJson(Step1MockData.step1Data, Step1WrapBean.class);
+        step1bean = bean.getStep1();
+
     }
 
     @Override
@@ -119,8 +180,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements Radio
                 break;
 
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
                 startActivity(intent);
 
                 break;

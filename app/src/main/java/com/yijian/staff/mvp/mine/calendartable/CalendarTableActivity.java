@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.mine.calendartable;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,12 +12,14 @@ import android.widget.TextView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.invitation.InvitationRecordFragment;
 import com.yijian.staff.mvp.invitation.InvitationResultFragment;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -26,7 +29,7 @@ import butterknife.OnClick;
 /**
  * 日程表
  */
-public class CalendarTableActivity extends AppCompatActivity {
+public class CalendarTableActivity extends AppCompatActivity implements OnChangeDateListener{
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -49,7 +52,11 @@ public class CalendarTableActivity extends AppCompatActivity {
     View view_line_day;   //日视图的下划线
     @BindView(R.id.view_line_week)
     View view_line_week;  //周视图的下划线
-
+    @BindView(R.id.tv_change_date)
+    TextView tv_change_date;
+    TitleChanger titleChanger;
+    OnChangeDateListener onChangeDateListener;
+    CalendarDay currentDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,9 @@ public class CalendarTableActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        titleChanger = new TitleChanger(tv_change_date);
+        titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
+        currentDay = CalendarDay.today();
         selectTab(0);
     }
 
@@ -75,7 +85,7 @@ public class CalendarTableActivity extends AppCompatActivity {
         navigationBar.setRightButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(CalendarTableActivity.this,CalendarSettingActivity.class));
             }
         });
     }
@@ -113,6 +123,7 @@ public class CalendarTableActivity extends AppCompatActivity {
             // 如果ViperFragment为空，则创建一个并添加到界面上
             if (index == 0) {
                 dayFragment = DayFragment.getInstance();
+                dayFragment.setOnChangeDateListener(this);
                 transaction.add(R.id.fl_calendarTab, dayFragment, FRAGMENT_TAG[index]);
             } else if (index == 1) {
                 weekFragment = WeekFragment.getInstance();
@@ -143,5 +154,11 @@ public class CalendarTableActivity extends AppCompatActivity {
         view_line_week.setVisibility(index == 0? View.GONE:View.VISIBLE);
     }
 
+    @Override
+    public void onChangeDate(CalendarDay calendarDay) {
+        titleChanger.setPreviousMonth(currentDay);
+        titleChanger.change(calendarDay);
+        currentDay = calendarDay;
+    }
 
 }

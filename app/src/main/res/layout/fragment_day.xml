@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             app:mcv_selectionColor="#00F"
-            app:mcv_showOtherDates="" />
+            app:mcv_showOtherDates=""
+            app:mcv_tileHeight="0dp"/>
 
     </LinearLayout>
 
@@ -56,9 +57,9 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_day"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

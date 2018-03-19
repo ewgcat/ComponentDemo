@@ -156,7 +156,7 @@
         "type":1,
         "name":"问卷调查",
         "icon":"url",
-        "path":"/test/10",
+        "path":"/test/12",
         "group":"会籍(客服)",
         "count":0
       },
@@ -186,7 +186,7 @@
         "type":1,
         "name":"教练回访",
         "icon":"url",
-        "path":"/test/12",
+        "path":"/test/13",
         "group":"教练",
         "count":0
       },
@@ -194,7 +194,7 @@
         "type":1,
         "name":"课程评论",
         "icon":"url",
-        "path":"/test/13",
+        "path":"/test/14",
         "group":"教练",
         "count":0
       },

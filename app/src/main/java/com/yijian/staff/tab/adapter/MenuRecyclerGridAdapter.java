@@ -80,12 +80,14 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
 
     @Override
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
+        boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
+
         if (isWorkMenu){
             holder.fl_item_view.setBackground(null);
+            showEditIcon=false;
         }else {
             holder.fl_item_view.setBackground(context.getDrawable(R.drawable.light_black_stroke_bg));
         }
-        boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)

@@ -72,7 +72,6 @@ public class InvitationActivity extends AppCompatActivity {
         navigationBar.setTitle("邀约记录","#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        navigationBar.hideBottomLine();
     }
 
     @OnClick({R.id.lin_invitation_record,R.id.lin_invitation_result})

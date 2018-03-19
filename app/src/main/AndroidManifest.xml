@@ -148,19 +148,17 @@
             android:name=".mvp.resourceallocation.ResourceAllocationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity"
+            android:name=".mvp.resourceallocation.selecthuiji.SelectHuiJiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.resourceallocation.SelectHuiJiActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.mine.SettingActivity"
+            android:name=".mvp.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
-        <activity android:name=".mvp.mine.EditQualificationActivity" />
+        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.mine.qualification.MyQualificationActivity"
             android:screenOrientation="portrait" />
@@ -177,11 +175,12 @@
         <activity
             android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.vip.potential.AddPotentialActivity"></activity>
+        <activity android:name=".mvp.vip.potential.AddPotentialActivity" />
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.mine.calendartable.CalendarSettingActivity"></activity>
+        <activity
+            android:name=".mvp.mine.calendartable.CalendarSettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.editpassword.EditPasswordActivity"
@@ -197,6 +196,30 @@
             android:name=".mvp.goods.GoodsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
+
+
+        <!--       体验课   -->
+        <activity
+            android:name=".mvp.experienceclass.index.ExperienceClassListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.experienceclass.step1.ExperienceClassProcess1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.experienceclass.step2.ExperienceClassProcess2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.experienceclass.step3.ExperienceClassProcess3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.experienceclass.step4.ExperienceClassProcess4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
+            android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>

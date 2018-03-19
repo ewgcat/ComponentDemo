@@ -221,11 +221,11 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(ComplaintListActivity.this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(Color.parseColor("#1997F8"));
+        header.setPrimaryColor(Color.parseColor("#41aecf"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(ComplaintListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(Color.parseColor("#1997F8"));
+        footer.setAnimatingColor(Color.parseColor("#41aecf"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

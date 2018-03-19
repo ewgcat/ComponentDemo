@@ -20,7 +20,7 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_reception_step_two);
+        setContentView(R.layout.activity_kefu_reception_step_two);
         initView();
     }
 

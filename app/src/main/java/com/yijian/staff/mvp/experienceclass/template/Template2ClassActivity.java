@@ -11,7 +11,7 @@ public class Template2ClassActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_template1_class);
+        setContentView(R.layout.activity_template2_class);
 
         initView();
 

@@ -33,7 +33,7 @@ import java.util.List;
  * Created by The_P on 2018/3/19.
  */
 
-public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements View.OnClickListener {
+public class CoachReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private OptionItemData optionItemData;
     private static final String TAG = "DemoActivity";
@@ -53,7 +53,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receptionsteptwo_ycm);
+        setContentView(R.layout.activity_coach_reception_step_two);
 
         initView();
         initData();
@@ -108,7 +108,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
 
     @NonNull
     public static Intent newIntent(Context context) {
-        return new Intent(context, ReceptionStepTwoActivity_ycm.class);
+        return new Intent(context, CoachReceptionStepTwoActivity.class);
     }
 
 
@@ -155,7 +155,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
 
                 }
 
-                Toast.makeText(ReceptionStepTwoActivity_ycm.this, str, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoachReceptionStepTwoActivity.this, str, Toast.LENGTH_SHORT).show();
                 demoAdapter.notifyChildChanged(parentPosition, childPosition);
             }
         }).build();
@@ -217,7 +217,7 @@ public class ReceptionStepTwoActivity_ycm extends AppCompatActivity implements V
                 startActivity(i);
                 break;
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepTwoActivity_ycm.this, ReceptionStepThreeActivity.class);
+                Intent intent = new Intent(CoachReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;

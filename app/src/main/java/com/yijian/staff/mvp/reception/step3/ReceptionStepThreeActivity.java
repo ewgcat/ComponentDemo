@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.reception.step3;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.yijian.staff.mvp.reception.step3.coach.CoachProductFragment;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductQuotationFragment;
 import com.yijian.staff.mvp.reception.step3.leader.LeaderProductFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
@@ -19,6 +21,8 @@ import butterknife.ButterKnife;
 
 public class ReceptionStepThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +42,16 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         TimeBar timeBar = findViewById(R.id.step_three_timebar);
         timeBar.showTimeBar(3);
 
-        HuiJiProductQuotationFragment huiJiProductQuotationFragment = new HuiJiProductQuotationFragment();
-//        CoachProductFragment huiJiProductQuotationFragment = new CoachProductFragment();
-//        LeaderProductFragment huiJiProductQuotationFragment = new LeaderProductFragment();
+        int userRole = SharePreferenceUtil.getUserRole();
+        if (userRole==0){
+             fragment = new HuiJiProductQuotationFragment();
+        }else if (userRole==1){
+             fragment =new CoachProductFragment();
+        }else if (userRole==2){
+            fragment = new LeaderProductFragment();
+        }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fl_content,huiJiProductQuotationFragment).commit();
+        fragmentTransaction.add(R.id.fl_content,fragment).commit();
     }
 
 

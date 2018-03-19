@@ -25,7 +25,8 @@ public class UserDao extends AbstractDao<User, Void> {
      */
     public static class Properties {
         public final static Property Age = new Property(0, int.class, "age", false, "AGE");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Role = new Property(1, int.class, "role", false, "ROLE");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
     }
 
 
@@ -42,7 +43,8 @@ public class UserDao extends AbstractDao<User, Void> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"AGE\" INTEGER NOT NULL ," + // 0: age
-                "\"NAME\" TEXT);"); // 1: name
+                "\"ROLE\" INTEGER NOT NULL ," + // 1: role
+                "\"NAME\" TEXT);"); // 2: name
     }
 
     /** Drops the underlying database table. */
@@ -55,10 +57,11 @@ public class UserDao extends AbstractDao<User, Void> {
     protected final void bindValues(DatabaseStatement stmt, User entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getAge());
+        stmt.bindLong(2, entity.getRole());
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
     }
 
@@ -66,10 +69,11 @@ public class UserDao extends AbstractDao<User, Void> {
     protected final void bindValues(SQLiteStatement stmt, User entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getAge());
+        stmt.bindLong(2, entity.getRole());
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
     }
 
@@ -82,7 +86,8 @@ public class UserDao extends AbstractDao<User, Void> {
     public User readEntity(Cursor cursor, int offset) {
         User entity = new User( //
             cursor.getInt(offset + 0), // age
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // name
+            cursor.getInt(offset + 1), // role
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // name
         );
         return entity;
     }
@@ -90,7 +95,8 @@ public class UserDao extends AbstractDao<User, Void> {
     @Override
     public void readEntity(Cursor cursor, User entity, int offset) {
         entity.setAge(cursor.getInt(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setRole(cursor.getInt(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override

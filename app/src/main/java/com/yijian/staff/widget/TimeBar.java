@@ -67,14 +67,14 @@ public class TimeBar extends LinearLayout {
             }
 
             if (position - i == 1) {
-                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
+                lineLeft.setBackgroundColor(Color.parseColor("#41aecf"));
                 lineRight.setBackgroundColor(Color.parseColor("#cccccc"));
-                desc.setTextColor(Color.parseColor("#1997F8"));
+                desc.setTextColor(Color.parseColor("#41aecf"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else if (position - i > 1) {
-                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
-                lineRight.setBackgroundColor(Color.parseColor("#1997F8"));
-                desc.setTextColor(Color.parseColor("#1997F8"));
+                lineLeft.setBackgroundColor(Color.parseColor("#41aecf"));
+                lineRight.setBackgroundColor(Color.parseColor("#41aecf"));
+                desc.setTextColor(Color.parseColor("#41aecf"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else {
                 lineLeft.setBackgroundColor(Color.parseColor("#cccccc"));

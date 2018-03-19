@@ -59,6 +59,12 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("体验课邀请");
         navigationBar2.setmRightTvText("完成");
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //提交结果
         pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
@@ -71,23 +77,28 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
     }
 
 
-
-    @OnClick({R.id.ll_time, R.id.ll_template1, R.id.ll_template2})
+    @OnClick({R.id.ll_time,
+            R.id.ll_template1, R.id.ll_template2,
+            R.id.ll_select_template1_status, R.id.ll_select_template2_status
+    })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_time:
                 pickerView.show();
                 break;
-            case R.id.ll_template1:
+            case R.id.ll_select_template1_status:
                 Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
                 Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_normal_select_small).into(ivTemplate2);
+                break;
+            case R.id.ll_select_template2_status:
+                Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_normal_select_small).into(ivTemplate1);
+                Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_select_small).into(ivTemplate2);
+                break;
+            case R.id.ll_template1:
                 startActivity(new Intent(ExperienceClassInvateActivity.this, Template1ClassActivity.class));
                 break;
             case R.id.ll_template2:
-                Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_normal_select_small).into(ivTemplate1);
-                Glide.with(ExperienceClassInvateActivity.this).load(R.mipmap.trialclass_select_small).into(ivTemplate2);
                 startActivity(new Intent(ExperienceClassInvateActivity.this, Template2ClassActivity.class));
-
                 break;
         }
     }

@@ -9,6 +9,10 @@ import android.view.View;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
+import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
+import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
+import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -87,9 +91,17 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.tv_jiedai:
                 //TODO 接待流程
-                Intent intent = new Intent(ReceptionActivity.this,ReceptionStepOneActivity.class);
-                startActivity(intent);
-
+                int userRole = SharePreferenceUtil.getUserRole();
+                if (userRole==0){
+                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
+                    startActivity(intent);
+                }else if (userRole==1){
+                    Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
+                    startActivity(intent);
+                }else if (userRole==2){
+                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

@@ -89,7 +89,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="综合排序"
+                    android:text="综合"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 

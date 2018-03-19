@@ -101,6 +101,8 @@ public class GoodsListActivity extends AppCompatActivity {
 //                //TODO 跳转到商品详情
 //            }
 //        });
+        selectZongHe();
+
     }
     private void initGoodsList() {
         mGoodsInfoList.clear();

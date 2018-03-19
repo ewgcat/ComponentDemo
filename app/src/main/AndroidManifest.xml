@@ -51,21 +51,17 @@
         <activity
             android:name=".mvp.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".mvp.questionnaireresult.QuestionnaireResultActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"
@@ -169,7 +165,6 @@
         <activity
             android:name=".mvp.mine.qrcode.MyQRCodeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.mine.qualification.MyQualificationActivity"
             android:screenOrientation="portrait" />
@@ -208,8 +203,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-
-        <!--       体验课   -->
+        <!-- 体验课 -->
         <activity
             android:name=".mvp.experienceclass.index.ExperienceClassListActivity"
             android:screenOrientation="portrait" />
@@ -228,8 +222,7 @@
         <activity
             android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
             android:screenOrientation="portrait" />
-
-
+        <activity android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity"></activity>
     </application>
 
 </manifest>

@@ -49,6 +49,11 @@ public class PhysicalReportAdapter extends ExpandableRecyclerAdapter<ParentQuest
         mContext = context;
     }
 
+  public void  resetData(List<ParentQuestionBean> list){
+      parentList=list;
+      setParentList(list,true);
+  }
+
     @NonNull
     @Override
     public Parent_Step2ViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {

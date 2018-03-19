@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.physical;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +21,10 @@ import com.yijian.staff.widget.BodyTestReportView;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 
@@ -32,6 +36,7 @@ public class PhysicalReportActivity extends AppCompatActivity {
     private TextView tvHeight;
     private TextView tvAge;
     private PhysicalReportAdapter demoAdapter;
+    private List<ParentQuestionBean> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +71,9 @@ public class PhysicalReportActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
-
+        list = new ArrayList<>();
+        demoAdapter = new PhysicalReportAdapter(list, this);
+        recyclerView.setAdapter(demoAdapter);
 
     }
 
@@ -74,8 +81,22 @@ public class PhysicalReportActivity extends AppCompatActivity {
         QustionBean bean = new Gson().fromJson(JsonStringData.metaData, QustionBean.class);
         parentObj = bean.getParentObj();
 
-        demoAdapter = new PhysicalReportAdapter(parentObj, this);
-        recyclerView.setAdapter(demoAdapter);
+
+
+        Handler handler= new Handler();
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        demoAdapter.resetData(parentObj);
+                    }
+                });
+            }
+        },2000);
     }
 
 

@@ -2,9 +2,9 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,9 +30,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener {
-
-    private static final String TAG = ReceptionStepOneActivity.class.getSimpleName();
+public class ReceptionStepOneActivity_ycm extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "ReceptionStepOneActivit";
 
     private Step1QuestAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
@@ -42,7 +41,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_reception_step_one);
+        setContentView(R.layout.activity_reception_step_one_ycm);
 
         initView();
 
@@ -119,52 +118,6 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
 
     List<QuestionEntry> datas;
     private void mockData() {
-//        ArrayList<QuestionOption> type0 = new ArrayList<>();
-//        ArrayList<QuestionOption> type1 = new ArrayList<>();
-//        ArrayList<QuestionOption> type2 = new ArrayList<>();
-//
-//        ArrayList<QuestionOption> type3 = new ArrayList<>();
-//        ArrayList<QuestionOption> type4 = new ArrayList<>();
-//        ArrayList<QuestionOption> type5 = new ArrayList<>();
-//        ArrayList<QuestionOption> type6 = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type0.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type1.add(questionOption_type1);
-//        }
-//
-//        type2.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type4.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type3.add(questionOption_type1);
-//        }
-//
-//        type5.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//        type6.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        QuestionEntry questionEntry0 = new QuestionEntry("这是一个单选",0,type0);
-//        QuestionEntry questionEntry1 = new QuestionEntry("这是一个多选多选1",1,type1);
-//        QuestionEntry questionEntry2 = new QuestionEntry("这是一个填空2",2,type2);
-//        QuestionEntry questionEntry3 = new QuestionEntry("这是一个填空6",3,type6);
-//        QuestionEntry questionEntry4 = new QuestionEntry("这是一个填空5",4,type5);
-//        QuestionEntry questionEntry5 = new QuestionEntry("这是一个单选4",5,type4);
-//        QuestionEntry questionEntry6 = new QuestionEntry("这是一个多选多选3",6,type3);
-//
-//        datas = Arrays.asList(questionEntry0,questionEntry1,questionEntry2,questionEntry3,questionEntry4,questionEntry5,questionEntry6);
         Step1WrapBean bean = new Gson().fromJson(Step1MockData.step1Data, Step1WrapBean.class);
         step1bean = bean.getStep1();
 
@@ -180,7 +133,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
                 break;
 
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepOneActivity.this, ReceptionStepTwoActivity_ycm.class);
+                Intent intent = new Intent(ReceptionStepOneActivity_ycm.this, ReceptionStepTwoActivity_ycm.class);
                 startActivity(intent);
 
                 break;

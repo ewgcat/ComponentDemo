@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step2;
+package com.yijian.staff.mvp.physical;
 
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -13,7 +13,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
  * Created by The_P on 2018/3/15.
  */
 
-public class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
+public class Child_physical_dispaly extends ChildViewHolder {
 
     private final TextView tvKey;
     private final TextView tvValue;
@@ -23,7 +23,7 @@ public class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
      *
      * @param itemView The {@link View} being hosted in this ViewHolder
      */
-    public Child_Step2ViewHolder_dispaly(@NonNull View itemView) {
+    public Child_physical_dispaly(@NonNull View itemView) {
         super(itemView);
         tvKey = (TextView) itemView.findViewById(R.id.tv_key);
         tvValue = (TextView) itemView.findViewById(R.id.tv_value);
@@ -32,6 +32,6 @@ public class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
-//        tvValue.setText(child.getDefaultValue());
+        tvValue.setText(child.getUserValue());
     }
 }

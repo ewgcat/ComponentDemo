@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step2;
+package com.yijian.staff.mvp.physical;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-
+import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
@@ -23,28 +23,19 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder > {
+public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder > {
     private Context context;
     private List<MultiOptBean> mMultiOptBeans=new ArrayList<>();
     private static final String TAG = "MultiAdapter";
     public static final int TYPE_NORMAL=0;
     public static final int TYPE_MIX=1;
 
-    public MultiAdapter(Activity mContext) {
+    public Multi_physicalAdapter(Activity mContext) {
         context=mContext;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-//        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-//        layoutParams.width= ViewGroup.LayoutParams.WRAP_CONTENT;
-//        layoutParams.height=300;
-//        view.setLayoutParams(layoutParams);
-//        Log.e(TAG, "onCreateViewHolder:layoutParamsclass===== "+layoutParams.getClass() );
-
-
-
         switch (viewType){
             default:
             case TYPE_NORMAL:
@@ -52,7 +43,7 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
                 MyViewHolder myViewHolder = new MyViewHolder(view);
                 return myViewHolder;
             case TYPE_MIX:
-                View view1 = LayoutInflater.from(context).inflate(R.layout.item_quest_step2_option_mix, parent, false);
+                View view1 = LayoutInflater.from(context).inflate(R.layout.item_physical_option_mix, parent, false);
                 MyMixViewHolder mixViewHolder=new MyMixViewHolder(view1);
                 return mixViewHolder;
         }
@@ -105,12 +96,6 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
             optName.setText(multiOptBean.getOptName());
             optName.setChecked(multiOptBean.isIsSelected());
 
-            rlOption.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener!=null)listener.onChildMultiClick(multiOptBean,getLayoutPosition(),childPosition,parentPosition);
-                }
-            });
         }
     }
 
@@ -122,12 +107,12 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
 
 
         private final CheckedTextView optName;
-        private final EditText etMix;
+        private final TextView tvMix;
 
         public MyMixViewHolder(View itemView) {
             super(itemView);
             optName = (CheckedTextView) itemView.findViewById(R.id.ctv_mix);
-            etMix = itemView.findViewById(R.id.et_mix);
+            tvMix = itemView.findViewById(R.id.tv_mix);
 
 
         }
@@ -135,30 +120,8 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
         public void bindView(final MultiOptBean multiOptBean) {
             optName.setText(multiOptBean.getOptName());
             optName.setChecked(multiOptBean.isIsSelected());
-            etMix.setText(multiOptBean.getUserValue());
-            optName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener!=null)listener.onChildMultiClick(multiOptBean,getLayoutPosition(),childPosition,parentPosition);
-                }
-            });
+            tvMix.setText(multiOptBean.getUserValue());
 
-            etMix.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if (listener!=null)listener.onMixWrited(multiOptBean,getLayoutPosition(),childPosition,parentPosition,s);
-                }
-            });
         }
     }
 
@@ -174,15 +137,4 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
         }
     }
 
-    public interface ChildMultiListener{
-        void onChildMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition);
-        void onMixWrited(MultiOptBean multiOptBean, int layoutPosition, int childPosition, int parentPosition, Editable s);
-    }
-
-    private ChildMultiListener listener;
-
-
-    public void setChildMultiListener(ChildMultiListener childMultiListener){
-        listener=childMultiListener;
-    }
 }

@@ -19,8 +19,8 @@
         android:gravity="center"
         tools:text="Artist Name"  />
 
-    <EditText
-        android:id="@+id/et_mix"
+    <TextView
+        android:id="@+id/tv_mix"
         android:gravity="center_vertical"
         android:layout_toRightOf="@+id/ctv_mix"
         android:layout_centerVertical="true"

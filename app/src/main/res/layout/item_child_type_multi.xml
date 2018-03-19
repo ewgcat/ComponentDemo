@@ -6,6 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical">
     <RelativeLayout
+        android:id="@+id/rl_option"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -21,7 +22,8 @@
             tools:text="key"
             android:layout_centerVertical="true"
             android:textSize="14sp"
-            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+            android:drawableLeft="@drawable/selector_quest_item_drawable"
+            android:drawablePadding="6dp"
             android:textColor="@color/text_black3"/>
     </RelativeLayout>
 </LinearLayout>

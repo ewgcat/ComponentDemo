@@ -79,7 +79,7 @@
             android:name=".mvp.reception.step2.KeFuReceptionStepTwoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.reception.step2.CoachReceptionStepTwoActivity"
+            android:name=".mvp.reception.step2.ReceptionStepTwoActivity_ycm"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".mvp.reception.step3.ReceptionStepThreeActivity"

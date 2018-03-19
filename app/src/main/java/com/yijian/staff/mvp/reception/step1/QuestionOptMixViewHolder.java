@@ -1,8 +1,11 @@
 package com.yijian.staff.mvp.reception.step1;
 
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
@@ -19,25 +22,59 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
      * @param itemView The {@link View} being hosted in this ViewHolder
      */
 
-    private CheckedTextView ctvSingleCheck;
+    private CheckedTextView ctvMixCheck;
+    private final EditText etMix;
 
     public QuestionOptMixViewHolder(@NonNull View itemView) {
         super(itemView);
-        ctvSingleCheck = (CheckedTextView) itemView.findViewById(R.id.ctv_multi);
+        ctvMixCheck = (CheckedTextView) itemView.findViewById(R.id.ctv_mix);
+        etMix = itemView.findViewById(R.id.et_mix);
     }
 
     public void bind(QuestOptBean child, int parentPosition, int childPosition) {
-        ctvSingleCheck.setChecked(child.isSelected());
+        ctvMixCheck.setChecked(child.isSelected());
 
-        ctvSingleCheck.setText(child.getName());
+        ctvMixCheck.setText(child.getName());
 
-        ctvSingleCheck.setOnClickListener(new View.OnClickListener() {
+        ctvMixCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (listener!=null){
-//                    listener.onSingleClick(child,parentPosition,childPosition);
-//                }
+                if (listener!=null){
+                    listener.onMixClick(child,parentPosition,childPosition);
+                }
             }
         });
+
+
+        etMix.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (listener!=null)listener.onMixWrited(parentPosition,childPosition,s);
+            }
+        });
+
     }
+
+    public  interface MixListener{
+        void onMixWrited( int parentPosition,int childPosition,Editable s);
+
+        void onMixClick(QuestOptBean child, int parentPosition, int childPosition);
+    }
+
+    private MixListener listener;
+    public void setMixWriteListener(MixListener writeListener){
+        listener=writeListener;
+    }
+
+
 }

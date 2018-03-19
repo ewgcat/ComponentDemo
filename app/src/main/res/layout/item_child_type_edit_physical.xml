@@ -29,7 +29,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="请选择"
+            tools:text="请填写"
             android:textColor="@color/text_black1"
             android:textSize="14sp"
             android:gravity="center"

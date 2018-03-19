@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.reception.step2;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +23,14 @@ import java.util.Map;
  * Created by The_P on 2018/3/13.
  */
 
-public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuestionBean, ChildOptBean, Parent_Step2ViewHolder, ChildViewHolder> implements Child_Step2ViewHolder_normal.ChildNormalListener, Child_Step2ViewHolder_write.ChildWriteListener, Child_Step2ViewHolder_dispalyMulti.ItemMultiListener {
+public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuestionBean, ChildOptBean, Parent_Step2ViewHolder, ChildViewHolder> implements Child_Step2ViewHolder_normal.ChildNormalListener, Child_Step2ViewHolder_write.ChildWriteListener, Child_Step2ViewHolder_edit.ChildEditListener, Child_Step2ViewHolder_dispalyMulti.ItemMultiListener {
 
     private LayoutInflater mInflater;
     private List<ParentQuestionBean> parentList;
     private Activity mContext;
     private static final String TAG = "DemoAdapter";
+    private MultiAdapter multiAdapter;
+
     /**
      * Primary constructor. Sets up {@link #mParentList} and {@link #mFlatItemList}.
      * <p>
@@ -57,9 +58,7 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
     @Override
     public Parent_Step2ViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
         View inflate = mInflater.inflate(R.layout.item_parent_demo, parentViewGroup, false);
-
-        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate);
-//        parent_demoViewHolder.setExpanded(true);
+        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate,mContext);
         return parent_demoViewHolder;
     }
 
@@ -75,11 +74,6 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
                 childViewHolder=new Child_Step2ViewHolder_normal(view0);
                 ((Child_Step2ViewHolder_normal)childViewHolder).setChildNormalListener(this);
                 break;
-//            case 4:
-//                View view1 = mInflater.inflate(R.layout.item_child_type_multi, childViewGroup, false);
-//                childViewHolder=new Child_DemoViewHolder_multi(view1);
-//                ((Child_DemoViewHolder_multi)childViewHolder).setChildMultiListener(this);
-//                break;
 
             case 5:
                 View view2 = mInflater.inflate(R.layout.item_child_type_write, childViewGroup, false);
@@ -92,15 +86,17 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
                 childViewHolder=new Child_Step2ViewHolder_dispaly(view3);
                 break;
 
-//            case 7:
-//                View view4 = mInflater.inflate(R.layout.item_child_type_display_edit, childViewGroup, false);
-//                childViewHolder=new Child_DemoViewHolder_dispalyAndEdit(view4);
-//                break;
-
             case 8:
                 View view8 = mInflater.inflate(R.layout.item_child_type_display_multi, childViewGroup, false);
                 childViewHolder=new Child_Step2ViewHolder_dispalyMulti(view8,mContext);
                 ((Child_Step2ViewHolder_dispalyMulti)childViewHolder).setChildMultiListener(this);
+                break;
+
+            case 9:
+                View view9 = mInflater.inflate(R.layout.item_child_type_edit, childViewGroup, false);
+                childViewHolder=new Child_Step2ViewHolder_edit(view9);
+                ((Child_Step2ViewHolder_edit)childViewHolder).setChildEditListener(this);
+
                 break;
         }
 
@@ -122,6 +118,9 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
             ((Child_Step2ViewHolder_dispaly) childViewHolder).bind(child,childPosition,parentPosition);
         }else if(childViewHolder instanceof Child_Step2ViewHolder_dispalyMulti){
             ((Child_Step2ViewHolder_dispalyMulti) childViewHolder).bind(child,childPosition,parentPosition,mContext);
+            multiAdapter = ((Child_Step2ViewHolder_dispalyMulti) childViewHolder).getMultiAdapter();
+        }else if (childViewHolder instanceof Child_Step2ViewHolder_edit){
+            ((Child_Step2ViewHolder_edit) childViewHolder).bind(child,childPosition,parentPosition);
         }
     }
 
@@ -132,27 +131,27 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
 
         ChildOptBean childObjBean = parentList.get(parentPosition).getChildList().get(childPosition);
         switch (childObjBean.getQusType()){
-            case "normal":
+            case "normal"://默认的单选
                 type=3;
                 break;
 //            case "multi":
 //                type=4;
 //                break;
-            case "write":
+            case "write"://填空
                 type=5;
                 break;
             default:
-            case "dispaly":
+            case "dispaly"://展示
                 type=6;
                 break;
 
 //            case "multiAndEdit":
 //                type=7;
 //                break;
-            case "display_multi_opt":
+            case "display_multi_opt"://多选
                 type=8;
                 break;
-            case "edit":
+            case "edit"://编辑类
                 type=9;
                 break;
         }
@@ -161,10 +160,14 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
     }
 
 
-
+    /**
+     * 单选
+     * @param childPosition
+     * @param parentPosition
+     */
     @Override
     public void onChildNormalClick(int childPosition, int parentPosition) {
-        ((CoachReceptionStepTwoActivity) mContext).showBottomView(childPosition,parentPosition);
+        ((ReceptionStepTwoActivity_ycm) mContext).showBottomView(childPosition,parentPosition);
 
     }
 
@@ -231,15 +234,57 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
 //    }
 
 
-
+    /**
+     * 填空
+     * @param childPosition
+     * @param parentPosition
+     * @param s
+     */
     @Override
     public void onChildWrited(int childPosition, int parentPosition, Editable s) {
 
     }
 
 
+    /**
+     * 这里指 基础代谢
+     * @param child
+     * @param childPosition
+     * @param parentPosition
+     * @param s
+     */
+    @Override
+    public void onChildEdited(ChildOptBean child, int childPosition, int parentPosition, Editable s) {
+
+    }
+
+    /**
+     * 多选点击
+     * @param child_demo
+     * @param multiItemPosition 多选的选项在选项中的位置
+     * @param childPosition     在reyclerview中parent的子列表中的位置
+     * @param parentPosition       在reyclerview中parent的位置
+     */
     @Override
     public void onItemMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition) {
-        Log.e(TAG, "onItemMultiClick: multiItemPosition=="+multiItemPosition+"---childPosition ="+childPosition+"---parentPosition=  "+parentPosition );
+        child_demo.setIsSelected(child_demo.isIsSelected()?false:true);
+        multiAdapter.notifyDataSetChanged();
+//        notifyChildChanged(parentPosition,childPosition);
+
     }
+
+    /**
+     * 多选编辑
+     * @param child_demo
+     * @param multiItemPosition 多选的选项在选项中的位置
+     * @param childPosition 在reyclerview中parent的子列表中的位置
+     * @param parentPosition  在reyclerview中parent的位置
+     * @param s
+     */
+    @Override
+    public void onItemMultiWrited(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition, Editable s) {
+
+    }
+
+
 }

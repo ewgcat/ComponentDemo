@@ -49,12 +49,12 @@ android {
         }
     }
 
-
-    productFlavors {
-        google {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "google"]
-        }
-    }
+//
+//    productFlavors {
+//        google {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "google"]
+//        }
+//    }
 
 }
 greendao {

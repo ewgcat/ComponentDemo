@@ -80,11 +80,11 @@ public class BaseHuiFangTaskFragment extends Fragment {
         refreshLayout = (RefreshLayout)view.findViewById(R.id.refreshLayout);
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(context).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(Color.parseColor("#41aecf"));
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(context).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(Color.parseColor("#41aecf"));
+        footer.setAnimatingColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

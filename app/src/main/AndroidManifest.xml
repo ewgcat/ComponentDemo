@@ -114,7 +114,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.info.VipInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".mvp.vip.potential.PotentialViperListActivity"
             android:screenOrientation="portrait" />

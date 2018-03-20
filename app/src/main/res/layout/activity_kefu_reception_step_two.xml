@@ -54,7 +54,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="39dp"
                 android:layout_marginBottom="39dp"
-                android:text="跳过<<"
+                android:text="跳过"
+                android:drawableRight="@mipmap/lg_tiaoguo"
                 android:textSize="16sp"
                 android:textColor="#1997f8" />
         </LinearLayout>

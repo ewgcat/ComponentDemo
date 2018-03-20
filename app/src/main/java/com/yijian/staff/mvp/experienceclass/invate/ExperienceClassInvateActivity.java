@@ -62,6 +62,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(1234);
                 finish();
             }
         });

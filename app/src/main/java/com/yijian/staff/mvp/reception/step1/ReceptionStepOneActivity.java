@@ -53,7 +53,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     private void initView() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_step_one_navigation_bar);
 
-        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#41aecf"));
+        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#1997f8"));
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.getFirstLeftIv().setOnClickListener(this);

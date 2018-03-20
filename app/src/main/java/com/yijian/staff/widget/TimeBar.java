@@ -21,7 +21,7 @@ import com.yijian.staff.R;
  */
 public class TimeBar extends LinearLayout {
 
-    String[] titles = new String[]{"查看问卷", "体侧录入", "产品报价", "订单详情", "成交"};
+    String[] titles = new String[]{"查看问卷", "体测录入", "产品报价", "订单详情", "成交"};
 
     private Context context;
     private ViewGroup timebarGroup;

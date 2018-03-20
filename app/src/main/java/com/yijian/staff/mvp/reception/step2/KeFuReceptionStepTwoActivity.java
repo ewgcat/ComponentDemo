@@ -1,8 +1,8 @@
 package com.yijian.staff.mvp.reception.step2;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.yijian.staff.R;
@@ -11,6 +11,9 @@ import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.ScanBodyView;
 import com.yijian.staff.widget.TimeBar;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +24,7 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_kefu_reception_step_two);
+        ButterKnife.bind(this);
         initView();
     }
 
@@ -40,6 +44,7 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
         scanBodyView = findViewById(R.id.scan_view);
 
 
+        //TODO 发送体测给教练,成功后开启动画
 
 
     }
@@ -55,7 +60,7 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
             case R.id.iv_second_left:
 
 
-                Intent i = new Intent(this,ReceptionActivity.class);
+                Intent i = new Intent(this, ReceptionActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
@@ -64,6 +69,15 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
+            case R.id.tv_next_step:
+                //TODO 教练没录完，不能跳转,教练没开始录，可跳转
+
+
+                break;
         }
+    }
+
+    @OnClick(R.id.tv_next_step)
+    public void onViewClicked() {
     }
 }

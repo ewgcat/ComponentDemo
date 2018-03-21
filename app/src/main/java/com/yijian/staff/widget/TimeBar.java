@@ -21,7 +21,7 @@ import com.yijian.staff.R;
  */
 public class TimeBar extends LinearLayout {
 
-    String[] titles = new String[]{"查看问卷", "体侧录入", "产品报价", "订单详情", "成交"};
+    String[] titles = new String[]{"查看问卷", "体测录入", "产品报价", "订单详情", "成交"};
 
     private Context context;
     private ViewGroup timebarGroup;
@@ -67,14 +67,14 @@ public class TimeBar extends LinearLayout {
             }
 
             if (position - i == 1) {
-                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
+                lineLeft.setBackgroundColor(Color.parseColor("#1997f8"));
                 lineRight.setBackgroundColor(Color.parseColor("#cccccc"));
-                desc.setTextColor(Color.parseColor("#1997F8"));
+                desc.setTextColor(Color.parseColor("#1997f8"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else if (position - i > 1) {
-                lineLeft.setBackgroundColor(Color.parseColor("#1997F8"));
-                lineRight.setBackgroundColor(Color.parseColor("#1997F8"));
-                desc.setTextColor(Color.parseColor("#1997F8"));
+                lineLeft.setBackgroundColor(Color.parseColor("#1997f8"));
+                lineRight.setBackgroundColor(Color.parseColor("#1997f8"));
+                desc.setTextColor(Color.parseColor("#1997f8"));
                 img.setImageResource(R.drawable.time_bar_dot_blue);
             } else {
                 lineLeft.setBackgroundColor(Color.parseColor("#cccccc"));

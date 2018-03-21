@@ -31,7 +31,7 @@ public class CustomApplication extends TinkerApplication {
 
 
 
-    private static CustomApplication instance;
+    public static CustomApplication instance;
     public static AppComponent appComponent;
     private Set<Activity> allActivities;
 

@@ -23,6 +23,8 @@ import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
 import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
+import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
@@ -51,7 +53,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     private void initView() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_step_one_navigation_bar);
 
-        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#1997F8"));
+        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#1997f8"));
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.getFirstLeftIv().setOnClickListener(this);
@@ -75,10 +77,10 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<Integer, Integer> singleCheck = adapter.getSingleCheck();
+                Map<String, Integer> singleCheck = adapter.getSingleCheck();
                 Log.e(TAG, "onClick: singleCheck"+singleCheck.toString() );
 
-                Map<Integer, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
+                Map<String, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
                 Log.e(TAG, "onClick: multiCheck"+multiCheck.toString() );
 
                 Map<Integer, String> write = adapter.getWrite();
@@ -180,8 +182,16 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
                 break;
 
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
-                startActivity(intent);
+                int userRole = SharePreferenceUtil.getUserRole();
+                if (userRole==0){
+                    Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
+                    startActivity(intent);
+                }else if (userRole==1){
+                    Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
+                    startActivity(intent);
+                }
+
+
 
                 break;
 

@@ -70,9 +70,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ExperienceClassProcess1Activity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("ExperienceClassBean",experienceClassBean);
-                intent.putExtras(bundle);
+
                 context.startActivity(intent);
             }
         });

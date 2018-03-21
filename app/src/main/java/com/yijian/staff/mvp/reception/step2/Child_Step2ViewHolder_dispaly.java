@@ -13,7 +13,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
  * Created by The_P on 2018/3/15.
  */
 
-class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
+public class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
 
     private final TextView tvKey;
     private final TextView tvValue;
@@ -32,14 +32,6 @@ class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
-        tvValue.setText(child.getDefaultValue());
-        tvValue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                if (listener!=null){
-//                    listener.onChildNormalClick(childPosition,parentPosition);
-//                }
-            }
-        });
+//        tvValue.setText(child.getDefaultValue());
     }
 }

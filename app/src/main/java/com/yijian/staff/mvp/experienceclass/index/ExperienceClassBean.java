@@ -7,12 +7,14 @@ import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/3/19 10:21:41
  */
-public class ExperienceClassBean implements Parcelable {
+public class ExperienceClassBean implements Serializable{
     private String headerUrl;
     private String name;
     private int sex;
@@ -88,13 +90,4 @@ public class ExperienceClassBean implements Parcelable {
         this.currentOperation = currentOperation;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
 }

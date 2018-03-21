@@ -2,8 +2,6 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
 import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ChildViewHolderGroup;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ExpandableRecyclerAdapterGroup;
@@ -27,7 +23,7 @@ import java.util.Map;
  * Created by The_P on 2018/3/12.
  */
 
-public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean, QuestOptBean,AbsParentViewHolder, ChildViewHolderGroup> implements QuestionSingleCheckViewHolder.SingleCheckListener, QuestionWriteViewHolder.WriteListener {
+public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean, QuestOptBean,AbsParentViewHolder, ChildViewHolderGroup> implements QuestionSingleCheckViewHolder.SingleCheckListener, QuestionWriteViewHolder.WriteListener, QuestionOptMixViewHolder.MixListener {
     private static final String TAG = "Step1QuestAdapter";
     private static final int SINGLECHECK = 3;
     private static final int MULTICHECK =4;
@@ -39,9 +35,9 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
     private List<Step1Bean> QuestionList;
     private Context mContext;
 
-    private Map<Integer,Integer> singleCheck=new HashMap<>();//单选的结果集合
+    private Map<String,Integer> singleCheck=new HashMap<>();//单选的结果集合
 
-    private Map<Integer,HashSet<Integer>> multiCheck=new HashMap<>();//多选的结果集合
+    private Map<String,HashSet<Integer>> multiCheck=new HashMap<>();//多选的结果集合
 
     private Map<Integer,String> write=new HashMap<>();//填空的结果集合
 
@@ -65,7 +61,6 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
             case WRITE:
                 View titleview1 = mInflater.inflate(R.layout.item_quest_option_write, parentViewGroup, false);
                 QuestionWriteViewHolder questionWriteViewHolder = new QuestionWriteViewHolder(titleview1);
-
                 questionWriteViewHolder.setWriteListener(this);
                 return questionWriteViewHolder;
         }
@@ -87,7 +82,7 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
             case CHILDMIX:
                 View mixView = mInflater.inflate(R.layout.item_quest_option_mix, childViewGroup, false);
                 QuestionOptMixViewHolder viewHolder1 = new QuestionOptMixViewHolder(mixView);
-//                viewHolder1.setMixCheckListener(this);
+                viewHolder1.setMixWriteListener(this);
                 viewHolder = viewHolder1;
                 break;
         }
@@ -162,26 +157,54 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
     public void onSingleClick(QuestOptBean child, int parentPosition,int childPosition) {
 //        Toast.makeText(mContext,"QuestionOption=="+child.getmName()+" ,parentPosition"+parentPosition,Toast.LENGTH_SHORT).show();
         String type = QuestionList.get(parentPosition).getType();
+        switch (type){
+            case "singleCheck"://单选
+
+                List<QuestOptBean> childList = QuestionList.get(parentPosition).getChildList();
+                for (QuestOptBean optBean: childList  ) {
+                    optBean.setSelected(false);
+                }
+                child.setSelected(true);
+                singleCheck.put(QuestionList.get(parentPosition).getQuestName(),childList.indexOf(child));
+
+                notifyDataSetChanged();
+                break;
+            case "multiCheck"://多选
+//                type=MULTICHECK;
 
 
-//        Step1Bean questionEntry = QuestionList.get(parentPosition);
-//        for (QuestOptBean ingredient1:questionEntry.getChildList() ) {
-//            ingredient1.setSelected(false);
-//        }
-//        child.setSelected(true);
-//        notifyDataSetChanged();
+                List<QuestOptBean> childList1 = QuestionList.get(parentPosition).getChildList();
+                String questName = QuestionList.get(parentPosition).getQuestName();//选项对应的问题
+                HashSet<Integer> integers = multiCheck.get(questName);//获取对应选项的集合
+                int e = childList1.indexOf(child);//选项的位置
+                if (integers==null){    //选中的项的集合不存在（创建选项集合，并添加选项）
+                   integers = new HashSet<>();
+                    integers.add(e);
 
-//        singleCheck.put(QuestionList.get(parentPosition).getId(),childPosition);
+                    child.setSelected(true);
+                }else {                 //选项的集合存在
+                    if (integers.contains(e)){//反选
+                        integers.remove(e);
+                        child.setSelected(false);
+                    }else {//添加
+                        integers.add(e);
+                        child.setSelected(true);
+                    }
+                }
+                multiCheck.put(questName,integers);
+                notifyDataSetChanged();
+                break;
 
+        }
     }
 
 
 
-    public Map<Integer, Integer> getSingleCheck() {
+    public Map<String, Integer> getSingleCheck() {
         return singleCheck;
     }
 
-    public Map<Integer, HashSet<Integer>> getMultiCheck() {
+    public Map<String, HashSet<Integer>> getMultiCheck() {
         return multiCheck;
     }
 
@@ -193,5 +216,15 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean,
     @Override
     public void onWrited(int parentPosition, Editable s) {
         Log.e(TAG, "onWrited: parentPosition=="+parentPosition+"s=="+s );
+    }
+
+    @Override
+    public void onMixWrited(int parentPosition, int childPosition, Editable s) {
+        Log.e(TAG, "onMixWrited: parentPosition=="+parentPosition+"s=="+s );
+    }
+
+    @Override
+    public void onMixClick(QuestOptBean child, int parentPosition, int childPosition) {
+        onSingleClick(child,parentPosition,childPosition);
     }
 }

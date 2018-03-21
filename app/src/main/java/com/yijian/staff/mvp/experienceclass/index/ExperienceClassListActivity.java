@@ -60,11 +60,11 @@ public class ExperienceClassListActivity extends AppCompatActivity {
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(Color.parseColor("#1997F8"));
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
-        footer.setAnimatingColor(Color.parseColor("#1997F8"));
+        footer.setAnimatingColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

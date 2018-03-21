@@ -5,24 +5,27 @@ package com.yijian.staff.mvp.reception.step2.step2Bean;
  */
 
 public  class MultiOptBean {
-    @Override
-    public String toString() {
-        return "MultiOptBean{" +
-                "optName='" + optName + '\'' +
-                ", isSelected=" + isSelected +
-                ", type='" + type + '\'' +
-                '}';
-    }
+
 
     /**
      * optName : 减肥
      * isSelected : false
      * type : normal
+     * userValue:
      */
 
     private String optName;
     private boolean isSelected;
     private String type;
+    private String userValue;
+
+    public String getUserValue() {
+        return userValue;
+    }
+
+    public void setUserValue(String userValue) {
+        this.userValue = userValue;
+    }
 
     public String getOptName() {
         return optName;

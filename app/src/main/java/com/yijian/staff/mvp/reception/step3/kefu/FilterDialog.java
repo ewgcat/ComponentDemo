@@ -65,7 +65,7 @@ public class FilterDialog extends Dialog {
         //设置无标题栏
         window.requestFeature(Window.FEATURE_NO_TITLE);
         //背景为透明
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#602f2f2f")));
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         //显示隐藏的动画效果
         layoutParams.windowAnimations = R.style.MyDialogAnimationCenter;
@@ -96,9 +96,13 @@ public class FilterDialog extends Dialog {
             R.id.tv_chuzhi_card, R.id.tv_huiyuan_card,
             R.id.tv_price1, R.id.tv_price2,
             R.id.tv_price3, R.id.tv_price4,
+            R.id.empty_view,
             R.id.tv_youyong_place, R.id.tv_jianshen_place})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.empty_view:
+                dismiss();
+                break;
             case R.id.tv_reset:
                 resetView();
                 break;
@@ -180,13 +184,13 @@ public class FilterDialog extends Dialog {
     }
 
     private void changeTextViewStyle(TextView textView) {
-        if (textView.getTextColors().getDefaultColor() == Color.parseColor("#1997F8")) {
+        if (textView.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             textView.setTextColor(Color.parseColor("#666666"));
             textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
             textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             textView.setCompoundDrawables(null, null, null, null);
         } else {
-            textView.setTextColor(Color.parseColor("#1997F8"));
+            textView.setTextColor(Color.parseColor("#1997f8"));
             textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());

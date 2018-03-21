@@ -38,6 +38,7 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
     View view_today_visit;
     private VipTodayVisitInfoFragment vipTodayVisitInfoFragment;
     private VipAllPeopleInfoFragment vipAllPeopleInfoFragment;
+    private FilterViperDialog filterDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
         navigationBar2.setTitle("会员信息");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
+        filterDialog = new FilterViperDialog(this);
 
     }
 
@@ -134,7 +136,7 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.right_tv:
-
+                filterDialog.showFilterDialog();
 
                 break;
 

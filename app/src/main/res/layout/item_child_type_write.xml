@@ -10,16 +10,20 @@
         android:layout_height="91dp">
 
         <EditText
+            android:gravity="start"
             android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="91dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="6dp"
+            android:textColorHint="@color/text_black3"
+            android:textSize="14sp"
             android:background="@drawable/shape_fillet_gray_5"
             android:maxLength="30"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+             />
 
         <TextView
             android:layout_width="wrap_content"

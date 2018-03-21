@@ -8,9 +8,7 @@ import android.widget.Button;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
-import com.yijian.staff.mvp.experienceclass.step1.ExperienceClassProcess1Activity;
-import com.yijian.staff.mvp.experienceclass.step2.ExperienceClassProcess2Activity;
-import com.yijian.staff.mvp.experienceclass.step5.ExperienceClassProcess5Activity;
+import com.yijian.staff.mvp.experienceclass.step5.coach.ExperienceClassProcess5Activity;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
 

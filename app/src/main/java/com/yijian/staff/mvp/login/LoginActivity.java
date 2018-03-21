@@ -66,12 +66,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                });
 
                 if (!TextUtils.isEmpty(account)) {
-                    if (account.equals("0")){
+                    if (account.equals("0")) {
                         SharePreferenceUtil.setUserRole(0);
-                    }else if (account.equals("1")){
+                    } else if (account.equals("1")) {
                         SharePreferenceUtil.setUserRole(1);
-                    }else if (account.equals("2")){
+                    } else if (account.equals("2")) {
                         SharePreferenceUtil.setUserRole(2);
+                    } else if (account.equals("3")) {
+                        SharePreferenceUtil.setUserRole(3);
+                    } else if (account.equals("4")) {
+                        SharePreferenceUtil.setUserRole(4);
+                    } else if (account.equals("5")) {
+                        SharePreferenceUtil.setUserRole(5);
+                    } else if (account.equals("6")) {
+                        SharePreferenceUtil.setUserRole(6);
                     }
                 }
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);

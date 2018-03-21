@@ -14,7 +14,7 @@ import org.json.JSONObject;
 @Entity
 public class User {
     public int age;
-    public int role;// 0 会籍客服 1 教练 2领导
+    public int role;// 0 会籍客服 1 教练  2会籍总监 3教练总监 4操课教练 5行政  6店长
     public String name;
     @Generated(hash = 1956144629)
     public User(int age, int role, String name) {

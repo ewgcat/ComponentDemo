@@ -24,14 +24,17 @@ public class ArouterNavigationInterceptor implements IInterceptor {
     public void process(Postcard postcard, InterceptorCallback callback) {
         String path = postcard.getPath();
 
-        if (path.equals("/test/19")){
-            if (SharePreferenceUtil.getUserRole()==1){
+        if (path.equals("/test/19")) {
+            if (SharePreferenceUtil.getUserRole() == 1) {
                 callback.onContinue(postcard);  // 处理完成，交还控制权
-            }else {
-                Logger.i("ArouterNavigationInterceptor","只有教练才有该功能");
+            } else if (SharePreferenceUtil.getUserRole()==3) {
+                ARouter.getInstance().build("/test/leader_experience_class").navigation();
+
+            } else {
+                Logger.i("ArouterNavigationInterceptor", "只有教练才有该功能");
                 ARouter.getInstance().build("/test/empty").navigation();
             }
-        }else {
+        } else {
             callback.onContinue(postcard);  // 处理完成，交还控制权
         }
 

@@ -224,13 +224,18 @@
             android:name=".mvp.experienceclass.step4.ExperienceClassProcess4Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
+            android:name=".mvp.experienceclass.step5.coach.ExperienceClassProcess5Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.experienceclass.step5.leader.LeaderExperienceClassProcess5Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name=".mvp.experienceclass.template.Template1ClassActivity"
             android:screenOrientation="portrait"

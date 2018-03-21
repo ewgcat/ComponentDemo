@@ -226,7 +226,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <ImageView
-            android:src="@mipmap/class_empty"
+            android:src="@mipmap/empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -246,7 +246,7 @@
         android:textSize="16sp"
         android:text="立即邀约"
         android:paddingBottom="4dp"
-        android:background="@drawable/blue_button_bg_svg" />
+        android:background="@mipmap/button_invite" />
 
 </LinearLayout>
 

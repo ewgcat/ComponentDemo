@@ -154,17 +154,19 @@
             android:name=".mvp.resourceallocation.ResourceAllocationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.resourceallocation.selecthuiji.SelectHuiJiActivity"
+            android:name=".mvp.resourceallocation.HistoryResourceAllocationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.mine.setting.SettingActivity"
+            android:name=".mvp.resourceallocation.SelectHuiJiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.mine.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.mine.qrcode.MyQRCodeActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.mine.qrcode.MyQRCodeActivity" />
+        <activity android:name=".mvp.mine.EditQualificationActivity" />
         <activity
             android:name=".mvp.mine.qualification.MyQualificationActivity"
             android:screenOrientation="portrait" />
@@ -181,13 +183,12 @@
         <activity
             android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.vip.potential.AddPotentialActivity" />
+        <activity android:name=".mvp.vip.potential.AddPotentialActivity"></activity>
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.mine.calendartable.CalendarSettingActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.mine.calendartable.CalendarSettingActivity" />
+        android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.editpassword.EditPasswordActivity"
             android:screenOrientation="portrait" />
@@ -223,6 +224,8 @@
             android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity"></activity>
+        <activity android:name=".mvp.preparelessons.PrepareLessonsActivity" />
+        <activity android:name=".mvp.preparelessons.CreatePrivateLessionActivity"></activity>
     </application>
 
 </manifest>

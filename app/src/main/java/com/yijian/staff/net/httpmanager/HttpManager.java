@@ -26,6 +26,7 @@ public class HttpManager {
     public static String LOGIN_URL = BuildConfig.HOST + "user/login";
     public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+    public static String GET_ALL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/list";
 
 
     //公用方法
@@ -36,19 +37,26 @@ public class HttpManager {
                 .subscribe(observer);
     }
 
+    //登陆
     public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
     }
 
+    //获取验证码
     public static void getCode(String username,String telephone, Observer<JSONObject> observer) {
         Observable<JSONObject> getCodeObservable = apiService.getCode(GET_CODE_URL, username,telephone);
         execute(getCodeObservable, observer);
     }
 
 
+    //重置密码
     public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultObserver observer) {
         Observable<JSONObject> getCodeObservable = apiService.resetPassword(RESET_PASSWORD_URL, username, telephone, verificationCode,newPwd,confirmPwd);
         execute(getCodeObservable, observer);
+    }
+
+    public static void getAllViperList(Long startTime,Long endTime,int pageNum,int pageSize ){
+
     }
 }

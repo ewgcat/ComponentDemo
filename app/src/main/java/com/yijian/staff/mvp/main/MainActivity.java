@@ -1,27 +1,43 @@
 package com.yijian.staff.mvp.main;
 
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
 import com.yijian.staff.mvp.report.ReportingFragment;
 import com.yijian.staff.mvp.work.WorkFragment;
+import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.service.NetworkService;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.mvp.base.BaseActivity;
 import com.yijian.staff.mvp.main.contract.MainContract;
 import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View  , Bottombar.OnClickBottomButtonListener {
+import cn.jpush.android.api.JPushInterface;
+
+import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
+
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
+
+    protected boolean mNetworkStateLogin = false;
 
 
     /**
@@ -53,7 +69,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        init();
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);
 
@@ -76,6 +92,43 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+
+    private void init() {
+
+        initJPush();
+
+//        if (LogicService.selectManager().loadmSelectAreaInfoList().size() > 0) {
+        mNetworkStateLogin = true;
+//        } else {
+//            mNetworkStateLogin = false;
+//        }
+
+        startupNetworkCheckService();
+    }
+
+    private void initJPush() {
+        long userId = SharePreferenceUtil.getUserId();
+
+        //设置别名和分组
+        JPushInterface.init(getApplicationContext());
+        JPushInterface.resumePush(getApplicationContext());
+        setAlias(userId + "");
+    }
+
+
+    // 这是来自 JPush Example 的设置别名的 Activity 里的代码。一般 App 的设置的调用入口，在任何方便的地方调用都可以。
+    private void setAlias(String alias) {
+        if (TextUtils.isEmpty(alias)) {
+            return;
+        }
+        if (!CommonUtil.isValidTagAndAlias(alias)) {
+            return;
+        }
+        JPushTagAliasOperatorHelper.TagAliasBean tagAliasBean = new JPushTagAliasOperatorHelper.TagAliasBean(JPushTagAliasOperatorHelper.ACTION_SET, alias, true);
+
+        JPushTagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(), sequence, tagAliasBean);
+        JPushInterface.resumePush(getApplicationContext());
+    }
 
     /**
      * 监听按键的点击
@@ -185,5 +238,40 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         getActivityComponent().inject(this);
     }
 
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            NetworkService.NetBind bind = (NetworkService.NetBind) iBinder;
+            NetworkService service = bind.getNetwrokService();
+            service.setOnGetConnectState(isConnected -> {
+                if (isConnected) {
+                    if (!mNetworkStateLogin) {
+                        mNetworkStateLogin = true;
+
+                        //TODO 无网到有网
+                    }
+                }
+            });
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+        }
+    };
+
+
+    private void startupNetworkCheckService() {
+        Intent intent = new Intent(this, NetworkService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (connection != null) {
+            unbindService(connection);
+        }
+    }
 
 }

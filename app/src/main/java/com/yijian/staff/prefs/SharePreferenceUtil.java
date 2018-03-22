@@ -12,6 +12,13 @@ public class SharePreferenceUtil {
     private static final String ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON = "all_function_activity_show_edit_icon";
     private static final String USER_ROLE = "USER_ROLE";
 
+    public static final String KEY_JPUSH_REGISTRATION_ID = "jpush_registration_id";
+    public static final String KEY_JPUSH_CAN_PUSH = "jpush_can_push";
+    public static final String KEY_JPUSH_ALIAS = "jpush_alias";
+    public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
+    private static final String KEY_USER_ID = "user_id";
+
+
 
     public static void setShowEditIcon(boolean b){
         setBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON,b);
@@ -30,6 +37,35 @@ public class SharePreferenceUtil {
     }
 
 
+
+    public static void setJpushRegistionId(String jpushRegistrationId) {
+        setString(SharePreferenceUtil.KEY_JPUSH_REGISTRATION_ID, jpushRegistrationId);
+    }
+
+    public static String getJpushRegistionId() {
+        return getString(SharePreferenceUtil.KEY_JPUSH_REGISTRATION_ID, "");
+    }
+
+    public static boolean getCanPush() {
+        return getBoolean(KEY_JPUSH_CAN_PUSH, false);
+    }
+
+    public static void setCanPush(boolean canPush) {
+        setBoolean(KEY_JPUSH_CAN_PUSH, canPush);
+    }
+
+    public static void setJpushAlias(String alias) {
+        setString(KEY_JPUSH_ALIAS, alias);
+        setBoolean(KEY_HAS_JPUSH_ALIAS, true);
+    }
+
+    public static String getJpushAlias(String alias) {
+        return getString(KEY_JPUSH_ALIAS, "");
+    }
+
+    public static boolean hasJpushAlias() {
+        return getBoolean(KEY_HAS_JPUSH_ALIAS, false);
+    }
 
 
 
@@ -213,5 +249,17 @@ public class SharePreferenceUtil {
     }
 
 
+    public static void setUserId(long userId) {
+        setString(KEY_USER_ID, String.valueOf(userId));
+    }
+
+    public static long getUserId() {
+        String value = getString(KEY_USER_ID, "");
+        if (TextUtils.isEmpty(value))
+            return 0;
+        else
+            return Long.valueOf(value);
+
+    }
 
 }

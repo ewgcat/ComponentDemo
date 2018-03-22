@@ -1,13 +1,12 @@
 package com.yijian.staff.net.httpmanager;
 
 
-import android.content.Context;
-
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+
 
 import org.json.JSONObject;
-
-
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -23,6 +22,8 @@ public class HttpManager {
     }
 
 
+    public static String LOGIN_URL = BuildConfig.HOST + "user/login";
+    public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
 
 
     //公用方法
@@ -33,8 +34,14 @@ public class HttpManager {
                 .subscribe(observer);
     }
 
-    public static void postLogin(JSONObject jsonObject, Observer<JSONObject> observer) {
-        Observable<JSONObject> loginObservable = apiService.login(jsonObject.toString());
+    public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
+        execute(loginObservable, observer);
+    }
+
+    public static void getCode(String username,String telephone, Observer<JSONObject> observer) {
+        Observable<JSONObject> getCodeObservable = apiService.getCode(GET_CODE_URL, username,telephone);
+        execute(getCodeObservable, observer);
     }
 
 

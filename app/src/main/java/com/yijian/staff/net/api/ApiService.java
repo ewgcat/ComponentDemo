@@ -1,6 +1,8 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -13,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -49,6 +52,7 @@ public interface ApiService {
             @Part("image\"; filename=\"image.jpg") RequestBody requestBody
     );
 
+//    @HeaderMap Map<String, String> headers,
     /*POST 请求 上传文件*/
     @POST("{url}")
     Call<ResponseBody> uploadFiles(
@@ -57,18 +61,19 @@ public interface ApiService {
             @PartMap() Map<String, RequestBody> maps
     );
 
-
-    @FormUrlEncoded
-    @POST("http://wechat.kai-men.cn/pmsSrv/api/api!gateway.action")
-    Observable<JSONObject> login(@Field("reqStr") String jsonStr);
-
-
-
-    //发送验证码-2102
+    //登录
+    @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getCode(@Url String url, @Body JSONObject body);
+    Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest );
+
+
+    //发送验证码-21
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> getCode(@Url String url, @Field("username") String username,@Field("telephone") String telephone);
 
     //验证验证码-2010
+    @FormUrlEncoded
     @POST
     Observable<JSONObject> checkCode(@Url String url, @Body JSONObject body);
 

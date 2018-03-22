@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -27,8 +28,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     EditText etAccount;
     @BindView(R.id.et_phonenum)
     EditText etPhonenum;
-    @BindView(R.id.tv_status)
-    TextView tvStatus;
+
     @BindView(R.id.et_code)
     EditText etCode;
     @BindView(R.id.tv_getcode)
@@ -56,31 +56,30 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
 
         String account = etAccount.getText().toString();
-        String telephone = etPhonenum.getText().toString();
+        String telephone = etPhonenum.getText().toString().trim();
         switch (view.getId()) {
             case R.id.tv_getcode:
 
-                if (TextUtils.isEmpty(account)||TextUtils.isEmpty(telephone)){
-                    Toast.makeText(ForgetPasswordActivity.this,"账号和手机号不能为空",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(account) || TextUtils.isEmpty(telephone)) {
+                    Toast.makeText(ForgetPasswordActivity.this, "账号和手机号不能为空", Toast.LENGTH_SHORT).show();
                     return;
-                }else {
+                } else {
+                    if (CommonUtil.isPhoneFormat(telephone)){
+                        HttpManager.getCode(account, telephone, new ResultObserver() {
+                            @Override
+                            public void onSuccess(JSONObject result) {
 
 
-                    HttpManager.getCode(account,telephone, new ResultObserver() {
-                        @Override
-                        public void onSuccess(JSONObject result) {
+                            }
 
+                            @Override
+                            public void onFail(String msg) {
 
-                        }
-
-                        @Override
-                        public void onFail(String msg) {
-
-                        }
-                    });
-
-
-
+                            }
+                        });
+                    }else {
+                        Toast.makeText(ForgetPasswordActivity.this, "输入的手机号不正确,请重新输入！", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 break;

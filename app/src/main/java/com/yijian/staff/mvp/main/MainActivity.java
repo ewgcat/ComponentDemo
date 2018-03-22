@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initJPush() {
-        long userId = SharePreferenceUtil.getUserId();
+        String userId = SharePreferenceUtil.getUserId();
 
         //设置别名和分组
         JPushInterface.init(getApplicationContext());

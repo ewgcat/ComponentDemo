@@ -4,6 +4,7 @@ package com.yijian.staff.net.httpmanager;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.response.ResultObserver;
 
 
 import org.json.JSONObject;
@@ -24,6 +25,7 @@ public class HttpManager {
 
     public static String LOGIN_URL = BuildConfig.HOST + "user/login";
     public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
+    public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
 
 
     //公用方法
@@ -45,4 +47,8 @@ public class HttpManager {
     }
 
 
+    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultObserver observer) {
+        Observable<JSONObject> getCodeObservable = apiService.resetPassword(RESET_PASSWORD_URL, username, telephone, verificationCode,newPwd,confirmPwd);
+        execute(getCodeObservable, observer);
+    }
 }

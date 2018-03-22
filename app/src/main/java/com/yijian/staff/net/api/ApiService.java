@@ -66,16 +66,21 @@ public interface ApiService {
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest );
 
+    /**
+     * 表单请求
+     * @param url
+     * @param username
+     * @param telephone
+     * @return
+     */
 
-    //发送验证码-21
+    //发送验证码
     @FormUrlEncoded
     @POST
     Observable<JSONObject> getCode(@Url String url, @Field("username") String username,@Field("telephone") String telephone);
 
-    //验证验证码-2010
+    //找回密码
     @FormUrlEncoded
     @POST
-    Observable<JSONObject> checkCode(@Url String url, @Body JSONObject body);
-
-
+    Observable<JSONObject> resetPassword(@Url String getCodeUrl, @Field("username") String username,@Field("telephone") String telephone,@Field("verificationCode") String verificationCode,@Field("newPwd") String newPwd,@Field("confirmPwd") String confirmPwd);
 }

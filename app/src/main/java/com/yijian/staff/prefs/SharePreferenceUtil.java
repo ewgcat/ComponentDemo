@@ -249,16 +249,13 @@ public class SharePreferenceUtil {
     }
 
 
-    public static void setUserId(long userId) {
-        setString(KEY_USER_ID, String.valueOf(userId));
+    public static void setUserId(String userId) {
+        setString(KEY_USER_ID, userId);
     }
 
-    public static long getUserId() {
-        String value = getString(KEY_USER_ID, "");
-        if (TextUtils.isEmpty(value))
-            return 0;
-        else
-            return Long.valueOf(value);
+    public static String getUserId() {
+        return getString(KEY_USER_ID, "");
+
 
     }
 

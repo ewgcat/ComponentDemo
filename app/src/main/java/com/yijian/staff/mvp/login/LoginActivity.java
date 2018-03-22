@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
@@ -20,6 +21,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.jpush.android.api.JPushInterface;
@@ -69,39 +71,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     HttpManager.postLogin(loginRequest, new ResultObserver() {
                         @Override
                         public void onSuccess(JSONObject result) {
-                            if (!TextUtils.isEmpty(account)) {
-                                if (account.equals("0")) {
-                                    SharePreferenceUtil.setUserRole(0);
-                                } else if (account.equals("1")) {
-                                    SharePreferenceUtil.setUserRole(1);
-                                } else if (account.equals("2")) {
-                                    SharePreferenceUtil.setUserRole(2);
-                                } else if (account.equals("3")) {
-                                    SharePreferenceUtil.setUserRole(3);
-                                } else if (account.equals("4")) {
-                                    SharePreferenceUtil.setUserRole(4);
-                                } else if (account.equals("5")) {
-                                    SharePreferenceUtil.setUserRole(5);
-                                } else if (account.equals("6")) {
-                                    SharePreferenceUtil.setUserRole(6);
-                                }
-                            }
+
+                            User user = new User(result);
+                            SharePreferenceUtil.setUserId(user.getUserId());
+                            SharePreferenceUtil.setUserRole(user.getRole());
+
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();
+
+
                         }
 
                         @Override
                         public void onFail(String msg) {
+                            Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
 
                         }
                     });
 
 
                 }
-                SharePreferenceUtil.setUserId(123);
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
+
 
                 break;
             case R.id.forget_password:

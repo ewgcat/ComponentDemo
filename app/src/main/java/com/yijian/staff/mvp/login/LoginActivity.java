@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
@@ -76,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharePreferenceUtil.setUserId(user.getUserId());
                             SharePreferenceUtil.setUserRole(user.getRole());
 
+                            DBManager.getInstance().insertOrReplaceUser(user);
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();

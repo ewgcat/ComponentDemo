@@ -15,6 +15,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.MenuHelper;
@@ -81,6 +82,7 @@ public class CustomApplication extends TinkerApplication {
 
         RetrofitClient.init(this);
 
+        DBManager.init(this);
         //在子线程中完成其他初始化
         InitializeService.start(this);
         ContextUtil.init(getApplicationContext());

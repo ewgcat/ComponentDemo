@@ -17,6 +17,8 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
@@ -25,11 +27,13 @@ import com.yijian.staff.mvp.work.WorkFragment;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.service.NetworkService;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.mvp.base.BaseActivity;
 import com.yijian.staff.mvp.main.contract.MainContract;
 import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;
+
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -108,7 +112,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private void initJPush() {
         String userId = SharePreferenceUtil.getUserId();
-
         //设置别名和分组
         JPushInterface.init(getApplicationContext());
         JPushInterface.resumePush(getApplicationContext());

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
+import com.yijian.staff.greendao.gen.UserDao;
 
 
 public class DBManager  {
@@ -65,7 +66,9 @@ public class DBManager  {
 
     //插入账号信息
     public void insertOrReplaceUser(User user){
-       mDaoSession.getUserDao().insertOrReplace(user);
+        UserDao userDao = mDaoSession.getUserDao();
+        userDao.deleteAll();
+        userDao.insertOrReplace(user);
     }
 
 

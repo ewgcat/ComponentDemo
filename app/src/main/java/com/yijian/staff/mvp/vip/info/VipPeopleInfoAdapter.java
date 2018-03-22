@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
@@ -25,13 +26,13 @@ import java.util.List;
 
 public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdapter.ViewHolder> {
 
-    private List<VipPeopleInfo> vipPeopleInfoList;
+    private List<ViperBean> viperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public VipPeopleInfoAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList, boolean isAllVipInfo) {
+    public VipPeopleInfoAdapter(Context context, List<ViperBean> viperBeanList, boolean isAllVipInfo) {
         this.context = context;
-        this.vipPeopleInfoList = vipPeopleInfoList;
+        this.viperBeanList = viperBeanList;
         this.isAllVipInfo = isAllVipInfo;
     }
 
@@ -45,23 +46,23 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
 
     @Override
     public void onBindViewHolder(VipPeopleInfoAdapter.ViewHolder holder, int position) {
-        VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
+        ViperBean viperBean = viperBeanList.get(position);
         holder.rel_be_present_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
-        holder.tv_name.setText(vipPeopleInfo.getName());
-        holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender()) ? R.mipmap.lg_women : R.mipmap.lg_man);
-        holder.tv_cardName.setText(vipPeopleInfo.getCardName());
-        holder.tv_card_type.setText(vipPeopleInfo.getCardType());
-        holder.tv_private_coach.setText(vipPeopleInfo.getPrivateCoach());
-        holder.tv_like_lesson.setText(vipPeopleInfo.getLikeLesson());
-        holder.tv_like_teacher.setText(vipPeopleInfo.getLikeTeacher());
-        holder.tv_regist_time.setText(vipPeopleInfo.getRegistTime());
-        holder.tv_contract_overTime.setText(vipPeopleInfo.getContractOverTime());
-        holder.tv_contract_balance.setText(vipPeopleInfo.getContractBalance());
-        holder.tv_buy_count.setText(vipPeopleInfo.getBuyCount());
-        holder.tv_be_present_time.setText(vipPeopleInfo.getBePresentTime());
-        holder.tv_be_departure_time.setText(vipPeopleInfo.getDepartureTime());
+        holder.tv_name.setText(viperBean.getName());
+        holder.iv_gender.setImageResource("男".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        holder.tv_cardName.setText(viperBean.getCardName());
+        holder.tv_card_type.setText(viperBean.getCardType());
+        holder.tv_private_coach.setText(viperBean.getPrivateCoach());
+        holder.tv_like_lesson.setText(viperBean.getFavorCourse());
+        holder.tv_like_teacher.setText(viperBean.getFavorTeacher());
+        holder.tv_regist_time.setText(viperBean.getRegisterTime());
+        holder.tv_contract_overTime.setText(viperBean.getContractDeadline());
+        holder.tv_contract_balance.setText(viperBean.getContractBalance());
+        holder.tv_buy_count.setText(viperBean.getPurchaseCount());
+        holder.tv_be_present_time.setText(viperBean.getBePresentTime());
+        holder.tv_be_departure_time.setText(viperBean.getDepartureTime());
         holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
 
     @Override
     public int getItemCount() {
-        return vipPeopleInfoList == null ? 0 : vipPeopleInfoList.size();
+        return viperBeanList == null ? 0 : viperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

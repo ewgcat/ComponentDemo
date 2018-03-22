@@ -9,6 +9,8 @@ import com.yijian.staff.net.response.ResultObserver;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -56,7 +58,9 @@ public class HttpManager {
         execute(getCodeObservable, observer);
     }
 
-    public static void getAllViperList(Long startTime,Long endTime,int pageNum,int pageSize ){
-
+    //会籍（客服） 获取会员列表
+    public static void getAllViperList(Map<String, String> headers,Map<String, String> params, Observer<JSONObject> observer ){
+        Observable<JSONObject> getAllViperListObservable = apiService.getAllViperList(GET_ALL_VIPER_LIST_URL, headers,params);
+        execute(getAllViperListObservable, observer);
     }
 }

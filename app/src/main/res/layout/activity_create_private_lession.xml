@@ -12,12 +12,147 @@
         android:id="@+id/navigation_bar"
         layout="@layout/view_navigation_bar"/>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include
-            android:id="@+id/physical_report_body_test_report"
-            layout="@layout/view_body_test_report"/>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_bg"
+                android:orientation="vertical"
+                android:layout_margin="15dp">
+
+                <LinearLayout
+                    android:id="@+id/lin_depart_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="15dp">
+
+                    <ImageView
+                        android:id="@+id/iv_depart_switch"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/bk_1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="#333333"
+                        android:text="训练部位"
+                        android:layout_marginLeft="7dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_depart_opration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
+
+                    <com.yijian.staff.mvp.preparelessons.createlession.MyDepartView
+                        android:id="@+id/view_depart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_depart_sure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="确定"
+                        android:layout_marginLeft="15dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_bg"
+                android:orientation="vertical"
+                android:layout_margin="15dp">
+
+                <LinearLayout
+                    android:id="@+id/lin_action_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="15dp">
+
+                    <ImageView
+                        android:id="@+id/iv_action_switch"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/bk_2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="#333333"
+                        android:text="动作内容"
+                        android:layout_marginLeft="7dp"/>
+
+                </LinearLayout>
+
+                <com.yijian.staff.mvp.preparelessons.createlession.MyActionView
+                    android:id="@+id/view_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    />
+
+                <com.yijian.staff.mvp.preparelessons.createlession.ActionContentView
+                    android:id="@+id/view_action_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_opration_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="添加组动作"/>
+                    <Button
+                        android:id="@+id/btn_opration_single"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="添加个动作"/>
+
+                </LinearLayout>
+
+            </LinearLayout>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_actioin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

@@ -5,9 +5,12 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +30,7 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 
 
-public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.View {
+public class SplashActivity extends AppCompatActivity {
 
     String[] permissions = {
             Manifest.permission.READ_PHONE_STATE,
@@ -52,21 +55,15 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @BindView(R.id.tv_splash_author)
     TextView tvSplashAuthor;
 
-    @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
-    }
 
     @Override
-    protected int getLayout() {
-        return R.layout.activity_splash;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    @Override
-    protected void initEventAndData() {
-        mPresenter.getSplashInfo();
+        setContentView(R.layout.activity_splash);
+        initRxPermissions(index, permissions);    }
 
-    }
 
     public void jumpToMain() {
         Intent intent = new Intent();
@@ -76,10 +73,6 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @Override
-    public void checkPremession() {
-        initRxPermissions(index, permissions);
-    }
 
 
 

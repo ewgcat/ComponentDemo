@@ -65,7 +65,6 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
             holder.tv_count.setVisibility(View.GONE);
         }else {
             int count = menuItem.getCount();
-            Logger.i("TEST","count="+count);
             if (count > 0) {
                 if (count < 100) {
                     holder.tv_count.setText(""+count);

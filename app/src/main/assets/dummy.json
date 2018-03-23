@@ -30,15 +30,6 @@
       },
       {
         "type":0,
-        "name":"投诉处理",
-        "icon":"url",
-        "path":"/test/8",
-        "group":"会籍(客服)",
-        "count":0,
-        "className":"YJComplaintTabbarController"
-      },
-      {
-        "type":0,
         "name":"会员信息",
         "icon":"url",
         "path":"/test/1",
@@ -54,14 +45,6 @@
         "group":"会员管理",
         "count":0,
         "className":"YJIntentionMemberViewController"
-      },
-      {
-        "type":0,
-        "name":"考勤",
-        "icon":"url",
-        "path":"/test/29",
-        "group":"审核任务",
-        "count":0
       }
     ]
   },
@@ -136,7 +119,7 @@
         "count":0
       },
       {
-        "type":0,
+        "type":1,
         "name":"投诉处理",
         "icon":"url",
         "path":"/test/8",
@@ -326,7 +309,7 @@
         "count":0
       },
       {
-        "type":0,
+        "type":1,
         "name":"考勤",
         "icon":"url",
         "path":"/test/29",

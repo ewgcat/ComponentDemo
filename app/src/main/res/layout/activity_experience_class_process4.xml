@@ -647,7 +647,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/blue_button_bg_svg"
+        android:background="@mipmap/button_invite"
         android:paddingBottom="4dp"
         android:text="二次邀约"
         android:textColor="@color/white"

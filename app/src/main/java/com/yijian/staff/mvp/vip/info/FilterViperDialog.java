@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.vip.info;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -22,6 +24,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.util.CommonUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -333,32 +336,31 @@ public class FilterViperDialog extends Dialog {
             changeTextViewStyle(tvTime3);
 
         }else if (index==4){
-            TimePickerView pickerView = new TimePickerView.Builder(view.getContext(), new TimePickerView.OnTimeSelectListener() {
-                @Override
-                public void onTimeSelect(Date date, View view) {
-                    startData = date;
-                    String result = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                    tvStartTime.setText(result);
-                }
-            }).build();
-            pickerView.show(view);
-        }else if (index==5){
-            TimePickerView pickerView = new TimePickerView.Builder(view.getContext(), new TimePickerView.OnTimeSelectListener() {
-                @Override
-                public void onTimeSelect(Date date, View view) {
-                    String result = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                    if (TextUtils.isEmpty(tvStartTime.getText().toString())){
-                        Toast.makeText(getContext(),"请先选择开始时间",Toast.LENGTH_SHORT).show();
-                    }else {
-                        if (startData.before(date)){
-                            tvEndTime.setText(result);
-                        }else {
-                            Toast.makeText(getContext(),"结束时间不得小于开始时间",Toast.LENGTH_SHORT).show();
+
+            Calendar c = Calendar.getInstance();
+            DatePickerDialog dialog = new DatePickerDialog(view.getContext(),
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+                            tvStartTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+
                         }
-                    }
-                }
-            }).build();
-            pickerView.show(view);
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH));
+            dialog.show();
+        }else if (index==5){
+            Calendar c = Calendar.getInstance();
+            DatePickerDialog dialog = new DatePickerDialog(view.getContext(),
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+                            tvEndTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH));
+            dialog.show();
 
         }
 

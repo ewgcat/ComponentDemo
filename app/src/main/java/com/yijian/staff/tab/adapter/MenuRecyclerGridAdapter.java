@@ -109,7 +109,6 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
             holder.iv_add.setVisibility(View.GONE);
             holder.iv_delete.setVisibility(View.GONE);
             int count = item.getCount();
-            Logger.i("TEST","count="+count);
             if (count > 0) {
                 if (count < 100) {
                     holder.tv_count.setText(""+count);

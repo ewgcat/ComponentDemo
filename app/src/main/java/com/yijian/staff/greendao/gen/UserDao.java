@@ -27,6 +27,11 @@ public class UserDao extends AbstractDao<User, Void> {
         public final static Property Age = new Property(0, int.class, "age", false, "AGE");
         public final static Property Role = new Property(1, int.class, "role", false, "ROLE");
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property UserId = new Property(3, String.class, "userId", false, "USER_ID");
+        public final static Property ShopId = new Property(4, String.class, "shopId", false, "SHOP_ID");
+        public final static Property MerchantId = new Property(5, String.class, "merchantId", false, "MERCHANT_ID");
+        public final static Property Token = new Property(6, String.class, "token", false, "TOKEN");
+        public final static Property TokenAge = new Property(7, String.class, "tokenAge", false, "TOKEN_AGE");
     }
 
 
@@ -44,7 +49,12 @@ public class UserDao extends AbstractDao<User, Void> {
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"AGE\" INTEGER NOT NULL ," + // 0: age
                 "\"ROLE\" INTEGER NOT NULL ," + // 1: role
-                "\"NAME\" TEXT);"); // 2: name
+                "\"NAME\" TEXT," + // 2: name
+                "\"USER_ID\" TEXT," + // 3: userId
+                "\"SHOP_ID\" TEXT," + // 4: shopId
+                "\"MERCHANT_ID\" TEXT," + // 5: merchantId
+                "\"TOKEN\" TEXT," + // 6: token
+                "\"TOKEN_AGE\" TEXT);"); // 7: tokenAge
     }
 
     /** Drops the underlying database table. */
@@ -63,6 +73,31 @@ public class UserDao extends AbstractDao<User, Void> {
         if (name != null) {
             stmt.bindString(3, name);
         }
+ 
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(4, userId);
+        }
+ 
+        String shopId = entity.getShopId();
+        if (shopId != null) {
+            stmt.bindString(5, shopId);
+        }
+ 
+        String merchantId = entity.getMerchantId();
+        if (merchantId != null) {
+            stmt.bindString(6, merchantId);
+        }
+ 
+        String token = entity.getToken();
+        if (token != null) {
+            stmt.bindString(7, token);
+        }
+ 
+        String tokenAge = entity.getTokenAge();
+        if (tokenAge != null) {
+            stmt.bindString(8, tokenAge);
+        }
     }
 
     @Override
@@ -74,6 +109,31 @@ public class UserDao extends AbstractDao<User, Void> {
         String name = entity.getName();
         if (name != null) {
             stmt.bindString(3, name);
+        }
+ 
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(4, userId);
+        }
+ 
+        String shopId = entity.getShopId();
+        if (shopId != null) {
+            stmt.bindString(5, shopId);
+        }
+ 
+        String merchantId = entity.getMerchantId();
+        if (merchantId != null) {
+            stmt.bindString(6, merchantId);
+        }
+ 
+        String token = entity.getToken();
+        if (token != null) {
+            stmt.bindString(7, token);
+        }
+ 
+        String tokenAge = entity.getTokenAge();
+        if (tokenAge != null) {
+            stmt.bindString(8, tokenAge);
         }
     }
 
@@ -87,7 +147,12 @@ public class UserDao extends AbstractDao<User, Void> {
         User entity = new User( //
             cursor.getInt(offset + 0), // age
             cursor.getInt(offset + 1), // role
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // name
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // userId
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // shopId
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // merchantId
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // token
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // tokenAge
         );
         return entity;
     }
@@ -97,6 +162,11 @@ public class UserDao extends AbstractDao<User, Void> {
         entity.setAge(cursor.getInt(offset + 0));
         entity.setRole(cursor.getInt(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setUserId(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setShopId(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setMerchantId(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setToken(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setTokenAge(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override

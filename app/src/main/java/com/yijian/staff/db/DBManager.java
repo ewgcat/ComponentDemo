@@ -3,8 +3,10 @@ package com.yijian.staff.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
+import com.yijian.staff.greendao.gen.UserDao;
 
 
 public class DBManager  {
@@ -54,6 +56,19 @@ public class DBManager  {
             }
         }
         return mInstance;
+    }
+
+
+    //查询账号信息
+    public  User queryUser(){
+        return  mDaoSession.getUserDao().queryBuilder().build().unique();
+    }
+
+    //插入账号信息
+    public void insertOrReplaceUser(User user){
+        UserDao userDao = mDaoSession.getUserDao();
+        userDao.deleteAll();
+        userDao.insertOrReplace(user);
     }
 
 

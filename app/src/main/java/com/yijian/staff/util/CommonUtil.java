@@ -83,7 +83,7 @@ public class CommonUtil {
     /**
      * 验证日期字符串是否是YYYY-MM-DD格式
      */
-    public static boolean isDataFormat(String str) {
+    public static boolean isDateFormat(String str) {
         boolean flag = false;
         String regxStr = "^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))(\\s(((0?[0-9])|([1-2][0-3]))\\:([0-5]?[0-9])((\\s)|(\\:([0-5]?[0-9])))))?$";
         Pattern pattern1 = Pattern.compile(regxStr);
@@ -94,6 +94,20 @@ public class CommonUtil {
         return flag;
     }
 
+
+    /**
+     *     验证手机号
+     */
+    public static boolean isPhoneFormat(String str) {
+        boolean flag = false;
+        String regxStr = "^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$";
+        Pattern pattern1 = Pattern.compile(regxStr);
+        Matcher isNo = pattern1.matcher(str);
+        if (isNo.matches()) {
+            flag = true;
+        }
+        return flag;
+    }
 
     /**
      * 校验Tag Alias 只能是数字,英文字母和中文

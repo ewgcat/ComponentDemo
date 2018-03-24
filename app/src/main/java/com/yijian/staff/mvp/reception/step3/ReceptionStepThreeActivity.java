@@ -44,11 +44,11 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         timeBar.showTimeBar(3);
 
         int userRole = SharePreferenceUtil.getUserRole();
-        if (userRole==0){
+        if (userRole==1){
              fragment = new HuiJiProductQuotationFragment();
-        }else if (userRole==1){
-             fragment =new CoachProductFragment();
         }else if (userRole==2){
+             fragment =new CoachProductFragment();
+        }else if (userRole==3|userRole==4){
             fragment = new LeaderProductFragment();
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

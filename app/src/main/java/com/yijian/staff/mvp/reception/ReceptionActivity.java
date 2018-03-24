@@ -98,7 +98,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
                 }else if (userRole==2){
                     Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
                     startActivity(intent);
-                }else if (userRole==3&&userRole==4){
+                }else if (userRole==3|userRole==4){
                     Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
                     startActivity(intent);
                 }

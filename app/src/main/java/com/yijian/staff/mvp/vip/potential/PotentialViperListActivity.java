@@ -18,7 +18,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
+import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -41,7 +41,7 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
-    private List<VipPeopleInfo> vipPeopleInfoList=new ArrayList<>();
+    private List<ViperBean> viperBeanList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +83,15 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
             jsonObject.put("useCar", "无");
             jsonObject.put("isIntentVip","0");
             for (int i = 0; i < 10; i++) {
-                VipPeopleInfo vipPeopleInfo = new VipPeopleInfo(jsonObject);
-                vipPeopleInfoList.add(vipPeopleInfo);
+                ViperBean viperBean = new ViperBean(jsonObject);
+                viperBeanList.add(viperBean);
             }
 
 
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_vip_intention.setLayoutManager(layoutmanager);
-            PotentialViperListAdapter potentialViperListAdapter = new PotentialViperListAdapter(this, vipPeopleInfoList);
+            PotentialViperListAdapter potentialViperListAdapter = new PotentialViperListAdapter(this, viperBeanList);
             rv_vip_intention.setAdapter(potentialViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);

@@ -14,6 +14,11 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.vip.filter.ViperFilterBean;
+import com.yijian.staff.mvp.vip.filter.FilterViperDialog;
+import com.yijian.staff.mvp.vip.info.fragment.VipAllPeopleInfoFragment;
+import com.yijian.staff.mvp.vip.info.fragment.VipTodayVisitInfoFragment;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.BindView;
@@ -22,7 +27,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/1")
-public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener{
+public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -52,7 +57,6 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
     private void initView() {
 
 
-
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar);
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.getmRightTv().setOnClickListener(this);
@@ -63,13 +67,19 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
         filterDialog = new FilterViperDialog(this);
+        filterDialog.setOnDismissListener(new FilterViperDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(ViperFilterBean viperFilterBean) {
+                RxBus.getDefault().post(viperFilterBean);
+            }
+        });
 
     }
 
     @OnClick({R.id.lin_all_vip, R.id.lin_today_visit})
     public void click(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.lin_all_vip:
                 changeFragment(0);
                 break;
@@ -81,11 +91,11 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void changeFragment(int status){
+    private void changeFragment(int status) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         hideAllIndex(fragmentTransaction);
-        if(status == 0){
+        if (status == 0) {
             tv_label_all.setTextColor(Color.parseColor("#31a4fc"));
             tv_label_visit.setTextColor(Color.parseColor("#666666"));
             view_all.setVisibility(View.VISIBLE);
@@ -96,7 +106,7 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 fragmentTransaction.show(vipAllPeopleInfoFragment);
             }
-        }else{
+        } else {
             tv_label_all.setTextColor(Color.parseColor("#666666"));
             tv_label_visit.setTextColor(Color.parseColor("#31a4fc"));
             view_all.setVisibility(View.GONE);
@@ -111,8 +121,8 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
         fragmentTransaction.commit();
 
 
-
     }
+
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
         Fragment fragment = VipAllPeopleInfoFragment.getInstance();

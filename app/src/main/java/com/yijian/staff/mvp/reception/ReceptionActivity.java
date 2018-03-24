@@ -92,13 +92,13 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
             case R.id.tv_jiedai:
                 //TODO 接待流程
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole==0){
+                if (userRole==1){
                     Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
                     startActivity(intent);
-                }else if (userRole==1){
+                }else if (userRole==2){
                     Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
                     startActivity(intent);
-                }else if (userRole==2){
+                }else if (userRole==3&&userRole==4){
                     Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
                     startActivity(intent);
                 }

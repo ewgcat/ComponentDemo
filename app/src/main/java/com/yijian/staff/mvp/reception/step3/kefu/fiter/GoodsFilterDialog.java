@@ -1,7 +1,8 @@
-package com.yijian.staff.mvp.reception.step3.kefu;
+package com.yijian.staff.mvp.reception.step3.kefu.fiter;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,15 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.vip.filter.FilterViperDialog;
+import com.yijian.staff.mvp.vip.filter.ViperFilterBean;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FilterDialog extends Dialog {
+public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismissListener{
 
-    private static String TAG = FilterDialog.class.getSimpleName();
+    private static String TAG = GoodsFilterDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -47,7 +50,7 @@ public class FilterDialog extends Dialog {
     private Activity activity;
 
 
-    public FilterDialog(Activity activity) {
+    public GoodsFilterDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;
@@ -200,4 +203,17 @@ public class FilterDialog extends Dialog {
     }
 
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+
+    }
+    public interface OnDismissListener {
+        void onDismiss(GoodsFilterBean goodsFilterBean);
+    }
+
+    private FilterViperDialog.OnDismissListener onDismissListener;
+
+    public void setOnDismissListener(FilterViperDialog.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
 }

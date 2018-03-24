@@ -17,7 +17,7 @@ public class SharePreferenceUtil {
     public static final String KEY_JPUSH_ALIAS = "jpush_alias";
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
-
+    private static String KEY_HUIJI_HAS_TO_COACH="huiji_has_to_coach";
 
 
     public static void setShowEditIcon(boolean b){
@@ -259,4 +259,10 @@ public class SharePreferenceUtil {
 
     }
 
+    public static void setHasToScan(boolean b) {
+        setBoolean(KEY_HUIJI_HAS_TO_COACH,b);
+    }
+    public static boolean getHasToScan(){
+     return    getBoolean(KEY_HUIJI_HAS_TO_COACH,false);
+    }
 }

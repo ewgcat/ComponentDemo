@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
+import com.yijian.staff.bean.ViperBean;
 
 import java.util.List;
 
@@ -21,12 +21,12 @@ import java.util.List;
 
 public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperListAdapter.ViewHolder> {
 
-    private List<VipPeopleInfo> vipPeopleInfoList;
+    private List<ViperBean> viperBeanList;
     private Context context;
 
-    public IntentViperListAdapter(Context context, List<VipPeopleInfo> vipPeopleInfoList){
+    public IntentViperListAdapter(Context context, List<ViperBean> viperBeanList){
         this.context = context;
-        this.vipPeopleInfoList = vipPeopleInfoList;
+        this.viperBeanList = viperBeanList;
     }
 
     @Override
@@ -38,18 +38,18 @@ public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperList
 
     @Override
     public void onBindViewHolder(IntentViperListAdapter.ViewHolder holder, int position) {
-        VipPeopleInfo vipPeopleInfo = vipPeopleInfoList.get(position);
-        holder.tv_name.setText(vipPeopleInfo.getName());
-        holder.tv_birth.setText(vipPeopleInfo.getBirth());
-        holder.tv_birth_type.setText(vipPeopleInfo.getBirthType());
-        holder.tv_bodybuildingHobby.setText(vipPeopleInfo.getBodybuildingHobby());
-        holder.tv_bodyStatus.setText(vipPeopleInfo.getBodyStatus());
-        holder.tv_interestHobby.setText(vipPeopleInfo.getInterestHobby());
-        holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
-        holder.tv_useCar.setText(vipPeopleInfo.getUseCar());
-        holder.lin_input_questionnaire.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.GONE:View.VISIBLE);  // 0 意向会员  ，1  潜在会员
-        holder.lin_protect_seven.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.VISIBLE:View.GONE);
-        holder.lin_visit.setVisibility("0".equals(vipPeopleInfo.getIsIntentVip())?View.GONE:View.VISIBLE);
+        ViperBean viperBean = viperBeanList.get(position);
+        holder.tv_name.setText(viperBean.getName());
+        holder.tv_birth.setText(viperBean.getBirthday());
+        holder.tv_birth_type.setText(viperBean.getBirthdayType());
+        holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
+        holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
+        holder.tv_interestHobby.setText(viperBean.getInterestHobby());
+        holder.iv_gender.setImageResource("女".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
+        holder.tv_useCar.setText(viperBean.getUseCar());
+        holder.lin_input_questionnaire.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);  // 0 意向会员  ，1  潜在会员
+        holder.lin_protect_seven.setVisibility("0".equals(viperBean.getIsIntentVip())?View.VISIBLE:View.GONE);
+        holder.lin_visit.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);
 
 
 
@@ -64,7 +64,7 @@ public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperList
 
     @Override
     public int getItemCount() {
-        return vipPeopleInfoList==null?0:vipPeopleInfoList.size();
+        return viperBeanList==null?0:viperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

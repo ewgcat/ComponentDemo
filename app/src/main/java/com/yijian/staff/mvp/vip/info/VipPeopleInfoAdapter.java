@@ -16,7 +16,6 @@ import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
-import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 
 import java.util.List;
 
@@ -43,6 +42,11 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         return holder;
     }
 
+    public void update( List<ViperBean> viperBeanList){
+        this.viperBeanList=viperBeanList;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public void onBindViewHolder(VipPeopleInfoAdapter.ViewHolder holder, int position) {
@@ -51,7 +55,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
         holder.tv_name.setText(viperBean.getName());
-        holder.iv_gender.setImageResource("男".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         holder.tv_cardName.setText(viperBean.getCardName());
         holder.tv_card_type.setText(viperBean.getCardType());
         holder.tv_private_coach.setText(viperBean.getPrivateCoach());
@@ -60,7 +64,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         holder.tv_regist_time.setText(viperBean.getRegisterTime());
         holder.tv_contract_overTime.setText(viperBean.getContractDeadline());
         holder.tv_contract_balance.setText(viperBean.getContractBalance());
-        holder.tv_buy_count.setText(viperBean.getPurchaseCount());
+        holder.tv_buy_count.setText(viperBean.getPurchaseCount()+"");
         holder.tv_be_present_time.setText(viperBean.getBePresentTime());
         holder.tv_be_departure_time.setText(viperBean.getDepartureTime());
         holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {

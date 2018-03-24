@@ -14,6 +14,7 @@ import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductQuotationFragment;
 import com.yijian.staff.mvp.reception.step3.leader.LeaderProductFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 

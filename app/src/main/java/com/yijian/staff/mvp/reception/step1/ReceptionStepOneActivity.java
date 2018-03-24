@@ -183,10 +183,10 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
 
             case R.id.right_tv:
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole==0){
+                if (userRole==1){
                     Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
                     startActivity(intent);
-                }else if (userRole==1){
+                }else if (userRole==2){
                     Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
                     startActivity(intent);
                 }

@@ -300,7 +300,8 @@
         <activity android:name=".mvp.empty.EmptyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
+        <activity android:name=".mvp.preparelessons.PrepareLessonsActivity" />
+        <activity android:name=".mvp.preparelessons.CreatePrivateLessionActivity"></activity>
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver

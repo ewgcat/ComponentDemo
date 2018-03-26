@@ -73,6 +73,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:name=".mvp.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".mvp.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity

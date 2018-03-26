@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.yijian.staff.dagger.scope.ActivityScope;
 import com.yijian.staff.dagger.module.ActivityModule;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.splash.SplashActivity;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.goods;
+package com.yijian.staff.mvp.baojia.coach;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -20,9 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FilterDialog extends Dialog {
+public class CoachGoodsFilterDialog extends Dialog {
 
-    private static String TAG = FilterDialog.class.getSimpleName();
+    private static String TAG = CoachGoodsFilterDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -47,7 +47,7 @@ public class FilterDialog extends Dialog {
     private Activity activity;
 
 
-    public FilterDialog(Activity activity) {
+    public CoachGoodsFilterDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;

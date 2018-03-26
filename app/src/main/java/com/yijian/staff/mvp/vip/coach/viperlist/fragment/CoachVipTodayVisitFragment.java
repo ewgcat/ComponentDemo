@@ -86,12 +86,12 @@ public class CoachVipTodayVisitFragment extends Fragment {
         coachViperListAdapter = new CoachViperListAdapter(getActivity(), viperBeanList,false);
         rv_vip_all.setAdapter(coachViperListAdapter);
         initComponent();
-        refresh(null);
+//        refresh(null);
         initData();
         Disposable disposable = RxBus.getDefault().toDefaultFlowable(CoachViperFilterBean.class, new Consumer<CoachViperFilterBean>() {
             @Override
             public void accept(CoachViperFilterBean filterBean) throws Exception {
-                refresh(filterBean);
+//                refresh(filterBean);
             }
         });
     }
@@ -251,12 +251,12 @@ public class CoachVipTodayVisitFragment extends Fragment {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refresh(null);
+//                refresh(null);
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadMore();
+//                loadMore();
             }
         });
     }

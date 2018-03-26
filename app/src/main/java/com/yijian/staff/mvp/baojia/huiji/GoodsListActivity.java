@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.goods;
+package com.yijian.staff.mvp.baojia.huiji;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -10,15 +10,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.goods.adapter.GoodsListAdapter;
-import com.yijian.staff.mvp.goods.FilterDialog ;
-import com.yijian.staff.mvp.goods.bean.GoodsInfo;
+import com.yijian.staff.mvp.baojia.huiji.adapter.GoodsListAdapter;
+import com.yijian.staff.mvp.baojia.huiji.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -31,7 +28,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
+/**
+ * 会籍（客服）产品报价
+ */
 @Route(path = "/test/9")
 public class GoodsListActivity extends AppCompatActivity {
 
@@ -48,7 +47,7 @@ public class GoodsListActivity extends AppCompatActivity {
 
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
     private GoodsListAdapter goodsListAdapter;
-    private FilterDialog filterDialog;
+    private HuiJiFilterDialog huiJiFilterDialog;
     private GoodsInfo selectedGoodsInfo;
     
     @Override
@@ -93,7 +92,7 @@ public class GoodsListActivity extends AppCompatActivity {
 
         initGoodsList();
 
-        filterDialog = new FilterDialog(this);
+        huiJiFilterDialog = new HuiJiFilterDialog(this);
 //        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View v, GoodsInfo goodsInfo) {
@@ -214,6 +213,6 @@ public class GoodsListActivity extends AppCompatActivity {
 
 
     private void showFilterDialog() {
-        filterDialog.showFilterDialog();
+        huiJiFilterDialog.showFilterDialog();
     }
 }

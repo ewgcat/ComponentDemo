@@ -57,14 +57,9 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
     private void initView() {
 
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
-        navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setBackClickListener(this);
-        ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
         navigationBar2.setTitle("意向会员");
-        navigationBar2.setmRightTvText("筛选");
 
         initComponent();
     }

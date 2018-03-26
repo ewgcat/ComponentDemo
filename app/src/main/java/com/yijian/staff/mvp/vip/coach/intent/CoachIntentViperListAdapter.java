@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
     @Override
     public CoachIntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_vip_intention_info, parent, false);
         CoachIntentViperListAdapter.ViewHolder holder = new CoachIntentViperListAdapter.ViewHolder(view);
         return holder;
     }
@@ -47,11 +48,32 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.tv_interestHobby.setText(viperBean.getInterestHobby());
         holder.iv_gender.setImageResource("女".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
-        holder.lin_input_questionnaire.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);  // 0 意向会员  ，1  潜在会员
-        holder.lin_protect_seven.setVisibility("0".equals(viperBean.getIsIntentVip())?View.VISIBLE:View.GONE);
-        holder.lin_visit.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);
 
 
+
+        holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
+            }
+        });
+
+
+
+        //TODO 保护7天状态不可电话回访，非保护七天状态可电话回访
+        holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
+            }
+        });
 
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +100,11 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         TextView tv_bodybuildingHobby;
         TextView tv_interestHobby;
         TextView tv_useCar;
-        LinearLayout lin_input_questionnaire; //录入问卷
-        LinearLayout lin_visit; //回访
-        LinearLayout lin_invitation; //邀请
         LinearLayout ll_content; //真个Item条目
-        LinearLayout lin_protect_seven; //保护7天
+
+        LinearLayout lin_baojia; //报价
+        LinearLayout lin_protect_seven; //保护7天/回访
+        LinearLayout lin_invitation; //邀请
 
 
         public ViewHolder(View view) {
@@ -96,11 +118,11 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             tv_bodybuildingHobby =     view.findViewById(R.id.tv_bodybuildingHobby);
             tv_interestHobby =     view.findViewById(R.id.tv_interestHobby);
             tv_useCar  =     view.findViewById(R.id.tv_useCar);
-            lin_input_questionnaire  =     view.findViewById(R.id.lin_input_questionnaire);
-            lin_visit =     view.findViewById(R.id.lin_visit);
-            lin_invitation =     view.findViewById(R.id.lin_invitation);
+
             ll_content =     view.findViewById(R.id.ll_content);
+            lin_baojia =     view.findViewById(R.id.lin_baojia);
             lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
+            lin_invitation =     view.findViewById(R.id.lin_invitation);
         }
     }
 

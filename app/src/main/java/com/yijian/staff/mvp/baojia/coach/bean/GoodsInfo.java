@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.goods.bean;
+package com.yijian.staff.mvp.baojia.coach.bean;
 
 import com.yijian.staff.util.JsonUtil;
 

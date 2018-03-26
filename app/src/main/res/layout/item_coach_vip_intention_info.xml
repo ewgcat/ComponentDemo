@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
@@ -16,11 +17,10 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/lin_content"
-            android:layout_width="wrap_content"
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,17 +67,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="卡名:"
+                    android:text="生日:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_cardName"
+                    android:id="@+id/tv_birth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="原力俱乐部30年年卡"
+                    android:text="1992-12-22"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -95,17 +95,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="卡类型:"
+                    android:text="生日类型:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_card_type"
+                    android:id="@+id/tv_birth_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="时间卡"
+                    android:text="农历"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -123,17 +123,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="私教课程:"
+                    android:text="身体状态:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_private_class"
+                    android:id="@+id/tv_bodyStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="瑜伽课"
+                    android:text="正常"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -151,17 +151,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="喜欢课程:"
+                    android:text="健身爱好:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_like_lesson"
+                    android:id="@+id/tv_bodybuildingHobby"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="健身课"
+                    android:text="哑铃"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -179,17 +179,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="喜欢老师: "
+                    android:text="兴趣爱好: "
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_like_teacher"
+                    android:id="@+id/tv_interestHobby"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="陈周奇老师"
+                    android:text="打篮球、游泳"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -207,68 +207,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="注册时间:"
+                    android:text="使用车辆:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_regist_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="2017-12-25"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="合同到期日:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_contract_overTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="2017-12-25"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="合同余额:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_contract_balance"
+                    android:id="@+id/tv_useCar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -276,114 +220,27 @@
                     android:text="无"
                     android:textColor="#333333"
                     android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="购买次数:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_buy_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="无"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_be_present_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="到场时间:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_be_present_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="无"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_be_departure_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="离场时间:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_be_departure_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="无"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/gray"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp" />
 
             </RelativeLayout>
         </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -393,9 +250,8 @@
             android:paddingRight="22dp"
             android:paddingTop="15dp">
 
-
             <LinearLayout
-                android:id="@+id/lin_shangke_recordchart"
+                android:id="@+id/lin_baojia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -405,17 +261,37 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/member_recordchart"
+                    android:drawableLeft="@mipmap/member_offer"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:text="上课记录表"
+                    android:text="报价"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_protect_seven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_huifang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/my_password_new"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="保护7天"
                     android:textColor="#999999"
                     android:textSize="14sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/lin_ti_ce_shu_ju"
+                android:id="@+id/lin_invitation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -425,10 +301,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/member_data"
+                    android:drawableLeft="@mipmap/wt_yaoyue"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:text="体测数据"
+                    android:text="邀约"
                     android:textColor="#999999"
                     android:textSize="14sp" />
             </LinearLayout>

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.goods.adapter;
+package com.yijian.staff.mvp.baojia.coach.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.goods.bean.GoodsInfo;
+import com.yijian.staff.mvp.baojia.coach.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;

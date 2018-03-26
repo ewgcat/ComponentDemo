@@ -19,6 +19,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.BodyTestReportView;
 import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -41,7 +42,6 @@ public class PhysicalReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setLightStatusBar(this, 0xffffff);
         setContentView(R.layout.activity_physical_report);
         ButterKnife.bind(this);
         initView();
@@ -52,13 +52,11 @@ public class PhysicalReportActivity extends AppCompatActivity {
 
 
     private void initView() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.physical_report_navigation_bar);
-        navigationBar.setTitle("查看体测数据", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.physical_report_navigation_bar);
+        navigationBar2.setTitle("查看体测数据");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
 
-//        BodyTestReportView bodyTestReportView=   findViewById(R.id.physical_report_body_test_report);
         RelativeLayout rlName = findViewById(R.id.rl_name);
         RelativeLayout rlHeight = findViewById(R.id.rl_height);
         RelativeLayout rlAge = findViewById(R.id.rl_age);

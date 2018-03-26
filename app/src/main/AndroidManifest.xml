@@ -310,6 +310,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity android:name=".mvp.setclass.ActivityOpenLesson"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- arouter 路由过滤 -->
         <activity android:name=".schamefilter.SchameFilterActivity">
 

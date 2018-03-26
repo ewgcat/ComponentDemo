@@ -47,4 +47,5 @@
 
     <dimen name="height_switch">30dp</dimen>
     <dimen name="radius_switch">15dp</dimen>
+    <dimen name="collapsed_header_height">48dp</dimen>
 </resources>

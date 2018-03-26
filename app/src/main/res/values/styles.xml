@@ -80,5 +80,12 @@
     </style>
     <!--MaterialCalendarWidget-->
 
+    <!--Chronometer-->
+    <style name="Stopwatch" parent="TextAppearance.AppCompat">
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
 </resources>

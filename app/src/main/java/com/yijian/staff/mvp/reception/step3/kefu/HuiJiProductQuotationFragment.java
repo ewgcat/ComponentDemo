@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
 import com.yijian.staff.mvp.reception.step3.kefu.adapter.HuiJiProductQuotationListAdapter;
+import com.yijian.staff.mvp.reception.step3.kefu.fiter.GoodsFilterDialog;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -56,7 +57,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
 
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
     private HuiJiProductQuotationListAdapter goodsListAdapter;
-    private FilterDialog filterDialog;
+    private GoodsFilterDialog goodsFilterDialog;
     private GoodsInfo selectedGoodsInfo;
 
 
@@ -76,7 +77,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
         goodsListAdapter = new HuiJiProductQuotationListAdapter(getContext(), mGoodsInfoList);
         goodsRcv.setAdapter(goodsListAdapter);
         initGoodsList();
-        filterDialog = new FilterDialog(getActivity());
+        goodsFilterDialog = new GoodsFilterDialog(getActivity());
         goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, GoodsInfo goodsInfo) {
@@ -206,7 +207,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
 
 
     private void showFilterDialog() {
-        filterDialog.showFilterDialog();
+        goodsFilterDialog.showFilterDialog();
     }
 
 

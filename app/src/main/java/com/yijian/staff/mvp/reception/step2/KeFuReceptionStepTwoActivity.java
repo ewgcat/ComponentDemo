@@ -8,6 +8,8 @@ import android.view.View;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.ScanBodyView;
 import com.yijian.staff.widget.TimeBar;
@@ -18,6 +20,7 @@ import butterknife.OnClick;
 public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ScanBodyView scanBodyView;
+    private View ll_to_coach;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,9 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
     private void initView() {
         NavigationBar2 navigationBar2 = findViewById(R.id.step_two_navigation_bar2);
 
-        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        navigationBar2.setBackClickListener(this);
         navigationBar2.getSecondLeftIv().setOnClickListener(this);
-        navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setTitle("体测录入(2/5)");
-        navigationBar2.setmRightTvText("下一步");
 
 
         TimeBar timeBar = findViewById(R.id.step_two_timebar);
@@ -43,8 +44,14 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 
         scanBodyView = findViewById(R.id.scan_view);
 
-
-        //TODO 发送体测给教练,成功后开启动画
+         findViewById(R.id.tv_next_step).setOnClickListener(this);
+        ll_to_coach = findViewById(R.id.ll_to_coach);
+       if( SharePreferenceUtil.getHasToScan()){
+           ll_to_coach.setVisibility(View.INVISIBLE);
+       }else {
+           ll_to_coach.setVisibility(View.VISIBLE);
+           ll_to_coach.setOnClickListener(this);
+       }
 
 
     }
@@ -55,29 +62,51 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 
         switch (id) {
             case R.id.iv_first_left:
+                scanBodyView.stopScan();
                 finish();
                 break;
             case R.id.iv_second_left:
-
-
+                scanBodyView.stopScan();
                 Intent i = new Intent(this, ReceptionActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
-            case R.id.right_tv:
+
+            case R.id.tv_next_step:
+                scanBodyView.stopScan();
+                //TODO 教练没录完，不能跳转,教练没开始录，可跳转
                 Intent intent = new Intent(KeFuReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                break;
-            case R.id.tv_next_step:
-                //TODO 教练没录完，不能跳转,教练没开始录，可跳转
-
 
                 break;
+            case R.id.ll_to_coach:
+                SharePreferenceUtil.setHasToScan(true);
+                ll_to_coach.setVisibility(View.INVISIBLE);
+                scanBodyView.startScan();
+                break;
+
         }
     }
 
-    @OnClick(R.id.tv_next_step)
-    public void onViewClicked() {
+    @Override
+    protected void onPause() {
+        scanBodyView.stopScan();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if( SharePreferenceUtil.getHasToScan()){
+            ll_to_coach.setVisibility(View.INVISIBLE);
+            scanBodyView.startScan();
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        scanBodyView.stopScan();
+        super.onDestroy();
     }
 }

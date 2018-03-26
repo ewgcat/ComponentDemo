@@ -24,10 +24,10 @@
 
             <RelativeLayout
                 android:layout_width="190dp"
-                android:layout_height="313dp"
+                android:layout_height="293dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="46dp"
-                android:layout_marginTop="46dp"
+                android:layout_marginBottom="36dp"
+                android:layout_marginTop="36dp"
                 android:background="@mipmap/lg_fangkuang">
 
                 <com.yijian.staff.widget.ScanBodyView
@@ -36,27 +36,37 @@
                     android:layout_height="308dp"
                     android:layout_centerInParent="true" />
 
+
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
+                android:id="@+id/ll_to_coach"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@mipmap/button_invite"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:text="教练正在录入体测数据\n请稍等" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#ffffff"
+                    android:text="通知教练" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_next_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="39dp"
-                android:layout_marginBottom="39dp"
+                android:layout_marginTop="20dp"
                 android:text="跳过"
                 android:drawableRight="@mipmap/lg_tiaoguo"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="#1997f8" />
         </LinearLayout>
     </ScrollView>

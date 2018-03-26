@@ -19,6 +19,33 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Required -->
+    <permission
+        android:name="com.yijian.staff.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.yijian.staff.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".application.CustomApplication"
@@ -33,25 +60,22 @@
         <activity
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name=".mvp.main.MainActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
-        <activity
-            android:name=".mvp.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        <intent-filter>
+            android:theme="@style/SplashTheme">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".mvp.main.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
@@ -84,7 +108,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.reception.step2.CoachReceptionStepTwoActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.reception.step3.ReceptionStepThreeActivity"
             android:screenOrientation="portrait" />
@@ -113,20 +138,48 @@
             android:name=".mvp.vip.edit.VipInfoEditActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.info.VipInfoActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity
             android:name=".mvp.vip.potential.PotentialViperListActivity"
             android:screenOrientation="portrait" />
+
+        <!-- 会籍 会员信息 -->
         <activity
-            android:name=".mvp.vip.intent.IntentViperListActivity"
+            android:name=".mvp.huiji.viperlist.HuijiViperListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 会籍 意向会员 -->
+        <activity
+            android:name=".mvp.huiji.intent.HuijiIntentViperListActivity"
             android:screenOrientation="portrait" />
+        <!-- 会籍 意向会员详情 -->
         <activity
-            android:name=".mvp.vip.intent.IntentViperDetailActivity"
+            android:name=".mvp.huiji.intent.HuijiIntentViperDetailActivity"
             android:screenOrientation="portrait" />
+        <!-- 会籍 过期会员 -->
         <activity
-            android:name=".mvp.vip.outdate.OutdateViperListActivity"
+            android:name=".mvp.huiji.outdate.HuijiOutdateViperListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 教练 会员信息 -->
+        <activity
+            android:name=".mvp.coach.viperlist.CoachViperListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.recordchart.RecordChartActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 教练 意向会员 -->
+        <activity
+            android:name=".mvp.coach.intent.CoachIntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 意向会员详情 -->
+        <activity
+            android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 过期会员 -->
+        <activity
+            android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.detail.ViperDetailActivity"
@@ -203,8 +256,15 @@
             android:name=".mvp.advice.AdviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 会籍 产品报价 -->
         <activity
-            android:name=".mvp.goods.GoodsListActivity"
+            android:name=".mvp.baojia.huiji.HuiJiGoodsListBaoJiaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 教练 课程报价 -->
+        <activity
+            android:name=".mvp.baojia.coach.CoachClassBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -230,7 +290,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step5.ExperienceClassProcess5Activity"
+            android:name=".mvp.experienceclass.step5.coach.ExperienceClassProcess5Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.experienceclass.step5.leader.LeaderExperienceClassProcess5Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -264,7 +328,125 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.empty.EmptyActivity"></activity>
+        <activity
+            android:name=".mvp.empty.EmptyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.list.PrepareLessonsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.PrepareLessonsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.CreatePrivateLessionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name=".jpush.JpushMessageReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
+        <receiver android:name=".jpush.JPushOperatorResultReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Rich push 核心功能 since 2.0.6 -->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:exported="false"
+            android:theme="@style/MyDialogStyle" />
+
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult"
+            tools:replace="android:process">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </service>
+
+        <!-- &lt;!&ndash; Required SDK核心功能&ndash;&gt; -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
+        <activity android:name=".mvp.coach.cunke.CunKeActivity" />
+        <activity android:name=".mvp.preparelessons.PrepareAllLessonActivity"></activity>
     </application>
 
 </manifest>

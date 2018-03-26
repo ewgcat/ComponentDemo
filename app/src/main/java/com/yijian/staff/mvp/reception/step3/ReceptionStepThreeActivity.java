@@ -14,6 +14,7 @@ import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductQuotationFragment;
 import com.yijian.staff.mvp.reception.step3.leader.LeaderProductFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
@@ -43,11 +44,11 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         timeBar.showTimeBar(3);
 
         int userRole = SharePreferenceUtil.getUserRole();
-        if (userRole==0){
+        if (userRole==1){
              fragment = new HuiJiProductQuotationFragment();
-        }else if (userRole==1){
-             fragment =new CoachProductFragment();
         }else if (userRole==2){
+             fragment =new CoachProductFragment();
+        }else if (userRole==3|userRole==4){
             fragment = new LeaderProductFragment();
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

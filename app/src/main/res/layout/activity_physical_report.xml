@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/physical_report_navigation_bar"
-        layout="@layout/view_navigation_bar" />
+        layout="@layout/view_navigation_bar2" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

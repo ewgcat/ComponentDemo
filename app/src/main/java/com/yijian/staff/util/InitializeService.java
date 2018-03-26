@@ -8,9 +8,6 @@ import android.util.Log;
 import com.tencent.smtt.sdk.QbSdk;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.db.DBManager;
-import com.github.moduth.blockcanary.BlockCanary;
-import com.squareup.leakcanary.LeakCanary;
-import com.yijian.staff.widget.AppBlockCanaryContext;
 
 
 public class InitializeService extends IntentService {
@@ -61,11 +58,7 @@ public class InitializeService extends IntentService {
         //x5内核初始化接口
         QbSdk.initX5Environment(getApplicationContext(), cb);
 
-        //初始化内存泄漏检测
-        LeakCanary.install(CustomApplication.getInstance());
 
-        //初始化过度绘制检测
-        BlockCanary.install(getApplicationContext(), new AppBlockCanaryContext()).start();
 
     }
 

@@ -24,14 +24,44 @@ public class ArouterNavigationInterceptor implements IInterceptor {
     public void process(Postcard postcard, InterceptorCallback callback) {
         String path = postcard.getPath();
 
-        if (path.equals("/test/19")){
-            if (SharePreferenceUtil.getUserRole()==1){
+        if (path.equals("/test/19")) {
+            if (SharePreferenceUtil.getUserRole() == 2) {
                 callback.onContinue(postcard);  // 处理完成，交还控制权
-            }else {
-                Logger.i("ArouterNavigationInterceptor","只有教练才有该功能");
+            } else if (SharePreferenceUtil.getUserRole()==3||SharePreferenceUtil.getUserRole()==4) {
+                ARouter.getInstance().build("/test/leader_experience_class").navigation();
+
+            } else {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
-        }else {
+        } else if (path.equals("/test/1")){
+            if (SharePreferenceUtil.getUserRole() == 1) {
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else if (SharePreferenceUtil.getUserRole()==2) {
+                ARouter.getInstance().build("/test/1.1").navigation();
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        }
+        else if (path.equals("/test/2")){
+            if (SharePreferenceUtil.getUserRole() == 1) {
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else if (SharePreferenceUtil.getUserRole()==2) {
+                ARouter.getInstance().build("/test/2.1").navigation();
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        }else if (path.equals("/test/4")){
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else if (SharePreferenceUtil.getUserRole()==2) {//教练
+                ARouter.getInstance().build("/test/4.1").navigation();
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        }
+
+
+        else {
             callback.onContinue(postcard);  // 处理完成，交还控制权
         }
 

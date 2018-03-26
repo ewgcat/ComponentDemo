@@ -117,10 +117,6 @@
                 android:text="1-29 周一 10:00-11:00"
                 android:layout_marginRight="5dp"
                 />
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@mipmap/lg_arrow"/>
 
             </LinearLayout>
 

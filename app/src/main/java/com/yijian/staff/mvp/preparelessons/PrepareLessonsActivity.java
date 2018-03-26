@@ -31,8 +31,6 @@ public class PrepareLessonsActivity extends AppCompatActivity {
     private void initTitle() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
         navigationBar.setTitle("备课", "#ffffff");
-        navigationBar.getmRightTextView().setText("设置");
-        navigationBar.hideBottomLine();
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }

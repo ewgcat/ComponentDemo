@@ -40,7 +40,7 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
             PrepareLessonsBean e1 = new PrepareLessonsBean();
             e1.setBeikeStatus("1");
             PrepareLessonsBean e2 = new PrepareLessonsBean();
-            e1.setBeikeStatus("2");
+            e2.setBeikeStatus("2");
 
             prepareLessonsBeans.add(e1);
             prepareLessonsBeans.add(e2);

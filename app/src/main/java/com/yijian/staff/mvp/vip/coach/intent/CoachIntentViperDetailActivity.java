@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.intent;
+package com.yijian.staff.mvp.vip.coach.intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import com.yijian.staff.R;
 /**
  * 潜在会员或意向会员 基本信息
  */
-public class IntentViperDetailActivity extends AppCompatActivity {
+public class CoachIntentViperDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

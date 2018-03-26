@@ -56,6 +56,7 @@ public class ViperBean {
     private String registerTime;
     private String bePresentTime; //到场时间
     private String departureTime; //离场时间
+    private String privateClass;
 
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
@@ -82,6 +83,7 @@ public class ViperBean {
          this.interestHobby = JsonUtil.getString(jsonObject, "interestHobby");
          this.useCar = JsonUtil.getString(jsonObject, "useCar");
          this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
+         this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
 
     }
 
@@ -267,5 +269,13 @@ public class ViperBean {
 
     public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
+    }
+
+    public String getPrivateClass() {
+        return privateClass;
+    }
+
+    public void setPrivateClass(String privateClass) {
+        this.privateClass = privateClass;
     }
 }

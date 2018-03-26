@@ -32,7 +32,7 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ViewHo
 
         @Override
         public ApprovalAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_people_info, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_info, parent, false);
             ApprovalAdapter.ViewHolder holder = new ApprovalAdapter.ViewHolder(view);
             return holder;
         }

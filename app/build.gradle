@@ -35,9 +35,9 @@ android {
             }
         }
         manifestPlaceholders = [
-                                JPUSH_PKGNAME: applicationId,
-                                JPUSH_APPKEY : "$jpush_appkey", //JPush上注册的包名对应的appkey.
-                                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "$jpush_appkey", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
         buildConfigField "String", "HOST", "\"$host\""
 
@@ -110,7 +110,6 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
-
 
     //操作数据库
     compile 'org.greenrobot:greendao:3.2.2'

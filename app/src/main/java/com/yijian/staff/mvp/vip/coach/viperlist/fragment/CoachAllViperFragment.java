@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.info.fragment;
+package com.yijian.staff.mvp.vip.coach.viperlist.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,8 +23,9 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.vip.filter.ViperFilterBean;
-import com.yijian.staff.mvp.vip.info.VipPeopleInfoAdapter;
+import com.yijian.staff.mvp.vip.coach.viperlist.CoachViperListAdapter;
+import com.yijian.staff.mvp.vip.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.mvp.vip.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.rx.RxBus;
@@ -46,7 +47,7 @@ import io.reactivex.functions.Consumer;
  * 全部会员信息
  */
 
-public class VipAllPeopleInfoFragment extends Fragment {
+public class CoachAllViperFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
@@ -55,17 +56,17 @@ public class VipAllPeopleInfoFragment extends Fragment {
     private int pageSize = 1;//每页数量
 
 
-    private static VipAllPeopleInfoFragment vipAllPeopleInfoFragment;
-    private VipPeopleInfoAdapter vipPeopleInfoAdapter;
+    private static CoachAllViperFragment coachAllViperFragment;
+    private CoachViperListAdapter coachViperListAdapter;
     private int pages;
-    private ViperFilterBean viperFilterBean;
+    private CoachViperFilterBean coachViperFilterBean;
 
 
-    public static VipAllPeopleInfoFragment getInstance() {
-        if (vipAllPeopleInfoFragment == null) {
-            vipAllPeopleInfoFragment = new VipAllPeopleInfoFragment();
+    public static CoachAllViperFragment getInstance() {
+        if (coachAllViperFragment == null) {
+            coachAllViperFragment = new CoachAllViperFragment();
         }
-        return vipAllPeopleInfoFragment;
+        return coachAllViperFragment;
     }
 
     @Nullable
@@ -74,7 +75,16 @@ public class VipAllPeopleInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_vip_all_people_info, container, false);
         initView(view);
         refresh(null);
+        initData();
         return view;
+    }
+
+    private void initData() {
+        for (int i = 0; i < 10; i++) {
+            viperBeanList.add(new ViperBean(new JSONObject()));
+        }
+        coachViperListAdapter.update(viperBeanList);
+
     }
 
     private void initView(View view) {
@@ -84,15 +94,15 @@ public class VipAllPeopleInfoFragment extends Fragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        vipPeopleInfoAdapter = new VipPeopleInfoAdapter(getActivity(), viperBeanList, true);
-        rv_vip_all.setAdapter(vipPeopleInfoAdapter);
+        coachViperListAdapter = new CoachViperListAdapter(getActivity(), viperBeanList, true);
+        rv_vip_all.setAdapter(coachViperListAdapter);
 
 
         initComponent();
 
-        Disposable disposable = RxBus.getDefault().toDefaultFlowable(ViperFilterBean.class, new Consumer<ViperFilterBean>() {
+        Disposable disposable = RxBus.getDefault().toDefaultFlowable(CoachViperFilterBean.class, new Consumer<CoachViperFilterBean>() {
             @Override
-            public void accept(ViperFilterBean filterBean) throws Exception {
+            public void accept(CoachViperFilterBean filterBean) throws Exception {
                 refresh(filterBean);
             }
         });
@@ -100,9 +110,9 @@ public class VipAllPeopleInfoFragment extends Fragment {
 
     }
 
-    private void refresh(ViperFilterBean viperFilterBean) {
+    private void refresh(CoachViperFilterBean coachViperFilterBean) {
 
-        this.viperFilterBean = viperFilterBean;
+        this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
@@ -110,30 +120,31 @@ public class VipAllPeopleInfoFragment extends Fragment {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
-        if (viperFilterBean != null) {
+        if (coachViperFilterBean != null) {
 
-            if (viperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", viperFilterBean.getJoinTimeType() + "");
+            if (coachViperFilterBean.getJoinTimeType() != -2) {
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() + "");
             }
-            if (viperFilterBean.getExpiringDay() != -1) {
-                map.put("expiringDay", viperFilterBean.getExpiringDay() + "");
+            if (coachViperFilterBean.getExpiringDay() != -1) {
+                map.put("expiringDay", coachViperFilterBean.getExpiringDay() + "");
             }
-            if (viperFilterBean.getSex()!=-1) {
-                map.put("sex", viperFilterBean.getSex() + "");
+            if (coachViperFilterBean.getSex()!=-1) {
+                map.put("sex", coachViperFilterBean.getSex() + "");
             }
-            if (viperFilterBean.getCardType()!=-1) {
-                map.put("cardType", viperFilterBean.getCardType() + "");
+            if (coachViperFilterBean.getClassType()!=-1) {
+                map.put("classType", coachViperFilterBean.getClassType() + "");
             }
-            if (viperFilterBean.getPrivateCourseState()!=-1) {
-                map.put("privateCourseState", viperFilterBean.getPrivateCourseState() + "");
+            if (coachViperFilterBean.getBuyClassTime()!=-1) {
+                map.put("buyClassTime", coachViperFilterBean.getBuyClassTime() + "");
             }
 
-            if (!TextUtils.isEmpty(viperFilterBean.getStartTime())) {
-                map.put("startTime", viperFilterBean.getStartTime() + "");
+            if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
+                map.put("startTime", coachViperFilterBean.getStartTime() + "");
             }
-            if (!TextUtils.isEmpty(viperFilterBean.getEndTime())) {
-                map.put("endTime", viperFilterBean.getEndTime() + "");
+            if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
+                map.put("endTime", coachViperFilterBean.getEndTime() + "");
             }
+
 
         }
 
@@ -156,7 +167,7 @@ public class VipAllPeopleInfoFragment extends Fragment {
 
                     }
                 }
-                vipPeopleInfoAdapter.update(viperBeanList);
+                coachViperListAdapter.update(viperBeanList);
             }
 
             @Override
@@ -176,32 +187,30 @@ public class VipAllPeopleInfoFragment extends Fragment {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-        if (viperFilterBean != null) {
+        if (coachViperFilterBean != null) {
+            if (coachViperFilterBean.getJoinTimeType() != -2) {
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() + "");
+            }
+            if (coachViperFilterBean.getExpiringDay() != -1) {
+                map.put("expiringDay", coachViperFilterBean.getExpiringDay() + "");
+            }
+            if (coachViperFilterBean.getSex()!=-1) {
+                map.put("sex", coachViperFilterBean.getSex() + "");
+            }
+            if (coachViperFilterBean.getClassType()!=-1) {
+                map.put("classType", coachViperFilterBean.getClassType() + "");
+            }
+            if (coachViperFilterBean.getBuyClassTime()!=-1) {
+                map.put("buyClassTime", coachViperFilterBean.getBuyClassTime() + "");
+            }
 
-            if (viperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", viperFilterBean.getJoinTimeType() + "");
+            if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
+                map.put("startTime", coachViperFilterBean.getStartTime() + "");
             }
-            if (viperFilterBean.getExpiringDay() != -1) {
-                map.put("expiringDay", viperFilterBean.getExpiringDay() + "");
+            if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
+                map.put("endTime", coachViperFilterBean.getEndTime() + "");
             }
-            if (viperFilterBean.getSex()!=-1) {
-                map.put("sex", viperFilterBean.getSex() + "");
-            }
-            if (viperFilterBean.getCardType()!=-1) {
-                map.put("cardType", viperFilterBean.getCardType() + "");
-            }
-            if (viperFilterBean.getPrivateCourseState()!=-1) {
-                map.put("privateCourseState", viperFilterBean.getPrivateCourseState() + "");
-            }
-            if (viperFilterBean.getPrivateCourseState()!=-1) {
-                map.put("source", viperFilterBean.getPrivateCourseState() + "");
-            }
-            if (!TextUtils.isEmpty(viperFilterBean.getStartTime())) {
-                map.put("startTime", viperFilterBean.getStartTime() + "");
-            }
-            if (!TextUtils.isEmpty(viperFilterBean.getEndTime())) {
-                map.put("endTime", viperFilterBean.getEndTime() + "");
-            }
+
 
         }
         HttpManager.getAllViperList(header, map, new ResultObserver() {
@@ -223,7 +232,7 @@ public class VipAllPeopleInfoFragment extends Fragment {
                     } catch (JSONException e) {
                     }
                 }
-                vipPeopleInfoAdapter.update(viperBeanList);
+                coachViperListAdapter.update(viperBeanList);
             }
 
             @Override

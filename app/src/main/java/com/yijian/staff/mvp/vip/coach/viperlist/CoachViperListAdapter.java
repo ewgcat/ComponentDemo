@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.info;
+package com.yijian.staff.mvp.vip.coach.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.contract.ContractActivity;
+import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.vip.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
 
 import java.util.List;
@@ -23,22 +25,22 @@ import java.util.List;
  * Created by yangk on 2018/3/6.
  */
 
-public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdapter.ViewHolder> {
+public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAdapter.ViewHolder> {
 
     private List<ViperBean> viperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public VipPeopleInfoAdapter(Context context, List<ViperBean> viperBeanList, boolean isAllVipInfo) {
+    public CoachViperListAdapter(Context context, List<ViperBean> viperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.viperBeanList = viperBeanList;
         this.isAllVipInfo = isAllVipInfo;
     }
 
     @Override
-    public VipPeopleInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_people_info, parent, false);
-        VipPeopleInfoAdapter.ViewHolder holder = new VipPeopleInfoAdapter.ViewHolder(view);
+    public CoachViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_vip_info, parent, false);
+        CoachViperListAdapter.ViewHolder holder = new CoachViperListAdapter.ViewHolder(view);
         return holder;
     }
 
@@ -49,7 +51,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
 
 
     @Override
-    public void onBindViewHolder(VipPeopleInfoAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachViperListAdapter.ViewHolder holder, int position) {
         ViperBean viperBean = viperBeanList.get(position);
         holder.rel_be_present_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
@@ -58,7 +60,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         holder.tv_cardName.setText(viperBean.getCardName());
         holder.tv_card_type.setText(viperBean.getCardType());
-        holder.tv_private_coach.setText(viperBean.getPrivateCoach());
+        holder.tv_private_class.setText(viperBean.getPrivateClass());
         holder.tv_like_lesson.setText(viperBean.getFavorCourse());
         holder.tv_like_teacher.setText(viperBean.getFavorTeacher());
         holder.tv_regist_time.setText(viperBean.getRegisterTime());
@@ -67,18 +69,22 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         holder.tv_buy_count.setText(viperBean.getPurchaseCount()+"");
         holder.tv_be_present_time.setText(viperBean.getBePresentTime());
         holder.tv_be_departure_time.setText(viperBean.getDepartureTime());
-        holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {
+
+        //上课记录表
+        holder.lin_shangke_recordchart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ContractActivity.class));
+                context.startActivity(new Intent(context, RecordChartActivity.class));
             }
         });
-        holder.lin_query_question.setOnClickListener(new View.OnClickListener() {
+        //体测数据
+        holder.lin_ti_ce_shu_ju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
+                context.startActivity(new Intent(context, PhysicalReportActivity.class));
             }
         });
+        //详情
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +106,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         TextView tv_name;
         TextView tv_cardName;
         TextView tv_card_type;
-        TextView tv_private_coach;
+        TextView tv_private_class;
         TextView tv_like_lesson;
         TextView tv_like_teacher;
         TextView tv_regist_time;
@@ -111,8 +117,8 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
         TextView tv_be_departure_time;
         RelativeLayout rel_be_present_time;
         RelativeLayout rel_be_departure_time;
-        LinearLayout lin_query_contract;
-        LinearLayout lin_query_question;
+        LinearLayout lin_shangke_recordchart;
+        LinearLayout lin_ti_ce_shu_ju;
         LinearLayout lin_content;
 
         public ViewHolder(View view) {
@@ -123,7 +129,7 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
             tv_name = view.findViewById(R.id.tv_name);
             tv_cardName = view.findViewById(R.id.tv_cardName);
             tv_card_type = view.findViewById(R.id.tv_card_type);
-            tv_private_coach = view.findViewById(R.id.tv_private_coach);
+            tv_private_class = view.findViewById(R.id.tv_private_class);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
             tv_like_teacher = view.findViewById(R.id.tv_like_teacher);
             tv_regist_time = view.findViewById(R.id.tv_regist_time);
@@ -134,8 +140,8 @@ public class VipPeopleInfoAdapter extends RecyclerView.Adapter<VipPeopleInfoAdap
             tv_be_departure_time = view.findViewById(R.id.tv_be_departure_time);
             rel_be_present_time = view.findViewById(R.id.rel_be_present_time);
             rel_be_departure_time = view.findViewById(R.id.rel_be_departure_time);
-            lin_query_contract = view.findViewById(R.id.lin_query_contract);
-            lin_query_question = view.findViewById(R.id.lin_query_question);
+            lin_shangke_recordchart = view.findViewById(R.id.lin_shangke_recordchart);
+            lin_ti_ce_shu_ju = view.findViewById(R.id.lin_ti_ce_shu_ju);
         }
     }
 

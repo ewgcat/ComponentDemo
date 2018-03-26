@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.intent;
+package com.yijian.staff.mvp.vip.coach.intent;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -34,8 +34,8 @@ import butterknife.ButterKnife;
 /**
  *意向会员  列表
  */
-@Route(path = "/test/2")
-public class IntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
+@Route(path = "/test/2.1")
+public class CoachIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -91,7 +91,7 @@ public class IntentViperListActivity extends AppCompatActivity implements View.O
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_vip_intention.setLayoutManager(layoutmanager);
-            IntentViperListAdapter intentViperListAdapter = new IntentViperListAdapter(this, viperBeanList);
+            CoachIntentViperListAdapter intentViperListAdapter = new CoachIntentViperListAdapter(this, viperBeanList);
             rv_vip_intention.setAdapter(intentViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
@@ -106,11 +106,11 @@ public class IntentViperListActivity extends AppCompatActivity implements View.O
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
-        BezierRadarHeader header = new BezierRadarHeader(IntentViperListActivity.this).setEnableHorizontalDrag(true);
+        BezierRadarHeader header = new BezierRadarHeader(CoachIntentViperListActivity.this).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
-        BallPulseFooter footer = new BallPulseFooter(IntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
+        BallPulseFooter footer = new BallPulseFooter(CoachIntentViperListActivity.this).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {

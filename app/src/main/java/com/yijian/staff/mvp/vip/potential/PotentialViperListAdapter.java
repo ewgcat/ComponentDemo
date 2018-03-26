@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 
@@ -23,14 +24,14 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
     private List<ViperBean> viperBeanList;
     private Context context;
 
-    public PotentialViperListAdapter(Context context, List<ViperBean> viperBeanList){
+    public PotentialViperListAdapter(Context context, List<ViperBean> viperBeanList) {
         this.context = context;
         this.viperBeanList = viperBeanList;
     }
 
     @Override
     public PotentialViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_potential_people_info, parent, false);
         PotentialViperListAdapter.ViewHolder holder = new PotentialViperListAdapter.ViewHolder(view);
         return holder;
     }
@@ -44,18 +45,31 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
         holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
         holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
         holder.tv_interestHobby.setText(viperBean.getInterestHobby());
-        holder.iv_gender.setImageResource("女".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("女".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
-        holder.lin_input_questionnaire.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);  // 0 意向会员  ，1  潜在会员
-        holder.lin_protect_seven.setVisibility("0".equals(viperBean.getIsIntentVip())?View.VISIBLE:View.GONE);
-        holder.lin_visit.setVisibility("0".equals(viperBean.getIsIntentVip())?View.GONE:View.VISIBLE);
+
+        //回访
+        holder.lin_visit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //邀约
+        holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
-
+        //详情
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,PotentialViperDetailActivity.class));
+                context.startActivity(new Intent(context, PotentialViperDetailActivity.class));
             }
         });
 
@@ -63,7 +77,7 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
 
     @Override
     public int getItemCount() {
-        return viperBeanList==null?0:viperBeanList.size();
+        return viperBeanList == null ? 0 : viperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,29 +91,27 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
         TextView tv_bodybuildingHobby;
         TextView tv_interestHobby;
         TextView tv_useCar;
-        LinearLayout lin_input_questionnaire; //录入问卷
         LinearLayout lin_visit; //回访
         LinearLayout lin_invitation; //邀请
         LinearLayout ll_content; //真个Item条目
-        LinearLayout lin_protect_seven; //保护7天
 
 
         public ViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_birth  =     view.findViewById(R.id.tv_birth);
-            tv_birth_type =     view.findViewById(R.id.tv_birth_type);
-            tv_bodyStatus =     view.findViewById(R.id.tv_bodyStatus);
-            tv_bodybuildingHobby =     view.findViewById(R.id.tv_bodybuildingHobby);
-            tv_interestHobby =     view.findViewById(R.id.tv_interestHobby);
-            tv_useCar  =     view.findViewById(R.id.tv_useCar);
-            lin_input_questionnaire  =     view.findViewById(R.id.lin_input_questionnaire);
-            lin_visit =     view.findViewById(R.id.lin_visit);
-            lin_invitation =     view.findViewById(R.id.lin_invitation);
-            ll_content =     view.findViewById(R.id.ll_content);
-            lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_birth = view.findViewById(R.id.tv_birth);
+            tv_birth_type = view.findViewById(R.id.tv_birth_type);
+            tv_bodyStatus = view.findViewById(R.id.tv_bodyStatus);
+            tv_bodybuildingHobby = view.findViewById(R.id.tv_bodybuildingHobby);
+            tv_interestHobby = view.findViewById(R.id.tv_interestHobby);
+            tv_useCar = view.findViewById(R.id.tv_useCar);
+
+            ll_content = view.findViewById(R.id.ll_content);
+
+            lin_visit = view.findViewById(R.id.lin_visit);
+            lin_invitation = view.findViewById(R.id.lin_invitation);
         }
     }
 

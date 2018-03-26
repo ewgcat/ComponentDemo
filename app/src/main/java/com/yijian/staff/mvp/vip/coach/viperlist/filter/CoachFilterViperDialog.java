@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.filter;
+package com.yijian.staff.mvp.vip.coach.viperlist.filter;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,21 +28,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FilterViperDialog extends Dialog implements DialogInterface.OnDismissListener {
+public class CoachFilterViperDialog extends Dialog implements DialogInterface.OnDismissListener {
 
-    private static String TAG = FilterViperDialog.class.getSimpleName();
+    private static String TAG = CoachFilterViperDialog.class.getSimpleName();
+    @BindView(R.id.tv_sex_man)
+    TextView tvSexMan;
     @BindView(R.id.ll_sex_man)
     LinearLayout llSexMan;
+    @BindView(R.id.tv_sex_woman)
+    TextView tvSexWoman;
     @BindView(R.id.ll_sex_woman)
     LinearLayout llSexWoman;
-    @BindView(R.id.tv_time_card)
-    TextView tvTimeCard;
-    @BindView(R.id.tv_cishu_card)
-    TextView tvCishuCard;
-    @BindView(R.id.tv_chuzhi_card)
-    TextView tvChuzhiCard;
-    @BindView(R.id.tv_huiyuan_card)
-    TextView tvHuiyuanCard;
+    @BindView(R.id.tv_sijiao_class)
+    TextView tvSijiaoClass;
+    @BindView(R.id.tv_tiyan_class)
+    TextView tvTiyanClass;
     @BindView(R.id.tv_time1)
     TextView tvTime1;
     @BindView(R.id.tv_time2)
@@ -52,12 +53,12 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
     TextView tvStartTime;
     @BindView(R.id.tv_end_time)
     TextView tvEndTime;
-    @BindView(R.id.tv_un_buy)
-    TextView tvUnBuy;
-    @BindView(R.id.tv_buy)
-    TextView tvBuy;
-    @BindView(R.id.tv_tiyanke)
-    TextView tvTiyanke;
+    @BindView(R.id.tv_buy_time1)
+    TextView tvBuyTime1;
+    @BindView(R.id.tv_buy_time2)
+    TextView tvBuyTime2;
+    @BindView(R.id.tv_buy_time3)
+    TextView tvBuyTime3;
     @BindView(R.id.tv_day1)
     TextView tvDay1;
     @BindView(R.id.tv_day2)
@@ -68,34 +69,30 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
     TextView tvXianxia;
     @BindView(R.id.tv_jianshen_guan)
     TextView tvJianshenGuan;
-    @BindView(R.id.tv_sex_man)
-    TextView tvSexMan;
-    @BindView(R.id.tv_sex_woman)
-    TextView tvSexWoman;
+
 
 
     private Activity activity;
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
+    private int classType = -1;//课程类型：【1:私教课，1:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private String startTime = null;//开始时间
     private String endTime = null;//结束时间
 
-    private int cardType = -1;//卡类型：【0:时间卡，1:次卡，2:储值卡，3:会员制卡，4:员工卡】
 
-    private int privateCourseState = -1;//私教课购买情况：【1.未购买，2.已购买，3.已购买的私课，且私课为体验课】
+    private int buyClassTime = -1;//购买时间：【7:7天，14:14天，30:30天】
 
     private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
-    private int source = -1;//来源（推广渠道)
 
 
-    public FilterViperDialog(Activity activity) {
+    public CoachFilterViperDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;
-        View contentView = LayoutInflater.from(activity).inflate(R.layout.view_filter_viper, null);
+        View contentView = LayoutInflater.from(activity).inflate(R.layout.view_coach_filter_viper, null);
         int statusBarHeight = CommonUtil.getStatusBarHeight(activity);
 
 
@@ -138,10 +135,9 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         tvSexMan.setTextColor(Color.parseColor("#666666"));
         tvSexWoman.setTextColor(Color.parseColor("#666666"));
 
-        tvTimeCard.setTextColor(Color.parseColor("#666666"));
-        tvCishuCard.setTextColor(Color.parseColor("#666666"));
-        tvChuzhiCard.setTextColor(Color.parseColor("#666666"));
-        tvHuiyuanCard.setTextColor(Color.parseColor("#666666"));
+        tvSijiaoClass.setTextColor(Color.parseColor("#666666"));
+        tvTiyanClass.setTextColor(Color.parseColor("#666666"));
+
 
         //互斥
         tvTime1.setTextColor(Color.parseColor("#666666"));
@@ -150,9 +146,9 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         tvStartTime.setTextColor(Color.parseColor("#666666"));
         tvEndTime.setTextColor(Color.parseColor("#666666"));
 
-        tvUnBuy.setTextColor(Color.parseColor("#666666"));
-        tvBuy.setTextColor(Color.parseColor("#666666"));
-        tvTiyanke.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime1.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime2.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime3.setTextColor(Color.parseColor("#666666"));
 
         tvDay1.setTextColor(Color.parseColor("#666666"));
         tvDay2.setTextColor(Color.parseColor("#666666"));
@@ -164,18 +160,16 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         llSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvCishuCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvChuzhiCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvHuiyuanCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSijiaoClass.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTiyanClass.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvTime1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvTime2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvTime3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvUnBuy.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvBuy.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvTiyanke.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvDay1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvDay2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -187,19 +181,17 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         tvSexMan.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_man), null, null, null);
         tvSexWoman.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_women), null, null, null);
 
-        tvTimeCard.setCompoundDrawables(null, null, null, null);
-        tvCishuCard.setCompoundDrawables(null, null, null, null);
-        tvChuzhiCard.setCompoundDrawables(null, null, null, null);
-        tvHuiyuanCard.setCompoundDrawables(null, null, null, null);
+        tvSijiaoClass.setCompoundDrawables(null, null, null, null);
+        tvTiyanClass.setCompoundDrawables(null, null, null, null);
 
         tvTime1.setCompoundDrawables(null, null, null, null);
         tvTime2.setCompoundDrawables(null, null, null, null);
         tvTime3.setCompoundDrawables(null, null, null, null);
         tvStartTime.setCompoundDrawables(null, null, null, null);
         tvEndTime.setCompoundDrawables(null, null, null, null);
-        tvUnBuy.setCompoundDrawables(null, null, null, null);
-        tvBuy.setCompoundDrawables(null, null, null, null);
-        tvTiyanke.setCompoundDrawables(null, null, null, null);
+        tvBuyTime1.setCompoundDrawables(null, null, null, null);
+        tvBuyTime2.setCompoundDrawables(null, null, null, null);
+        tvBuyTime3.setCompoundDrawables(null, null, null, null);
         tvDay1.setCompoundDrawables(null, null, null, null);
         tvDay2.setCompoundDrawables(null, null, null, null);
         tvDay3.setCompoundDrawables(null, null, null, null);
@@ -227,7 +219,7 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
     //性别
     private void selectSex(int index) {
         if (index == 0) {
-            sex=1;
+            sex = 1;
             tvSexMan.setTextColor(Color.parseColor("#1997f8"));
             tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
             llSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
@@ -240,7 +232,7 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
             llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexWoman.setCompoundDrawables(null, null, null, null);
         } else {
-            sex=2;
+            sex = 2;
             tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
             llSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
@@ -255,35 +247,19 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         }
     }
 
-    //卡类型
-    private void selectCardType(int index) {
-        if (index == 0) {
-            cardType = 0;
-            setSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
+    //课程类型
+    private void selectClassType(int index) {
+        if (index == 1) {
+            classType = 1;
+            setSelectStyle(tvSijiaoClass);
+            setUnSelectStyle(tvTiyanClass);
 
-        } else if (index == 1) {
-            cardType = 1;
-            setSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
         } else if (index == 2) {
-            cardType = 2;
-            setSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvHuiyuanCard);
-        } else if (index == 3) {
-            cardType = 3;
-            setSelectStyle(tvHuiyuanCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
-
+            classType = 2;
+            setSelectStyle(tvTiyanClass);
+            setUnSelectStyle(tvSijiaoClass);
         }
+
     }
 
     //入籍时间
@@ -371,23 +347,23 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
     }
 
     //私教课购买情况
-    private void selectPrivateCourseState(int index) {
+    private void selectBuyClassTime(int index) {
 
         if (index == 1) {
-            privateCourseState = 1;
-            setSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvTiyanke);
+            buyClassTime = 7;
+            setSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime2);
+            setUnSelectStyle(tvBuyTime3);
         } else if (index == 2) {
-            privateCourseState = 2;
-            setSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvTiyanke);
+            buyClassTime = 15;
+            setSelectStyle(tvBuyTime2);
+            setUnSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime3);
         } else if (index == 3) {
-            privateCourseState = 3;
-            setSelectStyle(tvTiyanke);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
+            buyClassTime = 30;
+            setSelectStyle(tvBuyTime3);
+            setUnSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime2);
         }
 
 
@@ -415,7 +391,7 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
         }
     }
 
-    @OnClick({R.id.empty_view, R.id.ll_sex_man, R.id.ll_sex_woman, R.id.tv_time_card, R.id.tv_cishu_card, R.id.tv_chuzhi_card, R.id.tv_huiyuan_card, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_un_buy, R.id.tv_buy, R.id.tv_tiyanke, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_xianxia, R.id.tv_jianshen_guan, R.id.scoll_view, R.id.tv_reset, R.id.tv_confirm})
+    @OnClick({R.id.empty_view, R.id.ll_sex_man, R.id.ll_sex_woman, R.id.tv_sijiao_class, R.id.tv_tiyan_class, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_buy_time1, R.id.tv_buy_time2, R.id.tv_buy_time3, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_reset, R.id.tv_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -427,18 +403,12 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
                 selectSex(1);
                 break;
 
-            //卡类型
-            case R.id.tv_time_card:
-                selectCardType(0);
+            //课程类型
+            case R.id.tv_sijiao_class:
+                selectClassType(1);
                 break;
-            case R.id.tv_cishu_card:
-                selectCardType(1);
-                break;
-            case R.id.tv_chuzhi_card:
-                selectCardType(2);
-                break;
-            case R.id.tv_huiyuan_card:
-                selectCardType(3);
+            case R.id.tv_tiyan_class:
+                selectClassType(2);
                 break;
 
             //入籍时间
@@ -458,15 +428,15 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
                 selectRuJiTime(5);
                 break;
 
-            //私教课购买情况
-            case R.id.tv_un_buy:
-                selectPrivateCourseState(1);
+            //购买时间
+            case R.id.tv_buy_time1:
+                selectBuyClassTime(1);
                 break;
-            case R.id.tv_buy:
-                selectPrivateCourseState(2);
+            case R.id.tv_buy_time2:
+                selectBuyClassTime(2);
                 break;
-            case R.id.tv_tiyanke:
-                selectPrivateCourseState(3);
+            case R.id.tv_buy_time3:
+                selectBuyClassTime(3);
                 break;
 
             //快到期时间
@@ -480,11 +450,7 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
                 selectExpiringDay(3);
                 break;
 
-            //来源
-            case R.id.tv_xianxia:
-                break;
-            case R.id.tv_jianshen_guan:
-                break;
+     
 
             //按钮
             case R.id.tv_reset:
@@ -502,23 +468,25 @@ public class FilterViperDialog extends Dialog implements DialogInterface.OnDismi
     @Override
     public void onDismiss(DialogInterface dialog) {
 
-        ViperFilterBean viperFilterBean = new ViperFilterBean();
-        viperFilterBean.setSex(sex);
-        viperFilterBean.setCardType(cardType);
-        viperFilterBean.setJoinTimeType(joinTimeType);
-        if (joinTimeType==-1){
-            viperFilterBean.setStartTime(startTime);
-            viperFilterBean.setEndTime(endTime);
+        CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
+        coachViperFilterBean.setSex(sex);
+        coachViperFilterBean.setClassType(classType);
+        coachViperFilterBean.setJoinTimeType(joinTimeType);
+        if (joinTimeType == -1) {
+            coachViperFilterBean.setStartTime(startTime);
+            coachViperFilterBean.setEndTime(endTime);
         }
-        viperFilterBean.setPrivateCourseState(privateCourseState);
-        viperFilterBean.setExpiringDay(expiringDay);
+        coachViperFilterBean.setBuyClassTime(buyClassTime);
+        coachViperFilterBean.setExpiringDay(expiringDay);
 
 
-        onDismissListener.onDismiss(viperFilterBean);
+        onDismissListener.onDismiss(coachViperFilterBean);
     }
 
+
+
     public interface OnDismissListener {
-        void onDismiss(ViperFilterBean viperFilterBean);
+        void onDismiss(CoachViperFilterBean coachViperFilterBean);
     }
 
     private OnDismissListener onDismissListener;

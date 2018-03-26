@@ -1,9 +1,10 @@
-package com.yijian.staff.mvp.vip.outdate;
+package com.yijian.staff.mvp.vip.coach.outdate;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
@@ -14,7 +15,8 @@ import butterknife.ButterKnife;
 /**
  * 过期会员列表
  */
-public class OutdateViperListActivity extends AppCompatActivity implements View.OnClickListener {
+@Route(path = "/test/4.1")
+public class CoachOutdateViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -251,27 +251,24 @@
             android:paddingTop="15dp"
             android:paddingBottom="16dp">
 
+
             <LinearLayout
-                android:id="@+id/lin_protect_seven"
+                android:id="@+id/lin_visit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/tv_huifang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="保护7天"
-                    android:drawableLeft="@mipmap/my_password_new"
+                    android:text="回访"
+                    android:textColor="#999999"
+                    android:drawableLeft="@mipmap/wt_huifang"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:textColor="#999999"
                     android:textSize="14sp" />
             </LinearLayout>
-
-
-
 
 
             <LinearLayout

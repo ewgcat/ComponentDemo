@@ -15,8 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.filter.FilterViperDialog;
-import com.yijian.staff.mvp.vip.filter.ViperFilterBean;
+import com.yijian.staff.mvp.vip.huiji.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
@@ -211,9 +210,9 @@ public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismi
         void onDismiss(GoodsFilterBean goodsFilterBean);
     }
 
-    private FilterViperDialog.OnDismissListener onDismissListener;
+    private HuijiFilterViperDialog.OnDismissListener onDismissListener;
 
-    public void setOnDismissListener(FilterViperDialog.OnDismissListener onDismissListener) {
+    public void setOnDismissListener(HuijiFilterViperDialog.OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
 }

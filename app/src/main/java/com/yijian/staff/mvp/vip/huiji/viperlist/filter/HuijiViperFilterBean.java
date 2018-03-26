@@ -1,11 +1,11 @@
-package com.yijian.staff.mvp.vip.filter;
+package com.yijian.staff.mvp.vip.huiji.viperlist.filter;
 
 /**
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/3/24 11:20:56
  */
-public class ViperFilterBean {
+public class HuijiViperFilterBean {
 
     private int joinTimeType=-1;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private int expiringDay=-1;//快过期天数:【7:7天，14:14天，30:30天】
@@ -16,10 +16,10 @@ public class ViperFilterBean {
     private String startTime=null;//开始时间
     private String endTime=null;//结束时间
 
-    public ViperFilterBean() {
+    public HuijiViperFilterBean() {
     }
 
-    public ViperFilterBean(int joinTimeType, int expiringDay, int sex, int cardType, int privateCourseState, int source, String startTime, String endTime) {
+    public HuijiViperFilterBean(int joinTimeType, int expiringDay, int sex, int cardType, int privateCourseState, int source, String startTime, String endTime) {
         this.joinTimeType = joinTimeType;
         this.expiringDay = expiringDay;
         this.sex = sex;

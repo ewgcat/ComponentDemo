@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 }
+
+                SharePreferenceUtil.setUserRole(2);
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

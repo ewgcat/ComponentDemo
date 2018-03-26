@@ -1,11 +1,11 @@
-package com.yijian.staff.mvp.vip.info;
+package com.yijian.staff.mvp.vip.coach.viperlist;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,10 +14,11 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.filter.ViperFilterBean;
-import com.yijian.staff.mvp.vip.filter.FilterViperDialog;
-import com.yijian.staff.mvp.vip.info.fragment.VipAllPeopleInfoFragment;
-import com.yijian.staff.mvp.vip.info.fragment.VipTodayVisitInfoFragment;
+import com.yijian.staff.mvp.vip.coach.viperlist.filter.CoachFilterViperDialog;
+import com.yijian.staff.mvp.vip.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.mvp.vip.coach.viperlist.fragment.CoachAllViperFragment;
+import com.yijian.staff.mvp.vip.coach.viperlist.fragment.CoachVipTodayVisitFragment;
+
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -26,8 +27,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@Route(path = "/test/1")
-public class VipInfoActivity extends AppCompatActivity implements View.OnClickListener {
+@Route(path = "/test/1.1")
+public class CoachViperListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -41,9 +42,9 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
     View view_all;
     @BindView(R.id.view_today_visit)
     View view_today_visit;
-    private VipTodayVisitInfoFragment vipTodayVisitInfoFragment;
-    private VipAllPeopleInfoFragment vipAllPeopleInfoFragment;
-    private FilterViperDialog filterDialog;
+    private CoachVipTodayVisitFragment coachVipTodayVisitFragment;
+    private CoachAllViperFragment coachAllViperFragment;
+    private CoachFilterViperDialog filterDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +67,10 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
         navigationBar2.setTitle("会员信息");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
-        filterDialog = new FilterViperDialog(this);
-        filterDialog.setOnDismissListener(new FilterViperDialog.OnDismissListener() {
+        filterDialog = new CoachFilterViperDialog(this);
+        filterDialog.setOnDismissListener(new CoachFilterViperDialog.OnDismissListener() {
             @Override
-            public void onDismiss(ViperFilterBean viperFilterBean) {
+            public void onDismiss(CoachViperFilterBean viperFilterBean) {
                 RxBus.getDefault().post(viperFilterBean);
             }
         });
@@ -100,22 +101,22 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
             tv_label_visit.setTextColor(Color.parseColor("#666666"));
             view_all.setVisibility(View.VISIBLE);
             view_today_visit.setVisibility(View.GONE);
-            if (vipAllPeopleInfoFragment == null) {
-                vipAllPeopleInfoFragment = VipAllPeopleInfoFragment.getInstance();
-                fragmentTransaction.add(R.id.fl_content, vipAllPeopleInfoFragment);
+            if (coachAllViperFragment == null) {
+                coachAllViperFragment = CoachAllViperFragment.getInstance();
+                fragmentTransaction.add(R.id.fl_content, coachAllViperFragment);
             } else {
-                fragmentTransaction.show(vipAllPeopleInfoFragment);
+                fragmentTransaction.show(coachAllViperFragment);
             }
         } else {
             tv_label_all.setTextColor(Color.parseColor("#666666"));
             tv_label_visit.setTextColor(Color.parseColor("#31a4fc"));
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
-            if (vipTodayVisitInfoFragment == null) {
-                vipTodayVisitInfoFragment = VipTodayVisitInfoFragment.getInstance();
-                fragmentTransaction.add(R.id.fl_content, vipTodayVisitInfoFragment);
+            if (coachVipTodayVisitFragment == null) {
+                coachVipTodayVisitFragment = CoachVipTodayVisitFragment.getInstance();
+                fragmentTransaction.add(R.id.fl_content, coachVipTodayVisitFragment);
             } else {
-                fragmentTransaction.show(vipTodayVisitInfoFragment);
+                fragmentTransaction.show(coachVipTodayVisitFragment);
             }
         }
         fragmentTransaction.commit();
@@ -125,11 +126,11 @@ public class VipInfoActivity extends AppCompatActivity implements View.OnClickLi
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        Fragment fragment = VipAllPeopleInfoFragment.getInstance();
+        Fragment fragment = CoachAllViperFragment.getInstance();
         if (fragment.isAdded()) {
             fragmentTransaction.hide(fragment);
         }
-        fragment = VipTodayVisitInfoFragment.getInstance();
+        fragment = CoachVipTodayVisitFragment.getInstance();
         if (fragment.isAdded()) {
             fragmentTransaction.hide(fragment);
         }

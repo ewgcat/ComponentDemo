@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.intent;
+package com.yijian.staff.mvp.vip.coach.intent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,25 +19,25 @@ import java.util.List;
  * Created by yangk on 2018/3/5.
  */
 
-public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperListAdapter.ViewHolder> {
+public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachIntentViperListAdapter.ViewHolder> {
 
     private List<ViperBean> viperBeanList;
     private Context context;
 
-    public IntentViperListAdapter(Context context, List<ViperBean> viperBeanList){
+    public CoachIntentViperListAdapter(Context context, List<ViperBean> viperBeanList){
         this.context = context;
         this.viperBeanList = viperBeanList;
     }
 
     @Override
-    public IntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CoachIntentViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
-        IntentViperListAdapter.ViewHolder holder = new IntentViperListAdapter.ViewHolder(view);
+        CoachIntentViperListAdapter.ViewHolder holder = new CoachIntentViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(IntentViperListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachIntentViperListAdapter.ViewHolder holder, int position) {
         ViperBean viperBean = viperBeanList.get(position);
         holder.tv_name.setText(viperBean.getName());
         holder.tv_birth.setText(viperBean.getBirthday());
@@ -56,7 +56,7 @@ public class IntentViperListAdapter extends RecyclerView.Adapter<IntentViperList
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,IntentViperDetailActivity.class));
+                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
             }
         });
 

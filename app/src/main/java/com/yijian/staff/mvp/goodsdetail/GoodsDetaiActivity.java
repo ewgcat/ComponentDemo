@@ -11,8 +11,6 @@ import com.bin.david.form.data.style.FontStyle;
 import com.bin.david.form.utils.DensityUtils;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.KeCheng;
-import com.yijian.staff.mvp.login.LoginActivity;
-import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;

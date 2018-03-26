@@ -310,6 +310,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity android:name=".mvp.setclass.ActivityOpenLesson"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- arouter 路由过滤 -->
         <activity android:name=".schamefilter.SchameFilterActivity">
 
@@ -442,7 +445,8 @@
             android:exported="false" />
 
         <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
-        <activity android:name=".mvp.coach.cunke.CunKeActivity"></activity>
+        <activity android:name=".mvp.coach.cunke.CunKeActivity" />
+        <activity android:name=".mvp.preparelessons.PrepareAllLessonActivity"></activity>
     </application>
 
 </manifest>

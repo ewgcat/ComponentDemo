@@ -6,41 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_bg"
-        android:orientation="vertical"
-        android:layout_margin="15dp">
-
-        <LinearLayout
-            android:id="@+id/lin_action_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="15dp">
-
-            <ImageView
-                android:id="@+id/iv_action_switch"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@mipmap/bk_jiadongzuo"/>
-
-            <TextView
-                android:id="@+id/tv_action_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:text="动作内容"
-                android:layout_marginLeft="7dp"/>
-
-        </LinearLayout>
-
-        <com.yijian.staff.mvp.preparelessons.createlession.MyActionView
-            android:id="@+id/view_action"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            />
+        android:orientation="vertical">
 
         <com.yijian.staff.mvp.preparelessons.createlession.ActionContentView
             android:id="@+id/view_action_content"
@@ -49,24 +15,6 @@
             android:orientation="vertical"
             />
 
-        <LinearLayout
-            android:id="@+id/lin_action_opration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_opration_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="添加组动作"/>
-            <Button
-                android:id="@+id/btn_opration_single"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="添加个动作"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

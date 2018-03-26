@@ -32,6 +32,11 @@ public class ViperBean {
      purchaseCount (integer, optional): 购买次数 ,
      registerTime (string, optional): 注册时间 ,
      */
+    private String bodyStatus; //身体状态
+    private String bodybuildingHobby; //健身爱好
+    private String interestHobby; //兴趣爱好
+    private String useCar; //使用车辆
+    private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
     private String birthday;
     private String birthdayType;
@@ -51,6 +56,7 @@ public class ViperBean {
     private String registerTime;
     private String bePresentTime; //到场时间
     private String departureTime; //离场时间
+    private String privateClass;
 
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
@@ -72,6 +78,53 @@ public class ViperBean {
          this.registerTime = JsonUtil.getString(jsonObject, "registerTime");
          this.bePresentTime = JsonUtil.getString(jsonObject, "bePresentTime");
          this.departureTime = JsonUtil.getString(jsonObject, "departureTime");
+         this.bodyStatus = JsonUtil.getString(jsonObject, "bodyStatus");
+         this.bodybuildingHobby = JsonUtil.getString(jsonObject, "bodybuildingHobby");
+         this.interestHobby = JsonUtil.getString(jsonObject, "interestHobby");
+         this.useCar = JsonUtil.getString(jsonObject, "useCar");
+         this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
+         this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
+
+    }
+
+    public String getBodyStatus() {
+        return bodyStatus;
+    }
+
+    public void setBodyStatus(String bodyStatus) {
+        this.bodyStatus = bodyStatus;
+    }
+
+    public String getBodybuildingHobby() {
+        return bodybuildingHobby;
+    }
+
+    public void setBodybuildingHobby(String bodybuildingHobby) {
+        this.bodybuildingHobby = bodybuildingHobby;
+    }
+
+    public String getInterestHobby() {
+        return interestHobby;
+    }
+
+    public void setInterestHobby(String interestHobby) {
+        this.interestHobby = interestHobby;
+    }
+
+    public String getUseCar() {
+        return useCar;
+    }
+
+    public void setUseCar(String useCar) {
+        this.useCar = useCar;
+    }
+
+    public String getIsIntentVip() {
+        return isIntentVip;
+    }
+
+    public void setIsIntentVip(String isIntentVip) {
+        this.isIntentVip = isIntentVip;
     }
 
     public String getBePresentTime() {
@@ -216,5 +269,13 @@ public class ViperBean {
 
     public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
+    }
+
+    public String getPrivateClass() {
+        return privateClass;
+    }
+
+    public void setPrivateClass(String privateClass) {
+        this.privateClass = privateClass;
     }
 }

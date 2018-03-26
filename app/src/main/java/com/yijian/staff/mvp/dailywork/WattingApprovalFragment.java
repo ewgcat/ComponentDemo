@@ -1,7 +1,5 @@
 package com.yijian.staff.mvp.dailywork;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.info.VipAllPeopleInfoFragment;
-import com.yijian.staff.mvp.vip.info.VipPeopleInfoAdapter;
-import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;

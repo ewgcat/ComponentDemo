@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.coach;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.physical.PhysicalReportActivity;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,8 +88,10 @@ public class CoachProductFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
+                startActivity(new Intent(getContext(),QuestionnaireResultActivity.class));
                 break;
             case R.id.tv_ticebaogao:
+                startActivity(new Intent(getContext(),PhysicalReportActivity.class));
                 break;
 
             case R.id.ll_to_leader:

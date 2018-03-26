@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -19,6 +18,7 @@
         android:background="@drawable/white_bg">
 
         <LinearLayout
+            android:id="@+id/ll_content"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -257,55 +257,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/tv_huifang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="保护7天"
-                    android:drawableLeft="@mipmap/wt_luru"
+                    android:drawableLeft="@mipmap/my_password_new"
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:textColor="#999999"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/lin_input_questionnaire"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="录入问卷"
-                    android:drawableLeft="@mipmap/wt_luru"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/lin_visit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="回访"
-                    android:textColor="#999999"
-                    android:drawableLeft="@mipmap/wt_huifang"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:textSize="14sp" />
-            </LinearLayout>
+
 
 
             <LinearLayout

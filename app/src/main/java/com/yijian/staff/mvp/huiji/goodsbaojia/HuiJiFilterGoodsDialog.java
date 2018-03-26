@@ -1,7 +1,8 @@
-package com.yijian.staff.mvp.baojia.coach;
+package com.yijian.staff.mvp.huiji.goodsbaojia;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,15 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachClassFilterDialog extends Dialog {
+public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.OnDismissListener {
 
-    private static String TAG = CoachClassFilterDialog.class.getSimpleName();
+    private static String TAG = HuiJiFilterGoodsDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -47,7 +49,7 @@ public class CoachClassFilterDialog extends Dialog {
     private Activity activity;
 
 
-    public CoachClassFilterDialog(Activity activity) {
+    public HuiJiFilterGoodsDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;
@@ -74,6 +76,7 @@ public class CoachClassFilterDialog extends Dialog {
         this.setContentView(contentView);
 
         ButterKnife.bind(this, contentView);
+        this.setOnDismissListener(this);
 
 
         initView();
@@ -198,5 +201,21 @@ public class CoachClassFilterDialog extends Dialog {
 
     }
 
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+
+
+    }
+
+    public interface OnDismissListener {
+        void onDismiss(HuiJiGoodsFilterBean huiJiGoodsFilterBean);
+    }
+
+    private HuiJiFilterGoodsDialog.OnDismissListener onDismissListener;
+
+    public void setOnDismissListener(HuiJiFilterGoodsDialog.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
 
 }

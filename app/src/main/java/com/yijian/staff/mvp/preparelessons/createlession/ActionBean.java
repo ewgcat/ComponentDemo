@@ -1,11 +1,5 @@
 package com.yijian.staff.mvp.preparelessons.createlession;
 
-import android.text.TextUtils;
-
-import com.yijian.staff.mvp.preparelessons.SubActionBean;
-
-import org.jsoup.helper.StringUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,21 +10,30 @@ import java.util.List;
 public class ActionBean {
 
     private String degree;
-    private List<List<SubActionBean>> subActionBeans = new ArrayList<>();
+    private List<SubActionBean> subActionBeans = new ArrayList<>();
+    private boolean isCheckGroup; //扩展字段，是否选择了组字段
 
     public String getDegree() {
-        return TextUtils.isEmpty(degree)?"":":"+degree;
+        return degree;
     }
 
     public void setDegree(String degree) {
         this.degree = degree;
     }
 
-    public List<List<SubActionBean>> getSubActionBeans() {
+    public List<SubActionBean> getSubActionBeans() {
         return subActionBeans;
     }
 
-    public void setSubActionBeans(List<List<SubActionBean>> subActionBeans) {
+    public void setSubActionBeans(List<SubActionBean> subActionBeans) {
         this.subActionBeans = subActionBeans;
+    }
+
+    public boolean isCheckGroup() {
+        return isCheckGroup;
+    }
+
+    public void setCheckGroup(boolean checkGroup) {
+        isCheckGroup = checkGroup;
     }
 }

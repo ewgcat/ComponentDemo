@@ -8,8 +8,6 @@
         android:layout_height="45dp"
         android:background="#ffffff">
 
-        <View
-            style="@style/SplitLineStyle"/>
 
 
         <LinearLayout
@@ -57,7 +55,9 @@
         </LinearLayout>
 
         <View
-            style="@style/SplitLineStyle"/>
+            android:id="@+id/view_line"
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"/>
 
     </RelativeLayout>
 

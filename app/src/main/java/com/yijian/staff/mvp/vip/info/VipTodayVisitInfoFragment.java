@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.vip.model.VipPeopleInfo;
 import com.yijian.staff.util.Logger;
 
@@ -36,7 +37,7 @@ public class VipTodayVisitInfoFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<VipPeopleInfo> vipPeopleInfoList=new ArrayList<>();
+    private List<ViperBean> vipPeopleInfoList=new ArrayList<>();
 
     private static VipTodayVisitInfoFragment vipTodayVisitInfoFragment;
     public static VipTodayVisitInfoFragment getInstance(){
@@ -79,7 +80,7 @@ public class VipTodayVisitInfoFragment extends Fragment {
             jsonObject.put("bePresentTime","2018-12-05");
             jsonObject.put("departureTime","2018-12-05");
             for (int i = 0; i < 10; i++) {
-                VipPeopleInfo vipPeopleInfo = new VipPeopleInfo(jsonObject);
+                ViperBean vipPeopleInfo = new ViperBean(jsonObject);
                 vipPeopleInfoList.add(vipPeopleInfo);
             }
 

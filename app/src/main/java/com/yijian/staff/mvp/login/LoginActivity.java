@@ -64,6 +64,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (id) {
             case R.id.ll_login:
 
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
                 if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password)) {
                     Toast.makeText(LoginActivity.this, "账号和密码不能为空", Toast.LENGTH_SHORT).show();
                     return;

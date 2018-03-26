@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * 会籍（客服）产品报价
  */
 @Route(path = "/test/9")
-public class GoodsListActivity extends AppCompatActivity {
+public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
     @BindView(R.id.tv_zong_he)
@@ -95,7 +95,7 @@ public class GoodsListActivity extends AppCompatActivity {
         huiJiFilterDialog = new HuiJiFilterDialog(this);
 //        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
 //            @Override
-//            public void onItemClick(View v, GoodsInfo goodsInfo) {
+//            public void onItemClick(View v, ClassInfo goodsInfo) {
 //                selectedGoodsInfo = goodsInfo;
 //                //TODO 跳转到商品详情
 //            }

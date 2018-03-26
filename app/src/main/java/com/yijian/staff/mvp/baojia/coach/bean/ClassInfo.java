@@ -9,13 +9,13 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/3/17 19:29:17
  */
-public class GoodsInfo {
+public class ClassInfo {
     private String goodsName;
     private String jianshenplace;
     private String yuer;
     private String chuzhiyouhui;
     private String price;
-    public GoodsInfo(JSONObject jsonObject){
+    public ClassInfo(JSONObject jsonObject){
         this.goodsName=  JsonUtil.getString(jsonObject,"goodsName");
         this.jianshenplace=  JsonUtil.getString(jsonObject,"jianshenplace");
 

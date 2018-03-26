@@ -38,7 +38,7 @@ public class HuiJiProductQuotationListAdapter extends RecyclerView.Adapter<HuiJi
 
     @Override
     public void onBindViewHolder(HuiJiProductQuotationListAdapter.ViewHolder holder, int position) {
-        Logger.i("GoodsListAdapter", "position: " + position);
+        Logger.i("ClassListAdapter", "position: " + position);
         if (clickIndex==position){
             holder.itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 

@@ -256,8 +256,15 @@
             android:name=".mvp.advice.AdviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--会籍 产品报价-->
         <activity
-            android:name=".mvp.baojia.huiji.GoodsListActivity"
+            android:name=".mvp.baojia.huiji.HuiJiGoodsListBaoJiaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!--教练 课程报价-->
+        <activity
+            android:name=".mvp.baojia.coach.CoachClassBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 

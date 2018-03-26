@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.baojia.coach.adapter.GoodsListAdapter;
-import com.yijian.staff.mvp.baojia.coach.bean.GoodsInfo;
+import com.yijian.staff.mvp.baojia.coach.adapter.ClassListAdapter;
+import com.yijian.staff.mvp.baojia.coach.bean.ClassInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * （教练）产品报价
  */
 @Route(path = "/test/20")
-public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
+public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
 
     @BindView(R.id.tv_zong_he)
@@ -45,10 +45,10 @@ public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
     @BindView(R.id.goods_rcv)
     RecyclerView goodsRcv;
 
-    private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
-    private GoodsListAdapter goodsListAdapter;
-    private CoachGoodsFilterDialog coachGoodsFilterDialog;
-    private GoodsInfo selectedGoodsInfo;
+    private List<ClassInfo> mClassInfoList = new ArrayList<>();
+    private ClassListAdapter classListAdapter;
+    private CoachClassFilterDialog coachClassFilterDialog;
+    private ClassInfo selectedClassInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +87,16 @@ public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         goodsRcv.setLayoutManager(layoutmanager);
-        goodsListAdapter = new GoodsListAdapter(this, mGoodsInfoList);
-        goodsRcv.setAdapter(goodsListAdapter);
+        classListAdapter = new ClassListAdapter(this, mClassInfoList);
+        goodsRcv.setAdapter(classListAdapter);
 
         initGoodsList();
 
-        coachGoodsFilterDialog = new CoachGoodsFilterDialog(this);
-//        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
+        coachClassFilterDialog = new CoachClassFilterDialog(this);
+//        classListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
 //            @Override
-//            public void onItemClick(View v, GoodsInfo goodsInfo) {
-//                selectedGoodsInfo = goodsInfo;
+//            public void onItemClick(View v, ClassInfo goodsInfo) {
+//                selectedClassInfo = goodsInfo;
 //                //TODO 跳转到商品详情
 //            }
 //        });
@@ -104,7 +104,7 @@ public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
 
     }
     private void initGoodsList() {
-        mGoodsInfoList.clear();
+        mClassInfoList.clear();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("goodsName", "十周年纪念卡");
@@ -113,10 +113,10 @@ public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
             jsonObject.put("chuzhiyouhui", "赠送20%");
             jsonObject.put("price", "1400元");
             for (int i = 0; i < 10; i++) {
-                GoodsInfo goodsInfo = new GoodsInfo(jsonObject);
-                mGoodsInfoList.add(goodsInfo);
+                ClassInfo classInfo = new ClassInfo(jsonObject);
+                mClassInfoList.add(classInfo);
             }
-            goodsListAdapter.update(mGoodsInfoList);
+            classListAdapter.update(mClassInfoList);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 
@@ -213,6 +213,6 @@ public class CoachGoodsBaoJiaActivity extends AppCompatActivity {
 
 
     private void showFilterDialog() {
-        coachGoodsFilterDialog.showFilterDialog();
+        coachClassFilterDialog.showFilterDialog();
     }
 }

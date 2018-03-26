@@ -20,9 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachGoodsFilterDialog extends Dialog {
+public class CoachClassFilterDialog extends Dialog {
 
-    private static String TAG = CoachGoodsFilterDialog.class.getSimpleName();
+    private static String TAG = CoachClassFilterDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -47,7 +47,7 @@ public class CoachGoodsFilterDialog extends Dialog {
     private Activity activity;
 
 
-    public CoachGoodsFilterDialog(Activity activity) {
+    public CoachClassFilterDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;

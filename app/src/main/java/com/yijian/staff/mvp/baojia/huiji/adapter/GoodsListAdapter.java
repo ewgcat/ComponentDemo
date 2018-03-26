@@ -38,7 +38,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
 
     @Override
     public void onBindViewHolder(GoodsListAdapter.ViewHolder holder, int position) {
-        Logger.i("GoodsListAdapter", "position: " + position);
+        Logger.i("ClassListAdapter", "position: " + position);
 
 
         GoodsInfo goodsInfo = mGoodsInfoList.get(position);

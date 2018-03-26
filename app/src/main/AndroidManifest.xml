@@ -442,7 +442,8 @@
             android:exported="false" />
 
         <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
-        <activity android:name=".mvp.coach.cunke.CunKeActivity"></activity>
+        <activity android:name=".mvp.coach.cunke.CunKeActivity" />
+        <activity android:name=".mvp.preparelessons.PrepareAllLessonActivity"></activity>
     </application>
 
 </manifest>

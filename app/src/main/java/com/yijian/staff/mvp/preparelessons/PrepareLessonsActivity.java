@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -35,13 +36,16 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }
 
-    @OnClick({R.id.rel_create})
-    public void click(View v){
-        switch(v.getId()){
+    @OnClick({R.id.rel_create, R.id.rel_all_lesson})
+    public void click(View v) {
+        switch (v.getId()) {
             case R.id.rel_create: //创建私教备课
-                startActivity(new Intent(PrepareLessonsActivity.this,CreatePrivateLessionActivity.class));
+                startActivity(new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class));
                 break;
 
+            case R.id.rel_all_lesson:
+                startActivity(new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class));
+                break;
         }
     }
 

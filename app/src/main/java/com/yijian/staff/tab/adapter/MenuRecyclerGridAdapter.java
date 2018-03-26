@@ -125,7 +125,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
+               @Override
             public void onClick(View v) {
                 if (holder.iv_add.getVisibility() == View.VISIBLE) {
                     item.setType(0);

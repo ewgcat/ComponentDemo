@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@Route(path = "/test/16")
 public class PrepareLessonsActivity extends AppCompatActivity {
 
     @Override

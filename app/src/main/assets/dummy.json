@@ -7,7 +7,7 @@
         "name": "会籍回访",
         "icon": "url",
         "path": "/test/5",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 10,
         "className": "YJVisitTaskTabBarController"
       },
@@ -16,7 +16,7 @@
         "name": "邀约",
         "icon": "url",
         "path": "/test/6",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0,
         "className": "YJInvitationBarViewController"
       },
@@ -25,7 +25,7 @@
         "name": "添加潜在",
         "icon": "url",
         "path": "/test/7",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0
       },
       {
@@ -33,7 +33,7 @@
         "name": "会员信息",
         "icon": "url",
         "path": "/test/1",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJMemberInfoViewController"
       },
@@ -42,7 +42,7 @@
         "name": "意向会员",
         "icon": "url",
         "path": "/test/2",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJIntentionMemberViewController"
       }
@@ -56,7 +56,7 @@
         "name": "会员信息",
         "icon": "url",
         "path": "/test/1",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJMemberInfoViewController"
       },
@@ -65,7 +65,7 @@
         "name": "意向会员",
         "icon": "url",
         "path": "/test/2",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJIntentionMemberViewController"
       },
@@ -74,7 +74,7 @@
         "name": "潜在会员",
         "icon": "url",
         "path": "/test/3",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJPotentialMemberViewController"
       },
@@ -83,7 +83,7 @@
         "name": "过期会员",
         "icon": "url",
         "path": "/test/4",
-        "group": "会员管理",
+        "title": "会员管理",
         "count": 0,
         "className": "YJExpireMemberViewController"
       }
@@ -97,7 +97,7 @@
         "name": "会籍回访",
         "icon": "url",
         "path": "/test/5",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0,
         "className": "YJVisitTaskTabBarController"
       },
@@ -106,7 +106,7 @@
         "name": "邀约",
         "icon": "url",
         "path": "/test/6",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0,
         "className": "YJInvitationBarViewController"
       },
@@ -115,7 +115,7 @@
         "name": "添加潜在",
         "icon": "url",
         "path": "/test/7",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0
       },
       {
@@ -123,7 +123,7 @@
         "name": "投诉处理",
         "icon": "url",
         "path": "/test/8",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0,
         "className": "YJComplaintTabbarController"
       },
@@ -132,7 +132,7 @@
         "name": "产品报价",
         "icon": "url",
         "path": "/test/9",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0
       },
       {
@@ -140,7 +140,7 @@
         "name": "问卷调查",
         "icon": "url",
         "path": "/test/12",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0
       },
       {
@@ -148,7 +148,7 @@
         "name": "分配资源",
         "icon": "url",
         "path": "/test/10",
-        "group": "会籍(客服)",
+        "title": "会籍(客服)",
         "count": 0,
         "className": "YJResourceAllocationTabBarController"
       }
@@ -162,7 +162,7 @@
         "name": "课程报价",
         "icon": "url",
         "path": "/test/20",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -170,7 +170,7 @@
         "name": "教练回访",
         "icon": "url",
         "path": "/test/13",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -178,7 +178,7 @@
         "name": "课程评论",
         "icon": "url",
         "path": "/test/14",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -186,7 +186,7 @@
         "name": "教练巡场",
         "icon": "url",
         "path": "/test/15",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -194,7 +194,7 @@
         "name": "备课",
         "icon": "url",
         "path": "/test/16",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -202,7 +202,7 @@
         "name": "约课",
         "icon": "url",
         "path": "/test/17",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -210,7 +210,7 @@
         "name": "存课",
         "icon": "url",
         "path": "/test/18",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       },
       {
@@ -218,7 +218,7 @@
         "name": "体验课",
         "icon": "url",
         "path": "/test/19",
-        "group": "教练",
+        "title": "教练",
         "count": 0
       }
     ]
@@ -231,7 +231,7 @@
         "name": "约课情况",
         "icon": "url",
         "path": "/test/21",
-        "group": "操课",
+        "title": "操课",
         "count": 0
       },
       {
@@ -239,7 +239,7 @@
         "name": "课程评论",
         "icon": "url",
         "path": "/test/22",
-        "group": "操课 ",
+        "title": "操课 ",
         "count": 0
       },
       {
@@ -247,7 +247,7 @@
         "name": "人气排行",
         "icon": "url",
         "path": "/test/23",
-        "group": "操课",
+        "title": "操课",
         "count": 0
       },
       {
@@ -255,7 +255,7 @@
         "name": "课程调查",
         "icon": "url",
         "path": "/test/24",
-        "group": "操课",
+        "title": "操课",
         "count": 0
       }
     ]
@@ -268,7 +268,7 @@
         "name": "行政巡场",
         "icon": "url",
         "path": "/test/25",
-        "group": "行政",
+        "title": "行政",
         "count": 0
       },
       {
@@ -276,7 +276,7 @@
         "name": "任务达成",
         "icon": "url",
         "path": "/test/26",
-        "group": "行政",
+        "title": "行政",
         "count": 0
       }
     ]
@@ -289,7 +289,7 @@
         "name": "打卡签到",
         "icon": "url",
         "path": "/test/28",
-        "group": "审核任务",
+        "title": "审核任务",
         "count": 0
       },
       {
@@ -297,7 +297,7 @@
         "name": "考勤",
         "icon": "url",
         "path": "/test/29",
-        "group": "审核任务",
+        "title": "审核任务",
         "count": 0
       }
     ]
@@ -310,7 +310,7 @@
         "name": "建议反馈",
         "icon": "url",
         "path": "/test/30",
-        "group": "其他",
+        "title": "其他",
         "count": 0
       }
     ]

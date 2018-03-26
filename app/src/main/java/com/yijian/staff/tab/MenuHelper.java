@@ -53,7 +53,7 @@ public class MenuHelper {
      * 解析原始数据，用于模拟从服务器上获取到的JSON报文
      */
     private void parseJSONData() {
-        String jsonStr = IOKit.getStringFromAssets(ContextUtil.getContext(), "dummy.json");//获取到assets目录下的报文
+        String jsonStr = IOKit.getStringFromAssets(ContextUtil.getContext(), "menulist.json");//获取到assets目录下的报文
         JSONArray dataJsonArray = JSON.parseArray(jsonStr);
 //        JSONObject dataJson = JSON.parseObject(jsonStr);//将报文string转换为JSON
         for (int i = 0; i < dataJsonArray.size(); i++) {

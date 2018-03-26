@@ -139,43 +139,43 @@
 
         <!-- 会籍 会员信息 -->
         <activity
-            android:name=".mvp.vip.huiji.viperlist.HuijiViperListActivity"
+            android:name=".mvp.huiji.viperlist.HuijiViperListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 会籍 意向会员 -->
         <activity
-            android:name=".mvp.vip.huiji.intent.HuijiIntentViperListActivity"
+            android:name=".mvp.huiji.intent.HuijiIntentViperListActivity"
             android:screenOrientation="portrait" />
         <!-- 会籍 意向会员详情 -->
         <activity
-            android:name=".mvp.vip.huiji.intent.HuijiIntentViperDetailActivity"
+            android:name=".mvp.huiji.intent.HuijiIntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 会籍 过期会员 -->
         <activity
-            android:name=".mvp.vip.huiji.outdate.HuijiOutdateViperListActivity"
+            android:name=".mvp.huiji.outdate.HuijiOutdateViperListActivity"
             android:screenOrientation="portrait" />
 
         <!-- 教练 会员信息 -->
         <activity
-            android:name=".mvp.vip.coach.viperlist.CoachViperListActivity"
+            android:name=".mvp.coach.viperlist.CoachViperListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.vip.coach.recordchart.RecordChartActivity"
+            android:name=".mvp.coach.recordchart.RecordChartActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 教练 意向会员 -->
         <activity
-            android:name=".mvp.vip.coach.intent.CoachIntentViperListActivity"
+            android:name=".mvp.coach.intent.CoachIntentViperListActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 意向会员详情 -->
         <activity
-            android:name=".mvp.vip.coach.intent.CoachIntentViperDetailActivity"
+            android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 过期会员 -->
         <activity
-            android:name=".mvp.vip.coach.outdate.CoachOutdateViperListActivity"
+            android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.detail.ViperDetailActivity"
@@ -252,8 +252,15 @@
             android:name=".mvp.advice.AdviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 会籍 产品报价 -->
         <activity
-            android:name=".mvp.baojia.huiji.GoodsListActivity"
+            android:name=".mvp.baojia.huiji.HuiJiGoodsListBaoJiaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 教练 课程报价 -->
+        <activity
+            android:name=".mvp.baojia.coach.CoachClassBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -318,8 +325,18 @@
             android:name=".mvp.empty.EmptyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.preparelessons.PrepareLessonsActivity" />
-        <activity android:name=".mvp.preparelessons.CreatePrivateLessionActivity" />
+        <activity
+            android:name=".mvp.preparelessons.list.PrepareLessonsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.PrepareLessonsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.CreatePrivateLessionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
@@ -420,6 +437,8 @@
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
 
+        <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
+        <activity android:name=".mvp.coach.cunke.CunKeActivity"></activity>
     </application>
 
 </manifest>

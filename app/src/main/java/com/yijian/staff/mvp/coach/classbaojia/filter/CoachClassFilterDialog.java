@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.classbaojia;
+package com.yijian.staff.mvp.coach.classbaojia.filter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,25 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.goodsbaojia.HuiJiGoodsFilterBean;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachClassFilterDialog extends Dialog  implements DialogInterface.OnDismissListener {
+public class CoachClassFilterDialog extends Dialog implements DialogInterface.OnDismissListener {
 
     private static String TAG = CoachClassFilterDialog.class.getSimpleName();
-    @BindView(R.id.tv_time_card)
-    TextView tvTimeCard;
-    @BindView(R.id.tv_cishu_card)
-    TextView tvCishuCard;
-    @BindView(R.id.tv_chuzhi_card)
-    TextView tvChuzhiCard;
-    @BindView(R.id.tv_huiyuan_card)
-    TextView tvHuiyuanCard;
+
     @BindView(R.id.tv_price1)
     TextView tvPrice1;
     @BindView(R.id.tv_price2)
@@ -42,16 +33,14 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
     TextView tvPrice3;
     @BindView(R.id.tv_price4)
     TextView tvPrice4;
-    @BindView(R.id.tv_youyong_place)
-    TextView tvYouyongPlace;
-    @BindView(R.id.tv_jianshen_place)
-    TextView tvJianshenPlace;
+
     @BindView(R.id.tv_class_jieshu1)
     TextView tvClassJieshu1;
     @BindView(R.id.tv_class_jieshu2)
     TextView tvClassJieshu2;
     @BindView(R.id.tv_class_jieshu3)
     TextView tvClassJieshu3;
+
     @BindView(R.id.tv_longtime1)
     TextView tvLongtime1;
     @BindView(R.id.tv_longtime2)
@@ -60,12 +49,14 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
     TextView tvLongtime3;
     @BindView(R.id.tv_longtime4)
     TextView tvLongtime4;
+
     @BindView(R.id.tv_youxiaoqi1)
     TextView tvYouxiaoqi1;
     @BindView(R.id.tv_youxiaoqi2)
     TextView tvYouxiaoqi2;
     @BindView(R.id.tv_youxiaoqi3)
     TextView tvYouxiaoqi3;
+
     @BindView(R.id.empty_view)
     View emptyView;
     @BindView(R.id.tv_reset)
@@ -74,6 +65,10 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
     TextView tvConfirm;
 
     private Activity activity;
+    private int price;
+    private int classJieShu;
+    private int classLongTime;
+    private int classYouXiaoQi;
 
 
     public CoachClassFilterDialog(Activity activity) {
@@ -120,41 +115,59 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
     }
 
 
-
     private void resetView() {
-        tvTimeCard.setTextColor(Color.parseColor("#666666"));
-        tvCishuCard.setTextColor(Color.parseColor("#666666"));
-        tvChuzhiCard.setTextColor(Color.parseColor("#666666"));
-        tvHuiyuanCard.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu1.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu2.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu3.setTextColor(Color.parseColor("#666666"));
+
+        tvYouxiaoqi1.setTextColor(Color.parseColor("#666666"));
+        tvYouxiaoqi2.setTextColor(Color.parseColor("#666666"));
+        tvYouxiaoqi3.setTextColor(Color.parseColor("#666666"));
+
         tvPrice1.setTextColor(Color.parseColor("#666666"));
         tvPrice2.setTextColor(Color.parseColor("#666666"));
         tvPrice3.setTextColor(Color.parseColor("#666666"));
         tvPrice4.setTextColor(Color.parseColor("#666666"));
-        tvYouyongPlace.setTextColor(Color.parseColor("#666666"));
-        tvJianshenPlace.setTextColor(Color.parseColor("#666666"));
 
-        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvCishuCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvChuzhiCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvHuiyuanCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime1.setTextColor(Color.parseColor("#666666"));
+        tvLongtime2.setTextColor(Color.parseColor("#666666"));
+        tvLongtime3.setTextColor(Color.parseColor("#666666"));
+        tvLongtime4.setTextColor(Color.parseColor("#666666"));
+
+        tvClassJieshu1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+
+        tvYouxiaoqi1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+
         tvPrice1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvPrice2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvPrice3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvPrice4.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvYouyongPlace.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvJianshenPlace.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+
+        tvLongtime1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime4.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
-        tvTimeCard.setCompoundDrawables(null, null, null, null);
-        tvCishuCard.setCompoundDrawables(null, null, null, null);
-        tvChuzhiCard.setCompoundDrawables(null, null, null, null);
-        tvHuiyuanCard.setCompoundDrawables(null, null, null, null);
+        tvLongtime1.setCompoundDrawables(null, null, null, null);
+        tvLongtime2.setCompoundDrawables(null, null, null, null);
+        tvLongtime3.setCompoundDrawables(null, null, null, null);
+        tvLongtime4.setCompoundDrawables(null, null, null, null);
         tvPrice1.setCompoundDrawables(null, null, null, null);
         tvPrice2.setCompoundDrawables(null, null, null, null);
         tvPrice3.setCompoundDrawables(null, null, null, null);
         tvPrice4.setCompoundDrawables(null, null, null, null);
-        tvYouyongPlace.setCompoundDrawables(null, null, null, null);
-        tvJianshenPlace.setCompoundDrawables(null, null, null, null);
+
+        tvClassJieshu1.setCompoundDrawables(null, null, null, null);
+        tvClassJieshu2.setCompoundDrawables(null, null, null, null);
+        tvClassJieshu3.setCompoundDrawables(null, null, null, null);
+        tvYouxiaoqi1.setCompoundDrawables(null, null, null, null);
+        tvYouxiaoqi2.setCompoundDrawables(null, null, null, null);
+        tvYouxiaoqi3.setCompoundDrawables(null, null, null, null);
     }
 
     private void setSelectStyle(TextView textView) {
@@ -240,21 +253,28 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
 
     private void selectPrice(int i) {
         if (i == 1) {
+            price = 1;
             setSelectStyle(tvPrice1);
             setUnSelectStyle(tvPrice2);
             setUnSelectStyle(tvPrice3);
             setUnSelectStyle(tvPrice4);
         } else if (i == 2) {
+            price = 2;
+
             setSelectStyle(tvPrice2);
             setUnSelectStyle(tvPrice1);
             setUnSelectStyle(tvPrice3);
             setUnSelectStyle(tvPrice4);
         } else if (i == 3) {
+            price = 3;
+
             setSelectStyle(tvPrice3);
             setUnSelectStyle(tvPrice1);
             setUnSelectStyle(tvPrice2);
-            setUnSelectStyle(tvPrice3);
+            setUnSelectStyle(tvPrice4);
         } else if (i == 4) {
+            price = 4;
+
             setSelectStyle(tvPrice4);
             setUnSelectStyle(tvPrice1);
             setUnSelectStyle(tvPrice2);
@@ -264,14 +284,19 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
 
     private void selectClassJieShu(int i) {
         if (i == 1) {
+            classJieShu = 1;
             setSelectStyle(tvClassJieshu1);
             setUnSelectStyle(tvClassJieshu2);
             setUnSelectStyle(tvClassJieshu3);
         } else if (i == 2) {
+            classJieShu = 1;
+
             setSelectStyle(tvClassJieshu2);
             setUnSelectStyle(tvClassJieshu1);
             setUnSelectStyle(tvClassJieshu3);
         } else if (i == 3) {
+            classJieShu = 1;
+
             setSelectStyle(tvClassJieshu3);
             setUnSelectStyle(tvClassJieshu1);
             setUnSelectStyle(tvClassJieshu2);
@@ -282,21 +307,28 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
     private void selectClassLongTime(int i) {
 
         if (i == 1) {
+            classLongTime = 1;
             setSelectStyle(tvLongtime1);
             setUnSelectStyle(tvLongtime2);
             setUnSelectStyle(tvLongtime3);
             setUnSelectStyle(tvLongtime4);
         } else if (i == 2) {
+            classLongTime = 2;
+
             setSelectStyle(tvLongtime2);
             setUnSelectStyle(tvLongtime1);
             setUnSelectStyle(tvLongtime3);
             setUnSelectStyle(tvLongtime4);
         } else if (i == 3) {
+            classLongTime = 3;
+
             setSelectStyle(tvLongtime3);
             setUnSelectStyle(tvLongtime1);
             setUnSelectStyle(tvLongtime2);
-            setUnSelectStyle(tvLongtime3);
+            setUnSelectStyle(tvLongtime4);
         } else if (i == 4) {
+            classLongTime = 4;
+
             setSelectStyle(tvLongtime4);
             setUnSelectStyle(tvLongtime1);
             setUnSelectStyle(tvLongtime2);
@@ -306,14 +338,17 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
 
     private void selectClassYouXiaoQi(int i) {
         if (i == 1) {
+            classYouXiaoQi = 1;
             setSelectStyle(tvYouxiaoqi1);
             setUnSelectStyle(tvYouxiaoqi2);
             setUnSelectStyle(tvYouxiaoqi3);
         } else if (i == 2) {
+            classYouXiaoQi = 2;
             setSelectStyle(tvYouxiaoqi2);
             setUnSelectStyle(tvYouxiaoqi1);
             setUnSelectStyle(tvYouxiaoqi3);
         } else if (i == 3) {
+            classYouXiaoQi = 3;
             setSelectStyle(tvYouxiaoqi3);
             setUnSelectStyle(tvYouxiaoqi1);
             setUnSelectStyle(tvYouxiaoqi2);
@@ -323,7 +358,14 @@ public class CoachClassFilterDialog extends Dialog  implements DialogInterface.O
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-
+        CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
+        coachClassFilterBean.setClassJieShu(classJieShu);
+        coachClassFilterBean.setClassLongTime(classLongTime);
+        coachClassFilterBean.setPrice(price);
+        coachClassFilterBean.setClassYouXiaoQi(classYouXiaoQi);
+        if (onDismissListener!=null){
+            onDismissListener.onDismiss(coachClassFilterBean);
+        }
     }
 
     public interface OnDismissListener {

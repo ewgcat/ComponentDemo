@@ -39,7 +39,7 @@
 
                 <TextView
                     android:id="@+id/tv_class_jieshu1"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/tv_class_jieshu2"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -70,7 +70,7 @@
 
                 <TextView
                     android:id="@+id/tv_class_jieshu3"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -100,7 +100,7 @@
 
                 <TextView
                     android:id="@+id/tv_price1"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -116,7 +116,7 @@
 
                 <TextView
                     android:id="@+id/tv_price2"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -135,7 +135,7 @@
 
                 <TextView
                     android:id="@+id/tv_price3"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -147,7 +147,7 @@
 
                 <TextView
                     android:id="@+id/tv_price4"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -176,7 +176,7 @@
 
                 <TextView
                     android:id="@+id/tv_longtime1"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -192,7 +192,7 @@
 
                 <TextView
                     android:id="@+id/tv_longtime2"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -211,7 +211,7 @@
 
                 <TextView
                     android:id="@+id/tv_longtime3"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -223,7 +223,7 @@
 
                 <TextView
                     android:id="@+id/tv_longtime4"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -252,7 +252,7 @@
 
                 <TextView
                     android:id="@+id/tv_youxiaoqi1"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
@@ -264,7 +264,7 @@
 
                 <TextView
                     android:id="@+id/tv_youxiaoqi2"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -283,7 +283,7 @@
 
                 <TextView
                     android:id="@+id/tv_youxiaoqi3"
-                    android:layout_width="110dp"
+                    android:layout_width="114dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"

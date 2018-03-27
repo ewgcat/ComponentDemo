@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.huiji.outdate;
+package com.yijian.staff.mvp.huiji.outdate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

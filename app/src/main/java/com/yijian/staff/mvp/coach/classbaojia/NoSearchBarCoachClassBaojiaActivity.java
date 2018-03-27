@@ -2,23 +2,25 @@ package com.yijian.staff.mvp.coach.classbaojia;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
+import com.yijian.staff.mvp.coach.viperlist.filter.CoachFilterViperDialog;
+import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,11 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * （教练）产品报价
- */
-@Route(path = "/test/20")
-public class CoachClassBaoJiaActivity extends AppCompatActivity {
+public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
 
 
     @BindView(R.id.tv_zong_he)
@@ -52,39 +50,23 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     private CoachClassFilterDialog coachClassFilterDialog;
     private ClassInfo selectedClassInfo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_goods_bao_jia);
-          ButterKnife.bind(this);
+        setContentView(R.layout.activity_no_search_bar_coach_class_baojia);
+
+        ButterKnife.bind(this);
 
         initView();
+
     }
 
     private void initView() {
-
-        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-       EditText etSearch = findViewById(R.id.et_search);
-        etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
-        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                switch (actionId) {
-                    case EditorInfo.IME_ACTION_SEARCH:
-                        //TODO 点击搜索键,触发搜索请求
-
-                        break;
-                }
-                return true;
-            }
-        });
-
-
+        NavigationBar2 navigationBar2 = findViewById(R.id.no_search_bar_navigationbar);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.setTitle("产品报价");
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
@@ -98,14 +80,13 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
             @Override
             public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
-
                 //TODO
 
             }
         });
         selectZongHe();
-
     }
+
     private void initGoodsList() {
         mClassInfoList.clear();
         JSONObject jsonObject = new JSONObject();

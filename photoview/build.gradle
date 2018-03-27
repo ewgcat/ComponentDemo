@@ -16,6 +16,6 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:support-core-utils:$supportLibVersion"
+    implementation "com.android.support:support-core-utils:$supportLibVersion"
 }
 

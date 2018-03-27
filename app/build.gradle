@@ -70,67 +70,67 @@ greendao {
 }
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //network
     implementation project(':retrofit2')
     implementation project(':PhotoPicker')
     implementation project(':photoview')
     implementation "com.android.support:support-annotations:${rootProject.supportLibVersion}"
-    compile "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
-    compile "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
-    compile "com.android.support:recyclerview-v7:${rootProject.supportLibVersion}"
-    compile "com.android.support:design:${rootProject.supportLibVersion}"
-    compile "com.android.support:support-v4:${rootProject.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.supportLibVersion}"
+    implementation "com.android.support:design:${rootProject.supportLibVersion}"
+    implementation "com.android.support:support-v4:${rootProject.supportLibVersion}"
     //ui
-    compile 'com.prolificinteractive:material-calendarview:1.4.3'
-    compile 'com.miguelcatalan:materialsearchview:1.4.0'
-    compile 'net.opacapp:multiline-collapsingtoolbar:1.3.1'
-    compile 'q.rorbin:badgeview:1.1.2'
-    compile 'jp.wasabeef:glide-transformations:3.0.1'
-    compile 'org.sufficientlysecure:html-textview:3.1'
-    compile 'com.google.android:flexbox:0.3.1'
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'net.opacapp:multiline-collapsingtoolbar:1.3.1'
+    implementation 'q.rorbin:badgeview:1.1.2'
+    implementation 'jp.wasabeef:glide-transformations:3.0.1'
+    implementation 'org.sufficientlysecure:html-textview:3.1'
+    implementation 'com.google.android:flexbox:0.3.1'
     //rx
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     //图片
     implementation 'com.github.bumptech.glide:glide:4.6.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:implementationr:4.6.1'
     implementation 'com.github.bumptech.glide:okhttp-integration:4.6.1'
-    compile 'org.jsoup:jsoup:1.10.1'
+    implementation 'org.jsoup:jsoup:1.10.1'
     //di
-    compile 'com.google.dagger:dagger:2.11'
+    implementation 'com.google.dagger:dagger:2.11'
     annotationProcessor "com.google.dagger:dagger-compiler:2.11"
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
     //other
-    compile 'com.android.support:multidex:1.0.3'
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 
     //操作数据库
-    compile 'org.greenrobot:greendao:3.2.2'
-    compile 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
     //字体
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-    compile('com.github.niorgai:StatusBarCompat:2.1.4', {
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
-    compile 'com.jaeger.statusbarutil:library:1.4.0'
-    compile 'com.github.huangyanbin:SmartTable:1.8.8'
+    implementation 'com.jaeger.statusbarutil:library:1.4.0'
+    implementation 'com.github.huangyanbin:SmartTable:1.8.8'
     //选择时间，日期，多级联动
-    compile 'com.contrarywind:Android-PickerView:3.2.6'
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
+    implementation 'com.contrarywind:Android-PickerView:3.2.6'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
     //没有使用特殊Header，可以不加这行
-    compile 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.nineoldandroids:library:2.4.0'
     implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
         transitive = true
     }
-    compile 'com.alibaba:arouter-api:1.3.1'
+    implementation 'com.alibaba:arouter-api:1.3.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     implementation project(':calendar')
 
-    compile 'cn.jiguang.sdk:jpush:3.0.8'
-    compile 'cn.jiguang.sdk:jcore:1.1.6'
+    implementation 'cn.jiguang.sdk:jpush:3.0.8'
+    implementation 'cn.jiguang.sdk:jcore:1.1.6'
 
 }

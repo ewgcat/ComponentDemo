@@ -181,7 +181,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="16dp"
-            android:src="@mipmap/bk_youjiantou" />
+            android:src="@mipmap/tyk_time_right" />
     </LinearLayout>
 
     <LinearLayout
@@ -227,7 +227,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="16dp"
-            android:src="@mipmap/bk_youjiantou" />
+            android:src="@mipmap/tyk_time_right" />
     </LinearLayout>
 
 

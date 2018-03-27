@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.index;
+package com.yijian.staff.mvp.coach.experienceclass.index;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.experienceclass.step1.ExperienceClassProcess1Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity;
 
 import java.util.List;
 

@@ -1,7 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.index;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.yijian.staff.mvp.coach.experienceclass.index;
 
 import com.yijian.staff.util.JsonUtil;
 

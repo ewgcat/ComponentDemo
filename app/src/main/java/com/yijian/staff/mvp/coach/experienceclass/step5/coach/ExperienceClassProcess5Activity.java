@@ -1,8 +1,7 @@
-package com.yijian.staff.mvp.experienceclass.step5.coach;
+package com.yijian.staff.mvp.coach.experienceclass.step5.coach;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.yijian.staff.R;
 import com.yijian.staff.widget.ClassTimeBar;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.step5.leader;
+package com.yijian.staff.mvp.coach.experienceclass.step5.leader;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

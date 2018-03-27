@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;

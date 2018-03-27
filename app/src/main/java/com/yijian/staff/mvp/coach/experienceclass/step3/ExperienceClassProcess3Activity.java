@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.step3;
+package com.yijian.staff.mvp.coach.experienceclass.step3;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.experienceclass.step4.ExperienceClassProcess4Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;

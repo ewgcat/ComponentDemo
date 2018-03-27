@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.index;
+package com.yijian.staff.mvp.coach.experienceclass.index;
 
 import android.graphics.Color;
 import android.os.Bundle;

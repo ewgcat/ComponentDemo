@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
-import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 
 import java.util.List;
 

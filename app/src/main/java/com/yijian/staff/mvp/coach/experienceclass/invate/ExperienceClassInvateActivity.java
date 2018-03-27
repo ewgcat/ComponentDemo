@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.experienceclass.invate;
+package com.yijian.staff.mvp.coach.experienceclass.invate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.experienceclass.template.Template1ClassActivity;
-import com.yijian.staff.mvp.experienceclass.template.Template2ClassActivity;
+import com.yijian.staff.mvp.coach.experienceclass.template.Template1ClassActivity;
+import com.yijian.staff.mvp.coach.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 

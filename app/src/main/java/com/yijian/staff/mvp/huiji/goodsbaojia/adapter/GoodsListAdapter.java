@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.baojia.coach.adapter;
+package com.yijian.staff.mvp.huiji.goodsbaojia.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.baojia.coach.bean.ClassInfo;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -19,39 +19,39 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/3 17:08:17
  */
-public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ViewHolder> {
-    private List<ClassInfo> mClassInfoList;
+public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.ViewHolder> {
+    private List<GoodsInfo> mGoodsInfoList;
     private Context context;
     private int clickIndex=-1;
 
-    public ClassListAdapter(Context context, List<ClassInfo> mClassInfoList) {
-        this.mClassInfoList = mClassInfoList;
+    public GoodsListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
+        this.mGoodsInfoList = mGoodsInfoList;
         this.context = context;
     }
 
     @Override
-    public ClassListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GoodsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ClassListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(GoodsListAdapter.ViewHolder holder, int position) {
         Logger.i("ClassListAdapter", "position: " + position);
 
 
-        ClassInfo classInfo = mClassInfoList.get(position);
-        holder.tvGoodsName.setText(classInfo.getGoodsName());
-        holder.tvJianshenplace.setText(classInfo.getJianshenplace());
-        holder.tvYuEr.setText(classInfo.getYuer());
-        holder.tvChuzhiyouhui.setText(classInfo.getChuzhiyouhui());
-        holder.tvPrice.setText(classInfo.getPrice());
+        GoodsInfo goodsInfo = mGoodsInfoList.get(position);
+        holder.tvGoodsName.setText(goodsInfo.getGoodsName());
+        holder.tvJianshenplace.setText(goodsInfo.getJianshenplace());
+        holder.tvYuEr.setText(goodsInfo.getYuer());
+        holder.tvChuzhiyouhui.setText(goodsInfo.getChuzhiyouhui());
+        holder.tvPrice.setText(goodsInfo.getPrice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener!=null){
-                    onItemClickListener.onItemClick(v, classInfo);
+                    onItemClickListener.onItemClick(v,goodsInfo);
                 }
                 clickIndex=position;
                 notifyDataSetChanged();
@@ -61,11 +61,11 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
     @Override
     public int getItemCount() {
-        return mClassInfoList.size();
+        return mGoodsInfoList.size();
     }
 
-    public void update(List<ClassInfo> mClassInfoList) {
-        this.mClassInfoList = mClassInfoList;
+    public void update(List<GoodsInfo> mGoodsInfoList) {
+        this.mGoodsInfoList = mGoodsInfoList;
         notifyDataSetChanged();
     }
 
@@ -93,7 +93,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
   private   OnItemClickListener onItemClickListener;
     public interface OnItemClickListener{
 
-       void onItemClick(View v, ClassInfo classInfo);
+       void onItemClick(View v, GoodsInfo goodsInfo);
     }
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener=onItemClickListener;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.baojia.huiji;
+package com.yijian.staff.mvp.huiji.goodsbaojia;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.baojia.huiji.adapter.GoodsListAdapter;
-import com.yijian.staff.mvp.baojia.huiji.bean.GoodsInfo;
+import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -47,7 +47,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
     private GoodsListAdapter goodsListAdapter;
-    private HuiJiFilterDialog huiJiFilterDialog;
+    private HuiJiFilterGoodsDialog huiJiFilterGoodsDialog;
     private GoodsInfo selectedGoodsInfo;
     
     @Override
@@ -92,7 +92,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
         initGoodsList();
 
-        huiJiFilterDialog = new HuiJiFilterDialog(this);
+        huiJiFilterGoodsDialog = new HuiJiFilterGoodsDialog(this);
 //        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View v, ClassInfo goodsInfo) {
@@ -213,6 +213,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
     private void showFilterDialog() {
-        huiJiFilterDialog.showFilterDialog();
+        huiJiFilterGoodsDialog.showFilterDialog();
     }
 }

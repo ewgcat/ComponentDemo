@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.baojia.coach;
+package com.yijian.staff.mvp.coach.classbaojia;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.baojia.coach.adapter.ClassListAdapter;
-import com.yijian.staff.mvp.baojia.coach.bean.ClassInfo;
+import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
+import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;

@@ -9,6 +9,9 @@ import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import butterknife.ButterKnife;
 
+/**
+ * 所有私教课备课
+ */
 public class PrepareAllLessonActivity extends AppCompatActivity {
 
     @Override

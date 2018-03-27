@@ -29,12 +29,10 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
     TextView tvCoachHuifangResult;
     @BindView(R.id.ll_huifang_jilu_content)
     LinearLayout llHuifangJiluContent;
-    @BindView(R.id.ll_kecheng_pingjia_content)
-    LinearLayout llKechengPingjiaContent;
+
     @BindView(R.id.tv_huifang_jilu_states)
     TextView tvHuifangJiluStates;
-    @BindView(R.id.tv_kecheng_states)
-    TextView tvKechengStates;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +66,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
         timeBar.showTimeBar(3);
     }
 
-    @OnClick({R.id.ll_ticeshuju, R.id.ll_huifang_jilu, R.id.ll_kecheng_pingjia})
+    @OnClick({R.id.ll_ticeshuju, R.id.ll_huifang_jilu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_ticeshuju:
@@ -77,9 +75,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
             case R.id.ll_huifang_jilu:
                 toggle(llHuifangJiluContent,tvHuifangJiluStates);
                 break;
-            case R.id.ll_kecheng_pingjia:
-                toggle(llKechengPingjiaContent,tvKechengStates);
-                break;
+
         }
     }
 

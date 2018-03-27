@@ -47,14 +47,7 @@ public class CoachOutdateViperListActivity extends AppCompatActivity implements 
         navigationBar.setTitle("过期会员","#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        /*View view = getLayoutInflater().inflate(R.layout.view_header_filter,null);
-        navigationBar.setRightButtonView(view);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logger.i("筛选");
-            }
-        });*/
+
     }
 
     @Override
@@ -82,8 +75,8 @@ public class CoachOutdateViperListActivity extends AppCompatActivity implements 
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_outdate.setLayoutManager(layoutmanager);
-            CoachOutdateAdapter coachOutdateAdapter = new CoachOutdateAdapter(this, vipOutdateInfoList);
-            rv_outdate.setAdapter(coachOutdateAdapter);
+            CoachOutdateViperListAdapter coachOutdateViperListAdapter = new CoachOutdateViperListAdapter(this, vipOutdateInfoList);
+            rv_outdate.setAdapter(coachOutdateViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 

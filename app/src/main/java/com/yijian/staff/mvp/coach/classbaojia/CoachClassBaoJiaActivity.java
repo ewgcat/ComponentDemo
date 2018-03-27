@@ -16,9 +16,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
-import com.yijian.staff.mvp.coach.viperlist.filter.CoachFilterViperDialog;
-import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
-import com.yijian.staff.rx.RxBus;
+import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
+import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;

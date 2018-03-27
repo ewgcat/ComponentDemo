@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.classbaojia;
+package com.yijian.staff.mvp.coach.classbaojia.filter;
 
 /**
  * author：李帅华

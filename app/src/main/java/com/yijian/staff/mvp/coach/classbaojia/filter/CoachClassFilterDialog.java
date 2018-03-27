@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.classbaojia;
+package com.yijian.staff.mvp.coach.classbaojia.filter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,9 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
-import com.yijian.staff.mvp.huiji.goodsbaojia.HuiJiGoodsFilterBean;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
@@ -274,7 +271,7 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             setSelectStyle(tvPrice3);
             setUnSelectStyle(tvPrice1);
             setUnSelectStyle(tvPrice2);
-            setUnSelectStyle(tvPrice3);
+            setUnSelectStyle(tvPrice4);
         } else if (i == 4) {
             price = 4;
 
@@ -328,7 +325,7 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             setSelectStyle(tvLongtime3);
             setUnSelectStyle(tvLongtime1);
             setUnSelectStyle(tvLongtime2);
-            setUnSelectStyle(tvLongtime3);
+            setUnSelectStyle(tvLongtime4);
         } else if (i == 4) {
             classLongTime = 4;
 

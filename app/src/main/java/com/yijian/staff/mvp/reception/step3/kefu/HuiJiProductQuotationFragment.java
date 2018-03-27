@@ -14,9 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
+import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
 import com.yijian.staff.mvp.reception.step3.kefu.adapter.HuiJiProductQuotationListAdapter;
-import com.yijian.staff.mvp.reception.step3.kefu.fiter.GoodsFilterDialog;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -57,7 +58,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
 
     private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
     private HuiJiProductQuotationListAdapter goodsListAdapter;
-    private GoodsFilterDialog goodsFilterDialog;
+    private HuiJiFilterGoodsDialog huiJiFilterGoodsDialog;
     private GoodsInfo selectedGoodsInfo;
 
 
@@ -76,8 +77,17 @@ public class HuiJiProductQuotationFragment extends Fragment {
         goodsRcv.setLayoutManager(layoutmanager);
         goodsListAdapter = new HuiJiProductQuotationListAdapter(getContext(), mGoodsInfoList);
         goodsRcv.setAdapter(goodsListAdapter);
-        initGoodsList();
-        goodsFilterDialog = new GoodsFilterDialog(getActivity());
+
+        huiJiFilterGoodsDialog = new HuiJiFilterGoodsDialog(getActivity());
+
+        huiJiFilterGoodsDialog.setOnDismissListener(new HuiJiFilterGoodsDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
+                //TODO 筛选 刷新
+                refresh();
+            }
+        });
+
         goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, GoodsInfo goodsInfo) {
@@ -85,6 +95,11 @@ public class HuiJiProductQuotationFragment extends Fragment {
             }
         });
         return view;
+    }
+
+
+    private void refresh() {
+        initGoodsList();
     }
 
     private void initGoodsList() {
@@ -200,14 +215,14 @@ public class HuiJiProductQuotationFragment extends Fragment {
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             //TODO 请求
-            initGoodsList();
+
         }
 
     }
 
 
     private void showFilterDialog() {
-        goodsFilterDialog.showFilterDialog();
+        huiJiFilterGoodsDialog.showFilterDialog();
     }
 
 

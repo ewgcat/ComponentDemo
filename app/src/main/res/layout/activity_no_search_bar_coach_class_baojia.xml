@@ -117,33 +117,45 @@
                     android:id="@+id/goods_rcv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="60dp"
                     />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_post"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@mipmap/button_invite"
-                android:gravity="center">
 
-                <ImageView
-                    android:src="@mipmap/trialclass_offer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:gravity="center"
-                    android:text="确认报价"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+
+
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="50dp">
+                <LinearLayout
+                    android:id="@+id/ll_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/button_invite"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/trialclass_offer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:gravity="center"
+                        android:text="确认报价"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>

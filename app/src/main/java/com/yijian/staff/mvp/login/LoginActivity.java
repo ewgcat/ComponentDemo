@@ -61,12 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String account = etAccount.getText().toString();
         String password = etPassword.getText().toString();
 
-        /********************START 暂时绕过 *******************************/
-        Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
-        SharePreferenceUtil.setUserRole(1);
-        /********************END 暂时绕过 *******************************/
-        startActivity(i2);
-        finish();
+
 
         switch (id) {
             case R.id.ll_login:
@@ -102,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
 
-                SharePreferenceUtil.setUserRole(2);
+                SharePreferenceUtil.setUserRole(1);
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

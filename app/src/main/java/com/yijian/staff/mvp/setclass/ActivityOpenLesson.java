@@ -9,13 +9,17 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Chronometer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.setclass.bean.TypeOfActionItem;
+import com.yijian.staff.widget.MDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -41,10 +45,14 @@ public class ActivityOpenLesson extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         //添加Android自带的分割线
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        MDividerItemDecoration decor = new MDividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+
+        decor.setDrawable(getDrawable(R.drawable.divider_recyclerview));
+        recyclerView.addItemDecoration(decor);
         recyclerView.setNestedScrollingEnabled(false);
         adapterLesson = new AdapterLesson(this);
         recyclerView.setAdapter(adapterLesson);
+
 
         mockData();
         handler.postDelayed(new Runnable() {
@@ -53,6 +61,18 @@ public class ActivityOpenLesson extends AppCompatActivity {
                 adapterLesson.resetActionList(typeOfActionItems);
             }
         },2000);
+
+
+        Chronometer chronometer = findViewById(R.id.chronometer);
+//        chronometer.setFormat("H:MM:SS");
+        Calendar mCalendar= Calendar.getInstance();
+        int hour = mCalendar.get(Calendar.HOUR);
+        int minute = mCalendar.get(Calendar.MINUTE);
+        int second = mCalendar.get(Calendar.SECOND);
+
+        int time= hour*60*60+minute*60+second;
+        chronometer.setBase(SystemClock.elapsedRealtime()-time*1000);//计时器清零
+        chronometer.start();
     }
 
     private List<Object> typeOfActionItems=new ArrayList<>();

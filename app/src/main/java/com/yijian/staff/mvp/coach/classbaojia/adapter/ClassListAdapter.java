@@ -39,14 +39,19 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
     @Override
     public void onBindViewHolder(ClassListAdapter.ViewHolder holder, int position) {
         Logger.i("ClassListAdapter", "position: " + position);
+        if (clickIndex==position){
+            holder.item_view.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 
+        }else {
+            holder.item_view.setBackgroundResource(R.drawable.white_bg);
+        }
 
         ClassInfo classInfo = mClassInfoList.get(position);
         holder.tv_class_name.setText(classInfo.getClassName());
         holder.tv_class_long_time.setText(classInfo.getClassLongTime());
         holder.tv_class_num.setText(classInfo.getClassNum());
         holder.tv_price.setText(classInfo.getPrice());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener!=null){
@@ -74,6 +79,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         TextView tv_price;
         TextView tv_class_long_time;
         TextView tv_class_num;
+        LinearLayout item_view;
 
 
         public ViewHolder(View view) {
@@ -82,6 +88,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
             tv_class_long_time = view.findViewById(R.id.tv_class_long_time);
             tv_price = view.findViewById(R.id.tv_price);
             tv_class_num = view.findViewById(R.id.tv_class_num);
+            item_view = view.findViewById(R.id.item_view);
 
         }
     }

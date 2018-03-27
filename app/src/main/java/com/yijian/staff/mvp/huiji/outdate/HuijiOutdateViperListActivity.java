@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.huiji.outdate;
+package com.yijian.staff.mvp.huiji.outdate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.outdate.VipOutDateAdapter;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
@@ -65,8 +64,8 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_outdate.setLayoutManager(layoutmanager);
-            VipOutDateAdapter vipOutDateAdapter = new VipOutDateAdapter(this, vipOutdateInfoList);
-            rv_outdate.setAdapter(vipOutDateAdapter);
+            HuijiOutdateViperListAdapter huijiOutdateViperListAdapter = new HuijiOutdateViperListAdapter(this, vipOutdateInfoList);
+            rv_outdate.setAdapter(huijiOutdateViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 

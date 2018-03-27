@@ -184,68 +184,68 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/white_bg"
-        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_kecheng_pingjia"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--课程评价-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:background="@drawable/white_bg"-->
+        <!--android:orientation="vertical">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/trialclass_evaluate" />
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_kecheng_pingjia"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_weight="1"
-                android:text="课程评价"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:src="@mipmap/trialclass_evaluate" />-->
 
-            <TextView
-                android:id="@+id/tv_kecheng_states"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/blackf2f2f2_stroke_bg"
-                android:drawableEnd="@mipmap/trialclass_unfold"
-                android:text="展开"
-                android:textColor="#999999"
-                android:textSize="12sp" />
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="4dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="课程评价"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:textSize="14sp" />-->
 
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/tv_kecheng_states"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@drawable/blackf2f2f2_stroke_bg"-->
+                <!--android:drawableEnd="@mipmap/trialclass_unfold"-->
+                <!--android:text="展开"-->
+                <!--android:textColor="#999999"-->
+                <!--android:textSize="12sp" />-->
 
-        <LinearLayout
-            android:id="@+id/ll_kecheng_pingjia_content"
-            android:visibility="gone"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray" />
+        <!--</LinearLayout>-->
 
-
-        </LinearLayout>
-
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_kecheng_pingjia_content"-->
+            <!--android:visibility="gone"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/gray" />-->
 
 
-    </LinearLayout>
+        <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
 
 </LinearLayout>
 

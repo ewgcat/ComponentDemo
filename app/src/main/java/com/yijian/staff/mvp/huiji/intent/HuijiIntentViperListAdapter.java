@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, HuijiIntentViperDetailActivity.class));
+
             }
         });
 
@@ -61,6 +62,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                context.startActivity(new Intent(context, InvateIndexActivity.class));
 
             }
         });

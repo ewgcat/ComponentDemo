@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
-import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
         holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
         holder.tv_interestHobby.setText(viperBean.getInterestHobby());
-        holder.iv_gender.setImageResource("女".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("1".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
 
 
@@ -54,7 +55,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
+                context.startActivity(new Intent(context,NoSearchBarCoachClassBaojiaActivity.class));
             }
         });
 

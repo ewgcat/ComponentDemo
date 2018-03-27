@@ -70,7 +70,6 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
     TextView tvJianshenGuan;
 
 
-
     private Activity activity;
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
@@ -84,7 +83,6 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
     private int buyClassTime = -1;//购买时间：【7:7天，14:14天，30:30天】
 
     private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
-
 
 
     public CoachFilterViperDialog(Activity activity) {
@@ -449,7 +447,6 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
                 selectExpiringDay(3);
                 break;
 
-     
 
             //按钮
             case R.id.tv_reset:
@@ -478,10 +475,10 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
         coachViperFilterBean.setBuyClassTime(buyClassTime);
         coachViperFilterBean.setExpiringDay(expiringDay);
 
-
-        onDismissListener.onDismiss(coachViperFilterBean);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(coachViperFilterBean);
+        }
     }
-
 
 
     public interface OnDismissListener {

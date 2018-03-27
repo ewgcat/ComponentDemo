@@ -1,44 +1,27 @@
 package com.yijian.staff.mvp.mine.calendartable;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.complaint.handling.HandTaskAdapter;
-import com.yijian.staff.mvp.complaint.handling.HandTaskInfo;
-import com.yijian.staff.mvp.complaint.list.ComplaintListActivity;
-import com.yijian.staff.mvp.invitation.InvitationInfo;
-import com.yijian.staff.mvp.invitation.InvitationRecordFragment;
 import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayOneFragment;
 import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayThreeFragment;
 import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayTwoFragment;
-import com.yijian.staff.util.Logger;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * 日视图

@@ -173,6 +173,10 @@
         <activity
             android:name=".mvp.coach.intent.CoachIntentViperListActivity"
             android:screenOrientation="portrait" />
+        <!-- 教练 报价完成 -->
+        <activity
+            android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
+            android:screenOrientation="portrait" />
         <!-- 教练 意向会员详情 -->
         <activity
             android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
@@ -200,7 +204,7 @@
             android:name=".mvp.dailywork.LeaveApplyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.invitation.InvitationActivity"
+            android:name=".mvp.huiji.invitation.list.HuiJiInvitationListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.complaint.handling.ComplaintHandlingActivity"
@@ -256,61 +260,81 @@
             android:name=".mvp.advice.AdviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".mvp.huiji.invitation.index.InvateIndexActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".mvp.huiji.invitation.detail.InvateDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 会籍 产品报价 -->
         <activity
-            android:name=".mvp.baojia.huiji.HuiJiGoodsListBaoJiaActivity"
+            android:name=".mvp.huiji.goodsbaojia.HuiJiGoodsListBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 教练 课程报价 -->
         <activity
-            android:name=".mvp.baojia.coach.CoachClassBaoJiaActivity"
+            android:name=".mvp.coach.classbaojia.CoachClassBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 体验课 -->
         <activity
-            android:name=".mvp.experienceclass.index.ExperienceClassListActivity"
+            android:name=".mvp.coach.experienceclass.index.ExperienceClassListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step1.ExperienceClassProcess1Activity"
+            android:name=".mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step2.ExperienceClassProcess2Activity"
+            android:name=".mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step3.ExperienceClassProcess3Activity"
+            android:name=".mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step4.ExperienceClassProcess4Activity"
+            android:name=".mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step5.coach.ExperienceClassProcess5Activity"
+            android:name=".mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.step5.leader.LeaderExperienceClassProcess5Activity"
+            android:name=".mvp.coach.experienceclass.step5.leader.LeaderExperienceClassProcess5Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.invate.ExperienceClassInvateActivity"
+            android:name=".mvp.coach.experienceclass.invate.ExperienceClassInvateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.template.Template1ClassActivity"
+            android:name=".mvp.coach.experienceclass.template.Template1ClassActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.experienceclass.template.Template2ClassActivity"
+            android:name=".mvp.coach.experienceclass.template.Template2ClassActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity android:name=".mvp.setclass.ActivityOpenLesson"
+        <activity
+            android:name=".mvp.setclass.ActivityOpenLesson"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.cunke.CunKeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.PrepareAllLessonActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- arouter 路由过滤 -->
@@ -444,9 +468,7 @@
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
 
-        <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
-        <activity android:name=".mvp.coach.cunke.CunKeActivity" />
-        <activity android:name=".mvp.preparelessons.PrepareAllLessonActivity"></activity>
+
     </application>
 
 </manifest>

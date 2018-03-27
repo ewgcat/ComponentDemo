@@ -309,8 +309,23 @@
             android:name=".mvp.experienceclass.template.Template2ClassActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.setclass.ActivityOpenLesson"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <activity android:name=".mvp.setclass.ActivityOpenLesson"
+
+
+        <activity
+            android:name=".mvp.coach.cunke.CunKeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.preparelessons.PrepareAllLessonActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- arouter 路由过滤 -->
@@ -444,9 +459,6 @@
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
 
-        <activity android:name=".mvp.preparelessons.BeiKeListActivity" />
-        <activity android:name=".mvp.coach.cunke.CunKeActivity" />
-        <activity android:name=".mvp.preparelessons.PrepareAllLessonActivity"></activity>
     </application>
 
 </manifest>

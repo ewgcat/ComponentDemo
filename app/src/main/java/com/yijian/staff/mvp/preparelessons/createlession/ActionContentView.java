@@ -237,6 +237,11 @@ public class ActionContentView extends LinearLayout implements Observer {
                 List<SubActionBean.SubChildBean> subChildBeans = subActionBean.getSubChildBeanList();
                 LinearLayout subLinContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_actions, null);
 
+                View lin_view_actions = subLinContain.findViewById(R.id.lin_view_actions);
+                LayoutParams lin_view_actions_lp = (LayoutParams) lin_view_actions.getLayoutParams();
+                lin_view_actions_lp.setMargins(DensityUtil.dip2px(mContext,20),0,DensityUtil.dip2px(mContext,20),0);
+                lin_view_actions.setLayoutParams(lin_view_actions_lp);
+
                 CheckBox ck_rank = subLinContain.findViewById(R.id.ck_rank);
                 ck_rank.setVisibility(isShowCheck ? View.VISIBLE : View.GONE);
                 if (subCheckList.contains(i)) {
@@ -385,14 +390,19 @@ public class ActionContentView extends LinearLayout implements Observer {
 
             case 3: //点击头部之后分发通知给给各组 控制显示隐藏
                 int itemLocation = Integer.valueOf(map.get("itemPosition"));
-
                 if (itemLocation == itemPosition) {
-                    linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
-                    linOprationButtonContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                    if(createPrivateLessionActivity.isEdit()){ //判断当前状态是否处于编辑状态
+                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                        linOprationButtonContain.setVisibility(View.GONE);
+                    }else{
+                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                        linOprationButtonContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                    }
                     isShowHeader = !isShowHeader;
                 } else {
                     linSingleActionContain.setVisibility(View.GONE);
                     linOprationButtonContain.setVisibility(View.GONE);
+                    isShowHeader = true;
                 }
                 setHeaderLayout();
 

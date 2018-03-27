@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         /********************START 暂时绕过 *******************************/
         Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
-        SharePreferenceUtil.setUserRole(2);
+        SharePreferenceUtil.setUserRole(1);
         /********************END 暂时绕过 *******************************/
         startActivity(i2);
         finish();

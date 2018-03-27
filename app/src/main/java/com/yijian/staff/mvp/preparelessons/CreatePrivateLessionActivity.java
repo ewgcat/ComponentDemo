@@ -48,7 +48,11 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
     ActionViewAdapter actionViewAdapter; //装载RecyclerView的适配器Adapter
     EditActionObservable editActionObservable = new EditActionObservable();
+    boolean isEdit = false; //当前状态是否处于编辑状态
 
+    public boolean isEdit() {
+        return isEdit;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,6 +186,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         map.put("type","0");
         switch (v.getId()) {
             case R.id.lin_edit: //编辑
+                isEdit = true;
                 setLinOprationVisibility(true);
                 map.put("type","0");
                 editActionObservable.notifyObservers(map);
@@ -196,6 +201,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
                 break;
             case R.id.lin_sure: //确定
+                isEdit = false;
                 setLinOprationVisibility(false);
                 map.put("type","2");
                 editActionObservable.notifyObservers(map);

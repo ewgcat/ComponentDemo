@@ -59,7 +59,8 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
 //                    Log.e(TAG, "onClick: 暂停" );
                     chronometer.stop();
                     mRecordTime = SystemClock.elapsedRealtime();
-                    btnStartUp.setText("启动");
+                    btnStartUp.setText("继续");
+                    btnStartUp.setBackgroundResource(R.mipmap.lesson_activate);
                     isPause=true;
                 }else {//开启
                     long l = mRecordTime - chronometer.getBase();
@@ -69,6 +70,7 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
                     chronometer.start();
                     mRecordTime=0;
                     btnStartUp.setText("暂停");
+                    btnStartUp.setBackgroundResource(R.mipmap.lesson_stop);
                     isPause=false;
                 }
 
@@ -83,6 +85,7 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
                 mRecordTime=0;
                 isPause=true;
                 btnStartUp.setText("启动");
+                btnStartUp.setBackgroundResource(R.mipmap.lesson_activate);
             }
         });
 

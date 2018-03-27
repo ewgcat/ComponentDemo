@@ -33,7 +33,7 @@
     
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="375dp">
+            android:layout_height="335dp">
             <com.yijian.staff.mvp.setclass.chronometer.ChronometerWithMillis
                 android:gravity="center"
                  android:layout_centerHorizontal="true"

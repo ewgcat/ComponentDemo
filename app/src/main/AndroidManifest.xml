@@ -174,7 +174,8 @@
             android:name=".mvp.coach.intent.CoachIntentViperListActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 报价完成 -->
-        <activity android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
+        <activity
+            android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 意向会员详情 -->
         <activity
@@ -203,7 +204,7 @@
             android:name=".mvp.dailywork.LeaveApplyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.invitation.InvitationActivity"
+            android:name=".mvp.huiji.invitation.list.HuiJiInvitationListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.complaint.handling.ComplaintHandlingActivity"
@@ -257,6 +258,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.advice.AdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".mvp.huiji.invitation.index.InvateIndexActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".mvp.huiji.invitation.detail.InvateDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 会籍 产品报价 -->
@@ -458,6 +467,7 @@
         <receiver
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
+
 
     </application>
 

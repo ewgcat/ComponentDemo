@@ -1,13 +1,17 @@
-package com.yijian.staff.mvp.invitation;
+package com.yijian.staff.mvp.huiji.invitation.list.record;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.invitation.detail.InvateDetailActivity;
+import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationInfo;
 
 import java.util.List;
 
@@ -40,6 +44,12 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.tv_invitation_over_time.setText(invitationInfo.getOverTime());
         holder.tv_invitation_over_reason.setText(invitationInfo.getOverReason());
         holder.tv_invitation_type.setText(invitationInfo.getInvitationType());
+        holder.lin_invate_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,InvateDetailActivity.class));
+            }
+        });
     }
 
     @Override
@@ -56,6 +66,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         TextView tv_invitation_over_time;
         TextView tv_invitation_over_reason;
         TextView tv_invitation_type;
+        LinearLayout lin_invate_detail;
 
 
         public ViewHolder(View view) {
@@ -67,6 +78,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
             tv_invitation_over_time =     view.findViewById(R.id.tv_invitation_over_time);
             tv_invitation_over_reason =     view.findViewById(R.id.tv_invitation_over_reason);
             tv_invitation_type  =     view.findViewById(R.id.tv_invitation_type);
+            lin_invate_detail  =     view.findViewById(R.id.lin_invate_detail);
         }
     }
 

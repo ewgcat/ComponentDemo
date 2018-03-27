@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.invitation;
+package com.yijian.staff.mvp.huiji.invitation.list.bean;
 
 import com.yijian.staff.util.JsonUtil;
 

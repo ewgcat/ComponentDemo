@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.experienceclass.index;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.experienceclass.step1.ExperienceClassProcess1Activity;
-import com.yijian.staff.mvp.invitation.InvitationInfo;
 
 import java.util.List;
 

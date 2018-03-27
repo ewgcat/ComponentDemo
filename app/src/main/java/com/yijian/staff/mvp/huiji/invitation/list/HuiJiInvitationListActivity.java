@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.invitation;
+package com.yijian.staff.mvp.huiji.invitation.list;
 
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.dailywork.ApprovalFragment;
-import com.yijian.staff.mvp.dailywork.DailyWorkStatusFragment;
+import com.yijian.staff.mvp.huiji.invitation.list.record.InvitationRecordFragment;
+import com.yijian.staff.mvp.huiji.invitation.list.result.InvitationResultFragment;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/6")
-public class InvitationActivity extends AppCompatActivity {
+public class HuiJiInvitationListActivity extends AppCompatActivity {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -135,8 +135,8 @@ public class InvitationActivity extends AppCompatActivity {
         tv_invitaion_record.setTextColor(index == 0? Color.parseColor("#1997f8"):Color.parseColor("#666666"));
         tv_invitaion_result.setTextColor(index == 0? Color.parseColor("#666666"):Color.parseColor("#1997f8"));
 
-        iv_invitaion_record.setImageResource(index == 0?R.mipmap.wt_jilu:R.mipmap.wt_jilu);
-        iv_invitaion_result.setImageResource(index == 0?R.mipmap.wt_jieguo:R.mipmap.wt_jieguo);
+        iv_invitaion_record.setImageResource(index == 0?R.mipmap.wt_jilulan:R.mipmap.wt_jilu);
+        iv_invitaion_result.setImageResource(index == 0?R.mipmap.wt_jieguo:R.mipmap.wt_jieguolan);
     }
 
 }

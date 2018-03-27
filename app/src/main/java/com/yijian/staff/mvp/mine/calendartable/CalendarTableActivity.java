@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.mine.calendartable;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.invitation.InvitationRecordFragment;
-import com.yijian.staff.mvp.invitation.InvitationResultFragment;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

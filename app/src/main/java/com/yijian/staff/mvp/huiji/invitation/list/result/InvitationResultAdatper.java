@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.invitation;
+package com.yijian.staff.mvp.huiji.invitation.list.result;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationInfo;
 
 import java.util.List;
 

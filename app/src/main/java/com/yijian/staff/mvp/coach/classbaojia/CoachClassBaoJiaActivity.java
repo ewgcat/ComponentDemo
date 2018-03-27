@@ -16,6 +16,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
+import com.yijian.staff.mvp.coach.viperlist.filter.CoachFilterViperDialog;
+import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -93,13 +96,14 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         initGoodsList();
 
         coachClassFilterDialog = new CoachClassFilterDialog(this);
-//        classListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, ClassInfo goodsInfo) {
-//                selectedClassInfo = goodsInfo;
-//                //TODO 跳转到商品详情
-//            }
-//        });
+        coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
+
+                //TODO
+
+            }
+        });
         selectZongHe();
 
     }
@@ -107,10 +111,9 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         mClassInfoList.clear();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("goodsName", "十周年纪念卡");
-            jsonObject.put("jianshenplace", "游泳");
-            jsonObject.put("yuer", "23次");
-            jsonObject.put("chuzhiyouhui", "赠送20%");
+            jsonObject.put("className", "瑜伽课");
+            jsonObject.put("classNum", "10节");
+            jsonObject.put("classLongTime", "120分钟");
             jsonObject.put("price", "1400元");
             for (int i = 0; i < 10; i++) {
                 ClassInfo classInfo = new ClassInfo(jsonObject);

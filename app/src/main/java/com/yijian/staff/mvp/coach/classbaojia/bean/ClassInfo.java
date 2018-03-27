@@ -10,34 +10,28 @@ import org.json.JSONObject;
  * time: 2018/3/17 19:29:17
  */
 public class ClassInfo {
-    private String goodsName;
-    private String jianshenplace;
-    private String yuer;
-    private String chuzhiyouhui;
+    private String className;
+    private String classNum;
+    private String classLongTime;
     private String price;
     public ClassInfo(JSONObject jsonObject){
-        this.goodsName=  JsonUtil.getString(jsonObject,"goodsName");
-        this.jianshenplace=  JsonUtil.getString(jsonObject,"jianshenplace");
-
-        this.yuer=  JsonUtil.getString(jsonObject,"yuer");
-        this.chuzhiyouhui=  JsonUtil.getString(jsonObject,"chuzhiyouhui");
+        this.className=  JsonUtil.getString(jsonObject,"className");
+        this.classNum=  JsonUtil.getString(jsonObject,"classNum");
+        this.classLongTime=  JsonUtil.getString(jsonObject,"classLongTime");
         this.price=  JsonUtil.getString(jsonObject,"price");
     }
 
-    public String getGoodsName() {
-        return goodsName;
+
+    public String getClassName() {
+        return className;
     }
 
-    public String getJianshenplace() {
-        return jianshenplace;
+    public String getClassNum() {
+        return classNum;
     }
 
-    public String getYuer() {
-        return yuer;
-    }
-
-    public String getChuzhiyouhui() {
-        return chuzhiyouhui;
+    public String getClassLongTime() {
+        return classLongTime;
     }
 
     public String getPrice() {

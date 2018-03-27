@@ -31,7 +31,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
     @Override
     public ClassListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_class, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -42,11 +42,10 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
 
         ClassInfo classInfo = mClassInfoList.get(position);
-        holder.tvGoodsName.setText(classInfo.getGoodsName());
-        holder.tvJianshenplace.setText(classInfo.getJianshenplace());
-        holder.tvYuEr.setText(classInfo.getYuer());
-        holder.tvChuzhiyouhui.setText(classInfo.getChuzhiyouhui());
-        holder.tvPrice.setText(classInfo.getPrice());
+        holder.tv_class_name.setText(classInfo.getClassName());
+        holder.tv_class_long_time.setText(classInfo.getClassLongTime());
+        holder.tv_class_num.setText(classInfo.getClassNum());
+        holder.tv_price.setText(classInfo.getPrice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,22 +70,18 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout itemView;
-        TextView tvGoodsName;
-        TextView tvJianshenplace;
-        TextView tvYuEr;
-        TextView tvChuzhiyouhui;
-        TextView tvPrice;
+        TextView tv_class_name;
+        TextView tv_price;
+        TextView tv_class_long_time;
+        TextView tv_class_num;
 
 
         public ViewHolder(View view) {
             super(view);
-            itemView = view.findViewById(R.id.item_view);
-            tvGoodsName = view.findViewById(R.id.tv_goods_name);
-            tvJianshenplace = view.findViewById(R.id.tv_jianshenplace);
-            tvYuEr = view.findViewById(R.id.tv_yu_er);
-            tvChuzhiyouhui = view.findViewById(R.id.tv_chuzhiyouhui);
-            tvPrice = view.findViewById(R.id.tv_price);
+            tv_class_name = view.findViewById(R.id.tv_class_name);
+            tv_class_long_time = view.findViewById(R.id.tv_class_long_time);
+            tv_price = view.findViewById(R.id.tv_price);
+            tv_class_num = view.findViewById(R.id.tv_class_num);
 
         }
     }

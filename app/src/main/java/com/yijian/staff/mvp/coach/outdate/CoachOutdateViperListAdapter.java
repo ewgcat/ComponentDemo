@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.outdate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;
@@ -18,26 +20,26 @@ import java.util.List;
  * Created by yangk on 2018/3/26.
  */
 
-public class CoachOutdateAdapter extends RecyclerView.Adapter<CoachOutdateAdapter.ViewHolder>  {
+public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutdateViperListAdapter.ViewHolder>  {
 
     private List<VipOutdateInfo> vipOutdateInfoList;
     private Context context;
 
-    public CoachOutdateAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
+    public CoachOutdateViperListAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
         this.context = context;
         this.vipOutdateInfoList = vipOutdateInfoList;
     }
 
 
     @Override
-    public CoachOutdateAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CoachOutdateViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oute_coach_date, parent, false);
-        CoachOutdateAdapter.ViewHolder holder = new CoachOutdateAdapter.ViewHolder(view);
+        CoachOutdateViperListAdapter.ViewHolder holder = new CoachOutdateViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(CoachOutdateAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachOutdateViperListAdapter.ViewHolder holder, int position) {
         VipOutdateInfo vipOutdateInfo = vipOutdateInfoList.get(position);
         holder.tv_name.setText(vipOutdateInfo.getName());
         holder.iv_gender.setImageResource(vipOutdateInfo.getGender());
@@ -57,7 +59,7 @@ public class CoachOutdateAdapter extends RecyclerView.Adapter<CoachOutdateAdapte
         holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() { // 邀约
             @Override
             public void onClick(View v) {
-
+                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
             }
         });
 

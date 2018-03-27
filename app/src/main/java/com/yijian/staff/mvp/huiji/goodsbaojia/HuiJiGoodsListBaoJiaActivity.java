@@ -16,6 +16,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
+import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
+import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -90,16 +92,25 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         goodsListAdapter = new GoodsListAdapter(this, mGoodsInfoList);
         goodsRcv.setAdapter(goodsListAdapter);
 
-        initGoodsList();
+//        initGoodsList();
 
         huiJiFilterGoodsDialog = new HuiJiFilterGoodsDialog(this);
-//        goodsListAdapter.setOnItemClickListener(new HuiJiProductQuotationListAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, ClassInfo goodsInfo) {
-//                selectedGoodsInfo = goodsInfo;
-//                //TODO 跳转到商品详情
-//            }
-//        });
+
+        huiJiFilterGoodsDialog.setOnDismissListener(new HuiJiFilterGoodsDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
+                //TODO 筛选 刷新
+                refresh();
+            }
+        });
+
+        goodsListAdapter.setOnItemClickListener(new GoodsListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, GoodsInfo goodsInfo) {
+                selectedGoodsInfo = goodsInfo;
+                //TODO 跳转到商品详情
+            }
+        });
         selectZongHe();
 
     }
@@ -121,6 +132,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             Logger.i("TEST", "JSONException: " + e);
 
         }
+    }
+
+
+    private void refresh() {
+        initGoodsList();
     }
 
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
@@ -206,7 +222,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             //TODO 请求
-            initGoodsList();
         }
 
     }

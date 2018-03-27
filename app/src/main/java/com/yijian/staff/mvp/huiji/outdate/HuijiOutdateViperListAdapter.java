@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.huiji.outdate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;
@@ -17,26 +19,26 @@ import java.util.List;
  * Created by yangk on 2018/3/26.
  */
 
-public class VipOutDateAdapter extends RecyclerView.Adapter<VipOutDateAdapter.ViewHolder>  {
+public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutdateViperListAdapter.ViewHolder>  {
 
     private List<VipOutdateInfo> vipOutdateInfoList;
     private Context context;
 
-    public VipOutDateAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
+    public HuijiOutdateViperListAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
         this.context = context;
         this.vipOutdateInfoList = vipOutdateInfoList;
     }
 
 
     @Override
-    public VipOutDateAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HuijiOutdateViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oute_huiji_date, parent, false);
-        VipOutDateAdapter.ViewHolder holder = new VipOutDateAdapter.ViewHolder(view);
+        HuijiOutdateViperListAdapter.ViewHolder holder = new HuijiOutdateViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(VipOutDateAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(HuijiOutdateViperListAdapter.ViewHolder holder, int position) {
         VipOutdateInfo vipOutdateInfo = vipOutdateInfoList.get(position);
         holder.tv_name.setText(vipOutdateInfo.getName());
         holder.iv_gender.setImageResource(vipOutdateInfo.getGender());
@@ -48,6 +50,7 @@ public class VipOutDateAdapter extends RecyclerView.Adapter<VipOutDateAdapter.Vi
         holder.tv_registTime.setText(vipOutdateInfo.getRegistTime());
         holder.tv_contractOutDate.setText(vipOutdateInfo.getContractOutDate());
         holder.tv_outDateDay.setText(vipOutdateInfo.getOutDateDay());
+
         holder.lin_quey_contract.setOnClickListener(new View.OnClickListener() { //查看合同
             @Override
             public void onClick(View v) {
@@ -57,6 +60,7 @@ public class VipOutDateAdapter extends RecyclerView.Adapter<VipOutDateAdapter.Vi
         holder.lin_quey_question.setOnClickListener(new View.OnClickListener() { //查看问卷
             @Override
             public void onClick(View v) {
+                context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
 
             }
         });

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.kefu.fiter;
+package com.yijian.staff.mvp.huiji.goodsbaojia.filter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,16 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismissListener{
+public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.OnDismissListener {
 
-    private static String TAG = GoodsFilterDialog.class.getSimpleName();
+    private static String TAG = HuiJiFilterGoodsDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -47,9 +46,12 @@ public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismi
     TextView tvJianshenPlace;
 
     private Activity activity;
+    private int price;
+    private int cardType;
+    private int changguan;
 
 
-    public GoodsFilterDialog(Activity activity) {
+    public HuiJiFilterGoodsDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
         this.activity = activity;
@@ -76,6 +78,7 @@ public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismi
         this.setContentView(contentView);
 
         ButterKnife.bind(this, contentView);
+        this.setOnDismissListener(this);
 
 
         initView();
@@ -97,56 +100,121 @@ public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismi
             R.id.tv_time_card, R.id.tv_cishu_card,
             R.id.tv_chuzhi_card, R.id.tv_huiyuan_card,
             R.id.tv_price1, R.id.tv_price2,
-            R.id.tv_price3, R.id.tv_price4,
             R.id.empty_view,
+            R.id.tv_price3, R.id.tv_price4,
             R.id.tv_youyong_place, R.id.tv_jianshen_place})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.empty_view:
-                dismiss();
-                break;
+
             case R.id.tv_reset:
                 resetView();
                 break;
+            case R.id.empty_view:
             case R.id.tv_confirm:
                 dismiss();
                 break;
-            case R.id.tv_time_card:
-                changeTextViewStyle(tvTimeCard);
-            case R.id.tv_cishu_card:
-                changeTextViewStyle(tvCishuCard);
 
+            case R.id.tv_time_card:
+                selectCardType(1);
+                break;
+            case R.id.tv_cishu_card:
+                selectCardType(2);
                 break;
             case R.id.tv_chuzhi_card:
-                changeTextViewStyle(tvChuzhiCard);
-
+                selectCardType(3);
                 break;
             case R.id.tv_huiyuan_card:
-                changeTextViewStyle(tvHuiyuanCard);
-
+                selectCardType(4);
                 break;
-            case R.id.tv_price1:
-                changeTextViewStyle(tvPrice1);
 
+            case R.id.tv_price1:
+                selectPrice(1);
                 break;
             case R.id.tv_price2:
-                changeTextViewStyle(tvPrice2);
-
+                selectPrice(2);
                 break;
             case R.id.tv_price3:
-                changeTextViewStyle(tvPrice3);
+                selectPrice(3);
                 break;
             case R.id.tv_price4:
-                changeTextViewStyle(tvPrice4);
+                selectPrice(4);
                 break;
+
             case R.id.tv_youyong_place:
-                changeTextViewStyle(tvYouyongPlace);
+                selectChangguan(1);
                 break;
             case R.id.tv_jianshen_place:
-
-                changeTextViewStyle(tvJianshenPlace);
+                selectChangguan(2);
                 break;
         }
+    }
+
+    private void selectChangguan(int i) {
+        if (i == 1) {
+            changguan = 1;
+            setSelectStyle(tvYouyongPlace);
+            setUnSelectStyle(tvJianshenPlace);
+        } else if (i == 2) {
+            changguan = 2;
+            setSelectStyle(tvJianshenPlace);
+            setUnSelectStyle(tvYouyongPlace);
+        }
+    }
+
+    private void selectPrice(int i) {
+        if (i == 1) {
+            price = 1;
+            setSelectStyle(tvPrice1);
+            setUnSelectStyle(tvPrice2);
+            setUnSelectStyle(tvPrice3);
+            setUnSelectStyle(tvPrice4);
+        } else if (i == 2) {
+            price = 2;
+            setSelectStyle(tvPrice2);
+            setUnSelectStyle(tvPrice1);
+            setUnSelectStyle(tvPrice3);
+            setUnSelectStyle(tvPrice4);
+        } else if (i == 3) {
+            price = 3;
+            setSelectStyle(tvPrice3);
+            setUnSelectStyle(tvPrice1);
+            setUnSelectStyle(tvPrice2);
+            setUnSelectStyle(tvPrice4);
+        } else if (i == 4) {
+            price = 4;
+            setSelectStyle(tvPrice4);
+            setUnSelectStyle(tvPrice1);
+            setUnSelectStyle(tvPrice2);
+            setUnSelectStyle(tvPrice3);
+        }
+    }
+
+    private void selectCardType(int i) {
+            if (i == 1) {
+                cardType = 1;
+                setSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else if (i == 2) {
+                cardType = 2;
+                setSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else if (i == 3) {
+                cardType = 3;
+                setSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else if (i == 4) {
+                cardType = 4;
+                setSelectStyle(tvHuiyuanCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+            }
     }
 
     private void resetView() {
@@ -184,35 +252,43 @@ public class GoodsFilterDialog extends Dialog implements DialogInterface.OnDismi
         tvYouyongPlace.setCompoundDrawables(null, null, null, null);
         tvJianshenPlace.setCompoundDrawables(null, null, null, null);
     }
+    private void setSelectStyle(TextView textView) {
+        textView.setTextColor(Color.parseColor("#1997f8"));
+        textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+        Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+        jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+        textView.setCompoundDrawables(jd_choose, null, null, null);
 
-    private void changeTextViewStyle(TextView textView) {
-        if (textView.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            textView.setTextColor(Color.parseColor("#666666"));
-            textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            textView.setCompoundDrawables(null, null, null, null);
-        } else {
-            textView.setTextColor(Color.parseColor("#1997f8"));
-            textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            textView.setCompoundDrawables(jd_choose, null, null, null);
-        }
+    }
 
+    private void setUnSelectStyle(TextView textView) {
+        textView.setTextColor(Color.parseColor("#666666"));
+        textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
+        textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        textView.setCompoundDrawables(null, null, null, null);
     }
 
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        HuiJiGoodsFilterBean huiJiGoodsFilterBean=new HuiJiGoodsFilterBean();
+        huiJiGoodsFilterBean.setCardType(cardType);
+        huiJiGoodsFilterBean.setPrice(price);
+        huiJiGoodsFilterBean.setChangguan(changguan);
+        if (onDismissListener!=null){
+            onDismissListener.onDismiss(huiJiGoodsFilterBean);
+        }
 
     }
+
     public interface OnDismissListener {
-        void onDismiss(GoodsFilterBean goodsFilterBean);
+        void onDismiss(HuiJiGoodsFilterBean huiJiGoodsFilterBean);
     }
 
-    private HuijiFilterViperDialog.OnDismissListener onDismissListener;
+    private HuiJiFilterGoodsDialog.OnDismissListener onDismissListener;
 
-    public void setOnDismissListener(HuijiFilterViperDialog.OnDismissListener onDismissListener) {
+    public void setOnDismissListener(HuiJiFilterGoodsDialog.OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
+
 }

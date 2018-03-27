@@ -173,6 +173,9 @@
         <activity
             android:name=".mvp.coach.intent.CoachIntentViperListActivity"
             android:screenOrientation="portrait" />
+        <!-- 教练 报价完成 -->
+        <activity android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
+            android:screenOrientation="portrait" />
         <!-- 教练 意向会员详情 -->
         <activity
             android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
@@ -313,9 +316,6 @@
             android:name=".mvp.setclass.ActivityOpenLesson"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
-
         <activity
             android:name=".mvp.coach.cunke.CunKeActivity"
             android:screenOrientation="portrait"

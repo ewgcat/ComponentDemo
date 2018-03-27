@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.coach.classbaojia;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachFilterViperDialog;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.mvp.reception.step3.bean.GoodsInfo;
+import com.yijian.staff.mvp.reception.step3.kefu.adapter.HuiJiProductQuotationListAdapter;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
@@ -76,6 +79,13 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
 
         initGoodsList();
 
+
+        classListAdapter.setOnItemClickListener(new ClassListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, ClassInfo classInfo) {
+                selectedClassInfo = classInfo;
+            }
+        });
         coachClassFilterDialog = new CoachClassFilterDialog(this);
         coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
             @Override
@@ -106,7 +116,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
+    @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan, R.id.ll_post})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_zong_he:
@@ -117,6 +127,9 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
                 break;
             case R.id.ll_shai_xuan:
                 selectShaixuan();
+                break;
+            case R.id.ll_post:
+                startActivity(new Intent(NoSearchBarCoachClassBaojiaActivity.this, CoachClassBaoJiaCompleteActivity.class));
                 break;
 
         }

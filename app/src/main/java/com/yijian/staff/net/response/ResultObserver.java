@@ -3,6 +3,7 @@ package com.yijian.staff.net.response;
 
 import android.util.Log;
 
+import com.bin.david.form.data.format.IFormat;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -34,7 +35,9 @@ public abstract  class ResultObserver implements Observer<JSONObject>   , Result
             int code = jsonObject.getInt("code");
             if (code==0){
                 JSONObject data = jsonObject.getJSONObject("data");
-                onSuccess(data);
+                if (data!=null){
+                    onSuccess(data);
+                }
             }else {
                 String msg = jsonObject.getString("msg");
                 onFail(msg);

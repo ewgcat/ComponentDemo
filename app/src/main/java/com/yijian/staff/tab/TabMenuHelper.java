@@ -25,16 +25,16 @@ import java.util.List;
  *
  * @version 1.0
  */
-public class MenuHelper {
+public class TabMenuHelper {
 
     /*分组的标签*/
     public static final String GROUP_FREQUENTLY = "常用功能";
     public static final String GROUP_VIP_MANAGER = "会员管理";
     public static final String GROUP_HUI_JI_KE_FU = "会籍(客服)";
     public static final String GROUP_COCAH = "教练";
-//    public static final String GROUP_CAO_KE = "操课";
-//    public static final String GROUP_ADM = "行政";
-//    public static final String GROUP_AUDIT_TASK = "审核任务";
+    public static final String GROUP_CAO_KE = "操课";
+    public static final String GROUP_ADM = "行政";
+    public static final String GROUP_AUDIT_TASK = "审核任务";
     public static final String GROUP_OTHER = "其他";
 
     private int itemCounter = 0;//用于统计共有多少个子item,依次给每个item设置独立的id
@@ -107,6 +107,59 @@ public class MenuHelper {
         savePreferOtherList(otherList);
     }
 
+    public  void parseJSONArrayToMenuList(JSONArray  jsonArray){
+        JSONArray dataJsonArray = JSON.parseArray(jsonArray.toString());
+
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject o = (JSONObject) jsonArray.get(i);
+            String title = o.getString("title");
+            JSONArray items = o.getJSONArray("item");
+
+            switch (title) {
+                case GROUP_FREQUENTLY:
+                    frequentlyList = parseJSONList(items);
+
+                    break;
+                case GROUP_VIP_MANAGER:
+                    vipmanagerList = parseJSONList(items);
+
+                    break;
+                case GROUP_HUI_JI_KE_FU:
+                    huijikefuList = parseJSONList(items);
+
+                    break;
+                case GROUP_COCAH:
+                    coachList = parseJSONList(items);
+
+                    break;
+                case GROUP_CAO_KE:
+                    caokeList = parseJSONList(items);
+
+                    break;
+                case GROUP_ADM:
+                    admList = parseJSONList(items);
+
+                    break;
+                case GROUP_AUDIT_TASK:
+                    audittaskList = parseJSONList(items);
+
+                    break;
+                case GROUP_OTHER:
+                    otherList = parseJSONList(items);
+                    break;
+            }
+        }
+
+
+        savePreferFrequentlyList(frequentlyList);
+        savePreferVipManageList(vipmanagerList);
+        savePreferHuiJiKeFuList(huijikefuList);
+        savePreferCoachList(coachList);
+        savePreferCaoKeList(caokeList);
+        savePreferAdmList(admList);
+        savePreferAuditTaskList(audittaskList);
+        savePreferOtherList(otherList);
+    }
 
     private List<MenuItem> parseJSONList(JSONObject dataJSON, String group) {
         List<MenuItem> list = new ArrayList<>();
@@ -139,11 +192,11 @@ public class MenuHelper {
     /**
      * 初始化数据
      */
-    public static void init() {
-        MenuHelper helper = new MenuHelper();
-        helper.parseJSONData();
-        setInit(true);
-    }
+//    public static void init() {
+//        TabMenuHelper helper = new TabMenuHelper();
+//        helper.parseJSONData();
+//        setInit(true);
+//    }
 
     /**
      * 用于保存本地数据的文件名字
@@ -265,18 +318,18 @@ public class MenuHelper {
         savePreferMenuListData(GROUP_COCAH, list);
     }
 
-//    public static void savePreferCaoKeList(List<MenuItem> list) {
-//        savePreferMenuListData(GROUP_CAO_KE, list);
-//    }
-//
-//    public static void savePreferAdmList(List<MenuItem> list) {
-//        savePreferMenuListData(GROUP_ADM, list);
-//    }
-//
-//
-//    public static void savePreferAuditTaskList(List<MenuItem> list) {
-//        savePreferMenuListData(GROUP_AUDIT_TASK, list);
-//    }
+    public static void savePreferCaoKeList(List<MenuItem> list) {
+        savePreferMenuListData(GROUP_CAO_KE, list);
+    }
+
+    public static void savePreferAdmList(List<MenuItem> list) {
+        savePreferMenuListData(GROUP_ADM, list);
+    }
+
+
+    public static void savePreferAuditTaskList(List<MenuItem> list) {
+        savePreferMenuListData(GROUP_AUDIT_TASK, list);
+    }
 
     public static void savePreferOtherList(List<MenuItem> list) {
         savePreferMenuListData(GROUP_OTHER, list);

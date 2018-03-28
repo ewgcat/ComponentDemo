@@ -1,7 +1,6 @@
 package com.yijian.staff.net.api;
 
 
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 
 import org.json.JSONObject;
@@ -90,9 +89,39 @@ public interface ApiService {
 
 
     //会籍（客服）获取会员列表
-
     @GET
     Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
+    //首页图标
+    @GET
+    Observable<JSONObject> getIndexMenuList(@Url String url, @HeaderMap Map<String, String> headers);
+
+
+    //post 表单
+    @POST
+    Observable<JSONObject> postNoHeaderNoParam(@Url String url);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
+    //get 有请求头
+
+    @GET
+    Observable<JSONObject> getNoHeaderNoParam(@Url String url);
+    @GET
+    Observable<JSONObject> getHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+    @GET
+    Observable<JSONObject> getNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+    @GET
+    Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
+
 
 
 }

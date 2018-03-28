@@ -11,14 +11,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.R;
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.tab.MenuHelper;
 import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.ApplicationHolder;
 import com.yijian.staff.util.InitializeService;
@@ -27,7 +25,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class CustomApplication extends TinkerApplication {
@@ -86,9 +83,9 @@ public class CustomApplication extends TinkerApplication {
         //在子线程中完成其他初始化
         InitializeService.start(this);
         ContextUtil.init(getApplicationContext());
-        if(!MenuHelper.hasEverInit()){
-            MenuHelper.init();
-        }
+//        if(!TabMenuHelper.hasEverInit()){
+////            TabMenuHelper.init();
+//        }
 
 
 

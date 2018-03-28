@@ -7,8 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +21,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.tab.MenuHelper;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.JsonUtil;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,14 +56,20 @@ public class WorkFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_yeji_wanchengdu)
+    TextView tvYejiWanchengdu;
+    @BindView(R.id.tv_today_score)
+    TextView tvTodayScore;
+    @BindView(R.id.tv_month_rank)
+    TextView tvMonthRank;
 
     private ImageView ivRotate;
     private EditText etSearch;
     private View view;
 
-    private List<MenuItem> menuItemList=new ArrayList<>();
+    private List<MenuItem> menuItemList = new ArrayList<>();
 
-    private MenuRecyclerGridAdapter mAdapter;
+    private MenuRecyclerGridAdapter adapter;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -101,7 +117,65 @@ public class WorkFragment extends Fragment {
                 return true;
             }
         });
-        menuItemList.addAll(MenuHelper.getPreferFrequentlyList());
+
+        adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(), true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        recyclerView.setAdapter(adapter);
+
+        startRotateAnimation();
+
+    }
+
+
+    private void initData() {
+
+
+        HashMap<String, String> map = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        map.put("token", user.getToken());
+        HttpManager.getIndexMenuList(map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                String monthRank = JsonUtil.getString(result, "monthRank");
+                String todayScore = JsonUtil.getString(result, "todayScore");
+                String completePercent = JsonUtil.getString(result, "completePercent");
+
+                if (TextUtils.isEmpty(completePercent)) {
+                    tvYejiWanchengdu.setText("未知");
+                }else {
+                    tvYejiWanchengdu.setText(completePercent.substring(0,completePercent.length()-1));
+                }
+                if (TextUtils.isEmpty(todayScore)) {
+                    tvTodayScore.setText("未知");
+                }else {
+                    tvTodayScore.setText(todayScore.substring(0,todayScore.length()-1));
+                }
+                if (TextUtils.isEmpty(monthRank)) {
+                    tvMonthRank.setText("未知");
+                }else {
+                    tvMonthRank.setText("第"+monthRank+"名");
+                }
+
+                JSONArray menulist = JsonUtil.getJsonArray(result, "menulist");
+                MenuHelper menuHelper = new MenuHelper();
+                menuHelper.parseJSONArrayToMenuList(menulist);
+                List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
+                menuItemList.clear();
+                menuItemList.addAll(preferFrequentlyList);
+                initAllFunctionMenuItem();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    private void initAllFunctionMenuItem() {
         MenuItem menuItem = new MenuItem();
         menuItem.setCount(0);
         menuItem.setName("全部");
@@ -110,19 +184,6 @@ public class WorkFragment extends Fragment {
         String path = uri.toString();
         menuItem.setIcon(path);
         menuItemList.add(menuItem);
-        MenuRecyclerGridAdapter adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(),true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        recyclerView.setAdapter(adapter);
-
-
-    }
-
-
-    private void initData() {
-
-        startRotateAnimation();
-
-
     }
 
 

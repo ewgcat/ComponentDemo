@@ -121,15 +121,28 @@
         <activity
             android:name=".mvp.goodsdetail.GoodsRightSupportActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"
+            android:name=".mvp.huiji.huifang.tianxieresult.TianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.history.HuiFangHistoryActivity"
+            android:name=".mvp.huiji.huifang.history.HuiFangHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.task.HuiFangTaskActivity"
+            android:name=".mvp.huiji.huifang.task.HuiFangTaskActivity"
             android:screenOrientation="portrait" />
+
+         <activity
+            android:name=".mvp.coach.huifang.task.CoachHuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.coach.huifang.history.CoachHuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+
+
         <activity
             android:name=".mvp.vip.edit.VipInfoEditActivity"
             android:screenOrientation="portrait" />
@@ -276,6 +289,20 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <!--教练备课-->
+        <activity
+            android:name=".mvp.coach.preparelessons.list.PrepareLessonsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.preparelessons.PrepareLessonsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.coach.preparelessons.CreatePrivateLessionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <!-- 体验课 -->
         <activity
             android:name=".mvp.coach.experienceclass.index.ExperienceClassListActivity"
@@ -326,7 +353,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.preparelessons.PrepareAllLessonActivity"
+            android:name=".mvp.coach.preparelessons.PrepareAllLessonActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -352,18 +379,7 @@
             android:name=".mvp.empty.EmptyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.preparelessons.list.PrepareLessonsListActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.preparelessons.PrepareLessonsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.preparelessons.CreatePrivateLessionActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver

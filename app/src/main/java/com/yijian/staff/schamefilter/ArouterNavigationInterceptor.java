@@ -24,44 +24,112 @@ public class ArouterNavigationInterceptor implements IInterceptor {
     public void process(Postcard postcard, InterceptorCallback callback) {
         String path = postcard.getPath();
 
-        if (path.equals("/test/19")) {
-            if (SharePreferenceUtil.getUserRole() == 2) {
-                callback.onContinue(postcard);  // 处理完成，交还控制权
-            } else if (SharePreferenceUtil.getUserRole()==3||SharePreferenceUtil.getUserRole()==4) {
-                ARouter.getInstance().build("/test/leader_experience_class").navigation();
-
-            } else {
-                ARouter.getInstance().build("/test/empty").navigation();
-            }
-        } else if (path.equals("/test/1")){
+        //会员管理
+        if (path.equals("/test/1")) {
             if (SharePreferenceUtil.getUserRole() == 1) {
                 callback.onContinue(postcard);  // 处理完成，交还控制权
-            } else if (SharePreferenceUtil.getUserRole()==2) {
+            } else if (SharePreferenceUtil.getUserRole() == 2) {
                 ARouter.getInstance().build("/test/1.1").navigation();
             } else {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
-        }
-        else if (path.equals("/test/2")){
+        } else if (path.equals("/test/2")) {
             if (SharePreferenceUtil.getUserRole() == 1) {
                 callback.onContinue(postcard);  // 处理完成，交还控制权
-            } else if (SharePreferenceUtil.getUserRole()==2) {
+            } else if (SharePreferenceUtil.getUserRole() == 2) {
                 ARouter.getInstance().build("/test/2.1").navigation();
             } else {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
-        }else if (path.equals("/test/4")){
+        } else if (path.equals("/test/3")) {
+            callback.onContinue(postcard);  // 处理完成，交还控制权
+        } else if (path.equals("/test/4")) {
             if (SharePreferenceUtil.getUserRole() == 1) {//会籍
                 callback.onContinue(postcard);  // 处理完成，交还控制权
-            } else if (SharePreferenceUtil.getUserRole()==2) {//教练
+            } else if (SharePreferenceUtil.getUserRole() == 2) {//教练
                 ARouter.getInstance().build("/test/4.1").navigation();
             } else {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
         }
-
-
-        else {
+        //会籍
+        else if (path.equals("/test/5")) {//会籍回访
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/6")) {//会籍邀约
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/7")) {//会籍添加潜在
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/9")) {//会籍产品报价
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/10")) {//会籍分配资源
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/12")) {//会籍问卷调查
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        }
+        //教练
+        else if (path.equals("/test/13")) {//教练回访
+            if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/14")) {//备课
+            if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/15")) {//约课
+            if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/16")) {//存课
+            if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/17")) {//体验课
+            if (SharePreferenceUtil.getUserRole() == 2) {
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else if (SharePreferenceUtil.getUserRole() == 3 || SharePreferenceUtil.getUserRole() == 4) {
+                ARouter.getInstance().build("/test/leader_experience_class").navigation();
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else if (path.equals("/test/18")) {//课程报价
+            if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
+        } else {
             callback.onContinue(postcard);  // 处理完成，交还控制权
         }
 

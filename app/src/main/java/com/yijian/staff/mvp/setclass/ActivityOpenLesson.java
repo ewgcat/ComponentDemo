@@ -24,8 +24,9 @@ import java.util.List;
 
 /**
  * Created by The_P on 2018/3/22.
+ * 约课
  */
-@Route(path = "/test/17")
+@Route(path = "/test/15")
 public class ActivityOpenLesson extends AppCompatActivity {
     private static final String TAG = "ActivityOpenLesson";
     private RecyclerView recyclerView;

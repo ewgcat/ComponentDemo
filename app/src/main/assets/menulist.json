@@ -120,26 +120,9 @@
       },
       {
         "type": 1,
-        "name": "投诉处理",
-        "icon": "url",
-        "path": "/test/8",
-        "title": "会籍(客服)",
-        "count": 0,
-        "className": "YJComplaintTabbarController"
-      },
-      {
-        "type": 1,
         "name": "产品报价",
         "icon": "url",
         "path": "/test/9",
-        "title": "会籍(客服)",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "问卷调查",
-        "icon": "url",
-        "path": "/test/12",
         "title": "会籍(客服)",
         "count": 0
       },
@@ -151,20 +134,21 @@
         "title": "会籍(客服)",
         "count": 0,
         "className": "YJResourceAllocationTabBarController"
+      },
+      {
+        "type": 1,
+        "name": "问卷调查",
+        "icon": "url",
+        "path": "/test/12",
+        "title": "会籍(客服)",
+        "count": 0
       }
     ]
   },
   {
     "title": "教练",
     "item": [
-      {
-        "type": 1,
-        "name": "课程报价",
-        "icon": "url",
-        "path": "/test/20",
-        "title": "教练",
-        "count": 0
-      },
+
       {
         "type": 1,
         "name": "教练回访",
@@ -175,7 +159,7 @@
       },
       {
         "type": 1,
-        "name": "课程评论",
+        "name": "备课",
         "icon": "url",
         "path": "/test/14",
         "title": "教练",
@@ -183,7 +167,7 @@
       },
       {
         "type": 1,
-        "name": "教练巡场",
+        "name": "约课",
         "icon": "url",
         "path": "/test/15",
         "title": "教练",
@@ -191,7 +175,7 @@
       },
       {
         "type": 1,
-        "name": "备课",
+        "name": "存课",
         "icon": "url",
         "path": "/test/16",
         "title": "教练",
@@ -199,105 +183,17 @@
       },
       {
         "type": 1,
-        "name": "约课",
+        "name": "体验课",
         "icon": "url",
         "path": "/test/17",
         "title": "教练",
         "count": 0
-      },
-      {
+      },  {
         "type": 1,
-        "name": "存课",
+        "name": "课程报价",
         "icon": "url",
         "path": "/test/18",
         "title": "教练",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "体验课",
-        "icon": "url",
-        "path": "/test/19",
-        "title": "教练",
-        "count": 0
-      }
-    ]
-  },
-  {
-    "title": "操课",
-    "item": [
-      {
-        "type": 1,
-        "name": "约课情况",
-        "icon": "url",
-        "path": "/test/21",
-        "title": "操课",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "课程评论",
-        "icon": "url",
-        "path": "/test/22",
-        "title": "操课 ",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "人气排行",
-        "icon": "url",
-        "path": "/test/23",
-        "title": "操课",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "课程调查",
-        "icon": "url",
-        "path": "/test/24",
-        "title": "操课",
-        "count": 0
-      }
-    ]
-  },
-  {
-    "title": "行政",
-    "item": [
-      {
-        "type": 1,
-        "name": "行政巡场",
-        "icon": "url",
-        "path": "/test/25",
-        "title": "行政",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "任务达成",
-        "icon": "url",
-        "path": "/test/26",
-        "title": "行政",
-        "count": 0
-      }
-    ]
-  },
-  {
-    "title": "审核任务",
-    "item": [
-      {
-        "type": 1,
-        "name": "打卡签到",
-        "icon": "url",
-        "path": "/test/28",
-        "title": "审核任务",
-        "count": 0
-      },
-      {
-        "type": 1,
-        "name": "考勤",
-        "icon": "url",
-        "path": "/test/29",
-        "title": "审核任务",
         "count": 0
       }
     ]

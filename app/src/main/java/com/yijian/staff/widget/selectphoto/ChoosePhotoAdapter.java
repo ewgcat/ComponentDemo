@@ -22,8 +22,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
-import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.FileUtil;

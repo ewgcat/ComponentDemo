@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.PagerSlidingTabStrip;

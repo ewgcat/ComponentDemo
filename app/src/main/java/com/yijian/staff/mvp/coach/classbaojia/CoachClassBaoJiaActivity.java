@@ -33,7 +33,7 @@ import butterknife.OnClick;
 /**
  * （教练）产品报价
  */
-@Route(path = "/test/20")
+@Route(path = "/test/18")
 public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
 

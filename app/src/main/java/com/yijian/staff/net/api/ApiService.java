@@ -23,7 +23,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
@@ -89,14 +88,38 @@ public interface ApiService {
     Observable<JSONObject> resetPassword(@Url String url, @Field("username") String username, @Field("telephone") String telephone, @Field("verificationCode") String verificationCode, @Field("newPwd") String newPwd, @Field("confirmPwd") String confirmPwd);
 
 
-
+    //会籍（客服）获取会员列表
     @GET
     Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
+    //首页图标
+    @GET
+    Observable<JSONObject> getIndexMenuList(@Url String url, @HeaderMap Map<String, String> headers);
 
+
+    //post 表单
+    @POST
+    Observable<JSONObject> postNoHeaderNoParam(@Url String url);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
+    //get 有请求头
 
     @GET
-    Observable<JSONObject> getDataOnlyToken(@Url String url,@HeaderMap Map<String, String> headers);
+    Observable<JSONObject> getNoHeaderNoParam(@Url String url);
+    @GET
+    Observable<JSONObject> getHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+    @GET
+    Observable<JSONObject> getNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+    @GET
+    Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
 
 

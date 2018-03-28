@@ -8,9 +8,7 @@
         android:layout_height="45dp"
         android:orientation="vertical">
 
-        <View
-            style="@style/SplitLineStyle"
-            />
+
 
         <LinearLayout
             android:layout_width="match_parent"

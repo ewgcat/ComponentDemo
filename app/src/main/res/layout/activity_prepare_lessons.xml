@@ -86,7 +86,6 @@
 
         <View
             style="@style/SplitLineStyle"
-            android:layout_marginTop="10dp"
             />
 
         <RelativeLayout
@@ -124,7 +123,6 @@
 
         <View
             style="@style/SplitLineStyle"
-            android:layout_marginTop="10dp"
             />
 
         <RelativeLayout

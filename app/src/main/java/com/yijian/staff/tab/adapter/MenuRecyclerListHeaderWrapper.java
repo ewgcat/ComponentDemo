@@ -10,7 +10,7 @@ import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.yijian.staff.R;
-import com.yijian.staff.tab.MenuHelper;
+import com.yijian.staff.tab.TabMenuHelper;
 import com.yijian.staff.tab.adapter.holder.MenuEditRecyclerListHolder;
 import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
@@ -109,7 +109,7 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     public void onItemDragFinished(int fromPosition, int toPosition, boolean result) {
         if(fromPosition!=toPosition && result){
             if(adapter!=null){
-                MenuHelper.savePreferFrequentlyList(adapter.getRecyclerItems());
+                TabMenuHelper.savePreferFrequentlyList(adapter.getRecyclerItems());
                 hasDragChanged=true;
             }
         }

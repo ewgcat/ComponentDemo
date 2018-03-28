@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@Route(path = "/test/19")
+@Route(path = "/test/17")
 public class ExperienceClassListActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)

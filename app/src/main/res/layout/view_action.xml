@@ -28,6 +28,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:visibility="gone"
+                android:button="@drawable/selector_action_group_ck"
                 />
 
             <TextView

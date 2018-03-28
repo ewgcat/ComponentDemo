@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
 import com.yijian.staff.mvp.message.bean.MessageInfo;
 import com.yijian.staff.util.CommonUtil;
 

@@ -32,6 +32,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
+import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
@@ -161,7 +162,9 @@ public class WorkFragment extends Fragment {
                 menuHelper.parseJSONArrayToMenuList(menulist);
                 List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
                 menuItemList.clear();
-                menuItemList.addAll(preferFrequentlyList);
+                if (preferFrequentlyList != null) {
+                    menuItemList.addAll(preferFrequentlyList);
+                }
                 initAllFunctionMenuItem();
                 adapter.notifyDataSetChanged();
             }

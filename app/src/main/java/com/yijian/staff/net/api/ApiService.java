@@ -111,7 +111,6 @@ public interface ApiService {
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
     //get 有请求头
-
     @GET
     Observable<JSONObject> getNoHeaderNoParam(@Url String url);
     @GET

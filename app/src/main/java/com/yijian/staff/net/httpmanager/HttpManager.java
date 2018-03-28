@@ -86,7 +86,6 @@ public class HttpManager {
     }
 
     //公共
-
     // post没请求头没有参数
     public static void postNoHeaderNoParam(String url, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.postNoHeaderNoParam(url);

@@ -230,7 +230,18 @@ public class WorkFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+//        initMenu();
         initData();
+    }
+
+    private void initMenu() {
+        List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
+        menuItemList.clear();
+        if (preferFrequentlyList != null) {
+            menuItemList.addAll(preferFrequentlyList);
+        }
+        initAllFunctionMenuItem();
+        adapter.notifyDataSetChanged();
     }
 }
 

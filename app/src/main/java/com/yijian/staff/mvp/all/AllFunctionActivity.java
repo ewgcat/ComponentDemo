@@ -27,6 +27,7 @@ import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 import com.yijian.staff.util.ConstantUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
@@ -123,7 +124,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     frequentlyList.add(item);
                     mListHeaderWrapper.notifyDataSetChanged();
                 }
-
+                hasChangedListData=true;
 
             }
         });
@@ -154,8 +155,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                         mListHeaderWrapper.notifyDataSetChanged();
                     }
                 }
-
-
+                hasChangedListData=true;
             }
         });
 
@@ -193,6 +193,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 }
                 frequentlyList.remove(item);
                 mListHeaderWrapper.notifyDataSetChanged();
+                hasChangedListData=true;
             }
         });
         mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, frequentlyList));
@@ -205,12 +206,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         mListHeaderWrapper.releaseDragManager();
-
         if (mListHeaderWrapper.isHasDragChanged() || hasChangedListData) {
             sendBroadcast(new Intent(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA));
         }
-
-
         super.onDestroy();
     }
 
@@ -236,40 +234,40 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     mListAdapter.notifyDataSetChanged();
                     mListHeaderWrapper.notifyDataSetChanged();
                     rightTv.setText("编辑");
-
-                    HashMap<String, String> map = new HashMap<>();
-                    User user = DBManager.getInstance().queryUser();
-                    map.put("token", user.getToken());
-
-                    JSONObject o = new JSONObject();
-                    List<MenuBean> list = new ArrayList<>();
-                    if (frequentlyList != null) {
-                            for (int i = 0; i < frequentlyList.size(); i++) {
-                                MenuItem menuItem = frequentlyList.get(i);
-                                long itemId = menuItem.getItemId();
-                                MenuBean menuBean = new MenuBean(itemId,i);
-                                list.add(menuBean);
-                            }
-
-
-                    }
-
-                    HttpManager.saveMenuChange(map, new MenuRequestBody(list), new ResultObserver() {
-                        @Override
-                        public void onSuccess(JSONObject result) {
-
-                        }
-
-                        @Override
-                        public void onFail(String msg) {
-
-                        }
-                    });
-
-
+                    postSaveMenu();
                 }
 
                 break;
         }
+    }
+
+    private void postSaveMenu() {
+        HashMap<String, String> map = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        map.put("token", user.getToken());
+
+        JSONObject o = new JSONObject();
+        List<MenuBean> list = new ArrayList<>();
+        if (frequentlyList != null) {
+                for (int i = 0; i < frequentlyList.size(); i++) {
+                    MenuItem menuItem = frequentlyList.get(i);
+                    long itemId = menuItem.getItemId();
+                    MenuBean menuBean = new MenuBean(itemId,i);
+                    list.add(menuBean);
+                }
+        }
+
+        MenuHelper.savePreferFrequentlyList(frequentlyList);
+        HttpManager.saveMenuChange(map, new MenuRequestBody(list), new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 }

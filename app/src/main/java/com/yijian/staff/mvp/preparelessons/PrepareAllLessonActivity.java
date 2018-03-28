@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.preparelessons.createlession.ActionBean;
 import com.yijian.staff.mvp.preparelessons.createlession.SubActionBean;
+import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,17 +36,17 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prepare_all_lesson);
         ButterKnife.bind(this);
-//        initTitle();
+        initTitle();
         initData();
     }
 
 
-  /*  private void initTitle() {
+    private void initTitle() {
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
         navigationBar.setTitle("所有课程安排", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-    }*/
+    }
 
 
     private void initData() {

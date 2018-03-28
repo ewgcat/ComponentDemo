@@ -11,7 +11,9 @@ public class ActionBean {
 
     private String degree;
     private List<SubActionBean> subActionBeans = new ArrayList<>();
-    private boolean isCheckGroup; //扩展字段，是否选择了组字段
+    private boolean isCheckGroup = false; //扩展字段，是否选择了组字段
+    private boolean isShowBody = false; //是否展示body内容
+
 
     public String getDegree() {
         return degree;
@@ -35,5 +37,13 @@ public class ActionBean {
 
     public void setCheckGroup(boolean checkGroup) {
         isCheckGroup = checkGroup;
+    }
+
+    public boolean isShowBody() {
+        return isShowBody;
+    }
+
+    public void setShowBody(boolean showBody) {
+        isShowBody = showBody;
     }
 }

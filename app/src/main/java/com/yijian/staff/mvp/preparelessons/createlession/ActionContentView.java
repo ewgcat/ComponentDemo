@@ -55,7 +55,7 @@ public class ActionContentView extends LinearLayout implements Observer {
     private boolean isShowCheck;
     private CreatePrivateLessionActivity createPrivateLessionActivity;
     private ActionBean actionBean;
-    private boolean isShowHeader = true;
+//    private boolean isShowHeader = true; //控制Body显示和隐藏的标志位
 
 
     public ActionContentView(Context context) {
@@ -114,7 +114,7 @@ public class ActionContentView extends LinearLayout implements Observer {
         linHeaderContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPrivateLessionActivity.notifyClickHeader(itemPosition);
+                createPrivateLessionActivity.notifyClickHeader(itemPosition,CreatePrivateLessionActivity.CLICK_HEADER);
             }
         });
         ck_group = linHeaderContainer.findViewById(R.id.ck_group);
@@ -177,7 +177,7 @@ public class ActionContentView extends LinearLayout implements Observer {
         resCheckTxtView = txtView;
 
         actionBean.setDegree(resCheckTxtView.getText().toString());
-        createPrivateLessionActivity.setActionBeanList(itemPosition,actionBean);
+        createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
 
         addActionContentView(); //选中难易程度之后，更新数据集合
 
@@ -239,7 +239,7 @@ public class ActionContentView extends LinearLayout implements Observer {
 
                 View lin_view_actions = subLinContain.findViewById(R.id.lin_view_actions);
                 LayoutParams lin_view_actions_lp = (LayoutParams) lin_view_actions.getLayoutParams();
-                lin_view_actions_lp.setMargins(DensityUtil.dip2px(mContext,20),0,DensityUtil.dip2px(mContext,20),0);
+                lin_view_actions_lp.setMargins(DensityUtil.dip2px(mContext, 20), 0, DensityUtil.dip2px(mContext, 20), 0);
                 lin_view_actions.setLayoutParams(lin_view_actions_lp);
 
                 CheckBox ck_rank = subLinContain.findViewById(R.id.ck_rank);
@@ -360,50 +360,48 @@ public class ActionContentView extends LinearLayout implements Observer {
                 isShowCheck = true;
                 ck_group.setVisibility(View.VISIBLE);
                 linOprationButtonContain.setVisibility(View.GONE);
-                break;
 
-            case 1: //删除
-                /*isShowCheck = true;
-                List<Integer> subItemList = subMapList.get(resCheckTxtView.getText());
-                List<List<SubActionBean>> subActionBeanList = mapList.get(resCheckTxtView.getText());
-                List<List<SubActionBean>> tempSubActionBeanList = new ArrayList<List<SubActionBean>>();
-                for (int i = 0; i < subItemList.size(); i++) {
-                    tempSubActionBeanList.add(subActionBeanList.get(subItemList.get(i)));
-                }
-
-                for (int i = 0; i < subItemList.size(); i++) {
-                    subActionBeanList.remove(tempSubActionBeanList.get(i));
-
-                }
-
-                mapList.put(resCheckTxtView.getText().toString(), subActionBeanList);
-                subItemList.clear();
-                subMapList.put(resCheckTxtView.getText().toString(), subItemList);
-                actionBean.setDegree(resCheckTxtView.getText().toString());
-                actionBean.setSubActionBeans(subActionBeanList); */
                 break;
 
             case 2: //确定
                 isShowCheck = false;
                 ck_group.setVisibility(View.GONE);
+                boolean isSureShowHeader = actionBean.isShowBody();
+                linSingleActionContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
+                linOprationButtonContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
+
                 break;
 
             case 3: //点击头部之后分发通知给给各组 控制显示隐藏
                 int itemLocation = Integer.valueOf(map.get("itemPosition"));
+                boolean isShowHeader = actionBean.isShowBody();
                 if (itemLocation == itemPosition) {
-                    if(createPrivateLessionActivity.isEdit()){ //判断当前状态是否处于编辑状态
-                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                    if (createPrivateLessionActivity.isEdit()) { //判断当前状态是否处于编辑状态
+                        if(isShowHeader == false){
+                            linSingleActionContain.setVisibility(View.VISIBLE);
+                        }else{
+                            linSingleActionContain.setVisibility(View.GONE);
+                        }
+//                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
                         linOprationButtonContain.setVisibility(View.GONE);
-                    }else{
-                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
-                        linOprationButtonContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
+                    } else {
+                        if(isShowHeader == false){
+                            linSingleActionContain.setVisibility(View.VISIBLE);
+                            linOprationButtonContain.setVisibility(View.VISIBLE);
+                        }else{
+                            linSingleActionContain.setVisibility(View.GONE);
+                            linOprationButtonContain.setVisibility(View.GONE);
+                        }
                     }
-                    isShowHeader = !isShowHeader;
+//                    isShowHeader = !isShowHeader;
+                    actionBean.setShowBody(!isShowHeader);
                 } else {
                     linSingleActionContain.setVisibility(View.GONE);
                     linOprationButtonContain.setVisibility(View.GONE);
-                    isShowHeader = true;
+//                    isShowHeader = true;
+                    actionBean.setShowBody(false);
                 }
+                createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
                 setHeaderLayout();
 
                 break;
@@ -413,6 +411,23 @@ public class ActionContentView extends LinearLayout implements Observer {
                 linOprationButtonContain.setVisibility((itemPosition == (sumItemSize - 1)) ? View.VISIBLE : View.GONE);
                 setHeaderLayout();
                 break;
+            case 5: //删除
+                isShowCheck = true;
+                ck_group.setVisibility(View.VISIBLE);
+                linOprationButtonContain.setVisibility(View.GONE);
+
+                boolean isDeleteShowHeader = actionBean.isShowBody();
+                linSingleActionContain.setVisibility(isDeleteShowHeader ? View.VISIBLE : View.GONE);
+                linOprationButtonContain.setVisibility(View.GONE);
+
+                setHeaderLayout();
+                break;
+           /* case 6: //确认之后的分发
+                *//*boolean isSureShowHeader = actionBean.isShowBody();
+                linSingleActionContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
+                linOprationButtonContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);*//*
+
+                break;*/
         }
         addActionContentView();
     }

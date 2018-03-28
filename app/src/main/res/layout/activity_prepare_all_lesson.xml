@@ -1,272 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:fitsSystemWindows="false">
+    android:orientation="vertical"
+    >
 
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/view_navigation_bar"/>
 
-    <LinearLayout
-        android:id="@+id/ll_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/month_calendar_height"
-        android:layout_marginTop="@dimen/week_bar_height"
-        android:orientation="horizontal"
-        android:background="#fff">
-
-        <android.support.v4.widget.Space
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_bar_height"
-            android:layout_weight="1" />
-
-        <com.jeek.calendar.widget.calendar.month.MonthCalendarView
-
-            android:id="@+id/mcvCalendar"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/month_calendar_height"
-            android:layout_weight="7"
-            android:background="@color/calendar_bg_color"
-            android:overScrollMode="never"
-            app:month_day_text_size="12"
-            app:month_holiday_color="@color/holiday_text_color"
-            app:month_selected_circle_color="@color/colorPrimary"
-            app:month_selected_circle_today_color="@color/colorPrimary"
-            app:month_show_holiday_hint="true"
-            app:month_show_lunar="false"
-            app:month_show_task_hint="false" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#fff">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_bar_height"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/iv_toggle"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:padding="7dp"
-                android:src="@mipmap/wt_kaoqinlan" />
-        </RelativeLayout>
-
-        <com.jeek.calendar.widget.calendar.WeekBarView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_bar_height"
-            android:layout_weight="7"
-            android:background="@color/calendar_bg_color"
-            app:week_text_size="@integer/calendar_text_size" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/edit_search"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/week_calendar_height"
-        android:layout_marginTop="@dimen/week_bar_height"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        app:layout_behavior="@string/header_float_behavior"
-        android:background="#fff">
-
-        <android.support.v4.widget.Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.jeek.calendar.widget.calendar.week.WeekCalendarView
-            android:id="@+id/wcvCalendar"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_calendar_height"
-            android:layout_weight="7"
-            android:background="@color/calendar_bg_color"
-            android:overScrollMode="never"
-            app:week_day_text_size="12"
-            app:week_holiday_color="@color/holiday_text_color"
-            app:week_selected_circle_color="@color/colorPrimary"
-            app:week_selected_circle_today_color="@color/colorPrimary"
-            app:week_show_holiday_hint="true"
-            app:week_show_lunar="false"
-            app:week_show_task_hint="false" />
-
-
-    </LinearLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/header_scrolling_behavior_week">
+        android:background="@color/gray"
+        android:fitsSystemWindows="false">
+
+
+        <LinearLayout
+            android:id="@+id/ll_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/month_calendar_height"
+            android:layout_marginTop="@dimen/week_bar_height"
+            android:orientation="horizontal"
+            android:background="#fff">
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_bar_height"
+                android:layout_weight="1" />
+
+            <com.jeek.calendar.widget.calendar.month.MonthCalendarView
+
+                android:id="@+id/mcvCalendar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/month_calendar_height"
+                android:layout_weight="7"
+                android:background="@color/calendar_bg_color"
+                android:overScrollMode="never"
+                app:month_day_text_size="12"
+                app:month_holiday_color="@color/holiday_text_color"
+                app:month_selected_circle_color="@color/colorPrimary"
+                app:month_selected_circle_today_color="@color/colorPrimary"
+                app:month_show_holiday_hint="true"
+                app:month_show_lunar="false"
+                app:month_show_task_hint="false" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_bar_height"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_toggle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:padding="7dp"
+                    android:src="@mipmap/wt_kaoqinlan" />
+            </RelativeLayout>
+
+            <com.jeek.calendar.widget.calendar.WeekBarView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_bar_height"
+                android:layout_weight="7"
+                android:background="@color/calendar_bg_color"
+                app:week_text_size="@integer/calendar_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/week_calendar_height"
+            android:layout_marginTop="@dimen/week_bar_height"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_behavior="@string/header_float_behavior"
+            android:background="#fff">
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.jeek.calendar.widget.calendar.week.WeekCalendarView
+                android:id="@+id/wcvCalendar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_calendar_height"
+                android:layout_weight="7"
+                android:background="@color/calendar_bg_color"
+                android:overScrollMode="never"
+                app:week_day_text_size="12"
+                app:week_holiday_color="@color/holiday_text_color"
+                app:week_selected_circle_color="@color/colorPrimary"
+                app:week_selected_circle_today_color="@color/colorPrimary"
+                app:week_show_holiday_hint="true"
+                app:week_show_lunar="false"
+                app:week_show_task_hint="false" />
+
+
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <View style="@style/SplitLineStyle" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="课程名称："
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="瘦身第6节"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <View style="@style/SplitLineStyle" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="存课数量："
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="4"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
+            app:layout_behavior="@string/header_scrolling_behavior_week">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@drawable/white_bg"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <View style="@style/SplitLineStyle" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
                     android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="课程名称："
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="瘦身第6节"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <View style="@style/SplitLineStyle" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="存课数量："
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="4"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/white_bg"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_action"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@mipmap/bk_1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginLeft="7dp"
+                                android:text="想要训练的部位"
+                                android:textColor="#333333"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_depart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="胸部"
+                            android:textColor="#0197f8"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <View style="@style/SplitLineStyle"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="15dp">
 
                         <ImageView
-                            android:id="@+id/iv_action"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@mipmap/bk_1" />
+                            android:src="@mipmap/bk_2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginLeft="7dp"
-                            android:text="想要训练的部位"
+                            android:text="动作内容"
                             android:textColor="#333333"
                             android:textSize="16sp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_depart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="胸部"
-                        android:textColor="#0197f8"
-                        android:textSize="16sp" />
+                    <View style="@style/SplitLineStyle"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
 
-                </RelativeLayout>
-
-                <View style="@style/SplitLineStyle"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"/>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@mipmap/bk_2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="7dp"
-                        android:text="动作内容"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_action_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layoutManager="LinearLayoutManager"
+                        app:layout_behavior="@string/header_scrolling_behavior_day" />
 
                 </LinearLayout>
 
-                <View style="@style/SplitLineStyle"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_action_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layoutManager="LinearLayoutManager"
-                    app:layout_behavior="@string/header_scrolling_behavior_day" />
-
             </LinearLayout>
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
 
-    <!--  <android.support.v7.widget.RecyclerView
-          android:id="@+id/rv"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="#fff"
-          app:layoutManager="LinearLayoutManager"
-          app:layout_behavior="@string/header_scrolling_behavior_day" />-->
+        <!--  <android.support.v7.widget.RecyclerView
+              android:id="@+id/rv"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              app:layoutManager="LinearLayoutManager"
+              app:layout_behavior="@string/header_scrolling_behavior_day" />-->
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--app:layoutManager="LinearLayoutManager"-->
-    <!--android:id="@+id/view_pager"-->
-    <!--app:layout_behavior="@string/header_scrolling_behavior"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_marginBottom="84dp"-->
-    <!--/>-->
-</android.support.design.widget.CoordinatorLayout>
+        <!--<android.support.v4.view.ViewPager-->
+        <!--app:layoutManager="LinearLayoutManager"-->
+        <!--android:id="@+id/view_pager"-->
+        <!--app:layout_behavior="@string/header_scrolling_behavior"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="84dp"-->
+        <!--/>-->
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

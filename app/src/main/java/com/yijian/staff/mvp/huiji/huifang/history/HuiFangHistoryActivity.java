@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.experienceclass.index;
+package com.yijian.staff.mvp.huiji.huifang.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,16 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
@@ -25,37 +26,33 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-@Route(path = "/test/17")
-public class ExperienceClassListActivity extends AppCompatActivity {
+public class HuiFangHistoryActivity extends AppCompatActivity {
+    private List<HuiFangInfo> huiFangInfoList = new ArrayList<>();
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
-
-    List<ExperienceClassBean> experienceClassBeanList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_experience_class_list);
+
+        setContentView(R.layout.activity_hui_fang_history);
         ButterKnife.bind(this);
 
         initView();
+
     }
 
     private void initView() {
-        NavigationBar navigationBar = findViewById(R.id.experience_class_navigation_bar);
-        navigationBar.setTitle("体验课课程", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        initComponent();
-        initData();
-    }
 
-    public void initComponent() {
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_history_navigation_bar);
+        navigationBar2.setTitle("回访记录");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        RecyclerView recyclerView = findViewById(R.id.rlv);
+
+
+        RefreshLayout   refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
@@ -74,34 +71,37 @@ public class ExperienceClassListActivity extends AppCompatActivity {
                 refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
             }
         });
-    }
 
-    private void initData(){
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("sex", 0);
-            jsonObject.put("cardName", "原力十周年纪念卡");
-            jsonObject.put("cardType", "时间卡");
-            jsonObject.put("ExperiencedCuont", 2);
-            jsonObject.put("currentOperation", "回访");
+
+            jsonObject.put("name", "朱沙");
+            jsonObject.put("headUrl", "headUrl");
+            jsonObject.put("sex", "男");
+            jsonObject.put("quanyi", "私教课");
+            jsonObject.put("outdateTime", "2018-2-2");
+            jsonObject.put("outdateReason", "工作太忙");
+            jsonObject.put("huifangType", "过期回访");
+            jsonObject.put("huifangReason", "　　中新社北京3月5日电 (记者 唐贵江)农业部部长韩长赋5日在全国两会“部长通道”回答媒体记者提问时表示，近年来中国粮食连年丰收，粮食产量连续5年稳定在1.2万亿斤的台阶上，化肥的使用对粮食增长有重要作用，但不能说是化肥“喂”出来的。2017年，中国的化肥使用实现了负增长，提前三年实现了“十三五”目标，也就是化肥农药使用量的零增长");
             for (int i = 0; i < 10; i++) {
-                ExperienceClassBean experienceClassBean = new ExperienceClassBean(jsonObject);
-                experienceClassBeanList.add(experienceClassBean);
+                HuiFangInfo huiFangInfo = new HuiFangInfo(jsonObject);
+                huiFangInfoList.add(huiFangInfo);
             }
 
 
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             recyclerView.setLayoutManager(layoutmanager);
-            ExperienceClassListAdatper experienceClassListAdatper = new ExperienceClassListAdatper(this, experienceClassBeanList);
-            recyclerView.setAdapter(experienceClassListAdatper);
+            HuiFangHistoryAdapter huiFangHistoryAdapter = new HuiFangHistoryAdapter(this, huiFangInfoList);
+            recyclerView.setAdapter(huiFangHistoryAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
 
         }
     }
 
+    @OnClick(R.id.ll_hui_fang_ren_wu)
+    public void onViewClicked() {
+        finish();
+    }
 }
-

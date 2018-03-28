@@ -66,7 +66,7 @@ public class ReceptionInfo {
 
     @Override
     public String toString() {
-        return "HuiFangInfo{" +
+        return "CoachHuiFangInfo{" +
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", sex='" + sex + '\'' +

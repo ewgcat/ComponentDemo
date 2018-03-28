@@ -19,8 +19,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
 import com.yijian.staff.mvp.message.bean.MessageInfo;
 import com.yijian.staff.util.Logger;
 

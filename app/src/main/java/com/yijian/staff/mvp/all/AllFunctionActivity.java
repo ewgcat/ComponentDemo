@@ -38,9 +38,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private List<MenuItem> vipmanagerList;
     private List<MenuItem> huijikefuList;
     private List<MenuItem> coachList;
-    private List<MenuItem> caokeList;
-    private List<MenuItem> admList;
-    private List<MenuItem> audittaskList;
+//    private List<MenuItem> caokeList;
+//    private List<MenuItem> admList;
+//    private List<MenuItem> audittaskList;
     private List<MenuItem> otherList;
 
     private List<EditItem> mEditList;
@@ -79,9 +79,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         vipmanagerList = MenuHelper.getPreferVipManageList();
         huijikefuList = MenuHelper.getPreferHuiJiKeFuList();
         coachList = MenuHelper.getPreferCoachList();
-        caokeList = MenuHelper.getPreferCaoKeList();
-        admList = MenuHelper.getPreferAdmList();
-        audittaskList = MenuHelper.getPreferAuditTaskList();
+//        caokeList = MenuHelper.getPreferCaoKeList();
+//        admList = MenuHelper.getPreferAdmList();
+//        audittaskList = MenuHelper.getPreferAuditTaskList();
         otherList = MenuHelper.getPreferOtherList();
 
 
@@ -89,9 +89,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
         mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
         mEditList.add(new EditItem(MenuHelper.GROUP_COCAH,  coachList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE,  caokeList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, admList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK,  audittaskList));
+//        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE,  caokeList));
+//        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, admList));
+//        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK,  audittaskList));
         mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
 
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);

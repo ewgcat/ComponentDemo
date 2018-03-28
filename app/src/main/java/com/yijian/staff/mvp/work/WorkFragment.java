@@ -1,7 +1,10 @@
 package com.yijian.staff.mvp.work;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +38,7 @@ import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.ConstantUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -71,6 +75,7 @@ public class WorkFragment extends Fragment {
     private List<MenuItem> menuItemList = new ArrayList<>();
 
     private MenuRecyclerGridAdapter adapter;
+    private RecyclerUpdateReceiver mRecyclerUpdateReceiver;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -122,6 +127,13 @@ public class WorkFragment extends Fragment {
         adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(), true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         recyclerView.setAdapter(adapter);
+
+        //注册刷新数据的广播
+        mRecyclerUpdateReceiver = new RecyclerUpdateReceiver();
+        IntentFilter filter=new IntentFilter();
+        filter.setPriority(1009);
+        filter.addAction(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA);
+        getActivity().registerReceiver(mRecyclerUpdateReceiver,filter);
 
         startRotateAnimation();
 
@@ -227,12 +239,6 @@ public class WorkFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        initMenu();
-        initData();
-    }
 
     private void initMenu() {
         List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
@@ -242,6 +248,26 @@ public class WorkFragment extends Fragment {
         }
         initAllFunctionMenuItem();
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 用于执行刷新数据的广播接收器
+     */
+    private class RecyclerUpdateReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            initMenu();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        //注销刷新数据的广播
+        if(mRecyclerUpdateReceiver!=null){
+            getActivity().unregisterReceiver(mRecyclerUpdateReceiver);
+        }
+        super.onDestroy();
     }
 }
 

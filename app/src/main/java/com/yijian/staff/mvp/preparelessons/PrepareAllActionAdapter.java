@@ -1,15 +1,12 @@
 package com.yijian.staff.mvp.preparelessons;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.preparelessons.createlession.ActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
 
 import java.util.List;
 

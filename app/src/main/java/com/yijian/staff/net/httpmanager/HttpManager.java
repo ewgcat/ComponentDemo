@@ -72,4 +72,34 @@ public class HttpManager {
         Observable<JSONObject> observable = apiService.getDataList(GET_TODAY_VIPER_LIST_URL, headers, params);
         execute(observable, observer);
     }
+
+
+
+
+
+    //接待人信息
+    public static void getReceptionInfo(Map<String, String> headers, Observer<JSONObject> observer){
+        Observable<JSONObject> receptionInfo = apiService.getDataOnlyToken(GET_RECEPTION_INFO, headers);
+        execute(receptionInfo,observer);
+    }
+
+    public static void getReceptionRecordList(Map<String, String> headers, Map<String, String> params, Observer<JSONObject> observer){
+        Observable<JSONObject> dataList = apiService.getDataList(GET_RECEPTION_RECORD, headers, params);
+        execute(dataList,observer);
+    }
+
+
+    //接待人的信息
+    public static final String GET_RECEPTION_INFO=BuildConfig.HOST+"/reception/person";
+
+
+    //接待记录
+    public static final String GET_RECEPTION_RECORD=BuildConfig.HOST+"/reception/record";
+
+
+    // //接待---问卷调查
+    public static String GET_RECEPTION_QUESTION = BuildConfig.HOST + "/qs/edit";
+
+
+
 }

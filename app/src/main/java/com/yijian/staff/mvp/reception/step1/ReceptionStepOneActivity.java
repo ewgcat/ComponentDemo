@@ -16,6 +16,8 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
@@ -24,13 +26,19 @@ import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
 import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
+import org.json.JSONObject;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener {
 
@@ -39,6 +47,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     private Step1QuestAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     private List<Step1Bean> step1bean;
+    private RecptionStep1Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +56,8 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         setContentView(R.layout.activity_reception_step_one);
 
         initView();
-
+        presenter = new RecptionStep1Presenter(this);
+        presenter.getQuestion();
     }
 
     private void initView() {
@@ -169,6 +179,8 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
 //        datas = Arrays.asList(questionEntry0,questionEntry1,questionEntry2,questionEntry3,questionEntry4,questionEntry5,questionEntry6);
         Step1WrapBean bean = new Gson().fromJson(Step1MockData.step1Data, Step1WrapBean.class);
         step1bean = bean.getStep1();
+
+
 
     }
 

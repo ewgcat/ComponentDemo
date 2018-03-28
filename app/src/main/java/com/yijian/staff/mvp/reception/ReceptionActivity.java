@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
@@ -23,11 +25,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener ,ReceptionContract.View{
 
     private List<ReceptionInfo> mReceptionInfoList=new ArrayList<>();
 
     private RecyclerView recyclerView;
+    private ReceptionPresenter presenter;
+    private TextView tvName;
+    private TextView tvSex;
+    private TextView tvPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,10 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         setContentView(R.layout.activity_reception);
         initView();
+        presenter = new ReceptionPresenter(this);
+
+        presenter.setView(this);
+        presenter.getRecptionerInfo();
     }
 
     private void initView() {
@@ -42,6 +52,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         navigationBar.setTitle("接待", "#ffffff");
         navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
         navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+
+
+        tvName = findViewById(R.id.tv_name);
+        tvSex = findViewById(R.id.tv_sex);
+        tvPhone = findViewById(R.id.tv_phone);
 
         findViewById(R.id.tv_jiedai).setOnClickListener(this);
         findViewById(R.id.tv_stopJieDai).setOnClickListener(this);
@@ -106,4 +121,13 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+
+
+    @Override
+    public void showRecptionInfo(RecptionerInfoBean bean) {
+        tvName.setText(""+bean.getName());
+        tvSex.setText(""+bean.getSex());
+        tvPhone.setText(""+bean.getMobile());
+
+    }
 }

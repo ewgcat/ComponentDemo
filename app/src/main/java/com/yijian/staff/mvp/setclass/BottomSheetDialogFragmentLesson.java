@@ -20,9 +20,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.setclass.chronometer.ChronometerWithMillis;
 
 import java.lang.reflect.Field;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by The_P on 2018/3/26.

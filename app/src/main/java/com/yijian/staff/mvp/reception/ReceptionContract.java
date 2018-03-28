@@ -13,6 +13,6 @@ public interface ReceptionContract {
 
     interface Presenter{
        void getRecptionerInfo();
-        void getRecptionRecord();
+        void getRecptionRecord(boolean isRefresh);
     }
 }

@@ -45,6 +45,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         presenter.setView(this);
         presenter.getRecptionerInfo();
+        presenter.  getRecptionRecord(true);
     }
 
     private void initView() {

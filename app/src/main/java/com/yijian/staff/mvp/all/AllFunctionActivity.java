@@ -35,7 +35,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private List<MenuItem> vipmanagerList;
     private List<MenuItem> huijikefuList;
     private List<MenuItem> coachList;
-//    private List<MenuItem> caokeList;
+    //    private List<MenuItem> caokeList;
 //    private List<MenuItem> admList;
 //    private List<MenuItem> audittaskList;
     private List<MenuItem> otherList;
@@ -76,20 +76,24 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         vipmanagerList = MenuHelper.getPreferVipManageList();
         huijikefuList = MenuHelper.getPreferHuiJiKeFuList();
         coachList = MenuHelper.getPreferCoachList();
-//        caokeList = MenuHelper.getPreferCaoKeList();
-//        admList = MenuHelper.getPreferAdmList();
-//        audittaskList = MenuHelper.getPreferAuditTaskList();
         otherList = MenuHelper.getPreferOtherList();
 
 
+        //非常用功能
         mEditList = new ArrayList<>();
-        mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_COCAH,  coachList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE,  caokeList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, admList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK,  audittaskList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
+        if (vipmanagerList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
+        }
+        if (huijikefuList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
+        }
+        if (coachList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_COCAH, coachList));
+        }
+        if (otherList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
+        }
+
 
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);
 
@@ -182,7 +186,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 mListHeaderWrapper.notifyDataSetChanged();
             }
         });
-        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY,  frequentlyList));
+        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, frequentlyList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
 

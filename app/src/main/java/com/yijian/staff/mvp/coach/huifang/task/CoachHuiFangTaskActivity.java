@@ -75,10 +75,7 @@ public class CoachHuiFangTaskActivity extends AppCompatActivity {
         fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 5));
         fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 6));
         fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 7));
-        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 8));
-        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 9));
-        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 10));
-        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 11));
+
 
 
         CoachHuiFangPagerAdapter coachHuiFangPagerAdapter = new CoachHuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);

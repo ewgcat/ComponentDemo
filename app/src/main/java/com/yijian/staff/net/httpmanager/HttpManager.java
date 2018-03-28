@@ -3,18 +3,22 @@ package com.yijian.staff.net.httpmanager;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.requestbody.savemenu.MenuBean;
 import com.yijian.staff.net.response.ResultObserver;
 
 
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.http.HeaderMap;
 
 public class HttpManager {
 
@@ -38,6 +42,9 @@ public class HttpManager {
 
     //工作台 首页图标
     public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
+
+    //保存 图标位置
+    public static String SAVE_MENU_CHANGE_URL = BuildConfig.HOST + "menu/common/item/save";
 
 
     //公用方法
@@ -82,6 +89,12 @@ public class HttpManager {
     // 首页图标
     public static void getIndexMenuList(Map<String, String> headers, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
+        execute(observable, observer);
+    }
+
+    //保存menu编辑状态
+    public static void saveMenuChange(@HeaderMap Map<String, String> headers, MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.saveMenuChange(SAVE_MENU_CHANGE_URL,headers,menuRequestBody);
         execute(observable, observer);
     }
 

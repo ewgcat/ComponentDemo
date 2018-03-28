@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.savemenu.MenuBean;
+import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
+import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.MenuRecyclerListAdapter;
@@ -23,7 +29,10 @@ import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 import com.yijian.staff.util.ConstantUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Route(path = "/test/all")
@@ -196,9 +205,12 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         mListHeaderWrapper.releaseDragManager();
+
         if (mListHeaderWrapper.isHasDragChanged() || hasChangedListData) {
             sendBroadcast(new Intent(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA));
         }
+
+
         super.onDestroy();
     }
 
@@ -224,6 +236,37 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     mListAdapter.notifyDataSetChanged();
                     mListHeaderWrapper.notifyDataSetChanged();
                     rightTv.setText("编辑");
+
+                    HashMap<String, String> map = new HashMap<>();
+                    User user = DBManager.getInstance().queryUser();
+                    map.put("token", user.getToken());
+
+                    JSONObject o = new JSONObject();
+                    List<MenuBean> list = new ArrayList<>();
+                    if (frequentlyList != null) {
+                            for (int i = 0; i < frequentlyList.size(); i++) {
+                                MenuItem menuItem = frequentlyList.get(i);
+                                long itemId = menuItem.getItemId();
+                                MenuBean menuBean = new MenuBean(itemId,i);
+                                list.add(menuBean);
+                            }
+
+
+                    }
+
+                    HttpManager.saveMenuChange(map, new MenuRequestBody(list), new ResultObserver() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+
+                        }
+
+                        @Override
+                        public void onFail(String msg) {
+
+                        }
+                    });
+
+
                 }
 
                 break;

@@ -7,13 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.tab.MenuHelper;
-import com.yijian.staff.tab.adapter.MenuHeaderRecyclerGridAdapter;
 import com.yijian.staff.tab.adapter.MenuRecyclerListAdapter;
 import com.yijian.staff.tab.adapter.MenuRecyclerListHeaderWrapper;
 import com.yijian.staff.tab.entity.EditItem;
@@ -23,7 +21,6 @@ import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 import com.yijian.staff.util.ConstantUtil;
-import com.yijian.staff.util.system.StatusBarUtils;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
@@ -101,10 +98,10 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onAddClick(View v, MenuItem item, int position) {
                 boolean isContain = false;
-                String group = item.getTitle();
+                String group = item.getGroup();
                 for (int i = 0; i < frequentlyList.size(); i++) {
                     MenuItem favMenuItem = frequentlyList.get(i);
-                    if (favMenuItem.getTitle().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
                         isContain = true;
                         break;
                     }
@@ -123,7 +120,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             public void onDeleteClick(View v, MenuItem item, int position) {
 
                 //从常用中删除
-                String group = item.getTitle();
+                String group = item.getGroup();
                 for (int i = 0; i < mEditList.size(); i++) {
                     EditItem editItem = mEditList.get(i);
                     if (editItem.getGroup().equals(group)) {
@@ -139,7 +136,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
 
                 for (int i = 0; i < frequentlyList.size(); i++) {
                     MenuItem favMenuItem = frequentlyList.get(i);
-                    if (favMenuItem.getTitle().equals(group) && favMenuItem.getName().equals(item.getName())) {
+                    if (favMenuItem.getGroup().equals(group) && favMenuItem.getName().equals(item.getName())) {
                         frequentlyList.remove(favMenuItem);
                         mListHeaderWrapper.notifyDataSetChanged();
                     }
@@ -167,7 +164,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onDeleteClick(View v, MenuItem item, int position) {
                 //从常用中删除
-                String group = item.getTitle();
+                String group = item.getGroup();
                 for (int i = 0; i < mEditList.size(); i++) {
                     EditItem editItem = mEditList.get(i);
                     if (editItem.getGroup().equals(group)) {

@@ -1,6 +1,9 @@
 package com.yijian.staff.tab.entity;
 
 import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
+import com.yijian.staff.util.JsonUtil;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 
@@ -26,12 +29,24 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     private String name;
     private String icon;
     private String path;
-    private String title;
+    private String group;
     private int count;
     private int  type;//0 已添加在常用列表，1未添加在常用列表
 
     private int viewType;
     private int itemId;
+
+    public MenuItem() {
+    }
+
+    public MenuItem(JSONObject jsonObject){
+       this. name=  JsonUtil.getString(jsonObject,"name");
+       this. icon=  JsonUtil.getString(jsonObject,"icon");
+       this. path=  JsonUtil.getString(jsonObject,"path");
+       this. group=  JsonUtil.getString(jsonObject,"group");
+       this. count=  JsonUtil.getInt(jsonObject,"count");
+       this. type=  JsonUtil.getInt(jsonObject,"type");
+    }
 
     public int getCount() {
         return count;
@@ -82,12 +97,12 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
         this.path = path;
     }
 
-    public String getTitle() {
-        return title;
+    public String getGroup() {
+        return group;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
 

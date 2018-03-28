@@ -28,10 +28,16 @@ public class HttpManager {
     public static String LOGIN_URL = BuildConfig.HOST + "user/login";
     public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+
+    //会籍（客服） 获取全部会员列表
     public static String GET_ALL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/list";
 
     //会籍 会员信息 今日来访列表
     public static String GET_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/today/visit/list";
+
+
+    //工作台 首页图标
+    public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
 
 
     //公用方法
@@ -72,4 +78,62 @@ public class HttpManager {
         Observable<JSONObject> observable = apiService.getDataList(GET_TODAY_VIPER_LIST_URL, headers, params);
         execute(observable, observer);
     }
+
+    // 首页图标
+    public static void getIndexMenuList(Map<String, String> headers, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
+        execute(observable, observer);
+    }
+
+    //公共
+
+    // post没请求头没有参数
+    public static void postNoHeaderNoParam(String url, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.postNoHeaderNoParam(url);
+        execute(observable, observer);
+    }
+
+    // post没请求头
+    public static void postHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, header);
+        execute(observable, observer);
+    }
+
+    // post没请求头
+    public static void postNoHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.postNoHeaderHasParam(url, param);
+        execute(observable, observer);
+    }
+
+    // post没请求头
+    public static void postHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, header, param);
+        execute(observable, observer);
+    }
+
+    // get没请求头没有参数
+    public static void getNoHeaderNoParam(String url, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getNoHeaderNoParam(url);
+        execute(observable, observer);
+    }
+
+    // get没请求头
+    public static void getHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, header);
+        execute(observable, observer);
+    }
+
+    // get没请求头
+    public static void getNoHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getNoHeaderHasParam(url, param);
+        execute(observable, observer);
+    }
+
+    // get没请求头
+    public static void getHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, header, param);
+        execute(observable, observer);
+    }
+
+
 }

@@ -18,7 +18,7 @@ public class CunKeActivity extends AppCompatActivity {
         NavigationBar2   navigationBar2 = (NavigationBar2) findViewById(R.id.cun_ke_navigation_bar2);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("私教课存课");
+        navigationBar2.setTitle("私教课");
 
     }
 }

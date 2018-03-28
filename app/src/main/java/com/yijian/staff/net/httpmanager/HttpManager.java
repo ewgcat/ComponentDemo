@@ -72,4 +72,7 @@ public class HttpManager {
         Observable<JSONObject> observable = apiService.getDataList(GET_TODAY_VIPER_LIST_URL, headers, params);
         execute(observable, observer);
     }
+
+    //Get
+
 }

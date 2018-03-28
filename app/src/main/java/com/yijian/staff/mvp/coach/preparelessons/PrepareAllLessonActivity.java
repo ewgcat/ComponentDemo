@@ -7,8 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.preparelessons.createlession.ActionBean;
-import com.yijian.staff.mvp.preparelessons.createlession.SubActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
+import com.yijian.staff.mvp.preparelessons.PrepareAllActionAdapter;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 

@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 
 import org.json.JSONObject;
@@ -92,5 +93,6 @@ public interface ApiService {
 
     @GET
     Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
 
 }

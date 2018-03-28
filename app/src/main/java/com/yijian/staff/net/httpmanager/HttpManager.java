@@ -93,19 +93,19 @@ public class HttpManager {
         execute(observable, observer);
     }
 
-    // post没请求头
+    // post有头无参
     public static void postHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, header);
         execute(observable, observer);
     }
 
-    // post没请求头
+    // post无头有参
     public static void postNoHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.postNoHeaderHasParam(url, param);
         execute(observable, observer);
     }
 
-    // post没请求头
+    // post有头有参
     public static void postHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, header, param);
         execute(observable, observer);
@@ -117,19 +117,19 @@ public class HttpManager {
         execute(observable, observer);
     }
 
-    // get没请求头
+    // get有头无参
     public static void getHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, header);
         execute(observable, observer);
     }
 
-    // get没请求头
+    // get无头有参
     public static void getNoHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.getNoHeaderHasParam(url, param);
         execute(observable, observer);
     }
 
-    // get没请求头
+    // get有头有参
     public static void getHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, header, param);
         execute(observable, observer);

@@ -48,7 +48,14 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
     ActionViewAdapter actionViewAdapter; //装载RecyclerView的适配器Adapter
     EditActionObservable editActionObservable = new EditActionObservable();
+    boolean isEdit = false; //当前状态是否处于编辑状态
+    public static int CLICK_HEADER = 0; //点击头部时的分发
+    public static int CLICK_SURE = 1;  //点击确认时的分发
 
+
+    public boolean isEdit() {
+        return isEdit;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,26 +185,25 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
     @OnClick({R.id.lin_edit, R.id.lin_delete, R.id.lin_sure})
     public void click(View v) {
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("type","0");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
         switch (v.getId()) {
             case R.id.lin_edit: //编辑
+                isEdit = true;
                 setLinOprationVisibility(true);
-                map.put("type","0");
+                map.put("type", "0");
                 editActionObservable.notifyObservers(map);
 
                 break;
             case R.id.lin_delete: //删除
                 setLinOprationVisibility(true);
-//                map.put("type","1");
-//                editActionObservable.notifyObservers(1);
-
                 deleteActionList();
 
                 break;
             case R.id.lin_sure: //确定
+                isEdit = false;
                 setLinOprationVisibility(false);
-                map.put("type","2");
+                map.put("type", "2");
                 editActionObservable.notifyObservers(map);
 
                 break;
@@ -206,6 +212,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
     /**
      * 设置编辑的显示和隐藏
+     *
      * @param isEdit
      */
     private void setLinOprationVisibility(boolean isEdit) {
@@ -216,6 +223,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
     /**
      * 实时更新分组数据
+     *
      * @param itemPosition
      * @param actionBean
      */
@@ -226,7 +234,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     /**
      * 添加分组
      */
-    public void addActionBeanList(){
+    public void addActionBeanList() {
         //第三组
         ActionBean actionBean4 = new ActionBean();
 
@@ -239,9 +247,9 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                Map<String,String> map = new HashMap<String,String>();
-                map.put("type","4");
-                map.put("sumItemSize",recyclerViewActionBean.size()+"");
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("type", "4");
+                map.put("sumItemSize", recyclerViewActionBean.size() + "");
                 editActionObservable.notifyObservers(map);
             }
         });
@@ -254,30 +262,30 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         editActionObservable.deleteObservers();
 
         List<ActionBean> tempRecyclerViewActionBean = new ArrayList<ActionBean>();
-        Collections.addAll(tempRecyclerViewActionBean,  new  ActionBean[recyclerViewActionBean.size()]);
-        Collections.copy(tempRecyclerViewActionBean,recyclerViewActionBean);
+        Collections.addAll(tempRecyclerViewActionBean, new ActionBean[recyclerViewActionBean.size()]);
+        Collections.copy(tempRecyclerViewActionBean, recyclerViewActionBean);
 
-        for(ActionBean actionBean : tempRecyclerViewActionBean){
+        for (ActionBean actionBean : tempRecyclerViewActionBean) {
             int index = recyclerViewActionBean.indexOf(actionBean);
             ActionBean actionBean1 = recyclerViewActionBean.get(index);
-            if(actionBean.isCheckGroup()){
+            if (actionBean.isCheckGroup()) {
                 recyclerViewActionBean.remove(actionBean);
-            }else{
+            } else {
                 List<SubActionBean> subActionBeanList = actionBean.getSubActionBeans();
 
                 List<SubActionBean> tempSubActionBeanList = new ArrayList<SubActionBean>();
                 for (int i = 0; i < subActionBeanList.size(); i++) {
-                    SubActionBean subActionBean  = subActionBeanList.get(i);
+                    SubActionBean subActionBean = subActionBeanList.get(i);
                     if (subActionBean.isCheckChild()) {
                         tempSubActionBeanList.add(subActionBean);
                     }
                 }
 
                 List<SubActionBean> rvActionBeanList = actionBean1.getSubActionBeans();
-                for(SubActionBean tempSubActionBean : tempSubActionBeanList){
+                for (SubActionBean tempSubActionBean : tempSubActionBeanList) {
                     rvActionBeanList.remove(tempSubActionBean);
                 }
-                recyclerViewActionBean.set(index,actionBean1);
+                recyclerViewActionBean.set(index, actionBean1);
             }
         }
 
@@ -288,8 +296,8 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
             @Override
             public void run() {
 
-                Map<String,String> map = new HashMap<String,String>();
-                map.put("type","0");
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("type", "5");
                 editActionObservable.notifyObservers(map);
             }
         });
@@ -297,13 +305,18 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     }
 
     /**
-     * 监听各分组的隐藏和显示
+     * 点击头部 监听各分组的隐藏和显示
+     *
      * @param itemPosition
      */
-    public void notifyClickHeader(int itemPosition){
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("type","3");
-        map.put("itemPosition",itemPosition+"");
+    public void notifyClickHeader(int itemPosition, int eventType) {
+        Map<String, String> map = new HashMap<String, String>();
+        if (eventType == CLICK_HEADER) {
+            map.put("type", "3");
+        } else {
+            map.put("type", "6");
+        }
+        map.put("itemPosition", itemPosition + "");
         editActionObservable.notifyObservers(map);
     }
 

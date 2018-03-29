@@ -105,13 +105,10 @@ public interface ApiService {
     //post 表单
     @POST
     Observable<JSONObject> postNoHeaderNoParam(@Url String url);
-    @FormUrlEncoded
     @POST
     Observable<JSONObject> postHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
-    @FormUrlEncoded
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
-    @FormUrlEncoded
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 

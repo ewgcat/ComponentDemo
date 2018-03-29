@@ -20,15 +20,21 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -37,7 +43,6 @@ import butterknife.OnClick;
 
 public class CoachSearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.rcl)
     RecyclerView rcl;
@@ -47,7 +52,8 @@ public class CoachSearchActivity extends AppCompatActivity {
     private  int pageNum = 1;
     private  int pageSize = 10;
     private int pages;
-
+    private List<ViperBean> viperBeanList=new ArrayList<>();
+    private CoachSearchViperListAdapter adapter;
 
 
     @Override
@@ -56,21 +62,24 @@ public class CoachSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coach_search);
         ButterKnife.bind(this);
 
-
+        initComponent();
 
 
     }
 
 
     public void initComponent() {
+        etSearch = findViewById(R.id.et_search);
+
         etSearch.setHintTextColor(Color.parseColor("#ffffff"));
 
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                Logger.i("TEST","actionId="+actionId);
+                Logger.i("TEST","actionId="+EditorInfo.IME_ACTION_SEARCH);
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-
                         refresh();
                         break;
                 }
@@ -83,7 +92,8 @@ public class CoachSearchActivity extends AppCompatActivity {
         rcl.setLayoutManager(layoutmanager);
 
         //TODO 设置适配器
-
+        adapter = new CoachSearchViperListAdapter(this, viperBeanList);
+        rcl.setAdapter(adapter);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -130,6 +140,18 @@ public class CoachSearchActivity extends AppCompatActivity {
 
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            ViperBean viperBean = new ViperBean(jsonObject);
+                            viperBeanList.add(viperBean);
+                        } catch (JSONException e) {
+
+
+                        }
+                    }
+                    adapter.update(viperBeanList);
                 }
 
                 @Override
@@ -163,7 +185,18 @@ public class CoachSearchActivity extends AppCompatActivity {
 
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            ViperBean viperBean = new ViperBean(jsonObject);
+                            viperBeanList.add(viperBean);
+                        } catch (JSONException e) {
 
+
+                        }
+                    }
+                    adapter.update(viperBeanList);
                 }
 
                 @Override

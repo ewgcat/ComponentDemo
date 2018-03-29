@@ -12,8 +12,6 @@ import org.json.JSONObject;
 public class ViperBean {
 
 
-
-
     /**
      birthday (string, optional): 生日 ,
      birthdayType (string, optional): 生日类型 ,
@@ -38,30 +36,33 @@ public class ViperBean {
     private String useCar; //使用车辆
     private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
-    private String birthday;
-    private String birthdayType;
-    private String name;
-    private String sex;
-    private String memberId;
-    private String headImg;
-    private String cardName;
-    private String cardType;
-    private String contractBalance;
-    private String contractDeadline;
-    private String contractId;
-    private String privateCoach;
-    private String favorCourse;
-    private String favorTeacher;
-    private int purchaseCount;
-    private String registerTime;
+    private String birthday;//生日
+    private String birthdayType;//生日类型
+    private String name;//会员姓名
+    private String viperRole;//会员角色 普通会员
+
+    private String sex;//性别
+    private String memberId;//会员id
+    private String headImg;//头像图片路径
+    private String cardName;//卡名称
+    private String cardType;//卡类别
+    private String contractBalance;//合同余额
+    private String contractDeadline;//合同到期日
+    private String contractId;//合同ID
+    private String privateCoach;//私教
+    private String favorCourse;//喜欢的课程
+    private String favorTeacher;//喜欢的教练
+    private int purchaseCount;//购买次数
+    private String registerTime;//入籍时间
     private String bePresentTime; //到场时间
     private String departureTime; //离场时间
-    private String privateClass;
+    private String privateClass;//私教课
 
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
          this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
          this.name = JsonUtil.getString(jsonObject, "name");
+         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
          this.sex = JsonUtil.getString(jsonObject, "sex");
          this.memberId = JsonUtil.getString(jsonObject, "memberId");
          this.headImg = JsonUtil.getString(jsonObject, "headImg");
@@ -277,5 +278,13 @@ public class ViperBean {
 
     public void setPrivateClass(String privateClass) {
         this.privateClass = privateClass;
+    }
+
+    public String getViperRole() {
+        return viperRole;
+    }
+
+    public void setViperRole(String viperRole) {
+        this.viperRole = viperRole;
     }
 }

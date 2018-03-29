@@ -38,6 +38,15 @@ public class HttpManager {
 
     //会籍 会员信息 今日来访列表
     public static String GET_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/today/visit/list";
+    //会籍  过期向会员列表
+    public static String GET_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/expire/list";
+
+    //会籍  意向会员列表
+    public static String GET_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "/customer-service/member/intention/list";
+
+    //会籍  潜在会员列表
+    public static String GET_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "/customer-service/member/potential/list";
+
 
 
     //工作台 首页图标

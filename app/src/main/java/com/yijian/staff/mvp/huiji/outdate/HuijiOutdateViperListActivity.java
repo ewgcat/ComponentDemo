@@ -69,10 +69,11 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initTitle();
-        initList();
+//        initList();
+        initView();
     }
 
-    private void initList() {
+    /*private void initList() {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("headerUrl", "");
@@ -102,7 +103,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     private void initTitle() {
         NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
@@ -112,7 +113,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
 
     }
 
-    private void initView(View view) {
+    private void initView() {
         //设置RecyclerView 布局
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
@@ -161,7 +162,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);

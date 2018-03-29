@@ -11,12 +11,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.huiji.outdate.HuijiOutdateViperListAdapter;
+import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -48,6 +53,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -58,6 +64,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class HuiJiSearchActivity extends AppCompatActivity {
 
@@ -72,22 +80,33 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     SmartRefreshLayout refreshLayout;
     private int pages;
 
+    private HuiJiVipSearchAdapter huiJiVipSearchAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hui_ji_search);
         ButterKnife.bind(this);
 
-
-
-
+        initView();
+        initData();
     }
 
-
-    public void initComponent() {
+    private void initView() {
+        //设置RecyclerView 布局
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rcl.setLayoutManager(layoutmanager);
+        huiJiVipSearchAdapter = new HuiJiVipSearchAdapter();
+        rcl.setAdapter(huiJiVipSearchAdapter);
+        initComponent();
+
+        Disposable disposable = RxBus.getDefault().toDefaultFlowable(HuijiViperFilterBean.class, new Consumer<HuijiViperFilterBean>() {
+            @Override
+            public void accept(HuijiViperFilterBean filterBean) throws Exception {
+                refresh();
+            }
+        });
 
         //TODO 设置适配器
 
@@ -106,6 +125,15 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initData(){
+        List<Object> dataList = new ArrayList<Object>();
+        huiJiVipSearchAdapter.resetList(dataList);
+    }
+
+
+    public void initComponent() {
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -132,8 +160,6 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         Map<String, String> header = new HashMap<>();
 
         Map<String, String> params = new HashMap<>();
-
-
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();

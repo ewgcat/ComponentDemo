@@ -19,10 +19,11 @@ import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
+import com.yijian.staff.util.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,11 +32,13 @@ import java.util.List;
 
 public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearchViperListAdapter.ViewHolder> {
 
-    private List<CoachSearchViperBean> viperBeanList = new ArrayList<CoachSearchViperBean>();
+    private static final String TAG=CoachSearchViperListAdapter.class.getSimpleName();
+    private List<CoachSearchViperBean> viperBeanList;
     private Context context;
 
-    public CoachSearchViperListAdapter(Context context) {
+    public CoachSearchViperListAdapter(Context context, List<CoachSearchViperBean> viperBeanList) {
         this.context = context;
+        this.viperBeanList = viperBeanList;
     }
 
     @Override
@@ -46,10 +49,8 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
     }
 
     public void update(List<CoachSearchViperBean> viperBeanList) {
-        this.viperBeanList.clear();
-        this.viperBeanList.addAll(viperBeanList);
+        this.viperBeanList = viperBeanList;
         notifyDataSetChanged();
-        System.out.print("sdfsdfdsfsf");
     }
 
 
@@ -57,13 +58,19 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
     public void onBindViewHolder(CoachSearchViperListAdapter.ViewHolder holder, int position) {
         CoachSearchViperBean viperBean = viperBeanList.get(position);
 
+
         holder.tv_name.setText(viperBean.getName());
-        holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        holder.iv_gender.setImageResource("1".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         Glide.with(context).load(viperBean.getHeadImg()).into(holder.iv_header);
         String viperRole = viperBean.getViperRole();
         if (TextUtils.isEmpty(viperRole)) {
-
+            holder.ll_zhengshi_viper.setVisibility(View.GONE);
+            holder.ll_guoqi_viper.setVisibility(View.GONE);
+            holder.ll_qianzai_viper.setVisibility(View.GONE);
+            holder.ll_yixiang_viper.setVisibility(View.GONE);
         } else {
+            holder.tv_viper_role.setText(viperBean.getViperRole());
+
             if (viperRole.equals("普通会员")) {
 
                 holder.ll_zhengshi_viper.setVisibility(View.VISIBLE);
@@ -71,7 +78,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.ll_qianzai_viper.setVisibility(View.GONE);
                 holder.ll_yixiang_viper.setVisibility(View.GONE);
 
-                holder.tv_viper_role.setText(viperBean.getViperRole());
                 holder.zhengshi_tv_cardName.setText(viperBean.getCardName());
                 holder.zhengshi_tv_card_type.setText(viperBean.getCardType());
                 holder.zhengshi_tv_private_class.setText(viperBean.getPrivateCourse());
@@ -107,7 +113,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.qianzai_tv_interestHobby.setText(viperBean.getHobby());
                 holder.qianzai_tv_useCar.setText(viperBean.getUseCar());
 
-                //回访
+                //TODO 电话回访
                 holder.qianzai_lin_visit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -119,6 +125,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.qianzai_lin_invitation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        context.startActivity(new Intent(context, InvateIndexActivity.class));
 
                     }
                 });
@@ -140,7 +147,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         context.startActivity(new Intent(context, NoSearchBarCoachClassBaojiaActivity.class));
                     }
                 });
-                //回访
+                //TODO 电话回访
                 holder. yixiang_lin_protect_seven.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -150,7 +157,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder. yixiang_lin_invitation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, ExperienceClassInvateActivity.class));
+                        context.startActivity(new Intent(context, InvateIndexActivity.class));
                     }
                 });
 
@@ -166,6 +173,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.guoqi_tv_history_lesson.setText(viperBean.getHistoryCourse());
                 holder.guoqi_tv_outDate.setText(viperBean.getDeadline());
                 holder.guoqi_tv_outDate_reason.setText(viperBean.getExpiryReason());
+                //TODO 电话回访
                 holder.guoqi_lin_huifan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

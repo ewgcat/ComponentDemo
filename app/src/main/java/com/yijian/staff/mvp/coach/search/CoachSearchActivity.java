@@ -2,6 +2,8 @@ package com.yijian.staff.mvp.coach.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,10 +52,10 @@ public class CoachSearchActivity extends AppCompatActivity {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
-    private  int pageNum = 1;
-    private  int pageSize = 1;
+    private int pageNum = 1;
+    private int pageSize = 1;
     private int pages;
-    private List<CoachSearchViperBean> viperBeanList=new ArrayList<>();
+    private List<CoachSearchViperBean> viperBeanList = new ArrayList<>();
     private CoachSearchViperListAdapter adapter;
 
 
@@ -105,8 +107,9 @@ public class CoachSearchActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum=1;
-                pageSize=10;
+                pageNum = 1;
+                pageSize = 1;
+                viperBeanList.clear();
                 refresh();
             }
 
@@ -133,7 +136,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
             header.put("token", token);
-            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
+            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
@@ -147,22 +150,25 @@ public class CoachSearchActivity extends AppCompatActivity {
                             CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
                             viperBeanList.add(viperBean);
                         } catch (JSONException e) {
-                            Logger.i(TAG,e.toString());
-
+                            Logger.i(TAG, e.toString());
                         }
                     }
+
                     adapter.update(viperBeanList);
+
+
                 }
 
                 @Override
                 public void onFail(String msg) {
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    Toast.makeText(CoachSearchActivity.this,msg,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoachSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
     }
+
     private void loadMore() {
         Map<String, String> header = new HashMap<>();
 
@@ -179,7 +185,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
             header.put("token", token);
-            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
+            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -205,7 +211,7 @@ public class CoachSearchActivity extends AppCompatActivity {
                 public void onFail(String msg) {
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                    Toast.makeText(CoachSearchActivity.this,msg,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoachSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
         }

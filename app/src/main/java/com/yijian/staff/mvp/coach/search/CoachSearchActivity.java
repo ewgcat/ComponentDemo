@@ -25,19 +25,25 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class CoachSearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_search)
+    private static final String TAG = CoachSearchActivity.class.getSimpleName();
     EditText etSearch;
     @BindView(R.id.rcl)
     RecyclerView rcl;
@@ -45,9 +51,10 @@ public class CoachSearchActivity extends AppCompatActivity {
     SmartRefreshLayout refreshLayout;
 
     private  int pageNum = 1;
-    private  int pageSize = 10;
+    private  int pageSize = 1;
     private int pages;
-
+    private List<CoachSearchViperBean> viperBeanList=new ArrayList<>();
+    private CoachSearchViperListAdapter adapter;
 
 
     @Override
@@ -56,13 +63,15 @@ public class CoachSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coach_search);
         ButterKnife.bind(this);
 
-
+        initComponent();
 
 
     }
 
 
     public void initComponent() {
+        etSearch = findViewById(R.id.et_search);
+
         etSearch.setHintTextColor(Color.parseColor("#ffffff"));
 
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -70,7 +79,6 @@ public class CoachSearchActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-
                         refresh();
                         break;
                 }
@@ -83,7 +91,8 @@ public class CoachSearchActivity extends AppCompatActivity {
         rcl.setLayoutManager(layoutmanager);
 
         //TODO 设置适配器
-
+        adapter = new CoachSearchViperListAdapter(this, viperBeanList);
+        rcl.setAdapter(adapter);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -109,6 +118,7 @@ public class CoachSearchActivity extends AppCompatActivity {
     }
 
     private void refresh() {
+        Map<String, String> header = new HashMap<>();
         Map<String, String> params = new HashMap<>();
 
 
@@ -122,14 +132,26 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageSize", pageSize + "");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
 
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
+                            viperBeanList.add(viperBean);
+                        } catch (JSONException e) {
+                            Logger.i(TAG,e.toString());
+
+                        }
+                    }
+                    adapter.update(viperBeanList);
                 }
 
                 @Override
@@ -142,6 +164,8 @@ public class CoachSearchActivity extends AppCompatActivity {
 
     }
     private void loadMore() {
+        Map<String, String> header = new HashMap<>();
+
         Map<String, String> params = new HashMap<>();
 
         String name = etSearch.getText().toString().trim();
@@ -154,8 +178,8 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageSize", pageSize + "");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -163,7 +187,18 @@ public class CoachSearchActivity extends AppCompatActivity {
 
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
+                            viperBeanList.add(viperBean);
+                        } catch (JSONException e) {
 
+
+                        }
+                    }
+                    adapter.update(viperBeanList);
                 }
 
                 @Override

@@ -105,7 +105,7 @@ public class JsonUtil {
                 result = json.getString(name);
             } catch (JSONException e) {
                 result = defaultValue;
-                //Logger.e(TAG, e.getMessage());
+                Logger.i(TAG, e.getMessage());
             }
         }
         return result;

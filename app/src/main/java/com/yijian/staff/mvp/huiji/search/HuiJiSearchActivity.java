@@ -157,6 +157,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     }
 
     private void refresh() {
+        Map<String, String> header = new HashMap<>();
+
         Map<String, String> params = new HashMap<>();
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
@@ -168,8 +170,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("pageSize",  "10");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
@@ -188,6 +190,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     }
     private void loadMore() {
+        Map<String, String> header = new HashMap<>();
+
         Map<String, String> params = new HashMap<>();
 
 
@@ -201,8 +205,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("pageSize", pageSize + "");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

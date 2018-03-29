@@ -8,9 +8,13 @@ import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.setclass.AdapterLesson;
 import com.yijian.staff.widget.MDividerItemDecoration;
 import com.yijian.staff.widget.NavigationBar2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +24,8 @@ public class CunKeActivity extends AppCompatActivity {
 
     @BindView(R.id.rc_ck)
     RecyclerView rc_ck;
+    CunKeAdapter cunKeAdapter;
+    List<Object> bodyList = new ArrayList<Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,7 @@ public class CunKeActivity extends AppCompatActivity {
 
         initTitle();
         initView();
+        initData();
     }
 
     private void initTitle(){
@@ -45,11 +52,19 @@ public class CunKeActivity extends AppCompatActivity {
         //添加Android自带的分割线
         MDividerItemDecoration decor = new MDividerItemDecoration(this, DividerItemDecoration.VERTICAL);
 
-       /* decor.setDrawable(getDrawable(R.drawable.divider_recyclerview));
+        decor.setDrawable(getDrawable(R.drawable.divider_recyclerview));
         rc_ck.addItemDecoration(decor);
         rc_ck.setNestedScrollingEnabled(false);
-        unKeAdapter = new CuncKeAdapter(this);
-        rc_ck.setAdapter(adapterLesson);*/
+        cunKeAdapter = new CunKeAdapter();
+        rc_ck.setAdapter(cunKeAdapter);
+    }
+
+    private void initData() {
+        bodyList.add(new TypeOfCunKeBody("小二","减肥课","10节","1节"));
+        bodyList.add(new TypeOfCunKeBody("小三","减肥课2","9节","2节"));
+        bodyList.add(new TypeOfCunKeBody("小四","减肥课3","8节","3节"));
+
+        cunKeAdapter.resetDataList(bodyList);
     }
 
 }

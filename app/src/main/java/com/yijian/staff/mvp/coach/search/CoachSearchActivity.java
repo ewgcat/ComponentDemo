@@ -59,6 +59,7 @@ public class CoachSearchActivity extends AppCompatActivity {
     private CoachSearchViperListAdapter adapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

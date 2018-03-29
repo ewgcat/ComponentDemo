@@ -104,7 +104,16 @@ public class HttpManager {
         execute(observable, observer);
     }
 
+    //教练模糊搜索会员
+    public static void searchViperByCoach( Map<String, String> params, Observer<JSONObject> observer) {
+        postNoHeaderHasParam(INDEX_COACH_QUERY_URL,params,observer);
+    }
 
+
+    //会籍模糊搜索会员
+    public static void searchViperByHuiJi( Map<String, String> params, Observer<JSONObject> observer) {
+        postNoHeaderHasParam(INDEX_HUI_JI_QUERY_URL,params,observer);
+    }
 
 
     //公共

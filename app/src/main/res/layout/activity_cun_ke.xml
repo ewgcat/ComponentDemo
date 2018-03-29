@@ -3,9 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yijian.staff.mvp.coach.cunke.CunKeActivity">
+    android:orientation="vertical">
+
     <include
         android:id="@+id/cun_ke_navigation_bar2"
         layout="@layout/view_navigation_bar2" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_ck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_fillet_white_8" />
 
 </LinearLayout>

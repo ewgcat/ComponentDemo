@@ -91,7 +91,7 @@ public class CoachSearchActivity extends AppCompatActivity {
         rcl.setLayoutManager(layoutmanager);
 
         //TODO 设置适配器
-        adapter = new CoachSearchViperListAdapter(this, viperBeanList);
+        adapter = new CoachSearchViperListAdapter(this);
         rcl.setAdapter(adapter);
 
         //设置 Header 为 BezierRadar 样式

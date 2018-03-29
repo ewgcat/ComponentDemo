@@ -2,6 +2,7 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
@@ -13,7 +14,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
@@ -67,6 +67,11 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
+
+     //保存图标位置
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> saveMenuChange(@Url String url,@HeaderMap Map<String, String> headers, @Body MenuRequestBody menuRequestBody);
 
     /**
      * 表单请求

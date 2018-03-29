@@ -37,7 +37,7 @@ public class CoachSearchViperBean {
     private String headImg;
     //会员姓名
     private String name;
-    //性别
+    //性别  0 未知 1 男 2 女
     private String sex;
     //会员角色 普通会员
     private String viperRole;
@@ -89,6 +89,8 @@ public class CoachSearchViperBean {
     //("使用车辆")
     private String useCar;
 
+    public CoachSearchViperBean() {
+    }
 
     public CoachSearchViperBean(JSONObject jsonObject) {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
@@ -220,5 +222,36 @@ public class CoachSearchViperBean {
 
     public String getUseCar() {
         return useCar;
+    }
+
+    @Override
+    public String toString() {
+        return "CoachSearchViperBean{" +
+                "headImg='" + headImg + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", viperRole='" + viperRole + '\'' +
+                ", memberId='" + memberId + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", birthdayType='" + birthdayType + '\'' +
+                ", cardprodId='" + cardprodId + '\'' +
+                ", cardName='" + cardName + '\'' +
+                ", cardType='" + cardType + '\'' +
+                ", privateCoach='" + privateCoach + '\'' +
+                ", privateCourse='" + privateCourse + '\'' +
+                ", favorCourse='" + favorCourse + '\'' +
+                ", favorTeacher='" + favorTeacher + '\'' +
+                ", registerTime='" + registerTime + '\'' +
+                ", purchaseCount='" + purchaseCount + '\'' +
+                ", deadline='" + deadline + '\'' +
+                ", expiryReason='" + expiryReason + '\'' +
+                ", seller='" + seller + '\'' +
+                ", experienceClassTimes='" + experienceClassTimes + '\'' +
+                ", historyCourse='" + historyCourse + '\'' +
+                ", healthStatus='" + healthStatus + '\'' +
+                ", fitnessHobby='" + fitnessHobby + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", useCar='" + useCar + '\'' +
+                '}';
     }
 }

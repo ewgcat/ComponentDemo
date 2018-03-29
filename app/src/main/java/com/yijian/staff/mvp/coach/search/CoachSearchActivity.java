@@ -20,7 +20,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -41,8 +40,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class CoachSearchActivity extends AppCompatActivity {
 
+    private static final String TAG = CoachSearchActivity.class.getSimpleName();
     EditText etSearch;
     @BindView(R.id.rcl)
     RecyclerView rcl;
@@ -50,9 +51,9 @@ public class CoachSearchActivity extends AppCompatActivity {
     SmartRefreshLayout refreshLayout;
 
     private  int pageNum = 1;
-    private  int pageSize = 10;
+    private  int pageSize = 1;
     private int pages;
-    private List<ViperBean> viperBeanList=new ArrayList<>();
+    private List<CoachSearchViperBean> viperBeanList=new ArrayList<>();
     private CoachSearchViperListAdapter adapter;
 
 
@@ -76,8 +77,6 @@ public class CoachSearchActivity extends AppCompatActivity {
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Logger.i("TEST","actionId="+actionId);
-                Logger.i("TEST","actionId="+EditorInfo.IME_ACTION_SEARCH);
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
                         refresh();
@@ -119,6 +118,7 @@ public class CoachSearchActivity extends AppCompatActivity {
     }
 
     private void refresh() {
+        Map<String, String> header = new HashMap<>();
         Map<String, String> params = new HashMap<>();
 
 
@@ -132,8 +132,8 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageSize", pageSize + "");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
@@ -144,10 +144,10 @@ public class CoachSearchActivity extends AppCompatActivity {
                     for (int i = 0; i < records.length(); i++) {
                         try {
                             JSONObject jsonObject = (JSONObject) records.get(i);
-                            ViperBean viperBean = new ViperBean(jsonObject);
+                            CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
                             viperBeanList.add(viperBean);
                         } catch (JSONException e) {
-
+                            Logger.i(TAG,e.toString());
 
                         }
                     }
@@ -164,6 +164,8 @@ public class CoachSearchActivity extends AppCompatActivity {
 
     }
     private void loadMore() {
+        Map<String, String> header = new HashMap<>();
+
         Map<String, String> params = new HashMap<>();
 
         String name = etSearch.getText().toString().trim();
@@ -176,8 +178,8 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageSize", pageSize + "");
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
-            params.put("token", token);
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -189,7 +191,7 @@ public class CoachSearchActivity extends AppCompatActivity {
                     for (int i = 0; i < records.length(); i++) {
                         try {
                             JSONObject jsonObject = (JSONObject) records.get(i);
-                            ViperBean viperBean = new ViperBean(jsonObject);
+                            CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
                             viperBeanList.add(viperBean);
                         } catch (JSONException e) {
 

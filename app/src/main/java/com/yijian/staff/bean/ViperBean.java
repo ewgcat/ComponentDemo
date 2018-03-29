@@ -12,6 +12,10 @@ import org.json.JSONObject;
 public class ViperBean {
 
 
+
+
+
+
     /**
      birthday (string, optional): 生日 ,
      birthdayType (string, optional): 生日类型 ,
@@ -57,6 +61,10 @@ public class ViperBean {
     private String bePresentTime; //到场时间
     private String departureTime; //离场时间
     private String privateClass;//私教课
+    private String outDateDay; //已过期的天数
+    private String historyLesson; //历史课程
+    private String outDate; //过期时间
+    private String outDateReason; //过期原因
 
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
@@ -85,7 +93,43 @@ public class ViperBean {
          this.useCar = JsonUtil.getString(jsonObject, "useCar");
          this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
          this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
+         this.outDateDay = JsonUtil.getString(jsonObject, "outDateDay");
+         this.historyLesson = JsonUtil.getString(jsonObject, "historyLesson");
+         this.outDate = JsonUtil.getString(jsonObject, "outDate");
+         this.outDateReason = JsonUtil.getString(jsonObject, "outDateReason");
 
+    }
+
+    public String getOutDateDay() {
+        return outDateDay;
+    }
+
+    public void setOutDateDay(String outDateDay) {
+        this.outDateDay = outDateDay;
+    }
+
+    public String getHistoryLesson() {
+        return historyLesson;
+    }
+
+    public void setHistoryLesson(String historyLesson) {
+        this.historyLesson = historyLesson;
+    }
+
+    public String getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(String outDate) {
+        this.outDate = outDate;
+    }
+
+    public String getOutDateReason() {
+        return outDateReason;
+    }
+
+    public void setOutDateReason(String outDateReason) {
+        this.outDateReason = outDateReason;
     }
 
     public String getBodyStatus() {

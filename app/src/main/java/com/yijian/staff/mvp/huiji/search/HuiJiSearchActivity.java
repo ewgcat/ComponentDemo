@@ -12,11 +12,16 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
+import com.yijian.staff.mvp.coach.search.CoachSearchViperBean;
+import com.yijian.staff.mvp.coach.search.CoachSearchViperListAdapter;
 import com.yijian.staff.mvp.huiji.outdate.HuijiOutdateViperListAdapter;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -55,6 +60,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -69,46 +75,28 @@ import io.reactivex.functions.Consumer;
 
 public class HuiJiSearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_search)
+    private static final String TAG = CoachSearchActivity.class.getSimpleName();
     EditText etSearch;
     @BindView(R.id.rcl)
     RecyclerView rcl;
-
-    int pageNum = 10;
-    int pageSize = 10;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+
+    private int pageNum = 1;
+    private int pageSize = 1;
     private int pages;
-
-    private HuiJiVipSearchAdapter huiJiVipSearchAdapter;
-
+    private List<HuiJiSearchViperBean> viperBeanList = new ArrayList<HuiJiSearchViperBean>();
+    private HuiJiVipSearchAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hui_ji_search);
         ButterKnife.bind(this);
-
-        initView();
-        initData();
+        initComponent();
     }
 
-    private void initView() {
-        //设置RecyclerView 布局
-        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-        //设置RecyclerView 布局
-        rcl.setLayoutManager(layoutmanager);
-        huiJiVipSearchAdapter = new HuiJiVipSearchAdapter();
-        rcl.setAdapter(huiJiVipSearchAdapter);
-        initComponent();
-
-        Disposable disposable = RxBus.getDefault().toDefaultFlowable(HuijiViperFilterBean.class, new Consumer<HuijiViperFilterBean>() {
-            @Override
-            public void accept(HuijiViperFilterBean filterBean) throws Exception {
-                refresh();
-            }
-        });
-
-        //TODO 设置适配器
+    public void initComponent() {
+        etSearch = findViewById(R.id.et_search);
 
         etSearch.setHintTextColor(Color.parseColor("#ffffff"));
 
@@ -117,7 +105,6 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-
                         refresh();
                         break;
                 }
@@ -125,15 +112,13 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             }
         });
 
-    }
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
+        //设置RecyclerView 布局
+        rcl.setLayoutManager(layoutmanager);
 
-    private void initData(){
-        List<Object> dataList = new ArrayList<Object>();
-        huiJiVipSearchAdapter.resetList(dataList);
-    }
-
-
-    public void initComponent() {
+        //TODO 设置适配器
+        adapter = new HuiJiVipSearchAdapter(this, viperBeanList);
+        rcl.setAdapter(adapter);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -146,6 +131,9 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageNum = 1;
+                pageSize = 1;
+                viperBeanList.clear();
                 refresh();
             }
 
@@ -158,40 +146,6 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     private void refresh() {
         Map<String, String> header = new HashMap<>();
-
-        Map<String, String> params = new HashMap<>();
-        String name = etSearch.getText().toString().trim();
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            params.put("name", name);
-            params.put("pageNum",   "1");
-            params.put("pageSize",  "10");
-            User user = DBManager.getInstance().queryUser();
-            String token = user.getToken();
-            header.put("token", token);
-            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    refreshLayout.finishRefresh(2000, true);
-
-                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                    pages = JsonUtil.getInt(result, "pages");
-                }
-
-                @Override
-                public void onFail(String msg) {
-                    refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    Toast.makeText(HuiJiSearchActivity.this,msg,Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-    }
-    private void loadMore() {
-        Map<String, String> header = new HashMap<>();
-
         Map<String, String> params = new HashMap<>();
 
 
@@ -206,7 +160,56 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
             header.put("token", token);
-            HttpManager.searchViperByCoach(header,params, new ResultObserver() {
+            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    refreshLayout.finishRefresh(2000, true);
+
+                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                    pages = JsonUtil.getInt(result, "pages");
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            HuiJiSearchViperBean huiJiSearchViperBean = new HuiJiSearchViperBean(jsonObject);
+                            viperBeanList.add(huiJiSearchViperBean);
+                        } catch (JSONException e) {
+                            Logger.i(TAG, e.toString());
+                        }
+                    }
+
+                    adapter.update(viperBeanList);
+
+
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                    Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
+    private void loadMore() {
+        Map<String, String> header = new HashMap<>();
+
+        Map<String, String> params = new HashMap<>();
+
+        String name = etSearch.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            params.put("name", name);
+            params.put("pageNum", pageNum + "");
+            params.put("pageSize", pageSize + "");
+            User user = DBManager.getInstance().queryUser();
+            String token = user.getToken();
+            header.put("token", token);
+            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -214,14 +217,25 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            HuiJiSearchViperBean viperBean = new HuiJiSearchViperBean(jsonObject);
+                            viperBeanList.add(viperBean);
+                        } catch (JSONException e) {
 
+
+                        }
+                    }
+                    adapter.update(viperBeanList);
                 }
 
                 @Override
                 public void onFail(String msg) {
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                    Toast.makeText(HuiJiSearchActivity.this,msg,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
         }

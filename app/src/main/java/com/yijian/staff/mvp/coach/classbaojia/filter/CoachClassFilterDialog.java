@@ -116,6 +116,12 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
 
 
     private void resetView() {
+
+        classJieShu = -1;
+        price = -1;
+        classLongTime = -1;
+        classYouXiaoQi = -1;
+
         tvClassJieshu1.setTextColor(Color.parseColor("#666666"));
         tvClassJieshu2.setTextColor(Color.parseColor("#666666"));
         tvClassJieshu3.setTextColor(Color.parseColor("#666666"));
@@ -289,13 +295,13 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             setUnSelectStyle(tvClassJieshu2);
             setUnSelectStyle(tvClassJieshu3);
         } else if (i == 2) {
-            classJieShu = 1;
+            classJieShu = 2;
 
             setSelectStyle(tvClassJieshu2);
             setUnSelectStyle(tvClassJieshu1);
             setUnSelectStyle(tvClassJieshu3);
         } else if (i == 3) {
-            classJieShu = 1;
+            classJieShu = 3;
 
             setSelectStyle(tvClassJieshu3);
             setUnSelectStyle(tvClassJieshu1);
@@ -368,6 +374,9 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         } else if (classJieShu == 3) {
             coachClassFilterBean.setLcourseNum("30");
             coachClassFilterBean.setRcourseNum("-1");
+        } else {
+            coachClassFilterBean.setLcourseNum("-1");
+            coachClassFilterBean.setRcourseNum("-1");
         }
         if (price == 1) {
             coachClassFilterBean.setLtotalPrice("0");
@@ -381,6 +390,9 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         } else if (price == 4) {
             coachClassFilterBean.setLtotalPrice("3000");
             coachClassFilterBean.setRtotalPrice("4000");
+        } else {
+            coachClassFilterBean.setLtotalPrice("-1");
+            coachClassFilterBean.setRtotalPrice("-1");
         }
         if (classLongTime == 1) {
             coachClassFilterBean.setLconsumingMinute("0");
@@ -394,6 +406,9 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         } else if (classLongTime == 4) {
             coachClassFilterBean.setLconsumingMinute("180");
             coachClassFilterBean.setRconsumingMinute("-1");
+        } else {
+            coachClassFilterBean.setLconsumingMinute("-1");
+            coachClassFilterBean.setRconsumingMinute("-1");
         }
 
         if (classYouXiaoQi == 1) {
@@ -402,6 +417,8 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setIndate("6");
         } else if (classYouXiaoQi == 3) {
             coachClassFilterBean.setIndate("12");
+        } else {
+            coachClassFilterBean.setIndate("-1");
         }
 
         if (onDismissListener != null) {

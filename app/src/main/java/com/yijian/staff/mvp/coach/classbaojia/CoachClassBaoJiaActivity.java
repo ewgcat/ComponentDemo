@@ -77,7 +77,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     private EditText etSearch;
     private CoachClassFilterBean coachClassFilterBean;
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 4;
     private int pages;
 
     @Override
@@ -147,7 +147,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 pageNum = 1;
-                pageSize = 1;
+                pageSize = 4;
                 mClassInfoList.clear();
                 refresh(coachClassFilterBean);
             }
@@ -172,8 +172,10 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         } else {
             CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
             body.setCourseName(name);
-            body.setPageNum(1);
-            body.setPageSize(1);
+            body.setPageNum(pageNum);
+            body.setPageSize(pageSize);
+            body.setIsSortByPrice(isSortByPrice+"");
+
             if (coachClassFilterBean != null) {
                 body.setIndate(coachClassFilterBean.getIndate());
                 body.setLconsumingMinute(coachClassFilterBean.getLconsumingMinute());
@@ -220,21 +222,29 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
     private void loadMore() {
         Map<String, String> header = new HashMap<>();
-
-        Map<String, String> params = new HashMap<>();
-
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            params.put("name", name);
-            params.put("pageNum", pageNum + "");
-            params.put("pageSize", pageSize + "");
+            CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
+            body.setCourseName(name);
+            body.setPageNum(pageNum);
+            body.setPageSize(pageSize);
+            body.setIsSortByPrice(isSortByPrice+"");
+            if (coachClassFilterBean != null) {
+                body.setIndate(coachClassFilterBean.getIndate());
+                body.setLconsumingMinute(coachClassFilterBean.getLconsumingMinute());
+                body.setRconsumingMinute(coachClassFilterBean.getRconsumingMinute());
+                body.setLtotalPrice(coachClassFilterBean.getLtotalPrice());
+                body.setRtotalPrice(coachClassFilterBean.getRtotalPrice());
+                body.setLcourseNum(coachClassFilterBean.getLcourseNum());
+                body.setRcourseNum(coachClassFilterBean.getRcourseNum());
+            }
             User user = DBManager.getInstance().queryUser();
             String token = user.getToken();
             header.put("token", token);
-            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
+            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -289,7 +299,6 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     private void selectShaixuan() {
         if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             showFilterDialog();
-
         } else {
             tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
             tvZongHe.setTextColor(Color.parseColor("#666666"));
@@ -297,12 +306,10 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             Drawable drawablePrice = getResources().getDrawable(R.mipmap.jd_normal_arrow);
             drawablePrice.setBounds(0, 0, drawablePrice.getMinimumWidth(), drawablePrice.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawablePrice, null);
-
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             showFilterDialog();
-
         }
     }
 
@@ -346,7 +353,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
     private void selectZongHe() {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-
+            isSortByPrice=-1;
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));

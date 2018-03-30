@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
 import com.yijian.staff.mvp.setclass.bean.TypeOfActionItem;
 import com.yijian.staff.util.DensityUtil;
@@ -33,13 +35,15 @@ import java.util.Map;
  * Created by yangk on 2018/3/29.
  */
 
-public class OpenLessonNewView extends LinearLayout {
+public class OpenLessonNewView extends LinearLayout implements Observer {
 
     private Context mContext;
     private int itemPosition;
     private BottomSheetDialogFragmentLesson bottomSheetDialogFragmentLesson;
     private android.support.v4.app.FragmentManager fragmentManager;
     private OpenLessonNewActivity openLessonNewActivity;
+    private EditActionObservable editActionObservable = new EditActionObservable();
+    private OpenLessonNewBean openLessonNewBean;
 
 
     /*************** 头部 *******************/
@@ -49,7 +53,6 @@ public class OpenLessonNewView extends LinearLayout {
 
     /***************  Body *************************/
     private LinearLayout lin_body;  // Body的容器
-
 
 
     public OpenLessonNewView(Context context) {
@@ -67,7 +70,8 @@ public class OpenLessonNewView extends LinearLayout {
         this.mContext = context;
     }
 
-    public void initView(OpenLessonNewBean openLessonNewBean,int itemPosition, OpenLessonNewActivity openLessonNewActivity){
+    public void initView(OpenLessonNewBean openLessonNewBean, int itemPosition, OpenLessonNewActivity openLessonNewActivity) {
+        this.openLessonNewBean = openLessonNewBean;
         this.openLessonNewActivity = openLessonNewActivity;
         this.itemPosition = itemPosition;
         this.fragmentManager = openLessonNewActivity.getSupportFragmentManager();
@@ -137,25 +141,26 @@ public class OpenLessonNewView extends LinearLayout {
 
     /**
      * 添加动作内容的Body
+     *
      * @param openLessonNewBean
      */
-    private void addBodyData(OpenLessonNewBean openLessonNewBean){
+    private void addBodyData(OpenLessonNewBean openLessonNewBean) {
         List<OpenLessonNewBean.SubOpenLessonNewBean> openLessonNewBeans = openLessonNewBean.getSubOpenLessonNewBeans();
-        for(int i = 0; i < openLessonNewBeans.size(); i++){
+        for (int i = 0; i < openLessonNewBeans.size(); i++) {
 
             OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean = openLessonNewBeans.get(i);
             //加载个动作内容布局容器
             /********************* 设置左边的标题 ************************/
             LinearLayout subBodyContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_body_action, null);
             TextView tv_single_serialize = subBodyContain.findViewById(R.id.tv_single_serialize);
-            tv_single_serialize.setText("第"+(i+1)+"个:");
+            tv_single_serialize.setText("第" + (i + 1) + "个:");
 
             /******************* 添加具体个动作内容 *********************/
             LinearLayout lin_action_content = subBodyContain.findViewById(R.id.lin_action_content);
-            Map<String,String> actionMap = subOpenLessonNewBean.getActionMap();
+            Map<String, String> actionMap = subOpenLessonNewBean.getActionMap();
 
             //遍历个动作集合
-            for(Map.Entry<String,String> actionEntry : actionMap.entrySet()){
+            for (Map.Entry<String, String> actionEntry : actionMap.entrySet()) {
                 String key = actionEntry.getKey();
                 String value = actionEntry.getValue();
                 LinearLayout contentLin = new LinearLayout(mContext);
@@ -170,7 +175,7 @@ public class OpenLessonNewView extends LinearLayout {
                 textView1.setText(key);
                 textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 textView1.setTextColor(Color.parseColor("#666666"));
-                textView1.setPadding(DensityUtil.dip2px(mContext,15),0,0,0);
+                textView1.setPadding(DensityUtil.dip2px(mContext, 15), 0, 0, 0);
 
 
                 TextView textView2 = new TextView(mContext);
@@ -190,10 +195,10 @@ public class OpenLessonNewView extends LinearLayout {
 
             /**************  添加训练的操作项目  ****************/
             LinearLayout lin_opration_content = subBodyContain.findViewById(R.id.lin_opration_content);
-            Map<String,String> actionOprationMap = subOpenLessonNewBean.getActionOprationMap();
+            Map<String, String> actionOprationMap = subOpenLessonNewBean.getActionOprationMap();
             int oprationSize = 1;
             //遍历个动作操作项目集合
-            for(Map.Entry<String,String> actionOpration : actionOprationMap.entrySet()){
+            for (Map.Entry<String, String> actionOpration : actionOprationMap.entrySet()) {
                 String key = actionOpration.getKey();
                 String value = actionOpration.getValue();
                 LinearLayout linOpration = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_opration_content, null);
@@ -202,33 +207,34 @@ public class OpenLessonNewView extends LinearLayout {
                 TextView tv_opration_content = linOpration.findViewById(R.id.tv_opration_content);
                 EditText et_opration_content = linOpration.findViewById(R.id.et_opration_content);
 
-                tv_opration_content.setTag(key+"-"+i);
+                tv_opration_content.setTag(key + "-" + i);
                 tv_opration_content.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         TextView tv = (TextView) v;
                         String[] tagArray = ((String) tv.getTag()).split("-");
                         String key = tagArray[0];
-                        Integer position = Integer.valueOf(tagArray[1]);
-                        if("动作形态".equals(key)){
+                        Integer subPosition = Integer.valueOf(tagArray[1]);
+                        if ("动作形态".equals(key)) {
                             List<String> actionForm = new ArrayList<String>();
                             actionForm.add("标准");
                             actionForm.add("非标准");
-                            manualPickedView(actionForm,"标准",tv);
-                        }else if("强度".equals(key)){
+                            manualPickedView(actionForm, "标准", tv);
+                        } else if ("强度".equals(key)) {
                             List<String> actionForm = new ArrayList<String>();
                             actionForm.add("弱");
                             actionForm.add("中");
                             actionForm.add("强");
-                            manualPickedView(actionForm,"中",tv);
-                        }else if("时间".equals(key)){
-                            if(itemPosition == 0 && position == 0){
-                                showClockView(tv);
-                            }else{
-                                if(subOpenLessonNewBean.isStartClolck()){
-                                    showClockView(tv);
-                                }else{
-                                    Toast.makeText(mContext,"不能跨组锻炼...",Toast.LENGTH_SHORT).show();
+                            manualPickedView(actionForm, "中", tv);
+                        } else if ("时间".equals(key)) {
+                            OpenLessonNewBean.SubOpenLessonNewBean subLesson = openLessonNewBean.getSubOpenLessonNewBeans().get(subPosition);
+                            if (itemPosition == 0 && subPosition == 0) {
+                                showClockView(tv, subPosition);
+                            } else {
+                                if (subLesson.isStartClolck()) {
+                                    showClockView(tv, subPosition);
+                                } else {
+                                    Toast.makeText(mContext, "不能跨组锻炼...", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -240,11 +246,11 @@ public class OpenLessonNewView extends LinearLayout {
                 tv_opration_label.setText(key);
                 tv_opration_content.setText(value);
                 lin_opration_content.addView(linOpration);
-                if(oprationSize>=actionOprationMap.size()){
+                if (oprationSize >= actionOprationMap.size()) {
                     view_lin_opration.setVisibility(View.GONE);
                 }
-                et_opration_content.setVisibility(("间隔".equals(key))?View.VISIBLE:View.GONE);
-                tv_opration_content.setVisibility(("间隔".equals(key))?View.GONE:View.VISIBLE);
+                et_opration_content.setVisibility(("间隔".equals(key)) ? View.VISIBLE : View.GONE);
+                tv_opration_content.setVisibility(("间隔".equals(key)) ? View.GONE : View.VISIBLE);
                 oprationSize++;
 
             }
@@ -255,6 +261,7 @@ public class OpenLessonNewView extends LinearLayout {
 
     /**
      * 强度和动作形态弹窗
+     *
      * @param opts
      * @param defaultValue
      * @param name
@@ -275,18 +282,44 @@ public class OpenLessonNewView extends LinearLayout {
     /**
      * 时间 计时弹窗
      */
-    public void showClockView(TextView tv) {
-        if (bottomSheetDialogFragmentLesson==null){
+    public void showClockView(TextView tv, int subPosition) {
+        if (bottomSheetDialogFragmentLesson == null) {
             bottomSheetDialogFragmentLesson = new BottomSheetDialogFragmentLesson();
         }
-        bottomSheetDialogFragmentLesson.show(fragmentManager,"BottomSheetDialogFragmentLesson");
+        bottomSheetDialogFragmentLesson.show(fragmentManager, "BottomSheetDialogFragmentLesson");
         bottomSheetDialogFragmentLesson.setResultChronometerListener(new BottomSheetDialogFragmentLesson.ResultChronometerListener() {
             @Override
-            public void getTimes( long time) {
-                tv.setText(""+time/1000.00f+"s");
-                openLessonNewActivity.notifyAllLesson();
+            public void getTimes(long time) {
+                tv.setText("" + time / 1000.00f + "s");
+                OpenLessonNewBean.SubOpenLessonNewBean subLesson = openLessonNewBean.getSubOpenLessonNewBeans().get(subPosition);
+                subLesson.setStartClolck(true);
+                openLessonNewActivity.notifyAllLesson(itemPosition, subPosition, openLessonNewBean.getSubOpenLessonNewBeans().size());
             }
         });
     }
 
+    @Override
+    public void update(Object data) {
+        Map<String, String> map = (Map<String, String>) data;
+        int type = Integer.valueOf(map.get("type"));
+        switch (type) {  //该通知是需要点击了可以计时的时候，才能触发
+            case 0:
+                int itemLocation = Integer.valueOf(map.get("itemPosition"));
+                int subItemLocation = Integer.valueOf(map.get("subPosition"));
+                int subSize = Integer.valueOf(map.get("subSize"));
+                if (itemLocation == itemPosition) {
+                    if (subItemLocation < (subSize - 1)) {
+                        openLessonNewBean.getSubOpenLessonNewBeans().get((subItemLocation + 1)).setStartClolck(true);
+                    } else {
+                        //如果>= 不做任何处理
+                    }
+                } else if (itemLocation == (itemPosition-1)) {
+
+                    if (itemLocation == (subSize - 1)) {
+                        openLessonNewBean.getSubOpenLessonNewBeans().get(0).setStartClolck(true);
+                    }
+                }
+                break;
+        }
+    }
 }

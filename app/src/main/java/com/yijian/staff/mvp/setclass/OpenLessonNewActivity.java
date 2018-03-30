@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Chronometer;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
 
     OpenLessonNewAdapter openLessonNewAdapter;
     List<OpenLessonNewBean> openLessonNewBeans = new ArrayList<OpenLessonNewBean>();
+    EditActionObservable editActionObservable = new EditActionObservable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,45 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         openLessonNewBean2.setSubOpenLessonNewBeans(subOpenLessonNewBeanList2);
         openLessonNewBeans.add(openLessonNewBean2);
 
+
+        /************** 添加第三组 *****************/
+        OpenLessonNewBean openLessonNewBean3 = new OpenLessonNewBean();
+        openLessonNewBean3.setDegree("困难");
+
+        List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList3 = new ArrayList<>(0);
+
+        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3 = new OpenLessonNewBean.SubOpenLessonNewBean();
+        Map<String,String> actionMap3 = new HashMap<String,String>();
+        actionMap3.put("平板支撑","1组/每组2分钟");
+        actionMap3.put("需要器械","有");
+        subOpenLessonNewBean3.setActionMap(actionMap3);
+        Map<String,String> actionOprationMap3 = new LinkedHashMap<String,String>();
+        actionOprationMap3.put("动作形态","标准");
+        actionOprationMap3.put("强度","弱");
+        actionOprationMap3.put("时间","10");
+        actionOprationMap3.put("间隔","30");
+        subOpenLessonNewBean3.setActionOprationMap(actionOprationMap3);
+        subOpenLessonNewBeanList3.add(subOpenLessonNewBean3);
+
+
+        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3_2 = new OpenLessonNewBean.SubOpenLessonNewBean();
+        Map<String,String> actionMap3_2 = new HashMap<String,String>();
+        actionMap3_2.put("平板支撑","1组/每组2分钟");
+        actionMap3_2.put("需要器械","有");
+        subOpenLessonNewBean3_2.setActionMap(actionMap3_2);
+        Map<String,String> actionOprationMap3_2 = new LinkedHashMap<String,String>();
+        actionOprationMap3_2.put("动作形态","标准");
+        actionOprationMap3_2.put("强度","弱");
+        actionOprationMap3_2.put("时间","10");
+        actionOprationMap3_2.put("间隔","30");
+        subOpenLessonNewBean3_2.setActionOprationMap(actionOprationMap3_2);
+        subOpenLessonNewBeanList3.add(subOpenLessonNewBean3_2);
+
+        openLessonNewBean3.setSubOpenLessonNewBeans(subOpenLessonNewBeanList3);
+        openLessonNewBeans.add(openLessonNewBean3);
+
+
+
         openLessonNewAdapter.notifyDataSetChanged();
     }
 
@@ -109,12 +150,18 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_open_lesson.setLayoutManager(layoutmanager);
-        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans,this);
+        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans,this,editActionObservable);
         rv_open_lesson.setAdapter(openLessonNewAdapter);
     }
 
-    public void notifyAllLesson(){
-
+    public void notifyAllLesson(int itemPosition, int subPosition,int subSize){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type","0");
+        map.put("itemPosition", itemPosition + "");
+        map.put("subPosition", subPosition + "");
+        map.put("subSize", subSize + "");
+        editActionObservable.notifyObservers(map);
     }
 
 }
+

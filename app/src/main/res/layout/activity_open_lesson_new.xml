@@ -124,9 +124,17 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="上课记录表"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"/>
 
-                android:id="@+id/recyclerview"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_open_lesson"
                 android:background="@drawable/shape_fillet_white_8"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"

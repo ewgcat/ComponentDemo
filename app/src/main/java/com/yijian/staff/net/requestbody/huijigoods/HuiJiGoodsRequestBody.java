@@ -21,7 +21,7 @@ public class HuiJiGoodsRequestBody {
      */
 
     private String cardName;
-    private int cardType;
+    private String cardType;
     private String startPrice;
     private String endPrice;
     private int isSortByPrice;
@@ -40,11 +40,11 @@ public class HuiJiGoodsRequestBody {
         this.cardName = cardName;
     }
 
-    public int getCardType() {
+    public String getCardType() {
         return cardType;
     }
 
-    public void setCardType(int cardType) {
+    public void setCardType(String cardType) {
         this.cardType = cardType;
     }
 

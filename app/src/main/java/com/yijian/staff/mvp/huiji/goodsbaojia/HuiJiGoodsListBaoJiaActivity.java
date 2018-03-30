@@ -293,6 +293,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
     private void selectShaixuan() {
         if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             showFilterDialog();
+            isSortByPrice=-1;
+            priceUp = false;
             huiJiGoodsFilterBean = null;
         } else {
             tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
@@ -305,6 +307,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             showFilterDialog();
+            isSortByPrice=-1;
+            priceUp = false;
             huiJiGoodsFilterBean = null;
         }
     }
@@ -367,6 +371,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
     }
 
 
+    private void showFilterDialog() {
+        huiJiFilterGoodsDialog.showFilterDialog();
+    }
+
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -383,8 +391,4 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         }
     }
 
-
-    private void showFilterDialog() {
-        huiJiFilterGoodsDialog.showFilterDialog();
-    }
 }

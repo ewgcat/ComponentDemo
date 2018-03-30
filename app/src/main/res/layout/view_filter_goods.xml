@@ -225,6 +225,27 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_yumaoqiu_place"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/gray_stroke_unselect_bg"
+                    android:gravity="center"
+                    android:text="羽毛球馆"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+
+
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -245,9 +266,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:text="重置"
-                    android:background="@color/white"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 

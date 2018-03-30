@@ -7,7 +7,7 @@ package com.yijian.staff.mvp.huiji.goodsbaojia.filter;
  */
 public class HuiJiGoodsFilterBean {
     private String cardName;
-    private int cardType;//0 期限卡  1 次数卡  2 储值卡   3会员卡
+    private String cardType;//1期限卡  2次数卡  3 储值卡   4会员卡
     private String startPrice;
     private String endPrice;
     private String venueName;
@@ -23,11 +23,11 @@ public class HuiJiGoodsFilterBean {
         this.cardName = cardName;
     }
 
-    public int getCardType() {
+    public String getCardType() {
         return cardType;
     }
 
-    public void setCardType(int cardType) {
+    public void setCardType(String cardType) {
         this.cardType = cardType;
     }
 

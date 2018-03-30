@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.OnDismissListener {
+public class HuiJiFilterGoodsDialog extends Dialog implements DialogInterface.OnDismissListener {
 
     private static String TAG = HuiJiFilterGoodsDialog.class.getSimpleName();
     @BindView(R.id.tv_time_card)
@@ -44,11 +44,13 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
     TextView tvYouyongPlace;
     @BindView(R.id.tv_jianshen_place)
     TextView tvJianshenPlace;
+    @BindView(R.id.tv_yumaoqiu_place)
+    TextView tvYumaoqiuPlace;
 
     private Activity activity;
-    private int price;
-    private int cardType=-1;
-    private int changguan;
+    private int price = -1;
+    private String cardType = null;
+    private int changguan = -1;
 
 
     public HuiJiFilterGoodsDialog(Activity activity) {
@@ -62,7 +64,6 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.setMargins(0, statusBarHeight, 0, 0);
         contentView.setLayoutParams(params);
-
 
 
         Window window = getWindow();
@@ -101,6 +102,7 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
             R.id.tv_chuzhi_card, R.id.tv_huiyuan_card,
             R.id.tv_price1, R.id.tv_price2,
             R.id.empty_view,
+            R.id.tv_yumaoqiu_place,
             R.id.tv_price3, R.id.tv_price4,
             R.id.tv_youyong_place, R.id.tv_jianshen_place})
     public void onViewClicked(View view) {
@@ -146,6 +148,9 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
             case R.id.tv_jianshen_place:
                 selectChangguan(2);
                 break;
+            case R.id.tv_yumaoqiu_place:
+                selectChangguan(3);
+                break;
         }
     }
 
@@ -154,10 +159,17 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
             changguan = 1;
             setSelectStyle(tvYouyongPlace);
             setUnSelectStyle(tvJianshenPlace);
+            setUnSelectStyle(tvYumaoqiuPlace);
         } else if (i == 2) {
             changguan = 2;
             setSelectStyle(tvJianshenPlace);
             setUnSelectStyle(tvYouyongPlace);
+            setUnSelectStyle(tvYumaoqiuPlace);
+        } else if (i == 3) {
+            changguan = 3;
+            setSelectStyle(tvYumaoqiuPlace);
+            setUnSelectStyle(tvYouyongPlace);
+            setUnSelectStyle(tvJianshenPlace);
         }
     }
 
@@ -190,37 +202,37 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
     }
 
     private void selectCardType(int i) {
-            if (i == 1) {
-                cardType = 0;
-                setSelectStyle(tvTimeCard);
-                setUnSelectStyle(tvCishuCard);
-                setUnSelectStyle(tvChuzhiCard);
-                setUnSelectStyle(tvHuiyuanCard);
-            } else if (i == 2) {
-                cardType = 1;
-                setSelectStyle(tvCishuCard);
-                setUnSelectStyle(tvTimeCard);
-                setUnSelectStyle(tvChuzhiCard);
-                setUnSelectStyle(tvHuiyuanCard);
-            } else if (i == 3) {
-                cardType = 2;
-                setSelectStyle(tvChuzhiCard);
-                setUnSelectStyle(tvTimeCard);
-                setUnSelectStyle(tvCishuCard);
-                setUnSelectStyle(tvHuiyuanCard);
-            } else if (i == 4) {
-                cardType = 3;
-                setSelectStyle(tvHuiyuanCard);
-                setUnSelectStyle(tvTimeCard);
-                setUnSelectStyle(tvCishuCard);
-                setUnSelectStyle(tvChuzhiCard);
-            }
+        if (i == 1) {
+            cardType = "1";
+            setSelectStyle(tvTimeCard);
+            setUnSelectStyle(tvCishuCard);
+            setUnSelectStyle(tvChuzhiCard);
+            setUnSelectStyle(tvHuiyuanCard);
+        } else if (i == 2) {
+            cardType = "2";
+            setSelectStyle(tvCishuCard);
+            setUnSelectStyle(tvTimeCard);
+            setUnSelectStyle(tvChuzhiCard);
+            setUnSelectStyle(tvHuiyuanCard);
+        } else if (i == 3) {
+            cardType = "3";
+            setSelectStyle(tvChuzhiCard);
+            setUnSelectStyle(tvTimeCard);
+            setUnSelectStyle(tvCishuCard);
+            setUnSelectStyle(tvHuiyuanCard);
+        } else if (i == 4) {
+            cardType = "4";
+            setSelectStyle(tvHuiyuanCard);
+            setUnSelectStyle(tvTimeCard);
+            setUnSelectStyle(tvCishuCard);
+            setUnSelectStyle(tvChuzhiCard);
+        }
     }
 
     private void resetView() {
-        cardType=-1;
-        price=-1;
-        changguan=-1;
+        cardType = null;
+        price = -1;
+        changguan = -1;
         tvTimeCard.setTextColor(Color.parseColor("#666666"));
         tvCishuCard.setTextColor(Color.parseColor("#666666"));
         tvChuzhiCard.setTextColor(Color.parseColor("#666666"));
@@ -231,6 +243,7 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
         tvPrice4.setTextColor(Color.parseColor("#666666"));
         tvYouyongPlace.setTextColor(Color.parseColor("#666666"));
         tvJianshenPlace.setTextColor(Color.parseColor("#666666"));
+        tvYumaoqiuPlace.setTextColor(Color.parseColor("#666666"));
 
         tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvCishuCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -242,6 +255,7 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
         tvPrice4.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvYouyongPlace.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvJianshenPlace.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYumaoqiuPlace.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
         tvTimeCard.setCompoundDrawables(null, null, null, null);
@@ -254,7 +268,9 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
         tvPrice4.setCompoundDrawables(null, null, null, null);
         tvYouyongPlace.setCompoundDrawables(null, null, null, null);
         tvJianshenPlace.setCompoundDrawables(null, null, null, null);
+        tvYumaoqiuPlace.setCompoundDrawables(null, null, null, null);
     }
+
     private void setSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#1997f8"));
         textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
@@ -274,7 +290,7 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        HuiJiGoodsFilterBean huiJiGoodsFilterBean=new HuiJiGoodsFilterBean();
+        HuiJiGoodsFilterBean huiJiGoodsFilterBean = new HuiJiGoodsFilterBean();
         huiJiGoodsFilterBean.setCardType(cardType);
         if (price == 1) {
             huiJiGoodsFilterBean.setStartPrice("0");
@@ -289,18 +305,20 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
             huiJiGoodsFilterBean.setStartPrice("3000");
             huiJiGoodsFilterBean.setEndPrice("4000");
         } else {
-            huiJiGoodsFilterBean.setStartPrice("-1");
-            huiJiGoodsFilterBean.setEndPrice("-1");
+            huiJiGoodsFilterBean.setStartPrice(null);
+            huiJiGoodsFilterBean.setEndPrice(null);
         }
 
-        if (changguan==1){
+        if (changguan == 1) {
             huiJiGoodsFilterBean.setVenueName("游泳馆");
-        }else if (changguan==2){
+        } else if (changguan == 2) {
             huiJiGoodsFilterBean.setVenueName("健身馆");
-        }else {
-            huiJiGoodsFilterBean.setVenueName("-1");
+        } else if (changguan == 3) {
+            huiJiGoodsFilterBean.setVenueName("羽毛球馆");
+        } else {
+            huiJiGoodsFilterBean.setVenueName(null);
         }
-        if (onDismissListener!=null){
+        if (onDismissListener != null) {
             onDismissListener.onDismiss(huiJiGoodsFilterBean);
         }
 

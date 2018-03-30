@@ -15,7 +15,7 @@ public class GoodsInfo {
 
     /**
      *
-     * cardType (integer, optional): 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
+     * cardType (integer, optional): 卡类型:1期限卡,2次数卡,3储值卡,4会员制卡 ,
      cardName (string, optional): 卡类型名称 ,
      cardprodbaseId (string, optional): 卡产品id ,
      rechargeGivePercent (integer, optional): 充值赠送(%) ,
@@ -30,19 +30,25 @@ public class GoodsInfo {
     private String cardName;
     private String validTime;
     private String validDay;
+    private String amount;
     private String salePrice;
     private String rechargeGivePercent;
-    private String venueNames;
+    private String venusNames;
 
     public GoodsInfo(JSONObject jsonObject){
         this.cardName=  JsonUtil.getString(jsonObject,"cardName");
-        this.venueNames=  JsonUtil.getString(jsonObject,"venueNames");
+        this.venusNames=  JsonUtil.getString(jsonObject,"venusNames");
         this.cardType=  JsonUtil.getInt(jsonObject,"cardType");
         this.validDay=  JsonUtil.getString(jsonObject,"validDay");
         this.validTime=  JsonUtil.getString(jsonObject,"validTime");
+        this.amount=  JsonUtil.getString(jsonObject,"amount");
         this.salePrice=  JsonUtil.getString(jsonObject,"salePrice");
         this.cardprodbaseId=  JsonUtil.getString(jsonObject,"cardprodbaseId");
         this.rechargeGivePercent=  JsonUtil.getString(jsonObject,"rechargeGivePercent");
+    }
+
+    public String getAmount() {
+        return amount;
     }
 
     public String getCardprodbaseId() {
@@ -73,7 +79,7 @@ public class GoodsInfo {
         return rechargeGivePercent;
     }
 
-    public String getVenueNames() {
-        return venueNames;
+    public String getVenusNames() {
+        return venusNames;
     }
 }

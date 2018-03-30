@@ -373,10 +373,10 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setRcourseNum("30");
         } else if (classJieShu == 3) {
             coachClassFilterBean.setLcourseNum("30");
-            coachClassFilterBean.setRcourseNum("-1");
+            coachClassFilterBean.setRcourseNum("null");
         } else {
-            coachClassFilterBean.setLcourseNum("-1");
-            coachClassFilterBean.setRcourseNum("-1");
+            coachClassFilterBean.setLcourseNum(null);
+            coachClassFilterBean.setRcourseNum("null");
         }
         if (price == 1) {
             coachClassFilterBean.setLtotalPrice("0");
@@ -391,8 +391,8 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setLtotalPrice("3000");
             coachClassFilterBean.setRtotalPrice("4000");
         } else {
-            coachClassFilterBean.setLtotalPrice("-1");
-            coachClassFilterBean.setRtotalPrice("-1");
+            coachClassFilterBean.setLtotalPrice("null");
+            coachClassFilterBean.setRtotalPrice("null");
         }
         if (classLongTime == 1) {
             coachClassFilterBean.setLconsumingMinute("0");
@@ -405,10 +405,10 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setRconsumingMinute("180");
         } else if (classLongTime == 4) {
             coachClassFilterBean.setLconsumingMinute("180");
-            coachClassFilterBean.setRconsumingMinute("-1");
+            coachClassFilterBean.setRconsumingMinute("null");
         } else {
-            coachClassFilterBean.setLconsumingMinute("-1");
-            coachClassFilterBean.setRconsumingMinute("-1");
+            coachClassFilterBean.setLconsumingMinute("null");
+            coachClassFilterBean.setRconsumingMinute("null");
         }
 
         if (classYouXiaoQi == 1) {
@@ -418,7 +418,7 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         } else if (classYouXiaoQi == 3) {
             coachClassFilterBean.setIndate("12");
         } else {
-            coachClassFilterBean.setIndate("-1");
+            coachClassFilterBean.setIndate("null");
         }
 
         if (onDismissListener != null) {

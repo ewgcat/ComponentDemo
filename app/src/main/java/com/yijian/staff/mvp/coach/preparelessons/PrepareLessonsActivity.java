@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.CalendarSettingActivity;
-import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
+import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllLessonActivity;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

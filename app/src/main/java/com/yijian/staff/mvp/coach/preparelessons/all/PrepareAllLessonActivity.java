@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.preparelessons;
+package com.yijian.staff.mvp.coach.preparelessons.all;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
-import com.yijian.staff.mvp.preparelessons.PrepareAllActionAdapter;
+import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllActionAdapter;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 

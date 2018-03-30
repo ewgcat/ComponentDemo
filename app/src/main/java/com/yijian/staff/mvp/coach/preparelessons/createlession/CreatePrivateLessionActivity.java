@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.preparelessons;
+package com.yijian.staff.mvp.coach.preparelessons.createlession;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;

@@ -302,7 +302,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.coach.preparelessons.CreatePrivateLessionActivity"
+            android:name=".mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -356,7 +356,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.coach.preparelessons.PrepareAllLessonActivity"
+            android:name=".mvp.coach.preparelessons.all.PrepareAllLessonActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

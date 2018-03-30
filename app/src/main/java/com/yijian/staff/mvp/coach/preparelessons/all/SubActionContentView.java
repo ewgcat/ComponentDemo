@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.preparelessons;
+package com.yijian.staff.mvp.coach.preparelessons.all;
 
 import android.content.Context;
 import android.graphics.Color;

@@ -16,12 +16,12 @@
         android:textColor="#666666"
         android:textSize="14sp"
         app:pstsDividerColor="@android:color/transparent"
-        app:pstsIndicatorColor="@color/colorAccent"
+        app:pstsIndicatorColor="@color/blue"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsTabPaddingLeftRight="16dp"
         android:background="@color/white"
-        app:pstsTextSelectedColor="@color/colorAccent"
+        app:pstsTextSelectedColor="@color/blue"
         app:pstsUnderlineColor="@android:color/transparent" />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

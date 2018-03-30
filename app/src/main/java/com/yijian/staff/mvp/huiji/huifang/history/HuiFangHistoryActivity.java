@@ -15,10 +15,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;

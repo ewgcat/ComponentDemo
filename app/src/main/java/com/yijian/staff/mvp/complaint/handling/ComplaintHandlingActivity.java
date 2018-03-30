@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 /**
  *员工的处理投诉 界面

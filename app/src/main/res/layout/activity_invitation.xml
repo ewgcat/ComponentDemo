@@ -6,8 +6,8 @@
     android:background="@color/gray">
 
     <include
-        android:id="@+id/vip_over_navigation_bar"
-        layout="@layout/view_navigation_bar"/>
+        android:id="@+id/vip_over_navigation_bar2"
+        layout="@layout/view_navigation_bar2"/>
 
     <LinearLayout
         android:id="@+id/lin_intation"
@@ -70,7 +70,7 @@
         android:id="@+id/fl_invitation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/vip_over_navigation_bar"
+        android:layout_below="@id/vip_over_navigation_bar2"
         android:layout_above="@id/lin_intation"/>
 
 </RelativeLayout>

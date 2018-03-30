@@ -16,7 +16,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
@@ -47,10 +47,10 @@ public class ExperienceClassListActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar navigationBar = findViewById(R.id.experience_class_navigation_bar);
-        navigationBar.setTitle("体验课课程", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = findViewById(R.id.experience_class_navigation_bar2);
+        navigationBar2.setTitle("体验课课程");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
         initComponent();
         initData();
     }

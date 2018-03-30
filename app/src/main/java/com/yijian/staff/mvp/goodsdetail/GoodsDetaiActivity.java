@@ -12,7 +12,7 @@ import com.bin.david.form.utils.DensityUtils;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.KeCheng;
 import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -53,12 +53,10 @@ public class GoodsDetaiActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.goods_detail_navigation_bar);
-        navigationBar.setTitle("产品详情", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.goods_detail_navigation_bar2);
+        navigationBar2.setTitle("产品详情");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
 
         FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 10));
         SmartTable table = (SmartTable<KeCheng>) findViewById(R.id.table);

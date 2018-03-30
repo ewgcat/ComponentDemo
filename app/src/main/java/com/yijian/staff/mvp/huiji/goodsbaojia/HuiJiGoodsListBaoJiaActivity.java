@@ -148,7 +148,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(Color.parseColor("#1997f8"));
+        header.setPrimaryColor(Color.parseColor("#FFFFFF"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);

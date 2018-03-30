@@ -1,14 +1,10 @@
 package com.yijian.staff.mvp.vip.detail;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
@@ -16,10 +12,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.edit.VipInfoEditActivity;
-import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

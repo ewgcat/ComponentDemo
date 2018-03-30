@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.physical;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,16 +10,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step2.ReceptionStep2Adapter;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
-import com.yijian.staff.mvp.reception.step2.step2Bean.OptionItemData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
-import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.BodyTestReportView;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

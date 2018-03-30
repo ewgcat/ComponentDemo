@@ -10,18 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.MyDepartView;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -165,16 +159,15 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("创建私教课备课", "#ffffff");
-        navigationBar.getmRightTextView().setText("完成");
-        navigationBar.hideBottomLine();
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        navigationBar.setRightButtonClickListener(new View.OnClickListener() {
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
+        navigationBar2.setTitle("创建私教课备课");
+        navigationBar2.setmRightTvText("完成");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
             }
         });
     }

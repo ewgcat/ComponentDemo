@@ -10,9 +10,7 @@ import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

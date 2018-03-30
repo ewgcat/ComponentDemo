@@ -24,7 +24,7 @@ import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -58,11 +58,10 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
 
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar);
-        navigationBar.setTitle("设置", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
+        navigationBar2.setTitle("设置");
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
         initDialog();
     }
 

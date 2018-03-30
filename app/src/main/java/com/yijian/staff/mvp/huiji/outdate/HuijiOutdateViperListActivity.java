@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,18 +16,15 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
@@ -106,10 +101,10 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
     }*/
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("过期会员","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.setTitle("过期会员");
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
 
     }
 

@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/setting_activity_navigation_bar"
-        layout="@layout/view_navigation_bar" />
+        android:id="@+id/setting_activity_navigation_bar2"
+        layout="@layout/view_navigation_bar2" />
 
     <LinearLayout
         android:layout_width="match_parent"

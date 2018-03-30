@@ -47,10 +47,10 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         }
 
         ClassInfo classInfo = mClassInfoList.get(position);
-        holder.tv_class_name.setText(classInfo.getClassName());
-        holder.tv_class_long_time.setText(classInfo.getClassLongTime());
-        holder.tv_class_num.setText(classInfo.getClassNum());
-        holder.tv_price.setText(classInfo.getPrice());
+        holder.tv_class_name.setText(classInfo.getName());
+        holder.tv_class_long_time.setText(classInfo.getLessonTime());
+        holder.tv_class_num.setText(classInfo.getCleassNum());
+        holder.tv_price.setText(classInfo.getBaseTotalPrice());
         holder.item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

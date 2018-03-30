@@ -48,7 +48,11 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_class_num"
-                    android:text="10节"
+                    android:text="10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="节"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -66,7 +70,11 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_class_long_time"
-                    android:text="120分钟"
+                    android:text="120"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="分钟"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -91,8 +99,15 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="1400元"
+                    android:text="1400"
                     android:id="@+id/tv_price"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="元"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"

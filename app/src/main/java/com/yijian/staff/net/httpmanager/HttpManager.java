@@ -3,6 +3,7 @@ package com.yijian.staff.net.httpmanager;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuBean;
@@ -61,6 +62,9 @@ public class HttpManager {
     //首页搜索 教练
     public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
 
+    //私教课查询
+    public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -110,6 +114,12 @@ public class HttpManager {
     //保存menu编辑状态
     public static void saveMenuChange(@HeaderMap Map<String, String> headers, MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.saveMenuChange(SAVE_MENU_CHANGE_URL, headers, menuRequestBody);
+        execute(observable, observer);
+    }
+
+    //私教课查询列表
+    public static void getCoachPrivateCourseList(@HeaderMap Map<String, String> headers, CoachPrivateCourseRequestBody body, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getCoachPrivateCourseList(COACH_PRIVATE_COURSE_LIST_URL, headers, body);
         execute(observable, observer);
     }
 

@@ -8,8 +8,8 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/vip_over_navigation_bar"
-        layout="@layout/view_navigation_bar" />
+        android:id="@+id/vip_over_navigation_bar2"
+        layout="@layout/view_navigation_bar2" />
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.preparelessons;
+package com.yijian.staff.mvp.coach.preparelessons.all;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +9,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
-import com.yijian.staff.mvp.preparelessons.PrepareAllActionAdapter;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -43,11 +42,10 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
 
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("所有课程安排", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-    }
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
+        navigationBar2.setTitle("所有课程安排");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this); }
 
 
     private void initData() {

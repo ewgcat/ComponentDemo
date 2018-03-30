@@ -1,18 +1,13 @@
 package com.yijian.staff.mvp.reception.step5;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 import com.yijian.staff.widget.TimeBar;
 
 public class ReceptionStepFiveActivity extends AppCompatActivity implements View.OnClickListener{

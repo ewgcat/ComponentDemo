@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 /**
  *  会员信息编辑页

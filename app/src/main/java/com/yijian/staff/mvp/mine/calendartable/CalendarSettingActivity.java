@@ -15,8 +15,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.potential.AddPotentialActivity;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -111,21 +110,17 @@ public class CalendarSettingActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.reception_activity_navigation_bar);
-        navigationBar.setTitle("日程表设置", "#ffffff");
-        navigationBar.getmRightTextView().setText("编辑");
-        navigationBar.hideBottomLine();
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        navigationBar.setRightButtonClickListener(new View.OnClickListener() {
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_activity_navigation_bar);
+        navigationBar2.setTitle("日程表设置");
+        navigationBar2.setmRightTvText("编辑");
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isEdit) { //isEdit false : 不可编辑，true  ： 可编辑（完成）
                     materialCalendarView.removeDecorator(allNoneSelectedDecorator);
-                    navigationBar.getmRightTextView().setText("完成");
+                    navigationBar2.setmRightTvText("完成");
                 } else { //点击完成 在此处做逻辑处理
-                    navigationBar.getmRightTextView().setText("编辑");
-
+                    navigationBar2.setmRightTvText("编辑");
                     calendarDayList = materialCalendarView.getSelectedDates();
                     for (CalendarDay calendarDay : calendarDayList) {
                         Log.e("Test", "年份===" + calendarDay.getYear() + "  月份==" + (calendarDay.getMonth() + 1) + " 日==" + calendarDay.getDay());
@@ -136,6 +131,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
                 isEdit = !isEdit;
             }
         });
+
     }
 
     @OnClick(R.id.rl_yueke_jiange_time)

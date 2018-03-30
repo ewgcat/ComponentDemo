@@ -21,7 +21,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
@@ -90,17 +90,16 @@ public class SelectHuiJiActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle(titleCenter,"#ffffff");
-        navigationBar.getmRightTextView().setText("确定");
-        navigationBar.getmRightTextView().setOnClickListener(new View.OnClickListener() {
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.setTitle(titleCenter);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setmRightTvText("确定");
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
     }
 
     private void initView() {

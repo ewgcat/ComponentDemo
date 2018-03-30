@@ -146,8 +146,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                pageSize = 4;
+
                 mClassInfoList.clear();
                 refresh(coachClassFilterBean);
             }
@@ -161,6 +160,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
 
     private void refresh(CoachClassFilterBean coachClassFilterBean) {
+        pageNum = 1;
+        pageSize = 4;
         this.coachClassFilterBean=coachClassFilterBean;
         Map<String, String> header = new HashMap<>();
 
@@ -298,6 +299,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     //点击筛选
     private void selectShaixuan() {
         if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
+            isSortByPrice=-1;
+            priceUp = false;
             showFilterDialog();
         } else {
             tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
@@ -309,6 +312,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+            isSortByPrice=-1;
+            priceUp = false;
             showFilterDialog();
         }
     }
@@ -326,7 +331,6 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 priceUp = false;
                 isSortByPrice=1;
                 //TODO 请求 (价格从高到低）
-                refresh(coachClassFilterBean);
             } else {
                 Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());

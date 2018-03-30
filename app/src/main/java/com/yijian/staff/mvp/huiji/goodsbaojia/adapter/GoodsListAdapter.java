@@ -22,7 +22,7 @@ import java.util.List;
 public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.ViewHolder> {
     private List<GoodsInfo> mGoodsInfoList;
     private Context context;
-    private int clickIndex=-1;
+    private int clickIndex = -1;
 
     public GoodsListAdapter(Context context, List<GoodsInfo> mGoodsInfoList) {
         this.mGoodsInfoList = mGoodsInfoList;
@@ -39,21 +39,39 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
     @Override
     public void onBindViewHolder(GoodsListAdapter.ViewHolder holder, int position) {
         Logger.i("ClassListAdapter", "position: " + position);
+        if (clickIndex==position){
+            holder.itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 
+        }else {
+            holder.itemView.setBackgroundResource(R.drawable.white_bg);
+        }
 
         GoodsInfo goodsInfo = mGoodsInfoList.get(position);
-        holder.tvGoodsName.setText(goodsInfo.getGoodsName());
-        holder.tvJianshenplace.setText(goodsInfo.getJianshenplace());
-        holder.tvYuEr.setText(goodsInfo.getYuer());
-        holder.tvChuzhiyouhui.setText(goodsInfo.getChuzhiyouhui());
-        holder.tvPrice.setText(goodsInfo.getPrice());
+        holder.tvGoodsName.setText(goodsInfo.getCardName());
+        holder.tvJianshenplace.setText(goodsInfo.getVenusNames());
+        if (goodsInfo.getCardType() == 1) {
+            holder.tvYuEr.setText(goodsInfo.getValidDay());
+            holder.tv_danwei.setText("天");
+        } else if (goodsInfo.getCardType() == 2) {
+            holder.tvYuEr.setText(goodsInfo.getValidTime());
+            holder.tv_danwei.setText("次");
+        } else if (goodsInfo.getCardType() == 3) {
+            holder.tvYuEr.setText(goodsInfo.getAmount());
+            holder.tv_danwei.setText("元");
+        } else if (goodsInfo.getCardType() == 4) {
+            holder.tvYuEr.setText(goodsInfo.getAmount());
+            holder.tv_danwei.setText("元");
+        }
+
+        holder.tvChuzhiyouhui.setText(goodsInfo.getRechargeGivePercent());
+        holder.tvPrice.setText(goodsInfo.getSalePrice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClickListener!=null){
-                    onItemClickListener.onItemClick(v,goodsInfo);
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(v, goodsInfo);
                 }
-                clickIndex=position;
+                clickIndex = position;
                 notifyDataSetChanged();
             }
         });
@@ -77,6 +95,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
         TextView tvYuEr;
         TextView tvChuzhiyouhui;
         TextView tvPrice;
+        TextView tv_danwei;
 
 
         public ViewHolder(View view) {
@@ -87,15 +106,19 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
             tvYuEr = view.findViewById(R.id.tv_yu_er);
             tvChuzhiyouhui = view.findViewById(R.id.tv_chuzhiyouhui);
             tvPrice = view.findViewById(R.id.tv_price);
+            tv_danwei = view.findViewById(R.id.tv_danwei);
 
         }
     }
-  private   OnItemClickListener onItemClickListener;
-    public interface OnItemClickListener{
 
-       void onItemClick(View v, GoodsInfo goodsInfo);
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+
+        void onItemClick(View v, GoodsInfo goodsInfo);
     }
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-        this.onItemClickListener=onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
@@ -43,11 +43,10 @@ public class CoachOutdateViperListActivity extends AppCompatActivity implements 
     }
 
     private void initView() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("过期会员","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.setTitle("过期会员");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
     }
 
     @Override

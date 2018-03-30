@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
@@ -69,15 +70,20 @@ public interface ApiService {
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
-     //保存图标位置
+    //保存图标位置
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> saveMenuChange(@Url String url,@HeaderMap Map<String, String> headers, @Body MenuRequestBody menuRequestBody);
+    Observable<JSONObject> saveMenuChange(@Url String url, @HeaderMap Map<String, String> headers, @Body MenuRequestBody menuRequestBody);
 
     //私教课
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getCoachPrivateCourseList(@Url String url,@HeaderMap Map<String, String> headers, @Body CoachPrivateCourseRequestBody body);
+    Observable<JSONObject> getCoachPrivateCourseList(@Url String url, @HeaderMap Map<String, String> headers, @Body CoachPrivateCourseRequestBody body);
+
+    //会籍卡产品
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body HuiJiGoodsRequestBody body);
 
     /**
      * 表单请求
@@ -111,24 +117,28 @@ public interface ApiService {
     //post 表单
     @POST
     Observable<JSONObject> postNoHeaderNoParam(@Url String url);
+
     @POST
     Observable<JSONObject> postHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
     //get 有请求头
     @GET
     Observable<JSONObject> getNoHeaderNoParam(@Url String url);
+
     @GET
     Observable<JSONObject> getHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+
     @GET
     Observable<JSONObject> getNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+
     @GET
     Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
-
-
 
 
 }

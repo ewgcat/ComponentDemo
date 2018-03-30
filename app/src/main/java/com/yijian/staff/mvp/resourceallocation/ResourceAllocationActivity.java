@@ -28,7 +28,7 @@ import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInf
 import com.yijian.staff.mvp.resourceallocation.fragment.distribution.ResourceAllocationFragment;
 import com.yijian.staff.mvp.resourceallocation.fragment.history.HistoryAllocationFragment;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
@@ -72,7 +72,7 @@ public class ResourceAllocationActivity extends AppCompatActivity {
 
     private ResourceAllocationFragment resourceAllocationFragment;
     private HistoryAllocationFragment historyAllocationFragment;
-    private NavigationBar navigationBar;
+    private NavigationBar2 navigationBar2;
 
     @BindView(R.id.lin_resource_allowcation)
     LinearLayout lin_resource_allowcation;
@@ -92,6 +92,8 @@ public class ResourceAllocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resource_allocation);
         ButterKnife.bind(this);
+        navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+
         if (role == 0) {
             initKeFu();
         } else if (role == 1) {
@@ -107,21 +109,14 @@ public class ResourceAllocationActivity extends AppCompatActivity {
     private void initKeFu() {
         llKefuLayout.setVisibility(View.VISIBLE);
         llLeaderLayout.setVisibility(View.GONE);
-        initView0();
-    }
-
-    private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("资源分配", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-    }
-
-    private void initView0() {
-        initTitle();
+        navigationBar2.setTitle("资源分配");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
         initComponent();
         initResourceAllocationInfoList();
     }
+
+
 
     private void initResourceAllocationInfoList() {
 
@@ -184,17 +179,13 @@ public class ResourceAllocationActivity extends AppCompatActivity {
     private void initLeader() {
         llKefuLayout.setVisibility(View.GONE);
         llLeaderLayout.setVisibility(View.VISIBLE);
-        initView();
+        navigationBar2.setTitle("资源分配");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
         selectTab(0);
     }
 
-    private void initView() {
-        navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("资源分配", "#ffffff");
-        navigationBar.hideBottomLine();
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-    }
+
 
     @OnClick({R.id.lin_resource_allowcation, R.id.lin_history_allowcation})
     public void click(View v) {
@@ -262,7 +253,7 @@ public class ResourceAllocationActivity extends AppCompatActivity {
     }
 
     public void setBotoomStyle(int index) {
-        navigationBar.setTitle(index == 0 ? "资源分配" : "历史分配", "#ffffff");
+        navigationBar2.setTitle(index == 0 ? "资源分配" : "历史分配");
         tv_resource_allowcation.setTextColor(index == 0 ? Color.parseColor("#1997f8") : Color.parseColor("#666666"));
         tv_history_allowcation.setTextColor(index == 0 ? Color.parseColor("#666666") : Color.parseColor("#1997f8"));
 

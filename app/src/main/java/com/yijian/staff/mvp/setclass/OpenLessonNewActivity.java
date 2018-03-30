@@ -13,6 +13,7 @@ import com.yijian.staff.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         actionMap1.put("需要器械","有");
         subOpenLessonNewBean1.setActionMap(actionMap1);
 
-        Map<String,String> actionOprationMap1 = new HashMap<String,String>();
+        Map<String,String> actionOprationMap1 = new LinkedHashMap<String,String>();
         actionOprationMap1.put("动作形态","");
         actionOprationMap1.put("强度","");
         actionOprationMap1.put("时间","");
@@ -78,7 +79,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         actionMap2.put("需要器械","有");
         subOpenLessonNewBean2.setActionMap(actionMap2);
 
-        Map<String,String> actionOprationMap2 = new HashMap<String,String>();
+        Map<String,String> actionOprationMap2 = new LinkedHashMap<String,String>();
         actionOprationMap2.put("动作形态","标准");
         actionOprationMap2.put("强度","弱");
         actionOprationMap2.put("时间","10");
@@ -108,7 +109,12 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_open_lesson.setLayoutManager(layoutmanager);
-        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans);
+        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans,this);
         rv_open_lesson.setAdapter(openLessonNewAdapter);
     }
+
+    public void notifyAllLesson(){
+
+    }
+
 }

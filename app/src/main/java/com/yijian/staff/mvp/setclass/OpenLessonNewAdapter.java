@@ -19,9 +19,11 @@ import java.util.List;
 public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<OpenLessonNewBean> openLessonNewBeans;
+    OpenLessonNewActivity openLessonNewActivity;
 
-    public OpenLessonNewAdapter(List<OpenLessonNewBean> openLessonNewBeans) {
+    public OpenLessonNewAdapter(List<OpenLessonNewBean> openLessonNewBeans,OpenLessonNewActivity openLessonNewActivity) {
         this.openLessonNewBeans = openLessonNewBeans;
+        this.openLessonNewActivity = openLessonNewActivity;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         OpenLessonNewBean openLessonNewBean = openLessonNewBeans.get(position);
-        ((ViewHolder)holder).view_openlesson.initView(openLessonNewBean,position);
+        ((ViewHolder)holder).view_openlesson.initView(openLessonNewBean,position,openLessonNewActivity);
     }
 
     @Override

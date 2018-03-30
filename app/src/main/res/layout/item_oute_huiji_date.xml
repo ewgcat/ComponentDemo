@@ -46,6 +46,16 @@
                 android:layout_marginLeft="8dp"
                 android:src="@mipmap/lg_man"/>
 
+            <TextView
+                android:id="@+id/tv_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="意向会员"
+                android:textColor="#1997f8"
+                android:textSize="16sp"
+                android:gravity="right"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

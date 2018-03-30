@@ -136,12 +136,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_open_lesson"
                 android:background="@drawable/shape_fillet_white_8"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"/>
+                />
 
 
         </LinearLayout>

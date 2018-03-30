@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class OpenLessonNewView extends LinearLayout {
         //加载布局
         addGroupLayout();
         //设置头部
-        setTitle();
+        setTitle(openLessonNewBean.getDegree());
         //加载数据
         addBodyData(openLessonNewBean);
 
@@ -67,8 +68,9 @@ public class OpenLessonNewView extends LinearLayout {
     /**
      * 设置标题
      */
-    private void setTitle() {
+    private void setTitle(String degree) {
         tv_group.setText(numToChinesse(itemPosition));
+        tv_degree.setText(degree);
     }
 
     private String numToChinesse(int position) {
@@ -114,6 +116,7 @@ public class OpenLessonNewView extends LinearLayout {
         /*****************START  初始化Body *********************/
         lin_body = linTotalContainer.findViewById(R.id.lin_body);
         /*****************END  初始化Body *********************/
+        this.addView(linTotalContainer);
     }
 
     /**
@@ -142,7 +145,7 @@ public class OpenLessonNewView extends LinearLayout {
                 LinearLayout contentLin = new LinearLayout(mContext);
                 contentLin.setOrientation(LinearLayout.HORIZONTAL);
                 contentLin.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-                contentLin.setPadding(0, 0, 0, DensityUtil.dip2px(mContext, 15));
+                contentLin.setPadding(0, DensityUtil.dip2px(mContext, 15), 0, 0);
 
                 TextView textView1 = new TextView(mContext);
                 LayoutParams et_lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -151,6 +154,8 @@ public class OpenLessonNewView extends LinearLayout {
                 textView1.setText(key);
                 textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 textView1.setTextColor(Color.parseColor("#666666"));
+                textView1.setPadding(DensityUtil.dip2px(mContext,15),0,0,0);
+
 
                 TextView textView2 = new TextView(mContext);
                 textView2.setGravity(Gravity.LEFT);
@@ -160,11 +165,34 @@ public class OpenLessonNewView extends LinearLayout {
                 textView2.setText(value);
                 textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 textView2.setTextColor(Color.parseColor("#666666"));
+                textView2.setGravity(Gravity.RIGHT);
 
                 contentLin.addView(textView1);
                 contentLin.addView(textView2);
                 lin_action_content.addView(contentLin);
             }
+
+            /**************  添加训练的操作项目  ****************/
+            LinearLayout lin_opration_content = subBodyContain.findViewById(R.id.lin_opration_content);
+            Map<String,String> actionOprationMap = subOpenLessonNewBean.getActionOprationMap();
+            int oprationSize = 1;
+            //遍历个动作操作项目集合
+            for(Map.Entry<String,String> actionOpration : actionOprationMap.entrySet()){
+                LinearLayout linOpration = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_opration_content, null);
+                View view_lin_opration = linOpration.findViewById(R.id.view_lin_opration);
+                TextView tv_opration_label = linOpration.findViewById(R.id.tv_opration_label);
+                TextView tv_opration_content = linOpration.findViewById(R.id.tv_opration_content);
+
+                tv_opration_label.setText(actionOpration.getKey());
+                tv_opration_content.setText(actionOpration.getValue());
+                lin_opration_content.addView(linOpration);
+                if(oprationSize>=actionOprationMap.size()){
+                    view_lin_opration.setVisibility(View.GONE);
+                }
+                oprationSize++;
+
+            }
+
             lin_body.addView(subBodyContain);
         }
     }

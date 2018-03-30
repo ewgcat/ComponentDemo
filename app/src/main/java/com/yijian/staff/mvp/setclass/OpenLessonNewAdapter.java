@@ -39,7 +39,7 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return 0;
+        return openLessonNewBeans == null ? 0 : openLessonNewBeans.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

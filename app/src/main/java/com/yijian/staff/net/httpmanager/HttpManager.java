@@ -3,6 +3,7 @@ package com.yijian.staff.net.httpmanager;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
@@ -49,7 +50,6 @@ public class HttpManager {
     public static String GET_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "/customer-service/member/potential/list";
 
 
-
     //工作台 首页图标
     public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
 
@@ -64,6 +64,9 @@ public class HttpManager {
 
     //私教课查询
     public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
+
+    //私教课查询
+    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
 
 
     //公用方法
@@ -123,15 +126,21 @@ public class HttpManager {
         execute(observable, observer);
     }
 
+    //私教课查询列表
+    public static void getHuiJiCardGoodsList(@HeaderMap Map<String, String> headers, HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
+        execute(observable, observer);
+    }
+
     //教练模糊搜索会员
-    public static void searchViperByCoach( Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
-        getHasHeaderHasParam(INDEX_COACH_QUERY_URL,header,params,observer);
+    public static void searchViperByCoach(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
+        getHasHeaderHasParam(INDEX_COACH_QUERY_URL, header, params, observer);
     }
 
 
     //会籍模糊搜索会员
-    public static void searchViperByHuiJi( Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
-        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL,header,params,observer);
+    public static void searchViperByHuiJi(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
+        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, header, params, observer);
     }
 
 

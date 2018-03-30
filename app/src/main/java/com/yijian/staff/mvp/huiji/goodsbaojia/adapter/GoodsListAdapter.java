@@ -42,11 +42,11 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
 
 
         GoodsInfo goodsInfo = mGoodsInfoList.get(position);
-        holder.tvGoodsName.setText(goodsInfo.getGoodsName());
-        holder.tvJianshenplace.setText(goodsInfo.getJianshenplace());
-        holder.tvYuEr.setText(goodsInfo.getYuer());
-        holder.tvChuzhiyouhui.setText(goodsInfo.getChuzhiyouhui());
-        holder.tvPrice.setText(goodsInfo.getPrice());
+        holder.tvGoodsName.setText(goodsInfo.getCardName());
+        holder.tvJianshenplace.setText(goodsInfo.getVenueNames());
+        holder.tvYuEr.setText(goodsInfo.getValidTime());
+        holder.tvChuzhiyouhui.setText(goodsInfo.getRechargeGivePercent());
+        holder.tvPrice.setText(goodsInfo.getSalePrice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

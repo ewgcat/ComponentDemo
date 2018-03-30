@@ -6,19 +6,21 @@ package com.yijian.staff.mvp.huiji.goodsbaojia.filter;
  * time: 2018/3/26 21:05:32
  */
 public class HuiJiGoodsFilterBean {
-    private int price;
-    private int cardType;
-    private int changguan;
+    private String cardName;
+    private int cardType;//0 期限卡  1 次数卡  2 储值卡   3会员卡
+    private String startPrice;
+    private String endPrice;
+    private String venueName;
 
     public HuiJiGoodsFilterBean() {
     }
 
-    public int getPrice() {
-        return price;
+    public String getCardName() {
+        return cardName;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 
     public int getCardType() {
@@ -29,11 +31,27 @@ public class HuiJiGoodsFilterBean {
         this.cardType = cardType;
     }
 
-    public int getChangguan() {
-        return changguan;
+    public String getStartPrice() {
+        return startPrice;
     }
 
-    public void setChangguan(int changguan) {
-        this.changguan = changguan;
+    public void setStartPrice(String startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    public String getEndPrice() {
+        return endPrice;
+    }
+
+    public void setEndPrice(String endPrice) {
+        this.endPrice = endPrice;
+    }
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 }

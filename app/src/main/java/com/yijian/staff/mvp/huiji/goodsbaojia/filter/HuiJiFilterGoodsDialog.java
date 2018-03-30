@@ -47,7 +47,7 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
 
     private Activity activity;
     private int price;
-    private int cardType;
+    private int cardType=-1;
     private int changguan;
 
 
@@ -191,25 +191,25 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
 
     private void selectCardType(int i) {
             if (i == 1) {
-                cardType = 1;
+                cardType = 0;
                 setSelectStyle(tvTimeCard);
                 setUnSelectStyle(tvCishuCard);
                 setUnSelectStyle(tvChuzhiCard);
                 setUnSelectStyle(tvHuiyuanCard);
             } else if (i == 2) {
-                cardType = 2;
+                cardType = 1;
                 setSelectStyle(tvCishuCard);
                 setUnSelectStyle(tvTimeCard);
                 setUnSelectStyle(tvChuzhiCard);
                 setUnSelectStyle(tvHuiyuanCard);
             } else if (i == 3) {
-                cardType = 3;
+                cardType = 2;
                 setSelectStyle(tvChuzhiCard);
                 setUnSelectStyle(tvTimeCard);
                 setUnSelectStyle(tvCishuCard);
                 setUnSelectStyle(tvHuiyuanCard);
             } else if (i == 4) {
-                cardType = 4;
+                cardType = 3;
                 setSelectStyle(tvHuiyuanCard);
                 setUnSelectStyle(tvTimeCard);
                 setUnSelectStyle(tvCishuCard);
@@ -218,6 +218,9 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
     }
 
     private void resetView() {
+        cardType=-1;
+        price=-1;
+        changguan=-1;
         tvTimeCard.setTextColor(Color.parseColor("#666666"));
         tvCishuCard.setTextColor(Color.parseColor("#666666"));
         tvChuzhiCard.setTextColor(Color.parseColor("#666666"));
@@ -273,8 +276,30 @@ public class HuiJiFilterGoodsDialog extends Dialog  implements DialogInterface.O
     public void onDismiss(DialogInterface dialog) {
         HuiJiGoodsFilterBean huiJiGoodsFilterBean=new HuiJiGoodsFilterBean();
         huiJiGoodsFilterBean.setCardType(cardType);
-        huiJiGoodsFilterBean.setPrice(price);
-        huiJiGoodsFilterBean.setChangguan(changguan);
+        if (price == 1) {
+            huiJiGoodsFilterBean.setStartPrice("0");
+            huiJiGoodsFilterBean.setEndPrice("1000");
+        } else if (price == 2) {
+            huiJiGoodsFilterBean.setStartPrice("1000");
+            huiJiGoodsFilterBean.setEndPrice("2000");
+        } else if (price == 3) {
+            huiJiGoodsFilterBean.setStartPrice("2000");
+            huiJiGoodsFilterBean.setEndPrice("3000");
+        } else if (price == 4) {
+            huiJiGoodsFilterBean.setStartPrice("3000");
+            huiJiGoodsFilterBean.setEndPrice("4000");
+        } else {
+            huiJiGoodsFilterBean.setStartPrice("-1");
+            huiJiGoodsFilterBean.setEndPrice("-1");
+        }
+
+        if (changguan==1){
+            huiJiGoodsFilterBean.setVenueName("游泳馆");
+        }else if (changguan==2){
+            huiJiGoodsFilterBean.setVenueName("健身馆");
+        }else {
+            huiJiGoodsFilterBean.setVenueName("-1");
+        }
         if (onDismissListener!=null){
             onDismissListener.onDismiss(huiJiGoodsFilterBean);
         }

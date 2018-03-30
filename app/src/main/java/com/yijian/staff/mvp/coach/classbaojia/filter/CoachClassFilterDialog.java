@@ -359,11 +359,52 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
     @Override
     public void onDismiss(DialogInterface dialog) {
         CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
-        coachClassFilterBean.setClassJieShu(classJieShu);
-        coachClassFilterBean.setClassLongTime(classLongTime);
-        coachClassFilterBean.setPrice(price);
-        coachClassFilterBean.setClassYouXiaoQi(classYouXiaoQi);
-        if (onDismissListener!=null){
+        if (classJieShu == 1) {
+            coachClassFilterBean.setLcourseNum("0");
+            coachClassFilterBean.setRcourseNum("10");
+        } else if (classJieShu == 2) {
+            coachClassFilterBean.setLcourseNum("10");
+            coachClassFilterBean.setRcourseNum("30");
+        } else if (classJieShu == 3) {
+            coachClassFilterBean.setLcourseNum("30");
+            coachClassFilterBean.setRcourseNum("-1");
+        }
+        if (price == 1) {
+            coachClassFilterBean.setLtotalPrice("0");
+            coachClassFilterBean.setRtotalPrice("1000");
+        } else if (price == 2) {
+            coachClassFilterBean.setLtotalPrice("1000");
+            coachClassFilterBean.setRtotalPrice("2000");
+        } else if (price == 3) {
+            coachClassFilterBean.setLtotalPrice("2000");
+            coachClassFilterBean.setRtotalPrice("3000");
+        } else if (price == 4) {
+            coachClassFilterBean.setLtotalPrice("3000");
+            coachClassFilterBean.setRtotalPrice("4000");
+        }
+        if (classLongTime == 1) {
+            coachClassFilterBean.setLconsumingMinute("0");
+            coachClassFilterBean.setRconsumingMinute("60");
+        } else if (classLongTime == 2) {
+            coachClassFilterBean.setLconsumingMinute("60");
+            coachClassFilterBean.setRconsumingMinute("120");
+        } else if (classLongTime == 3) {
+            coachClassFilterBean.setLconsumingMinute("120");
+            coachClassFilterBean.setRconsumingMinute("180");
+        } else if (classLongTime == 4) {
+            coachClassFilterBean.setLconsumingMinute("180");
+            coachClassFilterBean.setRconsumingMinute("-1");
+        }
+
+        if (classYouXiaoQi == 1) {
+            coachClassFilterBean.setIndate("3");
+        } else if (classYouXiaoQi == 2) {
+            coachClassFilterBean.setIndate("6");
+        } else if (classYouXiaoQi == 3) {
+            coachClassFilterBean.setIndate("12");
+        }
+
+        if (onDismissListener != null) {
             onDismissListener.onDismiss(coachClassFilterBean);
         }
     }

@@ -6,45 +6,73 @@ package com.yijian.staff.mvp.coach.classbaojia.filter;
  * time: 2018/3/26 21:05:32
  */
 public class CoachClassFilterBean {
-    private int price;
-    private int classJieShu;
-    private int classLongTime;
-    private int classYouXiaoQi;
+    private String lcourseNum;
+    private String rcourseNum;
+
+    private String lconsumingMinute;
+    private String rconsumingMinute;
+
+    private String ltotalPrice;
+    private String rtotalPrice;
+
+    private String indate;
 
     public CoachClassFilterBean() {
     }
 
-
-
-    public int getPrice() {
-        return price;
+    public String getLcourseNum() {
+        return lcourseNum;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setLcourseNum(String lcourseNum) {
+        this.lcourseNum = lcourseNum;
     }
 
-    public int getClassJieShu() {
-        return classJieShu;
+    public String getRcourseNum() {
+        return rcourseNum;
     }
 
-    public void setClassJieShu(int classJieShu) {
-        this.classJieShu = classJieShu;
+    public void setRcourseNum(String rcourseNum) {
+        this.rcourseNum = rcourseNum;
     }
 
-    public int getClassLongTime() {
-        return classLongTime;
+    public String getLconsumingMinute() {
+        return lconsumingMinute;
     }
 
-    public void setClassLongTime(int classLongTime) {
-        this.classLongTime = classLongTime;
+    public void setLconsumingMinute(String lconsumingMinute) {
+        this.lconsumingMinute = lconsumingMinute;
     }
 
-    public int getClassYouXiaoQi() {
-        return classYouXiaoQi;
+    public String getRconsumingMinute() {
+        return rconsumingMinute;
     }
 
-    public void setClassYouXiaoQi(int classYouXiaoQi) {
-        this.classYouXiaoQi = classYouXiaoQi;
+    public void setRconsumingMinute(String rconsumingMinute) {
+        this.rconsumingMinute = rconsumingMinute;
+    }
+
+    public String getLtotalPrice() {
+        return ltotalPrice;
+    }
+
+    public void setLtotalPrice(String ltotalPrice) {
+        this.ltotalPrice = ltotalPrice;
+    }
+
+    public String getRtotalPrice() {
+        return rtotalPrice;
+    }
+
+    public void setRtotalPrice(String rtotalPrice) {
+        this.rtotalPrice = rtotalPrice;
+    }
+
+    public String getIndate() {
+        return indate;
+    }
+
+    public void setIndate(String indate) {
+        this.indate = indate;
     }
 }

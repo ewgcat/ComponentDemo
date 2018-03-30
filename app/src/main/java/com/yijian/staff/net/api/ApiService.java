@@ -2,6 +2,7 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
@@ -72,6 +73,11 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> saveMenuChange(@Url String url,@HeaderMap Map<String, String> headers, @Body MenuRequestBody menuRequestBody);
+
+    //私教课
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getCoachPrivateCourseList(@Url String url,@HeaderMap Map<String, String> headers, @Body CoachPrivateCourseRequestBody body);
 
     /**
      * 表单请求

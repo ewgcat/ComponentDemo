@@ -13,6 +13,7 @@
             />
 
         <LinearLayout
+            android:id="@+id/lin_body_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -35,7 +36,8 @@
                     android:textSize="14sp"
                     android:textColor="#ffbb01"
                     android:text="记录"
-                    android:layout_alignParentBottom="true"/>
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/shape_yellow_stroke_half"/>
             </RelativeLayout>
 
             <LinearLayout

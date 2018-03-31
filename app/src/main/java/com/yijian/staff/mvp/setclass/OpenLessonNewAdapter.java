@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,13 @@ import java.util.List;
 public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<OpenLessonNewBean> openLessonNewBeans;
+    OpenLessonNewActivity openLessonNewActivity;
+    EditActionObservable editActionObservable;
 
-    public OpenLessonNewAdapter(List<OpenLessonNewBean> openLessonNewBeans) {
+    public OpenLessonNewAdapter(List<OpenLessonNewBean> openLessonNewBeans,OpenLessonNewActivity openLessonNewActivity,EditActionObservable editActionObservable) {
         this.openLessonNewBeans = openLessonNewBeans;
+        this.openLessonNewActivity = openLessonNewActivity;
+        this.editActionObservable = editActionObservable;
     }
 
     @Override
@@ -34,7 +39,9 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         OpenLessonNewBean openLessonNewBean = openLessonNewBeans.get(position);
-        ((ViewHolder)holder).view_openlesson.initView(openLessonNewBean,position);
+        ViewHolder viewHolder = (ViewHolder)holder;
+        viewHolder.view_openlesson.initView(openLessonNewBean,position,openLessonNewActivity);
+        editActionObservable.addObserver(viewHolder.view_openlesson);
     }
 
     @Override

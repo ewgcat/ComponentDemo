@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.huiji.search;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
-import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
-import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
-import com.yijian.staff.mvp.coach.search.CoachSearchViperBean;
-import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
-import com.yijian.staff.mvp.vip.potential.PotentialViperListAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +23,18 @@ import java.util.List;
 public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<HuiJiSearchViperBean> dataList = new ArrayList<HuiJiSearchViperBean>();
+    private List<HuiJiViperBean> dataList = new ArrayList<HuiJiViperBean>();
     private int TYPE_VIP_CEREMONIAL_INFO = 0; //正式会员
     private int TYPE_VIP_OUTDATE_INFO = 1;  //过期会员
     private int TYPE_VIP_POTENTIAL_INFO = 2;  //潜在会员
     private int TYPE_VIP_INTENT_INFO = 3;  //意向会员
 
-    public HuiJiVipSearchAdapter(Context context, List<HuiJiSearchViperBean> dataList) {
+    public HuiJiVipSearchAdapter(Context context, List<HuiJiViperBean> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
 
-    public void update(List<HuiJiSearchViperBean> dataList) {
+    public void update(List<HuiJiViperBean> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
     }
@@ -69,7 +60,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        HuiJiSearchViperBean huiJiSearchViperBean = dataList.get(position);
+        HuiJiViperBean huiJiSearchViperBean = dataList.get(position);
         int viewType = getItemViewType(position);
         if(viewType == TYPE_VIP_CEREMONIAL_INFO){ //普通会员
             ((CeremonialViewHolder)holder).bind(huiJiSearchViperBean);
@@ -89,7 +80,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemViewType(int position) {
-        HuiJiSearchViperBean huiJiSearchViperBean = dataList.get(position);
+        HuiJiViperBean huiJiSearchViperBean = dataList.get(position);
         String viperRole = huiJiSearchViperBean.getViperRole();
         if (viperRole.equals("普通会员")) {
             return TYPE_VIP_CEREMONIAL_INFO;
@@ -151,7 +142,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             lin_query_question = view.findViewById(R.id.lin_query_question);
         }
 
-        public void bind(HuiJiSearchViperBean huiJiSearchViperBean) {
+        public void bind(HuiJiViperBean huiJiSearchViperBean) {
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_cardName.setText(huiJiSearchViperBean.getCardName());
@@ -207,7 +198,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             lin_quey_question  =     view.findViewById(R.id.lin_quey_question);
         }
 
-        public void bind(HuiJiSearchViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean){
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_cardName.setText(huiJiSearchViperBean.getCardName());
@@ -277,7 +268,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
 
-        public void bind(HuiJiSearchViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean){
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_birth.setText(huiJiSearchViperBean.getBirthday());
@@ -340,7 +331,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             lin_invitation = view.findViewById(R.id.lin_invitation);
         }
 
-        public void bind(HuiJiSearchViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean){
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_birth.setText(huiJiSearchViperBean.getBirthday());

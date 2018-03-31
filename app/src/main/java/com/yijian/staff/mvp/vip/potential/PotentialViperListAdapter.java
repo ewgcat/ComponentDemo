@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 
 import java.util.List;
 
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialViperListAdapter.ViewHolder> {
 
-    private List<ViperBean> viperBeanList;
+    private List<HuiJiViperBean> viperBeanList;
     private Context context;
 
-    public PotentialViperListAdapter(Context context, List<ViperBean> viperBeanList) {
+    public PotentialViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
         this.context = context;
         this.viperBeanList = viperBeanList;
     }
@@ -38,13 +39,13 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
 
     @Override
     public void onBindViewHolder(PotentialViperListAdapter.ViewHolder holder, int position) {
-        ViperBean viperBean = viperBeanList.get(position);
+        HuiJiViperBean viperBean = viperBeanList.get(position);
         holder.tv_name.setText(viperBean.getName());
         holder.tv_birth.setText(viperBean.getBirthday());
         holder.tv_birth_type.setText(viperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
-        holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
-        holder.tv_interestHobby.setText(viperBean.getInterestHobby());
+        holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
+        holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
+        holder.tv_interestHobby.setText(viperBean.getHobby());
         holder.iv_gender.setImageResource("女".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
 

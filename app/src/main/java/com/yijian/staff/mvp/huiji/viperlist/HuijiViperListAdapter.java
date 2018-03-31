@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.contract.ContractActivity;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
 
@@ -25,11 +26,11 @@ import java.util.List;
 
 public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAdapter.ViewHolder> {
 
-    private List<ViperBean> viperBeanList;
+    private List<HuiJiViperBean> viperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public HuijiViperListAdapter(Context context, List<ViperBean> viperBeanList, boolean isAllVipInfo) {
+    public HuijiViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.viperBeanList = viperBeanList;
         this.isAllVipInfo = isAllVipInfo;
@@ -42,7 +43,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         return holder;
     }
 
-    public void update( List<ViperBean> viperBeanList){
+    public void update( List<HuiJiViperBean> viperBeanList){
         this.viperBeanList=viperBeanList;
         notifyDataSetChanged();
     }
@@ -50,14 +51,14 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
     @Override
     public void onBindViewHolder(HuijiViperListAdapter.ViewHolder holder, int position) {
-        ViperBean viperBean = viperBeanList.get(position);
+        HuiJiViperBean viperBean = viperBeanList.get(position);
         holder.rel_be_present_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
         holder.tv_name.setText(viperBean.getName());
         holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
-        holder.tv_cardName.setText(viperBean.getCardName());
-        holder.tv_card_type.setText(viperBean.getCardType());
+        /*holder.tv_cardName.setText(viperBean.getCardName());
+        holder.tv_card_type.setText(viperBean.getCardType());*/
         holder.tv_private_coach.setText(viperBean.getPrivateCoach());
         holder.tv_like_lesson.setText(viperBean.getFavorCourse());
         holder.tv_like_teacher.setText(viperBean.getFavorTeacher());
@@ -65,8 +66,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.tv_contract_overTime.setText(viperBean.getContractDeadline());
         holder.tv_contract_balance.setText(viperBean.getContractBalance());
         holder.tv_buy_count.setText(viperBean.getPurchaseCount()+"");
-        holder.tv_be_present_time.setText(viperBean.getBePresentTime());
-        holder.tv_be_departure_time.setText(viperBean.getDepartureTime());
+        holder.tv_be_present_time.setText(viperBean.getVisitTime());
+        holder.tv_be_departure_time.setText(viperBean.getLeaveTime());
         holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +99,11 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        TextView tv_cardName;
-        TextView tv_card_type;
+       /* TextView tv_cardName;
+        TextView tv_card_type;*/
+
+       RecyclerView rv_card;
+
         TextView tv_private_coach;
         TextView tv_like_lesson;
         TextView tv_like_teacher;
@@ -121,8 +125,9 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
-            tv_cardName = view.findViewById(R.id.tv_cardName);
-            tv_card_type = view.findViewById(R.id.tv_card_type);
+          /*  tv_cardName = view.findViewById(R.id.tv_cardName);
+            tv_card_type = view.findViewById(R.id.tv_card_type);*/
+            rv_card = view.findViewById(R.id.rv_card);
             tv_private_coach = view.findViewById(R.id.tv_private_coach);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
             tv_like_teacher = view.findViewById(R.id.tv_like_teacher);
@@ -138,5 +143,6 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             lin_query_question = view.findViewById(R.id.lin_query_question);
         }
     }
+
 
 }

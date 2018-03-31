@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -52,7 +53,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
     RecyclerView rv_outdate;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    List<VipOutdateInfo> vipOutdateInfoList = new ArrayList<VipOutdateInfo>();
+    List<HuiJiViperBean> vipOutdateInfoList = new ArrayList<HuiJiViperBean>();
     HuijiOutdateViperListAdapter huijiOutdateViperListAdapter;
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
@@ -171,7 +172,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        VipOutdateInfo vipOutdateInfo = new VipOutdateInfo(jsonObject);
+                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
                         vipOutdateInfoList.add(vipOutdateInfo);
                     } catch (JSONException e) {
 
@@ -213,7 +214,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        VipOutdateInfo vipOutdateInfo = new VipOutdateInfo(jsonObject);
+                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
                         vipOutdateInfoList.add(vipOutdateInfo);
                     } catch (JSONException e) {
                     }

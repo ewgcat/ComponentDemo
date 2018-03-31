@@ -1,14 +1,19 @@
-package com.yijian.staff.mvp.huiji.search;
+package com.yijian.staff.mvp.huiji.bean;
 
+import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yangk on 2018/3/29.
  */
 
-public class HuiJiSearchViperBean {
+public class HuiJiViperBean {
 
     /**
      * {
@@ -36,8 +41,9 @@ public class HuiJiSearchViperBean {
     private String headImg;
     //会员姓名
     private String name;
-    //性别  0 未知 1 男 2 女
-    private String sex;
+    //性别  0 未知 1 男 2 女(这里存的是图片的路径)
+    private int sex;
+//    private String sex;
     //会员角色 普通会员
     private String viperRole;
     //会员id
@@ -66,12 +72,25 @@ public class HuiJiSearchViperBean {
     private String registerTime;
     //("购买次数")
     private String purchaseCount;
-
+    //("合同余额")
+    private String contractBalance;
+    //("到场时间")
+    private String visitTime;
+    //("离场时间")
+    private String leaveTime;
+    //("合同ID列表")
+    private List<String> contractIds;
+    //("卡对象集合")
+    private List<CardprodsBean> cardprodsBeans;
 
     //("过期时间")
     private String deadline;
     //("过期原因")
     private String expiryReason;
+    //("合同到期日期")
+    private String contractDeadline;
+    //("已过期天数")
+    private String expiredDay;
     //("服务会籍")
     private String seller;
     //("体验课次数")
@@ -88,13 +107,16 @@ public class HuiJiSearchViperBean {
     //("使用车辆")
     private String useCar;
 
-    public HuiJiSearchViperBean() {
+    private String subclassName;
+
+    public HuiJiViperBean() {
     }
 
-    public HuiJiSearchViperBean(JSONObject jsonObject) {
+    public HuiJiViperBean(JSONObject jsonObject) {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
-        this.sex = JsonUtil.getString(jsonObject, "sex");
+//        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.sex = "0".equals(JsonUtil.getString(jsonObject,"sex")) ? R.mipmap.lg_women : R.mipmap.lg_man;
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
 
@@ -120,7 +142,23 @@ public class HuiJiSearchViperBean {
         this.experienceClassTimes = JsonUtil.getString(jsonObject, "experienceClassTimes");
         this.deadline = JsonUtil.getString(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+
+        this.contractDeadline = JsonUtil.getString(jsonObject, "contractDeadline");
+        this.expiredDay = JsonUtil.getString(jsonObject, "expiredDay");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.visitTime = JsonUtil.getString(jsonObject, "visitTime");
+        this.leaveTime = JsonUtil.getString(jsonObject, "leaveTime");
+        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
+
+        try {
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CardprodsBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         this.seller = JsonUtil.getString(jsonObject, "seller");
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+
     }
 
     public String getPrivateCourse() {
@@ -135,7 +173,7 @@ public class HuiJiSearchViperBean {
         return name;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
@@ -221,6 +259,75 @@ public class HuiJiSearchViperBean {
 
     public String getUseCar() {
         return useCar;
+    }
+
+    public String getSubclassName() {
+        return subclassName;
+    }
+
+    public String getContractDeadline() {
+        return contractDeadline;
+    }
+
+    public String getExpiredDay() {
+        return expiredDay;
+    }
+
+    public String getContractBalance() {
+        return contractBalance;
+    }
+
+    public String getVisitTime() {
+        return visitTime;
+    }
+
+    public String getLeaveTime() {
+        return leaveTime;
+    }
+
+    public List<String> getContractIds() {
+        return contractIds;
+    }
+
+
+    public List<CardprodsBean> getCardprodsBeans() {
+        return cardprodsBeans;
+    }
+
+    public static class CardprodsBean {
+        /**
+         * cardName : string
+         * cardType : string
+         * cardprodId : string
+         */
+
+        private String cardName;
+        private String cardType;
+        private String cardprodId;
+
+        public String getCardName() {
+            return cardName;
+        }
+
+        public void setCardName(String cardName) {
+            this.cardName = cardName;
+        }
+
+        public String getCardType() {
+            return cardType;
+        }
+
+        public void setCardType(String cardType) {
+            this.cardType = cardType;
+        }
+
+        public String getCardprodId() {
+            return cardprodId;
+        }
+
+        public void setCardprodId(String cardprodId) {
+            this.cardprodId = cardprodId;
+        }
     }
 
     @Override

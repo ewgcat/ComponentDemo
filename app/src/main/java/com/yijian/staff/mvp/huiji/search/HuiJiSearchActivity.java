@@ -11,12 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
-import com.yijian.staff.mvp.coach.search.CoachSearchViperBean;
-import com.yijian.staff.mvp.coach.search.CoachSearchViperListAdapter;
-import com.yijian.staff.mvp.huiji.outdate.HuijiOutdateViperListAdapter;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 
@@ -34,17 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -53,25 +40,10 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
-import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public class HuiJiSearchActivity extends AppCompatActivity {
 
@@ -85,7 +57,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     private int pageNum = 1;
     private int pageSize = 1;
     private int pages;
-    private List<HuiJiSearchViperBean> viperBeanList = new ArrayList<HuiJiSearchViperBean>();
+    private List<HuiJiViperBean> viperBeanList = new ArrayList<HuiJiViperBean>();
     private HuiJiVipSearchAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +143,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                     for (int i = 0; i < records.length(); i++) {
                         try {
                             JSONObject jsonObject = (JSONObject) records.get(i);
-                            HuiJiSearchViperBean huiJiSearchViperBean = new HuiJiSearchViperBean(jsonObject);
+                            HuiJiViperBean huiJiSearchViperBean = new HuiJiViperBean(jsonObject);
                             viperBeanList.add(huiJiSearchViperBean);
                         } catch (JSONException e) {
                             Logger.i(TAG, e.toString());
@@ -221,7 +193,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                     for (int i = 0; i < records.length(); i++) {
                         try {
                             JSONObject jsonObject = (JSONObject) records.get(i);
-                            HuiJiSearchViperBean viperBean = new HuiJiSearchViperBean(jsonObject);
+                            HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                             viperBeanList.add(viperBean);
                         } catch (JSONException e) {
 

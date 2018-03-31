@@ -19,6 +19,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.outdate.HuijiOutdateViperListActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -50,7 +51,7 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
     RecyclerView rv_vip_intention;
 
     private HuijiIntentViperListAdapter huijiIntentViperListAdapter;
-    private List<ViperBean> viperBeanList = new ArrayList<>();
+    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
     private int pages;
@@ -160,7 +161,7 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
 
@@ -202,7 +203,7 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
                     }

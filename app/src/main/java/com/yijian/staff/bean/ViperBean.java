@@ -11,29 +11,6 @@ import org.json.JSONObject;
  */
 public class ViperBean {
 
-
-
-
-
-
-    /**
-     birthday (string, optional): 生日 ,
-     birthdayType (string, optional): 生日类型 ,
-     name (string, optional): 名称 ,
-     sex (string, optional): 性别
-     memberId (string, optional): id ,
-     headImg (string, optional): 头像图片 ,
-     cardName (string, optional): 卡名 ,
-     cardType (string, optional): 卡类型 ,
-     contractBalance (string, optional): 合同余额 ,
-     contractDeadline (string, optional): 合同到期日 ,
-     contractId (string, optional): 合同ID ,
-     favorCourse (string, optional): 喜欢课程 ,
-     favorTeacher (string, optional): 喜欢老师 ,
-     privateCoach (string, optional): 私教教练 ,
-     purchaseCount (integer, optional): 购买次数 ,
-     registerTime (string, optional): 注册时间 ,
-     */
     private String bodyStatus; //身体状态
     private String bodybuildingHobby; //健身爱好
     private String interestHobby; //兴趣爱好

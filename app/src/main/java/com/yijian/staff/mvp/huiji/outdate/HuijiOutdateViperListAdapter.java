@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutdateViperListAdapter.ViewHolder>  {
 
-    private List<VipOutdateInfo> vipOutdateInfoList;
+    private List<HuiJiViperBean> vipOutdateInfoList;
     private Context context;
 
-    public HuijiOutdateViperListAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
+    public HuijiOutdateViperListAdapter(Context context, List<HuiJiViperBean> vipOutdateInfoList){
         this.context = context;
         this.vipOutdateInfoList = vipOutdateInfoList;
     }
@@ -39,17 +40,17 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
 
     @Override
     public void onBindViewHolder(HuijiOutdateViperListAdapter.ViewHolder holder, int position) {
-        VipOutdateInfo vipOutdateInfo = vipOutdateInfoList.get(position);
+        HuiJiViperBean vipOutdateInfo = vipOutdateInfoList.get(position);
         holder.tv_name.setText(vipOutdateInfo.getName());
-        holder.iv_gender.setImageResource(vipOutdateInfo.getGender());
+        holder.iv_gender.setImageResource(vipOutdateInfo.getSex());
         holder.tv_cardName.setText(vipOutdateInfo.getCardName());
         holder.tv_cardType.setText(vipOutdateInfo.getCardType());
         holder.tv_privateCoach.setText(vipOutdateInfo.getPrivateCoach());
-        holder.tv_likeLesson.setText(vipOutdateInfo.getLikeLesson());
-        holder.tv_likeTeacher.setText(vipOutdateInfo.getLikeTeacher());
-        holder.tv_registTime.setText(vipOutdateInfo.getRegistTime());
-        holder.tv_contractOutDate.setText(vipOutdateInfo.getContractOutDate());
-        holder.tv_outDateDay.setText(vipOutdateInfo.getOutDateDay());
+        holder.tv_likeLesson.setText(vipOutdateInfo.getFavorCourse());
+        holder.tv_likeTeacher.setText(vipOutdateInfo.getFavorTeacher());
+        holder.tv_registTime.setText(vipOutdateInfo.getRegisterTime());
+        holder.tv_contractOutDate.setText(vipOutdateInfo.getContractDeadline());
+        holder.tv_outDateDay.setText(vipOutdateInfo.getExpiredDay());
 
         holder.lin_quey_contract.setOnClickListener(new View.OnClickListener() { //查看合同
             @Override
@@ -61,7 +62,6 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
-
             }
         });
     }

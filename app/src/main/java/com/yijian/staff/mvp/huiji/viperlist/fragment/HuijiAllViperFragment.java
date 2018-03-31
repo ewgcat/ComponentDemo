@@ -23,6 +23,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -50,7 +51,7 @@ public class HuijiAllViperFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<ViperBean> viperBeanList = new ArrayList<>();
+    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
 
@@ -149,7 +150,7 @@ public class HuijiAllViperFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
 
@@ -218,7 +219,7 @@ public class HuijiAllViperFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
                     }

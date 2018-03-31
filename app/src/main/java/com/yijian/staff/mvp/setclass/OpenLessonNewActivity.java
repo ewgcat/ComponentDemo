@@ -163,5 +163,18 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         editActionObservable.notifyObservers(map);
     }
 
+    public void setOpenLessonList(int itemPosition, OpenLessonNewBean openLessonNewBean){
+        openLessonNewBeans.set(itemPosition,openLessonNewBean);
+    }
+
+    /**
+     * 提交数据时获取所有组的时间间隔
+     */
+    public void nofyAllLessonSubmitInternet(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type","1");
+        editActionObservable.notifyObservers(map);
+    }
+
 }
 

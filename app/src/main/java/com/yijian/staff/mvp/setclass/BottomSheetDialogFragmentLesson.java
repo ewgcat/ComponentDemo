@@ -164,6 +164,9 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
         AlertDialog dialog = builder.create();
         // display dialog
         dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+
     }
 
 
@@ -196,6 +199,9 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
         AlertDialog dialog = builder.create();
         // display dialog
         dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+
     }
 
     public interface ResultChronometerListener{

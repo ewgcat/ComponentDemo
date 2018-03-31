@@ -44,6 +44,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
     private OpenLessonNewActivity openLessonNewActivity;
     private EditActionObservable editActionObservable = new EditActionObservable();
     private OpenLessonNewBean openLessonNewBean;
+    private List<EditText> editList;
 
 
     /*************** 头部 *******************/
@@ -206,6 +207,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                 TextView tv_opration_label = linOpration.findViewById(R.id.tv_opration_label);
                 TextView tv_opration_content = linOpration.findViewById(R.id.tv_opration_content);
                 EditText et_opration_content = linOpration.findViewById(R.id.et_opration_content);
+                et_opration_content.setHint("请填写时间间隔");
+                et_opration_content.setTag(key + "-" + i);
+                editList.add(et_opration_content);
 
                 tv_opration_content.setTag(key + "-" + i);
                 tv_opration_content.setOnClickListener(new OnClickListener() {
@@ -219,20 +223,20 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                             List<String> actionForm = new ArrayList<String>();
                             actionForm.add("标准");
                             actionForm.add("非标准");
-                            manualPickedView(actionForm, "标准", tv);
+                            manualPickedView(actionForm, "标准", tv,subPosition,key);
                         } else if ("强度".equals(key)) {
                             List<String> actionForm = new ArrayList<String>();
                             actionForm.add("弱");
                             actionForm.add("中");
                             actionForm.add("强");
-                            manualPickedView(actionForm, "中", tv);
+                            manualPickedView(actionForm, "中", tv,subPosition,key);
                         } else if ("时间".equals(key)) {
                             OpenLessonNewBean.SubOpenLessonNewBean subLesson = openLessonNewBean.getSubOpenLessonNewBeans().get(subPosition);
                             if (itemPosition == 0 && subPosition == 0) {
-                                showClockView(tv, subPosition);
+                                showClockView(tv, subPosition,key);
                             } else {
                                 if (subLesson.isStartClolck()) {
-                                    showClockView(tv, subPosition);
+                                    showClockView(tv, subPosition,key);
                                 } else {
                                     Toast.makeText(mContext, "不能跨组锻炼...", Toast.LENGTH_SHORT).show();
                                 }
@@ -266,11 +270,13 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
      * @param defaultValue
      * @param name
      */
-    private void manualPickedView(List<String> opts, String defaultValue, TextView name) {
+    private void manualPickedView(List<String> opts, String defaultValue, TextView name,int subItemLocation,String key) {
         OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(mContext, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 name.setText(opts.get(options1));
+                openLessonNewBean.getSubOpenLessonNewBeans().get(subItemLocation).getActionOprationMap().put(key,opts.get(options1));
+                openLessonNewActivity.setOpenLessonList(itemPosition,openLessonNewBean);
             }
         }).build();
 
@@ -282,7 +288,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
     /**
      * 时间 计时弹窗
      */
-    public void showClockView(TextView tv, int subPosition) {
+    public void showClockView(TextView tv, int subPosition, String key) {
         if (bottomSheetDialogFragmentLesson == null) {
             bottomSheetDialogFragmentLesson = new BottomSheetDialogFragmentLesson();
         }
@@ -290,10 +296,13 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
         bottomSheetDialogFragmentLesson.setResultChronometerListener(new BottomSheetDialogFragmentLesson.ResultChronometerListener() {
             @Override
             public void getTimes(long time) {
-                tv.setText("" + time / 1000.00f + "s");
+                String secondTime = "" + time / 1000.00f + "s";
+                tv.setText(secondTime);
                 OpenLessonNewBean.SubOpenLessonNewBean subLesson = openLessonNewBean.getSubOpenLessonNewBeans().get(subPosition);
                 subLesson.setStartClolck(true);
                 openLessonNewActivity.notifyAllLesson(itemPosition, subPosition, openLessonNewBean.getSubOpenLessonNewBeans().size());
+                subLesson.getActionOprationMap().put(key,secondTime);
+                openLessonNewActivity.setOpenLessonList(itemPosition,openLessonNewBean);
             }
         });
     }
@@ -314,12 +323,20 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                         //如果>= 不做任何处理
                     }
                 } else if (itemLocation == (itemPosition-1)) {
-
-                    if (itemLocation == (subSize - 1)) {
+                    if (subItemLocation == (subSize - 1)) {
                         openLessonNewBean.getSubOpenLessonNewBeans().get(0).setStartClolck(true);
                     }
                 }
                 break;
+                case 1:  // 提交时间间隔的数据到Activity
+                    for(EditText et : editList){
+                        String[] tagArray = ((String) et.getTag()).split("-");
+                        String key = tagArray[0];
+                        Integer subPosition = Integer.valueOf(tagArray[1]);
+                        openLessonNewBean.getSubOpenLessonNewBeans().get(subPosition).getActionOprationMap().put(key,et.getText().toString());
+                        openLessonNewActivity.setOpenLessonList(itemPosition,openLessonNewBean);
+                    }
+                    break;
         }
     }
 }

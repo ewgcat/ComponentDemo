@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.goodsbaojia;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -25,16 +26,12 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.coach.classbaojia.CoachClassBaoJiaActivity;
-import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
-import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.JsonUtil;
 
@@ -110,7 +107,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 finish();
             }
         });
-        etSearch.setHintTextColor(Color.parseColor("#ffffff"));
+        etSearch.setHintTextColor(Color.parseColor("#999999"));
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -141,7 +138,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, GoodsInfo goodsInfo) {
                 selectedGoodsInfo = goodsInfo;
-                //TODO 跳转到商品详情
             }
         });
 

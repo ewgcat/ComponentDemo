@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.bin.david.form.data.format.IFormat;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.JsonUtil;

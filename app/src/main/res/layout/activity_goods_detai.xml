@@ -283,13 +283,7 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <com.bin.david.form.core.SmartTable
-                android:id="@+id/table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+
 
         </LinearLayout>
 

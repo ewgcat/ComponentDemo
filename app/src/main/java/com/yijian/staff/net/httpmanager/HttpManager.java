@@ -65,8 +65,11 @@ public class HttpManager {
     //私教课查询
     public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
 
-    //私教课查询
+    //会籍卡产品查询
     public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
+
+    //会籍卡产品查询
+    public static String HUI_JI_CARD_GOODS_DETAIL_URL = BuildConfig.HOST + "card/detail";
 
 
     //公用方法
@@ -126,21 +129,29 @@ public class HttpManager {
         execute(observable, observer);
     }
 
-    //私教课查询列表
+    //会籍卡产品查询列表
     public static void getHuiJiCardGoodsList(@HeaderMap Map<String, String> headers, HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
         Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
         execute(observable, observer);
     }
 
+    //会籍卡产品详情查询
+    public static void getHuiJiCardGoodsDetail(@HeaderMap Map<String, String> headers,  Map<String, String> params,Observer<JSONObject> observer) {
+        getHasHeaderHasParam(HUI_JI_CARD_GOODS_DETAIL_URL, headers, params,observer);
+    }
+
+
     //教练模糊搜索会员
     public static void searchViperByCoach(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
         getHasHeaderHasParam(INDEX_COACH_QUERY_URL, header, params, observer);
+
     }
 
 
     //会籍模糊搜索会员
     public static void searchViperByHuiJi(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
         getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, header, params, observer);
+
     }
 
 

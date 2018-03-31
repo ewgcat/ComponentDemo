@@ -20,7 +20,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
-            android:src="@mipmap/white_arrow_back" />
+            android:src="@mipmap/black_arrow_back" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -28,7 +28,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-
             android:layout_weight="1"
             android:background="@drawable/goods_search_top_edittext_bg"
             android:orientation="horizontal">
@@ -52,13 +51,18 @@
                 android:hint="输入产品名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
-                android:textColor="#ffffff"
+                android:textColor="#f2f2f2"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"

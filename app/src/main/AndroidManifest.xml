@@ -116,9 +116,6 @@
             android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.goodsdetail.GoodsDetaiActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.goodsdetail.GoodsRightSupportActivity"
             android:screenOrientation="portrait" />
         <activity

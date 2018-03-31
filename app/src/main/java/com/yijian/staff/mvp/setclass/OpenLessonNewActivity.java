@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Chronometer;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
@@ -53,16 +54,16 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList1 = new ArrayList<>(0);
 
         OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean1 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String,String> actionMap1 = new HashMap<String,String>();
-        actionMap1.put("平板支撑","1组/每组2分钟");
-        actionMap1.put("需要器械","有");
+        Map<String, String> actionMap1 = new HashMap<String, String>();
+        actionMap1.put("平板支撑", "1组/每组2分钟");
+        actionMap1.put("需要器械", "有");
         subOpenLessonNewBean1.setActionMap(actionMap1);
 
-        Map<String,String> actionOprationMap1 = new LinkedHashMap<String,String>();
-        actionOprationMap1.put("动作形态","");
-        actionOprationMap1.put("强度","");
-        actionOprationMap1.put("时间","");
-        actionOprationMap1.put("间隔","");
+        Map<String, String> actionOprationMap1 = new LinkedHashMap<String, String>();
+        actionOprationMap1.put("动作形态", "");
+        actionOprationMap1.put("强度", "");
+        actionOprationMap1.put("时间", "");
+        actionOprationMap1.put("间隔", "");
         subOpenLessonNewBean1.setActionOprationMap(actionOprationMap1);
 
         subOpenLessonNewBeanList1.add(subOpenLessonNewBean1);
@@ -76,16 +77,16 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList2 = new ArrayList<>(0);
 
         OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean2 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String,String> actionMap2 = new HashMap<String,String>();
-        actionMap2.put("平板支撑","1组/每组2分钟");
-        actionMap2.put("需要器械","有");
+        Map<String, String> actionMap2 = new HashMap<String, String>();
+        actionMap2.put("平板支撑", "1组/每组2分钟");
+        actionMap2.put("需要器械", "有");
         subOpenLessonNewBean2.setActionMap(actionMap2);
 
-        Map<String,String> actionOprationMap2 = new LinkedHashMap<String,String>();
-        actionOprationMap2.put("动作形态","标准");
-        actionOprationMap2.put("强度","弱");
-        actionOprationMap2.put("时间","10");
-        actionOprationMap2.put("间隔","30");
+        Map<String, String> actionOprationMap2 = new LinkedHashMap<String, String>();
+        actionOprationMap2.put("动作形态", "标准");
+        actionOprationMap2.put("强度", "弱");
+        actionOprationMap2.put("时间", "10");
+        actionOprationMap2.put("间隔", "30");
         subOpenLessonNewBean2.setActionOprationMap(actionOprationMap2);
 
         subOpenLessonNewBeanList2.add(subOpenLessonNewBean2);
@@ -100,29 +101,29 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList3 = new ArrayList<>(0);
 
         OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String,String> actionMap3 = new HashMap<String,String>();
-        actionMap3.put("平板支撑","1组/每组2分钟");
-        actionMap3.put("需要器械","有");
+        Map<String, String> actionMap3 = new HashMap<String, String>();
+        actionMap3.put("平板支撑", "1组/每组2分钟");
+        actionMap3.put("需要器械", "有");
         subOpenLessonNewBean3.setActionMap(actionMap3);
-        Map<String,String> actionOprationMap3 = new LinkedHashMap<String,String>();
-        actionOprationMap3.put("动作形态","标准");
-        actionOprationMap3.put("强度","弱");
-        actionOprationMap3.put("时间","10");
-        actionOprationMap3.put("间隔","30");
+        Map<String, String> actionOprationMap3 = new LinkedHashMap<String, String>();
+        actionOprationMap3.put("动作形态", "标准");
+        actionOprationMap3.put("强度", "弱");
+        actionOprationMap3.put("时间", "10");
+        actionOprationMap3.put("间隔", "30");
         subOpenLessonNewBean3.setActionOprationMap(actionOprationMap3);
         subOpenLessonNewBeanList3.add(subOpenLessonNewBean3);
 
 
         OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3_2 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String,String> actionMap3_2 = new HashMap<String,String>();
-        actionMap3_2.put("平板支撑","1组/每组2分钟");
-        actionMap3_2.put("需要器械","有");
+        Map<String, String> actionMap3_2 = new HashMap<String, String>();
+        actionMap3_2.put("平板支撑", "1组/每组2分钟");
+        actionMap3_2.put("需要器械", "有");
         subOpenLessonNewBean3_2.setActionMap(actionMap3_2);
-        Map<String,String> actionOprationMap3_2 = new LinkedHashMap<String,String>();
-        actionOprationMap3_2.put("动作形态","标准");
-        actionOprationMap3_2.put("强度","弱");
-        actionOprationMap3_2.put("时间","10");
-        actionOprationMap3_2.put("间隔","30");
+        Map<String, String> actionOprationMap3_2 = new LinkedHashMap<String, String>();
+        actionOprationMap3_2.put("动作形态", "标准");
+        actionOprationMap3_2.put("强度", "弱");
+        actionOprationMap3_2.put("时间", "10");
+        actionOprationMap3_2.put("间隔", "30");
         subOpenLessonNewBean3_2.setActionOprationMap(actionOprationMap3_2);
         subOpenLessonNewBeanList3.add(subOpenLessonNewBean3_2);
 
@@ -130,49 +131,61 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         openLessonNewBeans.add(openLessonNewBean3);
 
 
-
         openLessonNewAdapter.notifyDataSetChanged();
     }
 
-    private Handler handler=new Handler();
+    private Handler handler = new Handler();
+
     private void initView() {
 //        chronometer.setFormat("H:MM:SS");
-        Calendar mCalendar= Calendar.getInstance();
+        Calendar mCalendar = Calendar.getInstance();
         int hour = mCalendar.get(Calendar.HOUR);
         int minute = mCalendar.get(Calendar.MINUTE);
         int second = mCalendar.get(Calendar.SECOND);
 
-        int time= hour*60*60+minute*60+second;
-        chronometer.setBase(SystemClock.elapsedRealtime()-time*1000);//计时器清零
+        int time = hour * 60 * 60 + minute * 60 + second;
+        chronometer.setBase(SystemClock.elapsedRealtime() - time * 1000);//计时器清零
         chronometer.start();
 
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_open_lesson.setLayoutManager(layoutmanager);
-        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans,this,editActionObservable);
+        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans, this, editActionObservable);
         rv_open_lesson.setAdapter(openLessonNewAdapter);
     }
 
-    public void notifyAllLesson(int itemPosition, int subPosition,int subSize){
+    public void notifyAllLesson(int itemPosition, int subPosition, int subSize) {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("type","0");
+        map.put("type", "0");
         map.put("itemPosition", itemPosition + "");
         map.put("subPosition", subPosition + "");
         map.put("subSize", subSize + "");
         editActionObservable.notifyObservers(map);
     }
 
-    public void setOpenLessonList(int itemPosition, OpenLessonNewBean openLessonNewBean){
-        openLessonNewBeans.set(itemPosition,openLessonNewBean);
+    public void setOpenLessonList(int itemPosition, OpenLessonNewBean openLessonNewBean) {
+        openLessonNewBeans.set(itemPosition, openLessonNewBean);
     }
 
     /**
      * 提交数据时获取所有组的时间间隔
      */
-    public void nofyAllLessonSubmitInternet(){
+    public void nofyAllLessonSubmitInternet() {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("type","1");
+        map.put("type", "1");
+        editActionObservable.notifyObservers(map);
+    }
+
+    /**
+     * 点击头部 监听各分组的隐藏和显示
+     *
+     * @param itemPosition
+     */
+    public void notifyClickHeader(int itemPosition) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "2");
+        map.put("itemPosition", itemPosition + "");
         editActionObservable.notifyObservers(map);
     }
 

@@ -100,7 +100,7 @@ public class HuijiTodayVisitFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
         if (huijiViperFilterBean != null) {
@@ -130,7 +130,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
         }
 
-        HttpManager.getTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -166,7 +166,7 @@ public class HuijiTodayVisitFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         if (huijiViperFilterBean != null) {
@@ -197,7 +197,7 @@ public class HuijiTodayVisitFragment extends Fragment {
             }
 
         }
-        HttpManager.getTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

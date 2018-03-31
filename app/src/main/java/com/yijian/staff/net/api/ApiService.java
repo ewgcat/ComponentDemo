@@ -107,7 +107,7 @@ public interface ApiService {
 
     //会籍（客服）获取会员列表
     @GET
-    Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+    Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, Object> param);
 
     //首页图标
     @GET

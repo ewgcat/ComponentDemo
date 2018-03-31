@@ -62,8 +62,6 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         timeBar.showTimeBar(4);
 
 
-
-
         findViewById(R.id.tv_chakanxiangqing).setOnClickListener(this);
     }
 

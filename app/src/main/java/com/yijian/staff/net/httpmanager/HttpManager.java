@@ -31,23 +31,55 @@ public class HttpManager {
     }
 
 
-    public static String LOGIN_URL = BuildConfig.HOST + "user/login";
-    public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
-    public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+
+    /*************************会籍************************/
+
 
     //会籍（客服） 获取全部会员列表
-    public static String GET_ALL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/list";
+    public static String GET_HUIJI_ALL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/list";
 
     //会籍 会员信息 今日来访列表
-    public static String GET_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/today/visit/list";
+    public static String GET_HUIJI_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/today/visit/list";
+
     //会籍  过期向会员列表
-    public static String GET_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/expire/list";
+    public static String GET_HUIJI_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/expire/list";
 
     //会籍  意向会员列表
-    public static String GET_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "/customer-service/member/intention/list";
+    public static String GET_HUIJI_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/intention/list";
 
     //会籍  潜在会员列表
-    public static String GET_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "/customer-service/member/potential/list";
+    public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/potential/list";
+
+
+    //会籍卡产品查询
+    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
+
+    //首页搜索 会籍
+    public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
+
+
+    /*************************教练************************/
+
+    //教练 获取全部会员列表
+    public static String GET_COACH_ALL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/list";
+
+    //教练 会员信息 今日来访列表
+    public static String GET_COACH_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/today/visit/list";
+
+    //教练  过期向会员列表
+    public static String GET_COACH_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/expire/list";
+
+    //教练  意向会员列表
+    public static String GET_COACH_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/intention/list";
+
+    //教练  潜在会员列表
+    public static String GET_COACH_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/potential/list";
+
+    //首页搜索 教练
+    public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
+
+    //私教课查询
+    public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
 
 
     //工作台 首页图标
@@ -56,20 +88,17 @@ public class HttpManager {
     //保存 图标位置
     public static String SAVE_MENU_CHANGE_URL = BuildConfig.HOST + "menu/common/item/save";
 
-    //首页搜索 会籍
-    public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
+    //登录
+    public static String LOGIN_URL = BuildConfig.HOST + "user/login";
 
-    //首页搜索 教练
-    public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
+    //获取验证码
+    public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
 
-    //私教课查询
-    public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
+    //重置密码
+    public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
 
-    //会籍卡产品查询
-    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
 
-    //会籍卡产品查询
-    public static String HUI_JI_CARD_GOODS_DETAIL_URL = BuildConfig.HOST + "card/detail";
+
 
 
     //公用方法
@@ -100,14 +129,26 @@ public class HttpManager {
     }
 
     //会籍（客服） 获取全部会员列表
-    public static void getAllViperList(Map<String, String> headers, Map<String, String> params, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.getDataList(GET_ALL_VIPER_LIST_URL, headers, params);
+    public static void getHuiJiAllViperList(Map<String, String> headers, Map<String, Object> params, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getDataList(GET_HUIJI_ALL_VIPER_LIST_URL, headers, params);
         execute(observable, observer);
     }
 
     //会籍 会员信息 今日来访列表
-    public static void getTodayViperList(Map<String, String> headers, Map<String, String> params, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.getDataList(GET_TODAY_VIPER_LIST_URL, headers, params);
+    public static void getHuiJiTodayViperList(Map<String, String> headers, Map<String, Object> params, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getDataList(GET_HUIJI_TODAY_VIPER_LIST_URL, headers, params);
+        execute(observable, observer);
+    }
+
+    //教练 获取全部会员列表
+    public static void getCoachAllViperList(Map<String, String> headers, Map<String, Object> params, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getDataList(GET_COACH_ALL_VIPER_LIST_URL, headers, params);
+        execute(observable, observer);
+    }
+
+    //教练 会员信息 今日来访列表
+    public static void getCoachTodayViperList(Map<String, String> headers, Map<String, Object> params, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.getDataList(GET_COACH_TODAY_VIPER_LIST_URL, headers, params);
         execute(observable, observer);
     }
 
@@ -135,10 +176,6 @@ public class HttpManager {
         execute(observable, observer);
     }
 
-    //会籍卡产品详情查询
-    public static void getHuiJiCardGoodsDetail(@HeaderMap Map<String, String> headers,  Map<String, String> params,Observer<JSONObject> observer) {
-        getHasHeaderHasParam(HUI_JI_CARD_GOODS_DETAIL_URL, headers, params,observer);
-    }
 
 
     //教练模糊搜索会员

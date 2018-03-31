@@ -40,6 +40,8 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
+import static com.yijian.staff.net.httpmanager.HttpManager.GET_HUIJI_OUTDATE_VIPER_LIST_URL;
+
 /**
  * 过期会员列表
  */
@@ -157,7 +159,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -197,7 +199,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

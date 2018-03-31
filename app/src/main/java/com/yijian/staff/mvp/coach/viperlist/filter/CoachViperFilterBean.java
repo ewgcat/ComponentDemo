@@ -8,28 +8,18 @@ package com.yijian.staff.mvp.coach.viperlist.filter;
 public class CoachViperFilterBean {
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
-    private int classType = -1;//课程类型：【1:私教课，1:体验课】
+    private String courseType =null;//课程类型：【1:私教课，2:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private String startTime = null;//开始时间
     private String endTime = null;//结束时间
 
 
-    private int buyClassTime = -1;//购买时间：【7:7天，14:14天，30:30天】
+    private int buyTime = -1;//购买时间：【0:0天，7:7天，30:30天】
 
     private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
     public CoachViperFilterBean() {
-    }
-
-    public CoachViperFilterBean(int sex, int classType, int joinTimeType, String startTime, String endTime, int buyClassTime, int expiringDay) {
-        this.sex = sex;
-        this.classType = classType;
-        this.joinTimeType = joinTimeType;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.buyClassTime = buyClassTime;
-        this.expiringDay = expiringDay;
     }
 
     public int getSex() {
@@ -40,12 +30,12 @@ public class CoachViperFilterBean {
         this.sex = sex;
     }
 
-    public int getClassType() {
-        return classType;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setClassType(int classType) {
-        this.classType = classType;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
     public int getJoinTimeType() {
@@ -72,12 +62,12 @@ public class CoachViperFilterBean {
         this.endTime = endTime;
     }
 
-    public int getBuyClassTime() {
-        return buyClassTime;
+    public int getBuyTime() {
+        return buyTime;
     }
 
-    public void setBuyClassTime(int buyClassTime) {
-        this.buyClassTime = buyClassTime;
+    public void setBuyTime(int buyTime) {
+        this.buyTime = buyTime;
     }
 
     public int getExpiringDay() {

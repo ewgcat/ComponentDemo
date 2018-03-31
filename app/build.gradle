@@ -131,7 +131,6 @@ dependencies {
         exclude group: 'com.android.support'
     })
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
-    implementation 'com.github.huangyanbin:SmartTable:1.8.8'
     //选择时间，日期，多级联动
     implementation 'com.contrarywind:Android-PickerView:3.2.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'

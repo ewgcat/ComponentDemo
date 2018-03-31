@@ -3,7 +3,6 @@ package com.yijian.staff.net.response;
 
 import android.util.Log;
 
-import com.bin.david.form.data.format.IFormat;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;

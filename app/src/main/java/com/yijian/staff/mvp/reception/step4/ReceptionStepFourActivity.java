@@ -6,11 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bin.david.form.core.SmartTable;
-import com.bin.david.form.data.style.FontStyle;
-import com.bin.david.form.utils.DensityUtils;
+
 import com.yijian.staff.R;
-import com.yijian.staff.bean.KeCheng;
 import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
@@ -65,17 +62,7 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         timeBar.showTimeBar(4);
 
 
-        FontStyle.setDefaultTextSize(DensityUtils.sp2px(this, 10));
-        SmartTable table = (SmartTable<KeCheng>) findViewById(R.id.table);
-        List<KeCheng> keChengList = new ArrayList<KeCheng>();
-        KeCheng keCheng1 = new KeCheng("12:00-18:00", "30", "30", "30", "30", "30", "30", "30");
-        keChengList.add(keCheng1);
-        KeCheng keCheng2 = new KeCheng("20:00-24:00", "30", "30", "30", "30", "30", "30", "30");
-        keChengList.add(keCheng2);
-        table.setData(keChengList);
-        table.getConfig().setShowTableTitle(false);
-        table.getConfig().setShowXSequence(false);
-        table.getConfig().setShowYSequence(false);
+
 
         findViewById(R.id.tv_chakanxiangqing).setOnClickListener(this);
     }

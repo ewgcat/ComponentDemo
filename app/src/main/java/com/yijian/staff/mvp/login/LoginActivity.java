@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void initView() {
         etAccount = findViewById(R.id.et_account);
         etPassword = findViewById(R.id.et_password);
-
+        etAccount.setText(SharePreferenceUtil.getUserName());
         etAccount.setHintTextColor(Color.parseColor("#7FC7FF"));
         etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
 
@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int id = v.getId();
         String account = etAccount.getText().toString();
         String password = etPassword.getText().toString();
-
 
 
         switch (id) {
@@ -76,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         public void onSuccess(JSONObject result) {
 
                             User user = new User(result);
+                            SharePreferenceUtil.setUserName(account);
                             SharePreferenceUtil.setUserId(user.getUserId());
                             SharePreferenceUtil.setUserRole(user.getRole());
 
@@ -96,8 +96,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 }
-
-
 
 
                 break;

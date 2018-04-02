@@ -72,5 +72,8 @@ public class DBManager  {
     }
 
 
-
+    public void clearUser() {
+        UserDao userDao = mDaoSession.getUserDao();
+        userDao.deleteAll();
+    }
 }

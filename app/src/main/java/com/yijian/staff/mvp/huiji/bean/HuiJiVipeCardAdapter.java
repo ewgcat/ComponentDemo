@@ -38,7 +38,7 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return 0;
+        return cardprodsBeans==null?0:cardprodsBeans.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

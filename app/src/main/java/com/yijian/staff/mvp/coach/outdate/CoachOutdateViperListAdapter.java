@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.coach.intent.CoachIntentViperDetailActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;
@@ -43,11 +45,26 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         VipOutdateInfo vipOutdateInfo = vipOutdateInfoList.get(position);
         holder.tv_name.setText(vipOutdateInfo.getName());
         holder.iv_gender.setImageResource(vipOutdateInfo.getGender());
-        holder.tv_cardName.setText(vipOutdateInfo.getCardName());
-        holder.tv_cardType.setText(vipOutdateInfo.getCardType());
+
         holder.tv_history_lesson.setText(vipOutdateInfo.getHistoryLesson());
         holder.tv_outDate.setText(vipOutdateInfo.getOutDate());
         holder.tv_outDate_reason.setText(vipOutdateInfo.getOutDateReason());
+
+
+        holder.ll_chakanxiangqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
+            }
+        });
+
+
+        holder.rl_expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+            }
+        });
 
         holder.lin_huifan.setOnClickListener(new View.OnClickListener() { //回访
             @Override
@@ -71,12 +88,14 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-
+        LinearLayout ll_chakanxiangqing;
         ImageView iv_header;
         TextView tv_name;
         ImageView iv_gender;
-        TextView tv_cardName;
-        TextView tv_cardType;
+
+        RelativeLayout rl_expand;
+        RecyclerView rv_card;
+
         TextView tv_history_lesson; //历史课程
         TextView tv_outDate; //过期时间
         TextView tv_outDate_reason; //过期原因
@@ -86,11 +105,14 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
         public ViewHolder(View view) {
             super(view);
+            ll_chakanxiangqing  =     view.findViewById(R.id.ll_chakanxiangqing);
             iv_header =  view.findViewById(R.id.iv_header);
             tv_name   = view.findViewById(R.id.tv_name);
             iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_cardName   = view.findViewById(R.id.tv_cardName);
-            tv_cardType =     view.findViewById(R.id.tv_cardType);
+
+            rl_expand =  view.findViewById(R.id.rl_expand);
+            rv_card =  view.findViewById(R.id.rv_card);
+
             tv_history_lesson =     view.findViewById(R.id.tv_history_lesson);
             tv_outDate  =     view.findViewById(R.id.tv_outDate);
             tv_outDate_reason  =     view.findViewById(R.id.tv_outDate_reason);

@@ -6,12 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -19,11 +16,9 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperListActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -45,7 +40,7 @@ import butterknife.ButterKnife;
  * 潜在会员 列表
  */
 @Route(path = "/test/3")
-public class PotentialViperListActivity extends AppCompatActivity implements View.OnClickListener {
+public class PotentialViperListActivity extends AppCompatActivity  {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -66,19 +61,14 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
 
         initTitle();
         initView();
-//        initVipPeopleList();
+        initVipPeopleList();
     }
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
-        navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.getmRightTv().setOnClickListener(this);
         navigationBar2.setBackClickListener(this);
-        ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
         navigationBar2.setTitle("潜在会员");
-        navigationBar2.setmRightTvText("筛选");
     }
 
     private void initView(){
@@ -90,7 +80,7 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
         initComponent();
     }
 
-    /*private void initVipPeopleList(){
+    private void initVipPeopleList(){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("headerUrl", "");
@@ -104,7 +94,7 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
             jsonObject.put("useCar", "无");
             jsonObject.put("isIntentVip","0");
             for (int i = 0; i < 10; i++) {
-                ViperBean viperBean = new ViperBean(jsonObject);
+                HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                 viperBeanList.add(viperBean);
             }
 
@@ -118,12 +108,10 @@ public class PotentialViperListActivity extends AppCompatActivity implements Vie
             Logger.i("TEST", "JSONException: " + e);
 
         }
-    }*/
-
-
-    @Override
-    public void onClick(View v) {
     }
+
+
+
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式

@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.ViperBean;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 
@@ -42,15 +43,22 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
     public void onBindViewHolder(CoachIntentViperListAdapter.ViewHolder holder, int position) {
         ViperBean viperBean = viperBeanList.get(position);
         holder.tv_name.setText(viperBean.getName());
-        holder.tv_birth.setText(viperBean.getBirthday());
-        holder.tv_birth_type.setText(viperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
-        holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
-        holder.tv_interestHobby.setText(viperBean.getInterestHobby());
-        holder.iv_gender.setImageResource("1".equals(viperBean.getSex())?R.mipmap.lg_women:R.mipmap.lg_man);
-        holder.tv_useCar.setText(viperBean.getUseCar());
 
 
+
+        holder.rl_expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+            }
+        });
+
+        holder.ll_chakanxiangqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
+            }
+        });
 
         holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +84,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             }
         });
 
-        holder.ll_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
-            }
-        });
+
 
     }
 
@@ -95,13 +98,23 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        TextView tv_birth;
-        TextView tv_birth_type;
-        TextView tv_bodyStatus;
-        TextView tv_bodybuildingHobby;
-        TextView tv_interestHobby;
-        TextView tv_useCar;
-        LinearLayout ll_content; //真个Item条目
+        LinearLayout ll_chakanxiangqing; //报价
+
+        RelativeLayout rl_expand;
+        RecyclerView rv_card;
+        TextView tv_fuwu_huiji;
+        TextView tv_ti_yan_ke_ci_shu;
+        TextView tv_first_class_record;
+        TextView tv_second_class_record;
+        TextView tv_like_class;
+        TextView tv_like_teacher;
+        TextView tv_regist_time;
+        TextView tv_contract_overTime;
+        TextView tv_contract_balance;
+        TextView tv_buy_count;
+
+
+
 
         LinearLayout lin_baojia; //报价
         LinearLayout lin_protect_seven; //保护7天/回访
@@ -113,14 +126,24 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             iv_header =  view.findViewById(R.id.iv_header);
             iv_gender =  view.findViewById(R.id.iv_gender);
             tv_name   = view.findViewById(R.id.tv_name);
-            tv_birth  =     view.findViewById(R.id.tv_birth);
-            tv_birth_type =     view.findViewById(R.id.tv_birth_type);
-            tv_bodyStatus =     view.findViewById(R.id.tv_bodyStatus);
-            tv_bodybuildingHobby =     view.findViewById(R.id.tv_bodybuildingHobby);
-            tv_interestHobby =     view.findViewById(R.id.tv_interestHobby);
-            tv_useCar  =     view.findViewById(R.id.tv_useCar);
+            ll_chakanxiangqing   = view.findViewById(R.id.ll_chakanxiangqing);
 
-            ll_content =     view.findViewById(R.id.ll_content);
+            rl_expand   = view.findViewById(R.id.rl_expand);
+            rv_card   = view.findViewById(R.id.rv_card);
+
+            tv_fuwu_huiji  =     view.findViewById(R.id.tv_fuwu_huiji);
+
+            tv_ti_yan_ke_ci_shu =     view.findViewById(R.id.tv_ti_yan_ke_ci_shu);
+
+            tv_first_class_record =     view.findViewById(R.id.tv_first_class_record);
+            tv_second_class_record =     view.findViewById(R.id.tv_second_class_record);
+            tv_like_class =     view.findViewById(R.id.tv_like_class);
+            tv_like_teacher  =     view.findViewById(R.id.tv_like_teacher);
+            tv_regist_time  =     view.findViewById(R.id.tv_regist_time);
+            tv_contract_overTime  =     view.findViewById(R.id.tv_contract_overTime);
+            tv_contract_balance  =     view.findViewById(R.id.tv_contract_balance);
+            tv_buy_count  =     view.findViewById(R.id.tv_buy_count);
+
             lin_baojia =     view.findViewById(R.id.lin_baojia);
             lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
             lin_invitation =     view.findViewById(R.id.lin_invitation);

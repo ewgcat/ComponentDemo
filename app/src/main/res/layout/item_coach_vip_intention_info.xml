@@ -6,6 +6,7 @@
     android:background="@color/gray"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,17 +18,19 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
+                android:id="@+id/ll_chakanxiangqing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="18dp"
+                android:paddingRight="18dp"
                 android:paddingTop="15dp">
 
                 <ImageView
@@ -52,9 +55,75 @@
                     android:layout_marginLeft="8dp"
                     android:src="@mipmap/lg_man" />
 
+                <TextView
+                    android:id="@+id/tv_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="right"
+                    android:text="意向会员"
+                    android:visibility="gone"
+                    android:textColor="#1997f8"
+                    android:textSize="16sp" />
+
 
             </LinearLayout>
 
+
+            <View
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+               android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="卡名-卡类型"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="4dp"
+                        android:drawableRight="@mipmap/fp_shang"
+                        android:gravity="center_vertical"
+                        android:text="收起"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,17 +136,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="生日:"
+                    android:text="服务会籍:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_birth"
+                    android:id="@+id/tv_fuwu_huiji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="1992-12-22"
+                    android:text="李冰冰"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -95,17 +164,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="生日类型:"
+                    android:text="体验课次数:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_birth_type"
+                    android:id="@+id/tv_ti_yan_ke_ci_shu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="农历"
+                    android:text="2"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -123,17 +192,63 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="身体状态:"
+                    android:text="课程记录表: "
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_bodyStatus"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="正常"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_first_class_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        android:text="第一次上课记录表"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_second_class_record"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="第二次上课记录表"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="喜欢课程:"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_like_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="健身课"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -151,17 +266,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="健身爱好:"
+                    android:text="喜欢老师:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_bodybuildingHobby"
+                    android:id="@+id/tv_like_teacher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="哑铃"
+                    android:text="周奇老师"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -179,17 +294,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="兴趣爱好: "
+                    android:text="注册时间:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_interestHobby"
+                    android:id="@+id/tv_regist_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="打篮球、游泳"
+                    android:text="2017-12-25"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -207,12 +322,40 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
-                    android:text="使用车辆:"
+                    android:text="合同到期日:"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_useCar"
+                    android:id="@+id/tv_contract_overTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="2017-12-25"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="合同余额:"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_contract_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -222,25 +365,53 @@
                     android:textSize="14sp" />
 
             </RelativeLayout>
-        </LinearLayout>
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <View
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/gray"
+                android:layout_height="wrap_content"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"
-                android:paddingTop="15dp" />
+                android:paddingTop="15dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="购买次数:"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_buy_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="无"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/gray"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp"
+                    android:paddingTop="15dp" />
+
+            </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -313,5 +484,6 @@
 
 
     </LinearLayout>
+
 
 </LinearLayout>

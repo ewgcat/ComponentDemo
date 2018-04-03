@@ -47,6 +47,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_source"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -75,14 +76,16 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_fitnessGoal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="瘦身"
                             android:textColor="#333333"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:background="@color/white"/>
 
                     </RelativeLayout>
 
@@ -103,6 +106,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_onceJoinedClub"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -131,13 +135,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_clubBrand"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="力美健"
                             android:textColor="#333333"
+                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -177,6 +183,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_yearIncome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -205,12 +212,14 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_carPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="10万"
+                            android:background="@color/white"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -232,13 +241,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_hobby"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="唱歌、跳舞"
                             android:textColor="#333333"
+                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -277,12 +288,14 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_nationality"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="中华人民共和国"
+                            android:background="@color/white"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -304,12 +317,14 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_nation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="汉族"
+                            android:background="@color/white"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -348,13 +363,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_occupation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="舞蹈家"
                             android:textColor="#333333"
+                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -376,6 +393,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_marriageStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -405,6 +423,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_hasChildren"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -451,7 +470,8 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/et_address"
                             android:layout_width="134dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"

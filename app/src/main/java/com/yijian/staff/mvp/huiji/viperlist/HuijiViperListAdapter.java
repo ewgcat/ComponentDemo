@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.huiji.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,6 +70,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             @Override
             public void onClick(View v) {
                 holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+                holder.tv_opration_label.setText((holder.rv_card.getVisibility()==View.GONE)?"收起":"展开");
+                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_shang:R.mipmap.fp_xia);
             }
         });
 
@@ -96,7 +99,9 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ViperDetailActivity.class));
+                Intent intent = new Intent(context, ViperDetailActivity.class);
+                intent.putExtra("id",viperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
 
@@ -116,6 +121,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
          TextView tv_card_type;*/
         RelativeLayout rel_expand;
         RecyclerView rv_card;
+        TextView tv_opration_label;
+        ImageView iv_opration_arrow;
 
         TextView tv_private_coach;
         TextView tv_like_lesson;
@@ -142,6 +149,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             tv_card_type = view.findViewById(R.id.tv_card_type);*/
             rel_expand = view.findViewById(R.id.rel_expand);
             rv_card = view.findViewById(R.id.rv_card);
+            tv_opration_label = view.findViewById(R.id.tv_opration_label);
+            iv_opration_arrow = view.findViewById(R.id.iv_opration_arrow);
             tv_private_coach = view.findViewById(R.id.tv_private_coach);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
             tv_like_teacher = view.findViewById(R.id.tv_like_teacher);

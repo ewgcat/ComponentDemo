@@ -50,6 +50,8 @@ public class HttpManager {
     //会籍  潜在会员列表
     public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/potential/list";
 
+    //所有会员的详情入口
+    public static String GET_HUIJI_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
 
     //会籍卡产品查询
     public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";

@@ -15,28 +15,6 @@ import java.util.Map;
 
 public class HuiJiViperBean {
 
-    /**
-     * {
-     "memberId": "85fec0bef849466fb95697d4bb7f2901",
-     "name": "值0",
-     "sex": "2",
-     "headImg": "值0",
-     "cardprodId": "0063514bd77a4f77979393c8efe27b68",
-     "cardName": "值4",
-     "cardType": "员工卡",
-     "favorCourse": "卡卡技术",
-     "favorTeacher": "faker大魔王",
-     "registerTime": 1521118474000,
-     "contractId": "60d3b1b531c946f1b6ed6294f21efea5",
-     "contractDeadline": 1520920430000,
-     "contractBalance": "3.00",
-     "purchaseCount": 0,
-     "seller": "树根",
-     "experienceClassTimes": 2,
-     "viperRole": "意向会员",
-     "subclassName": "CoachIntentionVO"
-     }
-     */
     //("头像图片")
     private String headImg;
     //会员姓名
@@ -116,7 +94,7 @@ public class HuiJiViperBean {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
 //        this.sex = JsonUtil.getString(jsonObject, "sex");
-        this.sex = "0".equals(JsonUtil.getString(jsonObject,"sex")) ? R.mipmap.lg_women : R.mipmap.lg_man;
+        this.sex = "女".equals(JsonUtil.getString(jsonObject,"sex")) ? R.mipmap.lg_women : R.mipmap.lg_man;
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
 

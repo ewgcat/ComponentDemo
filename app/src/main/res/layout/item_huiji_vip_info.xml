@@ -67,6 +67,11 @@
 
             </LinearLayout>
 
+            <View
+                style="@style/SplitLineStyle"
+                android:layout_marginTop="10dp"
+                />
+
             <!--<RelativeLayout-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
@@ -135,7 +140,9 @@
                 <RelativeLayout
                     android:id="@+id/rel_expand"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,16 +153,33 @@
                         android:textColor="#999999"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="收起"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:drawableRight="@mipmap/fp_shang"
-                        android:drawablePadding="4dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_opration_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="收起"
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:drawablePadding="4dp"
+                            android:layout_marginRight="6dp"/>
+
+                        <ImageView
+                            android:id="@+id/iv_opration_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/fp_shang"/>
+
+                    </LinearLayout>
+
+
 
                 </RelativeLayout>
 
@@ -163,6 +187,11 @@
                     android:id="@+id/rv_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+                <View
+                    style="@style/SplitLineStyle"
+                    android:layout_marginTop="15dp"
+                    />
 
             </LinearLayout>
             

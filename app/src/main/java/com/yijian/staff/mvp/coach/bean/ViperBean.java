@@ -1,8 +1,12 @@
-package com.yijian.staff.bean;
+package com.yijian.staff.mvp.coach.bean;
 
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.util.JsonUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * author：李帅华
@@ -11,57 +15,46 @@ import org.json.JSONObject;
  */
 public class ViperBean {
 
-
-
-
-    /**
-     birthday (string, optional): 生日 ,
-     birthdayType (string, optional): 生日类型 ,
-     name (string, optional): 名称 ,
-     sex (string, optional): 性别
-     memberId (string, optional): id ,
-     headImg (string, optional): 头像图片 ,
-     cardName (string, optional): 卡名 ,
-     cardType (string, optional): 卡类型 ,
-     contractBalance (string, optional): 合同余额 ,
-     contractDeadline (string, optional): 合同到期日 ,
-     contractId (string, optional): 合同ID ,
-     favorCourse (string, optional): 喜欢课程 ,
-     favorTeacher (string, optional): 喜欢老师 ,
-     privateCoach (string, optional): 私教教练 ,
-     purchaseCount (integer, optional): 购买次数 ,
-     registerTime (string, optional): 注册时间 ,
-     */
     private String bodyStatus; //身体状态
     private String bodybuildingHobby; //健身爱好
     private String interestHobby; //兴趣爱好
     private String useCar; //使用车辆
     private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
-    private String birthday;
-    private String birthdayType;
-    private String name;
-    private String sex;
-    private String memberId;
-    private String headImg;
-    private String cardName;
-    private String cardType;
-    private String contractBalance;
-    private String contractDeadline;
-    private String contractId;
-    private String privateCoach;
-    private String favorCourse;
-    private String favorTeacher;
-    private int purchaseCount;
-    private String registerTime;
+    private String birthday;//生日
+    private String birthdayType;//生日类型
+    private String name;//会员姓名
+    private String viperRole;//会员角色 普通会员
+
+    private String sex;//性别
+    private String memberId;//会员id
+    private String headImg;//头像图片路径
+    private String cardName;//卡名称
+    private String cardType;//卡类别
+    private String contractBalance;//合同余额
+    private String contractDeadline;//合同到期日
+    private String contractId;//合同ID
+    private String privateCoach;//私教
+    private String favorCourse;//喜欢的课程
+    private String favorTeacher;//喜欢的教练
+    private int purchaseCount;//购买次数
+    private String registerTime;//入籍时间
     private String bePresentTime; //到场时间
     private String departureTime; //离场时间
-    private String privateClass;
+    private String privateClass;//私教课
+    private String outDateDay; //已过期的天数
+    private String historyLesson; //历史课程
+    private String outDate; //过期时间
+    private String outDateReason; //过期原因
+
+    //("卡对象集合")
+    private List<HuiJiViperBean.CardprodsBean> cardprodsBeans;
 
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
          this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
          this.name = JsonUtil.getString(jsonObject, "name");
+         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
          this.sex = JsonUtil.getString(jsonObject, "sex");
          this.memberId = JsonUtil.getString(jsonObject, "memberId");
          this.headImg = JsonUtil.getString(jsonObject, "headImg");
@@ -84,7 +77,56 @@ public class ViperBean {
          this.useCar = JsonUtil.getString(jsonObject, "useCar");
          this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
          this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
+         this.outDateDay = JsonUtil.getString(jsonObject, "outDateDay");
+         this.historyLesson = JsonUtil.getString(jsonObject, "historyLesson");
+         this.outDate = JsonUtil.getString(jsonObject, "outDate");
+         this.outDateReason = JsonUtil.getString(jsonObject, "outDateReason");
 
+        try {
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),HuiJiViperBean.CardprodsBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<HuiJiViperBean.CardprodsBean> getCardprodsBeans() {
+        return cardprodsBeans;
+    }
+
+    public void setCardprodsBeans(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+        this.cardprodsBeans = cardprodsBeans;
+    }
+
+    public String getOutDateDay() {
+        return outDateDay;
+    }
+
+    public void setOutDateDay(String outDateDay) {
+        this.outDateDay = outDateDay;
+    }
+
+    public String getHistoryLesson() {
+        return historyLesson;
+    }
+
+    public void setHistoryLesson(String historyLesson) {
+        this.historyLesson = historyLesson;
+    }
+
+    public String getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(String outDate) {
+        this.outDate = outDate;
+    }
+
+    public String getOutDateReason() {
+        return outDateReason;
+    }
+
+    public void setOutDateReason(String outDateReason) {
+        this.outDateReason = outDateReason;
     }
 
     public String getBodyStatus() {
@@ -277,5 +319,13 @@ public class ViperBean {
 
     public void setPrivateClass(String privateClass) {
         this.privateClass = privateClass;
+    }
+
+    public String getViperRole() {
+        return viperRole;
+    }
+
+    public void setViperRole(String viperRole) {
+        this.viperRole = viperRole;
     }
 }

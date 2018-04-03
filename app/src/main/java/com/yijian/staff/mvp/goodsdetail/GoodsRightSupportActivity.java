@@ -4,17 +4,10 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.bin.david.form.core.SmartTable;
-import com.bin.david.form.data.style.FontStyle;
-import com.bin.david.form.utils.DensityUtils;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.KeCheng;
 import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GoodsRightSupportActivity extends AppCompatActivity {
 
@@ -28,12 +21,10 @@ public class GoodsRightSupportActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.goods_right_support_navigation_bar);
-        navigationBar.setTitle("权益支持", "#000000");
-        navigationBar.setNavigationBarBackgroudColor(Color.parseColor("#ffffff"));
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_BLACK));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.goods_right_support_navigation_bar2);
+        navigationBar2.setTitle("权益支持");
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
 
 
 

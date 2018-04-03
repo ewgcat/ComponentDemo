@@ -2,6 +2,7 @@ package com.yijian.staff.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.yijian.staff.tab.entity.MenuItem;
@@ -69,18 +70,7 @@ public class MenuHelper {
                         coachList = parseJSONList(items);
 
                         break;
-                    case GROUP_CAO_KE:
-                        caokeList = parseJSONList(items);
 
-                        break;
-                    case GROUP_ADM:
-                        admList = parseJSONList(items);
-
-                        break;
-                    case GROUP_AUDIT_TASK:
-                        audittaskList = parseJSONList(items);
-
-                        break;
                     case GROUP_OTHER:
                         otherList = parseJSONList(items);
                         break;
@@ -97,9 +87,6 @@ public class MenuHelper {
         savePreferVipManageList(vipmanagerList);
         savePreferHuiJiKeFuList(huijikefuList);
         savePreferCoachList(coachList);
-        savePreferCaoKeList(caokeList);
-        savePreferAdmList(admList);
-        savePreferAuditTaskList(audittaskList);
         savePreferOtherList(otherList);
     }
 
@@ -154,8 +141,13 @@ public class MenuHelper {
      */
     private static List<MenuItem> getPreferMenuListData(String group) {
         String jsonStr = getMenuDataConfig().getString(group, "");
-        com.alibaba.fastjson.JSONArray array = com.alibaba.fastjson.JSONArray.parseArray(jsonStr);
-        return array.toJavaList(MenuItem.class);
+        if (jsonStr.equals("")||jsonStr.equals("null")){
+            return null;
+        }else {
+            com.alibaba.fastjson.JSONArray array = com.alibaba.fastjson.JSONArray.parseArray(jsonStr);
+            return array.toJavaList(MenuItem.class);
+        }
+
     }
 
     /**
@@ -193,18 +185,8 @@ public class MenuHelper {
         savePreferMenuListData(GROUP_COCAH, list);
     }
 
-    public static void savePreferCaoKeList(List<MenuItem> list) {
-        savePreferMenuListData(GROUP_CAO_KE, list);
-    }
-
-    public static void savePreferAdmList(List<MenuItem> list) {
-        savePreferMenuListData(GROUP_ADM, list);
-    }
 
 
-    public static void savePreferAuditTaskList(List<MenuItem> list) {
-        savePreferMenuListData(GROUP_AUDIT_TASK, list);
-    }
 
     public static void savePreferOtherList(List<MenuItem> list) {
         savePreferMenuListData(GROUP_OTHER, list);
@@ -228,18 +210,7 @@ public class MenuHelper {
         return getPreferMenuListData(GROUP_COCAH);
     }
 
-//    public static List<MenuItem> getPreferCaoKeList() {
-//        return getPreferMenuListData(GROUP_CAO_KE);
-//    }
-//
-//    public static List<MenuItem> getPreferAdmList() {
-//        return getPreferMenuListData(GROUP_ADM);
-//    }
-//
-//
-//    public static List<MenuItem> getPreferAuditTaskList() {
-//        return getPreferMenuListData(GROUP_AUDIT_TASK);
-//    }
+
 
     public static List<MenuItem> getPreferOtherList() {
         return getPreferMenuListData(GROUP_OTHER);

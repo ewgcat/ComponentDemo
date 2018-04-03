@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="#f7f8fa"
+            >
+
+            <TextView
+                android:id="@+id/tv_opration_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="动作形态"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:gravity="center"
+                />
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="match_parent"
+                android:background="#dddddd"/>
+
+            <TextView
+                android:id="@+id/tv_opration_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="标准"
+                android:textSize="14sp"
+                android:textColor="#1997f8"
+                android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_opration_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="#1997f8"
+                android:background="@null"
+                android:gravity="center"
+                android:visibility="gone"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_lin_opration"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#dddddd"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

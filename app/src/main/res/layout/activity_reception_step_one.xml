@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/reception_step_one_navigation_bar"
+        android:id="@+id/reception_step_one_navigation_bar2"
         layout="@layout/view_navigation_bar2" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/reception_step_one_navigation_bar">
+        android:layout_below="@+id/reception_step_one_navigation_bar2">
 
         <LinearLayout
             android:layout_width="match_parent"

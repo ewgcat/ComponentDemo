@@ -3,28 +3,49 @@ package com.yijian.staff.mvp.coach.classbaojia;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
+import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
+import com.yijian.staff.mvp.coach.search.CoachSearchViperBean;
+import com.yijian.staff.mvp.coach.search.CoachSearchViperListAdapter;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,22 +67,44 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
 
     @BindView(R.id.goods_rcv)
     RecyclerView goodsRcv;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
     private List<ClassInfo> mClassInfoList = new ArrayList<>();
     private ClassListAdapter classListAdapter;
     private CoachClassFilterDialog coachClassFilterDialog;
     private ClassInfo selectedClassInfo;
+    private EditText etSearch;
+    private CoachClassFilterBean coachClassFilterBean;
+    private int pageNum = 1;
+    private int pageSize = 4;
+    private int pages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_goods_bao_jia);
-          ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         initView();
     }
 
     private void initView() {
+
+        initComponent();
+        coachClassFilterDialog = new CoachClassFilterDialog(this);
+        coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
+                refresh(coachClassFilterBean);
+            }
+        });
+        selectZongHe();
+
+    }
+
+
+    public void initComponent() {
 
         findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,22 +112,22 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 finish();
             }
         });
-       EditText etSearch = findViewById(R.id.et_search);
-        etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
+
+        etSearch = findViewById(R.id.et_search);
+
+        etSearch.setHintTextColor(Color.parseColor("#ffffff"));
+
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-                        //TODO 点击搜索键,触发搜索请求
-
+                        refresh( coachClassFilterBean);
                         break;
                 }
                 return true;
             }
         });
-
-
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
@@ -92,38 +135,150 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         classListAdapter = new ClassListAdapter(this, mClassInfoList);
         goodsRcv.setAdapter(classListAdapter);
 
-        initGoodsList();
-
-        coachClassFilterDialog = new CoachClassFilterDialog(this);
-        coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
-            public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
-                //TODO
+                mClassInfoList.clear();
+                refresh(coachClassFilterBean);
+            }
 
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                loadMore();
             }
         });
-        selectZongHe();
-
     }
-    private void initGoodsList() {
-        mClassInfoList.clear();
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("className", "瑜伽课");
-            jsonObject.put("classNum", "10节");
-            jsonObject.put("classLongTime", "120分钟");
-            jsonObject.put("price", "1400元");
-            for (int i = 0; i < 10; i++) {
-                ClassInfo classInfo = new ClassInfo(jsonObject);
-                mClassInfoList.add(classInfo);
+
+
+    private void refresh(CoachClassFilterBean coachClassFilterBean) {
+        pageNum = 1;
+        pageSize = 4;
+        this.coachClassFilterBean=coachClassFilterBean;
+        Map<String, String> header = new HashMap<>();
+
+
+        String name = etSearch.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
+            body.setCourseName(name);
+            body.setPageNum(pageNum);
+            body.setPageSize(pageSize);
+            body.setIsSortByPrice(isSortByPrice+"");
+
+            if (coachClassFilterBean != null) {
+                body.setIndate(coachClassFilterBean.getIndate());
+                body.setLconsumingMinute(coachClassFilterBean.getLconsumingMinute());
+                body.setRconsumingMinute(coachClassFilterBean.getRconsumingMinute());
+                body.setLtotalPrice(coachClassFilterBean.getLtotalPrice());
+                body.setRtotalPrice(coachClassFilterBean.getRtotalPrice());
+                body.setLcourseNum(coachClassFilterBean.getLcourseNum());
+                body.setRcourseNum(coachClassFilterBean.getRcourseNum());
             }
-            classListAdapter.update(mClassInfoList);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
+            User user = DBManager.getInstance().queryUser();
+            String token = user.getToken();
+            header.put("token", token);
+            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    mClassInfoList.clear();
+                    refreshLayout.finishRefresh(2000, true);
 
+                    pageNum = JsonUtil.getInt(result, "current") + 1;
+                    pages = JsonUtil.getInt(result, "pages");
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
+
+                            JSONObject o = (JSONObject) records.get(i);
+                            ClassInfo classInfo = new ClassInfo(o);
+                            mClassInfoList.add(classInfo);
+                        }
+                        classListAdapter.update(mClassInfoList);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                    Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
     }
+
+    private void loadMore() {
+        Map<String, String> header = new HashMap<>();
+        String name = etSearch.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
+            body.setCourseName(name);
+            body.setPageNum(pageNum);
+            body.setPageSize(pageSize);
+            body.setIsSortByPrice(isSortByPrice+"");
+            if (coachClassFilterBean != null) {
+                body.setIndate(coachClassFilterBean.getIndate());
+                body.setLconsumingMinute(coachClassFilterBean.getLconsumingMinute());
+                body.setRconsumingMinute(coachClassFilterBean.getRconsumingMinute());
+                body.setLtotalPrice(coachClassFilterBean.getLtotalPrice());
+                body.setRtotalPrice(coachClassFilterBean.getRtotalPrice());
+                body.setLcourseNum(coachClassFilterBean.getLcourseNum());
+                body.setRcourseNum(coachClassFilterBean.getRcourseNum());
+            }
+            User user = DBManager.getInstance().queryUser();
+            String token = user.getToken();
+            header.put("token", token);
+            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                    pages = JsonUtil.getInt(result, "pages");
+
+                    boolean hasMore = pages > pageNum ? true : false;
+                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
+
+                            JSONObject o = (JSONObject) records.get(i);
+                            ClassInfo classInfo = new ClassInfo(o);
+                            mClassInfoList.add(classInfo);
+                        }
+                        classListAdapter.update(mClassInfoList);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    boolean hasMore = pages > pageNum ? true : false;
+                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
+                    Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
 
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
     public void onViewClicked(View view) {
@@ -144,8 +299,9 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     //点击筛选
     private void selectShaixuan() {
         if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
+            isSortByPrice=-1;
+            priceUp = false;
             showFilterDialog();
-
         } else {
             tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
             tvZongHe.setTextColor(Color.parseColor("#666666"));
@@ -153,16 +309,17 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             Drawable drawablePrice = getResources().getDrawable(R.mipmap.jd_normal_arrow);
             drawablePrice.setBounds(0, 0, drawablePrice.getMinimumWidth(), drawablePrice.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawablePrice, null);
-
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+            isSortByPrice=-1;
+            priceUp = false;
             showFilterDialog();
-
         }
     }
 
     private boolean priceUp = false;
+    private int isSortByPrice=-1;
 
     //点击价格
     private void selectPrice() {
@@ -172,13 +329,16 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvPrice.setCompoundDrawables(null, null, drawable, null);
                 priceUp = false;
+                isSortByPrice=1;
                 //TODO 请求 (价格从高到低）
             } else {
                 Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvPrice.setCompoundDrawables(null, null, drawable, null);
                 priceUp = true;
-                //TODO 请求 (价格从低到高）
+                isSortByPrice=0;
+                coachClassFilterBean=null;
+
             }
         } else {
             tvPrice.setTextColor(Color.parseColor("#1997f8"));
@@ -190,13 +350,14 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            //TODO 请求 (价格从低到高）
+            isSortByPrice=0;
+            coachClassFilterBean=null;
         }
     }
 
     private void selectZongHe() {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-
+            isSortByPrice=-1;
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
@@ -207,8 +368,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            //TODO 请求
-            initGoodsList();
+            isSortByPrice=-1;
+            coachClassFilterBean=null;
         }
 
     }

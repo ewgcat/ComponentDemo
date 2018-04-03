@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 
 import java.util.List;
@@ -22,10 +22,10 @@ import java.util.List;
 
 public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiIntentViperListAdapter.ViewHolder> {
 
-    private List<ViperBean> viperBeanList;
+    private List<HuiJiViperBean> viperBeanList;
     private Context context;
 
-    public HuijiIntentViperListAdapter(Context context, List<ViperBean> viperBeanList) {
+    public HuijiIntentViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
         this.context = context;
         this.viperBeanList = viperBeanList;
     }
@@ -39,13 +39,13 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
 
     @Override
     public void onBindViewHolder(HuijiIntentViperListAdapter.ViewHolder holder, int position) {
-        ViperBean viperBean = viperBeanList.get(position);
+        HuiJiViperBean viperBean = viperBeanList.get(position);
         holder.tv_name.setText(viperBean.getName());
         holder.tv_birth.setText(viperBean.getBirthday());
         holder.tv_birth_type.setText(viperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(viperBean.getBodybuildingHobby());
-        holder.tv_bodyStatus.setText(viperBean.getBodyStatus());
-        holder.tv_interestHobby.setText(viperBean.getInterestHobby());
+        holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
+        holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
+        holder.tv_interestHobby.setText(viperBean.getHobby());
         holder.iv_gender.setImageResource("1".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
 
@@ -71,7 +71,9 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, HuijiIntentViperDetailActivity.class));
+                Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                intent.putExtra("id",viperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
 

@@ -20,9 +20,9 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -50,7 +50,7 @@ public class HuijiAllViperFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<ViperBean> viperBeanList = new ArrayList<>();
+    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
 
@@ -71,7 +71,7 @@ public class HuijiAllViperFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_vip_all_people_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_vip_huiji_all_info, container, false);
         initView(view);
         refresh(null);
         return view;
@@ -107,7 +107,7 @@ public class HuijiAllViperFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
         if (huijiViperFilterBean != null) {
@@ -137,7 +137,7 @@ public class HuijiAllViperFragment extends Fragment {
 
         }
 
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -149,7 +149,7 @@ public class HuijiAllViperFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
 
@@ -173,7 +173,7 @@ public class HuijiAllViperFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         if (huijiViperFilterBean != null) {
@@ -204,7 +204,7 @@ public class HuijiAllViperFragment extends Fragment {
             }
 
         }
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -218,7 +218,7 @@ public class HuijiAllViperFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
                     }

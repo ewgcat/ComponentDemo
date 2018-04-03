@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;
 
@@ -63,12 +66,35 @@ public class SplashActivity extends AppCompatActivity {
         initRxPermissions(index, permissions);    }
 
 
-    public void jumpToMain() {
-        Intent intent = new Intent();
-        intent.setClass(this,LoginActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    public void jumpToNext() {
+        User user = DBManager.getInstance().queryUser();
+        if (user!=null){
+            String token = user.getToken().trim();
+            if(TextUtils.isEmpty(token)){
+                Intent intent = new Intent();
+                intent.setClass(this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }  else {
+
+                Intent intent = new Intent();
+                intent.setClass(this,MainActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }else {
+            Intent intent = new Intent();
+            intent.setClass(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
+
+
+
+
     }
 
 
@@ -98,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
                         if (!TextUtils.isEmpty(msg) && msg.contains("【通知与状态栏权限】")) {
                             requestPermissions("    【通知与状态栏权限】\n");
                         } else {
-                            jumpToMain();
+                            jumpToNext();
                         }
                     }
                 });
@@ -118,7 +144,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivityForResult(intent, 100);
                 })
                 .setNegativeButton("拒绝", (dialog, which) -> {
-                    jumpToMain();
+                    jumpToNext();
                 }).create();
 
         alertDialog.setCancelable(false);

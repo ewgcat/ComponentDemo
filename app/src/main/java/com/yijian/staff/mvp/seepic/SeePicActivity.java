@@ -10,13 +10,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 
 public class SeePicActivity extends AppCompatActivity {
 
-    protected NavigationBar mNavigationbar;
+    protected NavigationBar2 mNavigationbar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,10 @@ public class SeePicActivity extends AppCompatActivity {
 
         String path = getIntent().getStringExtra(BundleKeyConstant.KEY_SEE_PIC_PATH);
 
-        mNavigationbar = (NavigationBar) findViewById(R.id.navigationbar);
-        mNavigationbar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        mNavigationbar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-        mNavigationbar.setTitle("查看图片", "#ffffff");
+        mNavigationbar2 = (NavigationBar2) findViewById(R.id.navigationbar2);
+        mNavigationbar2.setTitle("查看图片");
+        mNavigationbar2.hideLeftSecondIv();
+        mNavigationbar2.setBackClickListener(this);
 
         PhotoView photoView = findViewById(R.id.photo_view);
             RequestOptions options = new RequestOptions()

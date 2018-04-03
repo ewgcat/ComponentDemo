@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.forgetpassword;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,7 +12,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONObject;
@@ -44,11 +43,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget_password);
         ButterKnife.bind(this);
 
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.forget_password_activity_navigation_bar);
-        navigationBar.setTitle("忘记密码", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.forget_password_activity_navigation_bar2);
+        navigationBar2.setTitle("忘记密码");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
 
     }
 

@@ -73,14 +73,14 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
     private Activity activity;
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
-    private int classType = -1;//课程类型：【1:私教课，1:体验课】
+    private String classType = null;//课程类型：【1:私教课，1:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private String startTime = null;//开始时间
     private String endTime = null;//结束时间
 
 
-    private int buyClassTime = -1;//购买时间：【7:7天，14:14天，30:30天】
+    private int buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
 
     private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
@@ -128,6 +128,14 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
     }
 
     private void resetView() {
+
+        sex = -1;//性别：【0:未知 1:男 2:女】
+        classType = null;//课程类型：【1:私教课，1:体验课】
+        joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
+        startTime = null;//开始时间
+        endTime = null;//结束时间
+        buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
+        expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
         tvSexMan.setTextColor(Color.parseColor("#666666"));
         tvSexWoman.setTextColor(Color.parseColor("#666666"));
@@ -247,12 +255,12 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
     //课程类型
     private void selectClassType(int index) {
         if (index == 1) {
-            classType = 1;
+            classType = "1";
             setSelectStyle(tvSijiaoClass);
             setUnSelectStyle(tvTiyanClass);
 
         } else if (index == 2) {
-            classType = 2;
+            classType = "2";
             setSelectStyle(tvTiyanClass);
             setUnSelectStyle(tvSijiaoClass);
         }
@@ -466,13 +474,13 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
 
         CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
         coachViperFilterBean.setSex(sex);
-        coachViperFilterBean.setClassType(classType);
+        coachViperFilterBean.setCourseType(classType);
         coachViperFilterBean.setJoinTimeType(joinTimeType);
         if (joinTimeType == -1) {
             coachViperFilterBean.setStartTime(startTime);
             coachViperFilterBean.setEndTime(endTime);
         }
-        coachViperFilterBean.setBuyClassTime(buyClassTime);
+        coachViperFilterBean.setBuyTime(buyClassTime);
         coachViperFilterBean.setExpiringDay(expiringDay);
 
         if (onDismissListener != null) {

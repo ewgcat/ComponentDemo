@@ -17,7 +17,7 @@ import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
 import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_questionnaire_result);
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.questionnaire_result_navigation_bar);
-        navigationBar.setTitle("查看问卷", "#FFFFFF");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.questionnaire_result_navigation_bar2);
+        navigationBar2.setTitle("查看问卷");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
 
         recyclerView = findViewById(R.id.recyclerview_request);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

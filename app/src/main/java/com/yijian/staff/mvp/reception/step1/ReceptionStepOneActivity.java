@@ -61,12 +61,11 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     }
 
     private void initView() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_step_one_navigation_bar);
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_step_one_navigation_bar2);
 
-        navigationBar2.setNavigationBarBackgroudColor(Color.parseColor("#1997f8"));
-        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
-        navigationBar2.getmRightTv().setOnClickListener(this);
-        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setmRightTvClickListener(this);
+        navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("填写问卷(1/5)");
         navigationBar2.setmRightTvText("下一步");
 

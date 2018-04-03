@@ -5,10 +5,8 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import me.iwf.photopicker.entity.Photo;
 
 @Route(path = "/test/empty")
 public class EmptyActivity extends AppCompatActivity {
@@ -17,9 +15,8 @@ public class EmptyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
-        NavigationBar navigationBar=  findViewById(R.id.empty_navigation_bar);
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-
+        NavigationBar2 navigationBar2=  findViewById(R.id.empty_navigation_bar2);
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
     }
 }

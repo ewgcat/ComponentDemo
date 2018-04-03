@@ -1,7 +1,10 @@
 package com.yijian.staff.mvp.work;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,13 +30,18 @@ import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
+import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.prefs.MenuHelper;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
+import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.ConstantUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -70,6 +78,7 @@ public class WorkFragment extends Fragment {
     private List<MenuItem> menuItemList = new ArrayList<>();
 
     private MenuRecyclerGridAdapter adapter;
+    private RecyclerUpdateReceiver mRecyclerUpdateReceiver;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -103,24 +112,32 @@ public class WorkFragment extends Fragment {
 
         etSearch = view.findViewById(R.id.et_search);
         ivRotate = view.findViewById(R.id.iv_rotate);
-        etSearch.setHintTextColor(Color.parseColor("#fafbfb"));
-        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+        etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                switch (actionId) {
-                    case EditorInfo.IME_ACTION_SEARCH:
-
-                        //TODO 点击搜索键,触发搜索请求
-
-                        break;
+            public void onClick(View v) {
+                // 此处为得到焦点时的处理内容
+                int userRole = SharePreferenceUtil.getUserRole();
+                if (userRole == 1 || userRole == 3) {
+                    startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
+                } else if (userRole == 2 || userRole == 4) {
+                    startActivity(new Intent(getContext(), CoachSearchActivity.class));
                 }
-                return true;
+
             }
         });
+
 
         adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(), true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         recyclerView.setAdapter(adapter);
+
+        //注册刷新数据的广播
+        mRecyclerUpdateReceiver = new RecyclerUpdateReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(1009);
+        filter.addAction(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA);
+        getActivity().registerReceiver(mRecyclerUpdateReceiver, filter);
 
         startRotateAnimation();
 
@@ -142,18 +159,18 @@ public class WorkFragment extends Fragment {
 
                 if (TextUtils.isEmpty(completePercent)) {
                     tvYejiWanchengdu.setText("未知");
-                }else {
-                    tvYejiWanchengdu.setText(completePercent.substring(0,completePercent.length()-1));
+                } else {
+                    tvYejiWanchengdu.setText(completePercent.substring(0, completePercent.length() - 1));
                 }
                 if (TextUtils.isEmpty(todayScore)) {
                     tvTodayScore.setText("未知");
-                }else {
-                    tvTodayScore.setText(todayScore.substring(0,todayScore.length()-1));
+                } else {
+                    tvTodayScore.setText(todayScore.substring(0, todayScore.length() - 1));
                 }
                 if (TextUtils.isEmpty(monthRank)) {
                     tvMonthRank.setText("未知");
-                }else {
-                    tvMonthRank.setText("第"+monthRank+"名");
+                } else {
+                    tvMonthRank.setText("第" + monthRank + "名");
                 }
 
                 JSONArray menulist = JsonUtil.getJsonArray(result, "menulist");
@@ -161,14 +178,16 @@ public class WorkFragment extends Fragment {
                 menuHelper.parseJSONArrayToMenuList(menulist);
                 List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
                 menuItemList.clear();
-                menuItemList.addAll(preferFrequentlyList);
+                if (preferFrequentlyList != null) {
+                    menuItemList.addAll(preferFrequentlyList);
+                }
                 initAllFunctionMenuItem();
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -225,6 +244,35 @@ public class WorkFragment extends Fragment {
     }
 
 
+    private void initMenu() {
+        List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
+        menuItemList.clear();
+        if (preferFrequentlyList != null) {
+            menuItemList.addAll(preferFrequentlyList);
+        }
+        initAllFunctionMenuItem();
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 用于执行刷新数据的广播接收器
+     */
+    private class RecyclerUpdateReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            initMenu();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        //注销刷新数据的广播
+        if (mRecyclerUpdateReceiver != null) {
+            getActivity().unregisterReceiver(mRecyclerUpdateReceiver);
+        }
+        super.onDestroy();
+    }
 }
 
 

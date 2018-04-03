@@ -10,31 +10,78 @@ import org.json.JSONObject;
  * time: 2018/3/17 19:29:17
  */
 public class ClassInfo {
-    private String className;
-    private String classNum;
-    private String classLongTime;
-    private String price;
+
+
+    /**
+     * lessonId : 1
+     * name : 瘦身课
+     * img :
+     * cleassNum : 10
+     * lessonTime : 120
+     * baseTotalPrice : 500
+     */
+
+    private String lessonId;
+    private String name;
+    private String img;
+    private String cleassNum;
+    private String lessonTime;
+    private String baseTotalPrice;
+
     public ClassInfo(JSONObject jsonObject){
-        this.className=  JsonUtil.getString(jsonObject,"className");
-        this.classNum=  JsonUtil.getString(jsonObject,"classNum");
-        this.classLongTime=  JsonUtil.getString(jsonObject,"classLongTime");
-        this.price=  JsonUtil.getString(jsonObject,"price");
+        this.name=  JsonUtil.getString(jsonObject,"name");
+        this.cleassNum=  JsonUtil.getString(jsonObject,"cleassNum");
+        this.lessonTime=  JsonUtil.getString(jsonObject,"lessonTime");
+        this.lessonId=  JsonUtil.getString(jsonObject,"lessonId");
+        this.img=  JsonUtil.getString(jsonObject,"img");
+        this.baseTotalPrice=  JsonUtil.getInt(jsonObject,"baseTotalPrice")+"";
     }
 
-
-    public String getClassName() {
-        return className;
+    public String getLessonId() {
+        return lessonId;
     }
 
-    public String getClassNum() {
-        return classNum;
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
     }
 
-    public String getClassLongTime() {
-        return classLongTime;
+    public String getName() {
+        return name;
     }
 
-    public String getPrice() {
-        return price;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getCleassNum() {
+        return cleassNum;
+    }
+
+    public void setCleassNum(String cleassNum) {
+        this.cleassNum = cleassNum;
+    }
+
+    public String getLessonTime() {
+        return lessonTime;
+    }
+
+    public void setLessonTime(String lessonTime) {
+        this.lessonTime = lessonTime;
+    }
+
+    public String getBaseTotalPrice() {
+        return baseTotalPrice;
+    }
+
+    public void setBaseTotalPrice(String baseTotalPrice) {
+        this.baseTotalPrice = baseTotalPrice;
     }
 }

@@ -14,7 +14,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
@@ -76,6 +75,21 @@ public interface ApiService {
     Observable<JSONObject> saveReceptionTest(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body PhysicalExaminationBean physicalExaminationBean);
 
 
+    //保存图标位置
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> saveMenuChange(@Url String url, @HeaderMap Map<String, String> headers, @Body MenuRequestBody menuRequestBody);
+
+    //私教课
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getCoachPrivateCourseList(@Url String url, @HeaderMap Map<String, String> headers, @Body CoachPrivateCourseRequestBody body);
+
+    //会籍卡产品
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body HuiJiGoodsRequestBody body);
+
     /**
      * 表单请求
      *
@@ -98,7 +112,7 @@ public interface ApiService {
 
     //会籍（客服）获取会员列表
     @GET
-    Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+    Observable<JSONObject> getDataList(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, Object> param);
 
     //首页图标
     @GET
@@ -108,13 +122,13 @@ public interface ApiService {
     //post 表单
     @POST
     Observable<JSONObject> postNoHeaderNoParam(@Url String url);
-    @FormUrlEncoded
+
     @POST
     Observable<JSONObject> postHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
-    @FormUrlEncoded
+
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
-    @FormUrlEncoded
+
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);
 
@@ -123,17 +137,17 @@ public interface ApiService {
     Observable<JSONObject> postHasHeaderHasParamOfInteger(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, Integer> param);
 
     //get 有请求头
-
     @GET
     Observable<JSONObject> getNoHeaderNoParam(@Url String url);
+
     @GET
     Observable<JSONObject> getHasHeaderNoParam(@Url String url, @HeaderMap Map<String, String> headers);
+
     @GET
     Observable<JSONObject> getNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+
     @GET
     Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
-
-
 
 
 }

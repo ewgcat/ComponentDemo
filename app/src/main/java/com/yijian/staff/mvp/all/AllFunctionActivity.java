@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.savemenu.MenuBean;
+import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
+import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.MenuRecyclerListAdapter;
@@ -21,9 +27,13 @@ import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
 import com.yijian.staff.util.ConstantUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Route(path = "/test/all")
@@ -35,7 +45,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private List<MenuItem> vipmanagerList;
     private List<MenuItem> huijikefuList;
     private List<MenuItem> coachList;
-//    private List<MenuItem> caokeList;
+    //    private List<MenuItem> caokeList;
 //    private List<MenuItem> admList;
 //    private List<MenuItem> audittaskList;
     private List<MenuItem> otherList;
@@ -76,20 +86,24 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         vipmanagerList = MenuHelper.getPreferVipManageList();
         huijikefuList = MenuHelper.getPreferHuiJiKeFuList();
         coachList = MenuHelper.getPreferCoachList();
-//        caokeList = MenuHelper.getPreferCaoKeList();
-//        admList = MenuHelper.getPreferAdmList();
-//        audittaskList = MenuHelper.getPreferAuditTaskList();
         otherList = MenuHelper.getPreferOtherList();
 
 
+        //非常用功能
         mEditList = new ArrayList<>();
-        mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_COCAH,  coachList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_CAO_KE,  caokeList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_ADM, admList));
-//        mEditList.add(new EditItem(MenuHelper.GROUP_AUDIT_TASK,  audittaskList));
-        mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
+        if (vipmanagerList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_VIP_MANAGER, vipmanagerList));
+        }
+        if (huijikefuList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_HUI_JI_KE_FU, huijikefuList));
+        }
+        if (coachList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_COCAH, coachList));
+        }
+        if (otherList != null) {
+            mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
+        }
+
 
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);
 
@@ -110,7 +124,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     frequentlyList.add(item);
                     mListHeaderWrapper.notifyDataSetChanged();
                 }
-
+                hasChangedListData=true;
 
             }
         });
@@ -141,8 +155,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                         mListHeaderWrapper.notifyDataSetChanged();
                     }
                 }
-
-
+                hasChangedListData=true;
             }
         });
 
@@ -180,9 +193,10 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                 }
                 frequentlyList.remove(item);
                 mListHeaderWrapper.notifyDataSetChanged();
+                hasChangedListData=true;
             }
         });
-        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY,  frequentlyList));
+        mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, frequentlyList));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(mListHeaderWrapper);
 
@@ -220,9 +234,40 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     mListAdapter.notifyDataSetChanged();
                     mListHeaderWrapper.notifyDataSetChanged();
                     rightTv.setText("编辑");
+                    postSaveMenu();
                 }
 
                 break;
         }
+    }
+
+    private void postSaveMenu() {
+        HashMap<String, String> map = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        map.put("token", user.getToken());
+
+        JSONObject o = new JSONObject();
+        List<MenuBean> list = new ArrayList<>();
+        if (frequentlyList != null) {
+                for (int i = 0; i < frequentlyList.size(); i++) {
+                    MenuItem menuItem = frequentlyList.get(i);
+                    long itemId = menuItem.getItemId();
+                    MenuBean menuBean = new MenuBean(itemId,i);
+                    list.add(menuBean);
+                }
+        }
+
+        MenuHelper.savePreferFrequentlyList(frequentlyList);
+        HttpManager.saveMenuChange(map, new MenuRequestBody(list), new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 }

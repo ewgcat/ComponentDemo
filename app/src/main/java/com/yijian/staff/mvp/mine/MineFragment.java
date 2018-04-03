@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.mvp.advice.AdviceActivity;
 import com.yijian.staff.mvp.advice.AdviceListActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.club.ClubActivity;
 import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity;
@@ -26,6 +27,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by lishuaihua on 2018/2/5.
@@ -75,7 +78,7 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.ll_more:
-                startActivity(new Intent(getContext(), SettingActivity.class));
+                startActivityForResult(new Intent(getContext(), SettingActivity.class),1234);
                 break;
             case R.id.ll_club:
                 startActivity(new Intent(getContext(),ClubActivity.class));
@@ -97,6 +100,17 @@ public class MineFragment extends Fragment {
             case R.id.ll_suggestion:
                 startActivity(new Intent(getContext(),AdviceActivity.class));
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1234) {
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+
         }
     }
 }

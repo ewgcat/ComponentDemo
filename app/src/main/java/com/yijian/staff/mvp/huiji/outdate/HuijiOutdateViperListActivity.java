@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,18 +16,16 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
@@ -45,6 +41,8 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
+import static com.yijian.staff.net.httpmanager.HttpManager.GET_HUIJI_OUTDATE_VIPER_LIST_URL;
+
 /**
  * 过期会员列表
  */
@@ -55,7 +53,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
     RecyclerView rv_outdate;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    List<VipOutdateInfo> vipOutdateInfoList = new ArrayList<VipOutdateInfo>();
+    List<HuiJiViperBean> vipOutdateInfoList = new ArrayList<HuiJiViperBean>();
     HuijiOutdateViperListAdapter huijiOutdateViperListAdapter;
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
@@ -69,10 +67,11 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initTitle();
-        initList();
+//        initList();
+        initView();
     }
 
-    private void initList() {
+    /*private void initList() {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("headerUrl", "");
@@ -102,17 +101,17 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("过期会员","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.setTitle("过期会员");
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
 
     }
 
-    private void initView(View view) {
+    private void initView() {
         //设置RecyclerView 布局
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
@@ -161,7 +160,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -173,7 +172,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        VipOutdateInfo vipOutdateInfo = new VipOutdateInfo(jsonObject);
+                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
                         vipOutdateInfoList.add(vipOutdateInfo);
                     } catch (JSONException e) {
 
@@ -201,7 +200,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getAllViperList(header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -215,7 +214,7 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        VipOutdateInfo vipOutdateInfo = new VipOutdateInfo(jsonObject);
+                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
                         vipOutdateInfoList.add(vipOutdateInfo);
                     } catch (JSONException e) {
                     }

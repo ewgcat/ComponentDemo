@@ -14,7 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.invitation.list.record.InvitationRecordFragment;
 import com.yijian.staff.mvp.huiji.invitation.list.result.InvitationResultFragment;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import butterknife.BindView;
@@ -36,7 +36,7 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
 
     private InvitationRecordFragment invitationRecordFragment;
     private InvitationResultFragment invitationResultFragment;
-    private NavigationBar navigationBar;
+    private NavigationBar2 navigationBar2;
 
     @BindView(R.id.lin_invitation_record)
     LinearLayout lin_invitation_record;
@@ -68,10 +68,10 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        navigationBar = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar.setTitle("邀约记录","#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
+        navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.setTitle("邀约记录");
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
     }
 
     @OnClick({R.id.lin_invitation_record,R.id.lin_invitation_result})
@@ -131,7 +131,7 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
     }
 
     public void setBotoomStyle(int index){
-        navigationBar.setTitle(index == 0?"邀约记录":"邀约结果","#ffffff");
+        navigationBar2.setTitle(index == 0?"邀约记录":"邀约结果");
         tv_invitaion_record.setTextColor(index == 0? Color.parseColor("#1997f8"):Color.parseColor("#666666"));
         tv_invitaion_result.setTextColor(index == 0? Color.parseColor("#666666"):Color.parseColor("#1997f8"));
 

@@ -46,6 +46,7 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
        this. group=  JsonUtil.getString(jsonObject,"group");
        this. count=  JsonUtil.getInt(jsonObject,"count");
        this. type=  JsonUtil.getInt(jsonObject,"type");
+       this. itemId=  JsonUtil.getInt(jsonObject,"itemId");
     }
 
     public int getCount() {
@@ -104,7 +105,6 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     public void setGroup(String group) {
         this.group = group;
     }
-
 
 
     public void setViewType(int viewType) {

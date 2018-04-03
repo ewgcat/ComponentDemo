@@ -6,8 +6,8 @@
     android:background="@color/gray">
 
     <include
-        android:id="@+id/vip_over_navigation_bar"
-        layout="@layout/view_navigation_bar"/>
+        android:id="@+id/vip_over_navigation_bar2"
+        layout="@layout/view_navigation_bar2"/>
 
     <RadioGroup
         android:id="@+id/vg_dailywork"
@@ -66,7 +66,7 @@
         android:id="@+id/fl_dailywork"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/vip_over_navigation_bar"
+        android:layout_below="@id/vip_over_navigation_bar2"
         android:layout_above="@id/vg_dailywork"/>
 
 </RelativeLayout>

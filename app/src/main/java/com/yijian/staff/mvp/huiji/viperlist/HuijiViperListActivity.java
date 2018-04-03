@@ -48,7 +48,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_info);
+        setContentView(R.layout.activity_vip_huiji_info);
         ButterKnife.bind(this);
 
         initView();
@@ -57,10 +57,10 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     private void initView() {
 
 
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar);
-        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
-        navigationBar2.getmRightTv().setOnClickListener(this);
-        navigationBar2.getFirstLeftIv().setOnClickListener(this);
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setmRightTvClickListener(this);
+        navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
         navigationBar2.setTitle("会员信息");

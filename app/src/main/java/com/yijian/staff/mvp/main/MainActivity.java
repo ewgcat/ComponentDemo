@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
 
     private WorkFragment workFragment;
-    private ReportingFragment reportingFragment;
+//    private ReportingFragment reportingFragment;
     private MessageFragment viperFragment;
     private MineFragment mineFragment;
     private Bottombar mBottombar;
@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
-            reportingFragment = (ReportingFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
+//            reportingFragment = (ReportingFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
             viperFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
             mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
 
@@ -169,18 +169,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     transaction.show(workFragment);
                 }
                 break;
-            case 1:
-
-                if (reportingFragment == null) {
-                    // 如果ReportingFragment为空，则创建一个并添加到界面上
-                    reportingFragment = ReportingFragment.getInstance();
-                    transaction.add(R.id.fl_home, reportingFragment, FRAGMENT_TAG[index]);
-                } else {
-                    // 如果ReportingFragment不为空，则直接将它显示出来
-                    transaction.show(reportingFragment);
-                }
-
-                break;
+//            case 1:
+//
+//                if (reportingFragment == null) {
+//                    // 如果ReportingFragment为空，则创建一个并添加到界面上
+//                    reportingFragment = ReportingFragment.getInstance();
+//                    transaction.add(R.id.fl_home, reportingFragment, FRAGMENT_TAG[index]);
+//                } else {
+//                    // 如果ReportingFragment不为空，则直接将它显示出来
+//                    transaction.show(reportingFragment);
+//                }
+//
+//                break;
             case 2:
                 if (viperFragment == null) {
                     // 如果ViperFragment为空，则创建一个并添加到界面上
@@ -276,5 +276,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             unbindService(connection);
         }
     }
+
+
+
 
 }

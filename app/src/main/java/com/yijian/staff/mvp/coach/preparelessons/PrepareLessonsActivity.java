@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.CalendarSettingActivity;
-import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
-import com.yijian.staff.widget.NavigationBar;
+import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllLessonActivity;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,11 +26,10 @@ public class PrepareLessonsActivity extends AppCompatActivity {
 
 
     private void initTitle() {
-        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("备课", "#ffffff");
-        navigationBar.setLeftButtonView(NavigationBarItemFactory.createNavigationItemImageView(this, NavigationBarItemFactory.NavigationItemType.BACK_WHITE));
-        navigationBar.setLeftButtonClickListener(NavigationBarItemFactory.createBackClickListener(this));
-    }
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
+        navigationBar2.setTitle("备课");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);}
 
     @OnClick({R.id.rel_create, R.id.rel_all_lesson})
     public void click(View v) {

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/contract_navigation_bar"
-        layout="@layout/view_navigation_bar" />
+        android:id="@+id/contract_navigation_bar2"
+        layout="@layout/view_navigation_bar2" />
 
 </LinearLayout>

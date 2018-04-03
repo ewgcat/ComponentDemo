@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.ViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
@@ -110,37 +110,37 @@ public class CoachVipTodayVisitFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
         if (coachViperFilterBean != null) {
 
+
             if (coachViperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() + "");
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() );
             }
             if (coachViperFilterBean.getExpiringDay() != -1) {
-                map.put("expiringDay", coachViperFilterBean.getExpiringDay() + "");
+                map.put("expiringDay", coachViperFilterBean.getExpiringDay());
             }
             if (coachViperFilterBean.getSex()!=-1) {
-                map.put("sex", coachViperFilterBean.getSex() + "");
+                map.put("sex", coachViperFilterBean.getSex() );
             }
-            if (coachViperFilterBean.getClassType()!=-1) {
-                map.put("classType", coachViperFilterBean.getClassType() + "");
+            if (coachViperFilterBean.getCourseType()!=null) {
+                map.put("courseType", coachViperFilterBean.getCourseType());
             }
-            if (coachViperFilterBean.getBuyClassTime()!=-1) {
-                map.put("buyClassTime", coachViperFilterBean.getBuyClassTime() + "");
+            if (coachViperFilterBean.getBuyTime()!=-1) {
+                map.put("buyTime", coachViperFilterBean.getBuyTime());
             }
 
             if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
-                map.put("startTime", coachViperFilterBean.getStartTime() + "");
+                map.put("startTime", coachViperFilterBean.getStartTime() );
             }
             if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
-                map.put("endTime", coachViperFilterBean.getEndTime() + "");
+                map.put("endTime", coachViperFilterBean.getEndTime() );
             }
-
         }
 
-        HttpManager.getTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getCoachTodayViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -176,36 +176,37 @@ public class CoachVipTodayVisitFragment extends Fragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         if (coachViperFilterBean != null) {
+
+
             if (coachViperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() + "");
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() );
             }
             if (coachViperFilterBean.getExpiringDay() != -1) {
-                map.put("expiringDay", coachViperFilterBean.getExpiringDay() + "");
+                map.put("expiringDay", coachViperFilterBean.getExpiringDay());
             }
             if (coachViperFilterBean.getSex()!=-1) {
-                map.put("sex", coachViperFilterBean.getSex() + "");
+                map.put("sex", coachViperFilterBean.getSex() );
             }
-            if (coachViperFilterBean.getClassType()!=-1) {
-                map.put("classType", coachViperFilterBean.getClassType() + "");
+            if (coachViperFilterBean.getCourseType()!=null) {
+                map.put("courseType", coachViperFilterBean.getCourseType());
             }
-            if (coachViperFilterBean.getBuyClassTime()!=-1) {
-                map.put("buyClassTime", coachViperFilterBean.getBuyClassTime() + "");
+            if (coachViperFilterBean.getBuyTime()!=-1) {
+                map.put("buyTime", coachViperFilterBean.getBuyTime());
             }
 
             if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
-                map.put("startTime", coachViperFilterBean.getStartTime() + "");
+                map.put("startTime", coachViperFilterBean.getStartTime() );
             }
             if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
-                map.put("endTime", coachViperFilterBean.getEndTime() + "");
+                map.put("endTime", coachViperFilterBean.getEndTime() );
             }
 
-
         }
-        HttpManager.getTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getCoachTodayViperList(header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

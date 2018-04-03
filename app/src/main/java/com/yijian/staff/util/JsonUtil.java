@@ -2,11 +2,16 @@ package com.yijian.staff.util;
 
 import android.text.TextUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * desc:
@@ -100,7 +105,7 @@ public class JsonUtil {
                 result = json.getString(name);
             } catch (JSONException e) {
                 result = defaultValue;
-                //Logger.e(TAG, e.getMessage());
+                Logger.i(TAG, e.getMessage());
             }
         }
         return result;
@@ -473,6 +478,18 @@ public class JsonUtil {
             result = false;
         }
         return result;
+    }
+
+    public static Map<String, Object> listKeyMaps(String jsonString) {
+        Map<String, Object> list = new Hashtable<String, Object>();
+        try {
+            list = JSON.parseObject(jsonString,
+                    new TypeReference<Map<String, Object>>() {
+                    });
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return list;
     }
 
 

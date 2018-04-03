@@ -21,8 +21,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -48,8 +51,6 @@ public class SettingActivity extends AppCompatActivity {
     @BindView(R.id.tv_phone)
     TextView tvPhone;
     private Dialog dialog;
-
-
 
 
     @Override
@@ -80,8 +81,17 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.ll_phone:
                 break;
             case R.id.tv_exit_login:
+                exitLogin();
                 break;
         }
+    }
+
+    private void exitLogin() {
+        //发送退出登录请求
+
+        DBManager.getInstance().clearUser();
+        setResult(RESULT_OK);
+        finish();
     }
 
 
@@ -174,8 +184,6 @@ public class SettingActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PhotoPicker.REQUEST_CODE && data != null) {
@@ -190,10 +198,10 @@ public class SettingActivity extends AppCompatActivity {
                 Glide.with(this).load(photos.get(0)).apply(options).into(ivHead);
 
                 Intent intent = new Intent(this, ClipActivity.class);
-                intent.putExtra("path",photos.get(0));
-                startActivityForResult(intent,1000);
+                intent.putExtra("path", photos.get(0));
+                startActivityForResult(intent, 1000);
             }
-        }else if (resultCode == RESULT_OK && requestCode ==1000){
+        } else if (resultCode == RESULT_OK && requestCode == 1000) {
             Intent intent = new Intent(this, SeePicActivity.class);
 
             intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, getExternalCacheDir().toString() + "/head/head.png");

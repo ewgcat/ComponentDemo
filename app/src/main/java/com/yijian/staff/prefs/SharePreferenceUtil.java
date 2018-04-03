@@ -17,25 +17,26 @@ public class SharePreferenceUtil {
     public static final String KEY_JPUSH_ALIAS = "jpush_alias";
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
-    private static String KEY_HUIJI_HAS_TO_COACH="huiji_has_to_coach";
+    private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
+    private static String userName;
+    private static String password;
 
 
-    public static void setShowEditIcon(boolean b){
-        setBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON,b);
+    public static void setShowEditIcon(boolean b) {
+        setBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON, b);
     }
 
-    public static boolean getShowEditIcon(){
-        return getBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON,false);
+    public static boolean getShowEditIcon() {
+        return getBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON, false);
     }
 
-    public static boolean setUserRole( int role) {
-        return setInt(USER_ROLE,role);
+    public static boolean setUserRole(int role) {
+        return setInt(USER_ROLE, role);
     }
 
-    public static int getUserRole(){
+    public static int getUserRole() {
         return getInt(USER_ROLE);
     }
-
 
 
     public static void setJpushRegistionId(String jpushRegistrationId) {
@@ -68,8 +69,6 @@ public class SharePreferenceUtil {
     }
 
 
-
-
     private static long getLong(String category, String key) {
         long result = 0;
         Application application = ApplicationHolder.getmApplication();
@@ -94,9 +93,10 @@ public class SharePreferenceUtil {
     }
 
 
-    private static int getInt( String key) {
+    private static int getInt(String key) {
         return getInt(DEFAULT_CATEGORY, key);
     }
+
     private static int getInt(String category, String key) {
         int result = 0;
         Application application = ApplicationHolder.getmApplication();
@@ -109,8 +109,8 @@ public class SharePreferenceUtil {
 
     }
 
-    private static boolean setInt( String key, int value) {
-        return  setInt(DEFAULT_CATEGORY, key, value);
+    private static boolean setInt(String key, int value) {
+        return setInt(DEFAULT_CATEGORY, key, value);
     }
 
     private static boolean setInt(String category, String key, int value) {
@@ -260,9 +260,21 @@ public class SharePreferenceUtil {
     }
 
     public static void setHasToScan(boolean b) {
-        setBoolean(KEY_HUIJI_HAS_TO_COACH,b);
+        setBoolean(KEY_HUIJI_HAS_TO_COACH, b);
     }
-    public static boolean getHasToScan(){
-     return    getBoolean(KEY_HUIJI_HAS_TO_COACH,false);
+
+    public static boolean getHasToScan() {
+        return getBoolean(KEY_HUIJI_HAS_TO_COACH, false);
     }
+
+    public static void setUserName(String userName) {
+        setString("username", userName);
+    }
+
+    public static String getUserName() {
+        return getString("username", "");
+    }
+
+
+
 }

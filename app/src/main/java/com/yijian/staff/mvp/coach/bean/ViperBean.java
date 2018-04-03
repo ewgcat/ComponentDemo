@@ -1,8 +1,12 @@
-package com.yijian.staff.bean;
+package com.yijian.staff.mvp.coach.bean;
 
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.util.JsonUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * author：李帅华
@@ -43,6 +47,9 @@ public class ViperBean {
     private String outDate; //过期时间
     private String outDateReason; //过期原因
 
+    //("卡对象集合")
+    private List<HuiJiViperBean.CardprodsBean> cardprodsBeans;
+
     public ViperBean(JSONObject jsonObject){
          this.birthday = JsonUtil.getString(jsonObject, "birthday");
          this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
@@ -75,6 +82,19 @@ public class ViperBean {
          this.outDate = JsonUtil.getString(jsonObject, "outDate");
          this.outDateReason = JsonUtil.getString(jsonObject, "outDateReason");
 
+        try {
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),HuiJiViperBean.CardprodsBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<HuiJiViperBean.CardprodsBean> getCardprodsBeans() {
+        return cardprodsBeans;
+    }
+
+    public void setCardprodsBeans(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+        this.cardprodsBeans = cardprodsBeans;
     }
 
     public String getOutDateDay() {

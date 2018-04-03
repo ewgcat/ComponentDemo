@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ViperBean;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
@@ -117,8 +116,6 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        /* TextView tv_cardName;
-         TextView tv_card_type;*/
         RelativeLayout rel_expand;
         RecyclerView rv_card;
         TextView tv_opration_label;

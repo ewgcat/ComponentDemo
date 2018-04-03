@@ -16,7 +16,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -40,7 +40,7 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
 
-    private List<ViperBean> viperBeanList=new ArrayList<>();
+    private List<CoachViperBean> coachViperBeanList =new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,15 +76,15 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
             jsonObject.put("useCar", "无");
             jsonObject.put("isIntentVip","0");
             for (int i = 0; i < 10; i++) {
-                ViperBean viperBean = new ViperBean(jsonObject);
-                viperBeanList.add(viperBean);
+                CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                coachViperBeanList.add(coachViperBean);
             }
 
 
             LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
             //设置RecyclerView 布局
             rv_vip_intention.setLayoutManager(layoutmanager);
-            CoachIntentViperListAdapter intentViperListAdapter = new CoachIntentViperListAdapter(this, viperBeanList);
+            CoachIntentViperListAdapter intentViperListAdapter = new CoachIntentViperListAdapter(this, coachViperBeanList);
             rv_vip_intention.setAdapter(intentViperListAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);

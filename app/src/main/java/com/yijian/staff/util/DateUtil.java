@@ -17,6 +17,7 @@ public class DateUtil {
 
     /**
      * 获取当前日期
+     *
      * @return
      */
     public static String getCurrentDate() {
@@ -26,6 +27,7 @@ public class DateUtil {
 
     /**
      * 获取当前日期
+     *
      * @return
      */
     public static String getTomorrowDate() {
@@ -35,6 +37,7 @@ public class DateUtil {
 
     /**
      * 获取当前日期字符串
+     *
      * @return
      */
     public static String getCurrentDateString() {
@@ -44,33 +47,37 @@ public class DateUtil {
 
     /**
      * 获取当前年
+     *
      * @return
      */
     public static int getCurrentYear() {
-        Calendar cal=Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         return cal.get(Calendar.YEAR);
     }
 
     /**
      * 获取当前月
+     *
      * @return
      */
     public static int getCurrentMonth() {
-        Calendar cal=Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         return cal.get(Calendar.MONTH);
     }
 
     /**
      * 获取当前日
+     *
      * @return
      */
     public static int getCurrentDay() {
-        Calendar cal=Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         return cal.get(Calendar.DATE);
     }
 
     /**
      * 切割标准时间
+     *
      * @param time
      * @return
      */
@@ -78,44 +85,45 @@ public class DateUtil {
     public static String subStandardTime(String time) {
         int idx = time.indexOf(".");
         if (idx > 0) {
-            return time.substring(0, idx).replace("T"," ");
+            return time.substring(0, idx).replace("T", " ");
         }
         return null;
     }
 
     /**
      * 将时间戳转化为字符串
+     *
      * @param showTime
      * @return
      */
     public static String formatTime2String(long showTime) {
-        return formatTime2String(showTime,false);
+        return formatTime2String(showTime, false);
     }
 
-    public static String formatTime2String(long showTime , boolean haveYear) {
+    public static String formatTime2String(long showTime, boolean haveYear) {
         String str = "";
-        long distance = currentTimeMillis()/1000 - showTime;
-        if(distance < 300){
+        long distance = currentTimeMillis() / 1000 - showTime;
+        if (distance < 300) {
             str = "刚刚";
-        }else if(distance >= 300 && distance < 600){
+        } else if (distance >= 300 && distance < 600) {
             str = "5分钟前";
-        }else if(distance >= 600 && distance < 1200){
+        } else if (distance >= 600 && distance < 1200) {
             str = "10分钟前";
-        }else if(distance >= 1200 && distance < 1800){
+        } else if (distance >= 1200 && distance < 1800) {
             str = "20分钟前";
-        }else if(distance >= 1800 && distance < 2700){
+        } else if (distance >= 1800 && distance < 2700) {
             str = "半小时前";
-        }else if(distance >= 2700){
+        } else if (distance >= 2700) {
             Date date = new Date(showTime * 1000);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            str = formatDateTime(sdf.format(date) , haveYear);
+            str = formatDateTime(sdf.format(date), haveYear);
         }
         return str;
     }
 
     public static String formatDate2String(String time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if(time == null){
+        if (time == null) {
             return "未知";
         }
         try {
@@ -132,9 +140,9 @@ public class DateUtil {
         return "未知";
     }
 
-    public static String formatDateTime(String time ,boolean haveYear) {
+    public static String formatDateTime(String time, boolean haveYear) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if(time == null){
+        if (time == null) {
             return "";
         }
         Date date;
@@ -156,25 +164,93 @@ public class DateUtil {
         Calendar yesterday = Calendar.getInstance();
         yesterday.set(Calendar.YEAR, current.get(Calendar.YEAR));
         yesterday.set(Calendar.MONTH, current.get(Calendar.MONTH));
-        yesterday.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH)-1);
+        yesterday.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH) - 1);
         yesterday.set(Calendar.HOUR_OF_DAY, 0);
         yesterday.set(Calendar.MINUTE, 0);
         yesterday.set(Calendar.SECOND, 0);
 
         current.setTime(date);
-        if(current.after(today)){
-            return "今天 "+time.split(" ")[1];
-        }else if(current.before(today) && current.after(yesterday)){
-            return "昨天 "+time.split(" ")[1];
-        }else{
-            if(haveYear) {
+        if (current.after(today)) {
+            return "今天 " + time.split(" ")[1];
+        } else if (current.before(today) && current.after(yesterday)) {
+            return "昨天 " + time.split(" ")[1];
+        } else {
+            if (haveYear) {
                 int index = time.indexOf(" ");
-                return time.substring(0,index);
-            }else {
-                int yearIndex = time.indexOf("-")+1;
+                return time.substring(0, index);
+            } else {
+                int yearIndex = time.indexOf("-") + 1;
                 int index = time.indexOf(" ");
-                return time.substring(yearIndex,time.length()).substring(0,index);
+                return time.substring(yearIndex, time.length()).substring(0, index);
             }
         }
     }
+
+
+    /**
+     * 获取系统时间戳
+     *
+     * @return
+     */
+    public long getCurTimeLong() {
+        long time = System.currentTimeMillis();
+        return time;
+    }
+
+    /**
+     * 获取当前时间
+     *
+     * @param pattern
+     * @return
+     */
+    public static String getCurDate(String pattern) {
+        SimpleDateFormat sDateFormat = new SimpleDateFormat(pattern);
+        return sDateFormat.format(new java.util.Date());
+    }
+
+    /**
+     * 时间戳转换成字符窜
+     *
+     * @param milSecond
+     * @param pattern
+     * @return
+     */
+    public static String getDateToString(long milSecond, String pattern) {
+        Date date = new Date(milSecond);
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        return format.format(date);
+    }
+
+    /**
+     * 时间戳转换成字符窜
+     *
+     * @param milSecond
+     * @return
+     */
+    public static String parseLongDateToString(long milSecond) {
+        Date date = new Date(milSecond);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+
+    /**
+     * 将字符串转为时间戳
+     *
+     * @param dateString
+     * @param pattern
+     * @return
+     */
+    public static long getStringToDate(String dateString, String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return date.getTime();
+    }
+
 }

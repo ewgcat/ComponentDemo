@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="普通会员"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -67,61 +67,56 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"
                 android:paddingTop="15dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="卡名:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                <RelativeLayout
+                    android:id="@+id/zhengshi_rel_expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/zhengshi_tv_cardName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="原力俱乐部30年年卡"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="卡名-卡类型"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/zhengshi_tv_zhankai_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="4dp"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        android:gravity="center_vertical"
+                        android:text="展开"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="卡类型:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/zhengshi_rv_card"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/zhengshi_tv_card_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="时间卡"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/gray" />
+            </LinearLayout>
 
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -236,7 +231,6 @@
             </RelativeLayout>
 
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -264,9 +258,6 @@
                     android:textSize="14sp" />
 
             </RelativeLayout>
-
-
-
 
 
             <RelativeLayout
@@ -340,66 +331,59 @@
         <!-- 过期vip-->
         <LinearLayout
             android:id="@+id/ll_guoqi_viper"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"
                 android:paddingTop="15dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="卡名:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                <RelativeLayout
+                    android:id="@+id/guoqi_rel_expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/guoqi_tv_cardName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="原力俱乐部30年年卡"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="卡名-卡类型"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/guoqi_tv_zhankai_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="4dp"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        android:gravity="center_vertical"
+                        android:text="展开2"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="卡类型:"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/guoqi_rv_card"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/guoqi_tv_cardType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="时间卡"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/gray" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -557,6 +541,7 @@
         <!-- 潜在vip-->
         <LinearLayout
             android:id="@+id/ll_qianzai_viper"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -801,6 +786,7 @@
         <!-- 意向vip-->
         <LinearLayout
             android:id="@+id/ll_yixiang_viper"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

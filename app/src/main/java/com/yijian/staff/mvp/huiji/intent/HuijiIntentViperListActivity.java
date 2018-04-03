@@ -94,7 +94,7 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
             jsonObject.put("useCar", "无");
             jsonObject.put("isIntentVip","0");
             for (int i = 0; i < 10; i++) {
-                ViperBean viperBean = new ViperBean(jsonObject);
+                CoachViperBean viperBean = new CoachViperBean(jsonObject);
                 viperBeanList.add(viperBean);
             }
 

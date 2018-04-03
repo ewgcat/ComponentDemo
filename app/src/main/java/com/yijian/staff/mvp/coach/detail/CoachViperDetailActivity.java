@@ -26,7 +26,6 @@ import butterknife.OnClick;
 public class CoachViperDetailActivity extends AppCompatActivity {
 
 
-
     @BindView(R.id.iv_header)
     ImageView ivHeader;
     @BindView(R.id.tv_name)
@@ -132,15 +131,28 @@ public class CoachViperDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_lianxiren_phone)
     TextView tvLianxirenPhone;
 
+    //会籍信息
+    @BindView(R.id.ll_vip_content)
+    LinearLayout llVipContent;
+
+    private int vipType=0;//0 正式会员 、意向会员（有会籍信息）  1 潜在会员 过期会员（无会籍信息）
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_coach_viper_detail);
         ButterKnife.bind(this);
-        NavigationBar2   navigationbar2=findViewById(R.id.coach_navigationbar2);
+        NavigationBar2 navigationbar2 = findViewById(R.id.coach_navigationbar2);
         navigationbar2.setBackClickListener(this);
         navigationbar2.hideLeftSecondIv();
+
+         vipType = getIntent().getIntExtra("vipType", 0);
+         if (vipType==0){
+             llVipContent.setVisibility(View.VISIBLE);
+         }else if (vipType==1){
+             llVipContent.setVisibility(View.GONE);
+         }
 
     }
 

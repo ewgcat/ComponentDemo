@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huiji.bean;
+package com.yijian.staff.mvp.coach.card;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.List;
  * Created by yangk on 2018/3/31.
  */
 
-public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<HuiJiViperBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
+    List<CoachViperBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
 
-    public HuiJiVipeCardAdapter(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+    public CoachVipCardListAdapter(List<CoachViperBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
     }
 
@@ -32,7 +33,7 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        HuiJiViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+        CoachViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
         ((ViewHolder)holder).bind(cardprodsBean);
     }
 
@@ -52,7 +53,7 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
             tv_cardType  = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(HuiJiViperBean.CardprodsBean cardprodsBean){
+        public void bind(CoachViperBean.CardprodsBean cardprodsBean){
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

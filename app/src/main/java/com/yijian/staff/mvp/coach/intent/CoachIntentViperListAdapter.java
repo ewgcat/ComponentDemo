@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 
@@ -24,12 +24,12 @@ import java.util.List;
 
 public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachIntentViperListAdapter.ViewHolder> {
 
-    private List<ViperBean> viperBeanList;
+    private List<CoachViperBean> coachViperBeanList;
     private Context context;
 
-    public CoachIntentViperListAdapter(Context context, List<ViperBean> viperBeanList){
+    public CoachIntentViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList){
         this.context = context;
-        this.viperBeanList = viperBeanList;
+        this.coachViperBeanList = coachViperBeanList;
     }
 
     @Override
@@ -41,8 +41,8 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
     @Override
     public void onBindViewHolder(CoachIntentViperListAdapter.ViewHolder holder, int position) {
-        ViperBean viperBean = viperBeanList.get(position);
-        holder.tv_name.setText(viperBean.getName());
+        CoachViperBean coachViperBean = coachViperBeanList.get(position);
+        holder.tv_name.setText(coachViperBean.getName());
 
 
 
@@ -90,7 +90,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
     @Override
     public int getItemCount() {
-        return viperBeanList==null?0:viperBeanList.size();
+        return coachViperBeanList ==null?0: coachViperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,8 @@ package com.yijian.staff.mvp.coach.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,15 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 
@@ -27,7 +32,7 @@ import java.util.List;
 
 public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearchViperListAdapter.ViewHolder> {
 
-    private static final String TAG=CoachSearchViperListAdapter.class.getSimpleName();
+    private static final String TAG = CoachSearchViperListAdapter.class.getSimpleName();
     private List<CoachSearchViperBean> viperBeanList;
     private Context context;
 
@@ -65,20 +70,38 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             holder.ll_yixiang_viper.setVisibility(View.GONE);
         } else {
             holder.tv_viper_role.setText(viperBean.getViperRole());
-
-            if (viperRole.equals("普通会员")) {
-
+            String subclassName = viperBean.getSubclassName();
+            if (subclassName.equals("CoachInfoVO")) {
                 holder.ll_zhengshi_viper.setVisibility(View.VISIBLE);
                 holder.ll_guoqi_viper.setVisibility(View.GONE);
                 holder.ll_qianzai_viper.setVisibility(View.GONE);
                 holder.ll_yixiang_viper.setVisibility(View.GONE);
 
-                holder.zhengshi_tv_cardName.setText(viperBean.getCardName());
-                holder.zhengshi_tv_card_type.setText(viperBean.getCardType());
+                holder.zhengshi_rel_expand.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleZhengSiCardView(holder);
+                    }
+
+
+                });
+
+
+                holder.zhengshi_rv_card.setLayoutManager(new LinearLayoutManager(context));
+                holder.zhengshi_rv_card.setAdapter(new CoachVipCardListAdapter(viperBean.getCardprodsBeans()));
                 holder.zhengshi_tv_private_class.setText(viperBean.getPrivateCourse());
                 holder.zhengshi_tv_like_lesson.setText(viperBean.getFavorCourse());
                 holder.zhengshi_tv_like_teacher.setText(viperBean.getFavorTeacher());
-                holder.zhengshi_tv_regist_time.setText(viperBean.getRegisterTime());
+
+                long registerTime = viperBean.getRegisterTime();
+                if (registerTime!=0){
+                    String s = DateUtil.parseLongDateToString(registerTime);
+                    holder.zhengshi_tv_regist_time.setText(s);
+                }else {
+                    holder.zhengshi_tv_regist_time.setText("");
+                }
+
+
                 holder.zhengshi_tv_buy_count.setText(viperBean.getPurchaseCount() + "");
                 //上课记录表
                 holder.zhengshi_lin_shangke_recordchart.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +117,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         context.startActivity(new Intent(context, PhysicalReportActivity.class));
                     }
                 });
-            } else if (viperRole.equals("潜在会员")) {
+            } else if (subclassName.equals("PotentialVO")) {
                 holder.ll_qianzai_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
                 holder.ll_guoqi_viper.setVisibility(View.GONE);
@@ -124,32 +147,32 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
                     }
                 });
-            } else if (viperRole.equals("意向会员")) {
+            } else if (subclassName.equals("CoachIntentionVO")) {
                 holder.ll_yixiang_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
                 holder.ll_guoqi_viper.setVisibility(View.GONE);
                 holder.ll_qianzai_viper.setVisibility(View.GONE);
 
-                holder. yixiang_tv_birth.setText(viperBean.getBirthday());
-                holder. yixiang_tv_birth_type.setText(viperBean.getBirthdayType());
-                holder. yixiang_tv_bodyStatus.setText(viperBean.getHealthStatus());
-                holder. yixiang_tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
-                holder. yixiang_tv_interestHobby.setText(viperBean.getHobby());
-                holder. yixiang_tv_useCar.setText(viperBean.getUseCar());
-                holder. yixiang_lin_baojia.setOnClickListener(new View.OnClickListener() {
+                holder.yixiang_tv_birth.setText(viperBean.getBirthday());
+                holder.yixiang_tv_birth_type.setText(viperBean.getBirthdayType());
+                holder.yixiang_tv_bodyStatus.setText(viperBean.getHealthStatus());
+                holder.yixiang_tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
+                holder.yixiang_tv_interestHobby.setText(viperBean.getHobby());
+                holder.yixiang_tv_useCar.setText(viperBean.getUseCar());
+                holder.yixiang_lin_baojia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         context.startActivity(new Intent(context, NoSearchBarCoachClassBaojiaActivity.class));
                     }
                 });
                 //TODO 电话回访
-                holder. yixiang_lin_protect_seven.setOnClickListener(new View.OnClickListener() {
+                holder.yixiang_lin_protect_seven.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                     }
                 });
-                holder. yixiang_lin_invitation.setOnClickListener(new View.OnClickListener() {
+                holder.yixiang_lin_invitation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         context.startActivity(new Intent(context, InvateIndexActivity.class));
@@ -157,16 +180,32 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 });
 
 
-            } else if (viperRole.equals("过期会员")) {
+            } else if (subclassName.equals("CoachExpireVO")) {
                 holder.ll_guoqi_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
                 holder.ll_qianzai_viper.setVisibility(View.GONE);
                 holder.ll_yixiang_viper.setVisibility(View.GONE);
+                holder.guoqi_rel_expand.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleGuoQiCardView(holder);
 
-                holder.guoqi_tv_cardName.setText(viperBean.getCardName());
-                holder.guoqi_tv_cardType.setText(viperBean.getCardType());
+                    }
+                });
+
+
+                holder.guoqi_rv_card.setLayoutManager(new LinearLayoutManager(context));
+                holder.guoqi_rv_card.setAdapter(new CoachVipCardListAdapter(viperBean.getCardprodsBeans()));
                 holder.guoqi_tv_history_lesson.setText(viperBean.getHistoryCourse());
-                holder.guoqi_tv_outDate.setText(viperBean.getDeadline());
+
+                long contractDeadline = viperBean.getDeadline();
+                if (contractDeadline!=0){
+                    String s = DateUtil.parseLongDateToString(contractDeadline);
+                    holder.guoqi_tv_outDate.setText(s);
+                }else {
+                    holder.guoqi_tv_outDate.setText("");
+                }
+
                 holder.guoqi_tv_outDate_reason.setText(viperBean.getExpiryReason());
                 //TODO 电话回访
                 holder.guoqi_lin_huifan.setOnClickListener(new View.OnClickListener() {
@@ -178,12 +217,49 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.guoqi_lin_yaoyue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
+                        context.startActivity(new Intent(context, ExperienceClassInvateActivity.class));
                     }
                 });
             }
         }
 
+
+    }
+
+
+    private void toggleZhengSiCardView(CoachSearchViperListAdapter.ViewHolder holder) {
+        int visibility = holder.zhengshi_rv_card.getVisibility();
+        if (visibility == View.GONE) {
+            holder.zhengshi_rv_card.setVisibility(View.VISIBLE);
+            holder.zhengshi_tv_zhankai_status.setText("收起");
+            Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+            holder.zhengshi_tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        } else {
+            holder.zhengshi_rv_card.setVisibility(View.GONE);
+            holder.zhengshi_tv_zhankai_status.setText("展开");
+            Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+            holder.zhengshi_tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        }
+
+    }
+    private void toggleGuoQiCardView(CoachSearchViperListAdapter.ViewHolder holder) {
+
+        int visibility = holder.guoqi_rv_card.getVisibility();
+        if (visibility == View.GONE) {
+            holder.guoqi_rv_card.setVisibility(View.VISIBLE);
+            holder.guoqi_tv_zhankai_status.setText("收起");
+            Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+            holder.guoqi_tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        } else {
+            holder.guoqi_rv_card.setVisibility(View.GONE);
+            holder.guoqi_tv_zhankai_status.setText("展开");
+            Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+            holder.guoqi_tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        }
 
     }
 
@@ -201,8 +277,9 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
         //正式会员
         LinearLayout ll_zhengshi_viper;
-        TextView zhengshi_tv_cardName;
-        TextView zhengshi_tv_card_type;
+        RelativeLayout zhengshi_rel_expand;
+        TextView zhengshi_tv_zhankai_status;
+        RecyclerView zhengshi_rv_card;
         TextView zhengshi_tv_private_class;
         TextView zhengshi_tv_like_lesson;
         TextView zhengshi_tv_like_teacher;
@@ -213,8 +290,9 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
         //过期会员
         LinearLayout ll_guoqi_viper;
-        TextView guoqi_tv_cardName;
-        TextView guoqi_tv_cardType;
+        RelativeLayout guoqi_rel_expand;
+        TextView guoqi_tv_zhankai_status;
+        RecyclerView guoqi_rv_card;
         TextView guoqi_tv_history_lesson;
         TextView guoqi_tv_outDate;
         TextView guoqi_tv_outDate_reason;
@@ -255,8 +333,9 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
             //正式
             ll_zhengshi_viper = view.findViewById(R.id.ll_zhengshi_viper);
-            zhengshi_tv_cardName = view.findViewById(R.id.zhengshi_tv_cardName);
-            zhengshi_tv_card_type = view.findViewById(R.id.zhengshi_tv_card_type);
+            zhengshi_rel_expand = view.findViewById(R.id.zhengshi_rel_expand);
+            zhengshi_rv_card = view.findViewById(R.id.zhengshi_rv_card);
+            zhengshi_tv_zhankai_status = view.findViewById(R.id.zhengshi_tv_zhankai_status);
             zhengshi_tv_private_class = view.findViewById(R.id.zhengshi_tv_private_class);
             zhengshi_tv_like_lesson = view.findViewById(R.id.zhengshi_tv_like_lesson);
             zhengshi_tv_like_teacher = view.findViewById(R.id.zhengshi_tv_like_teacher);
@@ -267,8 +346,9 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
             //过期
             ll_guoqi_viper = view.findViewById(R.id.ll_guoqi_viper);
-            guoqi_tv_cardName = view.findViewById(R.id.guoqi_tv_cardName);
-            guoqi_tv_cardType = view.findViewById(R.id.guoqi_tv_cardType);
+            guoqi_rel_expand = view.findViewById(R.id.guoqi_rel_expand);
+            guoqi_tv_zhankai_status = view.findViewById(R.id.guoqi_tv_zhankai_status);
+            guoqi_rv_card = view.findViewById(R.id.guoqi_rv_card);
             guoqi_tv_history_lesson = view.findViewById(R.id.guoqi_tv_history_lesson);
             guoqi_tv_outDate = view.findViewById(R.id.guoqi_tv_outDate);
             guoqi_tv_outDate_reason = view.findViewById(R.id.guoqi_tv_outDate_reason);

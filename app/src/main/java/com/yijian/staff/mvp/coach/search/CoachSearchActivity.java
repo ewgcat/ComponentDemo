@@ -75,7 +75,7 @@ public class CoachSearchActivity extends AppCompatActivity {
     public void initComponent() {
         etSearch = findViewById(R.id.et_search);
 
-        etSearch.setHintTextColor(Color.parseColor("#ffffff"));
+        etSearch.setHintTextColor(Color.parseColor("#666666"));
 
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

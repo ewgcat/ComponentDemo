@@ -1,6 +1,8 @@
 package com.yijian.staff.mvp.huiji.search;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiVipCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 
 import java.util.ArrayList;
@@ -81,14 +85,14 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemViewType(int position) {
         HuiJiViperBean huiJiSearchViperBean = dataList.get(position);
-        String viperRole = huiJiSearchViperBean.getViperRole();
-        if (viperRole.equals("普通会员")) {
+        String subclassName = huiJiSearchViperBean.getSubclassName();
+        if (subclassName.equals("CustomerInfoVO")) {
             return TYPE_VIP_CEREMONIAL_INFO;
-        } else if (viperRole.equals("潜在会员")) {
+        } else if (subclassName.equals("PotentialVO")) {
             return TYPE_VIP_POTENTIAL_INFO;
-        } else if (viperRole.equals("意向会员")) {
+        } else if (subclassName.equals("CustomerIntentionVO")) {
             return TYPE_VIP_INTENT_INFO;
-        } else if (viperRole.equals("过期会员")) {
+        } else if (subclassName.equals("CustomerExpireVO")) {
             return TYPE_VIP_OUTDATE_INFO;
         }
 
@@ -101,8 +105,11 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ImageView iv_gender;
         TextView tv_name;
         TextView  tv_role;
-        TextView tv_cardName;
-        TextView tv_card_type;
+
+        RelativeLayout rel_expand;
+        TextView tv_zhankai_status;
+        RecyclerView rv_card;
+
         TextView tv_private_coach;
         TextView tv_like_lesson;
         TextView tv_like_teacher;
@@ -125,8 +132,10 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
             tv_role = view.findViewById(R.id.tv_role);
-            tv_cardName = view.findViewById(R.id.tv_cardName);
-            tv_card_type = view.findViewById(R.id.tv_card_type);
+            rel_expand = view.findViewById(R.id.rel_expand);
+            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
+            rv_card = view.findViewById(R.id.rv_card);
+
             tv_private_coach = view.findViewById(R.id.tv_private_coach);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
             tv_like_teacher = view.findViewById(R.id.tv_like_teacher);
@@ -145,8 +154,35 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public void bind(HuiJiViperBean huiJiSearchViperBean) {
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
-            tv_cardName.setText(huiJiSearchViperBean.getCardName());
-            tv_card_type.setText(huiJiSearchViperBean.getCardType());
+
+
+            rel_expand.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                   rv_card.setLayoutManager(new LinearLayoutManager(context));
+                   rv_card.setAdapter(new HuiJiVipCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
+                    int visibility = rv_card.getVisibility();
+                    if (visibility == View.GONE) {
+                      rv_card.setVisibility(View.VISIBLE);
+                        tv_zhankai_status.setText("收起");
+                        Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+                       tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+                    } else {
+                       rv_card.setVisibility(View.GONE);
+                       tv_zhankai_status.setText("展开");
+                        Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+                       tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+                    }
+                }
+
+
+            });
+
             tv_private_coach.setText(huiJiSearchViperBean.getPrivateCoach());
             tv_like_lesson.setText(huiJiSearchViperBean.getFavorCourse());
             tv_like_teacher.setText(huiJiSearchViperBean.getFavorTeacher());
@@ -167,8 +203,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tv_name;
         TextView  tv_role;
         ImageView iv_gender;
-        TextView tv_cardName;
-        TextView tv_cardType;
+        RelativeLayout rel_expand;
+        TextView tv_zhankai_status;
+        RecyclerView rv_card;
         TextView tv_privateCoach;
         TextView tv_likeLesson;
         TextView tv_likeTeacher;
@@ -186,8 +223,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tv_name   = view.findViewById(R.id.tv_name);
             tv_role   = view.findViewById(R.id.tv_role);
             iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_cardName   = view.findViewById(R.id.tv_cardName);
-            tv_cardType =     view.findViewById(R.id.tv_cardType);
+            rel_expand = view.findViewById(R.id.rel_expand);
+            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
+            rv_card = view.findViewById(R.id.rv_card);
             tv_privateCoach =     view.findViewById(R.id.tv_privateCoach);
             tv_likeLesson  =     view.findViewById(R.id.tv_likeLesson);
             tv_likeTeacher  =     view.findViewById(R.id.tv_likeTeacher);
@@ -201,8 +239,33 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public void bind(HuiJiViperBean huiJiSearchViperBean){
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
-            tv_cardName.setText(huiJiSearchViperBean.getCardName());
-            tv_cardType.setText(huiJiSearchViperBean.getCardType());
+            rel_expand.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    rv_card.setLayoutManager(new LinearLayoutManager(context));
+                    rv_card.setAdapter(new HuiJiVipCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
+                    int visibility = rv_card.getVisibility();
+                    if (visibility == View.GONE) {
+                        rv_card.setVisibility(View.VISIBLE);
+                        tv_zhankai_status.setText("收起");
+                        Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+                        tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+                    } else {
+                        rv_card.setVisibility(View.GONE);
+                        tv_zhankai_status.setText("展开");
+                        Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+                        tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+                    }
+                }
+
+
+            });
+
             tv_privateCoach.setText(huiJiSearchViperBean.getPrivateCoach());
             tv_likeLesson.setText(huiJiSearchViperBean.getFavorCourse());
             tv_likeTeacher.setText(huiJiSearchViperBean.getFavorTeacher());

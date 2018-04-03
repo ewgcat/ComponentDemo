@@ -3,6 +3,8 @@ package com.yijian.staff.mvp.reception.step2;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,67 +173,6 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
 
     }
 
-    private Map<String,HashMap<String,Boolean>> multiCheck=new HashMap<>();//多选的结果集合(数据结构为：String（大类——人体测量/基础测量），String（ 选项名称）,Boolean(是否被选中))
-
-//    @Override
-//    public void onChildMultiClick(ChildObjBean child_demo, int childPosition, int parentPosition) {
-//        child_demo.setSelected(child_demo.isSelected()?false:true);
-//        notifyChildChanged(parentPosition,childPosition);
-//
-////        getMultiCheckQuestionName();
-//
-//        String questionName=null;
-//
-//        ParentObjBean parentObjBean = parentList.get(parentPosition);
-//        List<ChildObjBean> childList = parentObjBean.getChildList();
-//        for (int i = (childPosition-1); i >=0 ; i--) {
-//            String qusType = childList.get(i).getQusType();
-//            if ("display_multi_opt".equals(qusType)){
-//                questionName=childList.get(i).getQustion();
-//                break;
-//            }
-//        }
-//
-//
-//
-////        int getNearestParentPosition(int flatPosition) {
-////            if (flatPosition == 0) {
-////                return 0;
-////            }
-////
-////            int parentCount = -1;
-////            for (int i = 0; i <= flatPosition; i++) {
-////                ExpandableWrapper<P, C> listItem = mFlatItemList.get(i);
-////                if (listItem.isParent()) {
-////                    parentCount++;
-////                }
-////            }
-////            return parentCount;
-////        }
-//
-//
-//
-//
-//
-//
-////        HashMap<String, Boolean> stringBooleanHashMap = multiCheck.get(parentList.get(parentPosition).getTitle());
-////
-////        if (child_demo.isSelected()){
-////            if (stringBooleanHashMap==null)stringBooleanHashMap =new HashMap<>();
-////            stringBooleanHashMap.put(child_demo.getQustion(),true);
-////        }else {
-////            if (stringBooleanHashMap!=null){
-////                stringBooleanHashMap.remove(child_demo.getQustion());
-////            }
-////        }
-////        multiCheck.put(parentList.get(parentPosition).getTitle(),stringBooleanHashMap);
-////
-////        for (int i = 0; i < multiCheck.size(); i++) {
-////
-////        }
-//
-//        Log.e(TAG, "onChildMultiClick: "+multiCheck );
-//    }
 
 
     /**
@@ -242,7 +183,8 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
      */
     @Override
     public void onChildWrited(int childPosition, int parentPosition, Editable s) {
-
+        ChildOptBean childOptBean = parentList.get(parentPosition).getChildList().get(childPosition);
+        childOptBean.setUserValue(s.toString());
     }
 
 
@@ -255,6 +197,8 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
      */
     @Override
     public void onChildEdited(ChildOptBean child, int childPosition, int parentPosition, Editable s) {
+        ChildOptBean childOptBean = parentList.get(parentPosition).getChildList().get(childPosition);
+        childOptBean.setUserValue(s.toString());
 
     }
 
@@ -269,8 +213,6 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
     public void onItemMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition) {
         child_demo.setIsSelected(child_demo.isIsSelected()?false:true);
         multiAdapter.notifyDataSetChanged();
-//        notifyChildChanged(parentPosition,childPosition);
-
     }
 
     /**
@@ -283,7 +225,13 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
      */
     @Override
     public void onItemMultiWrited(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition, Editable s) {
-
+        child_demo.setUserValue(s.toString());
+//        if(TextUtils.isEmpty(s.toString())){
+//            child_demo.setIsSelected(false);
+//        }else {
+//            child_demo.setIsSelected(true);
+//        }
+//        multiAdapter.notifyDataSetChanged();
     }
 
 

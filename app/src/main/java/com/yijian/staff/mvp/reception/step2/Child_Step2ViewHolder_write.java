@@ -3,6 +3,8 @@ package com.yijian.staff.mvp.reception.step2;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
@@ -39,7 +41,8 @@ public class Child_Step2ViewHolder_write extends ChildViewHolder {
     public void bind(ChildOptBean child, int childPosition, int parentPosition, List<ParentQuestionBean> parentList) {
         SpannableString s = new SpannableString(child.getQustion());//这里输入自己想要的提示文字
         etContent.setHint(s);
-
+        if (!TextUtils.isEmpty(child.getUserValue())&&!"请选择".equals(child.getUserValue()))
+        etContent.setText(child.getUserValue());
 
         int size = parentList.get(parentPosition).getChildList().size();
         if (childPosition==size-1){
@@ -49,6 +52,23 @@ public class Child_Step2ViewHolder_write extends ChildViewHolder {
             seatView.setVisibility(View.GONE);
             itemView.setBackgroundResource(R.color.white);
         }
+
+        etContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (listener!=null)listener.onChildWrited(childPosition,parentPosition,s);
+            }
+        });
     }
 
 

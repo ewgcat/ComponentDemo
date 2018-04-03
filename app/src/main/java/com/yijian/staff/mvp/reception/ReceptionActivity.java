@@ -1,26 +1,30 @@
 package com.yijian.staff.mvp.reception;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private TextView tvName;
     private TextView tvSex;
     private TextView tvPhone;
+    private ReceptionHistoryAdapter receptionHistoryAdapter;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         presenter.setView(this);
         presenter.getRecptionerInfo();
-        presenter.  getRecptionRecord(true);
+        presenter. getRecptionRecord(true);
     }
 
     private void initView() {
@@ -63,35 +69,48 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.tv_stopJieDai).setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recyclerview_jiedai_history);
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
+        //设置RecyclerView 布局
+        recyclerView.setLayoutManager(layoutmanager);
+        recyclerView.setNestedScrollingEnabled(false);
+        receptionHistoryAdapter = new ReceptionHistoryAdapter(this);
+        recyclerView.setAdapter(receptionHistoryAdapter);
 
-
-
-        JSONObject jsonObject=new JSONObject();
-        try {
-            jsonObject.put("name","朱沙");
-            jsonObject.put("phone","12345678900");
-            jsonObject.put("sex","男");
-            jsonObject.put("status","完成");
-            jsonObject.put("product","十周年纪念卡");
-            for (int i = 0; i < 10; i++) {
-                ReceptionInfo receptionInfo = new ReceptionInfo(jsonObject);
-                mReceptionInfoList.add(receptionInfo);
-            }
-            Logger.i("TEST","mReceptionInfoList: "+mReceptionInfoList.size());
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            recyclerView.setLayoutManager(layoutmanager);
-            ReceptionHistoryAdapter receptionHistoryAdapter = new ReceptionHistoryAdapter(this, mReceptionInfoList);
-            recyclerView.setAdapter(receptionHistoryAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST","JSONException: "+e);
-
-        }
+        initRefresh();
 
 
     }
+
+    private void initRefresh() {
+        refreshLayout =  findViewById(R.id.refreshLayout);
+
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+//                refresh(null);
+                presenter. getRecptionRecord(true);
+//                refreshLayout.finishRefresh(1000);
+
+            }
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                presenter. getRecptionRecord(false);
+//                refreshLayout.finishLoadMore(1000);
+//                loadMore();
+            }
+        });
+    }
+
+
 
 
     @Override
@@ -130,5 +149,21 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         tvSex.setText(""+bean.getSex());
         tvPhone.setText(""+bean.getMobile());
 
+    }
+
+    @Override
+    public void showRecptionRecordList(List<RecptionRecordListBean.RecordsBean> recordList, boolean isRefresh) {
+
+        if (isRefresh)receptionHistoryAdapter.clearData();
+        receptionHistoryAdapter.addData(recordList);
+    }
+
+    @Override
+    public void finishRefresh(boolean isRefresh) {
+        if (isRefresh){
+            refreshLayout.finishRefresh();
+        }else {
+            refreshLayout.finishLoadMore();
+        }
     }
 }

@@ -54,13 +54,13 @@ public class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implemen
         name.setText(child.getQustion());
 
         List<MultiOptBean> multiOptBeans = child.getMultiOptBeans();
-        Log.e(TAG, "bind:multiOptBeans ");
+//        Log.e(TAG, "bind:multiOptBeans ");
         if (multiOptBeans==null||multiOptBeans.size()==0){
-            Log.e(TAG, "bind:multiOptBeans 111");
+//            Log.e(TAG, "bind:multiOptBeans 111");
             recyclerview.setVisibility(View.GONE);
         }else {
 
-            Log.e(TAG, "bind:multiOptBeans ");
+//            Log.e(TAG, "bind:multiOptBeans ");
             multiAdapter.resetData(multiOptBeans,childPosition,parentPosition);
             recyclerview.setVisibility(View.VISIBLE);
 

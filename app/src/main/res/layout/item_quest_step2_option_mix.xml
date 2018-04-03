@@ -16,6 +16,7 @@
         android:paddingLeft="15dp"
         android:drawableLeft="@drawable/selector_quest_item_drawable"
         android:drawablePadding="6dp"
+        android:textColor="@color/text_black3"
         android:gravity="center"
         tools:text="Artist Name"  />
 

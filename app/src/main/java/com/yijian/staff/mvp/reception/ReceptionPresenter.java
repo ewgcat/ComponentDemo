@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
@@ -14,9 +15,9 @@ import com.yijian.staff.net.response.ResultObserver;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observer;
 
 
 /**
@@ -60,6 +61,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
                 RecptionerInfoBean receptionInfo = new Gson().fromJson(result.toString(), RecptionerInfoBean.class);
                 if (receptionInfo == null) return;
                 view.showRecptionInfo(receptionInfo);
+                //
 
             }
 
@@ -75,21 +77,49 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     @Override
     public void getRecptionRecord(boolean isRefresh) {
 
-        Map<String, String> params = new HashMap<>();
-        params.put("pageNum",String.valueOf(pageNum));
-        params.put("pageSize","10");
+        if (isRefresh) pageNum=1;
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_RECORD, headerParam, params, new ResultObserver() {
+        Map<String, Integer> params = new HashMap<>();
+        params.put("pageNum",pageNum);
+        params.put("pageSize",10);
+
+
+        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, headerParam, params, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Log.e(TAG, "onSuccess: "+result.toString() );
+//                Log.e(TAG, "onSuccess: "+result.toString() );
+                view.finishRefresh(isRefresh);
+                RecptionRecordListBean recptionRecordListBean = new Gson().fromJson(result.toString(), RecptionRecordListBean.class);
+                if (recptionRecordListBean==null){
+                    Toast.makeText(context,"数据异常",Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+
+                List<RecptionRecordListBean.RecordsBean> records = recptionRecordListBean.getRecords();
+                if (records==null||records.size()==0){
+                    Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+
+                view.showRecptionRecordList(records,isRefresh);
+                pageNum++;
+
             }
 
             @Override
             public void onFail(String msg) {
-                Log.e(TAG, "msg: "+msg );
+//                Log.e(TAG, "msg: "+msg );
+                view.finishRefresh(isRefresh);
             }
         });
     }
+
+    @Override
+    public void getRecptionStatus() {
+
+    }
+
 
 }

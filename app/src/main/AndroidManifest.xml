@@ -195,6 +195,10 @@
             android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mvp.coach.detail.CoachViperDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".mvp.vip.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
@@ -98,7 +99,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ViperDetailActivity.class));
+                context.startActivity(new Intent(context, CoachViperDetailActivity.class));
             }
         });
 

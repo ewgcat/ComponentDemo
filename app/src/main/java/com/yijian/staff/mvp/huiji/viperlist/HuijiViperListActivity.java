@@ -48,7 +48,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_info);
+        setContentView(R.layout.activity_vip_huiji_info);
         ButterKnife.bind(this);
 
         initView();

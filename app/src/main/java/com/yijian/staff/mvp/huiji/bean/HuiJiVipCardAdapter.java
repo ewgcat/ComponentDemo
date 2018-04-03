@@ -15,11 +15,11 @@ import java.util.List;
  * Created by yangk on 2018/3/31.
  */
 
-public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HuiJiVipCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<HuiJiViperBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
 
-    public HuiJiVipeCardAdapter(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+    public HuiJiVipCardAdapter(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
     }
 

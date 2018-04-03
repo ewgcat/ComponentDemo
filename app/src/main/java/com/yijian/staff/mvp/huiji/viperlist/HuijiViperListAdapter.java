@@ -2,7 +2,7 @@ package com.yijian.staff.mvp.huiji.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
+import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
 import com.yijian.staff.mvp.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiVipCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
@@ -59,20 +61,19 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
         holder.tv_name.setText(viperBean.getName());
         holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
-        /*holder.tv_cardName.setText(viperBean.getCardName());
-        holder.tv_card_type.setText(viperBean.getCardType());*/
 
         holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
-        holder.rv_card.setAdapter(new HuiJiVipeCardAdapter(viperBean.getCardprodsBeans()));
+        holder.rv_card.setAdapter(new HuiJiVipCardAdapter(viperBean.getCardprodsBeans()));
+
+
 
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
-                holder.tv_opration_label.setText((holder.rv_card.getVisibility()==View.GONE)?"收起":"展开");
-                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_shang:R.mipmap.fp_xia);
+                toggleCardView(holder);
             }
         });
+
 
         holder.tv_private_coach.setText(viperBean.getPrivateCoach());
         holder.tv_like_lesson.setText(viperBean.getFavorCourse());
@@ -99,7 +100,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViperDetailActivity.class);
-                intent.putExtra("id",viperBean.getMemberId());
+                intent.putExtra("id", viperBean.getMemberId());
                 context.startActivity(intent);
             }
         });
@@ -111,15 +112,35 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         return viperBeanList == null ? 0 : viperBeanList.size();
     }
 
+
+    private void toggleCardView(HuijiViperListAdapter.ViewHolder holder) {
+        int visibility = holder.rv_card.getVisibility();
+        if (visibility == View.GONE) {
+            holder.rv_card.setVisibility(View.VISIBLE);
+            holder.tv_zhankai_status.setText("收起");
+            Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+            holder.tv_zhankai_status.setCompoundDrawables(null, null, drawable, null);
+        } else {
+            holder.rv_card.setVisibility(View.GONE);
+            holder.tv_zhankai_status.setText("展开");
+            Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+            holder.tv_zhankai_status.setCompoundDrawables(null, null, drawable, null);
+        }
+
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
         RelativeLayout rel_expand;
+        TextView tv_zhankai_status;
         RecyclerView rv_card;
-        TextView tv_opration_label;
-        ImageView iv_opration_arrow;
 
         TextView tv_private_coach;
         TextView tv_like_lesson;
@@ -146,8 +167,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             tv_card_type = view.findViewById(R.id.tv_card_type);*/
             rel_expand = view.findViewById(R.id.rel_expand);
             rv_card = view.findViewById(R.id.rv_card);
-            tv_opration_label = view.findViewById(R.id.tv_opration_label);
-            iv_opration_arrow = view.findViewById(R.id.iv_opration_arrow);
+            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
             tv_private_coach = view.findViewById(R.id.tv_private_coach);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
             tv_like_teacher = view.findViewById(R.id.tv_like_teacher);

@@ -17,13 +17,13 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/lin_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
             <LinearLayout
+                android:id="@+id/lin_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -66,13 +66,14 @@
                     android:visibility="gone"/>
 
             </LinearLayout>
-
             <View
-                style="@style/SplitLineStyle"
-                android:layout_marginTop="10dp"
-                />
-            
-            
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,25 +97,32 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_zhankai_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="收起"
+                        android:text="展开"
                         android:textColor="#999999"
                         android:textSize="14sp"
-                        android:drawableRight="@mipmap/fp_shang"
+                        android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="4dp"/>
 
                 </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_card"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
             </LinearLayout>
-            
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

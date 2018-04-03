@@ -85,7 +85,19 @@ public class HuiJiViperBean {
     //("使用车辆")
     private String useCar;
 
+    /**
+     * CoachExpireVO：教练过期
+     CoachInfoVO ：教练正式
+     CoachIntentionVO：教练意向
+     CoachTodayVisitVO：教练今日来访
+     CustomerInfoVO：会籍正式
+     CustomerTodayVisitVO：会籍今日来访
+     CustomerExpireVO：会籍过期
+     CustomerIntentionVO：会籍意向
+     PotentialVO：潜在（会籍教练共用）
+     */
     private String subclassName;
+
 
     public HuiJiViperBean() {
     }

@@ -89,13 +89,9 @@ public class SettingActivity extends AppCompatActivity {
     private void exitLogin() {
         //发送退出登录请求
 
-
         DBManager.getInstance().clearUser();
-        Intent intent = new Intent();
-        intent.setClass(this, LoginActivity.class);
-        startActivity(intent);
+        setResult(RESULT_OK);
         finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
 

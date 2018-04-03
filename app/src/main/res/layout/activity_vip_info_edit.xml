@@ -68,6 +68,7 @@
                         android:paddingTop="30dp">
 
                         <TextView
+                            android:id="@+id/tv_fitnessGoal_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -78,10 +79,11 @@
 
                         <EditText
                             android:id="@+id/et_fitnessGoal"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:gravity="center_vertical"
+                            android:gravity="center_vertical|right"
+                            android:layout_toRightOf="@id/tv_fitnessGoal_label"
                             android:text="瘦身"
                             android:textColor="#333333"
                             android:textSize="14sp"
@@ -212,14 +214,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
-                            android:id="@+id/et_carPrice"
+                        <TextView
+                            android:id="@+id/tv_carPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="10万"
-                            android:background="@color/white"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -241,15 +244,16 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
-                            android:id="@+id/et_hobby"
+                        <TextView
+                            android:id="@+id/tv_hobby"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="唱歌、跳舞"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
                             android:textColor="#333333"
-                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -288,14 +292,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
-                            android:id="@+id/et_nationality"
+                        <TextView
+                            android:id="@+id/tv_nationality"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="中华人民共和国"
-                            android:background="@color/white"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -317,14 +322,15 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
-                            android:id="@+id/et_nation"
+                        <TextView
+                            android:id="@+id/tv_nation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="汉族"
-                            android:background="@color/white"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
                             android:textColor="#333333"
                             android:textSize="14sp" />
 
@@ -363,15 +369,17 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
-                            android:id="@+id/et_occupation"
+
+                        <TextView
+                            android:id="@+id/tv_occupation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
                             android:text="舞蹈家"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
                             android:textColor="#333333"
-                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -479,6 +487,7 @@
                             android:text="广东省广州市越秀区团一大广场地铁B出口"
                             android:textColor="#333333"
                             android:singleLine="false"
+                            android:background="@color/white"
                             android:textSize="14sp" />
 
                     </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.mvp.vip.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -114,6 +115,17 @@ public interface ApiService {
     Observable<JSONObject> getIndexMenuList(@Url String url, @HeaderMap Map<String, String> headers);
 
 
+    /**
+     * 会籍会员详情编辑
+     * @param url
+     * @param headers
+     * @param editHuiJiVipBody
+     * @return
+     */
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> editHuiJiVipDetail(@Url String url, @HeaderMap Map<String, String> headers, @Body EditHuiJiVipBody editHuiJiVipBody);
+
     //post 表单
     @POST
     Observable<JSONObject> postNoHeaderNoParam(@Url String url);
@@ -126,6 +138,7 @@ public interface ApiService {
 
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+
 
     //get 有请求头
     @GET

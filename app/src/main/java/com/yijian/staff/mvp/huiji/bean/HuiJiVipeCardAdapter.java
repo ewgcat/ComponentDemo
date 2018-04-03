@@ -25,14 +25,14 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card,parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        HuiJiViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+         HuiJiViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
         ((ViewHolder)holder).bind(cardprodsBean);
     }
 

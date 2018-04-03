@@ -57,7 +57,7 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/lin_vip_people_bottom"
@@ -68,40 +68,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <!--<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                &lt;!&ndash; start 在此添加页面的顶部 &ndash;&gt;
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/wt_bg" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iv_head"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@mipmap/wt_boy" />
-                    <TextView
-                        android:textColor="@color/white"
-                        android:id="@+id/tv_name"
-                        android:layout_marginTop="10dp"
-                        android:text="会员名字"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                &lt;!&ndash; end 在此添加页面的顶部 &ndash;&gt;
-            </RelativeLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -465,7 +431,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/tv_card_type"
+                        android:id="@+id/tv_certificateType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -539,6 +505,37 @@
                         android:textColor="#333333"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp"
+                    android:paddingTop="15dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_expand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:gravity="center_vertical"
+                            android:text="卡名-卡类型:"
+                            android:textColor="#999999"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
@@ -765,7 +762,7 @@
                         <TextView
                             android:gravity="center_vertical"
                             android:text="编辑"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/blue"
                             android:layout_marginLeft="6dp"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
@@ -1483,7 +1480,7 @@
         </LinearLayout>
 
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/iv_back"

@@ -6,6 +6,7 @@ import com.yijian.staff.util.JsonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * Created by yangk on 2018/3/29.
  */
 
-public class HuiJiViperBean {
+public class HuiJiViperBean implements Serializable {
 
     //("头像图片")
     private String headImg;
@@ -272,7 +273,7 @@ public class HuiJiViperBean {
         return cardprodsBeans;
     }
 
-    public static class CardprodsBean {
+    public static class CardprodsBean  implements Serializable  {
         /**
          * cardName : string
          * cardType : string

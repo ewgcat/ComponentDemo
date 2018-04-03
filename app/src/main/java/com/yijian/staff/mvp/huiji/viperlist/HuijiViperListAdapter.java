@@ -95,11 +95,14 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                 context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
             }
         });
+        holder.lin_content.setTag(position);
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int tag = (int) v.getTag();
+                HuiJiViperBean viperDetailBean = viperBeanList.get(tag);
                 Intent intent = new Intent(context, ViperDetailActivity.class);
-                intent.putExtra("id",viperBean.getMemberId());
+                intent.putExtra("viperDetailBean",viperDetailBean);
                 context.startActivity(intent);
             }
         });

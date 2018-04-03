@@ -3,6 +3,8 @@ package com.yijian.staff.mvp.vip.detail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +17,8 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.contract.ContractActivity;
+import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.vip.bean.VipDetailBean;
@@ -61,11 +65,13 @@ public class ViperDetailActivity extends AppCompatActivity {
     TextView tvZhiWenInfo;
     @BindView(R.id.tv_jin_mai_info)
     TextView tvJinMaiInfo;
-    @BindView(R.id.tv_card_type)
-    TextView tvCardType;
+    @BindView(R.id.tv_certificateType)
+    TextView tv_certificateType;
     @BindView(R.id.tv_shenfencard_num)
     TextView tvShenfencardNum;
     //会籍信息
+    @BindView(R.id.rv_card)
+    RecyclerView rv_card;
     @BindView(R.id.tv_tuijian_ren)
     TextView tvTuijianRen;
     @BindView(R.id.tv_tuijian_ren_phone)
@@ -131,6 +137,7 @@ public class ViperDetailActivity extends AppCompatActivity {
     TextView tvLianxirenPhone;
 
     VipDetailBean vipDetailBean;
+    HuiJiViperBean huiJiViperBean;
 
 
 
@@ -178,7 +185,9 @@ public class ViperDetailActivity extends AppCompatActivity {
             case R.id.ll_edit:
                 Intent intent = new Intent(ViperDetailActivity.this, VipInfoEditActivity.class);
                 intent.putExtra("detail",vipDetailBean.getDetail());
+                intent.putExtra("memberId",vipDetailBean.getMemberId());
                 intent.putExtra("source",vipDetailBean.getCustomerServiceInfo().getUserChannel());
+
                 startActivity(intent);
 
                 break;
@@ -186,7 +195,8 @@ public class ViperDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String id = getIntent().getStringExtra("id");
+        huiJiViperBean = (HuiJiViperBean) getIntent().getSerializableExtra("viperDetailBean");
+        String id = huiJiViperBean.getMemberId();
         loadData(id);
     }
 
@@ -215,7 +225,7 @@ public class ViperDetailActivity extends AppCompatActivity {
     private void updateUi(VipDetailBean vipDetailBean){
         ImageLoader.load(this,vipDetailBean.getHeadImg(),ivHead);
         tvName.setText(vipDetailBean.getName());
-        tv_card_no.setText(vipDetailBean.getCardName());
+        tv_card_no.setText(vipDetailBean.getMemberCardNo());
         tvSex.setText(vipDetailBean.getSex());
         tvPhone.setText(vipDetailBean.getMobile());
         tvBirthday.setText(vipDetailBean.getBirthday());
@@ -225,10 +235,13 @@ public class ViperDetailActivity extends AppCompatActivity {
         tvHeadInfo.setText((TextUtils.isEmpty(vipDetailBean.getHeadImg()))?"未录入":"未录入");
         tvZhiWenInfo.setText((TextUtils.isEmpty(vipDetailBean.getFingerprint()))?"未录入":"未录入");
         tvJinMaiInfo.setText((TextUtils.isEmpty(vipDetailBean.getVein()))?"未录入":"未录入");
-        tvCardType.setText(vipDetailBean.getCardType());
+        tv_certificateType.setText(vipDetailBean.getCertificateType());
         tvShenfencardNum.setText(vipDetailBean.getCertificateNo());
 
         //会籍信息
+        rv_card.setLayoutManager(new LinearLayoutManager(this));
+        rv_card.setNestedScrollingEnabled(false);
+        rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiViperBean.getCardprodsBeans()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(customerServiceInfoBean.getReferee());
         tvTuijianRenPhone.setText(customerServiceInfoBean.getRefereeMobile());

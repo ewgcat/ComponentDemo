@@ -2,18 +2,17 @@ package com.yijian.staff.net.httpmanager;
 
 
 import com.yijian.staff.BuildConfig;
+import com.yijian.staff.mvp.vip.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.requestbody.savemenu.MenuBean;
 import com.yijian.staff.net.response.ResultObserver;
 
 
 import org.json.JSONObject;
 
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -52,6 +51,14 @@ public class HttpManager {
 
     //所有会员的详情入口
     public static String GET_HUIJI_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
+
+    //所有会员的字典入口
+    public static String GET_HUIJI_VIPER_DICT_URL = BuildConfig.HOST + "dict/member/dict";
+
+    //所有会员的字典入口
+    public static String GET_HUIJI_VIPER_EDIT_URL = BuildConfig.HOST + "member/edit";
+
+
 
     //会籍卡产品查询
     public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
@@ -193,6 +200,11 @@ public class HttpManager {
 
     }
 
+    //会籍会员详情修改
+    public static void postEditHuiJiVipInfo(String url, Map<String, String> header, EditHuiJiVipBody editHuiJiVipBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,header, editHuiJiVipBody);
+        execute(observable, observer);
+    }
 
     //公共
     // post没请求头没有参数

@@ -210,9 +210,7 @@ public class HttpManager {
 
     //教练模糊搜索会员
     public static void searchViperByCoach( Map<String, String> params, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+
         getHasHeaderHasParam(INDEX_COACH_QUERY_URL,  params, observer);
 
     }
@@ -220,9 +218,7 @@ public class HttpManager {
 
     //会籍模糊搜索会员
     public static void searchViperByHuiJi( Map<String, String> params, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+
         getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, params, observer);
 
     }

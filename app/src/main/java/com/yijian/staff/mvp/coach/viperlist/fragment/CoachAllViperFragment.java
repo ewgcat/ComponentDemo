@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
@@ -50,7 +50,7 @@ public class CoachAllViperFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<ViperBean> viperBeanList = new ArrayList<>();
+    private List<CoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
 
@@ -73,18 +73,11 @@ public class CoachAllViperFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_vip_all_people_info, container, false);
         initView(view);
-//        refresh(null);
-        initData();
+        refresh(null);
         return view;
     }
 
-    private void initData() {
-        for (int i = 0; i < 10; i++) {
-            viperBeanList.add(new ViperBean(new JSONObject()));
-        }
-        coachViperListAdapter.update(viperBeanList);
 
-    }
 
     private void initView(View view) {
         rv_vip_all = view.findViewById(R.id.rv_vip_all);
@@ -93,7 +86,7 @@ public class CoachAllViperFragment extends Fragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        coachViperListAdapter = new CoachViperListAdapter(getActivity(), viperBeanList, true);
+        coachViperListAdapter = new CoachViperListAdapter(getActivity(), coachViperBeanList, true);
         rv_vip_all.setAdapter(coachViperListAdapter);
 
 
@@ -110,7 +103,7 @@ public class CoachAllViperFragment extends Fragment {
     }
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
-
+        coachViperBeanList.clear();
         this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -136,7 +129,6 @@ public class CoachAllViperFragment extends Fragment {
             if (coachViperFilterBean.getBuyTime()!=-1) {
                 map.put("buyTime", coachViperFilterBean.getBuyTime());
             }
-
             if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
                 map.put("startTime", coachViperFilterBean.getStartTime() );
             }
@@ -152,21 +144,21 @@ public class CoachAllViperFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                viperBeanList.clear();
+
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
-                        viperBeanList.add(viperBean);
+                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        coachViperBeanList.add(coachViperBean);
                     } catch (JSONException e) {
 
 
                     }
                 }
-                coachViperListAdapter.update(viperBeanList);
+                coachViperListAdapter.update(coachViperBeanList);
             }
 
             @Override
@@ -226,12 +218,12 @@ public class CoachAllViperFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        ViperBean viperBean = new ViperBean(jsonObject);
-                        viperBeanList.add(viperBean);
+                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        coachViperBeanList.add(coachViperBean);
                     } catch (JSONException e) {
                     }
                 }
-                coachViperListAdapter.update(viperBeanList);
+                coachViperListAdapter.update(coachViperBeanList);
             }
 
             @Override

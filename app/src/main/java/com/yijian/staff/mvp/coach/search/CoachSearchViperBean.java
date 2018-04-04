@@ -1,8 +1,12 @@
 package com.yijian.staff.mvp.coach.search;
 
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.util.JsonUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * author：李帅华
@@ -43,6 +47,19 @@ public class CoachSearchViperBean {
     private String viperRole;
     //会员id
     private String memberId;
+    //会员类别
+    /**
+     * CoachExpireVO：教练过期
+     CoachInfoVO ：教练正式
+     CoachIntentionVO：教练意向
+     CoachTodayVisitVO：教练今日来访
+     CustomerInfoVO：会籍正式
+     CustomerTodayVisitVO：会籍今日来访
+     CustomerExpireVO：会籍过期
+     CustomerIntentionVO：会籍意向
+     PotentialVO：潜在（会籍教练共用）
+     */
+    private String subclassName;
 
     //生日
     private String birthday;
@@ -64,13 +81,13 @@ public class CoachSearchViperBean {
     //("喜欢老师")
     private String favorTeacher;
     //("注册时间")
-    private String registerTime;
+    private long registerTime;
     //("购买次数")
     private String purchaseCount;
 
 
     //("过期时间")
-    private String deadline;
+    private long deadline;
     //("过期原因")
     private String expiryReason;
     //("服务会籍")
@@ -89,7 +106,60 @@ public class CoachSearchViperBean {
     //("使用车辆")
     private String useCar;
 
+    //("合同ID列表")
+    private List<String> contractIds;
+    //("卡对象集合")
+    private List<CoachViperBean.CardprodsBean> cardprodsBeans;
+
     public CoachSearchViperBean() {
+    }
+
+    public static class CardprodsBean {
+        /**
+         * cardName : string
+         * cardType : string
+         * cardprodId : string
+         */
+
+        private String cardName;
+        private String cardType;
+        private String cardprodId;
+
+        public String getCardName() {
+            return cardName;
+        }
+
+        public void setCardName(String cardName) {
+            this.cardName = cardName;
+        }
+
+        public String getCardType() {
+            return cardType;
+        }
+
+        public void setCardType(String cardType) {
+            this.cardType = cardType;
+        }
+
+        public String getCardprodId() {
+            return cardprodId;
+        }
+
+        public void setCardprodId(String cardprodId) {
+            this.cardprodId = cardprodId;
+        }
+    }
+
+    public String getSubclassName() {
+        return subclassName;
+    }
+
+    public List<String> getContractIds() {
+        return contractIds;
+    }
+
+    public List<CoachViperBean.CardprodsBean> getCardprodsBeans() {
+        return cardprodsBeans;
     }
 
     public CoachSearchViperBean(JSONObject jsonObject) {
@@ -110,8 +180,9 @@ public class CoachSearchViperBean {
         this.favorCourse = JsonUtil.getString(jsonObject, "favorCourse");
         this.favorTeacher = JsonUtil.getString(jsonObject, "favorTeacher");
         this.purchaseCount = JsonUtil.getString(jsonObject, "purchaseCount");
-        this.registerTime = JsonUtil.getString(jsonObject, "registerTime");
+        this.registerTime = JsonUtil.getLong(jsonObject, "registerTime");
 
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.useCar = JsonUtil.getString(jsonObject, "useCar");
         this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
         this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
@@ -119,9 +190,16 @@ public class CoachSearchViperBean {
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
 
         this.experienceClassTimes = JsonUtil.getString(jsonObject, "experienceClassTimes");
-        this.deadline = JsonUtil.getString(jsonObject, "deadline");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.seller = JsonUtil.getString(jsonObject, "seller");
+        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
+
+        try {
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CoachViperBean.CardprodsBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getPrivateCourse() {
@@ -180,7 +258,7 @@ public class CoachSearchViperBean {
         return favorTeacher;
     }
 
-    public String getRegisterTime() {
+    public long getRegisterTime() {
         return registerTime;
     }
 
@@ -188,7 +266,7 @@ public class CoachSearchViperBean {
         return purchaseCount;
     }
 
-    public String getDeadline() {
+    public long getDeadline() {
         return deadline;
     }
 
@@ -224,34 +302,4 @@ public class CoachSearchViperBean {
         return useCar;
     }
 
-    @Override
-    public String toString() {
-        return "CoachSearchViperBean{" +
-                "headImg='" + headImg + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", viperRole='" + viperRole + '\'' +
-                ", memberId='" + memberId + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", birthdayType='" + birthdayType + '\'' +
-                ", cardprodId='" + cardprodId + '\'' +
-                ", cardName='" + cardName + '\'' +
-                ", cardType='" + cardType + '\'' +
-                ", privateCoach='" + privateCoach + '\'' +
-                ", privateCourse='" + privateCourse + '\'' +
-                ", favorCourse='" + favorCourse + '\'' +
-                ", favorTeacher='" + favorTeacher + '\'' +
-                ", registerTime='" + registerTime + '\'' +
-                ", purchaseCount='" + purchaseCount + '\'' +
-                ", deadline='" + deadline + '\'' +
-                ", expiryReason='" + expiryReason + '\'' +
-                ", seller='" + seller + '\'' +
-                ", experienceClassTimes='" + experienceClassTimes + '\'' +
-                ", historyCourse='" + historyCourse + '\'' +
-                ", healthStatus='" + healthStatus + '\'' +
-                ", fitnessHobby='" + fitnessHobby + '\'' +
-                ", hobby='" + hobby + '\'' +
-                ", useCar='" + useCar + '\'' +
-                '}';
-    }
 }

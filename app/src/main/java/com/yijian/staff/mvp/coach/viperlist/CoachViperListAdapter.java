@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.coach.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,12 +14,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
-import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 
@@ -28,13 +29,13 @@ import java.util.List;
 
 public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAdapter.ViewHolder> {
 
-    private List<ViperBean> viperBeanList;
+    private List<CoachViperBean> coachViperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachViperListAdapter(Context context, List<ViperBean> viperBeanList, boolean isAllVipInfo) {
+    public CoachViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
-        this.viperBeanList = viperBeanList;
+        this.coachViperBeanList = coachViperBeanList;
         this.isAllVipInfo = isAllVipInfo;
     }
 
@@ -45,41 +46,77 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         return holder;
     }
 
-    public void update( List<ViperBean> viperBeanList){
-        this.viperBeanList=viperBeanList;
+    public void update( List<CoachViperBean> coachViperBeanList){
+        this.coachViperBeanList = coachViperBeanList;
         notifyDataSetChanged();
     }
 
 
     @Override
     public void onBindViewHolder(CoachViperListAdapter.ViewHolder holder, int position) {
-        ViperBean viperBean = viperBeanList.get(position);
+        CoachViperBean coachViperBean = coachViperBeanList.get(position);
         holder.rel_be_present_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
-        holder.tv_name.setText(viperBean.getName());
-        holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        holder.tv_name.setText(coachViperBean.getName());
+        int resId;
+        if (coachViperBean.getSex().equals("1")){
+             resId =  R.mipmap.lg_man ;
+        } else if (coachViperBean.getSex().equals("2")){
+             resId =  R.mipmap.lg_women ;
+        }else {
+            resId =  R.mipmap.lg_man ;
+
+        }
+        holder.iv_gender.setImageResource(resId);
 
 
         holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
-        holder.rv_card.setAdapter(new HuiJiVipeCardAdapter(viperBean.getCardprodsBeans()));
+        holder.rv_card.setAdapter(new CoachVipCardListAdapter(coachViperBean.getCardprodsBeans()));
 
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+                toggleCardView(holder);
             }
         });
 
-        holder.tv_private_class.setText(viperBean.getPrivateClass());
-        holder.tv_like_lesson.setText(viperBean.getFavorCourse());
-        holder.tv_like_teacher.setText(viperBean.getFavorTeacher());
-        holder.tv_regist_time.setText(viperBean.getRegisterTime());
-        holder.tv_contract_overTime.setText(viperBean.getContractDeadline());
-        holder.tv_contract_balance.setText(viperBean.getContractBalance());
-        holder.tv_buy_count.setText(viperBean.getPurchaseCount()+"");
-        holder.tv_be_present_time.setText(viperBean.getBePresentTime());
-        holder.tv_be_departure_time.setText(viperBean.getDepartureTime());
+        holder.tv_private_class.setText(coachViperBean.getPrivateClass());
+        holder.tv_like_lesson.setText(coachViperBean.getFavorCourse());
+        holder.tv_like_teacher.setText(coachViperBean.getFavorTeacher());
+        long registerTime = coachViperBean.getRegisterTime();
+        if (registerTime!=0){
+            String s = DateUtil.parseLongDateToString(registerTime);
+            holder.tv_regist_time.setText(s);
+        }else {
+            holder.tv_regist_time.setText("");
+        }
+
+        long contractDeadline = coachViperBean.getContractDeadline();
+        if (contractDeadline!=0){
+            String s = DateUtil.parseLongDateToString(contractDeadline);
+            holder.tv_contract_overTime.setText(s);
+        }else {
+            holder.tv_contract_overTime.setText("");
+        }
+
+        holder.tv_contract_balance.setText(coachViperBean.getContractBalance()+"元");
+        holder.tv_buy_count.setText(coachViperBean.getPurchaseCount()+"");
+        long bePresentTime = coachViperBean.getBePresentTime();
+        if (bePresentTime!=0){
+            String s = DateUtil.parseLongDateToString(bePresentTime);
+            holder.tv_be_present_time.setText(s);
+        }else {
+            holder.tv_be_present_time.setText("");
+        }
+
+        long departureTime = coachViperBean.getDepartureTime();
+        if (departureTime!=0){
+            String s = DateUtil.parseLongDateToString(contractDeadline);
+            holder.tv_be_departure_time.setText(s);
+        }else {
+            holder.tv_be_departure_time.setText("");
+        }
 
         //上课记录表
         holder.lin_shangke_recordchart.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +136,10 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, CoachViperDetailActivity.class));
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                intent.putExtra("vipType",0);
+                intent.putExtra("coachViperBean",coachViperBean);
+                context.startActivity(intent);
             }
         });
 
@@ -107,15 +147,34 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
     @Override
     public int getItemCount() {
-        return viperBeanList == null ? 0 : viperBeanList.size();
+        return coachViperBeanList == null ? 0 : coachViperBeanList.size();
     }
 
+    private void toggleCardView(CoachViperListAdapter.ViewHolder holder) {
+        int visibility = holder.rv_card.getVisibility();
+        if (visibility == View.GONE) {
+            holder.rv_card.setVisibility(View.VISIBLE);
+            holder.tv_zhankai_status.setText("收起");
+            Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 
+            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        } else {
+            holder.rv_card.setVisibility(View.GONE);
+            holder.tv_zhankai_status.setText("展开");
+            Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
+            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+        }
+
+    }
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
+        TextView tv_zhankai_status;
         RelativeLayout rel_expand;
         RecyclerView rv_card;
 
@@ -140,6 +199,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
+            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
 
             rel_expand = view.findViewById(R.id.rel_expand);
             rv_card = view.findViewById(R.id.rv_card);

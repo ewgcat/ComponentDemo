@@ -163,7 +163,6 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
         pageNum = 1;
         pageSize = 4;
         this.coachClassFilterBean=coachClassFilterBean;
-        Map<String, String> header = new HashMap<>();
 
 
         String name = etSearch.getText().toString().trim();
@@ -186,10 +185,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 body.setLcourseNum(coachClassFilterBean.getLcourseNum());
                 body.setRcourseNum(coachClassFilterBean.getRcourseNum());
             }
-            User user = DBManager.getInstance().queryUser();
-            String token = user.getToken();
-            header.put("token", token);
-            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+
+            HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     mClassInfoList.clear();
@@ -242,10 +239,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 body.setLcourseNum(coachClassFilterBean.getLcourseNum());
                 body.setRcourseNum(coachClassFilterBean.getRcourseNum());
             }
-            User user = DBManager.getInstance().queryUser();
-            String token = user.getToken();
-            header.put("token", token);
-            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+
+            HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

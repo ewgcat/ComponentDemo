@@ -152,10 +152,6 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     private void refresh(CoachClassFilterBean coachClassFilterBean) {
         this.coachClassFilterBean = coachClassFilterBean;
 
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
         pageNum = 1;
         pageSize = 4;
         CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
@@ -172,7 +168,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
         loadingDialog.show();
-        HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+        HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 mClassInfoList.clear();
@@ -207,10 +203,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     }
 
     private void loadMore() {
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
+
 
         CoachPrivateCourseRequestBody body = new CoachPrivateCourseRequestBody();
         body.setPageNum(pageNum);
@@ -227,7 +220,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
         }
 
         loadingDialog.show();
-            HttpManager.getCoachPrivateCourseList(header, body, new ResultObserver() {
+            HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "current") + 1;

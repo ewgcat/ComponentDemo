@@ -76,4 +76,5 @@ public class DBManager  {
         UserDao userDao = mDaoSession.getUserDao();
         userDao.deleteAll();
     }
+
 }

@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;
 
@@ -27,6 +27,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
 
     private List<HuiJiViperBean> vipOutdateInfoList;
     private Context context;
+    private HuiJiViperBean vipOutdateInfo;
 
     public HuijiOutdateViperListAdapter(Context context, List<HuiJiViperBean> vipOutdateInfoList){
         this.context = context;
@@ -55,9 +56,9 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
                 holder.tv_opration_label.setText((holder.rv_card.getVisibility()==View.GONE)?"收起":"展开");
-                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_shang:R.mipmap.fp_xia);
+                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_xia:R.mipmap.fp_shang);
             }
         });
 
@@ -80,6 +81,22 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                 context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
             }
         });
+
+        //详情
+        holder.ll_content.setTag(position);
+        holder.ll_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int tag = (int) v.getTag();
+                HuiJiViperBean tempViperBean = vipOutdateInfoList.get(tag);
+                Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                intent.putExtra("id",tempViperBean.getMemberId());
+                context.startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -108,6 +125,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         TextView tv_outDateDay;
         LinearLayout lin_quey_contract;
         LinearLayout lin_quey_question;
+        LinearLayout ll_content; //真个Item条目
 
 
 
@@ -132,6 +150,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
             tv_outDateDay  =     view.findViewById(R.id.tv_outDateDay);
             lin_quey_contract  =     view.findViewById(R.id.lin_quey_contract);
             lin_quey_question  =     view.findViewById(R.id.lin_quey_question);
+            ll_content  =     view.findViewById(R.id.ll_content);
         }
     }
 

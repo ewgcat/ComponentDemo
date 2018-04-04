@@ -7,7 +7,7 @@ package com.yijian.staff.mvp.coach.viperlist.filter;
  */
 public class CoachViperFilterBean {
 
-    private int sex = -1;//性别：【0:未知 1:男 2:女】
+    private int sex = -1;//性别：【0:男 1:女】
     private String courseType =null;//课程类型：【1:私教课，2:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】

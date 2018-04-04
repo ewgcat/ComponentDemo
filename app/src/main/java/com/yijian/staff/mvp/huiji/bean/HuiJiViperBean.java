@@ -6,6 +6,7 @@ import com.yijian.staff.util.JsonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * Created by yangk on 2018/3/29.
  */
 
-public class HuiJiViperBean {
+public class HuiJiViperBean implements Serializable {
 
     //("头像图片")
     private String headImg;
@@ -85,7 +86,19 @@ public class HuiJiViperBean {
     //("使用车辆")
     private String useCar;
 
+    /**
+     * CoachExpireVO：教练过期
+     CoachInfoVO ：教练正式
+     CoachIntentionVO：教练意向
+     CoachTodayVisitVO：教练今日来访
+     CustomerInfoVO：会籍正式
+     CustomerTodayVisitVO：会籍今日来访
+     CustomerExpireVO：会籍过期
+     CustomerIntentionVO：会籍意向
+     PotentialVO：潜在（会籍教练共用）
+     */
     private String subclassName;
+
 
     public HuiJiViperBean() {
     }
@@ -272,7 +285,7 @@ public class HuiJiViperBean {
         return cardprodsBeans;
     }
 
-    public static class CardprodsBean {
+    public static class CardprodsBean  implements Serializable  {
         /**
          * cardName : string
          * cardType : string

@@ -20,13 +20,11 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
-import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,41 +65,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initTitle();
-//        initList();
         initView();
+        initData();
     }
 
-    /*private void initList() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("cardName", "原生俱乐部30年年卡");
-            jsonObject.put("cardType", "时间卡");
-            jsonObject.put("privateCoach", "邹市明");
-            jsonObject.put("likeLesson", "打橄榄球");
-            jsonObject.put("likeTeacher", "壮壮");
-            jsonObject.put("registTime", "1990-10-12");
-            jsonObject.put("contractOutDate", "1990-10-12");
-            jsonObject.put("outDateDay", "12天");
-            for (int i = 0; i < 10; i++) {
-                VipOutdateInfo vipPeopleInfo = new VipOutdateInfo(jsonObject);
-                vipOutdateInfoList.add(vipPeopleInfo);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_outdate.setLayoutManager(layoutmanager);
-            huijiOutdateViperListAdapter = new HuijiOutdateViperListAdapter(this, vipOutdateInfoList);
-            rv_outdate.setAdapter(huijiOutdateViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-
-    }*/
+    private void initData() {
+        refresh();
+    }
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
@@ -152,15 +122,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
 
 
     private void refresh() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -192,15 +160,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
     }
 
     public void loadMore() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

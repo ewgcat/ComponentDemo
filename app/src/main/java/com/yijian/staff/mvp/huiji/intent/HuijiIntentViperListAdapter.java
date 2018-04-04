@@ -67,12 +67,15 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
             }
         });
 
+        holder.ll_content.setTag(position);
         //详情
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int tag = (int) v.getTag();
+                HuiJiViperBean tempViperBean = viperBeanList.get(tag);
                 Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                intent.putExtra("id",viperBean.getMemberId());
+                intent.putExtra("id",tempViperBean.getMemberId());
                 context.startActivity(intent);
             }
         });

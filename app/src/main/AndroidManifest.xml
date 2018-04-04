@@ -137,10 +137,10 @@
             android:name=".mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.edit.VipInfoEditActivity"
+            android:name=".mvp.huiji.edit.VipInfoEditActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potential.PotentialViperListActivity"
+            android:name=".mvp.huiji.potential.PotentialViperListActivity"
             android:screenOrientation="portrait" />
 
         <!-- 会籍 会员信息 -->
@@ -178,31 +178,33 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <!-- 教练 过期会员 -->
+        <activity
+            android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 潜在会员 -->
+        <activity
+            android:name=".mvp.coach.potential.CoachPotentialViperListActivity"
+            android:screenOrientation="portrait" />
         <!-- 教练 意向会员 -->
         <activity
             android:name=".mvp.coach.intent.CoachIntentViperListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 教练 会员详情 -->
+        <activity
+            android:name=".mvp.coach.detail.CoachViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 报价完成 -->
         <activity
             android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
-        <!-- 教练 意向会员详情 -->
-        <activity
-            android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
-            android:screenOrientation="portrait" />
-        <!-- 教练 过期会员 -->
-        <activity
-            android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.coach.detail.CoachViperDetailActivity"
-            android:screenOrientation="portrait" />
 
         <activity
-            android:name=".mvp.vip.detail.ViperDetailActivity"
+            android:name=".mvp.huiji.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potential.PotentialViperDetailActivity"
+            android:name=".mvp.huiji.potential.PotentialViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.all.AllFunctionActivity"
@@ -256,7 +258,7 @@
         <activity
             android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.vip.potential.AddPotentialActivity" />
+        <activity android:name=".mvp.huiji.potential.AddPotentialActivity" />
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait" />

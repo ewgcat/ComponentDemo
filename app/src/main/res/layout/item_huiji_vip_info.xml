@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="意向会员"
+                    android:text="正式会员"
                     android:textColor="#1997f8"
                     android:textSize="16sp"
                     android:gravity="right"
@@ -95,16 +95,30 @@
                         android:textColor="#999999"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="收起"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:drawableRight="@mipmap/fp_shang"
-                        android:drawablePadding="4dp"/>
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_opration_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="收起"
+                            android:textColor="#999999"
+                            android:textSize="14sp"/>
+
+                        <ImageView
+                            android:id="@+id/iv_opration_arrow"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@mipmap/fp_shang"
+                            android:layout_marginLeft="4dp"
+                            />
+
+                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -114,7 +128,11 @@
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
-            
+
+            <View
+                style="@style/SplitLineStyle"
+                android:layout_marginTop="10dp"
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"

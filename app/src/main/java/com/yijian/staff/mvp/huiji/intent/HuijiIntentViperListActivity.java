@@ -60,7 +60,11 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
 
         initTitle();
         initView();
-//        initVipPeopleList();
+        initData();
+    }
+
+    private void initData() {
+        refresh();
     }
 
     private void initTitle() {
@@ -79,39 +83,6 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
         rv_vip_intention.setAdapter(huijiIntentViperListAdapter);
         initComponent();
     }
-
-    /*private void initVipPeopleList(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("birth", "1990-8-9");
-            jsonObject.put("birthType", "农历");
-            jsonObject.put("bodyStatus", "正常");
-            jsonObject.put("bodybuildingHobby", "跑步");
-            jsonObject.put("interestHobby", "打橄榄球");
-            jsonObject.put("useCar", "无");
-            jsonObject.put("isIntentVip","0");
-            for (int i = 0; i < 10; i++) {
-                ViperBean viperBean = new ViperBean(jsonObject);
-                viperBeanList.add(viperBean);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_vip_intention.setLayoutManager(layoutmanager);
-            huijiIntentViperListAdapter = new HuijiIntentViperListAdapter(this, viperBeanList);
-            rv_vip_intention.setAdapter(huijiIntentViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-    }*/
-
-
-
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
@@ -137,15 +108,12 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
 
 
     private void refresh() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -177,15 +145,13 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
     }
 
     public void loadMore() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

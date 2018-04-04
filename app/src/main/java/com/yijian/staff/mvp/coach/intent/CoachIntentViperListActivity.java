@@ -6,7 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -16,31 +18,47 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.ViperBean;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.yijian.staff.tab.tools.ContextUtil.getContext;
+
 /**
- *意向会员  列表
+ * 意向会员  列表
  */
 @Route(path = "/test/2.1")
-public class CoachIntentViperListActivity extends AppCompatActivity implements View.OnClickListener {
+public class CoachIntentViperListActivity extends AppCompatActivity {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
 
-    private List<ViperBean> viperBeanList=new ArrayList<>();
+    private List<CoachViperBean> coachViperBeanList = new ArrayList<>();
+    private CoachIntentViperListAdapter coachIntentViperListAdapter;
+
+    private int pageNum;
+    private int pages;
+    private int pageSize=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +67,6 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
         ButterKnife.bind(this);
 
         initView();
-        initVipPeopleList();
     }
 
     private void initView() {
@@ -60,42 +77,15 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
         navigationBar2.setTitle("意向会员");
 
         initComponent();
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(CoachIntentViperListActivity.this);
+        //设置RecyclerView 布局
+        rv_vip_intention.setLayoutManager(layoutmanager);
+        coachIntentViperListAdapter = new CoachIntentViperListAdapter(CoachIntentViperListActivity.this,coachViperBeanList);
+        rv_vip_intention.setAdapter(coachIntentViperListAdapter);
+        refresh();
+
     }
 
-    private void initVipPeopleList(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("birth", "1990-8-9");
-            jsonObject.put("birthType", "农历");
-            jsonObject.put("bodyStatus", "正常");
-            jsonObject.put("bodybuildingHobby", "跑步");
-            jsonObject.put("interestHobby", "打橄榄球");
-            jsonObject.put("useCar", "无");
-            jsonObject.put("isIntentVip","0");
-            for (int i = 0; i < 10; i++) {
-                ViperBean viperBean = new ViperBean(jsonObject);
-                viperBeanList.add(viperBean);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_vip_intention.setLayoutManager(layoutmanager);
-            CoachIntentViperListAdapter intentViperListAdapter = new CoachIntentViperListAdapter(this, viperBeanList);
-            rv_vip_intention.setAdapter(intentViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-    }
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
@@ -109,12 +99,91 @@ public class CoachIntentViperListActivity extends AppCompatActivity implements V
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                refresh();
             }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+                loadMore();
             }
         });
     }
+
+    private void refresh() {
+        coachViperBeanList.clear();
+
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("pageNum", "1");
+        map.put("pageSize", "1");
+
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                refreshLayout.finishRefresh(2000, true);
+
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        coachViperBeanList.add(coachViperBean);
+                    } catch (JSONException e) {
+
+
+                    }
+                }
+                coachIntentViperListAdapter.update(coachViperBeanList);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                Toast.makeText(CoachIntentViperListActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public void loadMore() {
+
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
+
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL,map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+
+                boolean hasMore = pages > pageNum ? true : false;
+                refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        coachViperBeanList.add(coachViperBean);
+                    } catch (JSONException e) {
+                    }
+                }
+                coachIntentViperListAdapter.update(coachViperBeanList);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                boolean hasMore = pages > pageNum ? true : false;
+                refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

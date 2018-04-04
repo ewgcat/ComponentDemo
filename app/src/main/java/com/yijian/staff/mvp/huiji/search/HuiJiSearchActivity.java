@@ -48,6 +48,7 @@ import com.yijian.staff.util.Logger;
 public class HuiJiSearchActivity extends AppCompatActivity {
 
     private static final String TAG = CoachSearchActivity.class.getSimpleName();
+    @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.rcl)
     RecyclerView rcl;
@@ -64,13 +65,12 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hui_ji_search);
         ButterKnife.bind(this);
-        initComponent();
+        initView();
     }
 
-    public void initComponent() {
-        etSearch = findViewById(R.id.et_search);
+    private void initView() {
 
-        etSearch.setHintTextColor(Color.parseColor("#ffffff"));
+        etSearch.setHintTextColor(Color.parseColor("#666666"));
 
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -83,7 +83,10 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                 return true;
             }
         });
+        initComponent();
+    }
 
+    public void initComponent() {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rcl.setLayoutManager(layoutmanager);
@@ -129,10 +132,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
-            User user = DBManager.getInstance().queryUser();
-            String token = user.getToken();
-            header.put("token", token);
-            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
+
+            HttpManager.searchViperByHuiJi( params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
@@ -166,7 +167,6 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     }
 
     private void loadMore() {
-        Map<String, String> header = new HashMap<>();
 
         Map<String, String> params = new HashMap<>();
 
@@ -178,10 +178,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
-            User user = DBManager.getInstance().queryUser();
-            String token = user.getToken();
-            header.put("token", token);
-            HttpManager.searchViperByCoach(header, params, new ResultObserver() {
+
+            HttpManager.searchViperByCoach( params, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

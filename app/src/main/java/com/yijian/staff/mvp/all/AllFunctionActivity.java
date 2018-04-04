@@ -242,9 +242,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void postSaveMenu() {
-        HashMap<String, String> map = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        map.put("token", user.getToken());
+
 
         JSONObject o = new JSONObject();
         List<MenuBean> list = new ArrayList<>();
@@ -258,7 +256,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         }
 
         MenuHelper.savePreferFrequentlyList(frequentlyList);
-        HttpManager.saveMenuChange(map, new MenuRequestBody(list), new ResultObserver() {
+        HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

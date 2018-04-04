@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.huiji.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
+import com.yijian.staff.mvp.huiji.detail.ViperDetailActivity;
 
 import java.util.List;
 
@@ -68,9 +67,9 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
                 holder.tv_opration_label.setText((holder.rv_card.getVisibility()==View.GONE)?"收起":"展开");
-                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_shang:R.mipmap.fp_xia);
+                holder.rv_card.setVisibility((holder.rv_card.getVisibility()==View.GONE)?View.VISIBLE:View.GONE);
+                holder.iv_opration_arrow.setImageResource((holder.rv_card.getVisibility()==View.GONE)?R.mipmap.fp_xia:R.mipmap.fp_shang);
             }
         });
 
@@ -95,11 +94,14 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                 context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
             }
         });
+        holder.lin_content.setTag(position);
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int tag = (int) v.getTag();
+                HuiJiViperBean viperDetailBean = viperBeanList.get(tag);
                 Intent intent = new Intent(context, ViperDetailActivity.class);
-                intent.putExtra("id",viperBean.getMemberId());
+                intent.putExtra("viperDetailBean",viperDetailBean);
                 context.startActivity(intent);
             }
         });

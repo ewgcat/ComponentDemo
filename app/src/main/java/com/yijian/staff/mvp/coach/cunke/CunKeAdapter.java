@@ -116,10 +116,10 @@ public class CunKeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         public void bind(TypeOfCunKeBody typeOfCunKeBody) {
-            this.tv_user_name.setText(typeOfCunKeBody.getUserName());
-            this.tv_lesson_name.setText(typeOfCunKeBody.getLessonName());
-            this.tv_total_lesson_num.setText(typeOfCunKeBody.getTotalLessonNum());
-            this.tv_remain_lesson_num.setText(typeOfCunKeBody.getRemainLessonNum());
+            this.tv_user_name.setText(typeOfCunKeBody.getMemberName());
+            this.tv_lesson_name.setText(typeOfCunKeBody.getCourseName());
+            this.tv_total_lesson_num.setText(typeOfCunKeBody.getTotalCourseCount());
+            this.tv_remain_lesson_num.setText(typeOfCunKeBody.getStockCourseCount());
         }
     }
 

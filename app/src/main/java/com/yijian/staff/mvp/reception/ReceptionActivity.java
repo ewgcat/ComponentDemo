@@ -23,10 +23,7 @@ import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.widget.NavigationBar;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

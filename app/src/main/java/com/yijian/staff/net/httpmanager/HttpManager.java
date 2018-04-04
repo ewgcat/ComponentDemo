@@ -283,4 +283,10 @@ public class HttpManager {
     //接待--体测录入--查看
     public static final String RECEPTION_TEST_VIEW=BuildConfig.HOST +"bodycheck/view";
 
+    //接待--会籍--step2-跳过
+    public static final String RECEPTION_STEP2_JUMP=BuildConfig.HOST +"reception/sale-jump-body-check";
+
+    //接待--会籍--step2-TO教练
+    public static final String RECEPTION_STEP2_TOCOACH=BuildConfig.HOST +"reception/sale-to-coach-body-check";
+
 }

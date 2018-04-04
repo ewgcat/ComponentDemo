@@ -39,7 +39,7 @@ public class PhysicalExaminationBean implements Parcelable {
                 ", diastoleBloodPressure=" + diastoleBloodPressure +
                 ", heartbeat=" + heartbeat +
                 ", sHead='" + sHead + '\'' +
-                ", sSpine='" + sSpine + '\'' +
+                ", sCervicalV='" + sCervicaIV + '\'' +
                 ", sScapula='" + sScapula + '\'' +
                 ", sThoracicV='" + sThoracicV + '\'' +
                 ", sLumbarV='" + sLumbarV + '\'' +
@@ -175,6 +175,8 @@ public class PhysicalExaminationBean implements Parcelable {
     //
 //
 ///*************************** 体态评估-侧面 *******************************/
+//    sCervicalV (string, optional): 侧面-颈椎 ,
+
 ///** 侧面-头 */
 //    @property (nonatomic, copy) NSString *sHead;
     String sHead;
@@ -182,7 +184,7 @@ public class PhysicalExaminationBean implements Parcelable {
 
     ///** 侧面-颈椎 */
 //    @property (nonatomic, copy) NSString *sSpine;
-    String sSpine;
+    String sCervicaIV;
 
     ///** 侧面-肩胛骨 */
 //    @property (nonatomic, copy) NSString *sScapula;
@@ -221,7 +223,6 @@ public class PhysicalExaminationBean implements Parcelable {
 //
 ///*************************** 体态评估-背面 *******************************/
 ///** 背面-头 */
-//    @property (nonatomic, copy) NSString *bHead;
     String bHead;
 
     ///** 背面-肩部 */
@@ -482,12 +483,12 @@ public class PhysicalExaminationBean implements Parcelable {
         this.sHead = sHead;
     }
 
-    public String getsSpine() {
-        return sSpine;
+    public String getsCervicalV() {
+        return sCervicaIV;
     }
 
-    public void setsSpine(String sSpine) {
-        this.sSpine = sSpine;
+    public void setsCervicalV(String sCervicalV) {
+        this.sCervicaIV = sCervicalV;
     }
 
     public String getsScapula() {
@@ -692,7 +693,7 @@ public class PhysicalExaminationBean implements Parcelable {
         dest.writeSerializable(this.diastoleBloodPressure);
         dest.writeValue(this.heartbeat);
         dest.writeString(this.sHead);
-        dest.writeString(this.sSpine);
+        dest.writeString(this.sCervicaIV);
         dest.writeString(this.sScapula);
         dest.writeString(this.sThoracicV);
         dest.writeString(this.sLumbarV);
@@ -746,7 +747,7 @@ public class PhysicalExaminationBean implements Parcelable {
         this.diastoleBloodPressure = (BigDecimal) in.readSerializable();
         this.heartbeat = (Integer) in.readValue(Integer.class.getClassLoader());
         this.sHead = in.readString();
-        this.sSpine = in.readString();
+        this.sCervicaIV = in.readString();
         this.sScapula = in.readString();
         this.sThoracicV = in.readString();
         this.sLumbarV = in.readString();

@@ -397,7 +397,7 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
                             break;
 
                         case "颈椎":
-                            physicalExaminationBean.setsSpine("" + userValue);
+                            physicalExaminationBean.setsCervicalV("" + userValue);
                             break;
                         case "肩胛骨":
                             physicalExaminationBean.setsScapula("" + userValue);
@@ -812,7 +812,7 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
 
                         case "颈椎":
 //                            physicalExaminationBean.setsSpine("" + userValue);
-                            childOptBean.setUserValue(bean.getsSpine());
+                            childOptBean.setUserValue(bean.getsCervicalV());
                             break;
                         case "肩胛骨":
 //                            physicalExaminationBean.setsScapula("" + userValue);

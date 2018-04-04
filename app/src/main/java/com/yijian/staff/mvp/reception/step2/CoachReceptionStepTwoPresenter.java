@@ -44,7 +44,9 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
     @Override
     public void saveTestData(PhysicalExaminationBean bean) {
 
-        HttpManager.postRecptionTest(head, user.getUserId(), bean, new ResultObserver() {
+        String userId = user.getUserId();
+        userId="076c3096caf04559b9abe112542a9cd0";
+        HttpManager.postRecptionTest(head, userId, bean, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -69,23 +71,26 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 
     @Override
     public void viewTestData() {
-//        Map<String,String> params=new HashMap<>();
-//        params.put("shopId",user.getShopId());
-//        params.put("memberId",user.getUserId());
-//
-//        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, head, params, new ResultObserver() {
-//            @Override
-//            public void onSuccess(JSONObject result) {
-//                Log.e(TAG, "onSuccess: "+result.toString() );
-//            }
-//
-//            @Override
-//            public void onFail(String msg) {
-//
-//            }
-//        });
+        Map<String,String> params=new HashMap<>();
+        params.put("shopId",user.getShopId());
+        String userId = user.getUserId();
+        userId="076c3096caf04559b9abe112542a9cd0";
+        params.put("memberId", userId);
 
-        PhysicalExaminationBean o = new Gson().fromJson(JsonStringData.MockDada, PhysicalExaminationBean.class);
-        view.showUserData(o);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, head, params, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+//                Log.e(TAG, "onSuccess: "+result.toString() );
+                PhysicalExaminationBean o = new Gson().fromJson(result.toString(), PhysicalExaminationBean.class);
+                view.showUserData(o);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

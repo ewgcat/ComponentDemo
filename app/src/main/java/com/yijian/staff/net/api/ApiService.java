@@ -2,7 +2,10 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
+import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
@@ -14,6 +17,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
@@ -128,7 +132,7 @@ public interface ApiService {
 
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
-
+    @FormUrlEncoded
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);
 

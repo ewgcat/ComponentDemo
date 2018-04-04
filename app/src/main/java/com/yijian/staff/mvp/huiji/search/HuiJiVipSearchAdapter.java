@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipCardAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 
 import java.util.ArrayList;
@@ -161,7 +161,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void onClick(View v) {
 
                    rv_card.setLayoutManager(new LinearLayoutManager(context));
-                   rv_card.setAdapter(new HuiJiVipCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
+                   rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
                     int visibility = rv_card.getVisibility();
                     if (visibility == View.GONE) {
                       rv_card.setVisibility(View.VISIBLE);
@@ -244,7 +244,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void onClick(View v) {
 
                     rv_card.setLayoutManager(new LinearLayoutManager(context));
-                    rv_card.setAdapter(new HuiJiVipCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
+                    rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
                     int visibility = rv_card.getVisibility();
                     if (visibility == View.GONE) {
                         rv_card.setVisibility(View.VISIBLE);

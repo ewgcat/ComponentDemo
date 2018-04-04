@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/vip_intent_navigation_bar"
+        android:id="@+id/vip_intent_navigation_bar2"
         layout="@layout/view_navigation_bar2"/>
 
     <LinearLayout

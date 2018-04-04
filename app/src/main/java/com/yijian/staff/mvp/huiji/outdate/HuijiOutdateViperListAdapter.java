@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipCardAdapter;
+import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 
@@ -49,7 +49,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         holder.tv_cardType.setText(vipOutdateInfo.getCardType());*/
 
         holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
-        holder.rv_card.setAdapter(new HuiJiVipCardAdapter(vipOutdateInfo.getCardprodsBeans()));
+        holder.rv_card.setAdapter(new HuiJiVipeCardAdapter(vipOutdateInfo.getCardprodsBeans()));
 
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override

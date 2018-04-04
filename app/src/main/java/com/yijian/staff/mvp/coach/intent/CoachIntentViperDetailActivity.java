@@ -15,15 +15,8 @@ public class CoachIntentViperDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentForImageView(this, 0, null);
         setContentView(R.layout.activity_potential_and_intent_viper_detail);
 
-        findViewById(R.id.ll_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
 

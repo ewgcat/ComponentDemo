@@ -42,7 +42,13 @@ public class ArouterNavigationInterceptor implements IInterceptor {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
         } else if (path.equals("/test/3")) {
-            callback.onContinue(postcard);  // 处理完成，交还控制权
+            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+                callback.onContinue(postcard);  // 处理完成，交还控制权
+            } else if (SharePreferenceUtil.getUserRole() == 2) {//教练
+                ARouter.getInstance().build("/test/3.1").navigation();
+            } else {
+                ARouter.getInstance().build("/test/empty").navigation();
+            }
         } else if (path.equals("/test/4")) {
             if (SharePreferenceUtil.getUserRole() == 1) {//会籍
                 callback.onContinue(postcard);  // 处理完成，交还控制权

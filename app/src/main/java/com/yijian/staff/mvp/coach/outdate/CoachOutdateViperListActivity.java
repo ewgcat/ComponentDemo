@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
@@ -30,7 +31,7 @@ public class CoachOutdateViperListActivity extends AppCompatActivity implements 
 
     @BindView(R.id.rv_outdate)
     RecyclerView rv_outdate;
-    private List<VipOutdateInfo> vipOutdateInfoList = new ArrayList<VipOutdateInfo>();
+    private List<CoachViperBean> vipOutdateInfoList = new ArrayList<CoachViperBean>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class CoachOutdateViperListActivity extends AppCompatActivity implements 
             jsonObject.put("outDate", "1990-10-12");
             jsonObject.put("outDateReason", "工作太忙没时间");
             for (int i = 0; i < 10; i++) {
-                VipOutdateInfo vipPeopleInfo = new VipOutdateInfo(jsonObject);
+                CoachViperBean vipPeopleInfo = new CoachViperBean(jsonObject);
                 vipOutdateInfoList.add(vipPeopleInfo);
             }
 

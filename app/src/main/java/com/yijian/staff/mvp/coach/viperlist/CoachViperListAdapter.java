@@ -136,7 +136,10 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, CoachViperDetailActivity.class));
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                intent.putExtra("vipType",0);
+                intent.putExtra("coachViperBean",coachViperBean);
+                context.startActivity(intent);
             }
         });
 

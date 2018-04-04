@@ -12,8 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
-import com.yijian.staff.mvp.coach.intent.CoachIntentViperDetailActivity;
 import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
 
 import java.util.List;
@@ -24,12 +25,12 @@ import java.util.List;
 
 public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutdateViperListAdapter.ViewHolder>  {
 
-    private List<VipOutdateInfo> vipOutdateInfoList;
+    private List<CoachViperBean> coachViperBeanList;
     private Context context;
 
-    public CoachOutdateViperListAdapter(Context context, List<VipOutdateInfo> vipOutdateInfoList){
+    public CoachOutdateViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList){
         this.context = context;
-        this.vipOutdateInfoList = vipOutdateInfoList;
+        this.coachViperBeanList = coachViperBeanList;
     }
 
 
@@ -42,19 +43,31 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
     @Override
     public void onBindViewHolder(CoachOutdateViperListAdapter.ViewHolder holder, int position) {
-        VipOutdateInfo vipOutdateInfo = vipOutdateInfoList.get(position);
-        holder.tv_name.setText(vipOutdateInfo.getName());
-        holder.iv_gender.setImageResource(vipOutdateInfo.getGender());
+        CoachViperBean coachViperBean = coachViperBeanList.get(position);
+        holder.tv_name.setText(coachViperBean.getName());
+        int resId;
+        if (coachViperBean.getSex().equals("1")){
+            resId =  R.mipmap.lg_man ;
+        } else if (coachViperBean.getSex().equals("2")){
+            resId =  R.mipmap.lg_women ;
+        }else {
+            resId =  R.mipmap.lg_man ;
 
-        holder.tv_history_lesson.setText(vipOutdateInfo.getHistoryLesson());
-        holder.tv_outDate.setText(vipOutdateInfo.getOutDate());
-        holder.tv_outDate_reason.setText(vipOutdateInfo.getOutDateReason());
+        }
+        holder.iv_gender.setImageResource(resId);
+
+        holder.tv_history_lesson.setText(coachViperBean.getHistoryLesson());
+        holder.tv_outDate.setText(coachViperBean.getOutDate());
+        holder.tv_outDate_reason.setText(coachViperBean.getOutDateReason());
 
 
         holder.ll_chakanxiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,CoachIntentViperDetailActivity.class));
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                intent.putExtra("vipType",1);
+                intent.putExtra("coachViperBean",coachViperBean);
+                context.startActivity(intent);
             }
         });
 
@@ -84,7 +97,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
     @Override
     public int getItemCount() {
-        return vipOutdateInfoList==null?0:vipOutdateInfoList.size();
+        return coachViperBeanList==null?0:coachViperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

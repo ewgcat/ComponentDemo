@@ -3,18 +3,32 @@ package com.yijian.staff.mvp.coach.detail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.vip.bean.VipDetailBean;
 import com.yijian.staff.mvp.vip.edit.VipInfoEditActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,21 +39,12 @@ import butterknife.OnClick;
  */
 public class CoachViperDetailActivity extends AppCompatActivity {
 
-
-    @BindView(R.id.iv_header)
-    ImageView ivHeader;
+    @BindView(R.id.iv_head)
+    ImageView ivHead;
     @BindView(R.id.tv_name)
     TextView tvName;
-    @BindView(R.id.tv_card_num)
-    TextView tvCardNum;
-    @BindView(R.id.lin_content)
-    LinearLayout linContent;
-    @BindView(R.id.ll_chakan_hetong)
-    LinearLayout llChakanHetong;
-    @BindView(R.id.ll_chakan_wenjuan)
-    LinearLayout llChakanWenjuan;
-    @BindView(R.id.lin_vip_people_bottom)
-    LinearLayout linVipPeopleBottom;
+    @BindView(R.id.tv_card_no)
+    TextView tv_card_no;
     @BindView(R.id.tv_sex)
     TextView tvSex;
     @BindView(R.id.tv_phone)
@@ -50,36 +55,34 @@ public class CoachViperDetailActivity extends AppCompatActivity {
     TextView tvBirthdayType;
     @BindView(R.id.tv_viper_type)
     TextView tvViperType;
+    @BindView(R.id.tv_vip_card_num)
+    TextView tvVipCardNum;
     @BindView(R.id.tv_head_info)
     TextView tvHeadInfo;
     @BindView(R.id.tv_zhi_wen_info)
     TextView tvZhiWenInfo;
     @BindView(R.id.tv_jin_mai_info)
     TextView tvJinMaiInfo;
-    @BindView(R.id.tv_card_type)
-    TextView tvCardType;
+    @BindView(R.id.tv_certificateType)
+    TextView tv_certificateType;
     @BindView(R.id.tv_shenfencard_num)
     TextView tvShenfencardNum;
-    @BindView(R.id.rel_expand)
-    RelativeLayout relExpand;
+    //会籍信息
     @BindView(R.id.rv_card)
-    RecyclerView rvCard;
+    RecyclerView rv_card;
     @BindView(R.id.tv_tuijian_ren)
     TextView tvTuijianRen;
     @BindView(R.id.tv_tuijian_ren_phone)
     TextView tvTuijianRenPhone;
-    @BindView(R.id.tv_huozhi_qudao)
-    TextView tvHuozhiQudao;
+    @BindView(R.id.tv_huoqu_qudao)
+    TextView tvHuoquQudao;
     @BindView(R.id.tv_tianjia_ren_name)
     TextView tvTianjiaRenName;
     @BindView(R.id.tv_fuwu_huiji)
     TextView tvFuwuHuiji;
     @BindView(R.id.tv_fuwu_jiaolian)
     TextView tvFuwuJiaolian;
-    @BindView(R.id.tv_private_class)
-    TextView tvPrivateClass;
-    @BindView(R.id.ll_edit)
-    LinearLayout llEdit;
+    //详细信息
     @BindView(R.id.tv_wechat_num)
     TextView tvWechatNum;
     @BindView(R.id.tv_email)
@@ -88,8 +91,8 @@ public class CoachViperDetailActivity extends AppCompatActivity {
     TextView tvShengao;
     @BindView(R.id.tv_weight)
     TextView tvWeight;
-    @BindView(R.id.tv_guiji)
-    TextView tvGuiji;
+    @BindView(R.id.tv_guaoji)
+    TextView tvGuaoJi;
     @BindView(R.id.tv_jiguan)
     TextView tvJiguan;
     @BindView(R.id.tv_minzu)
@@ -131,33 +134,39 @@ public class CoachViperDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_lianxiren_phone)
     TextView tvLianxirenPhone;
 
+    VipDetailBean vipDetailBean;
+    CoachViperBean coachViperBean;
     //会籍信息
     @BindView(R.id.ll_vip_content)
     LinearLayout llVipContent;
 
-    private int vipType=0;//0 正式会员 、意向会员（有会籍信息）  1 潜在会员 过期会员（无会籍信息）
+    private int vipType=0;//0 正式会员 、意向会员（有会籍信息）  1 潜在会员 过期会员（无会籍信息）;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_coach_viper_detail);
+        setContentView(R.layout.activity_viper_detail);
         ButterKnife.bind(this);
-        NavigationBar2 navigationbar2 = findViewById(R.id.coach_navigationbar2);
-        navigationbar2.setBackClickListener(this);
-        navigationbar2.hideLeftSecondIv();
+        initTitle();
+        initData();
 
-         vipType = getIntent().getIntExtra("vipType", 0);
-         if (vipType==0){
-             llVipContent.setVisibility(View.VISIBLE);
-         }else if (vipType==1){
-             llVipContent.setVisibility(View.GONE);
-         }
+
 
     }
 
+    private void initTitle() {
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_detail_navigation_bar2);
+        navigationBar2.hideBottomLine();
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.setTitle("会员详情");
+    }
 
-    @OnClick({R.id.ll_chakan_hetong, R.id.ll_chakan_wenjuan, R.id.ll_edit})
+
+    @OnClick({R.id.ll_chakan_hetong, R.id.ll_chakan_wenjuan,R.id.ll_edit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chakan_hetong:
@@ -169,11 +178,110 @@ public class CoachViperDetailActivity extends AppCompatActivity {
 
                 break;
             case R.id.ll_edit:
-                startActivity(new Intent(CoachViperDetailActivity.this, VipInfoEditActivity.class));
+                Intent intent = new Intent(CoachViperDetailActivity.this, VipInfoEditActivity.class);
+                intent.putExtra("detail",vipDetailBean.getDetail());
+                intent.putExtra("memberId",vipDetailBean.getMemberId());
+                intent.putExtra("source",vipDetailBean.getCustomerServiceInfo().getUserChannel());
+
+                startActivity(intent);
 
                 break;
         }
     }
 
+    private void initData() {
+
+        vipType = getIntent().getIntExtra("vipType", 0);
+        if (vipType==0){
+            llVipContent.setVisibility(View.VISIBLE);
+        }else if (vipType==1){
+            llVipContent.setVisibility(View.GONE);
+        }
+
+        coachViperBean = (CoachViperBean) getIntent().getSerializableExtra("coachViperBean");
+        String id = coachViperBean.getMemberId();
+        loadData(id);
+    }
+
+    private void loadData(String id){
+        HashMap<String, String> header = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        header.put("token", user.getToken());
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id", id);
+
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL,header, map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(),VipDetailBean.class);
+                updateUi(vipDetailBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(CoachViperDetailActivity.this,msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateUi(VipDetailBean vipDetailBean){
+        ImageLoader.load(this,vipDetailBean.getHeadImg(),ivHead);
+        tvName.setText(vipDetailBean.getName());
+        tv_card_no.setText(vipDetailBean.getMemberCardNo());
+        tvSex.setText(vipDetailBean.getSex());
+        tvPhone.setText(vipDetailBean.getMobile());
+        tvBirthday.setText(vipDetailBean.getBirthday());
+        tvBirthdayType.setText(vipDetailBean.getBirthdayType());
+        tvViperType.setText(vipDetailBean.getMemberType());
+        tvVipCardNum.setText(vipDetailBean.getMemberCardNo());
+        tvHeadInfo.setText((TextUtils.isEmpty(vipDetailBean.getHeadImg()))?"未录入":"未录入");
+        tvZhiWenInfo.setText((TextUtils.isEmpty(vipDetailBean.getFingerprint()))?"未录入":"未录入");
+        tvJinMaiInfo.setText((TextUtils.isEmpty(vipDetailBean.getVein()))?"未录入":"未录入");
+        tv_certificateType.setText(vipDetailBean.getCertificateType());
+        tvShenfencardNum.setText(vipDetailBean.getCertificateNo());
+
+        //会籍信息
+        rv_card.setLayoutManager(new LinearLayoutManager(this));
+        rv_card.setNestedScrollingEnabled(false);
+        rv_card.setAdapter(new CoachVipCardListAdapter(coachViperBean.getCardprodsBeans()));
+        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        tvTuijianRen.setText(customerServiceInfoBean.getReferee());
+        tvTuijianRenPhone.setText(customerServiceInfoBean.getRefereeMobile());
+        tvHuoquQudao.setText(customerServiceInfoBean.getUserChannel());
+        tvTianjiaRenName.setText(customerServiceInfoBean.getReceptionSale());
+        tvFuwuHuiji.setText(customerServiceInfoBean.getServiceSale());
+        tvFuwuJiaolian.setText(customerServiceInfoBean.getServiceCoach());
+
+        //详情信息
+        VipDetailBean.DetailBean detailBean = vipDetailBean.getDetail();
+        tvWechatNum.setText(detailBean.getWechatNo());
+        tvEmail.setText(detailBean.getEmail());
+        tvShengao.setText(detailBean.getHeight());
+        tvWeight.setText(detailBean.getWeight());
+        tvGuaoJi.setText(detailBean.getNationality());
+        tvJiguan.setText(detailBean.getNativePlace());
+        tvMinzu.setText(detailBean.getNation());
+        tvShentiStatus.setText(detailBean.getHealthStatus());
+        tvJianshenAihao.setText(detailBean.getFitnessHobby());
+        tvJianshenMudi.setText(detailBean.getFitnessGoal());
+        tvXingquAihao.setText(detailBean.getHobby());
+        tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub())?"是":"否");
+        tvCanjiaClubName.setText(detailBean.getClubBrand());
+        tvYearIncome.setText(detailBean.getYearIncome());
+        tvCarValue.setText(detailBean.getCarPrice());
+        tvMarryStatus.setText(detailBean.getMarriageStatus());
+        tvChildrenStatus.setText(detailBean.getChildrenStatus());
+        tvHangye.setText(detailBean.getOccupation());
+        tvZhiwu.setText(detailBean.getPosition());
+        tvCompanyName.setText(detailBean.getCompany());
+        tvCompanyPhone.setText(detailBean.getCompanyPhone());
+        tvCompanyLocation.setText(detailBean.getCompanyAddress());
+        tvJinJiLianxiren.setText(detailBean.getUrgentContact());
+        tvLianxirenPhone.setText(detailBean.getCompanyPhone());
+
+
+
+    }
 
 }

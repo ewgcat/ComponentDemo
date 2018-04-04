@@ -6,6 +6,7 @@ import com.yijian.staff.util.JsonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/22 20:04:14
  */
-public class CoachViperBean {
+public class CoachViperBean implements Serializable {
 
 
     private String bodyStatus; //身体状态
@@ -336,7 +337,7 @@ public class CoachViperBean {
         this.viperRole = viperRole;
     }
 
-    public static class CardprodsBean {
+    public static class CardprodsBean  implements Serializable{
         /**
          * cardName : string
          * cardType : string

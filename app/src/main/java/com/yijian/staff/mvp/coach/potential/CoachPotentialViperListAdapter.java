@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
     @Override
     public CoachPotentialViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_potential_people_info, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_potential_vip, parent, false);
         CoachPotentialViperListAdapter.ViewHolder holder = new CoachPotentialViperListAdapter.ViewHolder(view);
         return holder;
     }
@@ -44,8 +45,8 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         holder.tv_birth.setText(coachViperBean.getBirthday());
         holder.tv_birth_type.setText(coachViperBean.getBirthdayType());
         holder.tv_bodybuildingHobby.setText(coachViperBean.getBodybuildingHobby());
-        holder.tv_bodyStatus.setText(coachViperBean.getBodyStatus());
-        holder.tv_interestHobby.setText(coachViperBean.getInterestHobby());
+        holder.tv_bodyStatus.setText(coachViperBean.getHealthStatus());
+        holder.tv_interestHobby.setText(coachViperBean.getHobby());
         holder.iv_gender.setImageResource("2".equals(coachViperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(coachViperBean.getUseCar());
 
@@ -61,7 +62,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
             }
         });
 

@@ -16,10 +16,29 @@ import java.util.List;
  */
 public class CoachViperBean implements Serializable {
 
+    /**
+     * CoachExpireVO：教练过期
+     CoachInfoVO ：教练正式
+     CoachIntentionVO：教练意向
+     CoachTodayVisitVO：教练今日来访
+     CustomerInfoVO：会籍正式
+     CustomerTodayVisitVO：会籍今日来访
+     CustomerExpireVO：会籍过期
+     CustomerIntentionVO：会籍意向
+     PotentialVO：潜在（会籍教练共用）
+     */
+    private String subclassName;
+    private String experienceClassTimes;
+    private String   seller;//服务会籍
 
-    private String bodyStatus; //身体状态
+    private String fitnessHobby ;
+
+
+
+    private String healthStatus; //身体状态
     private String bodybuildingHobby; //健身爱好
     private String interestHobby; //兴趣爱好
+    private String hobby; //兴趣爱好
     private String useCar; //使用车辆
     private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
@@ -31,8 +50,7 @@ public class CoachViperBean implements Serializable {
     private String sex;//性别 1:男 2:女
     private String memberId;//会员id
     private String headImg;//头像图片路径
-    private String cardName;//卡名称
-    private String cardType;//卡类别
+
     private String contractBalance;//合同余额
     private long contractDeadline;//合同到期日
     private String contractId;//合同ID
@@ -44,53 +62,60 @@ public class CoachViperBean implements Serializable {
     private long bePresentTime; //到场时间
     private long departureTime; //离场时间
     private String privateClass;//私教课
-    private String outDateDay; //已过期的天数
-    private String historyLesson; //历史课程
-    private String outDate; //过期时间
-    private String outDateReason; //过期原因
+
+
+    private String historyCourse; //历史课程
+    private String deadline; //过期时间
+    private String expiryReason; //过期原因
 
     //("合同ID列表")
     private List<String> contractIds;
     //("卡对象集合")
     private List<CoachViperBean.CardprodsBean> cardprodsBeans;
 
-    public CoachViperBean(JSONObject jsonObject){
-         this.birthday = JsonUtil.getString(jsonObject, "birthday");
-         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
-         this.name = JsonUtil.getString(jsonObject, "name");
-         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
-         this.sex = JsonUtil.getString(jsonObject, "sex");
-         this.memberId = JsonUtil.getString(jsonObject, "memberId");
-         this.headImg = JsonUtil.getString(jsonObject, "headImg");
-         this.cardName = JsonUtil.getString(jsonObject, "cardName");
-         this.cardType = JsonUtil.getString(jsonObject, "cardType");
-         this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
-         this.contractDeadline = JsonUtil.getLong(jsonObject, "contractDeadline");
-         this.contractId = JsonUtil.getString(jsonObject, "contractId");
-         this.privateCourse = JsonUtil.getString(jsonObject, "privateCourse");
-         this.favorCourse = JsonUtil.getString(jsonObject, "favorCourse");
-         this.favorTeacher = JsonUtil.getString(jsonObject, "favorTeacher");
-         this.purchaseCount = JsonUtil.getInt(jsonObject, "purchaseCount");
-         this.registerTime = JsonUtil.getLong(jsonObject, "registerTime");
-         this.bePresentTime = JsonUtil.getLong(jsonObject, "bePresentTime");
-         this.departureTime = JsonUtil.getLong(jsonObject, "departureTime");
-         this.bodyStatus = JsonUtil.getString(jsonObject, "bodyStatus");
-         this.bodybuildingHobby = JsonUtil.getString(jsonObject, "bodybuildingHobby");
-         this.interestHobby = JsonUtil.getString(jsonObject, "interestHobby");
-         this.useCar = JsonUtil.getString(jsonObject, "useCar");
-         this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
-         this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
-         this.outDateDay = JsonUtil.getString(jsonObject, "outDateDay");
-         this.historyLesson = JsonUtil.getString(jsonObject, "historyLesson");
-         this.outDate = JsonUtil.getString(jsonObject, "outDate");
-         this.outDateReason = JsonUtil.getString(jsonObject, "outDateReason");
-        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
+    public CoachViperBean(JSONObject jsonObject) {
+        this.birthday = JsonUtil.getString(jsonObject, "birthday");
+        this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
+        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.experienceClassTimes = JsonUtil.getString(jsonObject, "experienceClassTimes");
+        this.seller = JsonUtil.getString(jsonObject, "seller");
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.contractDeadline = JsonUtil.getLong(jsonObject, "contractDeadline");
+        this.contractId = JsonUtil.getString(jsonObject, "contractId");
+        this.privateCourse = JsonUtil.getString(jsonObject, "privateCourse");
+        this.favorCourse = JsonUtil.getString(jsonObject, "favorCourse");
+        this.favorTeacher = JsonUtil.getString(jsonObject, "favorTeacher");
+        this.purchaseCount = JsonUtil.getInt(jsonObject, "purchaseCount");
+        this.registerTime = JsonUtil.getLong(jsonObject, "registerTime");
+        this.bePresentTime = JsonUtil.getLong(jsonObject, "bePresentTime");
+        this.departureTime = JsonUtil.getLong(jsonObject, "departureTime");
+        this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
+        this.bodybuildingHobby = JsonUtil.getString(jsonObject, "bodybuildingHobby");
+        this.interestHobby = JsonUtil.getString(jsonObject, "interestHobby");
+        this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
+        this.hobby = JsonUtil.getString(jsonObject, "hobby");
+        this.useCar = JsonUtil.getString(jsonObject, "useCar");
+        this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
+        this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
+        this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
+        this.deadline = JsonUtil.getString(jsonObject, "deadline");
+        this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
-            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CoachViperBean.CardprodsBean.class);
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(), CoachViperBean.CardprodsBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getSubclassName() {
+        return subclassName;
     }
 
     public List<CoachViperBean.CardprodsBean> getCardprodsBeans() {
@@ -101,57 +126,43 @@ public class CoachViperBean implements Serializable {
         this.cardprodsBeans = cardprodsBeans;
     }
 
+    public String getFitnessHobby() {
+        return fitnessHobby;
+    }
+
+    public String getHealthStatus() {
+        return healthStatus;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
 
     public List<String> getContractIds() {
         return contractIds;
     }
-    public String getOutDateDay() {
-        return outDateDay;
+
+
+    public String getHistoryCourse() {
+        return historyCourse;
     }
 
-    public void setOutDateDay(String outDateDay) {
-        this.outDateDay = outDateDay;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public String getHistoryLesson() {
-        return historyLesson;
+    public String getExpiryReason() {
+        return expiryReason;
     }
 
-    public void setHistoryLesson(String historyLesson) {
-        this.historyLesson = historyLesson;
-    }
 
-    public String getOutDate() {
-        return outDate;
-    }
 
-    public void setOutDate(String outDate) {
-        this.outDate = outDate;
-    }
-
-    public String getOutDateReason() {
-        return outDateReason;
-    }
-
-    public void setOutDateReason(String outDateReason) {
-        this.outDateReason = outDateReason;
-    }
-
-    public String getBodyStatus() {
-        return bodyStatus;
-    }
-
-    public void setBodyStatus(String bodyStatus) {
-        this.bodyStatus = bodyStatus;
-    }
 
     public String getBodybuildingHobby() {
         return bodybuildingHobby;
     }
 
-    public void setBodybuildingHobby(String bodybuildingHobby) {
-        this.bodybuildingHobby = bodybuildingHobby;
-    }
+
 
     public String getInterestHobby() {
         return interestHobby;
@@ -241,20 +252,12 @@ public class CoachViperBean implements Serializable {
         this.headImg = headImg;
     }
 
-    public String getCardName() {
-        return cardName;
+    public String getExperienceClassTimes() {
+        return experienceClassTimes;
     }
 
-    public void setCardName(String cardName) {
-        this.cardName = cardName;
-    }
-
-    public String getCardType() {
-        return cardType;
-    }
-
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
+    public String getSeller() {
+        return seller;
     }
 
     public String getContractBalance() {
@@ -337,7 +340,7 @@ public class CoachViperBean implements Serializable {
         this.viperRole = viperRole;
     }
 
-    public static class CardprodsBean  implements Serializable{
+    public static class CardprodsBean implements Serializable {
         /**
          * cardName : string
          * cardType : string

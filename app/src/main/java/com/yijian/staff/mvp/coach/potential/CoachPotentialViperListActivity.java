@@ -60,56 +60,24 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_potential_viper_list);
         ButterKnife.bind(this);
 
-        initTitle();
         initView();
-        initVipPeopleList();
     }
 
-    private void initTitle() {
+
+    private void initView(){
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("潜在会员");
-    }
-
-    private void initView(){
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_vip_intention.setLayoutManager(layoutmanager);
         coachPotentialViperListAdapter = new CoachPotentialViperListAdapter(this, viperBeanList);
         rv_vip_intention.setAdapter(coachPotentialViperListAdapter);
         initComponent();
+
     }
 
-    private void initVipPeopleList(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("birth", "1990-8-9");
-            jsonObject.put("birthType", "农历");
-            jsonObject.put("bodyStatus", "正常");
-            jsonObject.put("bodybuildingHobby", "跑步");
-            jsonObject.put("interestHobby", "打橄榄球");
-            jsonObject.put("useCar", "无");
-            jsonObject.put("isIntentVip","0");
-            for (int i = 0; i < 10; i++) {
-                CoachViperBean viperBean = new CoachViperBean(jsonObject);
-                viperBeanList.add(viperBean);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_vip_intention.setLayoutManager(layoutmanager);
-            CoachPotentialViperListAdapter coachPotentialViperListAdapter = new CoachPotentialViperListAdapter(this, viperBeanList);
-            rv_vip_intention.setAdapter(coachPotentialViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-    }
 
 
 
@@ -146,7 +114,7 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL,header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -186,7 +154,7 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL,header, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

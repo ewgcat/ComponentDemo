@@ -141,7 +141,6 @@ public class ViperDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        StatusBarUtil.setTranslucentForImageView(this, 0, null);
 
         setContentView(R.layout.activity_viper_detail);
         ButterKnife.bind(this);
@@ -149,18 +148,11 @@ public class ViperDetailActivity extends AppCompatActivity {
         initData();
 
 
-        /*findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-*/
 
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
+        NavigationBar2 navigationBar2 = findViewById(R.id.vip_detail_navigation_bar2);
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

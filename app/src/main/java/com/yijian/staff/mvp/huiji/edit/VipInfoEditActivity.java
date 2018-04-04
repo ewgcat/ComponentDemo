@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.edit;
+package com.yijian.staff.mvp.huiji.edit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,16 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONPObject;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.vip.bean.EditHuiJiVipBody;
-import com.yijian.staff.mvp.vip.bean.VipDetailBean;
-import com.yijian.staff.mvp.vip.bean.VipDictBean;
-import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
+import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.widget.NavigationBar2;

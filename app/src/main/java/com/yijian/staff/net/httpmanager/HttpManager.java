@@ -2,7 +2,7 @@ package com.yijian.staff.net.httpmanager;
 
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.mvp.vip.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;

@@ -137,7 +137,7 @@
             android:name=".mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.edit.VipInfoEditActivity"
+            android:name=".mvp.huiji.edit.VipInfoEditActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.potential.PotentialViperListActivity"
@@ -201,7 +201,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".mvp.vip.detail.ViperDetailActivity"
+            android:name=".mvp.huiji.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.vip.potential.PotentialViperDetailActivity"

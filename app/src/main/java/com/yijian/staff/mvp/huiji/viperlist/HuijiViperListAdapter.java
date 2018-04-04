@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.huiji.viperlist;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
+import com.yijian.staff.mvp.huiji.detail.ViperDetailActivity;
 
 import java.util.List;
 

@@ -3,35 +3,21 @@ package com.yijian.staff.mvp.huiji.intent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.support.hsf.HSFJSONUtils;
-import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.vip.bean.VipDetailBean;
-import com.yijian.staff.mvp.vip.detail.ViperDetailActivity;
-import com.yijian.staff.mvp.vip.edit.VipInfoEditActivity;
+import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;

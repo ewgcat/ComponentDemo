@@ -178,24 +178,26 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <!-- 教练 意向会员 -->
-        <activity
-            android:name=".mvp.coach.intent.CoachIntentViperListActivity"
-            android:screenOrientation="portrait" />
-        <!-- 教练 报价完成 -->
-        <activity
-            android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
-            android:screenOrientation="portrait" />
-        <!-- 教练 意向会员详情 -->
-        <activity
-            android:name=".mvp.coach.intent.CoachIntentViperDetailActivity"
-            android:screenOrientation="portrait" />
         <!-- 教练 过期会员 -->
         <activity
             android:name=".mvp.coach.outdate.CoachOutdateViperListActivity"
             android:screenOrientation="portrait" />
+        <!-- 教练 潜在会员 -->
+        <activity
+            android:name=".mvp.coach.potential.CoachPotentialViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 意向会员 -->
+        <activity
+            android:name=".mvp.coach.intent.CoachIntentViperListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 教练 会员详情 -->
         <activity
             android:name=".mvp.coach.detail.CoachViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 报价完成 -->
+        <activity
+            android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
 
         <activity

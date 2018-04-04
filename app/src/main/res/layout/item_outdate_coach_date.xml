@@ -66,7 +66,7 @@
             android:paddingTop="15dp">
 
             <RelativeLayout
-                android:id="@+id/rl_expand"
+                android:id="@+id/rel_expand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -80,28 +80,30 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_zhankai_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:drawablePadding="4dp"
-                    android:drawableRight="@mipmap/fp_shang"
                     android:gravity="center_vertical"
-                    android:text="收起"
+                    android:text="展开"
                     android:textColor="#999999"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:drawableRight="@mipmap/lg_xiala"
+                    android:drawablePadding="4dp"/>
 
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_card"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
             <View
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
                 android:layout_height="1dp"
-                android:background="@color/gray" />
+                android:background="@color/gray"/>
         </LinearLayout>
 
 

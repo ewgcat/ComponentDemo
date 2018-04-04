@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.potential;
+package com.yijian.staff.mvp.huiji.potential;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -61,7 +61,11 @@ public class PotentialViperListActivity extends AppCompatActivity  {
 
         initTitle();
         initView();
-        initVipPeopleList();
+        initData();
+    }
+
+    private void initData() {
+        refresh();
     }
 
     private void initTitle() {
@@ -79,38 +83,6 @@ public class PotentialViperListActivity extends AppCompatActivity  {
         rv_vip_intention.setAdapter(potentialViperListAdapter);
         initComponent();
     }
-
-    private void initVipPeopleList(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("birth", "1990-8-9");
-            jsonObject.put("birthType", "农历");
-            jsonObject.put("bodyStatus", "正常");
-            jsonObject.put("bodybuildingHobby", "跑步");
-            jsonObject.put("interestHobby", "打橄榄球");
-            jsonObject.put("useCar", "无");
-            jsonObject.put("isIntentVip","0");
-            for (int i = 0; i < 10; i++) {
-                HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
-                viperBeanList.add(viperBean);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_vip_intention.setLayoutManager(layoutmanager);
-            PotentialViperListAdapter potentialViperListAdapter = new PotentialViperListAdapter(this, viperBeanList);
-            rv_vip_intention.setAdapter(potentialViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-    }
-
-
 
 
     public void initComponent() {

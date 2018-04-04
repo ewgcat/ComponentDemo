@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.potential;
+package com.yijian.staff.mvp.huiji.potential;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

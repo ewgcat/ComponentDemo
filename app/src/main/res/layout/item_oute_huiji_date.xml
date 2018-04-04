@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="意向会员"
+                android:text="过期会员"
                 android:textColor="#1997f8"
                 android:textSize="16sp"
                 android:gravity="right"
@@ -59,63 +59,13 @@
 
         </LinearLayout>
 
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="卡名:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_cardName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="原力俱乐部30年年卡"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="卡类型:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_cardType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="时间卡"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>-->
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp"
+            />
 
         <LinearLayout
+            android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

@@ -7,48 +7,49 @@ package com.yijian.staff.mvp.coach.cunke.bean;
 
 public class TypeOfCunKeBody {
 
-    private String userName; //姓名
-    private String lessonName; //课程名称
-    private String totalLessonNum; //总课程
-    private String remainLessonNum; //存课
+    private String memberName; //姓名
+    private String courseName; //课程名称
+    private String totalCourseCount; //总课程
+    private String stockCourseCount; //存课
 
-    public String getUserName() {
-        return userName;
-    }
+    public TypeOfCunKeBody(){}
 
     public TypeOfCunKeBody(String userName, String lessonName, String totalLessonNum, String remainLessonNum) {
-        this.userName = userName;
-        this.lessonName = lessonName;
-        this.totalLessonNum = totalLessonNum;
-        this.remainLessonNum = remainLessonNum;
+        this.memberName = memberName;
+        this.courseName = courseName;
+        this.totalCourseCount = totalCourseCount;
+        this.stockCourseCount = stockCourseCount;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public String getLessonName() {
-        return lessonName;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public void setLessonName(String lessonName) {
-        this.lessonName = lessonName;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public String getTotalLessonNum() {
-        return totalLessonNum;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public void setTotalLessonNum(String totalLessonNum) {
-        this.totalLessonNum = totalLessonNum;
+    public String getTotalCourseCount() {
+        return totalCourseCount;
     }
 
-    public String getRemainLessonNum() {
-        return remainLessonNum;
+    public void setTotalCourseCount(String totalCourseCount) {
+        this.totalCourseCount = totalCourseCount;
     }
 
-    public void setRemainLessonNum(String remainLessonNum) {
-        this.remainLessonNum = remainLessonNum;
+    public String getStockCourseCount() {
+        return stockCourseCount;
     }
 
+    public void setStockCourseCount(String stockCourseCount) {
+        this.stockCourseCount = stockCourseCount;
+    }
 }

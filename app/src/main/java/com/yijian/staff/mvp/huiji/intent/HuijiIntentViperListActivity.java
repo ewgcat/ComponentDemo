@@ -60,7 +60,11 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
 
         initTitle();
         initView();
-//        initVipPeopleList();
+        initData();
+    }
+
+    private void initData() {
+        refresh();
     }
 
     private void initTitle() {

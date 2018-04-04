@@ -140,7 +140,7 @@
             android:name=".mvp.huiji.edit.VipInfoEditActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potential.PotentialViperListActivity"
+            android:name=".mvp.huiji.potential.PotentialViperListActivity"
             android:screenOrientation="portrait" />
 
         <!-- 会籍 会员信息 -->
@@ -202,7 +202,7 @@
             android:name=".mvp.huiji.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vip.potential.PotentialViperDetailActivity"
+            android:name=".mvp.huiji.potential.PotentialViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.all.AllFunctionActivity"
@@ -256,7 +256,7 @@
         <activity
             android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.vip.potential.AddPotentialActivity" />
+        <activity android:name=".mvp.huiji.potential.AddPotentialActivity" />
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait" />

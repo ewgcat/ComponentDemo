@@ -111,12 +111,6 @@ public class HuijiIntentViperDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_potential_and_intent_viper_detail);
         ButterKnife.bind(this);
 
-        /*findViewById(R.id.ll_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });*/
 
         initTitle();
         initData();
@@ -128,7 +122,7 @@ public class HuijiIntentViperDetailActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

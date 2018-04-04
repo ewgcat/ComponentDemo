@@ -46,16 +46,16 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
-        if(viewType == TYPE_VIP_CEREMONIAL_INFO){
+        if (viewType == TYPE_VIP_CEREMONIAL_INFO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_info, parent, false);
             viewHolder = new CeremonialViewHolder(view);
-        }else if(viewType == TYPE_VIP_OUTDATE_INFO){
+        } else if (viewType == TYPE_VIP_OUTDATE_INFO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oute_huiji_date, parent, false);
             viewHolder = new OutDateViewHolder(view);
-        }else if(viewType == TYPE_VIP_INTENT_INFO){
+        } else if (viewType == TYPE_VIP_INTENT_INFO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_intention_people_info, parent, false);
             viewHolder = new IntentViewHolder(view);
-        }else if(viewType == TYPE_VIP_POTENTIAL_INFO){
+        } else if (viewType == TYPE_VIP_POTENTIAL_INFO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_potential_people_info, parent, false);
             viewHolder = new PotentialViewHolder(view);
         }
@@ -66,14 +66,14 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HuiJiViperBean huiJiSearchViperBean = dataList.get(position);
         int viewType = getItemViewType(position);
-        if(viewType == TYPE_VIP_CEREMONIAL_INFO){ //普通会员
-            ((CeremonialViewHolder)holder).bind(huiJiSearchViperBean);
-        }else if(viewType == TYPE_VIP_OUTDATE_INFO){ //过期会员
-            ((OutDateViewHolder)holder).bind(huiJiSearchViperBean);
-        }else if(viewType == TYPE_VIP_INTENT_INFO){ //意向会员
-            ((IntentViewHolder)holder).bind(huiJiSearchViperBean);
-        }else if(viewType == TYPE_VIP_POTENTIAL_INFO){ //潜在会员
-            ((PotentialViewHolder)holder).bind(huiJiSearchViperBean);
+        if (viewType == TYPE_VIP_CEREMONIAL_INFO) { //普通会员
+            ((CeremonialViewHolder) holder).bind(huiJiSearchViperBean);
+        } else if (viewType == TYPE_VIP_OUTDATE_INFO) { //过期会员
+            ((OutDateViewHolder) holder).bind(huiJiSearchViperBean);
+        } else if (viewType == TYPE_VIP_INTENT_INFO) { //意向会员
+            ((IntentViewHolder) holder).bind(huiJiSearchViperBean);
+        } else if (viewType == TYPE_VIP_POTENTIAL_INFO) { //潜在会员
+            ((PotentialViewHolder) holder).bind(huiJiSearchViperBean);
         }
     }
 
@@ -104,10 +104,11 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        TextView  tv_role;
+        TextView tv_role;
 
         RelativeLayout rel_expand;
-        TextView tv_zhankai_status;
+        TextView tv_opration_label;
+        ImageView iv_opration_arrow;
         RecyclerView rv_card;
 
         TextView tv_private_coach;
@@ -125,6 +126,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         LinearLayout lin_query_question;
         LinearLayout lin_content;
 
+        List<HuiJiViperBean.CardprodsBean> cardprodsBeanList = new ArrayList<>();
+        HuiJiVipeCardAdapter huiJiVipeCardAdapter;
+
         public CeremonialViewHolder(View view) {
             super(view);
             lin_content = view.findViewById(R.id.lin_content);
@@ -132,9 +136,15 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
             tv_role = view.findViewById(R.id.tv_role);
+            tv_role.setVisibility(View.VISIBLE);
             rel_expand = view.findViewById(R.id.rel_expand);
-            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
+            tv_opration_label = view.findViewById(R.id.tv_opration_label);
             rv_card = view.findViewById(R.id.rv_card);
+            LinearLayoutManager layoutmanager = new LinearLayoutManager(context);
+            rv_card.setLayoutManager(layoutmanager);
+            huiJiVipeCardAdapter = new HuiJiVipeCardAdapter(cardprodsBeanList);
+            rv_card.setAdapter(huiJiVipeCardAdapter);
+            iv_opration_arrow = view.findViewById(R.id.iv_opration_arrow);
 
             tv_private_coach = view.findViewById(R.id.tv_private_coach);
             tv_like_lesson = view.findViewById(R.id.tv_like_lesson);
@@ -152,35 +162,21 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
 
         public void bind(HuiJiViperBean huiJiSearchViperBean) {
+            tv_role.setVisibility(View.VISIBLE);
             tv_role.setText(huiJiSearchViperBean.getViperRole());
             tv_name.setText(huiJiSearchViperBean.getName());
+            huiJiVipeCardAdapter.setCardprodsBeans(huiJiSearchViperBean.getCardprodsBeans());
 
 
             rel_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                   rv_card.setLayoutManager(new LinearLayoutManager(context));
-                   rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
-                    int visibility = rv_card.getVisibility();
-                    if (visibility == View.GONE) {
-                      rv_card.setVisibility(View.VISIBLE);
-                        tv_zhankai_status.setText("收起");
-                        Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tv_opration_label.setText((rv_card.getVisibility() == View.GONE) ? "收起" : "展开");
+                    rv_card.setVisibility((rv_card.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE);
+                    iv_opration_arrow.setImageResource((rv_card.getVisibility() == View.GONE) ? R.mipmap.fp_xia : R.mipmap.fp_shang);
 
-                       tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-                    } else {
-                       rv_card.setVisibility(View.GONE);
-                       tv_zhankai_status.setText("展开");
-                        Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-
-                       tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-                    }
                 }
-
-
             });
 
             tv_private_coach.setText(huiJiSearchViperBean.getPrivateCoach());
@@ -201,10 +197,11 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         ImageView iv_header;
         TextView tv_name;
-        TextView  tv_role;
+        TextView tv_role;
         ImageView iv_gender;
         RelativeLayout rel_expand;
-        TextView tv_zhankai_status;
+        TextView tv_opration_label;
+        ImageView iv_opration_arrow;
         RecyclerView rv_card;
         TextView tv_privateCoach;
         TextView tv_likeLesson;
@@ -215,52 +212,47 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         LinearLayout lin_quey_contract;
         LinearLayout lin_quey_question;
 
+        List<HuiJiViperBean.CardprodsBean> cardprodsBeanList = new ArrayList<>();
+        HuiJiVipeCardAdapter huiJiVipeCardAdapter;
 
 
         public OutDateViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_role   = view.findViewById(R.id.tv_role);
-            iv_gender =  view.findViewById(R.id.iv_gender);
+            iv_header = view.findViewById(R.id.iv_header);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_role = view.findViewById(R.id.tv_role);
+            iv_gender = view.findViewById(R.id.iv_gender);
             rel_expand = view.findViewById(R.id.rel_expand);
-            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
+            tv_opration_label = view.findViewById(R.id.tv_opration_label);
+            iv_opration_arrow = view.findViewById(R.id.iv_opration_arrow);
             rv_card = view.findViewById(R.id.rv_card);
-            tv_privateCoach =     view.findViewById(R.id.tv_privateCoach);
-            tv_likeLesson  =     view.findViewById(R.id.tv_likeLesson);
-            tv_likeTeacher  =     view.findViewById(R.id.tv_likeTeacher);
-            tv_registTime  =     view.findViewById(R.id.tv_registTime);
-            tv_contractOutDate  =     view.findViewById(R.id.tv_contractOutDate);
-            tv_outDateDay  =     view.findViewById(R.id.tv_outDateDay);
-            lin_quey_contract  =     view.findViewById(R.id.lin_quey_contract);
-            lin_quey_question  =     view.findViewById(R.id.lin_quey_question);
+            LinearLayoutManager layoutmanager = new LinearLayoutManager(context);
+            rv_card.setLayoutManager(layoutmanager);
+            huiJiVipeCardAdapter = new HuiJiVipeCardAdapter(cardprodsBeanList);
+            rv_card.setAdapter(huiJiVipeCardAdapter);
+            tv_privateCoach = view.findViewById(R.id.tv_privateCoach);
+            tv_likeLesson = view.findViewById(R.id.tv_likeLesson);
+            tv_likeTeacher = view.findViewById(R.id.tv_likeTeacher);
+            tv_registTime = view.findViewById(R.id.tv_registTime);
+            tv_contractOutDate = view.findViewById(R.id.tv_contractOutDate);
+            tv_outDateDay = view.findViewById(R.id.tv_outDateDay);
+            lin_quey_contract = view.findViewById(R.id.lin_quey_contract);
+            lin_quey_question = view.findViewById(R.id.lin_quey_question);
         }
 
-        public void bind(HuiJiViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean) {
             tv_role.setText(huiJiSearchViperBean.getViperRole());
+            tv_role.setVisibility(View.VISIBLE);
             tv_name.setText(huiJiSearchViperBean.getName());
+            huiJiVipeCardAdapter.setCardprodsBeans(huiJiSearchViperBean.getCardprodsBeans());
             rel_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    rv_card.setLayoutManager(new LinearLayoutManager(context));
-                    rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiSearchViperBean.getCardprodsBeans()));
-                    int visibility = rv_card.getVisibility();
-                    if (visibility == View.GONE) {
-                        rv_card.setVisibility(View.VISIBLE);
-                        tv_zhankai_status.setText("收起");
-                        Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tv_opration_label.setText((rv_card.getVisibility() == View.GONE) ? "收起" : "展开");
+                    rv_card.setVisibility((rv_card.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE);
+                    iv_opration_arrow.setImageResource((rv_card.getVisibility() == View.GONE) ? R.mipmap.fp_xia : R.mipmap.fp_shang);
 
-                        tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-                    } else {
-                        rv_card.setVisibility(View.GONE);
-                        tv_zhankai_status.setText("展开");
-                        Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-
-                        tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-                    }
                 }
 
 
@@ -331,8 +323,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
 
-        public void bind(HuiJiViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean) {
             tv_role.setText(huiJiSearchViperBean.getViperRole());
+            tv_role.setVisibility(View.VISIBLE);
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_birth.setText(huiJiSearchViperBean.getBirthday());
             tv_birth_type.setText(huiJiSearchViperBean.getBirthdayType());
@@ -394,8 +387,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             lin_invitation = view.findViewById(R.id.lin_invitation);
         }
 
-        public void bind(HuiJiViperBean huiJiSearchViperBean){
+        public void bind(HuiJiViperBean huiJiSearchViperBean) {
             tv_role.setText(huiJiSearchViperBean.getViperRole());
+            tv_role.setVisibility(View.VISIBLE);
             tv_name.setText(huiJiSearchViperBean.getName());
             tv_birth.setText(huiJiSearchViperBean.getBirthday());
             tv_birth_type.setText(huiJiSearchViperBean.getBirthdayType());

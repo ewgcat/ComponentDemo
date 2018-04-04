@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vip.potential;
+package com.yijian.staff.mvp.huiji.potential;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 
 import java.util.List;
 
@@ -65,11 +66,17 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
         });
 
 
-        //详情
+        holder.ll_content.setTag(position);
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, PotentialViperDetailActivity.class));
+
+                int tag = (int) v.getTag();
+                HuiJiViperBean tempViperBean = viperBeanList.get(tag);
+                Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                intent.putExtra("id",tempViperBean.getMemberId());
+                context.startActivity(intent);
+
             }
         });
 

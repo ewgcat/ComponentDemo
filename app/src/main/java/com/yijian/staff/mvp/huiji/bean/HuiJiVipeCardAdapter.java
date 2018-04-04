@@ -23,6 +23,11 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.cardprodsBeans = cardprodsBeans;
     }
 
+    public void setCardprodsBeans(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+        this.cardprodsBeans = cardprodsBeans;
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, parent, false);

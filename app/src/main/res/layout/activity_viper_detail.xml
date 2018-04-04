@@ -32,7 +32,7 @@
                 android:drawablePadding="5dp"
                 android:gravity="center"
                 android:text="查看合同"
-                android:textColor="#999999"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -51,7 +51,7 @@
                 android:drawablePadding="5dp"
                 android:gravity="center"
                 android:text="查看问卷"
-                android:textColor="#999999"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -148,7 +148,8 @@
                     <View
                         android:layout_width="7dp"
                         android:layout_height="16dp"
-                        android:background="#31a4fc" />
+                        android:background="#31a4fc"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,7 +157,7 @@
                         android:layout_marginLeft="6dp"
                         android:gravity="center_vertical"
                         android:text="基本信息"
-                        android:textColor="#333333"
+                        android:textColor="@color/blue"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -494,7 +495,8 @@
                     <View
                         android:layout_width="7dp"
                         android:layout_height="16dp"
-                        android:background="#31a4fc" />
+                        android:background="#31a4fc"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -502,7 +504,7 @@
                         android:layout_marginLeft="6dp"
                         android:gravity="center_vertical"
                         android:text="会籍信息"
-                        android:textColor="#333333"
+                        android:textColor="@color/blue"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 

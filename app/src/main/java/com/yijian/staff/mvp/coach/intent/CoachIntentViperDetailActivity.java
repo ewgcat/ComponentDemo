@@ -17,7 +17,7 @@ public class CoachIntentViperDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potential_and_intent_viper_detail);
-        NavigationBar2 navigationbar2 = findViewById(R.id.vip_intent_navigation_bar2);
+        NavigationBar2 navigationbar2 = findViewById(R.id.navigation_bar);
         navigationbar2.setBackClickListener(this);
         navigationbar2.hideLeftSecondIv();
     }

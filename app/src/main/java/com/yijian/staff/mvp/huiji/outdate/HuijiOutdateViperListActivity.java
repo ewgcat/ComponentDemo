@@ -65,41 +65,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initTitle();
-//        initList();
         initView();
+        initData();
     }
 
-    /*private void initList() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("gender", "0");
-            jsonObject.put("cardName", "原生俱乐部30年年卡");
-            jsonObject.put("cardType", "时间卡");
-            jsonObject.put("privateCoach", "邹市明");
-            jsonObject.put("likeLesson", "打橄榄球");
-            jsonObject.put("likeTeacher", "壮壮");
-            jsonObject.put("registTime", "1990-10-12");
-            jsonObject.put("contractOutDate", "1990-10-12");
-            jsonObject.put("outDateDay", "12天");
-            for (int i = 0; i < 10; i++) {
-                VipOutdateInfo vipPeopleInfo = new VipOutdateInfo(jsonObject);
-                vipOutdateInfoList.add(vipPeopleInfo);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            rv_outdate.setLayoutManager(layoutmanager);
-            huijiOutdateViperListAdapter = new HuijiOutdateViperListAdapter(this, vipOutdateInfoList);
-            rv_outdate.setAdapter(huijiOutdateViperListAdapter);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-
-    }*/
+    private void initData() {
+        refresh();
+    }
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);

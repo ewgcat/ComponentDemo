@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 
@@ -42,9 +43,17 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
     public void onBindViewHolder(CoachPotentialViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = viperBeanList.get(position);
         holder.tv_name.setText(coachViperBean.getName());
-        holder.tv_birth.setText(coachViperBean.getBirthday());
+
+        long birthday = coachViperBean.getBirthday();
+        if (birthday!=0){
+            String s = DateUtil.parseLongDateToString(birthday);
+            holder.tv_birth.setText(s);
+        }else {
+            holder.tv_birth.setText("");
+        }
+
         holder.tv_birth_type.setText(coachViperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(coachViperBean.getBodybuildingHobby());
+        holder.tv_bodybuildingHobby.setText(coachViperBean.getFitnessHobby());
         holder.tv_bodyStatus.setText(coachViperBean.getHealthStatus());
         holder.tv_interestHobby.setText(coachViperBean.getHobby());
         holder.iv_gender.setImageResource("2".equals(coachViperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);

@@ -42,7 +42,7 @@ public class CoachViperBean implements Serializable {
     private String useCar; //使用车辆
     private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
-    private String birthday;//生日
+    private long birthday;//生日
     private String birthdayType;//生日类型
     private String name;//会员姓名
     private String viperRole;//会员角色 普通会员
@@ -65,7 +65,7 @@ public class CoachViperBean implements Serializable {
 
 
     private String historyCourse; //历史课程
-    private String deadline; //过期时间
+    private long deadline; //过期时间
     private String expiryReason; //过期原因
 
     //("合同ID列表")
@@ -74,7 +74,7 @@ public class CoachViperBean implements Serializable {
     private List<CoachViperBean.CardprodsBean> cardprodsBeans;
 
     public CoachViperBean(JSONObject jsonObject) {
-        this.birthday = JsonUtil.getString(jsonObject, "birthday");
+        this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
@@ -103,12 +103,15 @@ public class CoachViperBean implements Serializable {
         this.isIntentVip = JsonUtil.getString(jsonObject, "isIntentVip");
         this.privateClass = JsonUtil.getString(jsonObject, "privateClass");
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
-        this.deadline = JsonUtil.getString(jsonObject, "deadline");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
-            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(), CoachViperBean.CardprodsBean.class);
+            if (jsonObject.has("cardprods")){
+
+                this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(), CoachViperBean.CardprodsBean.class);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,7 +150,7 @@ public class CoachViperBean implements Serializable {
         return historyCourse;
     }
 
-    public String getDeadline() {
+    public long getDeadline() {
         return deadline;
     }
 
@@ -204,13 +207,10 @@ public class CoachViperBean implements Serializable {
         this.departureTime = departureTime;
     }
 
-    public String getBirthday() {
+    public long getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getBirthdayType() {
         return birthdayType;

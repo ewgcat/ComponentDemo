@@ -75,7 +75,7 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         coachPotentialViperListAdapter = new CoachPotentialViperListAdapter(this, viperBeanList);
         rv_vip_intention.setAdapter(coachPotentialViperListAdapter);
         initComponent();
-
+        refresh();
     }
 
 

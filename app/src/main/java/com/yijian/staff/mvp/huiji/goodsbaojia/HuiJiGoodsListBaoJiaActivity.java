@@ -170,10 +170,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         pageNum = 1;
         pageSize = 4;
         this.huiJiGoodsFilterBean = huiJiGoodsFilterBean;
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
+
 
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
@@ -193,7 +190,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(header, body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList(body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     mGoodsInfoList.clear();
@@ -226,10 +223,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
     }
 
     private void loadMore() {
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
+
 
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
@@ -250,7 +244,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(header, body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

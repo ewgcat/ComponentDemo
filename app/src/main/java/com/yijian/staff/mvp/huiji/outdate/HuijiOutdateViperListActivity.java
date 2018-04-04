@@ -122,15 +122,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
 
 
     private void refresh() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", 1 + "");
         map.put("pageSize", 1 + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -162,15 +160,13 @@ public class HuijiOutdateViperListActivity extends AppCompatActivity {
     }
 
     public void loadMore() {
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

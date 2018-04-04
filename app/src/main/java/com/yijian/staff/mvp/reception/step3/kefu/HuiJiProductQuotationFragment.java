@@ -145,10 +145,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
         pageNum = 1;
         pageSize = 4;
         this.huiJiGoodsFilterBean = huiJiGoodsFilterBean;
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
+
 
             HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
             body.setCardName("");
@@ -163,7 +160,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(header, body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     mGoodsInfoList.clear();
@@ -195,10 +192,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
     }
 
     private void loadMore() {
-        Map<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        header.put("token", token);
+
 
 
 
@@ -215,7 +209,7 @@ public class HuiJiProductQuotationFragment extends Fragment {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(header, body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList( body, new ResultObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

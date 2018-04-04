@@ -147,10 +147,8 @@ public class WorkFragment extends Fragment {
     private void initData() {
 
 
-        HashMap<String, String> map = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        map.put("token", user.getToken());
-        HttpManager.getIndexMenuList(map, new ResultObserver() {
+
+        HttpManager.getIndexMenuList(new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 String monthRank = JsonUtil.getString(result, "monthRank");

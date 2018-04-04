@@ -180,13 +180,11 @@ public class VipInfoEditActivity extends AppCompatActivity {
         paramMap.put("source", resuorceIdList.get(resuorceList.indexOf(tv_source.getText().toString()))); //tv_source.getText().toString()
         paramMap.put("yearIncome", yearIncomeIdList.get(yearIncomeList.indexOf(tv_yearIncome.getText().toString()))); //tv_yearIncome.getText().toString()
 
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
 
-        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, header, editHuiJiVipBody, new ResultObserver() {
+        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL,  editHuiJiVipBody, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
@@ -255,11 +253,8 @@ public class VipInfoEditActivity extends AppCompatActivity {
         marriageStatusList.add("未婚");
         marriageStatusList.add("已婚");
 
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, header, new ResultObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL,  new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {

@@ -190,14 +190,12 @@ public class ViperDetailActivity extends AppCompatActivity {
     }
 
     private void loadData(String id){
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL,header, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(),VipDetailBean.class);

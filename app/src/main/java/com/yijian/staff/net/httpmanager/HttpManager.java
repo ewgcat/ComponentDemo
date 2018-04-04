@@ -2,6 +2,8 @@ package com.yijian.staff.net.httpmanager;
 
 
 import com.yijian.staff.BuildConfig;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -13,6 +15,7 @@ import com.yijian.staff.net.response.ResultObserver;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -22,6 +25,8 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.http.HeaderMap;
 
 public class HttpManager {
+
+
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
@@ -165,25 +170,38 @@ public class HttpManager {
     }
 
     // 首页图标
-    public static void getIndexMenuList(Map<String, String> headers, Observer<JSONObject> observer) {
+    public static void getIndexMenuList( Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
         Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
         execute(observable, observer);
     }
 
     //保存menu编辑状态
-    public static void saveMenuChange(@HeaderMap Map<String, String> headers, MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
+    public static void saveMenuChange( MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
         Observable<JSONObject> observable = apiService.saveMenuChange(SAVE_MENU_CHANGE_URL, headers, menuRequestBody);
         execute(observable, observer);
     }
 
     //私教课查询列表
-    public static void getCoachPrivateCourseList(@HeaderMap Map<String, String> headers, CoachPrivateCourseRequestBody body, Observer<JSONObject> observer) {
+    public static void getCoachPrivateCourseList( CoachPrivateCourseRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
         Observable<JSONObject> observable = apiService.getCoachPrivateCourseList(COACH_PRIVATE_COURSE_LIST_URL, headers, body);
         execute(observable, observer);
     }
 
     //会籍卡产品查询列表
-    public static void getHuiJiCardGoodsList(@HeaderMap Map<String, String> headers, HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
+    public static void getHuiJiCardGoodsList(HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
         Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
         execute(observable, observer);
     }
@@ -191,21 +209,30 @@ public class HttpManager {
 
 
     //教练模糊搜索会员
-    public static void searchViperByCoach(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
-        getHasHeaderHasParam(INDEX_COACH_QUERY_URL, header, params, observer);
+    public static void searchViperByCoach( Map<String, String> params, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        getHasHeaderHasParam(INDEX_COACH_QUERY_URL,  params, observer);
 
     }
 
 
     //会籍模糊搜索会员
-    public static void searchViperByHuiJi(Map<String, String> header, Map<String, String> params, Observer<JSONObject> observer) {
-        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, header, params, observer);
+    public static void searchViperByHuiJi( Map<String, String> params, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, params, observer);
 
     }
 
     //会籍会员详情修改
-    public static void postEditHuiJiVipInfo(String url, Map<String, String> header, EditHuiJiVipBody editHuiJiVipBody, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,header, editHuiJiVipBody);
+    public static void postEditHuiJiVipInfo(String url, EditHuiJiVipBody editHuiJiVipBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
         execute(observable, observer);
     }
 
@@ -217,8 +244,12 @@ public class HttpManager {
     }
 
     // post有头无参
-    public static void postHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, header);
+    public static void postHasHeaderNoParam(String url, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+
+        Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
         execute(observable, observer);
     }
 
@@ -229,8 +260,11 @@ public class HttpManager {
     }
 
     // post有头有参
-    public static void postHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, header, param);
+    public static void postHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
     }
 
@@ -241,8 +275,11 @@ public class HttpManager {
     }
 
     // get有头无参
-    public static void getHasHeaderNoParam(String url, Map<String, String> header, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, header);
+    public static void getHasHeaderNoParam(String url,  Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
         execute(observable, observer);
     }
 
@@ -253,8 +290,11 @@ public class HttpManager {
     }
 
     // get有头有参
-    public static void getHasHeaderHasParam(String url, Map<String, String> header, Map<String, String> param, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, header, param);
+    public static void getHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
     }
 

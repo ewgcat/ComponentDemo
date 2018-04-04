@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.vip.edit.VipInfoEditActivity;
+import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
 import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.BindView;

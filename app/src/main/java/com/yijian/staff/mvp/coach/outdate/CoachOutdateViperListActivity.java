@@ -8,10 +8,9 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
+import com.yijian.staff.mvp.huiji.bean.VipOutdateInfo;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;

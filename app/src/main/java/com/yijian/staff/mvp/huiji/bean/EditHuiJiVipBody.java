@@ -1,6 +1,5 @@
-package com.yijian.staff.mvp.vip.bean;
+package com.yijian.staff.mvp.huiji.bean;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**

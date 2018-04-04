@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.intent.CoachIntentViperDetailActivity;
-import com.yijian.staff.mvp.vip.bean.VipOutdateInfo;
+import com.yijian.staff.mvp.huiji.bean.VipOutdateInfo;
 
 import java.util.List;
 

@@ -3,15 +3,23 @@ package com.yijian.staff.mvp.huiji.potential;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -31,7 +39,8 @@ public class AddPotentialActivity extends AppCompatActivity {
     LastInputEditText etPhone;
     private OptionsPickerView optionsPickerView;
 
-    private int sex;
+    private int sex = 1;//1 男  2女
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +59,15 @@ public class AddPotentialActivity extends AppCompatActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(101);
-                finish();
+
+                sendRequest();
             }
+
+
         });
 
 
-
-        ArrayList<String> sexDescList=new ArrayList<>();
+        ArrayList<String> sexDescList = new ArrayList<>();
         sexDescList.add("男");
         sexDescList.add("女");
 
@@ -65,10 +75,43 @@ public class AddPotentialActivity extends AppCompatActivity {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tvSex.setText(sexDescList.get(options1));
-                sex=options1;
+                sex = options1+1;
             }
         }).build();
         optionsPickerView.setPicker(sexDescList);
+        optionsPickerView.setSelectOptions(0);
+    }
+
+    private void sendRequest() {
+
+        String name = etName.getText().toString();
+        String phone = etPhone.getText().toString().trim();
+        if (TextUtils.isEmpty(name)){
+            Toast.makeText(AddPotentialActivity.this,"名字不能为空!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(phone)){
+            Toast.makeText(AddPotentialActivity.this,"手机号不能为空!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (CommonUtil.isPhoneFormat(phone)) {
+            AddPotentialRequestBody addPotentialRequestBody=new AddPotentialRequestBody(phone,name,sex);
+            HttpManager.postAddPotential(addPotentialRequestBody, new ResultObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    hideKeyBoard(etPhone);
+                    finish();
+                }
+                @Override
+                public void onFail(String msg) {
+                    Toast.makeText(AddPotentialActivity.this,msg,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+            Toast.makeText(AddPotentialActivity.this,"手机号码不正确!",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
     }
 
@@ -83,7 +126,7 @@ public class AddPotentialActivity extends AppCompatActivity {
     }
 
     /**
-     *  隐藏键盘
+     * 隐藏键盘
      */
     public void hideKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -93,12 +136,12 @@ public class AddPotentialActivity extends AppCompatActivity {
     }
 
     /**
-     *  显示键盘
+     * 显示键盘
      */
     public void showKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
-            imm.showSoftInput(v,0);
+            imm.showSoftInput(v, 0);
 
         }
     }

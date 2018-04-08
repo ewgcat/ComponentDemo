@@ -258,7 +258,9 @@
         <activity
             android:name=".mvp.mine.club.ClubActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.huiji.potential.AddPotentialActivity" />
+        <activity
+            android:name=".mvp.huiji.potential.AddPotentialActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.calendartable.CalendarTableActivity"
             android:screenOrientation="portrait" />

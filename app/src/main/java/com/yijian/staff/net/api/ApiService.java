@@ -2,6 +2,7 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -70,6 +71,12 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
+
+    //添加潜在
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAddPotential(@Url String addPotentialUrl,@HeaderMap Map<String, String> headers,@Body AddPotentialRequestBody addPotentialRequestBody);
+
 
     //保存图标位置
     @Headers({"Content-type: application/json", "Accept: */*"})

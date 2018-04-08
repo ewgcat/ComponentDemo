@@ -21,7 +21,7 @@ public class DateUtil {
      * @return
      */
     public static String getCurrentDate() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(new Date());
     }
 

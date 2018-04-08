@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="Item1"
-            android:background="@color/gray"/>
+            android:background="@color/__picker_text_40"/>
 
     </LinearLayout>
 

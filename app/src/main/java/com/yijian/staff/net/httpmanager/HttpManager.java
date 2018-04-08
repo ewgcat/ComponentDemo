@@ -6,6 +6,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
@@ -114,6 +115,9 @@ public class HttpManager {
     //重置密码
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
 
+    //添加潜在
+    public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
+
 
 
 
@@ -129,6 +133,16 @@ public class HttpManager {
     //登陆
     public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
+        execute(loginObservable, observer);
+    }
+    //登陆
+    public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> loginObservable = apiService.postAddPotential(ADD_POTENTIAL_URL,headers, addPotentialRequestBody);
+
         execute(loginObservable, observer);
     }
 

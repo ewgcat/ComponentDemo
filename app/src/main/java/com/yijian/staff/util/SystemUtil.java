@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.yijian.staff.constant.Constants;
 import com.yijian.staff.application.CustomApplication;
@@ -120,4 +121,26 @@ public class SystemUtil {
         }
         return null;
     }
+
+    /**
+     *  隐藏键盘
+     */
+    public static void hideKeyBoard(View v,Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     *  显示键盘
+     */
+    public static void showKeyBoard(View v,Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(v,0);
+
+        }
+    }
+
 }

@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -48,6 +50,9 @@ import com.yijian.staff.util.Logger;
 public class HuiJiSearchActivity extends AppCompatActivity {
 
     private static final String TAG = CoachSearchActivity.class.getSimpleName();
+    @BindView(R.id.top_view)
+    LinearLayout top_view;
+    ;
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.rcl)
@@ -69,6 +74,25 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        etSearch.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // 获得焦点
+                    SearchPopuWindow searchPopuWindow = new SearchPopuWindow(HuiJiSearchActivity.this);
+                    searchPopuWindow.showAtBottom(top_view);
+                } else {
+                    // 失去焦点
+
+                }
+
+            }
+
+
+        });
 
         etSearch.setHintTextColor(Color.parseColor("#666666"));
 

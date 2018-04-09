@@ -58,7 +58,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 @SuppressLint("ValidFragment")
-public class WorkFragment extends Fragment {
+public class WorkFragment extends Fragment implements AllFunctionActivity.ObserveDataChange {
 
 
     public static WorkFragment mWorkFragment = null;
@@ -73,7 +73,6 @@ public class WorkFragment extends Fragment {
     private List<MenuItem> menuItemList = new ArrayList<>();
 
     private MenuRecyclerGridAdapter adapter;
-    private RecyclerUpdateReceiver mRecyclerUpdateReceiver;
 
     public static WorkFragment getInstance() {
         if (mWorkFragment == null) {
@@ -126,14 +125,6 @@ public class WorkFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(adapter);
 
-        //注册刷新数据的广播
-        mRecyclerUpdateReceiver = new RecyclerUpdateReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(1009);
-        filter.addAction(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA);
-        getActivity().registerReceiver(mRecyclerUpdateReceiver, filter);
-
-
     }
 
 
@@ -179,7 +170,7 @@ public class WorkFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ReceptionActivity.class));
                 break;
             case R.id.iv_all_function:
-                startActivity(new Intent(getActivity(), AllFunctionActivity.class));
+                AllFunctionActivity.startToActivity(getActivity(),this);
                 break;
 
         }
@@ -195,25 +186,13 @@ public class WorkFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    /**
-     * 用于执行刷新数据的广播接收器
-     */
-    private class RecyclerUpdateReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            initMenu();
-        }
-    }
-
     @Override
-    public void onDestroy() {
-        //注销刷新数据的广播
-        if (mRecyclerUpdateReceiver != null) {
-            getActivity().unregisterReceiver(mRecyclerUpdateReceiver);
-        }
-        super.onDestroy();
+    public void updateChange() {
+        initMenu();
     }
+
+
+
 }
 
 

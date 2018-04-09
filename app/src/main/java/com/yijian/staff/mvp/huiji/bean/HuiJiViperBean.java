@@ -139,10 +139,15 @@ public class HuiJiViperBean implements Serializable {
         this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
         this.visitTime = JsonUtil.getString(jsonObject, "visitTime");
         this.leaveTime = JsonUtil.getString(jsonObject, "leaveTime");
-        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
 
         try {
-            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CardprodsBean.class);
+            if (jsonObject.has("contractIds")){
+                this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
+            }
+            if (jsonObject.has("cardprods")){
+
+                this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CardprodsBean.class);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

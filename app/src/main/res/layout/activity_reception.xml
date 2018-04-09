@@ -164,7 +164,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/lg_jiedai"
+            android:background="@mipmap/jiedai"
             android:gravity="center"
             android:text="接待"
             android:textColor="#ffffff"

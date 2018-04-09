@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.all;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,15 +40,18 @@ import java.util.List;
 @Route(path = "/test/all")
 public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static void startToActivity(Context context,  ObserveDataChange observeDataChange2){
+        observeDataChange = observeDataChange2;
+        context.startActivity(new Intent(context,AllFunctionActivity.class));
+    }
+
+
     private RecyclerView mRecyclerView;
     /*分组数据的缓存列表，初始化分组的时候用*/
     private List<MenuItem> frequentlyList;
     private List<MenuItem> vipmanagerList;
     private List<MenuItem> huijikefuList;
     private List<MenuItem> coachList;
-    //    private List<MenuItem> caokeList;
-//    private List<MenuItem> admList;
-//    private List<MenuItem> audittaskList;
     private List<MenuItem> otherList;
 
     private List<EditItem> mEditList;
@@ -57,7 +61,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
 
     private boolean hasChangedListData;
     private TextView rightTv;
-
+    private static ObserveDataChange observeDataChange;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,7 +211,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     protected void onDestroy() {
         mListHeaderWrapper.releaseDragManager();
         if (mListHeaderWrapper.isHasDragChanged() || hasChangedListData) {
-            sendBroadcast(new Intent(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA));
+            observeDataChange.updateChange();
         }
         super.onDestroy();
     }
@@ -268,4 +272,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             }
         });
     }
+
+    public interface ObserveDataChange{
+        void updateChange();
+    }
+
 }

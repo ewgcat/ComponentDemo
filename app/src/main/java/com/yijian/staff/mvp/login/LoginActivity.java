@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -29,6 +30,7 @@ import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
+@Route(path = "/test/login")
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 

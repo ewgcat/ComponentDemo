@@ -3,6 +3,7 @@ package com.yijian.staff.net.response;
 
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -37,6 +38,10 @@ public abstract  class ResultObserver implements Observer<JSONObject>   , Result
                 if (data!=null){
                     onSuccess(data);
                 }
+            }else if (code==3){
+                String msg = jsonObject.getString("msg");
+                onFail(msg);
+                ARouter.getInstance().build("/test/login").navigation();
             }else {
                 String msg = jsonObject.getString("msg");
                 onFail(msg);

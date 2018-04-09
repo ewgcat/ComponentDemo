@@ -113,7 +113,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-                        refresh(huiJiGoodsFilterBean);
+
+                        String name = etSearch.getText().toString().trim();
+                        if (TextUtils.isEmpty(name)){
+                            Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
+                        }else {
+                            refresh(huiJiGoodsFilterBean);
+                        }
                         break;
                 }
                 return true;
@@ -154,7 +160,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
-                mGoodsInfoList.clear();
                 refresh(huiJiGoodsFilterBean);
             }
 
@@ -167,16 +172,15 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
     private void refresh(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
+        mGoodsInfoList.clear();
+
         pageNum = 1;
         pageSize = 4;
         this.huiJiGoodsFilterBean = huiJiGoodsFilterBean;
 
 
         String name = etSearch.getText().toString().trim();
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
+
             HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
             body.setCardName(name);
             body.setPageNum(pageNum);
@@ -218,7 +222,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                     Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+
 
     }
 
@@ -226,10 +230,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
         String name = etSearch.getText().toString().trim();
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
+
 
             HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
             body.setCardName(name);
@@ -274,7 +275,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                     Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+
 
     }
 
@@ -316,6 +317,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 priceUp = false;
                 isSortByPrice = 1;
                 huiJiGoodsFilterBean = null;
+                refresh(huiJiGoodsFilterBean);
+
             } else {
                 Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -323,6 +326,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 priceUp = true;
                 isSortByPrice = 0;
                 huiJiGoodsFilterBean = null;
+                refresh(huiJiGoodsFilterBean);
 
             }
         } else {
@@ -337,6 +341,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = 0;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         }
     }
 
@@ -344,6 +350,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             isSortByPrice = -1;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
@@ -356,6 +364,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = -1;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         }
 
     }

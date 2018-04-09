@@ -67,7 +67,7 @@ public class HttpManager {
 
 
     //会籍卡产品查询
-    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
+    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/cards-info";
 
     //首页搜索 会籍
     public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";

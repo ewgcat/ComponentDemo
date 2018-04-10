@@ -63,7 +63,7 @@ public class SettingActivity extends AppCompatActivity {
         navigationBar2.setTitle("");
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
-        initDialog();
+//        initDialog();
     }
 
     @OnClick({R.id.ll_head, R.id.ll_username, R.id.ll_sex, R.id.ll_age, R.id.ll_phone, R.id.tv_exit_login})
@@ -176,7 +176,7 @@ public class SettingActivity extends AppCompatActivity {
     //相册
     public void selectNewAlbum() {
         PhotoPicker.builder()
-                .setPhotoCount(3)
+                .setPhotoCount(1)
                 .isCamera(false)
                 .setShowGif(true)
                 .setPreviewEnabled(false)

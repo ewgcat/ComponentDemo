@@ -60,7 +60,7 @@ public class SettingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
-        navigationBar2.setTitle("设置");
+        navigationBar2.setTitle("");
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
         initDialog();
@@ -70,7 +70,7 @@ public class SettingActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
-                dialog.show();
+//                dialog.show();
                 break;
             case R.id.ll_username:
                 break;

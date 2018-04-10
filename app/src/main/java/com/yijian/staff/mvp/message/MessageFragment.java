@@ -57,13 +57,11 @@ public class MessageFragment extends Fragment {
         List<String> mTitleList = new ArrayList<>();
         mTitleList.add("系统消息");
         mTitleList.add("业务消息");
-        mTitleList.add("俱乐部");
 
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new BaseSubMessageFragment(getContext(), 0));
+        fragmentList.add(new SystemNoticeFragment());
         fragmentList.add(new BaseSubMessageFragment(getContext(), 1));
-        fragmentList.add(new BaseSubMessageFragment(getContext(), 2));
 
 
         MessagePagerAdapter messagePagerAdapter = new MessagePagerAdapter(getActivity().getSupportFragmentManager(), fragmentList, mTitleList);

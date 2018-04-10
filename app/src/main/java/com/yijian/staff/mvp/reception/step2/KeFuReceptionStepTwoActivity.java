@@ -3,10 +3,13 @@ package com.yijian.staff.mvp.reception.step2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
@@ -19,9 +22,11 @@ import butterknife.OnClick;
 
 public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener,KeFuReceptionStepTwoContract.View {
 
+    private static final String TAG = "KeFuReceptionStepTwoAct";
     private ScanBodyView scanBodyView;
     private View ll_to_coach;
     private KeFuReceptionStepTwoPresenter presenter;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,17 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 
         setContentView(R.layout.activity_kefu_reception_step_two);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("memberId")){
+            memberId = intent.getStringExtra("memberId");
+        }else {
+            Toast.makeText(KeFuReceptionStepTwoActivity.this,"获取客户信息失败,请重新进入接待界面", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         initView();
+
         presenter = new KeFuReceptionStepTwoPresenter(this);
         presenter.setView(this);
     }
@@ -78,13 +93,13 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
             case R.id.tv_next_step:
                 scanBodyView.stopScan();
 
-                presenter.jumpBodyCheck();
+                presenter.jumpBodyCheck(memberId);
                 break;
             case R.id.ll_to_coach:
 //                SharePreferenceUtil.setHasToScan(true);
 //                ll_to_coach.setVisibility(View.INVISIBLE);
                 scanBodyView.startScan();
-                presenter.coachBodyCheck();
+                presenter.coachBodyCheck(memberId);
                 break;
 
         }
@@ -117,10 +132,13 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 //        Intent intent = new Intent(KeFuReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
+        Log.e(TAG, "showJumpBodyCheck: " );
+        scanBodyView.stopScan();
     }
 
     @Override
     public void showCoachBodyCheck() {
-
+        Log.e(TAG, "showCoachBodyCheck: " );
+//        scanBodyView.stopScan();
     }
 }

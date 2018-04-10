@@ -14,9 +14,9 @@ public interface KeFuReceptionStepTwoContract {
 
     interface Presenter{
 //        sale-jump-body-check
-        void jumpBodyCheck();
+        void jumpBodyCheck(String memberId);
 
-        void coachBodyCheck();
+        void coachBodyCheck(String memberId);
 
     }
 }

@@ -54,7 +54,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     public void getRecptionerInfo() {
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, headerParam, new ResultObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

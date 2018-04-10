@@ -5,6 +5,8 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -14,16 +16,18 @@ import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultObserver;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.http.HeaderMap;
+import okhttp3.RequestBody;
 
 public class HttpManager {
 
@@ -187,6 +191,19 @@ public class HttpManager {
         execute(receptionTestObservable, observer);
     }
 
+    //问卷调查_保存
+    public static void postRecptionRequstion(String memberId,
+                                             List<QuestionnaireAnswer> requestBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
+
+        Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE,headers,memberId, requestBody);
+        execute(receptionTestObservable, observer);
+    }
+
     //保存menu编辑状态
     public static void saveMenuChange( MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
@@ -235,7 +252,9 @@ public class HttpManager {
     public static void postEditHuiJiVipInfo(String url, EditHuiJiVipBody editHuiJiVipBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
         Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
         execute(observable, observer);
     }
@@ -251,7 +270,9 @@ public class HttpManager {
     public static void postHasHeaderNoParam(String url, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
 
         Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
         execute(observable, observer);
@@ -267,7 +288,9 @@ public class HttpManager {
     public static void postHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
         Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
     }
@@ -289,7 +312,9 @@ public class HttpManager {
     public static void getHasHeaderNoParam(String url,  Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
         execute(observable, observer);
     }
@@ -304,7 +329,9 @@ public class HttpManager {
     public static void getHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
     }
@@ -324,9 +351,24 @@ public class HttpManager {
     //接待记录
     public static final String RECEPTION_RECORD=BuildConfig.HOST+"reception/record";
 
+    ///qs/member/getBodyBuildTimesByMemberId 健身时间
+
 
     // //接待---问卷调查
-    public static final String RECEPTION_QUESTION = BuildConfig.HOST + "qs/edit";
+    public static final String RECEPTION_QUESTION = BuildConfig.HOST + "qs/template";
+
+    //接待---问卷调查--保存
+    public static final String RECEPTION_QUESTION_SAVE = BuildConfig.HOST + "qs/save";
+
+    // //接待---问卷调查结果查看
+    public static final String RECEPTION_QUESTION_RESULT = BuildConfig.HOST + "qs/edit";
+
+    // //接待---问卷调查结果查看_健身时间
+    public static final String RECEPTION_QUESTION_RESULT_FITNESSTIME = BuildConfig.HOST + "qs/member/getBodyBuildTimesByMemberId";
+
+    //接待---问卷调查--健身时间保存
+    public static final String RECEPTION_QUESTION_FITNESSTIME = BuildConfig.HOST + "qs/member/saveBodyBuildTimes";
+
 
     //接待 ---体测录入--保存
     public static final String RECEPTION_TEST_SAVE=BuildConfig.HOST +"bodycheck/save";
@@ -339,5 +381,6 @@ public class HttpManager {
 
     //接待--会籍--step2-TO教练
     public static final String RECEPTION_STEP2_TOCOACH=BuildConfig.HOST +"reception/sale-to-coach-body-check";
+
 
 }

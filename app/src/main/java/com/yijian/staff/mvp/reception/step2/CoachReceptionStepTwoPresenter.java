@@ -77,7 +77,7 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
         userId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", userId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, head, params, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

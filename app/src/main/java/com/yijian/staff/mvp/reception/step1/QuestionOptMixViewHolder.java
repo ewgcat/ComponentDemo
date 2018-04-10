@@ -2,12 +2,14 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.step1.bean.ItemsBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ChildViewHolderGroup;
 
@@ -31,10 +33,10 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
         etMix = itemView.findViewById(R.id.et_mix);
     }
 
-    public void bind(QuestOptBean child, int parentPosition, int childPosition) {
-        ctvMixCheck.setChecked(child.isSelected());
+    public void bind(ItemsBean child, int parentPosition, int childPosition) {
+        ctvMixCheck.setChecked(child.isSelect());
 
-        ctvMixCheck.setText(child.getName());
+        ctvMixCheck.setText(child.getItem());
 
         ctvMixCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +47,8 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
             }
         });
 
-
+        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
+            etMix.setText(""+child.getInputContent());
         etMix.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,16 +62,16 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (listener!=null)listener.onMixWrited(parentPosition,childPosition,s);
+                if (listener!=null)listener.onMixWrited(child,parentPosition,childPosition,s);
             }
         });
 
     }
 
     public  interface MixListener{
-        void onMixWrited( int parentPosition,int childPosition,Editable s);
+        void onMixWrited( ItemsBean child,int parentPosition,int childPosition,Editable s);
 
-        void onMixClick(QuestOptBean child, int parentPosition, int childPosition);
+        void onMixClick(ItemsBean child, int parentPosition, int childPosition);
     }
 
     private MixListener listener;

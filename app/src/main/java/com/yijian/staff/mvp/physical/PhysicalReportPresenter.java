@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class PhysicalReportPresenter implements PhysicalReportConstract.Presenter{
     private final User user;
-    private final HashMap<String, String> head;
+//    private final HashMap<String, String> head;
     private Context context;
     private PhysicalReportConstract.View view;
 
@@ -30,8 +30,8 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
         this.context=context;
 
         user = DBManager.getInstance().queryUser();
-        head = new HashMap<>();
-        head.put("token", user.getToken());
+//        head = new HashMap<>();
+//        head.put("token", user.getToken());
     }
 
     public void setView(PhysicalReportConstract.View activity){
@@ -46,7 +46,7 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
         userId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", userId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, head, params, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

@@ -1,10 +1,13 @@
 package com.yijian.staff.mvp.reception.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by The_P on 2018/3/28.
  */
 
-public class RecptionerInfoBean {
+public class RecptionerInfoBean implements Parcelable {
 
     /**
      * id : 55b2144ff5d145faa6247aa8964ea3e4
@@ -49,4 +52,39 @@ public class RecptionerInfoBean {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.sex);
+        dest.writeString(this.mobile);
+    }
+
+    public RecptionerInfoBean() {
+    }
+
+    protected RecptionerInfoBean(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.sex = in.readString();
+        this.mobile = in.readString();
+    }
+
+    public static final Parcelable.Creator<RecptionerInfoBean> CREATOR = new Parcelable.Creator<RecptionerInfoBean>() {
+        @Override
+        public RecptionerInfoBean createFromParcel(Parcel source) {
+            return new RecptionerInfoBean(source);
+        }
+
+        @Override
+        public RecptionerInfoBean[] newArray(int size) {
+            return new RecptionerInfoBean[size];
+        }
+    };
 }

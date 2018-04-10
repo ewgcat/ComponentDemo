@@ -108,8 +108,10 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         wenJuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context,QuestionnaireResultActivity.class);
-                context.startActivity(i);
+//                Intent i = new Intent(context,QuestionnaireResultActivity.class);
+//                context.startActivity(i);
+
+                if (receptionHistoryListener!=null)receptionHistoryListener.onRequestClicked(position);
             }
         });
         tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
@@ -120,5 +122,20 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
             }
         });
         }
+    }
+
+    public List<RecptionRecordListBean.RecordsBean> getmReceptionInfoList() {
+        return mReceptionInfoList;
+    }
+
+    public interface ReceptionHistoryListener{
+        void onRequestClicked(int position);
+        void onPhysicalReportClicked(int position);
+    }
+
+    private ReceptionHistoryListener receptionHistoryListener;
+
+    public void setReceptionHistoryListener(ReceptionHistoryListener receptionHistoryListener) {
+        this.receptionHistoryListener = receptionHistoryListener;
     }
 }

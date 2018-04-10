@@ -2,14 +2,19 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -79,6 +84,9 @@ public interface ApiService {
     @POST
     Observable<JSONObject> saveReceptionTest(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body PhysicalExaminationBean physicalExaminationBean);
 
+    //问卷调查_保存
+    @POST
+    Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers,@Query("memberId") String memberId,@Body List<QuestionnaireAnswer> requestBody);
 
     //保存图标位置
     @Headers({"Content-type: application/json", "Accept: */*"})
@@ -144,6 +152,7 @@ public interface ApiService {
 
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
+
     @FormUrlEncoded
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);

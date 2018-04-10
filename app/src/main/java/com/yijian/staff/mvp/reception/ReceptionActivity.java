@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -17,6 +18,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
@@ -28,10 +30,12 @@ import com.yijian.staff.widget.NavigationBar2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener ,ReceptionContract.View{
+public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener, ReceptionContract.View, ReceptionHistoryAdapter.ReceptionHistoryListener {
 
-    private List<ReceptionInfo> mReceptionInfoList=new ArrayList<>();
+    private List<ReceptionInfo> mReceptionInfoList = new ArrayList<>();
+    private RecptionerInfoBean consumer;
 
+    public static final String CONSUMER = "consumer";
     private RecyclerView recyclerView;
     private ReceptionPresenter presenter;
     private TextView tvName;
@@ -50,7 +54,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         presenter.setView(this);
         presenter.getRecptionerInfo();
-        presenter. getRecptionRecord(true);
+        presenter.getRecptionRecord(true);
     }
 
     private void initView() {
@@ -77,11 +81,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         initRefresh();
 
-
+        receptionHistoryAdapter.setReceptionHistoryListener(this);
     }
 
     private void initRefresh() {
-        refreshLayout =  findViewById(R.id.refreshLayout);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -94,75 +98,91 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-//                refresh(null);
-                presenter. getRecptionRecord(true);
-//                refreshLayout.finishRefresh(1000);
+                presenter.getRecptionRecord(true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                presenter. getRecptionRecord(false);
-//                refreshLayout.finishLoadMore(1000);
-//                loadMore();
+                presenter.getRecptionRecord(false);
             }
         });
     }
-
-
 
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
-        switch (id){
+        switch (id) {
             case R.id.tv_stopJieDai:
                 //TODO 结束接待
-
 
 
                 break;
             case R.id.tv_jiedai:
                 //TODO 接待流程
-                int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole==1){
-                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
-                    startActivity(intent);
-                }else if (userRole==2){
-                    Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
-                    startActivity(intent);
-                }else if (userRole==3|userRole==4){
-                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-                    startActivity(intent);
+//                int userRole = SharePreferenceUtil.getUserRole();
+//                if (userRole==1){
+//                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
+//                    startActivity(intent);
+//                }else if (userRole==2){
+//                    Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
+//                    startActivity(intent);
+//                }else if (userRole==3|userRole==4){
+//                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
+//                    startActivity(intent);
+//                }
+                if (consumer == null) {
+                    Toast.makeText(ReceptionActivity.this, "用户信息获取失败，不能进入接待流程", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
+                intent.putExtra(CONSUMER, consumer);
+                startActivity(intent);
+
                 break;
         }
     }
 
 
-
     @Override
     public void showRecptionInfo(RecptionerInfoBean bean) {
-        tvName.setText(""+bean.getName());
-        tvSex.setText(""+bean.getSex());
-        tvPhone.setText(""+bean.getMobile());
+
+        consumer = bean;
+        tvName.setText("" + bean.getName());
+        tvSex.setText("" + bean.getSex());
+        tvPhone.setText("" + bean.getMobile());
 
     }
 
     @Override
     public void showRecptionRecordList(List<RecptionRecordListBean.RecordsBean> recordList, boolean isRefresh) {
 
-        if (isRefresh)receptionHistoryAdapter.clearData();
+        if (isRefresh) receptionHistoryAdapter.clearData();
         receptionHistoryAdapter.addData(recordList);
     }
 
     @Override
     public void finishRefresh(boolean isRefresh) {
-        if (isRefresh){
+        if (isRefresh) {
             refreshLayout.finishRefresh();
-        }else {
+        } else {
             refreshLayout.finishLoadMore();
         }
+    }
+
+    @Override
+    public void onRequestClicked(int position) {
+        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
+        Intent i = new Intent(this, QuestionnaireResultActivity.class);
+        i.putExtra("memberId", recordsBean.getMemberId());
+        startActivity(i);
+
+    }
+
+    @Override
+    public void onPhysicalReportClicked(int position) {
+
     }
 }

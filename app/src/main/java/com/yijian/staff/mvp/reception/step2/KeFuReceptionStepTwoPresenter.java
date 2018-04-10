@@ -2,16 +2,21 @@ package com.yijian.staff.mvp.reception.step2;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by The_P on 2018/4/4.
@@ -20,16 +25,11 @@ import java.util.Map;
 public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContract.Presenter {
 
     private static final String TAG = "KeFuReceptionStepTwoPre";
-    private final User user;
-    private final HashMap<String, String> head;
     private Context context;
     private KeFuReceptionStepTwoContract.View view;
 
     public KeFuReceptionStepTwoPresenter(Context context) {
         this.context=context;
-        user = DBManager.getInstance().queryUser();
-        head = new HashMap<>();
-        head.put("token", user.getToken());
     }
 
     public void setView(KeFuReceptionStepTwoContract.View view){
@@ -37,40 +37,105 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
     }
 
     @Override
-    public void jumpBodyCheck() {
+    public void jumpBodyCheck(String memberId) {
         Map<String,String> params=new HashMap<>();
-        String userId = user.getUserId();
-        userId="076c3096caf04559b9abe112542a9cd0";
-        params.put("memberId", userId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, head, params, new ResultObserver() {
+        memberId="076c3096caf04559b9abe112542a9cd0";
+        params.put("memberId", memberId);
+//        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, params, new ResultObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+////                Log.e(TAG, "onSuccess: "+result.toString());
+//                view.showJumpBodyCheck();
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//
+//            }
+//        });
+
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, params, new Observer<JSONObject>() {
             @Override
-            public void onSuccess(JSONObject result) {
-                Log.e(TAG, "onSuccess: "+result.toString());
-                view.showJumpBodyCheck();
+            public void onSubscribe(Disposable d) {
+
             }
 
             @Override
-            public void onFail(String msg) {
+            public void onNext(JSONObject jsonObject) {
+                try {
+                    int code = jsonObject.getInt("code");
+
+                    if (code==0){
+                        view.showJumpBodyCheck();
+                    }else {
+                        String msg = jsonObject.getString("msg");
+                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
 
             }
         });
     }
 
     @Override
-    public void coachBodyCheck() {
+    public void coachBodyCheck(String memberId) {
         Map<String,String> params=new HashMap<>();
-        String userId = user.getUserId();
-        userId="076c3096caf04559b9abe112542a9cd0";
-        params.put("memberId", userId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, head, params, new ResultObserver() {
+        memberId="076c3096caf04559b9abe112542a9cd0";
+        params.put("memberId", memberId);
+//        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new ResultObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+////                Log.e(TAG, "onSuccess: "+result.toString());
+//                view.showCoachBodyCheck();
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new Observer<JSONObject>(){
+
             @Override
-            public void onSuccess(JSONObject result) {
-                Log.e(TAG, "onSuccess: "+result.toString());
-                view.showCoachBodyCheck();
+            public void onSubscribe(Disposable d) {
+
             }
 
             @Override
-            public void onFail(String msg) {
+            public void onNext(JSONObject jsonObject) {
+                try {
+                    int code = jsonObject.getInt("code");
+
+                    if (code==0){
+                        view.showCoachBodyCheck();
+                    }else {
+                        String msg = jsonObject.getString("msg");
+                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
 
             }
         });

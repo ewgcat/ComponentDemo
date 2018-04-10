@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
@@ -30,7 +31,7 @@ public class QuestionViewHolder extends AbsParentViewHolder{
     }
 
 
-    public void bind(Step1Bean parent, int parentPosition) {
-        tvTitle.setText(parent.getQuestName());
+    public void bind(DataListBean parent, int parentPosition) {
+        tvTitle.setText(""+parent.getOrder()+"."+parent.getDesc());
     }
 }

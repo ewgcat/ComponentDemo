@@ -7,10 +7,20 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Chronometer;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.cunke.CunKeActivity;
+import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.util.JsonUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,6 +51,43 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         initData();
+        loadData();
+    }
+
+    /**
+     * 加载数据
+     */
+    private void loadData() {
+       /* HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                refreshLayout.finishRefresh(2000, true);
+
+                bodyList.clear();
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),TypeOfCunKeBody.class);
+                        bodyList.add(typeOfCunKeBody);
+                        cunKeAdapter.resetDataList(bodyList);
+                    } catch (JSONException e) {
+
+
+                    }
+                }
+                cunKeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                Toast.makeText(CunKeActivity.this,msg,Toast.LENGTH_SHORT).show();
+
+            }
+        });*/
     }
 
     /**

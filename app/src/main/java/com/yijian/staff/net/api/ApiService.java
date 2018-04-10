@@ -10,9 +10,11 @@ import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -51,13 +53,16 @@ public interface ApiService {
             @Url String fileUrl
     );
 
+
     /*POST 请求 上传单个文件*/
     @Multipart
-    @POST("{url}")
-    Observable<ResponseBody> upLoadFile(
-            @Path("url") String url,
-            @Part("image\"; filename=\"image.jpg") RequestBody requestBody
+    @POST()
+    Observable<JSONObject> upLoadImage(
+            @Url String url,
+            @HeaderMap Map<String, String> headers,
+            @Part() MultipartBody.Part file
     );
+
 
     /*POST 请求 上传文件*/
     @POST("{url}")

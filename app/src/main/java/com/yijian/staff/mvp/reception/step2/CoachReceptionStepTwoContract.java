@@ -14,8 +14,8 @@ public interface CoachReceptionStepTwoContract {
     }
 
     interface Presenter{
-          void   saveTestData(PhysicalExaminationBean bean);
+          void   saveTestData(PhysicalExaminationBean bean, String memberId);
 
-          void viewTestData();
+          void viewTestData(String id);
     }
 }

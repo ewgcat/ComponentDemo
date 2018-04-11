@@ -10,7 +10,6 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -39,12 +38,11 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
     }
 
     @Override
-    public void loadData() {
+    public void loadData(String memberId) {
         Map<String,String> params=new HashMap<>();
         params.put("shopId",user.getShopId());
-        String userId = user.getUserId();
-        userId="076c3096caf04559b9abe112542a9cd0";
-        params.put("memberId", userId);
+        memberId="076c3096caf04559b9abe112542a9cd0";
+        params.put("memberId", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultObserver() {
             @Override

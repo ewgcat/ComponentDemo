@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.physical;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
@@ -38,6 +41,8 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
     private TextView tvAge;
     private PhysicalReportAdapter demoAdapter;
     private List<ParentQuestionBean> list;
+    private String memberId;
+    private String memberName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +52,17 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         initView();
         initData();
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("memberId")&&intent.hasExtra("memberName")){
+            memberId = intent.getStringExtra("memberId");
+            memberName = intent.getStringExtra("memberName");
+        }else {
+            Toast.makeText(PhysicalReportActivity.this,"用户信息获取失败",Toast.LENGTH_SHORT).show();
+            return;
+        }
         PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(this);
         physicalReportPresenter.setView(this);
-        physicalReportPresenter.loadData();
+        physicalReportPresenter.loadData(memberId);
 
     }
 
@@ -65,6 +78,8 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         RelativeLayout rlHeight = findViewById(R.id.rl_height);
         RelativeLayout rlAge = findViewById(R.id.rl_age);
         tvName = findViewById(R.id.tv_name);
+        tvName.setText(""+memberName);
+
         tvHeight = findViewById(R.id.tv_height);
         tvAge = findViewById(R.id.tv_age);
 
@@ -91,7 +106,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         tvAge.setText(bean.getAge().toString());
         tvHeight.setText(bean.getHeight().toString());
 
-        Log.e(TAG, "showUserData: "+bean.toString());
+//        Log.e(TAG, "showUserData: "+bean.toString());
 
         for (ParentQuestionBean parentQuestionBean : parentObj) {
             //必填字段

@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
@@ -133,12 +134,24 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
 //                    startActivity(intent);
 //                }
+
+
                 if (consumer == null) {
                     Toast.makeText(ReceptionActivity.this, "用户信息获取失败，不能进入接待流程", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
-                intent.putExtra(CONSUMER, consumer);
+                //会籍角色
+//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
+//                intent.putExtra(CONSUMER, consumer);
+//                startActivity(intent);
+
+//                //教练角色
+//                Intent intent1 = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
+//                intent1.putExtra(CONSUMER, consumer);
+//                startActivity(intent1);
+
+                //第三步
+                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
                 startActivity(intent);
 
                 break;
@@ -183,6 +196,10 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onPhysicalReportClicked(int position) {
-
+        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
+        Intent i = new Intent(this,PhysicalReportActivity.class);
+        i.putExtra("memberId", recordsBean.getMemberId());
+        i.putExtra("memberName",recordsBean.getMemberName());
+        startActivity(i);
     }
 }

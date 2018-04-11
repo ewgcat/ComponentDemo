@@ -11,6 +11,6 @@ public interface PhysicalReportConstract {
         void showUserData(PhysicalExaminationBean bean);
     }
     interface Presenter{
-        void loadData();
+        void loadData(String memberId);
     }
 }

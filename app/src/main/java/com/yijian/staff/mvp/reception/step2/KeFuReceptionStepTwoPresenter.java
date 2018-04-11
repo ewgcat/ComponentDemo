@@ -41,18 +41,6 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
         Map<String,String> params=new HashMap<>();
         memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
-//        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, params, new ResultObserver() {
-//            @Override
-//            public void onSuccess(JSONObject result) {
-////                Log.e(TAG, "onSuccess: "+result.toString());
-//                view.showJumpBodyCheck();
-//            }
-//
-//            @Override
-//            public void onFail(String msg) {
-//
-//            }
-//        });
 
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, params, new Observer<JSONObject>() {
             @Override
@@ -93,18 +81,6 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
         Map<String,String> params=new HashMap<>();
         memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
-//        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new ResultObserver() {
-//            @Override
-//            public void onSuccess(JSONObject result) {
-////                Log.e(TAG, "onSuccess: "+result.toString());
-//                view.showCoachBodyCheck();
-//            }
-//
-//            @Override
-//            public void onFail(String msg) {
-//                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new Observer<JSONObject>(){
 

@@ -117,8 +117,9 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context,PhysicalReportActivity.class);
-                context.startActivity(i);
+//                Intent i = new Intent(context,PhysicalReportActivity.class);
+//                context.startActivity(i);
+                if (receptionHistoryListener!=null)receptionHistoryListener.onPhysicalReportClicked(position);
             }
         });
         }

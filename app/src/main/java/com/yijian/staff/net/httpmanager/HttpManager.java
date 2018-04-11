@@ -185,8 +185,14 @@ public class HttpManager {
     }
 
     //体测录入
-    public static void postRecptionTest(Map<String, String> headers,String memberId,
+    public static void postRecptionTest(String memberId,
             PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        String token = user.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        headers.put("token", token);
+
         Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE,headers,memberId, physicalExaminationBeanBody);
         execute(receptionTestObservable, observer);
     }

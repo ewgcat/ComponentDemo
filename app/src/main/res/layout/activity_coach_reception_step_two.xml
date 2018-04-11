@@ -55,6 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/tv_name"
                         android:layout_alignParentRight="true"
                         tools:text="张山"
                         android:textSize="14sp"

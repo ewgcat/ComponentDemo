@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.yijian.staff.R;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 
 public class ReceptionStepThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    private static final String TAG = "ReceptionStepThreeActiv";
     private Fragment fragment;
 
     @Override
@@ -44,6 +45,7 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         timeBar.showTimeBar(3);
 
         int userRole = SharePreferenceUtil.getUserRole();
+        Log.e(TAG, "initView: userRole="+userRole );
         if (userRole==1){
              fragment = new HuiJiProductQuotationFragment();
         }else if (userRole==2){

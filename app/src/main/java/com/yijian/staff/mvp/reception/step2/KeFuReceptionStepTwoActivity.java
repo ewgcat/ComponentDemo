@@ -134,6 +134,8 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 //        startActivity(intent);
         Log.e(TAG, "showJumpBodyCheck: " );
         scanBodyView.stopScan();
+
+
     }
 
     @Override

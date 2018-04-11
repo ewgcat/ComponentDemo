@@ -10,12 +10,10 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -184,7 +182,7 @@ public class VipInfoEditActivity extends AppCompatActivity {
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
 
-        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL,  editHuiJiVipBody, new ResultObserver() {
+        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL,  editHuiJiVipBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
@@ -254,7 +252,7 @@ public class VipInfoEditActivity extends AppCompatActivity {
         marriageStatusList.add("已婚");
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL,  new ResultObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL,  new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {

@@ -60,17 +60,17 @@ public class SettingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
-        navigationBar2.setTitle("设置");
+        navigationBar2.setTitle("");
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
-        initDialog();
+//        initDialog();
     }
 
     @OnClick({R.id.ll_head, R.id.ll_username, R.id.ll_sex, R.id.ll_age, R.id.ll_phone, R.id.tv_exit_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
-                dialog.show();
+//                dialog.show();
                 break;
             case R.id.ll_username:
                 break;
@@ -176,7 +176,7 @@ public class SettingActivity extends AppCompatActivity {
     //相册
     public void selectNewAlbum() {
         PhotoPicker.builder()
-                .setPhotoCount(3)
+                .setPhotoCount(1)
                 .isCamera(false)
                 .setShowGif(true)
                 .setPreviewEnabled(false)

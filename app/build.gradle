@@ -1,14 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
-//apply from: 'tinker-support.gradle'
+apply from: 'tinker-support.gradle'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
     lintOptions {
         abortOnError false
+        checkReleaseBuilds false
         disable 'MissingTranslation'
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -55,12 +57,7 @@ android {
         }
     }
 
-//
-//    productFlavors {
-//        google {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "google"]
-//        }
-//    }
+
 
 }
 greendao {
@@ -69,12 +66,12 @@ greendao {
     targetGenDir 'src/main/java'
 }
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //network
     implementation project(':retrofit2')
     implementation project(':PhotoPicker')
     implementation project(':photoview')
+    implementation project(':calendar')
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -86,9 +83,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     implementation 'com.google.code.gson:gson:2.8.1'
 
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+
+    //noinspection GradleCompatible
     implementation "com.android.support:support-core-utils:$supportLibVersion"
     implementation "com.nineoldandroids:library:2.4.0"
-    implementation "com.github.bumptech.glide:glide:4.6.1"
 
     implementation "com.android.support:support-annotations:${rootProject.supportLibVersion}"
     implementation "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
@@ -142,9 +142,8 @@ dependencies {
     }
     implementation 'com.alibaba:arouter-api:1.3.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
-    implementation project(':calendar')
 
-    implementation 'cn.jiguang.sdk:jpush:3.0.8'
-    implementation 'cn.jiguang.sdk:jcore:1.1.6'
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
 
 }

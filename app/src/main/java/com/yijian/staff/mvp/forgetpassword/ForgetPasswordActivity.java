@@ -10,10 +10,9 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONObject;
 
@@ -66,7 +65,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     return;
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
-                        HttpManager.getCode(account, telephone, new ResultObserver() {
+                        HttpManager.getCode(account, telephone, new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {
 
@@ -99,7 +98,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     return;
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
-                        HttpManager.resetPassword(account, telephone, verificationCode,newPwd,confirmPwd,new ResultObserver() {
+                        HttpManager.resetPassword(account, telephone, verificationCode,newPwd,confirmPwd,new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {
 

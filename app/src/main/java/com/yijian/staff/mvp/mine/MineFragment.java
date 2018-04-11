@@ -72,10 +72,10 @@ public class MineFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_user_head:
-                Intent intent = new Intent(getContext(), SeePicActivity.class);
-                String path="";
-                intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), SeePicActivity.class);
+//                String path="";
+//                intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
+//                startActivity(intent);
                 break;
             case R.id.ll_more:
                 startActivityForResult(new Intent(getContext(), SettingActivity.class),1234);

@@ -1,6 +1,8 @@
 package com.yijian.staff.net.httpmanager;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -9,16 +11,18 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +32,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.RequestBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class HttpManager {
-
 
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
@@ -38,7 +44,6 @@ public class HttpManager {
     public static ApiService getApiService() {
         return apiService;
     }
-
 
 
     /*************************会籍************************/
@@ -69,9 +74,8 @@ public class HttpManager {
     public static String GET_HUIJI_VIPER_EDIT_URL = BuildConfig.HOST + "member/edit";
 
 
-
     //会籍卡产品查询
-    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/search";
+    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/cards-info";
 
     //首页搜索 会籍
     public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
@@ -103,6 +107,9 @@ public class HttpManager {
     //私教课的存课列表
     public static String COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL = BuildConfig.HOST + "privatecourse/stock-private/page-list";
 
+    //私教课的上课记录基本信息
+    public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "/privatecourse/getMemberCourseRecordInfo";
+
 
     //工作台 首页图标
     public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
@@ -119,8 +126,8 @@ public class HttpManager {
     //重置密码
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
 
-
-
+    //添加潜在
+    public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
 
 
     //公用方法
@@ -137,6 +144,21 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
+    //登陆
+    public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> loginObservable = apiService.postAddPotential(ADD_POTENTIAL_URL, headers, addPotentialRequestBody);
+
+            execute(loginObservable, observer);
+        }
+    }
+
     //获取验证码
     public static void getCode(String username, String telephone, Observer<JSONObject> observer) {
         Observable<JSONObject> getCodeObservable = apiService.getCode(GET_CODE_URL, username, telephone);
@@ -145,7 +167,7 @@ public class HttpManager {
 
 
     //重置密码
-    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultObserver observer) {
+    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultJSONObjectObserver observer) {
         Observable<JSONObject> getCodeObservable = apiService.resetPassword(RESET_PASSWORD_URL, username, telephone, verificationCode, newPwd, confirmPwd);
         execute(getCodeObservable, observer);
     }
@@ -175,13 +197,17 @@ public class HttpManager {
     }
 
     // 首页图标
-    public static void getIndexMenuList( Observer<JSONObject> observer) {
+    public static void getIndexMenuList(Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
+            execute(observable, observer);
+        }
     }
 
     //体测录入
@@ -211,44 +237,55 @@ public class HttpManager {
     }
 
     //保存menu编辑状态
-    public static void saveMenuChange( MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
+    public static void saveMenuChange(MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.saveMenuChange(SAVE_MENU_CHANGE_URL, headers, menuRequestBody);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.saveMenuChange(SAVE_MENU_CHANGE_URL, headers, menuRequestBody);
+            execute(observable, observer);
+        }
     }
 
     //私教课查询列表
-    public static void getCoachPrivateCourseList( CoachPrivateCourseRequestBody body, Observer<JSONObject> observer) {
+    public static void getCoachPrivateCourseList(CoachPrivateCourseRequestBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.getCoachPrivateCourseList(COACH_PRIVATE_COURSE_LIST_URL, headers, body);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getCoachPrivateCourseList(COACH_PRIVATE_COURSE_LIST_URL, headers, body);
+            execute(observable, observer);
+        }
     }
 
     //会籍卡产品查询列表
     public static void getHuiJiCardGoodsList(HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
+            execute(observable, observer);
+        }
     }
 
 
-
     //教练模糊搜索会员
-    public static void searchViperByCoach( Map<String, String> params, Observer<JSONObject> observer) {
+    public static void searchViperByCoach(Map<String, String> params, Observer<JSONObject> observer) {
 
-        getHasHeaderHasParam(INDEX_COACH_QUERY_URL,  params, observer);
+        getHasHeaderHasParam(INDEX_COACH_QUERY_URL, params, observer);
 
     }
 
 
     //会籍模糊搜索会员
-    public static void searchViperByHuiJi( Map<String, String> params, Observer<JSONObject> observer) {
+    public static void searchViperByHuiJi(Map<String, String> params, Observer<JSONObject> observer) {
 
         getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, params, observer);
 
@@ -263,6 +300,13 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
         execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
+            execute(observable, observer);
+        }
     }
 
     //公共
@@ -279,9 +323,14 @@ public class HttpManager {
         String token = user.getToken();
         token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
 
-        Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
-        execute(observable, observer);
+            Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
+            execute(observable, observer);
+        }
     }
 
     // post无头有参
@@ -315,7 +364,7 @@ public class HttpManager {
     }
 
     // get有头无参
-    public static void getHasHeaderNoParam(String url,  Observer<JSONObject> observer) {
+    public static void getHasHeaderNoParam(String url, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
@@ -323,6 +372,13 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
         execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
+            execute(observable, observer);
+        }
     }
 
     // get无头有参
@@ -340,6 +396,35 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
+            execute(observable, observer);
+        }
+    }
+
+    //上传图片
+    public static void upLoadImage(String url, String imageFilePath, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            File file = new File(imageFilePath);
+            // 创建 RequestBody，用于封装构建RequestBody
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+            // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+            MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+
+
+            Observable<JSONObject> observable = apiService.upLoadImage(url,headers,body );
+            execute(observable, observer);
+        }
     }
 
 

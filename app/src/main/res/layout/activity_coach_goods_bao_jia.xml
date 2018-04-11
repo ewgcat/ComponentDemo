@@ -39,7 +39,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/icon_serch" />
+                android:src="@mipmap/home_serch" />
 
             <EditText
                 android:id="@+id/et_search"
@@ -59,6 +59,11 @@
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
+import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -15,9 +16,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.io.File;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,13 +61,16 @@ public interface ApiService {
             @Url String fileUrl
     );
 
+
     /*POST 请求 上传单个文件*/
     @Multipart
-    @POST("{url}")
-    Observable<ResponseBody> upLoadFile(
-            @Path("url") String url,
-            @Part("image\"; filename=\"image.jpg") RequestBody requestBody
+    @POST()
+    Observable<JSONObject> upLoadImage(
+            @Url String url,
+            @HeaderMap Map<String, String> headers,
+            @Part() MultipartBody.Part file
     );
+
 
     /*POST 请求 上传文件*/
     @POST("{url}")
@@ -87,6 +93,12 @@ public interface ApiService {
     //问卷调查_保存
     @POST
     Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers,@Query("memberId") String memberId,@Body List<QuestionnaireAnswer> requestBody);
+
+    //添加潜在
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAddPotential(@Url String addPotentialUrl,@HeaderMap Map<String, String> headers,@Body AddPotentialRequestBody addPotentialRequestBody);
+
 
     //保存图标位置
     @Headers({"Content-type: application/json", "Accept: */*"})

@@ -41,6 +41,43 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         initData();
+        loadData();
+    }
+
+    /**
+     * 加载数据
+     */
+    private void loadData() {
+       /* HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                refreshLayout.finishRefresh(2000, true);
+
+                bodyList.clear();
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),TypeOfCunKeBody.class);
+                        bodyList.add(typeOfCunKeBody);
+                        cunKeAdapter.resetDataList(bodyList);
+                    } catch (JSONException e) {
+
+
+                    }
+                }
+                cunKeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                Toast.makeText(CunKeActivity.this,msg,Toast.LENGTH_SHORT).show();
+
+            }
+        });*/
     }
 
     /**

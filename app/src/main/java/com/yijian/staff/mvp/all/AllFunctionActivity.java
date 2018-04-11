@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.all;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,10 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.savemenu.MenuBean;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.MenuRecyclerListAdapter;
@@ -26,18 +25,21 @@ import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseRecyclerItem;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
-import com.yijian.staff.util.ConstantUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Route(path = "/test/all")
 public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static void startToActivity(Context context,  ObserveDataChange observeDataChange2){
+        observeDataChange = observeDataChange2;
+        context.startActivity(new Intent(context,AllFunctionActivity.class));
+    }
+
 
     private RecyclerView mRecyclerView;
     /*分组数据的缓存列表，初始化分组的时候用*/
@@ -45,9 +47,6 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private List<MenuItem> vipmanagerList;
     private List<MenuItem> huijikefuList;
     private List<MenuItem> coachList;
-    //    private List<MenuItem> caokeList;
-//    private List<MenuItem> admList;
-//    private List<MenuItem> audittaskList;
     private List<MenuItem> otherList;
 
     private List<EditItem> mEditList;
@@ -57,7 +56,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
 
     private boolean hasChangedListData;
     private TextView rightTv;
-
+    private static ObserveDataChange observeDataChange;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,7 +206,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     protected void onDestroy() {
         mListHeaderWrapper.releaseDragManager();
         if (mListHeaderWrapper.isHasDragChanged() || hasChangedListData) {
-            sendBroadcast(new Intent(ConstantUtil.NOTIFY_REFRESH_MENU_LIST_DATA));
+            observeDataChange.updateChange();
         }
         super.onDestroy();
     }
@@ -256,7 +255,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         }
 
         MenuHelper.savePreferFrequentlyList(frequentlyList);
-        HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultObserver() {
+        HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -268,4 +267,9 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             }
         });
     }
+
+    public interface ObserveDataChange{
+        void updateChange();
+    }
+
 }

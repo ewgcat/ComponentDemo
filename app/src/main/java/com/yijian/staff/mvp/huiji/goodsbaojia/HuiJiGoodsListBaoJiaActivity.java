@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.huiji.goodsbaojia;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,15 +23,13 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -40,9 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,7 +108,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_SEARCH:
-                        refresh(huiJiGoodsFilterBean);
+
+                        String name = etSearch.getText().toString().trim();
+                        if (TextUtils.isEmpty(name)){
+                            Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
+                        }else {
+                            refresh(huiJiGoodsFilterBean);
+                        }
                         break;
                 }
                 return true;
@@ -154,7 +155,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
-                mGoodsInfoList.clear();
                 refresh(huiJiGoodsFilterBean);
             }
 
@@ -167,16 +167,15 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
     private void refresh(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
+        mGoodsInfoList.clear();
+
         pageNum = 1;
         pageSize = 4;
         this.huiJiGoodsFilterBean = huiJiGoodsFilterBean;
 
 
         String name = etSearch.getText().toString().trim();
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
+
             HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
             body.setCardName(name);
             body.setPageNum(pageNum);
@@ -190,7 +189,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList(body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     mGoodsInfoList.clear();
@@ -218,7 +217,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                     Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+
 
     }
 
@@ -226,10 +225,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
 
 
         String name = etSearch.getText().toString().trim();
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
+
 
             HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
             body.setCardName(name);
@@ -244,7 +240,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList( body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList( body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -274,7 +270,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                     Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+
 
     }
 
@@ -316,6 +312,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 priceUp = false;
                 isSortByPrice = 1;
                 huiJiGoodsFilterBean = null;
+                refresh(huiJiGoodsFilterBean);
+
             } else {
                 Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -323,6 +321,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 priceUp = true;
                 isSortByPrice = 0;
                 huiJiGoodsFilterBean = null;
+                refresh(huiJiGoodsFilterBean);
 
             }
         } else {
@@ -337,6 +336,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = 0;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         }
     }
 
@@ -344,6 +345,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             isSortByPrice = -1;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
@@ -356,6 +359,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = -1;
             huiJiGoodsFilterBean = null;
+            refresh(huiJiGoodsFilterBean);
+
         }
 
     }

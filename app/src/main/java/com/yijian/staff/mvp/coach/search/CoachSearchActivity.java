@@ -2,8 +2,6 @@ package com.yijian.staff.mvp.coach.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,10 +20,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
@@ -134,7 +130,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     refreshLayout.finishRefresh(2000, true);
@@ -180,7 +176,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByCoach( params, new ResultObserver() {
+            HttpManager.searchViperByCoach( params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

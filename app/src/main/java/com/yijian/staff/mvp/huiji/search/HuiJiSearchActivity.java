@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -18,7 +17,7 @@ import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,10 +25,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +44,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
@@ -176,7 +172,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByHuiJi(params, new ResultObserver() {
+            HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
 
@@ -227,7 +223,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     clearEditTextFocus();

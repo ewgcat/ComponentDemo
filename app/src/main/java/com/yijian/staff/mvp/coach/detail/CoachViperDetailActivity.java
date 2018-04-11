@@ -13,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.bean.VipDetailBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
@@ -22,7 +20,7 @@ import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -208,7 +206,7 @@ public class CoachViperDetailActivity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(),VipDetailBean.class);

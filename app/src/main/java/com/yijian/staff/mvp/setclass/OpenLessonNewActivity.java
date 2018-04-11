@@ -7,20 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Chronometer;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.cunke.CunKeActivity;
-import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
-import com.yijian.staff.util.JsonUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,7 +48,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
      * 加载数据
      */
     private void loadData() {
-       /* HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, map, new ResultObserver() {
+       /* HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);

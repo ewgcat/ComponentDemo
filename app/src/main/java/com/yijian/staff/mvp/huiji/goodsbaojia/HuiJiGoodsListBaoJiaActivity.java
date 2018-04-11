@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.huiji.goodsbaojia;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,15 +23,13 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -40,9 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -194,7 +189,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList(body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList(body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     mGoodsInfoList.clear();
@@ -245,7 +240,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                 body.setVenueName(huiJiGoodsFilterBean.getVenueName());
             }
 
-            HttpManager.getHuiJiCardGoodsList( body, new ResultObserver() {
+            HttpManager.getHuiJiCardGoodsList( body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

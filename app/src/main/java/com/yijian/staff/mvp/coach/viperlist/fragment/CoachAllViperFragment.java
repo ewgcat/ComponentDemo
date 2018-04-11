@@ -26,7 +26,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 
@@ -139,7 +139,7 @@ public class CoachAllViperFragment extends Fragment {
 
         }
 
-        HttpManager.getCoachAllViperList(header, map, new ResultObserver() {
+        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -204,7 +204,7 @@ public class CoachAllViperFragment extends Fragment {
 
 
         }
-        HttpManager.getCoachAllViperList(header, map, new ResultObserver() {
+        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

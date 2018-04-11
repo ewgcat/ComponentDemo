@@ -13,7 +13,7 @@ import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 
 import org.json.JSONObject;
@@ -29,7 +29,6 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.HeaderMap;
 
 public class HttpManager {
 
@@ -162,7 +161,7 @@ public class HttpManager {
 
 
     //重置密码
-    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultObserver observer) {
+    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultJSONObjectObserver observer) {
         Observable<JSONObject> getCodeObservable = apiService.resetPassword(RESET_PASSWORD_URL, username, telephone, verificationCode, newPwd, confirmPwd);
         execute(getCodeObservable, observer);
     }

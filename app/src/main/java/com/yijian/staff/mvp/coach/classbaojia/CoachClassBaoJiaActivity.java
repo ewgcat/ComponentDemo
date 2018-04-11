@@ -23,20 +23,14 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
-import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
-import com.yijian.staff.mvp.coach.search.CoachSearchViperBean;
-import com.yijian.staff.mvp.coach.search.CoachSearchViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -189,7 +183,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
 
-        HttpManager.getCoachPrivateCourseList(body, new ResultObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 mClassInfoList.clear();
@@ -240,7 +234,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
 
-        HttpManager.getCoachPrivateCourseList(body, new ResultObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

@@ -48,7 +48,7 @@
                      android:orientation="horizontal"
                      android:gravity="center">
                      <TextView
-                         android:id="@+id/iv_bussiness_msg_name"
+                         android:id="@+id/tv_bussiness_msg_name"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_marginLeft="8dp"

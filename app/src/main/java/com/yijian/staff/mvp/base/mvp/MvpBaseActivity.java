@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.base;
+package com.yijian.staff.mvp.base.mvp;
 
 import android.content.Context;
 
@@ -6,6 +6,7 @@ import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.dagger.component.ActivityComponent;
 import com.yijian.staff.dagger.component.DaggerActivityComponent;
 import com.yijian.staff.dagger.module.ActivityModule;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by codeest on 2016/8/2.
  * MVP activity基类
  */
-public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivity implements BaseView {
+public abstract class MvpBaseActivity<T extends BasePresenter> extends MvcBaseActivity implements BaseView {
 
     @Inject
     protected T mPresenter;

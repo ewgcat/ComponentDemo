@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.base;
+package com.yijian.staff.mvp.base.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,7 @@ import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.dagger.component.DaggerFragmentComponent;
 import com.yijian.staff.dagger.component.FragmentComponent;
 import com.yijian.staff.dagger.module.FragmentModule;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import javax.inject.Inject;
  * Created by codeest on 2016/8/2.
  * MVP Fragment基类
  */
-public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragment implements BaseView {
+public abstract class MvpBaseFragment<T extends BasePresenter> extends MvcBaseFragment implements BaseView {
 
     @Inject
     protected T mPresenter;

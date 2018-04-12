@@ -15,7 +15,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
-import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.mvp.main.MainActivityMvp;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharePreferenceUtil.setUserRole(user.getRole());
 
                             DBManager.getInstance().insertOrReplaceUser(user);
-                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent i = new Intent(LoginActivity.this, MainActivityMvp.class);
                             startActivity(i);
                             finish();
 

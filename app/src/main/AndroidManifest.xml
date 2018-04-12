@@ -64,7 +64,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvp.main.MainActivity"
+            android:name=".mvp.main.MainActivityMvp"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />

@@ -21,7 +21,6 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;
 

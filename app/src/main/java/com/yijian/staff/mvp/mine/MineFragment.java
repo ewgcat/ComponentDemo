@@ -10,8 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.advice.AdviceActivity;
 import com.yijian.staff.mvp.advice.AdviceListActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
@@ -22,6 +28,7 @@ import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.mine.setting.SettingActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,10 +65,39 @@ public class MineFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         unbinder = ButterKnife.bind(this, view);
+        User user = DBManager.getInstance().queryUser();
+        if (user!=null){
+            tvUserName.setText(user.getName());
+            // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
+            if (user.getRole()==1){
+                tvUserJobPostion.setText("会籍客服");
+            }else   if (user.getRole()==2){
+                tvUserJobPostion.setText("教练");
+            }else   if (user.getRole()==3){
+                tvUserJobPostion.setText("会籍总监");
+            }else   if (user.getRole()==4){
+                tvUserJobPostion.setText("教练总监");
+            }else   if (user.getRole()==5){
+                tvUserJobPostion.setText("操课教练");
+            }else   if (user.getRole()==6){
+                tvUserJobPostion.setText("行政");
+            }else   if (user.getRole()==7){
+                tvUserJobPostion.setText("店长");
+            }
+        }
         return view;
     }
 
 
+    private void setImageResource(String path) {
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(this).load(path).apply(options).into(ivUserHead);
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

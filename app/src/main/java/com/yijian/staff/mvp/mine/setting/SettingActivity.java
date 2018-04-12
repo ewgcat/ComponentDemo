@@ -22,6 +22,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
@@ -64,6 +65,11 @@ public class SettingActivity extends AppCompatActivity {
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
 //        initDialog();
+
+        User user = DBManager.getInstance().queryUser();
+        if (user!=null){
+            tvName.setText(user.getName());
+        }
     }
 
     @OnClick({R.id.ll_head, R.id.ll_username, R.id.ll_sex, R.id.ll_age, R.id.ll_phone, R.id.tv_exit_login})
@@ -94,6 +100,15 @@ public class SettingActivity extends AppCompatActivity {
         finish();
     }
 
+    private void setImageResource(String path,ImageView imageView) {
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(this).load(path).apply(options).into(imageView);
+    }
 
     private void initDialog() {
         final View view = LayoutInflater.from(this).inflate(R.layout.view_add_pic_dialog, null);
@@ -202,10 +217,7 @@ public class SettingActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1000);
             }
         } else if (resultCode == RESULT_OK && requestCode == 1000) {
-            Intent intent = new Intent(this, SeePicActivity.class);
 
-            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, getExternalCacheDir().toString() + "/head/head.png");
-            startActivity(intent);
         }
 
     }

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.base;
+package com.yijian.staff.mvp.base.mvp;
 
 /**
  * Created by codeest on 2016/8/2.

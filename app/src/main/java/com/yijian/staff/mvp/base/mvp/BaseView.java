@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.base;
+package com.yijian.staff.mvp.base.mvp;
 
 /**
  * View基类

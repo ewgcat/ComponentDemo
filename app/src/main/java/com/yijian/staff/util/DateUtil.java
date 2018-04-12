@@ -227,9 +227,15 @@ public class DateUtil {
      * @param milSecond
      * @return
      */
-    public static String parseLongDateToString(long milSecond) {
+    public static String parseLongDateToDateString(long milSecond) {
         Date date = new Date(milSecond);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+    public static String parseLongDateToTimeString(long milSecond) {
+        Date date = new Date(milSecond);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
     }
 

@@ -149,13 +149,17 @@ public class BaseSubMessageFragment extends Fragment {
 
 
     private void refreshBusiness() {
+        businessMessageBeans.clear();
+        pageNum=1;
+        pageSize=4;
+        pages=0;
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(1);
         businessMessageRequestBody.setPageSize(4);
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pageNum = JsonUtil.getInt(result, "current") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
@@ -167,13 +171,13 @@ public class BaseSubMessageFragment extends Fragment {
                 }
                 businessMessageListAdapter.update(businessMessageBeans);
 
-                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                refreshLayout.finishRefresh(2000,true);//传入false表示刷新失败
 
             }
 
             @Override
             public void onFail(String msg) {
-                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                refreshLayout.finishRefresh(2000,false);//传入false表示刷新失败
 
             }
         });
@@ -189,7 +193,7 @@ public class BaseSubMessageFragment extends Fragment {
             @Override
             public void onSuccess(JSONObject result) {
 
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pageNum = JsonUtil.getInt(result, "current") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {

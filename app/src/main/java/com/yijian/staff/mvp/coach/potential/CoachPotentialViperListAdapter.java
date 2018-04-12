@@ -46,7 +46,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
         long birthday = coachViperBean.getBirthday();
         if (birthday!=0){
-            String s = DateUtil.parseLongDateToString(birthday);
+            String s = DateUtil.parseLongDateToDateString(birthday);
             holder.tv_birth.setText(s);
         }else {
             holder.tv_birth.setText("");

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.message.business;
 
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -54,7 +55,10 @@ public class BusinessMessageBean {
         this. memberHeadPortrait = JsonUtil.getString(jsonObject, "memberHeadPortrait");
         this. memberId = JsonUtil.getString(jsonObject, "memberId");
         this. memberName = JsonUtil.getString(jsonObject, "memberName");
-        this. createTime = JsonUtil.getString(jsonObject, "createTime");
+        Long createTimeValue = JsonUtil.getLong(jsonObject, "createTime");
+        if (createTimeValue!=-1){
+            this. createTime = DateUtil.parseLongDateToTimeString(createTimeValue);
+        }
         this. type = JsonUtil.getInt(jsonObject, "type");
 
     }

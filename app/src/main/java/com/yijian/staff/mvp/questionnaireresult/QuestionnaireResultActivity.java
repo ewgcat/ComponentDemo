@@ -1,47 +1,32 @@
 package com.yijian.staff.mvp.questionnaireresult;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
-import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
-import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
-import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -105,7 +90,7 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
         memberId="1";
         params.put("memberId",memberId);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,params, new ResultObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = new Gson().fromJson(result.toString(), TemplateBean.class);

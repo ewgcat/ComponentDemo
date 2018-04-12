@@ -14,6 +14,7 @@ import com.yijian.staff.mvp.reception.step3.coach.CoachProductFragment;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductQuotationFragment;
 import com.yijian.staff.mvp.reception.step3.leader.LeaderProductFragment;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
@@ -25,12 +26,20 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
 
     private static final String TAG = "ReceptionStepThreeActiv";
     private Fragment fragment;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_step_three);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("memberId")){
+            memberId = intent.getStringExtra("memberId");
+        }
+
+
         initView();
     }
 
@@ -46,13 +55,21 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
 
         int userRole = SharePreferenceUtil.getUserRole();
         Log.e(TAG, "initView: userRole="+userRole );
-        if (userRole==1){
-             fragment = new HuiJiProductQuotationFragment();
-        }else if (userRole==2){
-             fragment =new CoachProductFragment();
-        }else if (userRole==3|userRole==4){
-            fragment = new LeaderProductFragment();
-        }
+//        if (userRole==1){
+//             fragment = new HuiJiProductQuotationFragment();
+//        }else if (userRole==2){
+//             fragment =new CoachProductFragment();
+//        }else if (userRole==3|userRole==4){
+//            fragment = new LeaderProductFragment();
+//        }
+
+
+        fragment =new CoachProductFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("memberId",memberId);
+        fragment.setArguments(bundle);
+
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fl_content,fragment).commit();
     }
@@ -76,10 +93,15 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
                 Intent intent = new Intent(ReceptionStepThreeActivity.this, ReceptionStepFourActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
+                toStep4();
                 break;
         }
     }
 
+    private void toStep4() {
+//        HttpManager
+    }
 
 
 }

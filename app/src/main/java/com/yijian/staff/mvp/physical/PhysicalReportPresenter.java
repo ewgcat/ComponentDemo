@@ -8,7 +8,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONObject;
 
@@ -44,7 +44,7 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
         memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

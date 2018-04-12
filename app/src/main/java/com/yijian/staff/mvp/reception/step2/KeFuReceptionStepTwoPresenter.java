@@ -1,13 +1,9 @@
 package com.yijian.staff.mvp.reception.step2;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -10,6 +10,7 @@ import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
+import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -276,6 +277,21 @@ public class HttpManager {
     }
 
 
+    //会籍卡产品查询列表_ycm
+    public static void getHuiJiCardGoodsList_ycm(ConditionBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList_ycm(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
+            execute(observable, observer);
+        }
+    }
+
+
     //教练模糊搜索会员
     public static void searchViperByCoach(Map<String, String> params, Observer<JSONObject> observer) {
 
@@ -300,13 +316,13 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
         execute(observable, observer);
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
-            execute(observable, observer);
-        }
+//        if (user == null || TextUtils.isEmpty(user.getToken())) {
+//            ARouter.getInstance().build("/test/login").navigation();
+//        } else {
+//            headers.put("token", user.getToken());
+//            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
+//            execute(observable, observer);
+//        }
     }
 
     //公共
@@ -372,13 +388,13 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
         execute(observable, observer);
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
-            execute(observable, observer);
-        }
+//        if (user == null || TextUtils.isEmpty(user.getToken())) {
+//            ARouter.getInstance().build("/test/login").navigation();
+//        } else {
+//            headers.put("token", user.getToken());
+//            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
+//            execute(observable, observer);
+//        }
     }
 
     // get无头有参
@@ -396,13 +412,13 @@ public class HttpManager {
         headers.put("token", token);
         Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
         execute(observable, observer);
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
-            execute(observable, observer);
-        }
+//        if (user == null || TextUtils.isEmpty(user.getToken())) {
+//            ARouter.getInstance().build("/test/login").navigation();
+//        } else {
+//            headers.put("token", user.getToken());
+//            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
+//            execute(observable, observer);
+//        }
     }
 
     //上传图片
@@ -467,11 +483,20 @@ public class HttpManager {
     //接待--体测录入--查看
     public static final String RECEPTION_TEST_VIEW=BuildConfig.HOST +"bodycheck/view";
 
+
     //接待--会籍--step2-跳过
     public static final String RECEPTION_STEP2_JUMP=BuildConfig.HOST +"reception/sale-jump-body-check";
 
     //接待--会籍--step2-TO教练
     public static final String RECEPTION_STEP2_TOCOACH=BuildConfig.HOST +"reception/sale-to-coach-body-check";
 
+    //接待--会籍--step3-场馆信息列表
+    public static final String RECEPTION_STEP3_VENUES=BuildConfig.HOST +"venue/list";
+
+    //接待--会籍--step3-会员不愿意购买,会籍To给教练
+    public static final String RECEPTION_STEP3_TO_COACH=BuildConfig.HOST +"reception/sale-to-coach";
+
+    //接待--会籍--step3-会员接待详细信息,用于会员不愿意购买,教练和领导接受TO界面数据
+    public static final String RECEPTION_STEP3_COACH_USERDATA=BuildConfig.HOST +"reception/person/detail";
 
 }

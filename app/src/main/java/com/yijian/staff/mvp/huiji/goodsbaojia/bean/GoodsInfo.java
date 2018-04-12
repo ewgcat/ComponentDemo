@@ -1,5 +1,7 @@
 package com.yijian.staff.mvp.huiji.goodsbaojia.bean;
 
+import android.support.annotation.NonNull;
+
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -82,4 +84,6 @@ public class GoodsInfo {
     public String getVenusNames() {
         return venusNames;
     }
+
+
 }

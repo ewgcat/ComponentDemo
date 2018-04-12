@@ -10,7 +10,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONObject;
 
@@ -54,7 +54,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     public void getRecptionerInfo() {
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, new ResultObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
@@ -84,7 +84,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
         params.put("pageSize",10);
 
 
-        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, headerParam, params, new ResultObserver() {
+        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, headerParam, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

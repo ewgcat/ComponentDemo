@@ -2,13 +2,10 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.ItemQuestionnaire;
@@ -16,7 +13,7 @@ import com.yijian.staff.mvp.reception.step1.bean.ItemsBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,7 +47,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
     @Override
     public void getQuestion() {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = new Gson().fromJson(result.toString(), TemplateBean.class);
@@ -200,7 +197,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 //        Log.e(TAG, "upLoadFitnessTime: "+substring );
         params.put("bodyBuildTimes",""+ substring);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 view.saveSucceed();

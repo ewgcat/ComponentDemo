@@ -28,7 +28,7 @@ import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
-public class MainActivityMvp extends MvpBaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
+public class MainActivity extends MvpBaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
 
     protected boolean mNetworkStateLogin = false;
 

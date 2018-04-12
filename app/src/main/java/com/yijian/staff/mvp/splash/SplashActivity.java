@@ -20,7 +20,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.login.LoginActivity;
-import com.yijian.staff.mvp.main.MainActivityMvp;
+import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;
 
@@ -78,7 +78,7 @@ public class SplashActivity extends AppCompatActivity {
             }  else {
 
                 Intent intent = new Intent();
-                intent.setClass(this,MainActivityMvp.class);
+                intent.setClass(this,MainActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -175,7 +175,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(msg)) {
                     Toast.makeText(this, "缺少" + msg, Toast.LENGTH_SHORT).show();
                 }
-                startActivity(new Intent(SplashActivity.this, MainActivityMvp.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
 
                 break;

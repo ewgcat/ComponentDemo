@@ -99,7 +99,6 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
                     intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity");
                 } else if (status == 20) {
                     intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity");
-
                 } else if (status == 30) {
                     intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity");
                 } else if (status == 40) {

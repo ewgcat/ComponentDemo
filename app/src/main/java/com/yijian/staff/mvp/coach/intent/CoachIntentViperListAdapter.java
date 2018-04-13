@@ -123,12 +123,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             }
         });
 
-        holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
-            }
-        });
+
 
 
 
@@ -192,7 +187,6 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
         LinearLayout lin_baojia; //报价
         LinearLayout lin_protect_seven; //保护7天/回访
-        LinearLayout lin_invitation; //邀请
 
 
         public ViewHolder(View view) {
@@ -221,7 +215,6 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
             lin_baojia =     view.findViewById(R.id.lin_baojia);
             lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
-            lin_invitation =     view.findViewById(R.id.lin_invitation);
         }
     }
 

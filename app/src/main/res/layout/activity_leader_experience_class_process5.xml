@@ -43,7 +43,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:text="会商结论"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
 
 

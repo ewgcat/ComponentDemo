@@ -71,6 +71,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO 提交保存请求后执行下面操作
                 setResult(1234);
                 finish();
             }

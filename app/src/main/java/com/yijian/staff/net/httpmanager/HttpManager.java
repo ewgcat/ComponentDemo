@@ -139,6 +139,21 @@ public class HttpManager {
     public static String GET_EXPERICECE_CLASS_URL = BuildConfig.HOST + "experienceProcess/getList";
 
 
+    //体验课 邀约节点
+    public static String GET_EXPERICECE_INVITE_HISTORY_URL = BuildConfig.HOST + "experienceProcess/toInvite";
+
+    //体验课 回访节点
+    public static String GET_EXPERICECE_HUI_FANG_URL = BuildConfig.HOST + "experienceProcess/toVisit";
+
+    //体验课 会商方案
+    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL = BuildConfig.HOST + "experienceProcess/toConsultationProgramme";
+
+    //体验课 二次邀约
+    public static String GET_EXPERICECE_INVITE_AGAIN_URL = BuildConfig.HOST + "experienceProcess/toInviteAgain";
+
+     //体验课 会商结论
+    public static String GET_EXPERICECE_HUI_SHANG_RESULT_URL = BuildConfig.HOST + "experienceProcess/toConsultationConclusion";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -221,14 +236,14 @@ public class HttpManager {
 
     //体测录入
     public static void postRecptionTest(String memberId,
-            PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+                                        PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
-        Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE,headers,memberId, physicalExaminationBeanBody);
+        Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
         execute(receptionTestObservable, observer);
     }
 
@@ -238,10 +253,10 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
-        Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE,headers,memberId, requestBody);
+        Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
         execute(receptionTestObservable, observer);
     }
 
@@ -366,7 +381,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url,headers, param);
+            Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
             execute(observable, observer);
         }
     }
@@ -434,7 +449,7 @@ public class HttpManager {
             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-            Observable<JSONObject> observable = apiService.upLoadImage(url,headers,body );
+            Observable<JSONObject> observable = apiService.upLoadImage(url, headers, body);
             execute(observable, observer);
         }
     }
@@ -454,19 +469,12 @@ public class HttpManager {
     }
 
 
-
-
-
-
-
-
-
     //接待人的信息
-    public static final String RECEPTION_INFO=BuildConfig.HOST+"reception/person";
+    public static final String RECEPTION_INFO = BuildConfig.HOST + "reception/person";
 
 
     //接待记录
-    public static final String RECEPTION_RECORD=BuildConfig.HOST+"reception/record";
+    public static final String RECEPTION_RECORD = BuildConfig.HOST + "reception/record";
 
     ///qs/member/getBodyBuildTimesByMemberId 健身时间
 
@@ -488,25 +496,25 @@ public class HttpManager {
 
 
     //接待 ---体测录入--保存
-    public static final String RECEPTION_TEST_SAVE=BuildConfig.HOST +"bodycheck/save";
+    public static final String RECEPTION_TEST_SAVE = BuildConfig.HOST + "bodycheck/save";
 
     //接待--体测录入--查看
-    public static final String RECEPTION_TEST_VIEW=BuildConfig.HOST +"bodycheck/view";
+    public static final String RECEPTION_TEST_VIEW = BuildConfig.HOST + "bodycheck/view";
 
 
     //接待--会籍--step2-跳过
-    public static final String RECEPTION_STEP2_JUMP=BuildConfig.HOST +"reception/sale-jump-body-check";
+    public static final String RECEPTION_STEP2_JUMP = BuildConfig.HOST + "reception/sale-jump-body-check";
 
     //接待--会籍--step2-TO教练
-    public static final String RECEPTION_STEP2_TOCOACH=BuildConfig.HOST +"reception/sale-to-coach-body-check";
+    public static final String RECEPTION_STEP2_TOCOACH = BuildConfig.HOST + "reception/sale-to-coach-body-check";
 
     //接待--会籍--step3-场馆信息列表
-    public static final String RECEPTION_STEP3_VENUES=BuildConfig.HOST +"venue/list";
+    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/list";
 
     //接待--会籍--step3-会员不愿意购买,会籍To给教练
-    public static final String RECEPTION_STEP3_TO_COACH=BuildConfig.HOST +"reception/sale-to-coach";
+    public static final String RECEPTION_STEP3_TO_COACH = BuildConfig.HOST + "reception/sale-to-coach";
 
     //接待--会籍--step3-会员接待详细信息,用于会员不愿意购买,教练和领导接受TO界面数据
-    public static final String RECEPTION_STEP3_COACH_USERDATA=BuildConfig.HOST +"reception/person/detail";
+    public static final String RECEPTION_STEP3_COACH_USERDATA = BuildConfig.HOST + "reception/person/detail";
 
 }

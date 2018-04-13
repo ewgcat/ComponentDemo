@@ -14,8 +14,14 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,6 +70,21 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
         });
         ClassTimeBar timeBar = findViewById(R.id.step_three_timebar);
         timeBar.showTimeBar(3);
+
+        String memberId = getIntent().getStringExtra("memberId");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_FANG_AN_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
     @OnClick({R.id.ll_ticeshuju, R.id.ll_huifang_jilu})

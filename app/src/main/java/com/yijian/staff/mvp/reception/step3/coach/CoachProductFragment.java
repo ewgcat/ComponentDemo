@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ReceptionUserInfo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +34,7 @@ import butterknife.Unbinder;
  * email：850716183@qq.com
  * time: 2018/3/13 19:25:37
  */
-public class CoachProductFragment extends Fragment {
+public class CoachProductFragment extends Fragment implements CoachProductContract.View {
     @BindView(R.id.rl_coach_goods)
     RelativeLayout rlCoachGoods;
     @BindView(R.id.tv_send_to_status)
@@ -67,13 +68,24 @@ public class CoachProductFragment extends Fragment {
 
     private View view;
     private PopupWindow popupWindow;
+    private String memberId;
+    private String memberName="";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        memberId = arguments.getString("memberId");
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coach_product_quotation, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-
+        CoachProductPresenter coachProductPresenter = new CoachProductPresenter(getContext());
+        coachProductPresenter.setView(this);
+        coachProductPresenter.getUserInfo(memberId);
         initSelectLeaderPopupWindow();
         return view;
     }
@@ -88,10 +100,15 @@ public class CoachProductFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
-                startActivity(new Intent(getContext(),QuestionnaireResultActivity.class));
+                Intent intent = new Intent(getContext(), QuestionnaireResultActivity.class);
+                intent.putExtra("memberId",memberId);
+                startActivity(intent);
                 break;
             case R.id.tv_ticebaogao:
-                startActivity(new Intent(getContext(),PhysicalReportActivity.class));
+                Intent intent1 = new Intent(getContext(), PhysicalReportActivity.class);
+                intent1.putExtra("memberId",memberId);
+                intent1.putExtra("memberName",memberName);
+                startActivity(intent1);
                 break;
 
             case R.id.ll_to_leader:
@@ -210,4 +227,13 @@ public class CoachProductFragment extends Fragment {
     }
 
 
+    @Override
+    public void showUserInfo(ReceptionUserInfo receptionUserInfo) {
+        memberName = receptionUserInfo.getMemberName();
+        tvName.setText(""+ memberName);
+            tvViperPhone.setText(""+receptionUserInfo.getMemberMobile());
+            tvJiedaiName.setText(""+receptionUserInfo.getSaleName());
+            tvCoachName.setText(""+receptionUserInfo.getCoachName());
+
+    }
 }

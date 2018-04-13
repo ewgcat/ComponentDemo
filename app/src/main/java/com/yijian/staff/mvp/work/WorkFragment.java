@@ -1,55 +1,37 @@
 package com.yijian.staff.mvp.work;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.all.AllFunctionActivity;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.MenuHelper;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
-import com.yijian.staff.tab.entity.EditItem;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.ConstantUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -131,7 +113,7 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
     private void initData() {
 
 
-        HttpManager.getIndexMenuList(new ResultObserver() {
+        HttpManager.getIndexMenuList(new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

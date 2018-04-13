@@ -1,7 +1,9 @@
 package com.yijian.staff.application;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -21,19 +23,20 @@ import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.ApplicationHolder;
 import com.yijian.staff.util.InitializeService;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 
 
-public class CustomApplication extends TinkerApplication {
+public class CustomApplication extends TinkerApplication implements Application.ActivityLifecycleCallbacks{
 
 
 
     public static CustomApplication instance;
     public static AppComponent appComponent;
-    private Set<Activity> allActivities;
 
     public static int SCREEN_WIDTH = -1;
     public static int SCREEN_HEIGHT = -1;
@@ -49,15 +52,15 @@ public class CustomApplication extends TinkerApplication {
         return instance;
     }
 
-    static {
-        AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_NO);
-    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         instance = this;
+
+
 
         //极光推送
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
@@ -86,37 +89,14 @@ public class CustomApplication extends TinkerApplication {
 //        if(!TabMenuHelper.hasEverInit()){
 ////            TabMenuHelper.init();
 //        }
-
+        registerActivityLifecycleCallbacks(this);
 
 
 
     }
 
 
-    public void addActivity(Activity act) {
-        if (allActivities == null) {
-            allActivities = new HashSet<>();
-        }
-        allActivities.add(act);
-    }
 
-    public void removeActivity(Activity act) {
-        if (allActivities != null) {
-            allActivities.remove(act);
-        }
-    }
-
-    public void exitApp() {
-        if (allActivities != null) {
-            synchronized (allActivities) {
-                for (Activity act : allActivities) {
-                    act.finish();
-                }
-            }
-        }
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(0);
-    }
 
     public void getScreenSize() {
         WindowManager windowManager = (WindowManager)this.getSystemService(Context.WINDOW_SERVICE);
@@ -141,6 +121,50 @@ public class CustomApplication extends TinkerApplication {
                     .build();
         }
         return appComponent;
+    }
+
+    private Map<String, Activity> activityMap = new HashMap<>();
+
+
+    @Override
+    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        activityMap.put(activity.hashCode() + "", activity);
+    }
+
+    @Override
+    public void onActivityStarted(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityResumed(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityPaused(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityStopped(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+    }
+
+    @Override
+    public void onActivityDestroyed(Activity activity) {
+        activityMap.remove(activity.hashCode() + "");
+    }
+
+    public void exitApp() {
+        for (Activity activity : activityMap.values()) {
+            activity.finish();
+        }
     }
 
 }

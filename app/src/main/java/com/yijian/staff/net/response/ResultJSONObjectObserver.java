@@ -15,12 +15,12 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-public abstract  class ResultObserver implements Observer<JSONObject>   , ResultCallBack<JSONObject>{
+public abstract  class ResultJSONObjectObserver implements Observer<JSONObject>   , ResultCallBack<JSONObject>{
 
     private Disposable mDisposable;
 
 
-    public ResultObserver() {
+    public ResultJSONObjectObserver() {
 
     }
 
@@ -31,7 +31,7 @@ public abstract  class ResultObserver implements Observer<JSONObject>   , Result
 
     @Override
     public void onNext(JSONObject jsonObject) {
-        Logger.i("ResultObserver",jsonObject.toString());
+        Logger.i("Result",jsonObject.toString());
         try {
             int code = jsonObject.getInt("code");
             if (code==0){
@@ -55,12 +55,12 @@ public abstract  class ResultObserver implements Observer<JSONObject>   , Result
     @Override
     public void onError(Throwable e) {
         onFail(e.getMessage());
-        Log.i("ResultObserver", "onError "+e.toString());
+        Log.i("Result", "onError "+e.toString());
     }
 
     @Override
     public void onComplete() {
-        Log.i("ResultObserver", "onCompleted==请求结束");
+        Log.i("Result", "onCompleted==请求结束");
     }
 
     public Disposable getmDisposable() {

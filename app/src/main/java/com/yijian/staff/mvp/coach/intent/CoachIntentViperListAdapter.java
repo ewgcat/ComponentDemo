@@ -19,7 +19,6 @@ import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
-import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
@@ -82,7 +81,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
         long registerTime = coachViperBean.getRegisterTime();
         if (registerTime!=0){
-            String s = DateUtil.parseLongDateToString(registerTime);
+            String s = DateUtil.parseLongDateToDateString(registerTime);
             holder.tv_regist_time.setText(s);
         }else {
             holder.tv_regist_time.setText("");
@@ -90,7 +89,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
         long contractDeadline = coachViperBean.getContractDeadline();
         if (contractDeadline!=0){
-            String s = DateUtil.parseLongDateToString(contractDeadline);
+            String s = DateUtil.parseLongDateToDateString(contractDeadline);
             holder.tv_contract_overTime.setText(s);
         }else {
             holder.tv_contract_overTime.setText("");

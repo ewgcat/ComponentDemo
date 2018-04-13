@@ -14,21 +14,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.CommonUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import cn.jpush.android.api.JPushInterface;
-
-import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
 @Route(path = "/test/login")
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -72,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 } else {
                     LoginRequestBody loginRequest = new LoginRequestBody(account, password);
-                    HttpManager.postLogin(loginRequest, new ResultObserver() {
+                    HttpManager.postLogin(loginRequest, new ResultJSONObjectObserver() {
                         @Override
                         public void onSuccess(JSONObject result) {
 

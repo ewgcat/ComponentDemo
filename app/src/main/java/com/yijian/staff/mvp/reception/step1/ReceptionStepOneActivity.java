@@ -1,53 +1,66 @@
 package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionEntry;
-import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
-import com.yijian.staff.mvp.reception.step1.bean.Step1MockData;
-import com.yijian.staff.mvp.reception.step1.bean.Step1WrapBean;
+import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
+import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
-import java.util.HashSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener {
+public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener ,ReceptionStep1Contract.View{
 
     private static final String TAG = ReceptionStepOneActivity.class.getSimpleName();
 
     private Step1QuestAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private List<Step1Bean> step1bean;
+    private List<DataListBean> step1bean =new ArrayList<>();
+    private RecptionStep1Presenter presenter;
+    private RecptionerInfoBean consumerBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reception_step_one);
-
         initView();
+        Intent intent = getIntent();
+        if (intent.hasExtra(ReceptionActivity.CONSUMER)){
+            consumerBean = intent.getParcelableExtra(ReceptionActivity.CONSUMER);
+        }else {
+            Toast.makeText(ReceptionStepOneActivity.this,"获取客户信息失败,请重新获取用户信息", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+
+
+
+        presenter = new RecptionStep1Presenter(this);
+        presenter.setView(this);
+        presenter.getQuestion();
     }
 
     private void initView() {
@@ -60,7 +73,6 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         navigationBar2.setmRightTvText("下一步");
 
 
-        mockData();
         TimeBar timeBar = findViewById(R.id.step_one_timebar);
         timeBar.showTimeBar(1);
 
@@ -72,25 +84,24 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         recyclerView.setAdapter(adapter);
 
 
-        Button btnSave = findViewById(R.id.btn_save);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Integer> singleCheck = adapter.getSingleCheck();
-                Log.e(TAG, "onClick: singleCheck"+singleCheck.toString() );
 
-                Map<String, HashSet<Integer>> multiCheck = adapter.getMultiCheck();
-                Log.e(TAG, "onClick: multiCheck"+multiCheck.toString() );
-
-                Map<Integer, String> write = adapter.getWrite();
-                Log.e(TAG, "onClick: write"+write.toString() );
-
-            }
-        });
 
 
         MaterialCalendarView calendarView = findViewById(R.id.calendarView);
         initCalendarView(calendarView);
+
+
+        Button btnSave = findViewById(R.id.btn_save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (consumerBean==null) return;
+                List<DataListBean> questionList = adapter.getQuestionList();
+                List<CalendarDay> selectedDates = calendarView.getSelectedDates();
+                presenter.uploadQusetion(questionList,consumerBean,selectedDates);
+
+            }
+        });
     }
 
     private void initCalendarView(MaterialCalendarView widget) {
@@ -106,70 +117,19 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         widget.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-//                List<CalendarDay> selectedDates = widget.getSelectedDates();
-//                for (int i = 0; i < selectedDates.size(); i++) {
-//                    oneDayDecorator.setDate(selectedDates.get(i).getDate());
-//                }
-//                widget.invalidateDecorators();
-                oneDayDecorator.setDate(date.getDate());
+                List<CalendarDay> selectedDates = widget.getSelectedDates();
+                for (int i = 0; i < selectedDates.size(); i++) {
+                    oneDayDecorator.setDate(selectedDates.get(i).getDate());
+                }
+                widget.invalidateDecorators();
+
+//                oneDayDecorator.setDate(date.getDate());
 
             }
         });
     }
 
 
-    List<QuestionEntry> datas;
-    private void mockData() {
-//        ArrayList<QuestionOption> type0 = new ArrayList<>();
-//        ArrayList<QuestionOption> type1 = new ArrayList<>();
-//        ArrayList<QuestionOption> type2 = new ArrayList<>();
-//
-//        ArrayList<QuestionOption> type3 = new ArrayList<>();
-//        ArrayList<QuestionOption> type4 = new ArrayList<>();
-//        ArrayList<QuestionOption> type5 = new ArrayList<>();
-//        ArrayList<QuestionOption> type6 = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type0.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type1.add(questionOption_type1);
-//        }
-//
-//        type2.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        for (int i = 0; i < 5; i++) {
-//            QuestionOption questionOption_type0 = new QuestionOption("Type__single" + "no." + i, QuestionOption.TYPE_SINGLECHECK,false);
-//            type4.add(questionOption_type0);
-//        }
-//
-//        for (int i = 0; i < 7; i++) {
-//            QuestionOption questionOption_type1= new QuestionOption("Type1__multi" + "no." + i, QuestionOption.TYPE_MULTICHECK,false);
-//            type3.add(questionOption_type1);
-//        }
-//
-//        type5.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//        type6.add(new QuestionOption("isWriteType",QuestionOption.TYPE_WRITE,false));
-//
-//
-//
-//        QuestionEntry questionEntry0 = new QuestionEntry("这是一个单选",0,type0);
-//        QuestionEntry questionEntry1 = new QuestionEntry("这是一个多选多选1",1,type1);
-//        QuestionEntry questionEntry2 = new QuestionEntry("这是一个填空2",2,type2);
-//        QuestionEntry questionEntry3 = new QuestionEntry("这是一个填空6",3,type6);
-//        QuestionEntry questionEntry4 = new QuestionEntry("这是一个填空5",4,type5);
-//        QuestionEntry questionEntry5 = new QuestionEntry("这是一个单选4",5,type4);
-//        QuestionEntry questionEntry6 = new QuestionEntry("这是一个多选多选3",6,type3);
-//
-//        datas = Arrays.asList(questionEntry0,questionEntry1,questionEntry2,questionEntry3,questionEntry4,questionEntry5,questionEntry6);
-        Step1WrapBean bean = new Gson().fromJson(Step1MockData.step1Data, Step1WrapBean.class);
-        step1bean = bean.getStep1();
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -195,5 +155,19 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
                 break;
 
         }
+    }
+
+    @Override
+    public void showQuestion(TemplateBean templateBean) {
+        adapter.resetData(templateBean.getDataList());
+    }
+
+
+    @Override
+    public void saveSucceed() {
+        String id = consumerBean.getId();
+        Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
+        intent.putExtra("memberId",id);
+        startActivity(intent);
     }
 }

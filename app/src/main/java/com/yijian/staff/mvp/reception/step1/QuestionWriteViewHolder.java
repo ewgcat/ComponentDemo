@@ -2,24 +2,21 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionOption;
-import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
+import com.yijian.staff.mvp.reception.step1.bean.ItemsBean;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ChildViewHolderGroup;
-import com.yijian.staff.mvp.reception.step1.recyclerView.ParentViewHolderGroup;
 
 /**
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionWriteViewHolder extends AbsParentViewHolder {
-    private final TextView tvTitle;
+public class QuestionWriteViewHolder extends ChildViewHolderGroup {
     private EditText editText;
     private final TextView tvLimit;
     private static final String TAG = "QuestionWriteViewHolder";
@@ -28,13 +25,12 @@ public class QuestionWriteViewHolder extends AbsParentViewHolder {
         super(itemView);
         editText=(EditText)itemView.findViewById(R.id.et_write);
         tvLimit = itemView.findViewById(R.id.tv_limit);
-        tvTitle = itemView.findViewById(R.id.tv_question_title);
     }
 
 
-    public void bind(Step1Bean child, int parentPosition) {
-        tvTitle.setText(child.getQuestName());
-
+    public void bind(ItemsBean child, int parentPosition, int childPosition) {
+        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
+            editText.setText(""+child.getInputContent());
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,14 +46,14 @@ public class QuestionWriteViewHolder extends AbsParentViewHolder {
             public void afterTextChanged(Editable s) {
 
 
-                if (listener!=null)listener.onWrited(parentPosition,s);
+                if (listener!=null)listener.onWrited(child,parentPosition,childPosition,s);
                 tvLimit.setText(s.toString().length()+"字");
             }
         });
     }
 
     public  interface WriteListener{
-        void onWrited( int parentPosition,Editable s);
+        void onWrited(ItemsBean child, int position, int parentPosition, Editable s);
     }
 
     private WriteListener listener;

@@ -14,6 +14,8 @@ import com.yijian.staff.mvp.reception.step1.QuestionOptMixViewHolder;
 import com.yijian.staff.mvp.reception.step1.QuestionSingleCheckViewHolder;
 import com.yijian.staff.mvp.reception.step1.QuestionViewHolder;
 import com.yijian.staff.mvp.reception.step1.QuestionWriteViewHolder;
+import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
+import com.yijian.staff.mvp.reception.step1.bean.ItemsBean;
 import com.yijian.staff.mvp.reception.step1.bean.QuestOptBean;
 import com.yijian.staff.mvp.reception.step1.bean.Step1Bean;
 import com.yijian.staff.mvp.reception.step1.recyclerView.ChildViewHolderGroup;
@@ -29,30 +31,36 @@ import java.util.Map;
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Bean, QuestOptBean,AbsParentViewHolder, ChildViewHolderGroup>  {
+public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataListBean, ItemsBean,AbsParentViewHolder, ChildViewHolderGroup> {
     private static final String TAG = "Step1QuestAdapter";
-    private static final int SINGLECHECK = 3;
-    private static final int MULTICHECK =4;
-    private static final int WRITE = 5;
-    public static final int CHILDNORMAL=6;
-    public static final int CHILDMIX=7;
+    private static final int SINGLECHECK = 13;
+    private static final int MULTICHECK =14;
+    private static final int WRITE = 15;
+    public static final int CHILDNORMAL=16;
+    public static final int CHILDMIX=17;
+    public static final int CHILDINPUT=18;
 
     private LayoutInflater mInflater;
-    private List<Step1Bean> QuestionList;
+    private List<DataListBean> QuestionList;
     private Context mContext;
 
 
-    public QuestionnaireAdapter(@NonNull List<Step1Bean> parentList, Context context) {
+    public QuestionnaireAdapter(@NonNull List<DataListBean> parentList, Context context) {
         super(parentList);
-        QuestionList=parentList;
+        QuestionList = parentList;
         mInflater = LayoutInflater.from(context);
         mContext = context;
     }
 
-  public void   resetData(List<Step1Bean> list){
-      QuestionList=list;
-      setParentList(list);
-  }
+    public void   resetData(List<DataListBean> list){
+        QuestionList.clear();
+        QuestionList.addAll(list);
+        setParentList(list);
+    }
+
+    public List<DataListBean> getQuestionList() {
+        return QuestionList;
+    }
 
     @NonNull
     @Override
@@ -62,12 +70,9 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Be
             default:
             case SINGLECHECK:
             case MULTICHECK:
+            case WRITE:
                 View titleview = mInflater.inflate(R.layout.item_quest_title, parentViewGroup, false);
                 return new QuestionViewHolder(titleview);
-            case WRITE:
-                View titleview1 = mInflater.inflate(R.layout.item_quest_result_write, parentViewGroup, false);
-                QuestionnaireWriteViewHolder questionWriteViewHolder = new QuestionnaireWriteViewHolder(titleview1);
-                return questionWriteViewHolder;
         }
     }
 
@@ -85,10 +90,18 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Be
                 break;
 
             case CHILDMIX:
-                View mixView = mInflater.inflate(R.layout.item_result_option_mix, childViewGroup, false);
-                QuestionnaireResultMixViewHolder viewHolder1 = new QuestionnaireResultMixViewHolder(mixView);
+                View mixView = mInflater.inflate(R.layout.item_quest_option_mix, childViewGroup, false);
+                QuestionOptMixViewHolder viewHolder1 = new QuestionOptMixViewHolder(mixView);
 //                viewHolder1.setMixWriteListener(this);
                 viewHolder = viewHolder1;
+                break;
+
+
+            case CHILDINPUT:
+                View titleview1 = mInflater.inflate(R.layout.item_quest_option_write, childViewGroup, false);
+                QuestionWriteViewHolder questionWriteViewHolder = new QuestionWriteViewHolder(titleview1);
+//                questionWriteViewHolder.setWriteListener(this);
+                viewHolder= questionWriteViewHolder;
                 break;
         }
 
@@ -96,23 +109,23 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Be
     }
 
     @Override
-    public void onBindParentViewHolder(@NonNull AbsParentViewHolder parentViewHolder, int parentPosition, @NonNull Step1Bean parent) {
-       if (parentViewHolder instanceof QuestionViewHolder){
-           ((QuestionViewHolder)parentViewHolder) .bind(parent,parentPosition);
-       }else if (parentViewHolder instanceof QuestionnaireWriteViewHolder){
-           ((QuestionnaireWriteViewHolder)parentViewHolder)  .bind(parent,parentPosition);
+    public void onBindParentViewHolder(@NonNull AbsParentViewHolder parentViewHolder, int parentPosition, @NonNull DataListBean parent) {
+        if (parentViewHolder instanceof QuestionViewHolder){
+            ((QuestionViewHolder)parentViewHolder) .bind(parent,parentPosition);
         }
 
     }
 
     @Override
     public void onBindChildViewHolder(@NonNull ChildViewHolderGroup childViewHolder, int parentPosition, int childPosition,
-                                      @NonNull QuestOptBean child, int flatPosition) {
+                                      @NonNull ItemsBean child, int flatPosition) {
 
         if (childViewHolder instanceof QuestionSingleCheckViewHolder){
             ((QuestionSingleCheckViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionnaireResultMixViewHolder){
-            ((QuestionnaireResultMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
+        }else if (childViewHolder instanceof QuestionOptMixViewHolder){
+            ((QuestionOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
+        }else if (childViewHolder instanceof QuestionWriteViewHolder){
+            ((QuestionWriteViewHolder)childViewHolder)  .bind(child,parentPosition,childPosition);
         }
 
     }
@@ -120,13 +133,17 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Be
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
         int type=CHILDNORMAL;
-        String childType = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
-
-        switch (childType){
-            case "normal":
+//        String childType = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
+        int type1 = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
+        switch (type1){//item_type:0选择,1输入,2选择加输入
+            case 0:
                 type=CHILDNORMAL;
                 break;
-            case "mix":
+
+            case 1:
+                type=CHILDINPUT;
+                break;
+            case 2:
                 type=CHILDMIX;
                 break;
         }
@@ -137,15 +154,15 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<Step1Be
     @Override
     public int getParentViewType(int parentPosition) {
         int type=WRITE;
-        String parentType = QuestionList.get(parentPosition).getType();
-        switch (parentType){
-            case "singleCheck":
+        int selectType = QuestionList.get(parentPosition).getSelectType();
+        switch (selectType){//select_type: 选择类型：0单选,1多选,2填空
+            case 0:
                 type=SINGLECHECK;
                 break;
-            case "multiCheck":
+            case 1:
                 type=MULTICHECK;
                 break;
-            case "write":
+            case 2:
                 type=WRITE;
                 break;
         }

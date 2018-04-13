@@ -266,10 +266,30 @@
                     android:drawableRight="@mipmap/jd_chakan"
                     android:gravity="center"
                     android:text="查看详情"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/blue"
                     android:textSize="14sp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="续费、延期、卡品转化、停卡、转让、转店、退卡"
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -330,25 +350,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="续费、延期、卡品转化、停卡、转让、转店、退卡"
-                    android:textColor="#999999"
-                    android:textSize="12sp" />
-            </LinearLayout>
 
 
 

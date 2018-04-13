@@ -8,8 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +50,22 @@ public class ExperienceClassProcess5Activity extends AppCompatActivity {
 
         ClassTimeBar timeBar = findViewById(R.id.step_five_timebar);
         timeBar.showTimeBar(5);
+
+
+        String memberId = getIntent().getStringExtra("memberId");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
     @OnClick({R.id.tv_post_price, R.id.tv_post_leader, R.id.ll_first_class, R.id.ll_second_class})

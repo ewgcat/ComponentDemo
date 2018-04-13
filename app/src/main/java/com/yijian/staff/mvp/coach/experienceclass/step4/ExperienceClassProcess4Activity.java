@@ -9,8 +9,14 @@ import android.widget.Button;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +55,20 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
         ClassTimeBar timeBar = findViewById(R.id.step_four_timebar);
         timeBar.showTimeBar(4);
 
+        String memberId = getIntent().getStringExtra("memberId");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
     @OnClick({R.id.ll_first_class, R.id.bt_invite})

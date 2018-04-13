@@ -31,6 +31,8 @@
             android:layout_height="wrap_content"
             tools:text="请填写"
             android:hint="请填写"
+            android:inputType="number"
+            android:background="@null"
             android:textColorHint="@color/text_black3"
             android:textColor="@color/text_black1"
             android:textSize="14sp"

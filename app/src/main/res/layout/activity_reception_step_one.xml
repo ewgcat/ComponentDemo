@@ -23,7 +23,7 @@
                 layout="@layout/view_time_bar"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_below="@id/reception_step_one_navigation_bar2"
+                android:layout_below="@+id/reception_step_one_navigation_bar"
                 android:layout_marginTop="10dp" />
 
             <LinearLayout
@@ -39,9 +39,10 @@
                     android:layout_height="46dp"
                     android:gravity="center"
                     android:text="问卷调查"
+
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimary"
-                    />
+                    android:textColor="@color/blue"
+                    ></TextView>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

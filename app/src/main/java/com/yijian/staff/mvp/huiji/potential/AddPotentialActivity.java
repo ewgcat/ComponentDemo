@@ -14,7 +14,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
@@ -97,7 +97,7 @@ public class AddPotentialActivity extends AppCompatActivity {
 
         if (CommonUtil.isPhoneFormat(phone)) {
             AddPotentialRequestBody addPotentialRequestBody=new AddPotentialRequestBody(phone,name,sex);
-            HttpManager.postAddPotential(addPotentialRequestBody, new ResultObserver() {
+            HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideKeyBoard(etPhone);

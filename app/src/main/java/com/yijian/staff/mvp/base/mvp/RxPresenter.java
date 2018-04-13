@@ -1,5 +1,7 @@
-package com.yijian.staff.mvp.base;
+package com.yijian.staff.mvp.base.mvp;
 
+import com.yijian.staff.mvp.base.mvp.BasePresenter;
+import com.yijian.staff.mvp.base.mvp.BaseView;
 import com.yijian.staff.rx.RxBus;
 
 import io.reactivex.disposables.CompositeDisposable;

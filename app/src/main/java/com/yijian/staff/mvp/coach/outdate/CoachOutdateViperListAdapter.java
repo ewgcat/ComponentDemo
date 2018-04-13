@@ -18,7 +18,6 @@ import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
-import com.yijian.staff.mvp.coach.intent.CoachIntentViperListAdapter;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
@@ -72,7 +71,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
         long deadline = coachViperBean.getDeadline();
         if (deadline!=0){
-            String s = DateUtil.parseLongDateToString(deadline);
+            String s = DateUtil.parseLongDateToDateString(deadline);
             holder.tv_outDate.setText(s);
         }else {
             holder.tv_outDate.setText("");

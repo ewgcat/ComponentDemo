@@ -26,7 +26,7 @@ import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 
@@ -130,7 +130,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
         }
 
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -197,7 +197,7 @@ public class HuijiTodayVisitFragment extends Fragment {
             }
 
         }
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

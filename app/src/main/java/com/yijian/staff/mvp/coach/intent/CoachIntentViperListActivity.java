@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,14 +16,10 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -117,7 +111,7 @@ public class CoachIntentViperListActivity extends AppCompatActivity {
         map.put("pageNum", "1");
         map.put("pageSize", "1");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -155,7 +149,7 @@ public class CoachIntentViperListActivity extends AppCompatActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL,map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

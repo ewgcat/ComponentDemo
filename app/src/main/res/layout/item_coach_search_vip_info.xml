@@ -366,7 +366,7 @@
                         android:drawablePadding="4dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="展开2"
+                        android:text="展开"
                         android:textColor="#999999"
                         android:textSize="14sp" />
 

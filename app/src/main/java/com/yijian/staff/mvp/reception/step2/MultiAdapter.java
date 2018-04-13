@@ -74,7 +74,7 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder){
             ((MyViewHolder)holder).bindView(mMultiOptBeans.get(position));
-        }else {
+        }else if (holder instanceof MyMixViewHolder){
             ((MyMixViewHolder)holder).bindView(mMultiOptBeans.get(position));
         }
 

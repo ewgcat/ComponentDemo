@@ -7,17 +7,25 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
 import com.yijian.staff.mvp.coach.experienceclass.template.Template1ClassActivity;
 import com.yijian.staff.mvp.coach.experienceclass.template.Template2ClassActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +50,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
     @BindView(R.id.iv_template2)
     ImageView ivTemplate2;
     private TimePickerView pickerView;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +84,32 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
                 tvTime.setText(result);
             }
         }).build();
+
+        memberId = getIntent().getStringExtra("memberId");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                ExperienceClassProcess1Bean experienceClassProcess1Bean = new ExperienceClassProcess1Bean(result);
+                etName.setText(experienceClassProcess1Bean.getMemberName());
+                etCoach.setText(experienceClassProcess1Bean.getCoachName());
+                etClassCount.setText(experienceClassProcess1Bean.getCourseCurrent()+"");
+                etClassNum.setText(experienceClassProcess1Bean.getCourseNum()+"");
+                Long startTime = experienceClassProcess1Bean.getStartTime();
+                if (startTime!=null){
+                    String time = DateUtil.parseLongDateToTimeString(startTime);
+                    tvTime.setText(time);
+                }
+
+                etRemark.setText(experienceClassProcess1Bean.getRemark());
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(ExperienceClassInvateActivity.this,msg,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

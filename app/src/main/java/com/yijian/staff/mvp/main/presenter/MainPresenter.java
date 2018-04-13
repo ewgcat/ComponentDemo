@@ -2,7 +2,7 @@ package com.yijian.staff.mvp.main.presenter;
 
 import android.content.Context;
 
-import com.yijian.staff.mvp.base.RxPresenter;
+import com.yijian.staff.mvp.base.mvp.RxPresenter;
 import com.yijian.staff.mvp.main.contract.MainContract;
 
 import javax.inject.Inject;

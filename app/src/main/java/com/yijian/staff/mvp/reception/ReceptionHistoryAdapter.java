@@ -13,8 +13,10 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.util.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +25,26 @@ import java.util.List;
  * time: 2018/2/28 17:08:17
  */
 public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHistoryAdapter.ViewHolder> {
-    private List<ReceptionInfo> mReceptionInfoList;
+    private List<RecptionRecordListBean.RecordsBean> mReceptionInfoList=new ArrayList<>();
     private Context context;
 
-    public ReceptionHistoryAdapter(Context context, List<ReceptionInfo> mReceptionInfoList) {
-        this.mReceptionInfoList = mReceptionInfoList;
+    public ReceptionHistoryAdapter(Context context) {
         this.context = context;
+    }
+
+    public void addData(List<RecptionRecordListBean.RecordsBean> list){
+        mReceptionInfoList.addAll(list);
+        mReceptionInfoList.addAll(list);
+        mReceptionInfoList.addAll(list);
+        mReceptionInfoList.addAll(list);
+        mReceptionInfoList.addAll(list);
+        mReceptionInfoList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void clearData(){
+        mReceptionInfoList.clear();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -40,27 +56,8 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
 
     @Override
     public void onBindViewHolder(ReceptionHistoryAdapter.ViewHolder holder, int position) {
-        Logger.i("CoachHuiFangTaskAdapter","position: "+position);
-        ReceptionInfo receptionInfo = mReceptionInfoList.get(position);
-        holder.viperName.setText(receptionInfo.getName());
-        holder.receptionStatus.setText(receptionInfo.getStatus());
-        holder.viperPhone.setText(receptionInfo.getPhone());
-        holder.product.setText(receptionInfo.getProduct());
-        Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
-        holder.wenJuan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context,QuestionnaireResultActivity.class);
-                context.startActivity(i);
-            }
-        });
-        holder.tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context,PhysicalReportActivity.class);
-                context.startActivity(i);
-            }
-        });
+
+        holder.bindView(position);
 
     }
 
@@ -70,7 +67,7 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView viperName;
         ImageView viperSex;
@@ -95,5 +92,51 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
             jiedaiCoachName=     view.findViewById(R.id.tv_coach_name);
 
         }
+
+        public void bindView(int position) {
+
+            RecptionRecordListBean.RecordsBean receptionInfo = mReceptionInfoList.get(position);
+        viperName.setText(receptionInfo.getMemberName());
+            int isFinish = receptionInfo.getIsFinish();
+            String statu=isFinish==0?"未完成":"已完成";
+            receptionStatus.setText(statu);
+        viperPhone.setText(receptionInfo.getMemberMobile());
+        product.setText(receptionInfo.getCoachName());
+            jiedaiName.setText(receptionInfo.getSaleName());
+            jiedaiCoachName.setText(receptionInfo.getCoachName());
+        Glide.with(context).load(R.mipmap.lg_man).into(viperSex);
+        wenJuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent i = new Intent(context,QuestionnaireResultActivity.class);
+//                context.startActivity(i);
+
+                if (receptionHistoryListener!=null)receptionHistoryListener.onRequestClicked(position);
+            }
+        });
+        tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent i = new Intent(context,PhysicalReportActivity.class);
+//                context.startActivity(i);
+                if (receptionHistoryListener!=null)receptionHistoryListener.onPhysicalReportClicked(position);
+            }
+        });
+        }
+    }
+
+    public List<RecptionRecordListBean.RecordsBean> getmReceptionInfoList() {
+        return mReceptionInfoList;
+    }
+
+    public interface ReceptionHistoryListener{
+        void onRequestClicked(int position);
+        void onPhysicalReportClicked(int position);
+    }
+
+    private ReceptionHistoryListener receptionHistoryListener;
+
+    public void setReceptionHistoryListener(ReceptionHistoryListener receptionHistoryListener) {
+        this.receptionHistoryListener = receptionHistoryListener;
     }
 }

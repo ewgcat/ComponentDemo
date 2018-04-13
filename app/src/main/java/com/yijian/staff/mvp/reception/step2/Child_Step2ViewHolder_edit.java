@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.reception.step2;
 
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -35,6 +36,9 @@ public class Child_Step2ViewHolder_edit extends ChildViewHolder {
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
+
+        if (!TextUtils.isEmpty(child.getUserValue())&&!"请选择".equals(child.getUserValue()))
+            etValue.setText(child.getUserValue());
 
         etValue.addTextChangedListener(new TextWatcher() {
             @Override

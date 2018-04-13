@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +20,13 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -38,9 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -168,7 +163,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
         loadingDialog.show();
-        HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
+        HttpManager.getCoachPrivateCourseList( body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 mClassInfoList.clear();
@@ -220,7 +215,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
         }
 
         loadingDialog.show();
-            HttpManager.getCoachPrivateCourseList( body, new ResultObserver() {
+            HttpManager.getCoachPrivateCourseList( body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "current") + 1;

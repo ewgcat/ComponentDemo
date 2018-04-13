@@ -1,14 +1,7 @@
 package com.yijian.staff.mvp.main;
 
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,30 +9,35 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
+import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
+import com.yijian.staff.mvp.reception.step3.bean.VenueBean;
+import com.yijian.staff.mvp.reception.step3.bean.VenueWrapBean;
 import com.yijian.staff.mvp.report.ReportingFragment;
 import com.yijian.staff.mvp.work.WorkFragment;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.service.NetworkService;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.Logger;
-import com.yijian.staff.util.system.StatusBarUtils;
-import com.yijian.staff.mvp.base.BaseActivity;
+import com.yijian.staff.mvp.base.mvp.MvpBaseActivity;
 import com.yijian.staff.mvp.main.contract.MainContract;
 import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;
 
 
+import org.json.JSONObject;
+
+import java.util.List;
+
 import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
+public class MainActivity extends MvpBaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
 
     protected boolean mNetworkStateLogin = false;
 
@@ -57,7 +55,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
 
     private WorkFragment workFragment;
-//    private ReportingFragment reportingFragment;
+    //    private ReportingFragment reportingFragment;
     private MessageFragment viperFragment;
     private MineFragment mineFragment;
     private Bottombar mBottombar;
@@ -71,9 +69,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        init();
+    protected int getLayoutID() {
+        return R.layout.activity_main;
+    }
+
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+
+        initJPush();
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);
 
@@ -97,18 +102,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
 
-    private void init() {
 
-        initJPush();
-
-//        if (LogicService.selectManager().loadmSelectAreaInfoList().size() > 0) {
-        mNetworkStateLogin = true;
-//        } else {
-//            mNetworkStateLogin = false;
-//        }
-
-        startupNetworkCheckService();
-    }
 
     private void initJPush() {
         String userId = SharePreferenceUtil.getUserId();
@@ -145,7 +139,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 mExitTime = secondTime;
                 return true;
             } else {
-                android.os.Process.killProcess(android.os.Process.myPid());
+                CustomApplication.getInstance().exitApp();
             }
         }
         return true;
@@ -227,55 +221,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    protected void initEventAndData() {
-
-    }
 
     protected void initInject() {
         getActivityComponent().inject(this);
     }
 
-
-    private ServiceConnection connection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            NetworkService.NetBind bind = (NetworkService.NetBind) iBinder;
-            NetworkService service = bind.getNetwrokService();
-            service.setOnGetConnectState(isConnected -> {
-                if (isConnected) {
-                    if (!mNetworkStateLogin) {
-                        mNetworkStateLogin = true;
-
-                        //TODO 无网到有网
-                    }
-                }
-            });
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-        }
-    };
-
-
-    private void startupNetworkCheckService() {
-        Intent intent = new Intent(this, NetworkService.class);
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (connection != null) {
-            unbindService(connection);
-        }
-    }
 
 
 

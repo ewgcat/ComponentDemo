@@ -86,7 +86,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.tv_like_teacher.setText(coachViperBean.getFavorTeacher());
         long registerTime = coachViperBean.getRegisterTime();
         if (registerTime!=0){
-            String s = DateUtil.parseLongDateToString(registerTime);
+            String s = DateUtil.parseLongDateToDateString(registerTime);
             holder.tv_regist_time.setText(s);
         }else {
             holder.tv_regist_time.setText("");
@@ -94,7 +94,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         long contractDeadline = coachViperBean.getContractDeadline();
         if (contractDeadline!=0){
-            String s = DateUtil.parseLongDateToString(contractDeadline);
+            String s = DateUtil.parseLongDateToDateString(contractDeadline);
             holder.tv_contract_overTime.setText(s);
         }else {
             holder.tv_contract_overTime.setText("");
@@ -104,7 +104,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.tv_buy_count.setText(coachViperBean.getPurchaseCount()+"");
         long bePresentTime = coachViperBean.getBePresentTime();
         if (bePresentTime!=0){
-            String s = DateUtil.parseLongDateToString(bePresentTime);
+            String s = DateUtil.parseLongDateToDateString(bePresentTime);
             holder.tv_be_present_time.setText(s);
         }else {
             holder.tv_be_present_time.setText("");
@@ -112,7 +112,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         long departureTime = coachViperBean.getDepartureTime();
         if (departureTime!=0){
-            String s = DateUtil.parseLongDateToString(contractDeadline);
+            String s = DateUtil.parseLongDateToDateString(contractDeadline);
             holder.tv_be_departure_time.setText(s);
         }else {
             holder.tv_be_departure_time.setText("");

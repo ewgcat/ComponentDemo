@@ -95,7 +95,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
                 long registerTime = viperBean.getRegisterTime();
                 if (registerTime!=0){
-                    String s = DateUtil.parseLongDateToString(registerTime);
+                    String s = DateUtil.parseLongDateToDateString(registerTime);
                     holder.zhengshi_tv_regist_time.setText(s);
                 }else {
                     holder.zhengshi_tv_regist_time.setText("");
@@ -200,7 +200,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
                 long contractDeadline = viperBean.getDeadline();
                 if (contractDeadline!=0){
-                    String s = DateUtil.parseLongDateToString(contractDeadline);
+                    String s = DateUtil.parseLongDateToDateString(contractDeadline);
                     holder.guoqi_tv_outDate.setText(s);
                 }else {
                     holder.guoqi_tv_outDate.setText("");

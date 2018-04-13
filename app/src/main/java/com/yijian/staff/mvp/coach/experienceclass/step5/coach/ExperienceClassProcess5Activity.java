@@ -79,7 +79,6 @@ public class ExperienceClassProcess5Activity extends AppCompatActivity {
             @Override
             public void onFail(String msg) {
                 Toast.makeText(ExperienceClassProcess5Activity.this,msg,Toast.LENGTH_SHORT).show();
-
             }
         });
     }

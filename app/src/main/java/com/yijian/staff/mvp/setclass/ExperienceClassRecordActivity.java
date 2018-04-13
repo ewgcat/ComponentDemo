@@ -79,7 +79,7 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
 
     private void initData() {
         RecordBean recordBean = new RecordBean();
-        recordBean.setMemberId("");
+        recordBean.setMemberId("666");
         HttpManager.postExperienceRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, recordBean,  new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.setclass.bean.OrderClassDayBean;
 
@@ -127,12 +128,15 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                    /*Intent intent = new Intent(context, OpenLessonNewActivity.class);
                     intent.putExtra("privateApplyId",orderClassDayBean.getId());
                     intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
                     intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
                     intent.putExtra("punchStatus",punchStatus);
-                    context.startActivity(intent);
+                    context.startActivity(intent);*/
+
+                    context.startActivity(new Intent(context, ExperienceClassRecordActivity.class));
+
                 }
             });
 

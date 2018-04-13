@@ -183,14 +183,10 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     //点击综合
     private void selectZongHe() {
-
         resetTabColor();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
-
         presenter.resetBody(bodyCondition);
         presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
-
-
     }
 
 

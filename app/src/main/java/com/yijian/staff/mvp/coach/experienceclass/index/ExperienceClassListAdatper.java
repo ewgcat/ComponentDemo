@@ -104,7 +104,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
                 } else if (status == 40) {
                     intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity");
                 } else if (status == 50) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step5.ExperienceClassProcess5Activity");
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity");
 
                 }
                 intent.putExtra("memberId", experienceClassBean.getMemberId());

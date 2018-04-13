@@ -32,7 +32,7 @@ import com.yijian.staff.mvp.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.setclass.bean.OrderClassDayBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
@@ -147,7 +147,7 @@ public class OrderClassDayFragment extends Fragment {
         Map<String,String> map = new HashMap<String,String>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         map.put("dateStr",simpleDateFormat.format(date));
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 orderClassDayBeanList.clear();

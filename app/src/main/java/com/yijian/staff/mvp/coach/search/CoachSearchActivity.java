@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -28,7 +27,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
@@ -170,7 +169,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByCoach(params, new ResultObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
 
@@ -223,7 +222,7 @@ public class CoachSearchActivity extends AppCompatActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
 
-            HttpManager.searchViperByCoach( params, new ResultObserver() {
+            HttpManager.searchViperByCoach( params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
 

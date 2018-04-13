@@ -7,16 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Chronometer;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.alibaba.fastjson.JSON;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
@@ -24,7 +19,7 @@ import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
@@ -89,7 +84,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         map.put("privateApplyId", privateApplyId);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -118,7 +113,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", privateApplyId);
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Toast.makeText(OpenLessonNewActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
@@ -159,7 +154,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         }
         privateShangKeBean.setRecordContextList(recordContextList);
 
-        HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultObserver() {
+        HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Toast.makeText(OpenLessonNewActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();

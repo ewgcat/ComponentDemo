@@ -5,15 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
-
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.setclass.bean.AerobicsBean;
 import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.setclass.bean.PowerBean;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -80,7 +78,7 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
     private void initData() {
         RecordBean recordBean = new RecordBean();
         recordBean.setMemberId("666");
-        HttpManager.postExperienceRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, recordBean,  new ResultObserver() {
+        HttpManager.postExperienceRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, recordBean,  new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray noInstrumentJsonArray = JsonUtil.getJsonArray(result, "noInstrumentList");

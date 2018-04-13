@@ -2,17 +2,22 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
+import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
+import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -22,6 +27,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
@@ -80,6 +86,15 @@ public interface ApiService {
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
+
+    //体测录入
+    @POST
+    Observable<JSONObject> saveReceptionTest(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body PhysicalExaminationBean physicalExaminationBean);
+
+    //问卷调查_保存
+    @POST
+    Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers,@Query("memberId") String memberId,@Body List<QuestionnaireAnswer> requestBody);
+
     //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
@@ -100,6 +115,13 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body HuiJiGoodsRequestBody body);
+
+    //会籍卡产品
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getHuiJiCardGoodsList_ycm(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
+
+
 
     /**
      * 表单请求
@@ -168,8 +190,13 @@ public interface ApiService {
     @POST
     Observable<JSONObject> postNoHeaderHasParam(@Url String url, @QueryMap Map<String, String> param);
 
+    @FormUrlEncoded
     @POST
-    Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
+    Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);
+
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderHasParamOfInteger(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, Integer> param);
 
 
     //get 有请求头
@@ -185,5 +212,7 @@ public interface ApiService {
     @GET
     Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
-
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getBusinessMessage(@Url String loginUrl,@HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);
 }

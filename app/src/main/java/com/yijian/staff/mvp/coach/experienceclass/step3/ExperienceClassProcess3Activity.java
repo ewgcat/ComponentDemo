@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
 import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -100,6 +101,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
+                Toast.makeText(ExperienceClassProcess3Activity.this,msg,Toast.LENGTH_SHORT).show();
 
             }
         });

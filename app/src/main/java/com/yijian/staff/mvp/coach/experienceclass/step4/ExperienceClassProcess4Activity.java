@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
+import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
 import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Bean;
 import com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -116,6 +118,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
+                Toast.makeText(ExperienceClassProcess4Activity.this,msg,Toast.LENGTH_SHORT).show();
                 llEmptyView.setVisibility(View.VISIBLE);
                 llContent.setVisibility(View.GONE);
             }
@@ -131,7 +134,6 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
                 Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassInvateActivity.class);
                 intent.putExtra("memberId", memberId);
                 startActivityForResult(intent, 1001);
-
                 break;
         }
     }
@@ -148,7 +150,10 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
             navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ExperienceClassProcess4Activity.this, ExperienceClassProcess5Activity.class));
+                    //TODO 发送请求
+                    Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassProcess5Activity.class);
+                    intent.putExtra("memberId", memberId);
+                    startActivity(intent);
                 }
             });
 

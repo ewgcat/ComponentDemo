@@ -135,6 +135,9 @@ public class HttpManager {
     //查询业务消息
     public static String GET_BUSINESS_MESSAGE_URL = BuildConfig.HOST + "message/businessMessageQuery";
 
+    //获取体验课流程会员列表
+    public static String GET_EXPERICECE_CLASS_URL = BuildConfig.HOST + "experienceProcess/getList";
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -316,18 +319,14 @@ public class HttpManager {
     public static void postEditHuiJiVipInfo(String url, EditHuiJiVipBody editHuiJiVipBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
-//            execute(observable, observer);
-//        }
+
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
+            execute(observable, observer);
+        }
     }
 
     //公共
@@ -341,9 +340,7 @@ public class HttpManager {
     public static void postHasHeaderNoParam(String url, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
+
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
@@ -363,12 +360,15 @@ public class HttpManager {
     // post有头有参
     public static void postHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
+
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url,headers, param);
+            execute(observable, observer);
+        }
     }
 
 
@@ -388,18 +388,13 @@ public class HttpManager {
     public static void getHasHeaderNoParam(String url, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
-//            execute(observable, observer);
-//        }
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
+            execute(observable, observer);
+        }
     }
 
     // get无头有参
@@ -412,18 +407,14 @@ public class HttpManager {
     public static void getHasHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
-//            execute(observable, observer);
-//        }
+
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
+            execute(observable, observer);
+        }
     }
 
     //上传图片

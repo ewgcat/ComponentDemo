@@ -59,7 +59,7 @@ public class CustomApplication extends TinkerApplication implements Application.
         super.onCreate();
 
         instance = this;
-        registerActivityLifecycleCallbacks(this);
+
 
 
         //极光推送
@@ -89,7 +89,7 @@ public class CustomApplication extends TinkerApplication implements Application.
 //        if(!TabMenuHelper.hasEverInit()){
 ////            TabMenuHelper.init();
 //        }
-
+        registerActivityLifecycleCallbacks(this);
 
 
 

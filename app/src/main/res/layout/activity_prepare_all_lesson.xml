@@ -176,9 +176,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/white_bg"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_marginTop="20dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -191,17 +191,16 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
-                            <ImageView
+                          <!--  <ImageView
                                 android:id="@+id/iv_action"
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@mipmap/bk_1" />
+                                android:src="@mipmap/bk_1" />-->
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginLeft="7dp"
                                 android:text="想要训练的部位"
                                 android:textColor="#333333"
                                 android:textSize="16sp" />
@@ -231,16 +230,15 @@
                         android:orientation="horizontal"
                         android:padding="15dp">
 
-                        <ImageView
+                       <!-- <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@mipmap/bk_2" />
+                            android:src="@mipmap/bk_2" />-->
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:layout_marginLeft="7dp"
                             android:text="动作内容"
                             android:textColor="#333333"
                             android:textSize="16sp" />
@@ -263,23 +261,6 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-
-        <!--  <android.support.v7.widget.RecyclerView
-              android:id="@+id/rv"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#fff"
-              app:layoutManager="LinearLayoutManager"
-              app:layout_behavior="@string/header_scrolling_behavior_day" />-->
-
-        <!--<android.support.v4.view.ViewPager-->
-        <!--app:layoutManager="LinearLayoutManager"-->
-        <!--android:id="@+id/view_pager"-->
-        <!--app:layout_behavior="@string/header_scrolling_behavior"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginBottom="84dp"-->
-        <!--/>-->
     </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

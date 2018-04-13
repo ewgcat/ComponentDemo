@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,25 +32,21 @@ import java.util.Map;
 public class ActionContentView extends LinearLayout implements Observer {
 
     private Context mContext;
-    private boolean isInit = true;
-    /********************** 动作难易程度 ************************/
-    private List<TextView> viewActionList = new ArrayList<TextView>(); //所有难易程度View的集合
-    private TextView resCheckTxtView = null; //当前选中难以程度的View
-
-
-    private Map<String, List<SubActionBean>> mapList = new HashMap<String, List<SubActionBean>>();
-    private LinearLayout linHeaderContainer; // 头部布局容器
-    private LinearLayout linSingleActionContain; // 个动作内容布局容器
-    private LinearLayout linOprationButtonContain; // 添加动作内容操作按钮布局容器
-    private TextView tv_action_title; //头部标题
-    private CheckBox ck_group; //组复选框
+    private boolean isShowCheck; //是否显示选择框的标志位
+    private ActionBean actionBean; //动作内容 Bean
+    private TextView tv_action_title; //标题
+    private TextView tv_action_degree; //难易程度
+    private TextView tv_action_name; //动作名称
+    private TextView tv_action_limit; //动作次数
+    private TextView tv_action_qixie; //器械选择
+    private CheckBox ck_group; //选中删除复选框
+//    private ImageView iv_rank; //排序
+    private RelativeLayout rel_rank; //排序
+    private TextView tv_rank; //排序
+    private LinearLayout lin_action_content_container; //动作内容容器
+    private RelativeLayout rel_action_header; //头部
     private int itemPosition; //位置标题
-    private Map<String, List<Integer>> subMapList = new HashMap<String, List<Integer>>();
-    private boolean isShowCheck;
     private CreatePrivateLessionActivity createPrivateLessionActivity;
-    private ActionBean actionBean;
-//    private boolean isShowHeader = true; //控制Body显示和隐藏的标志位
-
 
     public ActionContentView(Context context) {
         super(context);
@@ -65,285 +63,57 @@ public class ActionContentView extends LinearLayout implements Observer {
         this.mContext = context;
     }
 
-    public void initAction(List<String> actionArray, ActionBean actionBean, int itemPosition, CreatePrivateLessionActivity createPrivateLessionActivity) {
-        if (isInit) {
-            this.itemPosition = itemPosition;
-            this.actionBean = actionBean;
-            this.createPrivateLessionActivity = createPrivateLessionActivity;
-            addLayoutContainer(actionArray);
-            for (int i = 0; i < actionArray.size(); i++) {
-                List<SubActionBean> actionBeanList = new ArrayList<SubActionBean>();
-                mapList.put(actionArray.get(i), actionBeanList);
-                List<Integer> actionCheckList = new ArrayList<Integer>();
-                subMapList.put(actionArray.get(i), actionCheckList);
-            }
-            List<SubActionBean> subActionBeanList = actionBean.getSubActionBeans();
-            mapList.put(actionBean.getDegree(), subActionBeanList);
-            setTitle();
-            if (TextUtils.isEmpty(actionBean.getDegree())) {
-                actionOpration(resCheckTxtView);
-            } else {
-                for (int i = 0; i < viewActionList.size(); i++) {
-                    if ((viewActionList.get(i).getText()).equals(actionBean.getDegree())) {
-                        resCheckTxtView = viewActionList.get(i);
-                        actionOpration(viewActionList.get(i));
-                        break;
-                    }
-                }
-            }
-
-            isInit = false;
-        }
-        addActionContentView();
-        linSingleActionContain.setVisibility(View.GONE);
-        linOprationButtonContain.setVisibility(View.GONE);
-        setHeaderLayout();
+    public void initAction(ActionBean actionBean, int itemPosition, CreatePrivateLessionActivity createPrivateLessionActivity) {
+        this.actionBean = actionBean;
+        this.itemPosition = itemPosition;
+        this.createPrivateLessionActivity = createPrivateLessionActivity;
+        //添加动作内容
+        initView();
+        addActionContent();
     }
 
-    /************************************START 动作难易程度操作 *********************************************/
-    public void addHeaderView(List<String> actionArray) {
-        linHeaderContainer = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_action, null);
-        linHeaderContainer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createPrivateLessionActivity.notifyClickHeader(itemPosition,CreatePrivateLessionActivity.CLICK_HEADER);
-            }
-        });
-        ck_group = linHeaderContainer.findViewById(R.id.ck_group);
+    private void initView() {
+
+        LinearLayout linActionContainer = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_action_content, null);
+        rel_action_header = linActionContainer.findViewById(R.id.rel_action_header);
+        tv_action_title = linActionContainer.findViewById(R.id.tv_action_title);
+        tv_action_degree = linActionContainer.findViewById(R.id.tv_action_degree);
+        tv_action_name = linActionContainer.findViewById(R.id.tv_action_name);
+        tv_action_limit = linActionContainer.findViewById(R.id.tv_action_limit);
+        tv_action_qixie = linActionContainer.findViewById(R.id.tv_action_qixie);
+        rel_rank = linActionContainer.findViewById(R.id.rel_rank);
+        tv_rank = linActionContainer.findViewById(R.id.tv_rank);
+        ck_group = linActionContainer.findViewById(R.id.ck_group);
         ck_group.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                List<Integer> subItemList = subMapList.get(resCheckTxtView.getText());
-                if (isChecked) {
-                    actionBean.setCheckGroup(true);
-                    List<SubActionBean> subActionBeanList = mapList.get(resCheckTxtView.getText());
-                    subItemList.clear();
-                    for (int i = 0; i < subActionBeanList.size(); i++) {
-                        subItemList.add(i);
-                    }
-                } else {
-                    actionBean.setCheckGroup(false);
-                    subItemList.clear();
-                }
-                subMapList.put(resCheckTxtView.getText().toString(), subItemList);
+                actionBean.setCheck(isChecked);
                 createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
             }
         });
-        tv_action_title = linHeaderContainer.findViewById(R.id.tv_title);
-        tv_action_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        tv_action_title.setTextColor(Color.parseColor("#333333"));
-        LinearLayout lin_action_degree = linHeaderContainer.findViewById(R.id.lin_action_degree);
-        for (int i = 0; i < actionArray.size(); i++) {
-            TextView tv_degree = new TextView(mContext);
-            tv_degree.setText(actionArray.get(i));
-            tv_degree.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            lin_action_degree.addView(tv_degree);
-            LayoutParams titleLP = (LayoutParams) tv_degree.getLayoutParams();
-            titleLP.setMargins(DensityUtil.dip2px(mContext, 7), 0, 0, 0);
-            tv_degree.setLayoutParams(titleLP);
-            tv_degree.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    actionOpration((TextView) v);
-                }
-            });
-            viewActionList.add(tv_degree);
-            if (i == 0) {
-                resCheckTxtView = tv_degree;
-            }
-        }
-        addView(linHeaderContainer);
-    }
-
-    public void actionOpration(TextView txtView) {
-        /********************* 设置字体颜色 **********************/
-        for (int i = 0; i < viewActionList.size(); i++) {
-            viewActionList.get(i).setTextColor(Color.parseColor("#666666"));
-            viewActionList.get(i).setBackgroundResource(R.drawable.shape_action_half_nor);
-            if (txtView == viewActionList.get(i)) {
-                resCheckTxtView = txtView;
-                txtView.setTextColor(Color.parseColor("#ffffff"));
-                txtView.setBackgroundResource(R.drawable.shape_action_half_sel);
-            }
-        }
-        resCheckTxtView = txtView;
-
-        actionBean.setDegree(resCheckTxtView.getText().toString());
-        createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
-
-        addActionContentView(); //选中难易程度之后，更新数据集合
-
-        setTitle();
-
-
-    }
-
-    private void setTitle() {
-        tv_action_title.setText(numToChinesse(itemPosition));
-    }
-
-    private String numToChinesse(int position) {
-        String numStr = "";
-        switch (position) {
-            case 0:
-                numStr = "第一组:";
-                break;
-            case 1:
-                numStr = "第二组:";
-                break;
-            case 2:
-                numStr = "第三组:";
-                break;
-            case 3:
-                numStr = "第四组:";
-                break;
-            case 4:
-                numStr = "第五组:";
-                break;
-            case 5:
-                numStr = "第六组:";
-                break;
-
-        }
-        return numStr;
-    }
-
-    /************************************END 动作难易程度操作 *********************************************/
-
-
-    /************************************START 动作内容 *********************************************/
-
-
-    public void addActionContentView() {
-
-        if (resCheckTxtView != null) {
-
-            List<SubActionBean> subActionBeanList = mapList.get(resCheckTxtView.getText());
-            List<Integer> subCheckList = subMapList.get(resCheckTxtView.getText());
-
-            linSingleActionContain.removeAllViews();
-
-            for (int i = 0; i < subActionBeanList.size(); i++) {
-
-                SubActionBean subActionBean = subActionBeanList.get(i);
-                List<SubActionBean.SubChildBean> subChildBeans = subActionBean.getSubChildBeanList();
-                LinearLayout subLinContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_actions, null);
-
-                View lin_view_actions = subLinContain.findViewById(R.id.lin_view_actions);
-                LayoutParams lin_view_actions_lp = (LayoutParams) lin_view_actions.getLayoutParams();
-                lin_view_actions_lp.setMargins(DensityUtil.dip2px(mContext, 20), 0, DensityUtil.dip2px(mContext, 20), 0);
-                lin_view_actions.setLayoutParams(lin_view_actions_lp);
-
-                CheckBox ck_rank = subLinContain.findViewById(R.id.ck_rank);
-                ck_rank.setVisibility(isShowCheck ? View.VISIBLE : View.GONE);
-                if (subCheckList.contains(i)) {
-                    ck_rank.setChecked(true);
-                }
-                ck_rank.setTag(resCheckTxtView.getText() + "_" + i);
-                ck_rank.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        String tag = (String) buttonView.getTag();
-                        String[] tagArray = tag.split("_");
-                        List<Integer> subItemList = subMapList.get(tagArray[0]);
-                        if (isChecked) {
-                            subItemList.add(Integer.valueOf(tagArray[1]));
-                        } else {
-                            subItemList.remove(Integer.valueOf(tagArray[1]));
-                        }
-                        subMapList.put(tagArray[0], subItemList);
-
-                        SubActionBean checkSubActionBean = actionBean.getSubActionBeans().get(Integer.valueOf(tagArray[1]));
-                        checkSubActionBean.setCheckChild(isChecked);
-                        createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
-                    }
-                });
-
-                TextView tv_action_rank = subLinContain.findViewById(R.id.tv_action_rank);
-                tv_action_rank.setText("第" + (i + 1) + "个：");
-                tv_action_rank.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                LinearLayout lin_action_content = subLinContain.findViewById(R.id.lin_action_content);
-                for (int j = 0; j < subChildBeans.size(); j++) {
-                    SubActionBean.SubChildBean subChildBean = subChildBeans.get(j);
-                    LinearLayout contentLin = new LinearLayout(mContext);
-                    contentLin.setOrientation(LinearLayout.HORIZONTAL);
-                    contentLin.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-                    contentLin.setPadding(0, 0, 0, DensityUtil.dip2px(mContext, 15));
-
-                    TextView textView1 = new TextView(mContext);
-                    LayoutParams et_lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-                    et_lp.weight = 1;
-                    textView1.setLayoutParams(et_lp);
-                    textView1.setText(subChildBean.getKey());
-                    textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                    textView1.setTextColor(Color.parseColor("#666666"));
-
-                    TextView textView2 = new TextView(mContext);
-                    textView2.setGravity(Gravity.LEFT);
-                    LayoutParams et_lp2 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-                    et_lp2.weight = 1;
-                    textView2.setLayoutParams(et_lp2);
-                    textView2.setText(subChildBean.getValue());
-                    textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                    textView2.setTextColor(Color.parseColor("#666666"));
-
-                    contentLin.addView(textView1);
-                    contentLin.addView(textView2);
-                    lin_action_content.addView(contentLin);
-                }
-                linSingleActionContain.addView(subLinContain);
-            }
-
-        }
-
-    }
-
-    /************************************END 动作内容 *********************************************/
-
-    private void addLayoutContainer(List<String> actionArray) {
-        //添加头部
-        addHeaderView(actionArray);
-
-        //添加动作内容
-        linSingleActionContain = new LinearLayout(mContext);
-        linSingleActionContain.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        linSingleActionContain.setOrientation(LinearLayout.VERTICAL);
-        addView(linSingleActionContain);
-
-        //添加操作按钮
-        linOprationButtonContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_add_action_bottom, null);
-
-        LinearLayout lin_add_group = linOprationButtonContain.findViewById(R.id.lin_add_group);
-        lin_add_group.setOnClickListener(new OnClickListener() {
+        lin_action_content_container = linActionContainer.findViewById(R.id.lin_action_content_container);
+        lin_action_content_container.setVisibility(actionBean.isShowHeader() ? View.VISIBLE : View.GONE);
+        rel_action_header.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPrivateLessionActivity.addActionBeanList();
+                createPrivateLessionActivity.notifyClickHeader(itemPosition, CreatePrivateLessionActivity.CLICK_HEADER);
             }
         });
-        LinearLayout lin_add_single = linOprationButtonContain.findViewById(R.id.lin_add_single);
-        lin_add_single.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<SubActionBean> subActionBeanList = mapList.get(resCheckTxtView.getText());
-
-
-                SubActionBean subActionBean_1_1 = new SubActionBean();
-                List<SubActionBean.SubChildBean> subChildBeanList_1_1 = new ArrayList<SubActionBean.SubChildBean>();
-                subChildBeanList_1_1.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组2分钟"));
-                subChildBeanList_1_1.add(new SubActionBean.SubChildBean("需要器械", "无"));
-                subActionBean_1_1.setSubChildBeanList(subChildBeanList_1_1);
-                subActionBeanList.add(subActionBean_1_1);
-
-                addActionContentView();
-            }
-        });
-
-        addView(linOprationButtonContain);
+        addView(linActionContainer);
     }
 
+    private void addActionContent() {
+        tv_action_title.setText(actionBean.getMoName());
+        tv_action_degree.setText(actionBean.getMoDifficulty());
+        tv_action_name.setText(actionBean.getMoName());
+        tv_action_limit.setText(actionBean.getBuildTime());
+        tv_action_qixie.setText(actionBean.getMoApplianceName());
+        tv_rank.setText((itemPosition+1)+"");
+    }
 
     @Override
-    public void update(Object data) {  // data: 0 编辑，1  删除 ，2  确定
+    public void update(Object data) {
+
         Toast.makeText(mContext, "观察者做了 " + data + itemPosition, Toast.LENGTH_SHORT).show();
         Map<String, String> map = (Map<String, String>) data;
         int type = Integer.valueOf(map.get("type"));
@@ -351,88 +121,41 @@ public class ActionContentView extends LinearLayout implements Observer {
             case 0: //编辑
                 isShowCheck = true;
                 ck_group.setVisibility(View.VISIBLE);
-                linOprationButtonContain.setVisibility(View.GONE);
+                rel_rank.setVisibility(View.GONE);
+                break;
 
+            case 1: //点击头部显示和隐藏
+                int itemLocation = Integer.valueOf(map.get("itemPosition"));
+                if (itemLocation == itemPosition) {
+                    if (lin_action_content_container.getVisibility() == View.GONE) {
+                        lin_action_content_container.setVisibility(View.VISIBLE);
+                        actionBean.setShowHeader(true);
+                    } else {
+                        lin_action_content_container.setVisibility(View.GONE);
+                        actionBean.setShowHeader(false);
+                    }
+                } else {
+                    lin_action_content_container.setVisibility(View.GONE);
+                    actionBean.setShowHeader(false);
+                }
+                createPrivateLessionActivity.setActionBeanList(itemPosition,actionBean);
                 break;
 
             case 2: //确定
                 isShowCheck = false;
                 ck_group.setVisibility(View.GONE);
-                boolean isSureShowHeader = actionBean.isShowBody();
-                linSingleActionContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
-                linOprationButtonContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
+                rel_rank.setVisibility(View.VISIBLE);
 
                 break;
 
-            case 3: //点击头部之后分发通知给给各组 控制显示隐藏
-                int itemLocation = Integer.valueOf(map.get("itemPosition"));
-                boolean isShowHeader = actionBean.isShowBody();
-                if (itemLocation == itemPosition) {
-                    if (createPrivateLessionActivity.isEdit()) { //判断当前状态是否处于编辑状态
-                        if(isShowHeader == false){
-                            linSingleActionContain.setVisibility(View.VISIBLE);
-                        }else{
-                            linSingleActionContain.setVisibility(View.GONE);
-                        }
-//                        linSingleActionContain.setVisibility(isShowHeader ? View.VISIBLE : View.GONE);
-                        linOprationButtonContain.setVisibility(View.GONE);
-                    } else {
-                        if(isShowHeader == false){
-                            linSingleActionContain.setVisibility(View.VISIBLE);
-                            linOprationButtonContain.setVisibility(View.VISIBLE);
-                        }else{
-                            linSingleActionContain.setVisibility(View.GONE);
-                            linOprationButtonContain.setVisibility(View.GONE);
-                        }
-                    }
-//                    isShowHeader = !isShowHeader;
-                    actionBean.setShowBody(!isShowHeader);
-                } else {
-                    linSingleActionContain.setVisibility(View.GONE);
-                    linOprationButtonContain.setVisibility(View.GONE);
-//                    isShowHeader = true;
-                    actionBean.setShowBody(false);
-                }
-                createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
-                setHeaderLayout();
-
-                break;
-            case 4: //点击 添加组动作之后，分发通知给各组 控制显示隐藏
-                int sumItemSize = Integer.valueOf(map.get("sumItemSize"));
-                linSingleActionContain.setVisibility((itemPosition == (sumItemSize - 1)) ? View.VISIBLE : View.GONE);
-                linOprationButtonContain.setVisibility((itemPosition == (sumItemSize - 1)) ? View.VISIBLE : View.GONE);
-                setHeaderLayout();
-                break;
             case 5: //删除
                 isShowCheck = true;
                 ck_group.setVisibility(View.VISIBLE);
-                linOprationButtonContain.setVisibility(View.GONE);
-
-                boolean isDeleteShowHeader = actionBean.isShowBody();
-                linSingleActionContain.setVisibility(isDeleteShowHeader ? View.VISIBLE : View.GONE);
-                linOprationButtonContain.setVisibility(View.GONE);
-
-                setHeaderLayout();
+                rel_rank.setVisibility(View.GONE);
                 break;
-           /* case 6: //确认之后的分发
-                *//*boolean isSureShowHeader = actionBean.isShowBody();
-                linSingleActionContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);
-                linOprationButtonContain.setVisibility(isSureShowHeader ? View.VISIBLE : View.GONE);*//*
 
-                break;*/
         }
-        addActionContentView();
-    }
-
-    private void setHeaderLayout() {
-        for (TextView txtView : viewActionList) {
-            if (linSingleActionContain.getVisibility() == View.GONE) { //通过分组内容的显示和隐藏控制头部的按钮显示布局
-                txtView.setVisibility(txtView == resCheckTxtView ? View.VISIBLE : View.GONE);
-            } else {
-                txtView.setVisibility(View.VISIBLE);
-            }
-        }
+        addActionContent();
 
     }
-
 }

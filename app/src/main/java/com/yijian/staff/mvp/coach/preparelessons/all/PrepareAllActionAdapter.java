@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 
 import java.util.List;
 
@@ -17,12 +18,13 @@ import java.util.List;
 public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActionAdapter.ViewHolder>  {
 
     private List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
-    private Context mContext;
+    private EditActionObservable editActionObservable;
+    private PrepareAllLessonActivity prepareAllLessonActivity;
 
-
-    public PrepareAllActionAdapter(List<ActionBean> recyclerViewActionBean, Context mContext){
+    public PrepareAllActionAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable,PrepareAllLessonActivity prepareAllLessonActivity){
         this.recyclerViewActionBean = recyclerViewActionBean;
-        this.mContext = mContext;
+        this.editActionObservable = editActionObservable;
+        this.prepareAllLessonActivity = prepareAllLessonActivity;
     }
 
     @Override
@@ -36,7 +38,8 @@ public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActi
     public void onBindViewHolder(PrepareAllActionAdapter.ViewHolder holder, int position) {
         try {
             ActionBean actionBean = recyclerViewActionBean.get(position);
-            holder.subActionContentView.initSubActionContentView(actionBean,position);
+            holder.subActionContentView.initAction(actionBean, position, prepareAllLessonActivity);
+            editActionObservable.addObserver(holder.subActionContentView);
         }catch (Exception e){
             e.printStackTrace();
         }

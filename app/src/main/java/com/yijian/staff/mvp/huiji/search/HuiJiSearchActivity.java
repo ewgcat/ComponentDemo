@@ -76,7 +76,6 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     private int pages;
     private List<HuiJiViperBean> viperBeanList = new ArrayList<HuiJiViperBean>();
     private HuiJiVipSearchAdapter adapter;
-    private boolean isShowSearchContainer = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

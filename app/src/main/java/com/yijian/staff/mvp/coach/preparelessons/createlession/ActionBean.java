@@ -9,41 +9,81 @@ import java.util.List;
 
 public class ActionBean {
 
-    private String degree;
-    private List<SubActionBean> subActionBeans = new ArrayList<>();
-    private boolean isCheckGroup = false; //扩展字段，是否选择了组字段
-    private boolean isShowBody = false; //是否展示body内容
+    //第几个动作
+    private int sort;
+    //训练难度
+    private String moDifficulty;
+    //动作名称
+    private String moName;
+    //训练次数(x次/x组)
+    private String buildTime;
+    //器械名称
+    private String moApplianceName;
+    //是否选中标志位
+    private boolean isCheck = false;
+    private boolean isShowHeader = false;
 
-
-    public String getDegree() {
-        return degree;
+    public ActionBean(int sort, String moDifficulty, String moName, String buildTime, String moApplianceName) {
+        this.sort = sort;
+        this.moDifficulty = moDifficulty;
+        this.moName = moName;
+        this.buildTime = buildTime;
+        this.moApplianceName = moApplianceName;
     }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
+    public int getSort() {
+        return sort;
     }
 
-    public List<SubActionBean> getSubActionBeans() {
-        return subActionBeans;
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 
-    public void setSubActionBeans(List<SubActionBean> subActionBeans) {
-        this.subActionBeans = subActionBeans;
+    public String getMoDifficulty() {
+        return moDifficulty;
     }
 
-    public boolean isCheckGroup() {
-        return isCheckGroup;
+    public void setMoDifficulty(String moDifficulty) {
+        this.moDifficulty = moDifficulty;
     }
 
-    public void setCheckGroup(boolean checkGroup) {
-        isCheckGroup = checkGroup;
+    public String getMoName() {
+        return moName;
     }
 
-    public boolean isShowBody() {
-        return isShowBody;
+    public void setMoName(String moName) {
+        this.moName = moName;
     }
 
-    public void setShowBody(boolean showBody) {
-        isShowBody = showBody;
+    public String getBuildTime() {
+        return buildTime;
+    }
+
+    public void setBuildTime(String buildTime) {
+        this.buildTime = buildTime;
+    }
+
+    public String getMoApplianceName() {
+        return moApplianceName;
+    }
+
+    public void setMoApplianceName(String moApplianceName) {
+        this.moApplianceName = moApplianceName;
+    }
+
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+    }
+
+    public boolean isShowHeader() {
+        return isShowHeader;
+    }
+
+    public void setShowHeader(boolean showHeader) {
+        isShowHeader = showHeader;
     }
 }

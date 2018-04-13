@@ -33,18 +33,18 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     LinearLayout lin_opration;
     @BindView(R.id.lin_edit)
     LinearLayout lin_edit;
+    @BindView(R.id.lin_add_single)
+    LinearLayout lin_add_single;
 
 
     List<String> departArray;
-    List<String> actionArray;
 
     String selectionPart = "胸部";
-    List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
+    List<ActionBean> actionBeanList = new ArrayList<ActionBean>(); //装载RecyclerView的集合
     ActionViewAdapter actionViewAdapter; //装载RecyclerView的适配器Adapter
     EditActionObservable editActionObservable = new EditActionObservable();
     boolean isEdit = false; //当前状态是否处于编辑状态
     public static int CLICK_HEADER = 0; //点击头部时的分发
-    public static int CLICK_SURE = 1;  //点击确认时的分发
 
 
     public boolean isEdit() {
@@ -70,85 +70,18 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         departArray.add("腹部");
 
         /****************** 初始化动作内容选项数据 **************************/
-        actionArray = new ArrayList<String>();
-        actionArray.add("简单");
-        actionArray.add("中等");
-        actionArray.add("困难");
-
-        /***********************START 添加组动作数据 *********************************/
-        recyclerViewActionBean = new ArrayList<ActionBean>();
-
-        //第一组
-        ActionBean actionBean = new ActionBean();
-        actionBean.setDegree("简单");
-        List<SubActionBean> actionBeanList_1 = new ArrayList<SubActionBean>();
-        SubActionBean subActionBean_1_1 = new SubActionBean();
-        SubActionBean subActionBean_1_2 = new SubActionBean();
-        SubActionBean subActionBean_1_3 = new SubActionBean();
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_1 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_1.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组2分钟"));
-        subChildBeanList_1_1.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_2 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_2.add(new SubActionBean.SubChildBean("仰卧起坐", "2组/每组3分钟"));
-        subChildBeanList_1_2.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_3 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_3.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组4分钟"));
-        subChildBeanList_1_3.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        subActionBean_1_1.setSubChildBeanList(subChildBeanList_1_1);
-        subActionBean_1_2.setSubChildBeanList(subChildBeanList_1_2);
-        subActionBean_1_3.setSubChildBeanList(subChildBeanList_1_3);
-
-        actionBeanList_1.add(subActionBean_1_1);
-        actionBeanList_1.add(subActionBean_1_2);
-        actionBeanList_1.add(subActionBean_1_3);
-
-
-        actionBean.setSubActionBeans(actionBeanList_1);
-
-        //第二组
-        ActionBean actionBean2 = new ActionBean();
-        actionBean2.setDegree("中等");
-        List<SubActionBean> actionBeanList_2 = new ArrayList<SubActionBean>();
-        SubActionBean subActionBean_2_1 = new SubActionBean();
-        SubActionBean subActionBean_2_2 = new SubActionBean();
-
-        List<SubActionBean.SubChildBean> subChildBeanList_2_1 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_2_1.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组2分钟"));
-        subChildBeanList_2_1.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_2_2 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_2_2.add(new SubActionBean.SubChildBean("仰卧起坐", "2组/每组3分钟"));
-        subChildBeanList_2_2.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        subActionBean_2_1.setSubChildBeanList(subChildBeanList_2_1);
-        subActionBean_2_2.setSubChildBeanList(subChildBeanList_2_2);
-
-        actionBeanList_2.add(subActionBean_2_1);
-        actionBeanList_2.add(subActionBean_2_2);
-
-
-        actionBean2.setSubActionBeans(actionBeanList_2);
-
-
-        //第三组
-        ActionBean actionBean3 = new ActionBean();
-
-        //添加到数据源中
-        recyclerViewActionBean.add(actionBean);
-        recyclerViewActionBean.add(actionBean2);
-        recyclerViewActionBean.add(actionBean3);
-
-        /***********************END 添加组动作数据 *********************************/
+        ActionBean actionBean1 = new ActionBean(1, "简单", "平板支撑", "1组/1次", "无");
+        ActionBean actionBean2 = new ActionBean(2, "中等", "平板支撑2", "2组2次", "有");
+        ActionBean actionBean3 = new ActionBean(3, "困难", "平板支撑3", "3组/3次", "无");
+        actionBeanList.add(actionBean1);
+        actionBeanList.add(actionBean2);
+        actionBeanList.add(actionBean3);
 
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rc_actioin.setLayoutManager(layoutmanager);
-        actionViewAdapter = new ActionViewAdapter(recyclerViewActionBean, actionArray, editActionObservable, this);
+        actionViewAdapter = new ActionViewAdapter(actionBeanList, editActionObservable, this);
         rc_actioin.setAdapter(actionViewAdapter);
     }
 
@@ -176,7 +109,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     public void departOpration(TextView txtView) {
     }
 
-    @OnClick({R.id.lin_edit, R.id.lin_delete, R.id.lin_sure})
+    @OnClick({R.id.lin_edit, R.id.lin_delete, R.id.lin_sure, R.id.lin_add_single})
     public void click(View v) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("type", "0");
@@ -190,8 +123,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
                 break;
             case R.id.lin_delete: //删除
                 setLinOprationVisibility(true);
-                deleteActionList();
-
+                deleteAction();
                 break;
             case R.id.lin_sure: //确定
                 isEdit = false;
@@ -200,90 +132,64 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
                 editActionObservable.notifyObservers(map);
 
                 break;
+            case R.id.lin_add_single: //添加个动作
+
+                List<ActionBean> selectActionBeanList1 = new ArrayList<ActionBean>();
+                ActionBean actionBean1 = new ActionBean(0,"简单","俯卧撑","1组/30次","撑炳");
+                ActionBean actionBean2 = new ActionBean(1,"简单","俯卧撑","1组/30次","撑炳");
+                ActionBean actionBean3 = new ActionBean(2,"简单","俯卧撑","1组/30次","撑炳");
+                selectActionBeanList1.add(actionBean1);
+                selectActionBeanList1.add(actionBean2);
+                selectActionBeanList1.add(actionBean3);
+
+                List<ActionBean> selectActionBeanList2 = new ArrayList<ActionBean>();
+                ActionBean actionBean21 = new ActionBean(0,"中等","仰卧起坐","2组/30次","撑炳");
+                ActionBean actionBean22 = new ActionBean(1,"中等","仰卧起坐","2组/30次","撑炳");
+                ActionBean actionBean23 = new ActionBean(2,"中等","仰卧起坐","2组/30次","撑炳");
+                selectActionBeanList2.add(actionBean21);
+                selectActionBeanList2.add(actionBean22);
+                selectActionBeanList2.add(actionBean23);
+
+                List<ActionBean> selectActionBeanList3 = new ArrayList<ActionBean>();
+                ActionBean actionBean31 = new ActionBean(0,"困难","深蹲","2组/30次","无");
+                ActionBean actionBean32 = new ActionBean(1,"困难","深蹲","2组/30次","无");
+                ActionBean actionBean33 = new ActionBean(2,"困难","深蹲","2组/30次","无");
+                selectActionBeanList3.add(actionBean31);
+                selectActionBeanList3.add(actionBean32);
+                selectActionBeanList3.add(actionBean33);
+
+                List<List<ActionBean>> parentList = new ArrayList<>();
+                parentList.add(selectActionBeanList1);
+                parentList.add(selectActionBeanList2);
+                parentList.add(selectActionBeanList3);
+
+                SelectActionPopwindow selectActionPopwindow = new SelectActionPopwindow(this,parentList);
+                selectActionPopwindow.showAtBottom(getWindow().getDecorView());
+
+                break;
         }
     }
 
     /**
-     * 设置编辑的显示和隐藏
-     *
-     * @param isEdit
+     * 删除分组
      */
-    private void setLinOprationVisibility(boolean isEdit) {
-        lin_edit.setVisibility(isEdit ? View.GONE : View.VISIBLE);
-        lin_opration.setVisibility(isEdit ? View.VISIBLE : View.GONE);
-
-    }
-
-    /**
-     * 实时更新分组数据
-     *
-     * @param itemPosition
-     * @param actionBean
-     */
-    public void setActionBeanList(int itemPosition, ActionBean actionBean) {
-        recyclerViewActionBean.set(itemPosition, actionBean);
-    }
-
-    /**
-     * 添加分组
-     */
-    public void addActionBeanList() {
-        //第三组
-        ActionBean actionBean4 = new ActionBean();
-
-        //添加到数据源中
-        recyclerViewActionBean.add(actionBean4);
-        actionViewAdapter = null;
-        actionViewAdapter = new ActionViewAdapter(recyclerViewActionBean, actionArray, editActionObservable, this);
-        rc_actioin.setAdapter(actionViewAdapter);
-
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("type", "4");
-                map.put("sumItemSize", recyclerViewActionBean.size() + "");
-                editActionObservable.notifyObservers(map);
-            }
-        });
-    }
-
-    /**
-     * 删除分组和个动作
-     */
-    public void deleteActionList() {
+    private void deleteAction() {
         editActionObservable.deleteObservers();
 
         List<ActionBean> tempRecyclerViewActionBean = new ArrayList<ActionBean>();
-        Collections.addAll(tempRecyclerViewActionBean, new ActionBean[recyclerViewActionBean.size()]);
-        Collections.copy(tempRecyclerViewActionBean, recyclerViewActionBean);
+        Collections.addAll(tempRecyclerViewActionBean, new ActionBean[actionBeanList.size()]);
+        Collections.copy(tempRecyclerViewActionBean, actionBeanList);
 
         for (ActionBean actionBean : tempRecyclerViewActionBean) {
-            int index = recyclerViewActionBean.indexOf(actionBean);
-            ActionBean actionBean1 = recyclerViewActionBean.get(index);
-            if (actionBean.isCheckGroup()) {
-                recyclerViewActionBean.remove(actionBean);
-            } else {
-                List<SubActionBean> subActionBeanList = actionBean.getSubActionBeans();
-
-                List<SubActionBean> tempSubActionBeanList = new ArrayList<SubActionBean>();
-                for (int i = 0; i < subActionBeanList.size(); i++) {
-                    SubActionBean subActionBean = subActionBeanList.get(i);
-                    if (subActionBean.isCheckChild()) {
-                        tempSubActionBeanList.add(subActionBean);
-                    }
-                }
-
-                List<SubActionBean> rvActionBeanList = actionBean1.getSubActionBeans();
-                for (SubActionBean tempSubActionBean : tempSubActionBeanList) {
-                    rvActionBeanList.remove(tempSubActionBean);
-                }
-                recyclerViewActionBean.set(index, actionBean1);
+            int index = actionBeanList.indexOf(actionBean);
+            ActionBean actionBean1 = actionBeanList.get(index);
+            if (actionBean.isCheck()) {
+                actionBeanList.remove(actionBean);
             }
         }
 
         actionViewAdapter = null;
-        actionViewAdapter = new ActionViewAdapter(recyclerViewActionBean, actionArray, editActionObservable, this);
+        actionViewAdapter = new ActionViewAdapter(actionBeanList, editActionObservable, this);
         rc_actioin.setAdapter(actionViewAdapter);
         new Handler().post(new Runnable() {
             @Override
@@ -294,6 +200,40 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
                 editActionObservable.notifyObservers(map);
             }
         });
+    }
+
+    /**
+     * 设置编辑的显示和隐藏
+     *
+     * @param isEdit
+     */
+    private void setLinOprationVisibility(boolean isEdit) {
+        lin_edit.setVisibility(isEdit ? View.GONE : View.VISIBLE);
+        lin_opration.setVisibility(isEdit ? View.VISIBLE : View.GONE);
+        lin_add_single.setVisibility(isEdit ? View.GONE : View.VISIBLE);
+
+    }
+
+    /**
+     * 实时更新分组数据
+     *
+     * @param itemPosition
+     * @param actionBean
+     */
+    public void setActionBeanList(int itemPosition, ActionBean actionBean) {
+        actionBeanList.set(itemPosition, actionBean);
+    }
+
+    /**
+     * 添加个动作
+     * @param actionBean
+     */
+    public void addSingleAction(ActionBean actionBean){
+        editActionObservable.deleteObservers();
+        actionBeanList.add(actionBean);
+        actionViewAdapter = null;
+        actionViewAdapter = new ActionViewAdapter(actionBeanList, editActionObservable, this);
+        rc_actioin.setAdapter(actionViewAdapter);
 
     }
 
@@ -305,12 +245,11 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     public void notifyClickHeader(int itemPosition, int eventType) {
         Map<String, String> map = new HashMap<String, String>();
         if (eventType == CLICK_HEADER) {
-            map.put("type", "3");
-        } else {
-            map.put("type", "6");
+            map.put("type", "1");
         }
         map.put("itemPosition", itemPosition + "");
         editActionObservable.notifyObservers(map);
     }
+
 
 }

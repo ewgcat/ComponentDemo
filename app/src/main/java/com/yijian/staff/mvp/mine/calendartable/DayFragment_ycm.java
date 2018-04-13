@@ -74,7 +74,6 @@ public class DayFragment_ycm extends Fragment  {
     }
 
 
-    private int defaultPosition=2;
     private void initView(View view) {
 
         ImageView ivToggle = view.findViewById(R.id.iv_toggle);
@@ -150,7 +149,7 @@ public class DayFragment_ycm extends Fragment  {
 
         @Override
         public void onPageChange(int year, int month, int day) {
-
+            Log.e("Test","year==="+year+"  month==="+month);
         }
     };
 
@@ -170,7 +169,7 @@ public class DayFragment_ycm extends Fragment  {
 
         @Override
         public void onPageChange(int year, int month, int day) {
-//            computeCurrentRowsIsSix(year, month);
+            Log.e("Test","year==="+year+"  month==="+month);
         }
     };
 

@@ -8,9 +8,11 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
+import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -21,7 +23,6 @@ import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -33,10 +34,10 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.RequestBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.http.HeaderMap;
 
 public class HttpManager {
 
@@ -113,6 +114,23 @@ public class HttpManager {
     public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "privatecourse/getMemberCourseRecordInfo";
 
 
+    //查看教练的约课日程表
+    public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseByDay";
+
+    //上课打卡
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL = BuildConfig.HOST + "privatecourse/appoint/attendCoursePunchCard";
+
+    //下课打卡
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL = BuildConfig.HOST + "privatecourse/appoint/finishCoursePunchCardAndSaveRecord";
+
+
+    //获取私教课上课记录表详情
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseRecordDetail";
+
+    //
+    public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = BuildConfig.HOST + "experienceCourse/getExperienceRecord";
+
+
     //工作台 首页图标
     public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
 
@@ -151,7 +169,7 @@ public class HttpManager {
     //体验课 二次邀约
     public static String GET_EXPERICECE_INVITE_AGAIN_URL = BuildConfig.HOST + "experienceProcess/toInviteAgain";
 
-     //体验课 会商结论
+    //体验课 会商结论
     public static String GET_EXPERICECE_HUI_SHANG_RESULT_URL = BuildConfig.HOST + "experienceProcess/toConsultationConclusion";
 
     //公用方法
@@ -195,6 +213,7 @@ public class HttpManager {
         Observable<JSONObject> getCodeObservable = apiService.resetPassword(RESET_PASSWORD_URL, username, telephone, verificationCode, newPwd, confirmPwd);
         execute(getCodeObservable, observer);
     }
+
 
     //会籍（客服） 获取全部会员列表
     public static void getHuiJiAllViperList(Map<String, String> headers, Map<String, Object> params, Observer<JSONObject> observer) {
@@ -343,6 +362,27 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
+
+    //提交下课打卡数据
+    public static void postXiaKeRecord(String url, PrivateShangKeBean privateShangKeBean, String state, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.saveXiaKeRecord(url, headers, privateShangKeBean, state);
+        execute(observable, observer);
+    }
+
+    //获取体验课上课记录表
+    public static void postExperienceRecord(String url, RecordBean recordBean, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.postExperienceRecord(url, headers, recordBean);
+        execute(observable, observer);
+    }
+
 
     //公共
     // post没请求头没有参数

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50000000"
+    android:gravity="bottom">
+
+    <RelativeLayout
+        android:id="@+id/lin_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_top_corner_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/rg_top"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true">
+
+            <RelativeLayout
+                android:id="@+id/rel_easy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tv_easy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="简单"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:checked="true"
+                    />
+                <View
+                    android:id="@+id/line_easy"
+                    style="@style/SplitLineStyle"
+                    android:background="@color/blue"
+                    android:layout_alignParentBottom="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_middle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tv_middle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="中等"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:checked="true"
+                    />
+                <View
+                    android:id="@+id/line_middle"
+                    style="@style/SplitLineStyle"
+                    android:background="@color/blue"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_difficulty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tv_difficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="困难"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:checked="true"
+                    />
+                <View
+                    android:id="@+id/line_difficulty"
+                    style="@style/SplitLineStyle"
+                    android:background="@color/blue"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="确定"
+            android:textColor="@color/blue"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_actioin_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rg_top"
+            android:layout_above="@id/tv_submit"
+            android:background="@color/gray"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

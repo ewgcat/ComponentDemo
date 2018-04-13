@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="体验馆401"
+                        android:text="张三"
                         android:textColor="#999999"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -166,20 +166,46 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="体验馆401"
+                        android:text="1人"
                         android:textColor="#999999"
                         android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_finish"
+           <!-- <ImageView
+                android:id="@+id/iv_status"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@mipmap/my_finish"
                 android:layout_alignParentRight="true"
-                />
+                />-->
+
+            <RelativeLayout
+                android:id="@+id/rel_statu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp">
+
+                <ImageView
+                    android:id="@+id/iv_order_class_statu"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/lessons_beike"/>
+                
+                <TextView
+                    android:id="@+id/tv_order_class_statu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上课"
+                    android:layout_marginRight="25dp"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+                
+            </RelativeLayout> 
 
         </RelativeLayout>
 

@@ -8,15 +8,19 @@ import android.widget.Button;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Bean;
 import com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +31,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
     @BindView(R.id.bt_invite)
     Button btInvite;
     private NavigationBar2 navigationBar2;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,9 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ExperienceClassProcess4Activity.this, ExperienceClassProcess5Activity.class));
+                Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassProcess5Activity.class);
+                intent.putExtra("memberId", memberId);
+                startActivity(intent);
 
             }
         });
@@ -55,13 +62,13 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
         ClassTimeBar timeBar = findViewById(R.id.step_four_timebar);
         timeBar.showTimeBar(4);
 
-        String memberId = getIntent().getStringExtra("memberId");
+        memberId = getIntent().getStringExtra("memberId");
         HashMap<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONArrayObserver() {
             @Override
-            public void onSuccess(JSONObject result) {
-
+            public void onSuccess(JSONArray result) {
+                List<ExperienceClassProcess4Bean> process4BeanList = com.alibaba.fastjson.JSONObject.parseArray(result.toString(), ExperienceClassProcess4Bean.class);
             }
 
             @Override
@@ -77,7 +84,9 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
             case R.id.ll_first_class:
                 break;
             case R.id.bt_invite:
-                startActivityForResult(new Intent(ExperienceClassProcess4Activity.this, ExperienceClassInvateActivity.class), 1001);
+                Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassInvateActivity.class);
+                intent.putExtra("memberId", memberId);
+                startActivityForResult(intent, 1001);
 
                 break;
         }

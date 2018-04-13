@@ -78,10 +78,10 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
                 ExperienceClassProcess1Bean experienceClassProcess1Bean = new ExperienceClassProcess1Bean(result);
                 tvName.setText(experienceClassProcess1Bean.getMemberName());
                 tvCoach.setText(experienceClassProcess1Bean.getCoachName());
-                tvClassCount.setText(experienceClassProcess1Bean.getCourseCurrent()+"");
-                tvClassNum.setText(experienceClassProcess1Bean.getCourseNum()+"");
+                tvClassCount.setText(experienceClassProcess1Bean.getCourseCurrent() + "");
+                tvClassNum.setText(experienceClassProcess1Bean.getCourseNum() + "");
                 Long startTime = experienceClassProcess1Bean.getStartTime();
-                if (startTime!=null){
+                if (startTime != null) {
                     String time = DateUtil.parseLongDateToTimeString(startTime);
                     tvTime.setText(time);
                 }
@@ -113,13 +113,13 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
             llContent.setVisibility(View.VISIBLE);
 
 
-            //TODO 请求邀约信息,显示
-
             navigationBar2.setmRightTvText("下一步");
             navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ExperienceClassProcess1Activity.this, ExperienceClassProcess2Activity.class));
+                    Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassProcess2Activity.class);
+                    intent.putExtra("memberId", memberId);
+                    startActivity(intent);
                 }
             });
 

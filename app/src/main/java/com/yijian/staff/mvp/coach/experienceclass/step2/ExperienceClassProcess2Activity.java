@@ -10,11 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
 import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -32,6 +34,7 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
     EditText etCoachHuifangResult;
     @BindView(R.id.tv_huiji_huifang_result)
     TextView tvHuijiHuifangResult;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,10 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
                 if (TextUtils.isEmpty(s)){
                     Toast.makeText(ExperienceClassProcess2Activity.this,"请先对客户进行电话回访，填写回访记录，才可以进行下一步",Toast.LENGTH_SHORT).show();
                 }else {
-                    startActivity(new Intent(ExperienceClassProcess2Activity.this,ExperienceClassProcess3Activity.class));
+                    //TODO 发送请求
+                    Intent intent = new Intent(ExperienceClassProcess2Activity.this, ExperienceClassProcess3Activity.class);
+                    intent.putExtra("memberId", memberId);
+                    startActivity(intent);
                 }
             }
         });
@@ -64,17 +70,21 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
         ClassTimeBar timeBar = findViewById(R.id.step_two_timebar);
         timeBar.showTimeBar(2);
 
-        String memberId = getIntent().getStringExtra("memberId");
+        memberId = getIntent().getStringExtra("memberId");
         HashMap<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
+                String sellerVisitRecord = JsonUtil.getString(result, "sellerVisitRecord");
+                String coachVisitRecord = JsonUtil.getString(result, "coachVisitRecord");
+                tvHuijiHuifangResult.setText(sellerVisitRecord);
+                etCoachHuifangResult.setText(coachVisitRecord);
             }
 
             @Override
             public void onFail(String msg) {
+                Toast.makeText(ExperienceClassProcess2Activity.this,msg,Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -38,7 +38,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:text="第一次上课内容"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/blue" />
 
         <TextView
             android:layout_width="0dp"
@@ -88,7 +88,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
                 android:text="第一次上课记录表"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/blue" />
 
         </LinearLayout>
 
@@ -120,7 +120,7 @@
                     android:layout_weight="6"
                     android:gravity="center"
                     android:text="动作"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/blue" />
 
                 <View
                     android:layout_width="1dp"
@@ -133,7 +133,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="动作形态"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/blue" />
 
                 <View
                     android:layout_width="1dp"
@@ -146,7 +146,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="强度"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/blue" />
 
                 <View
                     android:layout_width="1dp"
@@ -159,7 +159,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="时间(s)"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/blue" />
 
                 <View
                     android:layout_width="1dp"
@@ -172,7 +172,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="间隔(s)"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/blue" />
 
                 <View
                     android:layout_width="1dp"

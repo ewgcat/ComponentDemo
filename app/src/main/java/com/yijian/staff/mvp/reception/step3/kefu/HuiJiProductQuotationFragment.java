@@ -55,7 +55,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     Unbinder unbinder;
     @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
+    SmartRefreshLayout cardRefreshLayout;
 
     private static final String TAG = "HuiJiProductQuotationFr";
     private List<CardInfo> mGoodsInfoList ;
@@ -99,23 +99,23 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
-        refreshLayout.setRefreshHeader(header);
+        cardRefreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(Color.parseColor("#1997f8"));
-        refreshLayout.setRefreshFooter(footer);
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        cardRefreshLayout.setRefreshFooter(footer);
+        cardRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.resetBodyPage(bodyCondition);
-                presenter.getRecptionCards(bodyCondition,true);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 bodyCondition.setPageSize(bodyCondition.getPageNum()+1);
-                presenter.getRecptionCards(bodyCondition,false);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
             }
         });
 
@@ -124,9 +124,10 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             @Override
             public void onDismiss(ConditionBody body) {
 
-//                Log.e(TAG, "onDismiss: "+body.toString() );
                 bodyCondition=body;
-                presenter.getRecptionCards(bodyCondition,true);
+                bodyCondition.setPageNum(1);
+                bodyCondition.setPageSize(4);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
             }
         });
         goodsListAdapter.setOnItemClickListener(new CardsListAdapter.OnItemClickListener() {
@@ -144,7 +145,9 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     //点击筛选
     private void selectShaixuan() {
-
+        priceUp = false;
+        resetTabColor();
+        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
         optionDialog.show(getActivity().getFragmentManager(),"OptionDialog");
 
     }
@@ -185,7 +188,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
 
         presenter.resetBody(bodyCondition);
-        presenter.getRecptionCards(bodyCondition,true);
+        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
 
 
     }

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.kefu;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
@@ -18,7 +19,7 @@ public interface HuiJiProductContract {
     }
 
     interface Presenter{
-        void getRecptionCards(ConditionBody bodyCondition,Boolean isRefresh);
+        void getRecptionCards(SmartRefreshLayout refreshLayout,ConditionBody bodyCondition, Boolean isRefresh);
 
 //        void toCoach();
     }

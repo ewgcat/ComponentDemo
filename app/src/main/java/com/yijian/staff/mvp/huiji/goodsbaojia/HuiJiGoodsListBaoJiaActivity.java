@@ -8,10 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,12 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
+import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
+import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
+import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductContract;
+import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
+import com.yijian.staff.mvp.reception.step3.kefu.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -37,17 +47,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
+
+import static com.yijian.staff.tab.tools.ContextUtil.getContext;
 
 /**
  * 会籍（客服）产品报价
  */
 @Route(path = "/test/9")
-public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
+public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements HuiJiProductContract.View{
 
 
     @BindView(R.id.tv_zong_he)
@@ -62,17 +76,15 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
+    SmartRefreshLayout cardRefreshLayout;
 
-    private List<GoodsInfo> mGoodsInfoList = new ArrayList<>();
-    private GoodsListAdapter goodsListAdapter;
-    private HuiJiFilterGoodsDialog huiJiFilterGoodsDialog;
-    private GoodsInfo selectedGoodsInfo;
-    private HuiJiGoodsFilterBean huiJiGoodsFilterBean;
+    private List<CardInfo> mGoodsInfoList = new ArrayList<>();
+    private CardsListAdapter goodsListAdapter;
 
-    private int pageNum = 1;
-    private int pageSize = 4;
-    private int pages;
+    private ConditionBody bodyCondition;
+    private HuiJiProductPresenter presenter;
+    private OptionDialog optionDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,19 +92,12 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goods_list);
         ButterKnife.bind(this);
 
-        initView();
-    }
-
-    private void initView() {
-
-
-
+        presenter = new HuiJiProductPresenter(getContext());
+        presenter.setView(this);
+        bodyCondition = new ConditionBody();
         initComponent();
-
-
-        selectZongHe();
-
     }
+
 
     public void initComponent() {
 
@@ -113,7 +118,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
                         if (TextUtils.isEmpty(name)){
                             Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
                         }else {
-                            refresh(huiJiGoodsFilterBean);
+                            bodyCondition.setCardName(name);
+                            presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
                         }
                         break;
                 }
@@ -121,254 +127,62 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
+
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局
         goodsRcv.setLayoutManager(layoutmanager);
-        goodsListAdapter = new GoodsListAdapter(this, mGoodsInfoList);
+        goodsListAdapter = new CardsListAdapter(this);
         goodsRcv.setAdapter(goodsListAdapter);
-
-        huiJiFilterGoodsDialog = new HuiJiFilterGoodsDialog(this);
-        huiJiFilterGoodsDialog.setOnDismissListener(new HuiJiFilterGoodsDialog.OnDismissListener() {
-            @Override
-            public void onDismiss(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
-                refresh(huiJiGoodsFilterBean);
-            }
-        });
-
-        goodsListAdapter.setOnItemClickListener(new GoodsListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, GoodsInfo goodsInfo) {
-                selectedGoodsInfo = goodsInfo;
-            }
-        });
 
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
-        header.setPrimaryColor(Color.parseColor("#FFFFFF"));
-        refreshLayout.setRefreshHeader(header);
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
+        cardRefreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(Color.parseColor("#1997f8"));
-        refreshLayout.setRefreshFooter(footer);
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        cardRefreshLayout.setRefreshFooter(footer);
+        cardRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                presenter.resetBodyPage(bodyCondition);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
 
-                refresh(huiJiGoodsFilterBean);
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadMore();
+                bodyCondition.setPageSize(bodyCondition.getPageNum()+1);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
             }
         });
-    }
 
-
-    private void refresh(HuiJiGoodsFilterBean huiJiGoodsFilterBean) {
-        mGoodsInfoList.clear();
-
-        pageNum = 1;
-        pageSize = 4;
-        this.huiJiGoodsFilterBean = huiJiGoodsFilterBean;
-
-
-        String name = etSearch.getText().toString().trim();
-
-            HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
-            body.setCardName(name);
-            body.setPageNum(pageNum);
-            body.setPageSize(pageSize);
-            body.setIsSortByPrice(isSortByPrice );
-
-            if (huiJiGoodsFilterBean != null) {
-                body.setCardType(huiJiGoodsFilterBean.getCardType());
-                body.setStartPrice(huiJiGoodsFilterBean.getStartPrice());
-                body.setEndPrice(huiJiGoodsFilterBean.getEndPrice());
-                body.setVenueName(huiJiGoodsFilterBean.getVenueName());
+        optionDialog = new OptionDialog();
+        optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(ConditionBody body) {
+                bodyCondition=body;
+                bodyCondition.setPageNum(1);
+                bodyCondition.setPageSize(4);
+                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
             }
+        });
 
-            HttpManager.getHuiJiCardGoodsList(body, new ResultJSONObjectObserver() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    mGoodsInfoList.clear();
-                    refreshLayout.finishRefresh(2000, true);
-
-                    pageNum = JsonUtil.getInt(result, "current") + 1;
-                    pages = JsonUtil.getInt(result, "pages");
-                    JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    try {
-                        for (int i = 0; i < records.length(); i++) {
-
-                            JSONObject o = (JSONObject) records.get(i);
-                            GoodsInfo goodsInfo = new GoodsInfo(o);
-                            mGoodsInfoList.add(goodsInfo);
-                        }
-                        goodsListAdapter.update(mGoodsInfoList);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFail(String msg) {
-                    refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
-
+        selectZongHe();
 
     }
 
-    private void loadMore() {
 
-
-        String name = etSearch.getText().toString().trim();
-
-
-            HuiJiGoodsRequestBody body = new HuiJiGoodsRequestBody();
-            body.setCardName(name);
-            body.setPageNum(pageNum);
-            body.setPageSize(pageSize);
-            body.setIsSortByPrice(isSortByPrice );
-
-            if (huiJiGoodsFilterBean != null) {
-                body.setCardType(huiJiGoodsFilterBean.getCardType());
-                body.setStartPrice(huiJiGoodsFilterBean.getStartPrice());
-                body.setEndPrice(huiJiGoodsFilterBean.getEndPrice());
-                body.setVenueName(huiJiGoodsFilterBean.getVenueName());
-            }
-
-            HttpManager.getHuiJiCardGoodsList( body, new ResultJSONObjectObserver() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                    pages = JsonUtil.getInt(result, "pages");
-
-                    boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
-                    JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    try {
-                            for (int i = 0; i < records.length(); i++) {
-
-                                JSONObject o = (JSONObject) records.get(i);
-                                GoodsInfo goodsInfo = new GoodsInfo(o);
-                                mGoodsInfoList.add(goodsInfo);
-                            }
-                            goodsListAdapter.update(mGoodsInfoList);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-                @Override
-                public void onFail(String msg) {
-                    boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                    Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
-
-
-    }
 
 
     //点击筛选
-    private void selectShaixuan() {
-        if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            showFilterDialog();
-            isSortByPrice=-1;
-            priceUp = false;
-            huiJiGoodsFilterBean = null;
-        } else {
-            tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
-            tvZongHe.setTextColor(Color.parseColor("#666666"));
-            tvPrice.setTextColor(Color.parseColor("#666666"));
-            Drawable drawablePrice = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-            drawablePrice.setBounds(0, 0, drawablePrice.getMinimumWidth(), drawablePrice.getMinimumHeight());
-            tvPrice.setCompoundDrawables(null, null, drawablePrice, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            showFilterDialog();
-            isSortByPrice=-1;
-            priceUp = false;
-            huiJiGoodsFilterBean = null;
-        }
-    }
+
 
     private boolean priceUp = false;
-    private int isSortByPrice = -1;
-
-    //点击价格
-    private void selectPrice() {
-        if (tvPrice.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            if (priceUp) {
-                Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvPrice.setCompoundDrawables(null, null, drawable, null);
-                priceUp = false;
-                isSortByPrice = 1;
-                huiJiGoodsFilterBean = null;
-                refresh(huiJiGoodsFilterBean);
-
-            } else {
-                Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvPrice.setCompoundDrawables(null, null, drawable, null);
-                priceUp = true;
-                isSortByPrice = 0;
-                huiJiGoodsFilterBean = null;
-                refresh(huiJiGoodsFilterBean);
-
-            }
-        } else {
-            tvPrice.setTextColor(Color.parseColor("#1997f8"));
-            tvZongHe.setTextColor(Color.parseColor("#666666"));
-            tvShaixuan.setTextColor(Color.parseColor("#666666"));
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvPrice.setCompoundDrawables(null, null, drawable, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            isSortByPrice = 0;
-            huiJiGoodsFilterBean = null;
-            refresh(huiJiGoodsFilterBean);
-
-        }
-    }
-
-    private void selectZongHe() {
-        if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            isSortByPrice = -1;
-            huiJiGoodsFilterBean = null;
-            refresh(huiJiGoodsFilterBean);
-
-        } else {
-            tvZongHe.setTextColor(Color.parseColor("#1997f8"));
-            tvPrice.setTextColor(Color.parseColor("#666666"));
-            tvShaixuan.setTextColor(Color.parseColor("#666666"));
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvPrice.setCompoundDrawables(null, null, drawable, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            isSortByPrice = -1;
-            huiJiGoodsFilterBean = null;
-            refresh(huiJiGoodsFilterBean);
-
-        }
-
-    }
 
 
-    private void showFilterDialog() {
-        huiJiFilterGoodsDialog.showFilterDialog();
-    }
+
 
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})
     public void onViewClicked(View view) {
@@ -386,4 +200,77 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity {
         }
     }
 
+
+    //点击筛选
+    private void selectShaixuan() {
+        priceUp = false;
+        resetTabColor();
+        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+        optionDialog.show(getFragmentManager(),"OptionDialog");
+
+    }
+
+    //点击价格
+    private void selectPrice() {
+        if (mGoodsInfoList==null||mGoodsInfoList.size()==0)return;
+        resetTabColor();
+        if (priceUp){
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawables(null, null, drawable, null);
+
+            Collections.sort(mGoodsInfoList);
+            goodsListAdapter.resetData(mGoodsInfoList);
+            priceUp = false;
+
+        }else {
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawables(null, null, drawable, null);
+
+            Collections.sort(mGoodsInfoList);
+            Collections.reverse(mGoodsInfoList);
+            goodsListAdapter.resetData(mGoodsInfoList);
+            priceUp = true;
+        }
+
+    }
+
+    //点击综合
+    private void selectZongHe() {
+        resetTabColor();
+        tvZongHe.setTextColor(Color.parseColor("#1997f8"));
+        presenter.resetBody(bodyCondition);
+        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+    }
+
+
+
+
+
+
+
+
+
+    @Override
+    public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
+        mGoodsInfoList=goodsInfos;
+        if (isRefresh){
+            goodsListAdapter.resetData(goodsInfos);
+        }else {
+            goodsListAdapter.addDatas(goodsInfos);
+        }
+    }
+
+    public void resetTabColor(){
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        tvPrice.setTextColor(Color.parseColor("#666666"));
+        tvShaixuan.setTextColor(Color.parseColor("#666666"));
+        Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tvPrice.setCompoundDrawables(null, null, drawable, null);
+        Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
+        drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
+        tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+    }
 }

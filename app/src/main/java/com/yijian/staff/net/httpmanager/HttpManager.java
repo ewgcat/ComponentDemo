@@ -172,6 +172,11 @@ public class HttpManager {
     //体验课 会商结论
     public static String GET_EXPERICECE_HUI_SHANG_RESULT_URL = BuildConfig.HOST + "experienceProcess/toConsultationConclusion";
 
+
+    //发出邀约并保存邀约相关信息
+    public static String SEND_EXPERICECE_INVITE_HISTORY_URL = BuildConfig.HOST + "experienceProcess/saveInvite";
+
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

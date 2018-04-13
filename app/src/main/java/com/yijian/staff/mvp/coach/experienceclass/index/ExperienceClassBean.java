@@ -31,17 +31,22 @@ public class ExperienceClassBean implements Serializable {
     private int gender;
     private String headPath;
     private String memberName;
+    private String memberId;
     private String processId;
     private int status;
     private String statusDesc;
     private List<CardprodVOsBean> cardprodVOs;
 
+    public String getMemberId() {
+        return memberId;
+    }
 
     public  ExperienceClassBean(JSONObject jsonObject) {
         try {
 
             this.headPath = jsonObject.getString("headPath");
             this.memberName = jsonObject.getString("memberName");
+            this.memberId = jsonObject.getString("memberId");
             this.statusDesc = jsonObject.getString("statusDesc");
             this.processId = jsonObject.getString("processId");
             this.courseNum = jsonObject.getInt("courseNum");

@@ -20,6 +20,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity;
 import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
 
 import java.util.List;
@@ -33,17 +37,18 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
     private List<ExperienceClassBean> experienceClassBeanList;
     private Context context;
 
-    public ExperienceClassListAdatper(Context context, List<ExperienceClassBean> experienceClassBeanList){
+    public ExperienceClassListAdatper(Context context, List<ExperienceClassBean> experienceClassBeanList) {
         this.context = context;
         this.experienceClassBeanList = experienceClassBeanList;
     }
 
-    public void update(List<ExperienceClassBean> experienceClassBeanList){
-        if (experienceClassBeanList!=null){
-            this.experienceClassBeanList=experienceClassBeanList;
+    public void update(List<ExperienceClassBean> experienceClassBeanList) {
+        if (experienceClassBeanList != null) {
+            this.experienceClassBeanList = experienceClassBeanList;
             notifyDataSetChanged();
         }
     }
+
     @Override
     public ExperienceClassListAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_class, parent, false);
@@ -63,9 +68,9 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         Glide.with(context).load(experienceClassBean.getHeadPath()).apply(options).into(holder.iv_header);
         int sex = experienceClassBean.getGender();
-        if (sex==1){
+        if (sex == 1) {
             Glide.with(context).load(R.mipmap.lg_man).apply(options).into(holder.iv_gender);
-        }else {
+        } else {
             Glide.with(context).load(R.mipmap.lg_women).apply(options).into(holder.iv_gender);
         }
 
@@ -82,14 +87,28 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.tv_name.setText(experienceClassBean.getMemberName());
 
-        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum()+"");
+        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "");
         holder.tv_current_operation.setText(experienceClassBean.getStatusDesc());
 
         holder.experience_class_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ExperienceClassProcess1Activity.class);
+                int status = experienceClassBean.getStatus();
+                Intent intent = new Intent();
+                if (status == 10) {
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity");
+                } else if (status == 20) {
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity");
 
+                } else if (status == 30) {
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity");
+                } else if (status == 40) {
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity");
+                } else if (status == 50) {
+                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step5.ExperienceClassProcess5Activity");
+
+                }
+                intent.putExtra("memberId", experienceClassBean.getMemberId());
                 context.startActivity(intent);
             }
         });
@@ -104,20 +123,21 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
             Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 
-            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+            holder.tv_zhankai_status.setCompoundDrawables(null, null, drawable, null);
         } else {
             holder.rv_card.setVisibility(View.GONE);
             holder.tv_zhankai_status.setText("展开");
             Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 
-            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
+            holder.tv_zhankai_status.setCompoundDrawables(null, null, drawable, null);
         }
 
     }
+
     @Override
     public int getItemCount() {
-        return experienceClassBeanList==null?0:experienceClassBeanList.size();
+        return experienceClassBeanList == null ? 0 : experienceClassBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -135,15 +155,15 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         public ViewHolder(View view) {
             super(view);
-            experience_class_item_view =  view.findViewById(R.id.experience_class_item_view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_zhankai_status   = view.findViewById(R.id.tv_zhankai_status);
-            rel_expand =     view.findViewById(R.id.rel_expand);
-            rv_card =     view.findViewById(R.id.rv_card);
-            tv_experienced_count =     view.findViewById(R.id.tv_experienced_count);
-            tv_current_operation  =     view.findViewById(R.id.tv_current_operation);
+            experience_class_item_view = view.findViewById(R.id.experience_class_item_view);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
+            rel_expand = view.findViewById(R.id.rel_expand);
+            rv_card = view.findViewById(R.id.rv_card);
+            tv_experienced_count = view.findViewById(R.id.tv_experienced_count);
+            tv_current_operation = view.findViewById(R.id.tv_current_operation);
         }
     }
 

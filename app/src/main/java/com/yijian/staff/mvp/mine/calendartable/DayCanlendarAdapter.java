@@ -49,7 +49,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
         }
         holder.tv_stuList.setText(sb==null?"":sb.toString());
         holder.tv_stu_num.setText((dayCanlendarInfo.getStuList()==null?0:dayCanlendarInfo.getStuList().size())+"人");
-        holder.iv_finish.setVisibility("0".equals(dayCanlendarInfo.getStatus())?View.GONE:View.VISIBLE);
+//        holder.iv_finish.setVisibility("0".equals(dayCanlendarInfo.getStatus())?View.GONE:View.VISIBLE);
         holder.tv_intervalTime.setText("约课时间间隔"+dayCanlendarInfo.getIntervalTime()+"分钟");
         if(position == dayCanlendarInfoList.size()-1){
             holder.view_last_line.setVisibility(View.GONE);
@@ -71,7 +71,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
         TextView tv_stu_num;
         TextView tv_intervalTime;
         View view_last_line;
-        ImageView iv_finish;
+//        ImageView iv_finish;
 
 
         public ViewHolder(View view) {
@@ -83,7 +83,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
             tv_stuList =     view.findViewById(R.id.tv_stuList);
             tv_stu_num = view.findViewById(R.id.tv_stu_num);
             tv_intervalTime = view.findViewById(R.id.tv_intervalTime);
-            iv_finish = view.findViewById(R.id.iv_finish);
+//            iv_finish = view.findViewById(R.id.iv_finish);
             view_last_line = view.findViewById(R.id.view_last_line);
         }
     }

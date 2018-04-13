@@ -8,12 +8,16 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +31,9 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
     TextView tv_depart;
     @BindView(R.id.rv_action_content)
     RecyclerView rv_action_content;
-
-    List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
+    List<ActionBean> actionBeanList = new ArrayList<>(); //装载RecyclerView的集合
+    PrepareAllActionAdapter prepareAllActionAdapter ;
+    EditActionObservable editActionObservable = new EditActionObservable();
 
 
     @Override
@@ -37,96 +42,48 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_prepare_all_lesson);
         ButterKnife.bind(this);
         initTitle();
+        intView();
         initData();
     }
 
+    private void intView() {
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
+        //设置RecyclerView 布局
+        rv_action_content.setLayoutManager(layoutmanager);
+        prepareAllActionAdapter = new PrepareAllActionAdapter(actionBeanList, editActionObservable, this);
+        rv_action_content.setAdapter(prepareAllActionAdapter);
+    }
+
+    private void initData(){
+        /****************** 初始化动作内容选项数据 **************************/
+        ActionBean actionBean1 = new ActionBean(1, "简单", "平板支撑", "1组/1次", "无");
+        ActionBean actionBean2 = new ActionBean(2, "中等", "平板支撑2", "2组2次", "有");
+        ActionBean actionBean3 = new ActionBean(3, "困难", "平板支撑3", "3组/3次", "无");
+        actionBeanList.add(actionBean1);
+        actionBeanList.add(actionBean2);
+        actionBeanList.add(actionBean3);
+        prepareAllActionAdapter.notifyDataSetChanged();
+
+
+    }
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
         navigationBar2.setTitle("所有课程安排");
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this); }
+        navigationBar2.setBackClickListener(this);
+    }
 
-
-    private void initData() {
-        /**************** 初始化部位训练数据 ************************/
-        tv_depart.setText("背部");
-
-        /***********************START 添加组动作数据 *********************************/
-        recyclerViewActionBean = new ArrayList<ActionBean>();
-
-        //第一组
-        ActionBean actionBean = new ActionBean();
-        actionBean.setDegree("简单");
-        List<SubActionBean> actionBeanList_1 = new ArrayList<SubActionBean>();
-        SubActionBean subActionBean_1_1 = new SubActionBean();
-        SubActionBean subActionBean_1_2 = new SubActionBean();
-        SubActionBean subActionBean_1_3 = new SubActionBean();
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_1 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_1.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组2分钟"));
-        subChildBeanList_1_1.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_2 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_2.add(new SubActionBean.SubChildBean("仰卧起坐", "2组/每组3分钟"));
-        subChildBeanList_1_2.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_1_3 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_1_3.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组4分钟"));
-        subChildBeanList_1_3.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        subActionBean_1_1.setSubChildBeanList(subChildBeanList_1_1);
-        subActionBean_1_2.setSubChildBeanList(subChildBeanList_1_2);
-        subActionBean_1_3.setSubChildBeanList(subChildBeanList_1_3);
-
-        actionBeanList_1.add(subActionBean_1_1);
-        actionBeanList_1.add(subActionBean_1_2);
-        actionBeanList_1.add(subActionBean_1_3);
-
-
-        actionBean.setSubActionBeans(actionBeanList_1);
-
-        //第二组
-        ActionBean actionBean2 = new ActionBean();
-        actionBean2.setDegree("中等");
-        List<SubActionBean> actionBeanList_2 = new ArrayList<SubActionBean>();
-        SubActionBean subActionBean_2_1 = new SubActionBean();
-        SubActionBean subActionBean_2_2 = new SubActionBean();
-
-        List<SubActionBean.SubChildBean> subChildBeanList_2_1 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_2_1.add(new SubActionBean.SubChildBean("平板支撑", "2组/每组2分钟"));
-        subChildBeanList_2_1.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        List<SubActionBean.SubChildBean> subChildBeanList_2_2 = new ArrayList<SubActionBean.SubChildBean>();
-        subChildBeanList_2_2.add(new SubActionBean.SubChildBean("仰卧起坐", "2组/每组3分钟"));
-        subChildBeanList_2_2.add(new SubActionBean.SubChildBean("需要器械", "无"));
-
-        subActionBean_2_1.setSubChildBeanList(subChildBeanList_2_1);
-        subActionBean_2_2.setSubChildBeanList(subChildBeanList_2_2);
-
-        actionBeanList_2.add(subActionBean_2_1);
-        actionBeanList_2.add(subActionBean_2_2);
-
-
-        actionBean2.setSubActionBeans(actionBeanList_2);
-
-
-        //第三组
-//        ActionBean actionBean3 = new ActionBean();
-
-        //添加到数据源中
-        recyclerViewActionBean.add(actionBean);
-        recyclerViewActionBean.add(actionBean2);
-//        recyclerViewActionBean.add(actionBean3);
-
-        /***********************END 添加组动作数据 *********************************/
-
-
-        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-        //设置RecyclerView 布局
-        rv_action_content.setLayoutManager(layoutmanager);
-        PrepareAllActionAdapter prepareAllActionAdapter = new PrepareAllActionAdapter(recyclerViewActionBean,this);
-        rv_action_content.setAdapter(prepareAllActionAdapter);
+    /**
+     * 点击头部 监听各分组的隐藏和显示
+     *
+     * @param itemPosition
+     */
+    public void notifyClickHeader(int itemPosition, int eventType) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "6");
+        map.put("itemPosition", itemPosition + "");
+        editActionObservable.notifyObservers(map);
     }
 
 

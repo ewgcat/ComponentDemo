@@ -7,6 +7,9 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
+import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -102,8 +105,25 @@ public class HttpManager {
     //私教课的存课列表
     public static String COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL = BuildConfig.HOST + "privatecourse/stock-private/page-list";
 
-    //私教课的上课记录基本信息
-    public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "/privatecourse/getMemberCourseRecordInfo";
+    //获取会员的上课记录表
+    public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "privatecourse/getMemberCourseRecordInfo";
+
+
+    //查看教练的约课日程表
+    public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseByDay";
+
+    //上课打卡
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL = BuildConfig.HOST + "privatecourse/appoint/attendCoursePunchCard";
+
+    //下课打卡
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL = BuildConfig.HOST + "privatecourse/appoint/finishCoursePunchCardAndSaveRecord";
+
+
+    //获取私教课上课记录表详情
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseRecordDetail";
+
+    //
+    public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = BuildConfig.HOST + "experienceCourse/getExperienceRecord";
 
 
     //工作台 首页图标
@@ -273,6 +293,27 @@ public class HttpManager {
         }
     }
 
+    //提交下课打卡数据
+    public static void postXiaKeRecord(String url, PrivateShangKeBean privateShangKeBean, String state, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.saveXiaKeRecord(url, headers, privateShangKeBean, state);
+        execute(observable, observer);
+    }
+
+    //获取体验课上课记录表
+    public static void postExperienceRecord(String url, RecordBean recordBean, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.postExperienceRecord(url, headers, recordBean);
+        execute(observable, observer);
+    }
+
+
     //公共
     // post没请求头没有参数
     public static void postNoHeaderNoParam(String url, Observer<JSONObject> observer) {
@@ -364,7 +405,7 @@ public class HttpManager {
             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-            Observable<JSONObject> observable = apiService.upLoadImage(url,headers,body );
+            Observable<JSONObject> observable = apiService.upLoadImage(url, headers, body);
             execute(observable, observer);
         }
     }

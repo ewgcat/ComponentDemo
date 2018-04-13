@@ -9,6 +9,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,17 @@ import java.util.List;
 
 public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<OpenLessonNewBean> openLessonNewBeans;
+    List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<>();
     OpenLessonNewActivity openLessonNewActivity;
     EditActionObservable editActionObservable;
 
-    public OpenLessonNewAdapter(List<OpenLessonNewBean> openLessonNewBeans,OpenLessonNewActivity openLessonNewActivity,EditActionObservable editActionObservable) {
-        this.openLessonNewBeans = openLessonNewBeans;
+    public void resetData(List<PrivateLessonRecordBean> privateLessonRecordBeans){
+        this.privateLessonRecordBeans = privateLessonRecordBeans;
+        notifyDataSetChanged();
+    }
+
+    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans,OpenLessonNewActivity openLessonNewActivity,EditActionObservable editActionObservable) {
+        this.privateLessonRecordBeans = privateLessonRecordBeans;
         this.openLessonNewActivity = openLessonNewActivity;
         this.editActionObservable = editActionObservable;
     }
@@ -38,15 +44,15 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        OpenLessonNewBean openLessonNewBean = openLessonNewBeans.get(position);
+        PrivateLessonRecordBean openLessonNewBean = privateLessonRecordBeans.get(position);
         ViewHolder viewHolder = (ViewHolder)holder;
-        viewHolder.view_openlesson.initView(openLessonNewBean,position,openLessonNewActivity);
+        viewHolder.view_openlesson.initActionRecord(openLessonNewBean,position,openLessonNewActivity);
         editActionObservable.addObserver(viewHolder.view_openlesson);
     }
 
     @Override
     public int getItemCount() {
-        return openLessonNewBeans == null ? 0 : openLessonNewBeans.size();
+        return privateLessonRecordBeans == null ? 0 : privateLessonRecordBeans.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

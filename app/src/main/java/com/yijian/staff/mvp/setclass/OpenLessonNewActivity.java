@@ -1,48 +1,77 @@
 package com.yijian.staff.mvp.setclass;
 
+import android.media.Image;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Chronometer;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.fastjson.JSON;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.cunke.CunKeActivity;
-import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-@Route(path = "/test/15")
 public class OpenLessonNewActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_open_lesson)
     RecyclerView rv_open_lesson;
     @BindView(R.id.chronometer)
     Chronometer chronometer;
+    @BindView(R.id.tv_today)
+    TextView tv_today;
+    @BindView(R.id.tv_shangke)
+    TextView tv_shangke;
+    @BindView(R.id.tv_xiake)
+    TextView tv_xiake;
+    @BindView(R.id.tv_shangke_statu)
+    TextView tv_shangke_statu;
+    @BindView(R.id.rel_punch_card)
+    RelativeLayout rel_punch_card;
+
+    private int punchStatus = -1;
+    private String recordId; //记录表ID
+    private String state; // 是否需要下课打卡（0:是,1:否）
 
     OpenLessonNewAdapter openLessonNewAdapter;
-    List<OpenLessonNewBean> openLessonNewBeans = new ArrayList<OpenLessonNewBean>();
+    List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<PrivateLessonRecordBean>();
     EditActionObservable editActionObservable = new EditActionObservable();
+
+    public int getPunchStatus() {
+        return punchStatus;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,138 +79,102 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_open_lesson_new);
         ButterKnife.bind(this);
         initView();
-        initData();
         loadData();
     }
 
     /**
-     * 加载数据
+     * 加载上课记录详情数据
      */
     private void loadData() {
-       /* HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, map, new ResultObserver() {
+        String privateApplyId = getIntent().getStringExtra("privateApplyId");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("privateApplyId", privateApplyId);
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                refreshLayout.finishRefresh(2000, true);
-
-                bodyList.clear();
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
-                JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
-                        JSONObject jsonObject = (JSONObject) records.get(i);
-                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),TypeOfCunKeBody.class);
-                        bodyList.add(typeOfCunKeBody);
-                        cunKeAdapter.resetDataList(bodyList);
-                    } catch (JSONException e) {
-
-
-                    }
+                try {
+                    recordId = result.getString("recordId");
+                    JSONArray records = JsonUtil.getJsonArray(result, "recordContextList");
+                    privateLessonRecordBeans = com.alibaba.fastjson.JSONObject.parseArray(records.toString(), PrivateLessonRecordBean.class);
+                    openLessonNewAdapter.resetData(privateLessonRecordBeans);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                cunKeAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFail(String msg) {
-                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(CunKeActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
-        });*/
+        });
     }
 
     /**
-     * 添加虚拟数据
+     * 提交上课打卡数据
      */
-    private void initData() {
-        /************** 添加第一组 *****************/
-        OpenLessonNewBean openLessonNewBean1 = new OpenLessonNewBean();
-        openLessonNewBean1.setDegree("简单");
+    private void submitShangke() {
 
-        List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList1 = new ArrayList<>(0);
+        String privateApplyId = getIntent().getStringExtra("privateApplyId");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("appointId", privateApplyId);
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Toast.makeText(OpenLessonNewActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
+                punchStatus = 1;
+                tv_shangke_statu.setText("下课打卡");
+            }
 
-        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean1 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String, String> actionMap1 = new HashMap<String, String>();
-        actionMap1.put("平板支撑", "1组/每组2分钟");
-        actionMap1.put("需要器械", "有");
-        subOpenLessonNewBean1.setActionMap(actionMap1);
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
 
-        Map<String, String> actionOprationMap1 = new LinkedHashMap<String, String>();
-        actionOprationMap1.put("动作形态", "");
-        actionOprationMap1.put("强度", "");
-        actionOprationMap1.put("时间", "");
-        actionOprationMap1.put("间隔", "");
-        subOpenLessonNewBean1.setActionOprationMap(actionOprationMap1);
+            }
+        });
 
-        subOpenLessonNewBeanList1.add(subOpenLessonNewBean1);
-        openLessonNewBean1.setSubOpenLessonNewBeans(subOpenLessonNewBeanList1);
-        openLessonNewBeans.add(openLessonNewBean1);
-
-        /************** 添加第二组 *****************/
-        OpenLessonNewBean openLessonNewBean2 = new OpenLessonNewBean();
-        openLessonNewBean2.setDegree("中等");
-
-        List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList2 = new ArrayList<>(0);
-
-        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean2 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String, String> actionMap2 = new HashMap<String, String>();
-        actionMap2.put("平板支撑", "1组/每组2分钟");
-        actionMap2.put("需要器械", "有");
-        subOpenLessonNewBean2.setActionMap(actionMap2);
-
-        Map<String, String> actionOprationMap2 = new LinkedHashMap<String, String>();
-        actionOprationMap2.put("动作形态", "标准");
-        actionOprationMap2.put("强度", "弱");
-        actionOprationMap2.put("时间", "10");
-        actionOprationMap2.put("间隔", "30");
-        subOpenLessonNewBean2.setActionOprationMap(actionOprationMap2);
-
-        subOpenLessonNewBeanList2.add(subOpenLessonNewBean2);
-        openLessonNewBean2.setSubOpenLessonNewBeans(subOpenLessonNewBeanList2);
-        openLessonNewBeans.add(openLessonNewBean2);
-
-
-        /************** 添加第三组 *****************/
-        OpenLessonNewBean openLessonNewBean3 = new OpenLessonNewBean();
-        openLessonNewBean3.setDegree("困难");
-
-        List<OpenLessonNewBean.SubOpenLessonNewBean> subOpenLessonNewBeanList3 = new ArrayList<>(0);
-
-        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String, String> actionMap3 = new HashMap<String, String>();
-        actionMap3.put("平板支撑", "1组/每组2分钟");
-        actionMap3.put("需要器械", "有");
-        subOpenLessonNewBean3.setActionMap(actionMap3);
-        Map<String, String> actionOprationMap3 = new LinkedHashMap<String, String>();
-        actionOprationMap3.put("动作形态", "标准");
-        actionOprationMap3.put("强度", "弱");
-        actionOprationMap3.put("时间", "10");
-        actionOprationMap3.put("间隔", "30");
-        subOpenLessonNewBean3.setActionOprationMap(actionOprationMap3);
-        subOpenLessonNewBeanList3.add(subOpenLessonNewBean3);
-
-
-        OpenLessonNewBean.SubOpenLessonNewBean subOpenLessonNewBean3_2 = new OpenLessonNewBean.SubOpenLessonNewBean();
-        Map<String, String> actionMap3_2 = new HashMap<String, String>();
-        actionMap3_2.put("平板支撑", "1组/每组2分钟");
-        actionMap3_2.put("需要器械", "有");
-        subOpenLessonNewBean3_2.setActionMap(actionMap3_2);
-        Map<String, String> actionOprationMap3_2 = new LinkedHashMap<String, String>();
-        actionOprationMap3_2.put("动作形态", "标准");
-        actionOprationMap3_2.put("强度", "弱");
-        actionOprationMap3_2.put("时间", "10");
-        actionOprationMap3_2.put("间隔", "30");
-        subOpenLessonNewBean3_2.setActionOprationMap(actionOprationMap3_2);
-        subOpenLessonNewBeanList3.add(subOpenLessonNewBean3_2);
-
-        openLessonNewBean3.setSubOpenLessonNewBeans(subOpenLessonNewBeanList3);
-        openLessonNewBeans.add(openLessonNewBean3);
-
-
-        openLessonNewAdapter.notifyDataSetChanged();
     }
 
-    private Handler handler = new Handler();
+    /**
+     * 提交下课卡的数据
+     */
+    private void submitXiake(){
+        String privateApplyId = getIntent().getStringExtra("privateApplyId");
+        Map<String, String> map = new HashMap<String, String>();
+        PrivateShangKeBean privateShangKeBean = new PrivateShangKeBean();
+        privateShangKeBean.setPrivateApplyId(privateApplyId);
+        privateShangKeBean.setRecordId(recordId);
+        List<PrivateShangKeBean.RecordContextListBean> recordContextList = new ArrayList<>();
+
+        for(int i = 0; i < privateLessonRecordBeans.size(); i++){
+            PrivateShangKeBean.RecordContextListBean recordContextListBean = new PrivateShangKeBean.RecordContextListBean();
+            recordContextListBean.setActionForm(privateLessonRecordBeans.get(i).getActionForm());
+            recordContextListBean.setActionStrength(privateLessonRecordBeans.get(i).getActionStrength());
+            recordContextListBean.setId(privateLessonRecordBeans.get(i).getId());
+            recordContextListBean.setInterval(privateLessonRecordBeans.get(i).getInterval());
+            recordContextListBean.setNum(privateLessonRecordBeans.get(i).getSort());
+            recordContextListBean.setPrepareId(privateLessonRecordBeans.get(i).getPrepareId());
+            recordContextListBean.setTime(privateLessonRecordBeans.get(i).getTime());
+            recordContextList.add(recordContextListBean);
+        }
+        privateShangKeBean.setRecordContextList(recordContextList);
+
+        HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Toast.makeText(OpenLessonNewActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();
+                punchStatus = 2;
+                tv_shangke_statu.setText("已完成");
+                rel_punch_card.setEnabled(false);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
     private void initView() {
 //        chronometer.setFormat("H:MM:SS");
@@ -193,36 +186,46 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         int time = hour * 60 * 60 + minute * 60 + second;
         chronometer.setBase(SystemClock.elapsedRealtime() - time * 1000);//计时器清零
         chronometer.start();
+        tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
 
+        try {
+            String startTime = getIntent().getStringExtra("startDateTime");
+            String endTime = getIntent().getStringExtra("endDateTime");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+            tv_shangke.setText(simpleDateFormat.format(dateFormat.parse(startTime)));
+            tv_xiake.setText(simpleDateFormat.format(dateFormat.parse(endTime)));
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        punchStatus = getIntent().getIntExtra("punchStatus", -1);
+        if (punchStatus == 0) {
+            tv_shangke_statu.setText("上课打卡");
+        } else if (punchStatus == 1) {
+            tv_shangke_statu.setText("下课打卡");
+        }
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_open_lesson.setLayoutManager(layoutmanager);
-        openLessonNewAdapter = new OpenLessonNewAdapter(openLessonNewBeans, this, editActionObservable);
+        openLessonNewAdapter = new OpenLessonNewAdapter(privateLessonRecordBeans, this, editActionObservable);
         rv_open_lesson.setAdapter(openLessonNewAdapter);
     }
 
-    public void notifyAllLesson(int itemPosition, int subPosition, int subSize) {
+    public void notifyAllLesson(int itemPosition) {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("type", "0");
+        map.put("type", "8");
         map.put("itemPosition", itemPosition + "");
-        map.put("subPosition", subPosition + "");
-        map.put("subSize", subSize + "");
         editActionObservable.notifyObservers(map);
     }
 
-    public void setOpenLessonList(int itemPosition, OpenLessonNewBean openLessonNewBean) {
-        openLessonNewBeans.set(itemPosition, openLessonNewBean);
+    public void setOpenLessonList(int itemPosition, PrivateLessonRecordBean openLessonNewBean) {
+        privateLessonRecordBeans.set(itemPosition, openLessonNewBean);
     }
 
-    /**
-     * 提交数据时获取所有组的时间间隔
-     */
-    public void nofyAllLessonSubmitInternet() {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("type", "1");
-        editActionObservable.notifyObservers(map);
-    }
 
     /**
      * 点击头部 监听各分组的隐藏和显示
@@ -231,9 +234,33 @@ public class OpenLessonNewActivity extends AppCompatActivity {
      */
     public void notifyClickHeader(int itemPosition) {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("type", "2");
+        map.put("type", "7");
         map.put("itemPosition", itemPosition + "");
         editActionObservable.notifyObservers(map);
+    }
+
+    @OnClick({R.id.iv_finish, R.id.rel_punch_card})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.iv_finish: //保存数据
+                SaveDataDialog saveDataDialog = new SaveDataDialog(this);
+                saveDataDialog.showSaveDialog();
+                break;
+            case R.id.rel_punch_card: //打卡
+                if (punchStatus == 0) { //打上课卡
+                    submitShangke();
+                } else if (punchStatus == 1) { // 打下课卡
+                    state = "0";
+                    submitXiake();
+                }
+                break;
+
+        }
+    }
+
+    public void finishSaveData(){
+        state = "1";
+        submitXiake();
     }
 
 }

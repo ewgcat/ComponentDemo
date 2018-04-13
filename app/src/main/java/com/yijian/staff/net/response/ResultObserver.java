@@ -4,6 +4,7 @@ package com.yijian.staff.net.response;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -34,7 +35,7 @@ public abstract  class ResultObserver implements Observer<JSONObject>   , Result
         try {
             int code = jsonObject.getInt("code");
             if (code==0){
-                JSONObject data = jsonObject.getJSONObject("data");
+                JSONObject data = JsonUtil.getJsonObject(jsonObject,"data");
                 if (data!=null){
                     onSuccess(data);
                 }

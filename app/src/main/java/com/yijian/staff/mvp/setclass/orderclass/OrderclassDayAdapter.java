@@ -124,19 +124,21 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                     strStatu = "已完成";
                 }
             }
-
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(context, OpenLessonNewActivity.class);
-                    intent.putExtra("privateApplyId",orderClassDayBean.getId());
-                    intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
-                    intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
-                    intent.putExtra("punchStatus",punchStatus);
-                    context.startActivity(intent);*/
-
-                    context.startActivity(new Intent(context, ExperienceClassRecordActivity.class));
-
+                    if("0".equals(orderClassDayBean.getIsExperience())){ // 0：私教课，1：体验课
+                        Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                        intent.putExtra("privateApplyId",orderClassDayBean.getId());
+                        intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
+                        intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
+                        intent.putExtra("punchStatus",punchStatus);
+                        context.startActivity(intent);
+                    }else if("1".equals(orderClassDayBean.getIsExperience())){
+                        Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                        intent.putExtra("privateApplyId",orderClassDayBean.getId());
+                        context.startActivity(intent);
+                    }
                 }
             });
 

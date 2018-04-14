@@ -86,13 +86,13 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public int getItemViewType(int position) {
         HuiJiViperBean huiJiSearchViperBean = dataList.get(position);
         String subclassName = huiJiSearchViperBean.getSubclassName();
-        if (subclassName.equals("CustomerInfoVO")) {
+        if (subclassName.equals("CustomerInfoVO")) { //正式会员
             return TYPE_VIP_CEREMONIAL_INFO;
-        } else if (subclassName.equals("PotentialVO")) {
+        } else if (subclassName.equals("PotentialVO")) { // 潜在会员
             return TYPE_VIP_POTENTIAL_INFO;
-        } else if (subclassName.equals("CustomerIntentionVO")) {
+        } else if (subclassName.equals("CustomerIntentionVO")) { // 意向会员
             return TYPE_VIP_INTENT_INFO;
-        } else if (subclassName.equals("CustomerExpireVO")) {
+        } else if (subclassName.equals("CustomerExpireVO")) {  // 过期会员
             return TYPE_VIP_OUTDATE_INFO;
         }
 

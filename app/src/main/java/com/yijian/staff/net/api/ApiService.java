@@ -6,7 +6,6 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
-import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
@@ -16,7 +15,6 @@ import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -170,15 +168,6 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> saveXiaKeRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivateShangKeBean privateShangKeBean, @Query("state") String state);
-
-    /**
-     * 获取体验课列表
-     * @param url
-     * @return
-     */
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> postExperienceRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body RecordBean recordBean);
 
     //post 表单
     @POST

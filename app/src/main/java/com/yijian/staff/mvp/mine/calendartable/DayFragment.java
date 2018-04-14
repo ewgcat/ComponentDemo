@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.mine.calendartable;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -116,6 +117,7 @@ public class DayFragment extends Fragment implements View.OnClickListener {
                 .commit();// 返回对象并保存
         Calendar instance = Calendar.getInstance();
         materialCalendarView.setSelectedDate(instance.getTime());
+        materialCalendarView.setSelectionColor(Color.parseColor("#1997f8"));
         materialCalendarView.setTopbarVisible(false);
         materialCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override

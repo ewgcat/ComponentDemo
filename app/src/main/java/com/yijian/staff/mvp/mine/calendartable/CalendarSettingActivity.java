@@ -132,6 +132,8 @@ public class CalendarSettingActivity extends AppCompatActivity {
                 isEdit = !isEdit;
             }
         });
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
 
     }
 

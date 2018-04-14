@@ -27,6 +27,7 @@ import com.yijian.staff.mvp.resourceallocation.adapter.ResourceAllocationAdatper
 import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
 import com.yijian.staff.mvp.resourceallocation.fragment.distribution.ResourceAllocationFragment;
 import com.yijian.staff.mvp.resourceallocation.fragment.history.HistoryAllocationFragment;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -57,7 +58,6 @@ public class ResourceAllocationActivity extends AppCompatActivity {
     LinearLayout llLeaderLayout;
     private List<HistoryResourceAllocationInfo> resourceAllocationInfoList = new ArrayList<>();
 
-    private int role = 1;
 
 
     /**
@@ -94,10 +94,11 @@ public class ResourceAllocationActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
 
-        if (role == 0) {
+        int role = SharePreferenceUtil.getUserRole();
+        if (role == 3 || role == 4) { //分配教练 或者 会籍
+             initLeader();
+        } else { // 不可操作
             initKeFu();
-        } else if (role == 1) {
-            initLeader();
         }
 
     }

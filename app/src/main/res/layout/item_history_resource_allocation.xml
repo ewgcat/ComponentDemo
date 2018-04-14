@@ -13,41 +13,66 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
+        android:paddingBottom="15dp"
         android:background="@drawable/white_bg"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="18dp"
-            android:paddingTop="15dp">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_header"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@mipmap/people" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="18dp"
+                android:paddingTop="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_header"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/people" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="刘葛岩"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_gender"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@mipmap/lg_man" />
+
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="刘葛岩"
-                android:textColor="#333333"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/iv_gender"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="8dp"
-                android:src="@mipmap/lg_man" />
+                android:layout_alignParentRight="true"
+                android:text="已接受"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:textColor="#2cc8a1"
+                android:textSize="14sp"
+                android:visibility="gone"
+                />
 
 
-        </LinearLayout>
+        </RelativeLayout>
+        
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -163,11 +188,13 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rel_service_coach"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -192,23 +219,37 @@
 
 
         <RelativeLayout
+            android:id="@+id/rel_receive_coach"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:visibility="gone">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/gray"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="接待教练:"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_receive_coach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/lin_history_resource_allocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -217,18 +258,29 @@
             android:paddingRight="22dp"
             android:paddingTop="15dp">
 
+            <View
+                android:id="@+id/view_line_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:layout_alignParentTop="true"
+                />
+
             <LinearLayout
                 android:id="@+id/lin_allocation_huiji"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="45dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_below="@id/view_line_bottom"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/wt_luru"
+                    android:drawableLeft="@mipmap/fp_huiji"
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:text="分配会籍"
@@ -240,15 +292,17 @@
             <LinearLayout
                 android:id="@+id/lin_allocation_coach"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@id/view_line_bottom"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/wt_yaoyue"
+                    android:drawableLeft="@mipmap/fp_huiji"
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:text="分配教练"
@@ -256,7 +310,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

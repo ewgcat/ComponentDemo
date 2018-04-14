@@ -1,20 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao' // apply plugin
-//apply from: 'tinker-support.gradle'
+apply plugin: 'org.greenrobot.greendao'
+apply from: 'tinker-support.gradle'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
-    lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
-        disable 'MissingTranslation'
-    }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     defaultConfig {
         applicationId rootProject.applicationId
         minSdkVersion rootProject.minSdkVersion
@@ -41,24 +32,61 @@ android {
                 JPUSH_APPKEY : "$jpush_appkey", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-        buildConfigField "String", "HOST", "\"$host\""
-
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
-
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    signingConfigs {
+        releaseKey {
+            keyAlias release_key_alias
+            keyPassword release_key_password
+            storeFile new File(rootProject.projectDir, "releaseKey.jks")
+            storePassword release_store_password
         }
     }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.releaseKey
+        }
+        release {
+            //混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseKey
+        }
+    }
+    productFlavors {
+        prod {
+            buildConfigField "String", "HOST", "\"$prod_host\""
+        }
+        sit {
+            buildConfigField "String", "HOST", "\"$sit_host\""
+        }
+    }
+    variantFilter { variant ->
+        if (variant.buildType.name.equals('release')) {
+            variant.flavors.each { flavor ->
+                if (!flavor.name.equals("prod")) {
+                    variant.setIgnore(true);
+                }
+            }
+        }
+    }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        disable 'MissingTranslation'
+    }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
+
 greendao {
     schemaVersion rootProject.dbVersion
     daoPackage 'com.yijian.staff.greendao.gen'

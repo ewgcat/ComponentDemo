@@ -102,7 +102,6 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
                     String time = DateUtil.parseLongDateToTimeString(startTime);
                     tvTime.setText(time);
                 }
-
                 etRemark.setText(experienceClassProcess1Bean.getRemark());
             }
 

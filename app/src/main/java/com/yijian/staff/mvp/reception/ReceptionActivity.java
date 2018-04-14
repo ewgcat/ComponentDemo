@@ -141,9 +141,9 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                    return;
 //                }
                 //会籍角色
-//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
-//                intent.putExtra(CONSUMER, consumer);
-//                startActivity(intent);
+                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
+                intent.putExtra(CONSUMER, consumer);
+                startActivity(intent);
 
 //                //教练角色
 //                Intent intent1 = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
@@ -151,9 +151,9 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                startActivity(intent1);
 
                 //第三步
-                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-                if (consumer!=null)intent.putExtra("memberId",consumer.getId());
-                startActivity(intent);
+//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
+//                if (consumer!=null)intent.putExtra("memberId",consumer.getId());
+//                startActivity(intent);
 
                 break;
         }

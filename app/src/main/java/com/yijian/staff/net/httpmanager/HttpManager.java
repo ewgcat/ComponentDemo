@@ -10,9 +10,7 @@ import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
-import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
@@ -21,10 +19,7 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-
-
 import org.json.JSONObject;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +32,6 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.HeaderMap;
 
 public class HttpManager {
 
@@ -127,8 +121,11 @@ public class HttpManager {
     //获取私教课上课记录表详情
     public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseRecordDetail";
 
-    //
+    //获取体验课上课记录详情
     public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = BuildConfig.HOST + "experienceCourse/getExperienceRecord";
+
+    //根据教练ID获取私教课备课模板列表
+    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL = BuildConfig.HOST + "privatecourse/getPrepareTemplateList";
 
 
     //工作台 首页图标
@@ -375,16 +372,6 @@ public class HttpManager {
 
         headers.put("token", user.getToken());
         Observable<JSONObject> observable = apiService.saveXiaKeRecord(url, headers, privateShangKeBean, state);
-        execute(observable, observer);
-    }
-
-    //获取体验课上课记录表
-    public static void postExperienceRecord(String url, RecordBean recordBean, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.postExperienceRecord(url, headers, recordBean);
         execute(observable, observer);
     }
 

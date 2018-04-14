@@ -168,13 +168,13 @@
                 android:layout_marginTop="15dp"
                 android:text="上课记录表"
                 android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_open_lesson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_fillet_white_8" />
+                android:background="@drawable/shape_fillet_white_8"/>
 
 
         </LinearLayout>

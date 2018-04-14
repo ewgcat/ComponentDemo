@@ -9,13 +9,11 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.setclass.bean.AerobicsBean;
 import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.setclass.bean.PowerBean;
-import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -43,6 +41,7 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
 
     PowerAdapter powerAdapter;
     List<PowerBean> powerBeanList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +75,9 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        RecordBean recordBean = new RecordBean();
-        recordBean.setMemberId("666");
-        HttpManager.postExperienceRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, recordBean,  new ResultJSONObjectObserver() {
+        Map<String,String> map = new HashMap<>();
+        map.put("privateApplyId",getIntent().getStringExtra("privateApplyId"));
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map,  new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray noInstrumentJsonArray = JsonUtil.getJsonArray(result, "noInstrumentList");

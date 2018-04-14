@@ -88,7 +88,7 @@ public class WeekView extends View {
 
     private void initAttrs(TypedArray array, DateTime dateTime) {
         if (array != null) {
-            mSelectDayColor = array.getColor(R.styleable.WeekCalendarView_week_selected_text_color, Color.parseColor("#FFFFFF"));
+            mSelectDayColor = array.getColor(R.styleable.WeekCalendarView_week_selected_text_color, Color.parseColor("#1997f8"));
             mSelectBGColor = array.getColor(R.styleable.WeekCalendarView_week_selected_circle_color, Color.parseColor("#E8E8E8"));
             mSelectBGTodayColor = array.getColor(R.styleable.WeekCalendarView_week_selected_circle_today_color, Color.parseColor("#FF8594"));
             mNormalDayColor = array.getColor(R.styleable.WeekCalendarView_week_normal_text_color, Color.parseColor("#575471"));
@@ -102,7 +102,7 @@ public class WeekView extends View {
             mIsShowLunar = array.getBoolean(R.styleable.WeekCalendarView_week_show_lunar, true);
             mIsShowHolidayHint = array.getBoolean(R.styleable.WeekCalendarView_week_show_holiday_hint, true);
         } else {
-            mSelectDayColor = Color.parseColor("#FFFFFF");
+            mSelectDayColor = Color.parseColor("#1997f8");
             mSelectBGColor = Color.parseColor("#E8E8E8");
             mSelectBGTodayColor = Color.parseColor("#FF8594");
             mNormalDayColor = Color.parseColor("#575471");

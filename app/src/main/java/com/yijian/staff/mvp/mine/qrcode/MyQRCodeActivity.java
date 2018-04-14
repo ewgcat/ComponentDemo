@@ -17,7 +17,7 @@ public class MyQRCodeActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_activity_navigation_bar);
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
         navigationBar2.setTitle("二维码");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

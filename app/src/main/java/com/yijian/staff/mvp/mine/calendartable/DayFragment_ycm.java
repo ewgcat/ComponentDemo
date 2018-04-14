@@ -22,14 +22,9 @@ import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
 import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayOneFragment;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayThreeFragment;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayTwoFragment;
+
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;

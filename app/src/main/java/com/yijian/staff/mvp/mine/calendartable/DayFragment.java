@@ -57,6 +57,7 @@ public class DayFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
         materialCalendarView = view.findViewById(R.id.calendarView);
+        materialCalendarView.setSelectionColor(getResources().getColor(R.color.blue));
         lin_expand = view.findViewById(R.id.lin_expand);
         lin_expand.setOnClickListener(this);
         ViewPager vp = view.findViewById(R.id.view_pager);

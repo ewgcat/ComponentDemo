@@ -27,6 +27,7 @@ import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.ShadowImageView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,6 +48,7 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
     Unbinder unbinder;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
 
 
     private EditText etSearch;
@@ -152,7 +154,7 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
                 startActivity(new Intent(getActivity(), ReceptionActivity.class));
                 break;
             case R.id.iv_all_function:
-                AllFunctionActivity.startToActivity(getActivity(),this);
+                AllFunctionActivity.startToActivity(getActivity(), this);
                 break;
 
         }
@@ -172,7 +174,6 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
     public void updateChange() {
         initMenu();
     }
-
 
 
 }

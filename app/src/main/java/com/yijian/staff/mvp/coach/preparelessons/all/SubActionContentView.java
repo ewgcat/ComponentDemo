@@ -8,25 +8,42 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
 import com.yijian.staff.util.DensityUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yangk on 2018/3/27.
  */
 
-public class SubActionContentView extends LinearLayout {
+public class SubActionContentView extends LinearLayout implements Observer {
 
     private Context mContext;
-    private LinearLayout lin_sub_content_cotainer;
-    private boolean isShow = true;
+    private ActionBean actionBean; //动作内容 Bean
+    private TextView tv_action_title; //标题
+    private TextView tv_action_degree; //难易程度
+    private TextView tv_action_name; //动作名称
+    private TextView tv_action_limit; //动作次数
+    private TextView tv_action_qixie; //器械选择
+    private RelativeLayout rel_rank; //排序
+    private TextView tv_rank; //排序
+    private LinearLayout lin_action_content_container; //动作内容容器
+    private RelativeLayout rel_action_header; //头部
+    private int itemPosition; //位置标题
+    private PrepareAllLessonActivity prepareAllLessonActivity;
 
     public SubActionContentView(Context context) {
         super(context);
@@ -43,100 +60,76 @@ public class SubActionContentView extends LinearLayout {
         this.mContext = context;
     }
 
-    public void initSubActionContentView(ActionBean actionBean, int itemPosition){
-        LinearLayout linContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_sub_action_content,null);
-        LinearLayout lin_header = linContain.findViewById(R.id.lin_header);
-        lin_header.setOnClickListener(new OnClickListener() {
+    public void initAction(ActionBean actionBean, int itemPosition, PrepareAllLessonActivity prepareAllLessonActivity) {
+        this.actionBean = actionBean;
+        this.itemPosition = itemPosition;
+        this.prepareAllLessonActivity = prepareAllLessonActivity;
+        //添加动作内容
+        initView();
+        addActionContent();
+    }
+
+    private void initView() {
+
+        LinearLayout linActionContainer = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_sub_action_content, null);
+        rel_action_header = linActionContainer.findViewById(R.id.rel_action_header);
+        tv_action_title = linActionContainer.findViewById(R.id.tv_action_title);
+        tv_action_degree = linActionContainer.findViewById(R.id.tv_action_degree);
+        tv_action_name = linActionContainer.findViewById(R.id.tv_action_name);
+        tv_action_limit = linActionContainer.findViewById(R.id.tv_action_limit);
+        tv_action_qixie = linActionContainer.findViewById(R.id.tv_action_qixie);
+        rel_rank = linActionContainer.findViewById(R.id.rel_rank);
+        tv_rank = linActionContainer.findViewById(R.id.tv_rank);
+
+        lin_action_content_container = linActionContainer.findViewById(R.id.lin_action_content_container);
+        lin_action_content_container.setVisibility(actionBean.isShowHeader() ? View.VISIBLE : View.GONE);
+        rel_action_header.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                lin_sub_content_cotainer.setVisibility(isShow?View.VISIBLE:View.GONE);
-                isShow = !isShow;
+                prepareAllLessonActivity.notifyClickHeader(itemPosition, CreatePrivateLessionActivity.CLICK_HEADER);
             }
         });
-        lin_sub_content_cotainer = linContain.findViewById(R.id.lin_sub_content_cotainer);
-        TextView tv_action_degree = linContain.findViewById(R.id.tv_action_degree);
-        TextView tv_action_group_num = linContain.findViewById(R.id.tv_action_group_num);
-        tv_action_degree.setText(actionBean.getDegree());
-        tv_action_group_num.setText(numToChinesse(itemPosition));
-        addActionContentView(actionBean.getSubActionBeans());
-        this.addView(linContain);
+        addView(linActionContainer);
     }
 
-    /************************************START 动作内容 *********************************************/
-
-
-    public void addActionContentView(List<SubActionBean> subActionBeanList) {
-
-        for (int i = 0; i < subActionBeanList.size(); i++) {
-
-            SubActionBean subActionBean = subActionBeanList.get(i);
-            List<SubActionBean.SubChildBean> subChildBeans = subActionBean.getSubChildBeanList();
-            LinearLayout subLinContain = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_actions, null);
-
-            TextView tv_action_rank = subLinContain.findViewById(R.id.tv_action_rank);
-            tv_action_rank.setText((i + 1)+"");
-            tv_action_rank.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            LinearLayout lin_action_content = subLinContain.findViewById(R.id.lin_action_content);
-            for (int j = 0; j < subChildBeans.size(); j++) {
-                SubActionBean.SubChildBean subChildBean = subChildBeans.get(j);
-                LinearLayout contentLin = new LinearLayout(mContext);
-                contentLin.setOrientation(LinearLayout.HORIZONTAL);
-                contentLin.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-                contentLin.setPadding(0, 0, 0, DensityUtil.dip2px(mContext, 15));
-
-                TextView textView1 = new TextView(mContext);
-                LayoutParams et_lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-                et_lp.weight = 1;
-                textView1.setLayoutParams(et_lp);
-                et_lp.setMargins( DensityUtil.dip2px(mContext, 7),0,0,0);
-                textView1.setText(subChildBean.getKey());
-                textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                textView1.setTextColor(Color.parseColor("#666666"));
-
-
-                TextView textView2 = new TextView(mContext);
-                textView2.setGravity(Gravity.LEFT);
-                LayoutParams et_lp2 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-                et_lp2.weight = 1;
-                textView2.setLayoutParams(et_lp2);
-                textView2.setText(subChildBean.getValue());
-                textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                textView2.setTextColor(Color.parseColor("#666666"));
-
-                contentLin.addView(textView1);
-                contentLin.addView(textView2);
-                lin_action_content.addView(contentLin);
-            }
-            lin_sub_content_cotainer.addView(subLinContain);
-        }
-
+    private void addActionContent() {
+        tv_action_title.setText(actionBean.getMoName());
+        tv_action_degree.setText(actionBean.getMoDifficulty());
+        tv_action_name.setText(actionBean.getMoName());
+        tv_action_limit.setText(actionBean.getBuildTime());
+        tv_action_qixie.setText(actionBean.getMoApplianceName());
+        tv_rank.setText((itemPosition+1)+"");
     }
 
+    @Override
+    public void update(Object data) {
 
-    private String numToChinesse(int position) {
-        String numStr = "";
-        switch (position) {
-            case 0:
-                numStr = "第一组:";
+        Toast.makeText(mContext, "观察者做了 " + data + itemPosition, Toast.LENGTH_SHORT).show();
+        Map<String, String> map = (Map<String, String>) data;
+        int type = Integer.valueOf(map.get("type"));
+        switch (type) {
+
+            case 6: //点击头部显示和隐藏
+                int itemLocation = Integer.valueOf(map.get("itemPosition"));
+                if (itemLocation == itemPosition) {
+                    if (lin_action_content_container.getVisibility() == View.GONE) {
+                        lin_action_content_container.setVisibility(View.VISIBLE);
+                        actionBean.setShowHeader(true);
+                    } else {
+                        lin_action_content_container.setVisibility(View.GONE);
+                        actionBean.setShowHeader(false);
+                    }
+                } else {
+                    lin_action_content_container.setVisibility(View.GONE);
+                    actionBean.setShowHeader(false);
+                }
                 break;
-            case 1:
-                numStr = "第二组:";
-                break;
-            case 2:
-                numStr = "第三组:";
-                break;
-            case 3:
-                numStr = "第四组:";
-                break;
-            case 4:
-                numStr = "第五组:";
-                break;
-            case 5:
-                numStr = "第六组:";
-                break;
+
+
 
         }
-        return numStr;
+        addActionContent();
+
     }
 
 

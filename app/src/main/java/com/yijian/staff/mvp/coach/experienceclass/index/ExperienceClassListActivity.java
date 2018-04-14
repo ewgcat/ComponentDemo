@@ -15,6 +15,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.experienceclass.index.contract.ExperienceClassContract;
+import com.yijian.staff.mvp.coach.experienceclass.index.presenter.ExperienceClassPresenter;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
@@ -29,14 +31,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/17")
-public class ExperienceClassListActivity extends AppCompatActivity {
+public class ExperienceClassListActivity extends AppCompatActivity implements ExperienceClassContract.View{
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
+    SmartRefreshLayout experienceClassRefreshLayout;
 
     List<ExperienceClassBean> experienceClassBeanList=new ArrayList<>();
+    private ExperienceClassPresenter experienceClassPresenter;
+    private ExperienceClassListAdatper experienceClassListAdatper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,57 +56,42 @@ public class ExperienceClassListActivity extends AppCompatActivity {
         navigationBar2.setTitle("体验课课程");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        initComponent();
-        initData();
-    }
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
+        //设置RecyclerView 布局
+        recyclerView.setLayoutManager(layoutmanager);
+        experienceClassListAdatper = new ExperienceClassListAdatper(this, experienceClassBeanList);
+        recyclerView.setAdapter(experienceClassListAdatper);
 
-    public void initComponent() {
+        experienceClassPresenter = new ExperienceClassPresenter(this);
+        experienceClassPresenter.setView(this);
+
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
-        refreshLayout.setRefreshHeader(header);
+        experienceClassRefreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
         BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(Color.parseColor("#1997f8"));
-        refreshLayout.setRefreshFooter(footer);
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        experienceClassRefreshLayout.setRefreshFooter(footer);
+        experienceClassRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,true);
             }
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,false);
             }
         });
+        experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,true);
+
+
     }
 
-    private void initData(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("sex", 0);
-            jsonObject.put("cardName", "原力十周年纪念卡");
-            jsonObject.put("cardType", "时间卡");
-            jsonObject.put("ExperiencedCuont", 2);
-            jsonObject.put("currentOperation", "回访");
-            for (int i = 0; i < 10; i++) {
-                ExperienceClassBean experienceClassBean = new ExperienceClassBean(jsonObject);
-                experienceClassBeanList.add(experienceClassBean);
-            }
 
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
-            //设置RecyclerView 布局
-            recyclerView.setLayoutManager(layoutmanager);
-            ExperienceClassListAdatper experienceClassListAdatper = new ExperienceClassListAdatper(this, experienceClassBeanList);
-            recyclerView.setAdapter(experienceClassListAdatper);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
+    @Override
+    public void showExperienceClassListView(List<ExperienceClassBean> experienceClassBeanList) {
+        experienceClassListAdatper.update(experienceClassBeanList);
     }
-
 }
 

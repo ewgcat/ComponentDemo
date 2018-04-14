@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 
-class TitleChanger {
+public class TitleChanger {
 
     public static final int DEFAULT_ANIMATION_DELAY = 400;
     public static final int DEFAULT_Y_TRANSLATION_DP = 20;

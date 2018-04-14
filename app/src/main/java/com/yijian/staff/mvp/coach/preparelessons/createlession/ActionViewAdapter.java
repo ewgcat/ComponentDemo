@@ -16,18 +16,12 @@ import java.util.List;
 public class ActionViewAdapter extends RecyclerView.Adapter<ActionViewAdapter.ViewHolder> {
 
     private List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
-    private List<String> actionArray; //转载 动作内容简易程度集合
     private EditActionObservable editActionObservable;
     private CreatePrivateLessionActivity createPrivateLessionActivity;
 
-    public void setRecyclerViewActionBean(List<ActionBean> recyclerViewActionBean) {
-        this.recyclerViewActionBean = recyclerViewActionBean;
-        notifyDataSetChanged();
-    }
 
-    public ActionViewAdapter(List<ActionBean> recyclerViewActionBean, List<String> actionArray, EditActionObservable editActionObservable,CreatePrivateLessionActivity createPrivateLessionActivity){
+    public ActionViewAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable,CreatePrivateLessionActivity createPrivateLessionActivity){
         this.recyclerViewActionBean = recyclerViewActionBean;
-        this.actionArray = actionArray;
         this.editActionObservable = editActionObservable;
         this.createPrivateLessionActivity = createPrivateLessionActivity;
     }
@@ -43,7 +37,7 @@ public class ActionViewAdapter extends RecyclerView.Adapter<ActionViewAdapter.Vi
     public void onBindViewHolder(ActionViewAdapter.ViewHolder holder, int position) {
         try {
             ActionBean actionBean = recyclerViewActionBean.get(position);
-            holder.view_action_content.initAction(actionArray,actionBean,position,createPrivateLessionActivity);
+            holder.view_action_content.initAction(actionBean, position, createPrivateLessionActivity);
             editActionObservable.addObserver(holder.view_action_content);
         }catch (Exception e){
             e.printStackTrace();

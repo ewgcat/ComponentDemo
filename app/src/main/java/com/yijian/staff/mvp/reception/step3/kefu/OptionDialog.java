@@ -97,10 +97,10 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     public void onDismiss(DialogInterface dialog) {
 
         super.onDismiss(dialog);
-        conditionBody.setStartPrice(null);
-        conditionBody.setEndPrice(null);
-        conditionBody.setCardType(null);
-        conditionBody.setVenueName(null);
+//        conditionBody.setStartPrice(null);
+//        conditionBody.setEndPrice(null);
+//        conditionBody.setCardType(null);
+//        conditionBody.setVenueName(null);
     }
 
     private void initData() {

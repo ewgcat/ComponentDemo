@@ -40,7 +40,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:text="会商方案"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
 
 
@@ -91,7 +91,7 @@
         <TextView
             android:text="体测数据"
             android:layout_marginLeft="6dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/blue"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -142,7 +142,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:text="回访记录"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
 
             <TextView
@@ -171,14 +171,14 @@
                 android:background="@color/gray" />
 
             <TextView
-                android:id="@+id/tv_coach_huifang_result"
+                android:id="@+id/tv_coach_huifang_record"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@null"
-                android:gravity="left"
-                android:maxLength="140"
+                android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
 

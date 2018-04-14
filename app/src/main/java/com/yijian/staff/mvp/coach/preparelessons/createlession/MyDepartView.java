@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.coach.preparelessons.createlession;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -34,7 +35,7 @@ public class MyDepartView extends LinearLayout {
     private boolean isCheckResId = false; //当前是否选中难以程度的标志位
     private LinearLayout linHeaderDepartContain; //头部容器布局
     private LinearLayout linContentContain; //部位容器布局
-    private ImageView iv_depart_switch; //头部小图标
+//    private ImageView iv_depart_switch; //头部小图标
     private TextView tv_depart_title; //头部标题
     private TextView tv_depart_title_check; //选中训练部位
 
@@ -65,14 +66,15 @@ public class MyDepartView extends LinearLayout {
         linHeaderDepartContain.setGravity(Gravity.CENTER_VERTICAL);
         linHeaderDepartContain.setPadding(DensityUtil.dip2px(mContext,15),DensityUtil.dip2px(mContext,15),
                 DensityUtil.dip2px(mContext,15),DensityUtil.dip2px(mContext,15));
-        iv_depart_switch = new ImageView(mContext);
-        iv_depart_switch.setLayoutParams(new LayoutParams(DensityUtil.dip2px(mContext,18),DensityUtil.dip2px(mContext,18)));
+        /*iv_depart_switch = new ImageView(mContext);
+        iv_depart_switch.setLayoutParams(new LayoutParams(DensityUtil.dip2px(mContext,18),DensityUtil.dip2px(mContext,18)));*/
         tv_depart_title = new TextView(mContext);
         tv_depart_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         LayoutParams titleLP = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-        titleLP.setMargins(DensityUtil.dip2px(mContext,7),0,0,0);
+//        titleLP.setMargins(DensityUtil.dip2px(mContext,7),0,0,0);
         tv_depart_title.setLayoutParams(titleLP);
         tv_depart_title.setText("训练的部位");
+        tv_depart_title.setTextColor(Color.parseColor("#333333"));
 
         tv_depart_title_check = new TextView(mContext);
         tv_depart_title_check.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
@@ -81,7 +83,7 @@ public class MyDepartView extends LinearLayout {
         tv_depart_title_check.setLayoutParams(titleCheckLP);
         tv_depart_title_check.setTextColor(Color.parseColor("#1997f8"));
 
-        linHeaderDepartContain.addView(iv_depart_switch);
+//        linHeaderDepartContain.addView(iv_depart_switch);
         linHeaderDepartContain.addView(tv_depart_title);
         linHeaderDepartContain.addView(tv_depart_title_check);
         addView(linHeaderDepartContain);
@@ -92,7 +94,13 @@ public class MyDepartView extends LinearLayout {
             }
         });
 
-
+        //添加头部分割线
+        View lineView = new View(mContext);
+        lineView.setBackgroundColor(Color.parseColor("#f2f2f2"));
+        LayoutParams lineLP = new LayoutParams(LayoutParams.MATCH_PARENT,2);
+        lineLP.setMargins(DensityUtil.dip2px(mContext,16),0,DensityUtil.dip2px(mContext,16),0);
+        lineView.setLayoutParams(lineLP);
+        addView(lineView);
 
         //添加部位内容 和 按钮布局
         linContentContain = new LinearLayout(mContext);
@@ -101,11 +109,6 @@ public class MyDepartView extends LinearLayout {
         linContentContain.setOrientation(LinearLayout.VERTICAL);
         linContentContain.setPadding(0,0,0,DensityUtil.dip2px(mContext,15));
 
-        //添加分割线
-        View linView = new View(mContext);
-        linView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,2));
-        linView.setBackgroundColor(Color.parseColor("#f2f2f2"));
-        linContentContain.addView(linView);
 
         for (int i = 0; i < departArray.size(); i++) {
             LinearLayout linContain  = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_depart, null);
@@ -170,7 +173,7 @@ public class MyDepartView extends LinearLayout {
     }
 
     private void setTitle(){
-        iv_depart_switch.setImageResource(isCheckResId ? R.mipmap.bk_gouxuan : R.mipmap.bk_1);
+//        iv_depart_switch.setImageResource(isCheckResId ? R.mipmap.bk_gouxuan : R.mipmap.bk_1);
         tv_depart_title_check.setText((isCheckResId ? resCheckTxtView.getText() : ""));
     }
 

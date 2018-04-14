@@ -12,8 +12,15 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +47,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
     @BindView(R.id.bt_invite)
     Button btInvite;
     private NavigationBar2 navigationBar2;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,29 +66,60 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
 
         ClassTimeBar timeBar = findViewById(R.id.step_one_timebar);
         timeBar.showTimeBar(1);
+
+        memberId = getIntent().getStringExtra("memberId");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                llEmptyView.setVisibility(View.GONE);
+                llContent.setVisibility(View.VISIBLE);
+                ExperienceClassProcess1Bean experienceClassProcess1Bean = new ExperienceClassProcess1Bean(result);
+                tvName.setText(experienceClassProcess1Bean.getMemberName());
+                tvCoach.setText(experienceClassProcess1Bean.getCoachName());
+                tvClassCount.setText(experienceClassProcess1Bean.getCourseCurrent() + "");
+                tvClassNum.setText(experienceClassProcess1Bean.getCourseNum() + "");
+                Long startTime = experienceClassProcess1Bean.getStartTime();
+                if (startTime != null) {
+                    String time = DateUtil.parseLongDateToTimeString(startTime);
+                    tvTime.setText(time);
+                }
+
+                etRemark.setText(experienceClassProcess1Bean.getRemark());
+            }
+
+            @Override
+            public void onFail(String msg) {
+                llEmptyView.setVisibility(View.VISIBLE);
+                llContent.setVisibility(View.GONE);
+            }
+        });
     }
 
     @OnClick(R.id.bt_invite)
     public void onViewClicked() {
-        startActivityForResult(new Intent(ExperienceClassProcess1Activity.this, ExperienceClassInvateActivity.class), 1001);
+        Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassInvateActivity.class);
+        intent.putExtra("memberId", memberId);
+        startActivityForResult(intent, 1001);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode==1234&&requestCode == 1001) {
+        if (resultCode == 1234 && requestCode == 1001) {
 
             llEmptyView.setVisibility(View.GONE);
             btInvite.setVisibility(View.GONE);
             llContent.setVisibility(View.VISIBLE);
 
 
-            //TODO 请求邀约信息,显示
-
             navigationBar2.setmRightTvText("下一步");
             navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ExperienceClassProcess1Activity.this, ExperienceClassProcess2Activity.class));
+                    Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassProcess2Activity.class);
+                    intent.putExtra("memberId", memberId);
+                    startActivity(intent);
                 }
             });
 

@@ -43,7 +43,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:text="会商结论"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
 
 
@@ -99,7 +99,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:text="第一次上课内容"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/blue" />
 
         <TextView
             android:layout_width="0dp"
@@ -145,7 +145,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:text="第二次上课内容"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/blue" />
 
         <TextView
             android:layout_width="0dp"
@@ -192,7 +192,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/blue"
             android:textColor="@color/white"
             android:gravity="center"
             android:text="确认报价" />

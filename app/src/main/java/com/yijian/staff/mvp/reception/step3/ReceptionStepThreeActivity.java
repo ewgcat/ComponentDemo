@@ -35,7 +35,7 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("memberId")){
+        if (intent.hasExtra("memberId")) {
             memberId = intent.getStringExtra("memberId");
         }
 
@@ -54,27 +54,21 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         timeBar.showTimeBar(3);
 
         int userRole = SharePreferenceUtil.getUserRole();
-        Log.e(TAG, "initView: userRole="+userRole );
-//        if (userRole==1){
-//             fragment = new HuiJiProductQuotationFragment();
-//        }else if (userRole==2){
-//             fragment =new CoachProductFragment();
-//        }else if (userRole==3|userRole==4){
-//            fragment = new LeaderProductFragment();
-//        }
+        Log.e(TAG, "initView: userRole=" + userRole);
+        if (userRole == 1) {
+            fragment = new HuiJiProductQuotationFragment();
+        } else if (userRole == 2) {
+            fragment = new CoachProductFragment();
+        } else if (userRole == 3 | userRole == 4) {
+            fragment = new LeaderProductFragment();
+        }
 
-
-        fragment =new CoachProductFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("memberId",memberId);
+        bundle.putString("memberId", memberId);
         fragment.setArguments(bundle);
-
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fl_content,fragment).commit();
+        fragmentTransaction.add(R.id.fl_content, fragment).commit();
     }
-
-
 
 
     @Override

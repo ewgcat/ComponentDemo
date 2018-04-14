@@ -3,9 +3,10 @@ package com.yijian.staff.net.api;
 
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswerWrap;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
@@ -13,12 +14,10 @@ import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.List;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -163,6 +162,23 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> editHuiJiVipDetail(@Url String url, @HeaderMap Map<String, String> headers, @Body EditHuiJiVipBody editHuiJiVipBody);
+
+
+    /**
+     * 提交下课数据
+     */
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> saveXiaKeRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivateShangKeBean privateShangKeBean, @Query("state") String state);
+
+    /**
+     * 获取体验课列表
+     * @param url
+     * @return
+     */
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postExperienceRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body RecordBean recordBean);
 
     //post 表单
     @POST

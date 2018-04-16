@@ -32,6 +32,8 @@ public class CoachViperBean implements Serializable {
     private String   seller;//服务会籍
 
     private String fitnessHobby ;
+    private String mobile ;
+    private Boolean isProtected ;
 
 
 
@@ -105,6 +107,8 @@ public class CoachViperBean implements Serializable {
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.isProtected = JsonUtil.getBoolean(jsonObject, "isProtected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
@@ -115,6 +119,14 @@ public class CoachViperBean implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public Boolean getProtected() {
+        return isProtected;
     }
 
     public String getSubclassName() {

@@ -109,14 +109,20 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.zhengshi_lin_shangke_recordchart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, RecordChartActivity.class));
+                        Intent intent = new Intent(context, RecordChartActivity.class);
+                        intent.putExtra("memberId",viperBean.getMemberId());
+                        intent.putExtra("memberName",viperBean.getName());
+                        context.startActivity(intent);
                     }
                 });
                 //体测数据
                 holder.zhengshi_lin_ti_ce_shu_ju.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, PhysicalReportActivity.class));
+                        Intent intent = new Intent(context, PhysicalReportActivity.class);
+                        intent.putExtra("memberId",viperBean.getMemberId());
+                        intent.putExtra("memberName",viperBean.getName());
+                        context.startActivity(intent);
                     }
                 });
             } else if (subclassName.equals("PotentialVO")) {
@@ -160,7 +166,10 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.qianzai_lin_invitation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, InvateIndexActivity.class));
+                        Intent intent = new Intent(context, InvateIndexActivity.class);
+                        intent.putExtra("memberId",viperBean.getMemberId());
+                        intent.putExtra("memberName",viperBean.getName());
+                        context.startActivity(intent);
 
                     }
                 });
@@ -206,7 +215,8 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.yixiang_lin_invitation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, InvateIndexActivity.class));
+                        Intent intent = new Intent(context, InvateIndexActivity.class);
+                        context.startActivity(intent);
                     }
                 });
 
@@ -264,7 +274,10 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.guoqi_lin_yaoyue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, ExperienceClassInvateActivity.class));
+                        Intent intent = new Intent(context, ExperienceClassInvateActivity.class);
+                        intent.putExtra("memberId",viperBean.getMemberId());
+                        intent.putExtra("memberName",viperBean.getName());
+                        context.startActivity(intent);
                     }
                 });
             }

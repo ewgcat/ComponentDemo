@@ -122,14 +122,20 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.lin_shangke_recordchart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, RecordChartActivity.class));
+                Intent intent = new Intent(context, RecordChartActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                intent.putExtra("memberName",coachViperBean.getName());
+                context.startActivity(intent);
             }
         });
         //体测数据
         holder.lin_ti_ce_shu_ju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, PhysicalReportActivity.class));
+                Intent intent = new Intent(context, PhysicalReportActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                intent.putExtra("memberName",coachViperBean.getName());
+                context.startActivity(intent);
             }
         });
         //详情

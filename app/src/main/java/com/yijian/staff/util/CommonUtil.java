@@ -96,11 +96,25 @@ public class CommonUtil {
 
 
     /**
-     *     验证手机号
+     * 验证手机号
      */
     public static boolean isPhoneFormat(String str) {
         boolean flag = false;
         String regxStr = "^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$";
+        Pattern pattern1 = Pattern.compile(regxStr);
+        Matcher isNo = pattern1.matcher(str);
+        if (isNo.matches()) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     * 验证密码
+     */
+    public static boolean isPassWordFormat(String str) {
+        boolean flag = false;
+        String regxStr = "^[0-9a-zA-Z_]{6,20}$";
         Pattern pattern1 = Pattern.compile(regxStr);
         Matcher isNo = pattern1.matcher(str);
         if (isNo.matches()) {
@@ -282,8 +296,6 @@ public class CommonUtil {
     }
 
 
-
-
     /**
      * 给PopWindow设置是否可以触摸
      *
@@ -303,7 +315,8 @@ public class CommonUtil {
             e.printStackTrace();
         }
     }
-    public static void callPhone(Context context,String phone) {
+
+    public static void callPhone(Context context, String phone) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
         context.startActivity(intent);
     }

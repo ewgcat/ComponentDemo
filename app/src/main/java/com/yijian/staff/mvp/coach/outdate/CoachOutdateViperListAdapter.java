@@ -97,8 +97,10 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         //回访
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected){
+            holder.iv_huifang.setImageResource(R.mipmap.my_password_new);
             holder.tv_huifang.setText("保护7天");
         }else {
+            holder.iv_huifang.setImageResource(R.mipmap.wt_huifang);
             holder.tv_huifang.setText("回访");
             String mobile = coachViperBean.getMobile();
             holder.lin_huifan.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +173,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         TextView tv_huifang;
         LinearLayout lin_huifan;
         LinearLayout lin_yaoyue;
+        ImageView iv_huifang;
 
 
         public ViewHolder(View view) {
@@ -183,6 +186,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             rel_expand =  view.findViewById(R.id.rel_expand);
             rv_card =  view.findViewById(R.id.rv_card);
             tv_zhankai_status =  view.findViewById(R.id.tv_zhankai_status);
+            iv_huifang =  view.findViewById(R.id.iv_huifang);
             tv_huifang =  view.findViewById(R.id.tv_huifang);
 
             tv_history_lesson =     view.findViewById(R.id.tv_history_lesson);

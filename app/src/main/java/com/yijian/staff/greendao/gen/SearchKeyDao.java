@@ -15,7 +15,7 @@ import com.yijian.staff.db.bean.SearchKey;
 /** 
  * DAO for table "SEARCH_KEY".
 */
-public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
+public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
 
     public static final String TABLENAME = "SEARCH_KEY";
 
@@ -24,7 +24,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property SearchId = new Property(0, Long.class, "searchId", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
         public final static Property Key = new Property(1, String.class, "key", false, "KEY");
         public final static Property RoleId = new Property(2, String.class, "roleId", false, "ROLE_ID");
     }
@@ -42,7 +42,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"SEARCH_KEY\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: searchId
+                "\"ID\" INTEGER," + // 0: id
                 "\"KEY\" TEXT," + // 1: key
                 "\"ROLE_ID\" TEXT);"); // 2: roleId
     }
@@ -57,9 +57,9 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     protected final void bindValues(DatabaseStatement stmt, SearchKey entity) {
         stmt.clearBindings();
  
-        Long searchId = entity.getSearchId();
-        if (searchId != null) {
-            stmt.bindLong(1, searchId);
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
         }
  
         String key = entity.getKey();
@@ -77,9 +77,9 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     protected final void bindValues(SQLiteStatement stmt, SearchKey entity) {
         stmt.clearBindings();
  
-        Long searchId = entity.getSearchId();
-        if (searchId != null) {
-            stmt.bindLong(1, searchId);
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
         }
  
         String key = entity.getKey();
@@ -94,14 +94,14 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     }
 
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
+    public Void readKey(Cursor cursor, int offset) {
+        return null;
     }    
 
     @Override
     public SearchKey readEntity(Cursor cursor, int offset) {
         SearchKey entity = new SearchKey( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // searchId
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // key
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // roleId
         );
@@ -110,29 +110,26 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
      
     @Override
     public void readEntity(Cursor cursor, SearchKey entity, int offset) {
-        entity.setSearchId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setKey(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setRoleId(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override
-    protected final Long updateKeyAfterInsert(SearchKey entity, long rowId) {
-        entity.setSearchId(rowId);
-        return rowId;
+    protected final Void updateKeyAfterInsert(SearchKey entity, long rowId) {
+        // Unsupported or missing PK type
+        return null;
     }
     
     @Override
-    public Long getKey(SearchKey entity) {
-        if(entity != null) {
-            return entity.getSearchId();
-        } else {
-            return null;
-        }
+    public Void getKey(SearchKey entity) {
+        return null;
     }
 
     @Override
     public boolean hasKey(SearchKey entity) {
-        return entity.getSearchId() != null;
+        // TODO
+        return false;
     }
 
     @Override

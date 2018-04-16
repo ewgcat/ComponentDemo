@@ -189,7 +189,7 @@ public class CoachSearchActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
 
-                    SearchKey searchKey = new SearchKey(0L, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
+                    SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 

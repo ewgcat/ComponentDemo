@@ -17,7 +17,7 @@ import java.util.List;
 public class DBManager  {
     private final static String dbName = "house_db";
     private static DBManager mInstance;
-    private DaoMaster.DevOpenHelper openHelper;
+    private MySQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
     public DaoMaster mDaoMaster;
     private DaoSession mDaoSession;
@@ -27,7 +27,7 @@ public class DBManager  {
     }
 
     public DBManager(Context context) {
-        openHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
+        openHelper = new MySQLiteOpenHelper(context, dbName, null);
         db = openHelper.getWritableDatabase();
         mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
@@ -84,7 +84,6 @@ public class DBManager  {
 
     public void insertOrReplaceSearch(SearchKey searchKey){
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
-        searchKeyDao.delete(searchKey);
         searchKeyDao.insertOrReplace(searchKey);
     }
 
@@ -93,7 +92,7 @@ public class DBManager  {
         String roleId = SharePreferenceUtil.getUserRole()+"";
         List<SearchKey> list = searchKeyDao.queryBuilder()
                 .where(SearchKeyDao.Properties.RoleId.eq(roleId))
-                .orderAsc(SearchKeyDao.Properties.SearchId)
+                .orderDesc(SearchKeyDao.Properties.Id)
                 .list();
         return list;
     }

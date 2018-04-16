@@ -192,7 +192,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
 
-                    SearchKey searchKey = new SearchKey(0L, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
+                    SearchKey searchKey = new SearchKey( null,etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 
@@ -276,6 +276,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     public void initSearchData() {
         searchList = DBManager.getInstance().querySearchList();
+        Logger.i("TEST",""+searchList.size());
         if (searchList!=null&&searchList.size()>0){
             searchKeyAdapter.update(searchList);
             lin_search_container.setVisibility(View.VISIBLE);

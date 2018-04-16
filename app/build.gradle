@@ -153,6 +153,7 @@ dependencies {
     //操作数据库
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.2'
     //字体
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation('com.github.niorgai:StatusBarCompat:2.1.4', {

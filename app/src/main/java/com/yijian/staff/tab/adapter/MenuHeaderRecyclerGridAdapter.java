@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -82,6 +83,18 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
             public void onClick(View v) {
                 if (onDeleteListener != null) {
                     onDeleteListener.onDeleteClick(v, menuItem, holder.getAdapterPosition());
+                }
+            }
+        });
+        holder.fl_item_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showEditIcon){
+                    if (onDeleteListener != null) {
+                        onDeleteListener.onDeleteClick(v, menuItem, holder.getAdapterPosition());
+                    }
+                }else {
+                    ARouter.getInstance().build(item.getPath()).navigation();
                 }
             }
         });

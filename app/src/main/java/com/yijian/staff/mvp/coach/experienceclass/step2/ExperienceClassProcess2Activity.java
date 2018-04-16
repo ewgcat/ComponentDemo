@@ -35,6 +35,7 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
     @BindView(R.id.tv_huiji_huifang_result)
     TextView tvHuijiHuifangResult;
     private String memberId;
+    private String processId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
                     //TODO 发送请求
                     Intent intent = new Intent(ExperienceClassProcess2Activity.this, ExperienceClassProcess3Activity.class);
                     intent.putExtra("memberId", memberId);
+                    intent.putExtra("processId", processId);
                     startActivity(intent);
                 }
             }
@@ -71,8 +73,9 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity {
         timeBar.showTimeBar(2);
 
         memberId = getIntent().getStringExtra("memberId");
+        processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+        map.put("processId", processId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

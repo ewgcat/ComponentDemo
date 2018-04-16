@@ -42,6 +42,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
     @BindView(R.id.tv_huifang_jilu_states)
     TextView tvHuifangJiluStates;
     private String memberId;
+    private String processId;
     private ExperienceClassProcess3Bean.BodyCheckBean bodyCheck;
     private Intent intent;
 
@@ -73,6 +74,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
                     //TODO 发送请求
                     Intent intent = new Intent(ExperienceClassProcess3Activity.this, ExperienceClassProcess4Activity.class);
                     intent.putExtra("memberId", memberId);
+                    intent.putExtra("processId", processId);
                     startActivity(intent);
                 }
             }
@@ -81,8 +83,10 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
         timeBar.showTimeBar(3);
 
         memberId = getIntent().getStringExtra("memberId");
+        processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
+        map.put("processId", processId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_FANG_AN_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -114,6 +118,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity {
                 intent = new Intent(ExperienceClassProcess3Activity.this, PhysicalReportActivity.class);
                 RxBus.getDefault().post(bodyCheck);
                 intent.putExtra("memberId", memberId);
+                intent.putExtra("processId", processId);
                 startActivity(intent);
                 break;
             case R.id.ll_huifang_jilu:

@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.huiji.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,8 +17,10 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
+import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.ArrayList;
@@ -191,6 +194,26 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             */
             tv_buy_count.setText(huiJiSearchViperBean.getPurchaseCount());
             tv_buy_count.setText(huiJiSearchViperBean.getPurchaseCount());
+            lin_query_contract.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ContractActivity.class);
+                    intent.putExtra("memberId",huiJiSearchViperBean.getMemberId());
+                    intent.putExtra("memberName",huiJiSearchViperBean.getName());
+                    context.startActivity(intent);
+                }
+            });
+
+            lin_query_question.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, QuestionnaireResultActivity.class);
+                    intent.putExtra("memberId",huiJiSearchViperBean.getMemberId());
+                    intent.putExtra("memberName",huiJiSearchViperBean.getName());
+                    context.startActivity(intent);
+
+                }
+            });
         }
 
     }
@@ -241,6 +264,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tv_outDateDay = view.findViewById(R.id.tv_outDateDay);
             lin_quey_contract = view.findViewById(R.id.lin_quey_contract);
             lin_quey_question = view.findViewById(R.id.lin_quey_question);
+
         }
 
         public void bind(HuiJiViperBean huiJiSearchViperBean) {
@@ -268,20 +292,26 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             /*tv_contractOutDate.setText(huiJiSearchViperBean.getPrivateCourse()); //过期时间
             tv_outDateDay.setText(huiJiSearchViperBean.); //过期天数
             */
-
-            lin_quey_contract.setOnClickListener(new View.OnClickListener() { //查看合同
+            lin_quey_contract.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                }
-            });
-            lin_quey_question.setOnClickListener(new View.OnClickListener() { //查看问卷
-                @Override
-                public void onClick(View v) {
-
+                    Intent intent = new Intent(context, ContractActivity.class);
+                    intent.putExtra("memberId",huiJiSearchViperBean.getMemberId());
+                    intent.putExtra("memberName",huiJiSearchViperBean.getName());
+                    context.startActivity(intent);
                 }
             });
 
+            lin_quey_question.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, QuestionnaireResultActivity.class);
+                    intent.putExtra("memberId",huiJiSearchViperBean.getMemberId());
+                    intent.putExtra("memberName",huiJiSearchViperBean.getName());
+                    context.startActivity(intent);
+
+                }
+            });
         }
 
     }
@@ -357,9 +387,13 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         }
                     }
                 });
-
-
             }
+            ll_content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
         }
 

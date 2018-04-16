@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
@@ -67,16 +68,18 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             holder.tv_huifang.setText("保护7天");
         }else {
             holder.tv_huifang.setText("回访");
-            String mobile = coachViperBean.getMobile();
-            if (!TextUtils.isEmpty(mobile)){
-                holder.lin_visit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CommonUtil.callPhone(context,mobile);
-                    }
-                });
-            }
 
+            holder.lin_visit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String mobile = coachViperBean.getMobile();
+                    if (!TextUtils.isEmpty(mobile)){
+                        CommonUtil.callPhone(context,mobile);
+                    } else {
+                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
 

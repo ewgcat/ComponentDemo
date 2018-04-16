@@ -504,6 +504,7 @@
                         android:src="@mipmap/wt_huifang" />
 
                     <TextView
+                        android:id="@+id/guoqi_tv_huifan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -750,6 +751,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/qianzai_tv_huifang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/wt_huifang"
@@ -1013,7 +1015,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_huifang"
+                        android:id="@+id/yixiang_tv_huifang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/my_password_new"

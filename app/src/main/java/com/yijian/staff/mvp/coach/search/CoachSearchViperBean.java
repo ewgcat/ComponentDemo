@@ -106,6 +106,9 @@ public class CoachSearchViperBean {
     //("使用车辆")
     private String useCar;
 
+    private String mobile ;
+    private Boolean isProtected ;
+
     //("合同ID列表")
     private List<String> contractIds;
     //("卡对象集合")
@@ -193,6 +196,9 @@ public class CoachSearchViperBean {
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.seller = JsonUtil.getString(jsonObject, "seller");
+
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.isProtected = JsonUtil.getBoolean(jsonObject, "isProtected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
 
         try {
@@ -200,6 +206,14 @@ public class CoachSearchViperBean {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public Boolean getProtected() {
+        return isProtected;
     }
 
     public String getPrivateCourse() {

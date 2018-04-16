@@ -212,7 +212,7 @@ public class ChoosePhotoView extends RelativeLayout {
     //相册
     protected void selectNewAlbum() {
         PhotoPicker.builder()
-                .setPhotoCount(3)
+                .setPhotoCount(1)
                 .isCamera(false)
                 .setShowGif(true)
                 .setPreviewEnabled(false)

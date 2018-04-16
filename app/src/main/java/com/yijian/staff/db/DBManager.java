@@ -76,6 +76,12 @@ public class DBManager  {
         userDao.insertOrReplace(user);
     }
 
+
+    public void clearUser() {
+        UserDao userDao = mDaoSession.getUserDao();
+        userDao.deleteAll();
+    }
+
     public void insertOrReplaceSearch(SearchKey searchKey){
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
         searchKeyDao.delete(searchKey);
@@ -92,9 +98,8 @@ public class DBManager  {
         return list;
     }
 
-    public void clearUser() {
-        UserDao userDao = mDaoSession.getUserDao();
-        userDao.deleteAll();
+    public void clearSearchList() {
+        SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
+        searchKeyDao.deleteAll();
     }
-
 }

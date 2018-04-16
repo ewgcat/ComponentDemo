@@ -96,8 +96,19 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(newPwd)||TextUtils.isEmpty(confirmPwd) ) {
                     Toast.makeText(ForgetPasswordActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
+                } else if (newPwd.equals(confirmPwd) ) {
+                    Toast.makeText(ForgetPasswordActivity.this, "2次输入的密码不同", Toast.LENGTH_SHORT).show();
+                    return;
+                }  else if (CommonUtil.isPassWordFormat(newPwd)) {
+
+                    Toast.makeText(ForgetPasswordActivity.this, "新密码格式不正确,密码是数字和字母的6-20位组合！", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (CommonUtil.isPassWordFormat(confirmPwd)) {
+                    Toast.makeText(ForgetPasswordActivity.this, "确认密码格式不正确，密码是数字和字母的6-20位组合！！", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
+
                         HttpManager.resetPassword(account, telephone, verificationCode,newPwd,confirmPwd,new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {

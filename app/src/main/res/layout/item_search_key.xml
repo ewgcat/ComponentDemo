@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View style="@style/SplitLineStyle" />
+
+    <TextView
+        android:id="@+id/tv_key"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical"
+      />
+    <View style="@style/SplitLineStyle" />
+    <TextView
+        android:id="@+id/tv_clean_history"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="清除查询历史"
+        android:textSize="16sp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        />
+    <View style="@style/SplitLineStyle" />
+
+</LinearLayout>

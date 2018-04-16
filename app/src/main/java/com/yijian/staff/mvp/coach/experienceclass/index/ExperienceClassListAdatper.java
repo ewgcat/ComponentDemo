@@ -108,6 +108,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
                 }
                 intent.putExtra("memberId", experienceClassBean.getMemberId());
+                intent.putExtra("processId", experienceClassBean.getProcessId());
                 context.startActivity(intent);
             }
         });

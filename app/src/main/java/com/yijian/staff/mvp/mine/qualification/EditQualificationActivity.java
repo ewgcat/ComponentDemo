@@ -141,11 +141,9 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
 
         @Override
         public Object getItem(int position) {
-            if (list != null
-                    && list.size() == 6) {
+            if (list != null && list.size() == 6) {
                 return list.get(position);
-            } else if (list == null || position - 1 < 0
-                    || position > list.size()) {
+            } else if (list == null || position - 1 < 0 || position > list.size()) {
                 return null;
             } else {
                 return list.get(position - 1);
@@ -282,7 +280,7 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
     //相册
     public void selectNewAlbum() {
         PhotoPicker.builder()
-                .setPhotoCount(3)
+                .setPhotoCount(1)
                 .isCamera(false)
                 .setShowGif(true)
                 .setPreviewEnabled(false)

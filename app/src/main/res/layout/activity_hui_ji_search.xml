@@ -80,52 +80,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/top_view"
-        >
+        android:layout_below="@id/top_view">
 
-        <View
-            style="@style/SplitLineStyle"
-            />
-        <TextView
-            android:id="@+id/tv_1"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_search"
+            android:background="@color/gray"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white"
-            android:text="item1"
-            android:gravity="center_vertical"
-            android:visibility="gone"/>
-        <View
-            style="@style/SplitLineStyle"
-            />
-        <TextView
-            android:id="@+id/tv_2"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white"
-            android:text="item2"
-            android:gravity="center_vertical"
-            android:visibility="gone"
-            />
-        <View
-            style="@style/SplitLineStyle"
-            />
-        <TextView
-            android:id="@+id/tv_3"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white"
-            android:text="item3"
-            android:gravity="center_vertical"
-            android:visibility="gone"/>
-
-        <LinearLayout
-            android:id="@+id/lin_click_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#30000000"
-            android:orientation="vertical"
-            />
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 

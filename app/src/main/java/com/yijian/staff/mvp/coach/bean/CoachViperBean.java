@@ -28,7 +28,7 @@ public class CoachViperBean implements Serializable {
      PotentialVO：潜在（会籍教练共用）
      */
     private String subclassName;
-    private String experienceClassTimes;
+    private int experienceClassTimes;
     private String   seller;//服务会籍
 
     private String fitnessHobby ;
@@ -64,6 +64,8 @@ public class CoachViperBean implements Serializable {
     private long bePresentTime; //到场时间
     private long departureTime; //离场时间
     private String privateClass;//私教课
+    private String fiirstId;//第一次体验课上课记录id ,
+    private String secondId;//第二次体验课上课记录id
 
 
     private String historyCourse; //历史课程
@@ -83,7 +85,7 @@ public class CoachViperBean implements Serializable {
         this.sex = JsonUtil.getString(jsonObject, "sex");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
-        this.experienceClassTimes = JsonUtil.getString(jsonObject, "experienceClassTimes");
+        this.experienceClassTimes = JsonUtil.getInt(jsonObject, "experienceClassTimes");
         this.seller = JsonUtil.getString(jsonObject, "seller");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
@@ -107,6 +109,8 @@ public class CoachViperBean implements Serializable {
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.fiirstId = JsonUtil.getString(jsonObject, "fiirstId");
+        this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
@@ -119,6 +123,14 @@ public class CoachViperBean implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getFiirstId() {
+        return fiirstId;
+    }
+
+    public String getSecondId() {
+        return secondId;
     }
 
     public String getMobile() {
@@ -264,7 +276,7 @@ public class CoachViperBean implements Serializable {
         this.headImg = headImg;
     }
 
-    public String getExperienceClassTimes() {
+    public int getExperienceClassTimes() {
         return experienceClassTimes;
     }
 

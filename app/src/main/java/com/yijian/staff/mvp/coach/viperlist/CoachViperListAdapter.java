@@ -125,6 +125,8 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
                 Intent intent = new Intent(context, RecordChartActivity.class);
                 intent.putExtra("memberId",coachViperBean.getMemberId());
                 intent.putExtra("memberName",coachViperBean.getName());
+                intent.putExtra("fiirstId",coachViperBean.getFiirstId());
+                intent.putExtra("secondId",coachViperBean.getSecondId());
                 context.startActivity(intent);
             }
         });

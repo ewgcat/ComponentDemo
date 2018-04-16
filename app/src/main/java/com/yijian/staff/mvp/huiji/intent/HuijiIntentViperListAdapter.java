@@ -103,8 +103,18 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
                 }
             });
 
-
         }
+
+        //邀约
+        holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,InvateIndexActivity.class);
+                intent.putExtra("memberId",viperBean.getMemberId());
+                intent.putExtra("memberType","0"); //会员类型（0:潜在会员 1:意向会员）
+                context.startActivity(intent);
+            }
+        });
 
 
     }
@@ -126,8 +136,6 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         TextView tv_interestHobby;
         TextView tv_useCar;
         LinearLayout ll_content; //真个Item条目
-//        LinearLayout lin_invitation; //邀请
-//        LinearLayout lin_protect_seven; //保护7天
 
         LinearLayout lin_huifan;
         LinearLayout lin_yaoyue;
@@ -149,9 +157,6 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
             tv_useCar = view.findViewById(R.id.tv_useCar);
 
             tv_huifang = view.findViewById(R.id.tv_huifang);
-           /* lin_protect_seven = view.findViewById(R.id.lin_protect_seven);
-
-            lin_invitation = view.findViewById(R.id.lin_invitation);*/
 
             lin_huifan  =     view.findViewById(R.id.lin_huifan);
             lin_yaoyue  =     view.findViewById(R.id.lin_yaoyue);

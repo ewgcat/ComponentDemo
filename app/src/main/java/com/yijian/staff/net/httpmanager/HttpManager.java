@@ -77,6 +77,9 @@ public class HttpManager {
     //首页搜索 会籍
     public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
 
+    //会籍保存邀约
+    public static String INDEX_HUI_JI_INVITATION_SAVE_URL = BuildConfig.HOST + "invitation/save";
+
 
     /*************************教练************************/
 

@@ -118,7 +118,7 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
 
     private ClickKeyListener clickKeyListener;
 
-    interface ClickKeyListener {
+    public  interface ClickKeyListener {
         void onClick(SearchKey searchKey);
     }
 
@@ -128,7 +128,7 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
 
     private ClearKeyListener clearKeyListener;
 
-    interface ClearKeyListener {
+    public  interface ClearKeyListener {
         void onClick();
     }
 

@@ -100,7 +100,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             }
         });
         rcl_search.setAdapter(searchKeyAdapter);
-        lin_search_container.setVisibility(View.VISIBLE);
+        lin_search_container.setVisibility(View.GONE);
 
 
 

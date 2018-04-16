@@ -16,6 +16,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
@@ -63,31 +64,30 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         holder.tv_useCar.setText(coachViperBean.getUseCar());
 
         //回访
+
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected){
             holder.tv_huifang.setText("保护7天");
         }else {
             holder.tv_huifang.setText("回访");
-
+            String mobile = coachViperBean.getMobile();
             holder.lin_visit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String mobile = coachViperBean.getMobile();
-                    if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
-                    } else {
+                    if (!TextUtils.isEmpty(mobile)) {
+                        CommonUtil.callPhone(context, mobile);
+                    }else {
                         Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
 
-
         //邀约
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
+                context.startActivity(new Intent(context,InvateIndexActivity.class));
             }
         });
 
@@ -138,7 +138,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             tv_bodybuildingHobby = view.findViewById(R.id.tv_bodybuildingHobby);
             tv_interestHobby = view.findViewById(R.id.tv_interestHobby);
             tv_useCar = view.findViewById(R.id.tv_useCar);
-            tv_huifang = view.findViewById(R.id.tv_huifang);
+            tv_useCar = view.findViewById(R.id.tv_huifang);
 
             ll_content = view.findViewById(R.id.ll_content);
 

@@ -93,7 +93,7 @@ public class CoachSearchViperBean {
     //("服务会籍")
     private String seller;
     //("体验课次数")
-    private String experienceClassTimes;
+    private int experienceClassTimes;
 
     //("历史课程")
     private String historyCourse;
@@ -108,6 +108,8 @@ public class CoachSearchViperBean {
 
     private String mobile ;
     private Boolean isProtected ;
+    private String fiirstId;//第一次体验课上课记录id ,
+    private String secondId;//第二次体验课上课记录id
 
     //("合同ID列表")
     private List<String> contractIds;
@@ -192,11 +194,13 @@ public class CoachSearchViperBean {
         this.hobby = JsonUtil.getString(jsonObject, "hobby");
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
 
-        this.experienceClassTimes = JsonUtil.getString(jsonObject, "experienceClassTimes");
+        this.experienceClassTimes = JsonUtil.getInt(jsonObject, "experienceClassTimes");
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.seller = JsonUtil.getString(jsonObject, "seller");
 
+        this.fiirstId = JsonUtil.getString(jsonObject, "fiirstId");
+        this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
@@ -292,7 +296,7 @@ public class CoachSearchViperBean {
         return seller;
     }
 
-    public String getExperienceClassTimes() {
+    public int getExperienceClassTimes() {
         return experienceClassTimes;
     }
 
@@ -316,4 +320,11 @@ public class CoachSearchViperBean {
         return useCar;
     }
 
+    public String getFiirstId() {
+        return fiirstId;
+    }
+
+    public String getSecondId() {
+        return secondId;
+    }
 }

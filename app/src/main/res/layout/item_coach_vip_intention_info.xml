@@ -157,6 +157,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_ti_yan_ke_ci_shu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="22dp"
@@ -185,6 +186,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_class_record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="22dp"
@@ -213,7 +215,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-
                         android:text="第一次上课记录表"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />

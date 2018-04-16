@@ -75,9 +75,57 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         });
 
         holder. tv_fuwu_huiji.setText(coachViperBean.getSeller());
-        holder. tv_ti_yan_ke_ci_shu.setText(coachViperBean.getExperienceClassTimes());
-//        holder. tv_first_class_record;
-//        holder. tv_second_class_record;
+        int experienceClassTimes = coachViperBean.getExperienceClassTimes();
+        String text = experienceClassTimes + "";
+        if (TextUtils.isEmpty(text)){
+            holder. rl_ti_yan_ke_ci_shu.setVisibility(View.GONE);
+            holder. rl_class_record.setVisibility(View.GONE);
+
+        }else {
+            if (experienceClassTimes==0){
+                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.GONE);
+                holder. rl_class_record.setVisibility(View.GONE);
+            }else  if (experienceClassTimes==1){
+                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.VISIBLE);
+                holder. tv_first_class_record.setVisibility(View.VISIBLE);
+
+                holder.tv_second_class_record.setVisibility(View.GONE);
+                holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO 跳转到第一次体验课上课表
+                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                        intent.putExtra("fiirstId",coachViperBean.getFiirstId());
+                        context.startActivity(intent);
+                    }
+                });
+                holder. rl_class_record.setVisibility(View.VISIBLE);
+            }else  if (experienceClassTimes==2){
+                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.VISIBLE);
+                holder. rl_class_record.setVisibility(View.VISIBLE);
+                holder. tv_first_class_record.setVisibility(View.VISIBLE);
+                holder. tv_second_class_record.setVisibility(View.VISIBLE);
+                holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO 跳转到第一次体验课上课表
+                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                        intent.putExtra("fiirstId",coachViperBean.getSecondId());
+                        context.startActivity(intent);
+                    }
+                });
+                holder.tv_second_class_record.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO 跳转到第二次体验课上课表
+                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                        intent.putExtra("secondId",coachViperBean.getSecondId());
+                        context.startActivity(intent);
+                    }
+                });
+            }
+        }
+
 
         holder. tv_like_class.setText(coachViperBean.getFavorCourse());
         holder. tv_like_teacher.setText(coachViperBean.getFavorTeacher());
@@ -182,9 +230,14 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         RecyclerView rv_card;
 
         TextView tv_fuwu_huiji;
+
+        RelativeLayout rl_ti_yan_ke_ci_shu;
         TextView tv_ti_yan_ke_ci_shu;
+
+        RelativeLayout rl_class_record;
         TextView tv_first_class_record;
         TextView tv_second_class_record;
+
         TextView tv_like_class;
         TextView tv_like_teacher;
         TextView tv_regist_time;
@@ -213,10 +266,14 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
             tv_fuwu_huiji  =     view.findViewById(R.id.tv_fuwu_huiji);
 
+            rl_ti_yan_ke_ci_shu =     view.findViewById(R.id.rl_ti_yan_ke_ci_shu);
             tv_ti_yan_ke_ci_shu =     view.findViewById(R.id.tv_ti_yan_ke_ci_shu);
 
+            rl_class_record =     view.findViewById(R.id.rl_class_record);
             tv_first_class_record =     view.findViewById(R.id.tv_first_class_record);
             tv_second_class_record =     view.findViewById(R.id.tv_second_class_record);
+
+
             tv_like_class =     view.findViewById(R.id.tv_like_class);
             tv_like_teacher  =     view.findViewById(R.id.tv_like_teacher);
             tv_regist_time  =     view.findViewById(R.id.tv_regist_time);

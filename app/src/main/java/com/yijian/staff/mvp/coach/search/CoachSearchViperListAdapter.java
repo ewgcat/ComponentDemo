@@ -84,8 +84,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                     public void onClick(View v) {
                         toggleZhengSiCardView(holder);
                     }
-
-
                 });
 
 
@@ -112,6 +110,8 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         Intent intent = new Intent(context, RecordChartActivity.class);
                         intent.putExtra("memberId",viperBean.getMemberId());
                         intent.putExtra("memberName",viperBean.getName());
+                        intent.putExtra("fiirstId",viperBean.getFiirstId());
+                        intent.putExtra("secondId",viperBean.getSecondId());
                         context.startActivity(intent);
                     }
                 });
@@ -139,15 +139,12 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 holder.qianzai_tv_interestHobby.setText(viperBean.getHobby());
                 holder.qianzai_tv_useCar.setText(viperBean.getUseCar());
 
-
-
                 //回访
                 Boolean isProtected = viperBean.getProtected();
                 if (isProtected) {
                     holder.qianzai_tv_huifang.setText("保护7天");
                 } else {
                     holder.qianzai_tv_huifang.setText("回访");
-
 
                     holder.qianzai_lin_visit.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -161,18 +158,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         }
                     });
                 }
-
-                //邀约
-                holder.qianzai_lin_invitation.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, InvateIndexActivity.class);
-                        intent.putExtra("memberId",viperBean.getMemberId());
-                        intent.putExtra("memberName",viperBean.getName());
-                        context.startActivity(intent);
-
-                    }
-                });
             } else if (subclassName.equals("CoachIntentionVO")) {
                 holder.ll_yixiang_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
@@ -209,18 +194,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                             }
                         }
                     });
-
                 }
-
-                holder.yixiang_lin_invitation.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, InvateIndexActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
-
-
             } else if (subclassName.equals("CoachExpireVO")) {
                 holder.ll_guoqi_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
@@ -230,7 +204,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                     @Override
                     public void onClick(View v) {
                         toggleGuoQiCardView(holder);
-
                     }
                 });
 
@@ -256,7 +229,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 } else {
                     holder.guoqi_tv_huifan.setText("回访");
                     String mobile = viperBean.getMobile();
-
                     holder.guoqi_lin_huifan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -267,10 +239,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                             }
                         }
                     });
-
-
                 }
-
                 holder.guoqi_lin_yaoyue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -373,7 +342,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
         LinearLayout yixiang_lin_baojia;
         LinearLayout yixiang_lin_protect_seven;
-        LinearLayout yixiang_lin_invitation;
 
         //潜在会员
         LinearLayout ll_qianzai_viper;
@@ -385,7 +353,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         TextView qianzai_tv_useCar;
         TextView qianzai_tv_huifang;
         LinearLayout qianzai_lin_visit;
-        LinearLayout qianzai_lin_invitation;
 
 
         public ViewHolder(View view) {
@@ -431,7 +398,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             qianzai_tv_useCar = view.findViewById(R.id.qianzai_tv_useCar);
             qianzai_tv_huifang = view.findViewById(R.id.qianzai_tv_huifang);
             qianzai_lin_visit = view.findViewById(R.id.qianzai_lin_visit);
-            qianzai_lin_invitation = view.findViewById(R.id.qianzai_lin_invitation);
 
             //意向
             ll_yixiang_viper = view.findViewById(R.id.ll_yixiang_viper);
@@ -443,7 +409,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             yixiang_tv_useCar = view.findViewById(R.id.yixiang_tv_useCar);
             yixiang_tv_huifang = view.findViewById(R.id.yixiang_tv_huifang);
             yixiang_lin_protect_seven = view.findViewById(R.id.yixiang_lin_protect_seven);
-            yixiang_lin_invitation = view.findViewById(R.id.yixiang_lin_invitation);
             yixiang_lin_baojia = view.findViewById(R.id.yixiang_lin_baojia);
 
         }

@@ -72,7 +72,7 @@ public class ArouterNavigationInterceptor implements IInterceptor {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
         } else if (path.equals("/test/7")) {//会籍添加潜在
-            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+            if (SharePreferenceUtil.getUserRole() == 1||SharePreferenceUtil.getUserRole() == 2||SharePreferenceUtil.getUserRole() == 3||SharePreferenceUtil.getUserRole() == 4) {//会籍
                 callback.onContinue(postcard);  // 处理完成，交还控制权
             } else {
                 ARouter.getInstance().build("/test/empty").navigation();
@@ -84,7 +84,7 @@ public class ArouterNavigationInterceptor implements IInterceptor {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
         } else if (path.equals("/test/10")) {//会籍分配资源
-            if (SharePreferenceUtil.getUserRole() == 1) {//会籍
+            if (SharePreferenceUtil.getUserRole() == 1||SharePreferenceUtil.getUserRole() == 2||SharePreferenceUtil.getUserRole() == 3||SharePreferenceUtil.getUserRole() == 4) {//会籍
                 callback.onContinue(postcard);  // 处理完成，交还控制权
             } else {
                 ARouter.getInstance().build("/test/empty").navigation();

@@ -119,12 +119,6 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
 
 
-        holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() { // 邀约
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
-            }
-        });
 
     }
 
@@ -172,7 +166,6 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         TextView tv_outDate_reason; //过期原因
         TextView tv_huifang;
         LinearLayout lin_huifan;
-        LinearLayout lin_yaoyue;
         ImageView iv_huifang;
 
 
@@ -193,7 +186,6 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             tv_outDate  =     view.findViewById(R.id.tv_outDate);
             tv_outDate_reason  =     view.findViewById(R.id.tv_outDate_reason);
             lin_huifan  =     view.findViewById(R.id.lin_huifan);
-            lin_yaoyue  =     view.findViewById(R.id.lin_yaoyue);
         }
     }
 

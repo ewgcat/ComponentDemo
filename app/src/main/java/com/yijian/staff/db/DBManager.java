@@ -84,6 +84,15 @@ public class DBManager  {
 
     public void insertOrReplaceSearch(SearchKey searchKey){
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
+        List<SearchKey> searchKeys = querySearchList();
+        Long id=0L;
+        for (int i = 0; i <searchKeys.size() ; i++) {
+            SearchKey searchKey1 = searchKeys.get(i);
+            if (searchKey.getKey().equals(searchKey1.getKey())){
+                id=searchKey1.getId();
+            }
+        }
+        searchKeyDao.deleteByKey(id);
         searchKeyDao.insertOrReplace(searchKey);
     }
 

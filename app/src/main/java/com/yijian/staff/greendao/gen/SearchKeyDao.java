@@ -15,7 +15,7 @@ import com.yijian.staff.db.bean.SearchKey;
 /** 
  * DAO for table "SEARCH_KEY".
 */
-public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
+public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
 
     public static final String TABLENAME = "SEARCH_KEY";
 
@@ -24,7 +24,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Key = new Property(1, String.class, "key", false, "KEY");
         public final static Property RoleId = new Property(2, String.class, "roleId", false, "ROLE_ID");
     }
@@ -42,7 +42,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"SEARCH_KEY\" (" + //
-                "\"ID\" INTEGER," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"KEY\" TEXT," + // 1: key
                 "\"ROLE_ID\" TEXT);"); // 2: roleId
     }
@@ -94,8 +94,8 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
@@ -116,20 +116,23 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Void> {
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(SearchKey entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(SearchKey entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(SearchKey entity) {
-        return null;
+    public Long getKey(SearchKey entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean hasKey(SearchKey entity) {
-        // TODO
-        return false;
+        return entity.getId() != null;
     }
 
     @Override

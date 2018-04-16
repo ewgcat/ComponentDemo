@@ -12,6 +12,7 @@ import org.greenrobot.greendao.annotation.Id;
 @Entity
 public class SearchKey {
 
+    @Id(autoincrement = true)
     private Long id;
     private String key;
     private String roleId;
@@ -42,6 +43,7 @@ public class SearchKey {
     public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
+
 
 
 }

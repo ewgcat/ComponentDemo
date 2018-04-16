@@ -83,7 +83,6 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         }
 
 
-
         //邀约
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override

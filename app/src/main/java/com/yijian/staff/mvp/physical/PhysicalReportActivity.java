@@ -54,8 +54,8 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physical_report);
         ButterKnife.bind(this);
+
         initView();
-        initData();
 
         //从体验课会商方案传过来的
         RxBus.getDefault().toDefaultFlowable(ExperienceClassProcess3Bean.BodyCheckBean.class, new Consumer<ExperienceClassProcess3Bean.BodyCheckBean>() {
@@ -69,6 +69,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         if (intent.hasExtra("memberId") || intent.hasExtra("memberName")) {
             memberId = intent.getStringExtra("memberId");
             memberName = intent.getStringExtra("memberName");
+            tvName.setText("" + memberName);
         } else {
             Toast.makeText(PhysicalReportActivity.this, "用户信息获取失败", Toast.LENGTH_SHORT).show();
             return;
@@ -76,7 +77,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(this);
         physicalReportPresenter.setView(this);
         physicalReportPresenter.loadData(memberId);
-
+        initData();
     }
 
     private void setBodyCheckBean(ExperienceClassProcess3Bean.BodyCheckBean bodyCheckBean) {
@@ -94,7 +95,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         RelativeLayout rlHeight = findViewById(R.id.rl_height);
         RelativeLayout rlAge = findViewById(R.id.rl_age);
         tvName = findViewById(R.id.tv_name);
-        tvName.setText("" + memberName);
+
 
         tvHeight = findViewById(R.id.tv_height);
         tvAge = findViewById(R.id.tv_age);

@@ -198,7 +198,7 @@ public class CoachSearchViperBean {
         this.seller = JsonUtil.getString(jsonObject, "seller");
 
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.isProtected = JsonUtil.getBoolean(jsonObject, "isProtected");
+        this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
 
         try {

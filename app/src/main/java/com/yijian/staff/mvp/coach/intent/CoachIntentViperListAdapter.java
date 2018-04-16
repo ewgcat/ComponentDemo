@@ -20,7 +20,6 @@ import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 

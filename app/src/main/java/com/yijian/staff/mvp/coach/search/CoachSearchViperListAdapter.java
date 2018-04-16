@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
@@ -158,6 +157,16 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         }
                     });
                 }
+
+                holder.qianzai_lin_yaoyue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, InvateIndexActivity.class);
+                        intent.putExtra("memberId",viperBean.getMemberId());
+                        intent.putExtra("memberName",viperBean.getName());
+                        context.startActivity(intent);
+                    }
+                });
             } else if (subclassName.equals("CoachIntentionVO")) {
                 holder.ll_yixiang_viper.setVisibility(View.VISIBLE);
                 holder.ll_zhengshi_viper.setVisibility(View.GONE);
@@ -240,15 +249,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                         }
                     });
                 }
-                holder.guoqi_lin_yaoyue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, ExperienceClassInvateActivity.class);
-                        intent.putExtra("memberId",viperBean.getMemberId());
-                        intent.putExtra("memberName",viperBean.getName());
-                        context.startActivity(intent);
-                    }
-                });
+
             }
         }
 
@@ -328,7 +329,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         TextView guoqi_tv_outDate_reason;
         TextView guoqi_tv_huifan;
         LinearLayout guoqi_lin_huifan;
-        LinearLayout guoqi_lin_yaoyue;
 
         //意向会员
         LinearLayout ll_yixiang_viper;
@@ -353,6 +353,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         TextView qianzai_tv_useCar;
         TextView qianzai_tv_huifang;
         LinearLayout qianzai_lin_visit;
+        LinearLayout qianzai_lin_yaoyue;
 
 
         public ViewHolder(View view) {
@@ -386,7 +387,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             guoqi_tv_outDate_reason = view.findViewById(R.id.guoqi_tv_outDate_reason);
             guoqi_lin_huifan = view.findViewById(R.id.guoqi_lin_huifan);
             guoqi_tv_huifan = view.findViewById(R.id.guoqi_tv_huifan);
-            guoqi_lin_yaoyue = view.findViewById(R.id.guoqi_lin_yaoyue);
 
             //潜在
             ll_qianzai_viper = view.findViewById(R.id.ll_qianzai_viper);
@@ -398,6 +398,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             qianzai_tv_useCar = view.findViewById(R.id.qianzai_tv_useCar);
             qianzai_tv_huifang = view.findViewById(R.id.qianzai_tv_huifang);
             qianzai_lin_visit = view.findViewById(R.id.qianzai_lin_visit);
+            qianzai_lin_yaoyue = view.findViewById(R.id.qianzai_lin_yaoyue);
 
             //意向
             ll_yixiang_viper = view.findViewById(R.id.ll_yixiang_viper);

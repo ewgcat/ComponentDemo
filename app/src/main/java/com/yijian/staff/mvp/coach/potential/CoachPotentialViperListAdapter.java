@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
@@ -87,7 +86,10 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,InvateIndexActivity.class));
+                Intent intent = new Intent(context, InvateIndexActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                intent.putExtra("memberName",coachViperBean.getName());
+                context.startActivity(intent);
             }
         });
 

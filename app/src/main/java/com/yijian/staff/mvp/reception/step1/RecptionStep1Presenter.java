@@ -154,7 +154,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
                 try {
                     int code = jsonObject.getInt("code");
                     if (code==0){
-//                        upLoadFitnessTime(consumerBean,selectedDates);
+                        upLoadFitnessTime(consumerBean,selectedDates);
                         view.saveSucceed();
                     }else {
                         String msg = jsonObject.getString("msg");

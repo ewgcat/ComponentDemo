@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.List;
@@ -90,6 +91,17 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
 
 
         }
+
+        //邀约
+        holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,InvateIndexActivity.class);
+                intent.putExtra("memberId",viperBean.getMemberId());
+                intent.putExtra("memberType","0"); //会员类型（0:潜在会员 1:意向会员）
+                context.startActivity(intent);
+            }
+        });
 
     }
 

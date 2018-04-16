@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="意向会员"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="1234567890"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="14sp" />
 

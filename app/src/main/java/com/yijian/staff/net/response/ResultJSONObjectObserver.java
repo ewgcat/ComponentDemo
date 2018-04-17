@@ -38,6 +38,8 @@ public abstract  class ResultJSONObjectObserver implements Observer<JSONObject> 
                 JSONObject data = JsonUtil.getJsonObject(jsonObject,"data");
                 if (data!=null){
                     onSuccess(data);
+                }else {
+                    onSuccess(new JSONObject());
                 }
             }else if (code==3){
                 String msg = jsonObject.getString("msg");

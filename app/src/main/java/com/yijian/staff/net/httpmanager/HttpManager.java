@@ -15,6 +15,7 @@ import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -183,6 +184,15 @@ public class HttpManager {
     //添加意见反馈
     public static String ADD_FEEDBACK_URL = BuildConfig.HOST + "feedBack/addfeedBack";
 
+    //type 1. 关于我们 2.俱乐部 3.教练信息url 后面?coach_id=coach_id 然后生成二维码
+    public static String ABOUT_US_AND_CLUB_AND_QR_URL = BuildConfig.HOST + "webPage/getWebPage";
+
+    //POST
+    //添加职业证书
+    public static String ADD_CERTIFICATE_URL = BuildConfig.HOST + "certificate/addUpdCer";
+
+    //添加职业证书
+    public static String GET_CERTIFICATE_URL = BuildConfig.HOST + "certificate/getCertificate";
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -507,7 +517,7 @@ public class HttpManager {
             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-            Observable<JSONObject> observable = apiService.upLoadImage(url, headers, body);
+            Observable<JSONObject> observable = apiService.upLoadImage(url, body);
             execute(observable, observer);
         }
     }
@@ -522,6 +532,32 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getBusinessMessage(GET_BUSINESS_MESSAGE_URL, headers, businessMessageRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    //上传图片
+    public static void upLoadImage(String imageFilePath, Observer<JSONObject> observer) {
+
+            File file = new File(imageFilePath);
+            // 创建 RequestBody，用于封装构建RequestBody
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+            MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
+            String url = "http://h5.dev.ejoyst.com/file/uploadFile";
+            Observable<JSONObject> observable = apiService.upLoadImage(url,  body);
+            execute(observable, observer);
+    }
+
+    //上传图片
+    public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.addCertificate(HttpManager.ADD_CERTIFICATE_URL, headers, body);
             execute(observable, observer);
         }
     }

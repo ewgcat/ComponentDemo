@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.R;
 
 import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
@@ -36,5 +37,16 @@ public class ImageLoader {
                     .transform(new GlideCircleTransform());
             Glide.with(activity).load(url).apply(options).into(iv);
         }
+    }
+
+
+    public static void setImageResource(String path, Context context,ImageView imageView) {
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(path).apply(options).into(imageView);
     }
 }

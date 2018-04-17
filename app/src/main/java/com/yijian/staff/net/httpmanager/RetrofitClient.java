@@ -182,7 +182,6 @@ public class RetrofitClient {
                     .addConverterFactory(JSONObjectConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .baseUrl("http://poly.hengtech.com.cn/pmsSrv/api/")
                     .baseUrl("http://bwebapp.dev.ejoyst.com/")
                     .build();
         }

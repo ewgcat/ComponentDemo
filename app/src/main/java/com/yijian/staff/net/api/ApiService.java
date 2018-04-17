@@ -8,6 +8,7 @@ import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -68,7 +69,6 @@ public interface ApiService {
     @POST()
     Observable<JSONObject> upLoadImage(
             @Url String url,
-            @HeaderMap Map<String, String> headers,
             @Part() MultipartBody.Part file
     );
 
@@ -77,7 +77,7 @@ public interface ApiService {
     @POST("{url}")
     Call<ResponseBody> uploadFiles(
             @Path("url") String url,
-            @Part("filename") String description,
+            @HeaderMap Map<String, String> headers,
             @PartMap() Map<String, RequestBody> maps
     );
 
@@ -85,6 +85,11 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
+
+    //登录
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> addCertificate(@Url String url,@HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);
 
 
     //体测录入

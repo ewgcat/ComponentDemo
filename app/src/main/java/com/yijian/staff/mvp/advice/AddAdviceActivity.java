@@ -63,6 +63,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
             HttpManager.postAddAdvice(HttpManager.ADD_FEEDBACK_URL, addAdviceBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    hideSoftKeyboard();
                     finish();
                 }
 

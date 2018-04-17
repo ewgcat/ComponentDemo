@@ -26,6 +26,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -537,16 +538,29 @@ public class HttpManager {
     }
 
     //上传图片
-    public static void upLoadImage(String imageFilePath, Observer<JSONObject> observer) {
+    public static void upLoadFiles(List<String> list, String fileType, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            List<MultipartBody.Part> bodys = new ArrayList<>();
+            headers.put("token", user.getToken());
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i);
+                File file = new File(s);
+                // 创建 RequestBody，用于封装构建RequestBody
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
+                bodys.add(body);
+            }
 
-            File file = new File(imageFilePath);
-            // 创建 RequestBody，用于封装构建RequestBody
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            // MultipartBody.Part  和后端约定好Key，这里的partName是用image
-            MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
-            String url = "http://h5.dev.ejoyst.com/file/uploadFile";
-            Observable<JSONObject> observable = apiService.upLoadImage(url,  body);
+//            String url = "http://h5.dev.ejoyst.com/file/uploadMultipleFile";
+            String url = "http://192.168.2.134:9200/file/uploadMultipleFile";
+            Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
             execute(observable, observer);
+        }
     }
 
     //上传图片

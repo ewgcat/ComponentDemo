@@ -35,6 +35,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.rx.RxBus;
@@ -42,6 +43,8 @@ import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -66,6 +69,8 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
     EditText et4;
     @BindView(R.id.et5)
     EditText et5;
+    @BindView(R.id.et6)
+    EditText et6;
     private Dialog dialog;
 
     private List<AuthBean> authList = new ArrayList<>();
@@ -151,6 +156,9 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
             if (size >= 5) {
                 et5.setText(authList.get(4).getAuthInfo());
             }
+            if (size >= 6) {
+                et5.setText(authList.get(5).getAuthInfo());
+            }
 
             //证书照片
             List<CertBean> certList = certificateBean.getCertList();
@@ -166,26 +174,28 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         List<String> photoPathList = choosePhotoView.getmPhotoPathList();
         if (photoPathList.size() > 0) {
 
-            //TODO 上传图片
-            for (int i = 0; i < photoPathList.size(); i++) {
-                String path = photoPathList.get(i);
-                HttpManager.upLoadImage(path, new ResultStringObserver() {
-                    @Override
-                    public void onSuccess(String result) {
-                        String s = "http://capi.dev.ejoyst.com/cFile/saveCUserIcon?uIcon=" + result;
-                        certList.add(new CertBean(s));
+            HttpManager.upLoadFiles(photoPathList, "0", new ResultJSONArrayObserver() {
+                @Override
+                public void onSuccess(JSONArray result) {
+                    try {
+                        for (int i = 0; i < result.length(); i++) {
+                            String o = (String) result.get(i);
+                            certList.add(new CertBean(o));
+                        }
                         if (photoPathList.size() == certList.size()) {
                             postAdd();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onFail(String msg) {
-                            showToast(msg);
-                    }
-                });
-            }
-        }else {
+                @Override
+                public void onFail(String msg) {
+                    showToast(msg);
+                }
+            });
+        } else {
             postAdd();
         }
 
@@ -198,6 +208,7 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         String s3 = et3.getText().toString().trim();
         String s4 = et4.getText().toString().trim();
         String s5 = et5.getText().toString().trim();
+        String s6 = et6.getText().toString().trim();
         if (!TextUtils.isEmpty(s1)) {
             authList.add(new AuthBean(s1));
         }
@@ -212,6 +223,9 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         }
         if (!TextUtils.isEmpty(s5)) {
             authList.add(new AuthBean(s5));
+        }
+        if (!TextUtils.isEmpty(s6)) {
+            authList.add(new AuthBean(s6));
         }
 
         AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody(authList, certList);

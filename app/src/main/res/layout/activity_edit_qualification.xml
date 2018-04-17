@@ -50,7 +50,7 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
@@ -67,7 +67,7 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
@@ -79,10 +79,12 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:background="@color/white"
-                android:singleLine="false"/>
+                android:singleLine="false"
+                android:textSize="14sp"
+                android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
@@ -99,7 +101,7 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
@@ -116,7 +118,7 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
 

@@ -27,6 +27,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -43,6 +45,7 @@ import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -106,18 +109,32 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
             }
         });
         initDialog();
+        initData();
 
-        RxBus.getDefault().toDefaultFlowable(CertificateBean.class, new Consumer<CertificateBean>() {
-            @Override
-            public void accept(CertificateBean certificateBean) throws Exception {
-                Logger.i("TEST","certificateBean");
-                updateView(certificateBean);
-            }
-        });
     }
 
     private void updateView(CertificateBean certificateBean) {
+
         if (certificateBean != null) {
+            List<AuthBean> authList = certificateBean.getAuthList();
+            int size = authList.size();
+            if (size >= 1) {
+                et1.setText(authList.get(0).getAuthInfo());
+            }
+            if (size >= 2) {
+                et2.setText(authList.get(1).getAuthInfo());
+            }
+            if (size >= 3) {
+                et3.setText(authList.get(2).getAuthInfo());
+            }
+            if (size >= 4) {
+                et4.setText(authList.get(3).getAuthInfo());
+            }
+            if (size >= 5) {
+                et5.setText(authList.get(4).getAuthInfo());
+            }
+
+            //证书照片
             List<CertBean> certList = certificateBean.getCertList();
             List<String> photoPathList = new ArrayList<>();
             for (int i = 0; i < certList.size(); i++) {
@@ -127,6 +144,23 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         }
     }
 
+    private void initData() {
+        User user = DBManager.getInstance().queryUser();
+        HashMap<String, String> param = new HashMap<>();
+        param.put("coach_id", user.getUserId());
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CertificateBean certificateBean = new CertificateBean(result);
+                updateView(certificateBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
+    }
 
     private void post() {
         List<String> photoPathList = choosePhotoView.getmPhotoPathList();

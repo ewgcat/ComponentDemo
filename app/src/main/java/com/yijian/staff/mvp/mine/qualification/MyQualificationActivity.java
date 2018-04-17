@@ -17,21 +17,25 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.iwf.photopicker.PhotoPicker;
 
 public class MyQualificationActivity extends MvcBaseActivity {
 
@@ -62,7 +66,6 @@ public class MyQualificationActivity extends MvcBaseActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getDefault().post(certificateBean);
                 Intent intent = new Intent(MyQualificationActivity.this, EditQualificationActivity.class);
                 startActivityForResult(intent,101);
             }
@@ -99,10 +102,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     }
 
-    private void initTitle() {
 
-
-    }
 
     public void setImageList(List<CertBean> certList) {
 
@@ -125,9 +125,10 @@ public class MyQualificationActivity extends MvcBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == 101) {
+            initData();
+        }
+
     }
 }

@@ -7,6 +7,8 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
+import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -15,6 +17,7 @@ import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +69,6 @@ public interface ApiService {
     @POST()
     Observable<JSONObject> upLoadImage(
             @Url String url,
-            @HeaderMap Map<String, String> headers,
             @Part() MultipartBody.Part file
     );
 
@@ -75,7 +77,7 @@ public interface ApiService {
     @POST("{url}")
     Call<ResponseBody> uploadFiles(
             @Path("url") String url,
-            @Part("filename") String description,
+            @HeaderMap Map<String, String> headers,
             @PartMap() Map<String, RequestBody> maps
     );
 
@@ -83,6 +85,11 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
+
+    //登录
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> addCertificate(@Url String url,@HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);
 
 
     //体测录入
@@ -204,4 +211,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getBusinessMessage(@Url String loginUrl,@HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAddAdvice(@Url String url, @HeaderMap HashMap<String, String> headers, @Body AddAdviceBody addAdviceBody);
 }

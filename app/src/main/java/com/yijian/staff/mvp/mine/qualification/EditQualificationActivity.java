@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -26,39 +27,58 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
+import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
+import com.yijian.staff.net.requestbody.authcertificate.CertBean;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.rx.RxBus;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 import me.iwf.photopicker.PhotoPicker;
 
-public class EditQualificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class EditQualificationActivity extends MvcBaseActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.choose_photo_view)
     ChoosePhotoView choosePhotoView;
+    @BindView(R.id.et1)
+    EditText et1;
+    @BindView(R.id.et2)
+    EditText et2;
+    @BindView(R.id.et3)
+    EditText et3;
+    @BindView(R.id.et4)
+    EditText et4;
+    @BindView(R.id.et5)
+    EditText et5;
     private Dialog dialog;
-    private ArrayList<String> qualifacatioinList = new ArrayList<String>();
+
+    private List<AuthBean> authList = new ArrayList<>();
+    private List<CertBean> certList = new ArrayList<>();
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_qualification);
-        ButterKnife.bind(this);
-        initTitle();
-        initData();
+    protected int getLayoutID() {
+        return R.layout.activity_edit_qualification;
     }
 
-    private void initData() {
-        initDialog();
-
-    }
-
-    private void initTitle() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.edit_activity_navigation_bar);
         navigationBar2.setTitle("资格证书");
@@ -68,8 +88,8 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(101);
-                finish();
+                post();
+
             }
         });
 
@@ -88,12 +108,130 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
             public void hadDeletePath(String path) {
             }
         });
+        initDialog();
+        initData();
 
+    }
+
+    private void initData() {
+        User user = DBManager.getInstance().queryUser();
+        HashMap<String, String> param = new HashMap<>();
+        param.put("coach_id", user.getUserId());
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CertificateBean certificateBean = new CertificateBean(result);
+                updateView(certificateBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
+    }
+
+    private void updateView(CertificateBean certificateBean) {
+
+        if (certificateBean != null) {
+            List<AuthBean> authList = certificateBean.getAuthList();
+            int size = authList.size();
+            if (size >= 1) {
+                et1.setText(authList.get(0).getAuthInfo());
+            }
+            if (size >= 2) {
+                et2.setText(authList.get(1).getAuthInfo());
+            }
+            if (size >= 3) {
+                et3.setText(authList.get(2).getAuthInfo());
+            }
+            if (size >= 4) {
+                et4.setText(authList.get(3).getAuthInfo());
+            }
+            if (size >= 5) {
+                et5.setText(authList.get(4).getAuthInfo());
+            }
+
+            //证书照片
+            List<CertBean> certList = certificateBean.getCertList();
+            List<String> photoPathList = new ArrayList<>();
+            for (int i = 0; i < certList.size(); i++) {
+                photoPathList.add(certList.get(i).getCertificate());
+            }
+            choosePhotoView.setmPhotoPathList(photoPathList);
+        }
+    }
+
+    private void post() {
+        List<String> photoPathList = choosePhotoView.getmPhotoPathList();
+        if (photoPathList.size() > 0) {
+
+            //TODO 上传图片
+            for (int i = 0; i < photoPathList.size(); i++) {
+                String path = photoPathList.get(i);
+                HttpManager.upLoadImage(path, new ResultStringObserver() {
+                    @Override
+                    public void onSuccess(String result) {
+                        String s = "http://capi.dev.ejoyst.com/cFile/saveCUserIcon?uIcon=" + result;
+                        certList.add(new CertBean(s));
+                        if (photoPathList.size() == certList.size()) {
+                            postAdd();
+                        }
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                            showToast(msg);
+                    }
+                });
+            }
+        }else {
+            postAdd();
+        }
+
+    }
+
+    private void postAdd() {
+
+        String s1 = et1.getText().toString().trim();
+        String s2 = et2.getText().toString().trim();
+        String s3 = et3.getText().toString().trim();
+        String s4 = et4.getText().toString().trim();
+        String s5 = et5.getText().toString().trim();
+        if (!TextUtils.isEmpty(s1)) {
+            authList.add(new AuthBean(s1));
+        }
+        if (!TextUtils.isEmpty(s2)) {
+            authList.add(new AuthBean(s2));
+        }
+        if (!TextUtils.isEmpty(s3)) {
+            authList.add(new AuthBean(s3));
+        }
+        if (!TextUtils.isEmpty(s4)) {
+            authList.add(new AuthBean(s4));
+        }
+        if (!TextUtils.isEmpty(s5)) {
+            authList.add(new AuthBean(s5));
+        }
+
+        AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody(authList, certList);
+        HttpManager.addCertificate(authCertificateRequestBody, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == qualifacatioinList.size()) {//点击“+”号位置添加图片
+        if (position == certList.size()) {//点击“+”号位置添加图片
             dialog.show();
         } else {
             Intent intent = new Intent(this, SeePicActivity.class);
@@ -103,97 +241,6 @@ public class EditQualificationActivity extends AppCompatActivity implements Adap
         }
     }
 
-    class QualificationImgAdapter extends BaseAdapter {
-
-        private Context mContext;
-        private List<String> list = new ArrayList<String>();
-
-        public QualificationImgAdapter() {
-            super();
-        }
-
-        /**
-         * 获取列表数据
-         *
-         * @param list
-         */
-        public void setList(List<String> list) {
-            this.list = list;
-            this.notifyDataSetChanged();
-        }
-
-        public QualificationImgAdapter(Context mContext, List<String> list) {
-            super();
-            this.mContext = mContext;
-            this.list = list;
-        }
-
-        @Override
-        public int getCount() {
-            if (list == null) {
-                return 1;
-            } else if (list.size() == 6) {
-                return 6;
-            } else {
-                return list.size() + 1;
-            }
-        }
-
-        @Override
-        public Object getItem(int position) {
-            if (list != null && list.size() == 6) {
-                return list.get(position);
-            } else if (list == null || position - 1 < 0 || position > list.size()) {
-                return null;
-            } else {
-                return list.get(position - 1);
-            }
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_qualification_image, null);
-                holder = new ViewHolder();
-                holder.iv = (ImageView) convertView.findViewById(R.id.item_grid_image);
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) holder.iv.getLayoutParams();
-                lp.width = CustomApplication.SCREEN_WIDTH / 3 - 20;
-                lp.height = CustomApplication.SCREEN_WIDTH / 3 - 20;
-                holder.iv.setLayoutParams(lp);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-            if (isShowAddItem(position)) {
-                holder.iv.setImageResource(R.mipmap.ic_launcher);
-            } else {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.mipmap.placeholder)
-                        .error(R.mipmap.placeholder)
-                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                Glide.with(mContext).load(list.get(position)).apply(options).into(holder.iv);
-            }
-            return convertView;
-        }
-
-        private boolean isShowAddItem(int position) {
-            int size = list == null ? 0 : list.size();
-            return position == size;
-        }
-
-        class ViewHolder {
-            ImageView iv;
-        }
-
-    }
 
     /*****************************  选择相册 ********************************/
 

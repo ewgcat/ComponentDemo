@@ -107,6 +107,12 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
 
             if (size == position) {
                 holder.delete.setVisibility(View.GONE);
+
+                RequestOptions options = new RequestOptions().centerCrop()
+                        .placeholder(R.mipmap.placeholder)
+                        .error(R.mipmap.placeholder)
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(mContext).load(R.mipmap.ic_add_pic).apply(options).into(holder.imageView);
                 holder.imageView.setOnClickListener(view14 -> {
                     //跳转到拍照
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

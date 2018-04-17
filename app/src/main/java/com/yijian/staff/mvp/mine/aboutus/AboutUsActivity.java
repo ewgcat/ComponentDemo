@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.club;
+package com.yijian.staff.mvp.mine.aboutus;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -23,29 +22,32 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ClubActivity extends MvcBaseActivity {
+public class AboutUsActivity extends MvcBaseActivity {
 
-    private static final String TAG = ClubActivity.class.getSimpleName();
-    @BindView(R.id.club_navigation_bar2)
+
+    @BindView(R.id.about_us_navigation_bar2)
     NavigationBar2 navigationBar2;
     @BindView(R.id.web_view)
     WebView webView;
 
-
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_club;
+        return R.layout.activity_about_us;
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar2.setTitle("俱乐部");
+        navigationBar2.setTitle("关于我们");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+
+
         initWebView(webView);
+
+
     }
 
-    private void initWebView(WebView webView) {
+    private void initWebView( WebView webView) {
         WebSettings webviewSettings = webView.getSettings();
         webviewSettings.setJavaScriptEnabled(true); // 开启Javascript支持
         webviewSettings.setAllowContentAccess(true);
@@ -61,12 +63,12 @@ public class ClubActivity extends MvcBaseActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("type", "2");
+        HashMap<String ,String> params=new HashMap<>();
+        params.put("type","1");
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                webView.loadUrl(JsonUtil.getString(result, "url"));
+                webView.loadUrl(JsonUtil.getString(result,"url"));
             }
 
             @Override
@@ -75,4 +77,6 @@ public class ClubActivity extends MvcBaseActivity {
             }
         });
     }
+
+
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,36 +19,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/ll_my_zili"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
                 android:text="我的资历"
                 android:textColor="#333333"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
-            <com.yijian.staff.mvp.mine.qualification.MyQualificatioinContent
-                android:id="@+id/qualificationContent"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginRight="17dp"
-                android:background="@drawable/white_bg"
-                />
+                android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="30dp"
                 android:text="我的证书"
                 android:textColor="#333333"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <HorizontalScrollView
                 android:id="@+id/hsv"
@@ -58,11 +58,12 @@
                 android:layout_marginLeft="17dp"
                 android:layout_marginTop="10dp"
                 android:scrollbars="none">
+
                 <LinearLayout
                     android:id="@+id/lin_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
             </HorizontalScrollView>
 
         </LinearLayout>

@@ -23,7 +23,8 @@ public class CalendarUtils {
     private static final String TAG = "CalendarUtils";
     private static CalendarUtils sUtils;
     private Map<String, int[]> sAllHolidays = new HashMap<>();
-    private Map<String, List<Integer>> sMonthTaskHint = new HashMap<>();
+    private Map<String, List<Integer>> sDayTaskHint = new HashMap<>(); //日视图 小圆点集合
+    private Map<String, List<Integer>> sWeekTaskHint = new HashMap<>(); //周视图 小圆点集合
 
     public static synchronized CalendarUtils getInstance(Context context) {
         if (sUtils == null) {
@@ -49,82 +50,212 @@ public class CalendarUtils {
         }
     }
 
-    public List<Integer> addTaskHints(int year, int month, List<Integer> days) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param days
+     * @param isWeek  取集合类型的标志位：日视图 或 周视图小圆点的集合
+     * @return
+     */
+    public List<Integer> addTaskHints(int year, int month, List<Integer> days, boolean isWeek) {
         String key = hashKey(year, month);
-        List<Integer> hints = sUtils.sMonthTaskHint.get(key);
-        if (hints == null) {
-            hints = new ArrayList<>();
-            hints.removeAll(days); // 避免重复
-            hints.addAll(days);
-            sUtils.sMonthTaskHint.put(key, hints);
-        } else {
-            hints.addAll(days);
+        if(!isWeek){ //周视图
+
+            List<Integer> hints = sUtils.sWeekTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                hints.removeAll(days); // 避免重复
+                hints.addAll(days);
+                sUtils.sWeekTaskHint.put(key, hints);
+            } else {
+                hints.addAll(days);
+            }
+            return hints;
+        }else {  //日视图
+            List<Integer> hints = sUtils.sDayTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                hints.removeAll(days); // 避免重复
+                hints.addAll(days);
+                sUtils.sDayTaskHint.put(key, hints);
+            } else {
+                hints.addAll(days);
+            }
+            return hints;
         }
-        return hints;
     }
 
-    public List<Integer> removeTaskHints(int year, int month, List<Integer> days) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param days
+     * @param isWeek   取集合类型的标志位：日视图 或 周视图小圆点的集合
+     * @return
+     */
+    public List<Integer> removeTaskHints(int year, int month, List<Integer> days, boolean isWeek) {
         String key = hashKey(year, month);
-        List<Integer> hints = sUtils.sMonthTaskHint.get(key);
-        if (hints == null) {
-            hints = new ArrayList<>();
-            sUtils.sMonthTaskHint.put(key, hints);
-        } else {
-            hints.removeAll(days);
+
+        if(!isWeek){ //周视图
+            List<Integer> hints = sUtils.sWeekTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sWeekTaskHint.put(key, hints);
+            } else {
+                hints.removeAll(days);
+            }
+            return hints;
+
+        }else{  //日视图
+            List<Integer> hints = sUtils.sDayTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sDayTaskHint.put(key, hints);
+            } else {
+                hints.removeAll(days);
+            }
+            return hints;
         }
-        return hints;
+
     }
 
-    public boolean addTaskHint(int year, int month, int day) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param isWeek  取集合类型的标志位：日视图 或 周视图小圆点的集合
+     * @return
+     */
+    public boolean addTaskHint(int year, int month, int day, boolean isWeek) {
         String key = hashKey(year, month);
-        List<Integer> hints = sUtils.sMonthTaskHint.get(key);
-        if (hints == null) {
-            hints = new ArrayList<>();
-            hints.add(day);
-            sUtils.sMonthTaskHint.put(key, hints);
-            return true;
-        } else {
-            if (!hints.contains(day)) {
+        if(!isWeek){
+
+            List<Integer> hints = sUtils.sWeekTaskHint.get(key);
+            if (hints == null) {  //周视图
+                hints = new ArrayList<>();
                 hints.add(day);
+                sUtils.sWeekTaskHint.put(key, hints);
                 return true;
             } else {
-                return false;
-            }
-        }
-    }
-
-    public boolean removeTaskHint(int year, int month, int day) {
-        String key = hashKey(year, month);
-        List<Integer> hints = sUtils.sMonthTaskHint.get(key);
-        if (hints == null) {
-            hints = new ArrayList<>();
-            sUtils.sMonthTaskHint.put(key, hints);
-        } else {
-            if (hints.contains(day)) {
-                Iterator<Integer> i = hints.iterator();
-                while (i.hasNext()) {
-                    Integer next = i.next();
-                    if (next == day) {
-                        i.remove();
-                        break;
-                    }
+                if (!hints.contains(day)) {
+                    hints.add(day);
+                    return true;
+                } else {
+                    return false;
                 }
+            }
+
+        }else{  // 日视图
+
+            List<Integer> hints = sUtils.sDayTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                hints.add(day);
+                sUtils.sDayTaskHint.put(key, hints);
                 return true;
             } else {
-                return false;
+                if (!hints.contains(day)) {
+                    hints.add(day);
+                    return true;
+                } else {
+                    return false;
+                }
             }
+
         }
-        return false;
+
     }
 
-    public List<Integer> getTaskHints(int year, int month) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param isWeek  取集合类型的标志位：日视图 或 周视图小圆点的集合
+     * @return
+     */
+    public boolean removeTaskHint(int year, int month, int day, boolean isWeek) {
         String key = hashKey(year, month);
-        List<Integer> hints = sUtils.sMonthTaskHint.get(key);
-        if (hints == null) {
-            hints = new ArrayList<>();
-            sUtils.sMonthTaskHint.put(key, hints);
+
+        if(!isWeek){ //周视图
+            List<Integer> hints = sUtils.sWeekTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sWeekTaskHint.put(key, hints);
+            } else {
+                if (hints.contains(day)) {
+                    Iterator<Integer> i = hints.iterator();
+                    while (i.hasNext()) {
+                        Integer next = i.next();
+                        if (next == day) {
+                            i.remove();
+                            break;
+                        }
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }else{  //日视图
+            List<Integer> hints = sUtils.sDayTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sDayTaskHint.put(key, hints);
+            } else {
+                if (hints.contains(day)) {
+                    Iterator<Integer> i = hints.iterator();
+                    while (i.hasNext()) {
+                        Integer next = i.next();
+                        if (next == day) {
+                            i.remove();
+                            break;
+                        }
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
-        return hints;
+
+    }
+
+
+
+    /**
+     *
+     * @param year
+     * @param month
+     * @param isWeek  取集合类型的标志位：日视图 或 周视图小圆点的集合
+     * @return
+     */
+    public List<Integer> getTaskHints(int year, int month, boolean isWeek) {
+        String key = hashKey(year, month);
+        if(!isWeek){ //周视图
+
+            List<Integer> hints = sUtils.sWeekTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sWeekTaskHint.put(key, hints);
+            }
+            return hints;
+
+        }else{
+
+            List<Integer> hints = sUtils.sDayTaskHint.get(key);
+            if (hints == null) {
+                hints = new ArrayList<>();
+                sUtils.sDayTaskHint.put(key, hints);
+            }
+            return hints;
+
+        }
+
     }
 
     private static String hashKey(int year, int month) {

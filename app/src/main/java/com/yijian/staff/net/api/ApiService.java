@@ -7,6 +7,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
+import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -15,6 +16,7 @@ import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -204,4 +206,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getBusinessMessage(@Url String loginUrl,@HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAddAdvice(@Url String url, @HeaderMap HashMap<String, String> headers, @Body AddAdviceBody addAdviceBody);
 }

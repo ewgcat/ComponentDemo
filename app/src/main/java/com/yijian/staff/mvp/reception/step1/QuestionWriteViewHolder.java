@@ -50,6 +50,8 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
                 tvLimit.setText(s.toString().length()+"字");
             }
         });
+
+
     }
 
     public  interface WriteListener{

@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -163,8 +164,16 @@ public class HttpManager {
     //体验课 回访节点
     public static String GET_EXPERICECE_HUI_FANG_URL = BuildConfig.HOST + "experienceProcess/toVisit";
 
+    //体验课 回访节点_保存教练记录
+    public static String POST_EXPERICECE_HUI_FANG_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveCoachVisitRecord";
+
+
     //体验课 会商方案
     public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL = BuildConfig.HOST + "experienceProcess/toConsultationProgramme";
+
+    //体验课 会商方案_保存会商方案
+    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveConsultationProgramme";
+
 
     //体验课 二次邀约
     public static String GET_EXPERICECE_INVITE_AGAIN_URL = BuildConfig.HOST + "experienceProcess/toInviteAgain";
@@ -264,8 +273,7 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
         Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
@@ -278,8 +286,7 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
         Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
@@ -319,7 +326,10 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+            String token = user.getToken();
+//            token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+
+            headers.put("token", token);
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
         }
@@ -333,7 +343,10 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+            String token = user.getToken();
+//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+
+            headers.put("token", token);
 
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList_ycm(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
@@ -368,18 +381,11 @@ public class HttpManager {
             Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
             execute(observable, observer);
         }
-        String token = user.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
-//            execute(observable, observer);
-//        }
+//        String token = user.getToken();
+////        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+//        headers.put("token", token);
+//        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
+//        execute(observable, observer);
     }
 
     //提交下课打卡数据
@@ -403,6 +409,16 @@ public class HttpManager {
     }
 
 
+    // //体验课_回访——教练提交回访记录
+    public static void postExperienceAccessRecord(String url, AccessRecordBean recordBean, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.postExperienceAccessRecord(url, headers, recordBean);
+        execute(observable, observer);
+    }
+
     //公共
     // post没请求头没有参数
     public static void postNoHeaderNoParam(String url, Observer<JSONObject> observer) {
@@ -415,13 +431,12 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
 
-        String token = user.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+            String token = user.getToken();
+//          token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+            headers.put("token", token);
 
             Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
             execute(observable, observer);
@@ -442,15 +457,15 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+
+
+            String token = user.getToken();
+//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+
+            headers.put("token", token);
             Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
             execute(observable, observer);
         }
-        String token = user.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
-        execute(observable, observer);
     }
 
 
@@ -473,22 +488,13 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+            String token = user.getToken();
+//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+
+            headers.put("token", token);
             Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
             execute(observable, observer);
         }
-        String token = user.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
-//            execute(observable, observer);
-//        }
     }
 
     // get无头有参
@@ -505,22 +511,13 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            headers.put("token", user.getToken());
+            String token = user.getToken();
+//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+
+            headers.put("token", token);
             Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
             execute(observable, observer);
         }
-        String token = user.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
-        Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
-        execute(observable, observer);
-//        if (user == null || TextUtils.isEmpty(user.getToken())) {
-//            ARouter.getInstance().build("/test/login").navigation();
-//        } else {
-//            headers.put("token", user.getToken());
-//            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
-//            execute(observable, observer);
-//        }
     }
 
     //上传图片

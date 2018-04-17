@@ -117,7 +117,7 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
         }else if (childViewHolder instanceof QuestionOptMixViewHolder){
             ((QuestionOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
         }else if (childViewHolder instanceof QuestionWriteViewHolder){
-            ((QuestionWriteViewHolder)childViewHolder)  .bind(child,parentPosition,childPosition);
+            ((QuestionWriteViewHolder)childViewHolder).bind(child,parentPosition,childPosition);
         }
 
     }
@@ -190,8 +190,10 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
                 break;
 
         }
-    }
 
+        if (computerPercentLisenter!=null) computerPercentLisenter.computerPercent();
+
+    }
 
 
 
@@ -201,18 +203,38 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
 //        Log.e(TAG, "onWrited: parentPosition=="+parentPosition+"s=="+s );
 
         child.setInputContent(s.toString());
+        if (s.length()>0){
+            if (!child.isSelect()){
+                if (computerPercentLisenter!=null) computerPercentLisenter.computerPercent();
+            }
+            child.setSelect(true);
+        }else {
+            child.setSelect(false);
+            if (computerPercentLisenter!=null) computerPercentLisenter.computerPercent();
+        }
     }
 
     @Override
     public void onMixWrited(ItemsBean child,int parentPosition, int childPosition, Editable s) {
 //        Log.e(TAG, "onMixWrited: parentPosition=="+parentPosition+"s=="+s );
         child.setInputContent(s.toString());
+
     }
 
     @Override
     public void onMixClick(ItemsBean child, int parentPosition, int childPosition) {
         onSingleClick(child,parentPosition,childPosition);
+        if (computerPercentLisenter!=null) computerPercentLisenter.computerPercent();
 
+    }
 
+    interface ComputerPercentLisenter{
+        void computerPercent();
+    }
+
+    public ComputerPercentLisenter computerPercentLisenter;
+
+    public void setComputerPercentLisenter(ComputerPercentLisenter computerPercentLisenter) {
+        this.computerPercentLisenter = computerPercentLisenter;
     }
 }

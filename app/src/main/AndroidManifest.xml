@@ -371,6 +371,14 @@
             android:name=".mvp.setclass.OpenLessonNewActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".mvp.coach.experienceclass.step1.ExperienceClassStep1Activity_ycm"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.coach.experienceclass.template.template_system.Template1ClassActivity_ycm"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".mvp.coach.experienceclass.invate.ExperienceClassInvateActivity_ycm"
+            android:screenOrientation="portrait"/>
+
         <!-- arouter 路由过滤 -->
         <activity android:name=".schamefilter.SchameFilterActivity">
 

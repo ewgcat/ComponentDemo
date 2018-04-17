@@ -4,9 +4,11 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,22 +60,29 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
     SmartRefreshLayout cardRefreshLayout;
 
     private static final String TAG = "HuiJiProductQuotationFr";
-    private List<CardInfo> mGoodsInfoList ;
     private CardsListAdapter goodsListAdapter;
-    private HuiJiFilterGoodsDialog huiJiFilterGoodsDialog;
-    private HuiJiGoodsFilterBean huiJiGoodsFilterBean;
     private CardInfo selectedGoodsInfo;
 
     private ConditionBody bodyCondition;
     private HuiJiProductPresenter presenter;
     private OptionDialog optionDialog;
+    private String memberId;
 
 
     public HuiJiProductQuotationFragment() {
 
     }
 
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        memberId = arguments.getString("memberId");
+        if (TextUtils.isEmpty(memberId)){
+            Toast.makeText(getContext(),"用户id不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -108,26 +117,29 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.resetBodyPage(bodyCondition);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+                presenter.getRecptionCards(bodyCondition,true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                bodyCondition.setPageSize(bodyCondition.getPageNum()+1);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
+                bodyCondition.setPageNum(bodyCondition.getPageNum()+1);
+                presenter.getRecptionCards(bodyCondition,false);
             }
         });
 
         optionDialog = new OptionDialog();
+
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(ConditionBody body) {
-
+//                Log.e(TAG, "onDismiss: " );
                 bodyCondition=body;
                 bodyCondition.setPageNum(1);
-                bodyCondition.setPageSize(4);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+                bodyCondition.setPageSize(10);
+                presenter.getRecptionCards(bodyCondition,true);
+
+
             }
         });
         goodsListAdapter.setOnItemClickListener(new CardsListAdapter.OnItemClickListener() {
@@ -145,9 +157,19 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     //点击筛选
     private void selectShaixuan() {
-        priceUp = false;
+//        priceUp = false;
         resetTabColor();
         tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+
+        Bundle bundle = new Bundle();
+//        bundle.set("bodyCondition",bodyCondition);
+        bundle.putString("cardType",bodyCondition.getCardType());
+        bundle.putString("startPrice",bodyCondition.getStartPrice());
+        bundle.putString("venueName",bodyCondition.getVenueName());
+
+
+        optionDialog.setArguments(bundle);
+
         optionDialog.show(getActivity().getFragmentManager(),"OptionDialog");
 
     }
@@ -156,27 +178,32 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     //点击价格
     private void selectPrice() {
+        List<CardInfo>   mGoodsInfoList=goodsListAdapter.getmGoodsInfoList();
+
+
         if (mGoodsInfoList==null||mGoodsInfoList.size()==0)return;
-        Log.e(TAG, "mGoodsInfoList"+mGoodsInfoList.size());
+//        Log.e(TAG, "mGoodsInfoList"+mGoodsInfoList.size());
         resetTabColor();
+
         if (priceUp){
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
-
+            tvPrice.setTextColor(getResources().getColor(R.color.blue));
             Collections.sort(mGoodsInfoList);
-            goodsListAdapter.resetData(mGoodsInfoList);
+            goodsListAdapter.notifyDataSetChanged();
             priceUp = false;
-
+            bodyCondition.setIsSortByPrice(1);
         }else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
-
+            tvPrice.setTextColor(getResources().getColor(R.color.blue));
             Collections.sort(mGoodsInfoList);
             Collections.reverse(mGoodsInfoList);
-            goodsListAdapter.resetData(mGoodsInfoList);
+            goodsListAdapter.notifyDataSetChanged();
             priceUp = true;
+            bodyCondition.setIsSortByPrice(0);
         }
 
     }
@@ -186,7 +213,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
         resetTabColor();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
         presenter.resetBody(bodyCondition);
-        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+        presenter.getRecptionCards(bodyCondition,true);
     }
 
 
@@ -205,12 +232,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
                 break;
             case R.id.ll_to_coach:
                 if (selectedGoodsInfo != null) {
-
-
-
-                    rlGoods.setVisibility(View.GONE);
-                    tvSendToStatus.setVisibility(View.VISIBLE);
-                    //TODO TO给教练的请求
+                    presenter.toCoach(memberId,selectedGoodsInfo.getCardprodbaseId());
                 } else {
                     Toast.makeText(getContext(), "请先点击选取一个产品,再TO给教练!", Toast.LENGTH_SHORT).show();
                 }
@@ -229,13 +251,36 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
-        mGoodsInfoList=goodsInfos;
 
         if (isRefresh){
             goodsListAdapter.resetData(goodsInfos);
+            cardRefreshLayout.finishRefresh(1000);
         }else {
             goodsListAdapter.addDatas(goodsInfos);
+            cardRefreshLayout.finishLoadMore(1000);
         }
+
+    }
+
+    @Override
+    public void showToCoachSucceed() {
+        rlGoods.setVisibility(View.GONE);
+        tvSendToStatus.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void showNoCards(boolean isRefresh,boolean isSucceed) {
+
+        if (isRefresh){
+           if (isSucceed)Toast.makeText(getContext(),"未查询到相关数据",Toast.LENGTH_SHORT).show();
+            cardRefreshLayout.finishRefresh(1000);
+        }else {
+            if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+            cardRefreshLayout.finishLoadMore(1000);
+        }
+
     }
 
     public void resetTabColor(){

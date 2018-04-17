@@ -54,7 +54,9 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         timeBar.showTimeBar(3);
 
         int userRole = SharePreferenceUtil.getUserRole();
-        Log.e(TAG, "initView: userRole=" + userRole);
+//        Log.e(TAG, "initView: userRole=" + userRole);
+        userRole=1;
+
         if (userRole == 1) {
             fragment = new HuiJiProductQuotationFragment();
         } else if (userRole == 2) {

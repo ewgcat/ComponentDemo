@@ -18,6 +18,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -140,7 +141,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
 
         String id = consumerBean.getId();
-        id="1";
+//        id="1";
 
         HttpManager.postRecptionRequstion(id, questionnaireAnswerList, new Observer<JSONObject>() {
 
@@ -178,6 +179,55 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
         });
     }
 
+    @Override
+    public String computerPercent(List<DataListBean> questionList, List<CalendarDay> selectedDates) {
+        int hadResultCount=0;
+        int total=questionList.size()+1;
+
+        for (int i = 0; i < questionList.size(); i++) {//0单选,1多选,2填空
+
+            DataListBean dataListBean = questionList.get(i);
+            if (dataListBean.getSelectType()==2){
+                boolean isAnswer=false;
+                List<ItemsBean> childList = dataListBean.getChildList();
+                for (int j = 0; j <childList.size() ; j++) {
+
+                    String inputContent = childList.get(j).getInputContent();
+                    if (!TextUtils.isEmpty(inputContent)){
+                        isAnswer=true;
+                    }
+                }
+
+               if (isAnswer)hadResultCount++;
+            }
+
+            if (dataListBean.getSelectType()!=2){
+                boolean hasSelected=false;
+                List<ItemsBean> childList = dataListBean.getChildList();
+                for (int j = 0; j <childList.size() ; j++) {
+                    boolean select = childList.get(j).isSelect();
+                    if (select)hasSelected=true;
+                }
+
+                if (hasSelected)hadResultCount++;
+            }
+        }
+
+        if (selectedDates!=null&&selectedDates.size()>0)hadResultCount++;
+
+        // 创建一个数值格式化对象
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        // 设置精确到小数点后2位
+
+        numberFormat.setMaximumFractionDigits(2);
+
+        String result = numberFormat.format((float) hadResultCount / (float) total * 100);
+
+        return result+"%";
+
+    }
 
 
     private void upLoadFitnessTime(RecptionerInfoBean consumerBean, List<CalendarDay> selectedDates){
@@ -191,7 +241,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
         Map<String,String> params=new HashMap<>();
         String id = consumerBean.getId();
-        id="3";
+//        id="3";
         params.put("memberId",""+ id);
         String substring = builder.substring(1);
 //        Log.e(TAG, "upLoadFitnessTime: "+substring );

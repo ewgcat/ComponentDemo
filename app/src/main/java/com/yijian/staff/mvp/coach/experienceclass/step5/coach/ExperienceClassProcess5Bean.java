@@ -1,7 +1,5 @@
 package com.yijian.staff.mvp.coach.experienceclass.step5.coach;
 
-import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Bean;
-import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Bean;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONException;

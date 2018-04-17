@@ -2,20 +2,17 @@ package com.yijian.staff.mvp.physical;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Bean;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ExperienceClassProcess3Bean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
@@ -28,11 +25,8 @@ import com.yijian.staff.widget.NavigationBar2;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.ButterKnife;
-import io.reactivex.Flowable;
 import io.reactivex.functions.Consumer;
 
 //体测报告
@@ -57,15 +51,16 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
         initView();
         initData();
 
-        //从体验课会商方案传过来的
-        RxBus.getDefault().toDefaultFlowable(ExperienceClassProcess3Bean.BodyCheckBean.class, new Consumer<ExperienceClassProcess3Bean.BodyCheckBean>() {
-            @Override
-            public void accept(ExperienceClassProcess3Bean.BodyCheckBean bodyCheckBean) throws Exception {
-                setBodyCheckBean(bodyCheckBean);
-            }
-        });
+//        //从体验课会商方案传过来的
+//        RxBus.getDefault().toDefaultFlowable(ExperienceClassProcess3Bean.BodyCheckBean.class, new Consumer<ExperienceClassProcess3Bean.BodyCheckBean>() {
+//            @Override
+//            public void accept(ExperienceClassProcess3Bean.BodyCheckBean bodyCheckBean) throws Exception {
+//                setBodyCheckBean(bodyCheckBean);
+//            }
+//        });
 
         Intent intent = getIntent();
+
         if (intent.hasExtra("memberId") || intent.hasExtra("memberName")) {
             memberId = intent.getStringExtra("memberId");
             memberName = intent.getStringExtra("memberName");
@@ -79,9 +74,9 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
 
     }
 
-    private void setBodyCheckBean(ExperienceClassProcess3Bean.BodyCheckBean bodyCheckBean) {
-        this.bodyCheckBean = bodyCheckBean;
-    }
+//    private void setBodyCheckBean(ExperienceClassProcess3Bean.BodyCheckBean bodyCheckBean) {
+//        this.bodyCheckBean = bodyCheckBean;
+//    }
 
 
     private void initView() {

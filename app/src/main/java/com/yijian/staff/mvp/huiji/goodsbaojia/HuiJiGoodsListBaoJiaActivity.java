@@ -119,7 +119,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                             Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
                         }else {
                             bodyCondition.setCardName(name);
-                            presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+//                            presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
                         }
                         break;
                 }
@@ -147,14 +147,14 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.resetBodyPage(bodyCondition);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 bodyCondition.setPageSize(bodyCondition.getPageNum()+1);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
+//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
             }
         });
 
@@ -165,7 +165,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 bodyCondition=body;
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(4);
-                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
             }
         });
 
@@ -241,7 +241,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         resetTabColor();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
         presenter.resetBody(bodyCondition);
-        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+//        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
     }
 
 
@@ -260,6 +260,17 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         }else {
             goodsListAdapter.addDatas(goodsInfos);
         }
+
+    }
+
+    @Override
+    public void showToCoachSucceed() {
+
+    }
+
+    @Override
+    public void showNoCards(boolean isRefresh, boolean isSucceed) {
+
     }
 
     public void resetTabColor(){

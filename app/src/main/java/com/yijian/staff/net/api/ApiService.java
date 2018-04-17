@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -85,6 +86,10 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
+
+    //体验课_回访——教练提交回访记录
+    @POST
+    Observable<JSONObject> postExperienceAccessRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body AccessRecordBean body);
 
 
     //体测录入

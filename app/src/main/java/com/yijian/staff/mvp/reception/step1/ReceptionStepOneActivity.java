@@ -31,7 +31,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener ,ReceptionStep1Contract.View{
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
+public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener ,ReceptionStep1Contract.View, Step1QuestAdapter.ComputerPercentLisenter {
 
     private static final String TAG = ReceptionStepOneActivity.class.getSimpleName();
 
@@ -40,6 +44,8 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     private List<DataListBean> step1bean =new ArrayList<>();
     private RecptionStep1Presenter presenter;
     private RecptionerInfoBean consumerBean;
+    private MaterialCalendarView calendarView;
+    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +89,14 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        adapter.setComputerPercentLisenter(this);
 
 
-
-
-        MaterialCalendarView calendarView = findViewById(R.id.calendarView);
+        calendarView = findViewById(R.id.calendarView);
         initCalendarView(calendarView);
 
 
-        Button btnSave = findViewById(R.id.btn_save);
+        btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +128,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
                 }
                 widget.invalidateDecorators();
 
+                computerPercent();
 //                oneDayDecorator.setDate(date.getDate());
 
             }
@@ -169,5 +175,16 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
         intent.putExtra("memberId",id);
         startActivity(intent);
+    }
+
+
+    @Override
+    public void computerPercent() {
+        Log.e(TAG, "computerPercent: " );
+        List<DataListBean> questionList = adapter.getQuestionList();
+        List<CalendarDay> selectedDates = calendarView.getSelectedDates();
+        String percent = presenter.computerPercent(questionList, selectedDates);
+        btnSave.setText("保存（已完成"+percent+")");
+
     }
 }

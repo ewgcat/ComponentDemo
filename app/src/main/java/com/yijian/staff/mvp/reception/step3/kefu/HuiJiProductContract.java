@@ -1,10 +1,7 @@
 package com.yijian.staff.mvp.reception.step3.kefu;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 
 import java.util.List;
 
@@ -15,12 +12,16 @@ import java.util.List;
 public interface HuiJiProductContract {
     interface View{
         void showCards(List<CardInfo> goodsInfos, Boolean isRefresh);
+
+        void showToCoachSucceed();
+
+        void showNoCards(boolean isRefresh,boolean isSucceed);
 //        void showRefresh(List<GoodsInfo> goodsInfos);
     }
 
     interface Presenter{
-        void getRecptionCards(SmartRefreshLayout refreshLayout,ConditionBody bodyCondition, Boolean isRefresh);
+        void getRecptionCards(ConditionBody bodyCondition, boolean isRefresh);
 
-//        void toCoach();
+        void toCoach(String memberId,String cardId);
     }
 }

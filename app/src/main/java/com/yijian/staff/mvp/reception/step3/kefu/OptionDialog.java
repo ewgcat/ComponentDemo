@@ -9,9 +9,11 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,11 +60,30 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     private TextView tvConfirm;
     private static final String TAG = "OptionDialog";
 
-    private ConditionBody conditionBody=new ConditionBody();
+    private ConditionBody conditionBody = new ConditionBody();
 
-    public OptionDialog(){
+    public OptionDialog() {
 
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//        Log.e(TAG, "onCreate: " );
+        Bundle arguments = getArguments();
+
+        String cardType = arguments.getString("cardType");
+        String startPrice = arguments.getString("startPrice");
+        String venueName = arguments.getString("venueName");
+
+        conditionBody.setVenueName(venueName);
+        conditionBody.setStartPrice(startPrice);
+        conditionBody.setCardType(cardType);
+
+
+    }
+
 
     @Override
     public void onStart() {
@@ -72,7 +93,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
         getDialog().getWindow().setGravity(Gravity.RIGHT);
         //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
-        getDialog().getWindow().setLayout(DensityUtil.dip2px(getActivity(),280), RelativeLayout.LayoutParams.MATCH_PARENT);
+        getDialog().getWindow().setLayout(DensityUtil.dip2px(getActivity(), 280), RelativeLayout.LayoutParams.MATCH_PARENT);
 
         super.onStart();
     }
@@ -80,7 +101,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_filter_goods_ycm, container,false);
+        View view = inflater.inflate(R.layout.view_filter_goods_ycm, container, false);
         initView(view);
         initData();
         return view;
@@ -93,15 +114,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-
-        super.onDismiss(dialog);
-//        conditionBody.setStartPrice(null);
-//        conditionBody.setEndPrice(null);
-//        conditionBody.setCardType(null);
-//        conditionBody.setVenueName(null);
-    }
 
     private void initData() {
         HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STEP3_VENUES, new ResultJSONObjectObserver() {
@@ -112,6 +124,17 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 if (dataList == null || dataList.size() == 0) {
                     return;
                 }
+
+                String venueName = conditionBody.getVenueName();
+                for (int i = 0; i < dataList.size(); i++) {
+                    String name = dataList.get(i).getName();
+                    if (!TextUtils.isEmpty(venueName) && !TextUtils.isEmpty(name)) {
+                        if (venueName.equals(name.trim()))
+                            dataList.get(i).setSelect(true);
+                    }
+
+                }
+
                 optionAdapter.resetData(dataList);
             }
 
@@ -149,11 +172,11 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 //                super.getItemOffsets(outRect, view, parent, state);
                 outRect.set(0, 0, 0, 0);
-                outRect.bottom=DensityUtil.dip2px(getActivity(),10);
-                if (parent.getChildLayoutPosition(view)%2==0){
-                    outRect.left=0;
-                }else {
-                    outRect.left=DensityUtil.dip2px(getActivity(),10);
+                outRect.bottom = DensityUtil.dip2px(getActivity(), 10);
+                if (parent.getChildLayoutPosition(view) % 2 == 0) {
+                    outRect.left = 0;
+                } else {
+                    outRect.left = DensityUtil.dip2px(getActivity(), 10);
                 }
             }
         });
@@ -176,8 +199,61 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         tvReset.setOnClickListener(this);
         tvConfirm.setOnClickListener(this);
+
+
+//        conditionBody.setIsSortByPrice(bodyCondition.getIsSortByPrice());
+//        conditionBody.setVenueName(bodyCondition.getVenueName());
+//        conditionBody.setStartPrice(bodyCondition.getStartPrice());
+//        conditionBody.setEndPrice(bodyCondition.getEndPrice());
+//        conditionBody.setCardType(bodyCondition.getCardType());
+
+//        Log.e(TAG, "initView: " );
+        String cardType = conditionBody.getCardType();
+        if (!TextUtils.isEmpty(cardType)) {
+            if ("1".equals(cardType.trim())) {
+                setSelectStyle(tvTimeCard);
+                conditionBody.setCardType("1");
+            } else if ("2".equals(cardType.trim())) {
+                setSelectStyle(tvCishuCard);
+                conditionBody.setCardType("2");
+            } else if ("3".equals(cardType.trim())) {
+                setSelectStyle(tvChuzhiCard);
+                conditionBody.setCardType("3");
+            } else if ("4".equals(cardType.trim())) {
+                setSelectStyle(tvHuiyuanCard);
+                conditionBody.setCardType("4");
+            }
+        }
+        String startPrice = conditionBody.getStartPrice();
+        if (!TextUtils.isEmpty(startPrice)) {
+            if (startPrice.trim().equals("0")) {
+                setSelectStyle(tvPrice1);
+                conditionBody.setStartPrice("0");
+                conditionBody.setEndPrice("1000");
+            } else if (startPrice.trim().equals("1000")) {
+                setSelectStyle(tvPrice2);
+                conditionBody.setStartPrice("1000");
+                conditionBody.setEndPrice("2000");
+            } else if (startPrice.trim().equals("2000")) {
+                setSelectStyle(tvPrice3);
+                conditionBody.setStartPrice("2000");
+                conditionBody.setEndPrice("3000");
+            } else if (startPrice.trim().equals("3000")) {
+                setSelectStyle(tvPrice4);
+                conditionBody.setStartPrice("3000");
+                conditionBody.setEndPrice(null);
+            }
+        }
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+//        conditionBody.setStartPrice(null);
+//        conditionBody.setEndPrice(null);
+//        conditionBody.setCardType(null);
+//        conditionBody.setVenueName(null);
+    }
 
     @Override
     public void onClick(View v) {
@@ -234,9 +310,16 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 conditionBody.setEndPrice(null);
                 conditionBody.setCardType(null);
                 conditionBody.setVenueName(null);
+                List<VenueBean> list = optionAdapter.getList();
+                if (list != null && list.size() != 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        list.get(i).setSelect(false);
+                    }
+                    optionAdapter.notifyDataSetChanged();
+                }
                 break;
             case R.id.tv_confirm:
-                if (onDismissListener!=null)
+                if (onDismissListener != null)
                     onDismissListener.onDismiss(conditionBody);
                 dismiss();
                 break;
@@ -251,7 +334,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
     }
 
-    private void resetPriseStyle(){
+    private void resetPriseStyle() {
         setUnSelectStyle(tvPrice1);
         setUnSelectStyle(tvPrice2);
         setUnSelectStyle(tvPrice3);

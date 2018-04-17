@@ -20,5 +20,8 @@ public interface ReceptionStep1Contract {
     interface Presenter{
       void  getQuestion();
       void  uploadQusetion(List<DataListBean> questionList, RecptionerInfoBean consumerBean, List<CalendarDay> selectedDates);
+
+
+        String computerPercent(List<DataListBean> questionList, List<CalendarDay> selectedDates);
     }
 }

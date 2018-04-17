@@ -3,8 +3,10 @@ package com.yijian.staff.mvp.coach.experienceclass.index;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity;
+import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassStep1Activity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
 import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity;
 import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
@@ -94,21 +98,40 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
             @Override
             public void onClick(View v) {
                 int status = experienceClassBean.getStatus();
-                Intent intent = new Intent();
-                if (status == 10) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity");
-                } else if (status == 20) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity");
-                } else if (status == 30) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity");
-                } else if (status == 40) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity");
-                } else if (status == 50) {
-                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity");
+//                Intent intent = new Intent();
+//                if (status == 10) {
+//                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity");
+//                } else if (status == 20) {
+//                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity");
+//                } else if (status == 30) {
+//                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity");
+//                } else if (status == 40) {
+//                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity");
+//                } else if (status == 50) {
+//                    intent.setClassName(context, "com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity");
+//
+//                }
+//                intent.putExtra("memberId", experienceClassBean.getMemberId());
+//                context.startActivity(intent);
 
+
+                if (TextUtils.isEmpty(experienceClassBean.getMemberId())||TextUtils.isEmpty(experienceClassBean.getMemberName().trim())){
+
+                    return;
                 }
-                intent.putExtra("memberId", experienceClassBean.getMemberId());
+                Intent intent = new Intent(context, ExperienceClassStep1Activity_ycm.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("memberId", experienceClassBean.getMemberId());
+                bundle.putString("memberName",experienceClassBean.getMemberName().trim());
+                bundle.putString("processId",experienceClassBean.getProcessId().trim());
+                intent.putExtras(bundle);
                 context.startActivity(intent);
+
+//                Intent intent = new Intent(context, ExperienceClassInvateActivity_ycm.class);
+//                 Bundle bundle = new Bundle();
+//                bundle.putString("memberId", experienceClassBean.getMemberId());
+//                bundle.putString("memberName",experienceClassBean.getMemberName());
+//                context.startActivity(intent);
             }
         });
     }

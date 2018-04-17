@@ -180,7 +180,12 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
                     try {
                         for (int i = 0; i < result.length(); i++) {
                             String o = (String) result.get(i);
-                            certList.add(new CertBean(o));
+                            String[] split = o.split("/");
+                            if (split.length>0){
+                                String url="https://h5.dev.ejoyst.com/file/downloadFile?fileType=0&filename="+split[split.length - 1];;
+                                certList.add(new CertBean(url));
+                            }
+
                         }
                         if (photoPathList.size() == certList.size()) {
                             postAdd();

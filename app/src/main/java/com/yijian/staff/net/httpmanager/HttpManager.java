@@ -556,7 +556,7 @@ public class HttpManager {
                 bodys.add(body);
             }
 
-            String url = "http://h5.dev.ejoyst.com/file/uploadMultipleFile";
+            String url = "https://h5.dev.ejoyst.com/file/uploadMultipleFile";
             Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
             execute(observable, observer);
         }

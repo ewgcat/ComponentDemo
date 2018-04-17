@@ -556,14 +556,13 @@ public class HttpManager {
                 bodys.add(body);
             }
 
-//            String url = "http://h5.dev.ejoyst.com/file/uploadMultipleFile";
-            String url = "http://192.168.2.134:9200/file/uploadMultipleFile";
+            String url = "http://h5.dev.ejoyst.com/file/uploadMultipleFile";
             Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
             execute(observable, observer);
         }
     }
 
-    //上传图片
+    //保存职业证书
     public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();

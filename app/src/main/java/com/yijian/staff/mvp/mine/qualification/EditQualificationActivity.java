@@ -113,6 +113,24 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
 
     }
 
+    private void initData() {
+        User user = DBManager.getInstance().queryUser();
+        HashMap<String, String> param = new HashMap<>();
+        param.put("coach_id", user.getUserId());
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CertificateBean certificateBean = new CertificateBean(result);
+                updateView(certificateBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
+    }
+
     private void updateView(CertificateBean certificateBean) {
 
         if (certificateBean != null) {
@@ -144,44 +162,33 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         }
     }
 
-    private void initData() {
-        User user = DBManager.getInstance().queryUser();
-        HashMap<String, String> param = new HashMap<>();
-        param.put("coach_id", user.getUserId());
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                CertificateBean certificateBean = new CertificateBean(result);
-                updateView(certificateBean);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
-    }
-
     private void post() {
         List<String> photoPathList = choosePhotoView.getmPhotoPathList();
-        for (int i = 0; i < photoPathList.size(); i++) {
-            String path = photoPathList.get(i);
-            HttpManager.upLoadImage(path, new ResultStringObserver() {
-                @Override
-                public void onSuccess(String result) {
-                    String s = "http://capi.dev.ejoyst.com/cFile/saveCUserIcon?uIcon=" + result;
-                    certList.add(new CertBean(s));
-                    if (photoPathList.size() == certList.size()) {
-                        postAdd();
+        if (photoPathList.size() > 0) {
+
+            //TODO 上传图片
+            for (int i = 0; i < photoPathList.size(); i++) {
+                String path = photoPathList.get(i);
+                HttpManager.upLoadImage(path, new ResultStringObserver() {
+                    @Override
+                    public void onSuccess(String result) {
+                        String s = "http://capi.dev.ejoyst.com/cFile/saveCUserIcon?uIcon=" + result;
+                        certList.add(new CertBean(s));
+                        if (photoPathList.size() == certList.size()) {
+                            postAdd();
+                        }
                     }
-                }
 
-                @Override
-                public void onFail(String msg) {
-
-                }
-            });
+                    @Override
+                    public void onFail(String msg) {
+                            showToast(msg);
+                    }
+                });
+            }
+        }else {
+            postAdd();
         }
+
     }
 
     private void postAdd() {

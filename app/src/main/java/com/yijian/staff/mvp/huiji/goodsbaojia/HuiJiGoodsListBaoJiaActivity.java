@@ -27,24 +27,12 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
-import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
-import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
-import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductContract;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
 import com.yijian.staff.mvp.reception.step3.kefu.OptionDialog;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,7 +41,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import static com.yijian.staff.tab.tools.ContextUtil.getContext;
 
@@ -119,7 +106,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                             Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
                         }else {
                             bodyCondition.setCardName(name);
-//                            presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+                            presenter.getRecptionCards(bodyCondition,true);
                         }
                         break;
                 }
@@ -147,14 +134,14 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.resetBodyPage(bodyCondition);
-//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+                presenter.getRecptionCards(bodyCondition,true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 bodyCondition.setPageSize(bodyCondition.getPageNum()+1);
-//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,false);
+                presenter.getRecptionCards(bodyCondition,false);
             }
         });
 
@@ -203,11 +190,14 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击筛选
     private void selectShaixuan() {
-        priceUp = false;
         resetTabColor();
         tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+        Bundle bundle = new Bundle();
+        bundle.putString("cardType",bodyCondition.getCardType());
+        bundle.putString("startPrice",bodyCondition.getStartPrice());
+        bundle.putString("venueName",bodyCondition.getVenueName());
+        optionDialog.setArguments(bundle);
         optionDialog.show(getFragmentManager(),"OptionDialog");
-
     }
 
     //点击价格
@@ -240,8 +230,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     private void selectZongHe() {
         resetTabColor();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
-        presenter.resetBody(bodyCondition);
-//        presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+        presenter.getRecptionCards(bodyCondition,true);
     }
 
 

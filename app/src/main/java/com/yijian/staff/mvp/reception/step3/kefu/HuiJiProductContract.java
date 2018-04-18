@@ -16,7 +16,6 @@ public interface HuiJiProductContract {
         void showToCoachSucceed();
 
         void showNoCards(boolean isRefresh,boolean isSucceed);
-//        void showRefresh(List<GoodsInfo> goodsInfos);
     }
 
     interface Presenter{

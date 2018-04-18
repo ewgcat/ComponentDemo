@@ -122,6 +122,8 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:${rootProject.supportLibVersion}"
     implementation "com.android.support:design:${rootProject.supportLibVersion}"
     implementation "com.android.support:support-v4:${rootProject.supportLibVersion}"
+    implementation "com.android.support:palette-v7:${rootProject.supportLibVersion}"
+
     //ui
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
@@ -151,6 +153,7 @@ dependencies {
     //操作数据库
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.2'
     //字体
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation('com.github.niorgai:StatusBarCompat:2.1.4', {
@@ -171,5 +174,5 @@ dependencies {
 
     implementation 'cn.jiguang.sdk:jpush:3.1.1'
     implementation 'cn.jiguang.sdk:jcore:1.1.9'
-
+    implementation 'com.github.jwkj:LibZXing:v1.1.2'
 }

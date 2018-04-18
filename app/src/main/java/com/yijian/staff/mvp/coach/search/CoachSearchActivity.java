@@ -26,6 +26,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.huiji.search.SearchKeyAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -52,16 +53,11 @@ public class CoachSearchActivity extends AppCompatActivity {
     private static final String TAG = CoachSearchActivity.class.getSimpleName();
     @BindView(R.id.top_view)
     LinearLayout top_view;
-    @BindView(R.id.lin_click_search)
-    LinearLayout lin_click_search;    //取消搜索点击区域
+
     @BindView(R.id.lin_search_container)
     LinearLayout lin_search_container; //搜索面板的容器
-    @BindView(R.id.tv_1)
-    TextView tv_1;
-    @BindView(R.id.tv_2)
-    TextView tv_2;
-    @BindView(R.id.tv_3)
-    TextView tv_3;
+    @BindView(R.id.rcl_search)
+    RecyclerView rcl_search;
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.rcl)
@@ -74,7 +70,8 @@ public class CoachSearchActivity extends AppCompatActivity {
     private int pages;
     private List<CoachSearchViperBean> viperBeanList = new ArrayList<>();
     private CoachSearchViperListAdapter adapter;
-
+    private SearchKeyAdapter searchKeyAdapter;
+    private List<SearchKey> searchList;
 
 
     @Override
@@ -157,6 +154,25 @@ public class CoachSearchActivity extends AppCompatActivity {
                 loadMore();
             }
         });
+
+        rcl_search.setLayoutManager(new LinearLayoutManager(this));
+        searchKeyAdapter = new SearchKeyAdapter(this, searchList);
+        searchKeyAdapter.setClickKeyListener(new SearchKeyAdapter.ClickKeyListener() {
+            @Override
+            public void onClick(SearchKey searchKey) {
+                refresh(searchKey.getKey());
+                clearEditTextFocus();
+            }
+        });
+        searchKeyAdapter.setClearKeyListener(new SearchKeyAdapter.ClearKeyListener() {
+            @Override
+            public void onClick() {
+                DBManager.getInstance().clearSearchList();
+                initSearchData();
+            }
+        });
+        rcl_search.setAdapter(searchKeyAdapter);
+        lin_search_container.setVisibility(View.GONE);
     }
 
     private void refresh(String name) {
@@ -173,7 +189,7 @@ public class CoachSearchActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
 
-                    SearchKey searchKey = new SearchKey(0L, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
+                    SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 
@@ -260,55 +276,24 @@ public class CoachSearchActivity extends AppCompatActivity {
 
 
     public void initSearchData() {
-        List<SearchKey> searchList = DBManager.getInstance().querySearchList();
-        int searchCount = searchList.size();
-        tv_1.setVisibility(View.GONE);
-        tv_2.setVisibility(View.GONE);
-        tv_3.setVisibility(View.GONE);
-        if (searchCount > 0 && searchCount <= 1) {
-            tv_1.setText(searchList.get(0).getKey());
-            tv_1.setVisibility(View.VISIBLE);
-        } else if (searchCount > 1 && searchCount <= 2) {
-            tv_1.setText(searchList.get(0).getKey());
-            tv_2.setText(searchList.get(1).getKey());
-            tv_1.setVisibility(View.VISIBLE);
-            tv_2.setVisibility(View.VISIBLE);
-        } else if (searchCount > 2 && searchCount <= 3) {
-            tv_1.setText(searchList.get(0).getKey());
-            tv_2.setText(searchList.get(1).getKey());
-            tv_3.setText(searchList.get(2).getKey());
-            tv_1.setVisibility(View.VISIBLE);
-            tv_2.setVisibility(View.VISIBLE);
-            tv_3.setVisibility(View.VISIBLE);
+        searchList = DBManager.getInstance().querySearchList();
+        if (searchList!=null&&searchList.size()>0){
+            searchKeyAdapter.update(searchList);
+            lin_search_container.setVisibility(View.VISIBLE);
+        }else {
+            lin_search_container.setVisibility(View.GONE);
         }
     }
 
-    @OnClick({R.id.tv_cancel, R.id.lin_click_search, R.id.tv_1, R.id.tv_2, R.id.tv_3})
+    @OnClick({R.id.tv_cancel})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_cancel:
                 finish();
                 SystemUtil.hideKeyBoard(etSearch, this);
                 break;
-            case R.id.lin_click_search: //点击取消区域
-                clearEditTextFocus();
 
-                break;
-            case R.id.tv_1:
-                refresh(tv_1.getText().toString());
-                etSearch.setText(tv_1.getText().toString());
-                clearEditTextFocus();
-                break;
-            case R.id.tv_2:
-                refresh(tv_2.getText().toString());
-                etSearch.setText(tv_2.getText().toString());
-                clearEditTextFocus();
-                break;
-            case R.id.tv_3:
-                refresh(tv_3.getText().toString());
-                etSearch.setText(tv_3.getText().toString());
-                clearEditTextFocus();
-                break;
+
         }
     }
 

@@ -159,16 +159,16 @@ public class RetrofitClient {
                 //设置 Debug Log 模式
                 builder.addInterceptor(loggingInterceptor);
             }
-            builder.sslSocketFactory(getSSLSocketFactory(context,
-                    new Buffer().writeUtf8(zs_1).inputStream(),
-                    new Buffer().writeUtf8(zs_2).inputStream(),
-                    new Buffer().writeUtf8(zs_3).inputStream()));
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
+//            builder.sslSocketFactory(getSSLSocketFactory(context,
+//                    new Buffer().writeUtf8(zs_1).inputStream(),
+//                    new Buffer().writeUtf8(zs_2).inputStream(),
+//                    new Buffer().writeUtf8(zs_3).inputStream()));
+//            builder.hostnameVerifier(new HostnameVerifier() {
+//                @Override
+//                public boolean verify(String hostname, SSLSession session) {
+//                    return true;
+//                }
+//            });
 
             builder.connectTimeout(30, TimeUnit.SECONDS);
             builder.readTimeout(30, TimeUnit.SECONDS);
@@ -182,7 +182,6 @@ public class RetrofitClient {
                     .addConverterFactory(JSONObjectConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .baseUrl("http://poly.hengtech.com.cn/pmsSrv/api/")
                     .baseUrl("http://bwebapp.dev.ejoyst.com/")
                     .build();
         }

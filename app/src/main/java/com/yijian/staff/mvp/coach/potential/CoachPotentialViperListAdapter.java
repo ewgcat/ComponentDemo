@@ -3,17 +3,20 @@ package com.yijian.staff.mvp.coach.potential;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
@@ -60,18 +63,33 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         holder.tv_useCar.setText(coachViperBean.getUseCar());
 
         //回访
-        holder.lin_visit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
+        Boolean isProtected = coachViperBean.getProtected();
+        if (isProtected){
+            holder.tv_huifang.setText("保护7天");
+        }else {
+            holder.tv_huifang.setText("回访");
+            String mobile = coachViperBean.getMobile();
+            holder.lin_visit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!TextUtils.isEmpty(mobile)) {
+                        CommonUtil.callPhone(context, mobile);
+                    }else {
+                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
 
         //邀约
         holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
+                Intent intent = new Intent(context, InvateIndexActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                intent.putExtra("memberName",coachViperBean.getName());
+                context.startActivity(intent);
             }
         });
 
@@ -105,6 +123,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         TextView tv_bodybuildingHobby;
         TextView tv_interestHobby;
         TextView tv_useCar;
+        TextView tv_huifang;
         LinearLayout lin_visit; //回访
         LinearLayout lin_invitation; //邀请
         LinearLayout ll_content; //真个Item条目
@@ -121,6 +140,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             tv_bodybuildingHobby = view.findViewById(R.id.tv_bodybuildingHobby);
             tv_interestHobby = view.findViewById(R.id.tv_interestHobby);
             tv_useCar = view.findViewById(R.id.tv_useCar);
+            tv_useCar = view.findViewById(R.id.tv_huifang);
 
             ll_content = view.findViewById(R.id.ll_content);
 

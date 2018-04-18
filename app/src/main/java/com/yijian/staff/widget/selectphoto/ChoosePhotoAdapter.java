@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.ViewHolder> {
 
-    public   int MAX_PHOTO_NUM = 6;
+    public int MAX_PHOTO_NUM = 6;
 
     protected boolean mIsAllowAdd = true;
 
@@ -45,7 +45,7 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
     OnUpdatePhotoAdapterListener listener;
 
     Context mContext;
-    List<String> mPhotoUrlList = new ArrayList<>();
+    List<ImageBean> mPhotoUrlList = new ArrayList<>();
 
     public void setListener(OnUpdatePhotoAdapterListener listener) {
         this.listener = listener;
@@ -57,24 +57,27 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
         notifyDataSetChanged();
     }
 
+    public List<ImageBean> getmPhotoUrlList() {
+        return this.mPhotoUrlList;
+    }
 
     public ChoosePhotoAdapter(Context mContext) {
         this.mContext = mContext;
 
     }
 
-    public ChoosePhotoAdapter(Context mContext,int maxPhotoNum) {
+    public ChoosePhotoAdapter(Context mContext, int maxPhotoNum) {
         this.mContext = mContext;
-        this.MAX_PHOTO_NUM=maxPhotoNum;
+        this.MAX_PHOTO_NUM = maxPhotoNum;
 
     }
 
-    public void addPhoto(String url) {
-        mPhotoUrlList.add(url);
+    public void addPhoto(ImageBean imageBean) {
+        mPhotoUrlList.add(imageBean);
     }
 
-    public void addPhotos(List<String> urls) {
-        mPhotoUrlList.addAll(urls);
+    public void addPhotos(List<ImageBean> imageBeans) {
+        mPhotoUrlList.addAll(imageBeans);
     }
 
     public void setmIsAllowAdd(boolean mIsAllowAdd, boolean isOnlyShow) {
@@ -83,7 +86,7 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
         notifyDataSetChanged();
     }
 
-    public void setmPhotoUrlList(List<String> datas) {
+    public void setmPhotoUrlList(List<ImageBean> datas) {
         this.mPhotoUrlList = datas;
         notifyDataSetChanged();
     }
@@ -107,6 +110,12 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
 
             if (size == position) {
                 holder.delete.setVisibility(View.GONE);
+
+                RequestOptions options = new RequestOptions().centerCrop()
+                        .placeholder(R.mipmap.placeholder)
+                        .error(R.mipmap.placeholder)
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(mContext).load(R.mipmap.ic_add_pic).apply(options).into(holder.imageView);
                 holder.imageView.setOnClickListener(view14 -> {
                     //跳转到拍照
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -120,28 +129,29 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
                     }
                 });
             } else if (size > position) {
-                holder. delete.setVisibility(View.VISIBLE);
+                holder.delete.setVisibility(View.VISIBLE);
 
                 RequestOptions options = new RequestOptions().centerCrop()
                         .placeholder(R.mipmap.placeholder)
                         .error(R.mipmap.placeholder)
                         .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                Glide.with(mContext).load(mPhotoUrlList.get(position)).apply(options).into(holder.imageView);
-                holder. imageView.setOnClickListener(view12 -> {
+                Glide.with(mContext).load(mPhotoUrlList.get(position).getUrl()).apply(options).into(holder.imageView);
+                holder.imageView.setOnClickListener(view12 -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
                             Toast.makeText(mContext, "应用需要相机权限，才可以使用拍照功能", Toast.LENGTH_LONG).show();
                         } else {
-                            mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position)));
+                            mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                         }
                     } else {
-                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position)));
+                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                     }
                 });
-                holder. delete.setOnClickListener(view13 -> {
-                    String key = mPhotoUrlList.get(position);
+                holder.delete.setOnClickListener(view13 -> {
+                    ImageBean imageBean = mPhotoUrlList.get(position);
+                    String key = imageBean.getUrl();
                     FileUtil.deleteFile(key);
-                    mPhotoUrlList.remove(key);
+                    mPhotoUrlList.remove(imageBean);
                     listener.finishDelete(key);
                     notifyDataSetChanged();
                 });
@@ -154,16 +164,16 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
                     .placeholder(R.mipmap.placeholder)
                     .error(R.mipmap.placeholder)
                     .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-            Glide.with(mContext).load(mPhotoUrlList.get(position)).apply(options).into(holder.imageView);
+            Glide.with(mContext).load(mPhotoUrlList.get(position).getUrl()).apply(options).into(holder.imageView);
             holder.imageView.setOnClickListener(view1 -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
                         Toast.makeText(mContext, "应用需要相机权限，才可以使用拍照功能", Toast.LENGTH_LONG).show();
                     } else {
-                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position)));
+                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                     }
                 } else {
-                    mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position)));
+                    mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                 }
 
             });

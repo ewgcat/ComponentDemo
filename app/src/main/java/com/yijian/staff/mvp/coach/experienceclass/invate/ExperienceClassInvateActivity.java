@@ -50,7 +50,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
     @BindView(R.id.iv_template2)
     ImageView ivTemplate2;
     private TimePickerView pickerView;
-    private String memberId;
+    private String processId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +86,9 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
             }
         }).build();
 
-        memberId = getIntent().getStringExtra("memberId");
+        processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+        map.put("processId", processId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

@@ -32,12 +32,9 @@ public class HuiFangHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_hui_fang_history);
         ButterKnife.bind(this);
-
         initView();
-
     }
 
     private void initView() {

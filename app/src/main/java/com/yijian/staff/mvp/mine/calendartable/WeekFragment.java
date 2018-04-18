@@ -64,6 +64,7 @@ public class WeekFragment extends Fragment {
                 .commit();// 返回对象并保存
         Calendar instance = Calendar.getInstance();
         materialCalendarView.setSelectedDate(instance.getTime());
+        materialCalendarView.setSelectionColor(getResources().getColor(R.color.blue));
 //        materialCalendarView.setTopbarVisible(false);
         materialCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override

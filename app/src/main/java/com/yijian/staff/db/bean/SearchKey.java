@@ -13,24 +13,23 @@ import org.greenrobot.greendao.annotation.Id;
 public class SearchKey {
 
     @Id(autoincrement = true)
-    private Long searchId;
-
+    private Long id;
     private String key;
     private String roleId;
-    @Generated(hash = 819399303)
-    public SearchKey(Long searchId, String key, String roleId) {
-        this.searchId = searchId;
+    @Generated(hash = 2107353739)
+    public SearchKey(Long id, String key, String roleId) {
+        this.id = id;
         this.key = key;
         this.roleId = roleId;
     }
     @Generated(hash = 11165861)
     public SearchKey() {
     }
-    public Long getSearchId() {
-        return this.searchId;
+    public Long getId() {
+        return this.id;
     }
-    public void setSearchId(Long searchId) {
-        this.searchId = searchId;
+    public void setId(Long id) {
+        this.id = id;
     }
     public String getKey() {
         return this.key;
@@ -44,7 +43,6 @@ public class SearchKey {
     public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
-
 
 
 

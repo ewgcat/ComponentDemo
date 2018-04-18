@@ -15,19 +15,17 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.advice.AdviceActivity;
-import com.yijian.staff.mvp.advice.AdviceListActivity;
+import com.yijian.staff.mvp.advice.AddAdviceActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.mine.aboutus.AboutUsActivity;
 import com.yijian.staff.mvp.mine.club.ClubActivity;
 import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.mine.setting.SettingActivity;
-import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import butterknife.BindView;
@@ -107,12 +105,6 @@ public class MineFragment extends Fragment {
     @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password, R.id.ll_about_us, R.id.ll_suggestion})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_user_head:
-//                Intent intent = new Intent(getContext(), SeePicActivity.class);
-//                String path="";
-//                intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
-//                startActivity(intent);
-                break;
             case R.id.ll_more:
                 startActivityForResult(new Intent(getContext(), SettingActivity.class),1234);
                 break;
@@ -132,9 +124,10 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(),EditPasswordActivity .class));
                 break;
             case R.id.ll_about_us:
+                startActivity(new Intent(getContext(),AboutUsActivity.class));
                 break;
             case R.id.ll_suggestion:
-                startActivity(new Intent(getContext(),AdviceActivity.class));
+                startActivity(new Intent(getContext(),AddAdviceActivity.class));
                 break;
         }
     }

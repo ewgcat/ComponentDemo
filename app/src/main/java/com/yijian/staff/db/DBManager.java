@@ -17,7 +17,7 @@ import java.util.List;
 public class DBManager  {
     private final static String dbName = "house_db";
     private static DBManager mInstance;
-    private DaoMaster.DevOpenHelper openHelper;
+    private MySQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
     public DaoMaster mDaoMaster;
     private DaoSession mDaoSession;
@@ -27,7 +27,7 @@ public class DBManager  {
     }
 
     public DBManager(Context context) {
-        openHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
+        openHelper = new MySQLiteOpenHelper(context, dbName, null);
         db = openHelper.getWritableDatabase();
         mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
@@ -76,9 +76,23 @@ public class DBManager  {
         userDao.insertOrReplace(user);
     }
 
+
+    public void clearUser() {
+        UserDao userDao = mDaoSession.getUserDao();
+        userDao.deleteAll();
+    }
+
     public void insertOrReplaceSearch(SearchKey searchKey){
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
-        searchKeyDao.delete(searchKey);
+        List<SearchKey> searchKeys = querySearchList();
+        Long id=0L;
+        for (int i = 0; i <searchKeys.size() ; i++) {
+            SearchKey searchKey1 = searchKeys.get(i);
+            if (searchKey.getKey().equals(searchKey1.getKey())){
+                id=searchKey1.getId();
+            }
+        }
+        searchKeyDao.deleteByKey(id);
         searchKeyDao.insertOrReplace(searchKey);
     }
 
@@ -87,14 +101,13 @@ public class DBManager  {
         String roleId = SharePreferenceUtil.getUserRole()+"";
         List<SearchKey> list = searchKeyDao.queryBuilder()
                 .where(SearchKeyDao.Properties.RoleId.eq(roleId))
-                .orderAsc(SearchKeyDao.Properties.SearchId)
+                .orderDesc(SearchKeyDao.Properties.Id)
                 .list();
         return list;
     }
 
-    public void clearUser() {
-        UserDao userDao = mDaoSession.getUserDao();
-        userDao.deleteAll();
+    public void clearSearchList() {
+        SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
+        searchKeyDao.deleteAll();
     }
-
 }

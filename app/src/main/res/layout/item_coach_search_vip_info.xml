@@ -504,6 +504,7 @@
                         android:src="@mipmap/wt_huifang" />
 
                     <TextView
+                        android:id="@+id/guoqi_tv_huifan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -513,27 +514,6 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/guoqi_lin_yaoyue"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/wt_yaoyue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="邀约"
-                        android:textColor="#999999"
-                        android:textSize="14sp" />
-                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
@@ -750,6 +730,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/qianzai_tv_huifang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/wt_huifang"
@@ -760,25 +741,29 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:id="@+id/qianzai_lin_invitation"
+                    android:id="@+id/qianzai_lin_yaoyue"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/wt_yaoyue" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@mipmap/wt_yaoyue"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
+                        android:layout_marginLeft="7dp"
                         android:text="邀约"
                         android:textColor="#999999"
                         android:textSize="14sp" />
                 </LinearLayout>
+
+
 
             </LinearLayout>
         </LinearLayout>
@@ -1013,7 +998,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_huifang"
+                        android:id="@+id/yixiang_tv_huifang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/my_password_new"
@@ -1025,24 +1010,7 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/yixiang_lin_invitation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@mipmap/wt_yaoyue"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:text="邀约"
-                        android:textColor="#999999"
-                        android:textSize="14sp" />
-                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

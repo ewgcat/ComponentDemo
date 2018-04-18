@@ -193,9 +193,10 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onRequestClicked(int position) {
         RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
-        Intent i = new Intent(this, QuestionnaireResultActivity.class);
-        i.putExtra("memberId", recordsBean.getMemberId());
-        startActivity(i);
+        Intent intent = new Intent(this, QuestionnaireResultActivity.class);
+        intent.putExtra("memberId",recordsBean.getMemberId());
+        intent.putExtra("memberName",recordsBean.getMemberName());
+        startActivity(intent);
 
     }
 

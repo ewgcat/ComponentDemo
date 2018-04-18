@@ -7,6 +7,7 @@ public class OrderClassDayBean {
      * endDatetime : 2018-04-10T05:34:29.093Z
      * endTimeActual : 2018-04-10T05:34:29.093Z
      * id : string
+     * isExperience  0：私教课，1：体验课
      * isPrepare : 0
      * lessonName : string
      * lessonPlace : string
@@ -20,6 +21,7 @@ public class OrderClassDayBean {
     private String endDatetime;
     private String endTimeActual;
     private String id;
+    private String isExperience;
     private int isPrepare;
     private String lessonName;
     private String lessonPlace;
@@ -115,5 +117,13 @@ public class OrderClassDayBean {
 
     public void setStartTimeActual(String startTimeActual) {
         this.startTimeActual = startTimeActual;
+    }
+
+    public String getIsExperience() {
+        return isExperience;
+    }
+
+    public void setIsExperience(String isExperience) {
+        this.isExperience = isExperience;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
@@ -91,21 +93,31 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         });
 
 
+        //回访
+        Boolean isProtected = coachViperBean.getProtected();
+        if (isProtected){
+            holder.iv_huifang.setImageResource(R.mipmap.my_password_new);
+            holder.tv_huifang.setText("保护7天");
+        }else {
+            holder.iv_huifang.setImageResource(R.mipmap.wt_huifang);
+            holder.tv_huifang.setText("回访");
+            String mobile = coachViperBean.getMobile();
+            holder.lin_huifan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!TextUtils.isEmpty(mobile)){
+                        CommonUtil.callPhone(context,mobile);
+                    } else {
+                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
 
-        holder.lin_huifan.setOnClickListener(new View.OnClickListener() { //回访
-            @Override
-            public void onClick(View v) {
+        }
 
-            }
-        });
 
-        holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() { // 邀约
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context,ExperienceClassInvateActivity.class));
-            }
-        });
+
 
     }
 
@@ -151,8 +163,9 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         TextView tv_history_lesson; //历史课程
         TextView tv_outDate; //过期时间
         TextView tv_outDate_reason; //过期原因
+        TextView tv_huifang;
         LinearLayout lin_huifan;
-        LinearLayout lin_yaoyue;
+        ImageView iv_huifang;
 
 
         public ViewHolder(View view) {
@@ -165,12 +178,13 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             rel_expand =  view.findViewById(R.id.rel_expand);
             rv_card =  view.findViewById(R.id.rv_card);
             tv_zhankai_status =  view.findViewById(R.id.tv_zhankai_status);
+            iv_huifang =  view.findViewById(R.id.iv_huifang);
+            tv_huifang =  view.findViewById(R.id.tv_huifang);
 
             tv_history_lesson =     view.findViewById(R.id.tv_history_lesson);
             tv_outDate  =     view.findViewById(R.id.tv_outDate);
             tv_outDate_reason  =     view.findViewById(R.id.tv_outDate_reason);
             lin_huifan  =     view.findViewById(R.id.lin_huifan);
-            lin_yaoyue  =     view.findViewById(R.id.lin_yaoyue);
         }
     }
 

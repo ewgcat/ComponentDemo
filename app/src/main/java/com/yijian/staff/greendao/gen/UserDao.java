@@ -32,6 +32,9 @@ public class UserDao extends AbstractDao<User, Void> {
         public final static Property MerchantId = new Property(5, String.class, "merchantId", false, "MERCHANT_ID");
         public final static Property Token = new Property(6, String.class, "token", false, "TOKEN");
         public final static Property TokenAge = new Property(7, String.class, "tokenAge", false, "TOKEN_AGE");
+        public final static Property HeadUrl = new Property(8, String.class, "headUrl", false, "HEAD_URL");
+        public final static Property Sex = new Property(9, int.class, "sex", false, "SEX");
+        public final static Property Birthday = new Property(10, String.class, "birthday", false, "BIRTHDAY");
     }
 
 
@@ -54,7 +57,10 @@ public class UserDao extends AbstractDao<User, Void> {
                 "\"SHOP_ID\" TEXT," + // 4: shopId
                 "\"MERCHANT_ID\" TEXT," + // 5: merchantId
                 "\"TOKEN\" TEXT," + // 6: token
-                "\"TOKEN_AGE\" TEXT);"); // 7: tokenAge
+                "\"TOKEN_AGE\" TEXT," + // 7: tokenAge
+                "\"HEAD_URL\" TEXT," + // 8: headUrl
+                "\"SEX\" INTEGER NOT NULL ," + // 9: sex
+                "\"BIRTHDAY\" TEXT);"); // 10: birthday
     }
 
     /** Drops the underlying database table. */
@@ -98,6 +104,17 @@ public class UserDao extends AbstractDao<User, Void> {
         if (tokenAge != null) {
             stmt.bindString(8, tokenAge);
         }
+ 
+        String headUrl = entity.getHeadUrl();
+        if (headUrl != null) {
+            stmt.bindString(9, headUrl);
+        }
+        stmt.bindLong(10, entity.getSex());
+ 
+        String birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindString(11, birthday);
+        }
     }
 
     @Override
@@ -135,6 +152,17 @@ public class UserDao extends AbstractDao<User, Void> {
         if (tokenAge != null) {
             stmt.bindString(8, tokenAge);
         }
+ 
+        String headUrl = entity.getHeadUrl();
+        if (headUrl != null) {
+            stmt.bindString(9, headUrl);
+        }
+        stmt.bindLong(10, entity.getSex());
+ 
+        String birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindString(11, birthday);
+        }
     }
 
     @Override
@@ -152,7 +180,10 @@ public class UserDao extends AbstractDao<User, Void> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // shopId
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // merchantId
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // token
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // tokenAge
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // tokenAge
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // headUrl
+            cursor.getInt(offset + 9), // sex
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // birthday
         );
         return entity;
     }
@@ -167,6 +198,9 @@ public class UserDao extends AbstractDao<User, Void> {
         entity.setMerchantId(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setToken(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setTokenAge(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setHeadUrl(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setSex(cursor.getInt(offset + 9));
+        entity.setBirthday(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override

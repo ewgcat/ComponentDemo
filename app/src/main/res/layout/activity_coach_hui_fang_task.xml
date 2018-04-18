@@ -16,12 +16,12 @@
         android:textColor="#666666"
         android:textSize="14sp"
         app:pstsDividerColor="@android:color/transparent"
-        app:pstsIndicatorColor="@color/colorAccent"
+        app:pstsIndicatorColor="@color/blue"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="false"
         app:pstsTabPaddingLeftRight="16dp"
         android:background="@color/white"
-        app:pstsTextSelectedColor="@color/colorAccent"
+        app:pstsTextSelectedColor="@color/blue"
         app:pstsUnderlineColor="@android:color/transparent" />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -51,7 +51,7 @@
             <TextView
                 android:id="@+id/tv_hui_fang_ren_wu"
                 android:text="回访任务"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

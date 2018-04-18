@@ -1,6 +1,7 @@
 package com.yijian.staff.tab.adapter.holder;
 
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.yijian.staff.R;
 public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder implements DraggableItemViewHolder {
     public ImageView iv_delete;
     public TextView tv_count;
+    public FrameLayout fl_item_view;
 
     @DraggableItemStateFlags
     private int mDragStateFlags;
@@ -32,6 +34,7 @@ public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder impleme
         super(itemView);
         iv_delete= (ImageView) itemView.findViewById(R.id.delete);
         tv_count= (TextView) itemView.findViewById(R.id.tv_head_count);
+        fl_item_view= (FrameLayout) itemView.findViewById(R.id.fl_item_view);
 
     }
 

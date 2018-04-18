@@ -48,6 +48,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
     Button btInvite;
     private NavigationBar2 navigationBar2;
     private String memberId;
+    private String processId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,9 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
         timeBar.showTimeBar(1);
 
         memberId = getIntent().getStringExtra("memberId");
+        processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+        map.put("processId", processId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -101,6 +103,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
     public void onViewClicked() {
         Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassInvateActivity.class);
         intent.putExtra("memberId", memberId);
+        intent.putExtra("processId",processId);
         startActivityForResult(intent, 1001);
     }
 
@@ -118,7 +121,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassProcess2Activity.class);
-                    intent.putExtra("memberId", memberId);
+                    intent.putExtra("processId", memberId);
                     startActivity(intent);
                 }
             });

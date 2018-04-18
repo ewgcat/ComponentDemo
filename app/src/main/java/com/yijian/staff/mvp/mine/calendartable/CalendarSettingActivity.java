@@ -78,6 +78,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
         Calendar instance = Calendar.getInstance();
 //        materialCalendarView.setSelectedDate(instance.getTime());
         materialCalendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE); //设置多选
+        materialCalendarView.setSelectionColor(getResources().getColor(R.color.blue));
         //设置多个不可选日期的颜色
         materialCalendarView.addDecorator(disableAppointDecorator);
         materialCalendarView.addDecorator(eventDecorator);
@@ -131,6 +132,8 @@ public class CalendarSettingActivity extends AppCompatActivity {
                 isEdit = !isEdit;
             }
         });
+        navigationBar2.setBackClickListener(this);
+        navigationBar2.hideLeftSecondIv();
 
     }
 

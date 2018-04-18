@@ -120,17 +120,17 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     }
 
     public void resetAllButtonState() {
-        mWorkTv.setTextColor(Color.parseColor("#757575"));
-        mWorkIv.setImageResource(R.mipmap.icon_work_unselected);
+//        mWorkTv.setTextColor(Color.parseColor("#757575"));
+        mWorkIv.setImageResource(R.mipmap.home_normal);
 
 //        mReportingIv.setImageResource(R.mipmap.icon_report_unselected);
 //        mReportingTv.setTextColor(Color.parseColor("#757575"));
 
-        mMessageIv.setImageResource(R.mipmap.icon_message_unselected);
-        mMessageTv.setTextColor(Color.parseColor("#757575"));
+        mMessageIv.setImageResource(R.mipmap.message_norml);
+//        mMessageTv.setTextColor(Color.parseColor("#757575"));
 
-        mMimeIv.setImageResource(R.mipmap.icon_mine_unselected);
-        mMimeTv.setTextColor(Color.parseColor("#757575"));
+        mMimeIv.setImageResource(R.mipmap.my_normal);
+//        mMimeTv.setTextColor(Color.parseColor("#757575"));
     }
 
     public void selectreporting() {
@@ -141,20 +141,20 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
 
     public void selectWork() {
         resetAllButtonState();
-        mWorkIv.setImageResource(R.mipmap.icon_work_seleceted);
-        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
+        mWorkIv.setImageResource(R.mipmap.home_select);
+//        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMessage() {
         resetAllButtonState();
-        mMessageIv.setImageResource(R.mipmap.icon_message_selected);
-        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
+        mMessageIv.setImageResource(R.mipmap.message_select);
+//        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMine() {
         resetAllButtonState();
-        mMimeIv.setImageResource(R.mipmap.icon_mine_selected);
-        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
+        mMimeIv.setImageResource(R.mipmap.my_select);
+//        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
 

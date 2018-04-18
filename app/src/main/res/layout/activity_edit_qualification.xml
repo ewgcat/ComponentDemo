@@ -37,6 +37,7 @@
             android:paddingRight="10dp">
 
             <EditText
+                android:id="@+id/et1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -49,10 +50,11 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
+                android:id="@+id/et2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -65,24 +67,11 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:background="@color/white"
-                android:singleLine="false"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="@color/gray"
-                />
-            <EditText
+                android:id="@+id/et3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -95,10 +84,11 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
             <EditText
+                android:id="@+id/et4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -111,7 +101,41 @@
                 android:textColor="#333333"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
+            <EditText
+                android:id="@+id/et5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@color/white"
+                android:singleLine="false"
+                android:textSize="14sp"
+                android:textColor="#333333"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
+            <EditText
+                android:id="@+id/et6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@color/white"
+                android:singleLine="false"
+                android:textSize="14sp"
+                android:textColor="#333333"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:background="@color/gray"
                 />
 

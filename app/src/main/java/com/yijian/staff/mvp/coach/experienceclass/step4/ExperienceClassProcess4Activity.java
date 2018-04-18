@@ -54,6 +54,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
 
     private NavigationBar2 navigationBar2;
     private String memberId;
+    private String processId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassProcess5Activity.class);
                 intent.putExtra("memberId", memberId);
+                intent.putExtra("processId", processId);
                 startActivity(intent);
 
             }
@@ -87,12 +89,13 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
         llContent.setVisibility(View.GONE);
 
         memberId = getIntent().getStringExtra("memberId");
+        processId = getIntent().getStringExtra("processId");
         initData();
     }
 
     private void initData() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+        map.put("processId", processId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -130,6 +133,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
             case R.id.bt_invite:
                 Intent intent = new Intent(ExperienceClassProcess4Activity.this, ExperienceClassInvateActivity.class);
                 intent.putExtra("memberId", memberId);
+                intent.putExtra("processId", processId);
                 startActivityForResult(intent, 1001);
                 break;
         }

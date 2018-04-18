@@ -6,27 +6,28 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
+import com.yijian.staff.mvp.advice.AdviceBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.mvp.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
-import com.yijian.staff.mvp.setclass.bean.RecordBean;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
+import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
-
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,6 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.HeaderMap;
 
 public class HttpManager {
 
@@ -84,6 +84,9 @@ public class HttpManager {
     //首页搜索 会籍
     public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
 
+    //会籍保存邀约
+    public static String INDEX_HUI_JI_INVITATION_SAVE_URL = BuildConfig.HOST + "invitation/save";
+
 
     /*************************教练************************/
 
@@ -128,8 +131,11 @@ public class HttpManager {
     //获取私教课上课记录表详情
     public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseRecordDetail";
 
-    //
+    //获取体验课上课记录详情
     public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = BuildConfig.HOST + "experienceCourse/getExperienceRecord";
+
+    //根据教练ID获取私教课备课模板列表
+    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL = BuildConfig.HOST + "privatecourse/getPrepareTemplateList";
 
 
     //工作台 首页图标
@@ -185,6 +191,21 @@ public class HttpManager {
     //发出邀约并保存邀约相关信息
     public static String SEND_EXPERICECE_INVITE_HISTORY_URL = BuildConfig.HOST + "experienceProcess/saveInvite";
 
+    //添加意见反馈
+    public static String ADD_FEEDBACK_URL = BuildConfig.HOST + "feedBack/addfeedBack";
+
+    //type 1. 关于我们 2.俱乐部 3.教练信息url 后面?coach_id=coach_id 然后生成二维码
+    public static String ABOUT_US_AND_CLUB_AND_QR_URL = BuildConfig.HOST + "webPage/getWebPage";
+
+    //POST
+    //添加职业证书
+    public static String ADD_CERTIFICATE_URL = BuildConfig.HOST + "certificate/addUpdCer";
+
+    //添加职业证书
+    public static String GET_CERTIFICATE_URL = BuildConfig.HOST + "certificate/getCertificate";
+
+    //获取调查问卷列表
+    public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -199,8 +220,22 @@ public class HttpManager {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
     }
+    //获取调查问卷列表
+    public static void getQuestionnaireList(int pageNum,int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            QuestionnaireRequestBody body=new QuestionnaireRequestBody(pageNum,pageSize);
+            Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
 
-    //登陆
+            execute(loginObservable, observer);
+        }
+    }
+
+    //添加潜在
     public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
@@ -273,7 +308,7 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
         Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
@@ -286,7 +321,7 @@ public class HttpManager {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         String token = user.getToken();
-//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
+        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
         headers.put("token", token);
 
         Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
@@ -326,10 +361,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            String token = user.getToken();
-//            token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-
-            headers.put("token", token);
+            headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
         }
@@ -343,10 +375,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            String token = user.getToken();
-//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-
-            headers.put("token", token);
+            headers.put("token", user.getToken());
 
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList_ycm(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
@@ -381,31 +410,32 @@ public class HttpManager {
             Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
             execute(observable, observer);
         }
-//        String token = user.getToken();
-////        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-//        headers.put("token", token);
-//        Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url,headers, editHuiJiVipBody);
-//        execute(observable, observer);
     }
 
     //提交下课打卡数据
     public static void postXiaKeRecord(String url, PrivateShangKeBean privateShangKeBean, String state, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.saveXiaKeRecord(url, headers, privateShangKeBean, state);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.saveXiaKeRecord(url, headers, privateShangKeBean, state);
+            execute(observable, observer);
+        }
     }
 
-    //获取体验课上课记录表
-    public static void postExperienceRecord(String url, RecordBean recordBean, Observer<JSONObject> observer) {
+    //提交下课打卡数据
+    public static void postAddAdvice(String url, AddAdviceBody addAdviceBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.postExperienceRecord(url, headers, recordBean);
-        execute(observable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postAddAdvice(url, headers, addAdviceBody);
+            execute(observable, observer);
+        }
     }
 
 
@@ -434,9 +464,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            String token = user.getToken();
-//          token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-            headers.put("token", token);
+            headers.put("token", user.getToken());
 
             Observable<JSONObject> observable = apiService.postHasHeaderNoParam(url, headers);
             execute(observable, observer);
@@ -457,12 +485,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-
-
-            String token = user.getToken();
-//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-
-            headers.put("token", token);
+            headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postHasHeaderHasParam(url, headers, param);
             execute(observable, observer);
         }
@@ -488,10 +511,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            String token = user.getToken();
-//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-
-            headers.put("token", token);
+            headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getHasHeaderNoParam(url, headers);
             execute(observable, observer);
         }
@@ -511,10 +531,7 @@ public class HttpManager {
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
-            String token = user.getToken();
-//            token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-
-            headers.put("token", token);
+            headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
             execute(observable, observer);
         }
@@ -537,7 +554,7 @@ public class HttpManager {
             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-            Observable<JSONObject> observable = apiService.upLoadImage(url, headers, body);
+            Observable<JSONObject> observable = apiService.upLoadImage(url, body);
             execute(observable, observer);
         }
     }
@@ -552,6 +569,44 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getBusinessMessage(GET_BUSINESS_MESSAGE_URL, headers, businessMessageRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    //上传图片
+    public static void upLoadFiles(List<String> list, String fileType, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            List<MultipartBody.Part> bodys = new ArrayList<>();
+            headers.put("token", user.getToken());
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i);
+                File file = new File(s);
+                // 创建 RequestBody，用于封装构建RequestBody
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
+                bodys.add(body);
+            }
+
+            String url = "https://h5.dev.ejoyst.com/file/uploadMultipleFile";
+            Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
+            execute(observable, observer);
+        }
+    }
+
+    //保存职业证书
+    public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.addCertificate(HttpManager.ADD_CERTIFICATE_URL, headers, body);
             execute(observable, observer);
         }
     }

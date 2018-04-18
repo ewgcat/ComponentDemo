@@ -1,65 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/gray"
+    android:orientation="vertical">
 
-    <ImageView
+    <include
+        android:id="@+id/club_navigation_bar2"
+        layout="@layout/view_navigation_bar2" />
+
+    <WebView
+        android:id="@+id/web_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/my_club_bg" />
+        android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:gravity="center"
-        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_club_logo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/placeholder" />
-
-        <TextView
-            android:id="@+id/tv_club_name"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="原力健身俱乐部"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
-        android:src="@mipmap/white_arrow_back" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="340dp"
-        android:text="品牌简介"
-        android:textColor="#333333"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="380dp"
-        android:text="原力健身唤醒生命原动力，东莞唯一女子训练专区，唯一360度景观健身俱乐部。东莞最顶级的健身俱乐部。"
-        android:textColor="#666666"
-        android:textSize="14sp" />
-
-</FrameLayout>
+</LinearLayout>

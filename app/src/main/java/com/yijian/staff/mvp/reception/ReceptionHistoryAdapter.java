@@ -11,10 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
-import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

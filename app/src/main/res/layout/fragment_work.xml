@@ -39,11 +39,11 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="36dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/work_search_top_edittext_bg"
+                    android:background="@drawable/home_search_bg"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="2dp"
                     android:scaleType="fitCenter"
@@ -84,25 +84,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
                 android:background="@mipmap/home_jd_bg"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginRight="4dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:text="客户接待"
                         android:textColor="@color/white"
@@ -112,14 +110,14 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="10dp"
                         android:src="@mipmap/home_jd" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="8dp"
                     android:text="俱乐部对来访客户的接待流程"
                     android:textColor="@color/white"
@@ -127,8 +125,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_jiedai"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="30dp"
                     android:layout_gravity="end"
                     android:background="@drawable/white_solid_rect_bg"
                     android:layout_width="100dp"

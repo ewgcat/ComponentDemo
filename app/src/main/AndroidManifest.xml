@@ -490,9 +490,22 @@
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
 
-        <activity android:name=".mvp.setclass.orderclass.OrderClassActivity" />
-        <activity android:name=".mvp.setclass.ExperienceClassRecordActivity" />
-        <activity android:name=".mvp.mine.aboutus.AboutUsActivity"></activity>
+        <activity
+            android:name=".mvp.setclass.orderclass.OrderClassActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.setclass.ExperienceClassRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.mine.aboutus.AboutUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.questionnaire.QuestionListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

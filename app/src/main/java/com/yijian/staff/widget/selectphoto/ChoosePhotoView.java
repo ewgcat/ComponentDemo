@@ -269,7 +269,7 @@ public class ChoosePhotoView extends RelativeLayout {
 
 
         mPhotoPathList.add(desFile.getPath());
-        choosePhotoAdapter.addPhoto(desFile.getPath());
+        choosePhotoAdapter.addPhoto(new ImageBean(desFile.getPath(), 0));
         choosePhotoAdapter.notifyDataSetChanged();
         if (listener != null) {
             listener.hadAddToPath(soureFile.getPath());
@@ -280,13 +280,13 @@ public class ChoosePhotoView extends RelativeLayout {
 
 
     //获取图片路径
-    public List<String> getmPhotoPathList() {
-        return mPhotoPathList;
+    public List<ImageBean> getmPhotoPathList() {
+        return choosePhotoAdapter.getmPhotoUrlList();
     }
 
 
     //设置图片路径
-    public void setmPhotoPathList(List<String> datas) {
+    public void setmPhotoPathList(List<ImageBean> datas) {
         choosePhotoAdapter.setmPhotoUrlList(datas);
     }
 

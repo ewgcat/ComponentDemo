@@ -27,6 +27,7 @@ import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
+import com.yijian.staff.widget.selectphoto.ImageBean;
 
 import org.json.JSONObject;
 
@@ -48,7 +49,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
     private List<AuthBean> authList;
     private ZiLiAdapter adapter;
     private CertificateBean certificateBean;
-    private  List<String> list = new ArrayList<>();
+    private  List<ImageBean> list = new ArrayList<>();
 
 
     @Override
@@ -83,7 +84,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
         User user = DBManager.getInstance().queryUser();
         HashMap<String, String> param = new HashMap<>();
-        param.put("coach_id", user.getUserId());
+        param.put("coachId", user.getUserId());
         HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -105,10 +106,10 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
 
 
-    public void setImageList(List<CertBean> certList) {
-
+     public void setImageList(List<CertBean> certList) {
+        list.clear();
         for (int i = 0; i < certList.size(); i++) {
-            list.add(certList.get(i).getCertificate());
+            list.add(new ImageBean(certList.get(i).getCertificate(),1));
         }
         choosePhotoView.setmPhotoPathList(list);
 

@@ -42,6 +42,7 @@ import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
+import com.yijian.staff.widget.selectphoto.ImageBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,7 +122,7 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
     private void initData() {
         User user = DBManager.getInstance().queryUser();
         HashMap<String, String> param = new HashMap<>();
-        param.put("coach_id", user.getUserId());
+        param.put("coachId", user.getUserId());
         HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -162,19 +163,29 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
 
             //证书照片
             List<CertBean> certList = certificateBean.getCertList();
-            List<String> photoPathList = new ArrayList<>();
+            List<ImageBean> photoPathList = new ArrayList<>();
             for (int i = 0; i < certList.size(); i++) {
-                photoPathList.add(certList.get(i).getCertificate());
+                photoPathList.add(new ImageBean(certList.get(i).getCertificate(),1));
             }
             choosePhotoView.setmPhotoPathList(photoPathList);
         }
     }
 
     private void post() {
-        List<String> photoPathList = choosePhotoView.getmPhotoPathList();
-        if (photoPathList.size() > 0) {
+        List<ImageBean> photoPathList = choosePhotoView.getmPhotoPathList();
+        List<String> list = new ArrayList<>();
+        List<String> hasAddList = new ArrayList<>();
+        for (int i = 0; i < photoPathList.size(); i++) {
+            int type = photoPathList.get(i).getType();
+            if (type==0){
+                list.add(photoPathList.get(i).getUrl());
+            }else {
+                hasAddList.add(photoPathList.get(i).getUrl());
+            }
+        }
+        if (list.size() > 0) {
 
-            HttpManager.upLoadFiles(photoPathList, "0", new ResultJSONArrayObserver() {
+            HttpManager.upLoadFiles(list, "0", new ResultJSONArrayObserver() {
                 @Override
                 public void onSuccess(JSONArray result) {
                     try {
@@ -185,7 +196,10 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
                                 String url="https://h5.dev.ejoyst.com/file/downloadFile?fileType=0&filename="+split[split.length - 1];;
                                 certList.add(new CertBean(url));
                             }
-
+                        }
+                        for (int i = 0; i < hasAddList.size(); i++) {
+                            String url = hasAddList.get(i);
+                            certList.add(new CertBean(url));
                         }
                         if (photoPathList.size() == certList.size()) {
                             postAdd();
@@ -233,7 +247,8 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
             authList.add(new AuthBean(s6));
         }
 
-        AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody(authList, certList);
+        User user = DBManager.getInstance().queryUser();
+        AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody( user.getUserId(),authList, certList);
         HttpManager.addCertificate(authCertificateRequestBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

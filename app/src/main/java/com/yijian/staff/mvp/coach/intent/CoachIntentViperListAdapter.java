@@ -20,6 +20,7 @@ import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecord2Activity;
 import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
 import com.yijian.staff.util.CommonUtil;
@@ -135,7 +136,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                             intent.putExtra("privateApplyId",coachViperBean.getSecondId());
                             context.startActivity(intent);
                         }else {
-                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            Intent intent = new Intent(context, ExperienceClassRecord2Activity.class);
                             intent.putExtra("privateApplyId",coachViperBean.getSecondId());
                             context.startActivity(intent);
                         }

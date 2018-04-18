@@ -80,7 +80,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
     /**
      * 加载上课记录详情数据
      */
-    private void loadData() {
+    public void loadData() {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         map.put("privateApplyId", privateApplyId);

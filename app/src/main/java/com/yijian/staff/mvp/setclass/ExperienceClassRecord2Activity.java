@@ -39,16 +39,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExperienceClassRecord2Activity extends AppCompatActivity {
+public class ExperienceClassRecord2Activity extends OpenLessonNewActivity {
 
     @BindView(R.id.rv_open_lesson)
     RecyclerView rv_open_lesson;
 
 
-    private int punchStatus = -1;
-
-    OpenLessonNewAdapter openLessonNewAdapter;
-    List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<PrivateLessonRecordBean>();
 
 
     @Override
@@ -60,29 +56,6 @@ public class ExperienceClassRecord2Activity extends AppCompatActivity {
         loadData();
     }
 
-    /**
-     * 加载上课记录详情数据
-     */
-    private void loadData() {
-        String privateApplyId = getIntent().getStringExtra("privateApplyId");
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("privateApplyId", privateApplyId);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                    JSONArray records = JsonUtil.getJsonArray(result, "recordContextList");
-                    privateLessonRecordBeans = com.alibaba.fastjson.JSONObject.parseArray(records.toString(), PrivateLessonRecordBean.class);
-                    openLessonNewAdapter.resetData(privateLessonRecordBeans);
-
-            }
-
-            @Override
-            public void onFail(String msg) {
-                Toast.makeText(ExperienceClassRecord2Activity.this, msg, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 
 
 

@@ -19,6 +19,7 @@ import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBo
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -195,6 +196,9 @@ public class HttpManager {
     //添加职业证书
     public static String GET_CERTIFICATE_URL = BuildConfig.HOST + "certificate/getCertificate";
 
+    //获取调查问卷列表
+    public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -208,8 +212,22 @@ public class HttpManager {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
     }
+    //获取调查问卷列表
+    public static void getQuestionnaireList(int pageNum,int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            QuestionnaireRequestBody body=new QuestionnaireRequestBody(pageNum,pageSize);
+            Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
 
-    //登陆
+            execute(loginObservable, observer);
+        }
+    }
+
+    //添加潜在
     public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();

@@ -1,16 +1,20 @@
 package com.yijian.staff.mvp.questionnaire;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,118 +25,70 @@ import java.util.List;
  * time: 2018/2/28 17:08:17
  */
 public class QuestionareAdapter extends RecyclerView.Adapter<QuestionareAdapter.ViewHolder> {
-    private List<RecptionRecordListBean.RecordsBean> mReceptionInfoList=new ArrayList<>();
+    private List<QuestionNaireVipBean> questionNaireVipBeanList = new ArrayList<>();
     private Context context;
 
-    public QuestionareAdapter(Context context) {
+    public QuestionareAdapter(Context context, List<QuestionNaireVipBean> questionNaireVipBeanList) {
         this.context = context;
+        this.questionNaireVipBeanList = questionNaireVipBeanList;
     }
 
-    public void addData(List<RecptionRecordListBean.RecordsBean> list){
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
+    public void update(List<QuestionNaireVipBean> questionNaireVipBeanList) {
+        this.questionNaireVipBeanList = questionNaireVipBeanList;
         notifyDataSetChanged();
     }
 
-    public void clearData(){
-        mReceptionInfoList.clear();
-        notifyDataSetChanged();
-    }
 
     @Override
     public QuestionareAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_reception_history, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_question_naire, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(QuestionareAdapter.ViewHolder holder, int position) {
+        QuestionNaireVipBean questionNaireVipBean = questionNaireVipBeanList.get(position);
+        holder.tv_name.setText(questionNaireVipBean.getMemberName());
+        Long createTime = questionNaireVipBean.getCreateTime();
+        if (createTime != null&&createTime!=-1) {
+            holder.tv_time.setText(DateUtil.parseLongDateToTimeString(createTime));
+        }
+        holder.tv_seller_name.setText(questionNaireVipBean.getSellerName());
+        holder.ll_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, QuestionnaireResultActivity.class);
+                intent.putExtra("memberId",questionNaireVipBean.getMemberId());
+                intent.putExtra("memberName",questionNaireVipBean.getMemberName());
+                context.startActivity(intent);
+            }
+        });
 
-        holder.bindView(position);
 
     }
 
     @Override
     public int getItemCount() {
-        return mReceptionInfoList.size();
+        return questionNaireVipBeanList == null ? 0 : questionNaireVipBeanList.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viperName;
-        ImageView viperSex;
-        TextView receptionStatus;
-        TextView viperPhone;
-        TextView wenJuan;
-        TextView tiCeBaoGao;
-        TextView product;
-        TextView jiedaiName;
-        TextView jiedaiCoachName;
+        TextView tv_name;
+        TextView tv_time;
+        TextView tv_seller_name;
+        LinearLayout ll_detail;
+
 
         public ViewHolder(View view) {
             super(view);
-            viperName=     view.findViewById(R.id.tv_viper_name);
-            viperSex=     view.findViewById(R.id.iv_sex);
-            receptionStatus=     view.findViewById(R.id.tv_status);
-            viperPhone=     view.findViewById(R.id.tv_viper_phone);
-            product=     view.findViewById(R.id.tv_product);
-            wenJuan=     view.findViewById(R.id.tv_wenjuan);
-            tiCeBaoGao=     view.findViewById(R.id.tv_ticebaogao);
-            jiedaiName=     view.findViewById(R.id.tv_jiedai_name);
-            jiedaiCoachName=     view.findViewById(R.id.tv_coach_name);
-
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_time = view.findViewById(R.id.tv_time);
+            tv_seller_name = view.findViewById(R.id.tv_seller_name);
+            ll_detail = view.findViewById(R.id.ll_detail);
         }
 
-        public void bindView(int position) {
-
-            RecptionRecordListBean.RecordsBean receptionInfo = mReceptionInfoList.get(position);
-        viperName.setText(receptionInfo.getMemberName());
-            int isFinish = receptionInfo.getIsFinish();
-            String statu=isFinish==0?"未完成":"已完成";
-            receptionStatus.setText(statu);
-        viperPhone.setText(receptionInfo.getMemberMobile());
-        product.setText(receptionInfo.getCoachName());
-            jiedaiName.setText(receptionInfo.getSaleName());
-            jiedaiCoachName.setText(receptionInfo.getCoachName());
-        Glide.with(context).load(R.mipmap.lg_man).into(viperSex);
-        wenJuan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent i = new Intent(context,QuestionnaireResultActivity.class);
-//                context.startActivity(i);
-
-                if (receptionHistoryListener!=null)receptionHistoryListener.onRequestClicked(position);
-            }
-        });
-        tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent i = new Intent(context,PhysicalReportActivity.class);
-//                context.startActivity(i);
-                if (receptionHistoryListener!=null)receptionHistoryListener.onPhysicalReportClicked(position);
-            }
-        });
-        }
-    }
-
-    public List<RecptionRecordListBean.RecordsBean> getmReceptionInfoList() {
-        return mReceptionInfoList;
-    }
-
-    public interface ReceptionHistoryListener{
-        void onRequestClicked(int position);
-        void onPhysicalReportClicked(int position);
-    }
-
-    private ReceptionHistoryListener receptionHistoryListener;
-
-    public void setReceptionHistoryListener(ReceptionHistoryListener receptionHistoryListener) {
-        this.receptionHistoryListener = receptionHistoryListener;
     }
 }

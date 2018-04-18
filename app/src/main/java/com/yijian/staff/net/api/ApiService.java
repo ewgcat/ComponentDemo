@@ -13,6 +13,7 @@ import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
@@ -85,7 +86,12 @@ public interface ApiService {
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
-    //登录
+    //获取问卷列表
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getQuestionnaireList(@Url String url,@HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
+
+    //添加职业证书
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> addCertificate(@Url String url, @HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);

@@ -270,7 +270,6 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             cardRefreshLayout.finishRefresh(1000);
         }else {
             if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
             cardRefreshLayout.finishLoadMore(1000);
         }
 

@@ -152,7 +152,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 bodyCondition=body;
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(4);
-//                presenter.getRecptionCards(cardRefreshLayout,bodyCondition,true);
+                presenter.getRecptionCards(bodyCondition,true);
             }
         });
 
@@ -164,8 +164,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
 
     //点击筛选
-
-
     private boolean priceUp = false;
 
 
@@ -190,7 +188,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击筛选
     private void selectShaixuan() {
-        resetTabColor();
         tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
         Bundle bundle = new Bundle();
         bundle.putString("cardType",bodyCondition.getCardType());
@@ -203,12 +200,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     //点击价格
     private void selectPrice() {
         if (mGoodsInfoList==null||mGoodsInfoList.size()==0)return;
-        resetTabColor();
+
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        tvPrice.setTextColor(Color.parseColor("#1997f8"));
         if (priceUp){
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
-
             Collections.sort(mGoodsInfoList);
             goodsListAdapter.resetData(mGoodsInfoList);
             priceUp = false;
@@ -228,49 +226,49 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击综合
     private void selectZongHe() {
-        resetTabColor();
+        tvPrice.setTextColor(Color.parseColor("#666666"));
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
+        bodyCondition.setPageSize(4);
+        bodyCondition.setPageNum(1);
         presenter.getRecptionCards(bodyCondition,true);
     }
-
-
-
-
-
-
-
-
 
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
         mGoodsInfoList=goodsInfos;
         if (isRefresh){
             goodsListAdapter.resetData(goodsInfos);
+            cardRefreshLayout.finishRefresh(1000);
         }else {
             goodsListAdapter.addDatas(goodsInfos);
+            cardRefreshLayout.finishLoadMore(1000);
+        }
+    }
+
+    @Override
+    public void showToCoachSucceed() { }
+
+    @Override
+    public void showNoCards(boolean isRefresh, boolean isSucceed) {
+        if (isRefresh){
+            if (isSucceed)Toast.makeText(getContext(),"未查询到相关数据",Toast.LENGTH_SHORT).show();
+            cardRefreshLayout.finishRefresh(1000);
+        }else {
+            if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+            cardRefreshLayout.finishLoadMore(1000);
         }
 
     }
 
-    @Override
-    public void showToCoachSucceed() {
-
-    }
-
-    @Override
-    public void showNoCards(boolean isRefresh, boolean isSucceed) {
-
-    }
-
-    public void resetTabColor(){
-        tvZongHe.setTextColor(Color.parseColor("#666666"));
-        tvPrice.setTextColor(Color.parseColor("#666666"));
-        tvShaixuan.setTextColor(Color.parseColor("#666666"));
-        Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        tvPrice.setCompoundDrawables(null, null, drawable, null);
-        Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-        drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-        tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-    }
+//    public void resetTabColor(){
+//        tvZongHe.setTextColor(Color.parseColor("#666666"));
+//        tvPrice.setTextColor(Color.parseColor("#666666"));
+//        tvShaixuan.setTextColor(Color.parseColor("#666666"));
+//        Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
+//        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//        tvPrice.setCompoundDrawables(null, null, drawable, null);
+//        Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
+//        drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
+//        tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+//    }
 }

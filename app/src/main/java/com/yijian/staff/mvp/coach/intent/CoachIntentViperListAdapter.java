@@ -130,7 +130,7 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                 holder.tv_second_class_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (coachViperBean.getFirstType()==0){
+                        if (coachViperBean.getSecondType()==0){
                             Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
                             intent.putExtra("privateApplyId",coachViperBean.getSecondId());
                             context.startActivity(intent);

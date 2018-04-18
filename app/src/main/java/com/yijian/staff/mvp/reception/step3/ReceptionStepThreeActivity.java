@@ -55,7 +55,7 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
 
         int userRole = SharePreferenceUtil.getUserRole();
 //        Log.e(TAG, "initView: userRole=" + userRole);
-        userRole=1;
+        userRole=2;
 
         if (userRole == 1) {
             fragment = new HuiJiProductQuotationFragment();

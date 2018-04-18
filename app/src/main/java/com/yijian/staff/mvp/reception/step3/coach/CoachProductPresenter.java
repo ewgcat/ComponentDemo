@@ -46,6 +46,8 @@ public class CoachProductPresenter implements  CoachProductContract.Presenter{
                     receptionUserInfo = new Gson().fromJson(result.toString(), ReceptionUserInfo.class);
 
                     view.showUserInfo(receptionUserInfo);
+
+
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }
@@ -60,4 +62,7 @@ public class CoachProductPresenter implements  CoachProductContract.Presenter{
             }
         });
     }
+
+
+
 }

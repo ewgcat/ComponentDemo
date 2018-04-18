@@ -1,8 +1,5 @@
 package com.yijian.staff.mvp.reception.step3.coach.bean;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 /**
  * Created by The_P on 2018/4/12.
  */
@@ -10,55 +7,71 @@ import java.util.Date;
 public class ReceptionUserInfo {
 
 
+    /**
+     * receptionId : 01aae16feb2a4963a4413e1aa251c096
+     * memberId : 1
+     * merchantId : 333
+     * shopId : 11
+     * cardId : 7a99b42260e644af89cd69c92fa5309b
+     * coachId :
+     * saleId : 1
+     * leaderId :
+     * createTime : 1523329366000
+     * createBy : 1
+     * updateTime : 1523968455000
+     * updateBy :
+     * isDelete : 0
+     * isFinish : 0
+     * smallStatus : 33
+     * smallStatusDesc : 会员没购买意愿，会籍TO教练
+     * bigStatus : 50
+     * bigStatusDesc : 成交
+     * memberBcRejectReason :
+     * toLeaderReason :
+     * qsCompletionRate : 0
+     * bodyCheckCompletionRate : 0
+     * memberMobile :
+     * memberName :
+     * coachName :
+     * saleName :
+     * cardName :
+     */
+
 //    private String receptionId;
-    private String memberId;
+//    private String memberId;
 //    private String merchantId;
 //    private String shopId;
-//    private String cardId;e
-    private String coachId;
-    private String saleId;
+//    private String cardId;
+//    private String coachId;
+//    private String saleId;
 //    private String leaderId;
-//    private Date createTime;
+//    private long createTime;
 //    private String createBy;
-//    private Date updateTime;
+//    private long updateTime;
 //    private String updateBy;
-//    private Integer isDelete;
-//    private Integer isFinish;
-//    private Integer smallStatus;
+//    private int isDelete;
+//    private int isFinish;
+//    private int smallStatus;
 //    private String smallStatusDesc;
-//    private Integer bigStatus;
+//    private int bigStatus;
 //    private String bigStatusDesc;
-//    private String memberBcRejectReason;
+    private String memberBcRejectReason;
 //    private String toLeaderReason;
-//    private BigDecimal qsCompletionRate;
-//    private BigDecimal bodyCheckCompletionRate;
+//    private int qsCompletionRate;
+//    private int bodyCheckCompletionRate;
     private String memberMobile;
     private String memberName;
     private String coachName;
     private String saleName;
+//    private String cardName;
 
-    public String getMemberId() {
-        return memberId;
+
+    public String getMemberBcRejectReason() {
+        return memberBcRejectReason;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public String getCoachId() {
-        return coachId;
-    }
-
-    public void setCoachId(String coachId) {
-        this.coachId = coachId;
-    }
-
-    public String getSaleId() {
-        return saleId;
-    }
-
-    public void setSaleId(String saleId) {
-        this.saleId = saleId;
+    public void setMemberBcRejectReason(String memberBcRejectReason) {
+        this.memberBcRejectReason = memberBcRejectReason;
     }
 
     public String getMemberMobile() {
@@ -91,20 +104,5 @@ public class ReceptionUserInfo {
 
     public void setSaleName(String saleName) {
         this.saleName = saleName;
-    }
-    //    private String cardName;
-
-
-    @Override
-    public String toString() {
-        return "ReceptionUserInfo{" +
-                "memberId='" + memberId + '\'' +
-                ", coachId='" + coachId + '\'' +
-                ", saleId='" + saleId + '\'' +
-                ", memberMobile='" + memberMobile + '\'' +
-                ", memberName='" + memberName + '\'' +
-                ", coachName='" + coachName + '\'' +
-                ", saleName='" + saleName + '\'' +
-                '}';
     }
 }

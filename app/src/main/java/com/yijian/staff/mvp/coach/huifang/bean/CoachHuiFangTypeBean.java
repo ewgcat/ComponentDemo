@@ -1,5 +1,9 @@
 package com.yijian.staff.mvp.coach.huifang.bean;
 
+import com.yijian.staff.util.JsonUtil;
+
+import org.json.JSONObject;
+
 import java.util.List;
 
 /**
@@ -20,12 +24,21 @@ public class CoachHuiFangTypeBean {
      */
 
     private int id;
-    private int configType;
+    private int configType;//【0:全部，1:生日，2:昨日到访，3:昨日开卡，4:潜在会员，5:沉寂会员，6:恢复健身，7:复访，8:过期，9:快到期，10:易建平台，11:体验课，12:昨日上课，13:定时体测，14:私课上完，15:昨日买课】
     private int postId;
     private String configName;
     private int triggerDay;
     private int order;
 
+
+    public CoachHuiFangTypeBean(JSONObject jsonObject){
+        this.id= JsonUtil.getInt(jsonObject,"id");
+        this.configType= JsonUtil.getInt(jsonObject,"configType");
+        this.postId= JsonUtil.getInt(jsonObject,"postId");
+        this.triggerDay= JsonUtil.getInt(jsonObject,"triggerDay");
+        this.order= JsonUtil.getInt(jsonObject,"order");
+        this.configName= JsonUtil.getString(jsonObject,"configName");
+    }
     public int getId() {
         return id;
     }

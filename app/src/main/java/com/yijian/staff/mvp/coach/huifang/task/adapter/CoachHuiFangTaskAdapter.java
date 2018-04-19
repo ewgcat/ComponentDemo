@@ -55,51 +55,57 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         resetView(holder);
 
         CoachHuiFangInfo coachHuiFangInfo = mCoachHuiFangInfoList.get(position);
+        String headImg = coachHuiFangInfo.getHeadImg();
         Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
         holder.tvViperName.setText(coachHuiFangInfo.getName());
-        Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
-        String huifangType = coachHuiFangInfo.getHuifangType();
+        String sex = coachHuiFangInfo.getSex();
+        if ("男".equals(sex)){
+            Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
+        }else {
+            Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
 
+        }
+        String huifangType = type + "";
 
+        /**
+         * 0:全部，1:生日，2:昨日到访，3:昨日开卡，
+         * 4:潜在会员，5:沉寂会员，6:恢复健身，7:复访，
+         * 8:过期，9:快到期，10:易建平台，
+         * 11:体验课，12:昨日上课，13:定时体测，
+         * 14:私课上完，15:昨日买课】
+         */
         switch (huifangType) {
 
-            case "生日回访":
+            case "1":
                 holder.llBirthday.setVisibility(View.VISIBLE);
                 holder.llBirthdayType.setVisibility(View.VISIBLE);
                 break;
-            case "昨日上课":
+            case "12":
                 holder.llLastTiCeTime.setVisibility(View.VISIBLE);
                 break;
-            case "昨日开卡":
+            case "3":
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 holder.llCardName.setVisibility(View.VISIBLE);
                 holder.llCardType.setVisibility(View.VISIBLE);
                 break;
-            case "快到期回访":
+            case "9":
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 holder.llHetongYuEr.setVisibility(View.VISIBLE);
                 break;
-            case "定时体测":
+            case "13":
                 holder.ll_ti_ce_num.setVisibility(View.VISIBLE);
                 holder.ll_yue_ke_time.setVisibility(View.VISIBLE);
                 break;
-            case "复访":
+            case "7":
                 holder.llPreVisitDate.setVisibility(View.VISIBLE);
                 holder.llFuFangReason.setVisibility(View.VISIBLE);
                 break;
-            case "过期回访":
+            case "8":
                 holder.llQuanyi.setVisibility(View.VISIBLE);
                 holder.llOutdateTime.setVisibility(View.VISIBLE);
                 holder.llOutdateReason.setVisibility(View.VISIBLE);
 
-                if (position == 0) {
-                    holder.tv.setText("填写回访结果");
-                    Glide.with(context).load(R.mipmap.wt_huifangjieguo).into(holder.iv);
-                    holder.tvQuanyi.setText(coachHuiFangInfo.getQuanyi());
 
-                    holder.tvOutdateTime.setText(coachHuiFangInfo.getOutdateTime());
-                    holder.tvOutdateReason.setText(coachHuiFangInfo.getOutdateReason());
-                }
                 break;
 
         }

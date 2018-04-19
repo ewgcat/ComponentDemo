@@ -48,10 +48,10 @@ public class CoachHuiFangHistoryAdapter extends RecyclerView.Adapter<CoachHuiFan
         Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
         holder.viperName.setText(coachHuiFangInfo.getName());
         Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
-        holder.tvQuanyi.setText(coachHuiFangInfo.getQuanyi());
-        holder.tvOutdateTime.setText(coachHuiFangInfo.getOutdateTime());
-        holder.tvHuifangType.setText(coachHuiFangInfo.getHuifangType());
-        holder.tvHuifangResult.setText(coachHuiFangInfo.getHuifangReason());
+//        holder.tvQuanyi.setText(coachHuiFangInfo.getQuanyi());
+//        holder.tvOutdateTime.setText(coachHuiFangInfo.getOutdateTime());
+//        holder.tvHuifangType.setText(coachHuiFangInfo.getHuifangType());
+//        holder.tvHuifangResult.setText(coachHuiFangInfo.getHuifangReason());
     }
 
     @Override

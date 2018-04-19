@@ -140,19 +140,23 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                    Toast.makeText(ReceptionActivity.this, "用户信息获取失败，不能进入接待流程", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
-                //会籍角色
+//                //会籍角色
 //                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
 //                intent.putExtra(CONSUMER, consumer);
 //                startActivity(intent);
 
-//                //教练角色
+                //教练角色
 //                Intent intent1 = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
 //                intent1.putExtra(CONSUMER, consumer);
 //                startActivity(intent1);
 
-                //第三步
+//                第三步
                 Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-                if (consumer!=null)intent.putExtra("memberId",consumer.getId());
+                if (consumer!=null) {
+                    String id1 = consumer.getId();
+                    id1="1";
+                    intent.putExtra("memberId", id1);
+                }
                 startActivity(intent);
 
                 break;

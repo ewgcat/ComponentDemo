@@ -12,6 +12,7 @@ import com.yijian.staff.mvp.reception.step3.bean.RecptionCards;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -19,7 +20,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by The_P on 2018/4/11.
@@ -28,9 +34,6 @@ import java.util.List;
 public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     private Context context;
     private HuiJiProductContract.View view;
-    private int pageNum;
-    private int pageSize;
-    private int pages;
 
 
     public HuiJiProductPresenter(Context context) {
@@ -42,52 +45,47 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     }
 
     @Override
-    public void getRecptionCards(SmartRefreshLayout refreshLayout, ConditionBody bodyCondition, Boolean isRefresh) {
+    public void getRecptionCards( ConditionBody bodyCondition, boolean isRefresh) {
+
         HttpManager.getHuiJiCardGoodsList_ycm(bodyCondition, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                pageNum=bodyCondition.getPageNum()+1;
                 RecptionCards recptionCards = new Gson().fromJson(result.toString(), RecptionCards.class);
-                pages=recptionCards.getPages();
-                boolean hasMore = pages > pageNum ? true : false;
 
                 List<CardInfo> records = recptionCards.getRecords();
                 if (records == null || records.size() == 0) {
-                    if (isRefresh) {
-                        refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
-                        Toast.makeText(context, "未查询到相关数据", Toast.LENGTH_SHORT).show();
-                    } else {
-                        refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
-                        Toast.makeText(context, "已经是最后一页", Toast.LENGTH_SHORT).show();
-                    }
-
-                    return;
+                    view.showNoCards(isRefresh,true);
                 }else {
-
-                    if (isRefresh) {
-                        refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
-                    } else {
-                        refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
-                    }
-
+                    view.showCards(records, isRefresh);
                 }
-                view.showCards(records, isRefresh);
 
             }
 
             @Override
             public void onFail(String msg) {
-                if (isRefresh) {
-                    refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                } else {
-                    boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
-                }
-
+                view.showNoCards(isRefresh,false);
                 Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+    @Override
+    public void toCoach(String memberId,String cardId) {
+        Map<String,String> params=new HashMap<>();
+        params.put("memberId",memberId);
+        params.put("cardId",cardId);
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_TO_COACH, params, new ResultNullObserver() {
+            @Override
+            public void onSuccess(Object result) {
+                    view.showToCoachSucceed();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

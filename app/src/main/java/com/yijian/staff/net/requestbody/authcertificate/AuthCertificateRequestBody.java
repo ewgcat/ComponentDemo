@@ -8,12 +8,14 @@ import java.util.List;
  * time: 2018/4/17 14:16:34
  */
 public class AuthCertificateRequestBody {
+    private String coachId;
     private List<AuthBean> authList;
     private List<CertBean> certList;
 
-    public AuthCertificateRequestBody(List<AuthBean> authList, List<CertBean> certList) {
+    public AuthCertificateRequestBody(String coachId,List<AuthBean> authList, List<CertBean> certList) {
         this.authList = authList;
         this.certList = certList;
+        this.coachId = coachId;
     }
 
 

@@ -251,19 +251,12 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     //点击筛选
     private void selectShaixuan() {
         if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            isSortByPrice = -1;
             showFilterDialog();
         } else {
             tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
-            tvZongHe.setTextColor(Color.parseColor("#666666"));
-            tvPrice.setTextColor(Color.parseColor("#666666"));
-            Drawable drawablePrice = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-            drawablePrice.setBounds(0, 0, drawablePrice.getMinimumWidth(), drawablePrice.getMinimumHeight());
-            tvPrice.setCompoundDrawables(null, null, drawablePrice, null);
             Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
             drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
             tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            isSortByPrice = -1;
             showFilterDialog();
         }
     }
@@ -293,13 +286,9 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
         } else {
             tvPrice.setTextColor(Color.parseColor("#1997f8"));
             tvZongHe.setTextColor(Color.parseColor("#666666"));
-            tvShaixuan.setTextColor(Color.parseColor("#666666"));
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = 0;
             coachClassFilterBean = null;
             refresh(coachClassFilterBean);
@@ -309,20 +298,14 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     private void selectZongHe() {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             isSortByPrice = -1;
-            coachClassFilterBean = null;
             refresh(coachClassFilterBean);
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
-            tvShaixuan.setTextColor(Color.parseColor("#666666"));
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
             isSortByPrice = -1;
-            coachClassFilterBean = null;
             refresh(coachClassFilterBean);
         }
     }

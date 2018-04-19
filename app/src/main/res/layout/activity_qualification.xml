@@ -51,20 +51,8 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <HorizontalScrollView
-                android:id="@+id/hsv"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/lin_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" />
-            </HorizontalScrollView>
+            <include layout="@layout/view_choose_photo"
+                android:id="@+id/choose_photo_view"/>
 
         </LinearLayout>
 

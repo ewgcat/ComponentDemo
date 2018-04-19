@@ -1,10 +1,13 @@
 package com.yijian.staff.mvp.reception.step3.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by The_P on 2018/4/11.
  */
 
-public class ConditionBody {
+public class ConditionBody implements Parcelable {
     @Override
     public String toString() {
         return "ConditionBody{" +
@@ -104,4 +107,47 @@ public class ConditionBody {
     public void setVenueName(String venueName) {
         this.venueName = venueName;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.cardName);
+        dest.writeString(this.cardType);
+        dest.writeString(this.startPrice);
+        dest.writeString(this.endPrice);
+        dest.writeValue(this.isSortByPrice);
+        dest.writeValue(this.pageNum);
+        dest.writeValue(this.pageSize);
+        dest.writeString(this.venueName);
+    }
+
+    public ConditionBody() {
+    }
+
+    protected ConditionBody(Parcel in) {
+        this.cardName = in.readString();
+        this.cardType = in.readString();
+        this.startPrice = in.readString();
+        this.endPrice = in.readString();
+        this.isSortByPrice = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.pageNum = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.pageSize = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.venueName = in.readString();
+    }
+
+    public static final Parcelable.Creator<ConditionBody> CREATOR = new Parcelable.Creator<ConditionBody>() {
+        @Override
+        public ConditionBody createFromParcel(Parcel source) {
+            return new ConditionBody(source);
+        }
+
+        @Override
+        public ConditionBody[] newArray(int size) {
+            return new ConditionBody[size];
+        }
+    };
 }

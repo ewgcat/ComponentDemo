@@ -37,6 +37,7 @@ public class CoachProductPresenter implements  CoachProductContract.Presenter{
         Map<String,String> params=new HashMap<>();
         memberId="1";
         params.put("memberId",memberId);
+
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACH_USERDATA, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -45,6 +46,8 @@ public class CoachProductPresenter implements  CoachProductContract.Presenter{
                     receptionUserInfo = new Gson().fromJson(result.toString(), ReceptionUserInfo.class);
 
                     view.showUserInfo(receptionUserInfo);
+
+
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }
@@ -59,4 +62,7 @@ public class CoachProductPresenter implements  CoachProductContract.Presenter{
             }
         });
     }
+
+
+
 }

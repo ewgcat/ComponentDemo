@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -13,6 +14,7 @@ import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 
 import org.json.JSONObject;
@@ -74,22 +76,32 @@ public interface ApiService {
 
 
     /*POST 请求 上传文件*/
-    @POST("{url}")
-    Call<ResponseBody> uploadFiles(
-            @Path("url") String url,
-            @HeaderMap Map<String, String> headers,
-            @PartMap() Map<String, RequestBody> maps
-    );
+
+    @Multipart
+    @POST()
+    Observable<JSONObject> uploadFiles(  @Url String url, @HeaderMap Map<String, String> headers, @Query("fileType")  String param,
+             @Part() List<MultipartBody.Part> parts);
 
     //登录
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
-    //登录
+    //体验课_回访——教练提交回访记录
+    @POST
+    Observable<JSONObject> postExperienceAccessRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body AccessRecordBean body);
+
+    //获取问卷列表
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> addCertificate(@Url String url,@HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);
+    Observable<JSONObject> getQuestionnaireList(@Url String url,@HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
+
+
+
+    //添加职业证书
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> addCertificate(@Url String url, @HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);
 
 
     //体测录入
@@ -98,12 +110,12 @@ public interface ApiService {
 
     //问卷调查_保存
     @POST
-    Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers,@Query("memberId") String memberId,@Body List<QuestionnaireAnswer> requestBody);
+    Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body List<QuestionnaireAnswer> requestBody);
 
     //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> postAddPotential(@Url String addPotentialUrl,@HeaderMap Map<String, String> headers,@Body AddPotentialRequestBody addPotentialRequestBody);
+    Observable<JSONObject> postAddPotential(@Url String addPotentialUrl, @HeaderMap Map<String, String> headers, @Body AddPotentialRequestBody addPotentialRequestBody);
 
 
     //保存图标位置
@@ -125,7 +137,6 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getHuiJiCardGoodsList_ycm(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
-
 
 
     /**
@@ -159,6 +170,7 @@ public interface ApiService {
 
     /**
      * 会籍会员详情编辑
+     *
      * @param url
      * @param headers
      * @param editHuiJiVipBody
@@ -210,7 +222,7 @@ public interface ApiService {
 
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getBusinessMessage(@Url String loginUrl,@HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);
+    Observable<JSONObject> getBusinessMessage(@Url String loginUrl, @HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);
 
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST

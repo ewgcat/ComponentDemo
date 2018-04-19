@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -62,46 +63,38 @@ public class SplashActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splash);
-        initRxPermissions(index, permissions);    }
+        initRxPermissions(index, permissions);
+    }
 
 
     public void jumpToNext() {
         User user = DBManager.getInstance().queryUser();
-        if (user!=null){
+        if (user != null) {
             String token = user.getToken().trim();
-            if(TextUtils.isEmpty(token)){
+            if (TextUtils.isEmpty(token)) {
                 Intent intent = new Intent();
-                intent.setClass(this,LoginActivity.class);
+                intent.setClass(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }  else {
+            } else {
 
                 Intent intent = new Intent();
-                intent.setClass(this,MainActivity.class);
+                intent.setClass(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
-        }else {
+        } else {
             Intent intent = new Intent();
-            intent.setClass(this,LoginActivity.class);
+            intent.setClass(this, LoginActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
 
-
-
     }
-
-
-
-
-
-
-
 
 
     /**
@@ -133,7 +126,8 @@ public class SplashActivity extends AppCompatActivity {
      * 请求通知权限  100
      */
     private void requestPermissions(String msg) {
-        AlertDialog alertDialog = new AlertDialog.Builder(SplashActivity.this)
+        AlertDialog alertDialog = new AlertDialog.Builder(new ContextThemeWrapper(SplashActivity.this, R.style.AlertDialogCustom))
+
                 .setTitle("获取必要权限")
                 .setMessage(msg)
                 .setPositiveButton("立即获取", (dialog, which) -> {
@@ -158,9 +152,6 @@ public class SplashActivity extends AppCompatActivity {
         }
         return msg;
     }
-
-
-
 
 
     /**

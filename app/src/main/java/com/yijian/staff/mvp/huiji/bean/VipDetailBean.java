@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.huiji.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by yangk on 2018/4/2.
@@ -250,7 +251,11 @@ public class VipDetailBean  {
         private String serviceCoach;
         private String serviceSale;
         private String userChannel;
+        private ArrayList<String> privateCourses;
 
+        public ArrayList<String> getPrivateCourses() {
+            return privateCourses;
+        }
         public String getReceptionSale() {
             return receptionSale;
         }

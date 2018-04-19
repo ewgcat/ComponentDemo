@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.experienceclass.step3;
+package com.yijian.staff.mvp.coach.experienceclass.step3.bean;
 
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
 import com.yijian.staff.util.JsonUtil;

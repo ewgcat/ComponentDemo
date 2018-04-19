@@ -18,23 +18,22 @@ public class CoachViperBean implements Serializable {
 
     /**
      * CoachExpireVO：教练过期
-     CoachInfoVO ：教练正式
-     CoachIntentionVO：教练意向
-     CoachTodayVisitVO：教练今日来访
-     CustomerInfoVO：会籍正式
-     CustomerTodayVisitVO：会籍今日来访
-     CustomerExpireVO：会籍过期
-     CustomerIntentionVO：会籍意向
-     PotentialVO：潜在（会籍教练共用）
+     * CoachInfoVO ：教练正式
+     * CoachIntentionVO：教练意向
+     * CoachTodayVisitVO：教练今日来访
+     * CustomerInfoVO：会籍正式
+     * CustomerTodayVisitVO：会籍今日来访
+     * CustomerExpireVO：会籍过期
+     * CustomerIntentionVO：会籍意向
+     * PotentialVO：潜在（会籍教练共用）
      */
     private String subclassName;
     private int experienceClassTimes;
-    private String   seller;//服务会籍
+    private String seller;//服务会籍
 
-    private String fitnessHobby ;
-    private String mobile ;
-    private Boolean isProtected ;
-
+    private String fitnessHobby;
+    private String mobile;
+    private Boolean isProtected;
 
 
     private String healthStatus; //身体状态
@@ -66,6 +65,8 @@ public class CoachViperBean implements Serializable {
     private String privateClass;//私教课
     private String fiirstId;//第一次体验课上课记录id ,
     private String secondId;//第二次体验课上课记录id
+    private int firstType;//第一次体验课上课记录表类型    0 非自定义 1自定义
+    private int secondType;//第二次体验课上课记录表类型  0 非自定义 1自定义
 
 
     private String historyCourse; //历史课程
@@ -113,16 +114,26 @@ public class CoachViperBean implements Serializable {
         this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
+        this.firstType = JsonUtil.getInt(jsonObject, "firstType");
+        this.secondType = JsonUtil.getInt(jsonObject, "secondType");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
-            if (jsonObject.has("cardprods")){
+            if (jsonObject.has("cardprods")) {
 
                 this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(), CoachViperBean.CardprodsBean.class);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getFirstType() {
+        return firstType;
+    }
+
+    public int getSecondType() {
+        return secondType;
     }
 
     public String getFiirstId() {
@@ -183,12 +194,9 @@ public class CoachViperBean implements Serializable {
     }
 
 
-
-
     public String getBodybuildingHobby() {
         return bodybuildingHobby;
     }
-
 
 
     public String getInterestHobby() {

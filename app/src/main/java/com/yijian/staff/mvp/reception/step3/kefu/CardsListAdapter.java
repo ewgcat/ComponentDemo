@@ -48,44 +48,6 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
     public void onBindViewHolder(CardsListAdapter.ViewHolder holder, int position) {
         holder.bindView(position);
 
-
-//        Logger.i("ClassListAdapter", "position: " + position);
-//        if (clickIndex==position){
-//            holder.itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-//
-//        }else {
-//            holder.itemView.setBackgroundResource(R.drawable.white_bg);
-//        }
-//
-//        GoodsInfo goodsInfo = mGoodsInfoList.get(position);
-//        holder.tvGoodsName.setText(goodsInfo.getCardName());
-//        holder.tvJianshenplace.setText(goodsInfo.getVenusNames());
-//        if (goodsInfo.getCardType() == 1) {
-//            holder.tvYuEr.setText(goodsInfo.getValidDay());
-//            holder.tv_danwei.setText("天");
-//        } else if (goodsInfo.getCardType() == 2) {
-//            holder.tvYuEr.setText(goodsInfo.getValidTime());
-//            holder.tv_danwei.setText("次");
-//        } else if (goodsInfo.getCardType() == 3) {
-//            holder.tvYuEr.setText(goodsInfo.getAmount());
-//            holder.tv_danwei.setText("元");
-//        } else if (goodsInfo.getCardType() == 4) {
-//            holder.tvYuEr.setText(goodsInfo.getAmount());
-//            holder.tv_danwei.setText("元");
-//        }
-//
-//        holder.tvChuzhiyouhui.setText(goodsInfo.getRechargeGivePercent());
-//        holder.tvPrice.setText(goodsInfo.getSalePrice());
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onItemClickListener != null) {
-//                    onItemClickListener.onItemClick(v, goodsInfo);
-//                }
-//                clickIndex = position;
-//                notifyDataSetChanged();
-//            }
-//        });
     }
 
     @Override
@@ -171,5 +133,9 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public List<CardInfo> getmGoodsInfoList() {
+        return mGoodsInfoList;
     }
 }

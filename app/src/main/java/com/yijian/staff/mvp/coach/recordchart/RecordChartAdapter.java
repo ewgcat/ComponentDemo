@@ -1,5 +1,7 @@
 package com.yijian.staff.mvp.coach.recordchart;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.recordchart.detail.ClassRecordDetailActivity;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 
@@ -18,8 +22,16 @@ public class RecordChartAdapter extends RecyclerView.Adapter<RecordChartAdapter.
 
     private List<ClassRecordBean> classRecordBeanList;
 
-    public RecordChartAdapter( List<ClassRecordBean> classRecordBeanList) {
+    private Context context;
+
+    public RecordChartAdapter(Context context, List<ClassRecordBean> classRecordBeanList) {
         this.classRecordBeanList = classRecordBeanList;
+        this.context = context;
+    }
+
+    public void update(List<ClassRecordBean> classRecordBeanList) {
+        this.classRecordBeanList = classRecordBeanList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -32,11 +44,18 @@ public class RecordChartAdapter extends RecyclerView.Adapter<RecordChartAdapter.
     @Override
     public void onBindViewHolder(RecordChartAdapter.ViewHolder holder, int position) {
         ClassRecordBean classRecordBean = classRecordBeanList.get(position);
-        holder.tv_name.setText(classRecordBean.getClassName());
-        holder.tv_class_time.setText(classRecordBean.getClassTime());
-        holder.tv_class_jieshu.setText(classRecordBean.getClassJieShu());
-        holder.tv_has_shang_class_count.setText(classRecordBean.getHasShangClassCount());
-
+        holder.tv_name.setText(classRecordBean.getCourseName());
+        holder.tv_class_time.setText(classRecordBean.getStartDate());
+        holder.tv_class_jieshu.setText(classRecordBean.getCourseNum());
+        holder.tv_has_shang_class_count.setText(classRecordBean.getCurrentNum());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ClassRecordDetailActivity.class);
+                intent.putExtra("id",classRecordBean.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

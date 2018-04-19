@@ -7,6 +7,7 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.advice.AdviceBean;
+import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -19,6 +20,7 @@ import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBo
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
+import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -26,6 +28,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,6 +153,7 @@ public class HttpManager {
 
     //重置密码
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+    public static String EDIT_PASSWORD_URL = BuildConfig.HOST + "user/password/modify";
 
     //添加潜在
     public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
@@ -168,8 +172,16 @@ public class HttpManager {
     //体验课 回访节点
     public static String GET_EXPERICECE_HUI_FANG_URL = BuildConfig.HOST + "experienceProcess/toVisit";
 
+    //体验课 回访节点_保存教练记录
+    public static String POST_EXPERICECE_HUI_FANG_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveCoachVisitRecord";
+
+
     //体验课 会商方案
     public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL = BuildConfig.HOST + "experienceProcess/toConsultationProgramme";
+
+    //体验课 会商方案_保存会商方案
+    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveConsultationProgramme";
+
 
     //体验课 二次邀约
     public static String GET_EXPERICECE_INVITE_AGAIN_URL = BuildConfig.HOST + "experienceProcess/toInviteAgain";
@@ -194,6 +206,18 @@ public class HttpManager {
     //添加职业证书
     public static String GET_CERTIFICATE_URL = BuildConfig.HOST + "certificate/getCertificate";
 
+    //获取调查问卷列表
+    public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
+
+    //教练回访类型
+    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "coach/interview/config";
+
+    //教练回访结果
+    public static String GET_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+
+    //教练回访任务列表
+    public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -208,7 +232,40 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
-    //登陆
+    //获取调查问卷列表
+    public static void getQuestionnaireList(int pageNum, int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            QuestionnaireRequestBody body = new QuestionnaireRequestBody(pageNum, pageSize);
+            Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
+
+            execute(loginObservable, observer);
+        }
+    }
+
+    //获取教练正式会员上课记录列表
+    public static void getCoachVipCourseListList(String memberId,int pageNum, int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            HashMap<String,String> params=new HashMap<>();
+            params.put("memberId",memberId);
+            params.put("pageNum",pageNum+"");
+            params.put("pageSize",pageSize+"");
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers,params );
+
+            execute(loginObservable, observer);
+        }
+    }
+
+    //添加潜在
     public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
@@ -412,6 +469,16 @@ public class HttpManager {
     }
 
 
+    // //体验课_回访——教练提交回访记录
+    public static void postExperienceAccessRecord(String url, AccessRecordBean recordBean, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.postExperienceAccessRecord(url, headers, recordBean);
+        execute(observable, observer);
+    }
+
     //公共
     // post没请求头没有参数
     public static void postNoHeaderNoParam(String url, Observer<JSONObject> observer) {
@@ -537,19 +604,31 @@ public class HttpManager {
     }
 
     //上传图片
-    public static void upLoadImage(String imageFilePath, Observer<JSONObject> observer) {
+    public static void upLoadFiles(List<String> list, String fileType, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            List<MultipartBody.Part> bodys = new ArrayList<>();
+            headers.put("token", user.getToken());
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i);
+                File file = new File(s);
+                // 创建 RequestBody，用于封装构建RequestBody
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
+                bodys.add(body);
+            }
 
-            File file = new File(imageFilePath);
-            // 创建 RequestBody，用于封装构建RequestBody
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            // MultipartBody.Part  和后端约定好Key，这里的partName是用image
-            MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
-            String url = "http://h5.dev.ejoyst.com/file/uploadFile";
-            Observable<JSONObject> observable = apiService.upLoadImage(url,  body);
+            String url = "https://h5.dev.ejoyst.com/file/uploadMultipleFile";
+            Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
             execute(observable, observer);
+        }
     }
 
-    //上传图片
+    //保存职业证书
     public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();

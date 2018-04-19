@@ -26,6 +26,8 @@ import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
+import com.yijian.staff.widget.selectphoto.ImageBean;
 
 import org.json.JSONObject;
 
@@ -38,9 +40,8 @@ import butterknife.ButterKnife;
 import me.iwf.photopicker.PhotoPicker;
 
 public class MyQualificationActivity extends MvcBaseActivity {
-
-    @BindView(R.id.lin_iv)
-    LinearLayout lin_iv;
+    @BindView(R.id.choose_photo_view)
+    ChoosePhotoView choosePhotoView;
     @BindView(R.id.rcl)
     RecyclerView rcl;
     @BindView(R.id.ll_my_zili)
@@ -48,6 +49,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
     private List<AuthBean> authList;
     private ZiLiAdapter adapter;
     private CertificateBean certificateBean;
+    private  List<ImageBean> list = new ArrayList<>();
 
 
     @Override
@@ -67,11 +69,11 @@ public class MyQualificationActivity extends MvcBaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyQualificationActivity.this, EditQualificationActivity.class);
-                startActivityForResult(intent,101);
+                startActivityForResult(intent, 101);
             }
         });
 
-
+        choosePhotoView.setMode(ChoosePhotoView.MODE_ONLY_SHOW);
         rcl.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ZiLiAdapter(authList);
         rcl.setAdapter(adapter);
@@ -82,7 +84,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
         User user = DBManager.getInstance().queryUser();
         HashMap<String, String> param = new HashMap<>();
-        param.put("coach_id", user.getUserId());
+        param.put("coachId", user.getUserId());
         HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -104,23 +106,12 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
 
 
-    public void setImageList(List<CertBean> certList) {
-
+     public void setImageList(List<CertBean> certList) {
+        list.clear();
         for (int i = 0; i < certList.size(); i++) {
-            CertBean certListBean = certList.get(i);
-            ImageView iv = new ImageView(this);
-            FrameLayout.LayoutParams ivFlp = new FrameLayout.LayoutParams(DensityUtil.dip2px(this, 200), FrameLayout.LayoutParams.MATCH_PARENT);
-            ivFlp.setMargins(DensityUtil.dip2px(this, 13), 0, 0, 0);
-            iv.setLayoutParams(ivFlp);
-
-            RequestOptions options = new RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.mipmap.placeholder)
-                    .error(R.mipmap.placeholder)
-                    .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-            Glide.with(this).load(certListBean.getCertificate()).apply(options).into(iv);
-            lin_iv.addView(iv);
+            list.add(new ImageBean(certList.get(i).getCertificate(),1));
         }
+        choosePhotoView.setmPhotoPathList(list);
 
     }
 

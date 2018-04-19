@@ -98,7 +98,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
 
                 List<RecptionRecordListBean.RecordsBean> records = recptionRecordListBean.getRecords();
                 if (records==null||records.size()==0){
-                    Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                  if (pageNum!=1) Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
 
                     return;
                 }

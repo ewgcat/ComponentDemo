@@ -20,6 +20,9 @@ import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecord2Activity;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
@@ -93,9 +96,16 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                     @Override
                     public void onClick(View v) {
                         //TODO 跳转到第一次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("fiirstId",coachViperBean.getFiirstId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getFirstType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }
+
                     }
                 });
                 holder. rl_class_record.setVisibility(View.VISIBLE);
@@ -107,19 +117,29 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                 holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO 跳转到第一次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("fiirstId",coachViperBean.getSecondId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getFirstType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }
                     }
                 });
                 holder.tv_second_class_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO 跳转到第二次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("secondId",coachViperBean.getSecondId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getSecondType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, ExperienceClassRecord2Activity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
+                            context.startActivity(intent);
+                        }
                     }
                 });
             }

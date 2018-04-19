@@ -35,7 +35,7 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
     @Override
     public void jumpBodyCheck(String memberId) {
         Map<String,String> params=new HashMap<>();
-        memberId="076c3096caf04559b9abe112542a9cd0";
+//        memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_JUMP, params, new Observer<JSONObject>() {
@@ -75,7 +75,7 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
     @Override
     public void coachBodyCheck(String memberId) {
         Map<String,String> params=new HashMap<>();
-        memberId="076c3096caf04559b9abe112542a9cd0";
+//        memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new Observer<JSONObject>(){

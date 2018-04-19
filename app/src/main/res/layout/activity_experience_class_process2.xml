@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray"
     android:orientation="vertical">
 
@@ -128,7 +129,7 @@
             android:layout_height="120dp"
             android:gravity="left"
             android:padding="10dp"
-            android:text="学员体质较弱，不适合高强度的训练。学员很少运动，比较宅。希望私教能进行针对性训练。"
+            tools:text="学员体质较弱，不适合高强度的训练。学员很少运动，比较宅。希望私教能进行针对性训练。"
             android:textSize="14sp" />
 
     </LinearLayout>

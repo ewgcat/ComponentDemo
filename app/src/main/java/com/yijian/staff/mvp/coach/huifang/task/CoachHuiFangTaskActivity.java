@@ -12,10 +12,16 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.huifang.history.CoachHuiFangHistoryActivity;
 import com.yijian.staff.mvp.coach.huifang.task.fragment.CoachBaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.coach.huifang.task.pageadapter.CoachHuiFangPagerAdapter;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -56,6 +62,20 @@ public class CoachHuiFangTaskActivity extends AppCompatActivity {
 
 
     private void initIndicatorAndViewPager() {
+
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_TYPE_LIST_URL, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+//                configVOs
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
+
         List<String> mTitleList = new ArrayList<>();
         mTitleList.add("全部");
         mTitleList.add("生日");

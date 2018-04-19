@@ -209,6 +209,15 @@ public class HttpManager {
     //获取调查问卷列表
     public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
 
+    //教练回访类型
+    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "coach/interview/config";
+
+    //教练回访结果
+    public static String GET_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+
+    //教练回访任务列表
+    public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

@@ -145,8 +145,6 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
                 refreshLayout.finishRefresh(2000, false);
             }
         });
-
-
     }
 
     public void loadMore() {

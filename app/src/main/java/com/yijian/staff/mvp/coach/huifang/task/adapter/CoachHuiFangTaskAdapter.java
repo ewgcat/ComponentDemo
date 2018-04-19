@@ -3,18 +3,25 @@ package com.yijian.staff.mvp.coach.huifang.task.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
 import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import java.util.List;
 
@@ -56,60 +63,115 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
 
         CoachHuiFangInfo coachHuiFangInfo = mCoachHuiFangInfoList.get(position);
         String headImg = coachHuiFangInfo.getHeadImg();
-        Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
+
         holder.tvViperName.setText(coachHuiFangInfo.getName());
         String sex = coachHuiFangInfo.getSex();
-        if ("男".equals(sex)){
+        if ("男".equals(sex)) {
             Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
-        }else {
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_boysmall)
+                        .error(R.mipmap.wt_boysmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
+        } else {
             Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
-
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_girlsmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_girlsmall)
+                        .error(R.mipmap.wt_girlsmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
         }
-        String huifangType = type + "";
+
+        String carBrand = coachHuiFangInfo.getCarBrand();
+        if (!TextUtils.isEmpty(carBrand)) {
+            holder.tvCardName.setText(carBrand);
+        }
+
+        String huifangType = coachHuiFangInfo.getInterviewType();
+        if (!TextUtils.isEmpty(huifangType)) {
+            holder.tvHuifangType.setText(huifangType);
+        }
+        String fitnessHobby = coachHuiFangInfo.getFitnessHobby();
+        if (!TextUtils.isEmpty(fitnessHobby)) {
+            holder.tvJianshenAihao.setText(fitnessHobby);
+        }
+        String hobby = coachHuiFangInfo.getHobby();
+        if (!TextUtils.isEmpty(fitnessHobby)) {
+            holder.tvXingquAihao.setText(hobby);
+        }
+
 
         /**
-         * 0:全部，1:生日，2:昨日到访，3:昨日开卡，
-         * 4:潜在会员，5:沉寂会员，6:恢复健身，7:复访，
-         * 8:过期，9:快到期，10:易建平台，
-         * 11:体验课，12:昨日上课，13:定时体测，
-         * 14:私课上完，15:昨日买课】
+         【0:全部，1:生日，2:昨日到访，
+         3:昨日开卡，4:潜在会员，5:沉寂会员，
+         6:恢复健身，7:复访，8:过期，9:快到期，
+         10:易建平台，11:体验课，12:昨日上课，
+         13:定时体测，14:私课上完，15:昨日买课】
          */
-        switch (huifangType) {
+        String subclassName = coachHuiFangInfo.getSubclassName();
+        switch (subclassName) {
 
-            case "1":
+            case "BirthdayVO"://生日回访 1
                 holder.llBirthday.setVisibility(View.VISIBLE);
                 holder.llBirthdayType.setVisibility(View.VISIBLE);
+                Long birthday = coachHuiFangInfo.getBirthday();
+                if (birthday != null && birthday != -1) {
+                    String s = DateUtil.parseLongDateToDateString(birthday);
+                    holder.tvBirthday.setText(s);
+                }
+                String birthdayType = coachHuiFangInfo.getBirthdayType();
+                if (!TextUtils.isEmpty(birthdayType)) {
+                    holder.tvBirthdayType.setText(birthdayType);
+                }
                 break;
-            case "12":
+            case "YesterdayCourseVO"://昨日上课 14
                 holder.llLastTiCeTime.setVisibility(View.VISIBLE);
                 break;
-            case "3":
+            case "YesterdayOpenVO"://昨日开卡  3
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 holder.llCardName.setVisibility(View.VISIBLE);
                 holder.llCardType.setVisibility(View.VISIBLE);
                 break;
-            case "9":
+            case "NearExpireVO"://快到期回访 9
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 holder.llHetongYuEr.setVisibility(View.VISIBLE);
                 break;
-            case "13":
-                holder.ll_ti_ce_num.setVisibility(View.VISIBLE);
-                holder.ll_yue_ke_time.setVisibility(View.VISIBLE);
+            case "TimingPhysicalTestVO"://定时体测  13
+                holder.llLastTiCeTime.setVisibility(View.VISIBLE);
+                Long lastTestTime = coachHuiFangInfo.getLastTestTime();
+                if (lastTestTime!=null&&lastTestTime!=-1){
+                    String s = DateUtil.parseLongDateToTimeString(lastTestTime);
+                    holder.tvLastTiCeTime.setText(s);
+                }
                 break;
-            case "7":
+            case "ReVO"://复访  7
                 holder.llPreVisitDate.setVisibility(View.VISIBLE);
                 holder.llFuFangReason.setVisibility(View.VISIBLE);
                 break;
-            case "8":
+            case "ExpireVO"://过期回访  8
                 holder.llQuanyi.setVisibility(View.VISIBLE);
                 holder.llOutdateTime.setVisibility(View.VISIBLE);
                 holder.llOutdateReason.setVisibility(View.VISIBLE);
+                break;
 
-
+            case "PrivateCourseFinishedVO"://私课上完 14
+                break;
+            case "YesterdayBuyCourseVO"://昨日买课
                 break;
 
         }
-        holder.tvHuifangType.setText(huifangType);
 
 
         holder.llBt.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +179,16 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             public void onClick(View v) {
                 String text = holder.tv.getText().toString();
                 if (text.equals("回访")) {
-                    CommonUtil.callPhone(context, "13386170640");
+                    String mobile = coachHuiFangInfo.getMobile();
+                    if (!TextUtils.isEmpty(mobile)){
+                        if (CommonUtil.isPhoneFormat(mobile)){
+                            CommonUtil.callPhone(context, mobile);
+                        }else {
+                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
                     context.startActivity(i);
@@ -150,8 +221,7 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         holder.llBirthday.setVisibility(View.GONE);
         holder.llBirthdayType.setVisibility(View.GONE);
         holder.llLastTiCeTime.setVisibility(View.GONE);
-        holder.ll_ti_ce_num.setVisibility(View.GONE);
-        holder.ll_yue_ke_time.setVisibility(View.GONE);
+
 
 
     }
@@ -183,8 +253,6 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         LinearLayout llBirthdayType;
         LinearLayout llBirthday;
         LinearLayout llLastTiCeTime;
-        LinearLayout ll_ti_ce_num;
-        LinearLayout ll_yue_ke_time;
 
         TextView tvQuanyi;
         TextView tvOutdateTime;
@@ -204,8 +272,7 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         TextView tvBirthdayType;
         TextView tvBirthday;
         TextView tvLastTiCeTime;
-        TextView tv_ti_ce_num;
-        TextView tv_yue_ke_time;
+        TextView tv_last_ti_ce_time;
 
 
         TextView tvHuifangType;
@@ -270,10 +337,8 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
 
             tvLastTiCeTime = view.findViewById(R.id.tv_last_ti_ce_time);
             llLastTiCeTime = view.findViewById(R.id.ll_last_ti_ce_time);
-            tv_ti_ce_num = view.findViewById(R.id.tv_ti_ce_num);
-            ll_ti_ce_num = view.findViewById(R.id.ll_ti_ce_num);
-            tv_yue_ke_time = view.findViewById(R.id.tv_yue_ke_time);
-            ll_yue_ke_time = view.findViewById(R.id.ll_yue_ke_time);
+
+
 
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);
             llBt = view.findViewById(R.id.ll_bt);

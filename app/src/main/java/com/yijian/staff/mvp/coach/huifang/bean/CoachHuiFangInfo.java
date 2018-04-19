@@ -44,6 +44,8 @@ public class CoachHuiFangInfo {
     private String interviewResult;
     private Long birthday;
     private String birthdayType;
+    private String testTimes;
+    private Long lastTestTime;
     private String subclassName;
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
@@ -58,10 +60,21 @@ public class CoachHuiFangInfo {
         this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
 
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
+        this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.testTimes = JsonUtil.getString(jsonObject, "testTimes");
 
 
+    }
+
+    public String getTestTimes() {
+        return testTimes;
+    }
+
+    public Long getLastTestTime() {
+        return lastTestTime;
     }
 
     public String getInterviewRecordId() {

@@ -882,79 +882,8 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--已体测次数-->
-        <LinearLayout
-            android:id="@+id/ll_ti_ce_num"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="已体测次数: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_ti_ce_num"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!--约课时间-->
-        <LinearLayout
-            android:id="@+id/ll_yue_ke_time"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="约课时间: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_yue_ke_time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
 
     </LinearLayout>

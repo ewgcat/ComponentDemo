@@ -40,7 +40,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    private ArrayList<CoachHuiFangTypeBean>  coachHuiFangTypeBeanArrayList=new ArrayList<>();
+    private ArrayList<CoachHuiFangTypeBean> coachHuiFangTypeBeanArrayList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {
@@ -57,7 +57,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
                 JSONArray configVOs = JsonUtil.getJsonArray(result, "configVOs");
                 try {
                     if (configVOs != null && configVOs.length() > 0) {
-                        for (int i = 0; i <configVOs.length(); i++) {
+                        for (int i = 0; i < configVOs.length(); i++) {
                             JSONObject jsonObject = configVOs.getJSONObject(i);
                             CoachHuiFangTypeBean coachHuiFangTypeBean = new CoachHuiFangTypeBean(jsonObject);
                             coachHuiFangTypeBeanArrayList.add(coachHuiFangTypeBean);
@@ -65,7 +65,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
                         initIndicatorAndViewPager();
 
                     }
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -76,8 +76,6 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
             }
         });
     }
-
-
 
 
     private void initNavigation() {
@@ -93,7 +91,8 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
 
         List<String> mTitleList = new ArrayList<>();
         List<Fragment> fragmentList = new ArrayList<>();
-
+        mTitleList.add("全部");
+        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 0));
         for (int i = 0; i < coachHuiFangTypeBeanArrayList.size(); i++) {
             CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanArrayList.get(i);
             mTitleList.add(coachHuiFangTypeBean.getConfigName());
@@ -123,13 +122,12 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
         viewPager.setAdapter(coachHuiFangPagerAdapter);
         tabs.setViewPager(viewPager);
 
-        if (fragmentList.size()>0){
+        if (fragmentList.size() > 0) {
             tabs.updateBubbleNum(0, 12);
 
             //初始化显示第一页
             viewPager.setCurrentItem(0);
         }
-
 
 
     }

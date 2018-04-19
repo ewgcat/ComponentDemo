@@ -23,6 +23,7 @@ import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 
 import com.yijian.staff.util.Logger;
@@ -48,6 +49,12 @@ public class DayFragment_ycm extends Fragment  {
     private WeekCalendarView wcvCalendar;
     private MonthCalendarView mcvCalendar;
     private RecyclerView rv_day;
+    OnChangeDateListener onChangeDateListener;
+
+    public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
+        this.onChangeDateListener = onChangeDateListener;
+    }
+
 
     public static DayFragment_ycm getInstance(){
         if(dayFragment == null){
@@ -144,7 +151,9 @@ public class DayFragment_ycm extends Fragment  {
 
         @Override
         public void onPageChange(int year, int month, int day) {
-            Log.e("Test","year==="+year+"  month==="+month);
+            Log.e("Test","year==="+year+"  month==="+month + "   day==="+day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
         }
     };
 
@@ -164,7 +173,17 @@ public class DayFragment_ycm extends Fragment  {
 
         @Override
         public void onPageChange(int year, int month, int day) {
-            Log.e("Test","year==="+year+"  month==="+month);
+            Log.e("Test","year==="+year+"  month==="+month + "   day==="+day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
+
+            //添加小圆点
+            List<String> dateList = new ArrayList<String>();
+            dateList.add("2018-5-2");
+            dateList.add("2018-5-3");
+            dateList.add("2018-5-4");
+            dateList.add("2018-6-2");
+            wcvCalendar.getCurrentWeekView().addDateTaskHint(dateList);
         }
     };
 

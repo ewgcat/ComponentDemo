@@ -20,7 +20,10 @@ import com.jimmy.common.data.ScheduleDao;
 import com.jeek.calendar.widget.calendar.CalendarUtils;
 import com.jeek.calendar.widget.calendar.LunarCalendarUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,6 +58,7 @@ public class MonthView extends View {
     private boolean mIsShowLunar;
     private boolean mIsShowHint;
     private boolean mIsShowHolidayHint;
+    private boolean mIsDayHintTask; //区分周视图和日视图(默认是日视图) -----这里的周视图和日视图 是需求业务的，不是日历本身的周视图和月视图
     private DisplayMetrics mDisplayMetrics;
     private OnMonthClickListener mDateClickListener;
     private GestureDetector mGestureDetector;
@@ -85,7 +89,7 @@ public class MonthView extends View {
         if (mIsShowHint) {
             // 从数据库中获取圆点提示数据
             ScheduleDao dao = ScheduleDao.getInstance(getContext());
-            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, dao.getTaskHintByMonth(mSelYear, mSelMonth));
+            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, dao.getTaskHintByMonth(mSelYear, mSelMonth),mIsDayHintTask);
         }
     }
 
@@ -120,6 +124,7 @@ public class MonthView extends View {
             mIsShowHint = array.getBoolean(R.styleable.MonthCalendarView_month_show_task_hint, true);
             mIsShowLunar = array.getBoolean(R.styleable.MonthCalendarView_month_show_lunar, true);
             mIsShowHolidayHint = array.getBoolean(R.styleable.MonthCalendarView_month_show_holiday_hint, true);
+            mIsDayHintTask = array.getBoolean(R.styleable.MonthCalendarView_month_day_hint_task, true);
         } else {
             mSelectDayColor = Color.parseColor("#FFFFFF");
             mSelectBGColor = Color.parseColor("#E8E8E8");
@@ -134,6 +139,7 @@ public class MonthView extends View {
             mIsShowHint = true;
             mIsShowLunar = true;
             mIsShowHolidayHint = true;
+            mIsDayHintTask = true;
         }
         mSelYear = year;
         mSelMonth = month;
@@ -420,7 +426,7 @@ public class MonthView extends View {
      */
     private void drawHintCircle(Canvas canvas) {
         if (mIsShowHint) {
-            List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mSelYear, mSelMonth);
+            List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mSelYear, mSelMonth, mIsDayHintTask);
             if (hints.size() > 0) {
                 mPaint.setColor(mHintCircleColor);
                 int monthDays = CalendarUtils.getMonthDays(mSelYear, mSelMonth);
@@ -444,8 +450,11 @@ public class MonthView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         return mGestureDetector.onTouchEvent(event);
     }
+
+
 
     public void setSelectYearMonth(int year, int month, int day) {
         mSelYear = year;
@@ -554,8 +563,28 @@ public class MonthView extends View {
      */
     public void addTaskHints(List<Integer> hints) {
         if (mIsShowHint) {
-            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, hints);
+            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, hints, mIsDayHintTask);
             invalidate();
+        }
+    }
+
+    /**
+     * 格式化日期后添加小圆点
+     */
+    public void addDateTaskHint(List<String> dateList){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for (String time : dateList) {
+            try {
+                Date date = simpleDateFormat.parse(time);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                if ((mSelYear == calendar.get(Calendar.YEAR)) && (mSelMonth == calendar.get(Calendar.YEAR))) {
+                    addTaskHint(calendar.get(Calendar.DAY_OF_MONTH));
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -566,7 +595,7 @@ public class MonthView extends View {
      */
     public void removeTaskHints(List<Integer> hints) {
         if (mIsShowHint) {
-            CalendarUtils.getInstance(getContext()).removeTaskHints(mSelYear, mSelMonth, hints);
+            CalendarUtils.getInstance(getContext()).removeTaskHints(mSelYear, mSelMonth, hints, mIsDayHintTask);
             invalidate();
         }
     }
@@ -578,7 +607,7 @@ public class MonthView extends View {
      */
     public boolean addTaskHint(Integer day) {
         if (mIsShowHint) {
-            if (CalendarUtils.getInstance(getContext()).addTaskHint(mSelYear, mSelMonth, day)) {
+            if (CalendarUtils.getInstance(getContext()).addTaskHint(mSelYear, mSelMonth, day, mIsDayHintTask)) {
                 invalidate();
                 return true;
             }
@@ -593,7 +622,7 @@ public class MonthView extends View {
      */
     public boolean removeTaskHint(Integer day) {
         if (mIsShowHint) {
-            if (CalendarUtils.getInstance(getContext()).removeTaskHint(mSelYear, mSelMonth, day)) {
+            if (CalendarUtils.getInstance(getContext()).removeTaskHint(mSelYear, mSelMonth, day, mIsDayHintTask)) {
                 invalidate();
                 return true;
             }

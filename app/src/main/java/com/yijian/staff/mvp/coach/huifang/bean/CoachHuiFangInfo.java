@@ -58,6 +58,7 @@ public class CoachHuiFangInfo {
         this.carBrand = JsonUtil.getString(jsonObject, "carBrand");
         this.interviewType = JsonUtil.getString(jsonObject, "interviewType");
         this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
+        this.interviewRecordId = JsonUtil.getString(jsonObject, "interviewRecordId");
 
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
@@ -65,6 +66,7 @@ public class CoachHuiFangInfo {
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.testTimes = JsonUtil.getString(jsonObject, "testTimes");
+        this.id = JsonUtil.getString(jsonObject, "id");
 
 
     }

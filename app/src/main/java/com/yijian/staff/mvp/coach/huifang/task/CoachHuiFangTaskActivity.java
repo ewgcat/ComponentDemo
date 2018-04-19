@@ -10,6 +10,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.coach.huifang.history.CoachHuiFangHistoryActivity;
 import com.yijian.staff.mvp.coach.huifang.task.fragment.CoachBaseHuiFangTaskFragment;
@@ -122,16 +123,31 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
         viewPager.setAdapter(coachHuiFangPagerAdapter);
         tabs.setViewPager(viewPager);
 
-        if (fragmentList.size() > 0) {
-            tabs.updateBubbleNum(0, 12);
 
-            //初始化显示第一页
-            viewPager.setCurrentItem(0);
-        }
-
+        updateAllNoticeNum();
 
     }
 
+    public void updateAllNoticeNum() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNum", "1");
+        params.put("pageSize", "1");
+        params.put("type", "0");
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                int pages = JsonUtil.getInt(result, "pages");
+                tabs.updateBubbleNum(0, pages);
+                //初始化显示第一页
+                viewPager.setCurrentItem(0);
+            }
+
+            @Override
+            public void onFail(String msg) {
+            }
+        });
+    }
 
     @OnClick({R.id.ll_hui_fang_ji_lu})
     public void onViewClicked(View view) {

@@ -19,10 +19,15 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
 import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -180,9 +185,24 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
                 String text = holder.tv.getText().toString();
                 if (text.equals("回访")) {
                     String mobile = coachHuiFangInfo.getMobile();
+                    mobile="18986170640";
                     if (!TextUtils.isEmpty(mobile)){
                         if (CommonUtil.isPhoneFormat(mobile)){
                             CommonUtil.callPhone(context, mobile);
+                            HashMap<String, String> param = new HashMap<>();
+                            param.put("interviewRecordId",coachHuiFangInfo.getInterviewRecordId());
+                            param.put("memberId",coachHuiFangInfo.getId());
+                            HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
+                                @Override
+                                public void onSuccess(JSONObject result) {
+
+                                }
+
+                                @Override
+                                public void onFail(String msg) {
+
+                                }
+                            });
                         }else {
                             Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
                         }
@@ -199,7 +219,7 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
 
     @Override
     public int getItemCount() {
-        return mCoachHuiFangInfoList.size();
+        return mCoachHuiFangInfoList==null?0:mCoachHuiFangInfoList.size();
     }
 
     private void resetView(ViewHolder holder) {

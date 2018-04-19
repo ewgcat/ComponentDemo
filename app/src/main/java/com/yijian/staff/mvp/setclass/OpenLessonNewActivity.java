@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.RelativeLayout;
@@ -186,10 +187,14 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         try {
             String startTime = getIntent().getStringExtra("startDateTime");
             String endTime = getIntent().getStringExtra("endDateTime");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-            tv_shangke.setText(simpleDateFormat.format(dateFormat.parse(startTime)));
-            tv_xiake.setText(simpleDateFormat.format(dateFormat.parse(endTime)));
+            if (!TextUtils.isEmpty(startTime) && !TextUtils.isEmpty(endTime)) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                tv_shangke.setText(simpleDateFormat.format(dateFormat.parse(startTime)));
+                tv_xiake.setText(simpleDateFormat.format(dateFormat.parse(endTime)));
+
+            }
+
 
 
         } catch (ParseException e) {

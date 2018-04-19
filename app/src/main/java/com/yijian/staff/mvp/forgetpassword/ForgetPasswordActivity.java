@@ -84,48 +84,52 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
                 break;
             case R.id.btn_send:
-                if (TextUtils.isEmpty(account) ) {
+                if (TextUtils.isEmpty(account)) {
                     Toast.makeText(ForgetPasswordActivity.this, "账号不能为空", Toast.LENGTH_SHORT).show();
                     return;
-                } else if ( TextUtils.isEmpty(telephone)) {
+                }
+                if (TextUtils.isEmpty(telephone)) {
                     Toast.makeText(ForgetPasswordActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (TextUtils.isEmpty(verificationCode)) {
+                }
+                if (TextUtils.isEmpty(verificationCode)) {
                     Toast.makeText(ForgetPasswordActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (TextUtils.isEmpty(newPwd)||TextUtils.isEmpty(confirmPwd) ) {
+                }
+                if (TextUtils.isEmpty(newPwd) || TextUtils.isEmpty(confirmPwd)) {
                     Toast.makeText(ForgetPasswordActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (newPwd.equals(confirmPwd) ) {
+                }
+                if (!newPwd.equals(confirmPwd)) {
                     Toast.makeText(ForgetPasswordActivity.this, "2次输入的密码不同", Toast.LENGTH_SHORT).show();
                     return;
-                }  else if (CommonUtil.isPassWordFormat(newPwd)) {
+                }
+                if (!CommonUtil.isPassWordFormat(newPwd)) {
 
                     Toast.makeText(ForgetPasswordActivity.this, "新密码格式不正确,密码是数字和字母的6-20位组合！", Toast.LENGTH_SHORT).show();
                     return;
-                }else if (CommonUtil.isPassWordFormat(confirmPwd)) {
+                }
+                if (!CommonUtil.isPassWordFormat(confirmPwd)) {
                     Toast.makeText(ForgetPasswordActivity.this, "确认密码格式不正确，密码是数字和字母的6-20位组合！！", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
-                    if (CommonUtil.isPhoneFormat(telephone)) {
-
-                        HttpManager.resetPassword(account, telephone, verificationCode,newPwd,confirmPwd,new ResultJSONObjectObserver() {
-                            @Override
-                            public void onSuccess(JSONObject result) {
-
-
-                            }
-
-                            @Override
-                            public void onFail(String msg) {
-                                Toast.makeText(ForgetPasswordActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                    } else {
-                        Toast.makeText(ForgetPasswordActivity.this, "输入的手机号不正确,请重新输入！", Toast.LENGTH_SHORT).show();
-                    }
                 }
+                if (CommonUtil.isPhoneFormat(telephone)) {
+
+                    HttpManager.resetPassword(account, telephone, verificationCode, newPwd, confirmPwd, new ResultJSONObjectObserver() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            finish();
+                        }
+
+                        @Override
+                        public void onFail(String msg) {
+                            Toast.makeText(ForgetPasswordActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(ForgetPasswordActivity.this, "输入的手机号不正确,请重新输入！", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
         }
     }

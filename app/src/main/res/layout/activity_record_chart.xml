@@ -9,10 +9,18 @@
         android:id="@+id/record_chart_navigation_bar"
         layout="@layout/view_navigation_bar2" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rlv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
 </LinearLayout>

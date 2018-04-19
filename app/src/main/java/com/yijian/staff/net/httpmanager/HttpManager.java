@@ -153,6 +153,7 @@ public class HttpManager {
 
     //重置密码
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+    public static String EDIT_PASSWORD_URL = BuildConfig.HOST + "user/password/modify";
 
     //添加潜在
     public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
@@ -221,16 +222,35 @@ public class HttpManager {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
     }
+
     //获取调查问卷列表
-    public static void getQuestionnaireList(int pageNum,int pageSize, Observer<JSONObject> observer) {
+    public static void getQuestionnaireList(int pageNum, int pageSize, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            QuestionnaireRequestBody body=new QuestionnaireRequestBody(pageNum,pageSize);
+            QuestionnaireRequestBody body = new QuestionnaireRequestBody(pageNum, pageSize);
             Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
+
+            execute(loginObservable, observer);
+        }
+    }
+
+    //获取教练正式会员上课记录列表
+    public static void getCoachVipCourseListList(String memberId,int pageNum, int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            HashMap<String,String> params=new HashMap<>();
+            params.put("memberId",memberId);
+            params.put("pageNum",pageNum+"");
+            params.put("pageSize",pageSize+"");
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers,params );
 
             execute(loginObservable, observer);
         }

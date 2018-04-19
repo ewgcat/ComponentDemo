@@ -51,7 +51,10 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         initNavigation();
+        initData();
+    }
 
+    private void initData() {
         HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_TYPE_LIST_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -78,7 +81,6 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
         });
     }
 
-
     private void initNavigation() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_task_navigation_bar);
         navigationBar2.setTitle("回访任务");
@@ -86,7 +88,6 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
         navigationBar2.setBackClickListener(this);
 
     }
-
 
     private void initIndicatorAndViewPager() {
 
@@ -99,37 +100,13 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
             mTitleList.add(coachHuiFangTypeBean.getConfigName());
             fragmentList.add(new CoachBaseHuiFangTaskFragment(this, coachHuiFangTypeBean.getConfigType()));
         }
-
-//        mTitleList.add("全部");
-//        mTitleList.add("生日");
-//        mTitleList.add("昨日上课");
-//        mTitleList.add("昨日开卡");
-//        mTitleList.add("快到期");
-//        mTitleList.add("定时体测");
-//        mTitleList.add("复访");
-//        mTitleList.add("过期");
-//
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 0));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 1));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 2));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 3));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 4));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 5));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 6));
-//        fragmentList.add(new CoachBaseHuiFangTaskFragment(this, 7));
-
-
         CoachHuiFangPagerAdapter coachHuiFangPagerAdapter = new CoachHuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(coachHuiFangPagerAdapter);
         tabs.setViewPager(viewPager);
-
-
         updateAllNoticeNum();
-
     }
 
     public void updateAllNoticeNum() {
-
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNum", "1");
         params.put("pageSize", "1");
@@ -142,7 +119,6 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
                 //初始化显示第一页
                 viewPager.setCurrentItem(0);
             }
-
             @Override
             public void onFail(String msg) {
                 showToast(msg);
@@ -153,7 +129,6 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
     @OnClick({R.id.ll_hui_fang_ji_lu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.ll_hui_fang_ji_lu:
                 startActivity(new Intent(CoachHuiFangTaskActivity.this, CoachHuiFangHistoryActivity.class));
                 break;

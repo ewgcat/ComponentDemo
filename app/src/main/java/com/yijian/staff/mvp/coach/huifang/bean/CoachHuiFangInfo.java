@@ -59,6 +59,8 @@ public class CoachHuiFangInfo {
 
     private String courseName;
     private String courseId;
+    private String reinterviewReason;
+    private Long lastVisitTime;
     /**
      * interviewResult : null
      * contractBalance : 6天
@@ -84,6 +86,7 @@ public class CoachHuiFangInfo {
         this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.inviteCourseTime = JsonUtil.getLong(jsonObject, "inviteCourseTime");
+        this.lastVisitTime = JsonUtil.getLong(jsonObject, "lastVisitTime");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
@@ -93,8 +96,17 @@ public class CoachHuiFangInfo {
         this.courseName = JsonUtil.getString(jsonObject, "courseName");
         this.courseId = JsonUtil.getString(jsonObject, "courseId");
         this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.reinterviewReason = JsonUtil.getString(jsonObject, "reinterviewReason");
 
 
+    }
+
+    public String getReinterviewReason() {
+        return reinterviewReason;
+    }
+
+    public Long getLastVisitTime() {
+        return lastVisitTime;
     }
 
     public String getTestTimes() {

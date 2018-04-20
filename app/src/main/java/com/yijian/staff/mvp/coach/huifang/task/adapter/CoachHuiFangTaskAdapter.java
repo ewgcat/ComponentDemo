@@ -177,6 +177,13 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             case "ReVO"://复访  7
                 holder.llPreVisitDate.setVisibility(View.VISIBLE);
                 holder.llFuFangReason.setVisibility(View.VISIBLE);
+                Long lastVisitTime = coachHuiFangInfo.getLastVisitTime();
+                if (lastVisitTime != null && lastVisitTime != -1) {
+                    String s = DateUtil.parseLongDateToDateString(lastVisitTime);
+                    holder.tvPreJianShenDate.setText(s);
+                }
+                String reinterviewReason = coachHuiFangInfo.getReinterviewReason();
+                holder.tvFuFangReason.setText(reinterviewReason);
                 break;
             case "ExpireVO"://过期回访  8
 

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
@@ -66,6 +67,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
                             CoachHuiFangTypeBean coachHuiFangTypeBean = new CoachHuiFangTypeBean(jsonObject);
                             coachHuiFangTypeBeanArrayList.add(coachHuiFangTypeBean);
                         }
+                        DBManager.getInstance().insertCoachHuiFangTypeBeanList(coachHuiFangTypeBeanArrayList);
                         initIndicatorAndViewPager();
 
                     }

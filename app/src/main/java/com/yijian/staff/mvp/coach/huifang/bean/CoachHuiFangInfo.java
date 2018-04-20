@@ -30,6 +30,8 @@ public class CoachHuiFangInfo {
      * subclassName : BirthdayVO
      */
 
+
+
     private String interviewRecordId;
     private String id;
     private String name;
@@ -48,6 +50,16 @@ public class CoachHuiFangInfo {
     private Long lastTestTime;
     private String subclassName;
 
+    private Long inviteCourseTime;
+
+
+    private Long deadline;
+    private String expiryReason;
+
+    private String courseName;
+    private String courseId;
+
+
     public CoachHuiFangInfo(JSONObject jsonObject) {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
@@ -62,11 +74,16 @@ public class CoachHuiFangInfo {
 
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
+        this.inviteCourseTime = JsonUtil.getLong(jsonObject, "inviteCourseTime");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.testTimes = JsonUtil.getString(jsonObject, "testTimes");
         this.id = JsonUtil.getString(jsonObject, "id");
+        this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.courseName = JsonUtil.getString(jsonObject, "courseName");
+        this.courseId = JsonUtil.getString(jsonObject, "courseId");
 
 
     }
@@ -137,5 +154,48 @@ public class CoachHuiFangInfo {
 
     public String getSubclassName() {
         return subclassName;
+    }
+
+    public Long getInviteCourseTime() {
+        return inviteCourseTime;
+    }
+
+    public void setInviteCourseTime(Long inviteCourseTime) {
+        this.inviteCourseTime = inviteCourseTime;
+    }
+
+
+
+
+    public Long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Long deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(String expiryReason) {
+        this.expiryReason = expiryReason;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 }

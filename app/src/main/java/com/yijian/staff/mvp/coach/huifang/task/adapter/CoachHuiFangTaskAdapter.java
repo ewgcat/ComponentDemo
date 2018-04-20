@@ -17,7 +17,9 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
+import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -142,7 +144,12 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
                 }
                 break;
             case "YesterdayCourseVO"://昨日上课 14
-                holder.llLastTiCeTime.setVisibility(View.VISIBLE);
+                holder.llZuoRiYueKeTime.setVisibility(View.VISIBLE);
+                Long inviteCourseTime = coachHuiFangInfo.getInviteCourseTime();
+                if (inviteCourseTime != null && inviteCourseTime != -1) {
+                    String s = DateUtil.parseLongDateToTimeString(inviteCourseTime);
+                    holder.tv_last_yue_ke_time.setText(s);
+                }
                 break;
             case "YesterdayOpenVO"://昨日开卡  3
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
@@ -156,7 +163,7 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             case "TimingPhysicalTestVO"://定时体测  13
                 holder.llLastTiCeTime.setVisibility(View.VISIBLE);
                 Long lastTestTime = coachHuiFangInfo.getLastTestTime();
-                if (lastTestTime!=null&&lastTestTime!=-1){
+                if (lastTestTime != null && lastTestTime != -1) {
                     String s = DateUtil.parseLongDateToTimeString(lastTestTime);
                     holder.tvLastTiCeTime.setText(s);
                 }
@@ -166,14 +173,25 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
                 holder.llFuFangReason.setVisibility(View.VISIBLE);
                 break;
             case "ExpireVO"://过期回访  8
-                holder.llQuanyi.setVisibility(View.VISIBLE);
+
                 holder.llOutdateTime.setVisibility(View.VISIBLE);
                 holder.llOutdateReason.setVisibility(View.VISIBLE);
+                String expiryReason = coachHuiFangInfo.getExpiryReason();
+                if (!TextUtils.isEmpty(expiryReason)) {
+                    holder.tvOutdateReason.setText(expiryReason);
+                }
+                Long deadline = coachHuiFangInfo.getDeadline();
+                if (deadline != null && deadline != -1) {
+                    String s = DateUtil.parseLongDateToDateString(deadline);
+                    holder.tvOutdateTime.setText(s);
+                }
                 break;
 
             case "PrivateCourseFinishedVO"://私课上完 14
                 break;
-            case "YesterdayBuyCourseVO"://昨日买课
+            case "YesterdayBuyCourseVO"://昨日买课 15
+                holder.llGouMaiKeCheng.setVisibility(View.VISIBLE);
+                holder.tv_gou_mai_ke_cheng.setText(coachHuiFangInfo.getCourseName());
                 break;
 
         }
@@ -184,14 +202,14 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             public void onClick(View v) {
                 String text = holder.tv.getText().toString();
                 if (text.equals("回访")) {
+
                     String mobile = coachHuiFangInfo.getMobile();
-                    mobile="18986170640";
-                    if (!TextUtils.isEmpty(mobile)){
-                        if (CommonUtil.isPhoneFormat(mobile)){
-                            CommonUtil.callPhone(context, mobile);
+                    mobile = "18986170640";
+                    if (!TextUtils.isEmpty(mobile)) {
+                        if (CommonUtil.isPhoneFormat(mobile)) {
                             HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId",coachHuiFangInfo.getInterviewRecordId());
-                            param.put("memberId",coachHuiFangInfo.getId());
+                            param.put("interviewRecordId", coachHuiFangInfo.getInterviewRecordId());
+                            param.put("memberId", coachHuiFangInfo.getId());
                             HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
                                 @Override
                                 public void onSuccess(JSONObject result) {
@@ -203,15 +221,24 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
 
                                 }
                             });
-                        }else {
-                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
+                            CoachHuiFangTypeBean coachHuiFangTypeBean = DBManager.getInstance().queryCoachHuiFangTypeBean("15");
+                            Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
+                            i.putExtra("interviewRecordId",coachHuiFangInfo.getInterviewRecordId());
+                            i.putExtra("memberId",coachHuiFangInfo.getId());
+                            i.putExtra("dictItemId",coachHuiFangTypeBean.getId());
+                            context.startActivity(i);
+
+                            CommonUtil.callPhone(context, mobile);
+
+
+                        } else {
+                            Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
-                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
-                    context.startActivity(i);
+
                 }
             }
         });
@@ -219,11 +246,10 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
 
     @Override
     public int getItemCount() {
-        return mCoachHuiFangInfoList==null?0:mCoachHuiFangInfoList.size();
+        return mCoachHuiFangInfoList == null ? 0 : mCoachHuiFangInfoList.size();
     }
 
     private void resetView(ViewHolder holder) {
-        holder.llQuanyi.setVisibility(View.GONE);
         holder.llOutdateTime.setVisibility(View.GONE);
         holder.llOutdateReason.setVisibility(View.GONE);
         holder.llHetongYuEr.setVisibility(View.GONE);
@@ -241,7 +267,8 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         holder.llBirthday.setVisibility(View.GONE);
         holder.llBirthdayType.setVisibility(View.GONE);
         holder.llLastTiCeTime.setVisibility(View.GONE);
-
+        holder.llZuoRiYueKeTime.setVisibility(View.GONE);
+        holder.llGouMaiKeCheng.setVisibility(View.GONE);
 
 
     }
@@ -255,7 +282,6 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         TextView tvXingquAihao;
         TextView tvCarName;
 
-        LinearLayout llQuanyi;
         LinearLayout llOutdateTime;
         LinearLayout llOutdateReason;
         LinearLayout llHetongYuEr;
@@ -273,8 +299,9 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         LinearLayout llBirthdayType;
         LinearLayout llBirthday;
         LinearLayout llLastTiCeTime;
+        LinearLayout llZuoRiYueKeTime;
+        LinearLayout llGouMaiKeCheng;
 
-        TextView tvQuanyi;
         TextView tvOutdateTime;
         TextView tvOutdateReason;
         TextView tvHetongDaoQiRi;
@@ -292,7 +319,8 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         TextView tvBirthdayType;
         TextView tvBirthday;
         TextView tvLastTiCeTime;
-        TextView tv_last_ti_ce_time;
+        TextView tv_last_yue_ke_time;
+        TextView tv_gou_mai_ke_cheng;
 
 
         TextView tvHuifangType;
@@ -312,9 +340,6 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             tvCarName = view.findViewById(R.id.tv_car_name);
             llCardName = view.findViewById(R.id.ll_card_name);
 
-
-            llQuanyi = view.findViewById(R.id.ll_quanyi);
-            tvQuanyi = view.findViewById(R.id.tv_quanyi);
 
             llBirthday = view.findViewById(R.id.ll_birthday);
             tvBirthday = view.findViewById(R.id.tv_birthday);
@@ -358,6 +383,11 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             tvLastTiCeTime = view.findViewById(R.id.tv_last_ti_ce_time);
             llLastTiCeTime = view.findViewById(R.id.ll_last_ti_ce_time);
 
+            tv_last_yue_ke_time = view.findViewById(R.id.tv_last_yue_ke_time);
+            llZuoRiYueKeTime = view.findViewById(R.id.ll_last_yue_ke_time);
+
+            tv_gou_mai_ke_cheng = view.findViewById(R.id.tv_gou_mai_ke_cheng);
+            llGouMaiKeCheng = view.findViewById(R.id.ll_gou_mai_ke_cheng);
 
 
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);

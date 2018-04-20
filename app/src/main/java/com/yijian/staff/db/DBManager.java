@@ -5,10 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.greendao.gen.CoachHuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
+import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;
@@ -110,4 +112,22 @@ public class DBManager  {
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
         searchKeyDao.deleteAll();
     }
+
+    public void insertCoachHuiFangTypeBeanList(List<CoachHuiFangTypeBean> coachHuiFangTypeBeanList){
+        mDaoSession.getCoachHuiFangTypeBeanDao().deleteAll();
+        if (coachHuiFangTypeBeanList!=null){
+            for (int i = 0; i < coachHuiFangTypeBeanList.size(); i++) {
+                CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanList.get(i);
+                mDaoSession.getCoachHuiFangTypeBeanDao().insert(coachHuiFangTypeBean);
+            }
+        }
+    }
+
+    public CoachHuiFangTypeBean queryCoachHuiFangTypeBean(String configType){
+        CoachHuiFangTypeBeanDao coachHuiFangTypeBeanDao = mDaoSession.getCoachHuiFangTypeBeanDao();
+        CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanDao.queryBuilder()
+                .where(CoachHuiFangTypeBeanDao.Properties.ConfigType.eq(configType)).unique();
+        return coachHuiFangTypeBean;
+    }
+
 }

@@ -26,6 +26,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -102,23 +103,21 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         }
 
         String carBrand = coachHuiFangInfo.getCarBrand();
-        if (!TextUtils.isEmpty(carBrand)) {
-            holder.tvCardName.setText(carBrand);
-        }
+        holder.tvCarName.setText(carBrand);
+
+        String healthStatus = coachHuiFangInfo.getHealthStatus();
+        holder.tvShentiZhuangtai.setText(healthStatus);
+
+        String fitnessHobby = coachHuiFangInfo.getFitnessHobby();
+        holder.tvJianshenAihao.setText(fitnessHobby);
+
+        String hobby = coachHuiFangInfo.getHobby();
+        holder.tvXingquAihao.setText(hobby);
+
+
 
         String huifangType = coachHuiFangInfo.getInterviewType();
-        if (!TextUtils.isEmpty(huifangType)) {
-            holder.tvHuifangType.setText(huifangType);
-        }
-        String fitnessHobby = coachHuiFangInfo.getFitnessHobby();
-        if (!TextUtils.isEmpty(fitnessHobby)) {
-            holder.tvJianshenAihao.setText(fitnessHobby);
-        }
-        String hobby = coachHuiFangInfo.getHobby();
-        if (!TextUtils.isEmpty(fitnessHobby)) {
-            holder.tvXingquAihao.setText(hobby);
-        }
-
+        holder.tvHuifangType.setText(huifangType);
 
         /**
          【0:全部，1:生日，2:昨日到访，
@@ -159,6 +158,13 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             case "NearExpireVO"://快到期回访 9
                 holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 holder.llHetongYuEr.setVisibility(View.VISIBLE);
+
+                holder.tvHetongYuEr.setText(coachHuiFangInfo.getContractBalance());
+                Long time = coachHuiFangInfo.getDeadline();
+                if (time != null && time != -1) {
+                    String s = DateUtil.parseLongDateToDateString(time);
+                    holder.tvHetongDaoQiRi.setText(s);
+                }
                 break;
             case "TimingPhysicalTestVO"://定时体测  13
                 holder.llLastTiCeTime.setVisibility(View.VISIBLE);

@@ -87,7 +87,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="正常"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -123,7 +122,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="私教"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -159,7 +157,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="游泳"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -195,7 +192,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="无"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -243,7 +239,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -281,7 +276,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -356,7 +350,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="工作太忙，没时间"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -394,7 +387,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -432,7 +424,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="1233"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -963,7 +954,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="过期回访"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />

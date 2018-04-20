@@ -34,11 +34,25 @@ public class HuiFangInfo {
     private String preJianShenTime;
     private String weiJianShenTime;
     private String huifangReason;
+    private String mobile;
+
+    private String interviewType;
+    private String interviewResult;
+    private String interviewRecordId;
+    private String id;
 
 
+    public String getMobile() {
+        return mobile;
+    }
 
+    public String getInterviewType() {
+        return interviewType;
+    }
 
-
+    public String getInterviewResult() {
+        return interviewResult;
+    }
 
     public HuiFangInfo(JSONObject jsonObject) {
         this.headUrl = JsonUtil.getString(jsonObject, "headUrl");
@@ -66,6 +80,20 @@ public class HuiFangInfo {
         this.preJianShenTime  = JsonUtil.getString(jsonObject, "preJianShenTime");
         this.weiJianShenTime  = JsonUtil.getString(jsonObject, "weiJianShenTime");
 
+        this.mobile  = JsonUtil.getString(jsonObject, "mobile");
+        this.interviewType  = JsonUtil.getString(jsonObject, "interviewType");
+        this.interviewResult  = JsonUtil.getString(jsonObject, "interviewResult");
+        this.interviewRecordId  = JsonUtil.getString(jsonObject, "interviewRecordId");
+        this.id  = JsonUtil.getString(jsonObject, "id");
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getInterviewRecordId() {
+        return interviewRecordId;
     }
 
     public String getHeadUrl() {

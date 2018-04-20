@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.huifang.bean;
 
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -58,6 +59,12 @@ public class CoachHuiFangInfo {
 
     private String courseName;
     private String courseId;
+    /**
+     * interviewResult : null
+     * contractBalance : 6天
+     */
+
+    private String contractBalance;
 
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
@@ -68,6 +75,7 @@ public class CoachHuiFangInfo {
         this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
         this.hobby = JsonUtil.getString(jsonObject, "hobby");
         this.carBrand = JsonUtil.getString(jsonObject, "carBrand");
+
         this.interviewType = JsonUtil.getString(jsonObject, "interviewType");
         this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
         this.interviewRecordId = JsonUtil.getString(jsonObject, "interviewRecordId");
@@ -84,6 +92,7 @@ public class CoachHuiFangInfo {
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.courseName = JsonUtil.getString(jsonObject, "courseName");
         this.courseId = JsonUtil.getString(jsonObject, "courseId");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
 
 
     }
@@ -197,5 +206,13 @@ public class CoachHuiFangInfo {
 
     public void setCourseId(String courseId) {
         this.courseId = courseId;
+    }
+
+    public String getContractBalance() {
+        return contractBalance;
+    }
+
+    public void setContractBalance(String contractBalance) {
+        this.contractBalance = contractBalance;
     }
 }

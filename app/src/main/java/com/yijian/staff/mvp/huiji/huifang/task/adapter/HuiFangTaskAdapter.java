@@ -3,16 +3,20 @@ package com.yijian.staff.mvp.huiji.huifang.task.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
 import com.yijian.staff.util.CommonUtil;
@@ -130,6 +134,24 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 } else {
                     Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
                     context.startActivity(i);
+                }
+
+                String mobile = huiFangInfo.getMobile();
+                mobile = "18986170640";
+                if (!TextUtils.isEmpty(mobile)) {
+                    if (CommonUtil.isPhoneFormat(mobile)) {
+                        CoachHuiFangTypeBean coachHuiFangTypeBean = DBManager.getInstance().queryCoachHuiFangTypeBean("15");
+                        Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
+                        i.putExtra("interviewRecordId", huiFangInfo.getInterviewRecordId());
+                        i.putExtra("memberId", huiFangInfo.getId());
+                        context.startActivity(i);
+                        CommonUtil.callPhone(context, mobile);
+
+                    } else {
+                        Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -61,6 +61,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
     private String dictItemId;
     private boolean needReview;
     private List<CoachHuiFangReasonBean> coachHuiFangReasonBeanList = new ArrayList<>();
+    private String result;
 
     @Override
 
@@ -82,6 +83,8 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         navigationBar2.setmRightTvText("发送");
         navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
         rb1.setChecked(true);
+        llHuifangResult.setVisibility(View.VISIBLE);
+
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -128,8 +131,9 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
                 TimePickerView pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View view) {
-                        String result = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-                        tvNextHuiFangTime.setText(result);
+                        result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+                        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+                        tvNextHuiFangTime.setText(time);
                     }
                 }).build();
                 pickerView.show();
@@ -148,14 +152,14 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
     private void showPickerReasonView() {// 弹出选择器
 
-        if (coachHuiFangReasonBeanList.size() > 0 ) {
+        if (coachHuiFangReasonBeanList.size() > 0) {
             OptionsPickerView pvOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
                     //返回的分别是三个级别的选中位置
                     String reason = coachHuiFangReasonBeanList.get(options1).getDictItemName();
                     tvNextHuiFangReason.setText(reason);
-                    dictItemId=coachHuiFangReasonBeanList.get(options1).getDictItemId();
+                    dictItemId = coachHuiFangReasonBeanList.get(options1).getDictItemId();
                 }
             })
 
@@ -177,13 +181,12 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         body.setMemberId(memberId);
 
 
-
         body.setNeedReview(needReview);
 
-        String time = tvNextHuiFangTime.getText().toString();
+
         String reason = tvNextHuiFangReason.getText().toString();
         if (needReview) {
-            if (TextUtils.isEmpty(time)) {
+            if (TextUtils.isEmpty(result)) {
                 showToast("请选择复访时间");
                 return;
             }
@@ -192,10 +195,10 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
                 showToast("请选择复访原因");
                 return;
             }
-            body.setReviewTime(time);
+            body.setReviewTime(result);
             body.setDictItemId(dictItemId);
 
-        }else {
+        } else {
 
             String result = etHuiFangResult.getText().toString();
             if (TextUtils.isEmpty(result)) {

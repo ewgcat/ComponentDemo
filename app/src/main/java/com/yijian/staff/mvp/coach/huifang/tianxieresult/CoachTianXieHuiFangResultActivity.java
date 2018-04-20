@@ -7,10 +7,15 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +25,9 @@ public class CoachTianXieHuiFangResultActivity extends AppCompatActivity impleme
 
     @BindView(R.id.tv_next_hui_fang_time)
     TextView tvNextHuiFangTime;
+    private String interviewRecordId;
+    private String memberId;
+    private String dictItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +47,9 @@ public class CoachTianXieHuiFangResultActivity extends AppCompatActivity impleme
         navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
 
 
-
+        interviewRecordId = getIntent().getStringExtra("interviewRecordId");
+        memberId = getIntent().getStringExtra("memberId");
+        dictItemId = getIntent().getStringExtra("dictItemId");
         findViewById(R.id.ll_next_hui_fang).setOnClickListener(this);
     }
 
@@ -65,6 +75,20 @@ public class CoachTianXieHuiFangResultActivity extends AppCompatActivity impleme
             case R.id.right_tv:
                 //提交结果
 
+                HashMap<String, String> param = new HashMap<>();
+                param.put("interviewRecordId", interviewRecordId);
+                param.put("memberId",memberId);
+                HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+
+                    }
+                });
                 break;
         }
     }

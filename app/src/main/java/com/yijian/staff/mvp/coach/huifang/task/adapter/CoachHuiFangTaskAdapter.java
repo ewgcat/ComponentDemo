@@ -200,32 +200,23 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
         holder.llBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = holder.tv.getText().toString();
-                if (text.equals("回访")) {
 
-                    String mobile = coachHuiFangInfo.getMobile();
-                    mobile = "18986170640";
-                    if (!TextUtils.isEmpty(mobile)) {
-                        if (CommonUtil.isPhoneFormat(mobile)) {
+                String mobile = coachHuiFangInfo.getMobile();
+                mobile = "18986170640";
+                if (!TextUtils.isEmpty(mobile)) {
+                    if (CommonUtil.isPhoneFormat(mobile)) {
+                        CoachHuiFangTypeBean coachHuiFangTypeBean = DBManager.getInstance().queryCoachHuiFangTypeBean("15");
+                        Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
+                        i.putExtra("interviewRecordId", coachHuiFangInfo.getInterviewRecordId());
+                        i.putExtra("memberId", coachHuiFangInfo.getId());
+                        context.startActivity(i);
+                        CommonUtil.callPhone(context, mobile);
 
-                            CoachHuiFangTypeBean coachHuiFangTypeBean = DBManager.getInstance().queryCoachHuiFangTypeBean("15");
-                            Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
-                            i.putExtra("interviewRecordId",coachHuiFangInfo.getInterviewRecordId());
-                            i.putExtra("memberId",coachHuiFangInfo.getId());
-                            i.putExtra("dictItemId",coachHuiFangTypeBean.getId());
-                            context.startActivity(i);
-
-                            CommonUtil.callPhone(context, mobile);
-                            holder.tv.setText("填写回访结果");
-
-
-                        } else {
-                            Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
-                        }
                     } else {
-                        Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
                 }
             }
         });

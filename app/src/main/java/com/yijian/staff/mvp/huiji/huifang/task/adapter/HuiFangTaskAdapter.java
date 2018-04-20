@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
+import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huiji.huifang.tianxieresult.TianXieHuiFangResultActivity;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.List;
@@ -128,7 +128,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 if (text.equals("回访")) {
                     CommonUtil.callPhone(context, "13386170640");
                 } else {
-                    Intent i = new Intent(context, TianXieHuiFangResultActivity.class);
+                    Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
                     context.startActivity(i);
                 }
             }

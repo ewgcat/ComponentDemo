@@ -17,6 +17,7 @@ import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
+import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -226,9 +227,10 @@ public class HttpManager {
 
     //教练填写回访结果
     public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+    public static String GET_COACH_HUI_FANG_REASON_LIST_URL = BuildConfig.HOST + "dict/review-reason/dict-items";
 
-     //教练  会员管理界面：打电话回访,通知后台
-    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview" ;
+    //教练  会员管理界面：打电话回访,通知后台
+    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -244,6 +246,22 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
+    //登陆
+    public static void postAddHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_COACH_HUI_FANG_RESULT_URL,headers, body);
+            execute(observable, observer);
+        }
+
+    }
+
+
     //获取调查问卷列表
     public static void getQuestionnaireList(int pageNum, int pageSize, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
@@ -253,25 +271,25 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             QuestionnaireRequestBody body = new QuestionnaireRequestBody(pageNum, pageSize);
-            Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
+            Observable<JSONObject> observable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
 
-            execute(loginObservable, observer);
+            execute(observable, observer);
         }
     }
 
     //获取教练正式会员上课记录列表
-    public static void getCoachVipCourseListList(String memberId,int pageNum, int pageSize, Observer<JSONObject> observer) {
+    public static void getCoachVipCourseListList(String memberId, int pageNum, int pageSize, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            HashMap<String,String> params=new HashMap<>();
-            params.put("memberId",memberId);
-            params.put("pageNum",pageNum+"");
-            params.put("pageSize",pageSize+"");
-            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers,params );
+            HashMap<String, String> params = new HashMap<>();
+            params.put("memberId", memberId);
+            params.put("pageNum", pageNum + "");
+            params.put("pageSize", pageSize + "");
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
 
             execute(loginObservable, observer);
         }

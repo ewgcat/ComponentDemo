@@ -17,7 +17,7 @@ public class AddHuiFangResultBody {
      * reviewTime : 2018-04-20T02:05:07.909Z
      */
 
-    private int dictItemId;
+    private String dictItemId;
     private String interviewRecordId;
     private String interviewResult;
     private String memberId;
@@ -28,11 +28,11 @@ public class AddHuiFangResultBody {
     public AddHuiFangResultBody() {
     }
 
-    public int getDictItemId() {
+    public String getDictItemId() {
         return dictItemId;
     }
 
-    public void setDictItemId(int dictItemId) {
+    public void setDictItemId(String dictItemId) {
         this.dictItemId = dictItemId;
     }
 

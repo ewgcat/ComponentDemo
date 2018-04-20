@@ -23,9 +23,14 @@ import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.setclass.ExperienceClassRecord2Activity;
 import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -196,10 +201,29 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
-                    } else {
-                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                        if (CommonUtil.isPhoneFormat(mobile)){
+                            CommonUtil.callPhone(context, mobile);
+                            HashMap<String, String> param = new HashMap<>();
+                            param.put("interviewRecordId","16");
+                            param.put("memberId",coachViperBean.getMemberId());
+                            HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
+                                @Override
+                                public void onSuccess(JSONObject result) {
+
+                                }
+
+                                @Override
+                                public void onFail(String msg) {
+
+                                }
+                            });
+                        }else {
+                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
                     }
                 }
             });

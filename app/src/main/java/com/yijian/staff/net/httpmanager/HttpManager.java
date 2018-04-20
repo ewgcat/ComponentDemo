@@ -221,6 +221,15 @@ public class HttpManager {
     //教练回访打电话通知后台
     public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/call-for-interview";
 
+    //教练回访结果记录
+    public static String GET_COACH_HUI_FANG_RESULT_RECORD_LIST_URL = BuildConfig.HOST + "coach/interview/record/list";
+
+    //教练填写回访结果
+    public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+
+     //教练  会员管理界面：打电话回访,通知后台
+    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview" ;
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

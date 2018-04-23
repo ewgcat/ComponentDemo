@@ -257,7 +257,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
 
                 String mobile = huiFangInfo.getMobile();
-                mobile = "18986170640";
                 if (!TextUtils.isEmpty(mobile)) {
                     if (CommonUtil.isPhoneFormat(mobile)) {
                         HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean("15");

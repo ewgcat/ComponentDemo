@@ -215,7 +215,6 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
             public void onClick(View v) {
 
                 String mobile = coachHuiFangInfo.getMobile();
-                mobile = "18986170640";
                 if (!TextUtils.isEmpty(mobile)) {
                     if (CommonUtil.isPhoneFormat(mobile)) {
                         CoachHuiFangTypeBean coachHuiFangTypeBean = DBManager.getInstance().queryCoachHuiFangTypeBean("15");

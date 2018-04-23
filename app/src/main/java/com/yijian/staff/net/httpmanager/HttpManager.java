@@ -216,8 +216,6 @@ public class HttpManager {
     //会籍回访类型
     public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "customer-service/interview/config";
 
-    //教练回访结果
-    public static String GET_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
 
     //教练回访任务列表
     public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
@@ -228,15 +226,16 @@ public class HttpManager {
     //会籍的回访记录列表
     public static String GET_HUI_JI_HUI_FANG_RECORD_URL = BuildConfig.HOST + "customer-service/interview/record/list";
 
+    //教练的回访记录列表
+    public static String GET_COACH_HUI_FANG_RECORD_URL = BuildConfig.HOST + "coach/interview/record/list";
+
     //教练回访打电话通知后台
     public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/call-for-interview";
 
-    //教练回访结果记录
-    public static String GET_COACH_HUI_FANG_RESULT_RECORD_LIST_URL = BuildConfig.HOST + "coach/interview/record/list";
-
-    //教练填写回访结果
+    //教练回访结果
     public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
 
+    //会籍回访结果
     public static String POST_HUI_JI_HUI_FANG_RESULT_URL = BuildConfig.HOST + "customer-service/interview/filling";
 
     public static String GET_COACH_HUI_FANG_REASON_LIST_URL = BuildConfig.HOST + "dict/review-reason/dict-items";

@@ -95,6 +95,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         recyclerView.setLayoutManager(layoutmanager);
         huiFangHistoryAdapter = new HuiFangHistoryAdapter(this, huiFangInfoList);
         recyclerView.setAdapter(huiFangHistoryAdapter);
+        refresh();
     }
 
     public void refresh() {

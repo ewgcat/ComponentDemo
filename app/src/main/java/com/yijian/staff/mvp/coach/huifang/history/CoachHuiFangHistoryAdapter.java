@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.coach.huifang.history;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
+import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -45,13 +50,43 @@ public class CoachHuiFangHistoryAdapter extends RecyclerView.Adapter<CoachHuiFan
     public void onBindViewHolder(CoachHuiFangHistoryAdapter.ViewHolder holder, int position) {
         Logger.i("CoachHuiFangTaskAdapter", "position: " + position);
         CoachHuiFangInfo coachHuiFangInfo = mCoachHuiFangInfoList.get(position);
-        Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
+
+        String headImg = coachHuiFangInfo.getHeadImg();
+
         holder.viperName.setText(coachHuiFangInfo.getName());
-        Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
+
+        String sex = coachHuiFangInfo.getSex();
+        if ("男".equals(sex)) {
+            Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_boysmall)
+                        .error(R.mipmap.wt_boysmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
+        } else {
+            Glide.with(context).load(R.mipmap.lg_women).into(holder.viperSex);
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_girlsmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_girlsmall)
+                        .error(R.mipmap.wt_girlsmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
+        }
 //        holder.tvQuanyi.setText(coachHuiFangInfo.getQuanyi());
 //        holder.tvOutdateTime.setText(coachHuiFangInfo.getOutdateTime());
-//        holder.tvHuifangType.setText(coachHuiFangInfo.getHuifangType());
-//        holder.tvHuifangResult.setText(coachHuiFangInfo.getHuifangReason());
+        holder.tvHuifangType.setText(coachHuiFangInfo.getInterviewType());
+        holder.tvHuifangResult.setText(coachHuiFangInfo.getInterviewResult());
     }
 
     @Override

@@ -10,36 +10,78 @@ import org.json.JSONObject;
  * time: 2018/3/5 16:22:37
  */
 public class HuiFangInfo {
-    private String headUrl;
+
+
+    /**
+     * interviewRecordId : 045f7cefb7074035855b62a8d29e9080
+     * id : 0774378fb91e4a2db4fc5932e404ecaa
+     * name : 测试会员18-18
+     * sex : 男
+     * mobile : 值18
+     * headImg : 值18
+     * healthStatus : 正常
+     * fitnessHobby : 健身,跑步,爬山
+     * hobby : 现金
+     * carBrand : 无
+     * interviewType : 潜在会员回访
+     * interviewResult : null
+     * birthday : 1523721600000
+     * birthdayType : 农历
+     * subclassName : PotentialVO
+     */
+
+    private String id;
+    private String headImg;
     private String name;
     private String sex;
-    private String shentiStatus;
-    private String jianshenAihao;
-    private String xingquAihao;
-    private String carName;
-    private String quanyi;
-    private String outdateTime;
-    private String outdateReason;
-    private String huifangType;
-    private String shengri;
-    private String shengriType;
-    private String hetongYuEr;
-    private String heTongDaoQiRi;
-    private String cardName;
-    private String cardType;
-    private String zuijinJianShen;
-    private String chenMoTianShu;
-    private String preFangWenRiqi;
-    private String fufangReason;
-    private String preJianShenTime;
-    private String weiJianShenTime;
-    private String huifangReason;
     private String mobile;
-
+    private String healthStatus;
+    private String fitnessHobby;
+    private String hobby;
+    private String carBrand;
+    private String interviewRecordId;
     private String interviewType;
     private String interviewResult;
-    private String interviewRecordId;
-    private String id;
+    private Long birthday;
+    private String birthdayType;
+    private String subclassName;
+
+    private String reinterviewReason;
+    private Long lastVisitTime;
+
+    private Long deadline;
+    private String expiryReason;
+
+    private String contractBalance;
+    /**
+     * interviewResult : null
+     * visitTime : 1524367655000
+     * leaveTime : 1524454055000
+     */
+
+    private Long visitTime;
+    private Long leaveTime;
+    /**
+     * interviewResult : null
+     * lastFitTime : 2018-04-16
+     * breakDay : -7
+     */
+
+    private String cardName;
+    private String cardType;
+
+    private String lastFitTime;
+    private Long breakDay;
+    private Long sinkDay;
+    /**
+     * interviewResult : null
+     * openCardTime : 1524459244000
+     * recentlyFitTime : 1523854444000
+     * sinkDay : 7
+     */
+
+    private Long openCardTime;
+    private Long recentlyFitTime;
 
 
     public String getMobile() {
@@ -55,113 +97,38 @@ public class HuiFangInfo {
     }
 
     public HuiFangInfo(JSONObject jsonObject) {
-        this.headUrl = JsonUtil.getString(jsonObject, "headUrl");
+        this.id = JsonUtil.getString(jsonObject, "id");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
-        this.shentiStatus = JsonUtil.getString(jsonObject, "shentiStatus");
-        this.jianshenAihao = JsonUtil.getString(jsonObject, "jianshenAihao");
-        this.xingquAihao = JsonUtil.getString(jsonObject, "xingquAihao");
-        this.carName = JsonUtil.getString(jsonObject, "carName");
-        this.quanyi = JsonUtil.getString(jsonObject, "quanyi");
-        this.outdateTime = JsonUtil.getString(jsonObject, "outdateTime");
-        this.outdateReason = JsonUtil.getString(jsonObject, "outdateReason");
-        this.huifangType = JsonUtil.getString(jsonObject, "huifangType");
-        this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
-        this.shengri = JsonUtil.getString(jsonObject, "shengri");
-        this.shengriType = JsonUtil.getString(jsonObject, "shengriType");
-        this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
-        this.heTongDaoQiRi = JsonUtil.getString(jsonObject, "heTongDaoQiRi");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
+        this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
+        this.hobby = JsonUtil.getString(jsonObject, "hobby");
+        this.carBrand = JsonUtil.getString(jsonObject, "carBrand");
+        this.interviewRecordId = JsonUtil.getString(jsonObject, "interviewRecordId");
+        this.interviewType = JsonUtil.getString(jsonObject, "interviewType");
+        this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
+        this.birthday = JsonUtil.getLong(jsonObject, "birthday");
+        this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.reinterviewReason = JsonUtil.getString(jsonObject, "reinterviewReason");
+        this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.lastVisitTime = JsonUtil.getLong(jsonObject, "lastVisitTime");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
+        this.visitTime = JsonUtil.getLong(jsonObject, "visitTime");
+        this.leaveTime = JsonUtil.getLong(jsonObject, "leaveTime");
+        this.breakDay = JsonUtil.getLong(jsonObject, "breakDay");
+        this.sinkDay = JsonUtil.getLong(jsonObject, "sinkDay");
+        this.lastVisitTime = JsonUtil.getLong(jsonObject, "lastVisitTime");
+        this.openCardTime = JsonUtil.getLong(jsonObject, "openCardTime");
+        this.recentlyFitTime = JsonUtil.getLong(jsonObject, "recentlyFitTime");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.lastFitTime = JsonUtil.getString(jsonObject, "lastFitTime");
         this.cardName = JsonUtil.getString(jsonObject, "cardName");
         this.cardType = JsonUtil.getString(jsonObject, "cardType");
-        this.zuijinJianShen = JsonUtil.getString(jsonObject, "zuijinJianShen");
-        this.chenMoTianShu = JsonUtil.getString(jsonObject, "chenMoTianShu");
-        this.preFangWenRiqi = JsonUtil.getString(jsonObject, "preFangWenRiqi");
-        this.fufangReason  = JsonUtil.getString(jsonObject, "fufangReason");
-        this.preJianShenTime  = JsonUtil.getString(jsonObject, "preJianShenTime");
-        this.weiJianShenTime  = JsonUtil.getString(jsonObject, "weiJianShenTime");
 
-        this.mobile  = JsonUtil.getString(jsonObject, "mobile");
-        this.interviewType  = JsonUtil.getString(jsonObject, "interviewType");
-        this.interviewResult  = JsonUtil.getString(jsonObject, "interviewResult");
-        this.interviewRecordId  = JsonUtil.getString(jsonObject, "interviewRecordId");
-        this.id  = JsonUtil.getString(jsonObject, "id");
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getInterviewRecordId() {
-        return interviewRecordId;
-    }
-
-    public String getHeadUrl() {
-        return headUrl;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public String getOutdateTime() {
-        return outdateTime;
-    }
-
-    public String getOutdateReason() {
-        return outdateReason;
-    }
-
-    public String getHuifangType() {
-        return huifangType;
-    }
-
-    public String getHuifangReason() {
-        return huifangReason;
-    }
-
-    public String getQuanyi() {
-        return quanyi;
-    }
-
-    public String getShentiStatus() {
-        return shentiStatus;
-    }
-
-    public String getJianshenAihao() {
-        return jianshenAihao;
-    }
-
-    public String getXinquAihao() {
-        return xingquAihao;
-    }
-
-    public String getCarName() {
-        return carName;
-    }
-
-    public String getXingquAihao() {
-        return xingquAihao;
-    }
-
-    public String getShengri() {
-        return shengri;
-    }
-
-    public String getShengriType() {
-        return shengriType;
-    }
-
-    public String getHetongYuEr() {
-        return hetongYuEr;
-    }
-
-    public String getHeTongDaoQiRi() {
-        return heTongDaoQiRi;
     }
 
     public String getCardName() {
@@ -172,27 +139,183 @@ public class HuiFangInfo {
         return cardType;
     }
 
-    public String getZuijinJianShen() {
-        return zuijinJianShen;
+    public Long getSinkDay() {
+        return sinkDay;
     }
 
-    public String getChenMoTianShu() {
-        return chenMoTianShu;
+    public String getContractBalance() {
+        return contractBalance;
     }
 
-    public String getPreFangWenRiqi() {
-        return preFangWenRiqi;
+    public Long getDeadline() {
+        return deadline;
     }
 
-    public String getFufangReason() {
-        return fufangReason;
+    public String getExpiryReason() {
+        return expiryReason;
     }
 
-    public String getPreJianShenTime() {
-        return preJianShenTime;
+    public String getReinterviewReason() {
+        return reinterviewReason;
     }
 
-    public String getWeiJianShenTime() {
-        return weiJianShenTime;
+    public Long getLastVisitTime() {
+        return lastVisitTime;
+    }
+
+    public String getInterviewRecordId() {
+        return interviewRecordId;
+    }
+
+    public void setInterviewRecordId(String interviewRecordId) {
+        this.interviewRecordId = interviewRecordId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    public String getHealthStatus() {
+        return healthStatus;
+    }
+
+    public void setHealthStatus(String healthStatus) {
+        this.healthStatus = healthStatus;
+    }
+
+    public String getFitnessHobby() {
+        return fitnessHobby;
+    }
+
+    public void setFitnessHobby(String fitnessHobby) {
+        this.fitnessHobby = fitnessHobby;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(String carBrand) {
+        this.carBrand = carBrand;
+    }
+
+
+    public void setInterviewType(String interviewType) {
+        this.interviewType = interviewType;
+    }
+
+
+
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBirthdayType() {
+        return birthdayType;
+    }
+
+    public void setBirthdayType(String birthdayType) {
+        this.birthdayType = birthdayType;
+    }
+
+    public String getSubclassName() {
+        return subclassName;
+    }
+
+    public void setSubclassName(String subclassName) {
+        this.subclassName = subclassName;
+    }
+
+    public Long getVisitTime() {
+        return visitTime;
+    }
+
+    public void setVisitTime(Long visitTime) {
+        this.visitTime = visitTime;
+    }
+
+    public Long getLeaveTime() {
+        return leaveTime;
+    }
+
+    public void setLeaveTime(Long leaveTime) {
+        this.leaveTime = leaveTime;
+    }
+
+    public String getLastFitTime() {
+        return lastFitTime;
+    }
+
+    public void setLastFitTime(String lastFitTime) {
+        this.lastFitTime = lastFitTime;
+    }
+
+    public Long getBreakDay() {
+        return breakDay;
+    }
+
+    public void setBreakDay(Long breakDay) {
+        this.breakDay = breakDay;
+    }
+
+    public Long getOpenCardTime() {
+        return openCardTime;
+    }
+
+    public void setOpenCardTime(Long openCardTime) {
+        this.openCardTime = openCardTime;
+    }
+
+    public Long getRecentlyFitTime() {
+        return recentlyFitTime;
+    }
+
+    public void setRecentlyFitTime(Long recentlyFitTime) {
+        this.recentlyFitTime = recentlyFitTime;
     }
 }

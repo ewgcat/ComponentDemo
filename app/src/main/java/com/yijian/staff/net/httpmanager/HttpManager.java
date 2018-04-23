@@ -213,11 +213,20 @@ public class HttpManager {
     //教练回访类型
     public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "coach/interview/config";
 
+    //会籍回访类型
+    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "customer-service/interview/config";
+
     //教练回访结果
     public static String GET_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
 
     //教练回访任务列表
     public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
+
+    //会籍的回访任务列表
+    public static String GET_HUI_JI_HUI_FANG_TASK_URL = BuildConfig.HOST + "customer-service/interview/task/list";
+
+    //会籍的回访记录列表
+    public static String GET_HUI_JI_HUI_FANG_RECORD_URL = BuildConfig.HOST + "customer-service/interview/record/list";
 
     //教练回访打电话通知后台
     public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/call-for-interview";
@@ -227,6 +236,9 @@ public class HttpManager {
 
     //教练填写回访结果
     public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+
+    public static String POST_HUI_JI_HUI_FANG_RESULT_URL = BuildConfig.HOST + "customer-service/interview/filling";
+
     public static String GET_COACH_HUI_FANG_REASON_LIST_URL = BuildConfig.HOST + "dict/review-reason/dict-items";
 
     //教练  会员管理界面：打电话回访,通知后台
@@ -246,8 +258,8 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
-    //登陆
-    public static void postAddHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+    //保存教练回访结果
+    public static void postAddCoachHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -255,7 +267,22 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_COACH_HUI_FANG_RESULT_URL,headers, body);
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_COACH_HUI_FANG_RESULT_URL, headers, body);
+            execute(observable, observer);
+        }
+
+    }
+
+    //保存会籍回访结果
+    public static void postAddHuiJiHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_HUI_JI_HUI_FANG_RESULT_URL, headers, body);
             execute(observable, observer);
         }
 

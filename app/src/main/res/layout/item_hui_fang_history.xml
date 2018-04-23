@@ -17,19 +17,17 @@
 
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/wt_boysmall" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/tv_viper_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="程先生"
             android:textColor="#333333"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -40,8 +38,7 @@
             android:layout_height="16dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/lg_man" />
+            android:scaleType="fitCenter" />
 
         <View
             android:layout_width="0dp"
@@ -50,6 +47,11 @@
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +83,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="私教"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -118,7 +119,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="2017-12-25"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -155,7 +155,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="工作太忙，没时间"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -193,7 +192,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="过期回访"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -205,6 +203,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -222,7 +221,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:gravity="start"
-            android:text="2个月后可能考虑"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />

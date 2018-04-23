@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;
@@ -48,10 +49,14 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
         holder.viperName.setText(huiFangInfo.getName());
         Glide.with(context).load(R.mipmap.lg_man).into(holder.viperSex);
-        holder.tvQuanyi.setText(huiFangInfo.getQuanyi());
-        holder.tvOutdateTime.setText(huiFangInfo.getOutdateTime());
-        holder.tvHuifangType.setText(huiFangInfo.getHuifangType());
-        holder.tvHuifangResult.setText(huiFangInfo.getHuifangReason());
+//        holder.tvQuanyi.setText(huiFangInfo.getQuanyi());
+        Long deadline = huiFangInfo.getDeadline();
+        if (deadline!=null&&deadline!=-1){
+            String s = DateUtil.parseLongDateToDateString(deadline);
+            holder.tvOutdateTime.setText(s);
+        }
+        holder.tvHuifangType.setText(huiFangInfo.getInterviewType());
+        holder.tvHuifangResult.setText(huiFangInfo.getInterviewResult());
     }
 
     @Override

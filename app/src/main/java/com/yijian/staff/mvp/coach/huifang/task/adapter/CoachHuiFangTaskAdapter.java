@@ -180,7 +180,7 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
                 Long lastVisitTime = coachHuiFangInfo.getLastVisitTime();
                 if (lastVisitTime != null && lastVisitTime != -1) {
                     String s = DateUtil.parseLongDateToDateString(lastVisitTime);
-                    holder.tvPreJianShenDate.setText(s);
+                    holder.tvPreVisitDate.setText(s);
                 }
                 String reinterviewReason = coachHuiFangInfo.getReinterviewReason();
                 holder.tvFuFangReason.setText(reinterviewReason);

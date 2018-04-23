@@ -8,9 +8,11 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.greendao.gen.CoachHuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
+import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
+import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;
@@ -128,6 +130,23 @@ public class DBManager  {
         CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanDao.queryBuilder()
                 .where(CoachHuiFangTypeBeanDao.Properties.ConfigType.eq(configType)).unique();
         return coachHuiFangTypeBean;
+    }
+
+    public void insertHuiFangTypeBeanList(List<HuiFangTypeBean> huiFangTypeBeanList){
+        mDaoSession.getHuiFangTypeBeanDao().deleteAll();
+        if (huiFangTypeBeanList!=null){
+            for (int i = 0; i < huiFangTypeBeanList.size(); i++) {
+                HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanList.get(i);
+                mDaoSession.getHuiFangTypeBeanDao().insert(huiFangTypeBean);
+            }
+        }
+    }
+
+    public HuiFangTypeBean queryHuiFangTypeBean(String configType){
+        HuiFangTypeBeanDao huiFangTypeBeanDao = mDaoSession.getHuiFangTypeBeanDao();
+        HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanDao.queryBuilder()
+                .where(HuiFangTypeBeanDao.Properties.ConfigType.eq(configType)).unique();
+        return huiFangTypeBean;
     }
 
 }

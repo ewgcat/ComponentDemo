@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/tian_xie_hui_fang_result_navigation_bar"
+        layout="@layout/view_navigation_bar2" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:button="@drawable/check_state"
+            android:text="需要进行复访"
+            android:textColor="#666666" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/check_state"
+                android:text="否"
+                android:textColor="#666666" />
+
+            <RadioButton
+                android:id="@+id/rb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/check_state"
+                android:text="是"
+                android:textColor="#666666" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_fufang"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_next_hui_fang_time"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="复访时间:"
+                android:textColor="#666666" />
+
+            <TextView
+                android:id="@+id/tv_next_hui_fang_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/lg_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_next_hui_fang_reason"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="复访原因:"
+                android:textColor="#666666" />
+
+            <TextView
+                android:id="@+id/tv_next_hui_fang_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/lg_arrow" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_huifang_result"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/white_bg"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et_hui_fang_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="请填写你的回访结果"
+            android:padding="16dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

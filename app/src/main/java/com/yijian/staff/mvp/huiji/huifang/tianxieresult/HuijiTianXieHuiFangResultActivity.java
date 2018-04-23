@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.huifang.tianxieresult;
+package com.yijian.staff.mvp.huiji.huifang.tianxieresult;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,9 +31,8 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implements View.OnClickListener {
+public class HuijiTianXieHuiFangResultActivity extends MvcBaseActivity implements View.OnClickListener {
 
 
     @BindView(R.id.tv_next_hui_fang_time)
@@ -60,13 +59,13 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
     private String memberId;
     private String dictItemId;
     private boolean needReview;
-    private List<CoachHuiFangReasonBean> coachHuiFangReasonBeanList = new ArrayList<>();
+    private List<HuiFangReasonBean> huiFangReasonBeanList = new ArrayList<>();
     private String result;
 
     @Override
 
     protected int getLayoutID() {
-        return R.layout.activity_tian_xie_hui_fang_result;
+        return R.layout.activity_tian_xie_hui_ji_hui_fang_result;
     }
 
     @Override
@@ -108,8 +107,8 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
             public void onSuccess(JSONArray result) {
                 for (int i = 0; i < result.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(result, i);
-                    CoachHuiFangReasonBean coachHuiFangReasonBean = new CoachHuiFangReasonBean(jsonObject);
-                    coachHuiFangReasonBeanList.add(coachHuiFangReasonBean);
+                    HuiFangReasonBean huiFangReasonBean = new HuiFangReasonBean(jsonObject);
+                    huiFangReasonBeanList.add(huiFangReasonBean);
                 }
             }
 
@@ -152,14 +151,14 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
     private void showPickerReasonView() {// 弹出选择器
 
-        if (coachHuiFangReasonBeanList.size() > 0) {
+        if (huiFangReasonBeanList.size() > 0) {
             OptionsPickerView pvOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
                     //返回的分别是三个级别的选中位置
-                    String reason = coachHuiFangReasonBeanList.get(options1).getDictItemName();
+                    String reason = huiFangReasonBeanList.get(options1).getDictItemName();
                     tvNextHuiFangReason.setText(reason);
-                    dictItemId = coachHuiFangReasonBeanList.get(options1).getDictItemId();
+                    dictItemId = huiFangReasonBeanList.get(options1).getDictItemId();
                 }
             })
 
@@ -169,7 +168,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
                     .setContentTextSize(20)
                     .build();
 
-            pvOptions.setPicker(coachHuiFangReasonBeanList);//二级选择器
+            pvOptions.setPicker(huiFangReasonBeanList);//二级选择器
             pvOptions.show();
         }
 
@@ -210,7 +209,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         }
 
 
-        HttpManager.postAddCoachHuiFangResult(body, new ResultJSONObjectObserver() {
+        HttpManager.postAddHuiJiHuiFangResult(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

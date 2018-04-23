@@ -24,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/wt_boysmall" />
+            />
 
         <TextView
             android:id="@+id/tv_viper_name"
@@ -41,7 +41,8 @@
             android:layout_height="16dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            />
 
         <View
             android:layout_width="0dp"
@@ -211,41 +212,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--权益-->
-        <LinearLayout
-            android:id="@+id/ll_quanyi"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="权益: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_quanyi"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <!--过期时间-->
         <LinearLayout
@@ -840,9 +806,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--体验课次数-->
+        <!--上次体测时间-->
         <LinearLayout
-            android:id="@+id/ll_ti_yan_ke_ci_shu"
+            android:id="@+id/ll_last_ti_ce_time"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -854,7 +820,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="体验课次数: "
+                android:text="上次体测时间: "
                 android:textColor="#999999"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -866,7 +832,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tv_ti_yan_ke_ci_shu"
+                android:id="@+id/tv_last_ti_ce_time"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -877,9 +843,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--到访日期-->
+        <!--上次约课时间-->
         <LinearLayout
-            android:id="@+id/ll_dao_fang_date"
+            android:id="@+id/ll_last_yue_ke_time"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -891,7 +857,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="到访日期: "
+                android:text="上次约课时间: "
                 android:textColor="#999999"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -903,7 +869,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tv_dao_fang_date"
+                android:id="@+id/tv_last_yue_ke_time"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -914,9 +880,10 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--健身目的-->
+
+        <!--购买课程-->
         <LinearLayout
-            android:id="@+id/ll_jianshen_mudi"
+            android:id="@+id/ll_gou_mai_ke_cheng"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -928,7 +895,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="健身目的: "
+                android:text="购买课程: "
                 android:textColor="#999999"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -940,7 +907,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tv_jianshen_mudi"
+                android:id="@+id/tv_gou_mai_ke_cheng"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -951,42 +918,8 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--收入情况-->
-        <LinearLayout
-            android:id="@+id/ll_income"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="收入情况: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_income"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
 
     </LinearLayout>
@@ -1032,8 +965,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="22dp"
@@ -1071,7 +1002,4 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-
-
 </LinearLayout>

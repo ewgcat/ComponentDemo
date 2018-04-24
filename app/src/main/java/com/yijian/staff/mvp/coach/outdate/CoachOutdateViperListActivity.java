@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -39,7 +40,7 @@ import static com.yijian.staff.tab.tools.ContextUtil.getContext;
  * 过期会员列表
  */
 @Route(path = "/test/4.1")
-public class CoachOutdateViperListActivity extends AppCompatActivity {
+public class CoachOutdateViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv_outdate)
     RecyclerView rv_outdate;
@@ -53,19 +54,15 @@ public class CoachOutdateViperListActivity extends AppCompatActivity {
     private List<CoachViperBean> coachViperBeanList = new ArrayList<CoachViperBean>();
     private CoachOutdateViperListAdapter coachOutdateViperListAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_outdate_viper_list);
-        ButterKnife.bind(this);
 
-        initView();
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_outdate_viper_list;
     }
 
-
-
-    private void initView() {
-
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
         navigationBar2.setTitle("过期会员");
         navigationBar2.hideLeftSecondIv();
@@ -78,25 +75,18 @@ public class CoachOutdateViperListActivity extends AppCompatActivity {
         rv_outdate.setAdapter(coachOutdateViperListAdapter);
         initComponent();
         refresh();
-
-
     }
+
 
     private void refresh() {
         coachViperBeanList.clear();
-
-
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", 1+"");
         map.put("pageSize", 1+"");
-
-
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
-
-
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

@@ -214,9 +214,6 @@
             android:name=".mvp.huiji.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huiji.potential.PotentialViperDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.all.AllFunctionActivity"
             android:screenOrientation="portrait" />
         <activity

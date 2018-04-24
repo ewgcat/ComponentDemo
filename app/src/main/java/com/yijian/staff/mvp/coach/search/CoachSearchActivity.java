@@ -26,6 +26,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.search.SearchKeyAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -48,7 +49,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class CoachSearchActivity extends AppCompatActivity {
+public class CoachSearchActivity extends MvcBaseActivity {
 
     private static final String TAG = CoachSearchActivity.class.getSimpleName();
     @BindView(R.id.top_view)
@@ -74,14 +75,15 @@ public class CoachSearchActivity extends AppCompatActivity {
     private List<SearchKey> searchList;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_search);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_coach_search;
+    }
 
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initComponent();
-
 
     }
 

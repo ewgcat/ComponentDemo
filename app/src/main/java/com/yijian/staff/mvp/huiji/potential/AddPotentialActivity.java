@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -29,7 +30,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/7")
-public class AddPotentialActivity extends AppCompatActivity {
+public class AddPotentialActivity extends MvcBaseActivity {
 
     @BindView(R.id.et_name)
     LastInputEditText etName;
@@ -41,16 +42,15 @@ public class AddPotentialActivity extends AppCompatActivity {
 
     private int sex = 1;//1 男  2女
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_potential);
-        ButterKnife.bind(this);
 
-        initView();
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_add_potential;
     }
 
-    private void initView() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.add_potential_activity_navigation_bar);
         navigationBar2.setTitle("添加潜在");
         navigationBar2.setmRightTvText("完成");
@@ -62,8 +62,6 @@ public class AddPotentialActivity extends AppCompatActivity {
 
                 sendRequest();
             }
-
-
         });
 
 
@@ -81,6 +79,8 @@ public class AddPotentialActivity extends AppCompatActivity {
         optionsPickerView.setPicker(sexDescList);
         optionsPickerView.setSelectOptions(0);
     }
+
+
 
     private void sendRequest() {
 

@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.main;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,15 +19,11 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.Bottombar;
 
-
-
 import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
 public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickBottomButtonListener {
-
-
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题

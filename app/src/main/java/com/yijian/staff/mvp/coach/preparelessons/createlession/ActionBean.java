@@ -9,34 +9,59 @@ import java.util.List;
 
 public class ActionBean {
 
-    //第几个动作
-    private int sort;
+    //动作内容id
+    private String  motionId ;
     //训练难度
     private String moDifficulty;
     //动作名称
     private String moName;
+    //训练部位
+    private String moParts ;
     //训练次数(x次/x组)
-    private String buildTime;
+    private String buildDesc;
     //器械名称
     private String moApplianceName;
+    //动作难易程度描述
+    private String moDifficultyDesc;
+    //训练部位描述
+    private String moPartsDesc  ;
     //是否选中标志位
     private boolean isCheck = false;
     private boolean isShowHeader = false;
 
-    public ActionBean(int sort, String moDifficulty, String moName, String buildTime, String moApplianceName) {
-        this.sort = sort;
+    public ActionBean(){}
+
+    public ActionBean(String motionId, String moDifficulty, String moName, String moParts, String buildDesc, String moApplianceName) {
+        this.motionId = motionId;
         this.moDifficulty = moDifficulty;
         this.moName = moName;
-        this.buildTime = buildTime;
+        this.moParts = moParts;
+        this.buildDesc = buildDesc;
         this.moApplianceName = moApplianceName;
     }
 
-    public int getSort() {
-        return sort;
+    public String getMotionId() {
+        return motionId;
     }
 
-    public void setSort(int sort) {
-        this.sort = sort;
+    public void setMotionId(String motionId) {
+        this.motionId = motionId;
+    }
+
+    public String getMoParts() {
+        return moParts;
+    }
+
+    public void setMoParts(String moParts) {
+        this.moParts = moParts;
+    }
+
+    public String getBuildDesc() {
+        return buildDesc;
+    }
+
+    public void setBuildDesc(String buildDesc) {
+        this.buildDesc = buildDesc;
     }
 
     public String getMoDifficulty() {
@@ -55,20 +80,28 @@ public class ActionBean {
         this.moName = moName;
     }
 
-    public String getBuildTime() {
-        return buildTime;
-    }
-
-    public void setBuildTime(String buildTime) {
-        this.buildTime = buildTime;
-    }
-
     public String getMoApplianceName() {
         return moApplianceName;
     }
 
     public void setMoApplianceName(String moApplianceName) {
         this.moApplianceName = moApplianceName;
+    }
+
+    public String getMoDifficultyDesc() {
+        return moDifficultyDesc;
+    }
+
+    public void setMoDifficultyDesc(String moDifficultyDesc) {
+        this.moDifficultyDesc = moDifficultyDesc;
+    }
+
+    public String getMoPartsDesc() {
+        return moPartsDesc;
+    }
+
+    public void setMoPartsDesc(String moPartsDesc) {
+        this.moPartsDesc = moPartsDesc;
     }
 
     public boolean isCheck() {

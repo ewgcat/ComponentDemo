@@ -56,9 +56,9 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
 
     private void initData(){
         /****************** 初始化动作内容选项数据 **************************/
-        ActionBean actionBean1 = new ActionBean(1, "简单", "平板支撑", "1组/1次", "无");
-        ActionBean actionBean2 = new ActionBean(2, "中等", "平板支撑2", "2组2次", "有");
-        ActionBean actionBean3 = new ActionBean(3, "困难", "平板支撑3", "3组/3次", "无");
+        ActionBean actionBean1 = new ActionBean("1", "简单", "部位","平板支撑", "1组/1次", "无");
+        ActionBean actionBean2 = new ActionBean("2", "中等", "部位","平板支撑2", "2组2次", "有");
+        ActionBean actionBean3 = new ActionBean("3", "困难", "部位","平板支撑3", "3组/3次", "无");
         actionBeanList.add(actionBean1);
         actionBeanList.add(actionBean2);
         actionBeanList.add(actionBean3);

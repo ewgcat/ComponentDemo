@@ -8,6 +8,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.advice.AdviceBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
+import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -109,6 +110,10 @@ public class HttpManager {
     //首页搜索 教练
     public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
 
+    //查看教练备课列表
+    public static String INDEX_COACH_QUERY_PREPARE_LESSON_URL = BuildConfig.HOST + "privatecourse/getPrivateCoursePrepareList";
+
+
     //私教课查询
     public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
 
@@ -137,6 +142,19 @@ public class HttpManager {
 
     //根据教练ID获取私教课备课模板列表
     public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL = BuildConfig.HOST + "privatecourse/getPrepareTemplateList";
+
+    //根据私教课备课模板ID获取详情内容
+    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_DETAIL_URL = BuildConfig.HOST + "privatecourse/getPriPreTemplateDetail";
+
+    // 保存私教课约课备课内容
+    public static String COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL = BuildConfig.HOST + "privatecourse/savePrivateApplyPrepareContext";
+
+
+    //训练部位字典
+    public static String COACH_PRIVATE_COURSE_STOCK_BODYPART_URL = BuildConfig.HOST + "dict/bodyPart";
+
+    //根据训练部位获取动作内容列表
+    public static String COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL = BuildConfig.HOST + "motion/getMotionByBodyPartList";
 
 
     //工作台 首页图标
@@ -264,6 +282,7 @@ public class HttpManager {
             execute(loginObservable, observer);
         }
     }
+
 
     //添加潜在
     public static void postAddPotential(AddPotentialRequestBody addPotentialRequestBody, Observer<JSONObject> observer) {
@@ -466,6 +485,15 @@ public class HttpManager {
             Observable<JSONObject> observable = apiService.postAddAdvice(url, headers, addAdviceBody);
             execute(observable, observer);
         }
+    }
+
+    //保存私教课备课
+    public static void savePrivatePrepareLesson(String url, PrivatePrepareLessonBody privatePrepareLessonBody, Observer<JSONObject> observer){
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        headers.put("token", user.getToken());
+        Observable<JSONObject> observable = apiService.savePrivatePrepareLesson(url, headers, privatePrepareLessonBody);
+        execute(observable, observer);
     }
 
 

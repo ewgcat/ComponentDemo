@@ -1,9 +1,12 @@
 package com.yijian.staff.mvp.setclass;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Chronometer;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.setclass.bean.AerobicsBean;
@@ -17,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +30,14 @@ import butterknife.ButterKnife;
 
 public class ExperienceClassRecordActivity extends AppCompatActivity {
 
+    @BindView(R.id.tv_shangke)
+    TextView tv_shangke;
+    @BindView(R.id.tv_xiake)
+    TextView tv_xiake;
+    @BindView(R.id.chronometer)
+    Chronometer chronometer;
+    @BindView(R.id.tv_today)
+    TextView tv_today;
     @BindView(R.id.rv_noInstrument)
     RecyclerView rv_noInstrument;
     @BindView(R.id.rv_aerobics)
@@ -53,6 +65,24 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+
+        Calendar mCalendar = Calendar.getInstance();
+        int hour = mCalendar.get(Calendar.HOUR);
+        int minute = mCalendar.get(Calendar.MINUTE);
+        int second = mCalendar.get(Calendar.SECOND);
+
+        int time = hour * 60 * 60 + minute * 60 + second;
+        chronometer.setBase(SystemClock.elapsedRealtime() - time * 1000);//计时器清零
+        chronometer.start();
+        tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
+
+
+        String startTime = getIntent().getStringExtra("startDateTime");
+        String endTime = getIntent().getStringExtra("endDateTime");
+        String startDate = getIntent().getStringExtra("startDate");
+        tv_shangke.setText(startDate+" "+startTime);
+        tv_xiake.setText(startDate+" "+endTime);
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.coach.preparelessons.list;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.PrepareLessonsActivity;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -31,6 +34,11 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
         this.prepareLessonsBeanList = prepareLessonsBeanList;
     }
 
+    public void resetList(List<PrepareLessonsBean> prepareLessonsBeans){
+        this.prepareLessonsBeanList = prepareLessonsBeans;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_prepare_lessons, parent, false);
@@ -41,32 +49,23 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         PrepareLessonsBean prepareLessonsBean = prepareLessonsBeanList.get(position);
-        String  beikeStatus = prepareLessonsBean.getBeikeStatus();
-
-        if (beikeStatus.equals("1")){
-            holder.tv_beike_status.setText("备课");
-            holder.tv_beike_status.setTextColor(Color.parseColor("#1997f8"));
-            Drawable preparelessons =context.getResources().getDrawable(R.mipmap.preparelessons);
-            preparelessons.setBounds(0, 0, preparelessons.getMinimumWidth(), preparelessons.getMinimumHeight());
-            holder.tv_beike_status.setCompoundDrawables(preparelessons, null, null, null);
-        }else {
-
-            Drawable done =context.getResources().getDrawable(R.mipmap.done);
-            done.setBounds(0, 0, done.getMinimumWidth(), done.getMinimumHeight());
-            holder.tv_beike_status.setCompoundDrawables(done, null, null, null);
-            holder.tv_beike_status.setText("已备课");
-            holder.tv_beike_status.setTextColor(Color.parseColor("#666666"));
-
-        }
 
         holder.lin_beike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (beikeStatus =="1"){
-                    context.startActivity(new Intent(context,PrepareLessonsActivity.class));
-                }
+                Intent intent = new Intent(context,PrepareLessonsActivity.class);
+                intent.putExtra("parepareLessonBean", prepareLessonsBean);
+                context.startActivity(intent);
             }
         });
+        ImageLoader.loadAll((Activity)context,prepareLessonsBean.getHeadPath(),holder.iv_header);
+        holder.iv_gender.setImageResource((prepareLessonsBean.getGender()==1)?R.mipmap.wt_man:R.mipmap.wt_women);
+        holder.tv_name.setText(prepareLessonsBean.getMemberName());
+        holder.tv_class_name.setText(prepareLessonsBean.getLessonName());
+        holder.tv_class_time.setText(prepareLessonsBean.getStartDate()+" "+prepareLessonsBean.getStartDatetime());
+        holder.tv_class_num.setText(prepareLessonsBean.getCourseNum()+"");
+        holder.tv_has_shang_class_count.setText(prepareLessonsBean.getCurrentNum()+"");
+
     }
 
     @Override
@@ -91,7 +90,6 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
         TextView tv_class_time;
         TextView tv_class_num;
         TextView tv_has_shang_class_count;
-        TextView tv_beike_status;
 
         public ViewHolder(View view) {
             super(view);
@@ -107,7 +105,6 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
             tv_class_time = view.findViewById(R.id.tv_class_time);
             tv_class_num = view.findViewById(R.id.tv_class_num);
             tv_has_shang_class_count = view.findViewById(R.id.tv_has_shang_class_count);
-            tv_beike_status = view.findViewById(R.id.tv_beike_status);
 
 
         }

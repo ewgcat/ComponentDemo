@@ -23,6 +23,7 @@ public class OrderClassDayBean {
     private String id;
     private String isExperience;
     private int isPrepare;
+    private String isUseTemplate;
     private String lessonName;
     private String lessonPlace;
     private String memberName;
@@ -30,6 +31,7 @@ public class OrderClassDayBean {
     private String startDate;
     private String startDatetime;
     private String startTimeActual;
+    private String experienceRecordId;
 
     public String getEndDatetime() {
         return endDatetime;
@@ -117,6 +119,22 @@ public class OrderClassDayBean {
 
     public void setStartTimeActual(String startTimeActual) {
         this.startTimeActual = startTimeActual;
+    }
+
+    public String getExperienceRecordId() {
+        return experienceRecordId;
+    }
+
+    public void setExperienceRecordId(String experienceRecordId) {
+        this.experienceRecordId = experienceRecordId;
+    }
+
+    public String getIsUseTemplate() {
+        return isUseTemplate;
+    }
+
+    public void setIsUseTemplate(String isUseTemplate) {
+        this.isUseTemplate = isUseTemplate;
     }
 
     public String getIsExperience() {

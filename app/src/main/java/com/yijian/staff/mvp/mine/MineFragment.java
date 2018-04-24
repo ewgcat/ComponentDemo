@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.advice.AddAdviceActivity;
+import com.yijian.staff.mvp.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.aboutus.AboutUsActivity;
 import com.yijian.staff.mvp.mine.club.ClubActivity;
@@ -26,7 +26,6 @@ import com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.mine.setting.SettingActivity;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import butterknife.BindView;
@@ -83,19 +82,20 @@ public class MineFragment extends Fragment {
             } else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("店长");
             }
+            setImageResource(user.getHeadImg(),ivUserHead);
         }
         return view;
     }
 
 
-    private void setImageResource(String path) {
+    private void setImageResource(String path,ImageView imageView) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(this).load(path).apply(options).into(ivUserHead);
+        Glide.with(this).load(path).apply(options).into(imageView);
     }
 
     @Override

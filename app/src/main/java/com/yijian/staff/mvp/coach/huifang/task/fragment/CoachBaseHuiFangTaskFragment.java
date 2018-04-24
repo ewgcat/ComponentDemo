@@ -54,7 +54,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
     private int type;
     private int defaultViewId = R.layout.common_hui_fang_task;
     private int pageNum = 1;//页码
-    private int pageSize = 2;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
 
@@ -76,11 +76,10 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
         refresh();
     }
-
 
     public void initComponent(View view) {
         refreshLayout = (RefreshLayout) view.findViewById(R.id.refreshLayout);
@@ -112,7 +111,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
 
     public void refresh() {
         pageNum = 1;
-        pageSize = 2;
+        pageSize = 10;
         coachHuiFangInfoList.clear();
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
@@ -145,8 +144,6 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
                 refreshLayout.finishRefresh(2000, false);
             }
         });
-
-
     }
 
     public void loadMore() {

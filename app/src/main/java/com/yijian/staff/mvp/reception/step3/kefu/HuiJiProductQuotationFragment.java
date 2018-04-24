@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 
@@ -131,6 +132,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(ConditionBody body) {
+//                Log.e(TAG, "onDismiss: " );
                 bodyCondition=body;
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(10);
@@ -143,6 +145,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             @Override
             public void onItemClick(View v, CardInfo goodsInfo) {
                 selectedGoodsInfo = goodsInfo;
+
             }
         });
         selectZongHe();
@@ -153,10 +156,12 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     //点击筛选
     private void selectShaixuan() {
+//        priceUp = false;
         resetTabColor();
         tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
 
         Bundle bundle = new Bundle();
+//        bundle.set("bodyCondition",bodyCondition);
         bundle.putString("cardType",bodyCondition.getCardType());
         bundle.putString("startPrice",bodyCondition.getStartPrice());
         bundle.putString("venueName",bodyCondition.getVenueName());
@@ -176,6 +181,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
 
         if (mGoodsInfoList==null||mGoodsInfoList.size()==0)return;
+//        Log.e(TAG, "mGoodsInfoList"+mGoodsInfoList.size());
         resetTabColor();
 
         if (priceUp){
@@ -270,8 +276,24 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             cardRefreshLayout.finishRefresh(1000);
         }else {
             if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
             cardRefreshLayout.finishLoadMore(1000);
         }
+
+    }
+
+    @Override
+    public void showStatus(ReceptionStastuBean receptionStastuBean) {
+
+    }
+
+    @Override
+    public void showCardToOrder() {
+
+    }
+
+    @Override
+    public void shouldCardToOrder() {
 
     }
 

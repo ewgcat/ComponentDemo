@@ -17,19 +17,18 @@
 
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/wt_boysmall" />
+          />
 
         <TextView
             android:id="@+id/tv_viper_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="程先生"
             android:textColor="#333333"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -41,7 +40,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/lg_man" />
+           />
 
         <View
             android:layout_width="0dp"
@@ -51,6 +50,11 @@
 
     </LinearLayout>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
     <!--  公共部分-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +91,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="正常"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -123,7 +126,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="私教"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -159,7 +161,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="游泳"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -195,7 +196,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="无"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -210,42 +210,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--权益-->
-        <LinearLayout
-            android:id="@+id/ll_quanyi"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="权益: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_quanyi"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="私教"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <!--过期时间-->
         <LinearLayout
@@ -279,7 +243,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -317,7 +280,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -392,7 +354,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="工作太忙，没时间"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -430,7 +391,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="2017-12-25"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -468,7 +428,6 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="1233"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -882,9 +841,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--已体测次数-->
+        <!--上次约课时间-->
         <LinearLayout
-            android:id="@+id/ll_ti_ce_num"
+            android:id="@+id/ll_last_yue_ke_time"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -896,7 +855,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="已体测次数: "
+                android:text="上次约课时间: "
                 android:textColor="#999999"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -908,7 +867,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tv_ti_ce_num"
+                android:id="@+id/tv_last_yue_ke_time"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -919,9 +878,10 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--约课时间-->
+
+        <!--购买课程-->
         <LinearLayout
-            android:id="@+id/ll_yue_ke_time"
+            android:id="@+id/ll_gou_mai_ke_cheng"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="16dp"
@@ -933,7 +893,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="约课时间: "
+                android:text="购买课程: "
                 android:textColor="#999999"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -945,7 +905,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tv_yue_ke_time"
+                android:id="@+id/tv_gou_mai_ke_cheng"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -955,6 +915,9 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
+
+
 
 
     </LinearLayout>
@@ -995,7 +958,6 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:text="过期回访"
             android:textColor="#666666"
             android:textSize="14sp"
             android:textStyle="bold" />

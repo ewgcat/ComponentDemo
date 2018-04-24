@@ -20,8 +20,10 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
@@ -44,6 +46,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private TextView tvPhone;
     private ReceptionHistoryAdapter receptionHistoryAdapter;
     private SmartRefreshLayout refreshLayout;
+    private Integer operatorType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         presenter.setView(this);
         presenter.getRecptionerInfo();
+
         presenter.getRecptionRecord(true);
     }
 
@@ -151,13 +155,23 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                startActivity(intent1);
 
 //                第三步
-                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-                if (consumer!=null) {
-                    String id1 = consumer.getId();
-                    id1="1";
-                    intent.putExtra("memberId", id1);
-                }
-                startActivity(intent);
+//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
+//                if (consumer!=null) {
+//                    String id1 = consumer.getId();
+//                    id1="1";
+//                    intent.putExtra("memberId", id1);
+//                }
+//                startActivity(intent);
+
+
+//                if (consumer==null||operatorType==null){
+//                    Toast.makeText(this,"接待人信息或者接待人节点获取失败，请退出此页面重新获取",Toast.LENGTH_SHORT).show();
+//                return;
+//                }
+                consumer.setStatus(operatorType);
+                Intent intent1 = new Intent(ReceptionActivity.this, ReceptionStepActivity.class);
+                intent1.putExtra(CONSUMER, consumer);
+                startActivity(intent1);
 
                 break;
         }
@@ -171,7 +185,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         tvName.setText("" + bean.getName());
         tvSex.setText("" + bean.getSex());
         tvPhone.setText("" + bean.getMobile());
-
+        presenter.getRecptionStatus(bean.getId());
     }
 
     @Override
@@ -188,6 +202,12 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         } else {
             refreshLayout.finishLoadMore();
         }
+    }
+
+    @Override
+    public void showStatus(ReceptionStastuBean receptionStastuBean) {
+        operatorType = receptionStastuBean.getOperatorType();
+
     }
 
     @Override

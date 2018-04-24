@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.huifang.bean;
 
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -30,6 +31,8 @@ public class CoachHuiFangInfo {
      * subclassName : BirthdayVO
      */
 
+
+
     private String interviewRecordId;
     private String id;
     private String name;
@@ -44,7 +47,27 @@ public class CoachHuiFangInfo {
     private String interviewResult;
     private Long birthday;
     private String birthdayType;
+    private String testTimes;
+    private Long lastTestTime;
     private String subclassName;
+
+    private Long inviteCourseTime;
+
+
+    private Long deadline;
+    private String expiryReason;
+
+    private String courseName;
+    private String courseId;
+    private String reinterviewReason;
+    private Long lastVisitTime;
+    /**
+     * interviewResult : null
+     * contractBalance : 6天
+     */
+
+    private String contractBalance;
+
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
@@ -54,14 +77,44 @@ public class CoachHuiFangInfo {
         this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
         this.hobby = JsonUtil.getString(jsonObject, "hobby");
         this.carBrand = JsonUtil.getString(jsonObject, "carBrand");
+
         this.interviewType = JsonUtil.getString(jsonObject, "interviewType");
         this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
+        this.interviewRecordId = JsonUtil.getString(jsonObject, "interviewRecordId");
 
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
+        this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
+        this.inviteCourseTime = JsonUtil.getLong(jsonObject, "inviteCourseTime");
+        this.lastVisitTime = JsonUtil.getLong(jsonObject, "lastVisitTime");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.testTimes = JsonUtil.getString(jsonObject, "testTimes");
+        this.id = JsonUtil.getString(jsonObject, "id");
+        this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.courseName = JsonUtil.getString(jsonObject, "courseName");
+        this.courseId = JsonUtil.getString(jsonObject, "courseId");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.reinterviewReason = JsonUtil.getString(jsonObject, "reinterviewReason");
 
 
+    }
+
+    public String getReinterviewReason() {
+        return reinterviewReason;
+    }
+
+    public Long getLastVisitTime() {
+        return lastVisitTime;
+    }
+
+    public String getTestTimes() {
+        return testTimes;
+    }
+
+    public Long getLastTestTime() {
+        return lastTestTime;
     }
 
     public String getInterviewRecordId() {
@@ -122,5 +175,56 @@ public class CoachHuiFangInfo {
 
     public String getSubclassName() {
         return subclassName;
+    }
+
+    public Long getInviteCourseTime() {
+        return inviteCourseTime;
+    }
+
+    public void setInviteCourseTime(Long inviteCourseTime) {
+        this.inviteCourseTime = inviteCourseTime;
+    }
+
+
+
+
+    public Long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Long deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(String expiryReason) {
+        this.expiryReason = expiryReason;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getContractBalance() {
+        return contractBalance;
+    }
+
+    public void setContractBalance(String contractBalance) {
+        this.contractBalance = contractBalance;
     }
 }

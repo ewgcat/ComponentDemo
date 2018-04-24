@@ -141,6 +141,7 @@
                 android:background="@color/white"
                 android:elevation="2dp">
                 <TextView
+                    android:id="@+id/tv_cancel"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
                     android:gravity="center"

@@ -1,28 +1,29 @@
 package com.yijian.staff.mvp.reception.step3.coach;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ReceptionUserInfo;
+
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +35,7 @@ import butterknife.Unbinder;
  * email：850716183@qq.com
  * time: 2018/3/13 19:25:37
  */
-public class CoachProductFragment extends Fragment implements CoachProductContract.View {
+public class CoachProductFragment extends Fragment implements CoachProductContract.View, TOLeadersDialog.ToLeaderLisenter {
     @BindView(R.id.rl_coach_goods)
     RelativeLayout rlCoachGoods;
     @BindView(R.id.tv_send_to_status)
@@ -67,9 +68,12 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
     LinearLayout llToLeader;
 
     private View view;
-    private PopupWindow popupWindow;
     private String memberId;
-    private String memberName="";
+    private String memberName = "";
+
+    private ProductDetail productDetail;
+    private TOLeadersDialog toLeadersDialog;
+    private CoachProductPresenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,15 +82,20 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
         memberId = arguments.getString("memberId");
     }
 
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coach_product_quotation, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-        CoachProductPresenter coachProductPresenter = new CoachProductPresenter(getContext());
-        coachProductPresenter.setView(this);
-        coachProductPresenter.getUserInfo(memberId);
-        initSelectLeaderPopupWindow();
+        presenter = new CoachProductPresenter(getContext());
+        presenter.setView(this);
+        presenter.getUserInfo(memberId);
+        presenter.getProductDetail(memberId);
+
+        toLeadersDialog = new TOLeadersDialog();
+        toLeadersDialog.setLisenter(this);
         return view;
     }
 
@@ -96,144 +105,109 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao, R.id.ll_to_leader})
+    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao, R.id.ll_to_leader, R.id.item_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
                 Intent intent = new Intent(getContext(), QuestionnaireResultActivity.class);
-                intent.putExtra("memberId",memberId);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
                 break;
             case R.id.tv_ticebaogao:
                 Intent intent1 = new Intent(getContext(), PhysicalReportActivity.class);
-                intent1.putExtra("memberId",memberId);
-                intent1.putExtra("memberName",memberName);
+                intent1.putExtra("memberId", memberId);
+                intent1.putExtra("memberName", memberName);
                 startActivity(intent1);
                 break;
 
-            case R.id.ll_to_leader:
-                showPopupWindow();
+            case R.id.item_view:
+
+                if (productDetail!=null){
+                    Intent intent2 = new Intent(getContext(), ProductDetailActivity.class);
+                    intent2.putExtra("productDetail",productDetail);
+                    startActivity(intent2);
+
+                }
+
+
                 break;
+
+            case R.id.ll_to_leader:
+
+                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
+                break;
+
+
         }
     }
 
-    private void initSelectLeaderPopupWindow() {
-
-        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.select_leader_pop_window, null);
-        int width = WindowManager.LayoutParams.WRAP_CONTENT;
-        int height = WindowManager.LayoutParams.WRAP_CONTENT;
-        popupWindow = new PopupWindow(contentView, width, height, true);
-
-
-        final TextView cancel = contentView.findViewById(R.id.tv_cancel);
-        final TextView confirm = contentView.findViewById(R.id.tv_confirm);
-        final EditText etToReason = contentView.findViewById(R.id.et_to_reason);
-        final ImageView ivKeFuHead = contentView.findViewById(R.id.iv_kefu_head);
-        final TextView tvKefuName = contentView.findViewById(R.id.tv_kefu_name);
-        final TextView tvSelectKefu = contentView.findViewById(R.id.tv_select_kefu);
-
-        final ImageView ivCoachHead = contentView.findViewById(R.id.iv_coach_head);
-        final TextView tvCoachName = contentView.findViewById(R.id.tv_coach_name);
-        final TextView tvSelectCoach = contentView.findViewById(R.id.tv_select_coach);
-
-        final ImageView ivDianzhangHead = contentView.findViewById(R.id.iv_dianzhang_head);
-        final TextView tvDianzhangName = contentView.findViewById(R.id.tv_dianzhang_name);
-        final TextView tvSelectDianzhang = contentView.findViewById(R.id.tv_select_dianzhang);
-
-
-        popupWindow.setAnimationStyle(R.style.popwin_anim_style);
-        popupWindow.setTouchable(true);
-        //添加popupWindow窗口关闭监听
-        popupWindow.setOnDismissListener(() -> backgroundAlpha(1f));
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-
-            }
-        });
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-                //TODO 发送请求
-                rlCoachGoods.setVisibility(View.GONE);
-                tvSendToStatus.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-        tvSelectKefu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvSelectKefu.setTextColor(Color.parseColor("#FFFFFF"));
-                tvSelectCoach.setTextColor(Color.parseColor("#999999"));
-                tvSelectDianzhang.setTextColor(Color.parseColor("#999999"));
-                tvSelectKefu.setBackground(getContext().getDrawable(R.drawable.blue_solid_select_bg));
-                tvSelectCoach.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-                tvSelectDianzhang.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            }
-        });
-
-        tvSelectCoach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvSelectCoach.setTextColor(Color.parseColor("#FFFFFF"));
-                tvSelectKefu.setTextColor(Color.parseColor("#999999"));
-                tvSelectDianzhang.setTextColor(Color.parseColor("#999999"));
-                tvSelectCoach.setBackground(getContext().getDrawable(R.drawable.blue_solid_select_bg));
-                tvSelectKefu.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-                tvSelectDianzhang.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            }
-        });
-
-        tvSelectDianzhang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvSelectDianzhang.setTextColor(Color.parseColor("#FFFFFF"));
-                tvSelectCoach.setTextColor(Color.parseColor("#999999"));
-                tvSelectKefu.setTextColor(Color.parseColor("#999999"));
-                tvSelectDianzhang.setBackground(getContext().getDrawable(R.drawable.blue_solid_select_bg));
-                tvSelectCoach.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-                tvSelectKefu.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            }
-        });
-
-
-        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-        // 我觉得这里是API的一个bug
-        // 设置好参数之后再show
-        popupWindow.setOutsideTouchable(false);
-
-    }
-
-    private void showPopupWindow() {
-        backgroundAlpha(0.3f);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-    }
-
-    /**
-     * 设置添加屏幕的背景透明度
-     *
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha) {
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        getActivity().getWindow().setAttributes(lp);
-    }
 
 
     @Override
     public void showUserInfo(ReceptionUserInfo receptionUserInfo) {
         memberName = receptionUserInfo.getMemberName();
-        tvName.setText(""+ memberName);
-            tvViperPhone.setText(""+receptionUserInfo.getMemberMobile());
-            tvJiedaiName.setText(""+receptionUserInfo.getSaleName());
-            tvCoachName.setText(""+receptionUserInfo.getCoachName());
+        tvName.setText("" + memberName);
+        tvViperPhone.setText("" + receptionUserInfo.getMemberMobile());
+        tvJiedaiName.setText("" + receptionUserInfo.getSaleName());
+        tvCoachName.setText("" + receptionUserInfo.getCoachName());
 
     }
+
+    @Override
+    public void showProductDetail(ProductDetail productDetail) {
+        this.productDetail=productDetail;
+
+        tvGoodsName.setText("" + productDetail.getCardTypeName());
+        List<String> venueNames = productDetail.getVenueNames();
+        if (venueNames != null && venueNames.size() != 0) {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < venueNames.size(); i++) {
+                stringBuilder.append("、").append(venueNames.get(i));
+            }
+            String substring = stringBuilder.substring(1);
+            tvJianshenplace.setText(substring);
+        }
+
+
+        Integer validDay = productDetail.getValidDay();
+        if (validDay != null) tvYuEr.setText("" + validDay + "天");
+
+        Integer validTime = productDetail.getValidTime();
+        if (validTime != null) tvYuEr.setText("" + validTime + "次");
+
+        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
+        if (rechargeGivePercent != null) {
+            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+            String format = percent.format(rechargeGivePercent);
+            tvChuzhiyouhui.setText("赠送" + format);
+        }
+        BigDecimal salePrice = productDetail.getSalePrice();
+        if (salePrice != null) {
+            tvPrice.setText("" + salePrice.doubleValue());
+        }
+
+    }
+
+    @Override
+    public void showToLeaderSucceed() {
+
+        toLeadersDialog.dismiss();
+
+    }
+
+    @Override
+    public void coachToSaleSecceed() {
+        Toast.makeText(getContext(),"发送给会籍成功",Toast.LENGTH_SHORT).show();
+    }
+
+    //TO给领导
+    @Override
+    public void onConfirm(Integer postid, String content) {
+        if (TextUtils.isEmpty(memberId))return;
+
+        presenter.postToLeader(memberId,content,postid);
+    }
+
+
 }

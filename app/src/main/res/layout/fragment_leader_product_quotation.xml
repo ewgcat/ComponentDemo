@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <RelativeLayout
@@ -36,7 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="陈先生"
+                        tools:text="陈先生"
                         android:textColor="#333333"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -82,7 +83,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="99999999"
+                        tools:text="99999999"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -183,7 +184,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="李先生"
+                        tools:text="李先生"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -218,7 +219,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="黄小姐"
+                        tools:text="黄小姐"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -252,7 +253,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="健身次数卡"
+                        tools:text="健身次数卡"
                         android:textColor="#333333"
                         android:textSize="16sp" />
 
@@ -272,7 +273,7 @@
                             android:id="@+id/tv_jianshenplace"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="游泳" />
+                            tools:text="游泳" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -291,7 +292,7 @@
                             android:id="@+id/tv_yu_er"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="90次" />
+                            tools:text="90次" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -310,7 +311,7 @@
                             android:id="@+id/tv_chuzhiyouhui"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="赠送20%" />
+                            tools:text="赠送20%" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -372,7 +373,7 @@
                     android:gravity="start"
                     android:paddingLeft="16dp"
                     android:paddingTop="4dp"
-                    android:text="客户犹豫不决,不知道选哪种卡"
+                    tools:text="客户犹豫不决,不知道选哪种卡"
                     android:textColor="#666666"
                     android:textSize="14sp" />
             </LinearLayout>

@@ -3,20 +3,34 @@ package com.yijian.staff.mvp.reception.step5;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ReceptionStepFiveActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_step_five);
         initView();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("memberId")) {
+            memberId = intent.getStringExtra("memberId");
+        }
+
     }
 
     private void initView() {
@@ -52,9 +66,26 @@ public class ReceptionStepFiveActivity extends AppCompatActivity implements View
                 startActivity(i);
                 break;
             case R.id.right_tv:
-
+               if (!TextUtils.isEmpty(memberId))endProcess();
 
                 break;
         }
+    }
+
+    private void endProcess() {
+        Map<String ,String> params=new HashMap<>();
+        params.put("memberId",memberId);
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver() {
+            @Override
+            public void onSuccess(Object result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
     }
 }

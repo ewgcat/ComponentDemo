@@ -132,5 +132,7 @@ public class NavigationBar2 extends LinearLayout {
         mRightTv.setOnClickListener(listener);
     }
 
-
+    public LinearLayout getBackLL() {
+        return backLL;
+    }
 }

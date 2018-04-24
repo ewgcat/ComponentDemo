@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="295dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#f76666"
+            android:textSize="@dimen/text_size_18" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+
+                    android:id="@+id/tv_reason_0"
+                    android:layout_width="248dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/selector_fillet_23_blue"
+                    android:gravity="center"
+                    android:text="客户不方便"
+                    android:textColor="@drawable/selector_textcolor_blue"
+                    android:textSize="@dimen/text_size_14" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_reason_1"
+                    android:layout_width="248dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/selector_fillet_23_blue"
+                    android:gravity="center"
+                    android:text="客户时间不够"
+                    android:textColor="@drawable/selector_textcolor_blue"
+                    android:textSize="@dimen/text_size_14" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_reason_2"
+                    android:layout_width="248dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/selector_fillet_23_blue"
+                    android:gravity="center"
+                    android:text="其他"
+                    android:textColor="@drawable/selector_textcolor_blue"
+                    android:textSize="@dimen/text_size_14" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+        android:id="@+id/tv_ok"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="确定"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_18"
+        android:background="#f7f7f7"
+        />
+
+    </LinearLayout>
+</LinearLayout>

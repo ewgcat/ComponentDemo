@@ -14,13 +14,10 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -38,8 +35,8 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
     private ExperienceClassProcess2Presenter presenter;
     private String mobileNum;
     private String memberName;
-    private String processId;
     private String processId_result;
+    private String processId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +71,8 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                showSavaSucceed();
+
                 String coachVisitRecord = etCoachHuifangResult.getText().toString();
                 if (TextUtils.isEmpty(coachVisitRecord)) {
                     Toast.makeText(ExperienceClassProcess2Activity.this, "请先对客户进行电话回访，填写回访记录，才可以进行下一步", Toast.LENGTH_SHORT).show();
@@ -86,6 +85,10 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
                     }
 
 
+//                    //TODO 发送请求
+//                    Intent intent = new Intent(ExperienceClassProcess2Activity.this, ExperienceClassProcess3Activity.class);
+//                    intent.putExtra("memberId", memberId);
+//                    startActivity(intent);
                     String s = etCoachHuifangResult.getText().toString();
                     if (TextUtils.isEmpty(s)) {
                         Toast.makeText(ExperienceClassProcess2Activity.this, "请先对客户进行电话回访，填写回访记录，才可以进行下一步", Toast.LENGTH_SHORT).show();
@@ -103,25 +106,25 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
         ClassTimeBar timeBar = findViewById(R.id.step_two_timebar);
         timeBar.showTimeBar(2);
 
-        memberId = getIntent().getStringExtra("memberId");
-        processId = getIntent().getStringExtra("processId");
-        HashMap<String, String> map = new HashMap<>();
-        map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                String sellerVisitRecord = JsonUtil.getString(result, "sellerVisitRecord");
-                String coachVisitRecord = JsonUtil.getString(result, "coachVisitRecord");
-                tvHuijiHuifangResult.setText(sellerVisitRecord);
-                etCoachHuifangResult.setText(coachVisitRecord);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                Toast.makeText(ExperienceClassProcess2Activity.this, msg, Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        memberId = getIntent().getStringExtra("memberId");
+//        processId = getIntent().getStringExtra("processId");
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("processId", processId);
+//        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+//                String sellerVisitRecord = JsonUtil.getString(result, "sellerVisitRecord");
+//                String coachVisitRecord = JsonUtil.getString(result, "coachVisitRecord");
+//                tvHuijiHuifangResult.setText(sellerVisitRecord);
+//                etCoachHuifangResult.setText(coachVisitRecord);
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//                Toast.makeText(ExperienceClassProcess2Activity.this,msg,Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
     }
 
     @OnClick(R.id.tv_call_phone)

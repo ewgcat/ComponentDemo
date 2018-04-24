@@ -4,28 +4,20 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.bean.RecptionCards;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultNullObserver;
-import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.GsonNullString;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by The_P on 2018/4/11.
@@ -83,7 +75,50 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    @Override
+    public void getStatus(boolean isFirst) {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STATUS, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
+                if (receptionStastuBean==null||receptionStastuBean.getOperatorType()==null)return;
+
+                if (receptionStastuBean.getOperatorType()>40){
+                    view.showStatus(receptionStastuBean);
+                }else {
+                    if (isFirst) view.shouldCardToOrder();
+                }
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void cardToOrder(String memberId, String cardprodbaseId) {
+        Map<String,String> params=new HashMap<>();
+        params.put("memberId",memberId);
+        params.put("cardId",cardprodbaseId);
+
+
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_CARD_TO_ORDER, params, new ResultNullObserver() {
+            @Override
+            public void onSuccess(Object result) {
+                view.showCardToOrder();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                    Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
             }
         });
     }

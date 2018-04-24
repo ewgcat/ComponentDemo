@@ -169,7 +169,9 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
      */
     @Override
     public void onChildNormalClick(int childPosition, int parentPosition) {
-        ((CoachReceptionStepTwoActivity) mContext).showBottomView(childPosition,parentPosition);
+//        ((CoachReceptionStepTwoActivity) mContext).showBottomView(childPosition,parentPosition);
+
+        if (itemClickListener!=null)itemClickListener.itemClick(childPosition,parentPosition);
 
     }
 
@@ -234,5 +236,13 @@ public class ReceptionStep2Adapter extends ExpandableRecyclerAdapter<ParentQuest
 //        multiAdapter.notifyDataSetChanged();
     }
 
+    public interface PhysicalItemClickListener{
+        void itemClick(int childPosition, int parentPosition);
+    }
 
+    private PhysicalItemClickListener itemClickListener;
+
+    public void setItemClickListener(PhysicalItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 }

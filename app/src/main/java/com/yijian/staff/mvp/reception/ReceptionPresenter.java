@@ -1,16 +1,17 @@
 package com.yijian.staff.mvp.reception;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.GsonNullString;
 
 import org.json.JSONObject;
 
@@ -58,7 +59,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
-                RecptionerInfoBean receptionInfo = new Gson().fromJson(result.toString(), RecptionerInfoBean.class);
+                RecptionerInfoBean receptionInfo = GsonNullString.getGson().fromJson(result.toString(), RecptionerInfoBean.class);
                 if (receptionInfo == null) return;
                 view.showRecptionInfo(receptionInfo);
                 //
@@ -117,8 +118,23 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     }
 
     @Override
-    public void getRecptionStatus() {
+    public void getRecptionStatus(String id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId",id);
 
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
+                if (receptionStastuBean==null)return;
+                view.showStatus(receptionStastuBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
 

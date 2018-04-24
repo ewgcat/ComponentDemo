@@ -2,15 +2,18 @@ package com.yijian.staff.mvp.coach.huifang.bean;
 
 import com.yijian.staff.util.JsonUtil;
 
+import org.greenrobot.greendao.annotation.Entity;
 import org.json.JSONObject;
 
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/4/19 15:53:35
  */
+@Entity
 public class CoachHuiFangTypeBean {
 
 
@@ -38,6 +41,18 @@ public class CoachHuiFangTypeBean {
         this.triggerDay= JsonUtil.getInt(jsonObject,"triggerDay");
         this.order= JsonUtil.getInt(jsonObject,"order");
         this.configName= JsonUtil.getString(jsonObject,"configName");
+    }
+    @Generated(hash = 506956304)
+    public CoachHuiFangTypeBean(int id, int configType, int postId, String configName, int triggerDay, int order) {
+        this.id = id;
+        this.configType = configType;
+        this.postId = postId;
+        this.configName = configName;
+        this.triggerDay = triggerDay;
+        this.order = order;
+    }
+    @Generated(hash = 660955335)
+    public CoachHuiFangTypeBean() {
     }
     public int getId() {
         return id;

@@ -69,8 +69,14 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             } else if (user.getRole() == 7) {
                 tvRole.setText("店长");
             }
-            ImageLoader.setImageResource(user.getHeadUrl(), this, ivHeader);
-            int sexId = user.getSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            ImageLoader.setImageResource(user.getHeadImg(), this, ivHeader);
+            String sex = user.getSex();
+            int sexId;
+            if (sex.equals("男")){
+                sexId =  R.mipmap.lg_man;
+            }else {
+                sexId =   R.mipmap.lg_women;
+            }
             Glide.with(this).load(sexId).into(ivGender);
         }
         initQRCode();

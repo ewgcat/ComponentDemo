@@ -14,6 +14,8 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
+import com.yijian.staff.util.GsonNullString;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +53,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
         HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                TemplateBean templateBean = new Gson().fromJson(result.toString(), TemplateBean.class);
+                TemplateBean templateBean = GsonNullString.getGson().fromJson(result.toString(), TemplateBean.class);
                 view.showQuestion(templateBean);
             }
 
@@ -244,12 +246,11 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 //        id="3";
         params.put("memberId",""+ id);
         String substring = builder.substring(1);
-//        Log.e(TAG, "upLoadFitnessTime: "+substring );
         params.put("bodyBuildTimes",""+ substring);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultNullObserver() {
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(Object result) {
                 view.saveSucceed();
             }
 

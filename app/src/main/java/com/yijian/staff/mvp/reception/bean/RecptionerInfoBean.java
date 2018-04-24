@@ -20,6 +20,7 @@ public class RecptionerInfoBean implements Parcelable {
     private String name;
     private String sex;
     private String mobile;
+    private Integer status;//节点位置
 
     public String getId() {
         return id;
@@ -53,6 +54,14 @@ public class RecptionerInfoBean implements Parcelable {
         this.mobile = mobile;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -64,6 +73,7 @@ public class RecptionerInfoBean implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.sex);
         dest.writeString(this.mobile);
+        dest.writeValue(this.status);
     }
 
     public RecptionerInfoBean() {
@@ -74,6 +84,7 @@ public class RecptionerInfoBean implements Parcelable {
         this.name = in.readString();
         this.sex = in.readString();
         this.mobile = in.readString();
+        this.status = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<RecptionerInfoBean> CREATOR = new Parcelable.Creator<RecptionerInfoBean>() {
@@ -87,4 +98,15 @@ public class RecptionerInfoBean implements Parcelable {
             return new RecptionerInfoBean[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "RecptionerInfoBean{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

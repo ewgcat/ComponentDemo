@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.savemenu.MenuBean;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/test/all")
-public class AllFunctionActivity extends AppCompatActivity implements View.OnClickListener {
+public class AllFunctionActivity extends MvcBaseActivity implements View.OnClickListener {
 
     public static void startToActivity(Context context,  ObserveDataChange observeDataChange2){
         observeDataChange = observeDataChange2;
@@ -57,17 +58,16 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
     private boolean hasChangedListData;
     private TextView rightTv;
     private static ObserveDataChange observeDataChange;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_all_function);
-        SharePreferenceUtil.setShowEditIcon(false);
-        initView();
-        initEvents();
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_all_function;
     }
 
-    private void initView() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        SharePreferenceUtil.setShowEditIcon(false);
         NavigationBar2 navigationBar2 = findViewById(R.id.all_function_navigation_bar);
         navigationBar2.findViewById(R.id.iv_first_left).setOnClickListener(this);
         navigationBar2.hideLeftSecondIv();
@@ -76,18 +76,17 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         navigationBar2.setTitle("全部功能");
         navigationBar2.setmRightTvText("编辑");
         mRecyclerView = (RecyclerView) findViewById(R.id.edit);
+        initEvents();
     }
 
 
+
     private void initEvents() {
-        //TODO 更换数据来源
         frequentlyList = MenuHelper.getPreferFrequentlyList();
         vipmanagerList = MenuHelper.getPreferVipManageList();
         huijikefuList = MenuHelper.getPreferHuiJiKeFuList();
         coachList = MenuHelper.getPreferCoachList();
         otherList = MenuHelper.getPreferOtherList();
-
-
         //非常用功能
         mEditList = new ArrayList<>();
         if (vipmanagerList != null) {
@@ -103,9 +102,7 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
             mEditList.add(new EditItem(MenuHelper.GROUP_OTHER, otherList));
         }
 
-
         mListAdapter = new MenuRecyclerListAdapter(mEditList, AllFunctionActivity.this);
-
 
         mListAdapter.setOnAddListener(new OnAddListener() {
             @Override
@@ -124,7 +121,6 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     mListHeaderWrapper.notifyDataSetChanged();
                 }
                 hasChangedListData=true;
-
             }
         });
 
@@ -161,7 +157,6 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         mListAdapter.setOnRecyclerItemLongClickListener(new OnRecyclerItemLongClickListener() {
             @Override
             public void onItemLongClick(View v, BaseRecyclerItem item, int position, int segment) {
-
                 String s = rightTv.getText().toString();
                 if (s.equals("编辑")) {
                     SharePreferenceUtil.setShowEditIcon(true);
@@ -185,7 +180,6 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                             if (menuItemList.get(j).getName().equals(item.getName())) {
                                 menuItemList.get(j).setType(1);
                                 mListAdapter.notifyChildDataChanged(group, menuItemList.get(j));
-
                             }
                         }
                     }
@@ -217,7 +211,6 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
         int id = v.getId();
         switch (id) {
             case R.id.iv_first_left:
-                String s1 = rightTv.getText().toString();
                 SharePreferenceUtil.setShowEditIcon(false);
                 finish();
                 break;
@@ -235,15 +228,11 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     rightTv.setText("编辑");
                     postSaveMenu();
                 }
-
                 break;
         }
     }
 
     private void postSaveMenu() {
-
-
-        JSONObject o = new JSONObject();
         List<MenuBean> list = new ArrayList<>();
         if (frequentlyList != null) {
                 for (int i = 0; i < frequentlyList.size(); i++) {
@@ -253,17 +242,15 @@ public class AllFunctionActivity extends AppCompatActivity implements View.OnCli
                     list.add(menuBean);
                 }
         }
-
         MenuHelper.savePreferFrequentlyList(frequentlyList);
         HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
             }
 
             @Override
             public void onFail(String msg) {
-
+                showToast(msg);
             }
         });
     }

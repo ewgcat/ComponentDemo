@@ -389,29 +389,38 @@ public class HttpManager {
     }
 
     //体测录入
-    public static void postRecptionTest(String memberId,
-                                        PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+    public static void postRecptionTest(String memberId, PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
+            execute(receptionTestObservable, observer);
+        }
 
-        Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
-        execute(receptionTestObservable, observer);
+
     }
 
     //问卷调查_保存
-    public static void postRecptionRequstion(String memberId,
-                                             List<QuestionnaireAnswer> requestBody, Observer<JSONObject> observer) {
+    public static void postRecptionRequstion(String memberId, List<QuestionnaireAnswer> requestBody, Observer<JSONObject> observer) {
+
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQzOTExNDU2NzksInBheWxvYWQiOiJ7XCJpZFwiOlwiMVwiLFwidXNlcklkXCI6XCIxXCIsXCJtZXJjaGFudElkXCI6XCIzMzNcIixcInNob3BJZFwiOlwiMTFcIn0ifQ.9j6x14rFYJ8tuAGu2wUyFCyz12JnCfhT1NUU6kFs4ww";
-        headers.put("token", token);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
+            execute(receptionTestObservable, observer);
+        }
 
-        Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
-        execute(receptionTestObservable, observer);
+
+
+
+
     }
 
     //保存menu编辑状态

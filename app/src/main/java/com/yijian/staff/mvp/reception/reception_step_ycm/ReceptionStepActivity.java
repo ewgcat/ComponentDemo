@@ -32,7 +32,7 @@ import com.yijian.staff.widget.TimeBar;
  * Created by The_P on 2018/4/20.
  */
 
-public class ReceptionStepActivity extends AppCompatActivity implements View.OnClickListener, ReceptionStatusChange {
+public class ReceptionStepActivity extends AppCompatActivity implements ReceptionStatusChange {
     private static final String TAG = "ReceptionStepActivity";
     private Step1Fragment_Sale step1Fragment_sale;
     private RecptionerInfoBean recptionerInfoBean;
@@ -127,37 +127,12 @@ public class ReceptionStepActivity extends AppCompatActivity implements View.OnC
 
 //        FrameLayout content = findViewById(R.id.content);
 
-        findViewById(R.id.tv1).setOnClickListener(this);
-        findViewById(R.id.tv2).setOnClickListener(this);
-        findViewById(R.id.tv3).setOnClickListener(this);
-        findViewById(R.id.tv4).setOnClickListener(this);
-        findViewById(R.id.tv5).setOnClickListener(this);
+
 
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv1:
-//                showStep1Fragment(bundle);
 
-                break;
-
-            case R.id.tv2:
-//                showStep2Fragment(bundle);
-                break;
-            case R.id.tv3:
-//                showStep3Fragment();
-                break;
-            case R.id.tv4:
-//                showStep4Fragment();
-                break;
-            case R.id.tv5:
-//                showStep5Fragment();
-                break;
-        }
-    }
 
     private void initFragment() {
 

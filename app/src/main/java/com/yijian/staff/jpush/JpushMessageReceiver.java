@@ -35,10 +35,9 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         }
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-            Logger.i(TAG, " 接收Registration Id : " + regId);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            Logger.i(TAG, "接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+            Logger.i(TAG, "接收到推送下来的自定义消息: " + printBundle(bundle));
             String content = bundle.getString(JPushInterface.EXTRA_ALERT);
 
 
@@ -56,9 +55,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {//连接状态
             boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
-            Logger.i(TAG, "[JpushMessageReceiver]" + intent.getAction() + " connected state change to " + connected);
         } else {
-            Logger.i(TAG, "[JpushMessageReceiver] Unhandled intent - " + intent.getAction());
         }
     }
 

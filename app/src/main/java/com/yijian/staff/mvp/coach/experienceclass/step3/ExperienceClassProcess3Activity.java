@@ -46,6 +46,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
     private Intent intent;
     private ExperienceClassProcess3Presenter presenter;
     private String memberName;
+    private String processId;
 
 
     @Override

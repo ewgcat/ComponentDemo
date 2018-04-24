@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.advice;
+package com.yijian.staff.mvp.mine.addadvice;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +37,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_view_navigation_bar);
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_view_navigation_bar2);
         navigationBar2.setTitle("建议与反馈");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

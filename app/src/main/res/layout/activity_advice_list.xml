@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/view_navigation_bar2"
-        android:id="@+id/advice_list_view_navigation_bar"/>
+        android:id="@+id/advice_list_view_navigation_bar2"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv"
         android:layout_width="match_parent"

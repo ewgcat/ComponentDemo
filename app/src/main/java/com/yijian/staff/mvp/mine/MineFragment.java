@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.advice.AddAdviceActivity;
+import com.yijian.staff.mvp.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.aboutus.AboutUsActivity;
 import com.yijian.staff.mvp.mine.club.ClubActivity;
@@ -26,7 +26,6 @@ import com.yijian.staff.mvp.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.mine.setting.SettingActivity;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import butterknife.BindView;

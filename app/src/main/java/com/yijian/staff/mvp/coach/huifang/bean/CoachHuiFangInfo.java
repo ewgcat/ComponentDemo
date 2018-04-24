@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.huifang.bean;
 
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -10,66 +11,118 @@ import org.json.JSONObject;
  * time: 2018/3/5 16:22:37
  */
 public class CoachHuiFangInfo {
-    private String headUrl;
+
+
+    /**
+     * interviewRecordId : a28e1c94b8c9446b9a6b64b9feb6bc21
+     * id : 0211c816b10c4347a7f08084d47faa71
+     * name : 测试会员29-9
+     * sex : 男
+     * mobile : 值29
+     * headImg : 值29
+     * healthStatus : 正常
+     * fitnessHobby : 健身,跑步,爬山
+     * hobby : 现金
+     * carBrand : 无
+     * interviewType : 生日回访
+     * interviewResult : null
+     * birthday : 1524067200000
+     * birthdayType : 农历
+     * subclassName : BirthdayVO
+     */
+
+
+
+    private String interviewRecordId;
+    private String id;
     private String name;
     private String sex;
-    private String shentiStatus;
-    private String jianshenAihao;
-    private String xingquAihao;
-    private String carName;
-    private String quanyi;
-    private String outdateTime;
-    private String outdateReason;
-    private String huifangType;
-    private String shengri;
-    private String shengriType;
-    private String hetongYuEr;
-    private String heTongDaoQiRi;
-    private String cardName;
-    private String cardType;
-    private String zuijinJianShen;
-    private String chenMoTianShu;
-    private String preFangWenRiqi;
-    private String fufangReason;
-    private String preJianShenTime;
-    private String weiJianShenTime;
-    private String huifangReason;
+    private String mobile;
+    private String headImg;
+    private String healthStatus;
+    private String fitnessHobby;
+    private String hobby;
+    private String carBrand;
+    private String interviewType;
+    private String interviewResult;
+    private Long birthday;
+    private String birthdayType;
+    private String testTimes;
+    private Long lastTestTime;
+    private String subclassName;
+
+    private Long inviteCourseTime;
 
 
+    private Long deadline;
+    private String expiryReason;
 
+    private String courseName;
+    private String courseId;
+    private String reinterviewReason;
+    private Long lastVisitTime;
+    /**
+     * interviewResult : null
+     * contractBalance : 6天
+     */
 
+    private String contractBalance;
 
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
-        this.headUrl = JsonUtil.getString(jsonObject, "headUrl");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
-        this.shentiStatus = JsonUtil.getString(jsonObject, "shentiStatus");
-        this.jianshenAihao = JsonUtil.getString(jsonObject, "jianshenAihao");
-        this.xingquAihao = JsonUtil.getString(jsonObject, "xingquAihao");
-        this.carName = JsonUtil.getString(jsonObject, "carName");
-        this.quanyi = JsonUtil.getString(jsonObject, "quanyi");
-        this.outdateTime = JsonUtil.getString(jsonObject, "outdateTime");
-        this.outdateReason = JsonUtil.getString(jsonObject, "outdateReason");
-        this.huifangType = JsonUtil.getString(jsonObject, "huifangType");
-        this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
-        this.shengri = JsonUtil.getString(jsonObject, "shengri");
-        this.shengriType = JsonUtil.getString(jsonObject, "shengriType");
-        this.huifangReason = JsonUtil.getString(jsonObject, "huifangReason");
-        this.heTongDaoQiRi = JsonUtil.getString(jsonObject, "heTongDaoQiRi");
-        this.cardName = JsonUtil.getString(jsonObject, "cardName");
-        this.cardType = JsonUtil.getString(jsonObject, "cardType");
-        this.zuijinJianShen = JsonUtil.getString(jsonObject, "zuijinJianShen");
-        this.chenMoTianShu = JsonUtil.getString(jsonObject, "chenMoTianShu");
-        this.preFangWenRiqi = JsonUtil.getString(jsonObject, "preFangWenRiqi");
-        this.fufangReason  = JsonUtil.getString(jsonObject, "fufangReason");
-        this.preJianShenTime  = JsonUtil.getString(jsonObject, "preJianShenTime");
-        this.weiJianShenTime  = JsonUtil.getString(jsonObject, "weiJianShenTime");
+        this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
+        this.fitnessHobby = JsonUtil.getString(jsonObject, "fitnessHobby");
+        this.hobby = JsonUtil.getString(jsonObject, "hobby");
+        this.carBrand = JsonUtil.getString(jsonObject, "carBrand");
+
+        this.interviewType = JsonUtil.getString(jsonObject, "interviewType");
+        this.interviewResult = JsonUtil.getString(jsonObject, "interviewResult");
+        this.interviewRecordId = JsonUtil.getString(jsonObject, "interviewRecordId");
+
+        this.birthday = JsonUtil.getLong(jsonObject, "birthday");
+        this.lastTestTime = JsonUtil.getLong(jsonObject, "lastTestTime");
+        this.deadline = JsonUtil.getLong(jsonObject, "deadline");
+        this.inviteCourseTime = JsonUtil.getLong(jsonObject, "inviteCourseTime");
+        this.lastVisitTime = JsonUtil.getLong(jsonObject, "lastVisitTime");
+        this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.testTimes = JsonUtil.getString(jsonObject, "testTimes");
+        this.id = JsonUtil.getString(jsonObject, "id");
+        this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
+        this.courseName = JsonUtil.getString(jsonObject, "courseName");
+        this.courseId = JsonUtil.getString(jsonObject, "courseId");
+        this.contractBalance = JsonUtil.getString(jsonObject, "contractBalance");
+        this.reinterviewReason = JsonUtil.getString(jsonObject, "reinterviewReason");
+
 
     }
 
-    public String getHeadUrl() {
-        return headUrl;
+    public String getReinterviewReason() {
+        return reinterviewReason;
+    }
+
+    public Long getLastVisitTime() {
+        return lastVisitTime;
+    }
+
+    public String getTestTimes() {
+        return testTimes;
+    }
+
+    public Long getLastTestTime() {
+        return lastTestTime;
+    }
+
+    public String getInterviewRecordId() {
+        return interviewRecordId;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -80,91 +133,98 @@ public class CoachHuiFangInfo {
         return sex;
     }
 
-    public String getOutdateTime() {
-        return outdateTime;
+    public String getMobile() {
+        return mobile;
     }
 
-    public String getOutdateReason() {
-        return outdateReason;
+    public String getHeadImg() {
+        return headImg;
     }
 
-    public String getHuifangType() {
-        return huifangType;
+    public String getHealthStatus() {
+        return healthStatus;
     }
 
-    public String getHuifangReason() {
-        return huifangReason;
+    public String getFitnessHobby() {
+        return fitnessHobby;
     }
 
-    public String getQuanyi() {
-        return quanyi;
+    public String getHobby() {
+        return hobby;
     }
 
-    public String getShentiStatus() {
-        return shentiStatus;
+    public String getCarBrand() {
+        return carBrand;
     }
 
-    public String getJianshenAihao() {
-        return jianshenAihao;
+    public String getInterviewType() {
+        return interviewType;
     }
 
-    public String getXinquAihao() {
-        return xingquAihao;
+    public String getInterviewResult() {
+        return interviewResult;
     }
 
-    public String getCarName() {
-        return carName;
+    public Long getBirthday() {
+        return birthday;
     }
 
-    public String getXingquAihao() {
-        return xingquAihao;
+    public String getBirthdayType() {
+        return birthdayType;
     }
 
-    public String getShengri() {
-        return shengri;
+    public String getSubclassName() {
+        return subclassName;
     }
 
-    public String getShengriType() {
-        return shengriType;
+    public Long getInviteCourseTime() {
+        return inviteCourseTime;
     }
 
-    public String getHetongYuEr() {
-        return hetongYuEr;
+    public void setInviteCourseTime(Long inviteCourseTime) {
+        this.inviteCourseTime = inviteCourseTime;
     }
 
-    public String getHeTongDaoQiRi() {
-        return heTongDaoQiRi;
+
+
+
+    public Long getDeadline() {
+        return deadline;
     }
 
-    public String getCardName() {
-        return cardName;
+    public void setDeadline(Long deadline) {
+        this.deadline = deadline;
     }
 
-    public String getCardType() {
-        return cardType;
+    public String getExpiryReason() {
+        return expiryReason;
     }
 
-    public String getZuijinJianShen() {
-        return zuijinJianShen;
+    public void setExpiryReason(String expiryReason) {
+        this.expiryReason = expiryReason;
     }
 
-    public String getChenMoTianShu() {
-        return chenMoTianShu;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public String getPreFangWenRiqi() {
-        return preFangWenRiqi;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public String getFufangReason() {
-        return fufangReason;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public String getPreJianShenTime() {
-        return preJianShenTime;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
-    public String getWeiJianShenTime() {
-        return weiJianShenTime;
+    public String getContractBalance() {
+        return contractBalance;
+    }
+
+    public void setContractBalance(String contractBalance) {
+        this.contractBalance = contractBalance;
     }
 }

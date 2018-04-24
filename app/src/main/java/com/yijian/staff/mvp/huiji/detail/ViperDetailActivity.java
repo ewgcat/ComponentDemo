@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -131,6 +133,11 @@ public class ViperDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_lianxiren_phone)
     TextView tvLianxirenPhone;
 
+    @BindView(R.id.tv_sijiao_class)
+    TextView tvSijiaoClass;
+    @BindView(R.id.rl_sijiao_class)
+    RelativeLayout rlSijiaoClass;
+
     VipDetailBean vipDetailBean;
     HuiJiViperBean huiJiViperBean;
 
@@ -234,6 +241,18 @@ public class ViperDetailActivity extends AppCompatActivity {
         tvTianjiaRenName.setText(customerServiceInfoBean.getReceptionSale());
         tvFuwuHuiji.setText(customerServiceInfoBean.getServiceSale());
         tvFuwuJiaolian.setText(customerServiceInfoBean.getServiceCoach());
+        ArrayList<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+        if (privateCourses!=null&&privateCourses.size()>0){
+            rlSijiaoClass.setVisibility(View.VISIBLE);
+            StringBuffer sb=new StringBuffer();
+            for (int i = 0; i < privateCourses.size(); i++) {
+                String s = privateCourses.get(i)+" ";
+                sb.append(s);
+            }
+            tvSijiaoClass.setText(sb.toString());
+        }else {
+            rlSijiaoClass.setVisibility(View.GONE);
+        }
 
         //详情信息
         VipDetailBean.DetailBean detailBean = vipDetailBean.getDetail();

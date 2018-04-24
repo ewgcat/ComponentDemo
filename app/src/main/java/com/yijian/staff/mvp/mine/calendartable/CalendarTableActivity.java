@@ -65,9 +65,11 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
     }
 
     private void initView() {
+        currentDay = CalendarDay.today();
         titleChanger = new TitleChanger(tv_change_date);
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
-        currentDay = CalendarDay.today();
+        titleChanger.setPreviousMonth(currentDay);
+        titleChanger.change(currentDay);
         selectTab(0);
     }
 
@@ -123,6 +125,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
 
                 if (dayFragment_ycm == null) {
                     dayFragment_ycm = DayFragment_ycm.getInstance();
+                    dayFragment_ycm.setOnChangeDateListener(this);
                     transaction.add(R.id.fl_calendarTab, dayFragment_ycm, "Homefragment");
                 }
                 transaction.show(dayFragment_ycm);
@@ -131,6 +134,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
             case 1:
                 if (weekFragment == null) {
                     weekFragment = WeekFragment_ycm.getInstance();
+                    weekFragment.setOnChangeDateListener(this);
                     transaction.add(R.id.fl_calendarTab, weekFragment, "Homefragment");
                 }
                 transaction.show(weekFragment);

@@ -28,8 +28,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
-import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.bean.VenueBean;
 import com.yijian.staff.mvp.reception.step3.bean.VenueWrapBean;

@@ -17,6 +17,7 @@ import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
+import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -153,6 +154,7 @@ public class HttpManager {
 
     //重置密码
     public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
+    public static String EDIT_PASSWORD_URL = BuildConfig.HOST + "user/password/modify";
 
     //添加潜在
     public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
@@ -208,6 +210,39 @@ public class HttpManager {
     //获取调查问卷列表
     public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
 
+    //教练回访类型
+    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "coach/interview/config";
+
+    //会籍回访类型
+    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "customer-service/interview/config";
+
+
+    //教练回访任务列表
+    public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
+
+    //会籍的回访任务列表
+    public static String GET_HUI_JI_HUI_FANG_TASK_URL = BuildConfig.HOST + "customer-service/interview/task/list";
+
+    //会籍的回访记录列表
+    public static String GET_HUI_JI_HUI_FANG_RECORD_URL = BuildConfig.HOST + "customer-service/interview/record/list";
+
+    //教练的回访记录列表
+    public static String GET_COACH_HUI_FANG_RECORD_URL = BuildConfig.HOST + "coach/interview/record/list";
+
+    //教练回访打电话通知后台
+    public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/call-for-interview";
+
+    //教练回访结果
+    public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+
+    //会籍回访结果
+    public static String POST_HUI_JI_HUI_FANG_RESULT_URL = BuildConfig.HOST + "customer-service/interview/filling";
+
+    public static String GET_COACH_HUI_FANG_REASON_LIST_URL = BuildConfig.HOST + "dict/review-reason/dict-items";
+
+    //教练  会员管理界面：打电话回访,通知后台
+    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -221,16 +256,66 @@ public class HttpManager {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
     }
-    //获取调查问卷列表
-    public static void getQuestionnaireList(int pageNum,int pageSize, Observer<JSONObject> observer) {
+
+    //保存教练回访结果
+    public static void postAddCoachHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            QuestionnaireRequestBody body=new QuestionnaireRequestBody(pageNum,pageSize);
-            Observable<JSONObject> loginObservable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_COACH_HUI_FANG_RESULT_URL, headers, body);
+            execute(observable, observer);
+        }
+
+    }
+
+    //保存会籍回访结果
+    public static void postAddHuiJiHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(POST_HUI_JI_HUI_FANG_RESULT_URL, headers, body);
+            execute(observable, observer);
+        }
+
+    }
+
+
+    //获取调查问卷列表
+    public static void getQuestionnaireList(int pageNum, int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            QuestionnaireRequestBody body = new QuestionnaireRequestBody(pageNum, pageSize);
+            Observable<JSONObject> observable = apiService.getQuestionnaireList(GET_QUESTION_NIAR_LIST_URL, headers, body);
+
+            execute(observable, observer);
+        }
+    }
+
+    //获取教练正式会员上课记录列表
+    public static void getCoachVipCourseListList(String memberId, int pageNum, int pageSize, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            HashMap<String, String> params = new HashMap<>();
+            params.put("memberId", memberId);
+            params.put("pageNum", pageNum + "");
+            params.put("pageSize", pageSize + "");
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
 
             execute(loginObservable, observer);
         }
@@ -304,15 +389,21 @@ public class HttpManager {
     }
 
     //体测录入
-    public static void postRecptionTest(String memberId,
-                                        PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+    public static void postRecptionTest(String memberId, PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
+
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        headers.put("token", token);
 
-        Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
-        execute(receptionTestObservable, observer);
+
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
+            execute(receptionTestObservable, observer);
+        }
+
+
     }
 
     //问卷调查_保存
@@ -320,11 +411,16 @@ public class HttpManager {
                                              List<QuestionnaireAnswer> requestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
-        String token = user.getToken();
-        headers.put("token", token);
 
-        Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
-        execute(receptionTestObservable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
+            execute(receptionTestObservable, observer);
+        }
+
+
     }
 
     //保存menu编辑状态

@@ -10,6 +10,7 @@ import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
+import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -79,8 +80,8 @@ public interface ApiService {
 
     @Multipart
     @POST()
-    Observable<JSONObject> uploadFiles(  @Url String url, @HeaderMap Map<String, String> headers, @Query("fileType")  String param,
-             @Part() List<MultipartBody.Part> parts);
+    Observable<JSONObject> uploadFiles(@Url String url, @HeaderMap Map<String, String> headers, @Query("fileType") String param,
+                                       @Part() List<MultipartBody.Part> parts);
 
     //登录
     @Headers({"Content-type: application/json", "Accept: */*"})
@@ -91,10 +92,15 @@ public interface ApiService {
     @POST
     Observable<JSONObject> postExperienceAccessRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body AccessRecordBean body);
 
+    //体验课_回访——教练提交回访记录
+    @POST
+    Observable<JSONObject> postAddHuiFangResult(@Url String url, @HeaderMap Map<String, String> headers, @Body AddHuiFangResultBody body);
+
     //获取问卷列表
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getQuestionnaireList(@Url String url,@HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
+    Observable<JSONObject> getQuestionnaireList(@Url String url, @HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
+
 
     //添加职业证书
     @Headers({"Content-type: application/json", "Accept: */*"})

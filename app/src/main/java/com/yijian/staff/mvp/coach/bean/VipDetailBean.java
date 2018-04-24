@@ -1,12 +1,13 @@
 package com.yijian.staff.mvp.coach.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by yangk on 2018/4/2.
  */
 
-public class VipDetailBean  {
+public class VipDetailBean {
 
 
     /**
@@ -17,7 +18,7 @@ public class VipDetailBean  {
      * cardType : 0
      * certificateNo : string
      * certificateType : string
-     * customerServiceInfo : {"receptionSale":"string","referee":"string","refereeMobile":"string","serviceCoach":"string","serviceSale":"string","userChannel":"string"}
+     * customerServiceInfo : { "privateCourses": ["string"],"receptionSale":"string","referee":"string","refereeMobile":"string","serviceCoach":"string","serviceSale":"string","userChannel":"string"}
      * detail : {"address":"string","carPrice":"string","childrenStatus":"string","clubBrand":"string","company":"string","companyAddress":"string","companyPhone":"string","contactPhone":"string","email":"string","fitnessGoal":"string","fitnessHobby":"string","healthStatus":"string","height":"string","hobby":"string","marriageStatus":"string","nation":"string","nationality":"string","nativePlace":"string","occupation":"string","onceJoinedClub":false,"position":"string","urgentContact":"string","wechatNo":"string","weight":"string","yearIncome":"string"}
      * fingerprint : string
      * headImg : string
@@ -32,44 +33,82 @@ public class VipDetailBean  {
      * vein : string
      */
 
-    /**激活卡日期 **/
+    /**
+     * 激活卡日期
+     **/
     private String activateCardTime;
-    /**生日 **/
+    /**
+     * 生日
+     **/
     private String birthday;
-    /**生日类型 **/
+    /**
+     * 生日类型
+     **/
     private String birthdayType;
-    /**卡名**/
+    /**
+     * 卡名
+     **/
     private String cardName;
-    /**卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )**/
+    /**
+     * 卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )
+     **/
     private int cardType;
-    /**卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )**/
+    /**
+     * 卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )
+     **/
     private String certificateNo;
-    /**证件类型**/
+    /**
+     * 证件类型
+     **/
     private String certificateType;
-    /**证会籍信息**/
+    /**
+     * 证会籍信息
+     **/
     private CustomerServiceInfoBean customerServiceInfo;
-    /**详细信息**/
+    /**
+     * 详细信息
+     **/
     private DetailBean detail;
-    /**指纹信息**/
+    /**
+     * 指纹信息
+     **/
     private String fingerprint;
-    /**头像图片**/
+    /**
+     * 头像图片
+     **/
     private String headImg;
-    /**会员卡号**/
+    /**
+     * 会员卡号
+     **/
     private String memberCardNo;
-    /**会员id**/
+    /**
+     * 会员id
+     **/
     private String memberId;
-    /**会员类型 **/
+    /**
+     * 会员类型
+     **/
     private String memberType;
-    /**手机**/
+    /**
+     * 手机
+     **/
     private String mobile;
-    /**名称**/
+    /**
+     * 名称
+     **/
     private String name;
-    /**开卡日期**/
+    /**
+     * 开卡日期
+     **/
     private String openCardTime;
-    /**性别**/
+    /**
+     * 性别
+     **/
     private String sex;
     private String subclassName;
-    /**静脉信息**/
+    /**
+     * 静脉信息
+     **/
     private String vein;
 
     public String getActivateCardTime() {
@@ -250,6 +289,11 @@ public class VipDetailBean  {
         private String serviceCoach;
         private String serviceSale;
         private String userChannel;
+        private ArrayList<String> privateCourses;
+
+        public ArrayList<String> getPrivateCourses() {
+            return privateCourses;
+        }
 
         public String getReceptionSale() {
             return receptionSale;

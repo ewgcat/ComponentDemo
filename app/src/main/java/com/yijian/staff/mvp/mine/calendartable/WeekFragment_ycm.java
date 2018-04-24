@@ -25,6 +25,7 @@ import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
 import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.mine.calendartable.bean.CourseInfo;
 import com.yijian.staff.mvp.mine.calendartable.bean.DayTask;
@@ -44,7 +45,7 @@ import javax.security.auth.login.LoginException;
 /**
  * 周视图
  */
-public class WeekFragment_ycm extends Fragment {
+public class WeekFragment_ycm extends Fragment  {
 
     private static final String TAG = "WeekFragment_ycm";
     private static WeekFragment_ycm weekFragment;
@@ -53,9 +54,15 @@ public class WeekFragment_ycm extends Fragment {
     private int mCurrentSelectMonth;
     private int mCurrentSelectDay;
     private WeekCalendarView wcvCalendar;
-    private MonthCalendarView mcvCalendar;
+//    private MonthCalendarView mcvCalendar;
     private RecyclerView rv_day;
     private AdapterWeekFragment adapter;
+
+    OnChangeDateListener onChangeDateListener;
+
+    public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
+        this.onChangeDateListener = onChangeDateListener;
+    }
 
     public static WeekFragment_ycm getInstance(){
         if(weekFragment == null){
@@ -77,16 +84,14 @@ public class WeekFragment_ycm extends Fragment {
         ImageView ivToggle = view.findViewById(R.id.iv_toggle);
 
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
-        mcvCalendar = view.findViewById(R.id.mcvCalendar);
+//        mcvCalendar = view.findViewById(R.id.mcvCalendar);
         llCalendar = view.findViewById(R.id.ll_calendar);
 
-        mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
+//        mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
 
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
 
-
-
-        ivToggle.setOnClickListener(new View.OnClickListener() {
+        /*ivToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int height = llCalendar.getHeight();
@@ -100,7 +105,7 @@ public class WeekFragment_ycm extends Fragment {
                 }
 
             }
-        });
+        });*/
 
         rv_day = view.findViewById(R.id.recyclerview);
         rv_day.setNestedScrollingEnabled(false);
@@ -110,14 +115,14 @@ public class WeekFragment_ycm extends Fragment {
         adapter = new AdapterWeekFragment(getContext());
         rv_day.setAdapter(adapter);
         initData();
-        handler.post(new Runnable() {
+       /* handler.post(new Runnable() {
             @Override
             public void run() {
                 int height = llCalendar.getHeight();
                 float range = height - getDependentViewCollapsedHeight();
                 llCalendar.setTranslationY(-range);
             }
-        });
+        });*/
     }
 
 
@@ -142,20 +147,24 @@ public class WeekFragment_ycm extends Fragment {
     private OnCalendarClickListener mWeekCalendarClickListener = new OnCalendarClickListener() {
         @Override
         public void onClickDate(int year, int month, int day) {
-            mcvCalendar.setOnCalendarClickListener(null);
+//            mcvCalendar.setOnCalendarClickListener(null);
             int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
             resetCurrentSelectDate(year, month, day);
-            if (months != 0) {
+            /*if (months != 0) {
                 int position = mcvCalendar.getCurrentItem() + months;
                 mcvCalendar.setCurrentItem(position, false);
-            }
+            }*/
             resetMonthView();
-            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
+//            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
 
         }
 
         @Override
         public void onPageChange(int year, int month, int day) {
+            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
+            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
 
         }
     };
@@ -177,6 +186,17 @@ public class WeekFragment_ycm extends Fragment {
         @Override
         public void onPageChange(int year, int month, int day) {
 //            computeCurrentRowsIsSix(year, month);
+            Log.e("Test","year==="+year+"  month==="+month + "   day==="+day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
+
+            //添加小圆点
+            List<String> dateList = new ArrayList<String>();
+            dateList.add("2018-5-17");
+            dateList.add("2018-5-18");
+            dateList.add("2018-5-19");
+            dateList.add("2018-6-2");
+            wcvCalendar.getCurrentWeekView().addDateTaskHint(dateList);
         }
     };
 
@@ -199,11 +219,11 @@ public class WeekFragment_ycm extends Fragment {
     }
 
     private void resetMonthView() {
-        MonthView monthView = mcvCalendar.getCurrentMonthView();
+        /*MonthView monthView = mcvCalendar.getCurrentMonthView();
         if (monthView != null) {
             monthView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
             monthView.invalidate();
-        }
+        }*/
 //        if (mOnCalendarClickListener != null) {
 //            mOnCalendarClickListener.onClickDate(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
 //        }

@@ -33,7 +33,7 @@ public class AdviceListActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_list_view_navigation_bar);
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_list_view_navigation_bar2);
         navigationBar2.setTitle("建议与反馈");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

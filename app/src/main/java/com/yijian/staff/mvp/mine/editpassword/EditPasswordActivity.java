@@ -1,56 +1,111 @@
 package com.yijian.staff.mvp.mine.editpassword;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditPasswordActivity extends AppCompatActivity {
+public class EditPasswordActivity extends MvcBaseActivity {
 
-    @BindView(R.id.et_phonenum)
-    EditText etPhonenum;
-    @BindView(R.id.et_code)
-    EditText etCode;
-    @BindView(R.id.tv_getcode)
-    TextView tvGetcode;
+
+    @BindView(R.id.tv_user_name)
+    TextView tvUserName;
+    @BindView(R.id.et_password)
+    EditText etPassword;
     @BindView(R.id.et_passwd)
     EditText etPasswd;
     @BindView(R.id.et_re_passwd)
     EditText etRePasswd;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_password);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_edit_password;
+    }
 
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.edit_password_activity_navigation_bar2);
         navigationBar2.setTitle("修改密码");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
 
+        String name = SharePreferenceUtil.getUserName();
+        if (!TextUtils.isEmpty(name)) {
+            tvUserName.setText(name);
+        }
     }
 
-    @OnClick({R.id.tv_getcode, R.id.btn_send})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_getcode:
-                //TODO 获取验证码
 
-                break;
-            case R.id.btn_send:
-                //TODO 发送修改密码请求
-
-                break;
+    @OnClick(R.id.btn_send)
+    public void onViewClicked() {
+        String username = tvUserName.getText().toString();
+        String password = etPassword.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            showToast("原密码不能为空！");
+            return;
         }
+        String psd = etPasswd.getText().toString();
+        if (TextUtils.isEmpty(psd)) {
+            showToast("新密码不能为空！");
+            return;
+        }
+        String psd2 = etRePasswd.getText().toString();
+        if (TextUtils.isEmpty(psd2)) {
+            showToast("确认密码不能为空！");
+            return;
+        }
+        if (!psd.equals(psd2)) {
+            showToast("2次输入的密码不同");
+            return;
+        }
+        if (!CommonUtil.isPassWordFormat(psd)) {
+            showToast("新密码格式不正确,密码是数字和字母的6-20位组合！");
+            return;
+        }
+        if (!CommonUtil.isPassWordFormat(psd2)) {
+            showToast("确认密码格式不正确,密码是数字和字母的6-20位组合！");
+            return;
+        }
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("newPwd", psd);
+        params.put("confirmPwd", psd2);
+        params.put("originalPwd", password);
+        params.put("username", username);
+        HttpManager.postHasHeaderHasParam(HttpManager.EDIT_PASSWORD_URL, params, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
     }
 }

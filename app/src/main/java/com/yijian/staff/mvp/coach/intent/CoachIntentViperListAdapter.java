@@ -20,9 +20,17 @@ import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecord2Activity;
+import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -93,9 +101,16 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                     @Override
                     public void onClick(View v) {
                         //TODO 跳转到第一次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("fiirstId",coachViperBean.getFiirstId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getFirstType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }
+
                     }
                 });
                 holder. rl_class_record.setVisibility(View.VISIBLE);
@@ -107,19 +122,29 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                 holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO 跳转到第一次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("fiirstId",coachViperBean.getSecondId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getFirstType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
+                            context.startActivity(intent);
+                        }
                     }
                 });
                 holder.tv_second_class_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO 跳转到第二次体验课上课表
-                        Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        intent.putExtra("secondId",coachViperBean.getSecondId());
-                        context.startActivity(intent);
+                        if (coachViperBean.getSecondType()==0){
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, ExperienceClassRecord2Activity.class);
+                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
+                            context.startActivity(intent);
+                        }
                     }
                 });
             }
@@ -176,10 +201,29 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
-                    } else {
-                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                        if (CommonUtil.isPhoneFormat(mobile)){
+                            CommonUtil.callPhone(context, mobile);
+                            HashMap<String, String> param = new HashMap<>();
+                            param.put("interviewRecordId","16");
+                            param.put("memberId",coachViperBean.getMemberId());
+                            HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
+                                @Override
+                                public void onSuccess(JSONObject result) {
+
+                                }
+
+                                @Override
+                                public void onFail(String msg) {
+
+                                }
+                            });
+                        }else {
+                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
                     }
                 }
             });

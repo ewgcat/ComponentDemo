@@ -39,7 +39,6 @@ import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
 public class MainActivity extends MvpBaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
 
-    protected boolean mNetworkStateLogin = false;
 
 
     /**
@@ -158,6 +157,8 @@ public class MainActivity extends MvpBaseActivity<MainPresenter> implements Main
                     // 如果WorkFragment为空，则创建一个并添加到界面上
                     workFragment = WorkFragment.getInstance();
                     transaction.add(R.id.fl_home, workFragment, FRAGMENT_TAG[index]);
+                    transaction.show(workFragment);
+
                 } else {
                     // 如果WorkFragment不为空，则直接将它显示出来
                     transaction.show(workFragment);
@@ -180,6 +181,8 @@ public class MainActivity extends MvpBaseActivity<MainPresenter> implements Main
                     // 如果ViperFragment为空，则创建一个并添加到界面上
                     viperFragment = MessageFragment.getInstance();
                     transaction.add(R.id.fl_home, viperFragment, FRAGMENT_TAG[index]);
+                    transaction.show(viperFragment);
+
                 } else {
                     // 如果ViperFragment不为空，则直接将它显示出来
                     transaction.show(viperFragment);
@@ -190,6 +193,8 @@ public class MainActivity extends MvpBaseActivity<MainPresenter> implements Main
                     // 如果MimeFragment为空，则创建一个并添加到界面上
                     mineFragment = MineFragment.getInstance();
                     transaction.add(R.id.fl_home, mineFragment, FRAGMENT_TAG[index]);
+                    transaction.show(mineFragment);
+
                 } else {
                     // 如果MimeFragment不为空，则直接将它显示出来
                     transaction.show(mineFragment);
@@ -206,10 +211,10 @@ public class MainActivity extends MvpBaseActivity<MainPresenter> implements Main
         if (fragment.isAdded()) {
             fragmentTransaction.hide(fragment);
         }
-        fragment = ReportingFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
-        }
+//        fragment = ReportingFragment.getInstance();
+//        if (fragment.isAdded()) {
+//            fragmentTransaction.hide(fragment);
+//        }
         fragment = MessageFragment.getInstance();
         if (fragment.isAdded()) {
             fragmentTransaction.hide(fragment);

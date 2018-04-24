@@ -23,6 +23,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
@@ -38,7 +39,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.iwf.photopicker.PhotoPicker;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends MvcBaseActivity {
 
     private static final java.lang.String TAG = SettingActivity.class.getSimpleName();
     @BindView(R.id.iv_head)
@@ -55,21 +56,26 @@ public class SettingActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_setting;
+    }
 
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
         navigationBar2.setTitle("");
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
-//        initDialog();
-
         User user = DBManager.getInstance().queryUser();
-        if (user!=null){
+        if (user != null) {
             tvName.setText(user.getName());
+            tvSex.setText(user.getSex());
+            tvAge.setText(user.getAge()+"");
+            tvPhone.setText(user.getMobile());
+            setImageResource(user.getHeadImg(),ivHead);
         }
+
+
     }
 
     @OnClick({R.id.ll_head, R.id.ll_username, R.id.ll_sex, R.id.ll_age, R.id.ll_phone, R.id.tv_exit_login})
@@ -100,7 +106,7 @@ public class SettingActivity extends AppCompatActivity {
         finish();
     }
 
-    private void setImageResource(String path,ImageView imageView) {
+    private void setImageResource(String path, ImageView imageView) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)

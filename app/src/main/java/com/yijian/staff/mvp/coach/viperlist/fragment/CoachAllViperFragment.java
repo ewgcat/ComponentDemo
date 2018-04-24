@@ -53,11 +53,10 @@ public class CoachAllViperFragment extends Fragment {
     private List<CoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
-
+    private int pages;
 
     private static CoachAllViperFragment coachAllViperFragment;
     private CoachViperListAdapter coachViperListAdapter;
-    private int pages;
     private CoachViperFilterBean coachViperFilterBean;
 
 

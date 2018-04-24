@@ -91,7 +91,9 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.lin_query_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
+                Intent intent = new Intent(context, QuestionnaireResultActivity.class);
+                intent.putExtra("memberId",viperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
         holder.lin_content.setTag(position);

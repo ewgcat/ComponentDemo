@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
@@ -32,8 +33,8 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 //问卷结果
-public class QuestionnaireResultActivity extends AppCompatActivity {
-    private static final String TAG = "QuestionnaireResultActi";
+public class QuestionnaireResultActivity extends MvcBaseActivity {
+    private static final String TAG = QuestionnaireResultActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private List<DataListBean> step1bean =new ArrayList<>();
     private QuestionnaireAdapter adapter;
@@ -41,11 +42,15 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
     private String memberId;
     private MaterialCalendarView calendarView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_questionnaire_result);
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_questionnaire_result;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.questionnaire_result_navigation_bar2);
         navigationBar2.setTitle("查看问卷");
         navigationBar2.hideLeftSecondIv();
@@ -66,13 +71,11 @@ public class QuestionnaireResultActivity extends AppCompatActivity {
             return;
         }
 
-
-
-
         calendarView = findViewById(R.id.calendarView);
         initCalendarView(calendarView);
         initData();
     }
+
     private void initCalendarView(MaterialCalendarView widget) {
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         widget.setPagingEnabled(false);

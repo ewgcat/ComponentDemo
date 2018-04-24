@@ -31,6 +31,7 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.GoodsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.GoodsInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiFilterGoodsDialog;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.HuiJiGoodsFilterBean;
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
@@ -270,6 +271,21 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @Override
     public void showNoCards(boolean isRefresh, boolean isSucceed) {
+
+    }
+
+    @Override
+    public void showStatus(ReceptionStastuBean receptionStastuBean) {
+
+    }
+
+    @Override
+    public void showCardToOrder() {
+
+    }
+
+    @Override
+    public void shouldCardToOrder() {
 
     }
 

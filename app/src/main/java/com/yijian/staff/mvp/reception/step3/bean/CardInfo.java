@@ -63,7 +63,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.cardprodbaseId = cardprodbaseId;
     }
 
-    public int getCardType() {
+    public Integer getCardType() {
         return cardType;
     }
 
@@ -71,7 +71,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.cardType = cardType;
     }
 
-    public int getValidDay() {
+    public Integer getValidDay() {
         return validDay;
     }
 
@@ -79,7 +79,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.validDay = validDay;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -87,7 +87,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.amount = amount;
     }
 
-    public int getRechargeGivePercent() {
+    public Integer getRechargeGivePercent() {
         return rechargeGivePercent;
     }
 
@@ -119,7 +119,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.rechargeGiveStr = rechargeGiveStr;
     }
 
-    public int getValidTime() {
+    public Integer getValidTime() {
         return validTime;
     }
 
@@ -127,7 +127,7 @@ public class CardInfo implements Comparable<CardInfo>{
         this.validTime = validTime;
     }
 
-    public int getSalePrice() {
+    public Integer getSalePrice() {
         return salePrice;
     }
 

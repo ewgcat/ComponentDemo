@@ -11,11 +11,16 @@ public interface CoachReceptionStepTwoContract {
         void showSavaSucceed();
 
         void showUserData(PhysicalExaminationBean bean);
+
+        void showRejected();
     }
 
     interface Presenter{
           void   saveTestData(PhysicalExaminationBean bean, String memberId);
 
           void viewTestData(String id);
+
+          void postReject(String rejectReason,String memberId);
+
     }
 }

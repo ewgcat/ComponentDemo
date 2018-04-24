@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:id="@+id/rl_coach_goods"
@@ -78,7 +79,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="99999999"
+                        tools:text="99999999"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -179,7 +180,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="李先生"
+                        tools:text="李先生"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -214,7 +215,7 @@
                         android:layout_marginLeft="16dp"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="黄小姐"
+                        tools:text="黄小姐"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -248,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="健身次数卡"
+                        tools:text="健身次数卡"
                         android:textColor="#333333"
                         android:textSize="16sp" />
 
@@ -268,7 +269,7 @@
                             android:id="@+id/tv_jianshenplace"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="游泳" />
+                            tools:text="游泳" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,7 +288,7 @@
                             android:id="@+id/tv_yu_er"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="90次" />
+                            tools:text="90次" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -306,7 +307,7 @@
                             android:id="@+id/tv_chuzhiyouhui"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="赠送20%" />
+                            tools:text="赠送20%" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -322,14 +323,14 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="价格:  "
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="@color/blue" />
 
                         <TextView
                             android:id="@+id/tv_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1400元"
-                            android:textColor="@color/colorPrimary"
+                            tools:text="1400元"
+                            android:textColor="@color/blue"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>

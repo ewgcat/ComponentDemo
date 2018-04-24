@@ -6,10 +6,14 @@ package com.yijian.staff.mvp.reception.step3;
 
 public interface ReceptionStepThreeContract {
     interface View{
-
+        void leaderToSaleSecceed();
+        void coachToSaleSecceed();
     }
 
     interface Presenter{
-//        void to
+        void leaderToSale(String memberId);
+        void coachToSale(String memberId);
+
+//        void searchStatus();
     }
 }

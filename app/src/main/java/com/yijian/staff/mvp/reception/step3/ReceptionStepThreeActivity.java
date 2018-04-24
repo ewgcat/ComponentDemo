@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -22,11 +23,13 @@ import com.yijian.staff.widget.TimeBar;
 
 import butterknife.ButterKnife;
 
-public class ReceptionStepThreeActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReceptionStepThreeActivity extends AppCompatActivity implements View.OnClickListener, ReceptionStepThreeContract.View {
 
     private static final String TAG = "ReceptionStepThreeActiv";
     private Fragment fragment;
     private String memberId;
+    private int userRole;
+    private ReceptionStepThreePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
             memberId = intent.getStringExtra("memberId");
         }
 
+        presenter = new ReceptionStepThreePresenter(this);
+        presenter.setView(this);
 
         initView();
     }
@@ -53,9 +58,9 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
         TimeBar timeBar = findViewById(R.id.step_three_timebar);
         timeBar.showTimeBar(3);
 
-        int userRole = SharePreferenceUtil.getUserRole();
+        userRole = SharePreferenceUtil.getUserRole();
 //        Log.e(TAG, "initView: userRole=" + userRole);
-        userRole=2;
+        userRole =2;
 
         if (userRole == 1) {
             fragment = new HuiJiProductQuotationFragment();
@@ -86,18 +91,35 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
                 startActivity(i);
                 break;
             case R.id.right_tv:
-                Intent intent = new Intent(ReceptionStepThreeActivity.this, ReceptionStepFourActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-
-                toStep4();
+                rightAction();
                 break;
         }
     }
 
-    private void toStep4() {
-//        HttpManager
+    private void rightAction() {
+            if (userRole==1){//会籍
+                Intent intent = new Intent(ReceptionStepThreeActivity.this, ReceptionStepFourActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("memberId",memberId);
+                startActivity(intent);
+            }else if (userRole==2){//教练
+                if (TextUtils.isEmpty(memberId))return;
+                presenter.coachToSale(memberId);
+
+            }else if (userRole==3){//总监
+                if (TextUtils.isEmpty(memberId))return;
+                presenter.leaderToSale(memberId);
+            }
     }
 
 
+    @Override
+    public void leaderToSaleSecceed() {
+
+    }
+
+    @Override
+    public void coachToSaleSecceed() {
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -198,6 +199,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST
     Observable<JSONObject> postHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);
+
+    @FormUrlEncoded
+    @POST
+    Observable<JSONObject> postHasHeaderHasParamOfObject(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, Object> param);
 
     @FormUrlEncoded
     @POST

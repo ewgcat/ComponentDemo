@@ -228,7 +228,7 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
 
     }
 
-    interface ComputerPercentLisenter{
+  public   interface ComputerPercentLisenter{
         void computerPercent();
     }
 

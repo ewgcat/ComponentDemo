@@ -14,6 +14,8 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
+import com.yijian.staff.util.GsonNullString;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,21 +37,20 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
     private Context context;
     private final User user;
 
-    private CoachReceptionStepTwoActivity view;
+    private CoachReceptionStepTwoContract.View view;
 
     public CoachReceptionStepTwoPresenter(Context context) {
         this.context=context;
         user = DBManager.getInstance().queryUser();
     }
 
-    public void setView(CoachReceptionStepTwoActivity view){
+    public void setView(CoachReceptionStepTwoContract.View view){
         this.view=view;
     }
 
     @Override
     public void saveTestData(PhysicalExaminationBean bean, String memberId) {
 
-        memberId="076c3096caf04559b9abe112542a9cd0";
 
         HttpManager.postRecptionTest( memberId, bean, new Observer<JSONObject>() {
             @Override
@@ -88,14 +89,14 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
     public void viewTestData(String memberId) {
         Map<String,String> params=new HashMap<>();
         params.put("shopId",user.getShopId());
-        memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
-                PhysicalExaminationBean o = new Gson().fromJson(result.toString(), PhysicalExaminationBean.class);
+                PhysicalExaminationBean o = GsonNullString.getGson().fromJson(result.toString(), PhysicalExaminationBean.class);
+                if (o==null)return;
                 view.showUserData(o);
             }
 
@@ -108,13 +109,29 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 
     }
 
+    @Override
+    public void postReject(String rejectReason, String memberId) {
+        Map<String,String> params=new HashMap<>();
+        params.put("rejectReason",rejectReason);
+        params.put("memberId",memberId);
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_REJECT, params, new ResultNullObserver() {
+            @Override
+            public void onSuccess(Object result) {
+                view.showRejected();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 
     public void saveData(String memberId,List<ParentQuestionBean> parentObj,String height, String age) {
         PhysicalExaminationBean   physicalExaminationBean = new PhysicalExaminationBean();
 
-        //身高，年龄 (必填字段)
-//        String height = tvHeight.getText().toString();
-//        String age = tvAge.getText().toString();
         if ("请选择".equals(height) || "请选择".equals(age)) {
             Toast.makeText(context, "请填写完所有必填字段", Toast.LENGTH_SHORT).show();
             return;

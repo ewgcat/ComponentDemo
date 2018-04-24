@@ -43,8 +43,6 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
     @BindView(R.id.tv_huifang_jilu_states)
     TextView tvHuifangJiluStates;
     private String memberId;
-    private String processId;
-    private ExperienceClassProcess3Bean.BodyCheckBean bodyCheck;
     private Intent intent;
     private ExperienceClassProcess3Presenter presenter;
     private String memberName;

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception;
 
+import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 
@@ -16,12 +17,13 @@ public interface ReceptionContract {
 
         void finishRefresh(boolean isRefresh);
 
+        void showStatus(ReceptionStastuBean receptionStastuBean);
     }
 
     interface Presenter{
        void getRecptionerInfo();
         void getRecptionRecord(boolean isRefresh);
 
-        void getRecptionStatus();
+        void getRecptionStatus(String id);
     }
 }

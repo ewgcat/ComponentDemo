@@ -120,8 +120,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
     private void initView() {
         navigationBar2 = findViewById(R.id.navigation_bar2);
-        navigationBar2.setNavigationBarBackgroudColor(R.color.blue);
-        navigationBar2.setTitleColor(R.color.white);
         timeBar = findViewById(R.id.step_timebar);
 //        timeBar.showTimeBar(1);
 

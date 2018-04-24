@@ -18,8 +18,7 @@ public class SharePreferenceUtil {
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
     private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
-    private static String userName;
-    private static String password;
+
 
 
     public static void setShowEditIcon(boolean b) {

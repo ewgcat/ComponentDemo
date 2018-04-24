@@ -12,10 +12,7 @@ import javax.inject.Inject;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/**
- * Created by codeest on 2016/8/2.
- * MVP activity基类
- */
+
 public abstract class MvpBaseActivity<T extends BasePresenter> extends MvcBaseActivity implements BaseView {
 
     @Inject

@@ -82,19 +82,20 @@ public class MineFragment extends Fragment {
             } else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("店长");
             }
+            setImageResource(user.getHeadImg(),ivUserHead);
         }
         return view;
     }
 
 
-    private void setImageResource(String path) {
+    private void setImageResource(String path,ImageView imageView) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(this).load(path).apply(options).into(ivUserHead);
+        Glide.with(this).load(path).apply(options).into(imageView);
     }
 
     @Override

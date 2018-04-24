@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="朱沙" />
+            />
 
 
         </LinearLayout>
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="男" />
+              />
 
 
         </LinearLayout>
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="23" />
+              />
 
         </LinearLayout>
 
@@ -156,7 +156,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="手机"
                 android:textColor="#666666" />
 
             <TextView
@@ -164,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="9999999" />
+            />
 
 
         </LinearLayout>

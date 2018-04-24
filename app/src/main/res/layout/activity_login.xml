@@ -40,6 +40,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="请输入账号"
+            android:maxLines="1"
             android:padding="2dp"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
@@ -67,6 +68,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
+            android:maxLength="20"
+            android:maxLines="1"
             android:hint="请输入密码"
             android:padding="2dp"
             android:textColor="#FFFFFF"

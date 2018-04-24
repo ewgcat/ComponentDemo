@@ -19,9 +19,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 
 import com.yijian.staff.db.DBManager;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
-import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachTianXieHuiFangResultActivity;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.mvp.huiji.huifang.tianxieresult.HuijiTianXieHuiFangResultActivity;
@@ -30,8 +27,6 @@ import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * author：李帅华

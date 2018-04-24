@@ -1,23 +1,15 @@
 package com.yijian.staff.mvp.huiji.huifang.task;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
-import com.yijian.staff.mvp.coach.huifang.task.fragment.CoachBaseHuiFangTaskFragment;
-import com.yijian.staff.mvp.coach.huifang.task.pageadapter.CoachHuiFangPagerAdapter;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.mvp.huiji.huifang.history.HuiFangHistoryActivity;
 import com.yijian.staff.mvp.huiji.huifang.task.fragment.BaseHuiFangTaskFragment;
@@ -37,7 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/5")

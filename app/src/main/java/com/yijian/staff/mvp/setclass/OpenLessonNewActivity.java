@@ -13,6 +13,7 @@ import android.widget.Chronometer;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
@@ -134,7 +135,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
     /**
      * 提交下课卡的数据
      */
-    private void submitXiake(){
+    private void submitXiake() {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         PrivateShangKeBean privateShangKeBean = new PrivateShangKeBean();
@@ -142,7 +143,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         privateShangKeBean.setRecordId(recordId);
         List<PrivateShangKeBean.RecordContextListBean> recordContextList = new ArrayList<>();
 
-        for(int i = 0; i < privateLessonRecordBeans.size(); i++){
+        for (int i = 0; i < privateLessonRecordBeans.size(); i++) {
             PrivateShangKeBean.RecordContextListBean recordContextListBean = new PrivateShangKeBean.RecordContextListBean();
             recordContextListBean.setActionForm(privateLessonRecordBeans.get(i).getActionForm());
             recordContextListBean.setActionStrength(privateLessonRecordBeans.get(i).getActionStrength());
@@ -184,22 +185,12 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         chronometer.start();
         tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
 
-        try {
-            String startTime = getIntent().getStringExtra("startDateTime");
-            String endTime = getIntent().getStringExtra("endDateTime");
-            if (!TextUtils.isEmpty(startTime) && !TextUtils.isEmpty(endTime)) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-                tv_shangke.setText(simpleDateFormat.format(dateFormat.parse(startTime)));
-                tv_xiake.setText(simpleDateFormat.format(dateFormat.parse(endTime)));
+        String startTime = getIntent().getStringExtra("startDateTime");
+        String endTime = getIntent().getStringExtra("endDateTime");
+        String startDate = getIntent().getStringExtra("startDate");
+        tv_shangke.setText(startDate+" "+startTime);
+        tv_xiake.setText(startDate+" "+endTime);
 
-            }
-
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         punchStatus = getIntent().getIntExtra("punchStatus", -1);
         if (punchStatus == 0) {
@@ -258,7 +249,7 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         }
     }
 
-    public void finishSaveData(){
+    public void finishSaveData() {
         state = "1";
         submitXiake();
     }

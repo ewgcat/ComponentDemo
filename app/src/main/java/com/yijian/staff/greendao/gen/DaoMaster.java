@@ -21,18 +21,18 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        SearchKeyDao.createTable(db, ifNotExists);
-        UserDao.createTable(db, ifNotExists);
-        CoachHuiFangTypeBeanDao.createTable(db, ifNotExists);
         HuiFangTypeBeanDao.createTable(db, ifNotExists);
+        CoachHuiFangTypeBeanDao.createTable(db, ifNotExists);
+        UserDao.createTable(db, ifNotExists);
+        SearchKeyDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        SearchKeyDao.dropTable(db, ifExists);
-        UserDao.dropTable(db, ifExists);
-        CoachHuiFangTypeBeanDao.dropTable(db, ifExists);
         HuiFangTypeBeanDao.dropTable(db, ifExists);
+        CoachHuiFangTypeBeanDao.dropTable(db, ifExists);
+        UserDao.dropTable(db, ifExists);
+        SearchKeyDao.dropTable(db, ifExists);
     }
 
     /**
@@ -51,10 +51,10 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(SearchKeyDao.class);
-        registerDaoClass(UserDao.class);
-        registerDaoClass(CoachHuiFangTypeBeanDao.class);
         registerDaoClass(HuiFangTypeBeanDao.class);
+        registerDaoClass(CoachHuiFangTypeBeanDao.class);
+        registerDaoClass(UserDao.class);
+        registerDaoClass(SearchKeyDao.class);
     }
 
     public DaoSession newSession() {

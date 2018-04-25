@@ -95,10 +95,10 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
 
         public void bind(OrderClassDayBean orderClassDayBean, int position, List<OrderClassDayBean> orderClassDayBeanList, Context context) throws ParseException {
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-            tv_startOrderTime.setText(simpleDateFormat.format(dateFormat.parse(orderClassDayBean.getStartDatetime())));
-            tv_endOrderTime.setText(simpleDateFormat.format(dateFormat.parse(orderClassDayBean.getEndDatetime())));
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+            tv_startOrderTime.setText(orderClassDayBean.getStartDatetime());
+            tv_endOrderTime.setText(orderClassDayBean.getEndDatetime());
             tv_className.setText(orderClassDayBean.getLessonName());
             tv_venue.setText(orderClassDayBean.getLessonPlace());
             tv_stuList.setText(orderClassDayBean.getMemberName());
@@ -132,12 +132,24 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                         intent.putExtra("privateApplyId",orderClassDayBean.getId());
                         intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
                         intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
+                        intent.putExtra("startDate",orderClassDayBean.getStartDate());
                         intent.putExtra("punchStatus",punchStatus);
                         context.startActivity(intent);
                     }else if("1".equals(orderClassDayBean.getIsExperience())){
-                        Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
-                        intent.putExtra("privateApplyId",orderClassDayBean.getId());
-                        context.startActivity(intent);
+                        if("0".equals(orderClassDayBean.getIsUseTemplate())){ //体验课：0：用体侧模板，1：私教课模板 ,
+                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                            intent.putExtra("privateApplyId",orderClassDayBean.getId());
+                            context.startActivity(intent);
+                        }else if("1".equals(orderClassDayBean.getIsUseTemplate())){
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",orderClassDayBean.getId());
+                            intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
+                            intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
+                            intent.putExtra("startDate",orderClassDayBean.getStartDate());
+                            intent.putExtra("punchStatus",punchStatus);
+                            context.startActivity(intent);
+                        }
+
                     }
                 }
             });

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllLessonActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
+import com.yijian.staff.mvp.coach.preparelessons.createlession.PrepareLessonDetailActivity;
+import com.yijian.staff.mvp.coach.preparelessons.list.PrepareLessonsBean;
 import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -40,14 +43,25 @@ import butterknife.OnClick;
 
 public class PrepareLessonsActivity extends AppCompatActivity {
 
+    @BindView(R.id.tv_memberName)
+    TextView tv_memberName;
+    @BindView(R.id.tv_member_phone)
+    TextView tv_member_phone;
+    @BindView(R.id.tv_lessonName)
+    TextView tv_lessonName;
     @BindView(R.id.rv_temple)
     RecyclerView rv_temple;
     @BindView(R.id.tv_template)
     TextView tv_template;
     @BindView(R.id.tv_template_position)
     TextView tv_template_position;
+    @BindView(R.id.ck_select)
+    CheckBox ck_select;
+    @BindView(R.id.lin_select_num)
+    LinearLayout lin_select_num;
     List<TempBean> tempBeans = new ArrayList<>();
     TempleAdater templeAdater;
+    PrepareLessonsBean prepareLessonsBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +73,6 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         loadData();
     }
 
-    private void initView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rv_temple.setLayoutManager(linearLayoutManager);
-        templeAdater = new TempleAdater();
-        rv_temple.setAdapter(templeAdater);
-    }
-
-
     private void initTitle() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
         navigationBar2.setTitle("备课");
@@ -76,13 +81,35 @@ public class PrepareLessonsActivity extends AppCompatActivity {
     }
 
 
+    private void initView() {
+        prepareLessonsBean = (PrepareLessonsBean) getIntent().getSerializableExtra(
+                "parepareLessonBean");
+        tv_memberName.setText(prepareLessonsBean.getMemberName());
+        tv_member_phone.setText(prepareLessonsBean.getMobile());
+        tv_lessonName.setText(prepareLessonsBean.getLessonName());
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rv_temple.setLayoutManager(linearLayoutManager);
+        templeAdater = new TempleAdater();
+        rv_temple.setAdapter(templeAdater);
+        ck_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                rv_temple.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                lin_select_num.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
     private void loadData() {
         HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
                 tempBeans = com.alibaba.fastjson.JSONObject.parseArray(result.toString(), TempBean.class);
                 templeAdater.notifyDataSetChanged();
-                tv_template.setText("/"+tempBeans.size());
+                tv_template.setText("/" + tempBeans.size());
             }
 
             @Override
@@ -97,10 +124,13 @@ public class PrepareLessonsActivity extends AppCompatActivity {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.lin_create: //创建私教备课
-                startActivity(new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class));
+                Intent intent = new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class);
+                String privateApplyId = getIntent().getStringExtra("id");
+                intent.putExtra("privateApplyId",privateApplyId);
+                startActivity(intent);
                 break;
 
-            case R.id.rel_all_lesson:
+            case R.id.rel_all_lesson: //查询所有备课内容
                 startActivity(new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class));
                 break;
         }
@@ -120,7 +150,7 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
             TempBean tempBean = tempBeans.get(position);
-            ((ViewHolder) holder).bind(tempBean,position);
+            ((ViewHolder) holder).bind(tempBean, position);
         }
 
         @Override
@@ -131,37 +161,40 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
 
             private TextView tv_templateName;
-            private CheckBox ck_select;
             private RelativeLayout rel_select;
             private View view_line_cussor;
+            private TextView tv_deail;
 
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                ck_select = itemView.findViewById(R.id.ck_select);
                 tv_templateName = itemView.findViewById(R.id.tv_templateName);
                 rel_select = itemView.findViewById(R.id.rel_select);
                 view_line_cussor = itemView.findViewById(R.id.view_line_cussor);
+                tv_deail = itemView.findViewById(R.id.tv_deail);
             }
 
-            private void bind(TempBean tempBean,int position) {
+            private void bind(TempBean tempBean, int position) {
                 tv_templateName.setText(tempBean.getTemplateName());
-                view_line_cussor.setVisibility((tempBean.isCheck())?View.VISIBLE:View.INVISIBLE);
-                ck_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        rv_temple.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                    }
-                });
+                view_line_cussor.setVisibility((tempBean.isCheck()) ? View.VISIBLE : View.INVISIBLE);
                 rel_select.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        tv_template_position.setText((position+1)+"");
-                        for(TempBean tb : tempBeans){
+                        tv_template_position.setText((position + 1) + "");
+                        for (TempBean tb : tempBeans) {
                             tb.setCheck(false);
                         }
                         tempBean.setCheck(true);
                         notifyDataSetChanged();
+                    }
+                });
+                tv_deail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PrepareLessonsActivity.this, PrepareLessonDetailActivity.class);
+                        intent.putExtra("tempBean", tempBean);
+                        intent.putExtra("id", prepareLessonsBean.getId());
+                        startActivity(intent);
                     }
                 });
             }

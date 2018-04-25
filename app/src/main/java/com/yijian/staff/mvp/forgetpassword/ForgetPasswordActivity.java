@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -20,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
+public class ForgetPasswordActivity extends MvcBaseActivity {
 
     @BindView(R.id.et_account)
     EditText etAccount;
@@ -36,17 +37,19 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     @BindView(R.id.et_re_passwd)
     EditText etRePasswd;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
 
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_forget_password;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.forget_password_activity_navigation_bar2);
         navigationBar2.setTitle("忘记密码");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-
     }
 
     @OnClick({R.id.tv_getcode, R.id.btn_send})

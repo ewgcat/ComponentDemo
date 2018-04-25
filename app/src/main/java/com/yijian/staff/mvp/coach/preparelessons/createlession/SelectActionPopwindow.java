@@ -100,9 +100,11 @@ public class SelectActionPopwindow extends PopupWindow {
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Test","parentP==="+cussorIndex+"  subP==="+defaultPosition);
-                ActionBean actionBean = parentList.get(cussorIndex).get(defaultPosition);
-                activity.addSingleAction(actionBean);
+                Log.e("Test", "parentP===" + cussorIndex + "  subP===" + defaultPosition);
+                if(parentList.get(cussorIndex).size()>0){
+                    ActionBean actionBean = parentList.get(cussorIndex).get(defaultPosition);
+                    activity.addSingleAction(actionBean);
+                }
                 dismiss();
             }
         });
@@ -171,7 +173,9 @@ public class SelectActionPopwindow extends PopupWindow {
                 actionBean.setCheck(false);
             }
         }
-        parentList.get(index).get(0).setCheck(true);
+        if (parentList.get(index).size() > 0) {
+            parentList.get(index).get(0).setCheck(true);
+        }
         defaultPosition = 0;
     }
 
@@ -180,9 +184,9 @@ public class SelectActionPopwindow extends PopupWindow {
     }
 
     @SuppressLint("ResourceAsColor")
-    public void setSubmitEnnable(boolean isEnnable){
+    public void setSubmitEnnable(boolean isEnnable) {
         tv_submit.setEnabled(isEnnable);
-        tv_submit.setTextColor(isEnnable?R.color.blue:R.color.textColor999999);
+        tv_submit.setTextColor(isEnnable ? R.color.blue : R.color.textColor999999);
     }
 
 
@@ -200,7 +204,7 @@ public class SelectActionPopwindow extends PopupWindow {
         public void onBindViewHolder(ActionSelectAdapter.ViewHolder holder, int position) {
             ActionBean actionBean = subActionList.get(position);
             holder.action_name.setText(actionBean.getMoName());
-            holder.action_limit.setText(actionBean.getBuildTime());
+            holder.action_limit.setText(actionBean.getBuildDesc());
             holder.action_qixie_name.setText(actionBean.getMoApplianceName());
             holder.lin_select.setBackgroundColor(actionBean.isCheck() ? Color.RED : Color.WHITE);
             holder.lin_select.setTag(position);
@@ -256,7 +260,6 @@ public class SelectActionPopwindow extends PopupWindow {
         }
 
     }
-
 
 
 }

@@ -1,8 +1,9 @@
 package com.yijian.staff.mvp.coach.preparelessons;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TempBean {
+public class TempBean implements Serializable {
 
 
     /**
@@ -49,7 +50,7 @@ public class TempBean {
         this.templateContextList = templateContextList;
     }
 
-    public static class TemplateContextListBean {
+    public static class TemplateContextListBean implements Serializable {
         /**
          * sort : 1
          * motionId : 1
@@ -60,13 +61,18 @@ public class TempBean {
          * buildTime : 2组 × 60秒
          */
 
-        private int sort;
-        private String motionId;
-        private String moName;
-        private String moDifficulty;
-        private String moParts;
+        private String contentId;
+        private String buildDesc;
+        private String groupNum;
+        private String groupTime;
         private String moApplianceName;
-        private String buildTime;
+        private String moDifficulty;
+        private String moDifficultyDesc ;
+        private String moPartsDesc  ;
+        private String moName;
+        private String moParts;
+        private int sort;
+        private String unit;
 
         public int getSort() {
             return sort;
@@ -76,12 +82,12 @@ public class TempBean {
             this.sort = sort;
         }
 
-        public String getMotionId() {
-            return motionId;
+        public String getGroupNum() {
+            return groupNum;
         }
 
-        public void setMotionId(String motionId) {
-            this.motionId = motionId;
+        public void setGroupNum(String groupNum) {
+            this.groupNum = groupNum;
         }
 
         public String getMoName() {
@@ -92,12 +98,44 @@ public class TempBean {
             this.moName = moName;
         }
 
+        public String getContentId() {
+            return contentId;
+        }
+
+        public void setContentId(String contentId) {
+            this.contentId = contentId;
+        }
+
+        public String getGroupTime() {
+            return groupTime;
+        }
+
+        public void setGroupTime(String groupTime) {
+            this.groupTime = groupTime;
+        }
+
         public String getMoDifficulty() {
             return moDifficulty;
         }
 
         public void setMoDifficulty(String moDifficulty) {
             this.moDifficulty = moDifficulty;
+        }
+
+        public String getMoDifficultyDesc() {
+            return moDifficultyDesc;
+        }
+
+        public void setMoDifficultyDesc(String moDifficultyDesc) {
+            this.moDifficultyDesc = moDifficultyDesc;
+        }
+
+        public String getMoPartsDesc() {
+            return moPartsDesc;
+        }
+
+        public void setMoPartsDesc(String moPartsDesc) {
+            this.moPartsDesc = moPartsDesc;
         }
 
         public String getMoParts() {
@@ -116,12 +154,20 @@ public class TempBean {
             this.moApplianceName = moApplianceName;
         }
 
-        public String getBuildTime() {
-            return buildTime;
+        public String getUnit() {
+            return unit;
         }
 
-        public void setBuildTime(String buildTime) {
-            this.buildTime = buildTime;
+        public void setUnit(String unit) {
+            this.unit = unit;
+        }
+
+        public String getBuildDesc() {
+            return buildDesc;
+        }
+
+        public void setBuildDesc(String buildDesc) {
+            this.buildDesc = buildDesc;
         }
     }
 }

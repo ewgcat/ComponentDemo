@@ -2,6 +2,7 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
+import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
@@ -191,6 +192,15 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> saveXiaKeRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivateShangKeBean privateShangKeBean, @Query("state") String state);
+
+    /**
+     *  保存私教课备课内容
+     */
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> savePrivatePrepareLesson(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivatePrepareLessonBody privatePrepareLessonBody);
+
+
 
     //post 表单
     @POST

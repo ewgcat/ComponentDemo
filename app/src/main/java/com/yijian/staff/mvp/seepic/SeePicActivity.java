@@ -10,19 +10,22 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 
-public class SeePicActivity extends AppCompatActivity {
+public class SeePicActivity extends MvcBaseActivity {
 
     protected NavigationBar2 mNavigationbar2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_see_pic);
+    protected int getLayoutID() {
+        return R.layout.activity_see_pic;
+    }
 
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         String path = getIntent().getStringExtra(BundleKeyConstant.KEY_SEE_PIC_PATH);
 
         mNavigationbar2 = (NavigationBar2) findViewById(R.id.navigationbar2);
@@ -31,19 +34,12 @@ public class SeePicActivity extends AppCompatActivity {
         mNavigationbar2.setBackClickListener(this);
 
         PhotoView photoView = findViewById(R.id.photo_view);
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.mipmap.placeholder)
-                    .error(R.mipmap.placeholder)
-                    .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-            Glide.with(SeePicActivity.this).load(path).apply(options).into(photoView);
-
-
-
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(SeePicActivity.this).load(path).apply(options).into(photoView);
     }
-
-
-
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.main;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,37 +8,22 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
-import com.yijian.staff.mvp.reception.step3.bean.VenueBean;
-import com.yijian.staff.mvp.reception.step3.bean.VenueWrapBean;
-import com.yijian.staff.mvp.report.ReportingFragment;
 import com.yijian.staff.mvp.work.WorkFragment;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.mvp.base.mvp.MvpBaseActivity;
-import com.yijian.staff.mvp.main.contract.MainContract;
-import com.yijian.staff.mvp.main.presenter.MainPresenter;
 import com.yijian.staff.widget.Bottombar;
-
-
-import org.json.JSONObject;
-
-import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
-public class MainActivity extends MvpBaseActivity<MainPresenter> implements MainContract.View, Bottombar.OnClickBottomButtonListener {
-
-
+public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickBottomButtonListener {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -226,10 +210,6 @@ public class MainActivity extends MvpBaseActivity<MainPresenter> implements Main
         }
     }
 
-
-    protected void initInject() {
-        getActivityComponent().inject(this);
-    }
 
 
 

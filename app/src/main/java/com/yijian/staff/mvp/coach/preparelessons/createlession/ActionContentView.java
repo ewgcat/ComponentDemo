@@ -104,9 +104,9 @@ public class ActionContentView extends LinearLayout implements Observer {
 
     private void addActionContent() {
         tv_action_title.setText(actionBean.getMoName());
-        tv_action_degree.setText(actionBean.getMoDifficulty());
+        tv_action_degree.setText(actionBean.getMoDifficultyDesc());
         tv_action_name.setText(actionBean.getMoName());
-        tv_action_limit.setText(actionBean.getBuildTime());
+        tv_action_limit.setText(actionBean.getBuildDesc());
         tv_action_qixie.setText(actionBean.getMoApplianceName());
         tv_rank.setText((itemPosition+1)+"");
     }

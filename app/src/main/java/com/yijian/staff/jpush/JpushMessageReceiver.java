@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.hengte.retrofit.net.subsrciber.BaseObserver;
+import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
@@ -25,7 +27,7 @@ import cn.jpush.android.api.JPushInterface;
  * 2) 接收不到自定义消息
  */
 public class JpushMessageReceiver extends BroadcastReceiver {
-    private static final String TAG = "JpushMessageReceiver";
+    private static final String TAG = "Jpush";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -35,15 +37,21 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         }
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-            Logger.i(TAG, " 接收Registration Id : " + regId);
-//            //保存客户端注册Id，登录时传给服务器
-//            SharePreferenceUtil.setJpushRegistionId(regId);
-//            postLogin(context);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            Logger.i(TAG, "接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
-            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
+            String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+            Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
+            try {
+                JSONObject jsonObject = new JSONObject(bundleString);
+                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+                Intent intent1 = new Intent(context,ReceptionStepActivity.class);
+                intent1.putExtra("smallStatus",smallStatus);
+                context.startActivity(intent);
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
@@ -59,9 +67,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {//连接状态
             boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
-            Logger.i(TAG, "[JpushMessageReceiver]" + intent.getAction() + " connected state change to " + connected);
         } else {
-            Logger.i(TAG, "[JpushMessageReceiver] Unhandled intent - " + intent.getAction());
         }
     }
 
@@ -100,24 +106,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         return sb.toString();
     }
 
-    //登陆
-    private void postLogin(Context context) {
-//        String username = SharePreferenceUtil.getUsername();
-//        String password = SharePreferenceUtil.getPassword();
-//        String clientId = SharePreferenceUtil.getJpushRegistionId();
-//        LoginPostBody loginPostBody = new LoginPostBody(username, password, clientId);
-//        RetrofitClient.getInstance(context).createLoginApi().postLogin(loginPostBody.getmContentParam(), new BaseObserver<JSONObject>() {
-//                    @Override
-//                    public void onFail(String error) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(JSONObject jsonObject) {
-//                        SharePreferenceUtil.setCanPush(true);
-//                        SharePreferenceUtil.setHaslogined(true);
-//                    }
-//                }
-//        );
-    }
+
+
 }

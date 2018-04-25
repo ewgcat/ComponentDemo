@@ -21,6 +21,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.invitation.list.record.InvitationRecordFragment;
 import com.yijian.staff.mvp.huiji.invitation.list.result.InvitationResultFragment;
 import com.yijian.staff.mvp.resourceallocation.adapter.ResourceAllocationAdatper;
@@ -46,7 +47,7 @@ import butterknife.OnClick;
  * 资源分配(员工角色)
  */
 @Route(path = "/test/10")
-public class ResourceAllocationActivity extends AppCompatActivity {
+public class ResourceAllocationActivity extends MvcBaseActivity {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -88,19 +89,19 @@ public class ResourceAllocationActivity extends AppCompatActivity {
     ImageView iv_history_allowcation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resource_allocation);
-        ButterKnife.bind(this);
-        navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
+    protected int getLayoutID() {
+        return R.layout.activity_resource_allocation;
+    }
 
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
         int role = SharePreferenceUtil.getUserRole();
         if (role == 3 || role == 4) { //分配教练 或者 会籍
-             initLeader();
+            initLeader();
         } else { // 不可操作
             initKeFu();
         }
-
     }
 
 

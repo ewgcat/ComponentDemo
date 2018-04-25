@@ -152,16 +152,8 @@ public class OrderClassDayFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 orderClassDayBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "list");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
-                        JSONObject jsonObject = (JSONObject) records.get(i);
-                        OrderClassDayBean orderClassDayBean = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),OrderClassDayBean.class);
-                        orderClassDayBeanList.add(orderClassDayBean);
-                        dayCanlendarAdapter.resetDataList(orderClassDayBeanList);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+                orderClassDayBeanList = com.alibaba.fastjson.JSONArray.parseArray(records.toString(),OrderClassDayBean.class);
+                dayCanlendarAdapter.resetDataList(orderClassDayBeanList);
             }
 
             @Override

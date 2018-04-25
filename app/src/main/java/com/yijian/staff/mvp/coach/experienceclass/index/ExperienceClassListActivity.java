@@ -15,6 +15,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.experienceclass.index.contract.ExperienceClassContract;
 import com.yijian.staff.mvp.coach.experienceclass.index.presenter.ExperienceClassPresenter;
 import com.yijian.staff.util.Logger;
@@ -31,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/17")
-public class ExperienceClassListActivity extends AppCompatActivity implements ExperienceClassContract.View{
+public class ExperienceClassListActivity extends MvcBaseActivity implements ExperienceClassContract.View{
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -42,16 +43,15 @@ public class ExperienceClassListActivity extends AppCompatActivity implements Ex
     private ExperienceClassPresenter experienceClassPresenter;
     private ExperienceClassListAdatper experienceClassListAdatper;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_experience_class_list);
-        ButterKnife.bind(this);
 
-        initView();
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_experience_class_list;
     }
 
-    private void initView() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.experience_class_navigation_bar2);
         navigationBar2.setTitle("体验课课程");
         navigationBar2.hideLeftSecondIv();
@@ -85,8 +85,9 @@ public class ExperienceClassListActivity extends AppCompatActivity implements Ex
         });
         experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,true);
 
-
     }
+
+
 
 
     @Override

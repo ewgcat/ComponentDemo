@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.login;
 
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -71,7 +72,6 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
                 }
             }
         });
-
     }
 
     private void startAnimation() {
@@ -92,6 +92,7 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
             animator.setDuration(500);
             animator.start();
         }
+
     }
 
 
@@ -122,12 +123,12 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
             showToast("账号和密码不能为空");
         } else {
             if (CommonUtil.isPassWordFormat(password)) {
-                showProgress();
+                showWhiteProgress();
                 LoginRequestBody loginRequest = new LoginRequestBody(account, password);
                 HttpManager.postLogin(loginRequest, new ResultJSONObjectObserver() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                        hideProgress();
+                        hideWhiteProgress();
                         User user = new User(result);
                         SharePreferenceUtil.setUserName(account);
                         SharePreferenceUtil.setUserId(user.getUserId());
@@ -140,7 +141,7 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
 
                     @Override
                     public void onFail(String msg) {
-                        hideProgress();
+                        hideWhiteProgress();
                         showToast(msg);
                     }
                 });

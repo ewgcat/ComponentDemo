@@ -96,7 +96,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
-        navigationBar2.setmRightTvColor(R.color.white);
+//        navigationBar2.setmRightTvColor(R.color.white);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

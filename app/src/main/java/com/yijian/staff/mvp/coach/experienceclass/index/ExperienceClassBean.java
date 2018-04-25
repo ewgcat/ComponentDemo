@@ -1,11 +1,15 @@
 package com.yijian.staff.mvp.coach.experienceclass.index;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +17,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/19 10:21:41
  */
-public class ExperienceClassBean implements Serializable {
+public class ExperienceClassBean implements Parcelable {
 
 
     /**
@@ -162,4 +166,47 @@ public class ExperienceClassBean implements Serializable {
             this.cardprodId = cardprodId;
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.courseNum);
+        dest.writeInt(this.gender);
+        dest.writeString(this.headPath);
+        dest.writeString(this.memberName);
+        dest.writeString(this.memberId);
+        dest.writeString(this.processId);
+        dest.writeInt(this.status);
+        dest.writeString(this.statusDesc);
+        dest.writeList(this.cardprodVOs);
+    }
+
+    protected ExperienceClassBean(Parcel in) {
+        this.courseNum = in.readInt();
+        this.gender = in.readInt();
+        this.headPath = in.readString();
+        this.memberName = in.readString();
+        this.memberId = in.readString();
+        this.processId = in.readString();
+        this.status = in.readInt();
+        this.statusDesc = in.readString();
+        this.cardprodVOs = new ArrayList<CardprodVOsBean>();
+        in.readList(this.cardprodVOs, CardprodVOsBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<ExperienceClassBean> CREATOR = new Parcelable.Creator<ExperienceClassBean>() {
+        @Override
+        public ExperienceClassBean createFromParcel(Parcel source) {
+            return new ExperienceClassBean(source);
+        }
+
+        @Override
+        public ExperienceClassBean[] newArray(int size) {
+            return new ExperienceClassBean[size];
+        }
+    };
 }

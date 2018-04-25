@@ -322,6 +322,9 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 体验课 -->
+        <activity android:name=".mvp.coach.experienceclass.invate_ycm.ExperienceClass_ycm"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".mvp.coach.experienceclass.index.ExperienceClassListActivity"
             android:screenOrientation="portrait"

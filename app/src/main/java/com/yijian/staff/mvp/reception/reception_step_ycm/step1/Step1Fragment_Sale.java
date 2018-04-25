@@ -62,7 +62,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
 
         if (consumerBean.getStatus()!=0&&(consumerBean.getStatus()!=10)){
             navigationBar2.setmRightTvText("下一步");
-            navigationBar2.setmRightTvColor(R.color.white);
+//            navigationBar2.setmRightTvColor(R.color.white);
             navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

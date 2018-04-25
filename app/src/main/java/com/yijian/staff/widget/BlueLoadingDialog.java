@@ -31,7 +31,7 @@ public class BlueLoadingDialog extends Dialog {
 
     public static BlueLoadingDialog createProgressDialog(Context context) {
         mDialog = new BlueLoadingDialog(context, R.style.loading_dialog_style);
-        mDialog.setContentView(R.layout.view_custom_dialog);
+        mDialog.setContentView(R.layout.view_blue_rotate_loading);
         mDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
         return mDialog;
     }

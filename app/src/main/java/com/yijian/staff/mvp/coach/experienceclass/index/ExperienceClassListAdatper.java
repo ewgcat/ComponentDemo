@@ -80,7 +80,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
         holder.rv_card.setAdapter(new ExperienceClassVipCardListAdapter(experienceClassBean.getCardprodVOs()));
-
+        toggleCardView(holder);
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,8 +91,9 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.tv_name.setText(experienceClassBean.getMemberName());
 
-        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "");
+        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "次");
         holder.tv_current_operation.setText(experienceClassBean.getStatusDesc());
+        holder.tv_result.setText(experienceClassBean.getResult());
 
         holder.experience_class_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +174,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
         RecyclerView rv_card;
         TextView tv_experienced_count;
         TextView tv_current_operation;
+        TextView tv_result;
 
 
         public ViewHolder(View view) {
@@ -186,6 +188,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
             rv_card = view.findViewById(R.id.rv_card);
             tv_experienced_count = view.findViewById(R.id.tv_experienced_count);
             tv_current_operation = view.findViewById(R.id.tv_current_operation);
+            tv_result = view.findViewById(R.id.tv_result);
         }
     }
 

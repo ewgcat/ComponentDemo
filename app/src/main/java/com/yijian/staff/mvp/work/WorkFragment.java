@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.work;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.all.AllFunctionActivity;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
@@ -27,7 +26,6 @@ import com.yijian.staff.tab.adapter.MenuRecyclerGridAdapter;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.ShadowImageView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,18 +39,17 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 @SuppressLint("ValidFragment")
-public class WorkFragment extends Fragment implements AllFunctionActivity.ObserveDataChange {
+public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity.ObserveDataChange {
 
 
     public static WorkFragment mWorkFragment = null;
-    Unbinder unbinder;
+    @BindView(R.id.top_view)
+    LinearLayout topView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    Unbinder unbinder;
 
 
-
-    private EditText etSearch;
-    private View view;
 
     private List<MenuItem> menuItemList = new ArrayList<>();
 
@@ -67,58 +64,33 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public int getLayoutId() {
+        return R.layout.fragment_work;
+    }
+
+
+    public void initView() {
+
         StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
-        view = inflater.inflate(R.layout.fragment_work, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        init();
-        return view;
-    }
 
-    private void init() {
-        initView();
-        initData();
-    }
-
-    private void initView() {
-
-        LinearLayout contentView = view.findViewById(R.id.top_view);
         int statusBarHeight = CommonUtil.getStatusBarHeight(getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, statusBarHeight, 0, 0);
-        contentView.setLayoutParams(params);
-
-        etSearch = view.findViewById(R.id.et_search);
-
-        etSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 此处为得到焦点时的处理内容
-                int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole == 1 || userRole == 3) {
-                    startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                } else if (userRole == 2 || userRole == 4) {
-                    startActivity(new Intent(getContext(), CoachSearchActivity.class));
-                }
-
-            }
-        });
-
+        topView.setLayoutParams(params);
 
         adapter = new MenuRecyclerGridAdapter(menuItemList, getContext(), true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(adapter);
+        initData();
 
     }
 
 
     private void initData() {
 
-
         HttpManager.getIndexMenuList(new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
 
                 JSONArray menulist = JsonUtil.getJsonArray(result, "menulist");
                 MenuHelper menuHelper = new MenuHelper();
@@ -133,32 +105,13 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
             }
         });
 
 
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @OnClick({R.id.ll_jiedai, R.id.iv_all_function})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_jiedai:
-                startActivity(new Intent(getActivity(), ReceptionActivity.class));
-                break;
-            case R.id.iv_all_function:
-                AllFunctionActivity.startToActivity(getActivity(), this);
-                break;
-
-        }
-    }
 
 
     private void initMenu() {
@@ -176,6 +129,37 @@ public class WorkFragment extends Fragment implements AllFunctionActivity.Observ
     }
 
 
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.et_search, R.id.ll_jiedai, R.id.iv_all_function})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.et_search:
+                // 此处为得到焦点时的处理内容
+                int userRole = SharePreferenceUtil.getUserRole();
+                if (userRole == 1 || userRole == 3) {
+                    startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
+                } else if (userRole == 2 || userRole == 4) {
+                    startActivity(new Intent(getContext(), CoachSearchActivity.class));
+                }
+
+                break;
+            case R.id.ll_jiedai:
+                startActivity(new Intent(getActivity(), ReceptionActivity.class));
+
+                break;
+            case R.id.iv_all_function:
+                AllFunctionActivity.startToActivity(getActivity(), this);
+
+                break;
+        }
+    }
 }
 
 

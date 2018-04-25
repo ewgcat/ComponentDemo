@@ -1,8 +1,6 @@
 package com.yijian.staff.mvp.login;
 
 import android.animation.ObjectAnimator;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -21,22 +18,30 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.AndroidKeyBoardAssit;
 import com.yijian.staff.util.CommonUtil;
 
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 @Route(path = "/test/login")
-public class LoginActivity extends MvcBaseActivity implements View.OnClickListener {
+public class LoginActivity extends MvcBaseActivity  {
 
 
-    private EditText etAccount;
-    private EditText etPassword;
-    private LinearLayout ll_content;
+    @BindView(R.id.et_account)
+    EditText etAccount;
+    @BindView(R.id.et_password)
+    EditText etPassword;
+    @BindView(R.id.ll_content)
+    LinearLayout ll_content;
+
 
     private boolean hasStartAnimation = false;
 
@@ -55,8 +60,6 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
         etAccount.setHintTextColor(Color.parseColor("#7FC7FF"));
         etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
 
-        findViewById(R.id.ll_login).setOnClickListener(this);
-        findViewById(R.id.forget_password).setOnClickListener(this);
 
         AndroidKeyBoardAssit.assistActivity(this);
         ll_content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -66,17 +69,18 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
                 if (heightDiff > CommonUtil.dp2px(LoginActivity.this, 1)) {
                     // 显示软键盘
                     startAnimation();
-                }else{
+                } else {
                     //隐藏软键盘
                     endAnimation();
                 }
             }
         });
+
     }
 
     private void startAnimation() {
         if (!hasStartAnimation) {
-            hasStartAnimation=true;
+            hasStartAnimation = true;
             int i = CommonUtil.dp2px(this, 200);
             ObjectAnimator animator = ObjectAnimator.ofFloat(ll_content, "translationY", 0, -i);
             animator.setDuration(500);
@@ -84,9 +88,10 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
 
         }
     }
+
     private void endAnimation() {
         if (hasStartAnimation) {
-            hasStartAnimation=false;
+            hasStartAnimation = false;
             int i = CommonUtil.dp2px(this, 200);
             ObjectAnimator animator = ObjectAnimator.ofFloat(ll_content, "translationY", -i, 0);
             animator.setDuration(500);
@@ -96,18 +101,6 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
     }
 
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ll_login:
-                login();
-                break;
-            case R.id.forget_password:
-                jumpToForgetPassword();
-                break;
-        }
-    }
 
     private void jumpToForgetPassword() {
         String account = etAccount.getText().toString();
@@ -152,4 +145,22 @@ public class LoginActivity extends MvcBaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.ll_login, R.id.forget_password})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_login:
+                login();
+                break;
+            case R.id.forget_password:
+                jumpToForgetPassword();
+                break;
+        }
+    }
 }

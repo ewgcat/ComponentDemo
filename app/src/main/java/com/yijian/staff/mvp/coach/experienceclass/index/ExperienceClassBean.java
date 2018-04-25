@@ -1,10 +1,5 @@
 package com.yijian.staff.mvp.coach.experienceclass.index;
 
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,65 +12,59 @@ public class ExperienceClassBean implements Serializable {
 
 
     /**
-     * cardprodVOs : [{"cardName":"string","cardType":"string","cardprodId":"string"}]卡名-类型
-     courseNum (integer, optional): 上课次数 ,
-     gender (integer, optional): 性别（0:未知 1:男 2:女） ,
-     headPath (string, optional): 头像 ,
-     memberName (string, optional): 会员名字 ,
-     processId (string, optional): 体验课流程id ,
-     status (integer, optional): 当前操作状态 ,
-     statusDesc (string, optional): 当前操作状态描述
+     * processId : 5
+     * memberType : 1
+     * headPath : 头像
+     * memberId : 666
+     * memberName : 何健林
+     * gender : 1
+     * cardprodVOs : [{"cardName":"储值卡","cardType":"储值卡","cardTypeId":2},{"cardName":"会员制卡","cardType":"会员制卡","cardTypeId":3},{"cardName":"时间卡","cardType":"时间卡","cardTypeId":0}]
+     * birthDate : null
+     * birthdayType : null
+     * birthdayTypeDesc : null
+     * healthStatusDesc : null
+     * sportHobbys : null
+     * hobbys : null
+     * car : null
+     * courseNum : 1
+     * status : 40
+     * statusDesc : 二次邀约
+     * result : 无
      */
 
-    private int courseNum;
-    private int gender;
-    private String headPath;
-    private String memberName;
-    private String memberId;
     private String processId;
+    private int memberType;
+    private String headPath;
+    private String memberId;
+    private String memberName;
+    private int gender;
+    private String birthDate;
+    private Long birthdayType;
+    private String birthdayTypeDesc;
+    private String healthStatusDesc;
+    private String sportHobbys;
+    private String hobbys;
+    private String car;
+    private int courseNum;
     private int status;
     private String statusDesc;
+    private String result;
     private List<CardprodVOsBean> cardprodVOs;
 
-    public String getMemberId() {
-        return memberId;
+    public String getProcessId() {
+        return processId;
     }
 
-    public  ExperienceClassBean(JSONObject jsonObject) {
-        try {
-
-            this.headPath = jsonObject.getString("headPath");
-            this.memberName = jsonObject.getString("memberName");
-            this.memberId = jsonObject.getString("memberId");
-            this.statusDesc = jsonObject.getString("statusDesc");
-            this.processId = jsonObject.getString("processId");
-            this.courseNum = jsonObject.getInt("courseNum");
-            this.gender = jsonObject.getInt("gender");
-            this.status = jsonObject.getInt("status");
-
-            if (jsonObject.has("cardprodVOs")) {
-                this.cardprodVOs = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprodVOs").toString(), ExperienceClassBean.CardprodVOsBean.class);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+    public void setProcessId(String processId) {
+        this.processId = processId;
     }
 
-    public int getCourseNum() {
-        return courseNum;
+    public int getMemberType() {
+        return memberType;
     }
 
-    public void setCourseNum(int courseNum) {
-        this.courseNum = courseNum;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setMemberType(int memberType) {
+        this.memberType = memberType;
     }
 
     public String getHeadPath() {
@@ -86,6 +75,14 @@ public class ExperienceClassBean implements Serializable {
         this.headPath = headPath;
     }
 
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
     public String getMemberName() {
         return memberName;
     }
@@ -94,12 +91,76 @@ public class ExperienceClassBean implements Serializable {
         this.memberName = memberName;
     }
 
-    public String getProcessId() {
-        return processId;
+    public int getGender() {
+        return gender;
     }
 
-    public void setProcessId(String processId) {
-        this.processId = processId;
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Long getBirthdayType() {
+        return birthdayType;
+    }
+
+    public void setBirthdayType(Long birthdayType) {
+        this.birthdayType = birthdayType;
+    }
+
+    public String getBirthdayTypeDesc() {
+        return birthdayTypeDesc;
+    }
+
+    public void setBirthdayTypeDesc(String birthdayTypeDesc) {
+        this.birthdayTypeDesc = birthdayTypeDesc;
+    }
+
+    public String getHealthStatusDesc() {
+        return healthStatusDesc;
+    }
+
+    public void setHealthStatusDesc(String healthStatusDesc) {
+        this.healthStatusDesc = healthStatusDesc;
+    }
+
+    public String getSportHobbys() {
+        return sportHobbys;
+    }
+
+    public void setSportHobbys(String sportHobbys) {
+        this.sportHobbys = sportHobbys;
+    }
+
+    public String getHobbys() {
+        return hobbys;
+    }
+
+    public void setHobbys(String hobbys) {
+        this.hobbys = hobbys;
+    }
+
+    public String getCar() {
+        return car;
+    }
+
+    public void setCar(String car) {
+        this.car = car;
+    }
+
+    public int getCourseNum() {
+        return courseNum;
+    }
+
+    public void setCourseNum(int courseNum) {
+        this.courseNum = courseNum;
     }
 
     public int getStatus() {
@@ -118,6 +179,14 @@ public class ExperienceClassBean implements Serializable {
         this.statusDesc = statusDesc;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     public List<CardprodVOsBean> getCardprodVOs() {
         return cardprodVOs;
     }
@@ -126,40 +195,5 @@ public class ExperienceClassBean implements Serializable {
         this.cardprodVOs = cardprodVOs;
     }
 
-    public static class CardprodVOsBean {
-        /**
-         * cardName : string
-         * cardType : string
-         * cardprodId : string
-         */
 
-        private String cardName;
-        private String cardType;
-        private String cardprodId;
-
-
-        public String getCardName() {
-            return cardName;
-        }
-
-        public void setCardName(String cardName) {
-            this.cardName = cardName;
-        }
-
-        public String getCardType() {
-            return cardType;
-        }
-
-        public void setCardType(String cardType) {
-            this.cardType = cardType;
-        }
-
-        public String getCardprodId() {
-            return cardprodId;
-        }
-
-        public void setCardprodId(String cardprodId) {
-            this.cardprodId = cardprodId;
-        }
-    }
 }

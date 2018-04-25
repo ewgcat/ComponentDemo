@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.yijian.staff.widget.LoadingDialog;
+
 import butterknife.ButterKnife;
 
 /**
@@ -16,6 +18,37 @@ import butterknife.ButterKnife;
 public abstract class MvcBaseActivity extends AppCompatActivity {
 
     public Context mContext;
+
+    protected LoadingDialog loadingDialog;
+
+    public void showProgress() {
+        showProgress(null);
+    }
+
+    public void showProgress(String text) {
+        if (loadingDialog == null) {
+            loadingDialog = LoadingDialog.createProgressDialog(this);
+        }
+        if (loadingDialog != null) {
+            //防止弹出之前activity已经被销毁了
+            if (!this.isFinishing()) {
+                loadingDialog.setMessage(text);
+                loadingDialog.show();
+                loadingDialog.setCancelable(false);
+            }
+        }
+
+    }
+
+    public void hideProgress() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            //防止显示期间activity已经被销毁了
+            if (!this.isFinishing()) {
+                loadingDialog.dismiss();
+                loadingDialog = null;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +68,28 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
 
 
-    public void hideSoftKeyboard() {// 隐藏软键盘
+
+    /**
+     *  隐藏键盘
+     */
+    public void hideKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
-    public void showOrHideSoftKeyboard() {
+    /**
+     *  显示键盘
+     */
+    public void showKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        if (imm != null) {
+            imm.showSoftInput(v,0);
+
+        }
     }
+
 
 
 

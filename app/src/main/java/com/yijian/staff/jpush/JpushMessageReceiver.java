@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.hengte.retrofit.net.subsrciber.BaseObserver;
+import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
@@ -43,6 +44,11 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             try {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+                Intent intent1 = new Intent(context,ReceptionStepActivity.class);
+                intent1.putExtra("smallStatus",smallStatus);
+                context.startActivity(intent);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

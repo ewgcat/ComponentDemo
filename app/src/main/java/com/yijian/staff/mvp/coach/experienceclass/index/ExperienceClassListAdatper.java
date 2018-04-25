@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.coach.experienceclass.index;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -93,7 +94,20 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "次");
         holder.tv_current_operation.setText(experienceClassBean.getStatusDesc());
-        holder.tv_result.setText(experienceClassBean.getResult());
+
+        String result = experienceClassBean.getResult();
+        holder.tv_result.setText(result);
+        if (!TextUtils.isEmpty(result)){
+            if (result.equals("无")){
+                holder.tv_result.setTextColor(Color.parseColor("#999999"));
+            }else  if (result.equals("T.O领导")){
+                holder.tv_result.setTextColor(Color.parseColor("#1997f8"));
+            }else  if (result.equals("确认报价")){
+                holder.tv_result.setTextColor(Color.parseColor("#2cc8a1"));
+            }else  if (result.equals("结束流程")){
+                holder.tv_result.setTextColor(Color.parseColor("#f1523d"));
+            }
+        }
 
         holder.experience_class_item_view.setOnClickListener(new View.OnClickListener() {
             @Override

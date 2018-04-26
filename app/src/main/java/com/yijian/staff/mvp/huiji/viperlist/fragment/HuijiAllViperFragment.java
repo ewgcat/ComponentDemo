@@ -54,10 +54,10 @@ public class HuijiAllViperFragment extends Fragment {
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
 
+    private int pages;
 
     private static HuijiAllViperFragment huijiAllViperFragment;
     private HuijiViperListAdapter huijiViperListAdapter;
-    private int pages;
     private HuijiViperFilterBean huijiViperFilterBean;
 
 
@@ -101,6 +101,7 @@ public class HuijiAllViperFragment extends Fragment {
     }
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
+        viperBeanList.clear();
 
         this.huijiViperFilterBean = huijiViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
@@ -142,7 +143,6 @@ public class HuijiAllViperFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                viperBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
@@ -163,6 +163,7 @@ public class HuijiAllViperFragment extends Fragment {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                huijiViperListAdapter.update(viperBeanList);
 
             }
         });

@@ -18,6 +18,7 @@ import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.huiji.detail.ViperDetailActivity;
+import com.yijian.staff.util.Logger;
 
 import java.util.List;
 
@@ -57,7 +58,10 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.rel_be_departure_time.setVisibility(isAllVipInfo ? View.GONE : View.VISIBLE);
 
         holder.tv_name.setText(viperBean.getName());
-        holder.iv_gender.setImageResource("0".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+
+        Logger.i("TEST","SEX="+viperBean.getSex());
+        int i = "1".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women;
+        holder.iv_gender.setImageResource(i);
         /*holder.tv_cardName.setText(viperBean.getCardName());
         holder.tv_card_type.setText(viperBean.getCardType());*/
 
@@ -85,7 +89,9 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         holder.lin_query_contract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ContractActivity.class));
+                Intent intent = new Intent(context, ContractActivity.class);
+                intent.putExtra("memberId",viperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
         holder.lin_query_question.setOnClickListener(new View.OnClickListener() {

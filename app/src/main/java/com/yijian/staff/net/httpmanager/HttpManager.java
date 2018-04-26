@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.advice.AdviceBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
@@ -30,7 +29,6 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +87,13 @@ public class HttpManager {
 
     //会籍保存邀约
     public static String INDEX_HUI_JI_INVITATION_SAVE_URL = BuildConfig.HOST + "invitation/save";
+
+    //会籍邀约记录
+    public static String INDEX_HUI_JI_INVITATION_RECORD_URL = BuildConfig.HOST + "invitation/select";
+
+
+    //会籍邀约结果
+    public static String INDEX_HUI_JI_INVITATION_RESULT_URL = BuildConfig.HOST + "invitation/selectResult";
 
 
     /*************************教练************************/
@@ -350,6 +355,34 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> loginObservable = apiService.postAddPotential(ADD_POTENTIAL_URL, headers, addPotentialRequestBody);
+
+            execute(loginObservable, observer);
+        }
+    }
+    //添加潜在
+    public static void getHuiJiInviteRecord(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> loginObservable = apiService.getHuiJiInviteRecord(INDEX_HUI_JI_INVITATION_RECORD_URL, headers, body);
+
+            execute(loginObservable, observer);
+        }
+    }
+ //添加潜在
+    public static void getHuiJiInviteResult(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> loginObservable = apiService.getHuiJiInviteRecord(INDEX_HUI_JI_INVITATION_RESULT_URL, headers, body);
 
             execute(loginObservable, observer);
         }

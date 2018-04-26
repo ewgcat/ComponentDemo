@@ -50,7 +50,7 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
         holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
         holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
         holder.tv_interestHobby.setText(viperBean.getHobby());
-        holder.iv_gender.setImageResource("女".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("2".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
 
 

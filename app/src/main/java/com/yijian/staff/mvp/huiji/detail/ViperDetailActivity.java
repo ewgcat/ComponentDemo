@@ -169,11 +169,14 @@ public class ViperDetailActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chakan_hetong:
-                startActivity(new Intent(ViperDetailActivity.this, ContractActivity.class));
-
+                Intent intent1 = new Intent(ViperDetailActivity.this, ContractActivity.class);
+                intent1.putExtra("memberId",vipDetailBean.getMemberId());
+                startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
-                startActivity(new Intent(ViperDetailActivity.this, QuestionnaireResultActivity.class));
+                Intent intent2 = new Intent(ViperDetailActivity.this, QuestionnaireResultActivity.class);
+                intent2.putExtra("memberId",vipDetailBean.getMemberId());
+                startActivity(intent2);
 
                 break;
             case R.id.ll_edit:

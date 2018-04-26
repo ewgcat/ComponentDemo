@@ -21,7 +21,7 @@ public class HuiJiViperBean implements Serializable {
     //会员姓名
     private String name;
     //性别  0 未知 1 男 2 女(这里存的是图片的路径)
-    private int sex;
+    private String sex;
 //    private String sex;
     //会员角色 普通会员
     private String viperRole;
@@ -109,8 +109,7 @@ public class HuiJiViperBean implements Serializable {
     public HuiJiViperBean(JSONObject jsonObject) {
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
-//        this.sex = JsonUtil.getString(jsonObject, "sex");
-        this.sex = "女".equals(JsonUtil.getString(jsonObject,"sex")) ? R.mipmap.lg_women : R.mipmap.lg_man;
+        this.sex = JsonUtil.getString(jsonObject, "sex");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
 
@@ -182,7 +181,7 @@ public class HuiJiViperBean implements Serializable {
         return name;
     }
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 

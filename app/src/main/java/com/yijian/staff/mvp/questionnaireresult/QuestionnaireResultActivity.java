@@ -129,11 +129,9 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
                         ArrayList<CalendarDay> dates = new ArrayList<>();
                         for (int i = 0; i < data.length(); i++) {
                             String o = data.getString(i);
-//                            Log.e(TAG, "onNext: "+o );
 
                             parse = simpleDateFormat.parse(o);
                             dates.add(CalendarDay.from(parse));
-//                            Log.e(TAG, "date1= "+ parse);
                         }
                         calendarView.setCurrentDate(parse);
                         calendarView.addDecorator(new EventDecorator(QuestionnaireResultActivity.this, dates));

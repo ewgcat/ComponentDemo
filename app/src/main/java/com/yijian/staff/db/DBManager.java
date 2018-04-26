@@ -2,6 +2,7 @@ package com.yijian.staff.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
@@ -87,6 +88,10 @@ public class DBManager  {
     }
 
     public void insertOrReplaceSearch(SearchKey searchKey){
+        String key = searchKey.getKey();
+        if (TextUtils.isEmpty(key)){
+            return;
+        }
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
         List<SearchKey> searchKeys = querySearchList();
         Long id=0L;

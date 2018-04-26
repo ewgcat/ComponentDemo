@@ -23,12 +23,12 @@ import cn.jpush.android.api.JPushInterface;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
 
-public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickBottomButtonListener {
+public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBottomButtonListener {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final String[] FRAGMENT_TAG = {"WorkFragment", "ReportingFragment", "ViperFragemnt", "MimeFragment"};
+    private static final String[] FRAGMENT_TAG = {"WorkFragment", "ReportingFragment", "MessageFragment", "MimeFragment"};
     /**
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
@@ -38,8 +38,7 @@ public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickB
 
 
     private WorkFragment workFragment;
-    //    private ReportingFragment reportingFragment;
-    private MessageFragment viperFragment;
+    private MessageFragment mesageFragment;
     private MineFragment mineFragment;
     private Bottombar mBottombar;
 
@@ -66,13 +65,15 @@ public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickB
         mBottombar.setmListener(this);
 
         if (savedInstanceState == null) {
+            workFragment = new WorkFragment();
+            mesageFragment = new MessageFragment();
+            mineFragment = new MineFragment();
             // 默认选中0
             selectTab(0);
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
-//            reportingFragment = (ReportingFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
-            viperFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
+            mesageFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
             mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
 
 
@@ -83,8 +84,6 @@ public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickB
             selectTab(lastSelectedIndex);
         }
     }
-
-
 
 
     private void initJPush() {
@@ -137,45 +136,29 @@ public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickB
         hideAllIndex(transaction);
         switch (index) {
             case 0:
-                if (workFragment == null) {
+                if (!workFragment.isAdded()) {
                     // 如果WorkFragment为空，则创建一个并添加到界面上
-                    workFragment = WorkFragment.getInstance();
                     transaction.add(R.id.fl_home, workFragment, FRAGMENT_TAG[index]);
-                    transaction.show(workFragment);
+                }else {
 
-                } else {
-                    // 如果WorkFragment不为空，则直接将它显示出来
                     transaction.show(workFragment);
                 }
+            // 如果WorkFragment不为空，则直接将它显示出来
+
                 break;
-//            case 1:
-//
-//                if (reportingFragment == null) {
-//                    // 如果ReportingFragment为空，则创建一个并添加到界面上
-//                    reportingFragment = ReportingFragment.getInstance();
-//                    transaction.add(R.id.fl_home, reportingFragment, FRAGMENT_TAG[index]);
-//                } else {
-//                    // 如果ReportingFragment不为空，则直接将它显示出来
-//                    transaction.show(reportingFragment);
-//                }
-//
-//                break;
             case 2:
-                if (viperFragment == null) {
-                    // 如果ViperFragment为空，则创建一个并添加到界面上
-                    viperFragment = MessageFragment.getInstance();
-                    transaction.add(R.id.fl_home, viperFragment, FRAGMENT_TAG[index]);
-                    transaction.show(viperFragment);
-
-                } else {
-                    // 如果ViperFragment不为空，则直接将它显示出来
-                    transaction.show(viperFragment);
+                if (!mesageFragment.isAdded()) {
+                    // 如果mesageFragment为空，则创建一个并添加到界面上
+                    transaction.add(R.id.fl_home, mesageFragment, FRAGMENT_TAG[index]);
+                    transaction.show(mesageFragment);
                 }
+                // 如果mesageFragment不为空，则直接将它显示出来
+                transaction.show(mesageFragment);
+
                 break;
             case 3:
-                if (mineFragment == null) {
+                if (!mineFragment.isAdded()) {
                     // 如果MimeFragment为空，则创建一个并添加到界面上
-                    mineFragment = MineFragment.getInstance();
                     transaction.add(R.id.fl_home, mineFragment, FRAGMENT_TAG[index]);
                     transaction.show(mineFragment);
 
@@ -191,28 +174,16 @@ public class MainActivity extends MvcBaseActivity implements  Bottombar.OnClickB
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        Fragment fragment = WorkFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+        if (workFragment.isAdded()) {
+            fragmentTransaction.hide(workFragment);
         }
-//        fragment = ReportingFragment.getInstance();
-//        if (fragment.isAdded()) {
-//            fragmentTransaction.hide(fragment);
-//        }
-        fragment = MessageFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
-
+        if (mesageFragment.isAdded()) {
+            fragmentTransaction.hide(mesageFragment);
         }
-        fragment = MineFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+        if (mineFragment.isAdded()) {
+            fragmentTransaction.hide(mineFragment);
         }
     }
-
-
-
-
 
 
 }

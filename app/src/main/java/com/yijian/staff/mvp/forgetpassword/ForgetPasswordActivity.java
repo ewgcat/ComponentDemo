@@ -13,6 +13,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.CountDownTimerUtils;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
@@ -68,15 +69,23 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                     return;
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
+                        tvGetcode.setEnabled(false);
+                        CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(tvGetcode, 30000, 1000);
+                        countDownTimerUtils.start();
                         HttpManager.getCode(account, telephone, new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {
+                                showToast("验证码已发送!");
 
 
                             }
 
                             @Override
                             public void onFail(String msg) {
+                                tvGetcode.setEnabled(true);
+                                countDownTimerUtils.cancel();
+                                countDownTimerUtils.onFinish();
+                                showToast(msg);
 
                             }
                         });

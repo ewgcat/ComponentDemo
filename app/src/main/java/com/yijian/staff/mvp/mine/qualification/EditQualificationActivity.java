@@ -24,6 +24,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.constant.BundleKeyConstant;
@@ -32,6 +33,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.UploadManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;
@@ -39,6 +41,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.rx.RxBus;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
@@ -165,7 +168,7 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
             List<CertBean> certList = certificateBean.getCertList();
             List<ImageBean> photoPathList = new ArrayList<>();
             for (int i = 0; i < certList.size(); i++) {
-                photoPathList.add(new ImageBean(certList.get(i).getCertificate(),1));
+                photoPathList.add(new ImageBean(certList.get(i).getCertificate(), 1));
             }
             choosePhotoView.setmPhotoPathList(photoPathList);
         }
@@ -177,25 +180,23 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         List<String> hasAddList = new ArrayList<>();
         for (int i = 0; i < photoPathList.size(); i++) {
             int type = photoPathList.get(i).getType();
-            if (type==0){
+            if (type == 0) {
                 list.add(photoPathList.get(i).getUrl());
-            }else {
+            } else {
                 hasAddList.add(photoPathList.get(i).getUrl());
             }
         }
         if (list.size() > 0) {
 
-            HttpManager.upLoadFiles(list, "0", new ResultJSONArrayObserver() {
+            UploadManager.upLoadFiles(list, "0", new ResultJSONObjectObserver() {
                 @Override
-                public void onSuccess(JSONArray result) {
+                public void onSuccess(JSONObject result) {
                     try {
-                        for (int i = 0; i < result.length(); i++) {
-                            String o = (String) result.get(i);
-                            String[] split = o.split("/");
-                            if (split.length>0){
-                                String url="https://h5.dev.ejoyst.com/file/downloadFile?fileType=0&filename="+split[split.length - 1];;
-                                certList.add(new CertBean(url));
-                            }
+                        JSONArray dataList = JsonUtil.getJsonArray(result, "dataList");
+                        for (int i = 0; i < dataList.length(); i++) {
+                            String o = (String) dataList.get(i);
+                            String url = BuildConfig.FILE_HOST + o;
+                            certList.add(new CertBean(url));
                         }
                         for (int i = 0; i < hasAddList.size(); i++) {
                             String url = hasAddList.get(i);
@@ -215,13 +216,17 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
                 }
             });
         } else {
+            for (int i = 0; i < hasAddList.size(); i++) {
+                String url = hasAddList.get(i);
+                certList.add(new CertBean(url));
+            }
             postAdd();
         }
 
     }
 
     private void postAdd() {
-
+        authList.clear();
         String s1 = et1.getText().toString().trim();
         String s2 = et2.getText().toString().trim();
         String s3 = et3.getText().toString().trim();
@@ -248,7 +253,7 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         }
 
         User user = DBManager.getInstance().queryUser();
-        AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody( user.getUserId(),authList, certList);
+        AuthCertificateRequestBody authCertificateRequestBody = new AuthCertificateRequestBody(user.getUserId(), authList, certList);
         HttpManager.addCertificate(authCertificateRequestBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

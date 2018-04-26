@@ -131,12 +131,6 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     @OnClick({R.id.et_search, R.id.ll_jiedai, R.id.iv_all_function})
     public void onViewClicked(View view) {
         switch (view.getId()) {

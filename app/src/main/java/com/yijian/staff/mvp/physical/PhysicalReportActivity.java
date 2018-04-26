@@ -114,8 +114,14 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
 
     @Override
     public void showUserData(PhysicalExaminationBean bean) {
-        tvAge.setText(bean.getAge().toString());
-        tvHeight.setText(bean.getHeight().toString());
+        Integer age = bean.getAge();
+        if (age!=null&&age>0){
+            tvAge.setText(age);
+        }
+        BigDecimal height = bean.getHeight();
+        if (height!=null&&height.intValue()>0){
+            tvHeight.setText(height.intValue()+"cm");
+        }
 
 //        Log.e(TAG, "showUserData: "+bean.toString());
 
@@ -389,6 +395,10 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
 
                         String stitchingSymbol = String.format("%c", 1);//拼接符号
                         String bodyTargetSelect = bean.getBodyTargetSelect();
+                        if (TextUtils.isEmpty(bodyTargetSelect)) {
+
+                            return;
+                        }
                         String[] split1 = bodyTargetSelect.split(stitchingSymbol);
                         if (split1 != null && split1.length != 0) {
                             for (int i = 0; i < split1.length; i++) {

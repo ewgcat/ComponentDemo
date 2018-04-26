@@ -174,13 +174,13 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        if (workFragment.isAdded()) {
+        if (workFragment!=null&&workFragment.isAdded()) {
             fragmentTransaction.hide(workFragment);
         }
-        if (mesageFragment.isAdded()) {
+        if (mesageFragment!=null&&mesageFragment.isAdded()) {
             fragmentTransaction.hide(mesageFragment);
         }
-        if (mineFragment.isAdded()) {
+        if (mineFragment!=null&&mineFragment.isAdded()) {
             fragmentTransaction.hide(mineFragment);
         }
     }

@@ -98,7 +98,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
                     } else {
 
 
-                        //            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
+//            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
 //            case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
 //            case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
 //            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),

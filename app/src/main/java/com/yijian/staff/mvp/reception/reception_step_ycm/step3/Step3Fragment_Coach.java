@@ -215,12 +215,14 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
     public void showToLeaderSucceed() {
 
         toLeadersDialog.dismiss();
-
+        Toast.makeText(getContext(),"发送给领导成功",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     @Override
     public void coachToSaleSecceed() {
         Toast.makeText(getContext(),"发送给会籍成功",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     //TO给领导

@@ -15,6 +15,8 @@ public interface ReceptionStepFourContract  {
 
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
+        void toReceptionStepFive();
+
 //        void shouldOrderToFinish();
     }
 

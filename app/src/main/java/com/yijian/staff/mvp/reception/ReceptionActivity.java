@@ -48,6 +48,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private ReceptionHistoryAdapter receptionHistoryAdapter;
     private SmartRefreshLayout refreshLayout;
     private Integer operatorType;
+    private boolean isInit=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,17 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         presenter = new ReceptionPresenter(this);
 
         presenter.setView(this);
-        presenter.getRecptionerInfo();
+       presenter.getRecptionerInfo();
 
         presenter.getRecptionRecord(true);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       if (!isInit)presenter.getRecptionerInfo();
+        isInit=false;
     }
 
     private void initView() {
@@ -127,48 +136,6 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
                 break;
             case R.id.tv_jiedai:
-                //TODO 接待流程
-//                int userRole = SharePreferenceUtil.getUserRole();
-//                if (userRole==1){
-//                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
-//                    startActivity(intent);
-//                }else if (userRole==2){
-//                    Intent intent = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
-//                    startActivity(intent);
-//                }else if (userRole==3|userRole==4){
-//                    Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-//                    startActivity(intent);
-//                }
-
-
-//                if (consumer == null) {
-//                    Toast.makeText(ReceptionActivity.this, "用户信息获取失败，不能进入接待流程", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                //会籍角色
-//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepOneActivity.class);
-//                intent.putExtra(CONSUMER, consumer);
-//                startActivity(intent);
-
-                //教练角色
-//                Intent intent1 = new Intent(ReceptionActivity.this, CoachReceptionStepTwoActivity.class);
-//                intent1.putExtra(CONSUMER, consumer);
-//                startActivity(intent1);
-
-//                第三步
-//                Intent intent = new Intent(ReceptionActivity.this, ReceptionStepThreeActivity.class);
-//                if (consumer!=null) {
-//                    String id1 = consumer.getId();
-//                    id1="1";
-//                    intent.putExtra("memberId", id1);
-//                }
-//                startActivity(intent);
-
-
-//                if (consumer==null||operatorType==null){
-//                    Toast.makeText(this,"接待人信息或者接待人节点获取失败，请退出此页面重新获取",Toast.LENGTH_SHORT).show();
-//                return;
-//                }
 
                 consumer.setStatus(operatorType);
                 consumer.setHistoryNode(HistoryNode);

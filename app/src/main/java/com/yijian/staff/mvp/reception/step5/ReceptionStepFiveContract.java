@@ -12,6 +12,8 @@ public interface ReceptionStepFiveContract {
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
         void ShowEndProcess();
+
+        void needEndProcess();
     }
 
     interface Presenter{

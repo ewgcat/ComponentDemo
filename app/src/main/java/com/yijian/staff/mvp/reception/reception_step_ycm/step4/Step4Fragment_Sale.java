@@ -207,6 +207,11 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep4SaleToStep5( receptionStastuBean.getOperatorType());
     }
 
+    @Override
+    public void toReceptionStepFive() {
+        presenter.toReceptionStepFive(memberId);
+    }
+
 
     private ReceptionStatusChange statusChangeLisenter;
 

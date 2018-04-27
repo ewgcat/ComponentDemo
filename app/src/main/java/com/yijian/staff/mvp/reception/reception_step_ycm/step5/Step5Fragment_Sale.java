@@ -90,4 +90,9 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
     public void ShowEndProcess() {
         presenter.getStatus(false);
     }
+
+    @Override
+    public void needEndProcess() {
+        presenter.endProcess(memberId);
+    }
 }

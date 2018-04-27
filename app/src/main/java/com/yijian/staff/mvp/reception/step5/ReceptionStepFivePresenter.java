@@ -39,7 +39,7 @@ public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Pre
                 if (receptionStastuBean.getOperatorType()==51){
                     view.showStatus(receptionStastuBean);
                 }else {
-                    if (isFirst) view.ShowEndProcess();
+                    if (isFirst) view.needEndProcess();
                 }
 
             }

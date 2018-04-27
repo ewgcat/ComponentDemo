@@ -34,8 +34,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="教练正在录入体测数据
-                请稍等"
+                android:text="教练正在录入体测数据请稍等..."
                 android:textSize="@dimen/text_size_14"
                 android:textColor="@color/text_black2"/>
 
@@ -59,7 +58,6 @@
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_next_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

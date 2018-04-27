@@ -77,12 +77,14 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
                 if (receptionStastuBean==null||receptionStastuBean.getOperatorType()==null)return;
-
+                ////  SALEFINISHCON(40, "会籍完成产品报价，签订合同中”),
+                // SALEFINISHCON(41, “已签订合同”),
+                //ORDERDETAILNEXT(50, "订单详情点击下一步"),
                 if (receptionStastuBean.getOperatorType()==50||receptionStastuBean.getOperatorType()>50){
                     view.showStatus(receptionStastuBean);
                 }else {
                     if (isFirst) {
-                        view.showToStepFive();
+                        view.toReceptionStepFive();
                     }else {
                         Toast.makeText(context,"节点错误",Toast.LENGTH_SHORT).show();
                     }

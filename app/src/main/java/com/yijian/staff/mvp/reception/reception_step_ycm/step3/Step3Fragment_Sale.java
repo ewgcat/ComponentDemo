@@ -184,19 +184,13 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Integer status = consumerBean.getStatus();
         if (status==null)return;
-//        if (status ==30|| status ==31){//SALEJUMPCOACH(30, "会籍跳过教练")//COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
-//
-//        }else if (status ==33||status==34||status==35||status==36){
-//            showToCoachSucceed();
-//        }else if (status ==40){
-////            会籍完成产品报价，签订合同中
-//            tvSendToStatus.setText("会籍完成产品报价，签订合同中");
-//            showToCoachSucceed();
-//
-//
-//        }else if (status>40){
-//            llToCoach.setVisibility(View.GONE);
-//        }
+
+//            case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),————手动点击确认，进入
+//            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
+//            case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
+//            case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
+//            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
+//            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
 
         if (status ==33||status==34||status==35||status==36){
             llToCoach.setVisibility(View.GONE);

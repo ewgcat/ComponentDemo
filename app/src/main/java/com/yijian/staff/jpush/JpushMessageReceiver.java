@@ -47,7 +47,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 int smallStatus = JsonUtil.getInt(data, "smallStatus");
                 Intent intent1 = new Intent(context,ReceptionStepActivity.class);
                 intent1.putExtra("smallStatus",smallStatus);
-                context.startActivity(intent);
+                context.startActivity(intent1);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -1,22 +1,18 @@
 package com.yijian.staff.mvp.coach.preparelessons.createlession;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.DepartBean;
 import com.yijian.staff.util.DensityUtil;
 
 import java.util.ArrayList;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.huiji.detail.ViperDetailActivity;
 import com.yijian.staff.util.Logger;

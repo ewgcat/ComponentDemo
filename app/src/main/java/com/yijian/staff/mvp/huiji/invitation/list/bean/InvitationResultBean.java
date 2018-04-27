@@ -6,58 +6,33 @@ package com.yijian.staff.mvp.huiji.invitation.list.bean;
 
 public class InvitationResultBean {
 
-
     /**
-     * birthday : 2018-04-26T07:16:47.092Z
-     * content : string
-     * emali : string
-     * memberId : string
-     * memberName : string
-     * memberType : 0
-     * memberTypeName : string
-     * mobile : string
-     * visitResult : 0
-     * visitResultName : string
-     * visitTime : 2018-04-26T07:16:47.092Z
-     * wechatCccount : string
+     * memberId : 85fec0bef849466fb95697d4bb7f2901
+     * memberName : 正式会员
+     * memberType : 2
+     * memberTypeName : null
+     * mobile : 15615715588
+     * wechatCccount : 值0
+     * birthday : 1523721600000
+     * content : 实际上计算机
+     * visitTime : 1523808000000
+     * visitResult : 1
+     * visitResultName : 爽约
+     * emaiL : 455123231@qq.com
      */
 
-    private String birthday;
-    private String content;
-    private String emali;
     private String memberId;
     private String memberName;
-    private int memberType;
+    private Long memberType;
     private String memberTypeName;
     private String mobile;
-    private int visitResult;
-    private String visitResultName;
-    private String visitTime;
     private String wechatCccount;
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getEmali() {
-        return emali;
-    }
-
-    public void setEmali(String emali) {
-        this.emali = emali;
-    }
+    private Long birthday;
+    private String content;
+    private Long visitTime;
+    private String visitResult;
+    private String visitResultName;
+    private String emaiL;
 
     public String getMemberId() {
         return memberId;
@@ -75,11 +50,11 @@ public class InvitationResultBean {
         this.memberName = memberName;
     }
 
-    public int getMemberType() {
+    public Long getMemberType() {
         return memberType;
     }
 
-    public void setMemberType(int memberType) {
+    public void setMemberType(Long memberType) {
         this.memberType = memberType;
     }
 
@@ -99,11 +74,43 @@ public class InvitationResultBean {
         this.mobile = mobile;
     }
 
-    public int getVisitResult() {
+    public String getWechatCccount() {
+        return wechatCccount;
+    }
+
+    public void setWechatCccount(String wechatCccount) {
+        this.wechatCccount = wechatCccount;
+    }
+
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public long getVisitTime() {
+        return visitTime;
+    }
+
+    public void setVisitTime(long visitTime) {
+        this.visitTime = visitTime;
+    }
+
+    public String getVisitResult() {
         return visitResult;
     }
 
-    public void setVisitResult(int visitResult) {
+    public void setVisitResult(String visitResult) {
         this.visitResult = visitResult;
     }
 
@@ -115,19 +122,11 @@ public class InvitationResultBean {
         this.visitResultName = visitResultName;
     }
 
-    public String getVisitTime() {
-        return visitTime;
+    public String getEmaiL() {
+        return emaiL;
     }
 
-    public void setVisitTime(String visitTime) {
-        this.visitTime = visitTime;
-    }
-
-    public String getWechatCccount() {
-        return wechatCccount;
-    }
-
-    public void setWechatCccount(String wechatCccount) {
-        this.wechatCccount = wechatCccount;
+    public void setEmaiL(String emaiL) {
+        this.emaiL = emaiL;
     }
 }

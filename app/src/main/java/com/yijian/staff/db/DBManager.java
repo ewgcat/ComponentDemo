@@ -12,7 +12,7 @@ import com.yijian.staff.greendao.gen.DaoSession;
 import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
+import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 

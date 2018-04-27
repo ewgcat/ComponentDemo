@@ -110,7 +110,6 @@ public class InvitationRecordFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                invitationRecordBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

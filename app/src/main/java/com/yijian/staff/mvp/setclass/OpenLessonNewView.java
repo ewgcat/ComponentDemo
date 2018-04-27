@@ -1,17 +1,9 @@
 package com.yijian.staff.mvp.setclass;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -22,21 +14,10 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
 import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
-import com.yijian.staff.mvp.setclass.bean.TypeOfActionItem;
-import com.yijian.staff.util.DensityUtil;
 
-import org.jsoup.helper.StringUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

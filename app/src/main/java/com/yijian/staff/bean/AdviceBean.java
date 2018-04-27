@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.advice;
+package com.yijian.staff.bean;
 
 /**
  * author：李帅华

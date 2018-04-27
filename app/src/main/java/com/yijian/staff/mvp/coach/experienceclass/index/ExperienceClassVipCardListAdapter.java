@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

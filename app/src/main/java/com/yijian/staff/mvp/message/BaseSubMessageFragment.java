@@ -19,7 +19,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.message.bean.MessageInfo;
 import com.yijian.staff.mvp.message.business.BusinessMessageBean;
 import com.yijian.staff.mvp.message.business.BusinessMessageListAdapter;
@@ -27,10 +26,8 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

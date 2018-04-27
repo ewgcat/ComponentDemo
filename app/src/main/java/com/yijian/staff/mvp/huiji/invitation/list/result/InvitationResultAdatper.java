@@ -19,12 +19,12 @@ import java.util.List;
 
 public class InvitationResultAdatper  extends RecyclerView.Adapter<InvitationResultAdatper.ViewHolder> {
 
-    private List<InvitationResultBean> invitationRecordBeanList;
+    private List<InvitationResultBean> iinvitationResultBeanList;
     private Context context;
 
-    public InvitationResultAdatper(Context context, List<InvitationResultBean> invitationRecordBeanList){
+    public InvitationResultAdatper(Context context, List<InvitationResultBean> iinvitationResultBeanList){
         this.context = context;
-        this.invitationRecordBeanList = invitationRecordBeanList;
+        this.iinvitationResultBeanList = iinvitationResultBeanList;
     }
 
     @Override
@@ -36,20 +36,25 @@ public class InvitationResultAdatper  extends RecyclerView.Adapter<InvitationRes
 
     @Override
     public void onBindViewHolder(InvitationResultAdatper.ViewHolder holder, int position) {
-        InvitationResultBean invitationRecordBean = invitationRecordBeanList.get(position);
-        holder.tv_name.setText(invitationRecordBean.getMemberName());
-//        holder.tv_rightsandinterests.setText(invitationRecordBean.g());
-//        holder.tv_invitation_over_time.setText(invitationRecordBean.getOverTime());
-//        holder.tv_invitation_over_reason.setText(invitationRecordBean.getOverReason());
-//        holder.tv_invitation_time.setText(invitationRecordBean.getInvitationTime());
-//        holder.tv_invitation_content.setText(invitationRecordBean.getInvitationContent());
-//        holder.tv_invitation_type.setText(invitationRecordBean.getInvitationType());
-//        holder.tv_invitation_result.setText(invitationRecordBean.getInvitationResult());
+        InvitationResultBean iinvitationResultBean = iinvitationResultBeanList.get(position);
+        holder.tv_name.setText(iinvitationResultBean.getMemberName());
+//        holder.tv_rightsandinterests.setText(iinvitationResultBean.g());
+//        holder.tv_invitation_over_time.setText(iinvitationResultBean.getOverTime());
+//        holder.tv_invitation_over_reason.setText(iinvitationResultBean.getOverReason());
+//        holder.tv_invitation_time.setText(iinvitationResultBean.getInvitationTime());
+//        holder.tv_invitation_content.setText(iinvitationResultBean.getInvitationContent());
+//        holder.tv_invitation_type.setText(iinvitationResultBean.getInvitationType());
+//        holder.tv_invitation_result.setText(iinvitationResultBean.getInvitationResult());
     }
 
     @Override
     public int getItemCount() {
-        return invitationRecordBeanList ==null?0: invitationRecordBeanList.size();
+        return iinvitationResultBeanList ==null?0: iinvitationResultBeanList.size();
+    }
+
+    public void update(List<InvitationResultBean> invitationResultBeans) {
+        this.iinvitationResultBeanList=invitationResultBeans;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

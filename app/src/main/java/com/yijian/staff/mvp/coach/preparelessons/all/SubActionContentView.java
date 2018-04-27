@@ -1,28 +1,20 @@
 package com.yijian.staff.mvp.coach.preparelessons.all;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.bean.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.SubActionBean;
-import com.yijian.staff.util.DensityUtil;
 
-import java.util.List;
 import java.util.Map;
 
 /**

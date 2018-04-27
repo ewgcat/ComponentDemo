@@ -1,27 +1,14 @@
 package com.yijian.staff.mvp.huiji.search;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.SearchKey;
-import com.yijian.staff.mvp.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.util.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;

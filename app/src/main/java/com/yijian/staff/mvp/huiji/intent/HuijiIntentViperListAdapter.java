@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
 

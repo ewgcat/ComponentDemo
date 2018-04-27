@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
@@ -187,7 +187,9 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,NoSearchBarCoachClassBaojiaActivity.class));
+                Intent intent = new Intent(context, NoSearchBarCoachClassBaojiaActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
 

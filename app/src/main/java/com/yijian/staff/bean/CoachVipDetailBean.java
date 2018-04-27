@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.bean;
+package com.yijian.staff.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by yangk on 2018/4/2.
  */
 
-public class VipDetailBean {
+public class CoachVipDetailBean {
 
 
     /**

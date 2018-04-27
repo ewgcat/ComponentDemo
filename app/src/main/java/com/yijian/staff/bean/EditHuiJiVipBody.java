@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huiji.bean;
+package com.yijian.staff.bean;
 
 import java.util.Map;
 

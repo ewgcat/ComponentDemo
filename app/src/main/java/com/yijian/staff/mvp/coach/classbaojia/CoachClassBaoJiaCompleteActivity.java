@@ -49,13 +49,15 @@ public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
         NavigationBar2 navigationBar2 = findViewById(R.id.no_search_bar_complete_navigationbar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("产品报价");
+        navigationBar2.setTitle("订单详情");
 
     }
 
     @OnClick(R.id.ll_post)
     public void onViewClicked() {
+        //TODO 查看合同
 
-        finish();
+
+
     }
 }

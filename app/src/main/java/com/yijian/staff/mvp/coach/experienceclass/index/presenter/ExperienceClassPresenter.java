@@ -5,17 +5,13 @@ import android.content.Context;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.base.mvp.BasePresenter;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
 import com.yijian.staff.mvp.coach.experienceclass.index.contract.ExperienceClassContract;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

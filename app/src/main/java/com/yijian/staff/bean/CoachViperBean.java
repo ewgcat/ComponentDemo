@@ -1,6 +1,5 @@
-package com.yijian.staff.mvp.coach.bean;
+package com.yijian.staff.bean;
 
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONException;

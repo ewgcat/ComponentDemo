@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.preparelessons.createlession;
+package com.yijian.staff.bean;
 
 import java.util.ArrayList;
 import java.util.List;

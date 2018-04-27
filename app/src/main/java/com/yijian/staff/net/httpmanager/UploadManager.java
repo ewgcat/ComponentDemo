@@ -6,25 +6,7 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
-import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
-import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
-import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
-import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.api.ApiService;
-import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
-import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
-import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
-import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
-import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
-import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
-import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
-import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
-import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONObject;
 
@@ -32,7 +14,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;

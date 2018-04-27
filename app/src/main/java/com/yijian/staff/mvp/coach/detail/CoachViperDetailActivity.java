@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.bean.VipDetailBean;
+import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
@@ -134,7 +134,7 @@ public class CoachViperDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_lianxiren_phone)
     TextView tvLianxirenPhone;
 
-    VipDetailBean vipDetailBean;
+    CoachVipDetailBean coachVipDetailBean;
     CoachViperBean coachViperBean;
     //会籍信息
     @BindView(R.id.ll_vip_content)
@@ -181,9 +181,9 @@ public class CoachViperDetailActivity extends AppCompatActivity {
                 break;
             case R.id.ll_edit:
                 Intent intent = new Intent(CoachViperDetailActivity.this, VipInfoEditActivity.class);
-                intent.putExtra("detail", vipDetailBean.getDetail());
-                intent.putExtra("memberId", vipDetailBean.getMemberId());
-                intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
+                intent.putExtra("detail", coachVipDetailBean.getDetail());
+                intent.putExtra("memberId", coachVipDetailBean.getMemberId());
+                intent.putExtra("source", coachVipDetailBean.getCustomerServiceInfo().getUserChannel());
 
                 startActivity(intent);
 
@@ -213,8 +213,8 @@ public class CoachViperDetailActivity extends AppCompatActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-                updateUi(vipDetailBean);
+                coachVipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), CoachVipDetailBean.class);
+                updateUi(coachVipDetailBean);
             }
 
             @Override
@@ -224,27 +224,27 @@ public class CoachViperDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUi(VipDetailBean vipDetailBean) {
-        ImageLoader.load(this, vipDetailBean.getHeadImg(), ivHead);
-        tvName.setText(vipDetailBean.getName());
-        tv_card_no.setText(vipDetailBean.getMemberCardNo());
-        tvSex.setText(vipDetailBean.getSex());
-        tvPhone.setText(vipDetailBean.getMobile());
-        tvBirthday.setText(vipDetailBean.getBirthday());
-        tvBirthdayType.setText(vipDetailBean.getBirthdayType());
-        tvViperType.setText(vipDetailBean.getMemberType());
-        tvVipCardNum.setText(vipDetailBean.getMemberCardNo());
-        tvHeadInfo.setText((TextUtils.isEmpty(vipDetailBean.getHeadImg())) ? "未录入" : "未录入");
-        tvZhiWenInfo.setText((TextUtils.isEmpty(vipDetailBean.getFingerprint())) ? "未录入" : "未录入");
-        tvJinMaiInfo.setText((TextUtils.isEmpty(vipDetailBean.getVein())) ? "未录入" : "未录入");
-        tv_certificateType.setText(vipDetailBean.getCertificateType());
-        tvShenfencardNum.setText(vipDetailBean.getCertificateNo());
+    private void updateUi(CoachVipDetailBean coachVipDetailBean) {
+        ImageLoader.load(this, coachVipDetailBean.getHeadImg(), ivHead);
+        tvName.setText(coachVipDetailBean.getName());
+        tv_card_no.setText(coachVipDetailBean.getMemberCardNo());
+        tvSex.setText(coachVipDetailBean.getSex());
+        tvPhone.setText(coachVipDetailBean.getMobile());
+        tvBirthday.setText(coachVipDetailBean.getBirthday());
+        tvBirthdayType.setText(coachVipDetailBean.getBirthdayType());
+        tvViperType.setText(coachVipDetailBean.getMemberType());
+        tvVipCardNum.setText(coachVipDetailBean.getMemberCardNo());
+        tvHeadInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getHeadImg())) ? "未录入" : "未录入");
+        tvZhiWenInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFingerprint())) ? "未录入" : "未录入");
+        tvJinMaiInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getVein())) ? "未录入" : "未录入");
+        tv_certificateType.setText(coachVipDetailBean.getCertificateType());
+        tvShenfencardNum.setText(coachVipDetailBean.getCertificateNo());
 
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
         rv_card.setAdapter(new CoachVipCardListAdapter(coachViperBean.getCardprodsBeans()));
-        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = coachVipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(customerServiceInfoBean.getReferee());
         tvTuijianRenPhone.setText(customerServiceInfoBean.getRefereeMobile());
         tvHuoquQudao.setText(customerServiceInfoBean.getUserChannel());
@@ -265,7 +265,7 @@ public class CoachViperDetailActivity extends AppCompatActivity {
         }
 
         //详情信息
-        VipDetailBean.DetailBean detailBean = vipDetailBean.getDetail();
+        CoachVipDetailBean.DetailBean detailBean = coachVipDetailBean.getDetail();
         tvWechatNum.setText(detailBean.getWechatNo());
         tvEmail.setText(detailBean.getEmail());
         tvShengao.setText(detailBean.getHeight());

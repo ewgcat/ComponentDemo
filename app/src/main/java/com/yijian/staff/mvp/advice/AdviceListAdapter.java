@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AdviceBean;
 
 import java.util.List;
 

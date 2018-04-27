@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 

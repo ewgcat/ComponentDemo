@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.setclass.orderclass;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,16 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.SelectActionPopwindow;
 import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
 import com.yijian.staff.util.DensityUtil;
-
-import java.util.List;
 
 public class SaveDataDialog extends PopupWindow {
 

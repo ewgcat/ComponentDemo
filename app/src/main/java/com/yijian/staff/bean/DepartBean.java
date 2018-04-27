@@ -1,6 +1,4 @@
-package com.yijian.staff.mvp.coach.preparelessons.createlession;
-
-import com.prolificinteractive.materialcalendarview.CalendarDay;
+package com.yijian.staff.bean;
 
 public class DepartBean {
 

@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.coach.huifang.history;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -14,14 +13,10 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangInfo;
-import com.yijian.staff.mvp.coach.huifang.tianxieresult.CoachHuiFangReasonBean;
-import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huiji.huifang.history.HuiFangHistoryAdapter;
+import com.yijian.staff.bean.CoachHuiFangInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -32,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoachHuiFangHistoryActivity extends MvcBaseActivity {

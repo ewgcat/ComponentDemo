@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.huifang.bean;
+package com.yijian.staff.bean;
 
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;

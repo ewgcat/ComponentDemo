@@ -18,7 +18,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationRecordBean;
 import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationResultBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.HuiJiInviteListRequestBody;
@@ -38,6 +37,8 @@ import java.util.List;
 public class InvitationResultFragment extends Fragment {
 
     private static InvitationResultFragment invitaionResultFragment;
+    private InvitationResultAdatper invitationResultAdatper;
+
     public static InvitationResultFragment getInstance(){
         if(invitaionResultFragment == null){
             invitaionResultFragment = new InvitationResultFragment();
@@ -51,7 +52,7 @@ public class InvitationResultFragment extends Fragment {
     private int pageSize = 1;//每页数量
 
     private int pages;
-    private List<InvitationResultBean> invitationRecordBeanList =new ArrayList<>();
+    private List<InvitationResultBean> iinvitationResultBeanList =new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,11 +83,13 @@ public class InvitationResultFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                invitationRecordBeanList.clear();
+                iinvitationResultBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-
+                List<InvitationResultBean> invitationResultBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), InvitationResultBean.class);
+                iinvitationResultBeanList.addAll(invitationResultBeans);
+                invitationResultAdatper.update(iinvitationResultBeanList);
             }
 
             @Override
@@ -107,10 +110,12 @@ public class InvitationResultFragment extends Fragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                invitationRecordBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
+                List<InvitationResultBean> invitationResultBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), InvitationResultBean.class);
+                iinvitationResultBeanList.addAll(invitationResultBeans);
+                invitationResultAdatper.update(iinvitationResultBeanList);
 
             }
 
@@ -127,7 +132,7 @@ public class InvitationResultFragment extends Fragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_invitation.setLayoutManager(layoutmanager);
-        InvitationResultAdatper invitationResultAdatper = new InvitationResultAdatper(getActivity(), invitationRecordBeanList);
+        invitationResultAdatper = new InvitationResultAdatper(getActivity(), iinvitationResultBeanList);
         rv_invitation.setAdapter(invitationResultAdatper);
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true);

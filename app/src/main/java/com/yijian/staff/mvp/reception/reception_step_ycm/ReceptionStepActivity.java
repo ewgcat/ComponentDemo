@@ -16,17 +16,22 @@ import com.yijian.staff.mvp.reception.reception_step_ycm.step1.Step1Fragment_Sal
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.CancelReasonDialog;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Coach;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Message;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Sale_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Sale_Physical;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Coach;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Coach_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Leader;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Message;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Sale;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Sale_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step5.Step5Fragment_Sale;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
+
+import java.util.List;
 
 /**
  * Created by The_P on 2018/4/20.
@@ -50,6 +55,9 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     private Step1Fragment_Message step1Fragment_message;
     private Step2Fragment_Message step2Fragment_message;
     private Step4Fragment_Message step4Fragment_message;
+    private Step2Fragment_Sale_NoData step2Fragment_noData;
+    private Step4Fragment_Sale_NoData step4Fragment_sale_noData;
+    private Step3Fragment_Coach_NoData step3Fragment_coach_noData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,15 +79,28 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
         initFragment();
 
-        showView();
+        showView(recptionerInfoBean);
 
     }
 
-    private void showView() {
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.hasExtra(ReceptionActivity.CONSUMER)) {
+            recptionerInfoBean = intent.getParcelableExtra(ReceptionActivity.CONSUMER);
+            showView(recptionerInfoBean);
+        } else {
+            Toast.makeText(ReceptionStepActivity.this, "获取客户信息失败,请重新进入接待流程", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+
+    private void showView(RecptionerInfoBean recptionerInfoBean) {
 
         Integer status = recptionerInfoBean.getStatus();
 
         if (status == null) return;
+        Log.e(TAG, "showView: "+status );
         Bundle bundle = new Bundle();
         bundle.putParcelable("recptionerInfoBean", recptionerInfoBean);
 
@@ -91,24 +112,28 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
             case 20:// SALEFINISHQS(20, "会籍完成问卷调查录入"),
             case 21: //SALESENDCOACH(21, "会籍选择发送给教练"),
+            case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
             case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
                 showStep2Fragment(bundle);
                 break;
-            case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+
             case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
             case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
             case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
             case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
             case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
-            case 40://  SALEFINISHCON(40, "会籍完成产品报价，签订合同中”),
+
                 showStep3Fragment(bundle);
                 break;
-            case 41:// SALEFINISHCON(41, “已签订合同”),
+            case 40://  SALEFINISHCON(40, "会籍完成产品报价，签订合同中”),
+
                 showStep4Fragment(bundle);
                 break;
+            case 41:// SALEFINISHCON(41, “已签订合同”),
             case 50://ORDERDETAILNEXT(50, "订单详情点击下一步"),
                 showStep5Fragment(bundle);
                 break;
+
             case 51:// LASTSENDCOACH(51, "会籍最后发送给教练");
                 break;
 
@@ -120,15 +145,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
     private void initView() {
         navigationBar2 = findViewById(R.id.navigation_bar2);
-//        navigationBar2.setNavigationBarBackgroudColor(R.color.blue);
-//        navigationBar2.setTitleColor(R.color.white);
         timeBar = findViewById(R.id.step_timebar);
-//        timeBar.showTimeBar(1);
-
-//        FrameLayout content = findViewById(R.id.content);
-
-
-
     }
 
 
@@ -147,6 +164,8 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         step2Fragment_sale_physical = new Step2Fragment_Sale_Physical();
         step2Fragment_sale_physical.setStatusChangeLisenter(this);
 
+        step2Fragment_noData = new Step2Fragment_Sale_NoData();
+        step2Fragment_noData.setStatusChangeLisenter(this);
 
         step2Fragment_coach = new Step2Fragment_Coach();
         step2Fragment_message = new Step2Fragment_Message();
@@ -159,9 +178,14 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
         step3Fragment_leader = new Step3Fragment_Leader();
 
+        step3Fragment_coach_noData = new Step3Fragment_Coach_NoData();
+
         step4Fragment_sale = new Step4Fragment_Sale();
         step4Fragment_sale.setStatusChangeLisenter(this);
         step4Fragment_message = new Step4Fragment_Message();
+
+        step4Fragment_sale_noData = new Step4Fragment_Sale_NoData();
+        step4Fragment_sale_noData.setStatusChangeLisenter(this);
 
 
         step5Fragment_sale = new Step5Fragment_Sale();
@@ -171,6 +195,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     public void showStep1Fragment(Bundle bundle) {
         navigationBar2.setTitle("填写问卷(1/5)");
         timeBar.showTimeBar(1);
+        navigationBar2.getmRightTv().setVisibility(View.GONE);
 
         if (userRole == 1) {
             step1Fragment_sale.setArguments(bundle);
@@ -181,59 +206,119 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         } else if (userRole == 3) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step1Fragment_message).commitAllowingStateLoss();
         }
-
-
     }
+
+
+//          case 20:// SALEFINISHQS(20, "会籍完成问卷调查录入"),
+//          case 21: //SALESENDCOACH(21, "会籍选择发送给教练"),
+//          case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//          case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
 
     public void showStep2Fragment(Bundle bundle) {
         navigationBar2.setTitle("体测录入(2/5)");
         timeBar.showTimeBar(2);
+        navigationBar2.getmRightTv().setVisibility(View.GONE);
 
         if (userRole == 1) {
-
             Integer status = recptionerInfoBean.getStatus();
+            List<Integer> historyNode = recptionerInfoBean.getHistoryNode();
+
             if ( status ==20||status==21||status==32){
                 step2Fragment_sale.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_sale).commitAllowingStateLoss();
+            }else if (historyNode.contains((Integer.valueOf(30)))){//用户选择跳过体测录入（没有体测数据）
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_noData).commitAllowingStateLoss();
             }else {
                 step2Fragment_sale_physical.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_sale_physical).commitAllowingStateLoss();
             }
 
         } else if (userRole == 2) {
-            step2Fragment_coach.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_coach).commitAllowingStateLoss();
+            Integer status = recptionerInfoBean.getStatus();
+            if ( status==21){//会籍选择发送给教练
+                step2Fragment_coach.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_coach).commitAllowingStateLoss();
+            }else if (status==32||status==20){//用户选择跳过体测录入（没有体测数据）//会籍完成问卷调查录入
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_noData).commitAllowingStateLoss();
+            }else if (status==31){//教练录完体测数据发送回会籍
+                step2Fragment_sale_physical.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_sale_physical).commitAllowingStateLoss();
+            }
+
+
         } else if (userRole == 3) {
 //            step2Fragment_message
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_message).commitAllowingStateLoss();
         }
-
-
     }
+
+
+//            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
+//            case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
+//            case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
+//            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
+//            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
 
     public void showStep3Fragment(Bundle bundle) {
         navigationBar2.setTitle("产品报价(3/5)");
         timeBar.showTimeBar(3);
+        navigationBar2.getmRightTv().setVisibility(View.GONE);
 
         if (userRole == 1) {
             step3Fragment_sale.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_sale).commitAllowingStateLoss();
         } else if (userRole == 2) {
-            step3Fragment_coach.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach).commitAllowingStateLoss();
+            Integer status = recptionerInfoBean.getStatus();
+            if (status==30||status==34||status==36){
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach_noData).commitAllowingStateLoss();
+            }else if (status==33){
+                step3Fragment_coach.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach).commitAllowingStateLoss();
+            }else if (status==35){
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("tips","总监正在与客户交流");
+                step3Fragment_coach_noData.setArguments(bundle1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach_noData).commitAllowingStateLoss();
+            }
+
         } else if (userRole == 3) {
-            step3Fragment_leader.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_leader).commitAllowingStateLoss();
+            Integer status = recptionerInfoBean.getStatus();
+            if(status==30||status==34||status==36){
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("tips","会籍正在与客户交流");
+                step3Fragment_coach_noData.setArguments(bundle1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach_noData).commitAllowingStateLoss();
+            }else if (status==33){
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("tips","教练正在与客户交流");
+                step3Fragment_coach_noData.setArguments(bundle1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach_noData).commitAllowingStateLoss();
+
+            }else if (status==35){
+                step3Fragment_leader.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_leader).commitAllowingStateLoss();
+            }
+
+
         }
     }
 
     public void showStep4Fragment(Bundle bundle) {
         navigationBar2.setTitle("订单详情(4/5)");
         timeBar.showTimeBar(4);
+        navigationBar2.getmRightTv().setVisibility(View.GONE);
 
         if (userRole == 1) {
-            step4Fragment_sale.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_sale).commitAllowingStateLoss();
+            Integer status = recptionerInfoBean.getStatus();
+            if (status==40){//40, "会籍完成产品报价，签订合同中”
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_sale_noData).commitAllowingStateLoss();
+            }else {
+                step4Fragment_sale.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_sale).commitAllowingStateLoss();
+            }
+
+
         } else if (userRole == 2) {
             step4Fragment_message.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_message).commitAllowingStateLoss();
@@ -246,6 +331,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     public void showStep5Fragment(Bundle bundle) {
         navigationBar2.setTitle("合同签订(5/5)");
         timeBar.showTimeBar(5);
+        navigationBar2.getmRightTv().setVisibility(View.GONE);
 
         if (userRole == 1) {
             step5Fragment_sale.setArguments(bundle);
@@ -263,7 +349,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 //        recptionerInfoBean.setStatus(31);
         Bundle bundle = new Bundle();
         bundle.putParcelable("recptionerInfoBean", recptionerInfoBean);
-        showStep3Fragment(bundle);
+        showStep2Fragment(bundle);
     }
 
     //接到消息推送后 更新接待节点
@@ -279,11 +365,14 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
             showStep2Fragment(bundle);
 //            step2Fragment_sale.showJumpButton();
         }
+
+
         CancelReasonDialog cancelReasonDialog = new CancelReasonDialog();
         Bundle bundle1 = new Bundle();
         bundle1.putString("cancelReason", "身体不适");
         cancelReasonDialog.setArguments(bundle1);
         cancelReasonDialog.show(getFragmentManager(), "CancelReasonDialog");
+
     }
 
 
@@ -291,6 +380,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     @Override
     public void ReceptionStep1RequestionSaved() {
         recptionerInfoBean.setStatus(20);
+        recptionerInfoBean.getHistoryNode().add(20);
         Bundle bundle = new Bundle();
         bundle.putParcelable("recptionerInfoBean", recptionerInfoBean);
         showStep2Fragment(bundle);
@@ -369,6 +459,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 //        recptionerInfoBean.setStatus();
         recptionerInfoBean.setStatus(operatorType);
         //TODO  完成整个接待
+
     }
 
 

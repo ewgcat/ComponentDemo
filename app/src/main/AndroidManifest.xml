@@ -93,7 +93,8 @@
 
         <!-- 接待 -->
         <activity android:name=".mvp.reception.reception_step_ycm.ReceptionStepActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
         <activity
             android:name=".mvp.reception.ReceptionActivity"
             android:screenOrientation="portrait" />

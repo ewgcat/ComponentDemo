@@ -78,10 +78,14 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
                 if (receptionStastuBean==null||receptionStastuBean.getOperatorType()==null)return;
 
-                if (receptionStastuBean.getOperatorType()>50){
+                if (receptionStastuBean.getOperatorType()==50||receptionStastuBean.getOperatorType()>50){
                     view.showStatus(receptionStastuBean);
                 }else {
-                    if (isFirst) view.showToStepFive();
+                    if (isFirst) {
+                        view.showToStepFive();
+                    }else {
+                        Toast.makeText(context,"节点错误",Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

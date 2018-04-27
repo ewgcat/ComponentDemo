@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -96,7 +97,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
-//        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,17 +184,21 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Integer status = consumerBean.getStatus();
         if (status==null)return;
-        if (status ==30|| status ==31){//SALEJUMPCOACH(30, "会籍跳过教练")//COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//        if (status ==30|| status ==31){//SALEJUMPCOACH(30, "会籍跳过教练")//COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//
+//        }else if (status ==33||status==34||status==35||status==36){
+//            showToCoachSucceed();
+//        }else if (status ==40){
+////            会籍完成产品报价，签订合同中
+//            tvSendToStatus.setText("会籍完成产品报价，签订合同中");
+//            showToCoachSucceed();
+//
+//
+//        }else if (status>40){
+//            llToCoach.setVisibility(View.GONE);
+//        }
 
-        }else if (status ==33||status==34||status==35||status==36){
-            showToCoachSucceed();
-        }else if (status ==40){
-//            会籍完成产品报价，签订合同中
-            tvSendToStatus.setText("会籍完成产品报价，签订合同中");
-            showToCoachSucceed();
-
-
-        }else if (status>40){
+        if (status ==33||status==34||status==35||status==36){
             llToCoach.setVisibility(View.GONE);
         }
     }

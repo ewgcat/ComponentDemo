@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.mvp.coach.experienceclass.step1.bean.LessonPreparation;
 import com.yijian.staff.mvp.coach.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.bean.TemplateListBean;
@@ -38,14 +39,14 @@ import butterknife.Unbinder;
 
 public class ExperienceClassStep1Fragment extends Fragment implements ExperienceClassStep1Contract.View {
 
-    @BindView(R.id.et_name)
-    LastInputEditText etName;
-    @BindView(R.id.et_class_count)
-    LastInputEditText etClassCount;
-    @BindView(R.id.et_coach)
-    LastInputEditText etCoach;
-    @BindView(R.id.et_class_num)
-    LastInputEditText etClassNum;
+    @BindView(R.id.tv_name)
+    TextView etName;
+    @BindView(R.id.tv_class_count)
+    TextView etClassCount;
+    @BindView(R.id.tv_coach)
+    TextView etCoach;
+    @BindView(R.id.tv_class_num)
+    TextView etClassNum;
     @BindView(R.id.tv_time_start)
     TextView tvTimeStart;
     @BindView(R.id.tv_time_class)
@@ -70,10 +71,7 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
     private ExperienceClassStep1Presenter presenter;
     Unbinder unbinder;
     private ExperienceClassBean bean;
-    private List<TemplateListBean> templateList;
-    private List<Object> customerTemplateList;
-    private String memberName;
-    private String processId;
+    private TemplateListBean templateListBean;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,34 +100,53 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
         switch (view.getId()) {
 
             case R.id.ll_template1_root://系统模板
-                if (templateList == null) {
+                if (templateListBean == null) {
                     Toast.makeText(getContext(), "模板数据异常", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(getContext(), Template1ClassActivity_ycm.class);
-                intent.putParcelableArrayListExtra("templateList", (ArrayList<? extends Parcelable>) templateList);
+                intent.putExtra("templateListBean",templateListBean);
                 startActivity(intent);
                 break;
             case R.id.ll_template2_root://自定义模板
                 startActivity(new Intent(getContext(), Template2ClassActivity.class));
                 break;
         }
+
     }
 
 
 
     @Override
     public void showInviterInfo(InviterBean inviterBean) {
-//        etName.setText(inviterBean.getMemberName());
-//        etCoach.setText(inviterBean.getCoachName());
-//        etClassCount.setText("" + inviterBean.getCourseCurrent());
-//        etClassNum.setText("" + inviterBean.getCourseNum());
-////                Long startTime = inviterBean.getStartTime();
-////                if (startTime!=null){
-////                    String time = DateUtil.parseLongDateToTimeString(startTime);
-////                    tvTime.setText(time);
-////                }
-//        etRemark.setText("备注信息：" + inviterBean.getRemark());
+        etName.setText(inviterBean.getMemberName());
+        etCoach.setText(inviterBean.getCoachName());
+        etClassCount.setText( inviterBean.getCourseCurrent()==null?"":"" + inviterBean.getCourseCurrent());
+        etClassNum.setText(inviterBean.getCourseNum()==null?"":"" + inviterBean.getCourseNum());
+
+        tvTimeStart.setText(""+inviterBean.getStartTime());
+
+        etRemark.setText("备注信息：" + inviterBean.getRemark());
+
+        Integer courseTime = inviterBean.getCourseTime();
+        tvTimeClass.setText(courseTime==null?"":""+courseTime);
+
+        List<TemplateListBean> experienceTemplateList = inviterBean.getExperienceTemplateList();
+
+                if (experienceTemplateList!=null&&!experienceTemplateList.isEmpty()){
+                    templateListBean = experienceTemplateList.get(0);
+
+                    //显示系统提供的模板
+                Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
+                tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
+                }else if (inviterBean.getPrepareVO()!=null){
+                    templateListBean = inviterBean.getPrepareVO().getTemplateVO();
+
+                    //显示系统提供的模板
+                    Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
+                    tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
+                }
+
 //
 //
 //        templateList = inviterBean.getTemplateList();
@@ -145,6 +162,9 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
 //
 //
 //        }
+
+
+
     }
 
     @Override

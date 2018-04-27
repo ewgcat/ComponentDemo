@@ -33,6 +33,7 @@ public class CancelReasonDialog extends DialogFragment {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (oklisenter!=null)oklisenter.onClick();
                 dismiss();
             }
         });
@@ -55,5 +56,14 @@ public class CancelReasonDialog extends DialogFragment {
         super.onStart();
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_fillet_white_8);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+    }
+
+    public interface DialogOklisenter{
+        void onClick();
+    }
+    private DialogOklisenter oklisenter;
+
+    public void setOklisenter(DialogOklisenter oklisenter) {
+        this.oklisenter = oklisenter;
     }
 }

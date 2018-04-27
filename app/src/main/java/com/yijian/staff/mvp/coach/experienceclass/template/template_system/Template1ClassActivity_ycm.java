@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Template1ClassActivity_ycm extends AppCompatActivity {
     private static final String TAG = "Template1ClassActivity_";
-    private List<TemplateListBean> templateList;
+    private TemplateListBean templateListBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,8 @@ public class Template1ClassActivity_ycm extends AppCompatActivity {
         setContentView(R.layout.activity_experience_template1);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("templateList")){
-            templateList = intent.getParcelableArrayListExtra("templateList");
+        if (intent.hasExtra("templateListBean")){
+             templateListBean = intent.getParcelableExtra("templateListBean");
         }
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
@@ -43,12 +43,12 @@ public class Template1ClassActivity_ycm extends AppCompatActivity {
         RecyAdapter recyAdapter = new RecyAdapter(this);
         recyclerView.setAdapter(recyAdapter);
 
-        if (templateList!=null&&templateList.size()!=0){
-            TemplateListBean templateListBean = (TemplateListBean) templateList.get(0);
-
+        try {
             DataHelper dataHelper = new DataHelper();
             List<Object> list = dataHelper.mapData(templateListBean);
             recyAdapter.resetData(list);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -3,11 +3,26 @@ package com.yijian.staff.mvp.reception.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by The_P on 2018/3/28.
  */
 
 public class RecptionerInfoBean implements Parcelable {
+
+    @Override
+    public String toString() {
+        return "RecptionerInfoBean{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", status=" + status +
+                ", historyNode=" + historyNode +
+                '}';
+    }
 
     /**
      * id : 55b2144ff5d145faa6247aa8964ea3e4
@@ -21,6 +36,7 @@ public class RecptionerInfoBean implements Parcelable {
     private String sex;
     private String mobile;
     private Integer status;//节点位置
+    private List<Integer> historyNode;//历史节点
 
     public String getId() {
         return id;
@@ -62,6 +78,14 @@ public class RecptionerInfoBean implements Parcelable {
         this.status = status;
     }
 
+    public List<Integer> getHistoryNode() {
+        return historyNode;
+    }
+
+    public void setHistoryNode(List<Integer> historyNode) {
+        this.historyNode = historyNode;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -74,6 +98,7 @@ public class RecptionerInfoBean implements Parcelable {
         dest.writeString(this.sex);
         dest.writeString(this.mobile);
         dest.writeValue(this.status);
+        dest.writeList(this.historyNode);
     }
 
     public RecptionerInfoBean() {
@@ -85,6 +110,8 @@ public class RecptionerInfoBean implements Parcelable {
         this.sex = in.readString();
         this.mobile = in.readString();
         this.status = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.historyNode = new ArrayList<Integer>();
+        in.readList(this.historyNode, Integer.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<RecptionerInfoBean> CREATOR = new Parcelable.Creator<RecptionerInfoBean>() {
@@ -98,15 +125,4 @@ public class RecptionerInfoBean implements Parcelable {
             return new RecptionerInfoBean[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "RecptionerInfoBean{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }

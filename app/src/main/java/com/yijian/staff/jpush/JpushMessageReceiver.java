@@ -1,21 +1,30 @@
 package com.yijian.staff.jpush;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.hengte.retrofit.net.subsrciber.BaseObserver;
+import com.yijian.staff.jpush.bean.Messager;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.GsonNullString;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -29,8 +38,10 @@ import cn.jpush.android.api.JPushInterface;
 public class JpushMessageReceiver extends BroadcastReceiver {
     private static final String TAG = "Jpush";
 
+        private Context mContext;
     @Override
     public void onReceive(Context context, Intent intent) {
+        mContext=context;
         Bundle bundle = intent.getExtras();
         if (bundle == null) {
             return;
@@ -42,14 +53,37 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
             Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
             try {
-                JSONObject jsonObject = new JSONObject(bundleString);
-                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
-                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+//                JSONObject jsonObject = new JSONObject(bundleString);
+//                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+//                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+                Messager messager = GsonNullString.getGson().fromJson(bundleString, Messager.class);
+                RecptionerInfoBean recptionerInfoBean = new RecptionerInfoBean();
+                recptionerInfoBean.setId(messager.getId());
+                recptionerInfoBean.setStatus(messager.getOperatorType());
+                recptionerInfoBean.setMobile(messager.getMobile());
+                recptionerInfoBean.setName(messager.getName());
+                Integer sex = messager.getSex();
+                if (sex==0){
+                    recptionerInfoBean.setSex("未知");
+                }else if (sex==1){
+                    recptionerInfoBean.setSex("男");
+                }else if (sex==2){
+                    recptionerInfoBean.setSex("女");
+                }
+                List<Integer> historyNode = recptionerInfoBean.getHistoryNode();
+                List<Integer> nodes=new ArrayList<>();
+                if (historyNode!=null&&!historyNode.isEmpty()){
+                    for (Integer integer :  historyNode) {
+                        nodes.add(integer);
+                    }
+                }
+                recptionerInfoBean.setHistoryNode(nodes);
+                Log.e(TAG, "onReceive: "+recptionerInfoBean.toString());
                 Intent intent1 = new Intent(context,ReceptionStepActivity.class);
-                intent1.putExtra("smallStatus",smallStatus);
+                intent1.putExtra(ReceptionActivity.CONSUMER,recptionerInfoBean);
                 context.startActivity(intent);
 
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -105,6 +139,38 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         }
         return sb.toString();
     }
+
+    protected ActivityManager mActivityManager;
+
+
+
+    public ActivityManager.RunningTaskInfo getTopTask() {
+        mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = mActivityManager.getRunningTasks(1);
+        if (tasks != null && !tasks.isEmpty()) {
+            return tasks.get(0);
+        }
+
+        return null;
+    }
+
+    public boolean isTopActivity(
+            ActivityManager.RunningTaskInfo topTask,
+            String packageName,
+            String activityName) {
+        if (topTask != null) {
+            ComponentName topActivity = topTask.topActivity;
+
+            if (topActivity.getPackageName().equals(packageName) &&
+                    topActivity.getClassName().equals(activityName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 
 
 

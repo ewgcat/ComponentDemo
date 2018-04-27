@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.coach.experienceclass.step4;
 
-import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ConsultationProgrammeBean;
+import com.yijian.staff.mvp.coach.experienceclass.step4.bean.InvitationAgainBean;
 
 /**
  * Created by The_P on 2018/4/16.
@@ -8,15 +8,13 @@ import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ConsultationProgram
 
 public interface ExperienceClassProcess4Contract {
     interface View{
-//        void showConsultationProgramme(ConsultationProgrammeBean consultationProgrammeBean);
-//
-//        void showSaveSecceed();
+
+        void showClassRecordList(InvitationAgainBean bean);
     }
 
     interface Presenter{
-//        void getConsultationProgramme(String processId);
+        void getClassRecordList(String processId);
 
-//        void postConsultationProgramme(String processId, String programmeContext);
 
     }
 }

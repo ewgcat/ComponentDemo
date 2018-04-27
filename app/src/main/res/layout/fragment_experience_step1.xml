@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -33,6 +34,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="16dp"
@@ -46,18 +48,31 @@
                         android:textColor="#999999"
                         android:textSize="14sp" />
 
-                    <com.yijian.staff.widget.LastInputEditText
-                        android:id="@+id/et_name"
+                    <!--<com.yijian.staff.widget.LastInputEditText-->
+                        <!--android:id="@+id/et_name"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@null"-->
+                        <!--android:gravity="center_vertical|right"-->
+                        <!--android:enabled="false"-->
+                        <!--android:hint="朱沙"-->
+                        <!--android:padding="2dp"-->
+                        <!--android:textColor="#333333"-->
+                        <!--android:textSize="14sp" />-->
+                    <android.support.v4.widget.Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center_vertical|right"
-                        android:enabled="false"
-                        android:hint="朱沙"
-                        android:padding="2dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_14"
+                        tools:text="朱沙"/>
+
 
                 </LinearLayout>
 
@@ -86,18 +101,30 @@
                         android:textSize="14sp" />
 
 
-                    <com.yijian.staff.widget.LastInputEditText
-                        android:id="@+id/et_coach"
+                    <!--<com.yijian.staff.widget.LastInputEditText-->
+                        <!--android:id="@+id/et_coach"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@null"-->
+                        <!--android:enabled="false"-->
+                        <!--android:gravity="center_vertical|right"-->
+                        <!--android:hint="卢兵兵"-->
+                        <!--android:padding="2dp"-->
+                        <!--android:textColor="#333333"-->
+                        <!--android:textSize="14sp" />-->
+                    <android.support.v4.widget.Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:gravity="center_vertical|right"
-                        android:hint="卢兵兵"
-                        android:padding="2dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_coach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_14"
+                        tools:text="卢兵兵"/>
                 </LinearLayout>
 
                 <View
@@ -121,19 +148,32 @@
                         android:textSize="14sp" />
 
 
-                    <com.yijian.staff.widget.LastInputEditText
-                        android:id="@+id/et_class_num"
+                    <!--<com.yijian.staff.widget.LastInputEditText-->
+                        <!--android:id="@+id/et_class_num"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@null"-->
+                        <!--android:enabled="false"-->
+                        <!--android:gravity="center_vertical|right"-->
+                        <!--android:inputType="numberDecimal"-->
+                        <!--android:hint="3"-->
+                        <!--android:padding="2dp"-->
+                        <!--android:textColor="#333333"-->
+                        <!--android:textSize="14sp" />-->
+                    <android.support.v4.widget.Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:gravity="center_vertical|right"
-                        android:inputType="numberDecimal"
-                        android:hint="3"
-                        android:padding="2dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_class_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_14"
+                        tools:text="3"/>
+
                 </LinearLayout>
 
                 <View
@@ -142,6 +182,7 @@
                     android:background="@color/gray" />
 
                 <LinearLayout
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="16dp"
@@ -155,18 +196,31 @@
                         android:textColor="#999999"
                         android:textSize="14sp" />
 
-                    <com.yijian.staff.widget.LastInputEditText
-                        android:id="@+id/et_class_count"
+                    <!--<com.yijian.staff.widget.LastInputEditText-->
+                        <!--android:id="@+id/et_class_count"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@null"-->
+                        <!--android:gravity="center_vertical|right"-->
+                        <!--android:inputType="numberDecimal"-->
+                        <!--android:hint="2"-->
+                        <!--android:padding="2dp"-->
+                        <!--android:textColor="#333333"-->
+                        <!--android:textSize="14sp" />-->
+
+                    <android.support.v4.widget.Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center_vertical|right"
-                        android:inputType="numberDecimal"
-                        android:hint="2"
-                        android:padding="2dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_class_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_14"
+                        tools:text="3"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -195,7 +249,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="请选择"
-                        android:drawableRight="@mipmap/wt_jiantou"
                         android:gravity="center_vertical|right"
                         android:padding="2dp"
                         android:textColor="#333333"
@@ -226,7 +279,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="请选择"
-                        android:drawableRight="@mipmap/wt_jiantou"
                         android:gravity="center_vertical|right"
                         android:padding="2dp"
                         android:textColor="#333333"
@@ -330,6 +382,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/ll_template2_root"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -397,5 +450,5 @@
             </LinearLayout>
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

@@ -84,12 +84,9 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_next_step:
-
-
                 presenter.jumpBodyCheck(consumerBean.getId());
                 break;
             case R.id.ll_to_coach:
-
                 presenter.coachBodyCheck(consumerBean.getId());
                 break;
         }

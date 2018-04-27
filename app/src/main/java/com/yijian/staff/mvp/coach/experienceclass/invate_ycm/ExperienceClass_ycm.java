@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassStep1Fragment;
+import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassStep2Fragment;
+import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassStep3Fragment;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
@@ -22,6 +24,8 @@ public class ExperienceClass_ycm extends AppCompatActivity implements Experience
     private ClassTimeBar timeBar;
     private ExperienceClassBean bean;
     private ExperienceClassStep1Fragment experienceClassStep1Fragment;
+    private ExperienceClassStep2Fragment experienceClassStep2Fragment;
+    private ExperienceClassStep3Fragment experienceClassStep3Fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +54,9 @@ public class ExperienceClass_ycm extends AppCompatActivity implements Experience
     private void initFragment() {
         experienceClassStep1Fragment = new ExperienceClassStep1Fragment();
 
+        experienceClassStep2Fragment = new ExperienceClassStep2Fragment();
 
+        experienceClassStep3Fragment = new ExperienceClassStep3Fragment();
     }
 
 
@@ -58,17 +64,31 @@ public class ExperienceClass_ycm extends AppCompatActivity implements Experience
 
     private void initView() {
         navigationBar2 = findViewById(R.id.navigation_bar2);
+        navigationBar2.setTitle("体验课流程");
         timeBar = findViewById(R.id.timebar);
     }
 
     public void showFragmentStep1(Bundle bundle){
-        navigationBar2.setTitle("体验课流程");
+
         timeBar.showTimeBar(1);
 
         experienceClassStep1Fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.content, experienceClassStep1Fragment).commitAllowingStateLoss();
     }
 
+    public void showFragmentStep2(Bundle bundle){
+        timeBar.showTimeBar(2);
+
+        experienceClassStep2Fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, experienceClassStep2Fragment).commitAllowingStateLoss();
+    }
+
+    public void showFragmentStep3(Bundle bundle){
+        timeBar.showTimeBar(3);
+
+        experienceClassStep3Fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, experienceClassStep3Fragment).commitAllowingStateLoss();
+    }
 
 
     @Override

@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.reception.bean.ReceptionLog;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
@@ -168,7 +169,9 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                    Toast.makeText(this,"接待人信息或者接待人节点获取失败，请退出此页面重新获取",Toast.LENGTH_SHORT).show();
 //                return;
 //                }
+
                 consumer.setStatus(operatorType);
+                consumer.setHistoryNode(HistoryNode);
                 Intent intent1 = new Intent(ReceptionActivity.this, ReceptionStepActivity.class);
                 intent1.putExtra(CONSUMER, consumer);
                 startActivity(intent1);
@@ -204,10 +207,17 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private List<Integer> HistoryNode=new ArrayList<>();
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
         operatorType = receptionStastuBean.getOperatorType();
-
+        HistoryNode.clear();
+        List<ReceptionLog> receptionLogs = receptionStastuBean.getReceptionLogs();
+        if (receptionLogs !=null&&!receptionLogs.isEmpty()){
+            for (ReceptionLog log : receptionLogs) {
+                HistoryNode.add(log.getOperatorType());
+            }
+        }
     }
 
     @Override

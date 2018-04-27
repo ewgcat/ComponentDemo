@@ -7,5 +7,14 @@ import java.util.List;
  */
 
 public class ClassRecordTable {
-//    List<>
+
+    public List<ClassActionDetails> definedRecordContentList;// (Array[上课记录表具体动作详细内容], optional)
+
+    public List<ClassActionDetails> getDefinedRecordContentList() {
+        return definedRecordContentList;
+    }
+
+    public void setDefinedRecordContentList(List<ClassActionDetails> definedRecordContentList) {
+        this.definedRecordContentList = definedRecordContentList;
+    }
 }

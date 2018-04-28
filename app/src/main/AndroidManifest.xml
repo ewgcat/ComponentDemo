@@ -69,11 +69,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.login.LoginActivity"
+            android:name=".mvp.user.login.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.forgetpassword.ForgetPasswordActivity"
+            android:name=".mvp.user.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
@@ -87,7 +87,7 @@
             android:name=".mvp.questionnaire.detail.QuestionnaireResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.physical.PhysicalReportActivity"
+            android:name=".mvp.reception.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -239,7 +239,7 @@
             android:name=".mvp.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.contract.ContractActivity"
+            android:name=".mvp.reception.contract.ContractActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.qrcode.MyQRCodeActivity"
@@ -252,7 +252,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.seepic.SeePicActivity"
+            android:name=".mvp.base.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.selectheadicon.ClipActivity"
@@ -399,7 +399,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvp.empty.EmptyActivity"
+            android:name=".mvp.base.empty.EmptyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 

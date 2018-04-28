@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yijian.staff.mvp.physical.PhysicalReportActivity">
+    tools:context=".mvp.reception.physical.PhysicalReportActivity">
 
     <include
         android:id="@+id/physical_report_navigation_bar"

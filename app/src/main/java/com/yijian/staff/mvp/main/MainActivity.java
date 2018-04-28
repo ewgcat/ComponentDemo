@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.main;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
@@ -12,9 +11,9 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.message.MessageFragment;
+import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.mine.MineFragment;
-import com.yijian.staff.mvp.work.WorkFragment;
+import com.yijian.staff.mvp.main.work.WorkFragment;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.Bottombar;

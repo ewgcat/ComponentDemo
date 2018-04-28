@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.constant.Constant;
-import com.yijian.staff.mvp.seepic.SeePicActivity;
+import com.yijian.staff.mvp.base.seepic.SeePicActivity;
 import com.yijian.staff.util.FileUtil;
 
 import java.util.ArrayList;

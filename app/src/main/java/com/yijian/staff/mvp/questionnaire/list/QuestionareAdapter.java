@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.questionnaire.QuestionNaireVipBean;
+import com.yijian.staff.bean.QuestionNaireVipBean;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.util.DateUtil;
 

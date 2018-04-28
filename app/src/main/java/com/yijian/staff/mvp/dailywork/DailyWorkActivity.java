@@ -9,10 +9,6 @@ import android.widget.RadioGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.message.MessageFragment;
-import com.yijian.staff.mvp.mine.MineFragment;
-import com.yijian.staff.mvp.report.ReportingFragment;
-import com.yijian.staff.mvp.work.WorkFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

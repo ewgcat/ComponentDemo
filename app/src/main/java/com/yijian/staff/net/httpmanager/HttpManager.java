@@ -194,6 +194,8 @@ public class HttpManager {
     //添加潜在
     public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
 
+    public static String GET_USER_INFO_URL = BuildConfig.HOST + "user/abstract-infomation";
+
 
     //查询业务消息
     public static String GET_BUSINESS_MESSAGE_URL = BuildConfig.HOST + "message/businessMessageQuery";

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.orderclass;
+package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
 import android.net.Uri;
@@ -22,25 +22,17 @@ import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.cunke.CunKeActivity;
-import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarAdapter;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarInfo;
-import com.yijian.staff.mvp.mine.calendartable.DayFragment_ycm;
-import com.yijian.staff.mvp.mine.calendartable.OnChangeDateListener;
-import com.yijian.staff.mvp.setclass.bean.OrderClassDayBean;
+
+import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
+import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

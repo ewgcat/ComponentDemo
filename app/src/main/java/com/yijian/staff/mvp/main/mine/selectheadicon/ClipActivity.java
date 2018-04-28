@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.selectheadicon;
+package com.yijian.staff.mvp.main.mine.selectheadicon;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

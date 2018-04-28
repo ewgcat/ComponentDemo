@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;

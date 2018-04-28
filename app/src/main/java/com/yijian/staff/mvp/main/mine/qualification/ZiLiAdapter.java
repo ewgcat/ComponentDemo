@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.qualification;
+package com.yijian.staff.mvp.main.mine.qualification;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

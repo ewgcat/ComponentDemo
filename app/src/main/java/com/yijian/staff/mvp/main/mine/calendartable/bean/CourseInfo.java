@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable.bean;
+package com.yijian.staff.mvp.main.mine.calendartable.bean;
 
 /**
  * Created by The_P on 2018/3/22.

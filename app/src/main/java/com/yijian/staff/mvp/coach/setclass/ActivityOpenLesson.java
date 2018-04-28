@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +14,7 @@ import android.widget.Chronometer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.bean.TypeOfActionItem;
+import com.yijian.staff.mvp.coach.setclass.bean.TypeOfActionItem;
 import com.yijian.staff.widget.MDividerItemDecoration;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.setting;
+package com.yijian.staff.mvp.main.mine.setting;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -22,7 +22,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
+import com.yijian.staff.mvp.main.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
 

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.qualification;
+package com.yijian.staff.mvp.main.mine.qualification;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,9 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
+import com.yijian.staff.mvp.main.mine.qualification.CertificateBean;
+import com.yijian.staff.mvp.main.mine.qualification.EditQualificationActivity;
+import com.yijian.staff.mvp.main.mine.qualification.ZiLiAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.addadvice;
+package com.yijian.staff.mvp.main.mine.addadvice;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

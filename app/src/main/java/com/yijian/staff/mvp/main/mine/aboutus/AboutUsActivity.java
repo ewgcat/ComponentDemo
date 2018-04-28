@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.aboutus;
+package com.yijian.staff.mvp.main.mine.aboutus;
 
 import android.os.Build;
 import android.os.Bundle;

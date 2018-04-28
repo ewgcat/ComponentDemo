@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.bean;
+package com.yijian.staff.mvp.coach.setclass.bean;
 
 /**
  * Created by The_P on 2018/3/23.

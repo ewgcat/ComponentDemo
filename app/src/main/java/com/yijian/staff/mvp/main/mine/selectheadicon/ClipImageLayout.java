@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.selectheadicon;
+package com.yijian.staff.mvp.main.mine.selectheadicon;
 
 
 import android.content.Context;
@@ -7,11 +7,13 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
+import com.yijian.staff.mvp.main.mine.selectheadicon.ClipImageBorderView;
+
 public class ClipImageLayout extends RelativeLayout {
 
     public static String savePath = "/yijian";
 
-    private ClipZoomImageView mZoomImageView;
+    private com.yijian.staff.mvp.main.mine.selectheadicon.ClipZoomImageView mZoomImageView;
     private ClipImageBorderView mClipImageView;
 
     private int mHorizontalPadding = 60;
@@ -24,7 +26,7 @@ public class ClipImageLayout extends RelativeLayout {
     public ClipImageLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mZoomImageView = new ClipZoomImageView(context);//选择图片
+        mZoomImageView = new com.yijian.staff.mvp.main.mine.selectheadicon.ClipZoomImageView(context);//选择图片
         mClipImageView = new ClipImageBorderView(context);//选择框
 
         android.view.ViewGroup.LayoutParams lp = new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT);

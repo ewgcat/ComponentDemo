@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.orderclass;
+package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
 import android.net.Uri;
@@ -23,11 +23,11 @@ import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.AdapterWeekFragment;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarInfo;
-import com.yijian.staff.mvp.mine.calendartable.WeekFragment_ycm;
-import com.yijian.staff.mvp.mine.calendartable.bean.CourseInfo;
-import com.yijian.staff.mvp.mine.calendartable.bean.DayTask;
+import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.WeekFragment_ycm;
+import com.yijian.staff.mvp.main.mine.calendartable.bean.CourseInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;

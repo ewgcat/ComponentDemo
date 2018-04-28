@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.orderclass;
+package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,12 +14,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.CalendarSettingActivity;
-import com.yijian.staff.mvp.mine.calendartable.CalendarTableActivity;
-import com.yijian.staff.mvp.mine.calendartable.DayFragment_ycm;
-import com.yijian.staff.mvp.mine.calendartable.OnChangeDateListener;
-import com.yijian.staff.mvp.mine.calendartable.TitleChanger;
-import com.yijian.staff.mvp.mine.calendartable.WeekFragment_ycm;
+import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassDayFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity;
+import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
+import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
+import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
+import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
+import com.yijian.staff.mvp.main.mine.calendartable.WeekFragment_ycm;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;

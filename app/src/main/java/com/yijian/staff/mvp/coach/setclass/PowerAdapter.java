@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.bean.AerobicsBean;
-import com.yijian.staff.mvp.setclass.bean.PowerBean;
-import com.yijian.staff.mvp.setclass.bean.RecordTitleBean;
+import com.yijian.staff.mvp.coach.setclass.bean.AerobicsBean;
+import com.yijian.staff.mvp.coach.setclass.bean.PowerBean;
+import com.yijian.staff.mvp.coach.setclass.bean.RecordTitleBean;
 
 import java.util.ArrayList;
 import java.util.List;

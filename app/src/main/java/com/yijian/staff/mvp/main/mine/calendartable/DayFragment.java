@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable;
+package com.yijian.staff.mvp.main.mine.calendartable;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayOneFragment;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayThreeFragment;
-import com.yijian.staff.mvp.mine.calendartable.subdayfragment.SubDayTwoFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.subdayfragment.SubDayOneFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.subdayfragment.SubDayThreeFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.subdayfragment.SubDayTwoFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
-import com.yijian.staff.mvp.setclass.bean.PrivateShangKeBean;
-import com.yijian.staff.mvp.setclass.orderclass.SaveDataDialog;
+import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.coach.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.coach.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;

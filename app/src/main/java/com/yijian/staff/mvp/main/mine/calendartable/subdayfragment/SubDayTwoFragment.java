@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable.subdayfragment;
+package com.yijian.staff.mvp.main.mine.calendartable.subdayfragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarAdapter;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarAdapter;
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.orderclass;
+package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.util.DensityUtil;
 
 public class SaveDataDialog extends PopupWindow {

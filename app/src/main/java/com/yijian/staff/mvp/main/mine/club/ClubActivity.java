@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.club;
+package com.yijian.staff.mvp.main.mine.club;
 
 import android.os.Build;
 import android.os.Bundle;

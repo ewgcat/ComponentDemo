@@ -12,7 +12,7 @@ import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.main.message.MessageFragment;
-import com.yijian.staff.mvp.mine.MineFragment;
+import com.yijian.staff.mvp.main.mine.MineFragment;
 import com.yijian.staff.mvp.main.work.WorkFragment;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;

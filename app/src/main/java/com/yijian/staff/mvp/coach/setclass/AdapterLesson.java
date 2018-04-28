@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.bean.TypeOfActionItem;
-import com.yijian.staff.mvp.setclass.bean.TypeOfActionTitle;
+import com.yijian.staff.mvp.coach.setclass.bean.TypeOfActionItem;
+import com.yijian.staff.mvp.coach.setclass.bean.TypeOfActionTitle;
 import com.yijian.staff.util.PopupWindowUtil;
 
 import java.util.ArrayList;

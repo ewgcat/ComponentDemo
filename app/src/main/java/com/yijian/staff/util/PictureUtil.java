@@ -504,6 +504,7 @@ public class PictureUtil {
         boolean isSaveSuccessed = false;
         if (checkSDCardAvailable()) {
             Logger.i(TAG, "path=" + path);
+
             File photoFile = new File(path);
             if (!photoFile.exists()) {
                 photoFile.mkdirs();
@@ -515,7 +516,6 @@ public class PictureUtil {
                     if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)) {
                         fileOutputStream.flush();
                         isSaveSuccessed = true;
-
                     }
                 }
             } catch (Exception e) {

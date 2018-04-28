@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.orderclass;
+package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.DayCanlendarInfo;
-import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
-import com.yijian.staff.mvp.setclass.bean.OrderClassDayBean;
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

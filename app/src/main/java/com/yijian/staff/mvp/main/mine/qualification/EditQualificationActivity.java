@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.qualification;
+package com.yijian.staff.mvp.main.mine.qualification;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -22,6 +22,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.base.seepic.SeePicActivity;
+import com.yijian.staff.mvp.main.mine.qualification.CertificateBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.UploadManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;

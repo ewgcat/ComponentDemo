@@ -17,7 +17,7 @@
  * along with ClockPlus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.yijian.staff.mvp.setclass.chronometer;
+package com.yijian.staff.mvp.coach.setclass.chronometer;
 
 import android.content.res.Resources;
 import android.os.SystemClock;

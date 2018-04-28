@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.bean;
+package com.yijian.staff.mvp.coach.setclass.bean;
 
 /**
  * 体适能1 标题

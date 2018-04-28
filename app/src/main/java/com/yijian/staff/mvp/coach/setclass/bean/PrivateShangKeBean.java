@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass.bean;
+package com.yijian.staff.mvp.coach.setclass.bean;
 
 import android.text.TextUtils;
 

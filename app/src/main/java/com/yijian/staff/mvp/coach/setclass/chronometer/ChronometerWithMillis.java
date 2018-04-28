@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yijian.staff.mvp.setclass.chronometer;
+package com.yijian.staff.mvp.coach.setclass.chronometer;
 
 import android.annotation.TargetApi;
 import android.content.Context;

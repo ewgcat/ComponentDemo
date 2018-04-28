@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;

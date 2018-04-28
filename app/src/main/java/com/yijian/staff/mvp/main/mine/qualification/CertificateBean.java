@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.qualification;
+package com.yijian.staff.mvp.main.mine.qualification;
 
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;

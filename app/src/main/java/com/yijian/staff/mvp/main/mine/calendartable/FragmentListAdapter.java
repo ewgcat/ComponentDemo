@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable;
+package com.yijian.staff.mvp.main.mine.calendartable;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

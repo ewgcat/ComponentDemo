@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.qrcode;
+package com.yijian.staff.mvp.main.mine.qrcode;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

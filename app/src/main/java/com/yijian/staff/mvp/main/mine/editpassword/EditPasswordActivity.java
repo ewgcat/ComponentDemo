@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.editpassword;
+package com.yijian.staff.mvp.main.mine.editpassword;
 
 import android.os.Bundle;
 import android.text.TextUtils;

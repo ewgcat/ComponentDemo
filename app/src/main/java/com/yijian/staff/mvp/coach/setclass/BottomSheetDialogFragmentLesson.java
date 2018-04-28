@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.setclass;
+package com.yijian.staff.mvp.coach.setclass;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.chronometer.ChronometerWithMillis;
+import com.yijian.staff.mvp.coach.setclass.chronometer.ChronometerWithMillis;
 
 import java.lang.reflect.Field;
 

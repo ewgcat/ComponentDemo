@@ -1,6 +1,6 @@
-package com.yijian.staff.mvp.mine.calendartable.bean;
+package com.yijian.staff.mvp.main.mine.calendartable.bean;
 
-import com.yijian.staff.mvp.mine.calendartable.bean.CourseInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.bean.CourseInfo;
 
 import java.util.List;
 

@@ -13,9 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.mine.calendartable.bean.CourseInfo;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
-import com.yijian.staff.mvp.main.mine.calendartable.bean.WeekTask;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -25,7 +25,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.SearchKey;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.invitation.list.record.InvitationRecordFragment;
 import com.yijian.staff.mvp.huiji.invitation.list.result.InvitationResultFragment;
 import com.yijian.staff.mvp.huiji.resourceallocation.adapter.HuiJiResourceAllocationAdatper;

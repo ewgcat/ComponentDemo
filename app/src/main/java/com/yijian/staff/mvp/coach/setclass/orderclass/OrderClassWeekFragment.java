@@ -25,7 +25,6 @@ import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
-import com.yijian.staff.mvp.main.mine.calendartable.WeekFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.CourseInfo;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
 

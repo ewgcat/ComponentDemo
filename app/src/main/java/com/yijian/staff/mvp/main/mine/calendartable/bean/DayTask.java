@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable.bean;
+package com.yijian.staff.mvp.main.mine.calendartable.bean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

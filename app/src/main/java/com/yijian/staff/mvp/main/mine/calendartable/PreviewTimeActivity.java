@@ -1,25 +1,23 @@
-package com.yijian.staff.mvp.mine.calendartable;
+package com.yijian.staff.mvp.main.mine.calendartable;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.widget.NavigationBar2;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.yijian.staff.mvp.mine.calendartable.CalendarSettingActivity.RESULT_CODE_SETTING_PREVIEW;
+import static com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity.RESULT_CODE_SETTING_PREVIEW;
+
 
 public class PreviewTimeActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.mine.calendartable;
+package com.yijian.staff.mvp.main.mine.calendartable;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,10 +28,11 @@ import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.mine.calendartable.bean.CourseInfo;
-import com.yijian.staff.mvp.mine.calendartable.bean.DayTask;
-import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
+import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
+import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.Logger;

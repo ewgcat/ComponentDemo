@@ -20,7 +20,6 @@ import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
-import com.yijian.staff.mvp.main.mine.calendartable.WeekFragment_ycm;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;

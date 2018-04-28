@@ -41,7 +41,7 @@ public class AndroidKeyBoardAssit {
             int heightDifference = usableHeightSansKeyboard - usableHeightNow;
             if (heightDifference > (usableHeightSansKeyboard/4)) {
                 // keyboard probably just became visible
-                frameLayoutParams.height = usableHeightSansKeyboard - heightDifference+360;
+                frameLayoutParams.height = usableHeightSansKeyboard - heightDifference+600;
             } else {
                 // keyboard probably just became hidden
                 frameLayoutParams.height = usableHeightSansKeyboard;

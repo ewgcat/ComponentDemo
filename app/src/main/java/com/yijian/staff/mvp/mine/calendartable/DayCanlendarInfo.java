@@ -12,80 +12,145 @@ import java.util.List;
 
 public class DayCanlendarInfo {
 
-    private String className; //课程名称
-    private String venue;  //场馆
-    private List<String> stuList; //学员集合
-    private String intervalTime; //约课间隔时间
-    private String startOrderTime;  //约课开始时间
-    private String endOrderTime;  //约课结束时间
-    private String status;  //是否上课标志位
+    /**
+     * endDatetime : 2018-04-10T05:34:29.093Z
+     * endTimeActual : 2018-04-10T05:34:29.093Z
+     * id : string
+     * isExperience  0：私教课，1：体验课
+     * isPrepare : 0
+     * lessonName : string
+     * lessonPlace : string
+     * memberName : string
+     * punchStatus : 0
+     * startDate : 2018-04-10T05:34:29.093Z
+     * startDatetime : 2018-04-10T05:34:29.093Z
+     * startTimeActual : 2018-04-10T05:34:29.093Z
+     */
 
+    private String endDatetime;
+    private String endTimeActual;
+    private String id;
+    private String isExperience;
+    private int isPrepare;
+    private String isUseTemplate;
+    private String lessonName;
+    private String lessonPlace;
+    private String memberName;
+    private int punchStatus;
+    private String startDate;
+    private String startDatetime;
+    private String startTimeActual;
+    private String experienceRecordId;
 
-    public DayCanlendarInfo(){}
-
-    public DayCanlendarInfo(JSONObject jsonObject){
-        this.className = JsonUtil.getString(jsonObject,"className");
-        this.venue = JsonUtil.getString(jsonObject,"venue");
-        this.stuList = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"stuList").toString(),String.class);
-        this.intervalTime = JsonUtil.getString(jsonObject,"intervalTime");
-        this.startOrderTime = JsonUtil.getString(jsonObject,"startOrderTime");
-        this.endOrderTime = JsonUtil.getString(jsonObject,"endOrderTime");
-        this.status = JsonUtil.getString(jsonObject,"status");
+    public String getEndDatetime() {
+        return endDatetime;
     }
 
-    public String getClassName() {
-        return className;
+    public void setEndDatetime(String endDatetime) {
+        this.endDatetime = endDatetime;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public String getEndTimeActual() {
+        return endTimeActual;
     }
 
-    public String getVenue() {
-        return venue;
+    public void setEndTimeActual(String endTimeActual) {
+        this.endTimeActual = endTimeActual;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
+    public String getId() {
+        return id;
     }
 
-    public List<String> getStuList() {
-        return stuList;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setStuList(List<String> stuList) {
-        this.stuList = stuList;
+    public int getIsPrepare() {
+        return isPrepare;
     }
 
-    public String getIntervalTime() {
-        return intervalTime;
+    public void setIsPrepare(int isPrepare) {
+        this.isPrepare = isPrepare;
     }
 
-    public void setIntervalTime(String intervalTime) {
-        this.intervalTime = intervalTime;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public String getStartOrderTime() {
-        return startOrderTime;
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
     }
 
-    public void setStartOrderTime(String startOrderTime) {
-        this.startOrderTime = startOrderTime;
+    public String getLessonPlace() {
+        return lessonPlace;
     }
 
-    public String getEndOrderTime() {
-        return endOrderTime;
+    public void setLessonPlace(String lessonPlace) {
+        this.lessonPlace = lessonPlace;
     }
 
-    public void setEndOrderTime(String endOrderTime) {
-        this.endOrderTime = endOrderTime;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public String getStatus() {
-        return status;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public int getPunchStatus() {
+        return punchStatus;
+    }
+
+    public void setPunchStatus(int punchStatus) {
+        this.punchStatus = punchStatus;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getStartDatetime() {
+        return startDatetime;
+    }
+
+    public void setStartDatetime(String startDatetime) {
+        this.startDatetime = startDatetime;
+    }
+
+    public String getStartTimeActual() {
+        return startTimeActual;
+    }
+
+    public void setStartTimeActual(String startTimeActual) {
+        this.startTimeActual = startTimeActual;
+    }
+
+    public String getExperienceRecordId() {
+        return experienceRecordId;
+    }
+
+    public void setExperienceRecordId(String experienceRecordId) {
+        this.experienceRecordId = experienceRecordId;
+    }
+
+    public String getIsUseTemplate() {
+        return isUseTemplate;
+    }
+
+    public void setIsUseTemplate(String isUseTemplate) {
+        this.isUseTemplate = isUseTemplate;
+    }
+
+    public String getIsExperience() {
+        return isExperience;
+    }
+
+    public void setIsExperience(String isExperience) {
+        this.isExperience = isExperience;
     }
 }

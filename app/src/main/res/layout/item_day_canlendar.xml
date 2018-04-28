@@ -173,13 +173,13 @@
 
             </LinearLayout>
 
-           <!-- <ImageView
-                android:id="@+id/iv_status"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@mipmap/my_finish"
-                android:layout_alignParentRight="true"
-                />-->
+            <!-- <ImageView
+                 android:id="@+id/iv_status"
+                 android:layout_width="60dp"
+                 android:layout_height="60dp"
+                 android:src="@mipmap/my_finish"
+                 android:layout_alignParentRight="true"
+                 />-->
 
             <RelativeLayout
                 android:id="@+id/rel_statu"
@@ -194,7 +194,7 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:src="@mipmap/lessons_beike"/>
-                
+
                 <TextView
                     android:id="@+id/tv_order_class_statu"
                     android:layout_width="wrap_content"
@@ -204,8 +204,8 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textColor="@color/white"/>
-                
-            </RelativeLayout> 
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

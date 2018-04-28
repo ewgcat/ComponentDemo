@@ -12,6 +12,16 @@
         android:id="@+id/navigation_bar2"
         layout="@layout/view_navigation_bar2"/>
 
+    <TextView
+        android:id="@+id/tv_lesson_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text=""
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +43,6 @@
                 android:layout_weight="1" />
 
             <com.jeek.calendar.widget.calendar.month.MonthCalendarView
-
                 android:id="@+id/mcvCalendar"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/month_calendar_height"
@@ -82,7 +91,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/edit_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/week_calendar_height"
             android:layout_marginTop="@dimen/week_bar_height"
@@ -118,6 +126,7 @@
         </LinearLayout>
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/header_scrolling_behavior_week">
@@ -144,6 +153,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_lesson_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -170,6 +180,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_lesson_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

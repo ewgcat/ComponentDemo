@@ -124,9 +124,18 @@ public class HttpManager {
     //私教课的上课记录基本信息
     public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "privatecourse/getMemberCourseRecordInfo";
 
+    // 查询工作时间与间隔时间
+    public static String COACH_PRIVATE_COURSE_GET_TIME_URL = BuildConfig.HOST + "scheduleSetting/getTime";
+
 
     //查看教练的约课日程表
     public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseByDay";
+
+    //  获取本教练该月份每天的课程状态
+    public static String COACH_PRIVATE_COURSE_DATES_ORDER_URL = BuildConfig.HOST + "privatecourse/getCourseDates";
+
+    //  教练查看约课周视图
+    public static String COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL = BuildConfig.HOST + "privatecourse/getPrivateApplyByWeek";
 
     //上课打卡
     public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL = BuildConfig.HOST + "privatecourse/appoint/attendCoursePunchCard";
@@ -156,6 +165,9 @@ public class HttpManager {
 
     //根据训练部位获取动作内容列表
     public static String COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL = BuildConfig.HOST + "motion/getMotionByBodyPartList";
+
+    //获取学员当天的课程详情
+    public static String COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL = BuildConfig.HOST + "privatecourse/getMemberCourseByDate";
 
 
     //工作台 首页图标
@@ -260,6 +272,37 @@ public class HttpManager {
 
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
+
+    //会籍资源分配
+    public static String GET_HUIJI_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distribution/list";
+
+    //教练资源分配
+    public static String GET_COACH_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distribution/list";
+
+    // 教练可分配资源（会员）列表
+    public static String GET_COACH_ENABLE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distributable/list";
+
+    // 会籍可分配资源（会员）列表
+    public static String GET_HUIJI_ENABLE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distributable/list";
+
+    // 会籍可分配资源（会员）列表
+    public static String GET_HUIJI_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distribution/history/list";
+
+    // 教练可分配资源（会员）列表
+    public static String GET_COACH_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distribution/list"; // 会籍可分配资源（会员）列表
+
+    // 可接受分配教练列表
+    public static String GET_COACH_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distributable/coach/list";
+
+    // 可接受分配会籍列表
+    public static String GET_HUIJI_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distributable/seller/list";
+
+  // 分配会籍
+    public static String ALLOCATION_HUIJI_RESOURCE_ALLOCATION_URL = BuildConfig.HOST + "customer-service/distribute/resource";
+
+    // 分配教练
+    public static String ALLOCATION_COACH_RESOURCE_ALLOCATION_URL = BuildConfig.HOST + "coach/distribute/resource";
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -553,7 +596,7 @@ public class HttpManager {
     }
 
     //保存私教课备课
-    public static void savePrivatePrepareLesson(String url, PrivatePrepareLessonBody privatePrepareLessonBody, Observer<JSONObject> observer){
+    public static void savePrivatePrepareLesson(String url, PrivatePrepareLessonBody privatePrepareLessonBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         headers.put("token", user.getToken());
@@ -754,7 +797,7 @@ public class HttpManager {
     public static final String RECEPTION_INFO = BuildConfig.HOST + "reception/person";
 
     //接待人节点信息
-    public static  final String RECEPTION_STATUS=BuildConfig.HOST + "reception/status";
+    public static final String RECEPTION_STATUS = BuildConfig.HOST + "reception/status";
 
 
     //接待记录
@@ -796,7 +839,6 @@ public class HttpManager {
     public static final String RECEPTION_STEP2_REJECT = BuildConfig.HOST + "reception/member-reject-body-check";
 
 
-
     //接待--会籍--step3-场馆信息列表
     public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/list";
 
@@ -822,8 +864,8 @@ public class HttpManager {
     //接待--教练--step3-教练点击完成
     public static final String RECEPTION_STEP3_COACHTOSALE = BuildConfig.HOST + "reception/coach-to-sale";
 
-//   接待--会籍--step3-产品报价到订单详情
-    public static final String RECEPTION_STEP3_CARD_TO_ORDER=BuildConfig.HOST +"reception/card-to-order";
+    //   接待--会籍--step3-产品报价到订单详情
+    public static final String RECEPTION_STEP3_CARD_TO_ORDER = BuildConfig.HOST + "reception/card-to-order";
 
 
     //接待--会籍--step4-获取订单详情

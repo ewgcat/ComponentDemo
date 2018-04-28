@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.adapter;
+package com.yijian.staff.mvp.coach.resourceallocation.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.selecthuiji.SelectHuiJiActivity;
-import com.yijian.staff.mvp.resourceallocation.bean.HistoryResourceAllocationInfo;
+import com.yijian.staff.mvp.coach.resourceallocation.bean.CoachHistoryResourceAllocationInfo;
+import com.yijian.staff.mvp.coach.resourceallocation.selectcoach.SelectCoachActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;
@@ -21,16 +22,16 @@ import java.util.List;
  * 这里的Adapter 是资源分配和历史分配以及不同角色的资源分配公用的
  * 通过 flag_type字段标识决定是哪个模块使用的
  */
-public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllocationAdatper.ViewHolder> {
+public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachResourceAllocationAdatper.ViewHolder> {
 
-    private List<HistoryResourceAllocationInfo> historyResourceAllocationInfoList;
+    private List<CoachHistoryResourceAllocationInfo> historyResourceAllocationInfoList;
     private Context context;
     private int flag_type;
     public static int RESOURCE_TYPE = 0;//资源分配
     public static int HISTORY_TYPE = 1;//历史分配
     public static int ROLE_RESOURCE_TYPE = 2;//不同角色的资源分配
 
-    public ResourceAllocationAdatper(Context context, List<HistoryResourceAllocationInfo> historyResourceAllocationInfoList, int flag_type){
+    public CoachResourceAllocationAdatper(Context context, List<CoachHistoryResourceAllocationInfo> historyResourceAllocationInfoList, int flag_type){
         this.context = context;
         this.historyResourceAllocationInfoList = historyResourceAllocationInfoList;
         this.flag_type = flag_type;
@@ -41,15 +42,15 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
     }
 
     @Override
-    public ResourceAllocationAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_history_resource_allocation, parent, false);
-        ResourceAllocationAdatper.ViewHolder holder = new ResourceAllocationAdatper.ViewHolder(view);
+    public CoachResourceAllocationAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_history_resource_allocation, parent, false);
+        CoachResourceAllocationAdatper.ViewHolder holder = new CoachResourceAllocationAdatper.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ResourceAllocationAdatper.ViewHolder holder, int position) {
-        HistoryResourceAllocationInfo historyResourceAllocationInfo = historyResourceAllocationInfoList.get(position);
+    public void onBindViewHolder(CoachResourceAllocationAdatper.ViewHolder holder, int position) {
+        CoachHistoryResourceAllocationInfo historyResourceAllocationInfo = historyResourceAllocationInfoList.get(position);
         holder.tv_name.setText(historyResourceAllocationInfo.getName());
         holder.iv_gender.setImageResource(historyResourceAllocationInfo.getGender());
         holder.tv_birthDay.setText(historyResourceAllocationInfo.getBirthDay());
@@ -60,18 +61,9 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
 
         switch (flag_type){
             case 0: //资源分配
-                int role = SharePreferenceUtil.getUserRole();
                 holder.lin_history_resource_allocation.setVisibility(View.VISIBLE);
                 holder.rel_receive_coach.setVisibility(View.VISIBLE);
                 holder.rel_service_coach.setVisibility(View.GONE);
-
-                if(role == 3){ // 会籍总监
-                    holder.lin_allocation_huiji.setVisibility(View.VISIBLE);
-                    holder.lin_allocation_coach.setVisibility(View.GONE);
-                }else if(role == 4){ // 教练总监
-                    holder.lin_allocation_huiji.setVisibility(View.GONE);
-                    holder.lin_allocation_coach.setVisibility(View.VISIBLE);
-                }
                 break;
             case 1: //历史分配
                 holder.lin_history_resource_allocation.setVisibility(View.GONE);
@@ -88,17 +80,10 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
                 break;
         }
 
-        holder.lin_allocation_huiji.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SelectHuiJiActivity.startToActivity("选择会籍",context);
-            }
-        });
-
         holder.lin_allocation_coach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SelectHuiJiActivity.startToActivity("选择教练",context);
+                SelectCoachActivity.startToActivity("选择教练",context);
             }
         });
     }
@@ -121,7 +106,7 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
         TextView tv_service_coach; //服务教练
         RelativeLayout rel_service_coach; //服务教练布局
         RelativeLayout rel_receive_coach; //接待教练布局
-        LinearLayout lin_allocation_huiji; //分配会籍
+//        LinearLayout lin_allocation_huiji; //分配会籍
         LinearLayout lin_allocation_coach; //分配教练
         RelativeLayout lin_history_resource_allocation; //分配会籍和分配教练的布局
 
@@ -139,7 +124,7 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
             tv_service_coach  =     view.findViewById(R.id.tv_service_coach);
             rel_service_coach  =     view.findViewById(R.id.rel_service_coach);
             rel_receive_coach  =     view.findViewById(R.id.rel_receive_coach);
-            lin_allocation_huiji  =     view.findViewById(R.id.lin_allocation_huiji);
+//            lin_allocation_huiji  =     view.findViewById(R.id.lin_allocation_huiji);
             lin_allocation_coach  =     view.findViewById(R.id.lin_allocation_coach);
             lin_history_resource_allocation  =     view.findViewById(R.id.lin_history_resource_allocation);
         }

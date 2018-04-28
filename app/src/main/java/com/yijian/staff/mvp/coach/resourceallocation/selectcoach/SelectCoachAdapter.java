@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.selecthuiji;
+package com.yijian.staff.mvp.coach.resourceallocation.selectcoach;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.bean.HuijiInfo;
-import com.yijian.staff.mvp.resourceallocation.widget.RatingBar;
+import com.yijian.staff.mvp.coach.resourceallocation.bean.CoachInfo;
+import com.yijian.staff.mvp.coach.resourceallocation.widget.RatingBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,29 +23,29 @@ import java.util.Map;
  * 选择会籍适配器
  */
 
-public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.ViewHolder> {
+public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.ViewHolder> {
 
-    private List<HuijiInfo> huijiInfoList = new ArrayList<>();
+    private List<CoachInfo> huijiInfoList = new ArrayList<>();
     private Context context;
     private Map<Integer, Boolean> checkMap;
 
 
-    public SelectHuiJiAdapter(Context context, List<HuijiInfo> huijiInfoList) {
+    public SelectCoachAdapter(Context context, List<CoachInfo> huijiInfoList) {
         this.context = context;
         this.huijiInfoList = huijiInfoList;
         checkMap = new HashMap<Integer, Boolean>();
     }
 
     @Override
-    public SelectHuiJiAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SelectCoachAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_select_huiji, parent, false);
-        SelectHuiJiAdapter.ViewHolder holder = new SelectHuiJiAdapter.ViewHolder(view);
+        SelectCoachAdapter.ViewHolder holder = new SelectCoachAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(SelectHuiJiAdapter.ViewHolder holder, int position) {
-        HuijiInfo huijiInfo = huijiInfoList.get(position);
+    public void onBindViewHolder(SelectCoachAdapter.ViewHolder holder, int position) {
+        CoachInfo huijiInfo = huijiInfoList.get(position);
         holder.tv_name.setText(huijiInfo.getName());
         holder.iv_gender.setImageResource(huijiInfo.getGender());
         holder.tv_comment_grade.setText(huijiInfo.getCommentGrade() + "分");

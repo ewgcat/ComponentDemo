@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.setclass.orderclass;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,15 +128,19 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if("0".equals(orderClassDayBean.getIsExperience())){ // 0：私教课，1：体验课
-                        Intent intent = new Intent(context, OpenLessonNewActivity.class);
-                        intent.putExtra("privateApplyId",orderClassDayBean.getId());
-                        intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
-                        intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
-                        intent.putExtra("startDate",orderClassDayBean.getStartDate());
-                        intent.putExtra("punchStatus",punchStatus);
-                        context.startActivity(intent);
-                    }else if("1".equals(orderClassDayBean.getIsExperience())){
+                    if("0".equals(orderClassDayBean.getIsExperience())){ // 0：私教课，
+                        if(orderClassDayBean.getIsPrepare() == 0){ // 备课
+
+                        }else if(orderClassDayBean.getIsPrepare() == 1){ // 上课
+                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
+                            intent.putExtra("privateApplyId",orderClassDayBean.getId());
+                            intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
+                            intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
+                            intent.putExtra("startDate",orderClassDayBean.getStartDate());
+                            intent.putExtra("punchStatus",punchStatus);
+                            context.startActivity(intent);
+                        }
+                    }else if("1".equals(orderClassDayBean.getIsExperience())){//1：体验课
                         if("0".equals(orderClassDayBean.getIsUseTemplate())){ //体验课：0：用体侧模板，1：私教课模板 ,
                             Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
                             intent.putExtra("privateApplyId",orderClassDayBean.getId());

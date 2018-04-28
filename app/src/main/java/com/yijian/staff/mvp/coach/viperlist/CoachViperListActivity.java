@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachFilterViperDialog;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.mvp.coach.viperlist.fragment.CoachAllViperFragment;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/1.1")
-public class CoachViperListActivity extends AppCompatActivity implements View.OnClickListener {
+public class CoachViperListActivity extends MvcBaseActivity implements View.OnClickListener {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -47,17 +48,12 @@ public class CoachViperListActivity extends AppCompatActivity implements View.On
     private CoachFilterViperDialog filterDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_info);
-        ButterKnife.bind(this);
-
-        initView();
+    protected int getLayoutID() {
+        return R.layout.activity_vip_info;
     }
 
-    private void initView() {
-
-
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
@@ -74,8 +70,9 @@ public class CoachViperListActivity extends AppCompatActivity implements View.On
                 RxBus.getDefault().post(viperFilterBean);
             }
         });
-
     }
+
+
 
     @OnClick({R.id.lin_all_vip, R.id.lin_today_visit})
     public void click(View view) {

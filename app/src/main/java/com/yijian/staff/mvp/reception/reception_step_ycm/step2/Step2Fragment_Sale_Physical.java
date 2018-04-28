@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.physical.PhysicalReportAdapter;
-import com.yijian.staff.mvp.physical.PhysicalReportConstract;
-import com.yijian.staff.mvp.physical.PhysicalReportPresenter;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportAdapter;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportConstract;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportPresenter;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;

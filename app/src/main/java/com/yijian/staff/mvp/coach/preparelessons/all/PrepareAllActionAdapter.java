@@ -1,12 +1,11 @@
 package com.yijian.staff.mvp.coach.preparelessons.all;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionBean;
+import com.yijian.staff.bean.ActionBean;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 
 import java.util.List;

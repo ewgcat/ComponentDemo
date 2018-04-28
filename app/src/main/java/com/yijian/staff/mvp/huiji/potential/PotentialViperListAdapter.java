@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
@@ -50,7 +50,7 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
         holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
         holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
         holder.tv_interestHobby.setText(viperBean.getHobby());
-        holder.iv_gender.setImageResource("女".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("2".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
         holder.tv_useCar.setText(viperBean.getUseCar());
 
 

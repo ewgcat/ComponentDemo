@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.TempBean;
+import com.yijian.staff.bean.TempBean;
 
 import java.util.ArrayList;
 import java.util.List;

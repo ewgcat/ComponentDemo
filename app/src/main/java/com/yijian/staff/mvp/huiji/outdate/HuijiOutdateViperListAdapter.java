@@ -12,10 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
     public void onBindViewHolder(HuijiOutdateViperListAdapter.ViewHolder holder, int position) {
         HuiJiViperBean vipOutdateInfo = vipOutdateInfoList.get(position);
         holder.tv_name.setText(vipOutdateInfo.getName());
-        holder.iv_gender.setImageResource(vipOutdateInfo.getSex());
+        String sex = vipOutdateInfo.getSex();
+        int i = "1".equals(sex) ? R.mipmap.lg_man : R.mipmap.lg_women;
+
+        holder.iv_gender.setImageResource(i);
        /* holder.tv_cardName.setText(vipOutdateInfo.getCardName());
         holder.tv_cardType.setText(vipOutdateInfo.getCardType());*/
 
@@ -72,13 +76,17 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         holder.lin_quey_contract.setOnClickListener(new View.OnClickListener() { //查看合同
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, ContractActivity.class);
+                intent.putExtra("memberId",vipOutdateInfo.getMemberId());
+                context.startActivity(intent);
             }
         });
         holder.lin_quey_question.setOnClickListener(new View.OnClickListener() { //查看问卷
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, QuestionnaireResultActivity.class));
+                Intent intent = new Intent(context, QuestionnaireResultActivity.class);
+                intent.putExtra("memberId",vipOutdateInfo.getMemberId());
+                context.startActivity(intent);
             }
         });
 

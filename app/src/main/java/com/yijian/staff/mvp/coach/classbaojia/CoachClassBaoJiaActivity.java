@@ -24,7 +24,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
+import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;

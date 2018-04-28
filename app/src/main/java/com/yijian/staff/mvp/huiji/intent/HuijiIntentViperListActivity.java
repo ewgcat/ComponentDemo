@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.huiji.intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -16,7 +15,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -31,13 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  *意向会员  列表
  */
 @Route(path = "/test/2")
-public class HuijiIntentViperListActivity extends AppCompatActivity  {
+public class HuijiIntentViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -50,37 +49,29 @@ public class HuijiIntentViperListActivity extends AppCompatActivity  {
     private int pageSize = 1;//每页数量
     private int pages;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intent_viper_list);
-        ButterKnife.bind(this);
-
-        initTitle();
-        initView();
-        initData();
+    protected int getLayoutID() {
+        return R.layout.activity_intent_viper_list;
     }
 
-    private void initData() {
-        refresh();
-    }
-
-    private void initTitle() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("意向会员");
-    }
-
-    private void initView(){
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_vip_intention.setLayoutManager(layoutmanager);
         huijiIntentViperListAdapter = new HuijiIntentViperListAdapter(this, viperBeanList);
         rv_vip_intention.setAdapter(huijiIntentViperListAdapter);
         initComponent();
+        refresh();
     }
+
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式

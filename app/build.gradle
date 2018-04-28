@@ -60,9 +60,12 @@ android {
     productFlavors {
         prod {
             buildConfigField "String", "HOST", "\"$prod_host\""
+            buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
         }
         sit {
             buildConfigField "String", "HOST", "\"$sit_host\""
+            buildConfigField "String", "FILE_HOST", "\"$sit_file_host\""
+
         }
     }
     variantFilter { variant ->

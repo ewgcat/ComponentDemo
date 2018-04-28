@@ -6,10 +6,9 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.advice.AdviceBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
-import com.yijian.staff.mvp.huiji.bean.EditHuiJiVipBody;
+import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
@@ -30,7 +29,6 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +87,13 @@ public class HttpManager {
 
     //会籍保存邀约
     public static String INDEX_HUI_JI_INVITATION_SAVE_URL = BuildConfig.HOST + "invitation/save";
+
+    //会籍邀约记录
+    public static String INDEX_HUI_JI_INVITATION_RECORD_URL = BuildConfig.HOST + "invitation/select";
+
+
+    //会籍邀约结果
+    public static String INDEX_HUI_JI_INVITATION_RESULT_URL = BuildConfig.HOST + "invitation/selectResult";
 
 
     /*************************教练************************/
@@ -393,6 +398,34 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> loginObservable = apiService.postAddPotential(ADD_POTENTIAL_URL, headers, addPotentialRequestBody);
+
+            execute(loginObservable, observer);
+        }
+    }
+    //添加潜在
+    public static void getHuiJiInviteRecord(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> loginObservable = apiService.getHuiJiInviteRecord(INDEX_HUI_JI_INVITATION_RECORD_URL, headers, body);
+
+            execute(loginObservable, observer);
+        }
+    }
+ //添加潜在
+    public static void getHuiJiInviteResult(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> loginObservable = apiService.getHuiJiInviteRecord(INDEX_HUI_JI_INVITATION_RESULT_URL, headers, body);
 
             execute(loginObservable, observer);
         }
@@ -754,30 +787,7 @@ public class HttpManager {
         }
     }
 
-    //上传图片
-    public static void upLoadFiles(List<String> list, String fileType, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            List<MultipartBody.Part> bodys = new ArrayList<>();
-            headers.put("token", user.getToken());
-            for (int i = 0; i < list.size(); i++) {
-                String s = list.get(i);
-                File file = new File(s);
-                // 创建 RequestBody，用于封装构建RequestBody
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
-                MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
-                bodys.add(body);
-            }
 
-            String url = "https://h5.dev.ejoyst.com/file/uploadMultipleFile";
-            Observable<JSONObject> observable = apiService.uploadFiles(url, headers, fileType, bodys);
-            execute(observable, observer);
-        }
-    }
 
     //保存职业证书
     public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {

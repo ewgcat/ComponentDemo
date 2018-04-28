@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.coach.intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -16,7 +15,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.yijian.staff.tab.tools.ContextUtil.getContext;
 
@@ -39,7 +38,7 @@ import static com.yijian.staff.tab.tools.ContextUtil.getContext;
  * 意向会员  列表
  */
 @Route(path = "/test/2.1")
-public class CoachIntentViperListActivity extends AppCompatActivity {
+public class CoachIntentViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
@@ -54,17 +53,14 @@ public class CoachIntentViperListActivity extends AppCompatActivity {
     private int pageSize=1;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intent_viper_list);
-        ButterKnife.bind(this);
 
-        initView();
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_intent_viper_list;
     }
 
-    private void initView() {
-
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
@@ -77,8 +73,9 @@ public class CoachIntentViperListActivity extends AppCompatActivity {
         coachIntentViperListAdapter = new CoachIntentViperListAdapter(CoachIntentViperListActivity.this,coachViperBeanList);
         rv_vip_intention.setAdapter(coachIntentViperListAdapter);
         refresh();
-
     }
+
+
 
 
     public void initComponent() {

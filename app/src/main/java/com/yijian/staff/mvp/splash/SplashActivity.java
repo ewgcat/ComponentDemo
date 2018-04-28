@@ -7,11 +7,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +18,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.user.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;
@@ -31,7 +30,7 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends MvcBaseActivity {
 
     String[] permissions = {
             Manifest.permission.READ_PHONE_STATE,
@@ -58,11 +57,12 @@ public class SplashActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    protected int getLayoutID() {
+        return R.layout.activity_splash;
+    }
 
-        setContentView(R.layout.activity_splash);
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initRxPermissions(index, permissions);
     }
 

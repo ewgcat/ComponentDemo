@@ -10,7 +10,7 @@
     <TextView
         android:text="您未开通此功能~"
         android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/blue"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

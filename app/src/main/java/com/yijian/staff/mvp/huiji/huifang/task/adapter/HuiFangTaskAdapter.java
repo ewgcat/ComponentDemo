@@ -203,7 +203,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 break;
             case "PotentialVO"://潜在会员
                 break;
-            case "EjoyVO":
+            case "EjoyVO"://易健平台
                 holder.llChenMoTianShu.setVisibility(View.VISIBLE);
                 Long sinkDay = huiFangInfo.getSinkDay();
                 if (sinkDay!=null&&sinkDay!=-1){

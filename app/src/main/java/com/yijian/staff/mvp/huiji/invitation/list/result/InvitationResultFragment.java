@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -17,10 +18,14 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationInfo;
-import com.yijian.staff.util.Logger;
+import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationResultBean;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.HuiJiInviteListRequestBody;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -32,6 +37,8 @@ import java.util.List;
 public class InvitationResultFragment extends Fragment {
 
     private static InvitationResultFragment invitaionResultFragment;
+    private InvitationResultAdatper invitationResultAdatper;
+
     public static InvitationResultFragment getInstance(){
         if(invitaionResultFragment == null){
             invitaionResultFragment = new InvitationResultFragment();
@@ -41,14 +48,17 @@ public class InvitationResultFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_invitation;
-    private List<InvitationInfo> invitationInfoList=new ArrayList<>();
+    private int pageNum = 1;//页码
+    private int pageSize = 1;//每页数量
+
+    private int pages;
+    private List<InvitationResultBean> iinvitationResultBeanList =new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_invitaion_result, container, false);
         rv_invitation = view.findViewById(R.id.rv_invitation);
         initView(view);
-        initIinvitationList();
         return view;
     }
 
@@ -58,36 +68,72 @@ public class InvitationResultFragment extends Fragment {
         initComponent();
     }
 
-    private void initIinvitationList(){
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("rightsAndInterests", "0");
-            jsonObject.put("overTime", "1990-8-9");
-            jsonObject.put("overReason", "农历");
-            jsonObject.put("invitationTime", "正常");
-            jsonObject.put("invitationContent", "跑步");
-            jsonObject.put("invitationType", "打橄榄球");
-            jsonObject.put("invitationResult", "无");
-            for (int i = 0; i < 10; i++) {
-                InvitationInfo vipPeopleInfo = new InvitationInfo(jsonObject);
-                invitationInfoList.add(vipPeopleInfo);
+
+    private void refresh() {
+
+
+        pageNum=1;
+        pageSize=4;
+        String curDate = DateUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
+
+        HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
+
+        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                refreshLayout.finishRefresh(2000, true);
+
+                iinvitationResultBeanList.clear();
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                List<InvitationResultBean> invitationResultBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), InvitationResultBean.class);
+                iinvitationResultBeanList.addAll(invitationResultBeans);
+                invitationResultAdatper.update(iinvitationResultBeanList);
             }
 
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
 
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
-            //设置RecyclerView 布局
-            rv_invitation.setLayoutManager(layoutmanager);
-            InvitationResultAdatper invitationResultAdatper = new InvitationResultAdatper(getActivity(), invitationInfoList);
-            rv_invitation.setAdapter(invitationResultAdatper);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
+            }
+        });
+    }
 
-        }
+    public void loadMore() {
+        String curDate = DateUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
+        HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
+
+        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                refreshLayout.finishRefresh(2000, true);
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                List<InvitationResultBean> invitationResultBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), InvitationResultBean.class);
+                iinvitationResultBeanList.addAll(invitationResultBeans);
+                invitationResultAdatper.update(iinvitationResultBeanList);
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     public void initComponent() {
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
+        //设置RecyclerView 布局
+        rv_invitation.setLayoutManager(layoutmanager);
+        invitationResultAdatper = new InvitationResultAdatper(getActivity(), iinvitationResultBeanList);
+        rv_invitation.setAdapter(invitationResultAdatper);
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
@@ -99,13 +145,15 @@ public class InvitationResultFragment extends Fragment {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                refresh();
             }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败
+                loadMore();
             }
         });
+        refresh();
     }
 
 }

@@ -13,18 +13,10 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ConsultationProgrammeBean;
-import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ExperienceClassProcess3Bean;
 import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.rx.RxBus;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

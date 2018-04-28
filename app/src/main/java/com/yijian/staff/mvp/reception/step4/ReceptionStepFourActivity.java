@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.goodsdetail.GoodsRightSupportActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.coach.RightsAcitity;

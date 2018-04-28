@@ -2,13 +2,13 @@ package com.yijian.staff.mvp.huiji.intent;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -21,13 +21,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * 潜在会员或意向会员 基本信息
  */
-public class HuijiIntentViperDetailActivity extends AppCompatActivity {
+public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.iv_head)
@@ -102,30 +101,23 @@ public class HuijiIntentViperDetailActivity extends AppCompatActivity {
     VipDetailBean vipDetailBean;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        StatusBarUtil.setTranslucentForImageView(this, 0, null);
-        setContentView(R.layout.activity_potential_and_intent_viper_detail);
-        ButterKnife.bind(this);
-
-
-        initTitle();
-        initData();
+    protected int getLayoutID() {
+        return R.layout.activity_potential_and_intent_viper_detail;
     }
 
-    private void initData() {
-        String id = getIntent().getStringExtra("id");
-        loadData(id);
-    }
-
-    private void initTitle() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("意向会员");
+        String id = getIntent().getStringExtra("id");
+        loadData(id);
     }
+
 
     private void loadData(String id){
 

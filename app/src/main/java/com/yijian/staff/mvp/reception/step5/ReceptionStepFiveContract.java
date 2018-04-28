@@ -18,7 +18,7 @@ public interface ReceptionStepFiveContract {
 
     interface Presenter{
 
-        void getStatus(boolean isFirst);
+        void getStatus(boolean isFirst, String memberId);
 
         void endProcess(String memberId);
     }

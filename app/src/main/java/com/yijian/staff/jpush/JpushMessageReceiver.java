@@ -12,6 +12,7 @@ import android.util.Log;
 import com.hengte.retrofit.net.subsrciber.BaseObserver;
 import com.yijian.staff.jpush.bean.Messager;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.bean.ReceptionLog;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -52,11 +53,19 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
             Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
+
+
             try {
 //                JSONObject jsonObject = new JSONObject(bundleString);
 //                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
 //                int smallStatus = JsonUtil.getInt(data, "smallStatus");
-                Messager messager = GsonNullString.getGson().fromJson(bundleString, Messager.class);
+                JSONObject jsonObject = new JSONObject(bundleString);
+                String data = jsonObject.getString("data");
+                JSONObject jsonObject1 = new JSONObject(data);
+                String data1 = jsonObject1.getString("data");
+                Log.e(TAG, "onReceive: "+data );
+                Log.e(TAG, "onReceive:---- "+data1 );
+                Messager messager = GsonNullString.getGson().fromJson(data1, Messager.class);
                 RecptionerInfoBean recptionerInfoBean = new RecptionerInfoBean();
                 recptionerInfoBean.setId(messager.getId());
                 recptionerInfoBean.setStatus(messager.getOperatorType());
@@ -70,18 +79,18 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 }else if (sex==2){
                     recptionerInfoBean.setSex("女");
                 }
-                List<Integer> historyNode = recptionerInfoBean.getHistoryNode();
+                List<ReceptionLog> historyNode = messager.getReceptionLogs();
                 List<Integer> nodes=new ArrayList<>();
                 if (historyNode!=null&&!historyNode.isEmpty()){
-                    for (Integer integer :  historyNode) {
-                        nodes.add(integer);
+                    for (ReceptionLog log :  historyNode) {
+                        nodes.add(log.getOperatorType());
                     }
                 }
                 recptionerInfoBean.setHistoryNode(nodes);
                 Log.e(TAG, "onReceive: "+recptionerInfoBean.toString());
                 Intent intent1 = new Intent(context,ReceptionStepActivity.class);
                 intent1.putExtra(ReceptionActivity.CONSUMER,recptionerInfoBean);
-                context.startActivity(intent);
+                context.startActivity(intent1);
 
             } catch (Exception e) {
                 e.printStackTrace();

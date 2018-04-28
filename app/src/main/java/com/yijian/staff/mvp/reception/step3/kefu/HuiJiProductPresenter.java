@@ -81,8 +81,27 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     }
 
     @Override
-    public void getStatus(boolean isFirst) {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STATUS, new ResultJSONObjectObserver() {
+    public void getStatus(boolean isFirst, String memberId) {
+//        Map<String, String> params = new HashMap<>();
+//        params.put("memberId",id);
+//
+//        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+//                ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
+//                if (receptionStastuBean==null)return;
+//                view.showStatus(receptionStastuBean);
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//
+//            }
+//        });
+
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId",memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);

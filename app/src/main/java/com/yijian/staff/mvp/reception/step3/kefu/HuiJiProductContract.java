@@ -33,7 +33,7 @@ public interface HuiJiProductContract {
 
         void toCoach(String memberId,String cardId);
 
-        void getStatus(boolean isFirst);
+        void getStatus(boolean isFirst, String memberId);
 
         void cardToOrder(String memberId, String cardprodbaseId);
 

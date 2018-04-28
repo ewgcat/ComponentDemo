@@ -40,7 +40,7 @@ public class Child_Step2ViewHolder_normal extends ChildViewHolder {
 
         tvKey.setText(child.getQustion());
         tvValue.setText(child.getUserValue());
-        tvValue.setOnClickListener(new View.OnClickListener() {
+        itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener!=null){

@@ -251,6 +251,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
 
         if (userRole == 1) {
+
             Step3Fragment_Sale  step3Fragment_sale = new Step3Fragment_Sale();
             step3Fragment_sale.setStatusChangeLisenter(this);
             step3Fragment_sale.setArguments(bundle);
@@ -436,6 +437,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 //        recptionerInfoBean.setStatus();
         recptionerInfoBean.setStatus(operatorType);
         //TODO  完成整个接待
+        Toast.makeText(this,"完成整个接待",Toast.LENGTH_SHORT).show();
 
     }
 

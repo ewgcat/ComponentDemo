@@ -76,6 +76,7 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_physical_report, container, false);
+
         initView(view);
         PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(getContext());
         physicalReportPresenter.setView(this);
@@ -91,8 +92,11 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
     }
 
     private void initView(View view) {
-        tvName = view.findViewById(R.id.tv_name);
 
+        NavigationBar2 navigationBar2 = (NavigationBar2) view.findViewById(R.id.physical_report_navigation_bar);
+        navigationBar2.setVisibility(View.GONE);
+        tvName = view.findViewById(R.id.tv_name);
+        tvName.setText(consumerBean.getName());
 
         tvHeight = view.findViewById(R.id.tv_height);
         tvAge = view.findViewById(R.id.tv_age);

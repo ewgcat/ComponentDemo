@@ -3,13 +3,11 @@ package com.yijian.staff.mvp.reception.reception_step_ycm.step3;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -32,6 +29,7 @@ import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.coach.TOLeadersDialog;
 import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductContract;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
@@ -101,7 +99,9 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (presenter!=null)presenter.getStatus(true);
+                    if (presenter!=null)presenter.getStatus(true,memberId);
+//                TOLeadersDialog  toLeadersDialog = new TOLeadersDialog();
+//                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
             }
         });
 
@@ -192,7 +192,9 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 //            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
 //            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
 
-        if (status ==33||status==34||status==35||status==36){
+        if (status ==32||status==30||status==31){
+            llToCoach.setVisibility(View.VISIBLE);
+        }else {
             llToCoach.setVisibility(View.GONE);
         }
     }
@@ -336,7 +338,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
     @Override
     public void showCardToOrder() {
-        presenter.getStatus(false);
+        presenter.getStatus(false, memberId);
     }
 
     @Override

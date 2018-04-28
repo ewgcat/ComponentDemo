@@ -28,6 +28,7 @@ import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
+import com.yijian.staff.mvp.reception.step3.coach.TOLeadersDialog;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -132,8 +133,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         switch (id) {
             case R.id.tv_stopJieDai:
                 //TODO 结束接待
-
-
+//                TOLeadersDialog toLeadersDialog=new TOLeadersDialog();
+//                toLeadersDialog.show(getFragmentManager(),"TOLeadersDialog");
                 break;
             case R.id.tv_jiedai:
 

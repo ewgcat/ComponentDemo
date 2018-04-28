@@ -56,7 +56,7 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
     public void toReceptionStepFive(String memberId) {
         Map<String,String> params=new HashMap<>();
         params.put("memberId",memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {
                 view.showToStepFive();
@@ -71,8 +71,10 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
     }
 
     @Override
-    public void getStatus(boolean isFirst) {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STATUS, new ResultJSONObjectObserver() {
+    public void getStatus(boolean isFirst, String memberId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId",memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);

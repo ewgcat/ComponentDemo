@@ -80,9 +80,11 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
     private String memberName = "";
 
     private ProductDetail productDetail;
-    private TOLeadersDialog toLeadersDialog;
+
     private CoachProductPresenter presenter;
     private RecptionerInfoBean consumerBean;
+    private TOLeadersDialog toLeadersDialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,8 +118,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         presenter.getUserInfo(memberId);
         presenter.getProductDetail(memberId);
 
-        toLeadersDialog = new TOLeadersDialog();
-        toLeadersDialog.setLisenter(this);
+
         return view;
     }
 
@@ -150,12 +151,11 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
                     startActivity(intent2);
 
                 }
-
-
                 break;
 
             case R.id.ll_to_leader:
-
+                toLeadersDialog = new TOLeadersDialog();
+                toLeadersDialog.setLisenter(this);
                 toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
                 break;
 
@@ -214,7 +214,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
     @Override
     public void showToLeaderSucceed() {
 
-        toLeadersDialog.dismiss();
+       if (toLeadersDialog!=null)toLeadersDialog.dismiss();
         Toast.makeText(getContext(),"发送给领导成功",Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }

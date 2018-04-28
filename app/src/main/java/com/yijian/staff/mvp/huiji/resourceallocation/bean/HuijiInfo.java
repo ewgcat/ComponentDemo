@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.bean;
+package com.yijian.staff.mvp.huiji.resourceallocation.bean;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;

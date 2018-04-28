@@ -46,6 +46,7 @@ public class PrepareLessonsBean implements Serializable {
     private int punchStatus;
     private int isPrepare;
     private String memberName;
+    private String memberId;
     private int courseNum;
     private int gender;
     private String headPath;
@@ -162,6 +163,14 @@ public class PrepareLessonsBean implements Serializable {
 
     public void setMemberName(String memberName) {
         this.memberName = memberName;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     public int getCourseNum() {

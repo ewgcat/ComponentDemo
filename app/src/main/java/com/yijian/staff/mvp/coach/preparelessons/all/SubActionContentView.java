@@ -24,13 +24,12 @@ import java.util.Map;
 public class SubActionContentView extends LinearLayout implements Observer {
 
     private Context mContext;
-    private ActionBean actionBean; //动作内容 Bean
-    private TextView tv_action_title; //标题
-    private TextView tv_action_degree; //难易程度
+    private PrepareLessonAllBean.PrepareListBean prepareListBean; //动作内容 Bean
     private TextView tv_action_name; //动作名称
-    private TextView tv_action_limit; //动作次数
+    private TextView tv_action_buildDesc; //动作描述
+    private TextView tv_action_degree; //难易程度
+    private TextView tv_action_moPartsDesc; //训练部位
     private TextView tv_action_qixie; //器械选择
-    private RelativeLayout rel_rank; //排序
     private TextView tv_rank; //排序
     private LinearLayout lin_action_content_container; //动作内容容器
     private RelativeLayout rel_action_header; //头部
@@ -52,8 +51,8 @@ public class SubActionContentView extends LinearLayout implements Observer {
         this.mContext = context;
     }
 
-    public void initAction(ActionBean actionBean, int itemPosition, PrepareAllLessonActivity prepareAllLessonActivity) {
-        this.actionBean = actionBean;
+    public void initAction(PrepareLessonAllBean.PrepareListBean prepareListBean, int itemPosition, PrepareAllLessonActivity prepareAllLessonActivity) {
+        this.prepareListBean = prepareListBean;
         this.itemPosition = itemPosition;
         this.prepareAllLessonActivity = prepareAllLessonActivity;
         //添加动作内容
@@ -65,16 +64,15 @@ public class SubActionContentView extends LinearLayout implements Observer {
 
         LinearLayout linActionContainer = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.view_sub_action_content, null);
         rel_action_header = linActionContainer.findViewById(R.id.rel_action_header);
-        tv_action_title = linActionContainer.findViewById(R.id.tv_action_title);
+        tv_action_buildDesc = linActionContainer.findViewById(R.id.tv_action_buildDesc);
         tv_action_degree = linActionContainer.findViewById(R.id.tv_action_degree);
         tv_action_name = linActionContainer.findViewById(R.id.tv_action_name);
-        tv_action_limit = linActionContainer.findViewById(R.id.tv_action_limit);
+        tv_action_degree = linActionContainer.findViewById(R.id.tv_action_degree);
         tv_action_qixie = linActionContainer.findViewById(R.id.tv_action_qixie);
-        rel_rank = linActionContainer.findViewById(R.id.rel_rank);
         tv_rank = linActionContainer.findViewById(R.id.tv_rank);
 
         lin_action_content_container = linActionContainer.findViewById(R.id.lin_action_content_container);
-        lin_action_content_container.setVisibility(actionBean.isShowHeader() ? View.VISIBLE : View.GONE);
+        lin_action_content_container.setVisibility(prepareListBean.isShowHeader() ? View.VISIBLE : View.GONE);
         rel_action_header.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,11 +83,11 @@ public class SubActionContentView extends LinearLayout implements Observer {
     }
 
     private void addActionContent() {
-        tv_action_title.setText(actionBean.getMoName());
-        tv_action_degree.setText(actionBean.getMoDifficulty());
-        tv_action_name.setText(actionBean.getMoName());
-        tv_action_limit.setText(actionBean.getBuildDesc());
-        tv_action_qixie.setText(actionBean.getMoApplianceName());
+        tv_action_name.setText(prepareListBean.getMoName());
+        tv_action_buildDesc.setText(prepareListBean.getBuildDesc());
+        tv_action_degree.setText(prepareListBean.getMoDifficultyDesc());
+        tv_action_moPartsDesc.setText(prepareListBean.getMoPartsDesc());
+        tv_action_qixie.setText(prepareListBean.getMoApplianceName());
         tv_rank.setText((itemPosition+1)+"");
     }
 
@@ -106,14 +104,14 @@ public class SubActionContentView extends LinearLayout implements Observer {
                 if (itemLocation == itemPosition) {
                     if (lin_action_content_container.getVisibility() == View.GONE) {
                         lin_action_content_container.setVisibility(View.VISIBLE);
-                        actionBean.setShowHeader(true);
+                        prepareListBean.setShowHeader(true);
                     } else {
                         lin_action_content_container.setVisibility(View.GONE);
-                        actionBean.setShowHeader(false);
+                        prepareListBean.setShowHeader(false);
                     }
                 } else {
                     lin_action_content_container.setVisibility(View.GONE);
-                    actionBean.setShowHeader(false);
+                    prepareListBean.setShowHeader(false);
                 }
                 break;
 

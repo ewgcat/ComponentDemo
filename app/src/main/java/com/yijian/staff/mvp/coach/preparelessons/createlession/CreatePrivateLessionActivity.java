@@ -105,11 +105,11 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     /**
      * 保存私教课备课内容
      */
-    private void savePrepareLesson(){
+    private void savePrepareLesson() {
         PrivatePrepareLessonBody privatePrepareLessonBody = new PrivatePrepareLessonBody();
         privatePrepareLessonBody.setPrivateApplyId(privateApplyId);
         List<PrivatePrepareLessonBody.ContentListBean> contentListBeans = new ArrayList<>();
-        for(ActionBean actionBean : actionBeanList){
+        for (ActionBean actionBean : actionBeanList) {
             PrivatePrepareLessonBody.ContentListBean contentListBean = new PrivatePrepareLessonBody.ContentListBean();
             contentListBean.setBuildDesc(actionBean.getBuildDesc());
             contentListBean.setMoApplianceName(actionBean.getMoApplianceName());
@@ -122,13 +122,13 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(CreatePrivateLessionActivity.this,"创建备课成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreatePrivateLessionActivity.this, "创建备课成功", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(CreatePrivateLessionActivity.this,"创建备课失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreatePrivateLessionActivity.this, "创建备课失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -136,17 +136,17 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     /**
      * 获取训练部位
      */
-    public void loadDepartData(){
+    public void loadDepartData() {
         HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BODYPART_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
-                List<DepartBean> departArray = com.alibaba.fastjson.JSONArray.parseArray(result.toString(),DepartBean.class);
+                List<DepartBean> departArray = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), DepartBean.class);
                 view_depart.addLineView(departArray, CreatePrivateLessionActivity.this);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(CreatePrivateLessionActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreatePrivateLessionActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -154,16 +154,16 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     /**
      * 获取动作内容
      */
-    public void loadActionData(){
-        Map<String,String> map = new HashMap<>();
+    public void loadActionData() {
+        Map<String, String> map = new HashMap<>();
         List<String> departIdList = new ArrayList<>();
 
 
-        for(DepartBean departBean : view_depart.getSelectedDepartList()){
+        for (DepartBean departBean : view_depart.getSelectedDepartList()) {
             departIdList.add(departBean.getId());
         }
 
-        map.put("bodyPartIds",departIdList.toString().substring(1, departIdList.toString().length()-1));
+        map.put("bodyPartIds", departIdList.toString().substring(1, departIdList.toString().length() - 1));
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL, map, new ResultJSONObjectObserver() {
 
             @Override
@@ -173,9 +173,9 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
                     JSONArray secondaryArray = result.getJSONArray("secondaryList");
                     JSONArray hardArray = result.getJSONArray("hardList");
 
-                    List<ActionBean> easyList = com.alibaba.fastjson.JSONArray.parseArray(easyArray.toString(),ActionBean.class);
-                    List<ActionBean> secondaryList = com.alibaba.fastjson.JSONArray.parseArray(secondaryArray.toString(),ActionBean.class);
-                    List<ActionBean> hardList = com.alibaba.fastjson.JSONArray.parseArray(hardArray.toString(),ActionBean.class);
+                    List<ActionBean> easyList = com.alibaba.fastjson.JSONArray.parseArray(easyArray.toString(), ActionBean.class);
+                    List<ActionBean> secondaryList = com.alibaba.fastjson.JSONArray.parseArray(secondaryArray.toString(), ActionBean.class);
+                    List<ActionBean> hardList = com.alibaba.fastjson.JSONArray.parseArray(hardArray.toString(), ActionBean.class);
                     List<List<ActionBean>> parentList = new ArrayList<>();
                     parentList.add(easyList);
                     parentList.add(secondaryList);
@@ -189,13 +189,14 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
             @Override
             public void onFail(String msg) {
-                Log.e("Test",msg);
+                Log.e("Test", msg);
             }
         });
     }
 
     /**
      * 部位选择回掉
+     *
      * @param id
      */
     @Override
@@ -228,8 +229,8 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
                 break;
             case R.id.lin_add_single: //添加个动作
 
-                if(view_depart.getSelectedDepartList()==null || view_depart.getSelectedDepartList().size()<=0){
-                    Toast.makeText(this, "请选择训练部位",Toast.LENGTH_SHORT).show();
+                if (view_depart.getSelectedDepartList() == null || view_depart.getSelectedDepartList().size() <= 0) {
+                    Toast.makeText(this, "请选择训练部位", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 loadActionData();
@@ -326,9 +327,10 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
 
     /**
      * 添加个动作
+     *
      * @param actionBean
      */
-    public void addSingleAction(ActionBean actionBean){
+    public void addSingleAction(ActionBean actionBean) {
         editActionObservable.deleteObservers();
         actionBeanList.add(actionBean);
         actionViewAdapter = null;

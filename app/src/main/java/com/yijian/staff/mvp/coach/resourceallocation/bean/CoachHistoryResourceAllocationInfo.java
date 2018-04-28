@@ -1,18 +1,15 @@
-package com.yijian.staff.mvp.resourceallocation.bean;
+package com.yijian.staff.mvp.coach.resourceallocation.bean;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.complaint.handling.HandTaskInfo;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * Created by yangk on 2018/3/12.
  */
 
-public class HistoryResourceAllocationInfo {
+public class CoachHistoryResourceAllocationInfo {
 
 
     private String headerUrl;
@@ -26,7 +23,7 @@ public class HistoryResourceAllocationInfo {
     private String serviceCoach; //接待教练
 
 
-    public HistoryResourceAllocationInfo(JSONObject jsonObject){
+    public CoachHistoryResourceAllocationInfo(JSONObject jsonObject){
         this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
         this.name = JsonUtil.getString(jsonObject,"name");
         this.gender = "0".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;

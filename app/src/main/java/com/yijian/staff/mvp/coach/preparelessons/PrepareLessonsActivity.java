@@ -117,13 +117,14 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.lin_create: //创建私教备课
                 Intent intent = new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class);
-                String privateApplyId = getIntent().getStringExtra("id");
-                intent.putExtra("privateApplyId",privateApplyId);
+                intent.putExtra("privateApplyId",prepareLessonsBean.getId());
                 startActivity(intent);
                 break;
 
             case R.id.rel_all_lesson: //查询所有备课内容
-                startActivity(new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class));
+                Intent all_intent = new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class);
+                all_intent.putExtra("memberId",prepareLessonsBean.getMemberId());
+                startActivity(all_intent);
                 break;
         }
     }

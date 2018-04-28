@@ -69,11 +69,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.user.login.LoginActivity"
+            android:name=".mvp.login.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.user.forgetpassword.ForgetPasswordActivity"
+            android:name=".mvp.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
@@ -84,10 +84,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".mvp.questionnaire.detail.QuestionnaireResultActivity"
+            android:name=".mvp.questionnaireresult.QuestionnaireResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.reception.physical.PhysicalReportActivity"
+            android:name=".mvp.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -209,6 +209,9 @@
             android:name=".mvp.huiji.detail.ViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mvp.huiji.potential.PotentialViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".mvp.all.AllFunctionActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -239,7 +242,7 @@
             android:name=".mvp.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.reception.contract.ContractActivity"
+            android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.qrcode.MyQRCodeActivity"
@@ -252,7 +255,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.base.seepic.SeePicActivity"
+            android:name=".mvp.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.mine.selectheadicon.ClipActivity"
@@ -399,7 +402,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvp.base.empty.EmptyActivity"
+            android:name=".mvp.empty.EmptyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -519,7 +522,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.questionnaire.list.QuestionListActivity"
+            android:name=".mvp.questionnaire.QuestionListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

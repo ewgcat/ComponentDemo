@@ -1,6 +1,8 @@
 package com.yijian.staff.mvp.main.mine.calendartable;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,8 +53,6 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
     public void onBindViewHolder(WeekViewHolder holder, int position) {
 //        Log.e(TAG, "onBindViewHolder: position="+position );
         if (list.size()>position){
-
-
             DayTask dayTask = list.get(position);
             Log.e(TAG, "onBindViewHolder: dayTask="+dayTask.toString() );
             holder.bind(dayTask);
@@ -73,10 +73,10 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
 
         public void bind(DayTask dayTask){
             if (dayTask==null)return;
-            List<CourseInfo> courseInfoList = dayTask.getCourseInfos();
-            if (courseInfoList==null)return;
-            for (CourseInfo courseInfo :   courseInfoList ) {
-                creatCourseView(courseInfo,rlContainer);
+            List<DayTask.CoursesBean> courseInfoList = dayTask.getCourses();
+            if (courseInfoList==null || courseInfoList.size()<=0)return;
+            for (DayTask.CoursesBean courseBean :   courseInfoList ) {
+                creatCourseView(courseBean,rlContainer);
             }
 
 //            creatCourseView(new CourseInfo(),rlContainer);
@@ -84,7 +84,8 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
 
 
         //手动创建CourseView
-        private void creatCourseView(CourseInfo courseInfo, RelativeLayout rlContainer) {
+        @SuppressLint("ResourceType")
+        private void creatCourseView(DayTask.CoursesBean courseInfo, RelativeLayout rlContainer) {
 //                SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");//如2016-08-10 20:40
 //            计算时间差(分钟)课程时间
             int diff_course = computerDiffminutes_start_end(courseInfo);
@@ -104,9 +105,14 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             RelativeLayout.LayoutParams layoutParams =
                     new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,dip2px(Height));
             layoutParams.setMargins(1,dip2px(marginTop),0,0);
-            textView.setBackgroundResource(R.color.colorPrimary);
+            if(courseInfo.getIsExperience().equals("1")){ //0：私教课，1：体验课
+                textView.setBackgroundResource(R.color.textColorde947d);
+            }else{
+                textView.setBackgroundResource(R.color.textColor9acac4);
+            }
+
             textView.setTextColor(context.getResources().getColor(R.color.white));
-            textView.setText(""+courseInfo.getName());
+            textView.setText(""+courseInfo.getLessonName());
             rlContainer.addView(textView,layoutParams);
 
             textView.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +131,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
 
 
     public interface ICourseListener{
-            void onClick(CourseInfo courseInfo);
+            void onClick(DayTask.CoursesBean courseInfo);
     }
 
     private ICourseListener listener;
@@ -138,15 +144,15 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
         return (int) (dpValue * scale + 0.5f);
     }
 
-    private int computerDiffminutes_start_0(CourseInfo courseInfo) {
+    private int computerDiffminutes_start_0(DayTask.CoursesBean courseInfo) {
 //        String t1 = "2008-03-10 00:00:00";
 //        String t2 = "2008-03-10 16:25:02";
-        String t1 = courseInfo.getStart();
-        String t2 = courseInfo.getEnd();
+        String t1 = "00:00";
+        String t2 = courseInfo.getStartDatetime();
         Date d1 = null;
         Date d2 = null;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         try {
             d1 = sdf.parse(t1);
@@ -165,18 +171,18 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
     }
 
 
-    private int computerDiffminutes_start_end(CourseInfo courseInfo) {
+    private int computerDiffminutes_start_end(DayTask.CoursesBean courseInfo) {
 
 
 //        String t1 = "2008-03-10 16:25:02";
 //        String t2 = "2008-03-10 18:45:02";
-        String t1 = courseInfo.getStart();
-        String t2 = courseInfo.getEnd();
+        String t1 = courseInfo.getStartDatetime();
+        String t2 = courseInfo.getEndDatetime();
 
         Date d1 = null;
         Date d2 = null;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         try {
             d1 = sdf.parse(t1);

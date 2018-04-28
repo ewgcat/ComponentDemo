@@ -521,6 +521,11 @@ public class MonthView extends View {
         invalidate();
     }
 
+    public void selectMonthDay(int year, int month, int day){
+        setSelectYearMonth(year, month, day);
+        invalidate();
+    }
+
     /**
      * 获取当前选择年
      *
@@ -578,7 +583,7 @@ public class MonthView extends View {
                 Date date = simpleDateFormat.parse(time);
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
-                if ((mSelYear == calendar.get(Calendar.YEAR)) && (mSelMonth == calendar.get(Calendar.YEAR))) {
+                if ((mSelYear == calendar.get(Calendar.YEAR)) && (mSelMonth == calendar.get(Calendar.MONTH))) {
                     addTaskHint(calendar.get(Calendar.DAY_OF_MONTH));
                 }
 

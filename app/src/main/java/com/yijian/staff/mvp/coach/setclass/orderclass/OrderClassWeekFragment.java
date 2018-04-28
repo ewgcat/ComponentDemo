@@ -210,7 +210,7 @@ public class OrderClassWeekFragment extends Fragment {
     private void initDayCanlendarInfoList() {
         List<DayTask> list=new ArrayList<>();
 
-        DayTask dayTask = new DayTask();
+        /*DayTask dayTask = new DayTask();
         dayTask.setName("星期一");
 
         CourseInfo courseInfo = new CourseInfo();
@@ -249,6 +249,6 @@ public class OrderClassWeekFragment extends Fragment {
             public void onClick(CourseInfo courseInfo) {
                 Toast.makeText(getContext(),""+courseInfo.toString(),Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 }

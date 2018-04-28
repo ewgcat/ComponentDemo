@@ -16,11 +16,11 @@ import java.util.List;
 
 public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActionAdapter.ViewHolder>  {
 
-    private List<ActionBean> recyclerViewActionBean; //装载RecyclerView的集合
+    private List<PrepareLessonAllBean.PrepareListBean> recyclerViewActionBean; //装载RecyclerView的集合
     private EditActionObservable editActionObservable;
     private PrepareAllLessonActivity prepareAllLessonActivity;
 
-    public PrepareAllActionAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable,PrepareAllLessonActivity prepareAllLessonActivity){
+    public PrepareAllActionAdapter(List<PrepareLessonAllBean.PrepareListBean> recyclerViewActionBean, EditActionObservable editActionObservable, PrepareAllLessonActivity prepareAllLessonActivity){
         this.recyclerViewActionBean = recyclerViewActionBean;
         this.editActionObservable = editActionObservable;
         this.prepareAllLessonActivity = prepareAllLessonActivity;
@@ -36,8 +36,8 @@ public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActi
     @Override
     public void onBindViewHolder(PrepareAllActionAdapter.ViewHolder holder, int position) {
         try {
-            ActionBean actionBean = recyclerViewActionBean.get(position);
-            holder.subActionContentView.initAction(actionBean, position, prepareAllLessonActivity);
+            PrepareLessonAllBean.PrepareListBean prepareListBean = recyclerViewActionBean.get(position);
+            holder.subActionContentView.initAction(prepareListBean, position, prepareAllLessonActivity);
             editActionObservable.addObserver(holder.subActionContentView);
         }catch (Exception e){
             e.printStackTrace();

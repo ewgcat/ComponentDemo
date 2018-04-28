@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.yijian.staff.widget.BlueLoadingDialog;
+import com.yijian.staff.widget.WhiteLoadingDialog;
+
 import butterknife.ButterKnife;
 
 /**
@@ -16,6 +19,60 @@ import butterknife.ButterKnife;
 public abstract class MvcBaseActivity extends AppCompatActivity {
 
     public Context mContext;
+
+    protected BlueLoadingDialog blueLoadingDialog;
+
+
+    public void showBlueProgress() {
+        if (blueLoadingDialog == null) {
+            blueLoadingDialog = BlueLoadingDialog.createProgressDialog(this);
+        }
+        if (blueLoadingDialog != null) {
+            //防止弹出之前activity已经被销毁了
+            if (!this.isFinishing()) {
+                blueLoadingDialog.show();
+                blueLoadingDialog.setCancelable(false);
+            }
+        }
+
+    }
+
+    public void hideBlueProgress() {
+        if (blueLoadingDialog != null && blueLoadingDialog.isShowing()) {
+            //防止显示期间activity已经被销毁了
+            if (!this.isFinishing()) {
+                blueLoadingDialog.dismiss();
+                blueLoadingDialog = null;
+            }
+        }
+    }
+
+    protected WhiteLoadingDialog whiteLoadingDialog;
+
+
+    public void showWhiteProgress() {
+        if (whiteLoadingDialog == null) {
+            whiteLoadingDialog = WhiteLoadingDialog.createProgressDialog(this);
+        }
+        if (whiteLoadingDialog != null) {
+            //防止弹出之前activity已经被销毁了
+            if (!this.isFinishing()) {
+                whiteLoadingDialog.show();
+                whiteLoadingDialog.setCancelable(false);
+            }
+        }
+
+    }
+
+    public void hideWhiteProgress() {
+        if (whiteLoadingDialog != null && whiteLoadingDialog.isShowing()) {
+            //防止显示期间activity已经被销毁了
+            if (!this.isFinishing()) {
+                whiteLoadingDialog.dismiss();
+                whiteLoadingDialog = null;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +84,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     }
 
     protected abstract int getLayoutID();
+
     protected void onViewCreated() {
 
     }
@@ -34,18 +92,26 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     protected abstract void initView(Bundle savedInstanceState);
 
 
-
-    public void hideSoftKeyboard() {// 隐藏软键盘
+    /**
+     * 隐藏键盘
+     */
+    public void hideKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
-    public void showOrHideSoftKeyboard() {
+    /**
+     * 显示键盘
+     */
+    public void showKeyBoard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        if (imm != null) {
+            imm.showSoftInput(v, 0);
+
+        }
     }
-
-
 
 
     public void showToast(int id) {
@@ -73,7 +139,6 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     public <T extends View> T findView(View view, int viewId) {
         return (T) view.findViewById(viewId);
     }
-
 
 
 }

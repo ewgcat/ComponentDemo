@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
 
@@ -49,7 +49,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
         holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
         holder.tv_interestHobby.setText(viperBean.getHobby());
-        holder.iv_gender.setImageResource("1".equals(viperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
+        holder.iv_gender.setImageResource("1".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         holder.tv_useCar.setText(viperBean.getUseCar());
 
         //TODO 回访 根据后台返回，保护7天是不能电话回访，不是保护七天时，可以电话回访

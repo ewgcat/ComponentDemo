@@ -36,6 +36,7 @@ import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
 import com.yijian.staff.mvp.reception.step3.kefu.OptionDialog;
 import com.yijian.staff.widget.NavigationBar2;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -322,6 +323,8 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         if (isRefresh){
            if (isSucceed)Toast.makeText(getContext(),"未查询到相关数据",Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishRefresh(1000);
+            goodsListAdapter.resetData(new ArrayList<>());
+
         }else {
             if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
 

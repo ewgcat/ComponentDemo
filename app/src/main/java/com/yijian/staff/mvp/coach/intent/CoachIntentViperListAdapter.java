@@ -16,13 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
+import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.setclass.ExperienceClassRecord2Activity;
-import com.yijian.staff.mvp.setclass.ExperienceClassRecordActivity;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecord2Activity;
+import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -187,7 +187,9 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,NoSearchBarCoachClassBaojiaActivity.class));
+                Intent intent = new Intent(context, NoSearchBarCoachClassBaojiaActivity.class);
+                intent.putExtra("memberId",coachViperBean.getMemberId());
+                context.startActivity(intent);
             }
         });
 

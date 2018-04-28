@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.coach.experienceclass.index;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -70,7 +71,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
         holder.rv_card.setAdapter(new ExperienceClassVipCardListAdapter(experienceClassBean.getCardprodVOs()));
-
+        toggleCardView(holder);
         holder.rel_expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +82,22 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         holder.tv_name.setText(experienceClassBean.getMemberName());
 
-        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "");
+        holder.tv_experienced_count.setText(experienceClassBean.getCourseNum() + "次");
         holder.tv_current_operation.setText(experienceClassBean.getStatusDesc());
+
+        String result = experienceClassBean.getResult();
+        holder.tv_result.setText(result);
+        if (!TextUtils.isEmpty(result)){
+            if (result.equals("无")){
+                holder.tv_result.setTextColor(Color.parseColor("#999999"));
+            }else  if (result.equals("T.O领导")){
+                holder.tv_result.setTextColor(Color.parseColor("#1997f8"));
+            }else  if (result.equals("确认报价")){
+                holder.tv_result.setTextColor(Color.parseColor("#2cc8a1"));
+            }else  if (result.equals("结束流程")){
+                holder.tv_result.setTextColor(Color.parseColor("#f1523d"));
+            }
+        }
 
         holder.experience_class_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +182,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
         RecyclerView rv_card;
         TextView tv_experienced_count;
         TextView tv_current_operation;
+        TextView tv_result;
 
 
         public ViewHolder(View view) {
@@ -180,6 +196,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
             rv_card = view.findViewById(R.id.rv_card);
             tv_experienced_count = view.findViewById(R.id.tv_experienced_count);
             tv_current_operation = view.findViewById(R.id.tv_current_operation);
+            tv_result = view.findViewById(R.id.tv_result);
         }
     }
 

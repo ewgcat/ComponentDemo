@@ -60,9 +60,12 @@ android {
     productFlavors {
         prod {
             buildConfigField "String", "HOST", "\"$prod_host\""
+            buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
         }
         sit {
             buildConfigField "String", "HOST", "\"$sit_host\""
+            buildConfigField "String", "FILE_HOST", "\"$sit_file_host\""
+
         }
     }
     variantFilter { variant ->
@@ -95,10 +98,10 @@ greendao {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //network
-    implementation project(':retrofit2')
+    api project(':retrofit2')
     implementation project(':PhotoPicker')
     implementation project(':photoview')
-    implementation project(':calendar')
+    api project(':calendar')
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'

@@ -5,17 +5,13 @@ import android.content.Context;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.base.mvp.BasePresenter;
-import com.yijian.staff.mvp.coach.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
 import com.yijian.staff.mvp.coach.experienceclass.index.contract.ExperienceClassContract;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -53,10 +49,10 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
     @Override
     public void getExperienceClassListInfo(SmartRefreshLayout refreshLayout, boolean isRefresh) {
 
-        if (isRefresh){
+        if (isRefresh) {
             experienceClassBeanList.clear();
-            pageNum=1;
-            pageSize=6;
+            pageNum = 1;
+            pageSize = 6;
         }
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
@@ -67,19 +63,14 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
                 pageNum = JsonUtil.getInt(result, "current") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                try {
-                    for (int i = 0; i < records.length(); i++) {
-                        JSONObject jsonObject = (JSONObject) records.get(i);
-                        ExperienceClassBean experienceClassBean = new ExperienceClassBean(jsonObject);
-                        experienceClassBeanList.add(experienceClassBean);
-                    }
-                    view.showExperienceClassListView(experienceClassBeanList);
-                } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
-                }
-                if (isRefresh){
+                List<ExperienceClassBean> experienceClassBeans = com.alibaba.fastjson.JSONObject.parseArray(records.toString(), ExperienceClassBean.class);
+
+                experienceClassBeanList.addAll(experienceClassBeans);
+                view.showExperienceClassListView(experienceClassBeanList);
+
+                if (isRefresh) {
                     refreshLayout.finishRefresh(2000, true);
-                }else {
+                } else {
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
                 }
@@ -88,9 +79,9 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
 
             @Override
             public void onFail(String msg) {
-                if (isRefresh){
+                if (isRefresh) {
                     refreshLayout.finishRefresh(2000, false);
-                }else {
+                } else {
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
                 }

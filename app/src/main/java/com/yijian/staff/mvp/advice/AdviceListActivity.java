@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AdviceBean;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;

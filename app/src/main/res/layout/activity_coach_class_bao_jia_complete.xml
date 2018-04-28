@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:gravity="center"
-                    android:text="生成合同"
+                    android:text="查看合同"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

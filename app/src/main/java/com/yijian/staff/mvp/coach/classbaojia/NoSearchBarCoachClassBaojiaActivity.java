@@ -21,7 +21,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
+import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -328,6 +328,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
                 selectShaixuan();
                 break;
             case R.id.ll_post:
+                //TODO 产品报价
                 startActivity(new Intent(NoSearchBarCoachClassBaojiaActivity.this, CoachClassBaoJiaCompleteActivity.class));
                 break;
 

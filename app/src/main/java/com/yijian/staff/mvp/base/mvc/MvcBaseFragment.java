@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.yijian.staff.widget.BlueLoadingDialog;
+import com.yijian.staff.widget.WhiteLoadingDialog;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -20,7 +23,7 @@ import butterknife.Unbinder;
 public abstract class MvcBaseFragment extends Fragment {
 
     private Unbinder mUnBinder;
-    protected Context mContext;
+    protected Activity mContext;
     protected View rootView;
 
 
@@ -34,9 +37,9 @@ public abstract class MvcBaseFragment extends Fragment {
         if (parent != null) {
             parent.removeView(rootView);
         }
-        initView();
-        mUnBinder = ButterKnife.bind(this, rootView);
         mContext = getActivity();
+        mUnBinder = ButterKnife.bind(this, rootView);
+        initView();
 
         return rootView;
     }
@@ -45,7 +48,59 @@ public abstract class MvcBaseFragment extends Fragment {
 
     public abstract void initView();
 
+    protected BlueLoadingDialog blueLoadingDialog;
 
+
+    public void showBlueProgress() {
+        if (blueLoadingDialog == null) {
+            blueLoadingDialog = BlueLoadingDialog.createProgressDialog(mContext);
+        }
+        if (blueLoadingDialog != null) {
+            //防止弹出之前activity已经被销毁了
+            if (!mContext.isFinishing()) {
+                blueLoadingDialog.show();
+                blueLoadingDialog.setCancelable(false);
+            }
+        }
+
+    }
+
+    public void hideBlueProgress() {
+        if (blueLoadingDialog != null && blueLoadingDialog.isShowing()) {
+            //防止显示期间activity已经被销毁了
+            if (!mContext.isFinishing()) {
+                blueLoadingDialog.dismiss();
+                blueLoadingDialog = null;
+            }
+        }
+    }
+
+    protected WhiteLoadingDialog whiteLoadingDialog;
+
+
+    public void showWhiteProgress() {
+        if (whiteLoadingDialog == null) {
+            whiteLoadingDialog = WhiteLoadingDialog.createProgressDialog(mContext);
+        }
+        if (whiteLoadingDialog != null) {
+            //防止弹出之前activity已经被销毁了
+            if (!mContext.isFinishing()) {
+                whiteLoadingDialog.show();
+                whiteLoadingDialog.setCancelable(false);
+            }
+        }
+
+    }
+
+    public void hideWhiteProgress() {
+        if (whiteLoadingDialog != null && whiteLoadingDialog.isShowing()) {
+            //防止显示期间activity已经被销毁了
+            if (!mContext.isFinishing()) {
+                whiteLoadingDialog.dismiss();
+                whiteLoadingDialog = null;
+            }
+        }
+    }
 
     public void showToast(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();

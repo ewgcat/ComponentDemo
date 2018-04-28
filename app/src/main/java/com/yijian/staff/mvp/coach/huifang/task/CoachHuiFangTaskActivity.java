@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
+import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.coach.huifang.history.CoachHuiFangHistoryActivity;
 import com.yijian.staff.mvp.coach.huifang.task.fragment.CoachBaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.coach.huifang.task.pageadapter.CoachHuiFangPagerAdapter;

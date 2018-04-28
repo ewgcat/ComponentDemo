@@ -15,27 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.TempBean;
 import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllLessonActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.PrepareLessonDetailActivity;
 import com.yijian.staff.mvp.coach.preparelessons.list.PrepareLessonsBean;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,13 +117,14 @@ public class PrepareLessonsActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.lin_create: //创建私教备课
                 Intent intent = new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class);
-                String privateApplyId = getIntent().getStringExtra("id");
-                intent.putExtra("privateApplyId",privateApplyId);
+                intent.putExtra("privateApplyId",prepareLessonsBean.getId());
                 startActivity(intent);
                 break;
 
             case R.id.rel_all_lesson: //查询所有备课内容
-                startActivity(new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class));
+                Intent all_intent = new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class);
+                all_intent.putExtra("memberId",prepareLessonsBean.getMemberId());
+                startActivity(all_intent);
                 break;
         }
     }

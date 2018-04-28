@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.classbaojia.bean.ClassInfo;
+import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.util.Logger;
 
 import java.util.List;

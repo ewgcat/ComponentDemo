@@ -2,6 +2,7 @@ package com.yijian.staff.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
@@ -11,7 +12,7 @@ import com.yijian.staff.greendao.gen.DaoSession;
 import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
-import com.yijian.staff.mvp.coach.huifang.bean.CoachHuiFangTypeBean;
+import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
@@ -87,6 +88,10 @@ public class DBManager  {
     }
 
     public void insertOrReplaceSearch(SearchKey searchKey){
+        String key = searchKey.getKey();
+        if (TextUtils.isEmpty(key)){
+            return;
+        }
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
         List<SearchKey> searchKeys = querySearchList();
         Long id=0L;

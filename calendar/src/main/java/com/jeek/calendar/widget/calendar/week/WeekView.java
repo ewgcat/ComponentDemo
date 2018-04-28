@@ -396,6 +396,13 @@ public class WeekView extends View {
         invalidate();
     }
 
+    public void selectWeekDay(int year, int month, int day){
+        setSelectYearMonth(year, month, day);
+        invalidate();
+    }
+
+
+
     public void setOnWeekClickListener(OnWeekClickListener onWeekClickListener) {
         mOnWeekClickListener = onWeekClickListener;
     }

@@ -10,13 +10,6 @@
         android:id="@+id/rel_action_header"
         android:layout_width="match_parent"
         android:layout_height="45dp">
-        <!--
-                <ImageView
-                    android:id="@+id/iv_rank"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/bk_1"
-                    android:layout_centerVertical="true"/>-->
 
         <RelativeLayout
             android:id="@+id/rel_rank"
@@ -26,14 +19,14 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/number_circle"
+                android:src="@mipmap/my_circle_blue"
                 android:layout_centerInParent="true" />
 
             <TextView
                 android:id="@+id/tv_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_black3"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_centerInParent="true" />
 
@@ -51,7 +44,7 @@
 
 
         <TextView
-            android:id="@+id/tv_action_title"
+            android:id="@+id/tv_action_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -61,7 +54,7 @@
             />
 
         <TextView
-            android:id="@+id/tv_action_degree"
+            android:id="@+id/tv_action_buildDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -83,17 +76,43 @@
             android:layout_height="45dp">
 
             <TextView
-                android:id="@+id/tv_action_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:layout_alignParentLeft="true"
                 android:textColor="#666666"
                 android:layout_centerVertical="true"
+                android:text="多做难度"
                 />
 
             <TextView
-                android:id="@+id/tv_action_limit"
+                android:id="@+id/tv_action_degree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                android:textColor="#666666"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_alignParentLeft="true"
+                android:textColor="#666666"
+                android:layout_centerVertical="true"
+                android:text="训练部位"
+                />
+
+            <TextView
+                android:id="@+id/tv_action_moPartsDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"

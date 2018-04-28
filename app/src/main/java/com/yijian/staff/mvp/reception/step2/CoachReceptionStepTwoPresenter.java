@@ -136,7 +136,7 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
             Toast.makeText(context, "请填写完所有必填字段", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            physicalExaminationBean.setAge(Integer.valueOf(age));
+            physicalExaminationBean.setAge(Integer.parseInt(age));
 
             physicalExaminationBean.setHeight(new BigDecimal(height));
         }

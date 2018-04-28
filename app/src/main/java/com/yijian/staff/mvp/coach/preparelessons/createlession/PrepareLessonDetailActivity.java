@@ -8,22 +8,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.preparelessons.PrepareLessonsActivity;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
-import com.yijian.staff.mvp.coach.preparelessons.TempBean;
-import com.yijian.staff.mvp.coach.preparelessons.list.PrepareLessonsBean;
+import com.yijian.staff.bean.TempBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

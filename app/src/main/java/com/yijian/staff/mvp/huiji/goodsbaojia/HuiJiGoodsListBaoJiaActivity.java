@@ -250,6 +250,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         if (isRefresh){
             if (isSucceed)Toast.makeText(getContext(),"未查询到相关数据",Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishRefresh(1000);
+            goodsListAdapter.resetData(new ArrayList<>());
+
         }else {
             if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishLoadMore(1000);

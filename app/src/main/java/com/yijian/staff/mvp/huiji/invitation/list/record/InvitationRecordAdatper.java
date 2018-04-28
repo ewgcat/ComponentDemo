@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.invitation.detail.InvateDetailActivity;
-import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationInfo;
+import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationRecordBean;
 
 import java.util.List;
 
@@ -21,12 +21,12 @@ import java.util.List;
 
 public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationRecordAdatper.ViewHolder> {
 
-    private List<InvitationInfo> invitationInfoList;
+    private List<InvitationRecordBean> invitationRecordBeanList;
     private Context context;
 
-    public InvitationRecordAdatper(Context context, List<InvitationInfo> invitationInfoList){
+    public InvitationRecordAdatper(Context context, List<InvitationRecordBean> invitationRecordBeanList){
         this.context = context;
-        this.invitationInfoList = invitationInfoList;
+        this.invitationRecordBeanList = invitationRecordBeanList;
     }
 
     @Override
@@ -38,12 +38,9 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
 
     @Override
     public void onBindViewHolder(InvitationRecordAdatper.ViewHolder holder, int position) {
-        InvitationInfo invitationInfo = invitationInfoList.get(position);
-        holder.tv_name.setText(invitationInfo.getName());
-        holder.tv_cardName.setText(invitationInfo.getCardName());
-        holder.tv_invitation_over_time.setText(invitationInfo.getOverTime());
-        holder.tv_invitation_over_reason.setText(invitationInfo.getOverReason());
-        holder.tv_invitation_type.setText(invitationInfo.getInvitationType());
+        InvitationRecordBean invitationRecordBean = invitationRecordBeanList.get(position);
+        holder.tv_name.setText(invitationRecordBean.getMemberName());
+        holder.tv_invitation_type.setText(invitationRecordBean.getMemberTypeName());
         holder.lin_invate_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +51,12 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
 
     @Override
     public int getItemCount() {
-        return invitationInfoList==null?0:invitationInfoList.size();
+        return invitationRecordBeanList ==null?0: invitationRecordBeanList.size();
+    }
+
+    public void update(List<InvitationRecordBean> invitationRecordBeanList) {
+        this.invitationRecordBeanList=invitationRecordBeanList;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

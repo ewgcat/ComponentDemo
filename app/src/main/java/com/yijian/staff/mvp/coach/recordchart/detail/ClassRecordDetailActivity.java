@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.setclass.OpenLessonNewActivity;
-import com.yijian.staff.mvp.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;

@@ -9,7 +9,6 @@ import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
-import com.yijian.staff.util.Logger;
 
 import org.greenrobot.greendao.database.Database;
 

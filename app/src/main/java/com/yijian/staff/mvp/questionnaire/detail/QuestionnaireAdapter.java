@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.questionnaireresult;
+package com.yijian.staff.mvp.questionnaire.detail;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

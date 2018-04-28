@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.mine.qualification;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -10,24 +9,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.constant.Constant;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -37,12 +27,8 @@ import com.yijian.staff.net.httpmanager.UploadManager;
 import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.authcertificate.CertBean;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.selectphoto.ChoosePhotoView;
 import com.yijian.staff.widget.selectphoto.ImageBean;
@@ -56,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import io.reactivex.functions.Consumer;
 import me.iwf.photopicker.PhotoPicker;
 
 public class EditQualificationActivity extends MvcBaseActivity implements AdapterView.OnItemClickListener {
@@ -275,7 +260,7 @@ public class EditQualificationActivity extends MvcBaseActivity implements Adapte
         } else {
             Intent intent = new Intent(this, SeePicActivity.class);
             String path = "";
-            intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, path);
+            intent.putExtra(Constant.KEY_SEE_PIC_PATH, path);
             startActivity(intent);
         }
     }

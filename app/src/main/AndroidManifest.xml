@@ -84,7 +84,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".mvp.questionnaireresult.QuestionnaireResultActivity"
+            android:name=".mvp.questionnaire.detail.QuestionnaireResultActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.physical.PhysicalReportActivity"
@@ -124,11 +124,6 @@
         <activity
             android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.goodsdetail.GoodsRightSupportActivity"
-            android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".mvp.huiji.huifang.tianxieresult.HuijiTianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
@@ -524,7 +519,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.questionnaire.QuestionListActivity"
+            android:name=".mvp.questionnaire.list.QuestionListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

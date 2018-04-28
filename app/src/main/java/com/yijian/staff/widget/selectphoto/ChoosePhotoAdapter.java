@@ -4,16 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -21,9 +17,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.constant.Constant;
 import com.yijian.staff.mvp.seepic.SeePicActivity;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.FileUtil;
 
 import java.util.ArrayList;
@@ -141,10 +136,10 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
                         if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
                             Toast.makeText(mContext, "应用需要相机权限，才可以使用拍照功能", Toast.LENGTH_LONG).show();
                         } else {
-                            mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
+                            mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(Constant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                         }
                     } else {
-                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
+                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(Constant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                     }
                 });
                 holder.delete.setOnClickListener(view13 -> {
@@ -170,10 +165,10 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
                     if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
                         Toast.makeText(mContext, "应用需要相机权限，才可以使用拍照功能", Toast.LENGTH_LONG).show();
                     } else {
-                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
+                        mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(Constant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                     }
                 } else {
-                    mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
+                    mContext.startActivity(new Intent(mContext, SeePicActivity.class).putExtra(Constant.KEY_SEE_PIC_PATH, mPhotoUrlList.get(position).getUrl()));
                 }
 
             });

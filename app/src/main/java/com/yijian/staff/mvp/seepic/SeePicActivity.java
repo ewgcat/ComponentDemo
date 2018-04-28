@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.seepic;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -9,10 +8,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.yijian.staff.R;
-import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.constant.Constant;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 
 public class SeePicActivity extends MvcBaseActivity {
@@ -26,7 +24,7 @@ public class SeePicActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        String path = getIntent().getStringExtra(BundleKeyConstant.KEY_SEE_PIC_PATH);
+        String path = getIntent().getStringExtra(Constant.KEY_SEE_PIC_PATH);
 
         mNavigationbar2 = (NavigationBar2) findViewById(R.id.navigationbar2);
         mNavigationbar2.setTitle("查看图片");

@@ -13,7 +13,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.constant.BundleKeyConstant;
+import com.yijian.staff.constant.Constant;
 import com.yijian.staff.util.FileUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.PictureUtil;
@@ -93,7 +93,7 @@ public class ClipActivity extends Activity implements View.OnClickListener {
         String uploadheadIconPath = getExternalCacheDir().toString() + "/head/upload/head.png";
 
         Intent intent = new Intent();
-        intent.putExtra(BundleKeyConstant.KEY_SEE_PIC_PATH,uploadheadIconPath);
+        intent.putExtra(Constant.KEY_SEE_PIC_PATH,uploadheadIconPath);
         setResult(RESULT_OK, intent);
         finish();
 

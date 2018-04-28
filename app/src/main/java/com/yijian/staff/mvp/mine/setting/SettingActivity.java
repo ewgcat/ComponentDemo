@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,22 +19,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
-import com.yijian.staff.constant.BundleKeyConstant;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.mine.selectheadicon.ClipActivity;
-import com.yijian.staff.mvp.seepic.SeePicActivity;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.iwf.photopicker.PhotoPicker;
 

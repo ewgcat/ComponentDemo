@@ -19,7 +19,7 @@ import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;

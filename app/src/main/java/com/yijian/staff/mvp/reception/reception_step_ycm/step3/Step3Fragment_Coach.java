@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;

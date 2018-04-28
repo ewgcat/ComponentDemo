@@ -60,7 +60,6 @@ public class ResourceAllocationActivity extends MvcBaseActivity {
     private List<HistoryResourceAllocationInfo> resourceAllocationInfoList = new ArrayList<>();
 
 
-
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */

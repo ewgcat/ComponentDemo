@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.questionnaire;
+package com.yijian.staff.mvp.questionnaire.list;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.questionnaire.QuestionNaireVipBean;
+import com.yijian.staff.mvp.questionnaire.list.QuestionareAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;

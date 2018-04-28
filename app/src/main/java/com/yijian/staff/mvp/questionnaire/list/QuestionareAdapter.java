@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.questionnaire;
+package com.yijian.staff.mvp.questionnaire.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,14 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
+import com.yijian.staff.mvp.questionnaire.QuestionNaireVipBean;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.ArrayList;

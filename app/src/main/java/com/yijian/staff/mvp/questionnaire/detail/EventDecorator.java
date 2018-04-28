@@ -1,20 +1,14 @@
-package com.yijian.staff.mvp.questionnaireresult;
+package com.yijian.staff.mvp.questionnaire.detail;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
-import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.yijian.staff.R;
-
-import org.json.JSONObject;
 
 import java.util.Collection;
 import java.util.HashSet;
-
-import io.reactivex.Observer;
 
 /**
  * Decorate several days with a dot

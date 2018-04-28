@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -50,6 +51,7 @@ public class MineFragment extends Fragment {
     @BindView(R.id.tv_user_job_postion)
     TextView tvUserJobPostion;
     Unbinder unbinder;
+    private User user;
 
     public static MineFragment getInstance() {
         if (mMineFragment == null) {
@@ -63,7 +65,7 @@ public class MineFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         unbinder = ButterKnife.bind(this, view);
-        User user = DBManager.getInstance().queryUser();
+        user = DBManager.getInstance().queryUser();
         if (user != null) {
             tvUserName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
@@ -114,17 +116,25 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), ClubActivity.class));
                 break;
             case R.id.ll_my_zhengshu:
-                startActivity(new Intent(getContext(), MyQualificationActivity.class));
+                if(user.getRole()==2||user.getRole()==4){
+                    startActivity(new Intent(getContext(), MyQualificationActivity.class));
+                }else {
+                    ARouter.getInstance().build("/test/empty").navigation();
+
+                }
                 break;
             case R.id.ll_my_date:
-                startActivity(new Intent(getContext(), CalendarTableActivity.class));
+                if(user.getRole()==2||user.getRole()==4){
+                    startActivity(new Intent(getContext(), CalendarTableActivity.class));
+                }else {
+                    ARouter.getInstance().build("/test/empty").navigation();
+                }
                 break;
             case R.id.ll_erweima:
                 startActivity(new Intent(getContext(), MyQRCodeActivity.class));
                 break;
             case R.id.ll_edit_password:
                 startActivityForResult(new Intent(getContext(), EditPasswordActivity.class), 1234);
-
                 break;
             case R.id.ll_about_us:
                 startActivity(new Intent(getContext(), AboutUsActivity.class));

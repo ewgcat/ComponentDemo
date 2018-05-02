@@ -99,7 +99,11 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
             }
         });
 
-       holder.tv_daka_total_count.setText("");
+        int clockedCount = coachViperBean.getClockedCount();
+        if (clockedCount!=-1){
+
+            holder.tv_daka_total_count.setText(""+clockedCount);
+        }
         Long bePresentTime = coachViperBean.getVisitTime();
         if (bePresentTime!=null&&bePresentTime!=-1){
             String s = DateUtil.parseLongDateToTimeString(bePresentTime);

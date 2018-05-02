@@ -32,7 +32,7 @@ public class CoachViperBean implements Serializable {
 
     private String fitnessHobby;
     private String mobile;
-    private Boolean isProtected;
+    private Boolean underProtected;
 
 
     private String healthStatus; //身体状态
@@ -67,6 +67,7 @@ public class CoachViperBean implements Serializable {
     private int firstType;//第一次体验课上课记录表类型    0 非自定义 1自定义
     private int secondType;//第二次体验课上课记录表类型  0 非自定义 1自定义
 
+    private int clockedCount;
 
     private String historyCourse; //历史课程
     private Long deadline; //过期时间
@@ -112,9 +113,10 @@ public class CoachViperBean implements Serializable {
         this.fiirstId = JsonUtil.getString(jsonObject, "fiirstId");
         this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
+        this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.firstType = JsonUtil.getInt(jsonObject, "firstType");
         this.secondType = JsonUtil.getInt(jsonObject, "secondType");
+        this.clockedCount = JsonUtil.getInt(jsonObject, "clockedCount");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
@@ -125,6 +127,10 @@ public class CoachViperBean implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getClockedCount() {
+        return clockedCount;
     }
 
     public int getFirstType() {
@@ -148,7 +154,7 @@ public class CoachViperBean implements Serializable {
     }
 
     public Boolean getProtected() {
-        return isProtected;
+        return underProtected;
     }
 
     public String getSubclassName() {

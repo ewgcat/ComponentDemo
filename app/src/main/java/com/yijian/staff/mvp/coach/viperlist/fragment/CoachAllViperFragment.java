@@ -23,7 +23,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
+import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -52,7 +52,7 @@ public class CoachAllViperFragment extends Fragment {
     private RecyclerView rv_vip_all;
     private List<CoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
     private static CoachAllViperFragment coachAllViperFragment;
@@ -103,14 +103,16 @@ public class CoachAllViperFragment extends Fragment {
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
         coachViperBeanList.clear();
+        pageNum=1;
+        pageSize=10;
         this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("pageNum", 1 );
-        map.put("pageSize", 1 );
+        map.put("pageNum", pageNum );
+        map.put("pageSize", pageSize);
         if (coachViperFilterBean != null) {
 
             if (coachViperFilterBean.getJoinTimeType() != -2) {

@@ -15,18 +15,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.potential.CoachPotentialViperListAdapter;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecord2Activity;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
+import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
+import com.yijian.staff.mvp.huiji.potential.PotentialViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import org.json.JSONObject;
 
@@ -54,161 +64,67 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         return holder;
     }
 
+
+
+    public void update(List<CoachViperBean> coachViperBeanList) {
+        this.coachViperBeanList = coachViperBeanList;
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public void onBindViewHolder(CoachIntentViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = coachViperBeanList.get(position);
-        holder.tv_name.setText(coachViperBean.getName());
 
+        holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex().equals("1")){
-            resId =  R.mipmap.lg_man ;
-        } else if (coachViperBean.getSex().equals("2")){
-            resId =  R.mipmap.lg_women ;
-        }else {
-            resId =  R.mipmap.lg_man ;
+        if (coachViperBean.getSex().equals("1")) {
+            resId = R.mipmap.lg_man;
+        } else if (coachViperBean.getSex().equals("2")) {
+            resId = R.mipmap.lg_women;
+        } else {
+            resId = R.mipmap.lg_man;
 
         }
         holder.iv_gender.setImageResource(resId);
 
+        String headImg = coachViperBean.getHeadImg();
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        holder.rv_card.setLayoutManager(new LinearLayoutManager(context));
-        holder.rv_card.setAdapter(new CoachVipCardListAdapter(coachViperBean.getCardprodsBeans()));
+        Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
 
-        holder.rel_expand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleCardView(holder);
-            }
-        });
-
-        holder. tv_fuwu_huiji.setText(coachViperBean.getSeller());
-        int experienceClassTimes = coachViperBean.getExperienceClassTimes();
-        String text = experienceClassTimes + "";
-        if (TextUtils.isEmpty(text)){
-            holder. rl_ti_yan_ke_ci_shu.setVisibility(View.GONE);
-            holder. rl_class_record.setVisibility(View.GONE);
-
-        }else {
-            if (experienceClassTimes==0){
-                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.GONE);
-                holder. rl_class_record.setVisibility(View.GONE);
-            }else  if (experienceClassTimes==1){
-                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.VISIBLE);
-                holder. tv_first_class_record.setVisibility(View.VISIBLE);
-
-                holder.tv_second_class_record.setVisibility(View.GONE);
-                holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TODO 跳转到第一次体验课上课表
-                        if (coachViperBean.getFirstType()==0){
-                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
-                            context.startActivity(intent);
-                        }else {
-                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
-                            context.startActivity(intent);
-                        }
-
-                    }
-                });
-                holder. rl_class_record.setVisibility(View.VISIBLE);
-            }else  if (experienceClassTimes==2){
-                holder. rl_ti_yan_ke_ci_shu.setVisibility(View.VISIBLE);
-                holder. rl_class_record.setVisibility(View.VISIBLE);
-                holder. tv_first_class_record.setVisibility(View.VISIBLE);
-                holder. tv_second_class_record.setVisibility(View.VISIBLE);
-                holder.tv_first_class_record.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (coachViperBean.getFirstType()==0){
-                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
-                            context.startActivity(intent);
-                        }else {
-                            Intent intent = new Intent(context, OpenLessonNewActivity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getFiirstId());
-                            context.startActivity(intent);
-                        }
-                    }
-                });
-                holder.tv_second_class_record.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (coachViperBean.getSecondType()==0){
-                            Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
-                            context.startActivity(intent);
-                        }else {
-                            Intent intent = new Intent(context, ExperienceClassRecord2Activity.class);
-                            intent.putExtra("privateApplyId",coachViperBean.getSecondId());
-                            context.startActivity(intent);
-                        }
-                    }
-                });
-            }
-        }
-
-
-        holder. tv_like_class.setText(coachViperBean.getFavorCourse());
-        holder. tv_like_teacher.setText(coachViperBean.getFavorTeacher());
-
-        long registerTime = coachViperBean.getRegisterTime();
-        if (registerTime!=0){
-            String s = DateUtil.parseLongDateToDateString(registerTime);
-            holder.tv_regist_time.setText(s);
-        }else {
-            holder.tv_regist_time.setText("");
-        }
-
-        long contractDeadline = coachViperBean.getContractDeadline();
-        if (contractDeadline!=0){
-            String s = DateUtil.parseLongDateToDateString(contractDeadline);
-            holder.tv_contract_overTime.setText(s);
-        }else {
-            holder.tv_contract_overTime.setText("");
-        }
-
-        holder. tv_contract_balance.setText(coachViperBean.getContractBalance());
-        holder. tv_buy_count.setText(coachViperBean.getPurchaseCount()+"");
-
-
-        holder.ll_chakanxiangqing.setOnClickListener(new View.OnClickListener() {
+        //详情
+        holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType",0);
-                intent.putExtra("coachViperBean",coachViperBean);
-                context.startActivity(intent);
-            }
-        });
-
-        holder.lin_baojia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, NoSearchBarCoachClassBaojiaActivity.class);
-                intent.putExtra("memberId",coachViperBean.getMemberId());
+                intent.putExtra("vipType", 1);
+                intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
             }
         });
 
         Boolean isProtected = coachViperBean.getProtected();
-        if (isProtected){
-            holder.tv_huifang.setText("保护7天");
-        }else {
-            holder.tv_huifang.setText("回访");
+        if (isProtected) {
+            holder.tv_call.setText("保护7天");
+            Glide.with(context).load(R.mipmap.suo).apply(options).into( holder.iv_call);
+        } else {
+            Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
+            holder.tv_call.setText("");
             String mobile = coachViperBean.getMobile();
-
-            holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
+            holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (!TextUtils.isEmpty(mobile)){
                         if (CommonUtil.isPhoneFormat(mobile)){
                             CommonUtil.callPhone(context, mobile);
                             HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId","16");
+                            param.put("interviewRecordId","4");
                             param.put("memberId",coachViperBean.getMemberId());
                             HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
                                 @Override
@@ -230,105 +146,33 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                 }
             });
         }
+
     }
 
     @Override
     public int getItemCount() {
-        return coachViperBeanList ==null?0: coachViperBeanList.size();
+        return coachViperBeanList == null ? 0 : coachViperBeanList.size();
     }
 
-
-
-    private void toggleCardView(CoachIntentViperListAdapter.ViewHolder holder) {
-        int visibility = holder.rv_card.getVisibility();
-        if (visibility == View.GONE) {
-            holder.rv_card.setVisibility(View.VISIBLE);
-            holder.tv_zhankai_status.setText("收起");
-            Drawable drawable = context.getDrawable(R.mipmap.fp_shang);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-
-            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-        } else {
-            holder.rv_card.setVisibility(View.GONE);
-            holder.tv_zhankai_status.setText("展开");
-            Drawable drawable = context.getDrawable(R.mipmap.lg_xiala);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-
-            holder.tv_zhankai_status.setCompoundDrawables(null,null,drawable,null);
-        }
-
-    }
-    public void update(List<CoachViperBean> coachViperBeanList) {
-        this.coachViperBeanList=coachViperBeanList;
-        notifyDataSetChanged();
-    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_call;
         TextView tv_name;
-        LinearLayout ll_chakanxiangqing; //报价
+        TextView tv_call;
 
-        TextView tv_zhankai_status;
-        RelativeLayout rel_expand;
-        RecyclerView rv_card;
-
-        TextView tv_fuwu_huiji;
-
-        RelativeLayout rl_ti_yan_ke_ci_shu;
-        TextView tv_ti_yan_ke_ci_shu;
-
-        RelativeLayout rl_class_record;
-        TextView tv_first_class_record;
-        TextView tv_second_class_record;
-
-        TextView tv_like_class;
-        TextView tv_like_teacher;
-        TextView tv_regist_time;
-        TextView tv_contract_overTime;
-        TextView tv_contract_balance;
-        TextView tv_buy_count;
-        TextView tv_huifang;
-
-
-
-
-        LinearLayout lin_baojia; //报价
-        LinearLayout lin_protect_seven; //保护7天/回访
-
+        LinearLayout lin_content;
 
         public ViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            ll_chakanxiangqing   = view.findViewById(R.id.ll_chakanxiangqing);
-
-            tv_zhankai_status = view.findViewById(R.id.tv_zhankai_status);
-            rel_expand   = view.findViewById(R.id.rel_expand);
-            rv_card   = view.findViewById(R.id.rv_card);
-
-            tv_fuwu_huiji  =     view.findViewById(R.id.tv_fuwu_huiji);
-
-            rl_ti_yan_ke_ci_shu =     view.findViewById(R.id.rl_ti_yan_ke_ci_shu);
-            tv_ti_yan_ke_ci_shu =     view.findViewById(R.id.tv_ti_yan_ke_ci_shu);
-
-            rl_class_record =     view.findViewById(R.id.rl_class_record);
-            tv_first_class_record =     view.findViewById(R.id.tv_first_class_record);
-            tv_second_class_record =     view.findViewById(R.id.tv_second_class_record);
-
-
-            tv_like_class =     view.findViewById(R.id.tv_like_class);
-            tv_like_teacher  =     view.findViewById(R.id.tv_like_teacher);
-            tv_regist_time  =     view.findViewById(R.id.tv_regist_time);
-            tv_contract_overTime  =     view.findViewById(R.id.tv_contract_overTime);
-            tv_contract_balance  =     view.findViewById(R.id.tv_contract_balance);
-            tv_buy_count  =     view.findViewById(R.id.tv_buy_count);
-            tv_huifang  =     view.findViewById(R.id.tv_huifang);
-
-            lin_baojia =     view.findViewById(R.id.lin_baojia);
-            lin_protect_seven =     view.findViewById(R.id.lin_protect_seven);
+            lin_content = view.findViewById(R.id.lin_content);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            iv_call = view.findViewById(R.id.iv_call);
+            tv_call = view.findViewById(R.id.tv_call);
+            tv_name = view.findViewById(R.id.tv_name);
         }
     }
 

@@ -45,7 +45,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
 
@@ -79,8 +79,10 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     private void refresh() {
         coachViperBeanList.clear();
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", 1+"");
-        map.put("pageSize", 1+"");
+        pageNum=1;
+        pageSize=10;
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

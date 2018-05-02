@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.coach.potential;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,14 +13,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.GlideCircleTransform;
 
 import org.json.JSONObject;
 
@@ -32,12 +39,12 @@ import java.util.List;
 
 public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPotentialViperListAdapter.ViewHolder> {
 
-    private List<CoachViperBean> viperBeanList;
+    private List<CoachViperBean> coachViperBeanList;
     private Context context;
 
     public CoachPotentialViperListAdapter(Context context, List<CoachViperBean> viperBeanList) {
         this.context = context;
-        this.viperBeanList = viperBeanList;
+        this.coachViperBeanList = viperBeanList;
     }
 
     @Override
@@ -47,35 +54,64 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         return holder;
     }
 
+
+
+    public void update(List<CoachViperBean> coachViperBeanList) {
+        this.coachViperBeanList = coachViperBeanList;
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public void onBindViewHolder(CoachPotentialViperListAdapter.ViewHolder holder, int position) {
-        CoachViperBean coachViperBean = viperBeanList.get(position);
+        CoachViperBean coachViperBean = coachViperBeanList.get(position);
+
         holder.tv_name.setText(coachViperBean.getName());
+        int resId;
+        if (coachViperBean.getSex().equals("1")) {
+            resId = R.mipmap.lg_man;
+        } else if (coachViperBean.getSex().equals("2")) {
+            resId = R.mipmap.lg_women;
+        } else {
+            resId = R.mipmap.lg_man;
 
-        long birthday = coachViperBean.getBirthday();
-        if (birthday!=0){
-            String s = DateUtil.parseLongDateToDateString(birthday);
-            holder.tv_birth.setText(s);
-        }else {
-            holder.tv_birth.setText("");
         }
+        holder.iv_gender.setImageResource(resId);
 
-        holder.tv_birth_type.setText(coachViperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(coachViperBean.getFitnessHobby());
-        holder.tv_bodyStatus.setText(coachViperBean.getHealthStatus());
-        holder.tv_interestHobby.setText(coachViperBean.getHobby());
-        holder.iv_gender.setImageResource("2".equals(coachViperBean.getSex()) ? R.mipmap.lg_women : R.mipmap.lg_man);
-        holder.tv_useCar.setText(coachViperBean.getUseCar());
+        String headImg = coachViperBean.getHeadImg();
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        //回访
+        Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
+
+        //详情
+        holder.lin_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                intent.putExtra("vipType", 2);
+                intent.putExtra("coachViperBean", coachViperBean);
+                context.startActivity(intent);
+            }
+        });
 
         Boolean isProtected = coachViperBean.getProtected();
-        if (isProtected){
-            holder.tv_huifang.setText("保护7天");
-        }else {
-            holder.tv_huifang.setText("回访");
+        if (isProtected) {
+            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.suo);
+            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
+            holder.tv_call.setText("保护7天");
+        } else {
+            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.dianhua);
+            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
+            holder.tv_call.setText("");
             String mobile = coachViperBean.getMobile();
-            holder.lin_visit.setOnClickListener(new View.OnClickListener() {
+            holder.tv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!TextUtils.isEmpty(mobile)){
@@ -105,70 +141,31 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             });
         }
 
-        //邀约
-        holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, InvateIndexActivity.class);
-                intent.putExtra("memberId",coachViperBean.getMemberId());
-                intent.putExtra("memberName",coachViperBean.getName());
-                context.startActivity(intent);
-            }
-        });
-
-
-        //详情
-        holder.ll_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType",1);
-                intent.putExtra("coachViperBean",coachViperBean);
-                context.startActivity(intent);
-            }
-        });
-
     }
 
     @Override
     public int getItemCount() {
-        return viperBeanList == null ? 0 : viperBeanList.size();
+        return coachViperBeanList == null ? 0 : coachViperBeanList.size();
     }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_call;
         TextView tv_name;
-        TextView tv_birth;
-        TextView tv_birth_type;
-        TextView tv_bodyStatus;
-        TextView tv_bodybuildingHobby;
-        TextView tv_interestHobby;
-        TextView tv_useCar;
-        TextView tv_huifang;
-        LinearLayout lin_visit; //回访
-        LinearLayout lin_invitation; //邀请
-        LinearLayout ll_content; //真个Item条目
-
+        TextView tv_call;
+        LinearLayout lin_content;
 
         public ViewHolder(View view) {
             super(view);
+            lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
+            iv_call = view.findViewById(R.id.iv_call);
+            tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
-            tv_birth = view.findViewById(R.id.tv_birth);
-            tv_birth_type = view.findViewById(R.id.tv_birth_type);
-            tv_bodyStatus = view.findViewById(R.id.tv_bodyStatus);
-            tv_bodybuildingHobby = view.findViewById(R.id.tv_bodybuildingHobby);
-            tv_interestHobby = view.findViewById(R.id.tv_interestHobby);
-            tv_useCar = view.findViewById(R.id.tv_useCar);
-            tv_useCar = view.findViewById(R.id.tv_huifang);
-
-            ll_content = view.findViewById(R.id.ll_content);
-
-            lin_visit = view.findViewById(R.id.lin_visit);
-            lin_invitation = view.findViewById(R.id.lin_invitation);
         }
     }
 

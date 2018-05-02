@@ -63,7 +63,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
     SmartRefreshLayout refreshLayout;
 
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 10;
     private int pages;
     private List<CoachSearchViperBean> viperBeanList = new ArrayList<>();
     private CoachSearchViperListAdapter adapter;
@@ -140,9 +140,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                pageSize = 1;
-                viperBeanList.clear();
+
                 String name = etSearch.getText().toString().trim();
                 refresh(name);
             }
@@ -169,14 +167,26 @@ public class CoachSearchActivity extends MvcBaseActivity {
                 initSearchData();
             }
         });
+        searchKeyAdapter.setRemoveKeyListener(new SearchKeyAdapter.RemoveKeyListener() {
+            @Override
+            public void onClick(SearchKey searchKey) {
+                DBManager.getInstance().insertOrReplaceSearch(searchKey);
+                initSearchData();
+            }
+        });
         rcl_search.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
     }
 
     private void refresh(String name) {
+        pageNum = 1;
+        pageSize = 10;
+        viperBeanList.clear();
         Map<String, String> params = new HashMap<>();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            refreshLayout.finishRefresh(2000, true);
+
             return;
         } else {
             params.put("name", name);
@@ -230,6 +240,8 @@ public class CoachSearchActivity extends MvcBaseActivity {
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            boolean hasMore = pages > pageNum ? true : false;
+            refreshLayout.finishLoadMore(2000, true, hasMore);
             return;
         } else {
             params.put("name", name);

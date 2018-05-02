@@ -1,8 +1,6 @@
 package com.yijian.staff.jpush;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,18 +37,45 @@ import cn.jpush.android.api.JPushInterface;
 public class JpushMessageReceiver extends BroadcastReceiver {
     private static final String TAG = "Jpush";
 
-        private Context mContext;
     @Override
     public void onReceive(Context context, Intent intent) {
-        mContext=context;
         Bundle bundle = intent.getExtras();
         if (bundle == null) {
             return;
         }
+//        String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+//        Logger.i(TAG, "bundleString: " + bundleString);
+//        JSONObject jsonObject = null;
+//        try {
+//            if (!TextUtils.isEmpty(bundleString)){
+//                jsonObject = new JSONObject(bundleString);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+
+
+
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
+
+
+        } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
+            int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
+            Logger.i(TAG, "接收到推送下来的通知的ID: " + notifactionId);
+
+        } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {//用户点击打开了通知
+            Logger.i(TAG, "用户点击打开了通知");
+//            if (data!=null){
+//                //TODO 根据业务跳转不同页面
+//                int    smallStatus = JsonUtil.getInt(data, "smallStatus");
+//                Intent intent1 = new Intent(context, ReceptionStepActivity.class);
+//                intent1.putExtra("smallStatus", smallStatus);
+//                context.startActivity(intent1);
+//            }
             String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
             Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
 
@@ -96,13 +121,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
 
-        } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
-            int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-            Logger.i(TAG, "接收到推送下来的通知的ID: " + notifactionId);
-
-        } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {//用户点击打开了通知
-            Logger.i(TAG, "用户点击打开了通知");
-            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {//回调
             Logger.i(TAG, "用户收到到富媒体推送: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
@@ -148,8 +166,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         }
         return sb.toString();
     }
-
-    protected ActivityManager mActivityManager;
 
 
 

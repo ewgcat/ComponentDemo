@@ -1,28 +1,20 @@
 package com.yijian.staff.mvp.main.mine.setting;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.main.mine.selectheadicon.ClipActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.GlideCircleTransform;
@@ -30,16 +22,15 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.iwf.photopicker.PhotoPicker;
 
 public class SettingActivity extends MvcBaseActivity {
 
-    private static final java.lang.String TAG = SettingActivity.class.getSimpleName();
+    private static final String TAG = SettingActivity.class.getSimpleName();
     @BindView(R.id.iv_head)
     ImageView ivHead;
     @BindView(R.id.tv_name)
@@ -50,6 +41,14 @@ public class SettingActivity extends MvcBaseActivity {
     TextView tvAge;
     @BindView(R.id.tv_phone)
     TextView tvPhone;
+    @BindView(R.id.tv_work_num)
+    TextView tvWorkNum;
+    @BindView(R.id.tv_mendian)
+    TextView tvMendian;
+    @BindView(R.id.tv_department)
+    TextView tvDepartment;
+    @BindView(R.id.tv_position)
+    TextView tvPosition;
     private Dialog dialog;
 
 
@@ -66,11 +65,24 @@ public class SettingActivity extends MvcBaseActivity {
         navigationBar2.hideLeftSecondIv();
         User user = DBManager.getInstance().queryUser();
 
-        HashMap<String,String> map=new HashMap<>();
-        map.put("userId",user.getUserId());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("userId", user.getUserId());
         HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                UserInfo userInfo = new UserInfo(result);
+                tvName.setText(userInfo.getName());
+                tvSex.setText(userInfo.getSex());
+                tvAge.setText(userInfo.getAge() + "");
+                tvPhone.setText(userInfo.getMobile());
+                tvWorkNum.setText(userInfo.getJobNo());
+                tvMendian.setText(userInfo.getShop());
+                tvDepartment.setText(userInfo.getDepartment());
+                tvPosition.setText(userInfo.getPost());
+                user.setAge(userInfo.getAge() );
+                user.setHeadImg(userInfo.getHeadImg());
+                DBManager.getInstance().insertOrReplaceUser(user);
+                setImageResource(userInfo.getHeadImg(), ivHead);
 
             }
 
@@ -79,18 +91,11 @@ public class SettingActivity extends MvcBaseActivity {
 
             }
         });
-        if (user != null) {
-            tvName.setText(user.getName());
-            tvSex.setText(user.getSex());
-            tvAge.setText(user.getAge()+"");
-            tvPhone.setText(user.getMobile());
-            setImageResource(user.getHeadImg(),ivHead);
-        }
 
 
     }
 
-    @OnClick({ R.id.tv_exit_login})
+    @OnClick({R.id.tv_exit_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -117,5 +122,6 @@ public class SettingActivity extends MvcBaseActivity {
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(this).load(path).apply(options).into(imageView);
     }
+
 
 }

@@ -1,9 +1,8 @@
-package com.yijian.staff.mvp.coach.outdate;
+package com.yijian.staff.mvp.coach.viperlist.adpater;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -36,24 +32,25 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by yangk on 2018/3/26.
+ * Created by yangk on 2018/3/6.
  */
 
-public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutdateViperListAdapter.ViewHolder>  {
+public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayViperListAdapter.ViewHolder> {
 
     private List<CoachViperBean> coachViperBeanList;
     private Context context;
+    private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachOutdateViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList){
+    public CoachTodayViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.coachViperBeanList = coachViperBeanList;
+        this.isAllVipInfo = isAllVipInfo;
     }
 
-
     @Override
-    public CoachOutdateViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_outdate_coach_date, parent, false);
-        CoachOutdateViperListAdapter.ViewHolder holder = new CoachOutdateViperListAdapter.ViewHolder(view);
+    public CoachTodayViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_today_vip_info, parent, false);
+        CoachTodayViperListAdapter.ViewHolder holder = new CoachTodayViperListAdapter.ViewHolder(view);
         return holder;
     }
 
@@ -62,9 +59,11 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         notifyDataSetChanged();
     }
 
+    private void setImageResource(String path,ImageView imageView) {
 
+    }
     @Override
-    public void onBindViewHolder(CoachOutdateViperListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachTodayViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = coachViperBeanList.get(position);
 
         holder.tv_name.setText(coachViperBean.getName());
@@ -90,53 +89,29 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
 
         //详情
-        holder.lin_content.setOnClickListener(new View.OnClickListener() {
+        holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType", 3);
+                intent.putExtra("vipType", 0);
                 intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
             }
         });
 
-        Boolean isProtected = coachViperBean.getProtected();
-        if (isProtected) {
-            holder.tv_call.setText("保护7天");
-            Glide.with(context).load(R.mipmap.suo).apply(options).into( holder.iv_call);
-        } else {
-            Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
-            holder.tv_call.setText("");
-            String mobile = coachViperBean.getMobile();
-            holder.iv_call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!TextUtils.isEmpty(mobile)){
-                        if (CommonUtil.isPhoneFormat(mobile)){
-                            CommonUtil.callPhone(context, mobile);
-                            HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId","4");
-                            param.put("memberId",coachViperBean.getMemberId());
-                            HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
-                                @Override
-                                public void onSuccess(JSONObject result) {
-
-                                }
-
-                                @Override
-                                public void onFail(String msg) {
-
-                                }
-                            });
-                        }else {
-                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
-                        }
-                    }else {
-                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+       holder.tv_daka_total_count.setText("");
+        Long bePresentTime = coachViperBean.getVisitTime();
+        if (bePresentTime!=null&&bePresentTime!=-1){
+            String s = DateUtil.parseLongDateToTimeString(bePresentTime);
+            holder.tv_be_present_time.setText(s);
         }
+
+        Long departureTime = coachViperBean.getLeaveTime();
+        if (departureTime!=null&&departureTime!=-1){
+            String s1 = DateUtil.parseLongDateToTimeString(departureTime);
+            holder.tv_be_departure_time.setText(s1);
+        }
+
 
     }
 
@@ -150,21 +125,24 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
         ImageView iv_header;
         ImageView iv_gender;
-        ImageView iv_call;
-
         TextView tv_name;
-        TextView tv_call;
+        TextView tv_daka_total_count;
+        TextView tv_be_present_time;
+        TextView tv_be_departure_time;
 
-        LinearLayout lin_content;
+        LinearLayout ll_content;
 
         public ViewHolder(View view) {
             super(view);
-            lin_content = view.findViewById(R.id.lin_content);
+            ll_content = view.findViewById(R.id.ll_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
-            iv_call = view.findViewById(R.id.iv_call);
-            tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
+            tv_daka_total_count = view.findViewById(R.id.tv_daka_total_count);
+            tv_be_present_time = view.findViewById(R.id.tv_be_present_time);
+            tv_be_departure_time = view.findViewById(R.id.tv_be_departure_time);
         }
     }
+
 }
+

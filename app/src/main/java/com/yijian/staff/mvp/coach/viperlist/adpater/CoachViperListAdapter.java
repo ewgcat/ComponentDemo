@@ -1,9 +1,8 @@
-package com.yijian.staff.mvp.coach.outdate;
+package com.yijian.staff.mvp.coach.viperlist.adpater;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +19,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import org.json.JSONObject;
@@ -36,24 +31,25 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by yangk on 2018/3/26.
+ * Created by yangk on 2018/3/6.
  */
 
-public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutdateViperListAdapter.ViewHolder>  {
+public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAdapter.ViewHolder> {
 
     private List<CoachViperBean> coachViperBeanList;
     private Context context;
+    private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachOutdateViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList){
+    public CoachViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.coachViperBeanList = coachViperBeanList;
+        this.isAllVipInfo = isAllVipInfo;
     }
 
-
     @Override
-    public CoachOutdateViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_outdate_coach_date, parent, false);
-        CoachOutdateViperListAdapter.ViewHolder holder = new CoachOutdateViperListAdapter.ViewHolder(view);
+    public CoachViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_vip_info, parent, false);
+        CoachViperListAdapter.ViewHolder holder = new CoachViperListAdapter.ViewHolder(view);
         return holder;
     }
 
@@ -64,7 +60,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
 
     @Override
-    public void onBindViewHolder(CoachOutdateViperListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = coachViperBeanList.get(position);
 
         holder.tv_name.setText(coachViperBean.getName());
@@ -94,7 +90,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType", 3);
+                intent.putExtra("vipType", 0);
                 intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
             }
@@ -161,10 +157,12 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             super(view);
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
-            iv_gender = view.findViewById(R.id.iv_gender);
             iv_call = view.findViewById(R.id.iv_call);
+            iv_gender = view.findViewById(R.id.iv_gender);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
         }
     }
+
 }
+

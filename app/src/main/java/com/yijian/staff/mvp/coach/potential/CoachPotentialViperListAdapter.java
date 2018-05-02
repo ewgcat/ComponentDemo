@@ -153,9 +153,9 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_call;
         TextView tv_name;
         TextView tv_call;
-
         LinearLayout lin_content;
 
         public ViewHolder(View view) {
@@ -163,6 +163,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
+            iv_call = view.findViewById(R.id.iv_call);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
         }

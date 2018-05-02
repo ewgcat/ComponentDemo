@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/iv_header"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@mipmap/people"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp" />
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 
@@ -78,8 +78,13 @@
 
             <TextView
                 android:id="@+id/tv_call"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/iv_call"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginRight="16dp"
                 android:textSize="14sp" />
 

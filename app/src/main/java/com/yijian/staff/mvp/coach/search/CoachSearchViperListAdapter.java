@@ -34,6 +34,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
 
@@ -120,17 +121,13 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected) {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.suo);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
             holder.tv_call.setText("保护7天");
+            Glide.with(context).load(R.mipmap.suo).apply(options).into( holder.iv_call);
         } else {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.dianhua);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
+            Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
             holder.tv_call.setText("");
             String mobile = coachViperBean.getMobile();
-            holder.tv_call.setOnClickListener(new View.OnClickListener() {
+            holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!TextUtils.isEmpty(mobile)){
@@ -172,6 +169,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_call;
         TextView tv_name;
         TextView tv_call;
         TextView tv_role;
@@ -183,6 +181,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
+            iv_call = view.findViewById(R.id.iv_call);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
             tv_role = view.findViewById(R.id.tv_role);

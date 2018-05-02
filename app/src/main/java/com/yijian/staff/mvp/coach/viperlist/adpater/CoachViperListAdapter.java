@@ -98,17 +98,13 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected) {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.suo);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
             holder.tv_call.setText("保护7天");
+            Glide.with(context).load(R.mipmap.suo).apply(options).into( holder.iv_call);
         } else {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.dianhua);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
+            Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
             holder.tv_call.setText("");
             String mobile = coachViperBean.getMobile();
-            holder.tv_call.setOnClickListener(new View.OnClickListener() {
+            holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!TextUtils.isEmpty(mobile)){
@@ -150,6 +146,8 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_call;
+
         TextView tv_name;
         TextView tv_call;
 
@@ -159,6 +157,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
             super(view);
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
+            iv_call = view.findViewById(R.id.iv_call);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);

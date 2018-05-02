@@ -39,7 +39,9 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         Logger.i(TAG, "bundleString: " + bundleString);
         JSONObject jsonObject = null;
         try {
-            jsonObject = new JSONObject(bundleString);
+            if (!TextUtils.isEmpty(bundleString)){
+                jsonObject = new JSONObject(bundleString);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

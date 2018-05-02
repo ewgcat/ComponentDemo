@@ -69,7 +69,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -85,13 +85,17 @@
                     android:id="@+id/iv_head"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@mipmap/wt_boy" />
+                    android:src="@mipmap/wt_boy" 
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
                 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_head"
+                    android:layout_centerVertical="true">
 
                     <TextView
                         android:id="@+id/tv_name"
@@ -126,8 +130,16 @@
                     
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/iv_visit"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/dianhua"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -303,7 +315,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
@@ -329,7 +341,7 @@
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -540,6 +552,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
+                    <View
+                        style="@style/SplitLineStyle"
+                        android:layout_marginTop="15dp"
+                        />
+
                 </LinearLayout>
 
                 <RelativeLayout
@@ -685,10 +702,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="15dp">
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -718,23 +735,24 @@
                     android:paddingBottom="15dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="15dp">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
                         android:text="私教课程:"
                         android:textColor="#999999"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_sijiao_class"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
                         android:text="私教课程"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -1456,7 +1474,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="15dp">
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1479,7 +1498,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="15dp"
@@ -1506,7 +1525,7 @@
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </LinearLayout>
 

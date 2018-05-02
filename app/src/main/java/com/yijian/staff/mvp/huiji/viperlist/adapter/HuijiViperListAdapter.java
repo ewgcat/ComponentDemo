@@ -1,64 +1,63 @@
-package com.yijian.staff.mvp.huiji.outdate;
+package com.yijian.staff.mvp.huiji.viperlist.adapter;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
-import com.yijian.staff.mvp.reception.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
 /**
- * Created by yangk on 2018/3/26.
- *
+ * Created by yangk on 2018/3/6.
  */
 
-public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutdateViperListAdapter.ViewHolder>  {
+public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAdapter.ViewHolder> {
 
-    private List<HuiJiViperBean> vipOutdateInfoList;
+    private List<HuiJiViperBean> viperBeanList;
     private Context context;
 
-    public HuijiOutdateViperListAdapter(Context context, List<HuiJiViperBean> vipOutdateInfoList){
+    public HuijiViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
         this.context = context;
-        this.vipOutdateInfoList = vipOutdateInfoList;
+        this.viperBeanList = viperBeanList;
     }
 
-
     @Override
-    public HuijiOutdateViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oute_huiji_date, parent, false);
-        HuijiOutdateViperListAdapter.ViewHolder holder = new HuijiOutdateViperListAdapter.ViewHolder(view);
+    public HuijiViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_info, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_all_info, parent, false);
+        HuijiViperListAdapter.ViewHolder holder = new HuijiViperListAdapter.ViewHolder(view);
         return holder;
     }
 
+    public void update(List<HuiJiViperBean> viperBeanList) {
+        this.viperBeanList = viperBeanList;
+        notifyDataSetChanged();
+    }
+
+
     @Override
-    public void onBindViewHolder(HuijiOutdateViperListAdapter.ViewHolder holder, int position) {
-        HuiJiViperBean viperBean = vipOutdateInfoList.get(position);
+    public void onBindViewHolder(HuijiViperListAdapter.ViewHolder holder, int position) {
+        HuiJiViperBean viperBean = viperBeanList.get(position);
         holder.bind(context,viperBean);
     }
 
     @Override
     public int getItemCount() {
-        return vipOutdateInfoList==null?0:vipOutdateInfoList.size();
+        return viperBeanList == null ? 0 : viperBeanList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -82,18 +81,19 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean){
-            ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), (Activity)context, iv_header);
+            ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource("1".equals(huiJiViperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                    intent.putExtra("id",huiJiViperBean.getMemberId());
+                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+                    intent.putExtra("viperDetailBean",huiJiViperBean);
                     context.startActivity(intent);
                 }
             });
+
             //回访
             Boolean isProtected = huiJiViperBean.getProtected();
             tv_protect_seven.setVisibility(isProtected?View.VISIBLE:View.GONE);
@@ -109,7 +109,10 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                     }
                 }
             });
+
         }
+
     }
+
 
 }

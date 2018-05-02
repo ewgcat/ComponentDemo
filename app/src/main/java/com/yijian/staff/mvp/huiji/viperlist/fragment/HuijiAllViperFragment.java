@@ -24,7 +24,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
-import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
+import com.yijian.staff.mvp.huiji.viperlist.adapter.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
@@ -84,7 +84,7 @@ public class HuijiAllViperFragment extends Fragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList, true);
+        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 

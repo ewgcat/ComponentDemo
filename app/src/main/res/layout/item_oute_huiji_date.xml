@@ -1,374 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
-    android:orientation="vertical"
-    android:paddingBottom="15dp">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rel_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/white_bg">
+        android:padding="10dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/people" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="刘葛岩"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/iv_header"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:id="@+id/iv_gender"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/lg_man"
+            android:layout_toRightOf="@id/tv_name"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_role"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingLeft="18dp"
-            android:paddingTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="8dp"
+            android:gravity="right"
+            android:text="正式会员"
+            android:textColor="#1997f8"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@mipmap/people"/>
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="刘葛岩"
-                android:textColor="#333333"
-                android:textSize="16sp"
-                android:layout_marginLeft="8dp"/>
-
-            <ImageView
-                android:id="@+id/iv_gender"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="8dp"
-                android:src="@mipmap/lg_man"/>
-
-            <TextView
-                android:id="@+id/tv_role"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="过期会员"
-                android:textColor="#1997f8"
-                android:textSize="16sp"
-                android:gravity="right"
-                android:visibility="gone"/>
-
-        </LinearLayout>
-
-        <View
-            style="@style/SplitLineStyle"
-            android:layout_marginTop="10dp"
-            />
-
-        <LinearLayout
-            android:id="@+id/ll_content"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_protect_seven"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:textColor="@color/textColor999999"
+            android:textSize="14sp"
+            android:drawableLeft="@mipmap/passwd_gray"
+            android:text="保护7天"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5dp"
+            android:visibility="gone"/>
 
-            <RelativeLayout
-                android:id="@+id/rel_expand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="7dp"
-                android:paddingBottom="7dp">
+        <ImageView
+            android:id="@+id/iv_visit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/dianhua"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="卡名-卡类型"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+    </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tv_opration_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="收起"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:drawablePadding="4dp"
-                        android:layout_marginRight="6dp"/>
-
-                    <ImageView
-                        android:id="@+id/iv_opration_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/fp_shang"/>
-
-                </LinearLayout>
-
-
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                style="@style/SplitLineStyle"
-                android:layout_marginTop="15dp"
-                />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="私教教练:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_privateCoach"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="邹市明"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="喜欢课程:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_likeLesson"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="健身课"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="喜欢老师: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_likeTeacher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="陈周奇老师"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="注册时间:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_registTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="2017-12-25"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="合同到期日: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_contractOutDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="2018-12-05"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="已过期:"
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:id="@+id/tv_outDateDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="20天"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp"
-                android:background="@color/gray"
-                />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <LinearLayout
-                android:id="@+id/lin_quey_contract"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/wt_hetong"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查看合同"
-                    android:textColor="#999999"
-                    android:layout_marginLeft="7dp"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/lin_quey_question"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/wt_wenjuan"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查看问卷"
-                    android:textColor="#999999"
-                    android:layout_marginLeft="7dp"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    <View
+        style="@style/SplitLineStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>

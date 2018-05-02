@@ -23,7 +23,8 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
+import com.yijian.staff.mvp.coach.viperlist.adpater.CoachTodayViperListAdapter;
+import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -58,7 +59,7 @@ public class CoachVipTodayVisitFragment extends Fragment {
 
 
     private static CoachVipTodayVisitFragment coachVipTodayVisitFragment;
-    private  CoachViperListAdapter coachViperListAdapter;
+    private CoachTodayViperListAdapter coachViperListAdapter;
 
     public static CoachVipTodayVisitFragment getInstance(){
         if(coachVipTodayVisitFragment == null){
@@ -82,7 +83,7 @@ public class CoachVipTodayVisitFragment extends Fragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
-        coachViperListAdapter = new CoachViperListAdapter(getActivity(), coachViperBeanList,false);
+        coachViperListAdapter = new CoachTodayViperListAdapter(getActivity(), coachViperBeanList,false);
         rv_vip_all.setAdapter(coachViperListAdapter);
         initComponent();
         refresh(null);
@@ -98,15 +99,16 @@ public class CoachVipTodayVisitFragment extends Fragment {
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
         coachViperBeanList.clear();
-
+        pageNum=1;
+        pageSize=10;
         this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("pageNum", 1 + "");
-        map.put("pageSize", 1 + "");
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
         if (coachViperFilterBean != null) {
 
 

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.potential;
+package com.yijian.staff.mvp.coach.viperlist.adpater;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +20,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
-import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
 import org.json.JSONObject;
@@ -34,27 +31,27 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by yangk on 2018/3/5.
+ * Created by yangk on 2018/3/6.
  */
 
-public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPotentialViperListAdapter.ViewHolder> {
+public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAdapter.ViewHolder> {
 
     private List<CoachViperBean> coachViperBeanList;
     private Context context;
+    private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachPotentialViperListAdapter(Context context, List<CoachViperBean> viperBeanList) {
+    public CoachViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
-        this.coachViperBeanList = viperBeanList;
+        this.coachViperBeanList = coachViperBeanList;
+        this.isAllVipInfo = isAllVipInfo;
     }
 
     @Override
-    public CoachPotentialViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_potential_vip, parent, false);
-        CoachPotentialViperListAdapter.ViewHolder holder = new CoachPotentialViperListAdapter.ViewHolder(view);
+    public CoachViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_vip_info, parent, false);
+        CoachViperListAdapter.ViewHolder holder = new CoachViperListAdapter.ViewHolder(view);
         return holder;
     }
-
-
 
     public void update(List<CoachViperBean> coachViperBeanList) {
         this.coachViperBeanList = coachViperBeanList;
@@ -63,7 +60,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
 
     @Override
-    public void onBindViewHolder(CoachPotentialViperListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CoachViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = coachViperBeanList.get(position);
 
         holder.tv_name.setText(coachViperBean.getName());
@@ -93,7 +90,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType", 2);
+                intent.putExtra("vipType", 0);
                 intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
             }
@@ -169,3 +166,4 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
     }
 
 }
+

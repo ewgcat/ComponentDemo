@@ -63,7 +63,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
     SmartRefreshLayout refreshLayout;
 
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 10;
     private int pages;
     private List<CoachSearchViperBean> viperBeanList = new ArrayList<>();
     private CoachSearchViperListAdapter adapter;
@@ -141,7 +141,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 pageNum = 1;
-                pageSize = 1;
+                pageSize = 10;
                 viperBeanList.clear();
                 String name = etSearch.getText().toString().trim();
                 refresh(name);
@@ -166,6 +166,13 @@ public class CoachSearchActivity extends MvcBaseActivity {
             @Override
             public void onClick() {
                 DBManager.getInstance().clearSearchList();
+                initSearchData();
+            }
+        });
+        searchKeyAdapter.setRemoveKeyListener(new SearchKeyAdapter.RemoveKeyListener() {
+            @Override
+            public void onClick(SearchKey searchKey) {
+                DBManager.getInstance().insertOrReplaceSearch(searchKey);
                 initSearchData();
             }
         });

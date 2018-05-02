@@ -21,15 +21,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
-import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity_ycm;
-import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Activity;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassStep1Activity_ycm;
-import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
-import com.yijian.staff.mvp.coach.experienceclass.step3.ExperienceClassProcess3Activity;
-import com.yijian.staff.mvp.coach.experienceclass.step4.ExperienceClassProcess4Activity;
-import com.yijian.staff.mvp.coach.experienceclass.step5.coach.ExperienceClassProcess5Activity;
-import com.yijian.staff.mvp.coach.viperlist.CoachViperListAdapter;
 
 import java.util.List;
 

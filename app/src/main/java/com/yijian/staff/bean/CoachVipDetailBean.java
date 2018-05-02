@@ -40,7 +40,7 @@ public class CoachVipDetailBean {
     /**
      * 生日
      **/
-    private String birthday;
+    private Long birthday;
     /**
      * 生日类型
      **/
@@ -119,11 +119,11 @@ public class CoachVipDetailBean {
         this.activateCardTime = activateCardTime;
     }
 
-    public String getBirthday() {
+    public Long getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Long birthday) {
         this.birthday = birthday;
     }
 

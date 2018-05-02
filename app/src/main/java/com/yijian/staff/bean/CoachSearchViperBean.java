@@ -6,6 +6,7 @@ import com.yijian.staff.util.JsonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/29 16:17:53
  */
-public class CoachSearchViperBean {
+public class CoachSearchViperBean implements Serializable{
 
     /**
      * {

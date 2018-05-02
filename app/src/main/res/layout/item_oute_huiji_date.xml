@@ -35,7 +35,8 @@
             android:layout_height="16dp"
             android:src="@mipmap/lg_man"
             android:layout_toRightOf="@id/tv_name"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/tv_role"

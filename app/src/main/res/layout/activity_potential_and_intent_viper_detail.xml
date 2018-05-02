@@ -1066,7 +1066,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="15dp"
@@ -1093,7 +1093,7 @@
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </LinearLayout>
 

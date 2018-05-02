@@ -97,8 +97,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     TextView tvHomeLocation;
     @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
-    @BindView(R.id.tv_lianxiren_phone)
-    TextView tvLianxirenPhone;
+
 
     VipDetailBean vipDetailBean;
 
@@ -175,7 +174,6 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
-        tvLianxirenPhone.setText(judgeNull(detailBean.getCompanyPhone()));
 
     }
 

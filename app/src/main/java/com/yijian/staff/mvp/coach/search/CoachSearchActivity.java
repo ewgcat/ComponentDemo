@@ -140,9 +140,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                pageSize = 10;
-                viperBeanList.clear();
+
                 String name = etSearch.getText().toString().trim();
                 refresh(name);
             }
@@ -181,9 +179,14 @@ public class CoachSearchActivity extends MvcBaseActivity {
     }
 
     private void refresh(String name) {
+        pageNum = 1;
+        pageSize = 10;
+        viperBeanList.clear();
         Map<String, String> params = new HashMap<>();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            refreshLayout.finishRefresh(2000, true);
+
             return;
         } else {
             params.put("name", name);
@@ -237,6 +240,8 @@ public class CoachSearchActivity extends MvcBaseActivity {
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            boolean hasMore = pages > pageNum ? true : false;
+            refreshLayout.finishLoadMore(2000, true, hasMore);
             return;
         } else {
             params.put("name", name);

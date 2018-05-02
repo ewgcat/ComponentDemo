@@ -68,7 +68,7 @@ public class TOLeaderAdapter extends RecyclerView.Adapter<TOLeaderAdapter.Holder
         }
 
         public void bindView(LeaderBean dataListBean) {
-            select.setBackgroundResource(dataListBean.isSelect?R.drawable.blue_stroke_select_bg:R.drawable.gray_stroke_unselect_bg);
+            select.setBackgroundResource(dataListBean.isSelect?R.drawable.blue_solid_select_bg_13:R.drawable.blue_solid_unselect_bg_13);
 
             title.setText(""+dataListBean.getPostName());
             name.setText(""+dataListBean.getPost());

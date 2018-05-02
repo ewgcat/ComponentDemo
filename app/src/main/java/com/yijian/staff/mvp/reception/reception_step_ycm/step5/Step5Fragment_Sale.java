@@ -13,17 +13,9 @@ import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoContract;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoPresenter;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveContract;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFivePresenter;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.ScanBodyView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by The_P on 2018/4/20.
@@ -45,11 +37,11 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("完成");
-        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (presenter!=null)presenter.getStatus(true);
+                if (presenter!=null)presenter.getStatus(true,memberId);
             }
         });
 
@@ -88,6 +80,11 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
 
     @Override
     public void ShowEndProcess() {
-        presenter.getStatus(false);
+        presenter.getStatus(false, memberId);
+    }
+
+    @Override
+    public void needEndProcess() {
+        presenter.endProcess(memberId);
     }
 }

@@ -103,7 +103,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
             }
         });
 
-        if (consumerBean!=null)  presenter.viewTestData(consumerBean.getId());
+//        if (consumerBean!=null)  presenter.viewTestData(consumerBean.getId());
     }
 
     private void initView(View view) {
@@ -217,7 +217,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                 if ("体重(kg)".equals(qustion) || "体脂肪(kg)".equals(qustion) || "腰围(cm)".equals(qustion) || "臀围(cm)".equals(qustion))
                     computerQualityAndBodyFatAndWaistToHip();//计算身体质量指数/体脂百分比/腰臀比
 
-                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
                 demoAdapter.notifyChildChanged(parentPosition, childPosition);
             }
         }).build();
@@ -344,7 +344,9 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
     @Override
     public void showSavaSucceed() {
-        Log.e(TAG, "showSavaSucceed: ");
+//        Log.e(TAG, "showSavaSucceed: ");
+        Toast.makeText(getContext(),"保存成功",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     @Override
@@ -691,7 +693,9 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
     @Override
     public void showRejected() {
+        Toast.makeText(getContext(),"消息推送成功",Toast.LENGTH_SHORT).show();
        if (cancelPhysicalDialog!=null)cancelPhysicalDialog.dismiss();
+        getActivity().finish();
     }
 
     @Override

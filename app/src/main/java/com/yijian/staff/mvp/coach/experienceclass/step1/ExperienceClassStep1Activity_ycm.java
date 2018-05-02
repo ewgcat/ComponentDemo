@@ -147,13 +147,13 @@ public class ExperienceClassStep1Activity_ycm extends AppCompatActivity implemen
         switch (view.getId()) {
 
             case R.id.ll_template1_root://系统模板
-                if (templateList == null) {
-                    Toast.makeText(this, "模板数据异常", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent intent = new Intent(this, Template1ClassActivity_ycm.class);
-                intent.putParcelableArrayListExtra("templateList", (ArrayList<? extends Parcelable>) templateList);
-                startActivity(intent);
+//                if (templateList == null) {
+//                    Toast.makeText(this, "模板数据异常", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                Intent intent = new Intent(this, Template1ClassActivity_ycm.class);
+//                intent.putParcelableArrayListExtra("templateList", (ArrayList<? extends Parcelable>) templateList);
+//                startActivity(intent);
                 break;
             case R.id.ll_template2_root://自定义模板
                 startActivity(new Intent(ExperienceClassStep1Activity_ycm.this, Template2ClassActivity.class));
@@ -175,18 +175,18 @@ public class ExperienceClassStep1Activity_ycm extends AppCompatActivity implemen
         etRemark.setText("备注信息：" + inviterBean.getRemark());
 
 
-        templateList = inviterBean.getTemplateList();
-        if (templateList != null && templateList.size() != 0) {
-            //显示系统提供的模板
-            Glide.with(ExperienceClassStep1Activity_ycm.this).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
-            tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
-        }
-
-        customerTemplateList = inviterBean.getCustomerTemplateList();
-        if (customerTemplateList != null && customerTemplateList.size() != 0) {
-            //显示教练自定义模板
-
-
-        }
+//        templateList = inviterBean.getTemplateList();
+//        if (templateList != null && templateList.size() != 0) {
+//            //显示系统提供的模板
+//            Glide.with(ExperienceClassStep1Activity_ycm.this).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
+//            tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
+//        }
+//
+//        customerTemplateList = inviterBean.getCustomerTemplateList();
+//        if (customerTemplateList != null && customerTemplateList.size() != 0) {
+//            //显示教练自定义模板
+//
+//
+//        }
     }
 }

@@ -26,6 +26,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductContract;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
@@ -271,6 +272,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @Override
     public void shouldCardToOrder() {
+
+    }
+
+    @Override
+    public void showProductDetail(ProductDetail productDetail) {
 
     }
 

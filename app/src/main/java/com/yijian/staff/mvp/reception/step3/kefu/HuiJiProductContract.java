@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.reception.step3.kefu;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public interface HuiJiProductContract {
         void showCardToOrder();
 
         void shouldCardToOrder();
+
+        void showProductDetail(ProductDetail productDetail);
 //        void showRefresh(List<GoodsInfo> goodsInfos);
 
 
@@ -33,10 +36,10 @@ public interface HuiJiProductContract {
 
         void toCoach(String memberId,String cardId);
 
-        void getStatus(boolean isFirst);
+        void getStatus(boolean isFirst, String memberId);
 
         void cardToOrder(String memberId, String cardprodbaseId);
 
-
+       void getProductDetail(String memberId);
     }
 }

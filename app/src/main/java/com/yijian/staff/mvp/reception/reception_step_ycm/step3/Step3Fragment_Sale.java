@@ -3,13 +3,14 @@ package com.yijian.staff.mvp.reception.reception_step_ycm.step3;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,11 @@ import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step2.CancelReasonDialog;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.coach.TOLeadersDialog;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step3.kefu.CardsListAdapter;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductContract;
 import com.yijian.staff.mvp.reception.step3.kefu.HuiJiProductPresenter;
@@ -97,11 +101,13 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
-        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (presenter!=null)presenter.getStatus(true);
+                    if (presenter!=null)presenter.getStatus(true,memberId);
+//                TOLeadersDialog  toLeadersDialog = new TOLeadersDialog();
+//                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
             }
         });
 
@@ -184,18 +190,32 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Integer status = consumerBean.getStatus();
         if (status==null)return;
-        if (status ==30|| status ==31){//SALEJUMPCOACH(30, "会籍跳过教练")//COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//            case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//            case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),————手动点击确认，进入
+//            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
+//            case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
+//            case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
+//            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
+//            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
 
-        }else if (status ==33||status==34||status==35||status==36){
-            showToCoachSucceed();
-        }else if (status ==40){
-//            会籍完成产品报价，签订合同中
-            tvSendToStatus.setText("会籍完成产品报价，签订合同中");
-            showToCoachSucceed();
 
 
-        }else if (status>40){
+        if (status ==32||status==30||status==31){
+            llToCoach.setVisibility(View.VISIBLE);
+            rlGoods.setVisibility(View.VISIBLE);
+            tvSendToStatus.setVisibility(View.GONE);
+        }else if (status ==33||status==35){
             llToCoach.setVisibility(View.GONE);
+            rlGoods.setVisibility(View.GONE);
+            tvSendToStatus.setVisibility(View.VISIBLE);
+        }else {
+            llToCoach.setVisibility(View.GONE);
+            rlGoods.setVisibility(View.VISIBLE);
+            tvSendToStatus.setVisibility(View.GONE);
+        }
+
+        if (status==34||status==36){
+            presenter.getProductDetail(memberId);
         }
     }
 
@@ -340,7 +360,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
     @Override
     public void showCardToOrder() {
-        presenter.getStatus(false);
+        presenter.getStatus(false, memberId);
     }
 
     @Override
@@ -350,6 +370,26 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
             return;
         }
         presenter.cardToOrder(memberId,selectedGoodsInfo.getCardprodbaseId());
+
+    }
+
+    @Override
+    public void showProductDetail(ProductDetail productDetail) {
+
+        Log.e(TAG, "showProductDetail: "+ productDetail.toString());
+        CancelReasonDialog dialogFragment = new CancelReasonDialog();
+        dialogFragment.setOklisenter(new CancelReasonDialog.DialogOklisenter() {
+            @Override
+            public void onClick() {
+                String cardId = productDetail.getCardId();
+                if (TextUtils.isEmpty(cardId)){
+                    Toast.makeText(getContext(),"卡产品id获取失败",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.cardToOrder(memberId,cardId);
+            }
+        });
+
 
     }
 

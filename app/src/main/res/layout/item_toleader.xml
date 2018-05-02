@@ -31,7 +31,7 @@
     <TextView
         android:layout_marginTop="12dp"
         android:id="@+id/tv_select"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:background="@drawable/gray_stroke_unselect_bg"
         android:gravity="center"

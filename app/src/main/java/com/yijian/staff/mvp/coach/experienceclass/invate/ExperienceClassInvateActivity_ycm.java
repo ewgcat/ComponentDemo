@@ -199,7 +199,8 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
 //        etRemark.setText("备注信息：" + inviterBean.getRemark());
 
 
-        templateList = inviterBean.getTemplateList();
+//        templateList = inviterBean.getTemplateList();
+
 //        if (templateList != null && templateList.size() != 0) {
             //显示系统提供的模板
 //            Glide.with(ExperienceClassInvateActivity_ycm.this).load(R.mipmap.trialclass_select_small).into(ivTemplate1);

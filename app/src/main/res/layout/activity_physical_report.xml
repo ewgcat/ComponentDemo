@@ -33,7 +33,7 @@
                     android:text="体测数据"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/blue"
                     android:textSize="16sp"/>
 
                 <RelativeLayout

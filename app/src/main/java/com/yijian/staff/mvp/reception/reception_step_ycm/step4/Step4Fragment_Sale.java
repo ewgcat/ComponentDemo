@@ -16,15 +16,11 @@ import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoContract;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoPresenter;
 import com.yijian.staff.mvp.reception.step3.coach.RightsAcitity;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
-import com.yijian.staff.mvp.reception.step4.ReceptionStepFourActivity;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourContract;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourPresenter;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.ScanBodyView;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -78,12 +74,12 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
-        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep3SaleToStep4();
-                if (presenter!=null)presenter.getStatus(true);
+                if (presenter!=null)presenter.getStatus(true,memberId);
             }
         });
 
@@ -199,12 +195,17 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
 
     @Override
     public void showToStepFive() {
-        presenter.getStatus(false);
+        presenter.getStatus(false, memberId);
     }
 
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
         if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep4SaleToStep5( receptionStastuBean.getOperatorType());
+    }
+
+    @Override
+    public void toReceptionStepFive() {
+        presenter.toReceptionStepFive(memberId);
     }
 
 

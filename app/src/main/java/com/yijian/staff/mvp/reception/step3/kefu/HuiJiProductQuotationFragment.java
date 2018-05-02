@@ -27,6 +27,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 
 import java.util.Collections;
 import java.util.List;
@@ -294,6 +295,11 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
     @Override
     public void shouldCardToOrder() {
+
+    }
+
+    @Override
+    public void showProductDetail(ProductDetail productDetail) {
 
     }
 

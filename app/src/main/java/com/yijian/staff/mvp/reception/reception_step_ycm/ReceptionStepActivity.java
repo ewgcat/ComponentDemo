@@ -15,6 +15,8 @@ import com.yijian.staff.mvp.reception.reception_step_ycm.step1.Step1Fragment_Mes
 import com.yijian.staff.mvp.reception.reception_step_ycm.step1.Step1Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.CancelReasonDialog;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Coach;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Coach_NoData;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Coach_Physical;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Message;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.Step2Fragment_Sale_NoData;
@@ -117,7 +119,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
             case 33://SALETOCOACH(33, "会员没购买意愿，会籍TO教练"),
             case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
             case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
-            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
+            case 36:// LEADERTOSALE(36, "领导接待会员,会员同意购买,TO回会籍 "),
 
                 showStep3Fragment(bundle);
                 break;
@@ -147,6 +149,8 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
                 finish();
             }
         });
+        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar2.setBackClickListener(this);
         timeBar = findViewById(R.id.step_timebar);
     }
 
@@ -156,8 +160,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     private void initFragment() {
 
 
-
-
     }
 
     public void showStep1Fragment(Bundle bundle) {
@@ -165,7 +167,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         timeBar.showTimeBar(1);
         navigationBar2.getmRightTv().setVisibility(View.GONE);
         navigationBar2.setSecondLeftIvVisiable(View.GONE);
-
         if (userRole == 1) {
             Step1Fragment_Sale  step1Fragment_sale = new Step1Fragment_Sale();
             step1Fragment_sale.setStatusChangeLisenter(this);
@@ -190,9 +191,11 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.setTitle("体测录入(2/5)");
         timeBar.showTimeBar(2);
         navigationBar2.getmRightTv().setVisibility(View.GONE);
-        navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
+
 
         if (userRole == 1) {
+            navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
+
             Integer status = recptionerInfoBean.getStatus();
             List<Integer> historyNode = recptionerInfoBean.getHistoryNode();
 
@@ -220,14 +223,12 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
                 step2Fragment_coach.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_coach).commitAllowingStateLoss();
             }else if (status==32||status==20){//用户选择跳过体测录入（没有体测数据）//会籍完成问卷调查录入
-                Step2Fragment_Sale_NoData  step2Fragment_noData = new Step2Fragment_Sale_NoData();
-                step2Fragment_noData.setStatusChangeLisenter(this);
+                Step2Fragment_Coach_NoData  step2Fragment_noData = new Step2Fragment_Coach_NoData();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_noData).commitAllowingStateLoss();
             }else if (status==31){//教练录完体测数据发送回会籍
-                Step2Fragment_Sale_Physical  step2Fragment_sale_physical = new Step2Fragment_Sale_Physical();
-                step2Fragment_sale_physical.setStatusChangeLisenter(this);
-                step2Fragment_sale_physical.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_sale_physical).commitAllowingStateLoss();
+                Step2Fragment_Coach_Physical  step2Fragment_coach_physical = new Step2Fragment_Coach_Physical();
+                step2Fragment_coach_physical.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_coach_physical).commitAllowingStateLoss();
             }
 
 
@@ -248,10 +249,10 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.setTitle("产品报价(3/5)");
         timeBar.showTimeBar(3);
         navigationBar2.getmRightTv().setVisibility(View.GONE);
-        navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
+
 
         if (userRole == 1) {
-
+            navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
             Step3Fragment_Sale  step3Fragment_sale = new Step3Fragment_Sale();
             step3Fragment_sale.setStatusChangeLisenter(this);
             step3Fragment_sale.setArguments(bundle);
@@ -304,9 +305,10 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.setTitle("订单详情(4/5)");
         timeBar.showTimeBar(4);
         navigationBar2.getmRightTv().setVisibility(View.GONE);
-        navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
+
 
         if (userRole == 1) {
+            navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
             Integer status = recptionerInfoBean.getStatus();
             if (status==40){//40, "会籍完成产品报价，签订合同中”
                 Step4Fragment_Sale_NoData    step4Fragment_sale_noData = new Step4Fragment_Sale_NoData();
@@ -336,9 +338,10 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.setTitle("合同签订(5/5)");
         timeBar.showTimeBar(5);
         navigationBar2.getmRightTv().setVisibility(View.GONE);
-        navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
+
 
         if (userRole == 1) {
+            navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
             Step5Fragment_Sale   step5Fragment_sale = new Step5Fragment_Sale();
             step5Fragment_sale.setStatusChangeLisenter(this);
             step5Fragment_sale.setArguments(bundle);

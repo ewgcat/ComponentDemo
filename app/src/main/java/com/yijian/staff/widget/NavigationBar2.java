@@ -135,4 +135,6 @@ public class NavigationBar2 extends LinearLayout {
     public LinearLayout getBackLL() {
         return backLL;
     }
+
+
 }

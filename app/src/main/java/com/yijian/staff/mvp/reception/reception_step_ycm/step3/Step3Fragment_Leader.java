@@ -89,7 +89,7 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("发送");
-//        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

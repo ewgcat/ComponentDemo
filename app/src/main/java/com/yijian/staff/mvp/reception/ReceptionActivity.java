@@ -18,18 +18,13 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.questionnaireresult.QuestionnaireResultActivity;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionLog;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
-import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
-import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
-import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
-import com.yijian.staff.mvp.reception.step3.coach.TOLeadersDialog;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
@@ -137,6 +132,14 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 //                toLeadersDialog.show(getFragmentManager(),"TOLeadersDialog");
                 break;
             case R.id.tv_jiedai:
+                if (consumer==null){
+                    Toast.makeText(this,"未获得接待人信息",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (operatorType==null){
+                    Toast.makeText(this,"未获得接待人节点",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 consumer.setStatus(operatorType);
                 consumer.setHistoryNode(HistoryNode);

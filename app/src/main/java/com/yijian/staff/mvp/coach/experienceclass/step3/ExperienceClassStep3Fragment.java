@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
 import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ConsultationProgrammeBean;
-import com.yijian.staff.mvp.physical.PhysicalReportActivity;
+import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

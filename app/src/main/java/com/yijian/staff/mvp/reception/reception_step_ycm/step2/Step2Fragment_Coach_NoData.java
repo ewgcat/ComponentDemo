@@ -17,31 +17,8 @@ import com.yijian.staff.widget.NavigationBar2;
  * Created by The_P on 2018/4/24.
  */
 
-public class Step2Fragment_Sale_NoData extends Fragment {
+public class Step2Fragment_Coach_NoData extends Fragment {
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
-        navigationBar2.setmRightTvText("下一步");
-        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2ToStep3();
-
-            }
-        });
-
-
-        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2Back();
-            }
-        });
-    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

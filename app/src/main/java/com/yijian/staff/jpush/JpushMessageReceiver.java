@@ -153,34 +153,4 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 
 
 
-    public ActivityManager.RunningTaskInfo getTopTask() {
-        mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> tasks = mActivityManager.getRunningTasks(1);
-        if (tasks != null && !tasks.isEmpty()) {
-            return tasks.get(0);
-        }
-
-        return null;
-    }
-
-    public boolean isTopActivity(
-            ActivityManager.RunningTaskInfo topTask,
-            String packageName,
-            String activityName) {
-        if (topTask != null) {
-            ComponentName topActivity = topTask.topActivity;
-
-            if (topActivity.getPackageName().equals(packageName) &&
-                    topActivity.getClassName().equals(activityName)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-
-
-
 }

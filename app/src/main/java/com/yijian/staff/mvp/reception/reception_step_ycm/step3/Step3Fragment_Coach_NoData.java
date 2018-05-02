@@ -27,7 +27,7 @@ public class Step3Fragment_Coach_NoData extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
-        tips = arguments.getString("tips");
+       if (arguments!=null)tips = arguments.getString("tips");
 
     }
 

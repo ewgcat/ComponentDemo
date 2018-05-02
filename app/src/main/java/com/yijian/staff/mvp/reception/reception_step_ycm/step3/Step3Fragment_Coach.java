@@ -99,6 +99,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("完成");
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
 //        navigationBar2.setmRightTvColor(R.color.white);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override

@@ -65,13 +65,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="今日消费:"
+                    android:text="打卡总次数:"
                     android:textColor="#999999"
                     android:textSize="14sp"
                     android:layout_alignParentLeft="true"/>
 
                 <TextView
-                    android:id="@+id/tv_xiaofei"
+                    android:id="@+id/tv_daka_total_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

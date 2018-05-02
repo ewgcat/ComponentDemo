@@ -99,7 +99,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
             }
         });
 
-       holder.tv_xiaofei.setText("");
+       holder.tv_daka_total_count.setText("");
         Long bePresentTime = coachViperBean.getVisitTime();
         if (bePresentTime!=null&&bePresentTime!=-1){
             String s = DateUtil.parseLongDateToTimeString(bePresentTime);
@@ -126,7 +126,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         ImageView iv_header;
         ImageView iv_gender;
         TextView tv_name;
-        TextView tv_xiaofei;
+        TextView tv_daka_total_count;
         TextView tv_be_present_time;
         TextView tv_be_departure_time;
 
@@ -138,7 +138,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
-            tv_xiaofei = view.findViewById(R.id.tv_xiaofei);
+            tv_daka_total_count = view.findViewById(R.id.tv_daka_total_count);
             tv_be_present_time = view.findViewById(R.id.tv_be_present_time);
             tv_be_departure_time = view.findViewById(R.id.tv_be_departure_time);
         }

@@ -19,6 +19,7 @@ import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
+import com.yijian.staff.mvp.coach.classbaojia.CoachClassBaoJiaActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.reception.contract.ContractActivity;
@@ -186,7 +187,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.lin_invitation, R.id.iv_call,R.id.lin_huifan2,R.id.lin_huifan, R.id.ll_edit})
+    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.iv_call, R.id.lin_huifan2, R.id.lin_baojia, R.id.lin_huifan, R.id.ll_edit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -196,12 +197,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 intent1.putExtra("memberName", memberName);
                 startActivity(intent1);
                 break;
-            case R.id.lin_invitation:
-                Intent intent2 = new Intent(CoachViperDetailActivity.this, InvateIndexActivity.class);
-                intent2.putExtra("memberId", memberId);
-                intent2.putExtra("memberName", memberName);
-                startActivity(intent2);
+            case R.id.lin_baojia:
+                startActivity(new Intent(CoachViperDetailActivity.this, CoachClassBaoJiaActivity.class));
                 break;
+
             case R.id.iv_call:
             case R.id.lin_huifan2:
             case R.id.lin_huifan:
@@ -231,7 +230,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
 
         vipType = getIntent().getIntExtra("vipType", 0);
-        if (vipType == 0 || vipType == 1) {
+        if (vipType == 0 || vipType == 1 || vipType == 3) {
             llVipContent.setVisibility(View.VISIBLE);
             if (vipType == 0) {
                 ll_1.setVisibility(View.VISIBLE);
@@ -239,20 +238,14 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 ll_3.setVisibility(View.GONE);
             } else {
                 ll_1.setVisibility(View.GONE);
-                ll_2.setVisibility(View.GONE);
-                ll_3.setVisibility(View.VISIBLE);
-            }
-        } else if (vipType == 2 || vipType == 3) {
-            llVipContent.setVisibility(View.GONE);
-            if (vipType == 2) {
-                ll_1.setVisibility(View.GONE);
                 ll_2.setVisibility(View.VISIBLE);
                 ll_3.setVisibility(View.GONE);
-            } else {
-                ll_1.setVisibility(View.GONE);
-                ll_2.setVisibility(View.GONE);
-                ll_3.setVisibility(View.VISIBLE);
             }
+        } else if (vipType == 2) {//意向会员
+            llVipContent.setVisibility(View.GONE);
+            ll_1.setVisibility(View.GONE);
+            ll_2.setVisibility(View.GONE);
+            ll_3.setVisibility(View.VISIBLE);
         }
         if (getIntent().hasExtra("coachViperBean")) {
             CoachViperBean coachViperBean = (CoachViperBean) getIntent().getSerializableExtra("coachViperBean");

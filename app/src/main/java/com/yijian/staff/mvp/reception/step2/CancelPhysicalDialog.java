@@ -66,7 +66,7 @@ public class CancelPhysicalDialog extends DialogFragment implements View.OnClick
         tvReason2 = view.findViewById(R.id.tv_reason_2);
         tvOk = view.findViewById(R.id.tv_ok);
 
-
+        tvCancel.setOnClickListener(this);
         tvReason0.setOnClickListener(this);
         tvReason1.setOnClickListener(this);
         tvReason2.setOnClickListener(this);
@@ -77,6 +77,9 @@ public class CancelPhysicalDialog extends DialogFragment implements View.OnClick
     public void onClick(View v) {
 
         switch (v.getId()){
+            case R.id.tv_cancel:
+                dismiss();
+                break;
 
             case R.id.tv_reason_0:
                 resetState();

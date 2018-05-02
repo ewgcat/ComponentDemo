@@ -56,7 +56,7 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
     public void toReceptionStepFive(String memberId) {
         Map<String,String> params=new HashMap<>();
         params.put("memberId",memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {
                 view.showToStepFive();
@@ -71,17 +71,25 @@ public class ReceptionStepFourPresenter  implements ReceptionStepFourContract.Pr
     }
 
     @Override
-    public void getStatus(boolean isFirst) {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STATUS, new ResultJSONObjectObserver() {
+    public void getStatus(boolean isFirst, String memberId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId",memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
                 if (receptionStastuBean==null||receptionStastuBean.getOperatorType()==null)return;
-
-                if (receptionStastuBean.getOperatorType()>50){
+                ////  SALEFINISHCON(40, "会籍完成产品报价，签订合同中”),
+                // SALEFINISHCON(41, “已签订合同”),
+                //ORDERDETAILNEXT(50, "订单详情点击下一步"),
+                if (receptionStastuBean.getOperatorType()==50||receptionStastuBean.getOperatorType()>50){
                     view.showStatus(receptionStastuBean);
                 }else {
-                    if (isFirst) view.showToStepFive();
+                    if (isFirst) {
+                        view.toReceptionStepFive();
+                    }else {
+                        Toast.makeText(context,"节点错误",Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

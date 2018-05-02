@@ -32,7 +32,7 @@ public class CoachViperBean implements Serializable {
 
     private String fitnessHobby;
     private String mobile;
-    private Boolean isProtected;
+    private Boolean underProtected;
 
 
     private String healthStatus; //身体状态
@@ -42,7 +42,7 @@ public class CoachViperBean implements Serializable {
     private String useCar; //使用车辆
     private String isIntentVip; // 0 意向会员  ，1  潜在会员
 
-    private long birthday;//生日
+    private Long birthday;//生日
     private String birthdayType;//生日类型
     private String name;//会员姓名
     private String viperRole;//会员角色 普通会员
@@ -52,24 +52,25 @@ public class CoachViperBean implements Serializable {
     private String headImg;//头像图片路径
 
     private String contractBalance;//合同余额
-    private long contractDeadline;//合同到期日
+    private Long contractDeadline;//合同到期日
     private String contractId;//合同ID
     private String privateCourse;//私教课
     private String favorCourse;//喜欢的课程
     private String favorTeacher;//喜欢的教练
     private int purchaseCount;//购买次数
-    private long registerTime;//入籍时间
-    private long bePresentTime; //到场时间
-    private long departureTime; //离场时间
+    private Long registerTime;//入籍时间
+    private Long visitTime; //到场时间
+    private Long leaveTime; //离场时间
     private String privateClass;//私教课
     private String fiirstId;//第一次体验课上课记录id ,
     private String secondId;//第二次体验课上课记录id
     private int firstType;//第一次体验课上课记录表类型    0 非自定义 1自定义
     private int secondType;//第二次体验课上课记录表类型  0 非自定义 1自定义
 
+    private int clockedCount;
 
     private String historyCourse; //历史课程
-    private long deadline; //过期时间
+    private Long deadline; //过期时间
     private String expiryReason; //过期原因
 
     //("合同ID列表")
@@ -96,8 +97,8 @@ public class CoachViperBean implements Serializable {
         this.favorTeacher = JsonUtil.getString(jsonObject, "favorTeacher");
         this.purchaseCount = JsonUtil.getInt(jsonObject, "purchaseCount");
         this.registerTime = JsonUtil.getLong(jsonObject, "registerTime");
-        this.bePresentTime = JsonUtil.getLong(jsonObject, "bePresentTime");
-        this.departureTime = JsonUtil.getLong(jsonObject, "departureTime");
+        this.visitTime = JsonUtil.getLong(jsonObject, "bePresentTime");
+        this.leaveTime = JsonUtil.getLong(jsonObject, "departureTime");
         this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
         this.bodybuildingHobby = JsonUtil.getString(jsonObject, "bodybuildingHobby");
         this.interestHobby = JsonUtil.getString(jsonObject, "interestHobby");
@@ -112,9 +113,10 @@ public class CoachViperBean implements Serializable {
         this.fiirstId = JsonUtil.getString(jsonObject, "fiirstId");
         this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
+        this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.firstType = JsonUtil.getInt(jsonObject, "firstType");
         this.secondType = JsonUtil.getInt(jsonObject, "secondType");
+        this.clockedCount = JsonUtil.getInt(jsonObject, "clockedCount");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
@@ -125,6 +127,10 @@ public class CoachViperBean implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getClockedCount() {
+        return clockedCount;
     }
 
     public int getFirstType() {
@@ -148,7 +154,7 @@ public class CoachViperBean implements Serializable {
     }
 
     public Boolean getProtected() {
-        return isProtected;
+        return underProtected;
     }
 
     public String getSubclassName() {
@@ -184,7 +190,7 @@ public class CoachViperBean implements Serializable {
         return historyCourse;
     }
 
-    public long getDeadline() {
+    public Long getDeadline() {
         return deadline;
     }
 
@@ -222,23 +228,15 @@ public class CoachViperBean implements Serializable {
         this.isIntentVip = isIntentVip;
     }
 
-    public long getBePresentTime() {
-        return bePresentTime;
+    public Long getVisitTime() {
+        return visitTime;
     }
 
-    public void setBePresentTime(long bePresentTime) {
-        this.bePresentTime = bePresentTime;
+    public Long getLeaveTime() {
+        return leaveTime;
     }
 
-    public long getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(long departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public long getBirthday() {
+    public Long getBirthday() {
         return birthday;
     }
 
@@ -299,11 +297,11 @@ public class CoachViperBean implements Serializable {
         this.contractBalance = contractBalance;
     }
 
-    public long getContractDeadline() {
+    public Long getContractDeadline() {
         return contractDeadline;
     }
 
-    public void setContractDeadline(long contractDeadline) {
+    public void setContractDeadline(Long contractDeadline) {
         this.contractDeadline = contractDeadline;
     }
 
@@ -347,11 +345,11 @@ public class CoachViperBean implements Serializable {
         this.purchaseCount = purchaseCount;
     }
 
-    public long getRegisterTime() {
+    public Long getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(long registerTime) {
+    public void setRegisterTime(Long registerTime) {
         this.registerTime = registerTime;
     }
 

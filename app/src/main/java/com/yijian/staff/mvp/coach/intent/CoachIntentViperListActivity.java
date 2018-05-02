@@ -102,11 +102,11 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
 
     private void refresh() {
         coachViperBeanList.clear();
-
-
+        pageNum=1;
+        pageSize=10;
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", "1");
-        map.put("pageSize", "1");
+        map.put("pageNum",pageNum+ "");
+        map.put("pageSize", pageSize+"");
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override

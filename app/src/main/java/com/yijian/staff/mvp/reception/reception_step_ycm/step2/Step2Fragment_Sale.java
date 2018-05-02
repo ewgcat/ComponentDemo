@@ -30,7 +30,10 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
     private TextView tvTip;
     private TextView tvNextStep;
 
-
+//          case 20:// SALEFINISHQS(20, "会籍完成问卷调查录入"),
+//          case 21: //SALESENDCOACH(21, "会籍选择发送给教练"),
+//          case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
+//          case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +79,9 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
             ll_to_coach.setVisibility(View.GONE);
             tvNextStep.setVisibility(View.GONE);
         }else if (consumerBean.getStatus()==32){//MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
-            showJumpButton();
+            tvNextStep.setVisibility(View.GONE);
+            ll_to_coach.setVisibility(View.GONE);
+            tvTip.setVisibility(View.GONE);
         }
     }
 
@@ -84,12 +89,9 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_next_step:
-
-
                 presenter.jumpBodyCheck(consumerBean.getId());
                 break;
             case R.id.ll_to_coach:
-
                 presenter.coachBodyCheck(consumerBean.getId());
                 break;
         }

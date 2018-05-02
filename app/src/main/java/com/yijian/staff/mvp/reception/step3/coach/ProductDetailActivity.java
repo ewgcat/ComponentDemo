@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
+import com.yijian.staff.widget.NavigationBar2;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -55,6 +56,9 @@ public class ProductDetailActivity extends AppCompatActivity{
         setContentView(R.layout.activity_reception_product_detail);
         ButterKnife.bind(this);
 
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar2);
+        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar2.setBackClickListener(this);
         Intent intent = getIntent();
         if (intent.hasExtra("productDetail")){
             productDetail = intent.getParcelableExtra("productDetail");

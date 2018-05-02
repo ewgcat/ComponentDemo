@@ -96,6 +96,7 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = new Gson().fromJson(result.toString(), TemplateBean.class);
+                if (templateBean==null)return;
 //                view.showQuestion(templateBean);
                 adapter.resetData(templateBean.getDataList());
             }

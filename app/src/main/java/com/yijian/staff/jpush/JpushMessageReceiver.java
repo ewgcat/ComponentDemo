@@ -5,17 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.hengte.retrofit.net.subsrciber.BaseObserver;
+import com.yijian.staff.jpush.bean.Messager;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.bean.ReceptionLog;
+import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.GsonNullString;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -35,23 +43,25 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         if (bundle == null) {
             return;
         }
+//        String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+//        Logger.i(TAG, "bundleString: " + bundleString);
+//        JSONObject jsonObject = null;
+//        try {
+//            if (!TextUtils.isEmpty(bundleString)){
+//                jsonObject = new JSONObject(bundleString);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+
+
+
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
-            Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
-            try {
-                JSONObject jsonObject = new JSONObject(bundleString);
-                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
-                int smallStatus = JsonUtil.getInt(data, "smallStatus");
-                Intent intent1 = new Intent(context,ReceptionStepActivity.class);
-                intent1.putExtra("smallStatus",smallStatus);
-                context.startActivity(intent1);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
@@ -59,7 +69,58 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {//用户点击打开了通知
             Logger.i(TAG, "用户点击打开了通知");
-            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
+//            if (data!=null){
+//                //TODO 根据业务跳转不同页面
+//                int    smallStatus = JsonUtil.getInt(data, "smallStatus");
+//                Intent intent1 = new Intent(context, ReceptionStepActivity.class);
+//                intent1.putExtra("smallStatus", smallStatus);
+//                context.startActivity(intent1);
+//            }
+            String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+            Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
+
+
+            try {
+//                JSONObject jsonObject = new JSONObject(bundleString);
+//                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+//                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+                JSONObject jsonObject = new JSONObject(bundleString);
+                String data = jsonObject.getString("data");
+                JSONObject jsonObject1 = new JSONObject(data);
+                String data1 = jsonObject1.getString("data");
+                Log.e(TAG, "onReceive: "+data );
+                Log.e(TAG, "onReceive:---- "+data1 );
+                Messager messager = GsonNullString.getGson().fromJson(data1, Messager.class);
+                RecptionerInfoBean recptionerInfoBean = new RecptionerInfoBean();
+                recptionerInfoBean.setId(messager.getId());
+                recptionerInfoBean.setStatus(messager.getOperatorType());
+                recptionerInfoBean.setMobile(messager.getMobile());
+                recptionerInfoBean.setName(messager.getName());
+                Integer sex = messager.getSex();
+                if (sex==0){
+                    recptionerInfoBean.setSex("未知");
+                }else if (sex==1){
+                    recptionerInfoBean.setSex("男");
+                }else if (sex==2){
+                    recptionerInfoBean.setSex("女");
+                }
+                List<ReceptionLog> historyNode = messager.getReceptionLogs();
+                List<Integer> nodes=new ArrayList<>();
+                if (historyNode!=null&&!historyNode.isEmpty()){
+                    for (ReceptionLog log :  historyNode) {
+                        nodes.add(log.getOperatorType());
+                    }
+                }
+                recptionerInfoBean.setHistoryNode(nodes);
+                Log.e(TAG, "onReceive: "+recptionerInfoBean.toString());
+                Intent intent1 = new Intent(context,ReceptionStepActivity.class);
+                intent1.putExtra(ReceptionActivity.CONSUMER,recptionerInfoBean);
+                context.startActivity(intent1);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {//回调
             Logger.i(TAG, "用户收到到富媒体推送: " + bundle.getString(JPushInterface.EXTRA_EXTRA));

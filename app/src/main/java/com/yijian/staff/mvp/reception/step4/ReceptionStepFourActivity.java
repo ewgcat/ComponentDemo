@@ -199,6 +199,11 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
 
     }
 
+    @Override
+    public void toReceptionStepFive() {
+
+    }
+
 //    @Override
 //    public void shouldOrderToFinish() {
 //

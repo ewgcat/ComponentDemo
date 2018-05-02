@@ -12,11 +12,13 @@ public interface ReceptionStepFiveContract {
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
         void ShowEndProcess();
+
+        void needEndProcess();
     }
 
     interface Presenter{
 
-        void getStatus(boolean isFirst);
+        void getStatus(boolean isFirst, String memberId);
 
         void endProcess(String memberId);
     }

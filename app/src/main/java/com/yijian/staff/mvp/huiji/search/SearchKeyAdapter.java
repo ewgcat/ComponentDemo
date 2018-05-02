@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -69,6 +70,14 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
                 }
             }
         });
+        holder.iv_remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (removeKeyListener != null) {
+                    removeKeyListener.onClick(searchKey);
+                }
+            }
+        });
         holder.tv_clean_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,11 +102,13 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_key;
+        ImageView iv_remove;
         TextView tv_clean_history;
 
         public ViewHolder(View view) {
             super(view);
             tv_key = view.findViewById(R.id.tv_key);
+            iv_remove = view.findViewById(R.id.iv_remove);
             tv_clean_history = view.findViewById(R.id.tv_clean_history);
 
         }
@@ -105,7 +116,7 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
 
     private ClickKeyListener clickKeyListener;
 
-    public  interface ClickKeyListener {
+    public interface ClickKeyListener {
         void onClick(SearchKey searchKey);
     }
 
@@ -115,11 +126,21 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
 
     private ClearKeyListener clearKeyListener;
 
-    public  interface ClearKeyListener {
+    public interface ClearKeyListener {
         void onClick();
     }
 
     public void setClearKeyListener(ClearKeyListener clearKeyListener) {
+        this.clearKeyListener = clearKeyListener;
+    }
+
+    private RemoveKeyListener removeKeyListener;
+
+    public interface RemoveKeyListener {
+        void onClick(SearchKey searchKey);
+    }
+
+    public void setRemoveKeyListener(RemoveKeyListener removeKeyListener) {
         this.clearKeyListener = clearKeyListener;
     }
 

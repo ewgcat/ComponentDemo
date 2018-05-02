@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
+import com.yijian.staff.widget.NavigationBar2;
 
 /**
  * Created by The_P on 2018/4/24.
@@ -19,6 +20,7 @@ public class Step1Fragment_Message extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step1_message, container, false);
+
         return view;
     }
 }

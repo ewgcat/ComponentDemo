@@ -53,9 +53,8 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
         consumerBean = arguments.getParcelable("recptionerInfoBean");
 
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
-
         navigationBar2.setmRightTvText("下一步");
-        navigationBar2.setmRightTvColor(R.color.white);
+        navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -77,11 +76,12 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_physical_report, container, false);
+
         initView(view);
         PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(getContext());
         physicalReportPresenter.setView(this);
-        physicalReportPresenter.loadData(consumerBean.getId());
         initData();
+        physicalReportPresenter.loadData(consumerBean.getId());
         return view;
     }
 
@@ -92,8 +92,11 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
     }
 
     private void initView(View view) {
-        tvName = view.findViewById(R.id.tv_name);
 
+        NavigationBar2 navigationBar2 = (NavigationBar2) view.findViewById(R.id.physical_report_navigation_bar);
+        navigationBar2.setVisibility(View.GONE);
+        tvName = view.findViewById(R.id.tv_name);
+        tvName.setText(consumerBean.getName());
 
         tvHeight = view.findViewById(R.id.tv_height);
         tvAge = view.findViewById(R.id.tv_age);

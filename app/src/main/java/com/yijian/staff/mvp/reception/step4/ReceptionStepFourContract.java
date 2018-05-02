@@ -15,6 +15,8 @@ public interface ReceptionStepFourContract  {
 
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
+        void toReceptionStepFive();
+
 //        void shouldOrderToFinish();
     }
 
@@ -23,6 +25,6 @@ public interface ReceptionStepFourContract  {
 
         void toReceptionStepFive(String memberId);//到接待第5步
 
-        void getStatus(boolean isFirst);
+        void getStatus(boolean isFirst, String memberId);
     }
 }

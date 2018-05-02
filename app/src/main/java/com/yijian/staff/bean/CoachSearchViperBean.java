@@ -6,6 +6,7 @@ import com.yijian.staff.util.JsonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/29 16:17:53
  */
-public class CoachSearchViperBean {
+public class CoachSearchViperBean implements Serializable{
 
     /**
      * {
@@ -94,6 +95,7 @@ public class CoachSearchViperBean {
     private String seller;
     //("体验课次数")
     private int experienceClassTimes;
+    private int clockedCount;
 
     //("历史课程")
     private String historyCourse;
@@ -107,7 +109,7 @@ public class CoachSearchViperBean {
     private String useCar;
 
     private String mobile ;
-    private Boolean isProtected ;
+    private Boolean underProtected ;
     private String fiirstId;//第一次体验课上课记录id ,
     private String secondId;//第二次体验课上课记录id
 
@@ -195,6 +197,7 @@ public class CoachSearchViperBean {
         this.historyCourse = JsonUtil.getString(jsonObject, "historyCourse");
 
         this.experienceClassTimes = JsonUtil.getInt(jsonObject, "experienceClassTimes");
+        this.clockedCount = JsonUtil.getInt(jsonObject, "clockedCount");
         this.deadline = JsonUtil.getLong(jsonObject, "deadline");
         this.expiryReason = JsonUtil.getString(jsonObject, "expiryReason");
         this.seller = JsonUtil.getString(jsonObject, "seller");
@@ -202,7 +205,7 @@ public class CoachSearchViperBean {
         this.fiirstId = JsonUtil.getString(jsonObject, "fiirstId");
         this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
+        this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
 
         try {
@@ -212,12 +215,16 @@ public class CoachSearchViperBean {
         }
     }
 
+    public int getClockedCount() {
+        return clockedCount;
+    }
+
     public String getMobile() {
         return mobile;
     }
 
     public Boolean getProtected() {
-        return isProtected;
+        return underProtected;
     }
 
     public String getPrivateCourse() {

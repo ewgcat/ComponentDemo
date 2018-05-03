@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,15 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
     private RecptionerInfoBean consumerBean;
     private String memberId;
     private ReceptionStepFivePresenter presenter;
-
+    private static final String TAG = "Step5Fragment_Sale";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
+
+//        Log.e(TAG, "onCreate: "+consumerBean.toString() );
         if (consumerBean==null)return;
         memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();

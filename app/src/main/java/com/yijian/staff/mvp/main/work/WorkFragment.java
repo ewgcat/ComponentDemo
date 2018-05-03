@@ -140,7 +140,11 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
                 break;
             case R.id.ll_jiedai:
-                startActivity(new Intent(getActivity(), ReceptionActivity.class));
+
+//                Intent intent = new Intent(getActivity(), ReceptionActivity.class);
+////                startActivity(intent);
+//                startActivityForResult(intent, RESULT_OK_RECEPTION);
+                if (receptionActivityLisenter!=null)receptionActivityLisenter.startAct();
 
                 break;
             case R.id.iv_all_function:
@@ -148,6 +152,16 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
                 break;
         }
+    }
+
+    public interface ReceptionActivityLisenter{
+        void startAct();
+    }
+
+    private ReceptionActivityLisenter receptionActivityLisenter;
+
+    public void setReceptionActivityLisenter(ReceptionActivityLisenter receptionActivityLisenter) {
+        this.receptionActivityLisenter = receptionActivityLisenter;
     }
 }
 

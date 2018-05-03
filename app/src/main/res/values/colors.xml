@@ -43,6 +43,7 @@
     <color name="gray_bg">#f1f3f5</color>
     <color name="cyan_main">#27b5ce</color>
     <color name="cyan_main_66">#6627b5ce</color>
+    <color name="green">#2cc8a1</color>
 
     <color name="transparent">#00000000</color>
     <color name="black333333">#333333</color>

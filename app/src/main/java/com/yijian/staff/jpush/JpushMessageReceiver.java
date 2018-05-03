@@ -55,7 +55,48 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 //        }
 //        JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
 
+        String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+        Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
+        try {
+//                JSONObject jsonObject = new JSONObject(bundleString);
+//                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
+//                int smallStatus = JsonUtil.getInt(data, "smallStatus");
+            JSONObject jsonObject = new JSONObject(bundleString);
+            String data = jsonObject.getString("data");
+            JSONObject jsonObject1 = new JSONObject(data);
+            String data1 = jsonObject1.getString("data");
+            Log.e(TAG, "onReceive: "+data );
+            Log.e(TAG, "onReceive:---- "+data1 );
+            Messager messager = GsonNullString.getGson().fromJson(data1, Messager.class);
+            RecptionerInfoBean recptionerInfoBean = new RecptionerInfoBean();
+            recptionerInfoBean.setId(messager.getId());
+            recptionerInfoBean.setStatus(messager.getOperatorType());
+            recptionerInfoBean.setMobile(messager.getMobile());
+            recptionerInfoBean.setName(messager.getName());
+            Integer sex = messager.getSex();
+            if (sex==0){
+                recptionerInfoBean.setSex("未知");
+            }else if (sex==1){
+                recptionerInfoBean.setSex("男");
+            }else if (sex==2){
+                recptionerInfoBean.setSex("女");
+            }
+            List<ReceptionLog> historyNode = messager.getReceptionLogs();
+            List<Integer> nodes=new ArrayList<>();
+            if (historyNode!=null&&!historyNode.isEmpty()){
+                for (ReceptionLog log :  historyNode) {
+                    nodes.add(log.getOperatorType());
+                }
+            }
+            recptionerInfoBean.setHistoryNode(nodes);
+            Log.e(TAG, "onReceive: "+recptionerInfoBean.toString());
+            Intent intent1 = new Intent(context,ReceptionStepActivity.class);
+            intent1.putExtra(ReceptionActivity.CONSUMER,recptionerInfoBean);
+            context.startActivity(intent1);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
@@ -76,14 +117,10 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 //                intent1.putExtra("smallStatus", smallStatus);
 //                context.startActivity(intent1);
 //            }
-            String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
-            Logger.i(TAG, "接收到推送下来的自定义消息: " +bundleString);
+
 
 
             try {
-//                JSONObject jsonObject = new JSONObject(bundleString);
-//                JSONObject data = JsonUtil.getJsonObject(jsonObject, "data");
-//                int smallStatus = JsonUtil.getInt(data, "smallStatus");
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);

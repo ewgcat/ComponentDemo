@@ -123,8 +123,8 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         String cardTypeName = productDetail.getCardTypeName();
         tvCardName.setText(""+cardTypeName);
 
-        BigDecimal salePrice = productDetail.getSalePrice();
-        if (salePrice!=null) tvPrice.setText(""+salePrice.doubleValue());
+//        BigDecimal salePrice = productDetail.getSalePrice();
+//        if (salePrice!=null) tvPrice.setText(""+salePrice.doubleValue());
 
         Integer cardType = productDetail.getCardType();// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
         if (cardType!=null){
@@ -150,18 +150,30 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
             tvChangguan.setText(substring);
         }
 
-        Integer validDay = productDetail.getValidDay();
-        if (validDay != null) tvYuer.setText("" + validDay + "天");
+//        Integer validDay = productDetail.getValidDay();
+//        if (validDay != null) tvYuer.setText("" + validDay + "天");
+//
+//        Integer validTime = productDetail.getValidTime();
+//        if (validTime != null) tvYuer.setText("" + validTime + "次");
+//
+//        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
+//        if (rechargeGivePercent != null) {
+//            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//            String format = percent.format(rechargeGivePercent);
+//            tvChuzhiyouhui.setText("赠送" + format);
+//        }
 
-        Integer validTime = productDetail.getValidTime();
-        if (validTime != null) tvYuer.setText("" + validTime + "次");
-
-        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (rechargeGivePercent != null) {
-            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-            String format = percent.format(rechargeGivePercent);
-            tvChuzhiyouhui.setText("赠送" + format);
+        String strRestKey = productDetail.getStrRestKey();
+        String strRestVal = productDetail.getStrRestVal();
+        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+            tvYuer.setText(strRestKey+strRestVal);
         }
+
+        String rechargeGivePercent = productDetail.getRechargeGivePercent();
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+
+        String salePrice = productDetail.getSalePrice();
+        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
 
         List<String> rightsInterestsList = productDetail.getRightsInterestsList();
         if (rightsInterestsList != null && rightsInterestsList.size() != 0) {

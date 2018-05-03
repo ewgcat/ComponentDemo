@@ -49,8 +49,10 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
     }
 
     @Override
-    public void getQuestion() {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
+    public void getQuestion(String memberId) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("memberId",memberId);
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,hashMap, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = GsonNullString.getGson().fromJson(result.toString(), TemplateBean.class);
@@ -63,6 +65,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
             }
         });
     }
+
 
 
     //上传问卷答案
@@ -143,7 +146,6 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
 
         String id = consumerBean.getId();
-//        id="1";
 
         HttpManager.postRecptionRequstion(id, questionnaireAnswerList, new Observer<JSONObject>() {
 
@@ -243,7 +245,6 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
         Map<String,String> params=new HashMap<>();
         String id = consumerBean.getId();
-//        id="3";
         params.put("memberId",""+ id);
         String substring = builder.substring(1);
         params.put("bodyBuildTimes",""+ substring);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -31,6 +32,9 @@ public class RightsAcitity extends AppCompatActivity {
     TextView tvExchangShop;
     @BindView(R.id.tv_back_card)
     TextView tvBackCard;
+    @BindView(R.id.tv_card_transform)
+    TextView tvCardTransform;
+//    tv_card_transform
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,65 +47,95 @@ public class RightsAcitity extends AppCompatActivity {
             ProductDetail productDetail = intent.getParcelableExtra("productDetail");
 
             //延期
-            BigDecimal renewPoundageFee = productDetail.getRenewPoundageFee();
-            BigDecimal renewPoundageType = productDetail.getRenewPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
+            String renewPoundageFee = productDetail.getRenewPoundageFee();
+            Integer renewPoundageType = productDetail.getRenewPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
             if (renewPoundageFee!=null&&renewPoundageType!=null){
                     if (renewPoundageType.intValue()==0){
-                        tvDelay.setText(""+renewPoundageFee.doubleValue()+"元");
+                        tvDelay.setText(""+renewPoundageFee+"元");
                     }else if (renewPoundageType.intValue()==1){
-                        NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-                        tvDelay.setText(""+percent.format(renewPoundageFee.doubleValue()));
+                        tvDelay.setText(""+renewPoundageFee+"%");
                     }
             }
 
             //停卡
-            BigDecimal stopPoundageFee = productDetail.getStopPoundageFee();
-            BigDecimal stopPoundageType = productDetail.getStopPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
+            String stopPoundageFee = productDetail.getStopPoundageFee();
+            Integer stopPoundageType = productDetail.getStopPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
             if (stopPoundageFee!=null&&stopPoundageType!=null){
                 if (stopPoundageType.intValue()==0){
-                    tvStopCard.setText(""+stopPoundageFee.doubleValue()+"元");
+                    tvStopCard.setText(""+stopPoundageFee+"元");
                 }else if (stopPoundageType.intValue()==1){
-                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-                    tvStopCard.setText(""+percent.format(stopPoundageFee.doubleValue()));
+                    tvStopCard.setText(""+stopPoundageFee+"%");
                 }
             }
 
             //转让
-            BigDecimal transferFee = productDetail.getTransferPoundageFee();
-            BigDecimal transferType = productDetail.getTransferPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
+            String transferFee = productDetail.getTransferPoundageFee();
+            String transferType = productDetail.getTransferPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
             if (transferFee!=null&&transferType!=null){
-                if (transferType.intValue()==0){
-                    tvTransform.setText(""+transferFee.doubleValue()+"元");
-                }else if (transferType.intValue()==1){
-                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-                    tvTransform.setText(""+percent.format(transferFee.doubleValue()));
+//                if (transferType.intValue()==0){
+//                    tvTransform.setText(""+transferFee.doubleValue()+"元");
+//                }else if (transferType.intValue()==1){
+//                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//                    tvTransform.setText(""+percent.format(transferFee.doubleValue()));
+//                }
+                if ("0".equals(transferType)){
+                    tvTransform.setText(""+transferFee+"元");
+                }else if ("1".equals(transferType)){
+                    tvTransform.setText(""+transferFee+"%");
                 }
+
             }
 
             //转店
-            BigDecimal changeShopFee = productDetail.getChangeShopPoundageFee();
-            BigDecimal changeShopType = productDetail.getChangeShopPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
+            String changeShopFee = productDetail.getChangeShopPoundageFee();
+            String changeShopType = productDetail.getChangeShopPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
             if (changeShopType!=null&&changeShopFee!=null){
-                if (transferType.intValue()==0){
-                    tvExchangShop.setText(""+changeShopFee.doubleValue()+"元");
-                }else if (transferType.intValue()==1){
-                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-                    tvExchangShop.setText(""+percent.format(changeShopFee.doubleValue()));
+//                if (transferType.intValue()==0){
+//                    tvExchangShop.setText(""+changeShopFee.doubleValue()+"元");
+//                }else if (transferType.intValue()==1){
+//                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//                    tvExchangShop.setText(""+percent.format(changeShopFee.doubleValue()));
+//                }
+
+                if ("0".equals(changeShopType)){
+                    tvExchangShop.setText(""+changeShopFee+"元");
+                }else if ("1".equals(changeShopType)){
+                    tvExchangShop.setText(""+changeShopFee+"%");
                 }
             }
 
 
             //退卡
-            BigDecimal returnShopFee = productDetail.getReturnPoundageFee();
-            BigDecimal returnShopType = productDetail.getReturnPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
+            String returnShopFee = productDetail.getReturnPoundageFee();
+            Integer returnShopType = productDetail.getReturnPoundageType();// 续费折扣类型：0固定金额，1百分比 ,
             if (returnShopType!=null&&returnShopFee!=null){
-                if (transferType.intValue()==0){
-                    tvBackCard.setText(""+returnShopFee.doubleValue()+"元");
-                }else if (transferType.intValue()==1){
-                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-                    tvBackCard.setText(""+percent.format(returnShopFee.doubleValue()));
+//                if (transferType.intValue()==0){
+//                    tvBackCard.setText(""+returnShopFee.doubleValue()+"元");
+//                }else if (transferType.intValue()==1){
+//                    NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//                    tvBackCard.setText(""+percent.format(returnShopFee.doubleValue()));
+//                }
+
+                if (returnShopType.intValue()==0){
+                    tvBackCard.setText(""+returnShopFee+"元");
+                }else if (returnShopType.intValue()==1){
+                    tvBackCard.setText(""+returnShopFee+"%");
+                }
+
+            }
+
+            String switchPoundageFee = productDetail.getSwitchPoundageFee();
+            String switchPoundageType = productDetail.getSwitchPoundageType();
+
+            if (!TextUtils.isEmpty(switchPoundageFee)&&!TextUtils.isEmpty(switchPoundageType)){//卡品转换手续费类型：0固定金额，1百分比 ,
+                if ("0".equals(switchPoundageType)){
+                    tvCardTransform.setText(""+changeShopFee+"元");
+                }else if ("1".equals(switchPoundageType)){
+                    tvCardTransform.setText(""+changeShopFee+"%");
                 }
             }
+
+//            tvCardTransform
 
 
         }

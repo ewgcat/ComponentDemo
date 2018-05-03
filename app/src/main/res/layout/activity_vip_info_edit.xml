@@ -77,7 +77,7 @@
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
-                        <EditText
+                        <!--<EditText
                             android:id="@+id/et_fitnessGoal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -87,7 +87,19 @@
                             android:text="瘦身"
                             android:textColor="#333333"
                             android:textSize="14sp"
-                            android:background="@color/white"/>
+                            android:background="@color/white"/>-->
+
+                        <TextView
+                            android:id="@+id/tv_fitnessGoal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:text="否"
+                            android:drawableRight="@mipmap/lg_xiala"
+                            android:drawablePadding="5dp"
+                            android:textColor="#333333"
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 
@@ -467,7 +479,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="22dp"
                         android:paddingRight="22dp"
-                        android:paddingTop="15dp">
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"

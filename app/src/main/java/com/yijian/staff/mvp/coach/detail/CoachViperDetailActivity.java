@@ -24,7 +24,7 @@ import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivit
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.reception.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
+import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -65,8 +65,6 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     TextView tvBirthdayType;
     @BindView(R.id.tv_viper_type)
     TextView tvViperType;
-    @BindView(R.id.tv_vip_card_num)
-    TextView tvVipCardNum;
     @BindView(R.id.tv_head_info)
     TextView tvHeadInfo;
     @BindView(R.id.tv_zhi_wen_info)
@@ -212,7 +210,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 }
                 break;
             case R.id.ll_edit:
-                Intent intent = new Intent(CoachViperDetailActivity.this, VipInfoEditActivity.class);
+                Intent intent = new Intent(CoachViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
                 intent.putExtra("detail", coachVipDetailBean.getDetail());
                 intent.putExtra("memberId", coachVipDetailBean.getMemberId());
                 intent.putExtra("source", coachVipDetailBean.getCustomerServiceInfo().getUserChannel());
@@ -293,7 +291,6 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         }
         tvBirthdayType.setText(coachVipDetailBean.getBirthdayType());
         tvViperType.setText(coachVipDetailBean.getMemberType());
-        tvVipCardNum.setText(coachVipDetailBean.getMemberCardNo());
         tvHeadInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getHeadImg())) ? "未录入" : "未录入");
         tvZhiWenInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFingerprint())) ? "未录入" : "未录入");
         tvJinMaiInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getVein())) ? "未录入" : "未录入");

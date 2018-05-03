@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.huiji.edit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -32,12 +33,12 @@ import butterknife.OnClick;
 /**
  * 会员信息编辑页
  */
-public class VipInfoEditActivity extends AppCompatActivity {
+public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_source)
     TextView tv_source;
-    @BindView(R.id.et_fitnessGoal)
-    EditText et_fitnessGoal;
+    @BindView(R.id.tv_fitnessGoal)
+    TextView tv_fitnessGoal;
     @BindView(R.id.tv_onceJoinedClub)
     TextView tv_onceJoinedClub;
     @BindView(R.id.et_clubBrand)
@@ -75,17 +76,17 @@ public class VipInfoEditActivity extends AppCompatActivity {
     List<String> nationalityList = new ArrayList<String>();  //国籍集合
     List<String> occupationList = new ArrayList<String>();  //职业集合
     List<String> hobbyList = new ArrayList<String>();  //爱好集合
+    List<String> bodybuildingList = new ArrayList<String>();  //健身目的
+
 
     List<String> resuorceIdList = new ArrayList<>(); //用户获取渠道集合
-    List<String> onceJoinedClubIdList = new ArrayList<>();  //是否参加过俱乐部集合
     List<String> yearIncomeIdList = new ArrayList<>();  //年收入集合
     List<String> carPriceIdList = new ArrayList();  //用车价格集合
     List<String> nationIdList = new ArrayList<>(); // 名族集合
-    List<String> hasChildrenIdList = new ArrayList<>();  //是否有子女集合
-    List<String> marriageStatusIdList = new ArrayList<>();  //婚姻状况集合
     List<String> nationalityIdList = new ArrayList<>();  //国籍集合
     List<String> occupationIdList = new ArrayList<>();  //职业集合
     List<String> hobbyIdList = new ArrayList<>();  //爱好集合
+    List<String> bodybuildingIdList = new ArrayList<String>();  //健身目的
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +99,6 @@ public class VipInfoEditActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        downSourceFromService();
         memberId = getIntent().getStringExtra("memberId");
         detailBean = (VipDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
         resource = getIntent().getStringExtra("source");
@@ -118,7 +118,8 @@ public class VipInfoEditActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.right_tv, R.id.tv_source, R.id.tv_onceJoinedClub, R.id.tv_carPrice,
-            R.id.tv_yearIncome, R.id.tv_nationality, R.id.tv_nation, R.id.tv_marriageStatus, R.id.tv_hasChildren, R.id.tv_occupation,R.id.tv_hobby})
+            R.id.tv_yearIncome, R.id.tv_nationality, R.id.tv_nation, R.id.tv_marriageStatus,
+            R.id.tv_hasChildren, R.id.tv_occupation, R.id.tv_hobby, R.id.tv_fitnessGoal})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
@@ -151,8 +152,11 @@ public class VipInfoEditActivity extends AppCompatActivity {
             case R.id.tv_occupation: // 职业
                 manualPickedView(occupationList, "", tv_occupation);
                 break;
-                case R.id.tv_hobby: // 爱好
+            case R.id.tv_hobby: // 爱好
                 manualPickedView(hobbyList, "", tv_hobby);
+                break;
+            case R.id.tv_fitnessGoal:  //健身目的
+                manualPickedView(bodybuildingList, "", tv_fitnessGoal);
                 break;
         }
     }
@@ -166,32 +170,33 @@ public class VipInfoEditActivity extends AppCompatActivity {
         paramMap.put("address", et_address.getText().toString());
         paramMap.put("carPrice", carPriceIdList.get(carPriceList.indexOf(tv_carPrice.getText().toString())));
         paramMap.put("clubBrand", et_clubBrand.getText().toString());
-        paramMap.put("fitnessGoal", et_fitnessGoal.getText().toString());
+        paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
         paramMap.put("hasChildren", ("有".equals(tv_hasChildren.getText().toString())));
         paramMap.put("hobby", hobbyIdList.get(hobbyList.indexOf(tv_hobby.getText().toString())));
         paramMap.put("marriageStatus", ("未婚".equals(tv_marriageStatus.getText().toString())) ? 0 : 1);
         paramMap.put("memberId", memberId);
         paramMap.put("nation", nationIdList.get(nationList.indexOf(tv_nation.getText().toString())));//tv_nation.getText().toString()
-        paramMap.put("nationality",nationalityIdList.get(nationalityList.indexOf(tv_nationality.getText().toString())) ); //tv_nationality.getText().toString()
+        paramMap.put("nationality", nationalityIdList.get(nationalityList.indexOf(tv_nationality.getText().toString()))); //tv_nationality.getText().toString()
         paramMap.put("occupation", occupationIdList.get(occupationList.indexOf(tv_occupation.getText().toString()))); //tv_occupation.getText().toString()
         paramMap.put("onceJoinedClub", ("有".equals(tv_onceJoinedClub.getText().toString())));
         paramMap.put("source", resuorceIdList.get(resuorceList.indexOf(tv_source.getText().toString()))); //tv_source.getText().toString()
         paramMap.put("yearIncome", yearIncomeIdList.get(yearIncomeList.indexOf(tv_yearIncome.getText().toString()))); //tv_yearIncome.getText().toString()
 
 
-
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
 
-        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL,  editHuiJiVipBody, new ResultJSONObjectObserver() {
+        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
+                Toast.makeText(HuiJiVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                setResult(1);
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(VipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuiJiVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -203,7 +208,7 @@ public class VipInfoEditActivity extends AppCompatActivity {
      */
     private void updateUi() {
         tv_source.setText(resource);
-        et_fitnessGoal.setText(detailBean.getFitnessGoal());
+        tv_fitnessGoal.setText(detailBean.getFitnessGoal());
         tv_onceJoinedClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
         et_clubBrand.setText(detailBean.getClubBrand());
         tv_yearIncome.setText(detailBean.getYearIncome());
@@ -215,7 +220,7 @@ public class VipInfoEditActivity extends AppCompatActivity {
         tv_marriageStatus.setText(detailBean.getMarriageStatus());
         tv_hasChildren.setText(detailBean.getChildrenStatus());
         et_address.setText(detailBean.getAddress());
-
+        downSourceFromService();
     }
 
     /**
@@ -252,67 +257,128 @@ public class VipInfoEditActivity extends AppCompatActivity {
         marriageStatusList.add("已婚");
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL,  new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
-                    JSONArray jsonArray = result.getJSONArray("dicts");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                        Integer dictId = jsonObject.getInt("dictId");
-                        JSONArray itemJsonArray = jsonObject.getJSONArray("items");
-                        switch (dictId) {
-                            case 5: // 装载用户获取渠道集合
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    resuorceList.add(itemJsonObj.getString("dictItemName"));
-                                    resuorceIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 14: // 名族集合
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    nationList.add(itemJsonObj.getString("dictItemName"));
-                                    nationIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 17: // 年收入集合
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    yearIncomeList.add(itemJsonObj.getString("dictItemName"));
-                                    yearIncomeIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 4: // 国籍集合
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    nationalityList.add(itemJsonObj.getString("dictItemName"));
-                                    nationalityIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 13: // 用车价值
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    carPriceList.add(itemJsonObj.getString("dictItemName"));
-                                    carPriceIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 15: // 职业
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    occupationList.add(itemJsonObj.getString("dictItemName"));
-                                    occupationIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                            case 8: // 爱好
-                                for (int j = 0; j < itemJsonArray.length(); j++) {
-                                    JSONObject itemJsonObj = (JSONObject) itemJsonArray.get(j);
-                                    hobbyList.add(itemJsonObj.getString("dictItemName"));
-                                    hobbyIdList.add(itemJsonObj.getString("dictItemId"));
-                                }
-                                break;
-                        }
+
+                    //用户获取渠道
+                    JSONObject yhhqqd = result.getJSONObject("YHHQQD");
+                    JSONArray yhhqqdJsonArray = yhhqqd.getJSONArray("items");
+                    for (int j = 0; j < yhhqqdJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) yhhqqdJsonArray.get(j);
+                        resuorceList.add(itemJsonObj.getString("dictItemName"));
+                        resuorceIdList.add(itemJsonObj.getString("dictItemId"));
                     }
+
+                    //年收入
+                    JSONObject nsr = result.getJSONObject("NSR");
+                    JSONArray nsrJsonArray = nsr.getJSONArray("items");
+                    for (int j = 0; j < nsrJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) nsrJsonArray.get(j);
+                        yearIncomeList.add(itemJsonObj.getString("dictItemName"));
+                        yearIncomeIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //用车价格
+                    JSONObject ycjz = result.getJSONObject("YCJZ");
+                    JSONArray ycjzJsonArray = ycjz.getJSONArray("items");
+                    for (int j = 0; j < ycjzJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) ycjzJsonArray.get(j);
+                        carPriceList.add(itemJsonObj.getString("dictItemName"));
+                        carPriceIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //爱好
+                    JSONObject xqah = result.getJSONObject("XQAH");
+                    JSONArray xqahJsonArray = xqah.getJSONArray("items");
+                    for (int j = 0; j < xqahJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) xqahJsonArray.get(j);
+                        hobbyList.add(itemJsonObj.getString("dictItemName"));
+                        hobbyIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //国籍
+                    JSONObject gj = result.getJSONObject("GJ");
+                    JSONArray gjJsonArray = gj.getJSONArray("items");
+                    for (int j = 0; j < gjJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) gjJsonArray.get(j);
+                        nationalityList.add(itemJsonObj.getString("dictItemName"));
+                        nationalityIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //名族
+                    JSONObject mz = result.getJSONObject("MZ");
+                    JSONArray mzJsonArray = mz.getJSONArray("items");
+                    for (int j = 0; j < mzJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) mzJsonArray.get(j);
+                        nationList.add(itemJsonObj.getString("dictItemName"));
+                        nationIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //职务
+                    JSONObject zw = result.getJSONObject("ZW");
+                    JSONArray zwJsonArray = zw.getJSONArray("items");
+                    for (int j = 0; j < zwJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) zwJsonArray.get(j);
+                        occupationList.add(itemJsonObj.getString("dictItemName"));
+                        occupationIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    //健身目的
+                    JSONObject jsmd = result.getJSONObject("JSMD");
+                    JSONArray jsmdJsonArray = jsmd.getJSONArray("items");
+                    for (int j = 0; j < jsmdJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) jsmdJsonArray.get(j);
+                        bodybuildingList.add(itemJsonObj.getString("dictItemName"));
+                        bodybuildingIdList.add(itemJsonObj.getString("dictItemId"));
+                    }
+
+                    if(TextUtils.isEmpty(tv_source.getText().toString())){
+                        tv_source.setText(resuorceList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_fitnessGoal.getText().toString())){
+                        tv_fitnessGoal.setText(bodybuildingList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_onceJoinedClub.getText().toString())){
+                        tv_onceJoinedClub.setText(onceJoinedClubList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_yearIncome.getText().toString())){
+                        tv_yearIncome.setText(yearIncomeList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_carPrice.getText().toString())){
+                        tv_carPrice.setText(carPriceList.get(0));
+                    }
+
+                     if(TextUtils.isEmpty(tv_hobby.getText().toString())){
+                         tv_hobby.setText(hobbyList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_nationality.getText().toString())){
+                        tv_nationality.setText(nationalityList.get(0));
+                    }
+
+                     if(TextUtils.isEmpty(tv_nation.getText().toString())){
+                         tv_nation.setText(nationList.get(0));
+                    }
+
+                     if(TextUtils.isEmpty(tv_occupation.getText().toString())){
+                         tv_occupation.setText(occupationList.get(0));
+                    }
+
+                     if(TextUtils.isEmpty(tv_marriageStatus.getText().toString())){
+                         tv_marriageStatus.setText(marriageStatusList.get(0));
+                    }
+
+                    if(TextUtils.isEmpty(tv_hasChildren.getText().toString())){
+                        tv_hasChildren.setText(hasChildrenList.get(0));
+                    }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -320,7 +386,7 @@ public class VipInfoEditActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(VipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuiJiVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

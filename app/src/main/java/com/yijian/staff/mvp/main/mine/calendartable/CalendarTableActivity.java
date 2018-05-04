@@ -158,7 +158,6 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
 
     @Override
     public void onChangeDate(CalendarDay calendarDay) {
-        Log.e("Test","calendarDay==="+calendarDay);
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(calendarDay);
         currentDay = calendarDay;

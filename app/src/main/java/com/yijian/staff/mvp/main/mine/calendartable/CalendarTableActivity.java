@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +68,8 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
     }
 
     private void initView() {
-        currentDay = CalendarDay.today();
+        Calendar calendar = Calendar.getInstance();
+        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
         titleChanger = new TitleChanger(tv_change_date);
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
         titleChanger.setPreviousMonth(currentDay);
@@ -105,19 +109,6 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
         selectedIndex = index;
         setBotoomStyle(index);
         hideFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        hideAllIndex(transaction);
-//        switch (index) {
-//            case 0:
-////                popFragement(transaction, dayFragment, index);
-//                popFragement(transaction, dayFragment_ycm, index);
-//                break;
-//            case 1:
-//                popFragement(transaction, weekFragment, index);
-//                break;
-//        }
-//        transaction.commit();
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (index) {
 
@@ -145,45 +136,6 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
 
     }
 
-//    public void popFragement(FragmentTransaction transaction, Fragment fragment, int index) {
-//        if (fragment == null) {
-//            // 如果ViperFragment为空，则创建一个并添加到界面上
-//            if (index == 0) {
-////                dayFragment = DayFragment.getInstance();
-////                dayFragment.setOnChangeDateListener(this);
-////                transaction.add(R.id.fl_calendarTab, dayFragment, FRAGMENT_TAG[index]);
-//
-//                dayFragment_ycm = DayFragment_ycm.getInstance();
-//                transaction.add(R.id.fl_calendarTab, dayFragment_ycm, FRAGMENT_TAG[index]);
-//                transaction.show(dayFragment_ycm);
-//
-//            } else if (index == 1) {
-////                weekFragment = WeekFragment.getInstance();
-////                transaction.add(R.id.fl_calendarTab, weekFragment, FRAGMENT_TAG[index]);
-//
-//                weekFragment= WeekFragment_ycm.getInstance();
-//                transaction.add(R.id.fl_calendarTab, weekFragment, FRAGMENT_TAG[index]);
-//                transaction.show(weekFragment);
-//            }
-//        } else {
-//            // 如果ViperFragment不为空，则直接将它显示出来
-//            transaction.show(fragment);
-//        }
-//
-//    }
-
-//    隐藏所有的Fragment
-//    public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-//        Fragment fragment = DayFragment.getInstance();
-//        if (fragment.isAdded()) {
-//            fragmentTransaction.hide(fragment);
-//        }
-//        fragment = WeekFragment.getInstance();
-//        if (fragment.isAdded()) {
-//            fragmentTransaction.hide(fragment);
-//        }
-//    }
-
     private void hideFragment() {
         FragmentManager fm = getSupportFragmentManager();
         // 开启Fragment事务
@@ -206,6 +158,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
 
     @Override
     public void onChangeDate(CalendarDay calendarDay) {
+        Log.e("Test","calendarDay==="+calendarDay);
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(calendarDay);
         currentDay = calendarDay;

@@ -166,9 +166,9 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chakan_hetong:
-                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
+                /*Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
                 intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                startActivity(intent1);
+                startActivity(intent1);*/
                 break;
             case R.id.ll_chakan_wenjuan:
                 Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
@@ -181,7 +181,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
                 intent.putExtra("detail", vipDetailBean.getDetail());
                 intent.putExtra("memberId", vipDetailBean.getMemberId());
                 intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
-
+                intent.putExtra("name", vipDetailBean.getName());
                 startActivityForResult(intent, 0);
 
                 break;
@@ -287,6 +287,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
+        tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
     }
 
     private String judgeNull(String str) {

@@ -1,19 +1,24 @@
 package com.yijian.staff.mvp.coach.setclass;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.setclass.bean.AerobicsBean;
 import com.yijian.staff.mvp.coach.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.coach.setclass.bean.PowerBean;
+import com.yijian.staff.mvp.coach.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -27,6 +32,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ExperienceClassRecordActivity extends AppCompatActivity {
 
@@ -61,7 +67,7 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_experience_class_record);
         ButterKnife.bind(this);
         initView();
-        initData();
+//        initData();
     }
 
     private void initView() {
@@ -81,8 +87,8 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
         String startTime = getIntent().getStringExtra("startDateTime");
         String endTime = getIntent().getStringExtra("endDateTime");
         String startDate = getIntent().getStringExtra("startDate");
-        tv_shangke.setText(startDate+" "+startTime);
-        tv_xiake.setText(startDate+" "+endTime);
+        tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(startTime));
+        tv_xiake.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(endTime));
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
@@ -105,9 +111,9 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        Map<String,String> map = new HashMap<>();
-        map.put("privateApplyId",getIntent().getStringExtra("privateApplyId"));
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map,  new ResultJSONObjectObserver() {
+        Map<String, String> map = new HashMap<>();
+        map.put("privateApplyId", getIntent().getStringExtra("privateApplyId"));
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray noInstrumentJsonArray = JsonUtil.getJsonArray(result, "noInstrumentList");
@@ -129,4 +135,15 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
         });
 
     }
+
+    @OnClick({R.id.rel_to_record})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.rel_to_record: // 上课打卡
+                startActivity(new Intent(this, ExperienceClassRecord2Activity.class));
+                break;
+
+        }
+    }
+
 }

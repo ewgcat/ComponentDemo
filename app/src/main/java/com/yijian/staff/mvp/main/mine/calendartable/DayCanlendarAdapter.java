@@ -142,6 +142,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                         if("0".equals(dayCanlendarInfo.getIsUseTemplate())){ //体验课：0：用体侧模板，1：私教课模板 ,
                             Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
                             intent.putExtra("privateApplyId",dayCanlendarInfo.getId());
+                            intent.putExtra("recordId",(dayCanlendarInfo.getExperienceRecordId()==null)?"":dayCanlendarInfo.getExperienceRecordId());
                             context.startActivity(intent);
                         }else if("1".equals(dayCanlendarInfo.getIsUseTemplate())){
                             Intent intent = new Intent(context, OpenLessonNewActivity.class);
@@ -150,6 +151,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                             intent.putExtra("endDateTime",dayCanlendarInfo.getEndDatetime());
                             intent.putExtra("startDate",dayCanlendarInfo.getStartDate());
                             intent.putExtra("punchStatus",punchStatus);
+                            intent.putExtra("recordId",(dayCanlendarInfo.getExperienceRecordId()==null)?"":dayCanlendarInfo.getExperienceRecordId());
                             context.startActivity(intent);
                         }
 

@@ -24,7 +24,9 @@
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowIsTranslucent">false</item>>
+        <item name="android:windowBackground">@mipmap/splash</item>
+
     </style>
 
     <style name="MainTheme" parent="AppTheme">

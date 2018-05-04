@@ -23,8 +23,9 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.viperlist.adapter.HuiJiTodayVisitAdapter;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
-import com.yijian.staff.mvp.huiji.viperlist.HuijiViperListAdapter;
+import com.yijian.staff.mvp.huiji.viperlist.adapter.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
@@ -58,7 +59,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
 
     private static HuijiTodayVisitFragment huijiTodayVisitFragment;
-    private final HuijiViperListAdapter huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList,false);
+    private final HuiJiTodayVisitAdapter huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(), viperBeanList);
 
     public static HuijiTodayVisitFragment getInstance(){
         if(huijiTodayVisitFragment == null){

@@ -87,7 +87,8 @@ public class HuiJiViperBean implements Serializable {
     private String useCar;
 
     private String mobile ;
-    private Boolean isProtected ;
+    private Boolean underProtected;
+    private int clockedCount;
 
     /**
      * CoachExpireVO：教练过期
@@ -118,6 +119,7 @@ public class HuiJiViperBean implements Serializable {
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.cardName = JsonUtil.getString(jsonObject, "cardName");
         this.cardType = JsonUtil.getString(jsonObject, "cardType");
+        this.clockedCount = JsonUtil.getInt(jsonObject, "clockedCount");
 
         this.privateCoach = JsonUtil.getString(jsonObject, "privateCoach");
         this.privateCourse = JsonUtil.getString(jsonObject, "privateCourse");
@@ -142,7 +144,7 @@ public class HuiJiViperBean implements Serializable {
         this.visitTime = JsonUtil.getString(jsonObject, "visitTime");
         this.leaveTime = JsonUtil.getString(jsonObject, "leaveTime");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.isProtected = JsonUtil.getBoolean(jsonObject, "protected");
+        this.underProtected = JsonUtil.getBoolean(jsonObject, "protected");
 
         try {
             if (jsonObject.has("contractIds")){
@@ -161,12 +163,16 @@ public class HuiJiViperBean implements Serializable {
 
     }
 
+    public int getClockedCount() {
+        return clockedCount;
+    }
+
     public String getMobile() {
         return mobile;
     }
 
     public Boolean getProtected() {
-        return isProtected;
+        return underProtected;
     }
 
     public String getPrivateCourse() {

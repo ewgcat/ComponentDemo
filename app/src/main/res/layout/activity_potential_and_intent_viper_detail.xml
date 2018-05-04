@@ -16,44 +16,49 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/ll_chakan_hetong"
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_chakan_hetong"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:drawableLeft="@mipmap/wt_hetong"-->
+                <!--android:drawablePadding="5dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="回访"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="14sp" />-->
+        <!--</LinearLayout>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/wt_hetong"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="回访"
-                android:textColor="@color/blue"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_chakan_wenjuan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <View
+                style="@style/SplitLineStyle"
+                android:layout_alignParentTop="true"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:drawableLeft="@mipmap/wt_wenjuan"
                 android:drawablePadding="5dp"
                 android:gravity="center"
+                android:layout_centerInParent="true"
                 android:text="邀约"
                 android:textColor="@color/blue"
                 android:textSize="14sp" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -69,7 +74,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -91,7 +96,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_head"
                     android:orientation="vertical"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp">
 
                     <TextView
@@ -106,8 +113,16 @@
 
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/iv_visit"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/dianhua"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1051,7 +1066,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="15dp"
@@ -1078,7 +1093,7 @@
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </LinearLayout>
 

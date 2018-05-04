@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.huiji.intent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,9 +11,10 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.edit.VipInfoEditActivity;
+import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -95,11 +97,9 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     TextView tvHomeLocation;
     @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
-    @BindView(R.id.tv_lianxiren_phone)
-    TextView tvLianxirenPhone;
+
 
     VipDetailBean vipDetailBean;
-
 
 
     @Override
@@ -119,7 +119,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     }
 
 
-    private void loadData(String id){
+    private void loadData(String id) {
 
 
         HashMap<String, String> map = new HashMap<>();
@@ -128,67 +128,81 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(),VipDetailBean.class);
+                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
                 updateUi(vipDetailBean);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(HuijiIntentViperDetailActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void updateUi(VipDetailBean vipDetailBean){
-        ImageLoader.load(this,(vipDetailBean.getHeadImg()==null)?"":vipDetailBean.getHeadImg(),ivHead);
-        tvName.setText(vipDetailBean.getName());
-        tvSex.setText(vipDetailBean.getSex());
-        tvPhone.setText(vipDetailBean.getMobile());
-        tvBirthday.setText(vipDetailBean.getBirthday());
-        tvBirthdayType.setText(vipDetailBean.getBirthdayType());
-        tv_certificateType.setText(vipDetailBean.getCertificateType());
-        tvShenfencardNum.setText(vipDetailBean.getCertificateNo());
+    private void updateUi(VipDetailBean vipDetailBean) {
+        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), this, ivHead);
+        tvName.setText(judgeNull(vipDetailBean.getName()));
+        tvSex.setText(judgeNull(vipDetailBean.getSex()));
+        tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
+        tvBirthday.setText(judgeNull(vipDetailBean.getBirthday()));
+        tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
+        tv_certificateType.setText(judgeNull(vipDetailBean.getCertificateType()));
+        tvShenfencardNum.setText(judgeNull(vipDetailBean.getCertificateNo()));
 
         //详情信息
         VipDetailBean.DetailBean detailBean = vipDetailBean.getDetail();
-        tvWechatNum.setText(detailBean.getWechatNo());
-        tvEmail.setText(detailBean.getEmail());
-        tvShengao.setText(detailBean.getHeight());
-        tvWeight.setText(detailBean.getWeight());
-        tvGuaoJi.setText(detailBean.getNationality());
-        tvJiguan.setText(detailBean.getNativePlace());
-        tvMinzu.setText(detailBean.getNation());
-        tvShentiStatus.setText(detailBean.getHealthStatus());
-        tvJianshenAihao.setText(detailBean.getFitnessHobby());
-        tvJianshenMudi.setText(detailBean.getFitnessGoal());
-        tvXingquAihao.setText(detailBean.getHobby());
-        tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub())?"是":"否");
-        tvCanjiaClubName.setText(detailBean.getClubBrand());
-        tvYearIncome.setText(detailBean.getYearIncome());
-        tvCarValue.setText(detailBean.getCarPrice());
-        tvMarryStatus.setText(detailBean.getMarriageStatus());
-        tvChildrenStatus.setText(detailBean.getChildrenStatus());
-        tvHangye.setText(detailBean.getOccupation());
-        tvZhiwu.setText(detailBean.getPosition());
-        tvCompanyName.setText(detailBean.getCompany());
-        tvCompanyPhone.setText(detailBean.getCompanyPhone());
-        tvCompanyLocation.setText(detailBean.getCompanyAddress());
-        tvJinJiLianxiren.setText(detailBean.getUrgentContact());
-        tvLianxirenPhone.setText(detailBean.getCompanyPhone());
+        tvWechatNum.setText(judgeNull(detailBean.getWechatNo()));
+        tvEmail.setText(judgeNull(detailBean.getEmail()));
+        tvShengao.setText(judgeNull(detailBean.getHeight()));
+        tvWeight.setText(judgeNull(detailBean.getWeight()));
+        tvGuaoJi.setText(judgeNull(detailBean.getNationality()));
+        tvJiguan.setText(judgeNull(detailBean.getNativePlace()));
+        tvMinzu.setText(judgeNull(detailBean.getNation()));
+        tvShentiStatus.setText(judgeNull(detailBean.getHealthStatus()));
+        tvJianshenAihao.setText(judgeNull(detailBean.getFitnessHobby()));
+        tvJianshenMudi.setText(judgeNull(detailBean.getFitnessGoal()));
+        tvXingquAihao.setText(judgeNull(detailBean.getHobby()));
+        tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
+        tvCanjiaClubName.setText(judgeNull(detailBean.getClubBrand()));
+        tvYearIncome.setText(judgeNull(detailBean.getYearIncome()));
+        tvCarValue.setText(judgeNull(detailBean.getCarPrice()));
+        tvMarryStatus.setText(judgeNull(detailBean.getMarriageStatus()));
+        tvChildrenStatus.setText(judgeNull(detailBean.getChildrenStatus()));
+        tvHangye.setText(judgeNull(detailBean.getOccupation()));
+        tvZhiwu.setText(judgeNull(detailBean.getPosition()));
+        tvCompanyName.setText(judgeNull(detailBean.getCompany()));
+        tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
+        tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
+        tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
 
     }
 
-    @OnClick({R.id.ll_edit})
+    private String judgeNull(String str) {
+        return TextUtils.isEmpty(str) ? "未录入" : str;
+    }
+
+    @OnClick({R.id.ll_edit, R.id.ll_chakan_wenjuan, R.id.iv_visit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_edit:
-                Intent intent = new Intent(HuijiIntentViperDetailActivity.this, VipInfoEditActivity.class);
-                intent.putExtra("detail",vipDetailBean.getDetail());
-                intent.putExtra("memberId",vipDetailBean.getMemberId());
-                intent.putExtra("source",vipDetailBean.getCustomerServiceInfo().getUserChannel());
+                Intent intent = new Intent(HuijiIntentViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
+                intent.putExtra("detail", vipDetailBean.getDetail());
+                intent.putExtra("memberId", vipDetailBean.getMemberId());
+                intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
 
                 startActivity(intent);
 
+                break;
+            case R.id.ll_chakan_wenjuan: //邀约
+
+                break;
+            case R.id.iv_visit: //回访
+                String mobile = vipDetailBean.getMobile();
+                if (!TextUtils.isEmpty(mobile)){
+                    CommonUtil.callPhone(this,mobile);
+                } else {
+                    Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

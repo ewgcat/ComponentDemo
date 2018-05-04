@@ -98,28 +98,28 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
                 context.startActivity(intent);
             }
         });
-
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected) {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.suo);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
-            holder.tv_call.setText("保护7天");
+            holder.iv_call.setVisibility(View.GONE);
+            holder.tv_call.setVisibility(View.VISIBLE);
+            holder.iv_suo.setVisibility(View.VISIBLE);
+
         } else {
-            Drawable jd_choose = context.getResources().getDrawable(R.mipmap.dianhua);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            holder.tv_call.setCompoundDrawables(jd_choose, null, null, null);
-            holder.tv_call.setText("");
+            Glide.with(context).load(R.mipmap.dianhua).apply(options).into(holder.iv_call);
+            holder.tv_call.setVisibility(View.GONE);
+            holder.iv_suo.setVisibility(View.GONE);
+            holder.iv_call.setVisibility(View.VISIBLE);
+
             String mobile = coachViperBean.getMobile();
-            holder.tv_call.setOnClickListener(new View.OnClickListener() {
+            holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!TextUtils.isEmpty(mobile)){
-                        if (CommonUtil.isPhoneFormat(mobile)){
+                    if (!TextUtils.isEmpty(mobile)) {
+                        if (CommonUtil.isPhoneFormat(mobile)) {
                             CommonUtil.callPhone(context, mobile);
                             HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId","4");
-                            param.put("memberId",coachViperBean.getMemberId());
+                            param.put("interviewRecordId", "4");
+                            param.put("memberId", coachViperBean.getMemberId());
                             HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
                                 @Override
                                 public void onSuccess(JSONObject result) {
@@ -131,16 +131,15 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
                                 }
                             });
-                        }else {
-                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
-                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
-
     }
 
     @Override
@@ -154,8 +153,10 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
         ImageView iv_header;
         ImageView iv_gender;
         ImageView iv_call;
+        ImageView iv_suo;
         TextView tv_name;
         TextView tv_call;
+
         LinearLayout lin_content;
 
         public ViewHolder(View view) {
@@ -164,6 +165,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             iv_call = view.findViewById(R.id.iv_call);
+            iv_suo = view.findViewById(R.id.iv_suo);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);
         }

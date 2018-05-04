@@ -54,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:textColor="#333333"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <ImageView
                             android:id="@+id/iv_gender"
@@ -76,18 +76,30 @@
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/tv_call"
+
+
+            <ImageView
+                android:id="@+id/iv_suo"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:textSize="14sp" />
+                android:src="@mipmap/suo"
+                android:layout_marginRight="6dp"
+                />
+            <TextView
+                android:id="@+id/tv_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="保护7天"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
             <ImageView
                 android:id="@+id/iv_call"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="16dp"
                 android:textSize="14sp" />
-
 
         </LinearLayout>
 

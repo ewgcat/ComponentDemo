@@ -72,6 +72,15 @@ public class VipDetailBean  {
     private String subclassName;
     /**静脉信息**/
     private String vein;
+    private String faceInfo;
+
+    public String getFaceInfo() {
+        return faceInfo;
+    }
+
+    public void setFaceInfo(String faceInfo) {
+        this.faceInfo = faceInfo;
+    }
 
     public String getActivateCardTime() {
         return activateCardTime;

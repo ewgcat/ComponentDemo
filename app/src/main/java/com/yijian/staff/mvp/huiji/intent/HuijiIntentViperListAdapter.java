@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.intent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -9,13 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -43,80 +47,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
     @Override
     public void onBindViewHolder(HuijiIntentViperListAdapter.ViewHolder holder, int position) {
         HuiJiViperBean viperBean = viperBeanList.get(position);
-        holder.tv_name.setText(viperBean.getName());
-        holder.tv_birth.setText(viperBean.getBirthday());
-        holder.tv_birth_type.setText(viperBean.getBirthdayType());
-        holder.tv_bodybuildingHobby.setText(viperBean.getFitnessHobby());
-        holder.tv_bodyStatus.setText(viperBean.getHealthStatus());
-        holder.tv_interestHobby.setText(viperBean.getHobby());
-        holder.iv_gender.setImageResource("1".equals(viperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
-        holder.tv_useCar.setText(viperBean.getUseCar());
-
-        //TODO 回访 根据后台返回，保护7天是不能电话回访，不是保护七天时，可以电话回访
-       /* holder.lin_protect_seven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
-
-        //邀约
-        /*holder.lin_invitation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context, InvateIndexActivity.class));
-
-            }
-        });*/
-
-        holder.ll_content.setTag(position);
-        //详情
-        holder.ll_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int tag = (int) v.getTag();
-                HuiJiViperBean tempViperBean = viperBeanList.get(tag);
-                Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                intent.putExtra("id",tempViperBean.getMemberId());
-                context.startActivity(intent);
-            }
-        });
-
-        //回访
-        Boolean isProtected = viperBean.getProtected();
-        if (isProtected){
-            holder.iv_huifang.setImageResource(R.mipmap.my_password_new);
-            holder.tv_huifang.setText("保护7天");
-        }else {
-            holder.iv_huifang.setImageResource(R.mipmap.wt_huifang);
-            holder.tv_huifang.setText("回访");
-            String mobile = viperBean.getMobile();
-            holder.lin_huifan.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
-                    } else {
-                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-        }
-
-        //邀约
-        holder.lin_yaoyue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,InvateIndexActivity.class);
-                intent.putExtra("memberId",viperBean.getMemberId());
-                intent.putExtra("memberType","0"); //会员类型（0:潜在会员 1:意向会员）
-                context.startActivity(intent);
-            }
-        });
-
-
+        holder.bind(context,viperBean);
     }
 
     @Override
@@ -126,21 +57,12 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView iv_header;
-        ImageView iv_gender;
-        TextView tv_name;
-        TextView tv_birth;
-        TextView tv_birth_type;
-        TextView tv_bodyStatus;
-        TextView tv_bodybuildingHobby;
-        TextView tv_interestHobby;
-        TextView tv_useCar;
-        LinearLayout ll_content; //真个Item条目
-
-        LinearLayout lin_huifan;
-        LinearLayout lin_yaoyue;
-        ImageView iv_huifang;
-        TextView tv_huifang;
+        private ImageView iv_header;
+        private ImageView iv_gender;
+        private TextView tv_name;
+        private TextView tv_protect_seven;
+        private ImageView iv_visit;
+        private RelativeLayout rel_content;
 
 
         public ViewHolder(View view) {
@@ -148,21 +70,39 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
-            tv_birth = view.findViewById(R.id.tv_birth);
-            tv_birth_type = view.findViewById(R.id.tv_birth_type);
-            tv_bodyStatus = view.findViewById(R.id.tv_bodyStatus);
-            ll_content = view.findViewById(R.id.ll_content);
-            tv_bodybuildingHobby = view.findViewById(R.id.tv_bodybuildingHobby);
-            tv_interestHobby = view.findViewById(R.id.tv_interestHobby);
-            tv_useCar = view.findViewById(R.id.tv_useCar);
+            tv_protect_seven = view.findViewById(R.id.tv_protect_seven);
+            iv_visit = view.findViewById(R.id.iv_visit);
+            rel_content = view.findViewById(R.id.rel_content);
+        }
 
-            tv_huifang = view.findViewById(R.id.tv_huifang);
-
-            lin_huifan  =     view.findViewById(R.id.lin_huifan);
-            lin_yaoyue  =     view.findViewById(R.id.lin_yaoyue);
-            iv_huifang =  view.findViewById(R.id.iv_huifang);
-            tv_huifang =  view.findViewById(R.id.tv_huifang);
-
+        public void bind(Context context, HuiJiViperBean huiJiViperBean){
+            ImageLoader.load((Activity)context,huiJiViperBean.getHeadImg(),iv_header);
+            iv_gender.setImageResource("1".equals(huiJiViperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+            tv_name.setText(huiJiViperBean.getName());
+            rel_content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //viperDetailBean
+                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                    intent.putExtra("id",huiJiViperBean.getMemberId());
+                    context.startActivity(intent);
+                }
+            });
+            //回访
+            Boolean isProtected = huiJiViperBean.getProtected();
+            tv_protect_seven.setVisibility(isProtected?View.VISIBLE:View.GONE);
+            iv_visit.setVisibility(isProtected?View.GONE:View.VISIBLE);
+            iv_visit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String mobile = huiJiViperBean.getMobile();
+                    if (!TextUtils.isEmpty(mobile)){
+                        CommonUtil.callPhone(context,mobile);
+                    } else {
+                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 

@@ -95,14 +95,18 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
                 context.startActivity(intent);
             }
         });
-
         Boolean isProtected = coachViperBean.getProtected();
         if (isProtected) {
-            holder.tv_call.setText("保护7天");
-            Glide.with(context).load(R.mipmap.suo).apply(options).into( holder.iv_call);
+            holder.iv_call.setVisibility(View.GONE);
+            holder.tv_call.setVisibility(View.VISIBLE);
+            holder.iv_suo.setVisibility(View.VISIBLE);
+
         } else {
             Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
-            holder.tv_call.setText("");
+            holder.tv_call.setVisibility(View.GONE);
+            holder.iv_suo.setVisibility(View.GONE);
+            holder.iv_call.setVisibility(View.VISIBLE);
+
             String mobile = coachViperBean.getMobile();
             holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,7 +137,6 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
                 }
             });
         }
-
     }
 
     @Override
@@ -147,6 +150,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         ImageView iv_header;
         ImageView iv_gender;
         ImageView iv_call;
+        ImageView iv_suo;
 
         TextView tv_name;
         TextView tv_call;
@@ -158,6 +162,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_call = view.findViewById(R.id.iv_call);
+            iv_suo = view.findViewById(R.id.iv_suo);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_call = view.findViewById(R.id.tv_call);
             tv_name = view.findViewById(R.id.tv_name);

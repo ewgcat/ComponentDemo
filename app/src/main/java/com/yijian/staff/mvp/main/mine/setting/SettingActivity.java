@@ -108,7 +108,7 @@ public class SettingActivity extends MvcBaseActivity {
         //发送退出登录请求
 
         DBManager.getInstance().clearUser();
-        setResult(RESULT_OK);
+        setResult(1234);
         finish();
     }
 

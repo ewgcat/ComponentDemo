@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
@@ -69,30 +70,33 @@ public class SplashActivity extends MvcBaseActivity {
 
 
     public void jumpToNext() {
-        User user = DBManager.getInstance().queryUser();
-        if (user != null) {
-            String token = user.getToken().trim();
-            if (TextUtils.isEmpty(token)) {
+        new Handler().postDelayed(() -> {
+            User user = DBManager.getInstance().queryUser();
+            if (user != null) {
+                String token = user.getToken().trim();
+                if (TextUtils.isEmpty(token)) {
+                    Intent intent = new Intent();
+                    intent.setClass(this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                } else {
+
+                    Intent intent = new Intent();
+                    intent.setClass(this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            } else {
                 Intent intent = new Intent();
                 intent.setClass(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            } else {
-
-                Intent intent = new Intent();
-                intent.setClass(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
-        } else {
-            Intent intent = new Intent();
-            intent.setClass(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }
+        }, 1000 * 2);
+
 
 
     }

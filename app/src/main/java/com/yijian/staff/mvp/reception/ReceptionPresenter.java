@@ -11,6 +11,7 @@ import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.util.GsonNullString;
 
 import org.json.JSONObject;
@@ -132,7 +133,25 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
 
             @Override
             public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
+    @Override
+    public void endRecption(String memberId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId",memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_END,params, new ResultNullObserver() {
+
+            @Override
+            public void onSuccess(Object result) {
+                view.showEndRecption();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
             }
         });
     }

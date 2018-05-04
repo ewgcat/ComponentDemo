@@ -68,6 +68,7 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
     }
 
     private void initData() {
+        privateApplyId = getIntent().getStringExtra("privateApplyId");
         /**************** 初始化部位训练数据 ************************/
         loadDepartData();
 

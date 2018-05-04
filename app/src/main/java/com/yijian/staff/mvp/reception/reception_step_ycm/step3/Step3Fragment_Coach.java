@@ -193,22 +193,34 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         }
 
 
-        Integer validDay = productDetail.getValidDay();
-        if (validDay != null) tvYuEr.setText("" + validDay + "天");
+//        Integer validDay = productDetail.getValidDay();
+//        if (validDay != null) tvYuEr.setText("" + validDay + "天");
+//
+//        Integer validTime = productDetail.getValidTime();
+//        if (validTime != null) tvYuEr.setText("" + validTime + "次");
+//
+//        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
+//        if (rechargeGivePercent != null) {
+//            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//            String format = percent.format(rechargeGivePercent);
+//            tvChuzhiyouhui.setText("赠送" + format);
+//        }
+//        BigDecimal salePrice = productDetail.getSalePrice();
+//        if (salePrice != null) {
+//            tvPrice.setText("" + salePrice.doubleValue());
+//        }
 
-        Integer validTime = productDetail.getValidTime();
-        if (validTime != null) tvYuEr.setText("" + validTime + "次");
+        String strRestKey = productDetail.getStrRestKey();
+        String strRestVal = productDetail.getStrRestVal();
+        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+            tvYuEr.setText(strRestKey+strRestVal);
+        }
 
-        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (rechargeGivePercent != null) {
-            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-            String format = percent.format(rechargeGivePercent);
-            tvChuzhiyouhui.setText("赠送" + format);
-        }
-        BigDecimal salePrice = productDetail.getSalePrice();
-        if (salePrice != null) {
-            tvPrice.setText("" + salePrice.doubleValue());
-        }
+        String rechargeGivePercent = productDetail.getRechargeGivePercent();
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+
+        String salePrice = productDetail.getSalePrice();
+        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
 
     }
 

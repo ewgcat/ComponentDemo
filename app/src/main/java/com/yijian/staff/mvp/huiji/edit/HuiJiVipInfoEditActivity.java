@@ -109,8 +109,9 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
+        String name = getIntent().getStringExtra("name");
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_edit_navigation_bar);
-        navigationBar2.setTitle("张三详细信息");
+        navigationBar2.setTitle(name+"详细信息");
         navigationBar2.hideLeftSecondIv();
         TextView rightTv = navigationBar2.getmRightTv();
         rightTv.setText("保存");

@@ -174,6 +174,8 @@ public class DayFragment_ycm extends Fragment {
 
             CalendarDay calendarDay = CalendarDay.from(year, month, day);
             onChangeDateListener.onChangeDate(calendarDay);
+            /*
+            没切换日历页面的时候设置成每个月的第一天
             int startDay = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getDayOfMonth();
             int startYear = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getYear();
             int startMonth = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getMonthOfYear();
@@ -182,7 +184,16 @@ public class DayFragment_ycm extends Fragment {
 
             mcvCalendar.setOnCalendarClickListener(null);
             int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, startYear, startMonth);
-            resetCurrentSelectDate(startYear, startMonth, startDay);
+            resetCurrentSelectDate(startYear, startMonth, startDay);*/
+
+            wcvCalendar.getCurrentWeekView().selectWeekDay(year, month, day);
+
+
+            mcvCalendar.setOnCalendarClickListener(null);
+            int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
+            resetCurrentSelectDate(year, month, day);
+
+
             int position = 0;
             if (months != 0) {
                 position = mcvCalendar.getCurrentItem() + months;

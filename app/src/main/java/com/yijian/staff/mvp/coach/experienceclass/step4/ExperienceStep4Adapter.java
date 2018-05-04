@@ -61,7 +61,7 @@ public class ExperienceStep4Adapter extends RecyclerView.Adapter<ExperienceStep4
         public void bindView(ExperienceClassRecordTable experienceClassRecordTable) {
             if (experienceClassRecordTable==null)return;
             String templateName = experienceClassRecordTable.getTemplateName();
-            tvName.setText(TextUtils.isEmpty(templateName)?"莫名":templateName);
+            tvName.setText(TextUtils.isEmpty(templateName)?"无名":templateName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

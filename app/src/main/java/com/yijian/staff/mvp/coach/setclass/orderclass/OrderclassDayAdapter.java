@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.coach.setclass.orderclass;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdapter.ViewHolder> {
@@ -128,7 +122,13 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if("0".equals(orderClassDayBean.getIsExperience())){ // 0：私教课，
+
+                    Intent intent = new Intent(context, ExperienceClassRecordActivity.class);
+                    context.startActivity(intent);
+
+
+
+                    /*if("0".equals(orderClassDayBean.getIsExperience())){ // 0：私教课，
                         if(orderClassDayBean.getIsPrepare() == 0){ // 备课
 
                         }else if(orderClassDayBean.getIsPrepare() == 1){ // 上课
@@ -155,13 +155,24 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                             context.startActivity(intent);
                         }
 
-                    }
+                    }*/
                 }
             });
 
 //        holder.iv_status.setVisibility("0".equals(orderClassDayBean.getStatus())?View.GONE:View.VISIBLE);
             iv_order_class_statu.setImageResource(resStatu);
             tv_order_class_statu.setText(strStatu);
+
+            /***************START 测试的时候备课 临时屏蔽 **************/
+            if(isPrepare == 0){ // 备课入口暂时屏蔽
+                iv_order_class_statu.setVisibility(View.GONE);
+                tv_order_class_statu.setVisibility(View.GONE);
+            }else{
+                iv_order_class_statu.setVisibility(View.VISIBLE);
+                tv_order_class_statu.setVisibility(View.VISIBLE);
+            }
+            /***************END 测试的时候备课 **************/
+
             tv_intervalTime.setText("约课时间间隔30分钟");
 
             if(position == orderClassDayBeanList.size()-1){

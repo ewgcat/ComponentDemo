@@ -58,7 +58,7 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
                 context.startActivity(intent);
             }
         });
-        ImageLoader.loadAll((Activity)context,prepareLessonsBean.getHeadPath(),holder.iv_header);
+        ImageLoader.setImageResource(prepareLessonsBean.getHeadPath(), context, holder.iv_header);
         holder.iv_gender.setImageResource((prepareLessonsBean.getGender()==1)?R.mipmap.wt_man:R.mipmap.wt_women);
         holder.tv_name.setText(prepareLessonsBean.getMemberName());
         holder.tv_class_name.setText(prepareLessonsBean.getLessonName());

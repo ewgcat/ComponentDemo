@@ -24,7 +24,7 @@
             android:id="@+id/tv_change_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2018年03月"
+            android:text=""
             android:textColor="#333333"
             android:textSize="14sp"
             />

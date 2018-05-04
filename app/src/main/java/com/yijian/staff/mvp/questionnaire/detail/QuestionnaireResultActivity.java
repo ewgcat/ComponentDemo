@@ -83,13 +83,13 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
 
         widget.setWeekDayTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_WeekDay);
         widget.setDateTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_Date);
+        calendarView.addDecorator(new AllNoneSelectedDecorator());
     }
 
     private void initData() {
 
 
         Map<String ,String> params=new HashMap<>();
-        memberId="1";
         params.put("memberId",memberId);
 
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,params, new ResultJSONObjectObserver() {
@@ -135,6 +135,7 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
                         }
                         calendarView.setCurrentDate(parse);
                         calendarView.addDecorator(new EventDecorator(QuestionnaireResultActivity.this, dates));
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

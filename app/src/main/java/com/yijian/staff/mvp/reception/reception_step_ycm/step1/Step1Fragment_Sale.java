@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +50,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
     private RecptionerInfoBean consumerBean;
     private MaterialCalendarView calendarView;
     private Button btnSave;
-
+    private String memberId;
 
 
     @Override
@@ -57,7 +58,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
-
+        memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         if (consumerBean.getStatus()!=0&&(consumerBean.getStatus()!=10)){
@@ -88,7 +89,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
 
         presenter = new RecptionStep1Presenter(getContext());
         presenter.setView(this);
-        presenter.getQuestion();
+       if (!TextUtils.isEmpty(memberId))presenter.getQuestion(memberId);
         return view;
     }
 

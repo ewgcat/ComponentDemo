@@ -378,18 +378,23 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Log.e(TAG, "showProductDetail: "+ productDetail.toString());
         CancelReasonDialog dialogFragment = new CancelReasonDialog();
-        dialogFragment.setOklisenter(new CancelReasonDialog.DialogOklisenter() {
-            @Override
-            public void onClick() {
-                String cardId = productDetail.getCardId();
-                if (TextUtils.isEmpty(cardId)){
+//        dialogFragment.setOklisenter(new CancelReasonDialog.DialogOklisenter() {
+//            @Override
+//            public void onClick() {
+//                String cardId = productDetail.getCardId();
+//                if (TextUtils.isEmpty(cardId)){
+//                    Toast.makeText(getContext(),"卡产品id获取失败",Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                presenter.cardToOrder(memberId,cardId);
+//            }
+//        });
+        String cardId = productDetail.getCardId();
+        if (TextUtils.isEmpty(cardId)){
                     Toast.makeText(getContext(),"卡产品id获取失败",Toast.LENGTH_SHORT).show();
                     return;
-                }
-                presenter.cardToOrder(memberId,cardId);
-            }
-        });
-
+           }
+        presenter.cardToOrder(memberId,cardId);
 
     }
 

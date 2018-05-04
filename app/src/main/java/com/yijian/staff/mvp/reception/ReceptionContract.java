@@ -18,6 +18,9 @@ public interface ReceptionContract {
         void finishRefresh(boolean isRefresh);
 
         void showStatus(ReceptionStastuBean receptionStastuBean);
+
+        void showEndRecption();
+
     }
 
     interface Presenter{
@@ -25,5 +28,7 @@ public interface ReceptionContract {
         void getRecptionRecord(boolean isRefresh);
 
         void getRecptionStatus(String id);
+
+        void endRecption(String memberId);
     }
 }

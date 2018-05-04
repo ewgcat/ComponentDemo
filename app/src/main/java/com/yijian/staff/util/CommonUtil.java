@@ -94,6 +94,12 @@ public class CommonUtil {
         return flag;
     }
 
+    /**
+     * 字符串较空，返回空字符串
+     */
+    public static String emptyIfNull(String str) {
+        return str == null ? "" : str;
+    }
 
     /**
      * 验证手机号

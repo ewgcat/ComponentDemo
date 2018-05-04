@@ -812,6 +812,8 @@ public class HttpManager {
     //接待人节点信息
     public static final String RECEPTION_STATUS = BuildConfig.HOST + "reception/status";
 
+    //接待人节点信息
+    public static final String RECEPTION_END = BuildConfig.HOST + "reception/break";
 
     //接待记录
     public static final String RECEPTION_RECORD = BuildConfig.HOST + "reception/record";

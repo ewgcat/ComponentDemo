@@ -93,7 +93,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
         navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
 
         int role = SharePreferenceUtil.getUserRole();
-        if (role == 3 || role == 4) { //分配教练 或者 会籍
+        if ( role == 4) { //教练总监
              initLeader();
         } else { // 不可操作
             initCoach();
@@ -103,7 +103,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
 
 
     /**
-     * 客服界面
+     * 教练界面
      */
     private void initCoach() {
         llKefuLayout.setVisibility(View.VISIBLE);
@@ -117,13 +117,13 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
         CoachResourceAllocationAdatper resourceAllocationAdatper = new CoachResourceAllocationAdatper(this, resourceAllocationInfoList, CoachResourceAllocationAdatper.ROLE_RESOURCE_TYPE);
         rv_resource_allocation.setAdapter(resourceAllocationAdatper);
         initComponent();
-//        initResourceAllocationInfoList();
+        initResourceAllocationInfoList();
         refresh();
     }
 
 
 
-    /*private void initResourceAllocationInfoList() {
+    private void initResourceAllocationInfoList() {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -151,7 +151,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式

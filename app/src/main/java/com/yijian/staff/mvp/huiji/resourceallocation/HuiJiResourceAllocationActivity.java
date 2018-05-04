@@ -98,7 +98,7 @@ public class HuiJiResourceAllocationActivity extends AppCompatActivity {
         navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
 
         int role = SharePreferenceUtil.getUserRole();
-        if (role == 3 || role == 4) { //分配教练 或者 会籍
+        if (role == 3 ) { //分配教练 或者 会籍
             initLeader();
         } else { // 不可操作
             initKeFu();
@@ -124,14 +124,14 @@ public class HuiJiResourceAllocationActivity extends AppCompatActivity {
         rv_resource_allocation.setAdapter(resourceAllocationAdatper);
 
         initComponent();
-//        initResourceAllocationInfoList();
+        initResourceAllocationInfoList();
 
         refresh();
 
     }
 
 
-    /*private void initResourceAllocationInfoList() {
+    private void initResourceAllocationInfoList() {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -159,7 +159,7 @@ public class HuiJiResourceAllocationActivity extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式

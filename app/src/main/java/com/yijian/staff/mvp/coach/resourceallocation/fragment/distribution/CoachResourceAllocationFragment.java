@@ -65,7 +65,7 @@ public class CoachResourceAllocationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_coach_resource_allocation, container, false);
         initView(view);
         refresh();
-//        initResourceAllocationInfoList();
+        initResourceAllocationInfoList();
         return view;
     }
 
@@ -80,7 +80,7 @@ public class CoachResourceAllocationFragment extends Fragment {
         initComponent();
     }
 
-    /*private void initResourceAllocationInfoList() {
+    private void initResourceAllocationInfoList() {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -108,7 +108,7 @@ public class CoachResourceAllocationFragment extends Fragment {
 
         }
 
-    }*/
+    }
 
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式

@@ -23,6 +23,7 @@ import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,9 +70,12 @@ public class OrderClassActivity extends AppCompatActivity implements OnChangeDat
     }
 
     private void initView() {
+        Calendar calendar = Calendar.getInstance();
+        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
         titleChanger = new TitleChanger(tv_change_date);
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
-        currentDay = CalendarDay.today();
+        titleChanger.setPreviousMonth(currentDay);
+        titleChanger.change(currentDay);
         selectTab(0);
     }
 
@@ -114,6 +118,7 @@ public class OrderClassActivity extends AppCompatActivity implements OnChangeDat
             case 1:
                 if (weekFragment == null) {
                     weekFragment = OrderClassWeekFragment.getInstance();
+                    weekFragment.setOnChangeDateListener(this);
                     transaction.add(R.id.fl_calendarTab, weekFragment, "Homefragment");
                 }
                 transaction.show(weekFragment);

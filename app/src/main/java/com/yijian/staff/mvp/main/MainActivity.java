@@ -1,8 +1,10 @@
 package com.yijian.staff.mvp.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -14,6 +16,8 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.main.mine.MineFragment;
 import com.yijian.staff.mvp.main.work.WorkFragment;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.Bottombar;
@@ -32,6 +36,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
+    public static final int RESULT_OK_RECEPTION=1;
     private int selectedIndex = 0;
     protected long mExitTime;
 
@@ -82,6 +87,13 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
             // 选择上一次保存的Fragment界面
             selectTab(lastSelectedIndex);
         }
+        if (workFragment!=null)workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
+            @Override
+            public void startAct() {
+                Intent intent = new Intent(MainActivity.this, ReceptionActivity.class);
+                startActivityForResult(intent, RESULT_OK_RECEPTION);
+            }
+        });
     }
 
 
@@ -184,5 +196,17 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 根据上面发送过去的请求吗来区别
+        switch (resultCode) {
+            case RESULT_OK_RECEPTION:
+                RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
+                recetionCompleteDialog.show(getFragmentManager(),"RecetionCompleteDialog");
+                break;
+            default:
+                break;
+        }
+    }
 
 }

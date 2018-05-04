@@ -85,22 +85,19 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
             case CHILDNORMAL:
                 View singleView = mInflater.inflate(R.layout.item_quest_option_single, childViewGroup, false);
                 QuestionSingleCheckViewHolder viewHolder0 = new QuestionSingleCheckViewHolder(singleView);
-//                viewHolder0.setSingleCheckListener(this);
                 viewHolder = viewHolder0;
                 break;
 
             case CHILDMIX:
-                View mixView = mInflater.inflate(R.layout.item_quest_option_mix, childViewGroup, false);
-                QuestionOptMixViewHolder viewHolder1 = new QuestionOptMixViewHolder(mixView);
-//                viewHolder1.setMixWriteListener(this);
+                View mixView = mInflater.inflate(R.layout.item_questnaire_option_mix, childViewGroup, false);
+                QuestionnaireOptMixViewHolder viewHolder1 = new QuestionnaireOptMixViewHolder(mixView);
                 viewHolder = viewHolder1;
                 break;
 
 
             case CHILDINPUT:
-                View titleview1 = mInflater.inflate(R.layout.item_quest_option_write, childViewGroup, false);
-                QuestionWriteViewHolder questionWriteViewHolder = new QuestionWriteViewHolder(titleview1);
-//                questionWriteViewHolder.setWriteListener(this);
+                View titleview1 = mInflater.inflate(R.layout.item_questnaire_option_write, childViewGroup, false);
+                QuestionnaireWriteViewHolder questionWriteViewHolder = new QuestionnaireWriteViewHolder(titleview1);
                 viewHolder= questionWriteViewHolder;
                 break;
         }
@@ -122,10 +119,10 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
 
         if (childViewHolder instanceof QuestionSingleCheckViewHolder){
             ((QuestionSingleCheckViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionOptMixViewHolder){
-            ((QuestionOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionWriteViewHolder){
-            ((QuestionWriteViewHolder)childViewHolder)  .bind(child,parentPosition,childPosition);
+        }else if (childViewHolder instanceof QuestionnaireOptMixViewHolder){
+            ((QuestionnaireOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
+        }else if (childViewHolder instanceof QuestionnaireWriteViewHolder){
+            ((QuestionnaireWriteViewHolder)childViewHolder)  .bind(child,parentPosition,childPosition);
         }
 
     }

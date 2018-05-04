@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,11 @@ import com.yijian.staff.widget.NavigationBar2;
  */
 
 public class Step2Fragment_Sale_NoData extends Fragment {
-
+    private static final String TAG = "Step2Fragment_Sale_NoDa";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.e(TAG, "onCreate: ");
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
         navigationBar2.setmRightTvText("下一步");
         navigationBar2.getmRightTv().setVisibility(View.VISIBLE);

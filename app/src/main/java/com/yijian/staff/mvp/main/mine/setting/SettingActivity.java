@@ -35,8 +35,8 @@ public class SettingActivity extends MvcBaseActivity {
     ImageView ivHead;
     @BindView(R.id.tv_name)
     TextView tvName;
-    @BindView(R.id.tv_sex)
-    TextView tvSex;
+//    @BindView(R.id.tv_sex)
+//    TextView tvSex;
     @BindView(R.id.tv_age)
     TextView tvAge;
     @BindView(R.id.tv_phone)
@@ -72,7 +72,7 @@ public class SettingActivity extends MvcBaseActivity {
             public void onSuccess(JSONObject result) {
                 UserInfo userInfo = new UserInfo(result);
                 tvName.setText(userInfo.getName());
-                tvSex.setText(userInfo.getSex());
+//                tvSex.setText(userInfo.getSex());
                 tvAge.setText(userInfo.getAge() + "");
                 tvPhone.setText(userInfo.getMobile());
                 tvWorkNum.setText(userInfo.getJobNo());

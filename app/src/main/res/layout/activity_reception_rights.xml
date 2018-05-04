@@ -159,6 +159,31 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center"
+                android:textColor="@color/text_black3"
+                android:text="卡品转换"
+                android:textSize="@dimen/text_size_16"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tv_card_transform"
+                android:gravity="center"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_16"
+                tools:text="10%"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

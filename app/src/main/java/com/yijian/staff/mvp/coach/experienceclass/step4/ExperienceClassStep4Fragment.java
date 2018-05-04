@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.index.ExperienceClassBean;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateActivity_ycm;
+import com.yijian.staff.mvp.coach.experienceclass.invate.ExperienceClassInvateAgainActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.ClassRecordTable;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
 import com.yijian.staff.mvp.coach.experienceclass.step4.bean.ExperienceClassRecordTable;
@@ -61,7 +63,7 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
         presenter = new ExperienceClassProcess4Presenter(getContext());
         presenter.setView(this);
         initView();
-
+        presenter.getClassRecordList(bean.getProcessId());
         unbinder= ButterKnife.bind(this,view);
         return view;
     }
@@ -78,11 +80,11 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
             public void onClick(ExperienceClassRecordTable bean) {
                 TemplateListBean prepareRecord = bean.getPrepareRecord();
                 ClassRecordTable definedRecord = bean.getDefinedRecord();
-                if (prepareRecord!=null){//体验课上课记录表(使用自定义模板)
+                if (prepareRecord!=null){//体验课上课记录表(采用备课模板)
                     Intent intent = new Intent(getContext(), Template1ClassActivity_ycm.class);
                     intent.putExtra("templateListBean",prepareRecord);
                     startActivity(intent);
-                }else if (definedRecord!=null){//体验课上课记录表(采用备课模板)
+                }else if (definedRecord!=null){//体验课上课记录表(使用自定义模板)
 
                 }
 
@@ -95,7 +97,11 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
 
     @OnClick({R.id.tv_invitation_again})
     public void onViewClicked(View view) {
-
+        if (inviteVO!=null){
+            Intent intent = new Intent(getContext(), ExperienceClassInvateAgainActivity_ycm.class);
+            intent.putExtra("inviteVO",inviteVO);
+            startActivity(intent);
+        }
     }
 
 

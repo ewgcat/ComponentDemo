@@ -50,11 +50,13 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_step_ycm);
-
+        userRole = SharePreferenceUtil.getUserRole();
+        Log.e(TAG, "onCreate: "+userRole );
         Intent intent = getIntent();
         if (intent.hasExtra(ReceptionActivity.CONSUMER)) {
             recptionerInfoBean = intent.getParcelableExtra(ReceptionActivity.CONSUMER);
-            if (recptionerInfoBean.getStatus()==32){
+            Log.e(TAG, "onCreate: "+recptionerInfoBean.toString());
+            if (recptionerInfoBean.getStatus()==32&&userRole==1){
                 showRejecetPhysical();
             }
         } else {
@@ -64,7 +66,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
 
 //        Log.e(TAG, "onCreate: " + recptionerInfoBean.toString());
-        userRole = SharePreferenceUtil.getUserRole();
+
         initView();
 
         initFragment();
@@ -82,9 +84,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
             if (recptionerInfoBean.getStatus()==32){
                 showRejecetPhysical();
             }
-
-
-
         } else {
             Toast.makeText(ReceptionStepActivity.this, "获取客户信息失败,请重新进入接待流程", Toast.LENGTH_SHORT).show();
             return;
@@ -101,7 +100,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         Log.e(TAG, "showView: "+status );
         Bundle bundle = new Bundle();
         bundle.putParcelable("recptionerInfoBean", recptionerInfoBean);
-
+//        Log.e(TAG, "showView: "+recptionerInfoBean.toString() );
         switch (status) {
             case 0://UNKNOWN(0, "未知"),
             case 10://  NOBEGIN(10, "未开始接待"),
@@ -168,6 +167,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         navigationBar2.getmRightTv().setVisibility(View.GONE);
         navigationBar2.setSecondLeftIvVisiable(View.GONE);
         if (userRole == 1) {
+
             Step1Fragment_Sale  step1Fragment_sale = new Step1Fragment_Sale();
             step1Fragment_sale.setStatusChangeLisenter(this);
             step1Fragment_sale.setArguments(bundle);
@@ -175,7 +175,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         } else if (userRole == 2) {
             Step1Fragment_Message step1Fragment_message = new Step1Fragment_Message();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step1Fragment_message).commitAllowingStateLoss();
-        } else if (userRole == 3) {
+        } else{
             Step1Fragment_Message step1Fragment_message = new Step1Fragment_Message();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step1Fragment_message).commitAllowingStateLoss();
         }
@@ -199,17 +199,16 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
             Integer status = recptionerInfoBean.getStatus();
             List<Integer> historyNode = recptionerInfoBean.getHistoryNode();
 
-            if ( status ==20||status==21||status==32){
+             if ( historyNode.contains(Integer.valueOf(30))||historyNode.contains(Integer.valueOf(32))){//---节点后退（用户选择跳过体测录入（没有体测数据））
+                Step2Fragment_Sale_NoData  step2Fragment_noData = new Step2Fragment_Sale_NoData();
+                step2Fragment_noData.setStatusChangeLisenter(this);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_noData).commitAllowingStateLoss();
+            }else if ( status ==20||status==21||status==32){
                 Step2Fragment_Sale  step2Fragment_sale = new Step2Fragment_Sale();
                 step2Fragment_sale.setStatusChangeLisenter(this);
                 step2Fragment_sale.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_sale).commitAllowingStateLoss();
-            }else if ( historyNode.contains(Integer.valueOf(30))){//---节点后退（用户选择跳过体测录入（没有体测数据））
-                Step2Fragment_Sale_NoData  step2Fragment_noData = new Step2Fragment_Sale_NoData();
-                step2Fragment_noData.setStatusChangeLisenter(this);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_noData).commitAllowingStateLoss();
-            }else {//---节点后退(之前录入过体测数据)
+            } else {//---节点后退(之前录入过体测数据)
                 Step2Fragment_Sale_Physical  step2Fragment_sale_physical = new Step2Fragment_Sale_Physical();
                 step2Fragment_sale_physical.setStatusChangeLisenter(this);
                 step2Fragment_sale_physical.setArguments(bundle);
@@ -232,7 +231,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
             }
 
 
-        } else if (userRole == 3) {
+        } else {
 //            step2Fragment_message
             Step2Fragment_Message    step2Fragment_message = new Step2Fragment_Message();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step2Fragment_message).commitAllowingStateLoss();
@@ -273,7 +272,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
                Step3Fragment_Coach_NoData step3Fragment_coach_noData = new Step3Fragment_Coach_NoData();
                getSupportFragmentManager().beginTransaction().replace(R.id.content, step3Fragment_coach_noData).commitAllowingStateLoss();
             }
-        } else if (userRole == 3) {
+        } else {
             Integer status = recptionerInfoBean.getStatus();
             if (status==33){
                 Bundle bundle1 = new Bundle();
@@ -325,7 +324,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         } else if (userRole == 2) {
             Step4Fragment_Sale_NoData step4Fragment_message = new Step4Fragment_Sale_NoData();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_message).commitAllowingStateLoss();
-        } else if (userRole == 3) {
+        } else {
             Step4Fragment_Sale_NoData step4Fragment_message = new Step4Fragment_Sale_NoData();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_message).commitAllowingStateLoss();
         }
@@ -341,6 +340,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
 
         if (userRole == 1) {
+            Log.e(TAG, "showStep5Fragment: " );
             navigationBar2.setSecondLeftIvVisiable(View.VISIBLE);
             Step5Fragment_Sale   step5Fragment_sale = new Step5Fragment_Sale();
             step5Fragment_sale.setStatusChangeLisenter(this);
@@ -349,7 +349,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
         } else if (userRole == 2) {
             Step5Fragment_Message step5Fragment_message = new Step5Fragment_Message();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step5Fragment_message).commitAllowingStateLoss();
-        } else if (userRole == 3) {
+        } else{
             Step5Fragment_Message step5Fragment_message = new Step5Fragment_Message();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step5Fragment_message).commitAllowingStateLoss();
         }
@@ -439,8 +439,9 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
     public void ReceptionCompleted(Integer operatorType) {
 //        recptionerInfoBean.setStatus();
         recptionerInfoBean.setStatus(operatorType);
-        //TODO  完成整个接待
         Toast.makeText(this,"完成整个接待",Toast.LENGTH_SHORT).show();
+        this.setResult(ReceptionActivity.RESULT_OK);
+        finish();
 
     }
 

@@ -20,6 +20,7 @@ import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.CoachClassBaoJiaActivity;
+import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.reception.contract.ContractActivity;
@@ -147,10 +148,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     LinearLayout llVipContent;
     @BindView(R.id.ll_1)
     LinearLayout ll_1;
-    @BindView(R.id.ll_2)
-    LinearLayout ll_2;
-    @BindView(R.id.lin_huifan2)
-    LinearLayout lin_huifan2;
+
     @BindView(R.id.ll_3)
     LinearLayout ll_3;
     @BindView(R.id.tv_sijiao_class)
@@ -185,7 +183,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.iv_call, R.id.lin_huifan2, R.id.lin_baojia, R.id.lin_huifan, R.id.ll_edit})
+    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.iv_call,  R.id.lin_baojia,  R.id.ll_edit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -196,12 +194,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 startActivity(intent1);
                 break;
             case R.id.lin_baojia:
-                startActivity(new Intent(CoachViperDetailActivity.this, CoachClassBaoJiaActivity.class));
+                startActivity(new Intent(CoachViperDetailActivity.this, NoSearchBarCoachClassBaojiaActivity.class));
                 break;
 
             case R.id.iv_call:
-            case R.id.lin_huifan2:
-            case R.id.lin_huifan:
                 String mobile = coachVipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)) {
                     if (CommonUtil.isPhoneFormat(mobile)) {
@@ -228,21 +224,18 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
 
         vipType = getIntent().getIntExtra("vipType", 0);
-        if (vipType == 0 || vipType == 1 || vipType == 3) {
+        if (vipType == 0 || vipType == 2 || vipType == 3) {
             llVipContent.setVisibility(View.VISIBLE);
             if (vipType == 0) {
                 ll_1.setVisibility(View.VISIBLE);
-                ll_2.setVisibility(View.GONE);
                 ll_3.setVisibility(View.GONE);
             } else {
                 ll_1.setVisibility(View.GONE);
-                ll_2.setVisibility(View.VISIBLE);
                 ll_3.setVisibility(View.GONE);
             }
-        } else if (vipType == 2) {//意向会员
+        } else if (vipType == 1) {//意向会员
             llVipContent.setVisibility(View.GONE);
             ll_1.setVisibility(View.GONE);
-            ll_2.setVisibility(View.GONE);
             ll_3.setVisibility(View.VISIBLE);
         }
         if (getIntent().hasExtra("coachViperBean")) {

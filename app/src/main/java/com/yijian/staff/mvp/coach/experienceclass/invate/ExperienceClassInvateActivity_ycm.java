@@ -15,32 +15,22 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
-import com.yijian.staff.mvp.coach.experienceclass.template.Template1ClassActivity;
-import com.yijian.staff.mvp.coach.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.bean.TemplateListBean;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExperienceClassInvateActivity_ycm extends AppCompatActivity implements ExperienceClassInvateContract.View {
+public class ExperienceClassInvateActivity_ycm extends AppCompatActivity implements ExperienceClassInvateContract_ycm.View {
 
     @BindView(R.id.tv_name_invitee)
     TextView tvNameInvitee;
@@ -77,7 +67,7 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
 
     private TimePickerView pickerView;
     private String memberId;
-    private ExperienceClassInvatePresenter presenter;
+    private ExperienceClassInvatePresenter_ycm presenter;
     private List<TemplateListBean> templateList;
     private OptionsPickerView pvNoLinkOptions;
 
@@ -86,11 +76,11 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_experience_class_invate_ycm);
         ButterKnife.bind(this);
-        presenter = new ExperienceClassInvatePresenter(this);
+        presenter = new ExperienceClassInvatePresenter_ycm(this);
         presenter.setView(this);
 
         initView();
-        memberId="666";
+//        memberId="666";
         presenter.getInviterInfo(memberId);
     }
 

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ProductDetail implements Parcelable {
 //    cardId (string, optional): 卡产品id ,
+//    cardName (string, optional): 卡名称 ,
 //    cardType (integer, optional): 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
 //    cardTypeName (string, optional): 卡类型名称 ,
 //    changeShopPoundageFee (number, optional): 转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
@@ -28,6 +29,8 @@ public class ProductDetail implements Parcelable {
 //    salePrice (number, optional): 售价 ,
 //    stopPoundageFee (number, optional): 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
 //    stopPoundageType (integer, optional): 停卡手续费类型：0固定金额，1百分比 ,
+//    strRestKey (string, optional): 剩下字符串KEY ,
+//    strRestVal (string, optional): 剩下字符串value ,
 //    switchPoundageFee (number, optional): 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
 //    switchPoundageType (number, optional): 卡品转换手续费类型：0固定金额，1百分比 ,
 //    transferPoundageFee (number, optional): 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
@@ -36,35 +39,40 @@ public class ProductDetail implements Parcelable {
 //    validTime (integer, optional): 有效次数 ,
 //    venueNames (Array[string], optional): 场馆名称
 
+
+
+
     String cardId;
     String cardTypeName;//卡类型名称 ,
     Integer cardType;// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
     List<String> venueNames;//场馆名称
     Integer validDay;//有效时间 ,
     Integer validTime;// 有效次数 ,
-    BigDecimal rechargeGivePercent;//充值赠送 ,
-    BigDecimal salePrice;//售价 ,
+    String rechargeGivePercent;//充值赠送 ,
+    String salePrice;//售价 ,
 
+    String strRestKey;
+    String strRestVal;
 //    Object gift; //赠品
     List<String> rightsInterestsList;//权益
 
-    BigDecimal changeShopPoundageFee;//转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
-    BigDecimal changeShopPoundageType;// 转店手续费类型：0固定金额，1百分比 ,
+    String changeShopPoundageFee;//转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
+    String changeShopPoundageType;// 转店手续费类型：0固定金额，1百分比 ,
 
-    BigDecimal  renewPoundageFee ;//续费折扣费用，当续费类型是1的时候值是百分比 ,
-    BigDecimal  renewPoundageType ;//续费折扣类型：0固定金额，1百分比 ,
+    String  renewPoundageFee ;//续费折扣费用，当续费类型是1的时候值是百分比 ,
+    Integer  renewPoundageType ;//续费折扣类型：0固定金额，1百分比 ,
 
-    BigDecimal   returnPoundageFee ;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
-    BigDecimal   returnPoundageType ;//退卡手续费类型：0固定金额，1百分比 ,
+    String   returnPoundageFee ;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
+    Integer   returnPoundageType ;//退卡手续费类型：0固定金额，1百分比 ,
 
-    BigDecimal   stopPoundageFee ;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
-    BigDecimal    stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
+    String   stopPoundageFee ;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
+    Integer    stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
 
-    BigDecimal  switchPoundageFee ;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
-    BigDecimal   switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
+    String  switchPoundageFee ;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
+    String   switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
 
-    BigDecimal  transferPoundageFee ;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
-    BigDecimal  transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
+    String  transferPoundageFee ;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
+    String  transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
 
     String createDate;//创建时间
     String expirationDate;//结束时间
@@ -117,20 +125,36 @@ public class ProductDetail implements Parcelable {
         this.validTime = validTime;
     }
 
-    public BigDecimal getRechargeGivePercent() {
+    public String getRechargeGivePercent() {
         return rechargeGivePercent;
     }
 
-    public void setRechargeGivePercent(BigDecimal rechargeGivePercent) {
+    public void setRechargeGivePercent(String rechargeGivePercent) {
         this.rechargeGivePercent = rechargeGivePercent;
     }
 
-    public BigDecimal getSalePrice() {
+    public String getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
+    public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public String getStrRestKey() {
+        return strRestKey;
+    }
+
+    public void setStrRestKey(String strRestKey) {
+        this.strRestKey = strRestKey;
+    }
+
+    public String getStrRestVal() {
+        return strRestVal;
+    }
+
+    public void setStrRestVal(String strRestVal) {
+        this.strRestVal = strRestVal;
     }
 
     public List<String> getRightsInterestsList() {
@@ -141,99 +165,99 @@ public class ProductDetail implements Parcelable {
         this.rightsInterestsList = rightsInterestsList;
     }
 
-    public BigDecimal getChangeShopPoundageFee() {
+    public String getChangeShopPoundageFee() {
         return changeShopPoundageFee;
     }
 
-    public void setChangeShopPoundageFee(BigDecimal changeShopPoundageFee) {
+    public void setChangeShopPoundageFee(String changeShopPoundageFee) {
         this.changeShopPoundageFee = changeShopPoundageFee;
     }
 
-    public BigDecimal getChangeShopPoundageType() {
+    public String getChangeShopPoundageType() {
         return changeShopPoundageType;
     }
 
-    public void setChangeShopPoundageType(BigDecimal changeShopPoundageType) {
+    public void setChangeShopPoundageType(String changeShopPoundageType) {
         this.changeShopPoundageType = changeShopPoundageType;
     }
 
-    public BigDecimal getRenewPoundageFee() {
+    public String getRenewPoundageFee() {
         return renewPoundageFee;
     }
 
-    public void setRenewPoundageFee(BigDecimal renewPoundageFee) {
+    public void setRenewPoundageFee(String renewPoundageFee) {
         this.renewPoundageFee = renewPoundageFee;
     }
 
-    public BigDecimal getRenewPoundageType() {
+    public Integer getRenewPoundageType() {
         return renewPoundageType;
     }
 
-    public void setRenewPoundageType(BigDecimal renewPoundageType) {
+    public void setRenewPoundageType(Integer renewPoundageType) {
         this.renewPoundageType = renewPoundageType;
     }
 
-    public BigDecimal getReturnPoundageFee() {
+    public String getReturnPoundageFee() {
         return returnPoundageFee;
     }
 
-    public void setReturnPoundageFee(BigDecimal returnPoundageFee) {
+    public void setReturnPoundageFee(String returnPoundageFee) {
         this.returnPoundageFee = returnPoundageFee;
     }
 
-    public BigDecimal getReturnPoundageType() {
+    public Integer getReturnPoundageType() {
         return returnPoundageType;
     }
 
-    public void setReturnPoundageType(BigDecimal returnPoundageType) {
+    public void setReturnPoundageType(Integer returnPoundageType) {
         this.returnPoundageType = returnPoundageType;
     }
 
-    public BigDecimal getStopPoundageFee() {
+    public String getStopPoundageFee() {
         return stopPoundageFee;
     }
 
-    public void setStopPoundageFee(BigDecimal stopPoundageFee) {
+    public void setStopPoundageFee(String stopPoundageFee) {
         this.stopPoundageFee = stopPoundageFee;
     }
 
-    public BigDecimal getStopPoundageType() {
+    public Integer getStopPoundageType() {
         return stopPoundageType;
     }
 
-    public void setStopPoundageType(BigDecimal stopPoundageType) {
+    public void setStopPoundageType(Integer stopPoundageType) {
         this.stopPoundageType = stopPoundageType;
     }
 
-    public BigDecimal getSwitchPoundageFee() {
+    public String getSwitchPoundageFee() {
         return switchPoundageFee;
     }
 
-    public void setSwitchPoundageFee(BigDecimal switchPoundageFee) {
+    public void setSwitchPoundageFee(String switchPoundageFee) {
         this.switchPoundageFee = switchPoundageFee;
     }
 
-    public BigDecimal getSwitchPoundageType() {
+    public String getSwitchPoundageType() {
         return switchPoundageType;
     }
 
-    public void setSwitchPoundageType(BigDecimal switchPoundageType) {
+    public void setSwitchPoundageType(String switchPoundageType) {
         this.switchPoundageType = switchPoundageType;
     }
 
-    public BigDecimal getTransferPoundageFee() {
+    public String getTransferPoundageFee() {
         return transferPoundageFee;
     }
 
-    public void setTransferPoundageFee(BigDecimal transferPoundageFee) {
+    public void setTransferPoundageFee(String transferPoundageFee) {
         this.transferPoundageFee = transferPoundageFee;
     }
 
-    public BigDecimal getTransferPoundageType() {
+    public String getTransferPoundageType() {
         return transferPoundageType;
     }
 
-    public void setTransferPoundageType(BigDecimal transferPoundageType) {
+    public void setTransferPoundageType(String transferPoundageType) {
         this.transferPoundageType = transferPoundageType;
     }
 
@@ -266,21 +290,23 @@ public class ProductDetail implements Parcelable {
         dest.writeStringList(this.venueNames);
         dest.writeValue(this.validDay);
         dest.writeValue(this.validTime);
-        dest.writeSerializable(this.rechargeGivePercent);
-        dest.writeSerializable(this.salePrice);
+        dest.writeString(this.rechargeGivePercent);
+        dest.writeString(this.salePrice);
+        dest.writeString(this.strRestKey);
+        dest.writeString(this.strRestVal);
         dest.writeStringList(this.rightsInterestsList);
-        dest.writeSerializable(this.changeShopPoundageFee);
-        dest.writeSerializable(this.changeShopPoundageType);
-        dest.writeSerializable(this.renewPoundageFee);
-        dest.writeSerializable(this.renewPoundageType);
-        dest.writeSerializable(this.returnPoundageFee);
-        dest.writeSerializable(this.returnPoundageType);
-        dest.writeSerializable(this.stopPoundageFee);
-        dest.writeSerializable(this.stopPoundageType);
-        dest.writeSerializable(this.switchPoundageFee);
-        dest.writeSerializable(this.switchPoundageType);
-        dest.writeSerializable(this.transferPoundageFee);
-        dest.writeSerializable(this.transferPoundageType);
+        dest.writeString(this.changeShopPoundageFee);
+        dest.writeString(this.changeShopPoundageType);
+        dest.writeString(this.renewPoundageFee);
+        dest.writeValue(this.renewPoundageType);
+        dest.writeString(this.returnPoundageFee);
+        dest.writeValue(this.returnPoundageType);
+        dest.writeString(this.stopPoundageFee);
+        dest.writeValue(this.stopPoundageType);
+        dest.writeString(this.switchPoundageFee);
+        dest.writeString(this.switchPoundageType);
+        dest.writeString(this.transferPoundageFee);
+        dest.writeString(this.transferPoundageType);
         dest.writeString(this.createDate);
         dest.writeString(this.expirationDate);
     }
@@ -295,21 +321,23 @@ public class ProductDetail implements Parcelable {
         this.venueNames = in.createStringArrayList();
         this.validDay = (Integer) in.readValue(Integer.class.getClassLoader());
         this.validTime = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.rechargeGivePercent = (BigDecimal) in.readSerializable();
-        this.salePrice = (BigDecimal) in.readSerializable();
+        this.rechargeGivePercent = in.readString();
+        this.salePrice = in.readString();
+        this.strRestKey = in.readString();
+        this.strRestVal = in.readString();
         this.rightsInterestsList = in.createStringArrayList();
-        this.changeShopPoundageFee = (BigDecimal) in.readSerializable();
-        this.changeShopPoundageType = (BigDecimal) in.readSerializable();
-        this.renewPoundageFee = (BigDecimal) in.readSerializable();
-        this.renewPoundageType = (BigDecimal) in.readSerializable();
-        this.returnPoundageFee = (BigDecimal) in.readSerializable();
-        this.returnPoundageType = (BigDecimal) in.readSerializable();
-        this.stopPoundageFee = (BigDecimal) in.readSerializable();
-        this.stopPoundageType = (BigDecimal) in.readSerializable();
-        this.switchPoundageFee = (BigDecimal) in.readSerializable();
-        this.switchPoundageType = (BigDecimal) in.readSerializable();
-        this.transferPoundageFee = (BigDecimal) in.readSerializable();
-        this.transferPoundageType = (BigDecimal) in.readSerializable();
+        this.changeShopPoundageFee = in.readString();
+        this.changeShopPoundageType = in.readString();
+        this.renewPoundageFee = in.readString();
+        this.renewPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.returnPoundageFee = in.readString();
+        this.returnPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.stopPoundageFee = in.readString();
+        this.stopPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.switchPoundageFee = in.readString();
+        this.switchPoundageType = in.readString();
+        this.transferPoundageFee = in.readString();
+        this.transferPoundageType = in.readString();
         this.createDate = in.readString();
         this.expirationDate = in.readString();
     }

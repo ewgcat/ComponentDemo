@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,24 +172,34 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
         }
 
 
-        Integer validDay = productDetail.getValidDay();
-        if (validDay != null) tvYuEr.setText("" + validDay + "天");
+//        Integer validDay = productDetail.getValidDay();
+//        if (validDay != null) tvYuEr.setText("" + validDay + "天");
+//
+//        Integer validTime = productDetail.getValidTime();
+//        if (validTime != null) tvYuEr.setText("" + validTime + "次");
+//
+//        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
+//        if (rechargeGivePercent != null) {
+//            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
+//            String format = percent.format(rechargeGivePercent);
+//            tvChuzhiyouhui.setText("赠送" + format);
+//        }
+//        BigDecimal salePrice = productDetail.getSalePrice();
+//        if (salePrice != null) {
+//            tvPrice.setText("" + salePrice.doubleValue());
+//        }
 
-        Integer validTime = productDetail.getValidTime();
-        if (validTime != null) tvYuEr.setText("" + validTime + "次");
-
-        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (rechargeGivePercent != null) {
-            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-            String format = percent.format(rechargeGivePercent);
-            tvChuzhiyouhui.setText("赠送" + format);
+        String strRestKey = productDetail.getStrRestKey();
+        String strRestVal = productDetail.getStrRestVal();
+        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+            tvYuEr.setText(strRestKey+strRestVal);
         }
-        BigDecimal salePrice = productDetail.getSalePrice();
-        if (salePrice != null) {
-            tvPrice.setText("" + salePrice.doubleValue());
-        }
 
+        String rechargeGivePercent = productDetail.getRechargeGivePercent();
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
 
+        String salePrice = productDetail.getSalePrice();
+        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
 
     }
 

@@ -102,7 +102,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         int clockedCount = coachViperBean.getClockedCount();
         if (clockedCount!=-1){
 
-            holder.tv_daka_total_count.setText(""+clockedCount);
+            holder.tv_daka_total_count.setText(clockedCount+"次");
         }
         Long bePresentTime = coachViperBean.getVisitTime();
         if (bePresentTime!=null&&bePresentTime!=-1){

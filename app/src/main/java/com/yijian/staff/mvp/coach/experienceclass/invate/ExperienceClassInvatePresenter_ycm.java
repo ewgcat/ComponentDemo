@@ -16,22 +16,22 @@ import java.util.HashMap;
  * Created by The_P on 2018/4/16.
  */
 
-public class ExperienceClassInvatePresenter implements ExperienceClassInvateContract.Presenter{
+public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvateContract_ycm.Presenter{
 
     private Context context;
-    private ExperienceClassInvateContract.View view;
-    public ExperienceClassInvatePresenter(Context context) {
+    private ExperienceClassInvateContract_ycm.View view;
+    public ExperienceClassInvatePresenter_ycm(Context context) {
         this.context=context;
     }
 
-    public void setView(ExperienceClassInvateContract.View view){
+    public void setView(ExperienceClassInvateContract_ycm.View view){
         this.view=view;
     }
 
     @Override
     public void getInviterInfo(String memberId) {
         HashMap<String, String> map = new HashMap<>();
-        memberId="666";
+//        memberId="666";
         map.put("memberId", memberId);
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
             @Override

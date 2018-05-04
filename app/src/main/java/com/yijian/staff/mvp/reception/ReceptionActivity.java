@@ -18,22 +18,28 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionLog;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
+import com.yijian.staff.mvp.reception.reception_step_ycm.EndReceptionDialog;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.yijian.staff.mvp.main.MainActivity.RESULT_OK_RECEPTION;
+
 public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener, ReceptionContract.View, ReceptionHistoryAdapter.ReceptionHistoryListener {
 
     private List<ReceptionInfo> mReceptionInfoList = new ArrayList<>();
     private RecptionerInfoBean consumer;
+
+    public static final int RESULT_OK=3;
 
     public static final String CONSUMER = "consumer";
     private RecyclerView recyclerView;
@@ -127,9 +133,19 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         switch (id) {
             case R.id.tv_stopJieDai:
-                //TODO 结束接待
-//                TOLeadersDialog toLeadersDialog=new TOLeadersDialog();
-//                toLeadersDialog.show(getFragmentManager(),"TOLeadersDialog");
+                if (consumer==null){
+                    Toast.makeText(this,"未获得接待人信息",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                EndReceptionDialog endReceptionDialog = new EndReceptionDialog();
+                endReceptionDialog.setOklisenter(new EndReceptionDialog.DialogOklisenter() {
+                    @Override
+                    public void onClick() {
+                        presenter.endRecption(consumer.getId());
+                    }
+                });
+                endReceptionDialog.show(getFragmentManager(),"EndReceptionDialog");
                 break;
             case R.id.tv_jiedai:
                 if (consumer==null){
@@ -145,8 +161,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
                 consumer.setHistoryNode(HistoryNode);
                 Intent intent1 = new Intent(ReceptionActivity.this, ReceptionStepActivity.class);
                 intent1.putExtra(CONSUMER, consumer);
-                startActivity(intent1);
-
+                startActivityForResult(intent1, 0);
                 break;
         }
     }
@@ -192,13 +207,20 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
+    public void showEndRecption() {
+        Toast.makeText(this,"接待已结束",Toast.LENGTH_SHORT).show();
+
+        finish();
+
+    }
+
+    @Override
     public void onRequestClicked(int position) {
         RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
         Intent intent = new Intent(this, QuestionnaireResultActivity.class);
         intent.putExtra("memberId",recordsBean.getMemberId());
         intent.putExtra("memberName",recordsBean.getMemberName());
         startActivity(intent);
-
     }
 
     @Override
@@ -208,5 +230,21 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         i.putExtra("memberId", recordsBean.getMemberId());
         i.putExtra("memberName",recordsBean.getMemberName());
         startActivity(i);
+    }
+
+
+    // 回调方法，从第二个页面回来的时候会执行这个方法
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 根据上面发送过去的请求吗来区别
+        switch (resultCode) {
+            case RESULT_OK:
+                ReceptionActivity.this.setResult(MainActivity.RESULT_OK_RECEPTION);
+               finish();
+                break;
+
+            default:
+                break;
+        }
     }
 }

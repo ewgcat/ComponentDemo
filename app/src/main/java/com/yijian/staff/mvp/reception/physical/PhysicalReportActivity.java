@@ -114,7 +114,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
     public void showUserData(PhysicalExaminationBean bean) {
         Integer age = bean.getAge();
         if (age!=null&&age>0){
-            tvAge.setText(age);
+            tvAge.setText(String.valueOf(age));
         }
         BigDecimal height = bean.getHeight();
         if (height!=null&&height.intValue()>0){

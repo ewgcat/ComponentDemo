@@ -106,7 +106,7 @@ public class MineFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password, R.id.ll_about_us, R.id.ll_suggestion})
+    @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password,  R.id.ll_suggestion})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_more:
@@ -136,9 +136,9 @@ public class MineFragment extends Fragment {
             case R.id.ll_edit_password:
                 startActivityForResult(new Intent(getContext(), EditPasswordActivity.class), 1234);
                 break;
-            case R.id.ll_about_us:
-                startActivity(new Intent(getContext(), AboutUsActivity.class));
-                break;
+//            case R.id.ll_about_us:
+//                startActivity(new Intent(getContext(), AboutUsActivity.class));
+//                break;
             case R.id.ll_suggestion:
                 startActivity(new Intent(getContext(), AddAdviceActivity.class));
                 break;

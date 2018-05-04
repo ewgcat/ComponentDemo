@@ -55,7 +55,7 @@ public class UploadManager {
                 File file = new File(s);
                 // 创建 RequestBody，用于封装构建RequestBody
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用uploadFiles
                 MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFiles", file.getName(), requestFile);
                 bodys.add(body);
             }

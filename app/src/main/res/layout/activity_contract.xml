@@ -8,5 +8,8 @@
     <include
         android:id="@+id/contract_navigation_bar2"
         layout="@layout/view_navigation_bar2" />
-
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

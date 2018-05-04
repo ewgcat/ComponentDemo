@@ -1,14 +1,21 @@
 package com.yijian.staff.mvp.reception.contract;
 
 import android.os.Bundle;
+import android.webkit.WebView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.webview.BaseWebViewActivity;
+
 import com.yijian.staff.widget.NavigationBar2;
 
-public class ContractActivity extends MvcBaseActivity {
 
 
+import butterknife.BindView;
+
+public class ContractActivity extends BaseWebViewActivity {
+
+    @BindView(R.id.web_view)
+    WebView webView;
 
     @Override
     protected int getLayoutID() {
@@ -21,5 +28,7 @@ public class ContractActivity extends MvcBaseActivity {
         navigationBar2.setTitle("合同");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+        initWebView(webView,BaseWebViewActivity.CONTRACT_TYPE);
     }
+
 }

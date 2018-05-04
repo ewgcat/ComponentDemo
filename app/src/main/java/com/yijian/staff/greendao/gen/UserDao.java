@@ -36,6 +36,8 @@ public class UserDao extends AbstractDao<User, Void> {
         public final static Property Sex = new Property(9, String.class, "sex", false, "SEX");
         public final static Property Birthday = new Property(10, String.class, "birthday", false, "BIRTHDAY");
         public final static Property Mobile = new Property(11, String.class, "mobile", false, "MOBILE");
+        public final static Property Post = new Property(12, int.class, "post", false, "POST");
+        public final static Property Chief = new Property(13, boolean.class, "chief", false, "CHIEF");
     }
 
 
@@ -62,7 +64,9 @@ public class UserDao extends AbstractDao<User, Void> {
                 "\"HEAD_IMG\" TEXT," + // 8: headImg
                 "\"SEX\" TEXT," + // 9: sex
                 "\"BIRTHDAY\" TEXT," + // 10: birthday
-                "\"MOBILE\" TEXT);"); // 11: mobile
+                "\"MOBILE\" TEXT," + // 11: mobile
+                "\"POST\" INTEGER NOT NULL ," + // 12: post
+                "\"CHIEF\" INTEGER NOT NULL );"); // 13: chief
     }
 
     /** Drops the underlying database table. */
@@ -126,6 +130,8 @@ public class UserDao extends AbstractDao<User, Void> {
         if (mobile != null) {
             stmt.bindString(12, mobile);
         }
+        stmt.bindLong(13, entity.getPost());
+        stmt.bindLong(14, entity.getChief() ? 1L: 0L);
     }
 
     @Override
@@ -183,6 +189,8 @@ public class UserDao extends AbstractDao<User, Void> {
         if (mobile != null) {
             stmt.bindString(12, mobile);
         }
+        stmt.bindLong(13, entity.getPost());
+        stmt.bindLong(14, entity.getChief() ? 1L: 0L);
     }
 
     @Override
@@ -204,7 +212,9 @@ public class UserDao extends AbstractDao<User, Void> {
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // headImg
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // sex
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // birthday
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // mobile
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // mobile
+            cursor.getInt(offset + 12), // post
+            cursor.getShort(offset + 13) != 0 // chief
         );
         return entity;
     }
@@ -223,6 +233,8 @@ public class UserDao extends AbstractDao<User, Void> {
         entity.setSex(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setBirthday(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setMobile(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setPost(cursor.getInt(offset + 12));
+        entity.setChief(cursor.getShort(offset + 13) != 0);
      }
     
     @Override

@@ -25,7 +25,8 @@ public class User {
     public String sex;
     public String birthday;
     public String mobile;
-
+    private int post;
+    private boolean chief;
 
     public User(JSONObject jsonObject) {
         this.age = JsonUtil.getInt(jsonObject, "age");
@@ -44,10 +45,10 @@ public class User {
     }
 
 
-    @Generated(hash = 56835642)
+    @Generated(hash = 602243532)
     public User(int age, int role, String name, String userId, String shopId,
-                String merchantId, String token, String tokenAge, String headImg,
-                String sex, String birthday, String mobile) {
+            String merchantId, String token, String tokenAge, String headImg,
+            String sex, String birthday, String mobile, int post, boolean chief) {
         this.age = age;
         this.role = role;
         this.name = name;
@@ -60,6 +61,8 @@ public class User {
         this.sex = sex;
         this.birthday = birthday;
         this.mobile = mobile;
+        this.post = post;
+        this.chief = chief;
     }
 
 
@@ -162,5 +165,25 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+
+    public int getPost() {
+        return this.post;
+    }
+
+
+    public void setPost(int post) {
+        this.post = post;
+    }
+
+
+    public boolean getChief() {
+        return this.chief;
+    }
+
+
+    public void setChief(boolean chief) {
+        this.chief = chief;
     }
 }

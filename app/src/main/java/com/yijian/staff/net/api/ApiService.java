@@ -78,8 +78,7 @@ public interface ApiService {
 
     @Multipart
     @POST()
-    Observable<JSONObject> uploadFiles(@Url String url, @HeaderMap Map<String, String> headers, @Query("fileType") String param,
-                                       @Part() List<MultipartBody.Part> parts);
+    Observable<JSONObject> uploadFiles(@Url String url, @HeaderMap Map<String, String> headers, @Query("fileType") String param, @Part() List<MultipartBody.Part> parts);
 
     //登录
     @Headers({"Content-type: application/json", "Accept: */*"})

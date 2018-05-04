@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,8 +53,7 @@ public class SplashActivity extends MvcBaseActivity {
 
     @BindView(R.id.iv_splash_bg)
     ImageView ivSplashBg;
-    @BindView(R.id.tv_splash_author)
-    TextView tvSplashAuthor;
+
 
 
     @Override
@@ -63,6 +63,7 @@ public class SplashActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initRxPermissions(index, permissions);
     }
 

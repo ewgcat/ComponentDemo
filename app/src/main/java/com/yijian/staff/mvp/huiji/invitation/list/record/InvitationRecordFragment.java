@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.invitation.list.bean.InvitationRecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.httpmanager.HuiJiInviteListRequestBody;
+import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;

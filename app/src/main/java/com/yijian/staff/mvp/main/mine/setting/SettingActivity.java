@@ -18,6 +18,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
@@ -35,10 +36,6 @@ public class SettingActivity extends MvcBaseActivity {
     ImageView ivHead;
     @BindView(R.id.tv_name)
     TextView tvName;
-//    @BindView(R.id.tv_sex)
-//    TextView tvSex;
-    @BindView(R.id.tv_age)
-    TextView tvAge;
     @BindView(R.id.tv_phone)
     TextView tvPhone;
     @BindView(R.id.tv_work_num)
@@ -66,31 +63,33 @@ public class SettingActivity extends MvcBaseActivity {
         User user = DBManager.getInstance().queryUser();
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("userId", user.getUserId());
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                UserInfo userInfo = new UserInfo(result);
-                tvName.setText(userInfo.getName());
-//                tvSex.setText(userInfo.getSex());
-                tvAge.setText(userInfo.getAge() + "");
-                tvPhone.setText(userInfo.getMobile());
-                tvWorkNum.setText(userInfo.getJobNo());
-                tvMendian.setText(userInfo.getShop());
-                tvDepartment.setText(userInfo.getDepartment());
-                tvPosition.setText(userInfo.getPost());
-                user.setAge(userInfo.getAge() );
-                user.setHeadImg(userInfo.getHeadImg());
-                DBManager.getInstance().insertOrReplaceUser(user);
-                setImageResource(userInfo.getHeadImg(), ivHead);
+        if (user!=null){
+            map.put("userId", user.getUserId());
+            HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    UserInfo userInfo = new UserInfo(result);
+                    tvName.setText(userInfo.getName());
+                    tvPhone.setText(userInfo.getMobile());
+                    tvWorkNum.setText(userInfo.getJobNo());
+                    tvMendian.setText(userInfo.getShop());
+                    tvDepartment.setText(userInfo.getDepartment());
+                    tvPosition.setText(userInfo.getPost());
+                    user.setAge(userInfo.getAge() );
+                    user.setHeadImg(userInfo.getHeadImg());
+                    Logger.i("SettingActivity",userInfo.getHeadImg()+"");
+                    DBManager.getInstance().insertOrReplaceUser(user);
+                    setImageResource(userInfo.getHeadImg(), ivHead);
 
-            }
+                }
 
-            @Override
-            public void onFail(String msg) {
+                @Override
+                public void onFail(String msg) {
 
-            }
-        });
+                }
+            });
+        }
+
 
 
     }

@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
@@ -112,6 +113,10 @@ public interface ApiService {
     //问卷调查_保存
     @POST
     Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body List<QuestionnaireAnswer> requestBody);
+
+    //体验课流程——发送邀约信息
+    @POST
+    Observable<JSONObject> postInvate(@Url String url, @HeaderMap Map<String, String> headers,@Body InvateBean invateBean);
 
     //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})

@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
@@ -516,9 +517,22 @@ public class HttpManager {
             Observable<JSONObject> receptionTestObservable = apiService.postObj(RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
             execute(receptionTestObservable, observer);
         }
-
-
     }
+
+//    postInvate
+    //体验课流程——发出二次邀约
+public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> observer) {
+    HashMap<String, String> headers = new HashMap<>();
+    User user = DBManager.getInstance().queryUser();
+
+    if (user == null || TextUtils.isEmpty(user.getToken())) {
+        ARouter.getInstance().build("/test/login").navigation();
+    } else {
+        headers.put("token", user.getToken());
+        Observable<JSONObject> receptionTestObservable = apiService.postInvate(SEND_EXPERICECE_INVITE_HISTORY_URL, headers,invateBean );
+        execute(receptionTestObservable, observer);
+    }
+}
 
     //保存menu编辑状态
     public static void saveMenuChange(MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
@@ -890,5 +904,7 @@ public class HttpManager {
 
     //接待--会籍--step5-完成整个流程
     public static final String RECEPTION_STEP5_END = BuildConfig.HOST + "reception/finish-to-coach";
+
+
 
 }

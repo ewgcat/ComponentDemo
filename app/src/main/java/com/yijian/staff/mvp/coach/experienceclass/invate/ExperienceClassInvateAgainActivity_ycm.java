@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
+import com.yijian.staff.mvp.coach.experienceclass.invate_ycm.ExperienceClass_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.bean.TemplateListBean;
@@ -112,8 +114,6 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
                 if (template1Select){
                     sendInvate();
 
-
-
                 }else if (template2Select){
 
                 }else {
@@ -135,7 +135,7 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
 
 
         //课程时间选择
-        List<String> times = Arrays.asList("1小时", "2小时", "3小时", "其他时间");
+        List<String> times = Arrays.asList("60分钟", "120分钟", "180分钟");
         pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -182,16 +182,70 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
 //                            "startTime": "2018-05-04 02:26",
 //                            "templateId": "string"
 //                    }
-        InvateBean invateBean = new InvateBean();
 
+        if (inviteVO==null)return;
+
+        InvateBean invateBean = new InvateBean();
+//        "60分钟", "120分钟", "180分钟"
         String text = tvTimeLength.getText().toString();
-        if (TextUtils.isEmpty(text)){
+        if ("60分钟".equals(text)){
+            invateBean.setCourseTime(60);
+        }else if ("120分钟".equals(text)){
+            invateBean.setCourseTime(120);
+        }else if ("180分钟".equals(text)){
+            invateBean.setCourseTime(180);
+        }else {
             Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"请选择课程时长",Toast.LENGTH_SHORT).show();
             return;
         }
 
-//                    invateBean.setCourseTime(text);
-//                    presenter.saveAndSendInvite();
+        String memberId = inviteVO.getMemberId();
+        if (!TextUtils.isEmpty(memberId)){
+            invateBean.setMemberId(memberId);
+        }else {
+            Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"memberId不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String processId = inviteVO.getProcessId();
+        if (!TextUtils.isEmpty(processId)){
+            invateBean.setProcessId(processId);
+        }else {
+            Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"processId不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+      String remark  = etRemark.getText().toString();
+        if (!TextUtils.isEmpty(remark)){
+            invateBean.setRemark(remark);
+        }else {
+            Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"请填写备注信息",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (TextUtils.isEmpty(tvTimeClass.getText())||"请选择".equals(tvTimeClass.getText())){
+            Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"请选择上课时间",Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            invateBean.setStartTime(tvTimeClass.getText().toString());
+        }
+
+        List<TemplateListBean> experienceTemplateList = inviteVO.getExperienceTemplateList();
+        if (experienceTemplateList==null||experienceTemplateList.isEmpty()){
+            Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"课程模板数据异常",Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            String templateId = experienceTemplateList.get(0).getTemplateId();
+            if (!TextUtils.isEmpty(templateId)){
+                invateBean.setTemplateId(templateId);
+            }else {
+                Toast.makeText(ExperienceClassInvateAgainActivity_ycm.this,"课程模板数据异常",Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        presenter.saveAndSendInvite(invateBean);
     }
 
 
@@ -246,4 +300,9 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
         }
     }
 
+    @Override
+    public void showSendSucceed() {
+        this.setResult(ExperienceClass_ycm.INVATEAGAIN_RESULT);
+        finish();
+    }
 }

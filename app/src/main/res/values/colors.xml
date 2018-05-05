@@ -33,6 +33,7 @@
     <color name="white">#ffffff</color>
     <color name="red_50">#fed1d6</color>
 
+    <color name="activity_background">#eff0f4</color>
     <color name="red">#FF0000</color>
 
     <color name="gray_text_desc">#808080</color>

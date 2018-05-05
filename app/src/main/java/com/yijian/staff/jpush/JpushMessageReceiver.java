@@ -1,6 +1,8 @@
 package com.yijian.staff.jpush;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -204,6 +206,27 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         return sb.toString();
     }
 
+    /**
+     * 判断某个Activity 界面是否在前台
+     * @param context
+     * @param className 某个界面名称
+     * @return
+     */
+    public static boolean  isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className)) {
+            return false;
+        }
 
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            if (className.equals(cpn.getClassName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

@@ -68,7 +68,7 @@ public class MineFragment extends Fragment {
         user = DBManager.getInstance().queryUser();
         if (user != null) {
             tvUserName.setText(user.getName());
-            // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
+            // 1 会籍客服 2教练  3会籍总监 4教练总监 5店长
             if (user.getRole() == 1) {
                 tvUserJobPostion.setText("会籍客服");
             } else if (user.getRole() == 2) {
@@ -78,10 +78,6 @@ public class MineFragment extends Fragment {
             } else if (user.getRole() == 4) {
                 tvUserJobPostion.setText("教练总监");
             } else if (user.getRole() == 5) {
-                tvUserJobPostion.setText("操课教练");
-            } else if (user.getRole() == 6) {
-                tvUserJobPostion.setText("行政");
-            } else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("店长");
             }
             setImageResource(user.getHeadImg(), ivUserHead);

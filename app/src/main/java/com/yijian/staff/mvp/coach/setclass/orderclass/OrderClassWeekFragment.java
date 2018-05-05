@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +24,29 @@ import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
 import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.CourseInfo;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+
+import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderClassWeekFragment extends Fragment {
     private static final String TAG = "WeekFragment_ycm";
@@ -44,6 +59,12 @@ public class OrderClassWeekFragment extends Fragment {
     private MonthCalendarView mcvCalendar;
     private RecyclerView rv_day;
     private AdapterWeekFragment adapter;
+    private List<DayTask> dayTaskList = new ArrayList<>();
+    OnChangeDateListener onChangeDateListener;
+
+    public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
+        this.onChangeDateListener = onChangeDateListener;
+    }
 
     public static OrderClassWeekFragment getInstance(){
         if(weekFragment == null){
@@ -65,31 +86,8 @@ public class OrderClassWeekFragment extends Fragment {
         ImageView ivToggle = view.findViewById(R.id.iv_toggle);
 
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
-        mcvCalendar = view.findViewById(R.id.mcvCalendar);
         llCalendar = view.findViewById(R.id.ll_calendar);
-
-        mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
-
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
-
-
-
-        ivToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int height = llCalendar.getHeight();
-                float translationY = llCalendar.getTranslationY();
-                if (translationY==0){//收缩
-
-                    float range = height - getDependentViewCollapsedHeight();
-                    llCalendar.setTranslationY(-range);
-                }else if (-translationY==height-getDependentViewCollapsedHeight()){//伸张
-                    llCalendar.setTranslationY(0);
-                }
-
-            }
-        });
-
         rv_day = view.findViewById(R.id.recyclerview);
         rv_day.setNestedScrollingEnabled(false);
         GridLayoutManager layout = new GridLayoutManager(getContext(),7);
@@ -97,27 +95,49 @@ public class OrderClassWeekFragment extends Fragment {
         rv_day.setLayoutManager(layout);
         adapter = new AdapterWeekFragment(getContext());
         rv_day.setAdapter(adapter);
-        initData();
-        handler.post(new Runnable() {
+        adapter.setICourseListener(new AdapterWeekFragment.ICourseListener() {
             @Override
-            public void run() {
-                int height = llCalendar.getHeight();
-                float range = height - getDependentViewCollapsedHeight();
-                llCalendar.setTranslationY(-range);
+            public void onClick(DayTask.CoursesBean courseInfo) {
+                Toast.makeText(getContext(),""+courseInfo.toString(),Toast.LENGTH_SHORT).show();
+
+                if("0".equals(courseInfo.getIsExperience())){ // 0：私教课，
+                    if(courseInfo.getIsPrepare() == 0){ // 备课
+
+                    }else if(courseInfo.getIsPrepare() == 1){ // 上课
+                        Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
+                        intent.putExtra("privateApplyId",courseInfo.getId());
+                        intent.putExtra("startDateTime",courseInfo.getStartDatetime());
+                        intent.putExtra("endDateTime",courseInfo.getEndDatetime());
+                        intent.putExtra("startDate",courseInfo.getStartDate());
+                        intent.putExtra("punchStatus",courseInfo.getPunchStatus());
+                        startActivity(intent);
+                    }
+                }else if("1".equals(courseInfo.getIsExperience())){//1：体验课
+                    if("0".equals(courseInfo.getIsUseTemplate())){ //体验课：0：用体侧模板，1：私教课模板 ,
+                        Intent intent = new Intent(getActivity(), ExperienceClassRecordActivity.class);
+                        intent.putExtra("privateApplyId",courseInfo.getId());
+                        startActivity(intent);
+                    }else if("1".equals(courseInfo.getIsUseTemplate())){
+                        Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
+                        intent.putExtra("privateApplyId",courseInfo.getId());
+                        intent.putExtra("startDateTime",courseInfo.getStartDatetime());
+                        intent.putExtra("endDateTime",courseInfo.getEndDatetime());
+                        intent.putExtra("startDate",courseInfo.getStartDate());
+                        intent.putExtra("punchStatus",courseInfo.getPunchStatus());
+                        startActivity(intent);
+                    }
+
+                }
             }
+
         });
-    }
-
-
-    private float getDependentViewCollapsedHeight() {
-        return getContext().getResources().getDimension(R.dimen.collapsed_header_height);
+        initData();
+        initDayTaskList();
     }
 
     private void initData() {
         Calendar calendar = Calendar.getInstance();
         resetCurrentSelectDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
-        initDayCanlendarInfoList();
     }
 
     private void resetCurrentSelectDate(int year, int month, int day) {
@@ -130,73 +150,26 @@ public class OrderClassWeekFragment extends Fragment {
     private OnCalendarClickListener mWeekCalendarClickListener = new OnCalendarClickListener() {
         @Override
         public void onClickDate(int year, int month, int day) {
-            mcvCalendar.setOnCalendarClickListener(null);
             int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
             resetCurrentSelectDate(year, month, day);
-            if (months != 0) {
-                int position = mcvCalendar.getCurrentItem() + months;
-                mcvCalendar.setCurrentItem(position, false);
-            }
             resetMonthView();
-            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
-
         }
 
         @Override
         public void onPageChange(int year, int month, int day) {
-
+            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
+            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
+           /*
+           每次滑动周视图的时候，设置成每周的第一天
+           wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,1);*/
+            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,day);
+            initDayTaskList();
         }
     };
-
-    private OnCalendarClickListener mMonthCalendarClickListener = new OnCalendarClickListener() {
-        @Override
-        public void onClickDate(int year, int month, int day) {
-            wcvCalendar.setOnCalendarClickListener(null);
-            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, day);
-            resetCurrentSelectDate(year, month, day);
-            int position = wcvCalendar.getCurrentItem() + weeks;
-            if (weeks != 0) {
-                wcvCalendar.setCurrentItem(position, false);
-            }
-            resetWeekView(position);
-            wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
-        }
-
-        @Override
-        public void onPageChange(int year, int month, int day) {
-//            computeCurrentRowsIsSix(year, month);
-        }
-    };
-
-    private void resetWeekView(int position) {
-        WeekView weekView = wcvCalendar.getCurrentWeekView();
-        if (weekView != null) {
-            weekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            weekView.invalidate();
-        } else {
-            WeekView newWeekView = wcvCalendar.getWeekAdapter().instanceWeekView(position);
-            newWeekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            newWeekView.invalidate();
-            wcvCalendar.setCurrentItem(position);
-        }
-//        if (mOnCalendarClickListener != null) {
-//            mOnCalendarClickListener.onClickDate(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-//        }
-        onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-
-    }
 
     private void resetMonthView() {
-        MonthView monthView = mcvCalendar.getCurrentMonthView();
-        if (monthView != null) {
-            monthView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            monthView.invalidate();
-        }
-//        if (mOnCalendarClickListener != null) {
-//            mOnCalendarClickListener.onClickDate(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-//        }
-//        resetCalendarPosition();
-
         onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
     }
     //当日期被改变后
@@ -204,50 +177,57 @@ public class OrderClassWeekFragment extends Fragment {
 
     }
 
+    /**
+     * 初始化周视图列表数据
+     */
+    private void initDayTaskList(){
+        dayTaskList.clear();
+        WeekView weekView;
+        if (wcvCalendar.getCurrentWeekView() == null) {
+            weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
+        }else{
+            weekView = wcvCalendar.getCurrentWeekView();
+        }
+        for (int i = 0; i < 7; i++) {
+            DayTask dayTask = new DayTask();
+            DateTime dateTime = weekView.getStartDate().plusDays(i);
+            dayTask.setStartDate(dateTime.getYear()+"-"+dateTime.getMonthOfYear()+"-"+dateTime.getDayOfMonth());
+            dayTaskList.add(dayTask);
+        }
+        //添加测试数据
+        initDayCanlendarInfoList();
+    }
 
-    private List<DayCanlendarInfo> dayCanlendarInfoList=new ArrayList<>();
     private void initDayCanlendarInfoList() {
-        List<DayTask> list=new ArrayList<>();
 
-        /*DayTask dayTask = new DayTask();
-        dayTask.setName("星期一");
-
-        CourseInfo courseInfo = new CourseInfo();
-        courseInfo.setName("语文课");
-        courseInfo.setStart("2008-03-10 10:25:02");
-        courseInfo.setEnd("2008-03-10 11:25:02");
-
-        CourseInfo courseInfo1 = new CourseInfo();
-        courseInfo1.setName("英语课");
-        courseInfo1.setStart("2008-03-10 14:00:02");
-        courseInfo1.setEnd("2008-03-10 17:00:02");
-        dayTask.setCourseInfos(Arrays.asList(courseInfo,courseInfo1));
-
-        list.add(dayTask);
-
-
-
-        DayTask dayTask1 = new DayTask();
-        dayTask1.setName("星期二");
-
-        CourseInfo courseInfoa = new CourseInfo();
-        courseInfoa.setName("语文课");
-        courseInfoa.setStart("2008-03-12 7:15:02");
-        courseInfoa.setEnd("2008-03-12 10:55:06");
-
-        CourseInfo courseInfob = new CourseInfo();
-        courseInfob.setName("英语课");
-        courseInfob.setStart("2008-03-12 17:06:02");
-        courseInfob.setEnd("2008-03-12 17:56:55");
-        dayTask1.setCourseInfos(Arrays.asList(courseInfoa,courseInfob));
-        list.add(dayTask1);
-
-        adapter.resetData(list);
-        adapter.setICourseListener(new AdapterWeekFragment.ICourseListener() {
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("leftTime",dayTaskList.get(0).getStartDate());
+        map.put("rightTime",dayTaskList.get(dayTaskList.size()-1).getStartDate());
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL, map, new ResultJSONObjectObserver() {
             @Override
-            public void onClick(CourseInfo courseInfo) {
-                Toast.makeText(getContext(),""+courseInfo.toString(),Toast.LENGTH_SHORT).show();
+            public void onSuccess(JSONObject result) {
+                try {
+                    JSONArray jsonArray = (JSONArray) result.get("mapList");
+                    List<DayTask> dayTasks = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(),DayTask.class);
+                    for(DayTask dayTask : dayTasks){
+                        for(int i = 0; i< dayTaskList.size(); i++){
+                            DayTask curDayTask = dayTaskList.get(i);
+                            if(dayTask.equals(curDayTask)){
+                                dayTaskList.set(i,dayTask);
+                            }
+                        }
+                    }
+                    adapter.resetData(dayTaskList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        });*/
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

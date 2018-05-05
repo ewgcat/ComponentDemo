@@ -113,14 +113,14 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         navigationBar2.hideBottomLine();
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("意向会员");
-        String id = getIntent().getStringExtra("id");
-        loadData(id);
+        navigationBar2.setTitle("会员详情");
+
+        loadData();
     }
 
 
-    private void loadData(String id) {
-
+    private void loadData() {
+        String id = getIntent().getStringExtra("id");
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
@@ -174,7 +174,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
-
+        tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
     }
 
     private String judgeNull(String str) {
@@ -189,8 +189,8 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
                 intent.putExtra("detail", vipDetailBean.getDetail());
                 intent.putExtra("memberId", vipDetailBean.getMemberId());
                 intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
-
-                startActivity(intent);
+                intent.putExtra("name", vipDetailBean.getName());
+                startActivityForResult(intent, 0);
 
                 break;
             case R.id.ll_chakan_wenjuan: //邀约
@@ -204,6 +204,14 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
                     Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                 }
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == 1) {
+            loadData();
         }
     }
 

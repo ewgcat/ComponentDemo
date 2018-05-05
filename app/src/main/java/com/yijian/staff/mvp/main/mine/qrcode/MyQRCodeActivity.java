@@ -1,11 +1,15 @@
 package com.yijian.staff.mvp.main.mine.qrcode;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jaeger.library.StatusBarUtil;
 import com.jwsd.libzxing.QRCodeManager;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
@@ -13,6 +17,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
@@ -37,6 +42,8 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     ImageView ivGender;
     @BindView(R.id.tv_role)
     TextView tvRole;
+    @BindView(R.id.rootView)
+    LinearLayout rootView;
 
     @Override
     protected int getLayoutID() {
@@ -45,10 +52,22 @@ public class MyQRCodeActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+        int statusBarHeight = CommonUtil.getStatusBarHeight(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(0, statusBarHeight, 0, 0);
+        rootView.setLayoutParams(params);
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
+
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
         navigationBar2.setTitle("二维码");
+        navigationBar2.setNavigationBarBackgroudColor(android.R.color.transparent);
         navigationBar2.hideLeftSecondIv();
+        navigationBar2.hideBottomLine();
+        navigationBar2.getmTitleView().setTextColor(Color.parseColor("#ffffff"));
         navigationBar2.setBackClickListener(this);
+        ImageView firstLeftIv = navigationBar2.getFirstLeftIv();
+        Glide.with(this).load(R.mipmap.white_arrow_back).into(firstLeftIv);
         User user = DBManager.getInstance().queryUser();
 
         if (user != null) {
@@ -63,19 +82,15 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             } else if (user.getRole() == 4) {
                 tvRole.setText("教练总监");
             } else if (user.getRole() == 5) {
-                tvRole.setText("操课教练");
-            } else if (user.getRole() == 6) {
-                tvRole.setText("行政");
-            } else if (user.getRole() == 7) {
                 tvRole.setText("店长");
             }
             ImageLoader.setImageResource(user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();
             int sexId;
-            if (sex.equals("男")){
-                sexId =  R.mipmap.lg_man;
-            }else {
-                sexId =   R.mipmap.lg_women;
+            if (sex.equals("男")) {
+                sexId = R.mipmap.lg_man;
+            } else {
+                sexId = R.mipmap.lg_women;
             }
             Glide.with(this).load(sexId).into(ivGender);
         }

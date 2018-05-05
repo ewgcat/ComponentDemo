@@ -1,19 +1,14 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">易健员工端</string>
+    <string name="app_name">易健</string>
 
-    <string name="favorite">最爱</string>
-    <string name="cold_weapon">冷兵器</string>
-    <string name="modern_weapon">现代武器</string>
-    <string name="misc">道具</string>
-    <string name="equipment">装备</string>
-    <string name="person">动作</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="header_scrolling_behavior_day">com.yijian.staff.mvp.mine.calendartable.HeaderScrollingBehaviorDay</string>
-    <string name="header_float_behavior">com.yijian.staff.mvp.mine.calendartable.HeaderWeekBehavior</string>
-    <string name="header_scrolling_behavior_week">com.yijian.staff.mvp.mine.calendartable.HeaderScrollingBehaviorWeek</string>
+    <string name="header_scrolling_behavior_day">com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorDay</string>
+    <string name="header_float_behavior">com.yijian.staff.mvp.main.mine.calendartable.HeaderWeekBehavior</string>
+    <string name="header_scrolling_behavior_week">com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorWeek</string>
     <string name="negative_duration">\u2212<xliff:g example="1:14" id="time">%1$s</xliff:g></string>
 </resources>

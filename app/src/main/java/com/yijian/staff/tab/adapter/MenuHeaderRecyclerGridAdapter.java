@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuHeaderRecyclerGridHolder;
@@ -104,7 +105,9 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(context).load(item.getIcon()).apply(options).into(holder.iv_icon);
+        String icon = item.getIcon();
+        String path = BuildConfig.FILE_HOST + icon;
+        Glide.with(context).load(path).apply(options).into(holder.iv_icon);
     }
 
     @Override

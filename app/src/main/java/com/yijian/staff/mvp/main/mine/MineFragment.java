@@ -68,7 +68,7 @@ public class MineFragment extends Fragment {
         user = DBManager.getInstance().queryUser();
         if (user != null) {
             tvUserName.setText(user.getName());
-            // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
+            // 1 会籍客服 2教练  3会籍总监 4教练总监 5店长
             if (user.getRole() == 1) {
                 tvUserJobPostion.setText("会籍客服");
             } else if (user.getRole() == 2) {
@@ -78,19 +78,15 @@ public class MineFragment extends Fragment {
             } else if (user.getRole() == 4) {
                 tvUserJobPostion.setText("教练总监");
             } else if (user.getRole() == 5) {
-                tvUserJobPostion.setText("操课教练");
-            } else if (user.getRole() == 6) {
-                tvUserJobPostion.setText("行政");
-            } else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("店长");
             }
-            setImageResource(user.getHeadImg(),ivUserHead);
+            setImageResource(user.getHeadImg(), ivUserHead);
         }
         return view;
     }
 
 
-    private void setImageResource(String path,ImageView imageView) {
+    private void setImageResource(String path, ImageView imageView) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
@@ -106,27 +102,32 @@ public class MineFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password,  R.id.ll_suggestion})
+    @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password, R.id.ll_suggestion})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_more:
-                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+                if (user == null) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+                }
                 break;
             case R.id.ll_club:
                 startActivity(new Intent(getContext(), ClubActivity.class));
                 break;
             case R.id.ll_my_zhengshu:
-                if(user.getRole()==2||user.getRole()==4){
+                if (user.getRole() == 2 || user.getRole() == 4) {
                     startActivity(new Intent(getContext(), MyQualificationActivity.class));
-                }else {
+                } else {
                     ARouter.getInstance().build("/test/empty").navigation();
 
                 }
                 break;
             case R.id.ll_my_date:
-                if(user.getRole()==2||user.getRole()==4){
+                if (user.getRole() == 2 || user.getRole() == 4) {
                     startActivity(new Intent(getContext(), CalendarTableActivity.class));
-                }else {
+                } else {
                     ARouter.getInstance().build("/test/empty").navigation();
                 }
                 break;
@@ -148,7 +149,7 @@ public class MineFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 1234) {
+        if (resultCode == 1234 ) {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             getActivity().finish();

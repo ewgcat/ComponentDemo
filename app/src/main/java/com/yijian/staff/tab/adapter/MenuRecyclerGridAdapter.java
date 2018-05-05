@@ -13,6 +13,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.adapter.holder.MenuRecyclerGridHolder;
@@ -93,7 +94,9 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(context).load(item.getIcon()).apply(options).into(holder.iv_icon);
+        String icon = item.getIcon();
+        String path = BuildConfig.FILE_HOST + icon;
+        Glide.with(context).load(path).apply(options).into(holder.iv_icon);
         holder.tv_name.setText(item.getName());
         int type = item.getType();
         if (showEditIcon) {

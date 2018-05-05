@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,8 +54,7 @@ public class SplashActivity extends MvcBaseActivity {
 
     @BindView(R.id.iv_splash_bg)
     ImageView ivSplashBg;
-    @BindView(R.id.tv_splash_author)
-    TextView tvSplashAuthor;
+
 
 
     @Override
@@ -63,35 +64,39 @@ public class SplashActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initRxPermissions(index, permissions);
     }
 
 
     public void jumpToNext() {
-        User user = DBManager.getInstance().queryUser();
-        if (user != null) {
-            String token = user.getToken().trim();
-            if (TextUtils.isEmpty(token)) {
+        new Handler().postDelayed(() -> {
+            User user = DBManager.getInstance().queryUser();
+            if (user != null) {
+                String token = user.getToken().trim();
+                if (TextUtils.isEmpty(token)) {
+                    Intent intent = new Intent();
+                    intent.setClass(this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                } else {
+
+                    Intent intent = new Intent();
+                    intent.setClass(this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            } else {
                 Intent intent = new Intent();
                 intent.setClass(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            } else {
-
-                Intent intent = new Intent();
-                intent.setClass(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
-        } else {
-            Intent intent = new Intent();
-            intent.setClass(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }
+        }, 1000 * 2);
+
 
 
     }

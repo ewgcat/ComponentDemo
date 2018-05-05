@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,12 @@ import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarAdapter;
+import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
@@ -75,7 +79,7 @@ public class OrderClassDayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_class_day, container, false);
         initView(view);
-        loadData(new Date());
+        initData();
 
         return view;
     }
@@ -121,6 +125,16 @@ public class OrderClassDayFragment extends Fragment {
         rv_day.setLayoutManager(layoutmanager);
         dayCanlendarAdapter = new OrderclassDayAdapter(getActivity(), orderClassDayBeanList);
         rv_day.setAdapter(dayCanlendarAdapter);
+
+    }
+
+    private void initData() {
+        Calendar calendar = Calendar.getInstance();
+        resetCurrentSelectDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        loadDayData(new Date());
+        loadPreviewDayData(new Date());
+
     }
 
     private void resetCurrentSelectDate(int year, int month, int day) {
@@ -135,10 +149,157 @@ public class OrderClassDayFragment extends Fragment {
     }
 
 
-    private void loadData(Date date){
+    private OnCalendarClickListener mWeekCalendarClickListener = new OnCalendarClickListener() {
+        @Override
+        public void onClickDate(int year, int month, int day) {
+            mcvCalendar.setOnCalendarClickListener(null);
+            int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
+            resetCurrentSelectDate(year, month, day);
+            int position = 0;
+            if (months != 0) {
+                position = mcvCalendar.getCurrentItem() + months;
+                mcvCalendar.setCurrentItem(position, false);
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date = dateFormat.parse(year + "-" + month + "-" + day);
+                loadDayData(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            resetMonthView();
+            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
+        }
+
+        @Override
+        public void onPageChange(int year, int month, int day) {
+            Log.e("Test", "year===" + year + "  month===" + month + "   day===" + day);
+
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
+            /*
+            没切换日历页面的时候设置成每个月的第一天
+            int startDay = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getDayOfMonth();
+            int startYear = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getYear();
+            int startMonth = wcvCalendar.getCurrentWeekView().getStartDate().plusDays(0).getMonthOfYear();
+            wcvCalendar.getCurrentWeekView().selectWeekDay(startYear, startMonth, startDay);
+
+
+            mcvCalendar.setOnCalendarClickListener(null);
+            int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, startYear, startMonth);
+            resetCurrentSelectDate(startYear, startMonth, startDay);*/
+
+            wcvCalendar.getCurrentWeekView().selectWeekDay(year, month, day);
+
+
+            mcvCalendar.setOnCalendarClickListener(null);
+            int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
+            resetCurrentSelectDate(year, month, day);
+
+
+            int position = 0;
+            if (months != 0) {
+                position = mcvCalendar.getCurrentItem() + months;
+                mcvCalendar.setCurrentItem(position, false);
+            }
+
+            resetMonthView();
+            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
+
+
+        }
+    };
+
+    private OnCalendarClickListener mMonthCalendarClickListener = new OnCalendarClickListener() {
+        @Override
+        public void onClickDate(int year, int month, int day) {
+            wcvCalendar.setOnCalendarClickListener(null);
+            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, day);
+            resetCurrentSelectDate(year, month, day);
+            int position = wcvCalendar.getCurrentItem() + weeks;
+            if (weeks != 0) {
+                wcvCalendar.setCurrentItem(position, false);
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date = dateFormat.parse(year + "-" + month + "-" + day);
+                loadDayData(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            resetWeekView(position);
+            wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
+        }
+
+        @Override
+        public void onPageChange(int year, int month, int day) {
+            Log.e("Test", "year===" + year + "  month===" + month + "   day===" + day);
+            CalendarDay calendarDay = CalendarDay.from(year, month, day);
+            onChangeDateListener.onChangeDate(calendarDay);
+
+            loadPreviewDayData(year + "-" + month);
+
+            //添加小圆点
+           /* List<String> dateList = new ArrayList<String>();
+            dateList.add("2018-5-2");
+            dateList.add("2018-5-3");
+            dateList.add("2018-5-4");
+            dateList.add("2018-6-2");
+            wcvCalendar.getCurrentWeekView().addDateTaskHint(dateList);
+            mcvCalendar.getCurrentMonthView().addDateTaskHint(dateList);*/
+            mcvCalendar.getCurrentMonthView().selectMonthDay(year, month, 1);
+
+            wcvCalendar.setOnCalendarClickListener(null);
+            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, 1);
+            resetCurrentSelectDate(year, month, 1);
+            int position = wcvCalendar.getCurrentItem() + weeks;
+            if (weeks != 0) {
+                wcvCalendar.setCurrentItem(position, false);
+            }
+            resetWeekView(position);
+            wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
+
+        }
+    };
+
+    private void resetWeekView(int position) {
+        WeekView weekView = wcvCalendar.getCurrentWeekView();
+        if (weekView != null) {
+            weekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
+            weekView.invalidate();
+        } else {
+            WeekView newWeekView = wcvCalendar.getWeekAdapter().instanceWeekView(position);
+            newWeekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
+            newWeekView.invalidate();
+            wcvCalendar.setCurrentItem(position);
+        }
+        onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
+
+    }
+
+    private void resetMonthView() {
+        MonthView monthView = mcvCalendar.getCurrentMonthView();
+        if (monthView != null) {
+            monthView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
+            monthView.invalidate();
+        }
+        onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
+    }
+
+    //当日期被改变后
+    private void onDataChanged(int mCurrentSelectYear, int mCurrentSelectMonth, int mCurrentSelectDay) {
+
+    }
+
+
+    public void loadDayData(Date strDate) {
         Map<String,String> map = new HashMap<String,String>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        map.put("dateStr",simpleDateFormat.format(date));
+        map.put("dateStr",simpleDateFormat.format(strDate));
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -156,101 +317,38 @@ public class OrderClassDayFragment extends Fragment {
         });
     }
 
-
-    private OnCalendarClickListener mWeekCalendarClickListener = new OnCalendarClickListener() {
-        @Override
-        public void onClickDate(int year, int month, int day) {
-            mcvCalendar.setOnCalendarClickListener(null);
-            int months = CalendarUtils.getMonthsAgo(mCurrentSelectYear, mCurrentSelectMonth, year, month);
-            resetCurrentSelectDate(year, month, day);
-            if (months != 0) {
-                int position = mcvCalendar.getCurrentItem() + months;
-                mcvCalendar.setCurrentItem(position, false);
-            }
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date date = dateFormat.parse(year+"-"+month+"-"+day);
-                loadData(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            resetMonthView();
-            mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
+    public void loadPreviewDayData(Object strDate) {
+        Map<String, String> map = new HashMap<String, String>();
+        if (strDate instanceof Date) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+            map.put("month", simpleDateFormat.format(strDate));
+        } else if (strDate instanceof String) {
+            map.put("month", (String) strDate);
         }
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_DATES_ORDER_URL, map, new ResultJSONArrayObserver() {
 
-        @Override
-        public void onPageChange(int year, int month, int day) {
-            CalendarDay  calendarDay = CalendarDay.from(year,month,day);
-            onChangeDateListener.onChangeDate(calendarDay);
-        }
-    };
+            @Override
+            public void onSuccess(JSONArray result) {
+                //添加小圆点
+                List<String> dateStrList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), String.class);
+                mcvCalendar.getCurrentMonthView().addDateTaskHint(dateStrList);
+                if (wcvCalendar.getCurrentWeekView() == null) {
+                    WeekView weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
+                    weekView.addDateTaskHint(dateStrList);
+                }else{
+                    wcvCalendar.getCurrentWeekView().addDateTaskHint(dateStrList);
+                }
+                Log.e("Test", "loadPreviewDayData.....");
+                wcvCalendar.getCurrentItem();
 
-    private OnCalendarClickListener mMonthCalendarClickListener = new OnCalendarClickListener() {
-        @Override
-        public void onClickDate(int year, int month, int day) {
-            wcvCalendar.setOnCalendarClickListener(null);
-            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, day);
-            resetCurrentSelectDate(year, month, day);
-            int position = wcvCalendar.getCurrentItem() + weeks;
-            if (weeks != 0) {
-                wcvCalendar.setCurrentItem(position, false);
-            }
-            resetWeekView(position);
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date date = dateFormat.parse(year+"-"+month+"-"+day);
-                loadData(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
 
+            @Override
+            public void onFail(String msg) {
 
-            wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
-        }
-
-        @Override
-        public void onPageChange(int year, int month, int day) {
-//            computeCurrentRowsIsSix(year, month);
-            CalendarDay  calendarDay = CalendarDay.from(year,month,day);
-            onChangeDateListener.onChangeDate(calendarDay);
-        }
-    };
-
-    private void resetWeekView(int position) {
-        WeekView weekView = wcvCalendar.getCurrentWeekView();
-        if (weekView != null) {
-            weekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            weekView.invalidate();
-        } else {
-            WeekView newWeekView = wcvCalendar.getWeekAdapter().instanceWeekView(position);
-            newWeekView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            newWeekView.invalidate();
-            wcvCalendar.setCurrentItem(position);
-        }
-//        if (mOnCalendarClickListener != null) {
-//            mOnCalendarClickListener.onClickDate(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-//        }
-        onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-
+            }
+        });
     }
 
-    private void resetMonthView() {
-        MonthView monthView = mcvCalendar.getCurrentMonthView();
-        if (monthView != null) {
-            monthView.setSelectYearMonth(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-            monthView.invalidate();
-        }
-//        if (mOnCalendarClickListener != null) {
-//            mOnCalendarClickListener.onClickDate(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-//        }
-//        resetCalendarPosition();
-
-        onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
-    }
-    //当日期被改变后
-    private void onDataChanged(int mCurrentSelectYear, int mCurrentSelectMonth, int mCurrentSelectDay) {
-
-    }
 
 }

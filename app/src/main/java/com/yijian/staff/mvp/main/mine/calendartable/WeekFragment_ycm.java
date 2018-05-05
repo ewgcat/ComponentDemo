@@ -168,7 +168,10 @@ public class WeekFragment_ycm extends Fragment  {
             Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
             CalendarDay calendarDay = CalendarDay.from(year, month, day);
             onChangeDateListener.onChangeDate(calendarDay);
-            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,1);
+           /*
+           每次滑动周视图的时候，设置成每周的第一天
+           wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,1);*/
+            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,day);
             initDayTaskList();
         }
     };

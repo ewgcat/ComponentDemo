@@ -199,14 +199,19 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 根据上面发送过去的请求吗来区别
-        switch (resultCode) {
-            case RESULT_OK_RECEPTION:
-                RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
-                recetionCompleteDialog.show(getFragmentManager(),"RecetionCompleteDialog");
-                break;
-            default:
-                break;
+        if (resultCode==1234&&mineFragment!=null){
+            mineFragment.onActivityResult(requestCode,resultCode,data);
+        }else {
+            switch (resultCode) {
+                case RESULT_OK_RECEPTION:
+                    RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
+                    recetionCompleteDialog.show(getFragmentManager(),"RecetionCompleteDialog");
+                    break;
+                default:
+                    break;
+            }
         }
+
     }
 
 }

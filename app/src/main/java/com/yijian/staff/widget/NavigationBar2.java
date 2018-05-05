@@ -109,6 +109,9 @@ public class NavigationBar2 extends LinearLayout {
         secondLeftIv.setVisibility(i);
     }
 
+    public void setBackLLVisiable(int i){
+        backLL.setVisibility(i);
+    }
 
     public void hideBottomLine() {
         bottomLine.setVisibility(GONE);

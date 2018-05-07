@@ -92,9 +92,10 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 接待 -->
-        <activity android:name=".mvp.reception.reception_step_ycm.ReceptionStepActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask" />
+        <activity
+            android:name=".mvp.reception.reception_step_ycm.ReceptionStepActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.reception.ReceptionActivity"
             android:screenOrientation="portrait" />
@@ -113,9 +114,11 @@
             android:name=".mvp.reception.step3.ReceptionStepThreeActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".mvp.reception.step3.coach.ProductDetailActivity"
+        <activity
+            android:name=".mvp.reception.step3.coach.ProductDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.reception.step3.coach.RightsAcitity"
+        <activity
+            android:name=".mvp.reception.step3.coach.RightsAcitity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -315,8 +318,9 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 体验课 -->
-        <activity android:name=".mvp.coach.experienceclass.invate_ycm.ExperienceClass_ycm"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.coach.experienceclass.invate_ycm.ExperienceClass_ycm"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".mvp.coach.experienceclass.index.ExperienceClassListActivity"
@@ -509,8 +513,8 @@
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
-            android:process=":mult"
-            android:exported="false">
+            android:exported="false"
+            android:process=":mult">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -520,23 +524,16 @@
         </service>
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="${applicationId}.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
-            android:exported="false"
-            />
-
+            android:authorities="${applicationId}.DataProvider"
+            android:exported="false" />
 
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="${applicationId}.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
-            android:exported="true"
-            />
-
-
-
-
+            android:authorities="${applicationId}.DownloadProvider"
+            android:exported="true" />
 
 
         <activity
@@ -563,7 +560,18 @@
             android:name=".mvp.coach.recordchart.detail.ClassRecordDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.coach.preparelessons.createlession.PrepareLessonDetailActivity"></activity>
+        <activity
+            android:name=".mvp.coach.preparelessons.createlession.PrepareLessonDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.resourceallocation.coachleader.CoachLeaderResourceAllocationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

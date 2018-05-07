@@ -71,7 +71,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <com.yijian.staff.mvp.resourceallocation.widget.RatingBar
+                    <com.yijian.staff.mvp.resourceallocation.coach.widget.RatingBar
                         android:id="@+id/rb_grate"
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"
@@ -82,7 +82,7 @@
                         app:starImageSize="15dp"
                         app:starPadding="6dp"
                         app:starStep="1.5"
-                        app:stepSize="Half"></com.yijian.staff.mvp.resourceallocation.widget.RatingBar>
+                        app:stepSize="Half"></com.yijian.staff.mvp.resourceallocation.coach.widget.RatingBar>
 
                     <TextView
                         android:id="@+id/tv_comment_grade"

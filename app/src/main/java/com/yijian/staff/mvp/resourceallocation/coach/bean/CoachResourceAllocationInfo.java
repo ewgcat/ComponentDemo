@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader.bean;
+package com.yijian.staff.mvp.resourceallocation.coach.bean;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * Created by yangk on 2018/3/12.
  */
 
-public class CoachHistoryResourceAllocationInfo {
+public class CoachResourceAllocationInfo {
 
 
     private String headerUrl;
@@ -23,7 +23,7 @@ public class CoachHistoryResourceAllocationInfo {
     private String serviceCoach; //接待教练
 
 
-    public CoachHistoryResourceAllocationInfo(JSONObject jsonObject){
+    public CoachResourceAllocationInfo(JSONObject jsonObject){
         this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
         this.name = JsonUtil.getString(jsonObject,"name");
         this.gender = "0".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;

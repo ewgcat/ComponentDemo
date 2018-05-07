@@ -261,7 +261,7 @@ public class SelectHuiJiActivity extends AppCompatActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_LIST_RECEIVE_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -285,7 +285,7 @@ public class SelectHuiJiActivity extends AppCompatActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_LIST_RECEIVE_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader;
+package com.yijian.staff.mvp.resourceallocation.coachleader.index;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coachleader.fragment.distribution.CoachResourceAllocationFragment;
-import com.yijian.staff.mvp.resourceallocation.coachleader.fragment.history.CoachHistoryAllocationFragment;
+import com.yijian.staff.mvp.resourceallocation.coachleader.index.distribution.ResourceAllocationFragment;
+import com.yijian.staff.mvp.resourceallocation.coachleader.index.history.HistoryAllocationFragment;
 import com.yijian.staff.widget.NavigationBar2;
 
 
@@ -25,15 +25,15 @@ import butterknife.OnClick;
  * 资源分配(教练总监角色)
  */
 @Route(path = "/test/10.4")
-public class CoachLeaderResourceAllocationActivity extends AppCompatActivity {
+public class CoachLeaderResourceIndexActivity extends AppCompatActivity {
 
 
 
 
 
     private static final String[] FRAGMENT_TAG = {"CoachResourceAllocationFragment", "CoachHistoryAllocationFragment"};
-    private CoachResourceAllocationFragment resourceAllocationFragment;
-    private CoachHistoryAllocationFragment historyAllocationFragment;
+    private ResourceAllocationFragment resourceAllocationFragment;
+    private HistoryAllocationFragment historyAllocationFragment;
     private NavigationBar2 navigationBar2;
 
     @BindView(R.id.lin_resource_allowcation)
@@ -107,10 +107,10 @@ public class CoachLeaderResourceAllocationActivity extends AppCompatActivity {
     public void popFragement(FragmentTransaction transaction, Fragment fragment, int index) {
         if (fragment == null) {
             if (index == 0) {
-                resourceAllocationFragment = CoachResourceAllocationFragment.getInstance();
+                resourceAllocationFragment = ResourceAllocationFragment.getInstance();
                 transaction.add(R.id.fl_home, resourceAllocationFragment, FRAGMENT_TAG[index]);
             } else if (index == 1) {
-                historyAllocationFragment = CoachHistoryAllocationFragment.getInstance();
+                historyAllocationFragment = HistoryAllocationFragment.getInstance();
                 transaction.add(R.id.fl_home, historyAllocationFragment, FRAGMENT_TAG[index]);
             }
         } else {

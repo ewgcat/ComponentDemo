@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.resourceallocation.fragment.history;
+package com.yijian.staff.mvp.resourceallocation.coachleader.index.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,14 +18,11 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.resourceallocation.adapter.CoachResourceAllocationAdatper;
-import com.yijian.staff.mvp.coach.resourceallocation.bean.CoachHistoryResourceAllocationInfo;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -36,32 +33,29 @@ import java.util.Map;
 /**
  * 历史分配
  */
-public class CoachHistoryAllocationFragment extends Fragment {
+public class HistoryAllocationFragment extends Fragment {
 
-    private static CoachHistoryAllocationFragment historyAllocationFragment;
-    public static CoachHistoryAllocationFragment getInstance(){
+    private static HistoryAllocationFragment historyAllocationFragment;
+    public static HistoryAllocationFragment getInstance(){
         if(historyAllocationFragment == null){
-            historyAllocationFragment = new CoachHistoryAllocationFragment();
+            historyAllocationFragment = new HistoryAllocationFragment();
         }
         return historyAllocationFragment;
     }
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
-    private List<CoachHistoryResourceAllocationInfo> resourceAllocationInfoList=new ArrayList<>();
-    public CoachResourceAllocationAdatper resourceAllocationAdatper;
+    private List<ResourceInfo> resourceAllocationInfoList=new ArrayList<>();
+    public HistoryResourceListAdatper adapter;
 
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 6;
     private int pages;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coach_history_allocation, container, false);
         initView(view);
-//        initResourceAllocationInfoList();
         return view;
     }
 
@@ -72,43 +66,21 @@ public class CoachHistoryAllocationFragment extends Fragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_resource_allocation.setLayoutManager(layoutmanager);
-        resourceAllocationAdatper = new CoachResourceAllocationAdatper(getActivity(), resourceAllocationInfoList, CoachResourceAllocationAdatper.HISTORY_TYPE);
-        rv_resource_allocation.setAdapter(resourceAllocationAdatper);
+        adapter = new HistoryResourceListAdatper(getActivity(), resourceAllocationInfoList);
+        rv_resource_allocation.setAdapter(adapter);
 
         initComponent();
+        refresh();
+
     }
 
-   /* private void initResourceAllocationInfoList() {
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("headerUrl", "");
-            jsonObject.put("name", "张三三");
-            jsonObject.put("name", "1");
-            jsonObject.put("birthDay", "1990-8-9");
-            jsonObject.put("wxIdentification", "wer2342344");
-            jsonObject.put("email", "打橄榄球");
-            jsonObject.put("serviceHuiJi", "壮壮");
-            jsonObject.put("serviceCoach", "牛牛");
-            for (int i = 0; i < 10; i++) {
-                CoachHistoryResourceAllocationInfo vipPeopleInfo = new CoachHistoryResourceAllocationInfo(jsonObject);
-                resourceAllocationInfoList.add(vipPeopleInfo);
-            }
-
-
-            LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
-            //设置RecyclerView 布局
-            rv_resource_allocation.setLayoutManager(layoutmanager);
-            resourceAllocationAdatper = new CoachResourceAllocationAdatper(getActivity(), resourceAllocationInfoList, CoachResourceAllocationAdatper.HISTORY_TYPE);
-            rv_resource_allocation.setAdapter(resourceAllocationAdatper);
-        } catch (JSONException e) {
-            Logger.i("TEST", "JSONException: " + e);
-
-        }
-
-    }*/
+  
 
     public void initComponent() {
+        pageNum = 1;
+        pageSize = 6;
+        resourceAllocationInfoList.clear();
+        
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
@@ -120,8 +92,7 @@ public class CoachHistoryAllocationFragment extends Fragment {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                pageSize = 1;
+               
                 refresh();
             }
 
@@ -139,12 +110,15 @@ public class CoachHistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+
+                resourceAllocationInfoList.add(new ResourceInfo(new JSONObject()));
+                adapter.update(resourceAllocationInfoList);
             }
 
             @Override
@@ -163,7 +137,7 @@ public class CoachHistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

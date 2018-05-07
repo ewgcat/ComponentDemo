@@ -140,6 +140,15 @@
       },
       {
         "type": 1,
+        "name": "会商结论",
+        "icon": "url",
+        "path": "/test/11",
+        "group": "会籍(客服)",
+        "count": 0,
+        "className": "YJResourceAllocationTabBarController"
+      },
+      {
+        "type": 1,
         "name": "问卷查询",
         "icon": "url",
         "path": "/test/12",

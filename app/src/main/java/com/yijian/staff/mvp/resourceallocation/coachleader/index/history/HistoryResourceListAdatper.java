@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coach.adapter;
+package com.yijian.staff.mvp.resourceallocation.coachleader.index.history;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coach.bean.CoachResourceAllocationInfo;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 
 import java.util.List;
 
@@ -18,27 +18,27 @@ import java.util.List;
  * 这里的Adapter 是资源分配和历史分配以及不同角色的资源分配公用的
  * 通过 flag_type字段标识决定是哪个模块使用的
  */
-public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachResourceAllocationAdatper.ViewHolder> {
+public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryResourceListAdatper.ViewHolder> {
 
-    private List<CoachResourceAllocationInfo> list;
+    private List<ResourceInfo> list;
     private Context context;
 
-    public CoachResourceAllocationAdatper(Context context, List<CoachResourceAllocationInfo> list) {
+    public HistoryResourceListAdatper(Context context, List<ResourceInfo> list) {
         this.context = context;
         this.list = list;
     }
 
 
     @Override
-    public CoachResourceAllocationAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_resource_allocation, parent, false);
-        CoachResourceAllocationAdatper.ViewHolder holder = new CoachResourceAllocationAdatper.ViewHolder(view);
+    public HistoryResourceListAdatper.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach_zongjian_history_resource, parent, false);
+        HistoryResourceListAdatper.ViewHolder holder = new HistoryResourceListAdatper.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(CoachResourceAllocationAdatper.ViewHolder holder, int position) {
-        CoachResourceAllocationInfo coachResourceAllocationInfo = list.get(position);
+    public void onBindViewHolder(HistoryResourceListAdatper.ViewHolder holder, int position) {
+        ResourceInfo coachResourceAllocationInfo = list.get(position);
 
     }
 
@@ -47,7 +47,7 @@ public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachRe
         return list == null ? 0 : list.size();
     }
 
-    public void update(List<CoachResourceAllocationInfo> resourceAllocationInfoList) {
+    public void update(List<ResourceInfo> resourceAllocationInfoList) {
         this.list=resourceAllocationInfoList;
         notifyDataSetChanged();
     }

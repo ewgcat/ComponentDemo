@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.coach.resourceallocation.bean;
+package com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;

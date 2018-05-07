@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coachleader.adapter.CoachInfo;
 import com.yijian.staff.mvp.resourceallocation.coachleader.widget.RatingBar;
 
 import java.util.ArrayList;

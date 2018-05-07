@@ -282,6 +282,9 @@ public class HttpManager {
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
 
+
+    /************** 分配资源*******************/
+
     //会籍资源分配
     public static String GET_HUIJI_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distribution/list";
 

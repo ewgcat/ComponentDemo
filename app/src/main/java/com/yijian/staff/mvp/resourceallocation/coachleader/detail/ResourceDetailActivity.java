@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach.SelectCoachPopupWindow;
 import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.ButterKnife;
@@ -14,6 +15,7 @@ import butterknife.OnClick;
 public class ResourceDetailActivity extends MvcBaseActivity {
 
 
+    private LinearLayout root_view;
     private LinearLayout ll_zhengsi_vip;
 
     @Override
@@ -27,6 +29,7 @@ public class ResourceDetailActivity extends MvcBaseActivity {
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
 
+        root_view = findView(R.id.root_view);
         ll_zhengsi_vip = findView(R.id.ll_zhengsi_vip);
         int type = getIntent().getIntExtra("type", 0);
         String memberId = getIntent().getStringExtra("memberId");
@@ -44,6 +47,7 @@ public class ResourceDetailActivity extends MvcBaseActivity {
     public void onViewClicked() {
         //TODO 选择教练 分配
 
-
+        SelectCoachPopupWindow selectCoachPopupWindow = new SelectCoachPopupWindow(this);
+        selectCoachPopupWindow.showAtLocation(root_view);
     }
 }

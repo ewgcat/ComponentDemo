@@ -63,6 +63,9 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
     TextView tvJianshenplace;
     @BindView(R.id.tv_yu_er)
     TextView tvYuEr;
+    @BindView(R.id.tv_yu_er_tip)
+    TextView tvYuErTip;
+
     @BindView(R.id.tv_chuzhiyouhui)
     TextView tvChuzhiyouhui;
     @BindView(R.id.tv_price)
@@ -213,7 +216,8 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
         if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuEr.setText(strRestKey+strRestVal);
+            tvYuErTip.setText(strRestKey);
+            tvYuEr.setText(strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
@@ -242,7 +246,6 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
     @Override
     public void onConfirm(Integer postid, String content) {
         if (TextUtils.isEmpty(memberId))return;
-
         presenter.postToLeader(memberId,content,postid);
     }
 

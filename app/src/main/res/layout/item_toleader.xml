@@ -33,9 +33,9 @@
         android:id="@+id/tv_select"
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:background="@drawable/gray_stroke_unselect_bg"
+        android:background="@drawable/selector_fillet_12_blue"
         android:gravity="center"
         android:text="选择"
-        android:textColor="#999999"
+        android:textColor="@drawable/selector_textcolor_white"
         android:textSize="14sp" />
 </LinearLayout>

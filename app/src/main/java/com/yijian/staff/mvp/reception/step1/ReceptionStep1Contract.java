@@ -18,7 +18,8 @@ public interface ReceptionStep1Contract {
     }
 
     interface Presenter{
-      void  getQuestion(String memberId);
+      void  getQuestionAndAnswer(String memberId);
+      void  getQuestion();
       void  uploadQusetion(List<DataListBean> questionList, RecptionerInfoBean consumerBean, List<CalendarDay> selectedDates);
 
 

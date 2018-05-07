@@ -39,23 +39,35 @@
                 android:textSize="@dimen/text_size_14"
                 android:textColor="@color/text_black2"/>
 
-            <LinearLayout
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_to_coach"-->
+                <!--android:layout_marginLeft="40dp"-->
+                <!--android:layout_marginRight="40dp"-->
+                <!--android:background="@mipmap/button_invite"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:text="通知教练" />-->
+            <!--</LinearLayout>-->
+
+            <Button
                 android:id="@+id/ll_to_coach"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="@mipmap/button_invite"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#ffffff"
-                    android:text="通知教练" />
-            </LinearLayout>
+                android:background="@drawable/register_button_bg"
+                android:text="通知教练"
+                android:textColor="@color/white" />
 
 
             <TextView

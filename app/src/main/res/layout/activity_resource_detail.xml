@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_view"
     android:orientation="vertical">
 
     <include
@@ -14,10 +14,27 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <include
-            android:id="@+id/ll_zhengsi_vip"
-            layout="@layout/coach_zheng_shi_viper_detail"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <include
+                android:id="@+id/ll_zhengsi_vip"
+                layout="@layout/coach_zheng_shi_viper_detail"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/ll_intent_vip"
+                layout="@layout/coach_intent_viper_detail"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/ll_potential_vip"
+                layout="@layout/coach_potential_viper_detail"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
     </ScrollView>
 

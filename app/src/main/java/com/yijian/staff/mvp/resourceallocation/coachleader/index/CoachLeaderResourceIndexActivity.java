@@ -69,6 +69,8 @@ public class CoachLeaderResourceIndexActivity extends AppCompatActivity {
         navigationBar2.setTitle("资源分配");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+        resourceAllocationFragment=ResourceAllocationFragment.getInstance();
+        historyAllocationFragment=HistoryAllocationFragment.getInstance();
         selectTab(0);
     }
 
@@ -90,35 +92,59 @@ public class CoachLeaderResourceIndexActivity extends AppCompatActivity {
 
     public void selectTab(int index) {
         setBotoomStyle(index);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (index) {
             case 0:
-                popFragement(transaction, resourceAllocationFragment, index);
+                popFragement(index);
                 break;
             case 1:
-                popFragement(transaction, historyAllocationFragment, index);
+                popFragement( index);
                 break;
+        }
+    }
+
+    public void popFragement( int index) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+        hideAllIndex(transaction);
+        switch (index) {
+            case 0:
+                if (!resourceAllocationFragment.isAdded()) {
+                    // 如果WorkFragment为空，则创建一个并添加到界面上
+                    transaction.add(R.id.fl_home, resourceAllocationFragment, FRAGMENT_TAG[index]);
+                }else {
+
+                    transaction.show(resourceAllocationFragment);
+                }
+                // 如果WorkFragment不为空，则直接将它显示出来
+
+                break;
+            case 1:
+                if (!historyAllocationFragment.isAdded()) {
+                    // 如果mesageFragment为空，则创建一个并添加到界面上
+                    transaction.add(R.id.fl_home, historyAllocationFragment, FRAGMENT_TAG[index]);
+                    transaction.show(historyAllocationFragment);
+                }
+                // 如果mesageFragment不为空，则直接将它显示出来
+                transaction.show(historyAllocationFragment);
+
+                break;
+
         }
         transaction.commit();
     }
 
-    public void popFragement(FragmentTransaction transaction, Fragment fragment, int index) {
-        if (fragment == null) {
-            if (index == 0) {
-                resourceAllocationFragment = ResourceAllocationFragment.getInstance();
-                transaction.add(R.id.fl_home, resourceAllocationFragment, FRAGMENT_TAG[index]);
-            } else if (index == 1) {
-                historyAllocationFragment = HistoryAllocationFragment.getInstance();
-                transaction.add(R.id.fl_home, historyAllocationFragment, FRAGMENT_TAG[index]);
-            }
-        } else {
-            if (index == 0) {
-                transaction.replace(R.id.fl_home, resourceAllocationFragment);
-            } else if (index == 1) {
-                transaction.replace(R.id.fl_home, historyAllocationFragment);
-            }
 
+
+    //隐藏所有的Fragment
+    public void hideAllIndex(FragmentTransaction fragmentTransaction) {
+        if (resourceAllocationFragment!=null&&resourceAllocationFragment.isAdded()) {
+            fragmentTransaction.hide(resourceAllocationFragment);
         }
+        if (historyAllocationFragment!=null&&historyAllocationFragment.isAdded()) {
+            fragmentTransaction.hide(historyAllocationFragment);
+        }
+
     }
 
     public void setBotoomStyle(int index) {

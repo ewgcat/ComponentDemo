@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huiji.edit;
+package com.yijian.staff.mvp.coach.detail.edit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
@@ -30,10 +32,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * 会员信息编辑页
- */
-public class HuiJiVipInfoEditActivity extends AppCompatActivity {
+public class CoachVipInfoEditActivity extends AppCompatActivity {
+
 
     @BindView(R.id.tv_source)
     TextView tv_source;
@@ -63,7 +63,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     EditText et_address;
 
     com.alibaba.fastjson.JSONObject detailJsonObj = new com.alibaba.fastjson.JSONObject();
-    VipDetailBean.DetailBean detailBean;
+    CoachVipDetailBean.DetailBean detailBean;
     String memberId = "";
     String resource;
     List<String> resuorceList = new ArrayList<String>(); //用户获取渠道集合
@@ -88,20 +88,22 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> hobbyIdList = new ArrayList<>();  //爱好集合
     List<String> bodybuildingIdList = new ArrayList<String>();  //健身目的
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_info_edit);
+        setContentView(R.layout.activity_coach_vip_info_edit);
         ButterKnife.bind(this);
         initTitle();
         initData();
-
     }
+
+  
 
     private void initData() {
         memberId = getIntent().getStringExtra("memberId");
 
-        detailBean = (VipDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
+        detailBean = (CoachVipDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
         resource = getIntent().getStringExtra("source");
         detailJsonObj = (com.alibaba.fastjson.JSONObject) com.alibaba.fastjson.JSONObject.toJSON(detailBean);
         detailJsonObj.put("source", resource);
@@ -191,14 +193,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
-                Toast.makeText(HuiJiVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoachVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                 setResult(1);
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(HuiJiVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoachVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -356,24 +358,24 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                         tv_carPrice.setText(carPriceList.get(0));
                     }
 
-                     if(TextUtils.isEmpty(tv_hobby.getText().toString())){
-                         tv_hobby.setText(hobbyList.get(0));
+                    if(TextUtils.isEmpty(tv_hobby.getText().toString())){
+                        tv_hobby.setText(hobbyList.get(0));
                     }
 
                     if(TextUtils.isEmpty(tv_nationality.getText().toString())){
                         tv_nationality.setText(nationalityList.get(0));
                     }
 
-                     if(TextUtils.isEmpty(tv_nation.getText().toString())){
-                         tv_nation.setText(nationList.get(0));
+                    if(TextUtils.isEmpty(tv_nation.getText().toString())){
+                        tv_nation.setText(nationList.get(0));
                     }
 
-                     if(TextUtils.isEmpty(tv_occupation.getText().toString())){
-                         tv_occupation.setText(occupationList.get(0));
+                    if(TextUtils.isEmpty(tv_occupation.getText().toString())){
+                        tv_occupation.setText(occupationList.get(0));
                     }
 
-                     if(TextUtils.isEmpty(tv_marriageStatus.getText().toString())){
-                         tv_marriageStatus.setText(marriageStatusList.get(0));
+                    if(TextUtils.isEmpty(tv_marriageStatus.getText().toString())){
+                        tv_marriageStatus.setText(marriageStatusList.get(0));
                     }
 
                     if(TextUtils.isEmpty(tv_hasChildren.getText().toString())){
@@ -388,7 +390,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(HuiJiVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoachVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

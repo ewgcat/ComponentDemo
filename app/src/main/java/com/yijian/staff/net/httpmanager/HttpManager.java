@@ -72,7 +72,7 @@ public class HttpManager {
     public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/potential/list";
 
     //所有会员的详情入口
-    public static String GET_HUIJI_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
+    public static String GET_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
 
     //所有会员的字典入口
     public static String GET_HUIJI_VIPER_DICT_URL = BuildConfig.HOST + "dict/member/dict";

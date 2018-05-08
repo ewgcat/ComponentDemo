@@ -57,15 +57,15 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
     public void onBindViewHolder(CoachTodayViperListAdapter.ViewHolder holder, int position) {
         TodayCoachViperBean coachViperBean = coachViperBeanList.get(position);
 
+
         holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex().equals("1")) {
+        if (coachViperBean.getSex()==1) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex().equals("2")) {
+        } else if (coachViperBean.getSex()==2) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
-
         }
         holder.iv_gender.setImageResource(resId);
 
@@ -85,7 +85,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
                 intent.putExtra("vipType", 0);
-                intent.putExtra("TodayCoachViperBean", coachViperBean);
+                intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);
             }
         });

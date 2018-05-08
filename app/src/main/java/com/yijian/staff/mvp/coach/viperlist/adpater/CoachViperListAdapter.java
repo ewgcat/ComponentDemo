@@ -90,7 +90,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
                 intent.putExtra("vipType", 0);
-                intent.putExtra("coachViperBean", coachViperBean);
+                intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);
             }
         });

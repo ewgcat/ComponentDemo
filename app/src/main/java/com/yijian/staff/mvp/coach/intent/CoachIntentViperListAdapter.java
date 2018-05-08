@@ -75,15 +75,15 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
     public void onBindViewHolder(CoachIntentViperListAdapter.ViewHolder holder, int position) {
         CoachViperBean coachViperBean = coachViperBeanList.get(position);
 
+
         holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex().equals("1")) {
+        if (coachViperBean.getSex()==1) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex().equals("2")) {
+        } else if (coachViperBean.getSex()==2) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
-
         }
         holder.iv_gender.setImageResource(resId);
 
@@ -95,7 +95,8 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        Glide.with(context).load(headImg).apply(options).into(holder.iv_header);
+        Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
+
 
         //详情
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
@@ -108,14 +109,25 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             }
         });
 
-        Boolean isProtected = coachViperBean.getProtected();
+
+        //详情
+        holder.lin_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                intent.putExtra("vipType", 1);
+                intent.putExtra("coachViperBean", coachViperBean);
+                context.startActivity(intent);
+            }
+        });
+        Boolean isProtected = coachViperBean.isUnderProtected();
         if (isProtected) {
             holder.iv_call.setVisibility(View.GONE);
             holder.tv_call.setVisibility(View.VISIBLE);
             holder.iv_suo.setVisibility(View.VISIBLE);
 
         } else {
-            Glide.with(context).load(R.mipmap.dianhua).apply(options).into(holder.iv_call);
+            Glide.with(context).load(R.mipmap.dianhua).apply(options).into( holder.iv_call);
             holder.tv_call.setVisibility(View.GONE);
             holder.iv_suo.setVisibility(View.GONE);
             holder.iv_call.setVisibility(View.VISIBLE);
@@ -124,12 +136,12 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
             holder.iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!TextUtils.isEmpty(mobile)) {
-                        if (CommonUtil.isPhoneFormat(mobile)) {
+                    if (!TextUtils.isEmpty(mobile)){
+                        if (CommonUtil.isPhoneFormat(mobile)){
                             CommonUtil.callPhone(context, mobile);
                             HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId", "4");
-                            param.put("memberId", coachViperBean.getMemberId());
+                            param.put("interviewRecordId","16");
+                            param.put("memberId",coachViperBean.getMemberId());
                             HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
                                 @Override
                                 public void onSuccess(JSONObject result) {
@@ -141,15 +153,17 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
                                 }
                             });
-                        } else {
-                            Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(context,"返回的手机号不正确！",Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(context,"未录入手机号！",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+
+
     }
 
     @Override

@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
-import com.yijian.staff.mvp.reception.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;

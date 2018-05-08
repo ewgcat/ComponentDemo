@@ -21,6 +21,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachTodayViperListAdapter;
@@ -51,7 +52,7 @@ public class CoachVipTodayVisitFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<CoachViperBean> coachViperBeanList = new ArrayList<>();
+    private List<TodayCoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
     private int pages;
@@ -147,7 +148,7 @@ public class CoachVipTodayVisitFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        TodayCoachViperBean coachViperBean = new TodayCoachViperBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
                     } catch (JSONException e) {
 
@@ -215,7 +216,7 @@ public class CoachVipTodayVisitFragment extends Fragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
+                        TodayCoachViperBean coachViperBean = new TodayCoachViperBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
                     } catch (JSONException e) {
                     }

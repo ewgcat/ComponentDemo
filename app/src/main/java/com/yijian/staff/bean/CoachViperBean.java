@@ -39,8 +39,9 @@ public class CoachViperBean implements Serializable {
      */
 
     private String memberId;
+    private String mobile;
     private String name;
-    private String sex;
+    private int sex;
     private int dictItemKey;
     private String headImg;
     private String viperRole;
@@ -49,13 +50,49 @@ public class CoachViperBean implements Serializable {
     public CoachViperBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
-        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.sex = JsonUtil.getInt(jsonObject, "sex");
+        this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
 
     }
 
+    public String getMobile() {
+        return mobile;
+    }
 
+    public String getSubclassName() {
+        return subclassName;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public int getDictItemKey() {
+        return dictItemKey;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public String getViperRole() {
+        return viperRole;
+    }
+
+    public boolean isUnderProtected() {
+        return underProtected;
+    }
 }

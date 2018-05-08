@@ -13,9 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CardprodsBean;
 import com.yijian.staff.bean.CoachSearchViperBean;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.bean.CoachVipDetailBean;
+import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
@@ -150,7 +152,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     RelativeLayout rlSijiaoClass;
 
     private int vipType = 0;//0 正式会员 、1、意向会员（有会籍信息）  2、 潜在会员3、 过期会员（无会籍信息）;
-    private List<CoachViperBean.CardprodsBean> cardprodsBeans;
+    private List<CardprodsBean> cardprodsBeans;
     private String memberName;
     private String memberId;
     private String mobile;
@@ -233,6 +235,13 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         }
         if (getIntent().hasExtra("coachViperBean")) {
             CoachViperBean coachViperBean = (CoachViperBean) getIntent().getSerializableExtra("coachViperBean");
+            memberId = coachViperBean.getMemberId();
+            memberName = coachViperBean.getName();
+            mobile = coachViperBean.getMobile();
+//            cardprodsBeans = coachViperBean.getCardprodsBeans();
+            loadData(memberId);
+        }else  if (getIntent().hasExtra("TodayCoachViperBean")) {
+            TodayCoachViperBean coachViperBean = (TodayCoachViperBean) getIntent().getSerializableExtra("TodayCoachViperBean");
             memberId = coachViperBean.getMemberId();
             memberName = coachViperBean.getName();
             mobile = coachViperBean.getMobile();

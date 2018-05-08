@@ -65,13 +65,12 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex().equals("1")) {
+        if (coachViperBean.getSex()==1) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex().equals("2")) {
+        } else if (coachViperBean.getSex()==2) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
-
         }
         holder.iv_gender.setImageResource(resId);
 
@@ -95,7 +94,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
                 context.startActivity(intent);
             }
         });
-        Boolean isProtected = coachViperBean.getProtected();
+        Boolean isProtected = coachViperBean.isUnderProtected();
         if (isProtected) {
             holder.iv_call.setVisibility(View.GONE);
             holder.tv_call.setVisibility(View.VISIBLE);
@@ -115,7 +114,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
                         if (CommonUtil.isPhoneFormat(mobile)){
                             CommonUtil.callPhone(context, mobile);
                             HashMap<String, String> param = new HashMap<>();
-                            param.put("interviewRecordId","4");
+                            param.put("interviewRecordId","0");
                             param.put("memberId",coachViperBean.getMemberId());
                             HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
                                 @Override

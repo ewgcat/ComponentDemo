@@ -167,6 +167,19 @@ public class ResourceAllocationFragment extends Fragment {
                 pages = JsonUtil.getInt(result, "pages");
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        ResourceInfo resourceInfo = new ResourceInfo(jsonObject);
+                        resourceAllocationInfoList.add(resourceInfo);
+                    }
+                    adapter.update(resourceAllocationInfoList);
+
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
             }
 
             @Override

@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.coach.bean.CoachResourceAllocationInfo;
+import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -40,6 +43,17 @@ public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachRe
     public void onBindViewHolder(CoachResourceAllocationAdatper.ViewHolder holder, int position) {
         CoachResourceAllocationInfo coachResourceAllocationInfo = list.get(position);
 
+        ImageLoader.setImageResource(coachResourceAllocationInfo.getHeadImg(), context, holder.iv_header);
+        holder.tv_name.setText(coachResourceAllocationInfo.getMemberName());
+        int resId = coachResourceAllocationInfo.getSex().equals("男") ? R.mipmap.lg_man : R.mipmap.lg_women;
+        Glide.with(context).load(resId).into(holder.iv_gender);
+        holder.tv_last_coach.setText(coachResourceAllocationInfo.getHistoryUser());
+        holder.tv_coach.setText(coachResourceAllocationInfo.getDistributeUser());
+        Long distributeTime = coachResourceAllocationInfo.getDistributeTime();
+        if (distributeTime!=null&&distributeTime!=-1){
+            String s = DateUtil.parseLongDateToTimeString(distributeTime);
+            holder.tv_time.setText(s);
+        }
     }
 
     @Override
@@ -48,7 +62,7 @@ public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachRe
     }
 
     public void update(List<CoachResourceAllocationInfo> resourceAllocationInfoList) {
-        this.list=resourceAllocationInfoList;
+        this.list = resourceAllocationInfoList;
         notifyDataSetChanged();
     }
 

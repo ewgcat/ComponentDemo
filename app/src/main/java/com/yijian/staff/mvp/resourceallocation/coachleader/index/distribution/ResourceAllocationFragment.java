@@ -103,6 +103,14 @@ public class ResourceAllocationFragment extends Fragment {
     }
 
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            refresh();
+        }
+    }
+
     private void refresh() {
         resourceAllocationInfoList.clear();
         pageNum = 1;

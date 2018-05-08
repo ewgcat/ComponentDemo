@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 import com.yijian.staff.mvp.resourceallocation.coachleader.detail.ResourceDetailActivity;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.Logger;
 
 import java.util.List;
 
@@ -51,7 +52,8 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
         Glide.with(context).load(resId).into(holder.iv_gender);
         holder.tv_viper_type.setText(resourceInfo.getViperRole());
         String subclassName = resourceInfo.getSubclassName();
-
+        String memberId = resourceInfo.getMemberId();
+        Logger.i("ResourceAllocationAdatper","memberId="+memberId);
 
         /**
          * CoachExpireVO：教练过期
@@ -85,8 +87,10 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
             public void onClick(View v) {
                 Intent intent = new Intent(context, ResourceDetailActivity.class);
                 intent.putExtra("type", type);
-                intent.putExtra("id", resourceInfo.getMemberId());
+                intent.putExtra("subclassName", subclassName);
+                intent.putExtra("memberId", resourceInfo.getMemberId());
                 context.startActivity(intent);
+
             }
         });
     }

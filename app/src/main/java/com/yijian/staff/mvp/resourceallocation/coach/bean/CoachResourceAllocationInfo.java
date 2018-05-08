@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.resourceallocation.coach.bean;
 
-import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -12,98 +11,88 @@ import org.json.JSONObject;
 public class CoachResourceAllocationInfo {
 
 
-    private String headerUrl;
-    private String name;
-    private int gender; //这里返回图片的路径
-    private String birthDay; //生日
-    private String wxIdentification; //微信号
-    private String email; //邮箱
-    private String serviceHuiJi; //服务会籍
-    private String receptionCoach; //接待教练
-    private String serviceCoach; //接待教练
+    /**
+     * memberId : 01052a5565c64ed3b826dda2df3d31f7
+     * memberName : 回访快过期会员23-0
+     * sex : 男
+     * headImg : 值23
+     * distributeTime : 1524738883000
+     * historyUser : appsale2
+     * distributeUser : appsale2
+     */
 
+    private String memberId;
+    private String memberName;
+    private String sex;
+    private String headImg;
+    private Long distributeTime;
+    private String historyUser;
+    private String distributeUser;
 
-    public CoachResourceAllocationInfo(JSONObject jsonObject){
-        this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
-        this.name = JsonUtil.getString(jsonObject,"name");
-        this.gender = "0".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;
-        this.birthDay = JsonUtil.getString(jsonObject,"birthDay");
-        this.wxIdentification = JsonUtil.getString(jsonObject,"wxIdentification");
-        this.email = JsonUtil.getString(jsonObject,"email");
-        this.serviceHuiJi = JsonUtil.getString(jsonObject,"serviceHuiJi");
-        this.receptionCoach = JsonUtil.getString(jsonObject,"receptionCoach");
-        this.serviceCoach = JsonUtil.getString(jsonObject,"serviceCoach");
+    public CoachResourceAllocationInfo(JSONObject jsonObject) {
+
+        this. memberId = JsonUtil.getString(jsonObject, "memberId");
+        this. memberName = JsonUtil.getString(jsonObject, "memberName");
+        this. sex = JsonUtil.getString(jsonObject, "sex");
+        this. headImg = JsonUtil.getString(jsonObject, "headImg");
+        this. historyUser = JsonUtil.getString(jsonObject, "historyUser");
+        this. distributeUser = JsonUtil.getString(jsonObject, "distributeUser");
+        this. distributeTime = JsonUtil.getLong(jsonObject, "distributeTime");
     }
 
-    public String getHeaderUrl() {
-        return headerUrl;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setHeaderUrl(String headerUrl) {
-        this.headerUrl = headerUrl;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
-    public String getName() {
-        return name;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public int getGender() {
-        return gender;
+    public String getSex() {
+        return sex;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getHeadImg() {
+        return headImg;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
     }
 
-    public String getWxIdentification() {
-        return wxIdentification;
+    public Long getDistributeTime() {
+        return distributeTime;
     }
 
-    public void setWxIdentification(String wxIdentification) {
-        this.wxIdentification = wxIdentification;
+    public void setDistributeTime(Long distributeTime) {
+        this.distributeTime = distributeTime;
     }
 
-    public String getEmail() {
-        return email;
+    public String getHistoryUser() {
+        return historyUser;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setHistoryUser(String historyUser) {
+        this.historyUser = historyUser;
     }
 
-    public String getServiceHuiJi() {
-        return serviceHuiJi;
+    public String getDistributeUser() {
+        return distributeUser;
     }
 
-    public void setServiceHuiJi(String serviceHuiJi) {
-        this.serviceHuiJi = serviceHuiJi;
-    }
-
-    public String getReceptionCoach() {
-        return receptionCoach;
-    }
-
-    public void setReceptionCoach(String receptionCoach) {
-        this.receptionCoach = receptionCoach;
-    }
-
-    public String getServiceCoach() {
-        return serviceCoach;
-    }
-
-    public void setServiceCoach(String serviceCoach) {
-        this.serviceCoach = serviceCoach;
+    public void setDistributeUser(String distributeUser) {
+        this.distributeUser = distributeUser;
     }
 }

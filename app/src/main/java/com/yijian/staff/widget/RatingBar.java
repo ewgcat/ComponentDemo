@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader.widget;
+package com.yijian.staff.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

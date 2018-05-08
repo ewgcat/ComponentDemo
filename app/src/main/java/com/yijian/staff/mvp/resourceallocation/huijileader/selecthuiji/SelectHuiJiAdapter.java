@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach;
+package com.yijian.staff.mvp.resourceallocation.huijileader.selecthuiji;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -19,28 +19,28 @@ import java.util.List;
  * 选择会籍适配器
  */
 
-public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.ViewHolder> {
+public class SelectHuiJiAdapter extends RecyclerView.Adapter<SelectHuiJiAdapter.ViewHolder> {
 
-    private List<CoachInfo> coachInfos = new ArrayList<>();
+    private List<HuiJiInfo> coachInfos = new ArrayList<>();
     private Context context;
     private int selectPosition = -1;
 
 
-    public SelectCoachAdapter(Context context, List<CoachInfo> coachInfos) {
+    public SelectHuiJiAdapter(Context context, List<HuiJiInfo> coachInfos) {
         this.context = context;
         this.coachInfos = coachInfos;
     }
 
     @Override
-    public SelectCoachAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SelectHuiJiAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coach, parent, false);
-        SelectCoachAdapter.ViewHolder holder = new SelectCoachAdapter.ViewHolder(view);
+        SelectHuiJiAdapter.ViewHolder holder = new SelectHuiJiAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(SelectCoachAdapter.ViewHolder holder, int position) {
-        CoachInfo coachInfo = coachInfos.get(position);
+    public void onBindViewHolder(SelectHuiJiAdapter.ViewHolder holder, int position) {
+        HuiJiInfo coachInfo = coachInfos.get(position);
         holder.tv_name.setText(coachInfo.getUserName());
 
         if (position == selectPosition) {
@@ -61,7 +61,7 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
 
     }
 
-    public CoachInfo getSelectCoachInfo() {
+    public HuiJiInfo getSelectCoachInfo() {
         if (coachInfos == null) return null;
         if (selectPosition == -1) return null;
         if (coachInfos.size() <= selectPosition) return null;

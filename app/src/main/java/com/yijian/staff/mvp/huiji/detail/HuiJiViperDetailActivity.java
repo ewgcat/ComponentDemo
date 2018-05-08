@@ -166,9 +166,10 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chakan_hetong:
-                /*Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
+                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
                 intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                startActivity(intent1);*/
+                intent1.putStringArrayListExtra("contractIds",vipDetailBean.getContractIds());
+                startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
                 Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);

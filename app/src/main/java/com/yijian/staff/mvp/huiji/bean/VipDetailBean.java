@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.huiji.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yangk on 2018/4/2.
@@ -73,6 +74,15 @@ public class VipDetailBean  {
     /**静脉信息**/
     private String vein;
     private String faceInfo;
+    private ArrayList<String> contractIds;
+
+    public ArrayList<String> getContractIds() {
+        return contractIds;
+    }
+
+    public void setContractIds(ArrayList<String> contractIds) {
+        this.contractIds = contractIds;
+    }
 
     public String getFaceInfo() {
         return faceInfo;

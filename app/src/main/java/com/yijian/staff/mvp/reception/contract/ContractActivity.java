@@ -21,6 +21,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -29,6 +30,9 @@ public class ContractActivity extends BaseWebViewActivity {
 
     @BindView(R.id.web_view)
     WebView webView;
+
+    ArrayList<String> contractIds;
+    String memberId;
 
     @Override
     protected int getLayoutID() {
@@ -41,6 +45,8 @@ public class ContractActivity extends BaseWebViewActivity {
         navigationBar2.setTitle("合同");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+        contractIds = getIntent().getStringArrayListExtra("contractIds");
+        memberId = getIntent().getStringExtra("memberId");
         initWebView(webView);
     }
 

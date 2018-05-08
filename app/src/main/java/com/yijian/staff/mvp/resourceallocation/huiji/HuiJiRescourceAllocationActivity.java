@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
 import com.google.gson.JsonObject;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -35,7 +36,8 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 
-public class HuiJiRecourceAllocationActivity extends AppCompatActivity {
+@Route(path="/test/10")
+public class HuiJiRescourceAllocationActivity extends AppCompatActivity {
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
@@ -50,17 +52,21 @@ public class HuiJiRecourceAllocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hui_ji_recource_allocation);
         ButterKnife.bind(this);
+        initTitle();
+        initView();
     }
 
-    private void initView() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.coach_navigation_bar2);
+    private void initTitle() {
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar2);
         navigationBar2.setTitle("资源分配");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-
-        initComponent();
     }
 
+    private void initView() {
+        initComponent();
+        refresh();
+    }
 
     public void initComponent() {
 

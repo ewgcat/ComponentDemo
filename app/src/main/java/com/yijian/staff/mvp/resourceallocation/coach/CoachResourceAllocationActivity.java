@@ -41,10 +41,7 @@ import butterknife.ButterKnife;
 @Route(path = "/test/10.2")
 public class CoachResourceAllocationActivity extends AppCompatActivity {
 
-
     private NavigationBar2 navigationBar2;
-
-
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
     private List<CoachResourceAllocationInfo> resourceAllocationInfoList = new ArrayList<>();

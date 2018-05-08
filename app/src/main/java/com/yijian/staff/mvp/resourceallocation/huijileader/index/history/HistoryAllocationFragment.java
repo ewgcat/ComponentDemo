@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader.index.history;
+package com.yijian.staff.mvp.resourceallocation.huijileader.index.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,8 +18,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coachleader.bean.HistoryResourceInfo;
-import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
+import com.yijian.staff.mvp.resourceallocation.huijileader.bean.HistoryResourceInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -114,7 +113,7 @@ public class HistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -153,7 +152,7 @@ public class HistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

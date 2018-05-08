@@ -1,7 +1,6 @@
-package com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach;
+package com.yijian.staff.mvp.resourceallocation.huijileader.selecthuiji;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,19 +28,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author：李帅华
- * email：850716183@qq.com
- * time: 2018/5/7 19:55:00
- */
-public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickListener {
-    private List<CoachInfo> coachInfos = new ArrayList<>();
+
+public class SelectHuiJiPopupWindow extends PopupWindow implements View.OnClickListener {
+    private List<HuiJiInfo> coachInfos = new ArrayList<>();
 
     private Activity context;
     private RecyclerView rcl;
-    private SelectCoachAdapter adapter;
+    private SelectHuiJiAdapter adapter;
 
-    public SelectCoachPopupWindow(Activity context) {
+    public SelectHuiJiPopupWindow(Activity context) {
         super(context);
         this.context = context;
         init();
@@ -80,10 +75,10 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
                 try {
                     for (int i = 0; i < records.length(); i++) {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        CoachInfo coachInfo = new CoachInfo(jsonObject);
+                        HuiJiInfo coachInfo = new HuiJiInfo(jsonObject);
                         coachInfos.add(coachInfo);
                     }
-                    adapter = new SelectCoachAdapter(context, coachInfos);
+                    adapter = new SelectHuiJiAdapter(context, coachInfos);
                     rcl.setAdapter(adapter);
                 } catch (JSONException e) {
                     Logger.i("TEST",e.getMessage());
@@ -122,7 +117,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
                 dismiss();
                 break;
             case R.id.tv_send:
-                CoachInfo selectCoachInfo = adapter.getSelectCoachInfo();
+                HuiJiInfo selectCoachInfo = adapter.getSelectCoachInfo();
                 if (selectCoachInfo == null) {
                     Toast.makeText(context, "请先选择教练", Toast.LENGTH_SHORT).show();
                     return;
@@ -139,7 +134,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
     }
 
     public interface SelectCoachListener {
-        void onSelect(CoachInfo coachInfo);
+        void onSelect(HuiJiInfo coachInfo);
     }
 
   private   SelectCoachListener selectCoachListener;

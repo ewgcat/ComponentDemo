@@ -52,7 +52,7 @@ public class HuijiAllViperFragment extends Fragment {
     private RecyclerView rv_vip_all;
     private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
 
     private int pages;
 
@@ -110,7 +110,7 @@ public class HuijiAllViperFragment extends Fragment {
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", 1 + "");
-        map.put("pageSize", 1 + "");
+        map.put("pageSize", pageSize + "");
         if (huijiViperFilterBean != null) {
 
             if (huijiViperFilterBean.getJoinTimeType() != -2) {

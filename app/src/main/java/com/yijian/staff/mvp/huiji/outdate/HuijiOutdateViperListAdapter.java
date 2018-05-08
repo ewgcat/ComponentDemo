@@ -89,7 +89,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                 }
             });
             //回访
-            Boolean isProtected = huiJiViperBean.getProtected();
+            Boolean isProtected = huiJiViperBean.isUnderProtected();
             tv_protect_seven.setVisibility(isProtected?View.VISIBLE:View.GONE);
             iv_visit.setVisibility(isProtected?View.GONE:View.VISIBLE);
             iv_visit.setOnClickListener(new View.OnClickListener() {

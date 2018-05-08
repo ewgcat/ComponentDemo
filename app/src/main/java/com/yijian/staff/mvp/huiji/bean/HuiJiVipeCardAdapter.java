@@ -18,13 +18,13 @@ import java.util.List;
 
 public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<HuiJiViperBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
+    List<VipDetailBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
 
-    public HuiJiVipeCardAdapter(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+    public HuiJiVipeCardAdapter(List<VipDetailBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
     }
 
-    public void setCardprodsBeans(List<HuiJiViperBean.CardprodsBean> cardprodsBeans) {
+    public void setCardprodsBeans(List<VipDetailBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
         notifyDataSetChanged();
     }
@@ -38,7 +38,7 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-         HuiJiViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+        VipDetailBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
         ((ViewHolder)holder).bind(cardprodsBean);
     }
 
@@ -58,7 +58,7 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
             tv_cardType  = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(HuiJiViperBean.CardprodsBean cardprodsBean){
+        public void bind(VipDetailBean.CardprodsBean cardprodsBean){
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

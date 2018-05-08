@@ -17,11 +17,13 @@ import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -29,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -139,7 +143,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     RelativeLayout rlSijiaoClass;
 
     VipDetailBean vipDetailBean;
-    HuiJiViperBean huiJiViperBean;
 
 
     @Override
@@ -189,7 +192,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)) {
-                    CommonUtil.callPhone(this, mobile);
+                    callVisit(mobile);
                 } else {
                     Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                 }
@@ -197,10 +200,26 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void callVisit(String mobile){
+        Map<String,String> map = new HashMap<>();
+        map.put("memberId",vipDetailBean.getMemberId());
+        map.put("dictItemKey",getIntent().getStringExtra("dictItemKey"));
+        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CommonUtil.callPhone(HuiJiViperDetailActivity.this,mobile);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(HuiJiViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void initData() {
-        huiJiViperBean = (HuiJiViperBean) getIntent().getSerializableExtra("viperDetailBean");
-        String id = huiJiViperBean.getMemberId();
-        loadData(id);
+        String memberId = getIntent().getStringExtra("memberId");
+        loadData(memberId);
     }
 
     private void loadData(String id) {
@@ -229,7 +248,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
-        tvBirthday.setText(judgeNull(vipDetailBean.getBirthday()));
+        tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
         tvViperType.setText(judgeNull(vipDetailBean.getMemberType()));
 //        tvVipCardNum.setText(vipDetailBean.getMemberCardNo());
@@ -242,7 +261,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
-        rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiViperBean.getCardprodsBeans()));
+        rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
@@ -250,7 +269,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
-        ArrayList<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+        List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
         if (privateCourses != null && privateCourses.size() > 0) {
             rlSijiaoClass.setVisibility(View.VISIBLE);
             StringBuffer sb = new StringBuffer();

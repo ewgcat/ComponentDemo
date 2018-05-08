@@ -15,22 +15,24 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.bean.TodayHuiJiViperBean;
 import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
 public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<HuiJiViperBean> viperBeanList;
+    private List<TodayHuiJiViperBean> viperBeanList;
     private Context context;
 
-    public HuiJiTodayVisitAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
+    public HuiJiTodayVisitAdapter(Context context, List<TodayHuiJiViperBean> viperBeanList) {
         this.viperBeanList = viperBeanList;
         this.context = context;
     }
 
-    public void update(List<HuiJiViperBean> viperBeanList) {
+    public void update(List<TodayHuiJiViperBean> viperBeanList) {
         this.viperBeanList = viperBeanList;
         notifyDataSetChanged();
     }
@@ -45,7 +47,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        HuiJiViperBean huiJiViperBean = viperBeanList.get(position);
+        TodayHuiJiViperBean huiJiViperBean = viperBeanList.get(position);
         ((ViewHolder)holder).bind(context,huiJiViperBean);
     }
 
@@ -75,19 +77,35 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             lin_container = itemView.findViewById(R.id.lin_container);
         }
 
-        public void bind(Context context, HuiJiViperBean huiJiViperBean){
+        public void bind(Context context, TodayHuiJiViperBean huiJiViperBean){
             ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
-            iv_gender.setImageResource("1".equals(huiJiViperBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+            iv_gender.setImageResource(huiJiViperBean.getGenderImg());
             tv_name.setText(huiJiViperBean.getName());
-            tv_arrival_time.setText(huiJiViperBean.getVisitTime());
-            tv_leaving_time.setText(huiJiViperBean.getLeaveTime());
-//            tv_today_consumption.setText(huiJiViperBean.getLeaveTime());
+
+            int clockedCount = huiJiViperBean.getClockedCount();
+            if (clockedCount!=-1){
+
+                tv_today_consumption.setText(clockedCount+"次");
+            }
+            Long bePresentTime = huiJiViperBean.getVisitTime();
+            if (bePresentTime!=null&&bePresentTime!=-1){
+                String s = DateUtil.parseLongDateToTimeString(bePresentTime);
+                tv_arrival_time.setText(s);
+            }
+
+            Long departureTime = huiJiViperBean.getLeaveTime();
+            if (departureTime!=null&&departureTime!=-1){
+                String s1 = DateUtil.parseLongDateToTimeString(departureTime);
+                tv_leaving_time.setText(s1);
+            }
+
+
             lin_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
                     Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
-                    intent.putExtra("viperDetailBean",huiJiViperBean);
+                    intent.putExtra("memberId",huiJiViperBean.getMemberId());
                     context.startActivity(intent);
                 }
             });

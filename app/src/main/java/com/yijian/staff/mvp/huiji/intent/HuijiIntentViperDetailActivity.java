@@ -15,12 +15,14 @@ import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -144,7 +146,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
-        tvBirthday.setText(judgeNull(vipDetailBean.getBirthday()));
+        tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
         tv_certificateType.setText(judgeNull(vipDetailBean.getCertificateType()));
         tvShenfencardNum.setText(judgeNull(vipDetailBean.getCertificateNo()));
@@ -199,12 +201,29 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)){
-                    CommonUtil.callPhone(this,mobile);
+                    callVisit(mobile);
                 } else {
                     Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
+    }
+
+    private void callVisit(String mobile){
+        Map<String,String> map = new HashMap<>();
+        map.put("memberId",vipDetailBean.getMemberId());
+        map.put("dictItemKey",getIntent().getStringExtra("dictItemKey"));
+        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

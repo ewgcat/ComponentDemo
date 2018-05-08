@@ -97,6 +97,9 @@ public class HttpManager {
     //会籍邀约结果
     public static String INDEX_HUI_JI_INVITATION_RESULT_URL = BuildConfig.HOST + "invitation/selectResult";
 
+    //会籍会员回访
+    public static String HUIJI_HUIFANG_CALL_RECORD = BuildConfig.HOST + "customer-service/add-record/call-for-interview";
+
 
     /*************************教练************************/
 

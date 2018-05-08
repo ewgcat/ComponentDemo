@@ -320,7 +320,7 @@ public class HttpManager {
     public static String GET_COACHZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distributable/list";
     
     // 教练总监 历史分配（会员）列表
-    public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/list"; // 会籍可分配资源（会员）列表
+    public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
 
     
     //公用方法

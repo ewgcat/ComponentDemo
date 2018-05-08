@@ -144,6 +144,8 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     LinearLayout llVipContent;
     @BindView(R.id.ll_1)
     LinearLayout ll_1;
+    @BindView(R.id.lin_vip_people_bottom)
+    LinearLayout lin_vip_people_bottom;
 
     @BindView(R.id.ll_3)
     LinearLayout ll_3;
@@ -223,13 +225,14 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         if (vipType == 0 || vipType == 2 || vipType == 3) {
             llVipContent.setVisibility(View.VISIBLE);
             if (vipType == 0) {
+                lin_vip_people_bottom.setVisibility(View.VISIBLE);
                 ll_1.setVisibility(View.VISIBLE);
                 ll_3.setVisibility(View.GONE);
             } else {
-                ll_1.setVisibility(View.GONE);
-                ll_3.setVisibility(View.GONE);
+                lin_vip_people_bottom.setVisibility(View.GONE);
             }
         } else if (vipType == 1) {//意向会员
+            lin_vip_people_bottom.setVisibility(View.VISIBLE);
             llVipContent.setVisibility(View.GONE);
             ll_1.setVisibility(View.GONE);
             ll_3.setVisibility(View.VISIBLE);
@@ -335,4 +338,11 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==1){
+            loadData(memberId);
+        }
+    }
 }

@@ -145,7 +145,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="会员名字"
                         android:textColor="@color/black333333" />
 
                     <LinearLayout
@@ -239,7 +238,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="男"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -267,7 +265,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="3666566606"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -295,7 +292,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="1996-08-06"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -323,7 +319,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="农历"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -351,7 +346,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text=" 正式会员"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -379,7 +373,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="1234567890"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -407,7 +400,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -435,7 +427,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="已录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -463,7 +454,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -491,7 +481,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="1234567890****"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -520,7 +509,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="身份证"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -618,7 +606,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="张三"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -646,7 +633,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="18316571364"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -674,7 +660,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text=" 线下推广"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -702,7 +687,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="壮壮"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -730,7 +714,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="农历"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -739,7 +722,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
                     android:paddingTop="15dp">
@@ -759,7 +741,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="正式会员"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -789,7 +770,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="私教课程"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 

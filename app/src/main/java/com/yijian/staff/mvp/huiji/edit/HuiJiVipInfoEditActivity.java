@@ -309,7 +309,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                         nationalityIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
-                    //名族
+                    //民族
                     JSONObject mz = result.getJSONObject("MZ");
                     JSONArray mzJsonArray = mz.getJSONArray("items");
                     for (int j = 0; j < mzJsonArray.length(); j++) {

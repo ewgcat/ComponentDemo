@@ -95,11 +95,14 @@ public class ProductDetailActivity extends AppCompatActivity{
 
             Map<Integer, List<CardGiftDto>> gift = productDetail.getGift();
             if (gift!=null){
-                String giftName=" ";
+                String giftName="";
                 for(Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()){
                     List<CardGiftDto> value = vo.getValue();
                     for (int i = 0; i < value.size(); i++) {
-                        giftName=giftName+value.get(i).getName()+"x"+value.get(i).getNum();
+                        giftName=giftName+" ";
+                        giftName=giftName+value.get(i).getName();
+                        if (!TextUtils.isEmpty(value.get(i).getNum()))
+                            giftName= giftName+"x"+value.get(i).getNum();
                     }
                 }
 

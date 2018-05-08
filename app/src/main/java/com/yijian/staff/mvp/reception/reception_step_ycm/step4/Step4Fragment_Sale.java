@@ -184,20 +184,21 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         }
 
 
+
         Map<Integer, List<CardGiftDto>> gift = productDetail.getGift();
         if (gift!=null){
-            String giftName=" ";
+            String giftName="";
             for(Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()){
                 List<CardGiftDto> value = vo.getValue();
                 for (int i = 0; i < value.size(); i++) {
-                    giftName=giftName+value.get(i).getName()+"x"+value.get(i).getNum();
+                    giftName=giftName+" ";
+                    giftName=giftName+value.get(i).getName();
+                    if (!TextUtils.isEmpty(value.get(i).getNum()))
+                        giftName= giftName+"x"+value.get(i).getNum();
                 }
             }
-
             tvZengsongkecheng.setText(giftName);
         }
-
-
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
         if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");

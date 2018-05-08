@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.reception.reception_step_ycm.step2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,11 +18,9 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.step2.CancelPhysicalDialog;
-import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoActivity;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoContract;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoPresenter;
 import com.yijian.staff.mvp.reception.step2.ReceptionStep2Adapter;
@@ -34,9 +31,10 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.OptionItemData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ParentQuestionBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
-import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +61,8 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
     public static final int TYPE_1 = 1;//选项是数字，有小数
     public static final int TYPE_2 = 2;//选项是数字
     public static final int TYPE_3 = 3;//选项是StringArray
+    private TextView tvSaveTip;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +113,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         RelativeLayout rlAge = view.findViewById(R.id.rl_age);
         RelativeLayout rlSave = view.findViewById(R.id.rl_save);
         TextView tvCancel = view.findViewById(R.id.tv_cancel);
+        tvSaveTip = view.findViewById(R.id.tv_save_tip);
 
         tvName = view.findViewById(R.id.tv_name);
         if (consumerBean!=null) tvName.setText(""+consumerBean.getName());
@@ -219,6 +220,10 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
 //                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
                 demoAdapter.notifyChildChanged(parentPosition, childPosition);
+
+                computerCompletePercent();
+
+
             }
         }).build();
 
@@ -247,6 +252,15 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         pvNoLinkOptions.show();
     }
 
+    private void computerCompletePercent() {
+        if (parentObj!=null){
+            String height = tvHeight.getText().toString();
+            String age = tvAge.getText().toString();
+            presenter.computerCompletePercent(parentObj,height,age);
+        }
+
+    }
+
 
     @Nullable
     private ArrayList<String> getOptRange(ChildOptBean childObjBean) {
@@ -271,6 +285,8 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                     computerQualityAndBodyFatAndWaistToHip();
                 }
 
+                computerCompletePercent();
+
             }
         }).build();
 
@@ -288,7 +304,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         String userFat = "请选择";
         String userWaist = "请选择";
         String userHipline = "请选择";
-//体重(kg)//体脂肪(kg)//腰围(cm)//臀围(cm)
+        //体重(kg)//体脂肪(kg)//腰围(cm)//臀围(cm)
         for (ParentQuestionBean parentQuestionBean : parentObj) {
             List<ChildOptBean> childList = parentQuestionBean.getChildList();
             for (ChildOptBean childOptBean : childList) {
@@ -696,6 +712,14 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         Toast.makeText(getContext(),"消息推送成功",Toast.LENGTH_SHORT).show();
        if (cancelPhysicalDialog!=null)cancelPhysicalDialog.dismiss();
         getActivity().finish();
+    }
+
+    @Override
+    public void showCompletePercent(double persent) {
+        DecimalFormat df = new DecimalFormat("0.00%");
+        BigDecimal d=new BigDecimal(persent);
+        String percent=df.format(d);
+        tvSaveTip.setText("已完成"+percent);
     }
 
     @Override

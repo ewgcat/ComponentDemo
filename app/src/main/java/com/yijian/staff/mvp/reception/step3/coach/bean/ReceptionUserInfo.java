@@ -63,6 +63,7 @@ public class ReceptionUserInfo {
     private String memberName;
     private String coachName;
     private String saleName;
+    private String sex;
 //    private String cardName;
 
 
@@ -104,5 +105,13 @@ public class ReceptionUserInfo {
 
     public void setSaleName(String saleName) {
         this.saleName = saleName;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

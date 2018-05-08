@@ -176,7 +176,10 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         tvViperPhone.setText("" + receptionUserInfo.getMemberMobile());
         tvJiedaiName.setText("" + receptionUserInfo.getSaleName());
         tvCoachName.setText("" + receptionUserInfo.getCoachName());
-
+        String sex = receptionUserInfo.getSex();
+        if ("女".equals(sex)) {
+            ivSex.setImageResource(R.mipmap.lg_women);
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.contract;
+package com.yijian.staff.mvp.contract;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 
@@ -30,9 +29,9 @@ public class ContractActivity extends BaseWebViewActivity {
 
     @BindView(R.id.web_view)
     WebView webView;
+    private String memberId;
 
-    ArrayList<String> contractIds;
-    String memberId;
+    private ArrayList<String> contractIds;
 
     @Override
     protected int getLayoutID() {
@@ -83,6 +82,7 @@ public class ContractActivity extends BaseWebViewActivity {
         String token = DBManager.getInstance().queryUser().getToken();
         try {
             jsonObject.put("token",token);
+            jsonObject.put("memberId",memberId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

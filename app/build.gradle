@@ -58,13 +58,13 @@ android {
         }
     }
     productFlavors {
-        prod {
-            buildConfigField "String", "HOST", "\"$prod_host\""
-            buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
+        dev {
+            buildConfigField "String", "HOST", "\"$dev_host\""
+            buildConfigField "String", "FILE_HOST", "\"$dev_file_host\""
         }
-        sit {
-            buildConfigField "String", "HOST", "\"$sit_host\""
-            buildConfigField "String", "FILE_HOST", "\"$sit_file_host\""
+        sittest {
+            buildConfigField "String", "HOST", "\"$test_host\""
+            buildConfigField "String", "FILE_HOST", "\"$test_file_host\""
 
         }
     }

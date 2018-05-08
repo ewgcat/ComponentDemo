@@ -81,9 +81,7 @@ public class HistoryAllocationFragment extends Fragment {
   
 
     public void initComponent() {
-        pageNum = 1;
-        pageSize = 6;
-        resourceAllocationInfoList.clear();
+
         
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true);
@@ -109,6 +107,9 @@ public class HistoryAllocationFragment extends Fragment {
 
 
     private void refresh() {
+        pageNum = 1;
+        pageSize = 6;
+        resourceAllocationInfoList.clear();
         Map<String, String> params = new HashMap<>();
 
         params.put("pageNum", pageNum + "");
@@ -160,6 +161,19 @@ public class HistoryAllocationFragment extends Fragment {
                 pages = JsonUtil.getInt(result, "pages");
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        HistoryResourceInfo resourceInfo = new HistoryResourceInfo(jsonObject);
+                        resourceAllocationInfoList.add(resourceInfo);
+                    }
+                    adapter.update(resourceAllocationInfoList);
+
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
             }
 
             @Override

@@ -27,7 +27,7 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
 
     private List<CoachInfo> coachInfos = new ArrayList<>();
     private Context context;
-    private int selectPosition=-1;
+    private int selectPosition = -1;
 
 
     public SelectCoachAdapter(Context context, List<CoachInfo> coachInfos) {
@@ -45,18 +45,18 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
     @Override
     public void onBindViewHolder(SelectCoachAdapter.ViewHolder holder, int position) {
         CoachInfo coachInfo = coachInfos.get(position);
+        holder.tv_name.setText(coachInfo.getUserName());
 
-
-        if (position==selectPosition){
+        if (position == selectPosition) {
             holder.ck_select.setChecked(true);
-        }else {
+        } else {
             holder.ck_select.setChecked(false);
         }
         holder.ck_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.ck_select.isChecked()){
-                    selectPosition=position;
+                if (holder.ck_select.isChecked()) {
+                    selectPosition = position;
                     notifyDataSetChanged();
                 }
             }
@@ -65,12 +65,13 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
 
     }
 
-    public CoachInfo getSelectCoachInfo(){
-        if (coachInfos==null) return null;
-        if (selectPosition==-1)return null;
-        if (coachInfos.size()<=selectPosition)return null;
+    public CoachInfo getSelectCoachInfo() {
+        if (coachInfos == null) return null;
+        if (selectPosition == -1) return null;
+        if (coachInfos.size() <= selectPosition) return null;
         return coachInfos.get(selectPosition);
     }
+
     @Override
     public int getItemCount() {
         return coachInfos == null ? 0 : coachInfos.size();

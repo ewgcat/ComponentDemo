@@ -17,11 +17,15 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.coach.bean.CoachResourceAllocationInfo;
 import com.yijian.staff.mvp.resourceallocation.coach.adapter.CoachResourceAllocationAdatper;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -97,6 +101,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
                 loadMore();
             }
         });
+        refresh();
     }
 
 
@@ -117,8 +122,21 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
-                resourceAllocationInfoList.add(new CoachResourceAllocationInfo(new JSONObject()));
-                resourceAllocationAdatper.update(resourceAllocationInfoList);
+
+
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        CoachResourceAllocationInfo resourceInfo = new CoachResourceAllocationInfo(jsonObject);
+                        resourceAllocationInfoList.add(resourceInfo);
+                    }
+                    resourceAllocationAdatper.update(resourceAllocationInfoList);
+
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
             }
 
             @Override

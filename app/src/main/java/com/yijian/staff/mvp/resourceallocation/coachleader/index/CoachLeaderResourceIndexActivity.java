@@ -49,9 +49,7 @@ public class CoachLeaderResourceIndexActivity extends AppCompatActivity {
     @BindView(R.id.iv_history_allowcation)
     ImageView iv_history_allowcation;
 
-    private int pageNum = 1;
-    private int pageSize = 1;
-    private int pages;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

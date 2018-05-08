@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.HistoryResourceInfo;
+import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -20,10 +23,10 @@ import java.util.List;
  */
 public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryResourceListAdatper.ViewHolder> {
 
-    private List<ResourceInfo> list;
+    private List<HistoryResourceInfo> list;
     private Context context;
 
-    public HistoryResourceListAdatper(Context context, List<ResourceInfo> list) {
+    public HistoryResourceListAdatper(Context context, List<HistoryResourceInfo> list) {
         this.context = context;
         this.list = list;
     }
@@ -38,8 +41,18 @@ public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryReso
 
     @Override
     public void onBindViewHolder(HistoryResourceListAdatper.ViewHolder holder, int position) {
-        ResourceInfo coachResourceAllocationInfo = list.get(position);
-
+        HistoryResourceInfo historyResourceInfo = list.get(position);
+        ImageLoader.setImageResource(historyResourceInfo.getHeadImg(), context, holder.iv_header);
+        holder.tv_name.setText(historyResourceInfo.getMemberName());
+        int resId = historyResourceInfo.getSex().equals("男") ? R.mipmap.lg_man : R.mipmap.lg_women;
+        Glide.with(context).load(resId).into(holder.iv_gender);
+        holder.tv_last_coach.setText(historyResourceInfo.getHistoryUser());
+        holder.tv_coach.setText(historyResourceInfo.getDistributeUser());
+        Long distributeTime = historyResourceInfo.getDistributeTime();
+        if (distributeTime!=null&&distributeTime!=-1){
+            String s = DateUtil.parseLongDateToTimeString(distributeTime);
+            holder.tv_time.setText(s);
+        }
     }
 
     @Override
@@ -47,7 +60,7 @@ public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryReso
         return list == null ? 0 : list.size();
     }
 
-    public void update(List<ResourceInfo> resourceAllocationInfoList) {
+    public void update(List<HistoryResourceInfo> resourceAllocationInfoList) {
         this.list=resourceAllocationInfoList;
         notifyDataSetChanged();
     }

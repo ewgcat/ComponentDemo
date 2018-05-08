@@ -16,8 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.resourceallocation.selecthuiji.SelectHuiJiActivity;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -65,11 +73,32 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
 
         rcl = contentView.findViewById(R.id.rcl);
         rcl.setLayoutManager(new LinearLayoutManager(context));
-        coachInfos.add(new CoachInfo(new JSONObject()));
-        coachInfos.add(new CoachInfo(new JSONObject()));
-        coachInfos.add(new CoachInfo(new JSONObject()));
-        adapter = new SelectCoachAdapter(context, coachInfos);
-        rcl.setAdapter(adapter);
+
+
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_LIST_RECEIVE_URL, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        CoachInfo coachInfo = new CoachInfo(jsonObject);
+                        coachInfos.add(coachInfo);
+                    }
+                    adapter = new SelectCoachAdapter(context, coachInfos);
+                    rcl.setAdapter(adapter);
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
     }
 
     /**

@@ -18,11 +18,15 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.resourceallocation.coachleader.bean.HistoryResourceInfo;
 import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,7 +49,7 @@ public class HistoryAllocationFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
-    private List<ResourceInfo> resourceAllocationInfoList=new ArrayList<>();
+    private List<HistoryResourceInfo> resourceAllocationInfoList=new ArrayList<>();
     public HistoryResourceListAdatper adapter;
 
     private int pageNum = 1;
@@ -117,8 +121,20 @@ public class HistoryAllocationFragment extends Fragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
-                resourceAllocationInfoList.add(new ResourceInfo(new JSONObject()));
-                adapter.update(resourceAllocationInfoList);
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        HistoryResourceInfo resourceInfo = new HistoryResourceInfo(jsonObject);
+                        resourceAllocationInfoList.add(resourceInfo);
+                    }
+                    adapter.update(resourceAllocationInfoList);
+
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
+
             }
 
             @Override

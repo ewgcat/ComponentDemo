@@ -54,7 +54,7 @@ public class HistoryAllocationFragment extends Fragment {
 
     private int pageNum = 1;
     private int pageSize = 6;
-    private int pages;
+    private int pages=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -160,6 +160,8 @@ public class HistoryAllocationFragment extends Fragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 boolean hasMore = pages > pageNum ? true : false;
+                Logger.i("TEST","hasMore="+hasMore);
+
                 refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {

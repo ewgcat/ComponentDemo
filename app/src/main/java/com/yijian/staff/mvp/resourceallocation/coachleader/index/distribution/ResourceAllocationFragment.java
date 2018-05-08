@@ -54,7 +54,7 @@ public class ResourceAllocationFragment extends Fragment {
     public ResourceAllocationAdatper adapter;
 
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 10;
     private int pages;
 
 
@@ -114,7 +114,7 @@ public class ResourceAllocationFragment extends Fragment {
     private void refresh() {
         resourceAllocationInfoList.clear();
         pageNum = 1;
-        pageSize = 6;
+        pageSize = 10;
 
         Map<String, String> params = new HashMap<>();
 

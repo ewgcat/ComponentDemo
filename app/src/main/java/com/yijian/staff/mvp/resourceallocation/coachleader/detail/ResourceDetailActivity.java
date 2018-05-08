@@ -1,8 +1,11 @@
 package com.yijian.staff.mvp.resourceallocation.coachleader.detail;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -25,6 +28,8 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
     private LinearLayout root_view;
     private LinearLayout ll_zhengsi_vip;
+    private LinearLayout ll_intent_vip;
+    private LinearLayout ll_potential_vip;
     private SelectCoachPopupWindow selectCoachPopupWindow;
     private String memberId;
     private String subclassName;
@@ -42,6 +47,8 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
         root_view = findView(R.id.root_view);
         ll_zhengsi_vip = findView(R.id.ll_zhengsi_vip);
+        ll_intent_vip = findView(R.id.ll_intent_vip);
+        ll_potential_vip = findView(R.id.ll_potential_vip);
         int type = getIntent().getIntExtra("type", 0);
         memberId = getIntent().getStringExtra("memberId");
         subclassName = getIntent().getStringExtra("subclassName");
@@ -50,12 +57,21 @@ public class ResourceDetailActivity extends MvcBaseActivity {
         switch (type) {
             case 1:
                 ll_zhengsi_vip.setVisibility(View.VISIBLE);
+                ll_intent_vip.setVisibility(View.GONE);
+                ll_potential_vip.setVisibility(View.GONE);
+                initZhengshi();
                 break;
             case 2:
+                ll_intent_vip.setVisibility(View.VISIBLE);
                 ll_zhengsi_vip.setVisibility(View.GONE);
+                ll_potential_vip.setVisibility(View.GONE);
+                initIntent();
                 break;
             case 3:
+                ll_potential_vip.setVisibility(View.VISIBLE);
                 ll_zhengsi_vip.setVisibility(View.GONE);
+                ll_intent_vip.setVisibility(View.GONE);
+                initPotential();
                 break;
 
         }
@@ -69,6 +85,51 @@ public class ResourceDetailActivity extends MvcBaseActivity {
             }
         });
 
+    }
+
+    private void initPotential() {
+        ImageView iv_header = ll_potential_vip.findViewById(R.id.iv_header);
+        TextView tv_name = ll_potential_vip.findViewById(R.id.tv_name);
+        ImageView iv_gender = ll_potential_vip.findViewById(R.id.iv_gender);
+        TextView tv_birthday = ll_potential_vip.findViewById(R.id.tv_birthday);
+        TextView tv_birthday_type = ll_potential_vip.findViewById(R.id.tv_birthday_type);
+        TextView tv_body_status = ll_potential_vip.findViewById(R.id.tv_body_status);
+        TextView tv_fitness_hobby = ll_potential_vip.findViewById(R.id.tv_fitness_hobby);
+        TextView tv_hobby = ll_potential_vip.findViewById(R.id.tv_hobby);
+        TextView tv_car_name = ll_potential_vip.findViewById(R.id.tv_car_name);
+
+    }
+
+    private void initIntent() {
+        ImageView iv_header = ll_intent_vip.findViewById(R.id.iv_header);
+        TextView tv_name = ll_intent_vip.findViewById(R.id.tv_name);
+        ImageView iv_gender = ll_intent_vip.findViewById(R.id.iv_gender);
+        RecyclerView rv_card = ll_intent_vip.findViewById(R.id.rv_card);
+        TextView tv_huiji = ll_intent_vip.findViewById(R.id.tv_huiji);
+        TextView tv_tiyanke_count = ll_intent_vip.findViewById(R.id.tv_tiyanke_count);
+        TextView tv_first_class_record = ll_intent_vip.findViewById(R.id.tv_first_class_record);
+        TextView tv_second_class_record = ll_intent_vip.findViewById(R.id.tv_second_class_record);
+        TextView tv_like_lesson = ll_intent_vip.findViewById(R.id.tv_like_lesson);
+        TextView tv_like_teacher = ll_intent_vip.findViewById(R.id.tv_like_teacher);
+        TextView tv_regist_time = ll_intent_vip.findViewById(R.id.tv_regist_time);
+        TextView tv_contract_deadline = ll_intent_vip.findViewById(R.id.tv_contract_deadline);
+        TextView tv_contract_balance = ll_intent_vip.findViewById(R.id.tv_contract_balance);
+        TextView tv_buy_count = ll_intent_vip.findViewById(R.id.tv_buy_count);
+
+    }
+
+    private void initZhengshi() {
+        ImageView iv_header = ll_zhengsi_vip.findViewById(R.id.iv_header);
+        TextView tv_name = ll_zhengsi_vip.findViewById(R.id.tv_name);
+        ImageView iv_gender = ll_zhengsi_vip.findViewById(R.id.iv_gender);
+        RecyclerView rv_card = ll_zhengsi_vip.findViewById(R.id.rv_card);
+        TextView tv_private_lesson = ll_zhengsi_vip.findViewById(R.id.tv_private_lesson);
+        TextView tv_like_lesson = ll_zhengsi_vip.findViewById(R.id.tv_like_lesson);
+        TextView tv_like_teacher = ll_zhengsi_vip.findViewById(R.id.tv_like_teacher);
+        TextView tv_regist_time = ll_zhengsi_vip.findViewById(R.id.tv_regist_time);
+        TextView tv_contract_deadline = ll_zhengsi_vip.findViewById(R.id.tv_contract_deadline);
+        TextView tv_contract_balance = ll_zhengsi_vip.findViewById(R.id.tv_contract_balance);
+        TextView tv_buy_count = ll_zhengsi_vip.findViewById(R.id.tv_buy_count);
     }
 
     private void post(CoachInfo coachInfo) {

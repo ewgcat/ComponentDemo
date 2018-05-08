@@ -64,16 +64,16 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_activity_navigation_bar);
         navigationBar2.setTitle("资格证书");
-        navigationBar2.setmRightTvText("编辑");
+//        navigationBar2.setmRightTvText("编辑");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyQualificationActivity.this, EditQualificationActivity.class);
-                startActivityForResult(intent, 101);
-            }
-        });
+//        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MyQualificationActivity.this, EditQualificationActivity.class);
+//                startActivityForResult(intent, 101);
+//            }
+//        });
 
         choosePhotoView.setMode(ChoosePhotoView.MODE_ONLY_SHOW);
         rcl.setLayoutManager(new LinearLayoutManager(this));
@@ -117,11 +117,11 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == 101) {
-            initData();
-        }
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (resultCode == RESULT_OK && requestCode == 101) {
+//            initData();
+//        }
+//
+//    }
 }

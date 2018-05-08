@@ -18,12 +18,14 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.resourceallocation.coachleader.bean.ResourceInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,8 +40,9 @@ import java.util.Map;
 public class ResourceAllocationFragment extends Fragment {
 
     private static ResourceAllocationFragment resourceAllocationFragment;
-    public static ResourceAllocationFragment getInstance(){
-        if(resourceAllocationFragment == null){
+
+    public static ResourceAllocationFragment getInstance() {
+        if (resourceAllocationFragment == null) {
             resourceAllocationFragment = new ResourceAllocationFragment();
         }
         return resourceAllocationFragment;
@@ -47,7 +50,7 @@ public class ResourceAllocationFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
-    private List<ResourceInfo> resourceAllocationInfoList=new ArrayList<>();
+    private List<ResourceInfo> resourceAllocationInfoList = new ArrayList<>();
     public ResourceAllocationAdatper adapter;
 
     private int pageNum = 1;
@@ -63,7 +66,7 @@ public class ResourceAllocationFragment extends Fragment {
         return view;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         rv_resource_allocation = view.findViewById(R.id.rv_resource_allocation);
         refreshLayout = view.findViewById(R.id.refreshLayout);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
@@ -73,7 +76,6 @@ public class ResourceAllocationFragment extends Fragment {
         rv_resource_allocation.setAdapter(adapter);
         initComponent();
     }
-
 
 
     public void initComponent() {
@@ -111,15 +113,27 @@ public class ResourceAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_RESOURCE_LIST_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
-                resourceAllocationInfoList.add(new ResourceInfo(new JSONObject()));
-                adapter.update(resourceAllocationInfoList);
+
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        ResourceInfo resourceInfo = new ResourceInfo(jsonObject);
+                        resourceAllocationInfoList.add(resourceInfo);
+                    }
+                    adapter.update(resourceAllocationInfoList);
+
+                } catch (JSONException e) {
+                    Logger.i("TEST",e.getMessage());
+
+                }
             }
 
             @Override
@@ -138,7 +152,7 @@ public class ResourceAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACHZONGJIAN_RESOURCE_LIST_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

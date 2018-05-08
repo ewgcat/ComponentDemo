@@ -1,67 +1,105 @@
 package com.yijian.staff.mvp.resourceallocation.coachleader.bean;
 
-import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
-
-
 public class ResourceInfo {
 
 
-    private String headImg;
-    private String name;
-    private int gender;
     /**
-     * CoachExpireVO：教练过期
-     * CoachInfoVO ：教练正式
-     * CoachIntentionVO：教练意向
-     * CoachTodayVisitVO：教练今日来访
-     * CustomerInfoVO：会籍正式
-     * CustomerTodayVisitVO：会籍今日来访
-     * CustomerExpireVO：会籍过期
-     * CustomerIntentionVO：会籍意向
-     * PotentialVO：潜在（会籍教练共用）
+     * memberId : bc79d4833dc64eae8bf93cd9881ae6a1
+     * name : 库鸟
+     * sex : 1
+     * dictItemKey : 16
+     * headImg :
+     * viperRole : 教练-意向会员
+     * underProtected : false
+     * subclassName : CoachIntentionVO
      */
-    private String subclassName;
+
     private String memberId;
+    private String name;
+    private int sex;
+    private int dictItemKey;
+    private String headImg;
+    private String viperRole;
+    private boolean underProtected;
+    private String subclassName;
 
 
     public ResourceInfo(JSONObject jsonObject){
-        this.headImg = JsonUtil.getString(jsonObject,"headImg");
-        this.name = JsonUtil.getString(jsonObject,"name");
-        this.gender = "1".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_man : R.mipmap.lg_women;
-        this.subclassName = JsonUtil.getString(jsonObject,"subclassName");
-        this.memberId = JsonUtil.getString(jsonObject,"memberId");
+        this. memberId = JsonUtil.getString(jsonObject, "memberId");
+        this. name = JsonUtil.getString(jsonObject, "name");
+        this. sex = JsonUtil.getInt(jsonObject, "sex");
+        this. headImg = JsonUtil.getString(jsonObject, "headImg");
+        this. viperRole = JsonUtil.getString(jsonObject, "viperRole");
+        this. memberId = JsonUtil.getString(jsonObject, "memberId");
+        this. subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this. dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
+        this. underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
     }
-
     public String getMemberId() {
         return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getDictItemKey() {
+        return dictItemKey;
+    }
+
+    public void setDictItemKey(int dictItemKey) {
+        this.dictItemKey = dictItemKey;
     }
 
     public String getHeadImg() {
         return headImg;
     }
 
-
-
-    public String getName() {
-        return name;
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
     }
 
-
-    public int getGender() {
-        return gender;
+    public String getViperRole() {
+        return viperRole;
     }
 
+    public void setViperRole(String viperRole) {
+        this.viperRole = viperRole;
+    }
 
+    public boolean isUnderProtected() {
+        return underProtected;
+    }
+
+    public void setUnderProtected(boolean underProtected) {
+        this.underProtected = underProtected;
+    }
 
     public String getSubclassName() {
         return subclassName;
     }
 
-
-
-
+    public void setSubclassName(String subclassName) {
+        this.subclassName = subclassName;
+    }
 }

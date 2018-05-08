@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.CommonUtil;
@@ -32,6 +33,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
 
     private Activity context;
     private RecyclerView rcl;
+    private SelectCoachAdapter adapter;
 
     public SelectCoachPopupWindow(Activity context) {
         super(context);
@@ -66,7 +68,8 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
         coachInfos.add(new CoachInfo(new JSONObject()));
         coachInfos.add(new CoachInfo(new JSONObject()));
         coachInfos.add(new CoachInfo(new JSONObject()));
-        rcl.setAdapter(new SelectCoachAdapter(context,coachInfos));
+        adapter = new SelectCoachAdapter(context, coachInfos);
+        rcl.setAdapter(adapter);
     }
 
     /**
@@ -92,8 +95,31 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
                 dismiss();
                 break;
             case R.id.tv_send:
+                CoachInfo selectCoachInfo = adapter.getSelectCoachInfo();
+                if (selectCoachInfo == null) {
+                    Toast.makeText(context, "请先选择教练", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    if (selectCoachListener!=null){
+                        selectCoachListener.onSelect(selectCoachInfo);
+                        dismiss();
+                    }
+                }
+
                 break;
 
         }
     }
+
+    public interface SelectCoachListener {
+        void onSelect(CoachInfo coachInfo);
+    }
+
+  private   SelectCoachListener selectCoachListener;
+
+    public void setSelectCoachListener(SelectCoachListener selectCoachListener) {
+        this.selectCoachListener = selectCoachListener;
+    }
+
+
 }

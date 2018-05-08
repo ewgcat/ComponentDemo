@@ -63,6 +63,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".mvp.main.MainActivity"
             android:launchMode="singleTop"
@@ -231,7 +233,7 @@
             android:name=".mvp.complaint.list.ComplaintListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.coach.resourceallocation.CoachResourceAllocationActivity"
+            android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huiji.resourceallocation.HuiJiResourceAllocationActivity"
@@ -562,13 +564,17 @@
             android:name=".mvp.resourceallocation.coachleader.index.CoachLeaderResourceIndexActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
-            android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
+            android:name=".mvp.resourceallocation.coachleader.detail.ResourceDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.resourceallocation.coachleader.detail.ResourceDetailActivity"
+        <activity
+            android:name="com.yijian.staff.mvp.reception.contract.ContractActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.coachleader.widget.RatingBar;
+import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,13 +27,12 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
 
     private List<CoachInfo> coachInfos = new ArrayList<>();
     private Context context;
-    private Map<Integer, Boolean> checkMap;
+    private int selectPosition=-1;
 
 
     public SelectCoachAdapter(Context context, List<CoachInfo> coachInfos) {
         this.context = context;
         this.coachInfos = coachInfos;
-        checkMap = new HashMap<Integer, Boolean>();
     }
 
     @Override
@@ -47,19 +47,17 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
         CoachInfo coachInfo = coachInfos.get(position);
 
 
-        holder.ck_select.setTag(position);
-        if (checkMap.containsKey(position)){
-            holder.ck_select.setChecked(checkMap.get(position));
+        if (position==selectPosition){
+            holder.ck_select.setChecked(true);
         }else {
-            holder.ck_select.setChecked(false);//true or false 都可以，看实际需求
+            holder.ck_select.setChecked(false);
         }
         holder.ck_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (holder.ck_select.isChecked()){
-                    checkMap.put(position,true);
-                }else {
-                    checkMap.put(position,false);
+                    selectPosition=position;
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -67,6 +65,12 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
 
     }
 
+    public CoachInfo getSelectCoachInfo(){
+        if (coachInfos==null) return null;
+        if (selectPosition==-1)return null;
+        if (coachInfos.size()<=selectPosition)return null;
+        return coachInfos.get(selectPosition);
+    }
     @Override
     public int getItemCount() {
         return coachInfos == null ? 0 : coachInfos.size();

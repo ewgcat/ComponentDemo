@@ -10,12 +10,14 @@ import android.webkit.WebViewClient;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -59,7 +61,22 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
                 showToast(msg);
             }
         });
+        JSONObject jsonObject = new JSONObject();
+        webView.loadUrl("http://192.168.2.209:8080/#/contract");
+        String token = DBManager.getInstance().queryUser().getToken();
+        try {
+            jsonObject.put("token",token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
+            }
+        });
 
 
     }

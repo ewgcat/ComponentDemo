@@ -32,7 +32,7 @@ import java.util.Map;
 import butterknife.ButterKnife;
 
 /**
- * 资源分配(教练总监角色)
+ * 资源分配(教练角色)
  */
 @Route(path = "/test/10.2")
 public class CoachResourceAllocationActivity extends AppCompatActivity {

@@ -66,7 +66,8 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     private int pageSize = 4;
     private int pages;
     private ProgressDialog loadingDialog;
-
+    private String memberName;
+    private String memberId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +80,12 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
+        memberId = getIntent().getStringExtra("memberId");
+        memberName = getIntent().getStringExtra("memberName");
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setTitle("请稍后...");
         initComponent();
+
 
     }
 
@@ -329,7 +332,10 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
                 break;
             case R.id.ll_post:
                 //TODO 产品报价
-                startActivity(new Intent(NoSearchBarCoachClassBaojiaActivity.this, CoachClassBaoJiaCompleteActivity.class));
+                Intent intent = new Intent(NoSearchBarCoachClassBaojiaActivity.this, CoachClassBaoJiaCompleteActivity.class);
+                intent.putExtra("memberId", memberId);
+                intent.putExtra("memberName", memberName);
+                startActivity(intent);
                 break;
 
         }

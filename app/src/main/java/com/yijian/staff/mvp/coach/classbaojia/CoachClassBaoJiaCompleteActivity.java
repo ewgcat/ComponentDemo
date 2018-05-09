@@ -1,10 +1,13 @@
 package com.yijian.staff.mvp.coach.classbaojia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.contract.ContractActivity;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.BindView;
@@ -40,6 +43,10 @@ public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
     @BindView(R.id.tv_kecheng_desc)
     TextView tvKechengDesc;
 
+
+    private String memberName;
+    private String memberId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,8 @@ public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("订单详情");
+        memberId = getIntent().getStringExtra("memberId");
+        memberName = getIntent().getStringExtra("memberName");
 
     }
 
@@ -57,7 +66,10 @@ public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
     public void onViewClicked() {
         //TODO 查看合同
 
-
+        Intent intent1 = new Intent(CoachClassBaoJiaCompleteActivity.this, ContractActivity.class);
+        intent1.putExtra("memberId", memberId);
+//        intent1.putStringArrayListExtra("contractIds",vipDetailBean.getContractIds());
+        startActivity(intent1);
 
     }
 }

@@ -177,6 +177,8 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("会员详情");
+        memberId = getIntent().getStringExtra("memberId");
+        memberName = getIntent().getStringExtra("memberName");
     }
 
 
@@ -191,7 +193,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 startActivity(intent1);
                 break;
             case R.id.lin_baojia:
-                startActivity(new Intent(CoachViperDetailActivity.this, NoSearchBarCoachClassBaojiaActivity.class));
+                Intent intent2 = new Intent(CoachViperDetailActivity.this, NoSearchBarCoachClassBaojiaActivity.class);
+                intent2.putExtra("memberId", memberId);
+                intent2.putExtra("memberName", memberName);
+                startActivity(intent2);
                 break;
 
             case R.id.iv_call:
@@ -237,8 +242,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
             ll_1.setVisibility(View.GONE);
             ll_3.setVisibility(View.VISIBLE);
         }
-        memberId = getIntent().getStringExtra("memberId");
-        memberName = getIntent().getStringExtra("memberName");
+
         loadData(memberId);
 
     }

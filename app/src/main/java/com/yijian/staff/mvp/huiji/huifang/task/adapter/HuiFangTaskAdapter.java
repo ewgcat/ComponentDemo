@@ -256,8 +256,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                     if (CommonUtil.isPhoneFormat(mobile)) {
                         HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean("15");
                         Intent i = new Intent(context, HuijiTianXieHuiFangResultActivity.class);
-                        i.putExtra("interviewRecordId", huiFangInfo.getInterviewRecordId());
-                        i.putExtra("memberId", huiFangInfo.getId());
+                        i.putExtra("huiFangInfo",huiFangInfo);
                         context.startActivity(i);
                         CommonUtil.callPhone(context, mobile);
 

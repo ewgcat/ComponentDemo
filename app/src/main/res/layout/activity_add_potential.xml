@@ -191,17 +191,18 @@
                     android:layout_marginRight="18dp"
                     android:text="健身目的" />
 
-                <com.yijian.staff.widget.LastInputEditText
-                    android:id="@+id/et_fitness_goal"
+
+
+                <TextView
+                    android:id="@+id/tv_fitness_goal"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="18dp"
                     android:layout_weight="1"
-                    android:background="@null"
+                    android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:hint="请输入健身目的"
-                    android:inputType="phone"
                     android:padding="2dp"
+                    android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -304,17 +305,18 @@
                     android:layout_marginRight="18dp"
                     android:text="使用车辆" />
 
-                <com.yijian.staff.widget.LastInputEditText
-                    android:id="@+id/et_car_name"
+
+
+                <TextView
+                    android:id="@+id/tv_car_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="18dp"
                     android:layout_weight="1"
-                    android:background="@null"
+                    android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:hint="请输入车辆品牌"
-                    android:inputType="phone"
                     android:padding="2dp"
+                    android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
             </LinearLayout>

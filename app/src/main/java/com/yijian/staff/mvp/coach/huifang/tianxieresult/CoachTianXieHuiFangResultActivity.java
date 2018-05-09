@@ -79,8 +79,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         NavigationBar2 navigationBar2 = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.getFirstLeftIv().setVisibility(View.GONE);
-        navigationBar2.setTitle("填写回访结果");
-        navigationBar2.setmRightTvText("发送");
+        navigationBar2.setTitle("填写回访记录");
         navigationBar2.findViewById(R.id.right_tv).setOnClickListener(this);
         rb1.setChecked(true);
         llHuifangResult.setVisibility(View.VISIBLE);

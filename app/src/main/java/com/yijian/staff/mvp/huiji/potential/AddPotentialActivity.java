@@ -39,14 +39,14 @@ public class AddPotentialActivity extends MvcBaseActivity {
     LastInputEditText etPhone;
     @BindView(R.id.tv_body_status)
     TextView tvBodyStatus;
-    @BindView(R.id.et_fitness_goal)
-    LastInputEditText etFitnessGoal;
+    @BindView(R.id.tv_fitness_goal)
+    TextView tvFitnessGoal;
     @BindView(R.id.tv_fithobby)
     TextView tvFithobby;
     @BindView(R.id.tv_hobby)
     TextView tvHobby;
-    @BindView(R.id.et_car_name)
-    LastInputEditText etCarName;
+    @BindView(R.id.tv_car_name)
+    TextView tvCarName;
 
     private OptionsPickerView optionsPickerView;
 
@@ -96,9 +96,9 @@ public class AddPotentialActivity extends MvcBaseActivity {
         String name = etName.getText().toString();
         String phone = etPhone.getText().toString().trim();
         String healthStatus = tvBodyStatus.getText().toString().trim();
-        String fitnessGoal = etFitnessGoal.getText().toString().trim();
+        String fitnessGoal = tvFitnessGoal.getText().toString().trim();
         String fitnessHobby = tvFithobby.getText().toString().trim();
-        String userCar = etCarName.getText().toString().trim();
+        String userCar = tvCarName.getText().toString().trim();
         String hobby = tvHobby.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(AddPotentialActivity.this, "名字不能为空!", Toast.LENGTH_SHORT).show();
@@ -109,28 +109,6 @@ public class AddPotentialActivity extends MvcBaseActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(fitnessGoal)) {
-            Toast.makeText(AddPotentialActivity.this, "健身目的不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(userCar)) {
-            Toast.makeText(AddPotentialActivity.this, "用车不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(healthStatus)) {
-            Toast.makeText(AddPotentialActivity.this, "身体状态不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(fitnessHobby)) {
-            Toast.makeText(AddPotentialActivity.this, "健身爱好不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(hobby)) {
-            Toast.makeText(AddPotentialActivity.this, "爱好不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
 
         if (CommonUtil.isPhoneFormat(phone)) {
@@ -155,7 +133,6 @@ public class AddPotentialActivity extends MvcBaseActivity {
     }
 
 
-
     /**
      * 隐藏键盘
      */
@@ -178,14 +155,8 @@ public class AddPotentialActivity extends MvcBaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
-    @OnClick({R.id.tv_body_status, R.id.tv_fithobby, R.id.tv_hobby,R.id.tv_sex})
+    @OnClick({R.id.tv_body_status, R.id.tv_fithobby, R.id.tv_hobby, R.id.tv_sex,R.id.tv_fitness_goal, R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_body_status:
@@ -198,6 +169,12 @@ public class AddPotentialActivity extends MvcBaseActivity {
                 hideKeyBoard(view);
                 optionsPickerView.show();
                 break;
+            case R.id.tv_fitness_goal:
+                break;
+            case R.id.tv_car_name:
+                break;
         }
     }
+
+
 }

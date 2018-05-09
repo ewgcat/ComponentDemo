@@ -171,7 +171,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
             case R.id.ll_chakan_hetong:
                 Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
                 intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                intent1.putStringArrayListExtra("contractIds",vipDetailBean.getContractIds());
+                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
                 startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
@@ -200,14 +200,14 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void callVisit(String mobile){
-        Map<String,String> map = new HashMap<>();
-        map.put("memberId",vipDetailBean.getMemberId());
-        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
+    private void callVisit(String mobile) {
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", vipDetailBean.getMemberId());
+        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuiJiViperDetailActivity.this,mobile);
+                CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
             }
 
             @Override
@@ -223,7 +223,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     }
 
     private void loadData(String id) {
-
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);

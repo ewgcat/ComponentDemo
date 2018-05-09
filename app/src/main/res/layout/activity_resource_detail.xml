@@ -29,6 +29,10 @@
                 layout="@layout/coach_intent_viper_detail"
                 android:visibility="gone" />
 
+            <include
+                android:id="@+id/ll_potential_vip"
+                layout="@layout/coach_potential_viper_detail"
+                />
 
         </LinearLayout>
 

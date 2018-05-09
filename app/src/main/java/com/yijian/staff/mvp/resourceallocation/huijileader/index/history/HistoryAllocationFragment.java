@@ -80,8 +80,6 @@ public class HistoryAllocationFragment extends Fragment {
   
 
     public void initComponent() {
-        pageNum = 1;
-        pageSize = 6;
         resourceAllocationInfoList.clear();
 
         //设置 Header 为 BezierRadar 样式
@@ -109,7 +107,7 @@ public class HistoryAllocationFragment extends Fragment {
 
     private void refresh() {
         Map<String, String> params = new HashMap<>();
-
+        pageNum = 1;
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 

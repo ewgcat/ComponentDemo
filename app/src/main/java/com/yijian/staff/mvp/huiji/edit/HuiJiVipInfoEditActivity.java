@@ -131,7 +131,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                 manualPickedView(resuorceList, "易健平台", tv_source);
                 break;
             case R.id.tv_onceJoinedClub: // 是否参加过俱乐部
-                manualPickedView(onceJoinedClubList, "易健平台", tv_onceJoinedClub);
+                manualPickedView(onceJoinedClubList, "是", tv_onceJoinedClub);
                 break;
             case R.id.tv_yearIncome: // 年收入
                 manualPickedView(yearIncomeList, "10万以内", tv_yearIncome);
@@ -206,7 +206,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
         String anObject2 = tv_onceJoinedClub.getText().toString();
         if (!TextUtils.isEmpty(anObject2)) {
-            paramMap.put("onceJoinedClub", ("有".equals(anObject2)));
+            paramMap.put("onceJoinedClub", ("是".equals(anObject2)));
         }
         String o4 = tv_source.getText().toString();
         if (!TextUtils.isEmpty(o4)) {

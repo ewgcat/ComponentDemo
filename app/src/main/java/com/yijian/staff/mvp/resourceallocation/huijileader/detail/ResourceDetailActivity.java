@@ -30,7 +30,7 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_resource_detail;
+        return R.layout.activity_huiji_resource_detail;
     }
 
     @Override
@@ -51,10 +51,9 @@ public class ResourceDetailActivity extends MvcBaseActivity {
                 ll_zhengsi_vip.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                ll_zhengsi_vip.setVisibility(View.GONE);
-                break;
             case 3:
                 ll_zhengsi_vip.setVisibility(View.GONE);
+
                 break;
 
         }
@@ -70,12 +69,26 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
     }
 
+    /**
+     * 更新正式会员信息
+     */
+    private void updateZhengshiUi(){
+
+    }
+
+    /**
+     * 更新意向会员信息
+     */
+    private void updateIntentUi(){
+
+    }
+
     private void post(HuiJiInfo coachInfo) {
         HashMap<String, String> param = new HashMap<>();
         param.put("memberId", memberId);
         param.put("distributedUserId", coachInfo.getUserId());
         param.put("subclassName", subclassName);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL, param, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.HUIJIZONGJIAN_DISTRIBUTE_RESOURCE_URL, param, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 finish();

@@ -21,12 +21,12 @@
 
             <include
                 android:id="@+id/ll_zhengsi_vip"
-                layout="@layout/coach_zheng_shi_viper_detail"
+                layout="@layout/huiji_zheng_shi_viper_detail"
                 android:visibility="gone" />
 
             <include
                 android:id="@+id/ll_intent_vip"
-                layout="@layout/coach_intent_viper_detail"
+                layout="@layout/huiji_intent_viper_detail"
                 android:visibility="gone" />
 
 

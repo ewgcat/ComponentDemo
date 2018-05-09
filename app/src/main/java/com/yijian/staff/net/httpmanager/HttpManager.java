@@ -72,7 +72,7 @@ public class HttpManager {
     public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/potential/list";
 
     //所有会员的详情入口
-    public static String GET_HUIJI_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
+    public static String GET_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
 
     //所有会员的字典入口
     public static String GET_HUIJI_VIPER_DICT_URL = BuildConfig.HOST + "dict/member/dict";
@@ -96,6 +96,9 @@ public class HttpManager {
 
     //会籍邀约结果
     public static String INDEX_HUI_JI_INVITATION_RESULT_URL = BuildConfig.HOST + "invitation/selectResult";
+
+    //会籍会员回访
+    public static String HUIJI_HUIFANG_CALL_RECORD = BuildConfig.HOST + "customer-service/add-record/call-for-interview";
 
 
     /*************************教练************************/
@@ -282,37 +285,47 @@ public class HttpManager {
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
 
-    //会籍资源分配
-    public static String GET_HUIJI_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distribution/list";
 
-    //教练资源分配
-    public static String GET_COACH_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distribution/list";
+    /************** 分配资源*******************/
 
-    // 教练可分配资源（会员）列表
-    public static String GET_COACH_ENABLE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distributable/list";
+    //会籍资源
+    public static String GET_HUIJI_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/list";
+    
+    //教练资源
+    public static String GET_COACH_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/list";
 
-    // 会籍可分配资源（会员）列表
-    public static String GET_HUIJI_ENABLE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distributable/list";
-
-    // 会籍可分配资源（会员）列表
-    public static String GET_HUIJI_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distribution/history/list";
-
-    // 教练可分配资源（会员）列表
-    public static String GET_COACH_ENABLE_HISTORY_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distribution/list"; // 会籍可分配资源（会员）列表
-
-    // 可接受分配教练列表
-    public static String GET_COACH_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "coach/distributable/coach/list";
+    
+    // 会籍总监 分配会籍
+    public static String HUIJIZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "customer-service/distribute/resource";
 
     // 可接受分配会籍列表
-    public static String GET_HUIJI_ENABLE_RECEIVE_RESOURCE_ALLOCATION__PHONE_URL = BuildConfig.HOST + "customer-service/distributable/seller/list";
-
-  // 分配会籍
-    public static String ALLOCATION_HUIJI_RESOURCE_ALLOCATION_URL = BuildConfig.HOST + "customer-service/distribute/resource";
-
-    // 分配教练
-    public static String ALLOCATION_COACH_RESOURCE_ALLOCATION_URL = BuildConfig.HOST + "coach/distribute/resource";
+    public static String GET_HUIJI_LIST_RECEIVE_URL = BuildConfig.HOST + "customer-service/distributable/seller/list";
 
 
+    // 会籍总监 可分配资源（会员）列表
+    public static String GET_HUIJIZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distributable/list";
+
+    // 会籍总监 历史分配（会员）列表
+    public static String GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/history/list";
+
+
+
+
+    // 教练总监 分配教练
+    public static String COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "coach/distribute/resource";
+
+    
+    // 可接受分配教练列表
+    public static String GET_COACH_LIST_RECEIVE_URL = BuildConfig.HOST + "coach/distributable/coach/list";
+
+    
+    // 教练总监 可分配资源（会员）列表
+    public static String GET_COACHZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distributable/list";
+    
+    // 教练总监 历史分配（会员）列表
+    public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
+
+    
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -406,6 +419,7 @@ public class HttpManager {
             execute(loginObservable, observer);
         }
     }
+
     //添加潜在
     public static void getHuiJiInviteRecord(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
 
@@ -420,7 +434,8 @@ public class HttpManager {
             execute(loginObservable, observer);
         }
     }
- //添加潜在
+
+    //添加潜在
     public static void getHuiJiInviteResult(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
@@ -520,20 +535,20 @@ public class HttpManager {
         }
     }
 
-//    postInvate
+    //    postInvate
     //体验课流程——发出二次邀约
-public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> observer) {
-    HashMap<String, String> headers = new HashMap<>();
-    User user = DBManager.getInstance().queryUser();
+    public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
 
-    if (user == null || TextUtils.isEmpty(user.getToken())) {
-        ARouter.getInstance().build("/test/login").navigation();
-    } else {
-        headers.put("token", user.getToken());
-        Observable<JSONObject> receptionTestObservable = apiService.postInvate(SEND_EXPERICECE_INVITE_HISTORY_URL, headers,invateBean );
-        execute(receptionTestObservable, observer);
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> receptionTestObservable = apiService.postInvate(SEND_EXPERICECE_INVITE_HISTORY_URL, headers, invateBean);
+            execute(receptionTestObservable, observer);
+        }
     }
-}
 
     //保存menu编辑状态
     public static void saveMenuChange(MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
@@ -805,7 +820,6 @@ public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> o
     }
 
 
-
     //保存职业证书
     public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
@@ -905,7 +919,6 @@ public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> o
 
     //接待--会籍--step5-完成整个流程
     public static final String RECEPTION_STEP5_END = BuildConfig.HOST + "reception/finish-to-coach";
-
 
 
 }

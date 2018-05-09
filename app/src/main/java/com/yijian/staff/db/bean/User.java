@@ -14,7 +14,7 @@ import org.json.JSONObject;
 @Entity
 public class User {
     public int age;
-    public int role;// 1 会籍客服 2教练  3会籍总监 4教练总监 5店长
+    public int role;// 1 会籍客服 2教练  3会籍总监 4教练总监 5店长 6会籍经理 7教练经理
     public String name;
     public String userId;
     public String shopId;

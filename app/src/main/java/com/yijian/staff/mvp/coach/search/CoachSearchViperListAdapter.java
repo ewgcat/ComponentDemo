@@ -75,9 +75,9 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         holder.tv_name.setText(coachViperBean.getName());
         holder.tv_role.setText(coachViperBean.getViperRole());
         int resId;
-        if (coachViperBean.getSex().equals("1")) {
+        if (coachViperBean.getSex().equals("男")) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex().equals("2")) {
+        } else if (coachViperBean.getSex().equals("女")) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
@@ -114,7 +114,7 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("CoachSearchViperBean", coachViperBean);
+                intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);
             }
         });

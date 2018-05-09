@@ -84,10 +84,14 @@ public class ArouterNavigationInterceptor implements IInterceptor {
                 ARouter.getInstance().build("/test/empty").navigation();
             }
         } else if (path.equals("/test/10")) {//会籍分配资源
-                if (SharePreferenceUtil.getUserRole() == 1|| SharePreferenceUtil.getUserRole() == 3) {  // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
+                if (SharePreferenceUtil.getUserRole() == 1) {  // 1 会籍客服 2教练  3会籍总监 4教练总监 5店长
                     callback.onContinue(postcard);  // 处理完成，交还控制权
-                } else if (SharePreferenceUtil.getUserRole() == 2|| SharePreferenceUtil.getUserRole() == 4) {
-                    ARouter.getInstance().build("/test/10.1").navigation();
+                } else if (SharePreferenceUtil.getUserRole() == 2) {
+                    ARouter.getInstance().build("/test/10.2").navigation();
+                } else if ( SharePreferenceUtil.getUserRole() == 3) {
+                    ARouter.getInstance().build("/test/10.3").navigation();
+                } else if ( SharePreferenceUtil.getUserRole() == 4) {
+                    ARouter.getInstance().build("/test/10.4").navigation();
                 }
             else {
                 ARouter.getInstance().build("/test/empty").navigation();

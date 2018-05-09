@@ -100,6 +100,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     private void initData() {
         memberId = getIntent().getStringExtra("memberId");
+
         detailBean = (VipDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
         resource = getIntent().getStringExtra("source");
         detailJsonObj = (com.alibaba.fastjson.JSONObject) com.alibaba.fastjson.JSONObject.toJSON(detailBean);
@@ -169,19 +170,53 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     private void submitData() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("address", et_address.getText().toString());
-        paramMap.put("carPrice", carPriceIdList.get(carPriceList.indexOf(tv_carPrice.getText().toString())));
+        String o = tv_carPrice.getText().toString();
+        if (!TextUtils.isEmpty(o)) {
+            paramMap.put("carPrice", o);
+        }
         paramMap.put("clubBrand", et_clubBrand.getText().toString());
         paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
-        paramMap.put("hasChildren", ("有".equals(tv_hasChildren.getText().toString())));
-        paramMap.put("hobby", hobbyIdList.get(hobbyList.indexOf(tv_hobby.getText().toString())));
-        paramMap.put("marriageStatus", ("未婚".equals(tv_marriageStatus.getText().toString())) ? 0 : 1);
+        String anObject = tv_hasChildren.getText().toString();
+        if (!TextUtils.isEmpty(anObject)) {
+            paramMap.put("hasChildren", ("有".equals(anObject)));
+        }
+        String o6 = tv_hobby.getText().toString();
+        if (!TextUtils.isEmpty(o6)) {
+            paramMap.put("hobby", o6);
+        }
+        String anObject1 = tv_marriageStatus.getText().toString();
+        if (!TextUtils.isEmpty(anObject1)) {
+            paramMap.put("marriageStatus", ("未婚".equals(anObject1)) ? 0 : 1);
+        }
         paramMap.put("memberId", memberId);
-        paramMap.put("nation", nationIdList.get(nationList.indexOf(tv_nation.getText().toString())));//tv_nation.getText().toString()
-        paramMap.put("nationality", nationalityIdList.get(nationalityList.indexOf(tv_nationality.getText().toString()))); //tv_nationality.getText().toString()
-        paramMap.put("occupation", occupationIdList.get(occupationList.indexOf(tv_occupation.getText().toString()))); //tv_occupation.getText().toString()
-        paramMap.put("onceJoinedClub", ("有".equals(tv_onceJoinedClub.getText().toString())));
-        paramMap.put("source", resuorceIdList.get(resuorceList.indexOf(tv_source.getText().toString()))); //tv_source.getText().toString()
-        paramMap.put("yearIncome", yearIncomeIdList.get(yearIncomeList.indexOf(tv_yearIncome.getText().toString()))); //tv_yearIncome.getText().toString()
+
+        String o1 = tv_nation.getText().toString();
+        if (!TextUtils.isEmpty(o1)) {
+            paramMap.put("nation", o1);
+        }
+        String o2 = tv_nationality.getText().toString();
+        if (!TextUtils.isEmpty(o2)) {
+            paramMap.put("nationality", o2);
+        }
+        String o3 = tv_occupation.getText().toString();
+        if (!TextUtils.isEmpty(o3)) {
+            paramMap.put("occupation", o3);
+        }
+
+
+        String anObject2 = tv_onceJoinedClub.getText().toString();
+        if (!TextUtils.isEmpty(anObject2)) {
+            paramMap.put("onceJoinedClub", ("有".equals(anObject2)));
+        }
+        String o4 = tv_source.getText().toString();
+        if (!TextUtils.isEmpty(o4)) {
+            paramMap.put("source", o4);
+        }
+
+        String o5 = tv_yearIncome.getText().toString();
+        if (!TextUtils.isEmpty(o5)) {
+            paramMap.put("yearIncome", o5);
+        }
 
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
@@ -308,7 +343,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                         nationalityIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
-                    //名族
+                    //民族
                     JSONObject mz = result.getJSONObject("MZ");
                     JSONArray mzJsonArray = mz.getJSONArray("items");
                     for (int j = 0; j < mzJsonArray.length(); j++) {
@@ -335,7 +370,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                         bodybuildingIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
-                    if(TextUtils.isEmpty(tv_source.getText().toString())){
+                    /*if(TextUtils.isEmpty(tv_source.getText().toString())){
                         tv_source.setText(resuorceList.get(0));
                     }
 
@@ -377,7 +412,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
                     if(TextUtils.isEmpty(tv_hasChildren.getText().toString())){
                         tv_hasChildren.setText(hasChildrenList.get(0));
-                    }
+                    }*/
 
 
                 } catch (JSONException e) {

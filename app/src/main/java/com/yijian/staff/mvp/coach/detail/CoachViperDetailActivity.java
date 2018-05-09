@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.coach.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,18 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CardprodsBean;
 import com.yijian.staff.bean.CoachSearchViperBean;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.bean.CoachVipDetailBean;
+import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.CoachClassBaoJiaActivity;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
-import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
-import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
-import com.yijian.staff.mvp.reception.contract.ContractActivity;
+import com.yijian.staff.mvp.coach.detail.edit.CoachVipInfoEditActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -41,7 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -148,6 +144,8 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     LinearLayout llVipContent;
     @BindView(R.id.ll_1)
     LinearLayout ll_1;
+    @BindView(R.id.lin_vip_people_bottom)
+    LinearLayout lin_vip_people_bottom;
 
     @BindView(R.id.ll_3)
     LinearLayout ll_3;
@@ -157,10 +155,9 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     RelativeLayout rlSijiaoClass;
 
     private int vipType = 0;//0 正式会员 、1、意向会员（有会籍信息）  2、 潜在会员3、 过期会员（无会籍信息）;
-    private List<CoachViperBean.CardprodsBean> cardprodsBeans;
+    private List<CoachVipDetailBean.CardprodsBean> cardprodsBeans;
     private String memberName;
     private String memberId;
-    private String mobile;
 
 
     @Override
@@ -183,7 +180,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.iv_call,  R.id.lin_baojia,  R.id.ll_edit})
+    @OnClick({R.id.lin_ti_ce_shu_ju, R.id.iv_call, R.id.lin_baojia, R.id.ll_edit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -210,9 +207,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 }
                 break;
             case R.id.ll_edit:
-                Intent intent = new Intent(CoachViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
+                Intent intent = new Intent(CoachViperDetailActivity.this, CoachVipInfoEditActivity.class);
                 intent.putExtra("detail", coachVipDetailBean.getDetail());
                 intent.putExtra("memberId", coachVipDetailBean.getMemberId());
+                intent.putExtra("name", coachVipDetailBean.getName());
                 intent.putExtra("source", coachVipDetailBean.getCustomerServiceInfo().getUserChannel());
                 startActivity(intent);
                 break;
@@ -227,33 +225,21 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         if (vipType == 0 || vipType == 2 || vipType == 3) {
             llVipContent.setVisibility(View.VISIBLE);
             if (vipType == 0) {
+                lin_vip_people_bottom.setVisibility(View.VISIBLE);
                 ll_1.setVisibility(View.VISIBLE);
                 ll_3.setVisibility(View.GONE);
             } else {
-                ll_1.setVisibility(View.GONE);
-                ll_3.setVisibility(View.GONE);
+                lin_vip_people_bottom.setVisibility(View.GONE);
             }
         } else if (vipType == 1) {//意向会员
+            lin_vip_people_bottom.setVisibility(View.VISIBLE);
             llVipContent.setVisibility(View.GONE);
             ll_1.setVisibility(View.GONE);
             ll_3.setVisibility(View.VISIBLE);
         }
-        if (getIntent().hasExtra("coachViperBean")) {
-            CoachViperBean coachViperBean = (CoachViperBean) getIntent().getSerializableExtra("coachViperBean");
-            memberId = coachViperBean.getMemberId();
-            memberName = coachViperBean.getName();
-            mobile = coachViperBean.getMobile();
-            cardprodsBeans = coachViperBean.getCardprodsBeans();
-            loadData(memberId);
-        } else if (getIntent().hasExtra("CoachSearchViperBean")) {
-            CoachSearchViperBean coachSearchViperBean = (CoachSearchViperBean) getIntent().getSerializableExtra("CoachSearchViperBean");
-            memberId = coachSearchViperBean.getMemberId();
-            memberName = coachSearchViperBean.getName();
-            mobile = coachSearchViperBean.getMobile();
-            cardprodsBeans = coachSearchViperBean.getCardprodsBeans();
-            loadData(memberId);
-        }
-
+        memberId = getIntent().getStringExtra("memberId");
+        memberName = getIntent().getStringExtra("memberName");
+        loadData(memberId);
 
     }
 
@@ -262,10 +248,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                coachVipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), CoachVipDetailBean.class);
+                coachVipDetailBean =new CoachVipDetailBean(result);
                 updateUi(coachVipDetailBean);
             }
 
@@ -300,6 +286,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
+        cardprodsBeans=coachVipDetailBean.getCardprods();
         rv_card.setAdapter(new CoachVipCardListAdapter(cardprodsBeans));
         CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = coachVipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(customerServiceInfoBean.getReferee());
@@ -308,7 +295,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         tvTianjiaRenName.setText(customerServiceInfoBean.getReceptionSale());
         tvFuwuHuiji.setText(customerServiceInfoBean.getServiceSale());
         tvFuwuJiaolian.setText(customerServiceInfoBean.getServiceCoach());
-        ArrayList<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+        List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
         if (privateCourses != null && privateCourses.size() > 0) {
             rlSijiaoClass.setVisibility(View.VISIBLE);
             StringBuffer sb = new StringBuffer();
@@ -351,4 +338,11 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==1){
+            loadData(memberId);
+        }
+    }
 }

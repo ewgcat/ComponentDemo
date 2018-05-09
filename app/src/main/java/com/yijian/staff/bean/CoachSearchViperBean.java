@@ -116,46 +116,11 @@ public class CoachSearchViperBean implements Serializable{
     //("合同ID列表")
     private List<String> contractIds;
     //("卡对象集合")
-    private List<CoachViperBean.CardprodsBean> cardprodsBeans;
+    private List<CardprodsBean> cardprodsBeans;
 
     public CoachSearchViperBean() {
     }
 
-    public static class CardprodsBean {
-        /**
-         * cardName : string
-         * cardType : string
-         * cardprodId : string
-         */
-
-        private String cardName;
-        private String cardType;
-        private String cardprodId;
-
-        public String getCardName() {
-            return cardName;
-        }
-
-        public void setCardName(String cardName) {
-            this.cardName = cardName;
-        }
-
-        public String getCardType() {
-            return cardType;
-        }
-
-        public void setCardType(String cardType) {
-            this.cardType = cardType;
-        }
-
-        public String getCardprodId() {
-            return cardprodId;
-        }
-
-        public void setCardprodId(String cardprodId) {
-            this.cardprodId = cardprodId;
-        }
-    }
 
     public String getSubclassName() {
         return subclassName;
@@ -165,7 +130,7 @@ public class CoachSearchViperBean implements Serializable{
         return contractIds;
     }
 
-    public List<CoachViperBean.CardprodsBean> getCardprodsBeans() {
+    public List<CardprodsBean> getCardprodsBeans() {
         return cardprodsBeans;
     }
 
@@ -209,7 +174,7 @@ public class CoachSearchViperBean implements Serializable{
         this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
 
         try {
-            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CoachViperBean.CardprodsBean.class);
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CardprodsBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

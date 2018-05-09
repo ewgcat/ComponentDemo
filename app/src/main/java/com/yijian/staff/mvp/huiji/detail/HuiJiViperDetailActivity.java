@@ -13,15 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
-import com.yijian.staff.mvp.reception.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -29,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -139,7 +143,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     RelativeLayout rlSijiaoClass;
 
     VipDetailBean vipDetailBean;
-    HuiJiViperBean huiJiViperBean;
 
 
     @Override
@@ -166,9 +169,10 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chakan_hetong:
-                /*Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
+                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
                 intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                startActivity(intent1);*/
+                intent1.putStringArrayListExtra("contractIds",vipDetailBean.getContractIds());
+                startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
                 Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
@@ -188,7 +192,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)) {
-                    CommonUtil.callPhone(this, mobile);
+                    callVisit(mobile);
                 } else {
                     Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                 }
@@ -196,10 +200,26 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void callVisit(String mobile){
+        Map<String,String> map = new HashMap<>();
+        map.put("memberId",vipDetailBean.getMemberId());
+        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
+        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                CommonUtil.callPhone(HuiJiViperDetailActivity.this,mobile);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(HuiJiViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void initData() {
-        huiJiViperBean = (HuiJiViperBean) getIntent().getSerializableExtra("viperDetailBean");
-        String id = huiJiViperBean.getMemberId();
-        loadData(id);
+        String memberId = getIntent().getStringExtra("memberId");
+        loadData(memberId);
     }
 
     private void loadData(String id) {
@@ -208,7 +228,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
@@ -228,7 +248,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
-        tvBirthday.setText(judgeNull(vipDetailBean.getBirthday()));
+        tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
         tvViperType.setText(judgeNull(vipDetailBean.getMemberType()));
 //        tvVipCardNum.setText(vipDetailBean.getMemberCardNo());
@@ -241,7 +261,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
-        rv_card.setAdapter(new HuiJiVipeCardAdapter(huiJiViperBean.getCardprodsBeans()));
+        rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
@@ -249,7 +269,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
-        ArrayList<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+        List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
         if (privateCourses != null && privateCourses.size() > 0) {
             rlSijiaoClass.setVisibility(View.VISIBLE);
             StringBuffer sb = new StringBuffer();

@@ -1,100 +1,97 @@
 package com.yijian.staff.mvp.huiji.bean;
 
+import com.yijian.staff.R;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yangk on 2018/4/2.
  */
 
-public class VipDetailBean  {
+public class VipDetailBean implements Serializable {
 
 
     /**
-     * activateCardTime : 2018-04-02T06:11:49.306Z
-     * birthday : 2018-04-02T06:11:49.306Z
-     * birthdayType : string
-     * cardName : string
+     * memberId : 043ad824a0844a6ba49fd2ee9fbd4990
+     * name : 回访过期会员14-0
+     * sex : 男
+     * birthday : 1523980800000
+     * birthdayType : 农历
+     * mobile : 值14
+     * headImg : 值14
+     * memberType :
+     * cardName :
      * cardType : 0
-     * certificateNo : string
-     * certificateType : string
-     * customerServiceInfo : {"receptionSale":"string","referee":"string","refereeMobile":"string","serviceCoach":"string","serviceSale":"string","userChannel":"string"}
-     * detail : {"address":"string","carPrice":"string","childrenStatus":"string","clubBrand":"string","company":"string","companyAddress":"string","companyPhone":"string","contactPhone":"string","email":"string","fitnessGoal":"string","fitnessHobby":"string","healthStatus":"string","height":"string","hobby":"string","marriageStatus":"string","nation":"string","nationality":"string","nativePlace":"string","occupation":"string","onceJoinedClub":false,"position":"string","urgentContact":"string","wechatNo":"string","weight":"string","yearIncome":"string"}
-     * fingerprint : string
-     * headImg : string
-     * memberCardNo : string
-     * memberId : string
-     * memberType : string
-     * mobile : string
-     * name : string
-     * openCardTime : 2018-04-02T06:11:49.307Z
-     * sex : string
-     * subclassName : string
-     * vein : string
+     * memberCardNo : 值14
+     * certificateType : 港澳通行证
+     * certificateNo : 值14
+     * faceInfo : 值14
+     * fingerprint : 值14
+     * vein : 值14
+     * customerServiceInfo : {"sellerId":"03a9cb612c5e4569b960cfd42adaa113","referee":"回访过期会员14-0","refereeMobile":"值14","userChannel":"港澳通行证","receptionSale":"会籍客服","serviceSale":"会籍客服","serviceCoach":"教练测试账号","privateCourses":["游泳课"]}
+     * detail : {"wechatNo":"值14","email":"值14","height":"值14","weight":"值14","nationality":"港澳通行证","nativePlace":"港澳通行证","nation":"港澳通行证","healthStatus":"正常","fitnessHobby":"健身,跑步,爬山","fitnessGoal":"","hobby":"现金","onceJoinedClub":false,"clubBrand":"值14","yearIncome":"港澳通行证","carPrice":"港澳通行证","marriageStatus":"未婚","childrenStatus":"无","occupation":"港澳通行证","position":"港澳通行证","company":"值14","companyPhone":"值14","companyAddress":"值14","address":"值14","urgentContact":"值14","contactPhone":""}
+     * contractIds : ["06b9972deac949beae359d739e760ea8","ae675a00896a4e8f87f2d5c1783668c0","c80b3672055c457180448e9e27525a79","fad0146898954561a7a7fc9e3cc93318"]
+     * cardprods : [{"cardprodId":"59aa744517bc425e99fb4fbd190f184f","cardName":"会员制卡","activateTime":1524022052000,"cardType":"会员制卡","cardTypeId":3},{"cardprodId":"9746a46f38ca4fbfbeeb2c509044aed0","cardName":"储值卡","activateTime":1524022052000,"cardType":"储值卡","cardTypeId":2},{"cardprodId":"99fb72733dc84870993018b3acb6d36a","cardName":"次卡","activateTime":1524022052000,"cardType":"次卡","cardTypeId":1},{"cardprodId":"e3276f72cc114c59b14ab7669baaf6f2","cardName":"时间卡","activateTime":1524022052000,"cardType":"时间卡","cardTypeId":0}]
+     * underProtected : false
      */
 
-    /**激活卡日期 **/
-    private String activateCardTime;
-    /**生日 **/
-    private String birthday;
-    /**生日类型 **/
-    private String birthdayType;
-    /**卡名**/
-    private String cardName;
-    /**卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )**/
-    private int cardType;
-    /**卡类型(0:期限卡 1:次卡 2:储值卡 3:会员制卡 )**/
-    private String certificateNo;
-    /**证件类型**/
-    private String certificateType;
-    /**证会籍信息**/
-    private CustomerServiceInfoBean customerServiceInfo;
-    /**详细信息**/
-    private DetailBean detail;
-    /**指纹信息**/
-    private String fingerprint;
-    /**头像图片**/
-    private String headImg;
-    /**会员卡号**/
-    private String memberCardNo;
-    /**会员id**/
     private String memberId;
-    /**会员类型 **/
-    private String memberType;
-    /**手机**/
-    private String mobile;
-    /**名称**/
     private String name;
-    /**开卡日期**/
-    private String openCardTime;
-    /**性别**/
     private String sex;
-    private String subclassName;
-    /**静脉信息**/
-    private String vein;
+    private long birthday;
+    private String birthdayType;
+    private String mobile;
+    private String headImg;
+    private String memberType;
+    private String cardName;
+    private int cardType;
+    private String memberCardNo;
+    private String certificateType;
+    private String certificateNo;
     private String faceInfo;
+    private String fingerprint;
+    private String vein;
+    private CustomerServiceInfoBean customerServiceInfo;
+    private DetailBean detail;
+    private boolean underProtected;
+    private ArrayList<String> contractIds;
+    private List<CardprodsBean> cardprods;
 
-    public String getFaceInfo() {
-        return faceInfo;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setFaceInfo(String faceInfo) {
-        this.faceInfo = faceInfo;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
-    public String getActivateCardTime() {
-        return activateCardTime;
+    public String getName() {
+        return name;
     }
 
-    public void setActivateCardTime(String activateCardTime) {
-        this.activateCardTime = activateCardTime;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBirthday() {
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public int getGenderImg(){
+        return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
+    }
+
+    public long getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(long birthday) {
         this.birthday = birthday;
     }
 
@@ -104,6 +101,30 @@ public class VipDetailBean  {
 
     public void setBirthdayType(String birthdayType) {
         this.birthdayType = birthdayType;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
     }
 
     public String getCardName() {
@@ -122,12 +143,12 @@ public class VipDetailBean  {
         this.cardType = cardType;
     }
 
-    public String getCertificateNo() {
-        return certificateNo;
+    public String getMemberCardNo() {
+        return memberCardNo;
     }
 
-    public void setCertificateNo(String certificateNo) {
-        this.certificateNo = certificateNo;
+    public void setMemberCardNo(String memberCardNo) {
+        this.memberCardNo = memberCardNo;
     }
 
     public String getCertificateType() {
@@ -136,6 +157,38 @@ public class VipDetailBean  {
 
     public void setCertificateType(String certificateType) {
         this.certificateType = certificateType;
+    }
+
+    public String getCertificateNo() {
+        return certificateNo;
+    }
+
+    public void setCertificateNo(String certificateNo) {
+        this.certificateNo = certificateNo;
+    }
+
+    public String getFaceInfo() {
+        return faceInfo;
+    }
+
+    public void setFaceInfo(String faceInfo) {
+        this.faceInfo = faceInfo;
+    }
+
+    public String getFingerprint() {
+        return fingerprint;
+    }
+
+    public void setFingerprint(String fingerprint) {
+        this.fingerprint = fingerprint;
+    }
+
+    public String getVein() {
+        return vein;
+    }
+
+    public void setVein(String vein) {
+        this.vein = vein;
     }
 
     public CustomerServiceInfoBean getCustomerServiceInfo() {
@@ -154,123 +207,57 @@ public class VipDetailBean  {
         this.detail = detail;
     }
 
-    public String getFingerprint() {
-        return fingerprint;
+    public boolean isUnderProtected() {
+        return underProtected;
     }
 
-    public void setFingerprint(String fingerprint) {
-        this.fingerprint = fingerprint;
+    public void setUnderProtected(boolean underProtected) {
+        this.underProtected = underProtected;
     }
 
-    public String getHeadImg() {
-        return headImg;
+    public ArrayList<String> getContractIds() {
+        return contractIds;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
+    public void setContractIds(ArrayList<String> contractIds) {
+        this.contractIds = contractIds;
     }
 
-    public String getMemberCardNo() {
-        return memberCardNo;
+    public List<CardprodsBean> getCardprods() {
+        return cardprods;
     }
 
-    public void setMemberCardNo(String memberCardNo) {
-        this.memberCardNo = memberCardNo;
+    public void setCardprods(List<CardprodsBean> cardprods) {
+        this.cardprods = cardprods;
     }
 
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public String getMemberType() {
-        return memberType;
-    }
-
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getOpenCardTime() {
-        return openCardTime;
-    }
-
-    public void setOpenCardTime(String openCardTime) {
-        this.openCardTime = openCardTime;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getSubclassName() {
-        return subclassName;
-    }
-
-    public void setSubclassName(String subclassName) {
-        this.subclassName = subclassName;
-    }
-
-    public String getVein() {
-        return vein;
-    }
-
-    public void setVein(String vein) {
-        this.vein = vein;
-    }
-
-
-    /**
-     * 会籍信息
-     */
     public static class CustomerServiceInfoBean {
-        /*receptionSale (string, optional): 接待会籍(添加人) ,
-        referee (string, optional): 推荐人 ,
-        refereeMobile (string, optional): 推荐人电话 ,
-        serviceCoach (string, optional): 服务教练 ,
-        serviceSale (string, optional): 服务会籍 ,
-        userChannel (string, optional): 用户获取渠道*/
+        /**
+         * sellerId : 03a9cb612c5e4569b960cfd42adaa113
+         * referee : 回访过期会员14-0
+         * refereeMobile : 值14
+         * userChannel : 港澳通行证
+         * receptionSale : 会籍客服
+         * serviceSale : 会籍客服
+         * serviceCoach : 教练测试账号
+         * privateCourses : ["游泳课"]
+         */
 
-        private String receptionSale;
+        private String sellerId;
         private String referee;
         private String refereeMobile;
-        private String serviceCoach;
-        private String serviceSale;
         private String userChannel;
-        private ArrayList<String> privateCourses;
+        private String receptionSale;
+        private String serviceSale;
+        private String serviceCoach;
+        private List<String> privateCourses;
 
-        public ArrayList<String> getPrivateCourses() {
-            return privateCourses;
-        }
-        public String getReceptionSale() {
-            return receptionSale;
+        public String getSellerId() {
+            return sellerId;
         }
 
-        public void setReceptionSale(String receptionSale) {
-            this.receptionSale = receptionSale;
+        public void setSellerId(String sellerId) {
+            this.sellerId = sellerId;
         }
 
         public String getReferee() {
@@ -289,12 +276,20 @@ public class VipDetailBean  {
             this.refereeMobile = refereeMobile;
         }
 
-        public String getServiceCoach() {
-            return serviceCoach;
+        public String getUserChannel() {
+            return userChannel;
         }
 
-        public void setServiceCoach(String serviceCoach) {
-            this.serviceCoach = serviceCoach;
+        public void setUserChannel(String userChannel) {
+            this.userChannel = userChannel;
+        }
+
+        public String getReceptionSale() {
+            return receptionSale;
+        }
+
+        public void setReceptionSale(String receptionSale) {
+            this.receptionSale = receptionSale;
         }
 
         public String getServiceSale() {
@@ -305,133 +300,84 @@ public class VipDetailBean  {
             this.serviceSale = serviceSale;
         }
 
-        public String getUserChannel() {
-            return userChannel;
+        public String getServiceCoach() {
+            return serviceCoach;
         }
 
-        public void setUserChannel(String userChannel) {
-            this.userChannel = userChannel;
+        public void setServiceCoach(String serviceCoach) {
+            this.serviceCoach = serviceCoach;
+        }
+
+        public List<String> getPrivateCourses() {
+            return privateCourses;
+        }
+
+        public void setPrivateCourses(List<String> privateCourses) {
+            this.privateCourses = privateCourses;
         }
     }
 
-    /**
-     * 详情信息
-     */
     public static class DetailBean implements Serializable {
-       /* address (string, optional): 住址 ,
-        carPrice (string, optional): 用车价值 ,
-        childrenStatus (string, optional): 子女情况 ,
-        clubBrand (string, optional): 俱乐部品牌 ,
-        company (string, optional): 公司名称 ,
-        companyAddress (string, optional): 工作地址 ,
-        companyPhone (string, optional): 公司电话 ,
-        contactPhone (string, optional): 联系人电话 ,
-        email (string, optional): 邮箱 ,
-        fitnessGoal (string, optional): 健身目的 ,
-        fitnessHobby (string, optional): 健身爱好 ,
-        healthStatus (string, optional): 身体状态 ,
-        height (string, optional): 身高 ,
-        hobby (string, optional): 兴趣爱好 ,
-        marriageStatus (string, optional): 婚姻状态 ,
-        nation (string, optional): 民族 ,
-        nationality (string, optional): 国籍 ,
-        nativePlace (string, optional): 籍贯 ,
-        occupation (string, optional): 行业 ,
-        onceJoinedClub (boolean, optional): 是否参见过俱乐部 ,
-        position (string, optional): 职务 ,
-        urgentContact (string, optional): 紧急联系人 ,
-        wechatNo (string, optional): 微信号 ,
-        weight (string, optional): 体重 ,
-        yearIncome (string, optional): 年收入*/
+        /**
+         * wechatNo : 值14
+         * email : 值14
+         * height : 值14
+         * weight : 值14
+         * nationality : 港澳通行证
+         * nativePlace : 港澳通行证
+         * nation : 港澳通行证
+         * healthStatus : 正常
+         * fitnessHobby : 健身,跑步,爬山
+         * fitnessGoal :
+         * hobby : 现金
+         * onceJoinedClub : false
+         * clubBrand : 值14
+         * yearIncome : 港澳通行证
+         * carPrice : 港澳通行证
+         * marriageStatus : 未婚
+         * childrenStatus : 无
+         * occupation : 港澳通行证
+         * position : 港澳通行证
+         * company : 值14
+         * companyPhone : 值14
+         * companyAddress : 值14
+         * address : 值14
+         * urgentContact : 值14
+         * contactPhone :
+         */
 
-        private String address;
-        private String carPrice;
-        private String childrenStatus;
-        private String clubBrand;
-        private String company;
-        private String companyAddress;
-        private String companyPhone;
-        private String contactPhone;
+        private String wechatNo;
         private String email;
-        private String fitnessGoal;
-        private String fitnessHobby;
-        private String healthStatus;
         private String height;
-        private String hobby;
-        private String marriageStatus;
-        private String nation;
+        private String weight;
         private String nationality;
         private String nativePlace;
-        private String occupation;
+        private String nation;
+        private String healthStatus;
+        private String fitnessHobby;
+        private String fitnessGoal;
+        private String hobby;
         private boolean onceJoinedClub;
-        private String position;
-        private String urgentContact;
-        private String wechatNo;
-        private String weight;
+        private String clubBrand;
         private String yearIncome;
+        private String carPrice;
+        private String marriageStatus;
+        private String childrenStatus;
+        private String occupation;
+        private String position;
+        private String company;
+        private String companyPhone;
+        private String companyAddress;
+        private String address;
+        private String urgentContact;
+        private String contactPhone;
 
-        public String getAddress() {
-            return address;
+        public String getWechatNo() {
+            return wechatNo;
         }
 
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getCarPrice() {
-            return carPrice;
-        }
-
-        public void setCarPrice(String carPrice) {
-            this.carPrice = carPrice;
-        }
-
-        public String getChildrenStatus() {
-            return childrenStatus;
-        }
-
-        public void setChildrenStatus(String childrenStatus) {
-            this.childrenStatus = childrenStatus;
-        }
-
-        public String getClubBrand() {
-            return clubBrand;
-        }
-
-        public void setClubBrand(String clubBrand) {
-            this.clubBrand = clubBrand;
-        }
-
-        public String getCompany() {
-            return company;
-        }
-
-        public void setCompany(String company) {
-            this.company = company;
-        }
-
-        public String getCompanyAddress() {
-            return companyAddress;
-        }
-
-        public void setCompanyAddress(String companyAddress) {
-            this.companyAddress = companyAddress;
-        }
-
-        public String getCompanyPhone() {
-            return companyPhone;
-        }
-
-        public void setCompanyPhone(String companyPhone) {
-            this.companyPhone = companyPhone;
-        }
-
-        public String getContactPhone() {
-            return contactPhone;
-        }
-
-        public void setContactPhone(String contactPhone) {
-            this.contactPhone = contactPhone;
+        public void setWechatNo(String wechatNo) {
+            this.wechatNo = wechatNo;
         }
 
         public String getEmail() {
@@ -442,30 +388,6 @@ public class VipDetailBean  {
             this.email = email;
         }
 
-        public String getFitnessGoal() {
-            return fitnessGoal;
-        }
-
-        public void setFitnessGoal(String fitnessGoal) {
-            this.fitnessGoal = fitnessGoal;
-        }
-
-        public String getFitnessHobby() {
-            return fitnessHobby;
-        }
-
-        public void setFitnessHobby(String fitnessHobby) {
-            this.fitnessHobby = fitnessHobby;
-        }
-
-        public String getHealthStatus() {
-            return healthStatus;
-        }
-
-        public void setHealthStatus(String healthStatus) {
-            this.healthStatus = healthStatus;
-        }
-
         public String getHeight() {
             return height;
         }
@@ -474,28 +396,12 @@ public class VipDetailBean  {
             this.height = height;
         }
 
-        public String getHobby() {
-            return hobby;
+        public String getWeight() {
+            return weight;
         }
 
-        public void setHobby(String hobby) {
-            this.hobby = hobby;
-        }
-
-        public String getMarriageStatus() {
-            return marriageStatus;
-        }
-
-        public void setMarriageStatus(String marriageStatus) {
-            this.marriageStatus = marriageStatus;
-        }
-
-        public String getNation() {
-            return nation;
-        }
-
-        public void setNation(String nation) {
-            this.nation = nation;
+        public void setWeight(String weight) {
+            this.weight = weight;
         }
 
         public String getNationality() {
@@ -514,12 +420,44 @@ public class VipDetailBean  {
             this.nativePlace = nativePlace;
         }
 
-        public String getOccupation() {
-            return occupation;
+        public String getNation() {
+            return nation;
         }
 
-        public void setOccupation(String occupation) {
-            this.occupation = occupation;
+        public void setNation(String nation) {
+            this.nation = nation;
+        }
+
+        public String getHealthStatus() {
+            return healthStatus;
+        }
+
+        public void setHealthStatus(String healthStatus) {
+            this.healthStatus = healthStatus;
+        }
+
+        public String getFitnessHobby() {
+            return fitnessHobby;
+        }
+
+        public void setFitnessHobby(String fitnessHobby) {
+            this.fitnessHobby = fitnessHobby;
+        }
+
+        public String getFitnessGoal() {
+            return fitnessGoal;
+        }
+
+        public void setFitnessGoal(String fitnessGoal) {
+            this.fitnessGoal = fitnessGoal;
+        }
+
+        public String getHobby() {
+            return hobby;
+        }
+
+        public void setHobby(String hobby) {
+            this.hobby = hobby;
         }
 
         public boolean isOnceJoinedClub() {
@@ -530,12 +468,92 @@ public class VipDetailBean  {
             this.onceJoinedClub = onceJoinedClub;
         }
 
+        public String getClubBrand() {
+            return clubBrand;
+        }
+
+        public void setClubBrand(String clubBrand) {
+            this.clubBrand = clubBrand;
+        }
+
+        public String getYearIncome() {
+            return yearIncome;
+        }
+
+        public void setYearIncome(String yearIncome) {
+            this.yearIncome = yearIncome;
+        }
+
+        public String getCarPrice() {
+            return carPrice;
+        }
+
+        public void setCarPrice(String carPrice) {
+            this.carPrice = carPrice;
+        }
+
+        public String getMarriageStatus() {
+            return marriageStatus;
+        }
+
+        public void setMarriageStatus(String marriageStatus) {
+            this.marriageStatus = marriageStatus;
+        }
+
+        public String getChildrenStatus() {
+            return childrenStatus;
+        }
+
+        public void setChildrenStatus(String childrenStatus) {
+            this.childrenStatus = childrenStatus;
+        }
+
+        public String getOccupation() {
+            return occupation;
+        }
+
+        public void setOccupation(String occupation) {
+            this.occupation = occupation;
+        }
+
         public String getPosition() {
             return position;
         }
 
         public void setPosition(String position) {
             this.position = position;
+        }
+
+        public String getCompany() {
+            return company;
+        }
+
+        public void setCompany(String company) {
+            this.company = company;
+        }
+
+        public String getCompanyPhone() {
+            return companyPhone;
+        }
+
+        public void setCompanyPhone(String companyPhone) {
+            this.companyPhone = companyPhone;
+        }
+
+        public String getCompanyAddress() {
+            return companyAddress;
+        }
+
+        public void setCompanyAddress(String companyAddress) {
+            this.companyAddress = companyAddress;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
         }
 
         public String getUrgentContact() {
@@ -546,28 +564,68 @@ public class VipDetailBean  {
             this.urgentContact = urgentContact;
         }
 
-        public String getWechatNo() {
-            return wechatNo;
+        public String getContactPhone() {
+            return contactPhone;
         }
 
-        public void setWechatNo(String wechatNo) {
-            this.wechatNo = wechatNo;
+        public void setContactPhone(String contactPhone) {
+            this.contactPhone = contactPhone;
+        }
+    }
+
+    public static class CardprodsBean {
+        /**
+         * cardprodId : 59aa744517bc425e99fb4fbd190f184f
+         * cardName : 会员制卡
+         * activateTime : 1524022052000
+         * cardType : 会员制卡
+         * cardTypeId : 3
+         */
+
+        private String cardprodId;
+        private String cardName;
+        private long activateTime;
+        private String cardType;
+        private int cardTypeId;
+
+        public String getCardprodId() {
+            return cardprodId;
         }
 
-        public String getWeight() {
-            return weight;
+        public void setCardprodId(String cardprodId) {
+            this.cardprodId = cardprodId;
         }
 
-        public void setWeight(String weight) {
-            this.weight = weight;
+        public String getCardName() {
+            return cardName;
         }
 
-        public String getYearIncome() {
-            return yearIncome;
+        public void setCardName(String cardName) {
+            this.cardName = cardName;
         }
 
-        public void setYearIncome(String yearIncome) {
-            this.yearIncome = yearIncome;
+        public long getActivateTime() {
+            return activateTime;
+        }
+
+        public void setActivateTime(long activateTime) {
+            this.activateTime = activateTime;
+        }
+
+        public String getCardType() {
+            return cardType;
+        }
+
+        public void setCardType(String cardType) {
+            this.cardType = cardType;
+        }
+
+        public int getCardTypeId() {
+            return cardTypeId;
+        }
+
+        public void setCardTypeId(int cardTypeId) {
+            this.cardTypeId = cardTypeId;
         }
     }
 }

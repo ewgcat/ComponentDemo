@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.bean.CoachVipDetailBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,9 @@ import java.util.List;
 
 public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<CoachViperBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
+    List<CoachVipDetailBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
 
-    public CoachVipCardListAdapter(List<CoachViperBean.CardprodsBean> cardprodsBeans) {
+    public CoachVipCardListAdapter(List<CoachVipDetailBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
     }
 
@@ -33,7 +33,7 @@ public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CoachViperBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+        CoachVipDetailBean. CardprodsBean cardprodsBean = cardprodsBeans.get(position);
         ((ViewHolder)holder).bind(cardprodsBean);
     }
 
@@ -53,7 +53,7 @@ public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.V
             tv_cardType  = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(CoachViperBean.CardprodsBean cardprodsBean){
+        public void bind(CoachVipDetailBean.CardprodsBean cardprodsBean){
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

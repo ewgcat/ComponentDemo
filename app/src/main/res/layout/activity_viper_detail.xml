@@ -731,7 +731,6 @@
                     android:id="@+id/rl_sijiao_class"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
                     >
@@ -743,7 +742,8 @@
                         android:layout_centerVertical="true"
                         android:text="私教课程:"
                         android:textColor="#999999"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:paddingBottom="15dp"/>
 
                     <TextView
                         android:id="@+id/tv_sijiao_class"
@@ -754,6 +754,7 @@
                         android:layout_centerVertical="true"
                         android:text="私教课程"
                         android:textColor="#333333"
+                        android:paddingBottom="15dp"
                         android:textSize="14sp" />
 
                 </RelativeLayout>

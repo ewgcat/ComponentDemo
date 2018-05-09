@@ -2,33 +2,24 @@ package com.yijian.staff.mvp.coach.viperlist.adpater;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,11 +28,11 @@ import java.util.List;
 
 public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayViperListAdapter.ViewHolder> {
 
-    private List<CoachViperBean> coachViperBeanList;
+    private List<TodayCoachViperBean> coachViperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachTodayViperListAdapter(Context context, List<CoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
+    public CoachTodayViperListAdapter(Context context, List<TodayCoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.coachViperBeanList = coachViperBeanList;
         this.isAllVipInfo = isAllVipInfo;
@@ -54,7 +45,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         return holder;
     }
 
-    public void update(List<CoachViperBean> coachViperBeanList) {
+    public void update(List<TodayCoachViperBean> coachViperBeanList) {
         this.coachViperBeanList = coachViperBeanList;
         notifyDataSetChanged();
     }
@@ -64,17 +55,17 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
     }
     @Override
     public void onBindViewHolder(CoachTodayViperListAdapter.ViewHolder holder, int position) {
-        CoachViperBean coachViperBean = coachViperBeanList.get(position);
+        TodayCoachViperBean coachViperBean = coachViperBeanList.get(position);
+
 
         holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex().equals("1")) {
+        if (coachViperBean.getSex()==1) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex().equals("2")) {
+        } else if (coachViperBean.getSex()==2) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
-
         }
         holder.iv_gender.setImageResource(resId);
 
@@ -94,7 +85,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
             public void onClick(View v) {
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
                 intent.putExtra("vipType", 0);
-                intent.putExtra("coachViperBean", coachViperBean);
+                intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);
             }
         });

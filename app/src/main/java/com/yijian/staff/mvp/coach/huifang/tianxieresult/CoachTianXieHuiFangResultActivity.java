@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,12 +14,14 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -32,6 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implements View.OnClickListener {
 
@@ -56,8 +60,17 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
     LinearLayout llHuifangResult;
     @BindView(R.id.rg)
     RadioGroup rg;
+    @BindView(R.id.iv_head)
+    ImageView ivHead;
+    @BindView(R.id.tv_viper_name)
+    TextView tvViperName;
+    @BindView(R.id.tv_huifang_type)
+    TextView tv_huifang_type;
+    @BindView(R.id.iv_sex)
+    ImageView ivSex;
     private String interviewRecordId;
     private String memberId;
+
     private String dictItemId;
     private boolean needReview;
     private List<CoachHuiFangReasonBean> coachHuiFangReasonBeanList = new ArrayList<>();
@@ -100,8 +113,22 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         });
         interviewRecordId = getIntent().getStringExtra("interviewRecordId");
         memberId = getIntent().getStringExtra("memberId");
+        String headImg = getIntent().getStringExtra("headImg");
+        String sex = getIntent().getStringExtra("sex");
+        String name = getIntent().getStringExtra("name");
+        String interviewType = getIntent().getStringExtra("interviewType");
+
+        ImageLoader.setImageResource(headImg, this, ivHead);
+        if ("男".equals(sex)) {
+            Glide.with(this).load(R.mipmap.lg_man).into(ivSex);
+        } else {
+            Glide.with(this).load(R.mipmap.lg_women).into(ivSex);
+        }
+        tvViperName.setText(name);
+        tv_huifang_type.setText(interviewType);
         llNextHuiFangTime.setOnClickListener(this);
         llNextHuiFangReason.setOnClickListener(this);
+        showBlueProgress();
         HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_REASON_LIST_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -110,16 +137,18 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
                     CoachHuiFangReasonBean coachHuiFangReasonBean = new CoachHuiFangReasonBean(jsonObject);
                     coachHuiFangReasonBeanList.add(coachHuiFangReasonBean);
                 }
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
+                hideBlueProgress();
             }
         });
     }
 
-    @Override
+    @OnClick({R.id.btn_send, R.id.ll_next_hui_fang_time, R.id.ll_next_hui_fang_reason})
     public void onClick(View v) {
         int id = v.getId();
 
@@ -140,7 +169,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
             case R.id.ll_next_hui_fang_reason:
                 showPickerReasonView();
                 break;
-            case R.id.right_tv:
+            case R.id.btn_send:
                 //提交结果
 
                 sendResult();
@@ -201,17 +230,18 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
             String result = etHuiFangResult.getText().toString();
             if (TextUtils.isEmpty(result)) {
-                showToast("请填写回访结果");
+                showToast("请填写回访记录");
                 return;
             }
             body.setInterviewResult(result);
 
         }
-
+        showBlueProgress();
 
         HttpManager.postAddCoachHuiFangResult(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 finish();
             }
@@ -219,6 +249,8 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
             @Override
             public void onFail(String msg) {
                 showToast(msg);
+                hideBlueProgress();
+
             }
         });
     }

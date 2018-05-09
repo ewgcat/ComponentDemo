@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.huiji.potential;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -38,10 +37,19 @@ public class AddPotentialActivity extends MvcBaseActivity {
     TextView tvSex;
     @BindView(R.id.et_phone)
     LastInputEditText etPhone;
+    @BindView(R.id.et_body_status)
+    LastInputEditText etBodyStatus;
+    @BindView(R.id.et_fitness_goal)
+    LastInputEditText etFitnessGoal;
+    @BindView(R.id.et_fithobby)
+    LastInputEditText etFithobby;
+    @BindView(R.id.et_hobby)
+    LastInputEditText etHobby;
+    @BindView(R.id.et_car_name)
+    LastInputEditText etCarName;
     private OptionsPickerView optionsPickerView;
 
     private int sex = 1;//1 男  2女
-
 
 
     @Override
@@ -53,7 +61,8 @@ public class AddPotentialActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.add_potential_activity_navigation_bar);
         navigationBar2.setTitle("添加潜在");
-        navigationBar2.setmRightTvText("完成");
+        navigationBar2.setmRightTvText("确认");
+        navigationBar2.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
@@ -73,7 +82,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tvSex.setText(sexDescList.get(options1));
-                sex = options1+1;
+                sex = options1 + 1;
             }
         }).build();
         optionsPickerView.setPicker(sexDescList);
@@ -81,35 +90,60 @@ public class AddPotentialActivity extends MvcBaseActivity {
     }
 
 
-
     private void sendRequest() {
 
         String name = etName.getText().toString();
         String phone = etPhone.getText().toString().trim();
-        if (TextUtils.isEmpty(name)){
-            Toast.makeText(AddPotentialActivity.this,"名字不能为空!",Toast.LENGTH_SHORT).show();
+        String healthStatus = etBodyStatus.getText().toString().trim();
+        String fitnessGoal = etFitnessGoal.getText().toString().trim();
+        String fitnessHobby = etFithobby.getText().toString().trim();
+        String userCar = etCarName.getText().toString().trim();
+        String hobby = etHobby.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(AddPotentialActivity.this, "名字不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(phone)){
-            Toast.makeText(AddPotentialActivity.this,"手机号不能为空!",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(AddPotentialActivity.this, "手机号不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(healthStatus)) {
+            Toast.makeText(AddPotentialActivity.this, "身体状态不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(fitnessGoal)) {
+            Toast.makeText(AddPotentialActivity.this, "健身目的不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(fitnessHobby)) {
+            Toast.makeText(AddPotentialActivity.this, "健身爱好不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(hobby)) {
+            Toast.makeText(AddPotentialActivity.this, "爱好不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(userCar)) {
+            Toast.makeText(AddPotentialActivity.this, "用车不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (CommonUtil.isPhoneFormat(phone)) {
-            AddPotentialRequestBody addPotentialRequestBody=new AddPotentialRequestBody(phone,name,sex);
+            AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(  phone,  name,  healthStatus,  fitnessHobby,  hobby,  userCar,  fitnessGoal,  sex);
             HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideKeyBoard(etPhone);
                     finish();
                 }
+
                 @Override
                 public void onFail(String msg) {
-                    Toast.makeText(AddPotentialActivity.this,msg,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPotentialActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
-            Toast.makeText(AddPotentialActivity.this,"手机号码不正确!",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddPotentialActivity.this, "手机号码不正确!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -145,4 +179,6 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
         }
     }
+
+
 }

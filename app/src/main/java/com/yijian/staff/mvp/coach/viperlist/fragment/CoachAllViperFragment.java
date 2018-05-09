@@ -178,6 +178,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
     }
 
     public void loadMore() {
+        showBlueProgress();
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());

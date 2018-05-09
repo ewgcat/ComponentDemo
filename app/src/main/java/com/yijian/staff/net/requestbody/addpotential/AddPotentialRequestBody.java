@@ -20,14 +20,28 @@ public class AddPotentialRequestBody {
     private String addTime;
     private String mobile;
     private String name;
+    private String healthStatus;
+    private String fitnessHobby;
+    private String hobby;
+    private String userCar;
+    private String fitnessGoal;
     private int sex;
 
-    public AddPotentialRequestBody(String mobile, String name, int sex) {
+
+    public AddPotentialRequestBody( String mobile, String name, String healthStatus, String fitnessHobby, String hobby, String userCar, String fitnessGoal, int sex) {
         this.addTime =  DateUtil.getCurrentDate();
+
         this.mobile = mobile;
         this.name = name;
+        this.healthStatus = healthStatus;
+        this.fitnessHobby = fitnessHobby;
+        this.hobby = hobby;
+        this.userCar = userCar;
+        this.fitnessGoal = fitnessGoal;
         this.sex = sex;
     }
+
+
 
 
 }

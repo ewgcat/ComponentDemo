@@ -215,6 +215,10 @@ public class CoachHuiFangTaskAdapter extends RecyclerView.Adapter<CoachHuiFangTa
                         Intent i = new Intent(context, CoachTianXieHuiFangResultActivity.class);
                         i.putExtra("interviewRecordId", coachHuiFangInfo.getInterviewRecordId());
                         i.putExtra("memberId", coachHuiFangInfo.getId());
+                        i.putExtra("headImg", coachHuiFangInfo.getHeadImg());
+                        i.putExtra("sex", coachHuiFangInfo.getSex());
+                        i.putExtra("name", coachHuiFangInfo.getName());
+                        i.putExtra("interviewType", coachHuiFangInfo.getInterviewType());
                         context.startActivity(i);
                         CommonUtil.callPhone(context, mobile);
 

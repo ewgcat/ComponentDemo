@@ -25,6 +25,7 @@ import com.yijian.staff.mvp.huiji.huifang.tianxieresult.HuijiTianXieHuiFangResul
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -68,35 +69,16 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
 
         String headImg = huiFangInfo.getHeadImg();
+        ImageLoader.setImageResource(headImg,context,holder.ivHead);
 
         holder.tvViperName.setText(huiFangInfo.getName());
         String sex = huiFangInfo.getSex();
         if ("男".equals(sex)) {
             Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
-            if (TextUtils.isEmpty(headImg)) {
-                Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
-            } else {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.mipmap.wt_boysmall)
-                        .error(R.mipmap.wt_boysmall)
-                        .transform(new GlideCircleTransform())
-                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
-            }
+
         } else {
             Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
-            if (TextUtils.isEmpty(headImg)) {
-                Glide.with(context).load(R.mipmap.wt_girlsmall).into(holder.ivHead);
-            } else {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.mipmap.wt_girlsmall)
-                        .error(R.mipmap.wt_girlsmall)
-                        .transform(new GlideCircleTransform())
-                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
-            }
+
         }
 
         String carBrand = huiFangInfo.getCarBrand();

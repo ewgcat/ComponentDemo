@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachHuiFangInfo;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.huifang.task.adapter.CoachHuiFangTaskAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -39,7 +40,7 @@ import java.util.List;
  * time: 2018/3/5 19:39:24
  */
 @SuppressLint("ValidFragment")
-public class CoachBaseHuiFangTaskFragment extends Fragment {
+public class CoachBaseHuiFangTaskFragment extends MvcBaseFragment {
 
 
     private RefreshLayout refreshLayout;
@@ -65,11 +66,16 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
         super();
     }
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(viewId, container, false);
-        initComponent(view);
-        return view;
+    public int getLayoutId() {
+        return defaultViewId;
+    }
+
+    @Override
+    public void initView() {
+        initComponent(rootView);
     }
 
     @Override
@@ -114,6 +120,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -134,11 +141,13 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
                     }
                 }
                 coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
+                hideBlueProgress();
             }
         });
     }
@@ -149,6 +158,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -168,6 +178,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
                     }
                 }
                 coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
             }
 
             @Override
@@ -175,6 +186,7 @@ public class CoachBaseHuiFangTaskFragment extends Fragment {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
             }
         });
     }

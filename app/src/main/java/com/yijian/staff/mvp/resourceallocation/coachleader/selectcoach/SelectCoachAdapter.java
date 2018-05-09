@@ -9,7 +9,9 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,10 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
         CoachInfo coachInfo = coachInfos.get(position);
         holder.tv_name.setText(coachInfo.getUserName());
 
+        ImageLoader.setImageResource(coachInfo.getHeadImg(),context,holder.iv_header);
+        int sex = coachInfo.getSex();
+        int resId=sex==1?R.mipmap.lg_man:R.mipmap.lg_women;
+        Glide.with(context).load(resId).into(holder.iv_gender);
         if (position == selectPosition) {
             holder.ck_select.setChecked(true);
         } else {

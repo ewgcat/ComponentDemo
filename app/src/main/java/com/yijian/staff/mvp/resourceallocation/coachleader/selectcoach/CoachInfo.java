@@ -18,11 +18,20 @@ public class CoachInfo {
 
     private String userId;
     private String userName;
+    /**
+     * sex : 1
+     * headImg :
+     */
+
+    private int sex;
+    private String headImg;
 
 
     public CoachInfo(JSONObject jsonObject){
         this. userId = JsonUtil.getString(jsonObject, "userId");
         this. userName = JsonUtil.getString(jsonObject, "userName");
+        this. headImg = JsonUtil.getString(jsonObject, "headImg");
+        this. sex = JsonUtil.getInt(jsonObject, "sex");
     }
     public String getUserId() {
         return userId;
@@ -38,5 +47,21 @@ public class CoachInfo {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
     }
 }

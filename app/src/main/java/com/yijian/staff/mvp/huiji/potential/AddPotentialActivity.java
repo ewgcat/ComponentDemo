@@ -37,16 +37,17 @@ public class AddPotentialActivity extends MvcBaseActivity {
     TextView tvSex;
     @BindView(R.id.et_phone)
     LastInputEditText etPhone;
-    @BindView(R.id.et_body_status)
-    LastInputEditText etBodyStatus;
+    @BindView(R.id.tv_body_status)
+    TextView tvBodyStatus;
     @BindView(R.id.et_fitness_goal)
     LastInputEditText etFitnessGoal;
-    @BindView(R.id.et_fithobby)
-    LastInputEditText etFithobby;
-    @BindView(R.id.et_hobby)
-    LastInputEditText etHobby;
+    @BindView(R.id.tv_fithobby)
+    TextView tvFithobby;
+    @BindView(R.id.tv_hobby)
+    TextView tvHobby;
     @BindView(R.id.et_car_name)
     LastInputEditText etCarName;
+
     private OptionsPickerView optionsPickerView;
 
     private int sex = 1;//1 男  2女
@@ -94,11 +95,11 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
         String name = etName.getText().toString();
         String phone = etPhone.getText().toString().trim();
-        String healthStatus = etBodyStatus.getText().toString().trim();
+        String healthStatus = tvBodyStatus.getText().toString().trim();
         String fitnessGoal = etFitnessGoal.getText().toString().trim();
-        String fitnessHobby = etFithobby.getText().toString().trim();
+        String fitnessHobby = tvFithobby.getText().toString().trim();
         String userCar = etCarName.getText().toString().trim();
-        String hobby = etHobby.getText().toString().trim();
+        String hobby = tvHobby.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(AddPotentialActivity.this, "名字不能为空!", Toast.LENGTH_SHORT).show();
             return;
@@ -107,12 +108,19 @@ public class AddPotentialActivity extends MvcBaseActivity {
             Toast.makeText(AddPotentialActivity.this, "手机号不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(healthStatus)) {
-            Toast.makeText(AddPotentialActivity.this, "身体状态不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
         if (TextUtils.isEmpty(fitnessGoal)) {
             Toast.makeText(AddPotentialActivity.this, "健身目的不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(userCar)) {
+            Toast.makeText(AddPotentialActivity.this, "用车不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(healthStatus)) {
+            Toast.makeText(AddPotentialActivity.this, "身体状态不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(fitnessHobby)) {
@@ -123,13 +131,10 @@ public class AddPotentialActivity extends MvcBaseActivity {
             Toast.makeText(AddPotentialActivity.this, "爱好不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(userCar)) {
-            Toast.makeText(AddPotentialActivity.this, "用车不能为空!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
 
         if (CommonUtil.isPhoneFormat(phone)) {
-            AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(  phone,  name,  healthStatus,  fitnessHobby,  hobby,  userCar,  fitnessGoal,  sex);
+            AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, userCar, fitnessGoal, sex);
             HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
@@ -149,15 +154,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
     }
 
-    @OnClick({R.id.tv_sex})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_sex:
-                hideKeyBoard(view);
-                optionsPickerView.show();
-                break;
-        }
-    }
+
 
     /**
      * 隐藏键盘
@@ -181,4 +178,26 @@ public class AddPotentialActivity extends MvcBaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.tv_body_status, R.id.tv_fithobby, R.id.tv_hobby,R.id.tv_sex})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_body_status:
+                break;
+            case R.id.tv_fithobby:
+                break;
+            case R.id.tv_hobby:
+                break;
+            case R.id.tv_sex:
+                hideKeyBoard(view);
+                optionsPickerView.show();
+                break;
+        }
+    }
 }

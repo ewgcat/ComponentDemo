@@ -20,27 +20,25 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="4dp"
-            android:scaleType="fitCenter"
-          />
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/tv_viper_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:textColor="#333333"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/iv_sex"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="4dp"
-            android:scaleType="fitCenter"
-           />
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter" />
 
         <View
             android:layout_width="0dp"
@@ -54,7 +52,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray"/>
+        android:background="@color/gray" />
     <!--  公共部分-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,9 +72,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="身体状态: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -91,9 +88,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,9 +105,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="健身爱好: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -126,9 +121,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,9 +138,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="兴趣爱好: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -161,9 +154,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -179,9 +171,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="使用车辆: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -196,9 +187,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -226,9 +216,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="过期时间: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -243,9 +232,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--生日-->
@@ -263,9 +251,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="生日: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -280,9 +267,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--生日类型-->
@@ -300,9 +286,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="生日类型: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -317,9 +302,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--过期原因-->
@@ -337,9 +321,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="过期原因: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -354,9 +337,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--合同到期日-->
@@ -374,9 +356,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="合同到期日: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -391,9 +372,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--合同余额-->
@@ -411,9 +391,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="合同余额: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -428,9 +407,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--开卡日期-->
@@ -448,9 +426,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="开卡日期: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -465,9 +442,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--卡名称-->
@@ -485,9 +461,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="卡名称: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -502,9 +477,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--卡余额-->
@@ -522,9 +496,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="卡余额: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -539,9 +512,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--卡类型-->
@@ -559,9 +531,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="卡类型: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -576,9 +547,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--最近健身-->
@@ -596,9 +566,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="最近健身: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -613,9 +582,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
 
@@ -634,9 +602,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="沉默天数: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -651,9 +618,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--上次访问日期-->
@@ -671,9 +637,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="上次访问日期: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -688,9 +653,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--复访原因-->
@@ -708,9 +672,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="复访原因: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -725,9 +688,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--上次健身日期-->
@@ -745,9 +707,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="上次健身日期: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -762,9 +723,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--未健身时间-->
@@ -782,9 +742,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="未健身时间: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -799,9 +758,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--上次体测时间-->
@@ -819,9 +777,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="上次体测时间: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -836,9 +793,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--上次约课时间-->
@@ -856,9 +812,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="上次约课时间: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -873,9 +828,8 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
 
 
@@ -894,9 +848,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="购买课程: "
-                android:textColor="#999999"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
 
             <View
@@ -911,13 +864,9 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>
@@ -939,9 +888,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="回访类型: "
-            android:textColor="#999999"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textColor="#333333"
+            android:textSize="14sp" />
 
 
         <View
@@ -958,9 +906,8 @@
             android:layout_marginLeft="16dp"
             android:gravity="center"
             android:padding="2dp"
-            android:textColor="#666666"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textColor="#333333"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <View
@@ -997,9 +944,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="回访"
-            android:textColor="#666666"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textColor="#333333"
+            android:textSize="14sp" />
     </LinearLayout>
 
 

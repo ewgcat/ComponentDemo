@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -90,9 +91,21 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
-                    intent.putExtra("viperDetailBean",huiJiViperBean);
-                    context.startActivity(intent);
+
+
+                    String subclassName = huiJiViperBean.getSubclassName();
+                    if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                        Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+                        intent.putExtra("memberId",huiJiViperBean.getMemberId());
+                        context.startActivity(intent);
+                    } else if (subclassName.equals("PotentialVO")||subclassName.equals("CustomerIntentionVO")||subclassName.equals("CustomerExpireVO")) {
+                        tv_role.setText("潜在会员");
+                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                        intent.putExtra("id",huiJiViperBean.getMemberId());
+                        intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
+                        context.startActivity(intent);
+                    }
+
                 }
             });
             //回访

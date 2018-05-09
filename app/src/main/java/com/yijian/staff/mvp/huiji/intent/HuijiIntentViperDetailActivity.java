@@ -212,7 +212,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     private void callVisit(String mobile){
         Map<String,String> map = new HashMap<>();
         map.put("memberId",vipDetailBean.getMemberId());
-        map.put("dictItemKey",getIntent().getStringExtra("dictItemKey"));
+        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

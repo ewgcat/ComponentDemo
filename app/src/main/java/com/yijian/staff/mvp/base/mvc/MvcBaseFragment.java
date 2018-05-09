@@ -53,7 +53,7 @@ public abstract class MvcBaseFragment extends Fragment {
 
     public void showBlueProgress() {
         if (blueLoadingDialog == null) {
-            blueLoadingDialog = BlueLoadingDialog.createProgressDialog(mContext);
+            blueLoadingDialog =new BlueLoadingDialog(mContext);
         }
         if (blueLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了
@@ -80,7 +80,7 @@ public abstract class MvcBaseFragment extends Fragment {
 
     public void showWhiteProgress() {
         if (whiteLoadingDialog == null) {
-            whiteLoadingDialog = WhiteLoadingDialog.createProgressDialog(mContext);
+            whiteLoadingDialog =new WhiteLoadingDialog(mContext);
         }
         if (whiteLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了

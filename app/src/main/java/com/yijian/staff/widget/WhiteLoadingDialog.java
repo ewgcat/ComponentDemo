@@ -1,8 +1,13 @@
 package com.yijian.staff.widget;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 
@@ -13,35 +18,31 @@ import com.yijian.staff.R;
 public class WhiteLoadingDialog extends Dialog {
 
 
+    private Activity activity;
+    private final View contentView;
     private WhiteRotateLoading loading;
 
-    private WhiteLoadingDialog(Context context) {
-        super(context);
-    }
 
-    private WhiteLoadingDialog(Context context, int theme) {
-        super(context, theme);
-    }
+    public WhiteLoadingDialog(Activity activity) {
 
-    protected WhiteLoadingDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
+        super(activity, R.style.Transparent);
+        setOwnerActivity(activity);
 
-    private static WhiteLoadingDialog mDialog;
+        contentView = LayoutInflater.from(activity).inflate(R.layout.view_custom_dialog, null);
 
-    public static WhiteLoadingDialog createProgressDialog(Context context) {
-        mDialog = new WhiteLoadingDialog(context, R.style.loading_dialog_style);
-        mDialog.setContentView(R.layout.view_custom_dialog);
-        mDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
-        return mDialog;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        contentView.setLayoutParams(params);
+        this.setContentView(contentView);
+        Window dialogWindow = this.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if (mDialog == null)
+        if (contentView == null)
             return;
-        loading = (WhiteRotateLoading) mDialog.findViewById(R.id.iv_progress_dialog);
-        if (!loading.isStart()){
+        loading = (WhiteRotateLoading) contentView.findViewById(R.id.iv_progress_dialog);
+        if (!loading.isStart()) {
             loading.start();
         }
     }
@@ -55,7 +56,7 @@ public class WhiteLoadingDialog extends Dialog {
     @Override
     public void hide() {
         super.hide();
-        if (loading.isStart()){
+        if (loading.isStart()) {
             loading.stop();
         }
     }

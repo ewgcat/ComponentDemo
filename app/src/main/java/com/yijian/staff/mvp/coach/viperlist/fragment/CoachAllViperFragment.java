@@ -23,6 +23,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -46,7 +47,7 @@ import io.reactivex.functions.Consumer;
  * 全部会员信息
  */
 
-public class CoachAllViperFragment extends Fragment {
+public class CoachAllViperFragment extends MvcBaseFragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
@@ -67,15 +68,18 @@ public class CoachAllViperFragment extends Fragment {
         return coachAllViperFragment;
     }
 
-    @Nullable
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_vip_all_people_info, container, false);
-        initView(view);
-        refresh(null);
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_vip_all_people_info;
     }
 
+    @Override
+    public void initView() {
+        initView(rootView);
+        refresh(null);
+    }
 
 
     private void initView(View view) {
@@ -102,6 +106,7 @@ public class CoachAllViperFragment extends Fragment {
     }
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
+        showBlueProgress();
         coachViperBeanList.clear();
         pageNum=1;
         pageSize=10;
@@ -160,13 +165,14 @@ public class CoachAllViperFragment extends Fragment {
                     }
                 }
                 coachViperListAdapter.update(coachViperBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-
+                hideBlueProgress();
             }
         });
     }
@@ -208,6 +214,7 @@ public class CoachAllViperFragment extends Fragment {
         HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -232,6 +239,8 @@ public class CoachAllViperFragment extends Fragment {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+
             }
         });
     }

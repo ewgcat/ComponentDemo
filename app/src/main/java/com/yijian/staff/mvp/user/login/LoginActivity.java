@@ -145,12 +145,7 @@ public class LoginActivity extends MvcBaseActivity  {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick({R.id.ll_login, R.id.forget_password})
     public void onViewClicked(View view) {

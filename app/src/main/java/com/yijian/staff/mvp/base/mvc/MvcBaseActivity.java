@@ -25,7 +25,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
     public void showBlueProgress() {
         if (blueLoadingDialog == null) {
-            blueLoadingDialog = BlueLoadingDialog.createProgressDialog(this);
+            blueLoadingDialog =new BlueLoadingDialog(this);
         }
         if (blueLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了
@@ -52,7 +52,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
     public void showWhiteProgress() {
         if (whiteLoadingDialog == null) {
-            whiteLoadingDialog = WhiteLoadingDialog.createProgressDialog(this);
+            whiteLoadingDialog =new  WhiteLoadingDialog(this);
         }
         if (whiteLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了

@@ -1,8 +1,13 @@
 package com.yijian.staff.widget;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 
@@ -15,32 +20,34 @@ public class BlueLoadingDialog extends Dialog {
 
     private BlueRotateLoading loading;
 
-    private BlueLoadingDialog(Context context) {
-        super(context);
+
+
+    private Activity activity;
+    private final View contentView;
+
+
+    public BlueLoadingDialog(Activity activity) {
+
+        super(activity, R.style.Transparent);
+        setOwnerActivity(activity);
+
+        contentView = LayoutInflater.from(activity).inflate(R.layout.view_blue_rotate_loading, null);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        contentView.setLayoutParams(params);
+        this.setContentView(contentView);
+        Window dialogWindow = this.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);
     }
 
-    private BlueLoadingDialog(Context context, int theme) {
-        super(context, theme);
-    }
 
-    protected BlueLoadingDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
 
-    private static BlueLoadingDialog mDialog;
-
-    public static BlueLoadingDialog createProgressDialog(Context context) {
-        mDialog = new BlueLoadingDialog(context, R.style.loading_dialog_style);
-        mDialog.setContentView(R.layout.view_blue_rotate_loading);
-        mDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
-        return mDialog;
-    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if (mDialog == null)
+        if (contentView == null)
             return;
-        loading = (BlueRotateLoading) mDialog.findViewById(R.id.iv_progress_dialog);
+        loading = (BlueRotateLoading) contentView.findViewById(R.id.iv_progress_dialog);
         if (!loading.isStart()){
             loading.start();
         }

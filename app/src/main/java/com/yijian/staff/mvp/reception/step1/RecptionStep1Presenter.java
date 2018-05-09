@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -71,6 +72,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
         HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                Log.e(TAG, "onSuccess: "+result );
                 TemplateBean templateBean = GsonNullString.getGson().fromJson(result.toString(), TemplateBean.class);
                 view.showQuestion(templateBean);
             }

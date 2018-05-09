@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -62,7 +63,11 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
             notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
             Logger.i(TAG, "接收到推送下来的通知");
-
+             Vibrator vibrator = (Vibrator)context.getSystemService(context.VIBRATOR_SERVICE);
+             if (vibrator.hasVibrator()){
+                 long[] patter = {600, 200, 600, 200};
+                 vibrator.vibrate(patter, -1);
+             }
             try {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");

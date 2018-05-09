@@ -13,6 +13,8 @@ public interface CoachReceptionStepTwoContract {
         void showUserData(PhysicalExaminationBean bean);
 
         void showRejected();
+
+        void showCompletePercent(double persent);
     }
 
     interface Presenter{

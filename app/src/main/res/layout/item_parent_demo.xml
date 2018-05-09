@@ -16,7 +16,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="7dp"
             android:layout_height="16dp"
-            android:src="@color/colorPrimary"/>
+            android:src="@color/blue"/>
         <TextView
             android:id="@+id/tv_question"
             android:layout_toRightOf="@+id/iv_icon"

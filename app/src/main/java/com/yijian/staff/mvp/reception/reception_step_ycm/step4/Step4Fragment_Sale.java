@@ -17,6 +17,7 @@ import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step3.coach.RightsAcitity;
+import com.yijian.staff.mvp.reception.step3.coach.bean.CardGiftDto;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourContract;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourPresenter;
@@ -24,7 +25,10 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +53,8 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
     TextView tvRights;
     @BindView(R.id.tv_yuer)
     TextView tvYuer;
+    @BindView(R.id.tv_yu_er_tip)
+    TextView tvYuErTip;
     @BindView(R.id.tv_chuzhiyouhui)
     TextView tvChuzhiyouhui;
     @BindView(R.id.tv_chakanxiangqing)
@@ -128,9 +134,11 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
     public void showProductDetail(ProductDetail productDetail) {
         this.productDetail =productDetail;
 
+        String cardName = productDetail.getCardName();
+        tvCardName.setText(""+cardName );
 
         String cardTypeName = productDetail.getCardTypeName();
-        tvCardName.setText(""+cardTypeName);
+        tvCardtype.setText(""+cardTypeName);
 
 //        BigDecimal salePrice = productDetail.getSalePrice();
 //        if (salePrice!=null) tvPrice.setText(""+salePrice.doubleValue());
@@ -138,18 +146,19 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         if (!TextUtils.isEmpty(salePrice))tvPrice.setText(""+salePrice);
 
 
-        Integer cardType = productDetail.getCardType();// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
-        if (cardType!=null){
-            if (cardType==0){
-                tvCardtype.setText("期限卡");
-            }else if (cardType==1){
-                tvCardtype.setText("次数卡");
-            }else if (cardType==2){
-                tvCardtype.setText("储值卡");
-            }else if (cardType==3){
-                tvCardtype.setText("会员制卡");
-            }
-        }
+//        Integer cardType = productDetail.getCardType();// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
+//        if (cardType!=null){
+//            if (cardType==0){
+//                tvCardtype.setText("期限卡");
+//            }else if (cardType==1){
+//                tvCardtype.setText("次数卡");
+//            }else if (cardType==2){
+//                tvCardtype.setText("储值卡");
+//            }else if (cardType==3){
+//                tvCardtype.setText("会员制卡");
+//            }
+//        }
+
 
         List<String> venueNames = productDetail.getVenueNames();
         if (venueNames != null && venueNames.size() != 0) {
@@ -170,15 +179,26 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
         if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuer.setText(strRestKey+strRestVal);
+            tvYuErTip.setText(strRestKey);
+            tvYuer.setText(strRestVal);
         }
 
-//        BigDecimal rechargeGivePercent = productDetail.getRechargeGivePercent();
-//        if (rechargeGivePercent != null) {
-//            NumberFormat percent = NumberFormat.getPercentInstance();  //建立百分比格式化引用
-//            String format = percent.format(rechargeGivePercent);
-//            tvChuzhiyouhui.setText("赠送" + format);
-//        }
+
+
+        Map<Integer, List<CardGiftDto>> gift = productDetail.getGift();
+        if (gift!=null){
+            String giftName="";
+            for(Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()){
+                List<CardGiftDto> value = vo.getValue();
+                for (int i = 0; i < value.size(); i++) {
+                    giftName=giftName+" ";
+                    giftName=giftName+value.get(i).getName();
+                    if (!TextUtils.isEmpty(value.get(i).getNum()))
+                        giftName= giftName+"x"+value.get(i).getNum();
+                }
+            }
+            tvZengsongkecheng.setText(giftName);
+        }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
         if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");

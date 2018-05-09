@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:text="是否结束接待流程"
+            android:text="是否结束接待流程"
             android:textColor="@color/text_black2"
             android:textSize="@dimen/text_size_14"/>
         <View

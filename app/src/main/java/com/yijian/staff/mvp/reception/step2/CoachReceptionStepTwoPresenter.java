@@ -409,4 +409,28 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 //        Log.e(TAG, "saveData: "+physicalExaminationBean.toString() );
         saveTestData(physicalExaminationBean,memberId);
     }
+
+
+   public void computerCompletePercent(List<ParentQuestionBean> parentObj, String height, String age){
+       int unanswered=0;//未填写的（必填的）题目
+       int totalQustion=43;//共43道必选题
+       for (ParentQuestionBean parentQuestionBean : parentObj) {
+           String title = parentQuestionBean.getTitle();
+           if (!"健身处方".equals(title)){
+               List<ChildOptBean> childList = parentQuestionBean.getChildList();
+               for (ChildOptBean bean : childList) {
+                   String userValue = bean.getUserValue();
+                   if ("请选择".equals(userValue))unanswered++;
+               }
+           }
+       }
+
+       if ("请选择".equals(height))unanswered++;
+       if ("请选择".equals(age))unanswered++;
+
+//       Log.e(TAG, "computerCompletePercent: "+unanswered );
+       double persent=1-unanswered*1.0d/totalQustion;
+//       Log.e(TAG, "computerCompletePercent: "+persent );
+       view.showCompletePercent(persent);
+   }
 }

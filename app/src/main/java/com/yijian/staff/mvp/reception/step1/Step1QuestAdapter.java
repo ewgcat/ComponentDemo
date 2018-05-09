@@ -199,10 +199,10 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
 
 
     @Override
-    public void onWrited(ItemsBean child, int position, int parentPosition, Editable s) {
-//        Log.e(TAG, "onWrited: parentPosition=="+parentPosition+"s=="+s );
-
-        child.setInputContent(s.toString());
+    public void onWrited(ItemsBean child, int parentPosition, int childPosition, CharSequence s) {
+        QuestionList.get(parentPosition).getChildList().get(childPosition).setInputContent(s.toString());
+//        child.setInputContent(s.toString());
+        Log.e(TAG, "onWrited: "+child.toString() );
         if (s.length()>0){
             if (!child.isSelect()){
                 if (computerPercentLisenter!=null) computerPercentLisenter.computerPercent();
@@ -218,6 +218,7 @@ public class Step1QuestAdapter extends ExpandableRecyclerAdapterGroup<DataListBe
     public void onMixWrited(ItemsBean child,int parentPosition, int childPosition, Editable s) {
 //        Log.e(TAG, "onMixWrited: parentPosition=="+parentPosition+"s=="+s );
         child.setInputContent(s.toString());
+
 
     }
 

@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.reception.step1;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -49,7 +50,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
     }
 
     @Override
-    public void getQuestion(String memberId) {
+    public void getQuestionAndAnswer(String memberId) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("memberId",memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,hashMap, new ResultJSONObjectObserver() {
@@ -64,6 +65,24 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
                 Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void getQuestion() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Log.e(TAG, "onSuccess: "+result );
+                TemplateBean templateBean = GsonNullString.getGson().fromJson(result.toString(), TemplateBean.class);
+                view.showQuestion(templateBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 

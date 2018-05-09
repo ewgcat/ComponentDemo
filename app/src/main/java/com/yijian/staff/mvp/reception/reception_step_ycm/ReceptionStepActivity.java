@@ -25,6 +25,7 @@ import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Coa
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Coach_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Leader;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step3.Step3Fragment_Sale;
+import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Coach_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step4.Step4Fragment_Sale_NoData;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step5.Step5Fragment_Message;
@@ -69,7 +70,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
         initView();
 
-        initFragment();
 
         showView(recptionerInfoBean);
 
@@ -156,10 +156,6 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
 
 
-    private void initFragment() {
-
-
-    }
 
     public void showStep1Fragment(Bundle bundle) {
         navigationBar2.setTitle("填写问卷(1/5)");
@@ -186,7 +182,7 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 //          case 21: //SALESENDCOACH(21, "会籍选择发送给教练"),
 //          case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
 //          case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
-
+//          case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
     public void showStep2Fragment(Bundle bundle) {
         navigationBar2.setTitle("体测录入(2/5)");
         timeBar.showTimeBar(2);
@@ -322,10 +318,10 @@ public class ReceptionStepActivity extends AppCompatActivity implements Receptio
 
 
         } else if (userRole == 2) {
-            Step4Fragment_Sale_NoData step4Fragment_message = new Step4Fragment_Sale_NoData();
+            Step4Fragment_Coach_NoData step4Fragment_message = new Step4Fragment_Coach_NoData();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_message).commitAllowingStateLoss();
         } else {
-            Step4Fragment_Sale_NoData step4Fragment_message = new Step4Fragment_Sale_NoData();
+            Step4Fragment_Coach_NoData step4Fragment_message = new Step4Fragment_Coach_NoData();
             getSupportFragmentManager().beginTransaction().replace(R.id.content, step4Fragment_message).commitAllowingStateLoss();
         }
     }

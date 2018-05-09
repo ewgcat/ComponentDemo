@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -12,11 +14,11 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.yijian.staff.BuildConfig;
-
 import com.yijian.staff.dagger.component.AppComponent;
 import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.jpush.JpushMessageReceiver;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.tools.ContextUtil;
@@ -32,7 +34,7 @@ import cn.jpush.android.api.JPushInterface;
 public class CustomApplication extends TinkerApplication implements Application.ActivityLifecycleCallbacks{
 
 
-
+    private static final String TAG = "CustomApplication";
     public static CustomApplication instance;
     public static AppComponent appComponent;
 
@@ -90,7 +92,6 @@ public class CustomApplication extends TinkerApplication implements Application.
         registerActivityLifecycleCallbacks(this);
 
 
-
     }
 
 
@@ -127,6 +128,7 @@ public class CustomApplication extends TinkerApplication implements Application.
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         activityMap.put(activity.hashCode() + "", activity);
+        Log.e(TAG, "onActivityCreated: " );
     }
 
     @Override
@@ -136,7 +138,24 @@ public class CustomApplication extends TinkerApplication implements Application.
 
     @Override
     public void onActivityResumed(Activity activity) {
+        Log.e(TAG, "onActivityResumed: " );
+        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
+        try {
+            if (JpushMessageReceiver.shouldToReception&&JpushMessageReceiver.businessType==0){//应该跳转到接待流程
+//                Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
+               if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)){
+//                   Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.bundleString);
+                   JpushMessageReceiver.toReception(activity,JpushMessageReceiver.bundleString);
+                   JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
+               }
+                JpushMessageReceiver.shouldToReception=false;
+                JpushMessageReceiver.businessType=-1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
 
+        }
     }
 
     @Override

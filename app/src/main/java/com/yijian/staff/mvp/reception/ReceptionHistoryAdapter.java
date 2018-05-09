@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.reception;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,24 +23,19 @@ import java.util.List;
  * time: 2018/2/28 17:08:17
  */
 public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHistoryAdapter.ViewHolder> {
-    private List<RecptionRecordListBean.RecordsBean> mReceptionInfoList=new ArrayList<>();
+    private List<RecptionRecordListBean.RecordsBean> mReceptionInfoList = new ArrayList<>();
     private Context context;
 
     public ReceptionHistoryAdapter(Context context) {
         this.context = context;
     }
 
-    public void addData(List<RecptionRecordListBean.RecordsBean> list){
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
-        mReceptionInfoList.addAll(list);
+    public void addData(List<RecptionRecordListBean.RecordsBean> list) {
         mReceptionInfoList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void clearData(){
+    public void clearData() {
         mReceptionInfoList.clear();
         notifyDataSetChanged();
     }
@@ -78,47 +74,55 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
 
         public ViewHolder(View view) {
             super(view);
-            viperName=     view.findViewById(R.id.tv_viper_name);
-            viperSex=     view.findViewById(R.id.iv_sex);
-            receptionStatus=     view.findViewById(R.id.tv_status);
-            viperPhone=     view.findViewById(R.id.tv_viper_phone);
-            product=     view.findViewById(R.id.tv_product);
-            wenJuan=     view.findViewById(R.id.tv_wenjuan);
-            tiCeBaoGao=     view.findViewById(R.id.tv_ticebaogao);
-            jiedaiName=     view.findViewById(R.id.tv_jiedai_name);
-            jiedaiCoachName=     view.findViewById(R.id.tv_coach_name);
+            viperName = view.findViewById(R.id.tv_viper_name);
+            viperSex = view.findViewById(R.id.iv_sex);
+            receptionStatus = view.findViewById(R.id.tv_status);
+            viperPhone = view.findViewById(R.id.tv_viper_phone);
+            product = view.findViewById(R.id.tv_product);
+            wenJuan = view.findViewById(R.id.tv_wenjuan);
+            tiCeBaoGao = view.findViewById(R.id.tv_ticebaogao);
+            jiedaiName = view.findViewById(R.id.tv_jiedai_name);
+            jiedaiCoachName = view.findViewById(R.id.tv_coach_name);
 
         }
 
         public void bindView(int position) {
 
             RecptionRecordListBean.RecordsBean receptionInfo = mReceptionInfoList.get(position);
-        viperName.setText(receptionInfo.getMemberName());
+            viperName.setText(receptionInfo.getMemberName());
             int isFinish = receptionInfo.getIsFinish();
-            String statu=isFinish==0?"未完成":"已完成";
+            String statu = isFinish == 0 ? "未完成" : "已完成";
             receptionStatus.setText(statu);
-        viperPhone.setText(receptionInfo.getMemberMobile());
-        product.setText(receptionInfo.getCoachName());
+            viperPhone.setText(receptionInfo.getMemberMobile());
+            product.setText(receptionInfo.getCardName());
             jiedaiName.setText(receptionInfo.getSaleName());
             jiedaiCoachName.setText(receptionInfo.getCoachName());
-        Glide.with(context).load(R.mipmap.lg_man).into(viperSex);
-        wenJuan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            String sex = receptionInfo.getSex();
+            if ("女".equals(sex)) {
+                Glide.with(context).load(R.mipmap.lg_women).into(viperSex);
+            } else {
+                Glide.with(context).load(R.mipmap.lg_man).into(viperSex);
+            }
+            wenJuan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                Intent i = new Intent(context,QuestionnaireResultActivity.class);
 //                context.startActivity(i);
 
-                if (receptionHistoryListener!=null)receptionHistoryListener.onRequestClicked(position);
-            }
-        });
-        tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    if (receptionHistoryListener != null)
+                        receptionHistoryListener.onRequestClicked(position);
+                }
+            });
+            tiCeBaoGao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                Intent i = new Intent(context,PhysicalReportActivity.class);
 //                context.startActivity(i);
-                if (receptionHistoryListener!=null)receptionHistoryListener.onPhysicalReportClicked(position);
-            }
-        });
+                    if (receptionHistoryListener != null)
+                        receptionHistoryListener.onPhysicalReportClicked(position);
+                }
+            });
         }
     }
 
@@ -126,8 +130,9 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         return mReceptionInfoList;
     }
 
-    public interface ReceptionHistoryListener{
+    public interface ReceptionHistoryListener {
         void onRequestClicked(int position);
+
         void onPhysicalReportClicked(int position);
     }
 

@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
+import com.yijian.staff.widget.NavigationBar2;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -36,15 +38,21 @@ public class RightsAcitity extends AppCompatActivity {
     TextView tvCardTransform;
 //    tv_card_transform
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_rights);
         ButterKnife.bind(this);
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar2);
+        navigationBar2.setTitle("权益支持");
+        navigationBar2.setTitleColor(R.color.text_black1);
+        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar2.setBackClickListener(this);
 
         Intent intent = getIntent();
         if (intent.hasExtra("productDetail")) {
-            ProductDetail productDetail = intent.getParcelableExtra("productDetail");
+            ProductDetail productDetail = (ProductDetail) intent.getSerializableExtra("productDetail");
 
             //延期
             String renewPoundageFee = productDetail.getRenewPoundageFee();

@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.reception;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -101,10 +102,9 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
                 List<RecptionRecordListBean.RecordsBean> records = recptionRecordListBean.getRecords();
                 if (records==null||records.size()==0){
                   if (pageNum!=1) Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
                     return;
                 }
-
+                Log.e(TAG, "onSuccess: "+records.size() );
                 view.showRecptionRecordList(records,isRefresh);
                 pageNum++;
 
@@ -142,7 +142,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     public void endRecption(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId",memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_END,params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_END,params, new ResultNullObserver() {
 
             @Override
             public void onSuccess(Object result) {

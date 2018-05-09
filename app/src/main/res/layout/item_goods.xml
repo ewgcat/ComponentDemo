@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -46,7 +47,9 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_jianshenplace"
-                    android:text="游泳"
+                    android:singleLine="true"
+                    android:ellipsize="middle"
+                    tools:text="游泳"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -64,7 +67,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_yu_er"
-                    android:text="90"
+                    tools:text="90"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -91,7 +94,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_chuzhiyouhui"
-                    android:text="20"
+                    android:text="0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -115,7 +118,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="1400"
+                    tools:text="1400"
                     android:id="@+id/tv_price"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -126,7 +129,7 @@
                     android:text="元"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

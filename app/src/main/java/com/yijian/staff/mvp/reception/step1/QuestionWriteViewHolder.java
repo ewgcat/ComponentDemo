@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,9 +30,15 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
 
 
     public void bind(ItemsBean child, int parentPosition, int childPosition) {
-        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
+        Log.e(TAG, "bind: "+child.toString() );
+        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent())){
             editText.setText(""+child.getInputContent());
-        editText.addTextChangedListener(new TextWatcher() {
+        }else {
+            editText.setText("");
+        }
+
+
+        TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -44,18 +51,31 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if(editText.hasFocus()){//判断当前EditText是否有焦点在
+
+                    if (listener != null) listener.onWrited(child, parentPosition, childPosition, s);
+                    tvLimit.setText(s.toString().length() + "字");
+                }
+
+            }
+        };
 
 
-                if (listener!=null)listener.onWrited(child,parentPosition,childPosition,s);
-                tvLimit.setText(s.toString().length()+"字");
+        //设置EditText的焦点监听器判断焦点变化，当有焦点时addTextChangedListener，失去焦点时removeTextChangedListener
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    editText.addTextChangedListener(watcher);
+                }else{
+                    editText.removeTextChangedListener(watcher);
+                }
             }
         });
-
-
     }
 
     public  interface WriteListener{
-        void onWrited(ItemsBean child, int position, int parentPosition, Editable s);
+        void onWrited(ItemsBean child, int position, int parentPosition, CharSequence s);
     }
 
     private WriteListener listener;

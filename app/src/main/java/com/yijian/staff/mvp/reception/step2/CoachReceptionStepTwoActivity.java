@@ -722,6 +722,11 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
     }
 
     @Override
+    public void showCompletePercent(double persent) {
+
+    }
+
+    @Override
     public void cancelReason(String reason) {
         Log.e(TAG, "cancelReason: "+reason );
     }

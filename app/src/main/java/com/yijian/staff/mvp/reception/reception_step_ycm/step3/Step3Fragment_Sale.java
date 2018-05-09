@@ -377,7 +377,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
     public void showProductDetail(ProductDetail productDetail) {
 
         Log.e(TAG, "showProductDetail: "+ productDetail.toString());
-        CancelReasonDialog dialogFragment = new CancelReasonDialog();
+//        CancelReasonDialog dialogFragment = new CancelReasonDialog();
 //        dialogFragment.setOklisenter(new CancelReasonDialog.DialogOklisenter() {
 //            @Override
 //            public void onClick() {

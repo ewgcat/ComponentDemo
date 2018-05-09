@@ -3,14 +3,17 @@ package com.yijian.staff.mvp.reception.step3.coach.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by The_P on 2018/4/18.
  */
 
-public class ProductDetail implements Parcelable {
+public class ProductDetail implements Serializable {
 //    cardId (string, optional): 卡产品id ,
 //    cardName (string, optional): 卡名称 ,
 //    cardType (integer, optional): 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
@@ -40,42 +43,13 @@ public class ProductDetail implements Parcelable {
 //    venueNames (Array[string], optional): 场馆名称
 
 
+    public String getCardName() {
+        return cardName;
+    }
 
-
-    String cardId;
-    String cardTypeName;//卡类型名称 ,
-    Integer cardType;// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
-    List<String> venueNames;//场馆名称
-    Integer validDay;//有效时间 ,
-    Integer validTime;// 有效次数 ,
-    String rechargeGivePercent;//充值赠送 ,
-    String salePrice;//售价 ,
-
-    String strRestKey;
-    String strRestVal;
-//    Object gift; //赠品
-    List<String> rightsInterestsList;//权益
-
-    String changeShopPoundageFee;//转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
-    String changeShopPoundageType;// 转店手续费类型：0固定金额，1百分比 ,
-
-    String  renewPoundageFee ;//续费折扣费用，当续费类型是1的时候值是百分比 ,
-    Integer  renewPoundageType ;//续费折扣类型：0固定金额，1百分比 ,
-
-    String   returnPoundageFee ;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
-    Integer   returnPoundageType ;//退卡手续费类型：0固定金额，1百分比 ,
-
-    String   stopPoundageFee ;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
-    Integer    stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
-
-    String  switchPoundageFee ;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
-    String   switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
-
-    String  transferPoundageFee ;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
-    String  transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
-
-    String createDate;//创建时间
-    String expirationDate;//结束时间
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
 
     public String getCardId() {
         return cardId;
@@ -155,6 +129,14 @@ public class ProductDetail implements Parcelable {
 
     public void setStrRestVal(String strRestVal) {
         this.strRestVal = strRestVal;
+    }
+
+    public Map<Integer, List<CardGiftDto>> getGift() {
+        return gift;
+    }
+
+    public void setGift(Map<Integer, List<CardGiftDto>> gift) {
+        this.gift = gift;
     }
 
     public List<String> getRightsInterestsList() {
@@ -277,80 +259,44 @@ public class ProductDetail implements Parcelable {
         this.expirationDate = expirationDate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    String cardName;
+    String cardId;
+    String cardTypeName;//卡类型名称 ,
+    Integer cardType;// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
+    List<String> venueNames;//场馆名称
+    Integer validDay;//有效时间 ,
+    Integer validTime;// 有效次数 ,
+    String rechargeGivePercent;//充值赠送 ,
+    String salePrice;//售价 ,
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.cardId);
-        dest.writeString(this.cardTypeName);
-        dest.writeValue(this.cardType);
-        dest.writeStringList(this.venueNames);
-        dest.writeValue(this.validDay);
-        dest.writeValue(this.validTime);
-        dest.writeString(this.rechargeGivePercent);
-        dest.writeString(this.salePrice);
-        dest.writeString(this.strRestKey);
-        dest.writeString(this.strRestVal);
-        dest.writeStringList(this.rightsInterestsList);
-        dest.writeString(this.changeShopPoundageFee);
-        dest.writeString(this.changeShopPoundageType);
-        dest.writeString(this.renewPoundageFee);
-        dest.writeValue(this.renewPoundageType);
-        dest.writeString(this.returnPoundageFee);
-        dest.writeValue(this.returnPoundageType);
-        dest.writeString(this.stopPoundageFee);
-        dest.writeValue(this.stopPoundageType);
-        dest.writeString(this.switchPoundageFee);
-        dest.writeString(this.switchPoundageType);
-        dest.writeString(this.transferPoundageFee);
-        dest.writeString(this.transferPoundageType);
-        dest.writeString(this.createDate);
-        dest.writeString(this.expirationDate);
-    }
+    String strRestKey;
+    String strRestVal;
+//    Object gift; //品
+    Map<Integer,List<CardGiftDto>> gift; //赠品类型（0：会员卡  1：团课  2：私课）
+    List<String> rightsInterestsList;//权益
 
-    public ProductDetail() {
-    }
+    String changeShopPoundageFee;//转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
+    String changeShopPoundageType;// 转店手续费类型：0固定金额，1百分比 ,
 
-    protected ProductDetail(Parcel in) {
-        this.cardId = in.readString();
-        this.cardTypeName = in.readString();
-        this.cardType = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.venueNames = in.createStringArrayList();
-        this.validDay = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.validTime = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.rechargeGivePercent = in.readString();
-        this.salePrice = in.readString();
-        this.strRestKey = in.readString();
-        this.strRestVal = in.readString();
-        this.rightsInterestsList = in.createStringArrayList();
-        this.changeShopPoundageFee = in.readString();
-        this.changeShopPoundageType = in.readString();
-        this.renewPoundageFee = in.readString();
-        this.renewPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.returnPoundageFee = in.readString();
-        this.returnPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.stopPoundageFee = in.readString();
-        this.stopPoundageType = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.switchPoundageFee = in.readString();
-        this.switchPoundageType = in.readString();
-        this.transferPoundageFee = in.readString();
-        this.transferPoundageType = in.readString();
-        this.createDate = in.readString();
-        this.expirationDate = in.readString();
-    }
+    String  renewPoundageFee ;//续费折扣费用，当续费类型是1的时候值是百分比 ,
+    Integer  renewPoundageType ;//续费折扣类型：0固定金额，1百分比 ,
 
-    public static final Parcelable.Creator<ProductDetail> CREATOR = new Parcelable.Creator<ProductDetail>() {
-        @Override
-        public ProductDetail createFromParcel(Parcel source) {
-            return new ProductDetail(source);
-        }
+    String   returnPoundageFee ;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
+    Integer   returnPoundageType ;//退卡手续费类型：0固定金额，1百分比 ,
 
-        @Override
-        public ProductDetail[] newArray(int size) {
-            return new ProductDetail[size];
-        }
-    };
+    String   stopPoundageFee ;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
+    Integer    stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
+
+    String  switchPoundageFee ;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
+    String   switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
+
+    String  transferPoundageFee ;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
+    String  transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
+
+    String createDate;//创建时间
+    String expirationDate;//结束时间
+
+
+
+
 }

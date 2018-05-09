@@ -75,6 +75,7 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
         if (consumerBean.getStatus()==20){//SALEFINISHQS(20, "会籍完成问卷调查录入"),
 
         }else if (consumerBean.getStatus()==21){//SALESENDCOACH(21, "会籍选择发送给教练"),
+            scanBodyView.startScan();
             tvTip.setVisibility(View.VISIBLE);
             ll_to_coach.setVisibility(View.GONE);
             tvNextStep.setVisibility(View.GONE);
@@ -112,6 +113,11 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
         tvNextStep.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onDetach() {
+        scanBodyView.stopScan();
+        super.onDetach();
+    }
 
     private ReceptionStatusChange statusChangeLisenter;
 

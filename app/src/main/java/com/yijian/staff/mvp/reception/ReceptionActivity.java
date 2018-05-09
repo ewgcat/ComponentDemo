@@ -27,6 +27,7 @@ import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.reception.reception_step_ycm.EndReceptionDialog;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
@@ -81,12 +82,18 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         navigationBar2.setBackClickListener(this);
 
 
+       int userRole = SharePreferenceUtil.getUserRole();
+
         tvName = findViewById(R.id.tv_name);
         tvSex = findViewById(R.id.tv_sex);
         tvPhone = findViewById(R.id.tv_phone);
 
         findViewById(R.id.tv_jiedai).setOnClickListener(this);
-        findViewById(R.id.tv_stopJieDai).setOnClickListener(this);
+        TextView stopJiedai = findViewById(R.id.tv_stopJieDai);
+        if (userRole!=1){
+            stopJiedai.setVisibility(View.GONE);
+        }
+        stopJiedai.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recyclerview_jiedai_history);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);

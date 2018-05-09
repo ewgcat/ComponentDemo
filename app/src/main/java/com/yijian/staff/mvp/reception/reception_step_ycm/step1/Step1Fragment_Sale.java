@@ -85,11 +85,11 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step1_sale, container, false);
-        initView(view);
 
         presenter = new RecptionStep1Presenter(getContext());
         presenter.setView(this);
-       if (!TextUtils.isEmpty(memberId))presenter.getQuestion(memberId);
+        initView(view);
+
         return view;
     }
 
@@ -124,7 +124,16 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
 
         if (consumerBean.getStatus()!=0&&(consumerBean.getStatus()!=10)){
             btnSave.setVisibility(View.GONE);
+            if (!TextUtils.isEmpty(memberId)){
+                presenter.getQuestionAndAnswer(memberId);
+//                presenter.getQuestion();
+            }else {
+                presenter.getQuestion();
+            }
+        }else {
+            presenter.getQuestion();
         }
+
     }
 
     private void initCalendarView(MaterialCalendarView widget) {

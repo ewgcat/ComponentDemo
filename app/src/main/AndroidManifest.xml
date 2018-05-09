@@ -233,12 +233,19 @@
         <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".mvp.huiji.resourceallocation.HuiJiResourceAllocationActivity"
+            android:name=".mvp.resourceallocation.huiji.HuiJiRescourceAllocationActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".mvp.huiji.resourceallocation.selecthuiji.SelectHuiJiActivity"
+            android:name=".mvp.resourceallocation.huijileader.index.HuiJiLeaderResourceIndexActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.resourceallocation.huijileader.detail.ResourceDetailActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.main.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />

@@ -49,7 +49,9 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
 
         if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
             etMix.setText(""+child.getInputContent());
-        etMix.addTextChangedListener(new TextWatcher() {
+
+
+        TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -62,7 +64,22 @@ public class QuestionOptMixViewHolder extends ChildViewHolderGroup {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (listener!=null)listener.onMixWrited(child,parentPosition,childPosition,s);
+                if (etMix.hasFocus()){
+                    if (listener != null) listener.onMixWrited(child, parentPosition, childPosition, s);
+
+                }
+            }
+        };
+
+        //设置EditText的焦点监听器判断焦点变化，当有焦点时addTextChangedListener，失去焦点时removeTextChangedListener
+        etMix.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    etMix.addTextChangedListener(watcher);
+                }else{
+                    etMix.removeTextChangedListener(watcher);
+                }
             }
         });
 

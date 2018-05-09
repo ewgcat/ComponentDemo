@@ -29,6 +29,8 @@ public class Messager {
 
     private List<ReceptionLog> receptionLogs;
 
+    private List<Integer> operatorTypes;
+
     public Integer getStatus() {
         return status;
     }
@@ -107,5 +109,13 @@ public class Messager {
 
     public void setReceptionLogs(List<ReceptionLog> receptionLogs) {
         this.receptionLogs = receptionLogs;
+    }
+
+    public List<Integer> getOperatorTypes() {
+        return operatorTypes;
+    }
+
+    public void setOperatorTypes(List<Integer> operatorTypes) {
+        this.operatorTypes = operatorTypes;
     }
 }

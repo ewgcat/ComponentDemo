@@ -68,7 +68,7 @@ public class SelectHuiJiPopupWindow extends PopupWindow implements View.OnClickL
         rcl.setLayoutManager(new LinearLayoutManager(context));
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_LIST_RECEIVE_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_LIST_RECEIVE_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

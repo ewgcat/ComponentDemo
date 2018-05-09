@@ -85,7 +85,7 @@ public class SettingActivity extends MvcBaseActivity {
 
                 @Override
                 public void onFail(String msg) {
-
+                    showToast(msg);
                 }
             });
         }

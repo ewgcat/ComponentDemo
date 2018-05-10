@@ -129,7 +129,6 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                         @Override
                         public void onSuccess(JSONObject result) {
                             hideBlueProgress();
-
                             finish();
                         }
 
@@ -137,7 +136,6 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                         public void onFail(String msg) {
                             showToast(msg);
                             hideBlueProgress();
-
                         }
                     });
                 } else {

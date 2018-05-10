@@ -174,13 +174,13 @@
                         android:text="常 用"
                         android:textColor="#333333"
                         android:textSize="16sp" />
-                    <ImageView
-                        android:src="@mipmap/home_all"
-                        android:gravity="center_vertical"
-                        android:id="@+id/iv_all_function"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                    <!--<ImageView-->
+                        <!--android:src="@mipmap/home_all"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:id="@+id/iv_all_function"-->
+                        <!--android:layout_marginRight="16dp"-->
+                        <!--android:layout_width="20dp"-->
+                        <!--android:layout_height="20dp" />-->
 
                 </LinearLayout>
 

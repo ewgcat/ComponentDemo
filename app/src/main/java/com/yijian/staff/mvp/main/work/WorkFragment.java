@@ -126,7 +126,7 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
 
 
-    @OnClick({R.id.et_search, R.id.ll_jiedai, R.id.iv_all_function})
+    @OnClick({R.id.et_search, R.id.ll_jiedai})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
@@ -147,10 +147,10 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
                 if (receptionActivityLisenter!=null)receptionActivityLisenter.startAct();
 
                 break;
-            case R.id.iv_all_function:
-                AllFunctionActivity.startToActivity(getActivity(), this);
+//            case R.id.iv_all_function:
+//                AllFunctionActivity.startToActivity(getActivity(), this);
 
-                break;
+//                break;
         }
     }
 

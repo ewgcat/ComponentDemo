@@ -96,7 +96,7 @@ public class TodayHuiJiViperBean implements Serializable{
     }
 
     public int getGenderImg(){
-        return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
+        return 2==sex ? R.mipmap.lg_women : R.mipmap.lg_man;
     }
 
     public String getMobile() {

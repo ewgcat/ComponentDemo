@@ -144,22 +144,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {
-                if (body!=null){
-                    bodyCondition = body;
-                    bodyCondition.setPageNum(1);
-                    bodyCondition.setPageSize(4);
-                    presenter.getRecptionCards(bodyCondition, true);
-                }else {
-                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
-                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
-                    drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
-                    bodyCondition = new CardRequestBody();
-                    bodyCondition.setPageNum(1);
-                    bodyCondition.setPageSize(4);
-                    presenter.getRecptionCards(bodyCondition, true);
-                }
+                resetState();
+                tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
 
+                bodyCondition = body;
+                bodyCondition.setPageNum(1);
+                bodyCondition.setPageSize(4);
+                presenter.getRecptionCards(bodyCondition, true);
             }
         });
 
@@ -191,15 +182,12 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击筛选
     private void selectShaixuan() {
-        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+//        resetState();
+//        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
         Bundle bundle = new Bundle();
         bundle.putString("cardType", bodyCondition.getCardType());
         bundle.putString("startPrice", bodyCondition.getStartPrice());
         bundle.putString("venueName", bodyCondition.getVenueName());
-        Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        tvShaixuan.setCompoundDrawables(null, null, drawable, null);
-
         optionDialog.setArguments(bundle);
         optionDialog.show(getFragmentManager(), "OptionDialog");
     }
@@ -207,12 +195,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     //点击价格
     private void selectPrice() {
         if (mGoodsInfoList == null || mGoodsInfoList.size() == 0) return;
-
-        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        resetState();
         tvPrice.setTextColor(Color.parseColor("#1997f8"));
         if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
-            drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             Collections.sort(mGoodsInfoList);
             goodsListAdapter.resetData(mGoodsInfoList);
@@ -220,7 +207,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
         } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
-            drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 
             Collections.sort(mGoodsInfoList);
@@ -233,14 +220,18 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击综合
     private void selectZongHe() {
-        tvPrice.setTextColor(Color.parseColor("#666666"));
-        Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-        drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        tvPrice.setCompoundDrawables(null, null, drawable, null);
+        resetState();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
         bodyCondition.setPageSize(4);
         bodyCondition.setPageNum(1);
         presenter.getRecptionCards(bodyCondition, true);
+    }
+
+
+    private void resetState(){
+        tvPrice.setTextColor(Color.parseColor("#666666"));
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        tvShaixuan.setTextColor(Color.parseColor("#666666"));
     }
 
     @Override

@@ -265,6 +265,16 @@ public class CoachClassFilterDialog extends Dialog {
     }
 
     private void setResultForNoSure() {
+
+        if (onDismissListener != null) {
+            resetView();
+            onDismissListener.onDismiss(null);
+        }
+    }
+
+
+
+    private void setResultForSure() {
         CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
         if (classJieShu == 1) {
             coachClassFilterBean.setLcourseNum("0");
@@ -340,6 +350,9 @@ public class CoachClassFilterDialog extends Dialog {
                     &&TextUtils.isEmpty(rtotalPrice)
                     ){
                 onDismissListener.onDismiss(null);
+            }else {
+                onDismissListener.onDismiss(coachClassFilterBean);
+
             }
         }
     }
@@ -450,89 +463,6 @@ public class CoachClassFilterDialog extends Dialog {
 
 
 
-
-    private void setResultForSure() {
-        CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
-        if (classJieShu == 1) {
-            coachClassFilterBean.setLcourseNum("0");
-            coachClassFilterBean.setRcourseNum("10");
-        } else if (classJieShu == 2) {
-            coachClassFilterBean.setLcourseNum("10");
-            coachClassFilterBean.setRcourseNum("30");
-        } else if (classJieShu == 3) {
-            coachClassFilterBean.setLcourseNum("30");
-            coachClassFilterBean.setRcourseNum(null);
-        } else {
-            coachClassFilterBean.setLcourseNum(null);
-            coachClassFilterBean.setRcourseNum(null);
-        }
-        if (price == 1) {
-            coachClassFilterBean.setLtotalPrice("0");
-            coachClassFilterBean.setRtotalPrice("1000");
-        } else if (price == 2) {
-            coachClassFilterBean.setLtotalPrice("1000");
-            coachClassFilterBean.setRtotalPrice("2000");
-        } else if (price == 3) {
-            coachClassFilterBean.setLtotalPrice("2000");
-            coachClassFilterBean.setRtotalPrice("3000");
-        } else if (price == 4) {
-            coachClassFilterBean.setLtotalPrice("3000");
-            coachClassFilterBean.setRtotalPrice("4000");
-        } else {
-            coachClassFilterBean.setLtotalPrice(null);
-            coachClassFilterBean.setRtotalPrice(null);
-        }
-        if (classLongTime == 1) {
-            coachClassFilterBean.setLconsumingMinute("0");
-            coachClassFilterBean.setRconsumingMinute("60");
-        } else if (classLongTime == 2) {
-            coachClassFilterBean.setLconsumingMinute("60");
-            coachClassFilterBean.setRconsumingMinute("120");
-        } else if (classLongTime == 3) {
-            coachClassFilterBean.setLconsumingMinute("120");
-            coachClassFilterBean.setRconsumingMinute("180");
-        } else if (classLongTime == 4) {
-            coachClassFilterBean.setLconsumingMinute("180");
-            coachClassFilterBean.setRconsumingMinute(null);
-        } else {
-            coachClassFilterBean.setLconsumingMinute(null);
-            coachClassFilterBean.setRconsumingMinute(null);
-        }
-
-        if (classYouXiaoQi == 1) {
-            coachClassFilterBean.setIndate("3");
-        } else if (classYouXiaoQi == 2) {
-            coachClassFilterBean.setIndate("6");
-        } else if (classYouXiaoQi == 3) {
-            coachClassFilterBean.setIndate("12");
-        } else {
-            coachClassFilterBean.setIndate(null);
-        }
-
-
-        if (onDismissListener != null) {
-            String indate = coachClassFilterBean.getIndate();
-            String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
-            String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
-            String lcourseNum = coachClassFilterBean.getLcourseNum();
-            String rcourseNum = coachClassFilterBean.getRcourseNum();
-            String ltotalPrice = coachClassFilterBean.getLtotalPrice();
-            String rtotalPrice = coachClassFilterBean.getRtotalPrice();
-            if (TextUtils.isEmpty(indate)
-                    &&TextUtils.isEmpty(lconsumingMinute)
-                    &&TextUtils.isEmpty(rconsumingMinute)
-                    &&TextUtils.isEmpty(lcourseNum)
-                    &&TextUtils.isEmpty(rcourseNum)
-                    &&TextUtils.isEmpty(ltotalPrice)
-                    &&TextUtils.isEmpty(rtotalPrice)
-                    ){
-                onDismissListener.onDismiss(null);
-            }else {
-                onDismissListener.onDismiss(coachClassFilterBean);
-
-            }
-        }
-    }
 
     public interface OnDismissListener {
         void onDismiss(CoachClassFilterBean coachClassFilterBean);

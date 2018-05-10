@@ -20,6 +20,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.base.mvp.MvpBaseActivity;
 import com.yijian.staff.mvp.complaint.handling.HandTaskAdapter;
 import com.yijian.staff.mvp.complaint.handling.HandTaskInfo;
 import com.yijian.staff.util.Logger;
@@ -38,7 +40,7 @@ import butterknife.OnClick;
  * 投诉列表
  */
 @Route(path = "/test/8")
-public class ComplaintListActivity extends AppCompatActivity implements View.OnClickListener{
+public class ComplaintListActivity extends MvcBaseActivity implements View.OnClickListener{
 
     /*@BindView(R.id.fl_content)
     FrameLayout flContent;*/
@@ -75,12 +77,15 @@ public class ComplaintListActivity extends AppCompatActivity implements View.OnC
 
     private int roleFlag = 1; // 作为虚拟角色的标志位， 0 用户身份1，1 用户身份2
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complaint_list);
 
-        ButterKnife.bind(this);
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_complaint_list;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         setTitle();
         initView();
         selectTab(R.id.lin_feipei_condition);

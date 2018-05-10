@@ -171,7 +171,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                showToast(msg);
                 hideBlueProgress();
             }
         });
@@ -239,7 +239,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                showToast(msg);
                 hideBlueProgress();
 
             }

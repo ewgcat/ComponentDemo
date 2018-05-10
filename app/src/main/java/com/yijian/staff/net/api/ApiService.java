@@ -5,6 +5,7 @@ import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
@@ -116,7 +117,7 @@ public interface ApiService {
 
     //体验课流程——发送邀约信息
     @POST
-    Observable<JSONObject> postInvate(@Url String url, @HeaderMap Map<String, String> headers,@Body InvateBean invateBean);
+    Observable<JSONObject> postInvate(@Url String url, @HeaderMap Map<String, String> headers, @Body InvateBean invateBean);
 
     //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
@@ -137,12 +138,17 @@ public interface ApiService {
     //会籍卡产品
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body HuiJiGoodsRequestBody body);
+    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body CardRequestBody body);
 
     //会籍卡产品
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getHuiJiCardGoodsList_ycm(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
+
+    //会籍卡产品
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
 
 
     /**
@@ -195,12 +201,11 @@ public interface ApiService {
     Observable<JSONObject> saveXiaKeRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivateShangKeBean privateShangKeBean, @Query("state") String state);
 
     /**
-     *  保存私教课备课内容
+     * 保存私教课备课内容
      */
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> savePrivatePrepareLesson(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivatePrepareLessonBody privatePrepareLessonBody);
-
 
 
     //post 表单
@@ -249,5 +254,5 @@ public interface ApiService {
 
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> getHuiJiInviteRecord(@Url String indexHuiJiInvitationRecordUrl,  @HeaderMap HashMap<String, String> headers, @Body HuiJiInviteListRequestBody body);
+    Observable<JSONObject> getHuiJiInviteRecord(@Url String indexHuiJiInvitationRecordUrl, @HeaderMap HashMap<String, String> headers, @Body HuiJiInviteListRequestBody body);
 }

@@ -10,6 +10,7 @@ import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
@@ -290,11 +291,11 @@ public class HttpManager {
 
     //会籍资源
     public static String GET_HUIJI_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/list";
-    
+
     //教练资源
     public static String GET_COACH_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/list";
 
-    
+
     // 会籍总监 分配会籍
     public static String HUIJIZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "customer-service/distribute/resource";
 
@@ -309,23 +310,21 @@ public class HttpManager {
     public static String GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/history/list";
 
 
-
-
     // 教练总监 分配教练
     public static String COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "coach/distribute/resource";
 
-    
+
     // 可接受分配教练列表
     public static String GET_COACH_LIST_RECEIVE_URL = BuildConfig.HOST + "coach/distributable/coach/list";
 
-    
+
     // 教练总监 可分配资源（会员）列表
     public static String GET_COACHZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distributable/list";
-    
+
     // 教练总监 历史分配（会员）列表
     public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
 
-    
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -576,18 +575,7 @@ public class HttpManager {
         }
     }
 
-    //会籍卡产品查询列表
-    public static void getHuiJiCardGoodsList(HuiJiGoodsRequestBody body, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
-            execute(observable, observer);
-        }
-    }
+
 
 
     //会籍卡产品查询列表_ycm
@@ -600,6 +588,20 @@ public class HttpManager {
             headers.put("token", user.getToken());
 
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList_ycm(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
+            execute(observable, observer);
+        }
+    }
+
+    //会籍卡产品查询列表
+    public static void getHuiJiCardGoodsList(CardRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
         }
     }

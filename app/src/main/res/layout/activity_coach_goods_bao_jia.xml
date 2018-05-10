@@ -43,6 +43,7 @@
 
             <EditText
                 android:id="@+id/et_search"
+                android:textCursorDrawable="@drawable/et_cursor"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
@@ -52,7 +53,7 @@
                 android:hint="输入课程名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
-                android:textColor="#999999"
+                android:textColor="#666666"
                 android:textSize="14sp" />
 
         </LinearLayout>

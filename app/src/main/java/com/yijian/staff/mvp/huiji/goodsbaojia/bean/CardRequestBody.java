@@ -1,13 +1,11 @@
-package com.yijian.staff.mvp.reception.step3.bean;
+package com.yijian.staff.mvp.huiji.goodsbaojia.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by The_P on 2018/4/11.
- */
 
-public class ConditionBody implements Parcelable {
+
+public class CardRequestBody implements Parcelable {
     @Override
     public String toString() {
         return "CardRequestBody{" +
@@ -125,10 +123,10 @@ public class ConditionBody implements Parcelable {
         dest.writeString(this.venueName);
     }
 
-    public ConditionBody() {
+    public CardRequestBody() {
     }
 
-    protected ConditionBody(Parcel in) {
+    protected CardRequestBody(Parcel in) {
         this.cardName = in.readString();
         this.cardType = in.readString();
         this.startPrice = in.readString();
@@ -139,15 +137,15 @@ public class ConditionBody implements Parcelable {
         this.venueName = in.readString();
     }
 
-    public static final Parcelable.Creator<ConditionBody> CREATOR = new Parcelable.Creator<ConditionBody>() {
+    public static final Creator<CardRequestBody> CREATOR = new Creator<CardRequestBody>() {
         @Override
-        public ConditionBody createFromParcel(Parcel source) {
-            return new ConditionBody(source);
+        public CardRequestBody createFromParcel(Parcel source) {
+            return new CardRequestBody(source);
         }
 
         @Override
-        public ConditionBody[] newArray(int size) {
-            return new ConditionBody[size];
+        public CardRequestBody[] newArray(int size) {
+            return new CardRequestBody[size];
         }
     };
 }

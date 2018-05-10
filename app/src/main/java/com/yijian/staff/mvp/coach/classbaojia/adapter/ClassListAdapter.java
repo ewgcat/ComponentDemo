@@ -39,12 +39,12 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
     @Override
     public void onBindViewHolder(ClassListAdapter.ViewHolder holder, int position) {
         Logger.i("ClassListAdapter", "position: " + position);
-        if (clickIndex==position){
-            holder.item_view.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-
-        }else {
+//        if (clickIndex==position){
+//            holder.item_view.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
+//
+//        }else {
             holder.item_view.setBackgroundResource(R.drawable.white_bg);
-        }
+//        }
 
         ClassInfo classInfo = mClassInfoList.get(position);
         holder.tv_class_name.setText(classInfo.getName());

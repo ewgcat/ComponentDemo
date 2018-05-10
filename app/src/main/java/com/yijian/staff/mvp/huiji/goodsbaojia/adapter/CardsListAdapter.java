@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.kefu;
+package com.yijian.staff.mvp.huiji.goodsbaojia.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,13 +82,13 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
         }
 
         public void bindView(int position) {
-            //        Logger.i("ClassListAdapter", "position: " + position);
-            if (clickIndex == position) {
-                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-
-            } else {
+//            //        Logger.i("ClassListAdapter", "position: " + position);
+//            if (clickIndex == position) {
+//                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
+//
+//            } else {
                 itemView.setBackgroundResource(R.drawable.white_bg);
-            }
+//            }
 
             CardInfo goodsInfo = mGoodsInfoList.get(position);
             tvGoodsName.setText(goodsInfo.getCardName());

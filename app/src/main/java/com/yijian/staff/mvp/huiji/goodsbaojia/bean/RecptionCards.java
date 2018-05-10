@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.step3.bean;
+package com.yijian.staff.mvp.huiji.goodsbaojia.bean;
 
 import java.util.List;
 

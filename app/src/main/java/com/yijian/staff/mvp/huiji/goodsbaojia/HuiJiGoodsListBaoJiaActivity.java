@@ -144,6 +144,9 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {
+                resetState();
+                tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+
                 bodyCondition = body;
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(4);
@@ -179,7 +182,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击筛选
     private void selectShaixuan() {
-        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+//        resetState();
+//        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
         Bundle bundle = new Bundle();
         bundle.putString("cardType", bodyCondition.getCardType());
         bundle.putString("startPrice", bodyCondition.getStartPrice());
@@ -191,8 +195,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     //点击价格
     private void selectPrice() {
         if (mGoodsInfoList == null || mGoodsInfoList.size() == 0) return;
-
-        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        resetState();
         tvPrice.setTextColor(Color.parseColor("#1997f8"));
         if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
@@ -217,11 +220,18 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击综合
     private void selectZongHe() {
-        tvPrice.setTextColor(Color.parseColor("#666666"));
+        resetState();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
         bodyCondition.setPageSize(4);
         bodyCondition.setPageNum(1);
         presenter.getRecptionCards(bodyCondition, true);
+    }
+
+
+    private void resetState(){
+        tvPrice.setTextColor(Color.parseColor("#666666"));
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        tvShaixuan.setTextColor(Color.parseColor("#666666"));
     }
 
     @Override

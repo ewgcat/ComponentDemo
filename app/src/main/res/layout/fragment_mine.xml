@@ -201,13 +201,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/white_bg"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/ll_edit_password"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/white"
             android:orientation="horizontal">
 
             <ImageView
@@ -272,14 +274,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:background="@color/gray" />
 
         <LinearLayout
             android:id="@+id/ll_suggestion"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/white"
             android:orientation="horizontal">
 
             <ImageView

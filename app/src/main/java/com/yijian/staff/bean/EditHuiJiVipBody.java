@@ -36,7 +36,7 @@ public class EditHuiJiVipBody {
     private String memberId;
     private String nation;
     private String nationality;
-    private String occupation;
+    private String position;
     private boolean onceJoinedClub;
     private String source;
     private String yearIncome;
@@ -52,7 +52,7 @@ public class EditHuiJiVipBody {
         this.memberId = (String) map.get("memberId");
         this.nation = (String) map.get("nation");
         this.nationality = (String) map.get("nationality");
-        this.occupation = (String) map.get("occupation");
+        this.position = (String) map.get("position");
         this.onceJoinedClub = (boolean) map.get("onceJoinedClub");
         this.source = (String) map.get("source");
         this.yearIncome = (String) map.get("yearIncome");
@@ -138,12 +138,12 @@ public class EditHuiJiVipBody {
         this.nationality = nationality;
     }
 
-    public String getOccupation() {
-        return occupation;
+    public String getPosition() {
+        return position;
     }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public boolean isOnceJoinedClub() {

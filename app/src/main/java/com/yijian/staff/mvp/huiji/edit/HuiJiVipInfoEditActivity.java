@@ -200,7 +200,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         }
         String o3 = tv_occupation.getText().toString();
         if (!TextUtils.isEmpty(o3)) {
-            paramMap.put("occupation", o3);
+            paramMap.put("position", o3);
         }
 
 
@@ -252,7 +252,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_hobby.setText(detailBean.getHobby());
         tv_nationality.setText(detailBean.getNationality());
         tv_nation.setText(detailBean.getNation());
-        tv_occupation.setText(detailBean.getOccupation());
+        tv_occupation.setText(detailBean.getPosition());
         tv_marriageStatus.setText(detailBean.getMarriageStatus());
         tv_hasChildren.setText(detailBean.getChildrenStatus());
         et_address.setText(detailBean.getAddress());

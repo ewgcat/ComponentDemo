@@ -435,7 +435,7 @@
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="23"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -467,7 +467,7 @@
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="23"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -499,7 +499,7 @@
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="0.81"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -54,7 +54,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
     @BindView(R.id.tv_nation)
     TextView tv_nation;
     @BindView(R.id.tv_occupation)
-    TextView tv_occupation;
+    TextView tv_position;
     @BindView(R.id.tv_marriageStatus)
     TextView tv_marriageStatus;
     @BindView(R.id.tv_hasChildren)
@@ -153,7 +153,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
                 manualPickedView(hasChildrenList, "无", tv_hasChildren);
                 break;
             case R.id.tv_occupation: // 职业
-                manualPickedView(occupationList, "", tv_occupation);
+                manualPickedView(occupationList, "", tv_position);
                 break;
             case R.id.tv_hobby: // 爱好
                 manualPickedView(hobbyList, "", tv_hobby);
@@ -199,15 +199,15 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(o2)) {
             paramMap.put("nationality", o2);
         }
-        String o3 = tv_occupation.getText().toString();
+        String o3 = tv_position.getText().toString();
         if (!TextUtils.isEmpty(o3)) {
-            paramMap.put("occupation", o3);
+            paramMap.put("position", o3);
         }
 
 
         String anObject2 = tv_onceJoinedClub.getText().toString();
         if (!TextUtils.isEmpty(anObject2)) {
-            paramMap.put("onceJoinedClub", ("有".equals(anObject2)));
+            paramMap.put("onceJoinedClub", ("是".equals(anObject2)));
         }
         String o4 = tv_source.getText().toString();
         if (!TextUtils.isEmpty(o4)) {
@@ -227,7 +227,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
                 Toast.makeText(CoachVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
-                setResult(1);
+                setResult(1234);
                 finish();
             }
 
@@ -253,7 +253,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
         tv_hobby.setText(detailBean.getHobby());
         tv_nationality.setText(detailBean.getNationality());
         tv_nation.setText(detailBean.getNation());
-        tv_occupation.setText(detailBean.getOccupation());
+        tv_position.setText(detailBean.getPosition());
         tv_marriageStatus.setText(detailBean.getMarriageStatus());
         tv_hasChildren.setText(detailBean.getChildrenStatus());
         et_address.setText(detailBean.getAddress());

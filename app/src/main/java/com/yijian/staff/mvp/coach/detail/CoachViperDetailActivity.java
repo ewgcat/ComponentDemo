@@ -213,11 +213,17 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 break;
             case R.id.ll_edit:
                 Intent intent = new Intent(CoachViperDetailActivity.this, CoachVipInfoEditActivity.class);
-                intent.putExtra("detail", coachVipDetailBean.getDetail());
-                intent.putExtra("memberId", coachVipDetailBean.getMemberId());
-                intent.putExtra("name", coachVipDetailBean.getName());
-                intent.putExtra("source", coachVipDetailBean.getCustomerServiceInfo().getUserChannel());
-                startActivity(intent);
+                if(coachVipDetailBean!=null){
+                    intent.putExtra("detail", coachVipDetailBean.getDetail());
+                    intent.putExtra("memberId", coachVipDetailBean.getMemberId());
+                    intent.putExtra("name", coachVipDetailBean.getName());
+                    CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfo = coachVipDetailBean.getCustomerServiceInfo();
+                    if (customerServiceInfo!=null){
+                        intent.putExtra("source", customerServiceInfo.getUserChannel());
+                    }
+                    startActivityForResult(intent,1111);
+                }
+
                 break;
 
         }
@@ -242,6 +248,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
             ll_1.setVisibility(View.GONE);
             ll_3.setVisibility(View.VISIBLE);
         }
+        lin_vip_people_bottom.setVisibility(View.GONE);
 
         loadData(memberId);
 
@@ -347,7 +354,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1) {
+        if (resultCode == 1234) {
             loadData(memberId);
         }
     }

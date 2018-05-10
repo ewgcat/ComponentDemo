@@ -50,8 +50,9 @@
                 android:background="@null"
                 android:hint="输入产品名称，进行搜索"
                 android:imeOptions="actionSearch"
+                android:textCursorDrawable="@drawable/et_cursor"
                 android:singleLine="true"
-                android:textColor="#f2f2f2"
+                android:textColor="#666666"
                 android:textSize="14sp" />
 
         </LinearLayout>

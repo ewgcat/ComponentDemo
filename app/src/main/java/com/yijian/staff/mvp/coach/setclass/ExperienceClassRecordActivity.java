@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.setclass.bean.AerobicsBean;
 import com.yijian.staff.mvp.coach.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.coach.setclass.bean.PowerBean;
@@ -34,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExperienceClassRecordActivity extends AppCompatActivity {
+public class ExperienceClassRecordActivity extends MvcBaseActivity {
 
     @BindView(R.id.tv_shangke)
     TextView tv_shangke;
@@ -62,12 +63,13 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_experience_class_record);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_experience_class_record;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initView();
-//        initData();
     }
 
     private void initView() {
@@ -113,6 +115,7 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("privateApplyId", getIntent().getStringExtra("privateApplyId"));
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -125,12 +128,13 @@ public class ExperienceClassRecordActivity extends AppCompatActivity {
                 noInstrumentAdapter.resetActionList(noInstrumentBeanList);
                 aerobicsAdapter.resetActionList(aerobicsBeanList);
                 powerAdapter.resetActionList(powerBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(ExperienceClassRecordActivity.this, msg, Toast.LENGTH_SHORT).show();
-
+                showToast(msg);
+                hideBlueProgress();
             }
         });
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressLint("ValidFragment")
-public class ExperienceRecordFragment extends Fragment {
+public class ExperienceRecordFragment extends MvcBaseFragment {
 
     private int type;
     private RecyclerView rv_experience_record;
@@ -92,16 +93,13 @@ public class ExperienceRecordFragment extends Fragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_experience_record, container, false);
-        initView();
-        return rootView;
-    }
 
-    private void initView() {
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_experience_record;
+    }
+    @Override
+    public   void initView() {
         rv_experience_record = rootView.findViewById(R.id.rv_experience_record);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv_experience_record.setLayoutManager(linearLayoutManager);

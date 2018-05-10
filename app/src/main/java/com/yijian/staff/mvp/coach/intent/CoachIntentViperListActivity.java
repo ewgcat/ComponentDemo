@@ -50,8 +50,7 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
 
     private int pageNum;
     private int pages;
-    private int pageSize=1;
-
+    private int pageSize = 1;
 
 
     @Override
@@ -70,12 +69,10 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(CoachIntentViperListActivity.this);
         //设置RecyclerView 布局
         rv_vip_intention.setLayoutManager(layoutmanager);
-        coachIntentViperListAdapter = new CoachIntentViperListAdapter(CoachIntentViperListActivity.this,coachViperBeanList);
+        coachIntentViperListAdapter = new CoachIntentViperListAdapter(CoachIntentViperListActivity.this, coachViperBeanList);
         rv_vip_intention.setAdapter(coachIntentViperListAdapter);
         refresh();
     }
-
-
 
 
     public void initComponent() {
@@ -102,12 +99,12 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
 
     private void refresh() {
         coachViperBeanList.clear();
-        pageNum=1;
-        pageSize=10;
+        pageNum = 1;
+        pageSize = 10;
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum",pageNum+ "");
-        map.put("pageSize", pageSize+"");
-
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -128,12 +125,14 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
                     }
                 }
                 coachIntentViperListAdapter.update(coachViperBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(CoachIntentViperListActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
 
             }
         });
@@ -145,8 +144,8 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
+        showBlueProgress();
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -166,13 +165,15 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
                     }
                 }
                 coachIntentViperListAdapter.update(coachViperBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }

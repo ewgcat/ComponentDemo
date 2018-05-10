@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
@@ -41,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
+public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.tv_zong_he)
@@ -68,13 +69,15 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
     private ProgressDialog loadingDialog;
     private String memberName;
     private String memberId;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_no_search_bar_coach_class_baojia);
+    protected int getLayoutID() {
+        return R.layout.activity_no_search_bar_coach_class_baojia;
+    }
 
-        ButterKnife.bind(this);
-
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initView();
 
     }
@@ -85,8 +88,6 @@ public class NoSearchBarCoachClassBaojiaActivity extends AppCompatActivity {
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setTitle("请稍后...");
         initComponent();
-
-
     }
 
 

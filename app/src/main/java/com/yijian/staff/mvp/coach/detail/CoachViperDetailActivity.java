@@ -251,17 +251,19 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
-
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                coachVipDetailBean =new CoachVipDetailBean(result);
+                coachVipDetailBean = new CoachVipDetailBean(result);
                 updateUi(coachVipDetailBean);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(CoachViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }
@@ -290,7 +292,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
-        cardprodsBeans=coachVipDetailBean.getCardprods();
+        cardprodsBeans = coachVipDetailBean.getCardprods();
         rv_card.setAdapter(new CoachVipCardListAdapter(cardprodsBeans));
         CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = coachVipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(customerServiceInfoBean.getReferee());
@@ -345,7 +347,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==1){
+        if (resultCode == 1) {
             loadData(memberId);
         }
     }

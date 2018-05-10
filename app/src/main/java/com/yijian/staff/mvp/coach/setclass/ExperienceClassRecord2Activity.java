@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.huifang.task.pageadapter.CoachHuiFangPagerAdapter;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
@@ -22,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ExperienceClassRecord2Activity extends AppCompatActivity {
+public class ExperienceClassRecord2Activity extends MvcBaseActivity {
 
     @BindView(R.id.tabs)
     PagerSlidingTabStrip tabs;
@@ -33,11 +34,15 @@ public class ExperienceClassRecord2Activity extends AppCompatActivity {
     private List<String> mTitleList = new ArrayList<>();
 
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_lesson_new2);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_open_lesson_new2;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initData();
         initView();

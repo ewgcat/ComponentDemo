@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -37,30 +38,32 @@ import butterknife.ButterKnife;
  * 潜在会员 列表
  */
 @Route(path = "/test/3.1")
-public class CoachPotentialViperListActivity extends AppCompatActivity  {
+public class CoachPotentialViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.rv_vip_intention)
     RecyclerView rv_vip_intention;
     private CoachPotentialViperListAdapter coachPotentialViperListAdapter;
-    private List<CoachViperBean> viperBeanList=new ArrayList<>();
+    private List<CoachViperBean> viperBeanList = new ArrayList<>();
 
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_potential_viper_list);
-        ButterKnife.bind(this);
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_potential_viper_list;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initView();
     }
 
 
-    private void initView(){
+    private void initView() {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
@@ -73,9 +76,6 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         initComponent();
         refresh();
     }
-
-
-
 
 
     public void initComponent() {
@@ -102,18 +102,18 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
 
 
     private void refresh() {
-
+        pageNum = 1;
+        viperBeanList.clear();
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", 1 + "");
-        map.put("pageSize", 1 + "");
-
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                viperBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
@@ -128,13 +128,14 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
                     }
                 }
                 coachPotentialViperListAdapter.notifyDataSetChanged();
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(CoachPotentialViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
-
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }
@@ -145,7 +146,7 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -166,13 +167,15 @@ public class CoachPotentialViperListActivity extends AppCompatActivity  {
                     }
                 }
                 coachPotentialViperListAdapter.notifyDataSetChanged();
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(CoachPotentialViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }

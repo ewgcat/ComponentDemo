@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.TempBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -22,18 +23,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PrepareLessonDetailActivity extends AppCompatActivity {
+public class PrepareLessonDetailActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv_detail)
     RecyclerView rv_detail;
     private TempBean tempBean;
     private PrepareLessonDetailAdapter adapter;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prepare_lesson_detail);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_prepare_lesson_detail;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         tempBean = (TempBean) getIntent().getSerializableExtra("tempBean");
         initTitle();
         initView();
@@ -81,16 +85,19 @@ public class PrepareLessonDetailActivity extends AppCompatActivity {
             contentListBeans.add(contentListBean);
         }
         privatePrepareLessonBody.setContentList(contentListBeans);
+        showBlueProgress();
         HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(PrepareLessonDetailActivity.this,"绑定模板成功",Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+                showToast("绑定模板成功");
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(PrepareLessonDetailActivity.this,"绑定模板失败",Toast.LENGTH_SHORT).show();
+                showToast("绑定模板失败");
+                hideBlueProgress();
             }
         });
 

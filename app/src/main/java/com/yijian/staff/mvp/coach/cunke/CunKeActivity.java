@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.cunke.bean.TypeOfCunKeBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -36,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/16")
-public class CunKeActivity extends AppCompatActivity {
+public class CunKeActivity extends MvcBaseActivity {
 
     @BindView(R.id.rc_ck)
     RecyclerView rc_ck;
@@ -48,11 +49,14 @@ public class CunKeActivity extends AppCompatActivity {
     private int pageSize = 1;//每页数量
     private int pages;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cun_ke);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_cun_ke;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
 
         initTitle();
         initView();

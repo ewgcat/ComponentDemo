@@ -53,7 +53,6 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     private CoachOutdateViperListAdapter coachOutdateViperListAdapter;
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_outdate_viper_list;
@@ -79,11 +78,12 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     private void refresh() {
         coachViperBeanList.clear();
         HashMap<String, String> map = new HashMap<>();
-        pageNum=1;
-        pageSize=10;
+        pageNum = 1;
+        pageSize = 10;
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
+        showBlueProgress();
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -101,13 +101,14 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                     }
                 }
                 coachOutdateViperListAdapter.update(coachViperBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }
@@ -119,7 +120,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -140,13 +141,15 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                     }
                 }
                 coachOutdateViperListAdapter.update(coachViperBeanList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
     }

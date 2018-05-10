@@ -46,6 +46,7 @@
                     android:hint="请输入姓名"
                     android:padding="2dp"
                     android:textColor="#333333"
+                    android:textCursorDrawable="@drawable/et_cursor"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -123,6 +124,7 @@
                     android:hint="请输入手机号码"
                     android:inputType="phone"
                     android:padding="2dp"
+                    android:textCursorDrawable="@drawable/et_cursor"
                     android:textColor="#333333"
                     android:textSize="14sp" />
             </LinearLayout>

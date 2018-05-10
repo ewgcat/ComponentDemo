@@ -23,6 +23,9 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CoachHuiFangInfo;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.coach.huifang.task.adapter.CoachHuiFangTaskAdapter;
 import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangInfo;
 import com.yijian.staff.mvp.huiji.huifang.task.adapter.HuiFangTaskAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -44,14 +47,13 @@ import java.util.List;
  * time: 2018/3/5 19:39:24
  */
 @SuppressLint("ValidFragment")
-public class BaseHuiFangTaskFragment extends Fragment {
-
+public class BaseHuiFangTaskFragment extends MvcBaseFragment {
 
 
     private RefreshLayout refreshLayout;
-    private List<HuiFangInfo> huiFangInfoList = new ArrayList<>();
+    private List<HuiFangInfo> coachHuiFangInfoList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private HuiFangTaskAdapter huiFangTaskAdapter;
+    private HuiFangTaskAdapter coachHuiFangTaskAdapter;
     private Context context;
     protected int viewId;
     private int type;
@@ -71,11 +73,16 @@ public class BaseHuiFangTaskFragment extends Fragment {
         super();
     }
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(defaultViewId, container, false);
-        initComponent(view);
-        return view;
+    public int getLayoutId() {
+        return defaultViewId;
+    }
+
+    @Override
+    public void initView() {
+        initComponent(rootView);
     }
 
     @Override
@@ -108,18 +115,19 @@ public class BaseHuiFangTaskFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rlv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        huiFangTaskAdapter=new HuiFangTaskAdapter(context,huiFangInfoList,type);
-        recyclerView.setAdapter(huiFangTaskAdapter);
+        coachHuiFangTaskAdapter=new HuiFangTaskAdapter(context,coachHuiFangInfoList,type);
+        recyclerView.setAdapter(coachHuiFangTaskAdapter);
     }
 
     public void refresh() {
         pageNum = 1;
         pageSize = 10;
-        huiFangInfoList.clear();
+        coachHuiFangInfoList.clear();
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -133,18 +141,20 @@ public class BaseHuiFangTaskFragment extends Fragment {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         HuiFangInfo coachViperBean = new HuiFangInfo(jsonObject);
-                        huiFangInfoList.add(coachViperBean);
+                        coachHuiFangInfoList.add(coachViperBean);
                     } catch (JSONException e) {
 
 
                     }
                 }
-                huiFangTaskAdapter.update(huiFangInfoList);
+                coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
+                hideBlueProgress();
             }
         });
     }
@@ -155,6 +165,7 @@ public class BaseHuiFangTaskFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -167,13 +178,14 @@ public class BaseHuiFangTaskFragment extends Fragment {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         HuiFangInfo coachViperBean = new HuiFangInfo(jsonObject);
-                        huiFangInfoList.add(coachViperBean);
+                        coachHuiFangInfoList.add(coachViperBean);
                     } catch (JSONException e) {
 
 
                     }
                 }
-                huiFangTaskAdapter.update(huiFangInfoList);
+                coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
             }
 
             @Override
@@ -181,10 +193,10 @@ public class BaseHuiFangTaskFragment extends Fragment {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
             }
         });
     }
-
 
 
 }

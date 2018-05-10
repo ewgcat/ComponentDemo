@@ -82,13 +82,13 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
         }
 
         public void bindView(int position) {
-            //        Logger.i("ClassListAdapter", "position: " + position);
-            if (clickIndex == position) {
-                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-
-            } else {
+//            //        Logger.i("ClassListAdapter", "position: " + position);
+//            if (clickIndex == position) {
+//                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
+//
+//            } else {
                 itemView.setBackgroundResource(R.drawable.white_bg);
-            }
+//            }
 
             CardInfo goodsInfo = mGoodsInfoList.get(position);
             tvGoodsName.setText(goodsInfo.getCardName());

@@ -27,7 +27,6 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.CardsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.OptionDialog;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 
 
 import java.util.ArrayList;

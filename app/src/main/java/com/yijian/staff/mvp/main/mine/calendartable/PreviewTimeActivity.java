@@ -65,6 +65,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
                 }*/
             }
         }).build();
+        timePickerView.show();
     }
 
     @OnClick({R.id.rel_start,R.id.rel_end})

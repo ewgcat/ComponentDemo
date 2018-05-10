@@ -233,19 +233,15 @@
         <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.resourceallocation.huiji.HuiJiRescourceAllocationActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.resourceallocation.huijileader.index.HuiJiLeaderResourceIndexActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.resourceallocation.huijileader.detail.ResourceDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.main.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />
@@ -276,6 +272,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.main.mine.calendartable.CalendarSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.main.mine.calendartable.PreviewTimeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.main.mine.editpassword.EditPasswordActivity"
@@ -576,11 +575,12 @@
         <activity
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.coach.detail.edit.CoachVipInfoEditActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity"></activity>
     </application>
 
 </manifest>

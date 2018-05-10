@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -19,9 +20,12 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +55,12 @@ public class AddPotentialActivity extends MvcBaseActivity {
     private OptionsPickerView optionsPickerView;
 
     private int sex = 1;//1 男  2女
+    private List<String> healthStatusList = new ArrayList<>(); //身体状态
+    private List<String> fitnessGoalList = new ArrayList<>(); //健身目的
+    private List<String> fitnessHobbyList = new ArrayList<>(); //健身爱好
+    private List<String> hobbyList = new ArrayList<>(); //兴趣爱好
+    private List<String> userCarList = new ArrayList<>(); //使用车辆
+
 
 
     @Override
@@ -74,6 +84,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
             }
         });
 
+        downSourceFromService();
 
         ArrayList<String> sexDescList = new ArrayList<>();
         sexDescList.add("男");
@@ -160,21 +171,109 @@ public class AddPotentialActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_body_status:
+                manualPickedView(healthStatusList, "", tvBodyStatus);
                 break;
             case R.id.tv_fithobby:
+                manualPickedView(fitnessHobbyList, "", tvFithobby);
                 break;
             case R.id.tv_hobby:
+                manualPickedView(hobbyList, "", tvHobby);
                 break;
             case R.id.tv_sex:
                 hideKeyBoard(view);
                 optionsPickerView.show();
                 break;
             case R.id.tv_fitness_goal:
+                manualPickedView(fitnessGoalList, "", tvFitnessGoal);
                 break;
             case R.id.tv_car_name:
+                manualPickedView(userCarList, "", tvCarName);
                 break;
         }
     }
 
+    /**
+     * 选项弹出框
+     *
+     * @param opts
+     * @param defaultValue
+     * @param tv_widget
+     */
+    private void manualPickedView(List<String> opts, String defaultValue, TextView tv_widget) {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                tv_widget.setText(opts.get(options1));
+            }
+        }).build();
+
+        pvNoLinkOptions.setNPicker(opts, null, null);
+        pvNoLinkOptions.setSelectOptions(opts.indexOf(defaultValue));
+        pvNoLinkOptions.show();
+    }
+
+
+    /**
+     * 从服务器上拉去字典数据
+     */
+    public void downSourceFromService() {
+
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                try {
+
+
+                    //用车价格
+                    JSONObject ycjz = result.getJSONObject("YCJZ");
+                    JSONArray ycjzJsonArray = ycjz.getJSONArray("items");
+                    for (int j = 0; j < ycjzJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) ycjzJsonArray.get(j);
+                        userCarList.add(itemJsonObj.getString("dictItemName"));
+                    }
+
+                    //爱好
+                    JSONObject xqah = result.getJSONObject("XQAH");
+                    JSONArray xqahJsonArray = xqah.getJSONArray("items");
+                    for (int j = 0; j < xqahJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) xqahJsonArray.get(j);
+                        hobbyList.add(itemJsonObj.getString("dictItemName"));
+                    }
+
+                    //健身目的
+                    JSONObject jsmd = result.getJSONObject("JSMD");
+                    JSONArray jsmdJsonArray = jsmd.getJSONArray("items");
+                    for (int j = 0; j < jsmdJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) jsmdJsonArray.get(j);
+                        fitnessGoalList.add(itemJsonObj.getString("dictItemName"));
+                    }
+
+                    //健身爱好
+                    JSONObject ydah = result.getJSONObject("YDAH");
+                    JSONArray ydahJsonArray = ydah.getJSONArray("items");
+                    for (int j = 0; j < ydahJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) ydahJsonArray.get(j);
+                        fitnessHobbyList.add(itemJsonObj.getString("dictItemName"));
+                    }
+
+                    //身体状态
+                    JSONObject stzt = result.getJSONObject("STZT");
+                    JSONArray stztJsonArray = stzt.getJSONArray("items");
+                    for (int j = 0; j < stztJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) stztJsonArray.get(j);
+                        healthStatusList.add(itemJsonObj.getString("dictItemName"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(AddPotentialActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

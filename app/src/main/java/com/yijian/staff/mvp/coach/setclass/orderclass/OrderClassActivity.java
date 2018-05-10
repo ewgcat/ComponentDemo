@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassDayFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/15")
-public class OrderClassActivity extends AppCompatActivity implements OnChangeDateListener  {
+public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateListener  {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -60,11 +61,15 @@ public class OrderClassActivity extends AppCompatActivity implements OnChangeDat
     OnChangeDateListener onChangeDateListener;
     CalendarDay currentDay;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_class);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_order_class;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initView();
     }

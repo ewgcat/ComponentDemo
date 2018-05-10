@@ -19,6 +19,7 @@ import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -43,7 +44,7 @@ import butterknife.ButterKnife;
 /**
  * 所有私教课备课
  */
-public class PrepareAllLessonActivity extends AppCompatActivity {
+public class PrepareAllLessonActivity extends MvcBaseActivity {
 
     @BindView(R.id.tv_depart)
     TextView tv_depart;
@@ -72,11 +73,15 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
     String memberId;
 
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prepare_all_lesson);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_prepare_all_lesson;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         intView();
         initData();
@@ -198,6 +203,8 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
         map.put("dateStr", dateStr);
+        showBlueProgress();
+
         HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL, map, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -209,11 +216,14 @@ public class PrepareAllLessonActivity extends AppCompatActivity {
                     Toast.makeText(PrepareAllLessonActivity.this,"暂无数据",Toast.LENGTH_SHORT).show();
                     nestScrollView.setVisibility(View.GONE);
                 }
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
-                Log.e("Test",msg);
+                showToast(msg);
+                hideBlueProgress();
+
             }
         });
     }

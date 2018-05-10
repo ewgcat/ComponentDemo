@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
 import com.yijian.staff.mvp.coach.setclass.bean.PrivateShangKeBean;
@@ -34,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OpenLessonNewActivity extends AppCompatActivity {
+public class OpenLessonNewActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv_open_lesson)
     RecyclerView rv_open_lesson;
@@ -63,11 +64,15 @@ public class OpenLessonNewActivity extends AppCompatActivity {
         return punchStatus;
     }
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_lesson_new);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_open_lesson_new;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initView();
         loadData();
     }

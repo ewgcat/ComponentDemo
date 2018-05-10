@@ -24,6 +24,7 @@ import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachTodayViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.coach.viperlist.filter.CoachViperFilterBean;
@@ -48,7 +49,7 @@ import io.reactivex.functions.Consumer;
  * 今日来访
  */
 
-public class CoachVipTodayVisitFragment extends Fragment {
+public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
@@ -69,12 +70,16 @@ public class CoachVipTodayVisitFragment extends Fragment {
         return coachVipTodayVisitFragment;
     }
 
-    @Nullable
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_vip_all_people_info,container,false);
-        initView(view);
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_vip_all_people_info;
+    }
+
+    @Override
+    public void initView() {
+        initView(rootView);
     }
 
     private void initView(View view){

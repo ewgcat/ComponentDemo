@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -69,7 +70,6 @@ public class CoachSearchActivity extends MvcBaseActivity {
     private CoachSearchViperListAdapter adapter;
     private SearchKeyAdapter searchKeyAdapter;
     private List<SearchKey> searchList;
-
 
 
     @Override
@@ -192,7 +192,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
-
+            showBlueProgress();
             HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
@@ -218,6 +218,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
                     }
 
                     adapter.update(viperBeanList);
+                    hideBlueProgress();
 
 
                 }
@@ -226,7 +227,9 @@ public class CoachSearchActivity extends MvcBaseActivity {
                 public void onFail(String msg) {
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    Toast.makeText(CoachSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    showToast(msg);
+                    hideBlueProgress();
+
                 }
             });
         }
@@ -247,8 +250,9 @@ public class CoachSearchActivity extends MvcBaseActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
+            showBlueProgress();
 
-            HttpManager.searchViperByCoach( params, new ResultJSONObjectObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
 
@@ -270,6 +274,8 @@ public class CoachSearchActivity extends MvcBaseActivity {
                         }
                     }
                     adapter.update(viperBeanList);
+                    hideBlueProgress();
+
                 }
 
                 @Override
@@ -277,7 +283,9 @@ public class CoachSearchActivity extends MvcBaseActivity {
                     clearEditTextFocus();
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                    Toast.makeText(CoachSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    showToast(msg);
+                    hideBlueProgress();
+
                 }
             });
         }
@@ -287,10 +295,10 @@ public class CoachSearchActivity extends MvcBaseActivity {
 
     public void initSearchData() {
         searchList = DBManager.getInstance().querySearchList();
-        if (searchList!=null&&searchList.size()>0){
+        if (searchList != null && searchList.size() > 0) {
             searchKeyAdapter.update(searchList);
             lin_search_container.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             lin_search_container.setVisibility(View.GONE);
         }
     }

@@ -37,7 +37,6 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
     EditText etRePasswd;
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_forget_password;
@@ -63,19 +62,19 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
             case R.id.tv_getcode:
 
                 if (TextUtils.isEmpty(account) || TextUtils.isEmpty(telephone)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "账号和手机号不能为空", Toast.LENGTH_SHORT).show();
+                    showToast("账号和手机号不能为空!");
                     return;
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
                         tvGetcode.setEnabled(false);
                         CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(tvGetcode, 30000, 1000);
                         countDownTimerUtils.start();
+                        showBlueProgress();
                         HttpManager.getCode(account, telephone, new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {
                                 showToast("验证码已发送!");
-
-
+                                hideBlueProgress();
                             }
 
                             @Override
@@ -84,62 +83,64 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                                 countDownTimerUtils.cancel();
                                 countDownTimerUtils.onFinish();
                                 showToast(msg);
+                                hideBlueProgress();
 
                             }
                         });
                     } else {
-                        Toast.makeText(ForgetPasswordActivity.this, "输入的手机号不正确,请重新输入！", Toast.LENGTH_SHORT).show();
+                        showToast("输入的手机号不正确,请重新输入!");
+
                     }
                 }
 
                 break;
             case R.id.btn_send:
                 if (TextUtils.isEmpty(account)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "账号不能为空", Toast.LENGTH_SHORT).show();
+                    showToast("账号不能为空!");
                     return;
                 }
                 if (TextUtils.isEmpty(telephone)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
+                    showToast("手机号不能为空!");
                     return;
                 }
                 if (TextUtils.isEmpty(verificationCode)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+                    showToast("验证码不能为空!");
                     return;
                 }
                 if (TextUtils.isEmpty(newPwd) || TextUtils.isEmpty(confirmPwd)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    showToast("密码不能为空!");
                     return;
                 }
                 if (!newPwd.equals(confirmPwd)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "2次输入的密码不同", Toast.LENGTH_SHORT).show();
+                    showToast("2次输入的密码不同!");
                     return;
                 }
                 if (!CommonUtil.isPassWordFormat(newPwd)) {
-
-                    Toast.makeText(ForgetPasswordActivity.this, "新密码格式不正确,密码是数字和字母的6-20位组合！", Toast.LENGTH_SHORT).show();
+                    showToast("新密码格式不正确,密码是数字和字母的6-20位组合！");
                     return;
                 }
                 if (!CommonUtil.isPassWordFormat(confirmPwd)) {
-                    Toast.makeText(ForgetPasswordActivity.this, "确认密码格式不正确，密码是数字和字母的6-20位组合！！", Toast.LENGTH_SHORT).show();
+                    showToast("确认密码格式不正确，密码是数字和字母的6-20位组合！");
                     return;
                 }
                 if (CommonUtil.isPhoneFormat(telephone)) {
-
+                    showBlueProgress();
                     HttpManager.resetPassword(account, telephone, verificationCode, newPwd, confirmPwd, new ResultJSONObjectObserver() {
                         @Override
                         public void onSuccess(JSONObject result) {
+                            hideBlueProgress();
                             finish();
                         }
 
                         @Override
                         public void onFail(String msg) {
-                            Toast.makeText(ForgetPasswordActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            showToast(msg);
+                            hideBlueProgress();
                         }
                     });
                 } else {
-                    Toast.makeText(ForgetPasswordActivity.this, "输入的手机号不正确,请重新输入！", Toast.LENGTH_SHORT).show();
+                    showToast("输入的手机号不正确,请重新输入！");
                 }
-
                 break;
         }
     }

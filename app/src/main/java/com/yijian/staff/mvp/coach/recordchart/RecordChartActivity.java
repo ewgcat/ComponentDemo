@@ -74,7 +74,7 @@ public class RecordChartActivity extends MvcBaseActivity {
         pageNum = 1;
         pageSize = 2;
         classRecordBeanArrayList.clear();
-
+showBlueProgress();
         HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -94,12 +94,15 @@ public class RecordChartActivity extends MvcBaseActivity {
                     Logger.i("TEST", e.getMessage());
                 }
                 adapter.update(classRecordBeanArrayList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
                 showToast(msg);
+                hideBlueProgress();
+
             }
         });
 
@@ -108,6 +111,7 @@ public class RecordChartActivity extends MvcBaseActivity {
 
 
     public void loadMore() {
+        showBlueProgress();
         HttpManager.getCoachVipCourseListList(memberId,pageNum, pageSize, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -128,6 +132,8 @@ public class RecordChartActivity extends MvcBaseActivity {
                     Logger.i("TEST", e.getMessage());
                 }
                 adapter.update(classRecordBeanArrayList);
+                hideBlueProgress();
+
             }
 
             @Override
@@ -135,6 +141,8 @@ public class RecordChartActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 showToast(msg);
+                hideBlueProgress();
+
             }
         });
 

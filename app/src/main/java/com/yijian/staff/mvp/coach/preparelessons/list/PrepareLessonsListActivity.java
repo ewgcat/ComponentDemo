@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -33,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/14")
-public class PrepareLessonsListActivity extends AppCompatActivity {
+public class PrepareLessonsListActivity extends MvcBaseActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -46,12 +47,14 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
     private List<PrepareLessonsBean> prepareLessonsBeans = new ArrayList<>();
     private PrepareLessonsListAdapter adapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bei_ke_list);
-        ButterKnife.bind(this);
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_bei_ke_list;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initView();
         refresh();
@@ -83,9 +86,7 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                pageSize = 1;
-                prepareLessonsBeans.clear();
+
                 refresh();
             }
 
@@ -98,10 +99,13 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
 
 
     private void refresh() {
+        pageNum = 1;
+        pageSize = 1;
+        prepareLessonsBeans.clear();
         Map<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.INDEX_COACH_QUERY_PREPARE_LESSON_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -112,12 +116,14 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
                 adapter.resetList(prepareLessonsBeans);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(PrepareLessonsListActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
 
@@ -128,7 +134,7 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-
+        showBlueProgress();
         HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -140,13 +146,15 @@ public class PrepareLessonsListActivity extends AppCompatActivity {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
                 adapter.resetList(prepareLessonsBeans);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(PrepareLessonsListActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
             }
         });
 

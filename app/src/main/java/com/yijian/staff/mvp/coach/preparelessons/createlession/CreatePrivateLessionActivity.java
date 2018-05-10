@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ActionBean;
 import com.yijian.staff.bean.DepartBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
@@ -33,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CreatePrivateLessionActivity extends AppCompatActivity implements MyDepartView.OnDepartOprationListener {
+public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyDepartView.OnDepartOprationListener {
 
     @BindView(R.id.view_depart)
     MyDepartView view_depart;
@@ -58,11 +59,14 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
         return isEdit;
     }
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_private_lession);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_create_private_lession;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initData();
     }
@@ -120,16 +124,19 @@ public class CreatePrivateLessionActivity extends AppCompatActivity implements M
             contentListBeans.add(contentListBean);
         }
         privatePrepareLessonBody.setContentList(contentListBeans);
+        showBlueProgress();
         HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(CreatePrivateLessionActivity.this, "创建备课成功", Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+                showToast("创建备课成功");
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(CreatePrivateLessionActivity.this, "创建备课失败", Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+                showToast("创建备课失败");
             }
         });
     }

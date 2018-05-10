@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.widget.NavigationBar2;
@@ -14,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
+public class CoachClassBaoJiaCompleteActivity extends MvcBaseActivity {
 
     @BindView(R.id.tv_goods_name)
     TextView tvGoodsName;
@@ -47,19 +48,21 @@ public class CoachClassBaoJiaCompleteActivity extends AppCompatActivity {
     private String memberName;
     private String memberId;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_class_bao_jia_complete);
-        ButterKnife.bind(this);
 
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_coach_class_bao_jia_complete;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.no_search_bar_complete_navigationbar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("订单详情");
         memberId = getIntent().getStringExtra("memberId");
         memberName = getIntent().getStringExtra("memberName");
-
     }
 
     @OnClick(R.id.ll_post)

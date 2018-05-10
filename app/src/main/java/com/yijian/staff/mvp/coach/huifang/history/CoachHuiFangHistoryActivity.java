@@ -100,6 +100,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type",   "0");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -120,12 +121,14 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
                     }
                 }
                 huiFangHistoryAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
                 showToast(msg);
+                hideBlueProgress();
             }
         });
     }
@@ -136,6 +139,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type",  "0");
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -149,12 +153,15 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         CoachHuiFangInfo coachViperBean = new CoachHuiFangInfo(jsonObject);
                         coachHuiFangInfoList.add(coachViperBean);
+
                     } catch (JSONException e) {
 
 
                     }
                 }
                 huiFangHistoryAdapter.update(coachHuiFangInfoList);
+                hideBlueProgress();
+
             }
 
             @Override
@@ -162,6 +169,8 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 showToast(msg);
+                hideBlueProgress();
+
             }
         });
     }

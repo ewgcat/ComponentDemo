@@ -241,15 +241,18 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
                     list.add(menuBean);
                 }
         }
+        showBlueProgress();
         MenuHelper.savePreferFrequentlyList(frequentlyList);
         HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
+                hideBlueProgress();
             }
         });
     }

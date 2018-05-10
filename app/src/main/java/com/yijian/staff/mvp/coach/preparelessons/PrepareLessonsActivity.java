@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TempBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.preparelessons.all.PrepareAllLessonActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.CreatePrivateLessionActivity;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.PrepareLessonDetailActivity;
@@ -33,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PrepareLessonsActivity extends AppCompatActivity {
+public class PrepareLessonsActivity extends MvcBaseActivity {
 
     @BindView(R.id.tv_memberName)
     TextView tv_memberName;
@@ -55,11 +56,15 @@ public class PrepareLessonsActivity extends AppCompatActivity {
     TempleAdater templeAdater;
     PrepareLessonsBean prepareLessonsBean;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prepare_lessons);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_prepare_lessons;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initView();
         loadData();
@@ -96,17 +101,21 @@ public class PrepareLessonsActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        showBlueProgress();
         HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
                 tempBeans = com.alibaba.fastjson.JSONObject.parseArray(result.toString(), TempBean.class);
                 templeAdater.notifyDataSetChanged();
                 tv_template.setText("/" + tempBeans.size());
+                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(PrepareLessonsActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                hideBlueProgress();
+
             }
 
         });

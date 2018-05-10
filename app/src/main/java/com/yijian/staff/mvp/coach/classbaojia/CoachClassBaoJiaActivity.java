@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
@@ -49,7 +50,7 @@ import butterknife.OnClick;
  * （教练）产品报价
  */
 @Route(path = "/test/18")
-public class CoachClassBaoJiaActivity extends AppCompatActivity {
+public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.tv_zong_he)
@@ -74,12 +75,14 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
     private int pageSize = 4;
     private int pages;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_goods_bao_jia);
-        ButterKnife.bind(this);
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_coach_goods_bao_jia;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initView();
     }
 
@@ -183,6 +186,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
 
+        showBlueProgress();
         HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -200,6 +204,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                         mClassInfoList.add(classInfo);
                     }
                     classListAdapter.update(mClassInfoList);
+                    hideBlueProgress();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -209,6 +214,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+
             }
         });
 
@@ -233,7 +240,7 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
             body.setLcourseNum(coachClassFilterBean.getLcourseNum());
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
-
+        showBlueProgress();
         HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -251,6 +258,8 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                         mClassInfoList.add(classInfo);
                     }
                     classListAdapter.update(mClassInfoList);
+                    hideBlueProgress();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -262,10 +271,11 @@ public class CoachClassBaoJiaActivity extends AppCompatActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                hideBlueProgress();
+
             }
         });
     }
-
 
 
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan})

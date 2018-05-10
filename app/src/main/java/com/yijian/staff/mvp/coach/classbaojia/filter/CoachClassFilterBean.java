@@ -75,4 +75,17 @@ public class CoachClassFilterBean {
     public void setIndate(String indate) {
         this.indate = indate;
     }
+
+    @Override
+    public String toString() {
+        return "CoachClassFilterBean{" +
+                "lcourseNum='" + lcourseNum + '\'' +
+                ", rcourseNum='" + rcourseNum + '\'' +
+                ", lconsumingMinute='" + lconsumingMinute + '\'' +
+                ", rconsumingMinute='" + rconsumingMinute + '\'' +
+                ", ltotalPrice='" + ltotalPrice + '\'' +
+                ", rtotalPrice='" + rtotalPrice + '\'' +
+                ", indate='" + indate + '\'' +
+                '}';
+    }
 }

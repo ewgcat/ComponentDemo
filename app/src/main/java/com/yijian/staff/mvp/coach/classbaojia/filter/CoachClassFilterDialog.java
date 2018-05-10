@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,13 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachClassFilterDialog extends Dialog implements DialogInterface.OnDismissListener {
+public class CoachClassFilterDialog extends Dialog {
 
     private static String TAG = CoachClassFilterDialog.class.getSimpleName();
 
@@ -97,7 +99,7 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         this.setContentView(contentView);
 
         ButterKnife.bind(this, contentView);
-        this.setOnDismissListener(this);
+
 
 
         initView();
@@ -251,9 +253,94 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
                 resetView();
                 break;
             case R.id.empty_view:
-            case R.id.tv_confirm:
+                setResultForNoSure();
                 dismiss();
                 break;
+
+            case R.id.tv_confirm:
+                setResultForSure();
+                dismiss();
+                break;
+        }
+    }
+
+    private void setResultForNoSure() {
+        CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
+        if (classJieShu == 1) {
+            coachClassFilterBean.setLcourseNum("0");
+            coachClassFilterBean.setRcourseNum("10");
+        } else if (classJieShu == 2) {
+            coachClassFilterBean.setLcourseNum("10");
+            coachClassFilterBean.setRcourseNum("30");
+        } else if (classJieShu == 3) {
+            coachClassFilterBean.setLcourseNum("30");
+            coachClassFilterBean.setRcourseNum(null);
+        } else {
+            coachClassFilterBean.setLcourseNum(null);
+            coachClassFilterBean.setRcourseNum(null);
+        }
+        if (price == 1) {
+            coachClassFilterBean.setLtotalPrice("0");
+            coachClassFilterBean.setRtotalPrice("1000");
+        } else if (price == 2) {
+            coachClassFilterBean.setLtotalPrice("1000");
+            coachClassFilterBean.setRtotalPrice("2000");
+        } else if (price == 3) {
+            coachClassFilterBean.setLtotalPrice("2000");
+            coachClassFilterBean.setRtotalPrice("3000");
+        } else if (price == 4) {
+            coachClassFilterBean.setLtotalPrice("3000");
+            coachClassFilterBean.setRtotalPrice("4000");
+        } else {
+            coachClassFilterBean.setLtotalPrice(null);
+            coachClassFilterBean.setRtotalPrice(null);
+        }
+        if (classLongTime == 1) {
+            coachClassFilterBean.setLconsumingMinute("0");
+            coachClassFilterBean.setRconsumingMinute("60");
+        } else if (classLongTime == 2) {
+            coachClassFilterBean.setLconsumingMinute("60");
+            coachClassFilterBean.setRconsumingMinute("120");
+        } else if (classLongTime == 3) {
+            coachClassFilterBean.setLconsumingMinute("120");
+            coachClassFilterBean.setRconsumingMinute("180");
+        } else if (classLongTime == 4) {
+            coachClassFilterBean.setLconsumingMinute("180");
+            coachClassFilterBean.setRconsumingMinute(null);
+        } else {
+            coachClassFilterBean.setLconsumingMinute(null);
+            coachClassFilterBean.setRconsumingMinute(null);
+        }
+
+        if (classYouXiaoQi == 1) {
+            coachClassFilterBean.setIndate("3");
+        } else if (classYouXiaoQi == 2) {
+            coachClassFilterBean.setIndate("6");
+        } else if (classYouXiaoQi == 3) {
+            coachClassFilterBean.setIndate("12");
+        } else {
+            coachClassFilterBean.setIndate(null);
+        }
+
+
+        if (onDismissListener != null) {
+            String indate = coachClassFilterBean.getIndate();
+            String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
+            String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
+            String lcourseNum = coachClassFilterBean.getLcourseNum();
+            String rcourseNum = coachClassFilterBean.getRcourseNum();
+            String ltotalPrice = coachClassFilterBean.getLtotalPrice();
+            String rtotalPrice = coachClassFilterBean.getRtotalPrice();
+            if (TextUtils.isEmpty(indate)
+                    &&TextUtils.isEmpty(lconsumingMinute)
+                    &&TextUtils.isEmpty(rconsumingMinute)
+                    &&TextUtils.isEmpty(lcourseNum)
+                    &&TextUtils.isEmpty(rcourseNum)
+                    &&TextUtils.isEmpty(ltotalPrice)
+                    &&TextUtils.isEmpty(rtotalPrice)
+                    ){
+                onDismissListener.onDismiss(null);
+            }
         }
     }
 
@@ -362,8 +449,9 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
     }
 
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
+
+
+    private void setResultForSure() {
         CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
         if (classJieShu == 1) {
             coachClassFilterBean.setLcourseNum("0");
@@ -373,10 +461,10 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setRcourseNum("30");
         } else if (classJieShu == 3) {
             coachClassFilterBean.setLcourseNum("30");
-            coachClassFilterBean.setRcourseNum("null");
+            coachClassFilterBean.setRcourseNum(null);
         } else {
             coachClassFilterBean.setLcourseNum(null);
-            coachClassFilterBean.setRcourseNum("null");
+            coachClassFilterBean.setRcourseNum(null);
         }
         if (price == 1) {
             coachClassFilterBean.setLtotalPrice("0");
@@ -391,8 +479,8 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setLtotalPrice("3000");
             coachClassFilterBean.setRtotalPrice("4000");
         } else {
-            coachClassFilterBean.setLtotalPrice("null");
-            coachClassFilterBean.setRtotalPrice("null");
+            coachClassFilterBean.setLtotalPrice(null);
+            coachClassFilterBean.setRtotalPrice(null);
         }
         if (classLongTime == 1) {
             coachClassFilterBean.setLconsumingMinute("0");
@@ -405,10 +493,10 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
             coachClassFilterBean.setRconsumingMinute("180");
         } else if (classLongTime == 4) {
             coachClassFilterBean.setLconsumingMinute("180");
-            coachClassFilterBean.setRconsumingMinute("null");
+            coachClassFilterBean.setRconsumingMinute(null);
         } else {
-            coachClassFilterBean.setLconsumingMinute("null");
-            coachClassFilterBean.setRconsumingMinute("null");
+            coachClassFilterBean.setLconsumingMinute(null);
+            coachClassFilterBean.setRconsumingMinute(null);
         }
 
         if (classYouXiaoQi == 1) {
@@ -418,11 +506,31 @@ public class CoachClassFilterDialog extends Dialog implements DialogInterface.On
         } else if (classYouXiaoQi == 3) {
             coachClassFilterBean.setIndate("12");
         } else {
-            coachClassFilterBean.setIndate("null");
+            coachClassFilterBean.setIndate(null);
         }
 
+
         if (onDismissListener != null) {
-            onDismissListener.onDismiss(coachClassFilterBean);
+            String indate = coachClassFilterBean.getIndate();
+            String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
+            String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
+            String lcourseNum = coachClassFilterBean.getLcourseNum();
+            String rcourseNum = coachClassFilterBean.getRcourseNum();
+            String ltotalPrice = coachClassFilterBean.getLtotalPrice();
+            String rtotalPrice = coachClassFilterBean.getRtotalPrice();
+            if (TextUtils.isEmpty(indate)
+                    &&TextUtils.isEmpty(lconsumingMinute)
+                    &&TextUtils.isEmpty(rconsumingMinute)
+                    &&TextUtils.isEmpty(lcourseNum)
+                    &&TextUtils.isEmpty(rcourseNum)
+                    &&TextUtils.isEmpty(ltotalPrice)
+                    &&TextUtils.isEmpty(rtotalPrice)
+                    ){
+                onDismissListener.onDismiss(null);
+            }else {
+                onDismissListener.onDismiss(coachClassFilterBean);
+
+            }
         }
     }
 

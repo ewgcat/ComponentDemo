@@ -93,7 +93,15 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
             @Override
             public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
-                refresh(coachClassFilterBean);
+                if (coachClassFilterBean!=null){
+                    refresh(coachClassFilterBean);
+                }else {
+                    refresh(coachClassFilterBean);
+                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+                    drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                }
             }
         });
         selectZongHe();
@@ -344,6 +352,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     }
 
     private void selectZongHe() {
+
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             isSortByPrice = -1;
             refresh(coachClassFilterBean);

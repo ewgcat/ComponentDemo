@@ -69,7 +69,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Log.e(TAG, "onCreate: " );
         Bundle arguments = getArguments();
 
         String cardType = arguments.getString("cardType");
@@ -248,10 +247,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-//        conditionBody.setStartPrice(null);
-//        conditionBody.setEndPrice(null);
-//        conditionBody.setCardType(null);
-//        conditionBody.setVenueName(null);
     }
 
     @Override
@@ -318,8 +313,22 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 }
                 break;
             case R.id.tv_confirm:
-                if (onDismissListener != null)
-                    onDismissListener.onDismiss(conditionBody);
+                if (onDismissListener != null){
+                    String cardName = conditionBody.getCardName();
+                    String cardType = conditionBody.getCardType();
+                    String endPrice = conditionBody.getEndPrice();
+                    String startPrice = conditionBody.getStartPrice();
+                    String venueName = conditionBody.getVenueName();
+                    if (TextUtils.isEmpty(cardName)
+                            &&TextUtils.isEmpty(cardType)
+                            &&TextUtils.isEmpty(startPrice)
+                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(endPrice)){
+                        onDismissListener.onDismiss(null);
+                    }else {
+                        onDismissListener.onDismiss(conditionBody);
+                    }
+                }
                 dismiss();
                 break;
         }

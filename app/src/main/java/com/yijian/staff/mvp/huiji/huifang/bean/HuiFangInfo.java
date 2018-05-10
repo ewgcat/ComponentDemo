@@ -1,15 +1,18 @@
 package com.yijian.staff.mvp.huiji.huifang.bean;
 
+import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 /**
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/3/5 16:22:37
  */
-public class HuiFangInfo {
+public class HuiFangInfo implements Serializable {
 
 
     /**
@@ -318,4 +321,9 @@ public class HuiFangInfo {
     public void setRecentlyFitTime(Long recentlyFitTime) {
         this.recentlyFitTime = recentlyFitTime;
     }
+
+    public int getGenderImg(){
+        return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
+    }
+
 }

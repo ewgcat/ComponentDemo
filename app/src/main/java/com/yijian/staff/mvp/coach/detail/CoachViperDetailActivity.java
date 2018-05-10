@@ -221,7 +221,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                     if (customerServiceInfo!=null){
                         intent.putExtra("source", customerServiceInfo.getUserChannel());
                     }
-                    startActivity(intent);
+                    startActivityForResult(intent,1111);
                 }
 
                 break;
@@ -354,7 +354,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1) {
+        if (resultCode == 1234) {
             loadData(memberId);
         }
     }

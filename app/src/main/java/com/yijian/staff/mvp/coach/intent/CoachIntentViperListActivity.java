@@ -50,7 +50,7 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
 
     private int pageNum;
     private int pages;
-    private int pageSize = 1;
+    private int pageSize = 10;
 
 
     @Override

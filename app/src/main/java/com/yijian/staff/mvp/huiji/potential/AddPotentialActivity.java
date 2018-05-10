@@ -225,10 +225,10 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
 
                     //用车价格
-                    JSONObject ycjz = result.getJSONObject("YCJZ");
-                    JSONArray ycjzJsonArray = ycjz.getJSONArray("items");
-                    for (int j = 0; j < ycjzJsonArray.length(); j++) {
-                        JSONObject itemJsonObj = (JSONObject) ycjzJsonArray.get(j);
+                    JSONObject ycpp = result.getJSONObject("YCPP");
+                    JSONArray ycppJsonArray = ycpp.getJSONArray("items");
+                    for (int j = 0; j < ycppJsonArray.length(); j++) {
+                        JSONObject itemJsonObj = (JSONObject) ycppJsonArray.get(j);
                         userCarList.add(itemJsonObj.getString("dictItemName"));
                     }
 

@@ -305,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="18dp"
                     android:layout_marginRight="18dp"
-                    android:text="使用车辆" />
+                    android:text="用车品牌" />
 
 
 

@@ -94,7 +94,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
         materialCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-                loadData(date.getYear() + "-" + date.getMonth());
+                loadData(date.getYear() + "-" + (date.getMonth()+1));
             }
         });
         //编辑日历属性
@@ -142,14 +142,14 @@ public class CalendarSettingActivity extends AppCompatActivity {
                     hasClassList = new ArrayList<CalendarDay>();
                     for (int i = 0; i < spaceTimeList.size(); i++) {
                         String[] spaceArray = spaceTimeList.get(i).split("-");
-                        CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1]), Integer.parseInt(spaceArray[2]));
+                        CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1])-1, Integer.parseInt(spaceArray[2]));
                         hasClassList.add(day);
                     }
 
                     disableAppointmentList = new ArrayList<CalendarDay>();
                     for (int i = 0; i < courseTimeList.size(); i++) {
                         String[] courseArray = courseTimeList.get(i).split("-");
-                        CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1]), Integer.parseInt(courseArray[2]));
+                        CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1])-1, Integer.parseInt(courseArray[2]));
                         disableAppointmentList.add(day);
                     }
 
@@ -204,7 +204,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.rel_disable_date: //设置不可约日期
                 CalendarDay calendarDay = materialCalendarView.getCurrentDate();
-                String strDate = calendarDay.getYear() + "-" + calendarDay.getMonth();
+                String strDate = calendarDay.getYear() + "-" + (calendarDay.getMonth()+1);
                 Intent intent1 = new Intent(this, EditNotPreviewActivity.class);
                 intent1.putExtra("date", strDate);
                 intent1.putStringArrayListExtra("spaceTimeList", spaceTimeList);

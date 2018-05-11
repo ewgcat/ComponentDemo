@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,6 +49,7 @@ public class EditNotPreviewActivity extends AppCompatActivity {
     private ArrayList<String> spaceTimeList = new ArrayList<>();
     //当日有课
     private ArrayList<String> courseTimeList = new ArrayList<>();
+    private String strDate;
 
     List<CalendarDay> hasClassList; //当日有课日期集合
     List<CalendarDay> disableAppointmentList; //不可预约日期集合
@@ -60,6 +62,7 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_not_preview);
         ButterKnife.bind(this);
+        strDate = getIntent().getStringExtra("date");
         initTitle();
         initData();
         initView();
@@ -89,17 +92,19 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         spaceTimeList = getIntent().getStringArrayListExtra("spaceTimeList");
         courseTimeList = getIntent().getStringArrayListExtra("courseTimeList");
 
+
+
         hasClassList = new ArrayList<CalendarDay>();
         for (int i = 0; i < spaceTimeList.size(); i++) {
             String[] spaceArray = spaceTimeList.get(i).split("-");
-            CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1]), Integer.parseInt(spaceArray[2]));
+            CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1])-1, Integer.parseInt(spaceArray[2]));
             hasClassList.add(day);
         }
 
         disableAppointmentList = new ArrayList<CalendarDay>();
         for (int i = 0; i < courseTimeList.size(); i++) {
             String[] courseArray = courseTimeList.get(i).split("-");
-            CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1]), Integer.parseInt(courseArray[2]));
+            CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1])-1, Integer.parseInt(courseArray[2]));
             disableAppointmentList.add(day);
         }
 
@@ -119,12 +124,18 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         materialCalendarView.invalidateDecorators();
         //编辑日历属性
         materialCalendarView.state().edit()
-                .setFirstDayOfWeek(Calendar.MONDAY)   //设置每周开始的第一天
                 .setMinimumDate(CalendarDay.from(2010, 4, 3))  //设置可以显示的最早时间
                 .setMaximumDate(CalendarDay.from(2020, 5, 12))//设置可以显示的最晚时间
                 .setCalendarDisplayMode(CalendarMode.MONTHS)//设置显示模式，可以显示月的模式，也可以显示周的模式
                 .commit();// 返回对象并保存
-
+        strDate = getIntent().getStringExtra("date");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        try {
+            materialCalendarView.setCurrentDate(simpleDateFormat.parse(strDate));
+            materialCalendarView.getCurrentDate();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -135,7 +146,7 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         List<String> selectDateList = new ArrayList<>();
         for (CalendarDay calendarDay : calendarSelectDayList) {
-            selectDateList.add(calendarDay.getYear() + "-" + calendarDay.getMonth() + "-" + calendarDay.getDay());
+            selectDateList.add(calendarDay.getYear() + "-" + (calendarDay.getMonth()+1) + "-" + calendarDay.getDay());
         }
         if (selectDateList.size() > 0) {
             map.put("date", selectDateList.toString().substring(1, selectDateList.toString().length() - 1));

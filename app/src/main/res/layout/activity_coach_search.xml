@@ -44,7 +44,6 @@
                 android:singleLine="true"
                 android:textColor="#666666"
                 android:textSize="14sp"
-                android:textCursorDrawable="@drawable/et_cursor"
                 />
 
         </LinearLayout>

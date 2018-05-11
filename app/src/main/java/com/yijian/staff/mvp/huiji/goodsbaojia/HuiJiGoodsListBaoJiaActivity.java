@@ -258,7 +258,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         if (mGoodsInfoList == null || mGoodsInfoList.size() == 0) return;
 
         if (priceUp) {
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             Collections.sort(mGoodsInfoList);
@@ -267,7 +267,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
         } else {
 
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 

@@ -61,7 +61,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -100,7 +100,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -136,7 +136,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -174,7 +174,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -208,7 +208,13 @@
                         android:textSize="14sp" />
 
                 </RelativeLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -240,7 +246,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -276,7 +282,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -314,7 +320,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -351,7 +357,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -388,7 +394,7 @@
                 </RelativeLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -425,7 +431,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
@@ -461,7 +467,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"

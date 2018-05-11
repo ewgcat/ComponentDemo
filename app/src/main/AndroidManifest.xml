@@ -580,7 +580,8 @@
             android:name=".mvp.coach.detail.edit.CoachVipInfoEditActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity"></activity>
+        <activity android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity" />
+        <activity android:name=".mvp.huiji.baojia.adapter.CardsBaoJiaActivity"></activity>
     </application>
 
 </manifest>

@@ -150,12 +150,22 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#666666"));
                     bodyCondition=new CardRequestBody();
+                    if (priceUp){
+                        bodyCondition.setIsSortByPrice(0);
+                    }else {
+                        bodyCondition.setIsSortByPrice(1);
+                    }
                 }else {
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
                     bodyCondition = body;
+                    if (priceUp){
+                        bodyCondition.setIsSortByPrice(0);
+                    }else {
+                        bodyCondition.setIsSortByPrice(1);
+                    }
                 }
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(4);

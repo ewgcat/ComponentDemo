@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
 
-
+        <View
+            android:id="@+id/empty_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="280dp"
@@ -35,10 +43,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="时间卡"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -49,10 +55,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="次数卡"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -70,10 +74,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="储值卡"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -84,10 +86,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="会员制卡"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -152,10 +152,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="2000-3000"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -166,10 +164,8 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-
                     android:text="3000以上"
                     android:textColor="#666666"
                     android:textSize="14sp" />
@@ -188,8 +184,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
@@ -202,53 +199,50 @@
 
                 </android.support.v7.widget.RecyclerView>
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="40dp"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_reset"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="重置"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/tv_confirm"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/blue"
-                        android:gravity="center"
-                        android:text="确定"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-
-
-                </LinearLayout>
             </RelativeLayout>
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_reset"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="重置"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
 
-</RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

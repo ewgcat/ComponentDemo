@@ -315,13 +315,11 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 break;
             case R.id.tv_confirm:
                 if (onDismissListener != null){
-                    String cardName = conditionBody.getCardName();
                     String cardType = conditionBody.getCardType();
                     String endPrice = conditionBody.getEndPrice();
                     String startPrice = conditionBody.getStartPrice();
                     String venueName = conditionBody.getVenueName();
-                    if (TextUtils.isEmpty(cardName)
-                            &&TextUtils.isEmpty(cardType)
+                    if (TextUtils.isEmpty(cardType)
                             &&TextUtils.isEmpty(startPrice)
                             &&TextUtils.isEmpty(venueName)
                             &&TextUtils.isEmpty(endPrice)){
@@ -335,20 +333,16 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
             case R.id.empty_view:
                 if (onDismissListener != null){
-                    resetCardType();
-                    resetPriseStyle();
-                    conditionBody.setStartPrice(null);
-                    conditionBody.setEndPrice(null);
-                    conditionBody.setCardType(null);
-                    conditionBody.setVenueName(null);
-                    List<VenueBean> list1 = optionAdapter.getList();
-                    if (list1 != null && list1.size() != 0) {
-                        for (int i = 0; i < list1.size(); i++) {
-                            list1.get(i).setSelect(false);
-                        }
-                        optionAdapter.notifyDataSetChanged();
+                    String cardType = conditionBody.getCardType();
+                    String endPrice = conditionBody.getEndPrice();
+                    String startPrice = conditionBody.getStartPrice();
+                    String venueName = conditionBody.getVenueName();
+                    if (TextUtils.isEmpty(cardType)
+                            &&TextUtils.isEmpty(startPrice)
+                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(endPrice)){
+                        onDismissListener.onDismiss(null);
                     }
-                    onDismissListener.onDismiss(null);
                 }
                 dismiss();
                 break;

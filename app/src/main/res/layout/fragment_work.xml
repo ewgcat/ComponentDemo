@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
+
     <LinearLayout
-        android:background="@mipmap/status_bar_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@mipmap/status_bar_bg" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -54,17 +55,15 @@
                         android:scaleType="fitCenter"
                         android:src="@mipmap/home_search" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_search"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
-                        android:background="@null"
-                        android:hint="输入会员名称，进行搜索"
-                        android:imeOptions="actionSearch"
-                        android:singleLine="true"
-                        android:textColor="#ffffff"
+
+                        android:text="输入会员名称，进行搜索"
+                        android:textColor="#999999"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -125,27 +124,27 @@
 
                 <LinearLayout
                     android:id="@+id/ll_jiedai"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_gravity="end"
-                    android:background="@drawable/white_solid_rect_bg"
                     android:layout_width="100dp"
-                    android:layout_height="30dp">
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/white_solid_rect_bg">
 
                     <TextView
-                        android:textColor="@color/blue"
-                        android:text="前往进行"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:text="前往进行"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp" />
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:layout_marginLeft="6dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="6dp"
                         android:src="@mipmap/home_enter" />
                 </LinearLayout>
             </LinearLayout>
@@ -160,31 +159,29 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="24dp"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="常 用"
                         android:textColor="#333333"
                         android:textSize="16sp" />
                     <!--<ImageView-->
-                        <!--android:src="@mipmap/home_all"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:id="@+id/iv_all_function"-->
-                        <!--android:layout_marginRight="16dp"-->
-                        <!--android:layout_width="20dp"-->
-                        <!--android:layout_height="20dp" />-->
+                    <!--android:src="@mipmap/home_all"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:id="@+id/iv_all_function"-->
+                    <!--android:layout_marginRight="16dp"-->
+                    <!--android:layout_width="20dp"-->
+                    <!--android:layout_height="20dp" />-->
 
                 </LinearLayout>
-
-
 
 
                 <android.support.v7.widget.RecyclerView

@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
@@ -89,7 +89,7 @@
     <!-- split line -->
     <style name="SplitLineStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2px</item>
+        <item name="android:layout_height">1px</item>
         <item name="android:background">@color/gray</item>
 
     </style>

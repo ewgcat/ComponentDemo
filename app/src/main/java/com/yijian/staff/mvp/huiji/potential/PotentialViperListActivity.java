@@ -46,7 +46,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
     private List<HuiJiViperBean> viperBeanList=new ArrayList<>();
 
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
 
@@ -99,18 +99,18 @@ public class PotentialViperListActivity extends MvcBaseActivity {
 
 
     private void refresh() {
-
+        viperBeanList.clear();
+        pageNum=1;
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", 1 + "");
-        map.put("pageSize", 1 + "");
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize+ "");
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
-                viperBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

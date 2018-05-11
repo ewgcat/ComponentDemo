@@ -28,7 +28,6 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.OptionDialog;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -67,6 +66,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     private HuiJiProductPresenter presenter;
     private OptionDialog optionDialog;
 
+    private boolean isPrice = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         presenter = new HuiJiProductPresenter(getContext());
         presenter.setView(this);
         bodyCondition = new CardRequestBody();
+
         initComponent();
     }
 
@@ -135,7 +137,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                bodyCondition.setPageSize(bodyCondition.getPageNum() + 1);
+                bodyCondition.setPageNum(bodyCondition.getPageNum() + 1);
                 presenter.getRecptionCards(bodyCondition, false);
             }
         });
@@ -144,14 +146,59 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {
-                bodyCondition = body;
-                bodyCondition.setPageNum(1);
-                bodyCondition.setPageSize(4);
-                presenter.getRecptionCards(bodyCondition, true);
+//                if (body==null){
+//                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+//                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+//                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
+//                    bodyCondition=new CardRequestBody();
+//                }else {
+//                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
+//                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+//                    tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+//                    bodyCondition = body;
+//                }
+//                bodyCondition.setPageNum(1);
+//                bodyCondition.setPageSize(4);
+//                presenter.getRecptionCards(bodyCondition, true);
+
+                if (body==null){//属于重置
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
+
+
+                    bodyCondition = new CardRequestBody();
+                    bodyCondition.setPageSize(4);
+                    bodyCondition.setPageNum(1);
+
+                    presenter.getRecptionCards(bodyCondition, true);
+
+
+                }else {//有条件
+
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                    tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+
+                    bodyCondition=body;
+                    bodyCondition.setPageSize(4);
+                    bodyCondition.setPageNum(1);
+                    presenter.getRecptionCards(bodyCondition, true);
+
+
+                }
+
+
             }
         });
 
+
         selectZongHe();
+
 
     }
 
@@ -167,7 +214,14 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 selectZongHe();
                 break;
             case R.id.ll_price:
+
                 selectPrice();
+                if (priceUp){
+                    priceUp=false;
+                }else {
+                    priceUp=true;
+                }
+
                 break;
             case R.id.ll_shai_xuan:
                 selectShaixuan();
@@ -179,7 +233,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击筛选
     private void selectShaixuan() {
-        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+//        resetState();
+//
+//        Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
+//        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//        tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+//        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+
         Bundle bundle = new Bundle();
         bundle.putString("cardType", bodyCondition.getCardType());
         bundle.putString("startPrice", bodyCondition.getStartPrice());
@@ -190,48 +250,87 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     //点击价格
     private void selectPrice() {
+        isPrice = true;
+
+        resetStateNoShaixuan();
+        tvPrice.setTextColor(Color.parseColor("#1997f8"));
+
         if (mGoodsInfoList == null || mGoodsInfoList.size() == 0) return;
 
-        tvZongHe.setTextColor(Color.parseColor("#666666"));
-        tvPrice.setTextColor(Color.parseColor("#1997f8"));
         if (priceUp) {
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             Collections.sort(mGoodsInfoList);
             goodsListAdapter.resetData(mGoodsInfoList);
-            priceUp = false;
+//            priceUp = false;
 
         } else {
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
+
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 
             Collections.sort(mGoodsInfoList);
             Collections.reverse(mGoodsInfoList);
             goodsListAdapter.resetData(mGoodsInfoList);
-            priceUp = true;
+//            priceUp = true;
         }
 
     }
 
     //点击综合
     private void selectZongHe() {
-        tvPrice.setTextColor(Color.parseColor("#666666"));
+        isPrice = false;
+
+
+
+        resetStateNoShaixuan();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
+
         bodyCondition.setPageSize(4);
         bodyCondition.setPageNum(1);
         presenter.getRecptionCards(bodyCondition, true);
+
     }
+
+    private void resetStateNoShaixuan() {
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+
+
+        tvPrice.setTextColor(Color.parseColor("#666666"));
+        Drawable drawable1 = getResources().getDrawable(R.mipmap.jd_normal_arrow);
+        drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
+        tvPrice.setCompoundDrawables(null, null, drawable1, null);
+
+//        tvShaixuan.setTextColor(Color.parseColor("#666666"));
+//        Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+//        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//        tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+
+    }
+
 
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
-        mGoodsInfoList = goodsInfos;
+
         if (isRefresh) {
-            goodsListAdapter.resetData(goodsInfos);
+            mGoodsInfoList.clear();
+            mGoodsInfoList = goodsInfos;
+            if (isPrice) {
+                selectPrice();
+            } else {
+                goodsListAdapter.resetData(goodsInfos);
+            }
             cardRefreshLayout.finishRefresh(1000);
+
         } else {
-            goodsListAdapter.addDatas(goodsInfos);
+            mGoodsInfoList.addAll(goodsInfos);
+            if (isPrice) {
+                selectPrice();
+            } else {
+                goodsListAdapter.addDatas(goodsInfos);
+            }
             cardRefreshLayout.finishLoadMore(1000);
         }
     }
@@ -239,15 +338,17 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @Override
     public void showNoCards(boolean isRefresh, boolean isSucceed) {
+
         if (isRefresh) {
             if (isSucceed) Toast.makeText(getContext(), "未查询到相关数据", Toast.LENGTH_SHORT).show();
-            cardRefreshLayout.finishRefresh(1000);
             goodsListAdapter.resetData(new ArrayList<>());
+            cardRefreshLayout.finishRefresh(1000);
 
         } else {
             if (isSucceed) Toast.makeText(getContext(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishLoadMore(1000);
         }
+
     }
 
 }

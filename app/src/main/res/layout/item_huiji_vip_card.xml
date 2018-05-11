@@ -6,8 +6,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:paddingTop="15dp">
 
         <TextView
@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:text=":"
-            android:textColor="#999999"
+            android:textColor="#666666"
             android:textSize="14sp" />
 
         <TextView

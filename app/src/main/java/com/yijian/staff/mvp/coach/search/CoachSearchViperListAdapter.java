@@ -101,12 +101,16 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         if (!TextUtils.isEmpty(subclassName)){
             if (subclassName.equals("CoachInfoVO")){
                 intent.putExtra("vipType", 0);
-            }else   if (subclassName.equals("CoachIntentionVO")){
+                holder.tv_role.setText("正式学员");
+            }else   if (subclassName.equals("PotentialVO")){
                 intent.putExtra("vipType", 1);
+                holder.tv_role.setText("潜在会员");
             }else   if (subclassName.equals("CoachIntentionVO")){
-                intent.putExtra("PotentialVO", 2);
+                intent.putExtra("vipType", 2);
+                holder.tv_role.setText("意向会员");
             }else   if (subclassName.equals("CoachExpireVO")){
                 intent.putExtra("vipType", 3);
+                holder.tv_role.setText("过期会员");
             }
 
         }

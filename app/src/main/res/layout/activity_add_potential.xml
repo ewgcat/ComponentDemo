@@ -24,7 +24,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@drawable/white_bg"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -39,21 +41,19 @@
                     android:id="@+id/et_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="18dp"
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="center_vertical|right"
                     android:hint="请输入姓名"
-                    android:padding="2dp"
                     android:textColor="#333333"
-                    android:textCursorDrawable="@drawable/et_cursor"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -82,7 +82,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="男"
                     android:textColor="#333333"
                     android:textSize="14sp" />
@@ -92,7 +92,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -117,14 +117,14 @@
                     android:id="@+id/et_phone"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="18dp"
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="center_vertical|right"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:hint="请输入手机号码"
                     android:inputType="phone"
-                    android:padding="2dp"
-                    android:textCursorDrawable="@drawable/et_cursor"
                     android:textColor="#333333"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -132,7 +132,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -164,7 +164,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
@@ -172,7 +172,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -203,7 +203,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
@@ -211,7 +211,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -240,7 +240,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
@@ -248,7 +248,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -278,7 +278,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />
@@ -286,7 +286,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
                 android:background="@color/gray" />
@@ -295,7 +295,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/white"
+                android:background="@drawable/white_bg"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -317,7 +317,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@mipmap/wt_jiantou"
                     android:gravity="center_vertical|right"
-                    android:padding="2dp"
+                    android:drawablePadding="10dp"
                     android:hint="请选择"
                     android:textColor="#333333"
                     android:textSize="14sp" />

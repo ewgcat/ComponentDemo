@@ -13,6 +13,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.bean.EditHuiJiVipBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -32,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachVipInfoEditActivity extends AppCompatActivity {
+public class CoachVipInfoEditActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.tv_source)
@@ -89,11 +90,15 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
     List<String> bodybuildingIdList = new ArrayList<String>();  //健身目的
 
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_vip_info_edit);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_coach_vip_info_edit;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         initTitle();
         initData();
     }
@@ -117,6 +122,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
         navigationBar2.hideLeftSecondIv();
         TextView rightTv = navigationBar2.getmRightTv();
         rightTv.setText("保存");
+        rightTv.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.setBackClickListener(this);
     }
 
@@ -126,6 +132,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
+                hideKeyBoard(et_address);
                 submitData();
                 break;
             case R.id.tv_source: //用户渠道
@@ -221,11 +228,12 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
 
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
-
+        showBlueProgress();
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
+                hideBlueProgress();
                 Toast.makeText(CoachVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                 setResult(1234);
                 finish();
@@ -233,6 +241,7 @@ public class CoachVipInfoEditActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 Toast.makeText(CoachVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

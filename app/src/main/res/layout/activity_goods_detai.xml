@@ -51,7 +51,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="价格: "
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <TextView
@@ -61,7 +61,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="1700"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_marginRight="16dp"
                     android:gravity="center"
                     android:text=" 元"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -259,7 +259,7 @@
                     android:drawableRight="@mipmap/jd_chakan"
                     android:gravity="center"
                     android:text="查看详情"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 

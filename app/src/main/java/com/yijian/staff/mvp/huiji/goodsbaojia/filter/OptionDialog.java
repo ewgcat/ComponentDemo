@@ -69,7 +69,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Log.e(TAG, "onCreate: " );
         Bundle arguments = getArguments();
 
         String cardType = arguments.getString("cardType");
@@ -92,7 +91,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
         getDialog().getWindow().setGravity(Gravity.RIGHT);
         //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
-        getDialog().getWindow().setLayout(DensityUtil.dip2px(getActivity(), 280), RelativeLayout.LayoutParams.MATCH_PARENT);
+        getDialog().getWindow().setLayout( RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
         super.onStart();
     }
@@ -146,7 +145,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     }
 
     private void initView(View view) {
-
+        View empty_view = view.findViewById(R.id.empty_view);
 
         tvTimeCard = view.findViewById(R.id.tv_time_card);
         tvCishuCard = view.findViewById(R.id.tv_cishu_card);
@@ -198,6 +197,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         tvReset.setOnClickListener(this);
         tvConfirm.setOnClickListener(this);
+        empty_view.setOnClickListener(this);
 
 
 //        conditionBody.setIsSortByPrice(bodyCondition.getIsSortByPrice());
@@ -248,10 +248,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-//        conditionBody.setStartPrice(null);
-//        conditionBody.setEndPrice(null);
-//        conditionBody.setCardType(null);
-//        conditionBody.setVenueName(null);
     }
 
     @Override
@@ -318,8 +314,36 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 }
                 break;
             case R.id.tv_confirm:
-                if (onDismissListener != null)
-                    onDismissListener.onDismiss(conditionBody);
+                if (onDismissListener != null){
+                    String cardType = conditionBody.getCardType();
+                    String endPrice = conditionBody.getEndPrice();
+                    String startPrice = conditionBody.getStartPrice();
+                    String venueName = conditionBody.getVenueName();
+                    if (TextUtils.isEmpty(cardType)
+                            &&TextUtils.isEmpty(startPrice)
+                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(endPrice)){
+                        onDismissListener.onDismiss(null);
+                    }else {
+                        onDismissListener.onDismiss(conditionBody);
+                    }
+                }
+                dismiss();
+                break;
+
+            case R.id.empty_view:
+                if (onDismissListener != null){
+                    String cardType = conditionBody.getCardType();
+                    String endPrice = conditionBody.getEndPrice();
+                    String startPrice = conditionBody.getStartPrice();
+                    String venueName = conditionBody.getVenueName();
+                    if (TextUtils.isEmpty(cardType)
+                            &&TextUtils.isEmpty(startPrice)
+                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(endPrice)){
+                        onDismissListener.onDismiss(null);
+                    }
+                }
                 dismiss();
                 break;
         }

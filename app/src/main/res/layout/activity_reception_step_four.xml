@@ -59,7 +59,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="价格: "
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="1700"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <TextView
@@ -79,7 +79,7 @@
                     android:layout_marginRight="16dp"
                     android:gravity="center"
                     android:text=" 元"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 

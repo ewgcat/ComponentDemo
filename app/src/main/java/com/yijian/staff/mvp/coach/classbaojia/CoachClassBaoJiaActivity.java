@@ -38,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,7 +94,15 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
             @Override
             public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
-                refresh(coachClassFilterBean);
+                if (coachClassFilterBean != null) {
+                    refresh(coachClassFilterBean);
+                } else {
+                    refresh(coachClassFilterBean);
+                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+                    drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                }
             }
         });
         selectZongHe();
@@ -312,42 +321,37 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
     //点击价格
     private void selectPrice() {
-        if (tvPrice.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            if (priceUp) {
-                Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvPrice.setCompoundDrawables(null, null, drawable, null);
-                priceUp = false;
-                isSortByPrice = 1;
-
-                refresh(coachClassFilterBean);
-
-            } else {
-                Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvPrice.setCompoundDrawables(null, null, drawable, null);
-                priceUp = true;
-                isSortByPrice = 0;
-                refresh(coachClassFilterBean);
-
-            }
-        } else {
-            tvPrice.setTextColor(Color.parseColor("#1997f8"));
-            tvZongHe.setTextColor(Color.parseColor("#666666"));
+        if (mClassInfoList == null || mClassInfoList.size() == 0) return;
+        tvPrice.setTextColor(Color.parseColor("#1997f8"));
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
+            priceUp = false;
+            isSortByPrice = 1;
+            Collections.sort(mClassInfoList);
+            classListAdapter.update(mClassInfoList);
+
+        } else {
+            Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawables(null, null, drawable, null);
+            priceUp = true;
             isSortByPrice = 0;
-            refresh(coachClassFilterBean);
+            Collections.sort(mClassInfoList);
+            Collections.reverse(mClassInfoList);
+            classListAdapter.update(mClassInfoList);
 
         }
+
+
     }
 
     private void selectZongHe() {
         if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
             isSortByPrice = -1;
             refresh(coachClassFilterBean);
-
         } else {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
@@ -356,9 +360,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             isSortByPrice = -1;
             refresh(coachClassFilterBean);
-
         }
-
     }
 
 

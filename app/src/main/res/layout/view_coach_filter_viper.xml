@@ -47,47 +47,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp">
 
-                        <LinearLayout
-                            android:id="@+id/ll_sex_man"
-                            android:background="@drawable/gray_stroke_unselect_bg"
+                        <TextView
+                            android:id="@+id/tv_sex_man"
+                            android:layout_width="110dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentLeft="true"
                             android:layout_marginLeft="20dp"
-                            android:gravity="center"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp">
 
-                            <TextView
-                                android:id="@+id/tv_sex_man"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:gravity="center"
-                                android:drawableStart="@mipmap/lg_man"
-                                android:text="男"
-                                android:textColor="#666666"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/ll_sex_woman"
                             android:background="@drawable/gray_stroke_unselect_bg"
+                            android:gravity="center"
+
+                            android:text="男"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_sex_woman"
+                            android:layout_width="110dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
+
+                            android:background="@drawable/gray_stroke_unselect_bg"
                             android:gravity="center"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp">
 
-                            <TextView
-                                android:id="@+id/tv_sex_woman"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:gravity="center"
-                                android:drawableStart="@mipmap/lg_women"
-                                android:text="女"
-                                android:textColor="#666666"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-
+                            android:text="女"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 

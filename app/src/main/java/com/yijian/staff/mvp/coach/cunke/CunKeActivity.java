@@ -46,7 +46,7 @@ public class CunKeActivity extends MvcBaseActivity {
     CunKeAdapter cunKeAdapter;
     List<Object> bodyList = new ArrayList<Object>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
 
 
@@ -63,14 +63,14 @@ public class CunKeActivity extends MvcBaseActivity {
         initData();
     }
 
-    private void initTitle(){
-        NavigationBar2   navigationBar2 = (NavigationBar2) findViewById(R.id.cun_ke_navigation_bar2);
+    private void initTitle() {
+        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.cun_ke_navigation_bar2);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("私教课");
     }
 
-    private void initView(){
+    private void initView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rc_ck.setLayoutManager(linearLayoutManager);
@@ -91,7 +91,7 @@ public class CunKeActivity extends MvcBaseActivity {
         bodyList.add(new TypeOfCunKeBody("小四","减肥课3","8节","3节"));
 
         cunKeAdapter.resetDataList(bodyList);*/
-       refresh();
+        refresh();
     }
 
     public void initComponent() {
@@ -118,9 +118,12 @@ public class CunKeActivity extends MvcBaseActivity {
 
 
     private void refresh() {
+        bodyList.clear();
+        pageNum = 1;//页码
+        pageSize = 10;
         HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", 1 + "");
-        map.put("pageSize", 1 + "");
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
 
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
@@ -134,7 +137,7 @@ public class CunKeActivity extends MvcBaseActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),TypeOfCunKeBody.class);
+                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(), TypeOfCunKeBody.class);
                         bodyList.add(typeOfCunKeBody);
                         cunKeAdapter.resetDataList(bodyList);
                     } catch (JSONException e) {
@@ -148,7 +151,7 @@ public class CunKeActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(CunKeActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(CunKeActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -160,7 +163,7 @@ public class CunKeActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -174,7 +177,7 @@ public class CunKeActivity extends MvcBaseActivity {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(),TypeOfCunKeBody.class);
+                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(), TypeOfCunKeBody.class);
                         bodyList.add(typeOfCunKeBody);
                     } catch (JSONException e) {
                     }
@@ -186,7 +189,7 @@ public class CunKeActivity extends MvcBaseActivity {
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(CunKeActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(CunKeActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

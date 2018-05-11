@@ -138,6 +138,18 @@ public class HttpManager {
     // 查询工作时间与间隔时间
     public static String COACH_PRIVATE_COURSE_GET_TIME_URL = BuildConfig.HOST + "scheduleSetting/getTime";
 
+    //选择可选时间段
+    public static String COACH_PRIVATE_COURSE_SET_WORK_TIME_URL = BuildConfig.HOST + "scheduleSetting/setWorkTime";
+
+    //选择可选时间段
+    public static String COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL = BuildConfig.HOST + "scheduleSetting/setInterval";
+
+    //教练查询当月是否有课或者休息
+    public static String COACH_PRIVATE_COURSE_GETLIST_TIME_URL = BuildConfig.HOST + "scheduleSetting/getList";
+
+    //设置休息时间
+    public static String COACH_PRIVATE_COURSE_SETLEAVE_URL = BuildConfig.HOST + "scheduleSetting/setLeave";
+
 
     //查看教练的约课日程表
     public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseByDay";
@@ -781,6 +793,21 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getHasHeaderHasParam(url, headers, param);
+            execute(observable, observer);
+        }
+    }
+
+
+    // get Object有头有参
+    public static void getHasHeaderHasParamOfObject(String url, Map<String, Object> param, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getHasHeaderHasObjectParam(url, headers, param);
             execute(observable, observer);
         }
     }

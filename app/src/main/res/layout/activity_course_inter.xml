@@ -21,7 +21,7 @@
         android:paddingRight="15dp">
 
         <RelativeLayout
-            android:id="@+id/rel_start"
+            android:id="@+id/rel_internal"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             >
@@ -31,18 +31,18 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#333333"
-                android:text="开始时间"
+                android:text="课程时间间隔(分)"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"/>
 
 
             <TextView
-                android:id="@+id/tv_startTime"
+                android:id="@+id/tv_internal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#333333"
-                android:text=""
+                android:text="请选择"
                 android:drawableRight="@mipmap/my_time_pulldonw"
                 android:layout_centerVertical="true"
                 android:drawablePadding="5dp"
@@ -51,41 +51,6 @@
 
         </RelativeLayout>
 
-        <View
-            style="@style/SplitLineStyle"
-            />
-
-        <RelativeLayout
-            android:id="@+id/rel_end"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#333333"
-                android:text="结束时间"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"/>
-
-
-            <TextView
-                android:id="@+id/tv_endTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#333333"
-                android:text=""
-                android:drawableRight="@mipmap/my_time_pulldonw"
-                android:layout_centerVertical="true"
-                android:drawablePadding="5dp"
-                android:layout_alignParentRight="true"/>
-
-
-        </RelativeLayout>
 
     </LinearLayout>
 

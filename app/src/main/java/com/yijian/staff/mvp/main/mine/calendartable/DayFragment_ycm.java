@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main.mine.calendartable;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -45,6 +46,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+
 /**
  * 日视图
  */
@@ -60,6 +63,8 @@ public class DayFragment_ycm extends Fragment {
     private RecyclerView rv_day;
     OnChangeDateListener onChangeDateListener;
     private DayCanlendarAdapter dayCanlendarAdapter;
+
+
 
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
         this.onChangeDateListener = onChangeDateListener;
@@ -118,7 +123,7 @@ public class DayFragment_ycm extends Fragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_day.setLayoutManager(layoutmanager);
-        dayCanlendarAdapter = new DayCanlendarAdapter(getActivity());
+        dayCanlendarAdapter = new DayCanlendarAdapter(this);
         rv_day.setAdapter(dayCanlendarAdapter);
 
     }
@@ -343,5 +348,23 @@ public class DayFragment_ycm extends Fragment {
             }
         });
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            String strDate = data.getStringExtra("date");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                loadDayData(simpleDateFormat.parse(strDate));
+                loadPreviewDayData(strDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 }

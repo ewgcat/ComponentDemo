@@ -101,6 +101,10 @@ public class CommonUtil {
         return str == null ? "" : str;
     }
 
+    public static boolean isEmpty(String str){
+        return TextUtils.isEmpty(str) || "null".equals(str);
+    }
+
     /**
      * 验证手机号
      */

@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -46,6 +47,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+
 
 public class OrderClassDayFragment extends Fragment {
     private static final String TAG = "DayFragment_ycm";
@@ -61,6 +64,7 @@ public class OrderClassDayFragment extends Fragment {
     OrderclassDayAdapter dayCanlendarAdapter;
     OnChangeDateListener onChangeDateListener;
 
+
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
         this.onChangeDateListener = onChangeDateListener;
     }
@@ -71,7 +75,6 @@ public class OrderClassDayFragment extends Fragment {
         }
         return dayFragment;
     }
-
 
 
     @Nullable
@@ -123,9 +126,8 @@ public class OrderClassDayFragment extends Fragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_day.setLayoutManager(layoutmanager);
-        dayCanlendarAdapter = new OrderclassDayAdapter(getActivity(), orderClassDayBeanList);
+        dayCanlendarAdapter = new OrderclassDayAdapter(this, orderClassDayBeanList);
         rv_day.setAdapter(dayCanlendarAdapter);
-
     }
 
     private void initData() {
@@ -348,6 +350,21 @@ public class OrderClassDayFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            String strDate = data.getStringExtra("date");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                loadDayData(simpleDateFormat.parse(strDate));
+                loadPreviewDayData(strDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.coach.setclass;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.yijian.staff.mvp.coach.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.coach.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
@@ -34,6 +36,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 
 public class OpenLessonNewActivity extends MvcBaseActivity {
 
@@ -56,6 +60,8 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     private String recordId; //记录表ID
     private String state; // 是否需要下课打卡（0:是,1:否）
 
+    private String startDate;
+
     OpenLessonNewAdapter openLessonNewAdapter;
     List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<PrivateLessonRecordBean>();
     EditActionObservable editActionObservable = new EditActionObservable();
@@ -74,7 +80,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         initView();
-        loadData();
+//        loadData();
     }
 
     /**
@@ -185,9 +191,9 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
 
         String startTime = getIntent().getStringExtra("startDateTime");
         String endTime = getIntent().getStringExtra("endDateTime");
-        String startDate = getIntent().getStringExtra("startDate");
-        tv_shangke.setText(startDate+" "+startTime);
-        tv_xiake.setText(startDate+" "+endTime);
+        startDate = getIntent().getStringExtra("startDate");
+        tv_shangke.setText(CommonUtil.emptyIfNull(startDate)+" "+CommonUtil.emptyIfNull(startTime));
+        tv_xiake.setText(CommonUtil.emptyIfNull(startDate)+" "+CommonUtil.emptyIfNull(endTime));
 
 
         punchStatus = getIntent().getIntExtra("punchStatus", -1);
@@ -232,8 +238,12 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.iv_finish: //保存数据
-                SaveDataDialog saveDataDialog = new SaveDataDialog(this);
-                saveDataDialog.showSaveDialog();
+//                SaveDataDialog saveDataDialog = new SaveDataDialog(this);
+//                saveDataDialog.showSaveDialog();
+                Intent intent = getIntent();
+                intent.putExtra("date",startDate);
+                setResult(ORDER_REFRESH_REQUESTCODE,intent);
+                finish();
                 break;
             case R.id.rel_punch_card: //打卡
                 if (punchStatus == 0) { //打上课卡

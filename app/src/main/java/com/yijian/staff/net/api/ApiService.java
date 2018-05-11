@@ -244,6 +244,9 @@ public interface ApiService {
     @GET
     Observable<JSONObject> getHasHeaderHasParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, String> param);
 
+    @GET
+    Observable<JSONObject> getHasHeaderHasObjectParam(@Url String url, @HeaderMap Map<String, String> headers, @QueryMap Map<String, Object> param);
+
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getBusinessMessage(@Url String loginUrl, @HeaderMap Map<String, String> headers, @Body BusinessMessageRequestBody businessMessageRequestBody);

@@ -51,6 +51,8 @@ import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+
 /**
  * 周视图
  */
@@ -106,34 +108,14 @@ public class WeekFragment_ycm extends Fragment  {
             @Override
             public void onClick(DayTask.CoursesBean courseInfo) {
                 Toast.makeText(getContext(),""+courseInfo.toString(),Toast.LENGTH_SHORT).show();
-
-                if("0".equals(courseInfo.getIsExperience())){ // 0：私教课，
-                    if(courseInfo.getIsPrepare() == 0){ // 备课
-
-                    }else if(courseInfo.getIsPrepare() == 1){ // 上课
-                        Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
-                        intent.putExtra("privateApplyId",courseInfo.getId());
-                        intent.putExtra("startDateTime",courseInfo.getStartDatetime());
-                        intent.putExtra("endDateTime",courseInfo.getEndDatetime());
-                        intent.putExtra("startDate",courseInfo.getStartDate());
-                        intent.putExtra("punchStatus",courseInfo.getPunchStatus());
-                        startActivity(intent);
-                    }
-                }else if("1".equals(courseInfo.getIsExperience())){//1：体验课
-                    if("0".equals(courseInfo.getIsUseTemplate())){ //体验课：0：用体侧模板，1：私教课模板 ,
-                        Intent intent = new Intent(getActivity(), ExperienceClassRecordActivity.class);
-                        intent.putExtra("privateApplyId",courseInfo.getId());
-                        startActivity(intent);
-                    }else if("1".equals(courseInfo.getIsUseTemplate())){
-                        Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
-                        intent.putExtra("privateApplyId",courseInfo.getId());
-                        intent.putExtra("startDateTime",courseInfo.getStartDatetime());
-                        intent.putExtra("endDateTime",courseInfo.getEndDatetime());
-                        intent.putExtra("startDate",courseInfo.getStartDate());
-                        intent.putExtra("punchStatus",courseInfo.getPunchStatus());
-                        startActivity(intent);
-                    }
-
+                int punchStatus = courseInfo.getPunchStatus();
+                if(punchStatus == 0 || punchStatus == 1){
+                    Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
+                    intent.putExtra("startDate",courseInfo.getStartDate());
+                    intent.putExtra("startDateTime",courseInfo.getStartDatetime());
+                    intent.putExtra("endDateTime",courseInfo.getEndDatetime());
+                    intent.putExtra("punchStatus",courseInfo.getPunchStatus());
+                    startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                 }
             }
 
@@ -237,4 +219,14 @@ public class WeekFragment_ycm extends Fragment  {
         });
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            initDayCanlendarInfoList();
+        }
+    }
+
+
 }

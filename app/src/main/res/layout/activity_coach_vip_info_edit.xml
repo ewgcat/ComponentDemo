@@ -48,10 +48,10 @@
 
                     <TextView
                         android:id="@+id/tv_source"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -59,12 +59,19 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:id="@+id/tv_fitnessGoal_label"
@@ -80,10 +87,10 @@
 
                     <TextView
                         android:id="@+id/tv_fitnessGoal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -91,12 +98,19 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -109,10 +123,10 @@
 
                     <TextView
                         android:id="@+id/tv_onceJoinedClub"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -120,12 +134,21 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -138,34 +161,24 @@
 
                     <EditText
                         android:id="@+id/et_clubBrand"
-                        android:textCursorDrawable="@drawable/et_cursor"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:background="@color/white"
                         android:textSize="14sp" />
 
                 </RelativeLayout>
 
-                <RelativeLayout
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:paddingLeft="22dp"
-                        android:paddingRight="22dp"
-                        android:paddingTop="15dp"
-                        android:background="@color/gray"
-                        />
-
-                </RelativeLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -185,68 +198,10 @@
 
                     <TextView
                         android:id="@+id/tv_yearIncome"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:drawableRight="@mipmap/lg_xiala"
-                        android:drawablePadding="5dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="30dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
-                        android:text="用车价格:"
-                        android:textColor="#999999"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_carPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:drawableRight="@mipmap/lg_xiala"
-                        android:drawablePadding="5dp"
-                        android:textColor="#333333"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="30dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
-                        android:text="爱好:"
-                        android:textColor="#999999"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_hobby"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -261,16 +216,72 @@
                     android:paddingRight="22dp"
                     android:paddingTop="15dp">
 
-                    <View
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="用车价格:"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_carPrice"
                         android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:paddingLeft="22dp"
-                        android:paddingRight="22dp"
-                        android:paddingTop="15dp"
-                        android:background="@color/gray"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        android:drawablePadding="5dp"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="爱好:"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_hobby"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        android:drawablePadding="5dp"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -290,10 +301,10 @@
 
                     <TextView
                         android:id="@+id/tv_nationality"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -301,12 +312,19 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -319,10 +337,10 @@
 
                     <TextView
                         android:id="@+id/tv_nation"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -330,22 +348,14 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:paddingLeft="22dp"
-                        android:paddingRight="22dp"
-                        android:background="@color/gray"
-                        />
-
-                </RelativeLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -366,23 +376,29 @@
 
                     <TextView
                         android:id="@+id/tv_occupation"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
                 </RelativeLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -395,10 +411,10 @@
 
                     <TextView
                         android:id="@+id/tv_marriageStatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -406,12 +422,20 @@
 
                 </RelativeLayout>
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="30dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -424,10 +448,10 @@
 
                     <TextView
                         android:id="@+id/tv_hasChildren"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
@@ -435,29 +459,21 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:paddingLeft="22dp"
-                        android:paddingRight="22dp"
-                        android:paddingTop="15dp"
-                        android:background="@color/gray"
-                        />
-
-                </RelativeLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp">
 
@@ -472,8 +488,7 @@
 
                     <EditText
                         android:id="@+id/et_address"
-                        android:textCursorDrawable="@drawable/et_cursor"
-                        android:layout_width="134dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"

@@ -1530,6 +1530,7 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:textColor="#666666"
+                        android:text="联系人电话:"
                         android:textSize="14sp" />
 
                     <TextView

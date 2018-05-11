@@ -50,7 +50,7 @@
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:text="体测数据"
-                    android:textColor="#999999"
+                    android:textColor="#666666"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="报价"
                     android:layout_marginLeft="7dp"
-                    android:textColor="#999999"
+                    android:textColor="#666666"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -216,6 +216,12 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,15 +235,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="性别:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_sex"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -256,15 +262,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="手机:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -283,15 +289,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="生日:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_birthday"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -310,15 +316,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="生日类型:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_birthday_type"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -337,15 +343,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="会员类型: "
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_viper_type"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -364,15 +370,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="会员卡号:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_vip_card_num"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -391,15 +397,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="头像信息: "
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_head_info"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -418,15 +424,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="指纹信息:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_zhi_wen_info"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -445,15 +451,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="静脉信息:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_jin_mai_info"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -472,15 +478,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="证件类型:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_certificateType"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -500,15 +506,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="证件号码:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_shenfencard_num"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -552,17 +558,21 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
                     android:paddingTop="15dp">
 
                     <RelativeLayout
                         android:id="@+id/rel_expand"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginRight="22dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -572,7 +582,7 @@
                             android:layout_alignParentLeft="true"
                             android:gravity="center_vertical"
                             android:text="卡名-卡类型:"
-                            android:textColor="#999999"
+                            android:textColor="#333333"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
@@ -583,7 +593,13 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -597,15 +613,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="推荐人:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_tuijian_ren"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -624,15 +640,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="推荐人电话:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_tuijian_ren_phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -651,15 +667,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="用户获取渠道:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_huoqu_qudao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -678,15 +694,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="添加人:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_tianjia_ren_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -705,15 +721,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="服务会籍:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_fuwu_huiji"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -732,15 +748,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="服务教练:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_fuwu_jiaolian"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -750,7 +766,6 @@
                     android:id="@+id/rl_sijiao_class"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
                     android:paddingTop="15dp">
@@ -761,20 +776,24 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="私教课程:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_sijiao_class"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
             </LinearLayout>
 
 
@@ -842,7 +861,11 @@
 
 
                 </LinearLayout>
-
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -856,16 +879,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="微信号:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_wechat_num"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="23432432423"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -884,16 +906,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="邮箱:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="yijian@ejoyst.com"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -912,16 +933,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="身高:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_shengao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="160cm"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -940,16 +960,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="体重:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_weight"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="120kg"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -968,16 +987,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="国籍:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_guaoji"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="中国"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -996,16 +1014,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="籍贯:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_jiguan"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="广州"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1024,16 +1041,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="民族:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_minzu"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="未录入"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1052,16 +1068,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="身体状态:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_shenti_status"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="正常"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1080,16 +1095,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="健身爱好:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_jianshen_aihao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="睡觉"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1108,16 +1122,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="健身目的:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_jianshen_mudi"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="减肥"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1136,16 +1149,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="兴趣爱好:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_xingqu_aihao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="打球"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1164,16 +1176,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="是否参加过俱乐部:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_shifou_canjia_club"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="否"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1192,16 +1203,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="参加过俱乐部品牌:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_canjia_clubName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="力美健"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1220,16 +1230,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="年收入:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_year_income"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="10万以内"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1248,16 +1257,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="用车价值:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_car_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="2万"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1276,16 +1284,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="婚姻状况:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_marry_status"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="未婚"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1304,16 +1311,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="子女状况:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_children_status"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="无"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1332,16 +1338,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="行业:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_hangye"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="移动互联网"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1360,16 +1365,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="职务:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_zhiwu"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text=" 高级产品经理"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1388,16 +1392,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="公司名称:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_company_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="广州易健"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1416,16 +1419,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="公司电话:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_company_phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="020-84957245"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1444,17 +1446,16 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="工作地址:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_company_location"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:singleLine="false"
-                        android:text="广东省广州市新港西路144号双子星城"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1473,17 +1474,16 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="住址:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_home_location"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:singleLine="false"
-                        android:text="广东省广州市新港西路144号双子星城"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1502,16 +1502,15 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:text="紧急联系人:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_jin_ji_lianxiren"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text=" 张三丰"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -1530,17 +1529,15 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
-                        android:text="联系人电话:"
-                        android:textColor="#999999"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_lianxiren_phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:text="13838463329"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 

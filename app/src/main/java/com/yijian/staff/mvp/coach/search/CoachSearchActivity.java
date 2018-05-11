@@ -307,8 +307,8 @@ public class CoachSearchActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_cancel:
-                finish();
                 SystemUtil.hideKeyBoard(etSearch, this);
+                finish();
                 break;
 
 
@@ -318,9 +318,9 @@ public class CoachSearchActivity extends MvcBaseActivity {
 
     public void clearEditTextFocus() {
         lin_search_container.setVisibility(View.GONE);
+        SystemUtil.hideKeyBoard(etSearch, this);
         etSearch.clearFocus();
         rcl.requestFocus();
-        SystemUtil.hideKeyBoard(etSearch, this);
     }
 
 

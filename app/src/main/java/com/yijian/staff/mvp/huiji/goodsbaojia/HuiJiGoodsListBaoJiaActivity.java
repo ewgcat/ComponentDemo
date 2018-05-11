@@ -248,11 +248,14 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
-        mGoodsInfoList = goodsInfos;
+
         if (isRefresh) {
+            mGoodsInfoList.clear();
+            mGoodsInfoList = goodsInfos;
             goodsListAdapter.resetData(goodsInfos);
             cardRefreshLayout.finishRefresh(1000);
         } else {
+            mGoodsInfoList.addAll(goodsInfos);
             goodsListAdapter.addDatas(goodsInfos);
             cardRefreshLayout.finishLoadMore(1000);
         }

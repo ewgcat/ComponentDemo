@@ -3,9 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
+    android:id="@+id/ll_root"
     android:orientation="vertical">
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,6 +68,7 @@
         android:background="@color/gray" />
 
     <LinearLayout
+        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -119,6 +123,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="16dp"
                     android:drawableRight="@mipmap/jd_normal_arrow"
+                    android:drawablePadding="4dp"
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="价格"
@@ -147,6 +152,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="16dp"
                     android:drawableEnd="@mipmap/shaixuan_black"
+                    android:drawablePadding="4dp"
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="筛选"
@@ -160,8 +166,7 @@
 
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

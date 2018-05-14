@@ -117,7 +117,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
         String healthStatus = tvBodyStatus.getText().toString().trim();
         String fitnessGoal = tvFitnessGoal.getText().toString().trim();
         String fitnessHobby = tvFithobby.getText().toString().trim();
-        String userCar = tvCarName.getText().toString().trim();
+        String useCar = tvCarName.getText().toString().trim();
         String hobby = tvHobby.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(AddPotentialActivity.this, "名字不能为空!", Toast.LENGTH_SHORT).show();
@@ -131,7 +131,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
 
         if (CommonUtil.isPhoneFormat(phone)) {
-            AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, userCar, fitnessGoal, sex);
+            AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, useCar, fitnessGoal, sex);
             HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {

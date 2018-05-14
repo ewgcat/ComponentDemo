@@ -23,12 +23,12 @@ public class AddPotentialRequestBody {
     private String healthStatus;
     private String fitnessHobby;
     private String hobby;
-    private String userCar;
+    private String useCar;
     private String fitnessGoal;
     private int sex;
 
 
-    public AddPotentialRequestBody( String mobile, String name, String healthStatus, String fitnessHobby, String hobby, String userCar, String fitnessGoal, int sex) {
+    public AddPotentialRequestBody( String mobile, String name, String healthStatus, String fitnessHobby, String hobby, String useCar, String fitnessGoal, int sex) {
         this.addTime =  DateUtil.getCurrentDate();
 
         this.mobile = mobile;
@@ -36,7 +36,7 @@ public class AddPotentialRequestBody {
         this.healthStatus = healthStatus;
         this.fitnessHobby = fitnessHobby;
         this.hobby = hobby;
-        this.userCar = userCar;
+        this.useCar = useCar;
         this.fitnessGoal = fitnessGoal;
         this.sex = sex;
     }

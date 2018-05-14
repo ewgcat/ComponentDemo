@@ -55,12 +55,10 @@ import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.
 public class OrderClassWeekFragment extends Fragment {
     private static final String TAG = "WeekFragment_ycm";
     private static OrderClassWeekFragment weekFragment;
-    private LinearLayout llCalendar;
     private int mCurrentSelectYear;
     private int mCurrentSelectMonth;
     private int mCurrentSelectDay;
     private WeekCalendarView wcvCalendar;
-    private MonthCalendarView mcvCalendar;
     private RecyclerView rv_day;
     private AdapterWeekFragment adapter;
     private List<DayTask> dayTaskList = new ArrayList<>();
@@ -77,7 +75,6 @@ public class OrderClassWeekFragment extends Fragment {
         return weekFragment;
     }
 
-    private Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -88,10 +85,8 @@ public class OrderClassWeekFragment extends Fragment {
     }
 
     private void initView(View view) {
-        ImageView ivToggle = view.findViewById(R.id.iv_toggle);
 
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
-        llCalendar = view.findViewById(R.id.ll_calendar);
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
         rv_day = view.findViewById(R.id.recyclerview);
         rv_day.setNestedScrollingEnabled(false);

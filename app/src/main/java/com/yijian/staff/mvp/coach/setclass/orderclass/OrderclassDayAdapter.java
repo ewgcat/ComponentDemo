@@ -15,18 +15,18 @@ import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 
 public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdapter.ViewHolder> {
 
-    private List<OrderClassDayBean> orderClassDayBeanList;
+    private List<OrderClassDayBean> orderClassDayBeanList  = new ArrayList<>();
     private Fragment fragment;
 
-    public OrderclassDayAdapter(Fragment fragment, List<OrderClassDayBean> orderClassDayBeanList){
+    public OrderclassDayAdapter(Fragment fragment){
         this.fragment = fragment;
-        this.orderClassDayBeanList = orderClassDayBeanList;
     }
 
     public void resetDataList(List<OrderClassDayBean> orderClassDayBeans){

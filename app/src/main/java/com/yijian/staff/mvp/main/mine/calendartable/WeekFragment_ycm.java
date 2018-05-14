@@ -60,7 +60,6 @@ public class WeekFragment_ycm extends Fragment  {
 
     private static final String TAG = "WeekFragment_ycm";
     private static WeekFragment_ycm weekFragment;
-    private LinearLayout llCalendar;
     private int mCurrentSelectYear;
     private int mCurrentSelectMonth;
     private int mCurrentSelectDay;
@@ -81,7 +80,6 @@ public class WeekFragment_ycm extends Fragment  {
         }
         return weekFragment;
     }
-    private Handler handler=new Handler();
 
     @Nullable
     @Override
@@ -92,10 +90,8 @@ public class WeekFragment_ycm extends Fragment  {
     }
 
     private void initView(View view) {
-        ImageView ivToggle = view.findViewById(R.id.iv_toggle);
 
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
-        llCalendar = view.findViewById(R.id.ll_calendar);
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
         rv_day = view.findViewById(R.id.recyclerview);
         rv_day.setNestedScrollingEnabled(false);

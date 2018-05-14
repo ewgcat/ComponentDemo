@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.Calendar;
@@ -27,17 +28,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachFilterViperDialog extends Dialog implements DialogInterface.OnDismissListener {
+public class CoachFilterViperDialog extends Dialog  {
 
     private static String TAG = CoachFilterViperDialog.class.getSimpleName();
     @BindView(R.id.tv_sex_man)
     TextView tvSexMan;
-    @BindView(R.id.ll_sex_man)
-    LinearLayout llSexMan;
     @BindView(R.id.tv_sex_woman)
     TextView tvSexWoman;
-    @BindView(R.id.ll_sex_woman)
-    LinearLayout llSexWoman;
     @BindView(R.id.tv_sijiao_class)
     TextView tvSijiaoClass;
     @BindView(R.id.tv_tiyan_class)
@@ -111,7 +108,6 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
         this.setContentView(contentView);
 
         ButterKnife.bind(this, contentView);
-        this.setOnDismissListener(this);
 
         initView();
     }
@@ -162,8 +158,8 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
         tvXianxia.setTextColor(Color.parseColor("#666666"));
         tvJianshenGuan.setTextColor(Color.parseColor("#666666"));
 
-        llSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvSijiaoClass.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvTiyanClass.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -227,27 +223,27 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
             sex = 1;
             tvSexMan.setTextColor(Color.parseColor("#1997f8"));
             tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
-            llSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+            tvSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexWoman.setTextColor(Color.parseColor("#666666"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexWoman.setCompoundDrawables(null, null, null, null);
         } else {
             sex = 2;
             tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
-            llSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexMan.setTextColor(Color.parseColor("#666666"));
             tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            llSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexMan.setCompoundDrawables(null, null, null, null);
         }
     }
@@ -274,18 +270,23 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
             setSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
+            tvStartTime.setText("");
+            tvEndTime.setText("");
 
         } else if (index == 2) {
             joinTimeType = 7;
             setSelectStyle(tvTime2);
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime3);
-
+            tvStartTime.setText("");
+            tvEndTime.setText("");
         } else if (index == 3) {
             joinTimeType = 30;
             setSelectStyle(tvTime3);
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
+            tvStartTime.setText("");
+            tvEndTime.setText("");
         } else if (index == 4) {
             joinTimeType = -1;
             setUnSelectStyle(tvTime1);
@@ -396,15 +397,15 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
         }
     }
 
-    @OnClick({R.id.empty_view, R.id.ll_sex_man, R.id.ll_sex_woman, R.id.tv_sijiao_class, R.id.tv_tiyan_class, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_buy_time1, R.id.tv_buy_time2, R.id.tv_buy_time3, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_reset, R.id.tv_confirm})
+    @OnClick({R.id.empty_view, R.id.tv_sex_man, R.id.tv_sex_woman, R.id.tv_sijiao_class, R.id.tv_tiyan_class, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_buy_time1, R.id.tv_buy_time2, R.id.tv_buy_time3, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_reset, R.id.tv_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             //性别
-            case R.id.ll_sex_man:
+            case R.id.tv_sex_man:
                 selectSex(0);
                 break;
-            case R.id.ll_sex_woman:
+            case R.id.tv_sex_woman:
                 selectSex(1);
                 break;
 
@@ -458,20 +459,39 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
 
             //按钮
             case R.id.tv_reset:
-                resetView();
+                reset();
                 break;
             case R.id.tv_confirm:
+                setResultSure();
                 dismiss();
+                break;
             case R.id.empty_view:
-                dismiss();
+                reset();
+                setResultNoSure();
                 break;
         }
     }
 
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
 
+    private void reset() {
+        resetView();
+        sex = -1;//性别：【0:未知 1:男 2:女】
+        classType = null;//课程类型：【1:私教课，1:体验课】
+        joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
+        startTime = null;//开始时间
+        endTime = null;//结束时间
+        buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
+        expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
+    }
+
+
+    private void setResultNoSure() {
+        onDismissListener.onDismiss(new CoachViperFilterBean());
+        dismiss();
+    }
+
+    private void setResultSure() {
         CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
         coachViperFilterBean.setSex(sex);
         coachViperFilterBean.setCourseType(classType);
@@ -486,7 +506,9 @@ public class CoachFilterViperDialog extends Dialog implements DialogInterface.On
         if (onDismissListener != null) {
             onDismissListener.onDismiss(coachViperFilterBean);
         }
+        dismiss();
     }
+
 
 
     public interface OnDismissListener {

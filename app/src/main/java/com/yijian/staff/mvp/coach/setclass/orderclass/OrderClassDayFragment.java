@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.coach.setclass.orderclass;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.yijian.staff.R;
 
 import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarAdapter;
 import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
+import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -46,6 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+
 
 public class OrderClassDayFragment extends Fragment {
     private static final String TAG = "DayFragment_ycm";
@@ -57,21 +61,22 @@ public class OrderClassDayFragment extends Fragment {
     private WeekCalendarView wcvCalendar;
     private MonthCalendarView mcvCalendar;
     private RecyclerView rv_day;
-    List<OrderClassDayBean> orderClassDayBeanList = new ArrayList<OrderClassDayBean>();
-    OrderclassDayAdapter dayCanlendarAdapter;
     OnChangeDateListener onChangeDateListener;
+    private OrderclassDayAdapter orderclassDayAdapter;
+
+
 
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
         this.onChangeDateListener = onChangeDateListener;
     }
 
-    public static OrderClassDayFragment getInstance(){
-        if(dayFragment == null){
+
+    public static OrderClassDayFragment getInstance() {
+        if (dayFragment == null) {
             dayFragment = new OrderClassDayFragment();
         }
         return dayFragment;
     }
-
 
 
     @Nullable
@@ -80,7 +85,6 @@ public class OrderClassDayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_class_day, container, false);
         initView(view);
         initData();
-
         return view;
     }
 
@@ -98,33 +102,29 @@ public class OrderClassDayFragment extends Fragment {
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
 
 
-
         ivToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int height = llCalendar.getHeight();
                 float translationY = llCalendar.getTranslationY();
-                if (translationY==0){//收缩
+                if (translationY == 0) {//收缩
 
                     float range = height - getDependentViewCollapsedHeight();
                     llCalendar.setTranslationY(-range);
-                }else if (-translationY==height-getDependentViewCollapsedHeight()){//伸张
+                } else if (-translationY == height - getDependentViewCollapsedHeight()) {//伸张
                     llCalendar.setTranslationY(0);
                 }
 
             }
         });
 
-        Calendar calendar = Calendar.getInstance();
-        resetCurrentSelectDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         rv_day = view.findViewById(R.id.rv);
-
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_day.setLayoutManager(layoutmanager);
-        dayCanlendarAdapter = new OrderclassDayAdapter(getActivity(), orderClassDayBeanList);
-        rv_day.setAdapter(dayCanlendarAdapter);
+        orderclassDayAdapter = new OrderclassDayAdapter(this);
+        rv_day.setAdapter(orderclassDayAdapter);
 
     }
 
@@ -163,7 +163,7 @@ public class OrderClassDayFragment extends Fragment {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                Date date = dateFormat.parse(year + "-" + month + "-" + day);
+                Date date = dateFormat.parse(year + "-" + (month+1)  + "-" + day);
                 loadDayData(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -225,7 +225,7 @@ public class OrderClassDayFragment extends Fragment {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                Date date = dateFormat.parse(year + "-" + month + "-" + day);
+                Date date = dateFormat.parse(year + "-" + (month+1) + "-" + day);
                 loadDayData(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -241,7 +241,7 @@ public class OrderClassDayFragment extends Fragment {
             CalendarDay calendarDay = CalendarDay.from(year, month, day);
             onChangeDateListener.onChangeDate(calendarDay);
 
-            loadPreviewDayData(year + "-" + month);
+            loadPreviewDayData(year + "-" + (month+1));
 
             //添加小圆点
            /* List<String> dateList = new ArrayList<String>();
@@ -297,21 +297,20 @@ public class OrderClassDayFragment extends Fragment {
 
 
     public void loadDayData(Date strDate) {
-        Map<String,String> map = new HashMap<String,String>();
+        Map<String, String> map = new HashMap<String, String>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        map.put("dateStr",simpleDateFormat.format(strDate));
+        map.put("dateStr", simpleDateFormat.format(strDate));
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                orderClassDayBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "list");
-                orderClassDayBeanList = com.alibaba.fastjson.JSONArray.parseArray(records.toString(),OrderClassDayBean.class);
-                dayCanlendarAdapter.resetDataList(orderClassDayBeanList);
+                List<OrderClassDayBean> orderClassDayBeanList = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), OrderClassDayBean.class);
+                orderclassDayAdapter.resetDataList(orderClassDayBeanList);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -329,17 +328,35 @@ public class OrderClassDayFragment extends Fragment {
 
             @Override
             public void onSuccess(JSONArray result) {
-                //添加小圆点
                 List<String> dateStrList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), String.class);
-                mcvCalendar.getCurrentMonthView().addDateTaskHint(dateStrList);
-                if (wcvCalendar.getCurrentWeekView() == null) {
-                    WeekView weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
-                    weekView.addDateTaskHint(dateStrList);
-                }else{
-                    wcvCalendar.getCurrentWeekView().addDateTaskHint(dateStrList);
+                if(dateStrList!=null){
+
+                    //添加小圆点
+                    mcvCalendar.getCurrentMonthView().addDateTaskHint(dateStrList);
+
+                    for(int i = 0; i < dateStrList.size(); i++){
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date date = simpleDateFormat.parse(dateStrList.get(i));
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTime(date);
+                            dateStrList.set(i,calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)-1)+calendar.get(Calendar.DAY_OF_MONTH));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (wcvCalendar.getCurrentWeekView() == null) {
+                        WeekView weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
+                        weekView.addDateTaskHint(dateStrList);
+                    }else{
+                        wcvCalendar.getCurrentWeekView().addDateTaskHint(dateStrList);
+                    }
+                    Log.e("Test", "loadPreviewDayData.....");
+                    wcvCalendar.getCurrentItem();
+
                 }
-                Log.e("Test", "loadPreviewDayData.....");
-                wcvCalendar.getCurrentItem();
+
 
             }
 
@@ -348,6 +365,22 @@ public class OrderClassDayFragment extends Fragment {
 
             }
         });
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            String strDate = data.getStringExtra("date");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                loadDayData(simpleDateFormat.parse(strDate));
+                loadPreviewDayData(strDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

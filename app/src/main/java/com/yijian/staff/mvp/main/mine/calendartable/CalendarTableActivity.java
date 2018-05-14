@@ -24,6 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+
 /**
  * 日程表
  */
@@ -161,6 +163,19 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(calendarDay);
         currentDay = calendarDay;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            if (dayFragment_ycm != null) {
+                dayFragment_ycm.onActivityResult(requestCode, resultCode, data);
+            }
+            if (weekFragment != null) {
+                weekFragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
 
 }

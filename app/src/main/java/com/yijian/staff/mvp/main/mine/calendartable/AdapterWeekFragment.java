@@ -222,11 +222,14 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             RelativeLayout.LayoutParams layoutParams =
                     new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, dip2px(Height));
             layoutParams.setMargins(1, dip2px(marginTop), 0, 0);
-            if (courseInfo.getIsExperience().equals("1")) { //0：私教课，1：体验课
+            /*if (courseInfo.getIsExperience().equals("1")) { //0：私教课，1：体验课
                 textView.setBackgroundResource(R.color.textColorde947d);
             } else {
                 textView.setBackgroundResource(R.color.textColor9acac4);
-            }
+            }*/
+
+
+            textView.setBackgroundResource(R.color.textColorde947d);
 
             textView.setTextColor(context.getResources().getColor(R.color.white));
             textView.setText("" + courseInfo.getLessonName());

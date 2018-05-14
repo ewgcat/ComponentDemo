@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/15")
-public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateListener  {
+public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateListener {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -61,6 +61,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     OnChangeDateListener onChangeDateListener;
     CalendarDay currentDay;
 
+    public static int ORDER_REFRESH_REQUESTCODE = 110;
 
 
     @Override
@@ -76,7 +77,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
 
     private void initView() {
         Calendar calendar = Calendar.getInstance();
-        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         titleChanger = new TitleChanger(tv_change_date);
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
         titleChanger.setPreviousMonth(currentDay);
@@ -161,5 +162,16 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
         currentDay = calendarDay;
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ORDER_REFRESH_REQUESTCODE) {
+            if (dayFragment != null) {
+                dayFragment.onActivityResult(requestCode, resultCode, data);
+            }
+            if (weekFragment != null) {
+                weekFragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
 }

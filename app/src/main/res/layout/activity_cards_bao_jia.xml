@@ -28,9 +28,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:layout_weight="1"
             android:background="@drawable/goods_search_top_edittext_bg"
             android:orientation="horizontal">
 
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@null"
-                android:hint="输入课程名称，进行搜索"
+                android:hint="输入产品名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColor="#666666"
@@ -171,7 +171,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
     </LinearLayout>
 

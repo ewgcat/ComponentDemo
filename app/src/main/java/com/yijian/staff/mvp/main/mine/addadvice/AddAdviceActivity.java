@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
@@ -40,8 +41,16 @@ public class AddAdviceActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_view_navigation_bar2);
         navigationBar2.setTitle("建议与反馈");
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        navigationBar2.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyBoard(etAdvice);
+                finish();
+            }
+        });
         navigationBar2.setmRightTvText("发送");
+        TextView textView = navigationBar2.getmRightTv();
+        textView.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

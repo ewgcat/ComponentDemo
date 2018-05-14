@@ -140,7 +140,6 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
                 break;
             case R.id.ll_jiedai:
-
 //                Intent intent = new Intent(getActivity(), ReceptionActivity.class);
 ////                startActivity(intent);
 //                startActivityForResult(intent, RESULT_OK_RECEPTION);

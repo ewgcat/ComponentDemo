@@ -62,6 +62,11 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(context).load(businessMessageBean.getMemberHeadPortrait()).apply(options).into(holder.iv_bussiness_msg_header);
+//        if (position==businessMessageBeans.size()-1){
+//            holder.ll_line.setVisibility(View.GONE);
+//        }else {
+//            holder.ll_line.setVisibility(View.VISIBLE);
+//        }
     }
 
     @Override
@@ -80,6 +85,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
         TextView tv_business_msg_content; //业务消息内容
         TextView tv_business_msg_time; //业务消息发送的时间
 
+        View ll_line;
         public ViewHolder(View view) {
             super(view);
 
@@ -90,6 +96,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
             tv_business_msg_type = view.findViewById(R.id.tv_business_msg_type);
             tv_business_msg_content = view.findViewById(R.id.tv_business_msg_content);
             tv_business_msg_time = view.findViewById(R.id.tv_business_msg_time);
+            ll_line = view.findViewById(R.id.ll_line);
 
         }
     }

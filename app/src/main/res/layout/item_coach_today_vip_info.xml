@@ -47,8 +47,7 @@
                     android:id="@+id/iv_gender"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:layout_marginLeft="8dp"
-            />
+                    android:layout_marginLeft="8dp" />
 
 
 

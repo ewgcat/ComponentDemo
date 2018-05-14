@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:textColor="#1997f8"
+            android:textColor="#666666"
             android:text="姓名"
             android:gravity="center"
             />
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:textColor="#1997f8"
+            android:textColor="#666666"
             android:text="课程名称"
             android:gravity="center"
             />
@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:textColor="#1997f8"
+            android:textColor="#666666"
             android:text="总课程"
             android:gravity="center"
             />
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:textColor="#1997f8"
+            android:textColor="#666666"
             android:text="存课"
             android:gravity="center"
             />

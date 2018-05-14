@@ -27,13 +27,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HuijiFilterViperDialog extends Dialog implements DialogInterface.OnDismissListener {
+public class HuijiFilterViperDialog extends Dialog {
 
     private static String TAG = HuijiFilterViperDialog.class.getSimpleName();
-    @BindView(R.id.ll_sex_man)
-    LinearLayout llSexMan;
-    @BindView(R.id.ll_sex_woman)
-    LinearLayout llSexWoman;
+
     @BindView(R.id.tv_time_card)
     TextView tvTimeCard;
     @BindView(R.id.tv_cishu_card)
@@ -117,7 +114,6 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
         this.setContentView(contentView);
 
         ButterKnife.bind(this, contentView);
-        this.setOnDismissListener(this);
 
         initView();
     }
@@ -161,8 +157,8 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
         tvXianxia.setTextColor(Color.parseColor("#666666"));
         tvJianshenGuan.setTextColor(Color.parseColor("#666666"));
 
-        llSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvCishuCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -227,30 +223,30 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
     //性别
     private void selectSex(int index) {
         if (index == 0) {
-            sex=1;
+            sex = 1;
             tvSexMan.setTextColor(Color.parseColor("#1997f8"));
             tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
-            llSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+            tvSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexWoman.setTextColor(Color.parseColor("#666666"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            llSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexWoman.setCompoundDrawables(null, null, null, null);
         } else {
-            sex=2;
+            sex = 2;
             tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
-            llSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
             Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexMan.setTextColor(Color.parseColor("#666666"));
             tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            llSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexMan.setCompoundDrawables(null, null, null, null);
         }
     }
@@ -293,18 +289,22 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
             setSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
-
+            tvStartTime.setText("");
+            tvEndTime.setText("");
         } else if (index == 2) {
             joinTimeType = 7;
             setSelectStyle(tvTime2);
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime3);
-
+            tvStartTime.setText("");
+            tvEndTime.setText("");
         } else if (index == 3) {
             joinTimeType = 30;
             setSelectStyle(tvTime3);
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
+            tvStartTime.setText("");
+            tvEndTime.setText("");
         } else if (index == 4) {
             joinTimeType = -1;
             setUnSelectStyle(tvTime1);
@@ -415,15 +415,15 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
         }
     }
 
-    @OnClick({R.id.empty_view, R.id.ll_sex_man, R.id.ll_sex_woman, R.id.tv_time_card, R.id.tv_cishu_card, R.id.tv_chuzhi_card, R.id.tv_huiyuan_card, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_un_buy, R.id.tv_buy, R.id.tv_tiyanke, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_xianxia, R.id.tv_jianshen_guan, R.id.scoll_view, R.id.tv_reset, R.id.tv_confirm})
+    @OnClick({R.id.empty_view, R.id.tv_sex_man, R.id.tv_sex_woman, R.id.tv_time_card, R.id.tv_cishu_card, R.id.tv_chuzhi_card, R.id.tv_huiyuan_card, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_un_buy, R.id.tv_buy, R.id.tv_tiyanke, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_xianxia, R.id.tv_jianshen_guan, R.id.scoll_view, R.id.tv_reset, R.id.tv_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             //性别
-            case R.id.ll_sex_man:
+            case R.id.tv_sex_man:
                 selectSex(0);
                 break;
-            case R.id.ll_sex_woman:
+            case R.id.tv_sex_woman:
                 selectSex(1);
                 break;
 
@@ -488,33 +488,49 @@ public class HuijiFilterViperDialog extends Dialog implements DialogInterface.On
 
             //按钮
             case R.id.tv_reset:
-                resetView();
+                reset();
                 break;
             case R.id.tv_confirm:
+                setResultSure();
                 dismiss();
+                break;
             case R.id.empty_view:
-                dismiss();
+                setResultNoSure();
                 break;
         }
     }
 
+    private void reset() {
+        resetView();
+        sex = -1;
+        cardType = -1;
+        expiringDay = -1;
+        privateCourseState = -1;
+        joinTimeType = -2;
+        startTime = null;
+        endTime = null;
+    }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
 
+    private void setResultNoSure() {
+        reset();
+        onDismissListener.onDismiss(new HuijiViperFilterBean());
+        dismiss();
+    }
+
+    private void setResultSure() {
         HuijiViperFilterBean huijiViperFilterBean = new HuijiViperFilterBean();
         huijiViperFilterBean.setSex(sex);
         huijiViperFilterBean.setCardType(cardType);
         huijiViperFilterBean.setJoinTimeType(joinTimeType);
-        if (joinTimeType==-1){
+        if (joinTimeType == -1) {
             huijiViperFilterBean.setStartTime(startTime);
             huijiViperFilterBean.setEndTime(endTime);
         }
         huijiViperFilterBean.setPrivateCourseState(privateCourseState);
         huijiViperFilterBean.setExpiringDay(expiringDay);
-
-
         onDismissListener.onDismiss(huijiViperFilterBean);
+        dismiss();
     }
 
     public interface OnDismissListener {

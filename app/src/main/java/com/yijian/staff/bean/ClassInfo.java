@@ -1,5 +1,8 @@
 package com.yijian.staff.bean;
 
+import android.support.annotation.NonNull;
+
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -9,8 +12,19 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/3/17 19:29:17
  */
-public class ClassInfo {
+public class ClassInfo implements Comparable<ClassInfo>{
 
+    @Override
+    public String toString() {
+        return "ClassInfo{" +
+                "lessonId='" + lessonId + '\'' +
+                ", name='" + name + '\'' +
+                ", img='" + img + '\'' +
+                ", cleassNum='" + cleassNum + '\'' +
+                ", lessonTime='" + lessonTime + '\'' +
+                ", baseTotalPrice='" + baseTotalPrice + '\'' +
+                '}';
+    }
 
     /**
      * lessonId : 1
@@ -27,6 +41,7 @@ public class ClassInfo {
     private String cleassNum;
     private String lessonTime;
     private String baseTotalPrice;
+
 
     public ClassInfo(JSONObject jsonObject){
         this.name=  JsonUtil.getString(jsonObject,"name");
@@ -83,5 +98,13 @@ public class ClassInfo {
 
     public void setBaseTotalPrice(String baseTotalPrice) {
         this.baseTotalPrice = baseTotalPrice;
+    }
+
+    @Override
+    public int compareTo(@NonNull ClassInfo o) {
+        int i1 = Integer.parseInt(this.baseTotalPrice);
+        int i2 = Integer.parseInt(o.baseTotalPrice);
+        int i = i1-i2;//先按照年龄排序
+        return i;
     }
 }

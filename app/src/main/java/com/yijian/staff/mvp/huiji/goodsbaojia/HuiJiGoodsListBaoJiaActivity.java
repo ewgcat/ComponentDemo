@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.huiji.goodsbaojia;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +34,7 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.CardsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.OptionDialog;
+import com.yijian.staff.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +60,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     @BindView(R.id.tv_shaixuan)
     TextView tvShaixuan;
 
+    @BindView(R.id.ll_root)
+    LinearLayout llroot;
+
+    @BindView(R.id.ll_content)
+    LinearLayout llContent;
     @BindView(R.id.goods_rcv)
     RecyclerView goodsRcv;
     @BindView(R.id.et_search)
@@ -68,6 +81,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     private boolean isPrice = false;
 
+    private static final String TAG = "HuiJiGoodsListBaoJiaAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +94,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         bodyCondition = new CardRequestBody();
 
         initComponent();
+
     }
 
 
@@ -91,6 +106,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 finish();
             }
         });
+
+        etSearch.setCursorVisible(false);
+        setListenerToRootView();
+
+
         etSearch.setHintTextColor(Color.parseColor("#999999"));
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -110,6 +130,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 return true;
             }
         });
+
+
 
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
@@ -166,6 +188,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 if (body==null){//属于重置
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this,4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#666666"));
 
@@ -181,6 +204,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this,4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
 
@@ -260,6 +284,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this,4));
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             Collections.sort(mGoodsInfoList);
             goodsListAdapter.resetData(mGoodsInfoList);
@@ -269,6 +294,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this,4));
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 
             Collections.sort(mGoodsInfoList);
@@ -349,6 +375,25 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             cardRefreshLayout.finishLoadMore(1000);
         }
 
+    }
+
+
+    private void setListenerToRootView() {
+        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+        final View view = decorView.getChildAt(0);
+        llroot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                HuiJiGoodsListBaoJiaActivity.this.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+                int heightDiff = view.getHeight() - r.bottom;
+                if (heightDiff > 100) {//软键盘弹起
+                    etSearch.setCursorVisible(true);
+                } else {//软键盘未弹起
+                    etSearch.setCursorVisible(false);
+                }
+            }
+        });
     }
 
 }

@@ -17,6 +17,7 @@ import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.main.mine.MineFragment;
 import com.yijian.staff.mvp.main.work.WorkFragment;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
@@ -90,8 +91,10 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         if (workFragment!=null)workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
             @Override
             public void startAct() {
-                Intent intent = new Intent(MainActivity.this, ReceptionActivity.class);
-                startActivityForResult(intent, RESULT_OK_RECEPTION);
+//                Intent intent = new Intent(MainActivity.this, ReceptionActivity.class);
+//                startActivityForResult(intent, RESULT_OK_RECEPTION);
+                Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
+                startActivity(intent);
             }
         });
     }

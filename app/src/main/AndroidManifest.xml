@@ -98,7 +98,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.reception.ReceptionActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.reception.ReceptionActivityTemp"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.reception.step1.ReceptionStepOneActivity"
             android:screenOrientation="portrait"

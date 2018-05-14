@@ -87,7 +87,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
         params.put("pageSize",10);
 
 
-        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, headerParam, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
@@ -107,7 +107,6 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
                 Log.e(TAG, "onSuccess: "+records.size() );
                 view.showRecptionRecordList(records,isRefresh);
                 pageNum++;
-
             }
 
             @Override

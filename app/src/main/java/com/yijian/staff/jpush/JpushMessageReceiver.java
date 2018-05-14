@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.yijian.staff.jpush.bean.Messager;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.util.GsonNullString;
@@ -76,7 +77,8 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 boolean background = isBackground(context);
 
                 if (businessType == 0&&!background) {// //属于接待消息&&属于前台
-                        toReception(context, bundleString);
+//                        toReception(context, bundleString);
+                    ReceptionActivityTemp.toReceptionActivityTemp(context);
                         JPushInterface.clearNotificationById(context, notifactionId);
                 }
 
@@ -93,7 +95,8 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 JSONObject jsonObject1 = new JSONObject(data);
                 int businessType = jsonObject1.getInt("businessType");
                 if (businessType == 0) {// //属于接待消息
-                        toReception(context, bundleString);
+//                        toReception(context, bundleString);
+                    ReceptionActivityTemp.toReceptionActivityTemp(context);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -135,13 +138,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             } else if (sex == 2) {
                 recptionerInfoBean.setSex("女");
             }
-//            List<ReceptionLog> historyNode = messager.getReceptionLogs();
-//            List<Integer> nodes = new ArrayList<>();
-//            if (historyNode != null && !historyNode.isEmpty()) {
-//                for (ReceptionLog log : historyNode) {
-//                    nodes.add(log.getOperatorType());
-//                }
-//            }
             List<Integer> operatorTypes = messager.getOperatorTypes();
             ArrayList<Integer> types = new ArrayList<>();
             if (operatorTypes!=null&&!operatorTypes.isEmpty()){

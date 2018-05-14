@@ -741,9 +741,18 @@ public class HttpManager {
 
 
     // post有头有参
-    public static void postHasHeaderHasParamOfInteger(String url, Map<String, String> header, Map<String, Integer> param, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.postHasHeaderHasParamOfInteger(url, header, param);
-        execute(observable, observer);
+    public static void postHasHeaderHasParamOfInteger(String url, Map<String, Integer> param, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postHasHeaderHasParamOfInteger(url, headers, param);
+            execute(observable, observer);
+        }
+
     }
 
     // get没请求头没有参数
@@ -847,6 +856,9 @@ public class HttpManager {
 
     //接待记录
     public static final String RECEPTION_RECORD = BuildConfig.HOST + "reception/record";
+
+    //接待记录
+    public static final String RECEPTION_RECORD_TEMP = BuildConfig.HOST + "reception/record/temp";
 
     ///qs/member/getBodyBuildTimesByMemberId 健身时间
 

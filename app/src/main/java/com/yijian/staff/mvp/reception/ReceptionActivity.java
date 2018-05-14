@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionLog;
+import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
@@ -67,6 +69,17 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         presenter.getRecptionRecord(true);
 
     }
+
+    public static void toReceptionActivity(Context context) {
+        Intent intent = new Intent(context, ReceptionActivity.class);
+        context.startActivity(intent);
+    }
+
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        presenter.getRecptionRecord(true);
+//    }
 
     @Override
     protected void onResume() {
@@ -189,6 +202,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         if (isRefresh) receptionHistoryAdapter.clearData();
         receptionHistoryAdapter.addData(recordList);
+    }
+
+    @Override
+    public void showRecptionRecordListTemp(List<ReceptionRecordBean> recordList, boolean isRefresh) {
+
     }
 
     @Override

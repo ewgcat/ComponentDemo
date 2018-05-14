@@ -19,6 +19,8 @@ import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.jpush.JpushMessageReceiver;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.tools.ContextUtil;
@@ -138,14 +140,15 @@ public class CustomApplication extends TinkerApplication implements Application.
 
     @Override
     public void onActivityResumed(Activity activity) {
-        Log.e(TAG, "onActivityResumed: " );
-        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
+//        Log.e(TAG, "onActivityResumed: " );
+//        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
         try {
             if (JpushMessageReceiver.shouldToReception&&JpushMessageReceiver.businessType==0){//应该跳转到接待流程
 //                Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
                if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)){
 //                   Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.bundleString);
-                   JpushMessageReceiver.toReception(activity,JpushMessageReceiver.bundleString);
+//                   JpushMessageReceiver.toReception(activity,JpushMessageReceiver.bundleString);
+                   ReceptionActivityTemp.toReceptionActivityTemp(activity);
                    JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
                }
                 JpushMessageReceiver.shouldToReception=false;

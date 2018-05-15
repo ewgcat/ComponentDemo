@@ -77,9 +77,9 @@ public class SettingActivity extends MvcBaseActivity {
                     tvDepartment.setText(userInfo.getDepartment());
                     tvPosition.setText(userInfo.getPost());
                     user.setAge(userInfo.getAge() );
-                    user.setHeadImg(BuildConfig.FILE_HOST+userInfo.getHeadImg());
+                    user.setHeadImg(userInfo.getHeadImg());
                     DBManager.getInstance().insertOrReplaceUser(user);
-                    setImageResource(BuildConfig.FILE_HOST+userInfo.getHeadImg(), ivHead);
+                    setImageResource(userInfo.getHeadImg(), ivHead);
 
                 }
 

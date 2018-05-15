@@ -86,12 +86,8 @@ public class MineFragment extends Fragment {
             }else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("教练经理");
             }
-            if (user.getHeadImg().contains(BuildConfig.FILE_HOST)){
 
                 setImageResource(user.getHeadImg(), ivUserHead);
-            }else {
-                setImageResource(BuildConfig.FILE_HOST+user.getHeadImg(), ivUserHead);
-            }
         }
         return view;
     }

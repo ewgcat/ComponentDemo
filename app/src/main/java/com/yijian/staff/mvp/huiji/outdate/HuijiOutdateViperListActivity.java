@@ -117,6 +117,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
+                vipOutdateInfoList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");

@@ -113,6 +113,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
+                viperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -136,6 +137,8 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
                 hideBlueProgress();
+                coachPotentialViperListAdapter.notifyDataSetChanged();
+
             }
         });
     }

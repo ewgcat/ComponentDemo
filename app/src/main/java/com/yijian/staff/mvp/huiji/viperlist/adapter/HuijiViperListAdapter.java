@@ -56,8 +56,11 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
     @Override
     public void onBindViewHolder(HuijiViperListAdapter.ViewHolder holder, int position) {
-        HuiJiViperBean viperBean = viperBeanList.get(position);
-        holder.bind(context,viperBean);
+       if (viperBeanList!=null&&viperBeanList.size()>position){
+           HuiJiViperBean viperBean = viperBeanList.get(position);
+           holder.bind(context,viperBean);
+       }
+
     }
 
     @Override

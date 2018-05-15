@@ -187,6 +187,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
+            viperBeanList.clear();
 
             HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver() {
                 @Override
@@ -197,6 +198,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                     clearEditTextFocus();
 
                     refreshLayout.finishRefresh(2000, true);
+                    viperBeanList.clear();
 
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
@@ -219,6 +221,8 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                 public void onFail(String msg) {
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                    adapter.update(viperBeanList);
+
                     Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });

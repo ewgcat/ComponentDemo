@@ -179,8 +179,8 @@ public class CoachFilterViperDialog extends Dialog  {
         tvJianshenGuan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
-        tvSexMan.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_man), null, null, null);
-        tvSexWoman.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_women), null, null, null);
+        tvSexMan.setCompoundDrawables(null, null, null, null);
+        tvSexWoman.setCompoundDrawables(null, null, null, null);
 
         tvSijiaoClass.setCompoundDrawables(null, null, null, null);
         tvTiyanClass.setCompoundDrawables(null, null, null, null);

@@ -146,6 +146,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
+                coachViperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -166,6 +167,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                coachViperListAdapter.update(coachViperBeanList);
 
             }
         });

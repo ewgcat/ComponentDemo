@@ -157,7 +157,7 @@ public class HuijiFilterViperDialog extends Dialog {
         tvXianxia.setTextColor(Color.parseColor("#666666"));
         tvJianshenGuan.setTextColor(Color.parseColor("#666666"));
 
-        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -180,8 +180,8 @@ public class HuijiFilterViperDialog extends Dialog {
         tvJianshenGuan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
-        tvSexMan.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_man), null, null, null);
-        tvSexWoman.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_women), null, null, null);
+        tvSexMan.setCompoundDrawables(null, null, null, null);
+        tvSexWoman.setCompoundDrawables(null, null, null, null);
 
         tvTimeCard.setCompoundDrawables(null, null, null, null);
         tvCishuCard.setCompoundDrawables(null, null, null, null);

@@ -102,7 +102,7 @@ public class HuijiAllViperFragment extends Fragment {
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
         pageNum=1;
-        pageSize=10;
+        pageSize=2;
         viperBeanList.clear();
         this.huijiViperFilterBean = huijiViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
@@ -146,6 +146,7 @@ public class HuijiAllViperFragment extends Fragment {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+                viperBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {

@@ -142,6 +142,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+                viperBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {

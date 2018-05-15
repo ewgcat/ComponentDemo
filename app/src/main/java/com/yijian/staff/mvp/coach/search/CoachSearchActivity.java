@@ -200,6 +200,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
                     SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
+                    viperBeanList.clear();
 
 
                     refreshLayout.finishRefresh(2000, true);
@@ -229,6 +230,8 @@ public class CoachSearchActivity extends MvcBaseActivity {
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                     showToast(msg);
                     hideBlueProgress();
+                    adapter.update(viperBeanList);
+
 
                 }
             });

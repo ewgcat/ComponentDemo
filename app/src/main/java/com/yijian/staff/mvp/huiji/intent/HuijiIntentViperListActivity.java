@@ -107,6 +107,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
+                viperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -128,6 +129,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(HuijiIntentViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
+                huijiIntentViperListAdapter.notifyDataSetChanged();
 
             }
         });

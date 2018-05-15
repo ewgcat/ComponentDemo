@@ -150,6 +150,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
+                coachViperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -172,6 +173,8 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 hideBlueProgress();
+                coachViperListAdapter.update(coachViperBeanList);
+
             }
         });
     }

@@ -86,6 +86,8 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                coachViperBeanList.clear();
+
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -109,6 +111,8 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
                 hideBlueProgress();
+                coachOutdateViperListAdapter.update(coachViperBeanList);
+
             }
         });
     }

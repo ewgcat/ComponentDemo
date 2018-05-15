@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 
 import java.io.Serializable;
@@ -112,6 +113,9 @@ public class VipDetailBean implements Serializable {
     }
 
     public String getHeadImg() {
+        if (headImg!=null&&!headImg.contains( BuildConfig.FILE_HOST)){
+            headImg= BuildConfig.FILE_HOST+  headImg;
+        }
         return headImg;
     }
 

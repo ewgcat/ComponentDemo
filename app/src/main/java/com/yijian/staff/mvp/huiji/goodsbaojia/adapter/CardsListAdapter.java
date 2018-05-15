@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
+import com.yijian.staff.widget.AlwaysMarqueeTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
 
      class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemView;
-        TextView tvGoodsName;
+         AlwaysMarqueeTextView tvGoodsName;
         TextView tvJianshenplace;
         TextView tvYuEr;
         TextView tvChuzhiyouhui;

@@ -2,6 +2,7 @@ package com.yijian.staff.bean;
 
 import android.widget.ScrollView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONException;
@@ -72,7 +73,7 @@ public class CoachVipDetailBean {
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
         this.memberType = JsonUtil.getString(jsonObject, "memberType");
         this.cardName = JsonUtil.getString(jsonObject, "cardName");
         this.cardType = JsonUtil.getInt(jsonObject, "cardType");

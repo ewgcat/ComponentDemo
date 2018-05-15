@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.main.mine;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -84,7 +86,12 @@ public class MineFragment extends Fragment {
             }else if (user.getRole() == 7) {
                 tvUserJobPostion.setText("教练经理");
             }
-            setImageResource(user.getHeadImg(), ivUserHead);
+            if (user.getHeadImg().contains(BuildConfig.FILE_HOST)){
+
+                setImageResource(user.getHeadImg(), ivUserHead);
+            }else {
+                setImageResource(BuildConfig.FILE_HOST+user.getHeadImg(), ivUserHead);
+            }
         }
         return view;
     }

@@ -1,6 +1,7 @@
 package com.yijian.staff.bean;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class CoachViperBean implements Serializable {
         this.sex = JsonUtil.getInt(jsonObject, "sex");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST+  JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");

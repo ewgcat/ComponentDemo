@@ -1,137 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/item_view"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/white_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <ImageView
-            android:src="@mipmap/lg_vip"
             android:layout_width="115dp"
-            android:layout_height="151dp" />
+            android:layout_height="151dp"
+            android:src="@mipmap/lg_vip" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
-            <TextView
+
+            <com.yijian.staff.widget.AlwaysMarqueeTextView
                 android:id="@+id/tv_goods_name"
-                android:text="健身次数卡"
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical"
+                android:marqueeRepeatLimit="1"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:text="健身次数卡"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
-                android:layout_height="30dp">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="场馆:"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:text="场馆:" />
+
                 <TextView
                     android:id="@+id/tv_jianshenplace"
-                    android:singleLine="true"
-                    android:ellipsize="middle"
-                    tools:text="游泳"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    tools:text="游泳" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
-                android:layout_height="30dp">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="余额:"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:text="余额:" />
+
                 <TextView
                     android:id="@+id/tv_yu_er"
-                    tools:text="90"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:text="90" />
+
                 <TextView
                     android:id="@+id/tv_danwei"
-                    android:text="次"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="次" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
-                android:layout_height="30dp">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="储值优惠:"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:text="储值优惠:" />
+
                 <TextView
-                    android:text="赠送"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="赠送" />
+
                 <TextView
                     android:id="@+id/tv_chuzhiyouhui"
-                    android:text="0"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
                 <TextView
-                    android:text="%"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="%" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
-                android:layout_height="30dp">
+                android:orientation="horizontal">
 
 
                 <TextView
-                    android:text="价格:  "
-                    android:gravity="right"
-                    android:textColor="@color/blue"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:gravity="right"
+                    android:text="价格:  "
+                    android:textColor="@color/blue" />
+
                 <TextView
-                    tools:text="1400"
                     android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    tools:text="1400" />
+
                 <TextView
-                    android:text="元"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/blue"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="元"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

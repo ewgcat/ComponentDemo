@@ -1,5 +1,6 @@
 package com.yijian.staff.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
@@ -70,7 +71,7 @@ public class CoachHuiFangInfo {
 
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST+  JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
         this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");

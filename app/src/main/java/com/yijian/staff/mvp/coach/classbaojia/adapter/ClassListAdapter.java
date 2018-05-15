@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.widget.AlwaysMarqueeTextView;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_class_name;
+        AlwaysMarqueeTextView tv_class_name;
         TextView tv_price;
         TextView tv_class_long_time;
         TextView tv_class_num;

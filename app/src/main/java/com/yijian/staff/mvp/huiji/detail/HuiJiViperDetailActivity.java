@@ -135,6 +135,8 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     TextView tvHomeLocation;
     @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
+    @BindView(R.id.tv_lianxiren_phone)
+    TextView tvJinJiLianxirenphone;
 
 
     @BindView(R.id.tv_sijiao_class)
@@ -306,6 +308,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
+        tvJinJiLianxirenphone.setText(judgeNull(detailBean.getContactPhone()));
         tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
     }
 

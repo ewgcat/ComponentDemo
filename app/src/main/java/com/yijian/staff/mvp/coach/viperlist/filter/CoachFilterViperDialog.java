@@ -297,22 +297,40 @@ public class CoachFilterViperDialog extends Dialog  {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+                            String time = "";
+                            if (month < 9 && dayOfMonth < 10) {
+                                time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                            } else if (month > 9 && dayOfMonth > 10) {
+                                time += year + "-" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month < 9 && dayOfMonth > 10) {
+                                time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month > 9 && dayOfMonth < 10) {
+                                time += year + "-" + (month + 1) + "-0" + dayOfMonth;
+
+                            }
+                            tvStartTime.setText(time);
+
+
                             String endTime = tvEndTime.getText().toString();
-                            String startTime = tvStartTime.getText().toString();
                             if (!TextUtils.isEmpty(endTime)) {
                                 endTime = endTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(startTime)) {
-                                startTime = startTime.replace("-", "");
+
+
+                            if (!TextUtils.isEmpty(endTime)) {
+                                endTime = endTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(endTime) && !TextUtils.isEmpty(startTime)) {
-                                if (Integer.parseInt(endTime) >= Integer.parseInt(startTime)) {
-                                    tvStartTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                                } else {
-                                    Toast.makeText(getContext(), "开始时间不得大于结束时间", Toast.LENGTH_SHORT).show();
+                            if (!TextUtils.isEmpty(time)) {
+                                time = time.replace("-", "");
+                            }
+                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
+                                if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
+                                    tvStartTime.setText("");
+                                    tvEndTime.setText("");
+                                    Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                tvStartTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                             }
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
@@ -328,23 +346,37 @@ public class CoachFilterViperDialog extends Dialog  {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
-                            String endTime = tvEndTime.getText().toString();
-                            String startTime = tvStartTime.getText().toString();
-                            if (!TextUtils.isEmpty(endTime)) {
-                                endTime = endTime.replace("-", "");
+                            String time = "";
+
+                            if (month < 9 && dayOfMonth < 10) {
+                                time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                            } else if (month > 9 && dayOfMonth > 10) {
+                                time += year + "-" + (month + 1) + "-" + dayOfMonth;
+                            } else if (month < 9 && dayOfMonth > 10) {
+                                time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month > 9 && dayOfMonth < 10) {
+                                time += year + "-" + (month + 1) + "-0" + dayOfMonth;
                             }
+                            tvEndTime.setText(time);
+
+
+                            String startTime = tvStartTime.getText().toString();
+
                             if (!TextUtils.isEmpty(startTime)) {
                                 startTime = startTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(endTime) && !TextUtils.isEmpty(startTime)) {
-                                if (Integer.parseInt(endTime) >= Integer.parseInt(startTime)) {
-                                    tvEndTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                                } else {
+                            if (!TextUtils.isEmpty(time)) {
+                                time = time.replace("-", "");
+                            }
+                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
+                                if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
+                                    tvStartTime.setText("");
+                                    tvEndTime.setText("");
                                     Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                tvEndTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                             }
+
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));
@@ -492,6 +524,8 @@ public class CoachFilterViperDialog extends Dialog  {
     }
 
     private void setResultSure() {
+        startTime=tvStartTime.getText().toString();
+        endTime=tvEndTime.getText().toString();
         CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
         coachViperFilterBean.setSex(sex);
         coachViperFilterBean.setCourseType(classType);

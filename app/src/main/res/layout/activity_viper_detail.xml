@@ -1447,8 +1447,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp">
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1470,7 +1469,7 @@
 
                 </RelativeLayout>
 
-                <!--<RelativeLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="15dp"
@@ -1493,11 +1492,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
-                        android:text="13838463329"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
-                </RelativeLayout>-->
+                </RelativeLayout>
 
             </LinearLayout>
 

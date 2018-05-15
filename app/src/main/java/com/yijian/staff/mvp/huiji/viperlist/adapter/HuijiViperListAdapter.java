@@ -23,6 +23,7 @@ import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,23 +34,22 @@ import java.util.Map;
 
 public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAdapter.ViewHolder> {
 
-    private List<HuiJiViperBean> viperBeanList;
+    private List<HuiJiViperBean> viperBeanList=new ArrayList<>();
     private Context context;
 
-    public HuijiViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
+    public HuijiViperListAdapter(Context context) {
         this.context = context;
-        this.viperBeanList = viperBeanList;
     }
 
     @Override
     public HuijiViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_info, parent, false);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_all_info, parent, false);
         HuijiViperListAdapter.ViewHolder holder = new HuijiViperListAdapter.ViewHolder(view);
         return holder;
     }
 
     public void update(List<HuiJiViperBean> viperBeanList) {
+        this.viperBeanList.clear();
         this.viperBeanList = viperBeanList;
         notifyDataSetChanged();
     }

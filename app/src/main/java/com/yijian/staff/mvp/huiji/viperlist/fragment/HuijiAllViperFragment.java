@@ -50,7 +50,6 @@ public class HuijiAllViperFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
 
@@ -84,7 +83,7 @@ public class HuijiAllViperFragment extends Fragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
+        huijiViperListAdapter = new HuijiViperListAdapter(getActivity());
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -101,7 +100,6 @@ public class HuijiAllViperFragment extends Fragment {
     }
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
-        viperBeanList.clear();
         pageNum=1;
         pageSize=10;
         this.huijiViperFilterBean = huijiViperFilterBean;
@@ -147,6 +145,7 @@ public class HuijiAllViperFragment extends Fragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
+                List<HuiJiViperBean> viperBeanList = new ArrayList<>();
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
@@ -164,7 +163,6 @@ public class HuijiAllViperFragment extends Fragment {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
 //                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-                huijiViperListAdapter.update(viperBeanList);
 
             }
         });
@@ -217,6 +215,7 @@ public class HuijiAllViperFragment extends Fragment {
                 refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
 
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
+                List<HuiJiViperBean> viperBeanList = new ArrayList<>();
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);

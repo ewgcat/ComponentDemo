@@ -247,7 +247,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                     pages = JsonUtil.getInt(result, "pages");
 
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, true,  !hasMore);//传入false表示刷新失败
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
                     for (int i = 0; i < records.length(); i++) {
                         try {
@@ -266,7 +266,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                 public void onFail(String msg) {
                     clearEditTextFocus();
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, false,  !hasMore);//传入false表示刷新失败
                     Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });

@@ -72,7 +72,7 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
                     refreshLayout.finishRefresh(2000, true);
                 } else {
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
                 }
 
             }
@@ -83,7 +83,7 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
                     refreshLayout.finishRefresh(2000, false);
                 } else {
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
                 }
             }
         });

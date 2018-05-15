@@ -49,7 +49,6 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
     }
 
     public void update(List<HuiJiViperBean> viperBeanList) {
-        this.viperBeanList.clear();
         this.viperBeanList = viperBeanList;
         notifyDataSetChanged();
     }

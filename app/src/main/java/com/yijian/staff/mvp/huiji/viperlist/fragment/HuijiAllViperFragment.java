@@ -58,6 +58,7 @@ public class HuijiAllViperFragment extends Fragment {
     private static HuijiAllViperFragment huijiAllViperFragment;
     private HuijiViperListAdapter huijiViperListAdapter;
     private HuijiViperFilterBean huijiViperFilterBean;
+    List<HuiJiViperBean> viperBeanList = new ArrayList<>();
 
 
     public static HuijiAllViperFragment getInstance() {
@@ -102,6 +103,7 @@ public class HuijiAllViperFragment extends Fragment {
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
         pageNum=1;
         pageSize=10;
+        viperBeanList.clear();
         this.huijiViperFilterBean = huijiViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -145,7 +147,6 @@ public class HuijiAllViperFragment extends Fragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                List<HuiJiViperBean> viperBeanList = new ArrayList<>();
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
@@ -162,7 +163,8 @@ public class HuijiAllViperFragment extends Fragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-//                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+
+                huijiViperListAdapter.update(viperBeanList);
 
             }
         });
@@ -208,8 +210,8 @@ public class HuijiAllViperFragment extends Fragment {
             @Override
             public void onSuccess(JSONObject result) {
 
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败

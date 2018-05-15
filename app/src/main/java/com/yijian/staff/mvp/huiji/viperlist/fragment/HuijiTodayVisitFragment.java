@@ -159,6 +159,8 @@ public class HuijiTodayVisitFragment extends Fragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                huijiViperListAdapter.update(viperBeanList);
+
 
             }
         });

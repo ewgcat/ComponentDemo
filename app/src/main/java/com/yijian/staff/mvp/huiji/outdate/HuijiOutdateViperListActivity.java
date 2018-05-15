@@ -75,12 +75,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         rv_outdate.setAdapter(huijiOutdateViperListAdapter);
         initComponent();
 
-        Disposable disposable = RxBus.getDefault().toDefaultFlowable(HuijiViperFilterBean.class, new Consumer<HuijiViperFilterBean>() {
-            @Override
-            public void accept(HuijiViperFilterBean filterBean) throws Exception {
-                refresh();
-            }
-        });
+
         refresh();
     }
 

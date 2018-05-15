@@ -78,6 +78,7 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
         recyclerView.setAdapter(adapter);
         initData();
 
+
     }
 
 

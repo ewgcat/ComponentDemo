@@ -233,7 +233,6 @@ public class HuijiAllViperFragment extends Fragment {
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false,  !hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
             }
         });
     }

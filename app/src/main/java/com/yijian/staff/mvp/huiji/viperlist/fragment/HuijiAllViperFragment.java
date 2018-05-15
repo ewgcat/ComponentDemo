@@ -102,7 +102,7 @@ public class HuijiAllViperFragment extends Fragment {
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
         pageNum=1;
-        pageSize=2;
+        pageSize=10;
         viperBeanList.clear();
         this.huijiViperFilterBean = huijiViperFilterBean;
         HashMap<String, String> header = new HashMap<>();

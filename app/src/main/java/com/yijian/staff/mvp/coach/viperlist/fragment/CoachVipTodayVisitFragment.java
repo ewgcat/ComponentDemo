@@ -166,7 +166,6 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
 
             }
         });

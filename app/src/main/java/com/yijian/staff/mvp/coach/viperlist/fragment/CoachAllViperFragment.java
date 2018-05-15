@@ -171,7 +171,6 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                showToast(msg);
                 hideBlueProgress();
             }
         });

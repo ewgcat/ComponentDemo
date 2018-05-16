@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_empty_layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:visibility="visible">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_empty_layout_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <ImageView
+            android:src="@mipmap/nodata"
+            android:id="@+id/iv_empty_empty_image"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/iv_empty_empty_image"
+            android:id="@+id/tv_empty_empty_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="暂无数据"
+            android:textColor="#999999"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

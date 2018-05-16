@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -59,6 +60,7 @@ public class MessageFragment extends Fragment {
     private int pageNum = 1;
     private int pages;
     private BusinessMessageListAdapter businessMessageListAdapter;
+
 
     public static MessageFragment getInstance() {
         if (mMessageFragment == null) {

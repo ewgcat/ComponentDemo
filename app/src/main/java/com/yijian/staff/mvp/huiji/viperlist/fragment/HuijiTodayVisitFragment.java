@@ -52,7 +52,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
+//    private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
     private int pages;
@@ -96,7 +96,6 @@ public class HuijiTodayVisitFragment extends Fragment {
         });
     }
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
-        viperBeanList.clear();
         pageNum=1;
         pageSize=10;
 
@@ -142,7 +141,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
-                viperBeanList.clear();
+                List<TodayHuiJiViperBean> viperBeanList=new ArrayList<>();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {
@@ -154,13 +153,12 @@ public class HuijiTodayVisitFragment extends Fragment {
 
                     }
                 }
-                huijiViperListAdapter.update(viperBeanList);
+                huijiViperListAdapter.update(viperBeanList,false);
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                huijiViperListAdapter.update(viperBeanList);
 
 
             }
@@ -212,7 +210,7 @@ public class HuijiTodayVisitFragment extends Fragment {
 
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, true,  !hasMore);//传入false表示刷新失败
-
+                List<TodayHuiJiViperBean> viperBeanList=new ArrayList<>();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {
@@ -222,7 +220,7 @@ public class HuijiTodayVisitFragment extends Fragment {
                     } catch (JSONException e) {
                     }
                 }
-                huijiViperListAdapter.update(viperBeanList);
+                huijiViperListAdapter.update(viperBeanList,true);
             }
 
             @Override

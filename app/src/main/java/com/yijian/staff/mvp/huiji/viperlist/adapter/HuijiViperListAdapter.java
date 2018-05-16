@@ -112,7 +112,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                 public void onClick(View v) {
                     String mobile = huiJiViperBean.getMobile();
                     if (!TextUtils.isEmpty(mobile)){
-                        callVisit(context,huiJiViperBean.getMemberId(), huiJiViperBean.getDictItemKey(), mobile);
+                        CommonUtil.callPhone(context, mobile);
+//                        callVisit(context,huiJiViperBean.getMemberId(), huiJiViperBean.getDictItemKey(), mobile);
                     } else {
                         Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                     }

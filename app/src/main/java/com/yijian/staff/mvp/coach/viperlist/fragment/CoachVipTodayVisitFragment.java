@@ -32,6 +32,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -51,8 +53,13 @@ import io.reactivex.functions.Consumer;
 
 public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
+    @BindView(R.id.rv)
+    RecyclerView rv_vip_all;
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    private RecyclerView rv_vip_all;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
+
     private List<TodayCoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
@@ -83,8 +90,6 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     }
 
     private void initView(View view){
-        rv_vip_all = view.findViewById(R.id.rv_vip_all);
-        refreshLayout = view.findViewById(R.id.refreshLayout);
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
@@ -99,12 +104,22 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 refresh(filterBean);
             }
         });
+
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh(coachViperFilterBean);
+            }
+        });
     }
 
 
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
         coachViperBeanList.clear();
+        showBlueProgress();
+        empty_view.setVisibility(View.GONE);
+
         pageNum=1;
         pageSize=10;
         this.coachViperFilterBean = coachViperFilterBean;
@@ -145,6 +160,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                 refreshLayout.finishRefresh(2000, true);
                 coachViperBeanList.clear();
 
@@ -162,18 +178,27 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                     }
                 }
                 coachViperListAdapter.update(coachViperBeanList);
-            }
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }            }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
 
             }
         });
     }
 
     public void loadMore() {
+        empty_view.setVisibility(View.GONE);
+
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
@@ -211,6 +236,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -228,13 +254,23 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                     }
                 }
                 coachViperListAdapter.update(coachViperBeanList);
+                coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                showToast(msg);
+                coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

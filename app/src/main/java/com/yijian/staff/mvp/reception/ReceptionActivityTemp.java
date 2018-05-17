@@ -19,29 +19,44 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by The_P on 2018/5/14.
  */
 
-public class ReceptionActivityTemp extends AppCompatActivity implements ReceptionContract.View {
+public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionContract.View {
 
     private NavigationBar2 navigation2;
-    private RecyclerView recyclerView;
     private ReceptionHistoryAdapterTemp adapterTemp;
     private ReceptionPresenterTemp presenterTemp;
-    private SmartRefreshLayout refreshLayout;
+
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reception_temp);
+    protected int getLayoutID() {
+        return R.layout.activity_reception_temp;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
 
         presenterTemp = new ReceptionPresenterTemp(this);
@@ -66,7 +81,6 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         navigation2.setBackClickListener(this);
         navigation2.setSecondLeftIvVisiable(View.GONE);
 
-        recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -74,10 +88,17 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         recyclerView.setAdapter(adapterTemp);
 
         initRefresh();
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBlueProgress();
+                empty_view.setVisibility(View.GONE);
+                presenterTemp.getRecptionRecord(true);
+            }
+        });
     }
 
     private void initRefresh() {
-        refreshLayout = findViewById(R.id.refreshLayout);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -90,12 +111,18 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                showBlueProgress();
+                empty_view.setVisibility(View.GONE);
+
                 presenterTemp.getRecptionRecord(true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                showBlueProgress();
+                empty_view.setVisibility(View.GONE);
+
                 presenterTemp.getRecptionRecord(false);
             }
         });
@@ -115,14 +142,19 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     public void showRecptionRecordListTemp(List<ReceptionRecordBean> recordList, boolean isRefresh) {
         if (isRefresh) adapterTemp.clearData();
         adapterTemp.addData(recordList);
+        if (recordList.size()==0){
+            empty_view.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void finishRefresh(boolean isRefresh) {
         if (isRefresh) {
             refreshLayout.finishRefresh();
+            hideBlueProgress();
         } else {
             refreshLayout.finishLoadMore();
+            hideBlueProgress();
         }
     }
 

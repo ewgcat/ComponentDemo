@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,6 +21,7 @@ import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -39,11 +41,12 @@ import static com.yijian.staff.tab.tools.ContextUtil.getContext;
  */
 @Route(path = "/test/4.1")
 public class CoachOutdateViperListActivity extends MvcBaseActivity {
-
-    @BindView(R.id.rv_outdate)
+    @BindView(R.id.rv)
     RecyclerView rv_outdate;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
     private int pages;
@@ -72,11 +75,19 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         rv_outdate.setAdapter(coachOutdateViperListAdapter);
         initComponent();
         refresh();
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
     }
 
 
     private void refresh() {
         coachViperBeanList.clear();
+        empty_view.setVisibility(View.GONE);
+
         HashMap<String, String> map = new HashMap<>();
         pageNum = 1;
         pageSize = 10;
@@ -104,6 +115,9 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                 }
                 coachOutdateViperListAdapter.update(coachViperBeanList);
                 hideBlueProgress();
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -112,7 +126,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                 showToast(msg);
                 hideBlueProgress();
                 coachOutdateViperListAdapter.update(coachViperBeanList);
-
+                empty_view.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -128,6 +142,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -145,15 +160,20 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                     }
                 }
                 coachOutdateViperListAdapter.update(coachViperBeanList);
-                hideBlueProgress();
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 showToast(msg);
-                hideBlueProgress();
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

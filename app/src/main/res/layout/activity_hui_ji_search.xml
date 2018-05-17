@@ -61,18 +61,13 @@
 
     </LinearLayout>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+
+
+    <include
+        android:layout_below="@id/top_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/top_view">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+        layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
 
     <LinearLayout
         android:id="@+id/lin_search_container"

@@ -31,6 +31,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +53,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private View empty_view;
+    private EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
 
@@ -86,6 +87,12 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
     private void initView(View view) {
         rv_vip_all = view.findViewById(R.id.rv);
         empty_view = view.findViewById(R.id.empty_view);
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh(huijiViperFilterBean);
+            }
+        });
         refreshLayout = view.findViewById(R.id.refreshLayout);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局

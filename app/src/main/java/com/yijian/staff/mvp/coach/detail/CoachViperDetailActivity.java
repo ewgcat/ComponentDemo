@@ -347,8 +347,6 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         tvCompanyLocation.setText(detailBean.getCompanyAddress());
         tvJinJiLianxiren.setText(detailBean.getUrgentContact());
         tvLianxirenPhone.setText(detailBean.getCompanyPhone());
-
-
     }
 
     @Override

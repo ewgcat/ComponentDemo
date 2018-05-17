@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -19,7 +20,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
@@ -29,34 +29,24 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * Created by The_P on 2018/5/14.
  */
 
-public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionContract.View {
+public class ReceptionActivityTemp extends AppCompatActivity implements ReceptionContract.View {
 
     private NavigationBar2 navigation2;
+    private RecyclerView recyclerView;
     private ReceptionHistoryAdapterTemp adapterTemp;
     private ReceptionPresenterTemp presenterTemp;
-
-    @BindView(R.id.rv)
-    RecyclerView recyclerView;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
-    @BindView(R.id.empty_view)
-    EmptyView empty_view;
-
+    private SmartRefreshLayout refreshLayout;
+    private EmptyView emptyView;
+    //    private RelativeLayout rlNoData;
 
     @Override
-    protected int getLayoutID() {
-        return R.layout.activity_reception_temp;
-    }
-
-    @Override
-    protected void initView(Bundle savedInstanceState) {
-        super.initView(savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_reception_temp);
         initView();
 
         presenterTemp = new ReceptionPresenterTemp(this);
@@ -81,6 +71,11 @@ public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionC
         navigation2.setBackClickListener(this);
         navigation2.setSecondLeftIvVisiable(View.GONE);
 
+//        rlNoData = findViewById(R.id.rl_nodata);
+        emptyView = findViewById(R.id.empty_view);
+        emptyView.getEmptyBt().setVisibility(View.GONE);
+
+        recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -88,17 +83,10 @@ public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionC
         recyclerView.setAdapter(adapterTemp);
 
         initRefresh();
-        empty_view.setButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBlueProgress();
-                empty_view.setVisibility(View.GONE);
-                presenterTemp.getRecptionRecord(true);
-            }
-        });
     }
 
     private void initRefresh() {
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -111,18 +99,12 @@ public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionC
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                showBlueProgress();
-                empty_view.setVisibility(View.GONE);
-
                 presenterTemp.getRecptionRecord(true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                showBlueProgress();
-                empty_view.setVisibility(View.GONE);
-
                 presenterTemp.getRecptionRecord(false);
             }
         });
@@ -140,21 +122,17 @@ public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionC
 
     @Override
     public void showRecptionRecordListTemp(List<ReceptionRecordBean> recordList, boolean isRefresh) {
+        emptyView.setVisibility(View.GONE);
         if (isRefresh) adapterTemp.clearData();
         adapterTemp.addData(recordList);
-        if (recordList.size()==0){
-            empty_view.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
     public void finishRefresh(boolean isRefresh) {
         if (isRefresh) {
             refreshLayout.finishRefresh();
-            hideBlueProgress();
         } else {
             refreshLayout.finishLoadMore();
-            hideBlueProgress();
         }
     }
 
@@ -165,6 +143,13 @@ public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionC
 
     @Override
     public void showEndRecption() {
+
+    }
+
+    @Override
+    public void showNoData() {
+//        rlNoData.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.VISIBLE);
 
     }
 }

@@ -9,16 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
-import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity_ycm;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -84,7 +82,8 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+//                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
                     intent.putExtra("id",huiJiViperBean.getMemberId());
                     context.startActivity(intent);
                 }

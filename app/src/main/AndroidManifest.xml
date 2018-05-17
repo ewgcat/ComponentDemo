@@ -168,6 +168,10 @@
         <activity
             android:name=".mvp.huiji.intent.HuijiIntentViperDetailActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.huiji.intent.HuijiIntentViperDetailActivity_ycm"
+            android:screenOrientation="portrait" />
         <!-- 会籍 过期会员 -->
         <activity
             android:name=".mvp.huiji.outdate.HuijiOutdateViperListActivity"
@@ -207,12 +211,17 @@
         <activity
             android:name=".mvp.coach.detail.CoachViperDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.coach.detail.CoachViperDetailActivity_ycm"
+            android:screenOrientation="portrait" />
         <!-- 教练 报价完成 -->
         <activity
             android:name=".mvp.coach.classbaojia.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huiji.detail.HuiJiViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.huiji.detail.HuiJiViperDetailActivity_ycm"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.all.AllFunctionActivity"

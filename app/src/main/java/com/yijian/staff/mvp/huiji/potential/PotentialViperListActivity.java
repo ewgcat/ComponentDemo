@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,6 +21,7 @@ import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -38,17 +40,19 @@ import butterknife.BindView;
 @Route(path = "/test/3")
 public class PotentialViperListActivity extends MvcBaseActivity {
 
+
+    @BindView(R.id.rv)
+    RecyclerView rv_vip_intention;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.rv_vip_intention)
-    RecyclerView rv_vip_intention;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     private PotentialViperListAdapter potentialViperListAdapter;
-    private List<HuiJiViperBean> viperBeanList=new ArrayList<>();
+    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
 
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
     private int pages;
-
 
 
     @Override
@@ -70,9 +74,13 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         rv_vip_intention.setAdapter(potentialViperListAdapter);
         initComponent();
         refresh();
-
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
     }
-
 
 
     public void initComponent() {
@@ -100,15 +108,17 @@ public class PotentialViperListActivity extends MvcBaseActivity {
 
     private void refresh() {
         viperBeanList.clear();
-        pageNum=1;
-
+        pageNum = 1;
+        empty_view.setVisibility(View.GONE);
+        showBlueProgress();
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
-        map.put("pageSize", pageSize+ "");
+        map.put("pageSize", pageSize + "");
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                 refreshLayout.finishRefresh(2000, true);
                 viperBeanList.clear();
 
@@ -126,28 +136,34 @@ public class PotentialViperListActivity extends MvcBaseActivity {
                     }
                 }
                 potentialViperListAdapter.notifyDataSetChanged();
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(PotentialViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
-
+                hideBlueProgress();
+                showToast(msg);
+                potentialViperListAdapter.notifyDataSetChanged();
+                empty_view.setVisibility(View.VISIBLE);
             }
         });
     }
 
     public void loadMore() {
 
+        empty_view.setVisibility(View.GONE);
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-
+        showBlueProgress();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
+                hideBlueProgress();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
@@ -164,13 +180,19 @@ public class PotentialViperListActivity extends MvcBaseActivity {
                     }
                 }
                 potentialViperListAdapter.notifyDataSetChanged();
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
-                Toast.makeText(PotentialViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

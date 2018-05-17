@@ -25,6 +25,7 @@ import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
@@ -96,7 +97,8 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
 
         String subclassName = coachViperBean.getSubclassName();
-        Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//        Intent intent = new Intent(context, CoachViperDetailActivity.class);
+        Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
 
         if (!TextUtils.isEmpty(subclassName)){
             if (subclassName.equals("CoachInfoVO")){

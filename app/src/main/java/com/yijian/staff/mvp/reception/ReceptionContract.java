@@ -23,6 +23,7 @@ public interface ReceptionContract {
 
         void showEndRecption();
 
+        void showNoData();
     }
 
     interface Presenter{

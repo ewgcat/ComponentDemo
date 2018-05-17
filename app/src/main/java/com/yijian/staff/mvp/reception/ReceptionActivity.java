@@ -240,6 +240,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
+    public void showNoData() {
+
+    }
+
+    @Override
     public void onRequestClicked(int position) {
         RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
         Intent intent = new Intent(this, QuestionnaireResultActivity.class);

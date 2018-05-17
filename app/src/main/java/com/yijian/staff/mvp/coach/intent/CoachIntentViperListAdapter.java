@@ -25,6 +25,7 @@ import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.mvp.coach.potential.CoachPotentialViperListAdapter;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecord2Activity;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
@@ -102,7 +103,8 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 1);
                 intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
@@ -114,7 +116,8 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 1);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
 

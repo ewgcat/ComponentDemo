@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -38,6 +39,8 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     private ReceptionHistoryAdapterTemp adapterTemp;
     private ReceptionPresenterTemp presenterTemp;
     private SmartRefreshLayout refreshLayout;
+    private RelativeLayout rlNoData;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,9 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         navigation2.setTitle("接待");
         navigation2.setBackClickListener(this);
         navigation2.setSecondLeftIvVisiable(View.GONE);
+
+        rlNoData = findViewById(R.id.rl_nodata);
+
 
         recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -134,5 +140,10 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     @Override
     public void showEndRecption() {
 
+    }
+
+    @Override
+    public void showNoData() {
+        rlNoData.setVisibility(View.VISIBLE);
     }
 }

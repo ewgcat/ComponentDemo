@@ -263,9 +263,10 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
-                hideBlueProgress();
+                coachViperListAdapter.update(coachViperBeanList);
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

@@ -158,32 +158,39 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
+
                 refreshLayout.finishRefresh(2000, true);
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 viperBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
+
+                try {
+                    for (int i = 0; i < records.length(); i++) {
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
-                    } catch (JSONException e) {
-
-
                     }
+                    huijiViperListAdapter.update(viperBeanList);
+
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+
                 }
-                huijiViperListAdapter.update(viperBeanList);
-                hideBlueProgress();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 hideBlueProgress();
-
-                empty_view.setVisibility(View.VISIBLE);
+                huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -193,6 +200,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
+        empty_view.setVisibility(View.GONE);
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
@@ -225,10 +233,11 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             }
 
         }
+        showBlueProgress();
         HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
+                hideBlueProgress();
                 pages = JsonUtil.getInt(result, "pages");
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
@@ -245,12 +254,22 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                     }
                 }
                 huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
+
             }
         });
     }

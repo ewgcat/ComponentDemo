@@ -151,7 +151,10 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 hideBlueProgress();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
-                empty_view.setVisibility(View.VISIBLE);
+                huijiIntentViperListAdapter.notifyDataSetChanged();
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -167,6 +170,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -187,7 +191,6 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
-                hideBlueProgress();
             }
 
             @Override
@@ -196,6 +199,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 showToast(msg);
+                huijiIntentViperListAdapter.notifyDataSetChanged();
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

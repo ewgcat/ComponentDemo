@@ -97,42 +97,47 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
+
                 coachViperBeanList.clear();
 
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         CoachViperBean coachViperBean = new CoachViperBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
-                    } catch (JSONException e) {
-
 
                     }
-                }
-                coachOutdateViperListAdapter.update(coachViperBeanList);
-                hideBlueProgress();
-                if (coachViperBeanList.size() == 0) {
-                    empty_view.setVisibility(View.VISIBLE);
+                    coachOutdateViperListAdapter.update(coachViperBeanList);
+                    if (coachViperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+
+
                 }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
-                hideBlueProgress();
                 coachOutdateViperListAdapter.update(coachViperBeanList);
-                empty_view.setVisibility(View.VISIBLE);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
 
     public void loadMore() {
-
+        empty_view.setVisibility(View.GONE);
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");

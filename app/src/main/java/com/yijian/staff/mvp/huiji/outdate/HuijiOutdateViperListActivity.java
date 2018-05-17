@@ -159,7 +159,10 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 hideBlueProgress();
                 showToast(msg);
-                empty_view.setVisibility(View.VISIBLE);
+                huijiOutdateViperListAdapter.notifyDataSetChanged();
+                if (vipOutdateInfoList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -205,6 +208,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 showToast(msg);
+                huijiOutdateViperListAdapter.notifyDataSetChanged();
                 if (vipOutdateInfoList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

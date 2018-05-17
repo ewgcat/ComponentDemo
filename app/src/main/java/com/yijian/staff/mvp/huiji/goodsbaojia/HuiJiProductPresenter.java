@@ -10,6 +10,7 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.bean.RecptionCards;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONObject;
 
@@ -50,6 +51,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
             public void onFail(String msg) {
                 view.showNoCards(isRefresh, false);
                 Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
+
             }
         });
 

@@ -58,7 +58,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
 
         public void bindView(int position) {
             VenueBean venueBean = list.get(position);
-            tvName.setText(venueBean.getName());
+            tvName.setText(venueBean.getOption());
             if (venueBean.isSelect){
                 setSelectStyle(tvName);
             }else {

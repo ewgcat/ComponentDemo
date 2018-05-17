@@ -267,7 +267,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         Bundle bundle = new Bundle();
         bundle.putString("cardType", bodyCondition.getCardType());
         bundle.putString("startPrice", bodyCondition.getStartPrice());
-        bundle.putString("venueName", bodyCondition.getVenueName());
+        bundle.putString("venueId", bodyCondition.getVenueId());
         optionDialog.setArguments(bundle);
         optionDialog.show(getFragmentManager(), "OptionDialog");
     }

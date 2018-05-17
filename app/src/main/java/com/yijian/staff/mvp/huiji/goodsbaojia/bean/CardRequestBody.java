@@ -16,7 +16,7 @@ public class CardRequestBody implements Parcelable {
                 ", isSortByPrice=" + isSortByPrice +
                 ", pageNum=" + pageNum +
                 ", pageSize=" + pageSize +
-                ", venueName='" + venueName + '\'' +
+                ", venueId='" + venueId + '\'' +
                 '}';
     }
 
@@ -40,7 +40,7 @@ public class CardRequestBody implements Parcelable {
     private Integer isSortByPrice;
     private Integer pageNum;
     private Integer pageSize;
-    private String venueName;
+    private String venueId;
 
     public String getCardName() {
         return cardName;
@@ -98,12 +98,12 @@ public class CardRequestBody implements Parcelable {
         this.pageSize = pageSize;
     }
 
-    public String getVenueName() {
-        return venueName;
+    public String getVenueId() {
+        return venueId;
     }
 
-    public void setVenueName(String venueName) {
-        this.venueName = venueName;
+    public void setVenueId(String venueId) {
+        this.venueId = venueId;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class CardRequestBody implements Parcelable {
         dest.writeValue(this.isSortByPrice);
         dest.writeValue(this.pageNum);
         dest.writeValue(this.pageSize);
-        dest.writeString(this.venueName);
+        dest.writeString(this.venueId);
     }
 
     public CardRequestBody() {
@@ -134,7 +134,7 @@ public class CardRequestBody implements Parcelable {
         this.isSortByPrice = (Integer) in.readValue(Integer.class.getClassLoader());
         this.pageNum = (Integer) in.readValue(Integer.class.getClassLoader());
         this.pageSize = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.venueName = in.readString();
+        this.venueId = in.readString();
     }
 
     public static final Creator<CardRequestBody> CREATOR = new Creator<CardRequestBody>() {

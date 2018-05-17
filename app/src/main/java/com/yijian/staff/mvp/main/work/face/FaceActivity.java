@@ -24,14 +24,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.jaeger.library.StatusBarUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -39,6 +44,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.rx.RxUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.LoadingProgressDialog;
 import com.yijian.staff.util.NotificationsUtil;
 
@@ -97,6 +103,7 @@ public class FaceActivity extends AppCompatActivity {
     private Fotoapparat backFotoapparat;
 
     private ImageView iv_temp;
+    private RelativeLayout rel_top;
     private String face_session;
     private ImageView btn_start_face;
     private Bitmap resultBitmap;
@@ -193,9 +200,15 @@ public class FaceActivity extends AppCompatActivity {
     /**
      * 测试弹出框
      */
-    private void showPanel(Bitmap resultBitmap,List<FaceDetail> faceDetails) {
-        FaceInfoPanel faceInfoPanel = new FaceInfoPanel(this,resultBitmap,faceDetails);
-        faceInfoPanel.showAsDropDown(getWindow().getDecorView());
+    private void showPanel(Bitmap resultBitmap, List<FaceDetail> faceDetails) {
+        FaceInfoPanel faceInfoPanel = new FaceInfoPanel(this, resultBitmap, faceDetails);
+        faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP,0,0);
+        faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                fotoapparatSwitcher.start();
+            }
+        });
     }
 
     private Bitmap rotateBitmap(Bitmap origin, float alpha) {
@@ -211,7 +224,7 @@ public class FaceActivity extends AppCompatActivity {
         if (newBM.equals(origin)) {
             return newBM;
         }
-     //   origin.recycle();
+        //   origin.recycle();
         return newBM;
     }
 
@@ -219,7 +232,9 @@ public class FaceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
+
         setContentView(R.layout.activity_face);
         initView();
         LoadingProgressDialog.showBlueProgress(this);
@@ -231,10 +246,23 @@ public class FaceActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        rel_top = findViewById(R.id.rel_top);
+        int statusBarHeight = CommonUtil.getStatusBarHeight(this);
+        RelativeLayout.LayoutParams rel_top_lp = (RelativeLayout.LayoutParams) rel_top.getLayoutParams();
+        rel_top_lp.setMargins(0, statusBarHeight, 0, 0);
+        rel_top.setLayoutParams(rel_top_lp);
+
         iv_temp = (ImageView) findViewById(R.id.iv_temp);
         cameraView = (CameraView) findViewById(R.id.camera_view);
         rectanglesView = (MyRectanglesView) findViewById(R.id.rectanglesView);
-
+        findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fotoapparatSwitcher.stop();
+                finish();
+            }
+        });
         btn_start_face = findViewById(R.id.btn_start_face);
         btn_start_face.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,13 +273,15 @@ public class FaceActivity extends AppCompatActivity {
                     photoResult.toBitmap().whenDone(new PendingResult.Callback<BitmapPhoto>() {
                         @Override
                         public void onResult(BitmapPhoto bitmapPhoto) {
+                            btn_start_face.setEnabled(false);
+                            fotoapparatSwitcher.stop();
                             resultBitmap = bitmapPhoto.bitmap;
 
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             resultBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
                             byte[] datas = baos.toByteArray();
 
-                            Log.e("Test","resultBitmap.length===="+datas.length);
+                            Log.e("Test", "resultBitmap.length====" + datas.length);
                            /* Bitmap bitmap = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
                             Bitmap tempBitmap = rotateBitmap(bitmap,90);
@@ -342,15 +372,17 @@ public class FaceActivity extends AppCompatActivity {
                     fotoapparatSwitcher = FotoapparatSwitcher.withDefault(backFotoapparat);
                     fotoapparatSwitcher.start();
                 } else {
-                    Toast.makeText(FaceActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = USER_VERIFICATION_USER_FAIL;
+                    mHandler.sendMessage(msg);
                 }
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(FaceActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
-                LoadingProgressDialog.hideLoading(FaceActivity.this);
-                finish();
+                Message msg2 = mHandler.obtainMessage();
+                msg2.what = USER_VERIFICATION_USER_FAIL;
+                mHandler.sendMessage(msg2);
             }
         });
 
@@ -440,16 +472,19 @@ public class FaceActivity extends AppCompatActivity {
                             getMemberDatas(sb.toString().substring(0, sb.toString().indexOf(",")));
                             return;
                         }
-                        Toast.makeText(FaceActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
-                        LoadingProgressDialog.hideLoading(FaceActivity.this);
-                    }else{
-                        LoadingProgressDialog.hideLoading(FaceActivity.this);
-                        Toast.makeText(FaceActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = USER_TEST_FACE_NO;
+                        mHandler.sendMessage(msg);
+                    } else {
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = USER_TEST_FACE_FAIL;
+                        mHandler.sendMessage(msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    LoadingProgressDialog.hideLoading(FaceActivity.this);
-                    Toast.makeText(FaceActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = USER_TEST_FACE_EXCEPTION;
+                    mHandler.sendMessage(msg);
                 }
 
             }
@@ -487,22 +522,25 @@ public class FaceActivity extends AppCompatActivity {
                     if (code == 0) {
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
                         if (jsonArray.length() > 0) {
-                            List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(),FaceDetail.class);
+                            List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(), FaceDetail.class);
                             Message msg = mHandler.obtainMessage();
-                            msg.obj = faceDetails;
+                            msg.what = USER_GET_VIP_INFO_SUCCESS;
                             mHandler.sendMessage(msg);
                             return;
                         }
-                        Toast.makeText(FaceActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
-                        LoadingProgressDialog.hideLoading(FaceActivity.this);
-                    }else {
-                        Toast.makeText(FaceActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
-                        LoadingProgressDialog.hideLoading(FaceActivity.this);
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = USER_GET_VIP_INFO_NO;
+                        mHandler.sendMessage(msg);
+                    } else {
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = USER_GET_VIP_INFO_FAIL;
+                        mHandler.sendMessage(msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(FaceActivity.this, "获取对应会员数据异常", Toast.LENGTH_SHORT).show();
-                    LoadingProgressDialog.hideLoading(FaceActivity.this);
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = USER_GET_VIP_INFO_EXCEPTION;
+                    mHandler.sendMessage(msg);
                 }
 
 
@@ -511,26 +549,80 @@ public class FaceActivity extends AppCompatActivity {
 
     }
 
-    Handler mHandler = new Handler(){
+    private final int USER_VERIFICATION_USER_FAIL = 0;//验证失败
+    private final int USER_TEST_FACE_NO = 1;//没有检测到人脸
+    private final int USER_TEST_FACE_FAIL = 2;//识别失败
+    private final int USER_TEST_FACE_EXCEPTION = 3;//识别异常
+    private final int USER_GET_VIP_INFO_NO = 4;//没有获取到对应会员数据
+    private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
+    private final int USER_GET_VIP_INFO_EXCEPTION = 6;//获取对应会员数据异常
+    private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
+
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            switch (msg.what) {
+                case USER_VERIFICATION_USER_FAIL:
+                    Toast.makeText(FaceActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
+                    finish();
+                    break;
+                case USER_TEST_FACE_NO:
+                    Toast.makeText(FaceActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_TEST_FACE_FAIL:
+                    Toast.makeText(FaceActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_TEST_FACE_EXCEPTION:
+                    Toast.makeText(FaceActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_GET_VIP_INFO_NO:
+                    Toast.makeText(FaceActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_GET_VIP_INFO_FAIL:
+                    Toast.makeText(FaceActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_GET_VIP_INFO_EXCEPTION:
+                    Toast.makeText(FaceActivity.this, "获取对应会员数据异常", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    fotoapparatSwitcher.start();
+                    break;
+                case USER_GET_VIP_INFO_SUCCESS:
+                    showPanel(rotateBitmap(resultBitmap, 90), (List<FaceDetail>) msg.obj);
+                    btn_start_face.setEnabled(true);
+                    break;
+
+            }
             LoadingProgressDialog.hideLoading(FaceActivity.this);
-            showPanel(rotateBitmap(resultBitmap,90), (List<FaceDetail>) msg.obj);
+
         }
     };
 
     @Override
-    protected void onStart() {
-        super.onStart();
-//        fotoapparatSwitcher.start();
+    protected void onRestart() {
+        Log.e("Test","onRestart......");
+        super.onRestart();
+        if (fotoapparatSwitcher != null) {
+            fotoapparatSwitcher.start();
+        }
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-//        fotoapparatSwitcher.stop();
+    protected void onPause() {
+        super.onPause();
+        Log.e("Test","onPause......");
+        if (fotoapparatSwitcher != null) {
+            fotoapparatSwitcher.stop();
+        }
     }
-
-
 }

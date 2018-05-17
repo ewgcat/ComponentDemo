@@ -1,8 +1,12 @@
 package com.yijian.staff.mvp.main.work.face;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -14,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -31,7 +37,10 @@ import java.util.logging.Handler;
 
 public class FaceInfoPanel extends PopupWindow {
 
-    private Bitmap blur(Bitmap bitmap,float radius,Context context) {
+    /**
+     * 图片模糊
+     */
+    private Bitmap blur(Bitmap bitmap, float radius, Context context) {
         Bitmap output = Bitmap.createBitmap(bitmap); // 创建输出图片
         RenderScript rs = RenderScript.create(context); // 构建一个RenderScript对象
         ScriptIntrinsicBlur gaussianBlue = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs)); // 创建高斯模糊脚本
@@ -45,6 +54,37 @@ public class FaceInfoPanel extends PopupWindow {
         return output;
     }
 
+    /**
+     * 图片等比例放大
+     */
+    public static Bitmap zoomImg(Bitmap bm, int newWidth, int newHeight) {
+        // 获得图片的宽高
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        // 计算缩放比例
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // 取得想要缩放的matrix参数
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // 得到新的图片
+        Bitmap newbm = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);
+        return newbm;
+    }
+
+    private void setTranslucentStatus(Activity activity) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
+            Window window = activity.getWindow();
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        } else {//4.4 全透明状态栏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+
     public FaceInfoPanel(final Context context, Bitmap resultBitmap, List<FaceDetail> faceDetails) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context
@@ -53,9 +93,13 @@ public class FaceInfoPanel extends PopupWindow {
         this.setContentView(mMenuView);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        setClippingEnabled(false);
+
+        setTranslucentStatus((Activity)context);
 
         ImageView iv_bg = mMenuView.findViewById(R.id.iv_bg);
-        iv_bg.setImageBitmap(blur(resultBitmap,20,context));
+        Bitmap newBitmap = zoomImg(resultBitmap, DensityUtil.getScreenWidth(context), DensityUtil.getScreenHeight(context));
+        iv_bg.setImageBitmap(blur(newBitmap, 20, context));
         RelativeLayout rel_container = mMenuView.findViewById(R.id.rel_container);
         ViewTreeObserver vto = iv_bg.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -86,7 +130,7 @@ public class FaceInfoPanel extends PopupWindow {
         rv_face.setAdapter(new FaceAdapter(faceDetails));
 
         this.setFocusable(true);
-        this.setOutsideTouchable(true);
+        this.setOutsideTouchable(false);
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         this.setBackgroundDrawable(dw);
         mMenuView.setOnTouchListener(new View.OnTouchListener() {
@@ -103,7 +147,7 @@ public class FaceInfoPanel extends PopupWindow {
     }
 
 
-    class FaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    class FaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         List<FaceDetail> faceDetailList = new ArrayList<>();
         private Context context;
@@ -114,14 +158,14 @@ public class FaceInfoPanel extends PopupWindow {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_face,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_face, parent, false);
             context = parent.getContext();
             return new ViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((ViewHolder)holder).bind(faceDetailList.get(position),context);
+            ((ViewHolder) holder).bind(faceDetailList.get(position), context);
         }
 
         @Override
@@ -129,7 +173,7 @@ public class FaceInfoPanel extends PopupWindow {
             return faceDetailList != null ? faceDetailList.size() : 0;
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder{
+        class ViewHolder extends RecyclerView.ViewHolder {
 
             private ImageView iv_header;
             private TextView tv_memberName;
@@ -149,12 +193,12 @@ public class FaceInfoPanel extends PopupWindow {
 
             }
 
-            public void bind(FaceDetail faceDetail,Context context){
-                ImageLoader.setImageResource(faceDetail.getImgHeader(),context,iv_header);
+            public void bind(FaceDetail faceDetail, Context context) {
+                ImageLoader.setImageResource(faceDetail.getImgHeader(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 tv_expirationDate.setText(faceDetail.getExpirationDate());
-                tv_courseNameNum.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
+                tv_courseNameNum.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

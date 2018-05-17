@@ -226,15 +226,15 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_chakan_hetong:
-                Intent intent1 = new Intent(HuiJiViperDetailActivity_ycm.this, ContractActivity.class);
-                intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
-                startActivity(intent1);
+//                Intent intent1 = new Intent(HuiJiViperDetailActivity_ycm.this, ContractActivity.class);
+//                intent1.putExtra("memberId", vipDetailBean.getMemberId());
+//                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
+//                startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
-                Intent intent2 = new Intent(HuiJiViperDetailActivity_ycm.this, QuestionnaireResultActivity.class);
-                intent2.putExtra("memberId", vipDetailBean.getMemberId());
-                startActivity(intent2);
+//                Intent intent2 = new Intent(HuiJiViperDetailActivity_ycm.this, QuestionnaireResultActivity.class);
+//                intent2.putExtra("memberId", vipDetailBean.getMemberId());
+//                startActivity(intent2);
 
                 break;
 

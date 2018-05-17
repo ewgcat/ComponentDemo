@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
     <!-- 会籍信息 -->
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_vip_content"
@@ -32,7 +33,7 @@
                 android:text="会籍信息"
                 android:textColor="@color/blue"
                 android:textSize="14sp"
-                 />
+                />
 
         </LinearLayout>
         <View
@@ -186,90 +187,6 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="服务会籍:"
-                android:textColor="@color/text_black1"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_fuwu_huiji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:textColor="@color/text_black1"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="服务教练:"
-                android:textColor="@color/text_black1"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_fuwu_jiaolian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:textColor="@color/text_black1"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_sijiao_class"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="私教课程:"
-                android:textColor="@color/text_black1"
-                android:textSize="14sp"
-                android:paddingBottom="15dp"/>
-
-            <TextView
-                android:id="@+id/tv_sijiao_class"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:textColor="@color/text_black1"
-                android:paddingBottom="15dp"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
 
     </LinearLayout>

@@ -24,6 +24,7 @@ import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.List;
@@ -39,7 +40,8 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     private ReceptionHistoryAdapterTemp adapterTemp;
     private ReceptionPresenterTemp presenterTemp;
     private SmartRefreshLayout refreshLayout;
-    private RelativeLayout rlNoData;
+    private EmptyView emptyView;
+    //    private RelativeLayout rlNoData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,8 +71,9 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         navigation2.setBackClickListener(this);
         navigation2.setSecondLeftIvVisiable(View.GONE);
 
-        rlNoData = findViewById(R.id.rl_nodata);
-
+//        rlNoData = findViewById(R.id.rl_nodata);
+        emptyView = findViewById(R.id.empty_view);
+        emptyView.getEmptyBt().setVisibility(View.GONE);
 
         recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -119,6 +122,7 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
 
     @Override
     public void showRecptionRecordListTemp(List<ReceptionRecordBean> recordList, boolean isRefresh) {
+        emptyView.setVisibility(View.GONE);
         if (isRefresh) adapterTemp.clearData();
         adapterTemp.addData(recordList);
     }
@@ -144,6 +148,8 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
 
     @Override
     public void showNoData() {
-        rlNoData.setVisibility(View.VISIBLE);
+//        rlNoData.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.VISIBLE);
+
     }
 }

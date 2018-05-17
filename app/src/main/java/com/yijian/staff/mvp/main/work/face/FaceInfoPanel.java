@@ -24,9 +24,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -85,6 +87,9 @@ public class FaceInfoPanel extends PopupWindow {
     }
 
 
+    private ScrollView scrollview;
+    private RecyclerView rv_face;
+
     public FaceInfoPanel(final Context context, Bitmap resultBitmap, List<FaceDetail> faceDetails) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context
@@ -96,6 +101,11 @@ public class FaceInfoPanel extends PopupWindow {
         setClippingEnabled(false);
 
         setTranslucentStatus((Activity)context);
+        int statusBarHeight = CommonUtil.getStatusBarHeight(context);
+        RelativeLayout rel_header = mMenuView.findViewById(R.id.rel_header);
+        RelativeLayout.LayoutParams rel_top_lp = (RelativeLayout.LayoutParams) rel_header.getLayoutParams();
+        rel_top_lp.setMargins(0, statusBarHeight, 0, 0);
+        rel_header.setLayoutParams(rel_top_lp);
 
         ImageView iv_bg = mMenuView.findViewById(R.id.iv_bg);
         Bitmap newBitmap = zoomImg(resultBitmap, DensityUtil.getScreenWidth(context), DensityUtil.getScreenHeight(context));
@@ -121,29 +131,25 @@ public class FaceInfoPanel extends PopupWindow {
         mMenuView.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                if(rv_face.getVisibility() == View.VISIBLE){
+                    dismiss();
+                }else{
+                    rv_face.setVisibility(View.VISIBLE);
+                    scrollview.setVisibility(View.GONE);
+                }
             }
         });
 
-        RecyclerView rv_face = mMenuView.findViewById(R.id.rv_face);
+        rv_face = mMenuView.findViewById(R.id.rv_face);
         rv_face.setLayoutManager(new LinearLayoutManager(context));
         rv_face.setAdapter(new FaceAdapter(faceDetails));
+
+        scrollview = mMenuView.findViewById(R.id.scrollview);
 
         this.setFocusable(true);
         this.setOutsideTouchable(false);
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         this.setBackgroundDrawable(dw);
-        mMenuView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (!(v instanceof Button)) {
-                    dismiss();
-                }
-                return true;
-            }
-        });
     }
 
 
@@ -202,7 +208,8 @@ public class FaceInfoPanel extends PopupWindow {
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        scrollview.setVisibility(View.VISIBLE);
+                        rv_face.setVisibility(View.GONE);
                     }
                 });
             }

@@ -525,6 +525,7 @@ public class FaceActivity extends AppCompatActivity {
                             List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(), FaceDetail.class);
                             Message msg = mHandler.obtainMessage();
                             msg.what = USER_GET_VIP_INFO_SUCCESS;
+                            msg.obj = faceDetails;
                             mHandler.sendMessage(msg);
                             return;
                         }

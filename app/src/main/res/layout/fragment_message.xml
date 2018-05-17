@@ -7,24 +7,24 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="@mipmap/status_bar_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@mipmap/status_bar_bg" />
 
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:text="业务消息"
         android:textColor="#333333"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="24sp" />
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -34,7 +34,10 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rlv"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

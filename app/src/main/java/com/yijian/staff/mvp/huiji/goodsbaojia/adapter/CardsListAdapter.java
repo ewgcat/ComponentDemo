@@ -63,7 +63,7 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
      class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemView;
          AlwaysMarqueeTextView tvGoodsName;
-        TextView tvJianshenplace;
+//        TextView tvJianshenplace;
         TextView tvYuEr;
         TextView tvChuzhiyouhui;
         TextView tvPrice;
@@ -74,7 +74,7 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
             super(view);
             itemView = view.findViewById(R.id.item_view);
             tvGoodsName = view.findViewById(R.id.tv_goods_name);
-            tvJianshenplace = view.findViewById(R.id.tv_jianshenplace);
+//            tvJianshenplace = view.findViewById(R.id.tv_jianshenplace);
             tvYuEr = view.findViewById(R.id.tv_yu_er);
             tvChuzhiyouhui = view.findViewById(R.id.tv_chuzhiyouhui);
             tvPrice = view.findViewById(R.id.tv_price);
@@ -93,7 +93,7 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
 
             CardInfo goodsInfo = mGoodsInfoList.get(position);
             tvGoodsName.setText(goodsInfo.getCardName());
-            tvJianshenplace.setText(goodsInfo.getVenusNames()!=null?""+goodsInfo.getVenusNames():"");
+//            tvJianshenplace.setText(goodsInfo.getVenusNames()!=null?""+goodsInfo.getVenusNames():"");
             if (goodsInfo.getCardType()!=null&&goodsInfo.getCardType() == 1) {
                 tvYuEr.setText(goodsInfo.getValidDay()!=null?""+goodsInfo.getValidDay():"");
                tv_danwei.setText("天");

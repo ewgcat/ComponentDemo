@@ -89,7 +89,8 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
     }
 
-    protected abstract void initView(Bundle savedInstanceState);
+    protected  void initView(Bundle savedInstanceState){}
+
 
 
     /**

@@ -548,7 +548,6 @@ public class HuijiFilterViperDialog extends Dialog {
 
     private void setResultNoSure() {
         reset();
-        onDismissListener.onDismiss(new HuijiViperFilterBean());
         dismiss();
     }
 

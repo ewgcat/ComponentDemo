@@ -134,6 +134,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:focusableInTouchMode="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="22dp"
@@ -151,14 +152,15 @@
 
                         <EditText
                             android:id="@+id/et_clubBrand"
-                            android:layout_width="wrap_content"
+                            android:layout_width="134dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:gravity="center_vertical"
-                            android:text="力美健"
+                            android:gravity="center_vertical|right"
+                            android:text="原力"
                             android:textColor="#333333"
+                            android:singleLine="false"
                             android:background="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"/>
 
                     </RelativeLayout>
 

@@ -519,7 +519,6 @@ public class CoachFilterViperDialog extends Dialog  {
 
 
     private void setResultNoSure() {
-        onDismissListener.onDismiss(new CoachViperFilterBean());
         dismiss();
     }
 

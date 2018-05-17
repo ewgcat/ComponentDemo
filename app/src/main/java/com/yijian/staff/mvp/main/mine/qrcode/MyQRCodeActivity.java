@@ -83,6 +83,10 @@ public class MyQRCodeActivity extends MvcBaseActivity {
                 tvRole.setText("教练总监");
             } else if (user.getRole() == 5) {
                 tvRole.setText("店长");
+            }else if (user.getRole() == 6) {
+                tvRole.setText("会籍经理");
+            }else if (user.getRole() == 7) {
+                tvRole.setText("教练经理");
             }
             ImageLoader.setImageResource(user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();

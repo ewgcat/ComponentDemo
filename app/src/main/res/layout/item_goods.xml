@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="115dp"
-            android:layout_height="151dp"
+            android:layout_height="121dp"
             android:src="@mipmap/lg_vip" />
 
         <LinearLayout
@@ -44,26 +44,26 @@
                 android:textColor="#333333"
                 android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="场馆:" />
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="场馆:" />-->
 
-                <TextView
-                    android:id="@+id/tv_jianshenplace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="middle"
-                    android:singleLine="true"
-                    tools:text="游泳" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_jianshenplace"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:ellipsize="middle"-->
+                    <!--android:singleLine="true"-->
+                    <!--tools:text="游泳" />-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

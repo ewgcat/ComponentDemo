@@ -32,6 +32,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.SystemUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,8 +59,10 @@ public class CoachSearchActivity extends MvcBaseActivity {
     RecyclerView rcl_search;
     @BindView(R.id.et_search)
     EditText etSearch;
-    @BindView(R.id.rcl)
+    @BindView(R.id.rv)
     RecyclerView rcl;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
@@ -176,6 +179,14 @@ public class CoachSearchActivity extends MvcBaseActivity {
         });
         rcl_search.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
+
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etSearch.getText().toString().trim();
+                refresh(name);
+            }
+        });
     }
 
     private void refresh(String name) {
@@ -196,10 +207,12 @@ public class CoachSearchActivity extends MvcBaseActivity {
             HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    hideBlueProgress();
 
                     SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
+                    viperBeanList.clear();
 
 
                     refreshLayout.finishRefresh(2000, true);
@@ -207,28 +220,32 @@ public class CoachSearchActivity extends MvcBaseActivity {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    for (int i = 0; i < records.length(); i++) {
-                        try {
+
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
                             JSONObject jsonObject = (JSONObject) records.get(i);
                             CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
                             viperBeanList.add(viperBean);
-                        } catch (JSONException e) {
-                            Logger.i(TAG, e.toString());
+
                         }
+                        adapter.update(viperBeanList);
+                        if (viperBeanList.size() == 0) {
+                            empty_view.setVisibility(View.VISIBLE);
+                        }
+                    } catch (JSONException e) {
+                        Logger.i(TAG, e.toString());
                     }
-
-                    adapter.update(viperBeanList);
-                    hideBlueProgress();
-
 
                 }
 
                 @Override
                 public void onFail(String msg) {
+                    hideBlueProgress();
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                     showToast(msg);
-                    hideBlueProgress();
+                    adapter.update(viperBeanList);
+
 
                 }
             });
@@ -244,48 +261,53 @@ public class CoachSearchActivity extends MvcBaseActivity {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
             boolean hasMore = pages > pageNum ? true : false;
-            refreshLayout.finishLoadMore(2000, true, hasMore);
+            refreshLayout.finishLoadMore(2000, true, !hasMore);
             return;
         } else {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
             showBlueProgress();
+            empty_view.setVisibility(View.GONE);
 
             HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
-
+                    hideBlueProgress();
                     clearEditTextFocus();
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
 
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    for (int i = 0; i < records.length(); i++) {
-                        try {
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
                             JSONObject jsonObject = (JSONObject) records.get(i);
                             CoachSearchViperBean viperBean = new CoachSearchViperBean(jsonObject);
                             viperBeanList.add(viperBean);
-                        } catch (JSONException e) {
-
-
                         }
+                        adapter.update(viperBeanList);
+                        if (viperBeanList.size() == 0) {
+                            empty_view.setVisibility(View.VISIBLE);
+                        }
+                    } catch (JSONException e) {
+                        Logger.i(TAG, e.toString());
                     }
-                    adapter.update(viperBeanList);
-                    hideBlueProgress();
 
                 }
 
                 @Override
                 public void onFail(String msg) {
+                    hideBlueProgress();
                     clearEditTextFocus();
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                     showToast(msg);
-                    hideBlueProgress();
-
+                    adapter.update(viperBeanList);
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
                 }
             });
         }

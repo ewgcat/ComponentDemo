@@ -36,7 +36,7 @@ public class WattingApprovalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_watting_approval, container, false);
-        rv_vip_watting_approval = view.findViewById(R.id.rv_vip_all);
+        rv_vip_watting_approval = view.findViewById(R.id.rv_vip_watting_approval);
         initApprovalInfoList();
         return view;
     }

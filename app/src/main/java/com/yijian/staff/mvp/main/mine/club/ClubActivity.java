@@ -68,7 +68,24 @@ public class ClubActivity extends BaseWebViewActivity {
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-//                webView.loadUrl(JsonUtil.getString(result,"url"));
+
+                JSONObject jsonObject = new JSONObject();
+                webView.loadUrl(JsonUtil.getString(result,"url"));
+//                webView.loadUrl("http://192.168.2.209:8080/#/club");
+                String token = DBManager.getInstance().queryUser().getToken();
+                try {
+                    jsonObject.put("token",token);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
+                    }
+                });
             }
 
             @Override
@@ -76,22 +93,7 @@ public class ClubActivity extends BaseWebViewActivity {
                 showToast(msg);
             }
         });
-        JSONObject jsonObject = new JSONObject();
-        webView.loadUrl("http://192.168.2.209:8080/#/club");
-        String token = DBManager.getInstance().queryUser().getToken();
-        try {
-            jsonObject.put("token",token);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
-            }
-        });
 
 
     }

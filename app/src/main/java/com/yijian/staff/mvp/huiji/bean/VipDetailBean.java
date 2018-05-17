@@ -1,9 +1,6 @@
 package com.yijian.staff.mvp.huiji.bean;
 
-import com.yijian.staff.R;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,35 +11,42 @@ public class VipDetailBean implements Serializable {
 
 
     /**
-     * memberId : 043ad824a0844a6ba49fd2ee9fbd4990
-     * name : 回访过期会员14-0
+     * age : 24
+     * birthday : 765043200000
+     * memberId : b51f8a29bd0e413789afbdb1a5554d1e
+     * name : 硬件测试
      * sex : 男
-     * birthday : 1523980800000
-     * birthdayType : 农历
-     * mobile : 值14
-     * headImg : 值14
+     * birthdayType : 公历
+     * mobile : 15965411376
+     * dictItemKey : 0
+     * underProtected : false
+     * headImg : /memberHeadPortrait/8a891d0c44454df284aa72af4dda0c52.jpg
      * memberType :
      * cardName :
      * cardType : 0
-     * memberCardNo : 值14
-     * certificateType : 港澳通行证
-     * certificateNo : 值14
-     * faceInfo : 值14
-     * fingerprint : 值14
-     * vein : 值14
-     * customerServiceInfo : {"sellerId":"03a9cb612c5e4569b960cfd42adaa113","referee":"回访过期会员14-0","refereeMobile":"值14","userChannel":"港澳通行证","receptionSale":"会籍客服","serviceSale":"会籍客服","serviceCoach":"教练测试账号","privateCourses":["游泳课"]}
-     * detail : {"wechatNo":"值14","email":"值14","height":"值14","weight":"值14","nationality":"港澳通行证","nativePlace":"港澳通行证","nation":"港澳通行证","healthStatus":"正常","fitnessHobby":"健身,跑步,爬山","fitnessGoal":"","hobby":"现金","onceJoinedClub":false,"clubBrand":"值14","yearIncome":"港澳通行证","carPrice":"港澳通行证","marriageStatus":"未婚","childrenStatus":"无","occupation":"港澳通行证","position":"港澳通行证","company":"值14","companyPhone":"值14","companyAddress":"值14","address":"值14","urgentContact":"值14","contactPhone":""}
-     * contractIds : ["06b9972deac949beae359d739e760ea8","ae675a00896a4e8f87f2d5c1783668c0","c80b3672055c457180448e9e27525a79","fad0146898954561a7a7fc9e3cc93318"]
-     * cardprods : [{"cardprodId":"59aa744517bc425e99fb4fbd190f184f","cardName":"会员制卡","activateTime":1524022052000,"cardType":"会员制卡","cardTypeId":3},{"cardprodId":"9746a46f38ca4fbfbeeb2c509044aed0","cardName":"储值卡","activateTime":1524022052000,"cardType":"储值卡","cardTypeId":2},{"cardprodId":"99fb72733dc84870993018b3acb6d36a","cardName":"次卡","activateTime":1524022052000,"cardType":"次卡","cardTypeId":1},{"cardprodId":"e3276f72cc114c59b14ab7669baaf6f2","cardName":"时间卡","activateTime":1524022052000,"cardType":"时间卡","cardTypeId":0}]
-     * underProtected : false
+     * memberCardNo : 7046097
+     * certificateType : 身份证
+     * certificateNo : 445332199903095800
+     * fingerprint :
+     * vein :
+     * deadline : 1556269004000
+     * totalConsumption : 1000.0
+     * recentlyFitTime : 1526437553000
+     * customerServiceInfo : {"sellerId":"","referee":"硬件测试","refereeMobile":"15965411376","userChannel":"","receptionSale":"","serviceSale":"","serviceCoach":"","privateCourses":null}
+     * detail : {"wechatNo":"","email":"aaaa@asdf.com","height":"","weight":"","nationality":"","nativePlace":"","nation":"","healthStatus":"","fitnessHobby":"","fitnessGoal":"","hobby":"","onceJoinedClub":false,"clubBrand":"","yearIncome":"","carPrice":"","marriageStatus":"未婚","childrenStatus":"无","occupation":"","position":"","company":"","companyPhone":"","companyAddress":"","address":"","urgentContact":"4324","contactPhone":"15965334376"}
+     * contractIds : ["d049225016f940a98a73c6d7f0d02c4c"]
+     * cardprods : [{"cardprodId":"74c6b3004ed7464eb8f04ea0bfcd2452","cardName":"硬件相关","activateTime":1524733004000,"cardType":"会员制卡","cardTypeId":3}]
      */
 
+    private int age;
+    private long birthday;
     private String memberId;
     private String name;
     private String sex;
-    private long birthday;
     private String birthdayType;
     private String mobile;
+    private int dictItemKey;
+    private boolean underProtected;
     private String headImg;
     private String memberType;
     private String cardName;
@@ -50,14 +54,31 @@ public class VipDetailBean implements Serializable {
     private String memberCardNo;
     private String certificateType;
     private String certificateNo;
-    private String faceInfo;
     private String fingerprint;
     private String vein;
+    private long deadline;
+    private String totalConsumption;
+    private long recentlyFitTime;
     private CustomerServiceInfoBean customerServiceInfo;
     private DetailBean detail;
-    private boolean underProtected;
-    private ArrayList<String> contractIds;
+    private List<String> contractIds;
     private List<CardprodsBean> cardprods;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
 
     public String getMemberId() {
         return memberId;
@@ -83,18 +104,6 @@ public class VipDetailBean implements Serializable {
         this.sex = sex;
     }
 
-    public int getGenderImg(){
-        return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
-    }
-
-    public long getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(long birthday) {
-        this.birthday = birthday;
-    }
-
     public String getBirthdayType() {
         return birthdayType;
     }
@@ -109,6 +118,22 @@ public class VipDetailBean implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public int getDictItemKey() {
+        return dictItemKey;
+    }
+
+    public void setDictItemKey(int dictItemKey) {
+        this.dictItemKey = dictItemKey;
+    }
+
+    public boolean isUnderProtected() {
+        return underProtected;
+    }
+
+    public void setUnderProtected(boolean underProtected) {
+        this.underProtected = underProtected;
     }
 
     public String getHeadImg() {
@@ -167,14 +192,6 @@ public class VipDetailBean implements Serializable {
         this.certificateNo = certificateNo;
     }
 
-    public String getFaceInfo() {
-        return faceInfo;
-    }
-
-    public void setFaceInfo(String faceInfo) {
-        this.faceInfo = faceInfo;
-    }
-
     public String getFingerprint() {
         return fingerprint;
     }
@@ -189,6 +206,30 @@ public class VipDetailBean implements Serializable {
 
     public void setVein(String vein) {
         this.vein = vein;
+    }
+
+    public long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(long deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getTotalConsumption() {
+        return totalConsumption;
+    }
+
+    public void setTotalConsumption(String totalConsumption) {
+        this.totalConsumption = totalConsumption;
+    }
+
+    public long getRecentlyFitTime() {
+        return recentlyFitTime;
+    }
+
+    public void setRecentlyFitTime(long recentlyFitTime) {
+        this.recentlyFitTime = recentlyFitTime;
     }
 
     public CustomerServiceInfoBean getCustomerServiceInfo() {
@@ -207,19 +248,11 @@ public class VipDetailBean implements Serializable {
         this.detail = detail;
     }
 
-    public boolean isUnderProtected() {
-        return underProtected;
-    }
-
-    public void setUnderProtected(boolean underProtected) {
-        this.underProtected = underProtected;
-    }
-
-    public ArrayList<String> getContractIds() {
+    public List<String> getContractIds() {
         return contractIds;
     }
 
-    public void setContractIds(ArrayList<String> contractIds) {
+    public void setContractIds(List<String> contractIds) {
         this.contractIds = contractIds;
     }
 
@@ -231,16 +264,16 @@ public class VipDetailBean implements Serializable {
         this.cardprods = cardprods;
     }
 
-    public static class CustomerServiceInfoBean {
+    public static class CustomerServiceInfoBean implements Serializable{
         /**
-         * sellerId : 03a9cb612c5e4569b960cfd42adaa113
-         * referee : 回访过期会员14-0
-         * refereeMobile : 值14
-         * userChannel : 港澳通行证
-         * receptionSale : 会籍客服
-         * serviceSale : 会籍客服
-         * serviceCoach : 教练测试账号
-         * privateCourses : ["游泳课"]
+         * sellerId :
+         * referee : 硬件测试
+         * refereeMobile : 15965411376
+         * userChannel :
+         * receptionSale :
+         * serviceSale :
+         * serviceCoach :
+         * privateCourses : null
          */
 
         private String sellerId;
@@ -317,33 +350,33 @@ public class VipDetailBean implements Serializable {
         }
     }
 
-    public static class DetailBean implements Serializable {
+    public static class DetailBean implements Serializable{
         /**
-         * wechatNo : 值14
-         * email : 值14
-         * height : 值14
-         * weight : 值14
-         * nationality : 港澳通行证
-         * nativePlace : 港澳通行证
-         * nation : 港澳通行证
-         * healthStatus : 正常
-         * fitnessHobby : 健身,跑步,爬山
+         * wechatNo :
+         * email : aaaa@asdf.com
+         * height :
+         * weight :
+         * nationality :
+         * nativePlace :
+         * nation :
+         * healthStatus :
+         * fitnessHobby :
          * fitnessGoal :
-         * hobby : 现金
+         * hobby :
          * onceJoinedClub : false
-         * clubBrand : 值14
-         * yearIncome : 港澳通行证
-         * carPrice : 港澳通行证
+         * clubBrand :
+         * yearIncome :
+         * carPrice :
          * marriageStatus : 未婚
          * childrenStatus : 无
-         * occupation : 港澳通行证
-         * position : 港澳通行证
-         * company : 值14
-         * companyPhone : 值14
-         * companyAddress : 值14
-         * address : 值14
-         * urgentContact : 值14
-         * contactPhone :
+         * occupation :
+         * position :
+         * company :
+         * companyPhone :
+         * companyAddress :
+         * address :
+         * urgentContact : 4324
+         * contactPhone : 15965334376
          */
 
         private String wechatNo;
@@ -573,11 +606,11 @@ public class VipDetailBean implements Serializable {
         }
     }
 
-    public static class CardprodsBean {
+    public static class CardprodsBean implements Serializable{
         /**
-         * cardprodId : 59aa744517bc425e99fb4fbd190f184f
-         * cardName : 会员制卡
-         * activateTime : 1524022052000
+         * cardprodId : 74c6b3004ed7464eb8f04ea0bfcd2452
+         * cardName : 硬件相关
+         * activateTime : 1524733004000
          * cardType : 会员制卡
          * cardTypeId : 3
          */

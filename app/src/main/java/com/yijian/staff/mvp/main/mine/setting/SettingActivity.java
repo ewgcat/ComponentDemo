@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.db.DBManager;
@@ -77,7 +78,6 @@ public class SettingActivity extends MvcBaseActivity {
                     tvPosition.setText(userInfo.getPost());
                     user.setAge(userInfo.getAge() );
                     user.setHeadImg(userInfo.getHeadImg());
-                    Logger.i("SettingActivity",userInfo.getHeadImg()+"");
                     DBManager.getInstance().insertOrReplaceUser(user);
                     setImageResource(userInfo.getHeadImg(), ivHead);
 

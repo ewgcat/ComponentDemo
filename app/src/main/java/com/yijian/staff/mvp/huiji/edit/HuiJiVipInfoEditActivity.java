@@ -116,6 +116,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         navigationBar2.hideLeftSecondIv();
         TextView rightTv = navigationBar2.getmRightTv();
         rightTv.setText("保存");
+        rightTv.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.setBackClickListener(this);
     }
 

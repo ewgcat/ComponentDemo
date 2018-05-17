@@ -1,5 +1,6 @@
 package com.yijian.staff.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ public class UserInfo {
        this.name= JsonUtil.getString(jsonObject,"name");
        this.mobile= JsonUtil.getString(jsonObject,"mobile");
        this.sex= JsonUtil.getString(jsonObject,"sex");
-       this.headImg= JsonUtil.getString(jsonObject,"headImg");
+       this.headImg= BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject,"headImg");
        this.jobNo= JsonUtil.getString(jsonObject,"jobNo");
        this.shop= JsonUtil.getString(jsonObject,"shop");
        this.department= JsonUtil.getString(jsonObject,"department");

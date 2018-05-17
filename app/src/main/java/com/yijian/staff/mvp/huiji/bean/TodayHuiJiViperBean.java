@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
@@ -61,7 +62,7 @@ public class TodayHuiJiViperBean implements Serializable{
         this.sex = JsonUtil.getInt(jsonObject, "sex");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");

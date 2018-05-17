@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -20,6 +21,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.main.message.bean.MessageInfo;
 import com.yijian.staff.mvp.main.message.business.BusinessMessageBean;
 import com.yijian.staff.mvp.main.message.business.BusinessMessageListAdapter;
@@ -27,6 +29,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 
 import org.json.JSONArray;
@@ -41,7 +44,7 @@ import butterknife.Unbinder;
 
 
 @SuppressLint("ValidFragment")
-public class MessageFragment extends Fragment {
+public class MessageFragment extends MvcBaseFragment {
 
     private RefreshLayout refreshLayout;
     private List<MessageInfo> messageInfoList = new ArrayList<>();
@@ -53,12 +56,13 @@ public class MessageFragment extends Fragment {
     //测试图片的存位置
 
     public static MessageFragment mMessageFragment = null;
-    Unbinder unbinder;
-
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     private int pageSize = 10;
     private int pageNum = 1;
     private int pages;
     private BusinessMessageListAdapter businessMessageListAdapter;
+
 
     public static MessageFragment getInstance() {
         if (mMessageFragment == null) {
@@ -67,19 +71,27 @@ public class MessageFragment extends Fragment {
         return mMessageFragment;
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_message, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        initComponent(view);
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_message;
+    }
+
+    @Override
+    public void initView() {
+        initComponent(rootView);
     }
 
 
     public void initComponent(View view) {
 
-        recyclerView = view.findViewById(R.id.rlv);
-
+        recyclerView = view.findViewById(R.id.rv);
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局,,,
         recyclerView.setLayoutManager(layoutmanager);
@@ -117,6 +129,8 @@ public class MessageFragment extends Fragment {
         pageNum = 1;
         pageSize = 4;
         pages = 0;
+        empty_view.setVisibility(View.GONE);
+
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(1);
         businessMessageRequestBody.setPageSize(4);
@@ -135,6 +149,9 @@ public class MessageFragment extends Fragment {
                 }
                 businessMessageListAdapter.update(businessMessageBeans);
 
+                if (businessMessageBeans.size()==0){
+                    empty_view.setVisibility(View.VISIBLE);
+                }
                 refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
 
             }
@@ -142,13 +159,14 @@ public class MessageFragment extends Fragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-
+                empty_view.setVisibility(View.VISIBLE);
             }
         });
     }
 
 
     private void loadMore() {
+        empty_view.setVisibility(View.GONE);
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
@@ -169,23 +187,23 @@ public class MessageFragment extends Fragment {
                 businessMessageListAdapter.update(businessMessageBeans);
                 boolean hasMore = pages > pageNum ? true : false;
 
-                refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                if (businessMessageBeans.size()==0){
+                    empty_view.setVisibility(View.VISIBLE);
+                }
+                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
 
             }
 
             @Override
             public void onFail(String msg) {
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-
+                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                if (businessMessageBeans.size()==0){
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

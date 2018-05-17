@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -23,12 +24,14 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.huiji.viperlist.adapter.HuijiViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,11 +49,11 @@ import io.reactivex.functions.Consumer;
  * 全部会员信息
  */
 
-public class HuijiAllViperFragment extends Fragment {
+public class HuijiAllViperFragment extends MvcBaseFragment {
 
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
-    private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
+    private EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
 
@@ -59,6 +62,7 @@ public class HuijiAllViperFragment extends Fragment {
     private static HuijiAllViperFragment huijiAllViperFragment;
     private HuijiViperListAdapter huijiViperListAdapter;
     private HuijiViperFilterBean huijiViperFilterBean;
+    List<HuiJiViperBean> viperBeanList = new ArrayList<>();
 
 
     public static HuijiAllViperFragment getInstance() {
@@ -68,23 +72,33 @@ public class HuijiAllViperFragment extends Fragment {
         return huijiAllViperFragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_vip_huiji_all_info, container, false);
-        initView(view);
+    public int getLayoutId() {
+        return R.layout.fragment_vip_huiji_all_info;
+    }
+
+    @Override
+    public void initView() {
+        initView(rootView);
         refresh(null);
-        return view;
     }
 
     private void initView(View view) {
-        rv_vip_all = view.findViewById(R.id.rv_vip_all);
+        rv_vip_all = view.findViewById(R.id.rv);
+        empty_view = view.findViewById(R.id.empty_view);
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh(huijiViperFilterBean);
+            }
+        });
         refreshLayout = view.findViewById(R.id.refreshLayout);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
+        huijiViperListAdapter = new HuijiViperListAdapter(getActivity());
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -101,75 +115,12 @@ public class HuijiAllViperFragment extends Fragment {
     }
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {
+        pageNum = 1;
+        pageSize = 10;
         viperBeanList.clear();
+        empty_view.setVisibility(View.GONE);
 
         this.huijiViperFilterBean = huijiViperFilterBean;
-        HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        header.put("token", user.getToken());
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("pageNum", 1 + "");
-        map.put("pageSize", pageSize + "");
-        if (huijiViperFilterBean != null) {
-
-            if (huijiViperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", huijiViperFilterBean.getJoinTimeType() + "");
-            }
-            if (huijiViperFilterBean.getExpiringDay() != -1) {
-                map.put("expiringDay", huijiViperFilterBean.getExpiringDay() + "");
-            }
-            if (huijiViperFilterBean.getSex()!=-1) {
-                map.put("sex", huijiViperFilterBean.getSex() + "");
-            }
-            if (huijiViperFilterBean.getCardType()!=-1) {
-                map.put("cardType", huijiViperFilterBean.getCardType() + "");
-            }
-            if (huijiViperFilterBean.getPrivateCourseState()!=-1) {
-                map.put("privateCourseState", huijiViperFilterBean.getPrivateCourseState() + "");
-            }
-
-            if (!TextUtils.isEmpty(huijiViperFilterBean.getStartTime())) {
-                map.put("startTime", huijiViperFilterBean.getStartTime() + "");
-            }
-            if (!TextUtils.isEmpty(huijiViperFilterBean.getEndTime())) {
-                map.put("endTime", huijiViperFilterBean.getEndTime() + "");
-            }
-
-        }
-
-        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                refreshLayout.finishRefresh(2000, true);
-
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
-                JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
-                        JSONObject jsonObject = (JSONObject) records.get(i);
-                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
-                        viperBeanList.add(viperBean);
-                    } catch (JSONException e) {
-
-
-                    }
-                }
-                huijiViperListAdapter.update(viperBeanList);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-                huijiViperListAdapter.update(viperBeanList);
-
-            }
-        });
-    }
-
-    public void loadMore() {
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
@@ -185,16 +136,93 @@ public class HuijiAllViperFragment extends Fragment {
             if (huijiViperFilterBean.getExpiringDay() != -1) {
                 map.put("expiringDay", huijiViperFilterBean.getExpiringDay() + "");
             }
-            if (huijiViperFilterBean.getSex()!=-1) {
+            if (huijiViperFilterBean.getSex() != -1) {
                 map.put("sex", huijiViperFilterBean.getSex() + "");
             }
-            if (huijiViperFilterBean.getCardType()!=-1) {
+            if (huijiViperFilterBean.getCardType() != -1) {
                 map.put("cardType", huijiViperFilterBean.getCardType() + "");
             }
-            if (huijiViperFilterBean.getPrivateCourseState()!=-1) {
+            if (huijiViperFilterBean.getPrivateCourseState() != -1) {
                 map.put("privateCourseState", huijiViperFilterBean.getPrivateCourseState() + "");
             }
-            if (huijiViperFilterBean.getPrivateCourseState()!=-1) {
+
+            if (!TextUtils.isEmpty(huijiViperFilterBean.getStartTime())) {
+                map.put("startTime", huijiViperFilterBean.getStartTime() + "");
+            }
+            if (!TextUtils.isEmpty(huijiViperFilterBean.getEndTime())) {
+                map.put("endTime", huijiViperFilterBean.getEndTime() + "");
+            }
+
+        }
+        showBlueProgress();
+        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                hideBlueProgress();
+
+                refreshLayout.finishRefresh(2000, true);
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                viperBeanList.clear();
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
+                        viperBeanList.add(viperBean);
+                    }
+                    huijiViperListAdapter.update(viperBeanList);
+
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+
+                }
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                hideBlueProgress();
+                huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+    }
+
+    public void loadMore() {
+        HashMap<String, String> header = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        header.put("token", user.getToken());
+        empty_view.setVisibility(View.GONE);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
+        if (huijiViperFilterBean != null) {
+
+            if (huijiViperFilterBean.getJoinTimeType() != -2) {
+                map.put("joinTimeType", huijiViperFilterBean.getJoinTimeType() + "");
+            }
+            if (huijiViperFilterBean.getExpiringDay() != -1) {
+                map.put("expiringDay", huijiViperFilterBean.getExpiringDay() + "");
+            }
+            if (huijiViperFilterBean.getSex() != -1) {
+                map.put("sex", huijiViperFilterBean.getSex() + "");
+            }
+            if (huijiViperFilterBean.getCardType() != -1) {
+                map.put("cardType", huijiViperFilterBean.getCardType() + "");
+            }
+            if (huijiViperFilterBean.getPrivateCourseState() != -1) {
+                map.put("privateCourseState", huijiViperFilterBean.getPrivateCourseState() + "");
+            }
+            if (huijiViperFilterBean.getPrivateCourseState() != -1) {
                 map.put("source", huijiViperFilterBean.getPrivateCourseState() + "");
             }
             if (!TextUtils.isEmpty(huijiViperFilterBean.getStartTime())) {
@@ -205,15 +233,16 @@ public class HuijiAllViperFragment extends Fragment {
             }
 
         }
+        showBlueProgress();
         HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                hideBlueProgress();
                 pages = JsonUtil.getInt(result, "pages");
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
 
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
@@ -225,13 +254,22 @@ public class HuijiAllViperFragment extends Fragment {
                     }
                 }
                 huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                huijiViperListAdapter.update(viperBeanList);
+                if (viperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
+
             }
         });
     }

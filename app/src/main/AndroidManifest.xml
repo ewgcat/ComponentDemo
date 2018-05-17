@@ -594,8 +594,13 @@
             android:name=".mvp.coach.detail.edit.CoachVipInfoEditActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity" />
-        <activity android:name=".mvp.main.mine.calendartable.CourseInterActivity"></activity>
+        <activity android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.main.mine.calendartable.CourseInterActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".mvp.main.work.face.FaceActivity"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

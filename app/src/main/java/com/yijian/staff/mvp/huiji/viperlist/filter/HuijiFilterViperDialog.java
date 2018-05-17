@@ -157,7 +157,7 @@ public class HuijiFilterViperDialog extends Dialog {
         tvXianxia.setTextColor(Color.parseColor("#666666"));
         tvJianshenGuan.setTextColor(Color.parseColor("#666666"));
 
-        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
         tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
@@ -180,8 +180,8 @@ public class HuijiFilterViperDialog extends Dialog {
         tvJianshenGuan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
-        tvSexMan.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_man), null, null, null);
-        tvSexWoman.setCompoundDrawables(getContext().getDrawable(R.mipmap.lg_women), null, null, null);
+        tvSexMan.setCompoundDrawables(null, null, null, null);
+        tvSexWoman.setCompoundDrawables(null, null, null, null);
 
         tvTimeCard.setCompoundDrawables(null, null, null, null);
         tvCishuCard.setCompoundDrawables(null, null, null, null);
@@ -315,23 +315,43 @@ public class HuijiFilterViperDialog extends Dialog {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
+                            String time = "";
+                            if (month < 9 && dayOfMonth < 10) {
+                                time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                            } else if (month > 9 && dayOfMonth > 10) {
+                                time += year + "-" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month < 9 && dayOfMonth > 10) {
+                                time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month > 9 && dayOfMonth < 10) {
+                                time += year + "-" + (month + 1) + "-0" + dayOfMonth;
+
+                            }
+                            tvStartTime.setText(time);
+
+
                             String endTime = tvEndTime.getText().toString();
-                            String startTime = tvStartTime.getText().toString();
                             if (!TextUtils.isEmpty(endTime)) {
                                 endTime = endTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(startTime)) {
-                                startTime = startTime.replace("-", "");
+
+
+                            if (!TextUtils.isEmpty(endTime)) {
+                                endTime = endTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(endTime) && !TextUtils.isEmpty(startTime)) {
-                                if (Integer.parseInt(endTime) >= Integer.parseInt(startTime)) {
-                                    tvStartTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                                } else {
-                                    Toast.makeText(getContext(), "开始时间不得大于结束时间", Toast.LENGTH_SHORT).show();
+                            if (!TextUtils.isEmpty(time)) {
+                                time = time.replace("-", "");
+                            }
+                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
+                                if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
+                                    tvStartTime.setText("");
+                                    tvEndTime.setText("");
+                                    Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                tvStartTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                             }
+
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));
@@ -346,22 +366,36 @@ public class HuijiFilterViperDialog extends Dialog {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
-                            String endTime = tvEndTime.getText().toString();
-                            String startTime = tvStartTime.getText().toString();
-                            if (!TextUtils.isEmpty(endTime)) {
-                                endTime = endTime.replace("-", "");
+
+                            String time = "";
+
+                            if (month < 9 && dayOfMonth < 10) {
+                                time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                            } else if (month > 9 && dayOfMonth > 10) {
+                                time += year + "-" + (month + 1) + "-" + dayOfMonth;
+                            } else if (month < 9 && dayOfMonth > 10) {
+                                time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+
+                            } else if (month > 9 && dayOfMonth < 10) {
+                                time += year + "-" + (month + 1) + "-0" + dayOfMonth;
                             }
+                            tvEndTime.setText(time);
+
+
+                            String startTime = tvStartTime.getText().toString();
+
                             if (!TextUtils.isEmpty(startTime)) {
                                 startTime = startTime.replace("-", "");
                             }
-                            if (!TextUtils.isEmpty(endTime) && !TextUtils.isEmpty(startTime)) {
-                                if (Integer.parseInt(endTime) >= Integer.parseInt(startTime)) {
-                                    tvEndTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                                } else {
+                            if (!TextUtils.isEmpty(time)) {
+                                time = time.replace("-", "");
+                            }
+                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
+                                if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
+                                    tvStartTime.setText("");
+                                    tvEndTime.setText("");
                                     Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                tvEndTime.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                             }
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
@@ -514,11 +548,13 @@ public class HuijiFilterViperDialog extends Dialog {
 
     private void setResultNoSure() {
         reset();
-        onDismissListener.onDismiss(new HuijiViperFilterBean());
         dismiss();
     }
 
     private void setResultSure() {
+        startTime = tvStartTime.getText().toString();
+        endTime = tvEndTime.getText().toString();
+
         HuijiViperFilterBean huijiViperFilterBean = new HuijiViperFilterBean();
         huijiViperFilterBean.setSex(sex);
         huijiViperFilterBean.setCardType(cardType);

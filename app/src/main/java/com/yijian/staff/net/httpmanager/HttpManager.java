@@ -336,6 +336,14 @@ public class HttpManager {
     // 教练总监 历史分配（会员）列表
     public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
 
+    /*****人脸识别******/
+
+    // 用户获取人脸登陆session
+    public static String GET_FACE_LOGIN_SESSION = BuildConfig.HOST + "member/faceLogin";
+
+    //获取所有id获取人员信息
+    public static String GET_FACE_MENBERSHOWINFO = BuildConfig.HOST + "member/menberShowInfo";
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -924,7 +932,7 @@ public class HttpManager {
 
 
     //接待--会籍--step3-场馆信息列表
-    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/list";
+    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/listByShopId";
 
     //接待--会籍--step3-会员不愿意购买,会籍To给教练
     public static final String RECEPTION_STEP3_TO_COACH = BuildConfig.HOST + "reception/sale-to-coach";

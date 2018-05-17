@@ -1,5 +1,6 @@
 package com.yijian.staff.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.util.JsonUtil;
 
@@ -135,7 +136,7 @@ public class CoachSearchViperBean implements Serializable{
     }
 
     public CoachSearchViperBean(JSONObject jsonObject) {
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");

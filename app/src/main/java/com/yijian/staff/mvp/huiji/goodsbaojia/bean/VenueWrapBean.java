@@ -7,15 +7,15 @@ import java.util.List;
  */
 
 public class VenueWrapBean {
-//    id (string, optional): id ,
-//    name (string, optional): 名称
-    private List<VenueBean> dataList;
 
-    public List<VenueBean> getDataList() {
-        return dataList;
+    private List<VenueBean> options;
+
+    public List<VenueBean> getOptions() {
+        return options;
     }
 
-    public void setDataList(List<VenueBean> dataList) {
-        this.dataList = dataList;
+    public void setOptions(List<VenueBean> options) {
+        this.options = options;
     }
+
 }

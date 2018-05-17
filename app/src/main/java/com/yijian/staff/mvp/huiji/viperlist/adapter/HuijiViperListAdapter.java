@@ -22,6 +22,7 @@ import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,17 +33,15 @@ import java.util.Map;
 
 public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAdapter.ViewHolder> {
 
-    private List<HuiJiViperBean> viperBeanList;
+    private List<HuiJiViperBean> viperBeanList=new ArrayList<>();
     private Context context;
 
-    public HuijiViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
+    public HuijiViperListAdapter(Context context) {
         this.context = context;
-        this.viperBeanList = viperBeanList;
     }
 
     @Override
     public HuijiViperListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_info, parent, false);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_all_info, parent, false);
         HuijiViperListAdapter.ViewHolder holder = new HuijiViperListAdapter.ViewHolder(view);
         return holder;
@@ -56,8 +55,11 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
     @Override
     public void onBindViewHolder(HuijiViperListAdapter.ViewHolder holder, int position) {
-        HuiJiViperBean viperBean = viperBeanList.get(position);
-        holder.bind(context,viperBean);
+       if (viperBeanList!=null&&viperBeanList.size()>position){
+           HuiJiViperBean viperBean = viperBeanList.get(position);
+           holder.bind(context,viperBean);
+       }
+
     }
 
     @Override
@@ -110,7 +112,8 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                 public void onClick(View v) {
                     String mobile = huiJiViperBean.getMobile();
                     if (!TextUtils.isEmpty(mobile)){
-                        callVisit(context,huiJiViperBean.getMemberId(), huiJiViperBean.getDictItemKey(), mobile);
+                        CommonUtil.callPhone(context, mobile);
+//                        callVisit(context,huiJiViperBean.getMemberId(), huiJiViperBean.getDictItemKey(), mobile);
                     } else {
                         Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                     }

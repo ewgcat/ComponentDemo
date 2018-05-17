@@ -69,6 +69,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/iv_face"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
@@ -165,12 +166,18 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                       android:layout_marginRight="6dp"
+                        android:background="@color/blue"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="24dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="常 用"
+                        android:text="我的功能"
                         android:textColor="#333333"
                         android:textSize="16sp" />
                     <!--<ImageView-->

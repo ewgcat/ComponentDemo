@@ -13,6 +13,11 @@
 
 
         <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="80dp"
+            android:layout_height="44dp">
+
+        <LinearLayout
             android:id="@+id/ll_back"
             android:layout_width="44dp"
             android:layout_height="44dp">
@@ -34,6 +39,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/lg_close" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/title_tv"
@@ -51,7 +57,7 @@
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="20dp">
             <ImageView
                 android:id="@+id/iv_right"

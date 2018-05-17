@@ -1,5 +1,6 @@
 package com.yijian.staff.db.bean;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -38,7 +39,7 @@ public class User {
         this.merchantId = JsonUtil.getString(jsonObject, "merchantId");
         this.token = JsonUtil.getString(jsonObject, "token");
         this.tokenAge = JsonUtil.getString(jsonObject, "tokenAge");
-        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
         this.birthday = JsonUtil.getString(jsonObject, "birthday");
         this.tokenAge = JsonUtil.getString(jsonObject, "tokenAge");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");

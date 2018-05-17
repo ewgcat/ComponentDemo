@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.db.bean.SearchKey;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -48,8 +49,9 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.SystemUtil;
+import com.yijian.staff.widget.EmptyView;
 
-public class HuiJiSearchActivity extends AppCompatActivity {
+public class HuiJiSearchActivity extends MvcBaseActivity {
 
     private static final String TAG = CoachSearchActivity.class.getSimpleName();
     @BindView(R.id.top_view)
@@ -59,8 +61,10 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     @BindView(R.id.et_search)
     EditText etSearch;
-    @BindView(R.id.rcl)
+    @BindView(R.id.rv)
     RecyclerView rcl;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     @BindView(R.id.rcl_search)
     RecyclerView rcl_search;
     @BindView(R.id.refreshLayout)
@@ -74,15 +78,14 @@ public class HuiJiSearchActivity extends AppCompatActivity {
     private SearchKeyAdapter searchKeyAdapter;
     private List<SearchKey> searchList;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hui_ji_search);
-        ButterKnife.bind(this);
-        initView();
+    protected int getLayoutID() {
+        return R.layout.activity_hui_ji_search;
     }
 
-    private void initView() {
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         rcl_search.setLayoutManager(new LinearLayoutManager(this));
         searchKeyAdapter = new SearchKeyAdapter(this, searchList);
         searchKeyAdapter.setClickKeyListener(new SearchKeyAdapter.ClickKeyListener() {
@@ -102,7 +105,13 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         rcl_search.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
 
-
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etSearch.getText().toString().trim();
+                refresh(name);
+            }
+        });
 
         etSearch.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
 
@@ -182,44 +191,61 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+
             return;
         } else {
+            empty_view.setVisibility(View.GONE);
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
-
+            viperBeanList.clear();
+            showBlueProgress();
+            empty_view.setVisibility(View.GONE);
             HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    hideBlueProgress();
 
-                    SearchKey searchKey = new SearchKey( null,etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
+                    SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 
                     refreshLayout.finishRefresh(2000, true);
+                    viperBeanList.clear();
 
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    for (int i = 0; i < records.length(); i++) {
-                        try {
+
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
                             JSONObject jsonObject = (JSONObject) records.get(i);
                             HuiJiViperBean huiJiSearchViperBean = new HuiJiViperBean(jsonObject);
                             viperBeanList.add(huiJiSearchViperBean);
-                        } catch (JSONException e) {
-                            Logger.i(TAG, e.toString());
                         }
+                        adapter.update(viperBeanList);
+                        if (viperBeanList.size() == 0) {
+                            empty_view.setVisibility(View.VISIBLE);
+                        }
+                    } catch (JSONException e) {
+                        Logger.i(TAG, e.toString());
                     }
 
-                    adapter.update(viperBeanList);
 
                 }
 
                 @Override
                 public void onFail(String msg) {
+                    hideBlueProgress();
+                    showToast(msg);
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    adapter.update(viperBeanList);
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+
                 }
             });
         }
@@ -233,41 +259,59 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+
+            boolean hasMore = pages > pageNum ? true : false;
+            refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
             return;
         } else {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
+            showBlueProgress();
+            empty_view.setVisibility(View.GONE);
 
             HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    hideBlueProgress();
                     clearEditTextFocus();
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
 
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
-                    for (int i = 0; i < records.length(); i++) {
-                        try {
+                    try {
+                        for (int i = 0; i < records.length(); i++) {
+
                             JSONObject jsonObject = (JSONObject) records.get(i);
                             HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                             viperBeanList.add(viperBean);
-                        } catch (JSONException e) {
-
 
                         }
+                        adapter.update(viperBeanList);
+                        if (viperBeanList.size() == 0) {
+                            empty_view.setVisibility(View.VISIBLE);
+                        }
+                    } catch (JSONException e) {
+
+
                     }
-                    adapter.update(viperBeanList);
                 }
 
                 @Override
                 public void onFail(String msg) {
+                    hideBlueProgress();
+
                     clearEditTextFocus();
                     boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                    Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                    showToast(msg);
+                    adapter.update(viperBeanList);
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+
                 }
             });
         }
@@ -276,11 +320,11 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     public void initSearchData() {
         searchList = DBManager.getInstance().querySearchList();
-        Logger.i("TEST",""+searchList.size());
-        if (searchList!=null&&searchList.size()>0){
+        Logger.i("TEST", "" + searchList.size());
+        if (searchList != null && searchList.size() > 0) {
             searchKeyAdapter.update(searchList);
             lin_search_container.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             lin_search_container.setVisibility(View.GONE);
         }
     }

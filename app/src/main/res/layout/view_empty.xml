@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yijian.staff.widget.EmptyView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/rl_empty_layout_empty"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="false"
+    android:focusable="false">
+
+    <ImageView
+        android:id="@+id/iv_empty_empty_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/nodata" />
+
+    <TextView
+        android:id="@+id/tv_empty_empty_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_empty_empty_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="暂无数据"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
+</com.yijian.staff.widget.EmptyView>

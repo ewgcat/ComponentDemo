@@ -13,7 +13,7 @@ import com.yijian.staff.mvp.all.AllFunctionActivity;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.main.work.face.FaceActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.MenuHelper;
@@ -78,6 +78,7 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
         recyclerView.setAdapter(adapter);
         initData();
 
+
     }
 
 
@@ -126,15 +127,15 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
 
 
-    @OnClick({R.id.et_search, R.id.ll_jiedai})
+    @OnClick({R.id.et_search, R.id.ll_jiedai,R.id.iv_face})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole == 1 || userRole == 3) {
+                if (userRole == 1 || userRole == 3|| userRole == 6) {
                     startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                } else if (userRole == 2 || userRole == 4) {
+                } else if (userRole == 2 || userRole == 4|| userRole == 7) {
                     startActivity(new Intent(getContext(), CoachSearchActivity.class));
                 }
 
@@ -150,6 +151,9 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 //                AllFunctionActivity.startToActivity(getActivity(), this);
 
 //                break;
+            case R.id.iv_face:
+                startActivity(new Intent(getActivity(), FaceActivity.class));
+                break;
         }
     }
 

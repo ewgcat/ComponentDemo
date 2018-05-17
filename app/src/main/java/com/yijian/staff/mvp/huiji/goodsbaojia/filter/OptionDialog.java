@@ -73,9 +73,9 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         String cardType = arguments.getString("cardType");
         String startPrice = arguments.getString("startPrice");
-        String venueName = arguments.getString("venueName");
+        String venueId = arguments.getString("venueId");
 
-        conditionBody.setVenueName(venueName);
+        conditionBody.setVenueId(venueId);
         conditionBody.setStartPrice(startPrice);
         conditionBody.setCardType(cardType);
 
@@ -118,16 +118,16 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
             @Override
             public void onSuccess(JSONObject result) {
                 VenueWrapBean venueWrapBean = new Gson().fromJson(result.toString(), VenueWrapBean.class);
-                List<VenueBean> dataList = venueWrapBean.getDataList();
+                List<VenueBean> dataList = venueWrapBean.getOptions();
                 if (dataList == null || dataList.size() == 0) {
                     return;
                 }
 
-                String venueName = conditionBody.getVenueName();
+                String venueId = conditionBody.getVenueId();
                 for (int i = 0; i < dataList.size(); i++) {
-                    String name = dataList.get(i).getName();
-                    if (!TextUtils.isEmpty(venueName) && !TextUtils.isEmpty(name)) {
-                        if (venueName.equals(name.trim()))
+                    String id = dataList.get(i).getVenueId();
+                    if (!TextUtils.isEmpty(id) && !TextUtils.isEmpty(venueId)) {
+                        if (id.equals(venueId.trim()))
                             dataList.get(i).setSelect(true);
                     }
 
@@ -181,7 +181,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         optionAdapter.setLisenter(new OptionAdapter.OptionLisenter() {
             @Override
             public void onVenueClick(int position, VenueBean venueBean) {
-                conditionBody.setVenueName(venueBean.getName());
+                conditionBody.setVenueId(venueBean.getVenueId());
 
             }
         });
@@ -209,18 +209,18 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 //        Log.e(TAG, "initView: " );
         String cardType = conditionBody.getCardType();
         if (!TextUtils.isEmpty(cardType)) {
-            if ("1".equals(cardType.trim())) {
+            if ("0".equals(cardType.trim())) {
                 setSelectStyle(tvTimeCard);
+                conditionBody.setCardType("0");
+            } else if ("1".equals(cardType.trim())) {
+                setSelectStyle(tvCishuCard);
                 conditionBody.setCardType("1");
             } else if ("2".equals(cardType.trim())) {
-                setSelectStyle(tvCishuCard);
+                setSelectStyle(tvChuzhiCard);
                 conditionBody.setCardType("2");
             } else if ("3".equals(cardType.trim())) {
-                setSelectStyle(tvChuzhiCard);
-                conditionBody.setCardType("3");
-            } else if ("4".equals(cardType.trim())) {
                 setSelectStyle(tvHuiyuanCard);
-                conditionBody.setCardType("4");
+                conditionBody.setCardType("3");
             }
         }
         String startPrice = conditionBody.getStartPrice();
@@ -256,22 +256,22 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
             case R.id.tv_time_card:
                 resetCardType();
                 setSelectStyle(tvTimeCard);
-                conditionBody.setCardType("1");
+                conditionBody.setCardType("0");
                 break;
             case R.id.tv_cishu_card:
                 resetCardType();
                 setSelectStyle(tvCishuCard);
-                conditionBody.setCardType("2");
+                conditionBody.setCardType("1");
                 break;
             case R.id.tv_chuzhi_card:
                 resetCardType();
                 setSelectStyle(tvChuzhiCard);
-                conditionBody.setCardType("3");
+                conditionBody.setCardType("2");
                 break;
             case R.id.tv_huiyuan_card:
                 resetCardType();
                 setSelectStyle(tvHuiyuanCard);
-                conditionBody.setCardType("4");
+                conditionBody.setCardType("3");
                 break;
             case R.id.tv_price1:
                 resetPriseStyle();
@@ -304,7 +304,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 conditionBody.setStartPrice(null);
                 conditionBody.setEndPrice(null);
                 conditionBody.setCardType(null);
-                conditionBody.setVenueName(null);
+                conditionBody.setVenueId(null);
                 List<VenueBean> list = optionAdapter.getList();
                 if (list != null && list.size() != 0) {
                     for (int i = 0; i < list.size(); i++) {
@@ -318,10 +318,10 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                     String cardType = conditionBody.getCardType();
                     String endPrice = conditionBody.getEndPrice();
                     String startPrice = conditionBody.getStartPrice();
-                    String venueName = conditionBody.getVenueName();
+                    String venueId = conditionBody.getVenueId();
                     if (TextUtils.isEmpty(cardType)
                             &&TextUtils.isEmpty(startPrice)
-                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(venueId)
                             &&TextUtils.isEmpty(endPrice)){
                         onDismissListener.onDismiss(null);
                     }else {
@@ -336,10 +336,10 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                     String cardType = conditionBody.getCardType();
                     String endPrice = conditionBody.getEndPrice();
                     String startPrice = conditionBody.getStartPrice();
-                    String venueName = conditionBody.getVenueName();
+                    String venueId = conditionBody.getVenueId();
                     if (TextUtils.isEmpty(cardType)
                             &&TextUtils.isEmpty(startPrice)
-                            &&TextUtils.isEmpty(venueName)
+                            &&TextUtils.isEmpty(venueId)
                             &&TextUtils.isEmpty(endPrice)){
                         onDismissListener.onDismiss(null);
                     }

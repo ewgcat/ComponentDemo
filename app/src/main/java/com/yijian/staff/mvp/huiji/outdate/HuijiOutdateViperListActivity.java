@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -22,6 +23,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -44,16 +46,18 @@ import static com.yijian.staff.net.httpmanager.HttpManager.GET_HUIJI_OUTDATE_VIP
 @Route(path = "/test/4")
 public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
-    @BindView(R.id.rv_outdate)
+    @BindView(R.id.rv)
     RecyclerView rv_outdate;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
+
     List<HuiJiViperBean> vipOutdateInfoList = new ArrayList<HuiJiViperBean>();
     HuijiOutdateViperListAdapter huijiOutdateViperListAdapter;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
     private int pages;
-
 
 
     @Override
@@ -75,13 +79,14 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         rv_outdate.setAdapter(huijiOutdateViperListAdapter);
         initComponent();
 
-        Disposable disposable = RxBus.getDefault().toDefaultFlowable(HuijiViperFilterBean.class, new Consumer<HuijiViperFilterBean>() {
+
+        refresh();
+        empty_view.setButton(new View.OnClickListener() {
             @Override
-            public void accept(HuijiViperFilterBean filterBean) throws Exception {
+            public void onClick(View v) {
                 refresh();
             }
         });
-        refresh();
     }
 
 
@@ -112,58 +117,74 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
         vipOutdateInfoList.clear();
 
-        pageNum=1;
-
-        HashMap<String, String> map = new HashMap<>();
-        map.put("pageNum", pageNum + "");
-        map.put("pageSize", pageSize+ "");
-
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                refreshLayout.finishRefresh(2000, true);
-
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
-                JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
-                        JSONObject jsonObject = (JSONObject) records.get(i);
-                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
-                        vipOutdateInfoList.add(vipOutdateInfo);
-                    } catch (JSONException e) {
-
-
-                    }
-                }
-                huijiOutdateViperListAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFail(String msg) {
-                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(HuijiOutdateViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-    public void loadMore() {
-
+        pageNum = 1;
+        empty_view.setVisibility(View.GONE);
+        showBlueProgress();
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL,map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
+
+                refreshLayout.finishRefresh(2000, true);
+                vipOutdateInfoList.clear();
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                pages = JsonUtil.getInt(result, "pages");
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        HuiJiViperBean vipOutdateInfo = new HuiJiViperBean(jsonObject);
+                        vipOutdateInfoList.add(vipOutdateInfo);
+                    }
+                    huijiOutdateViperListAdapter.notifyDataSetChanged();
+                    if (vipOutdateInfoList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+
+
+                }
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                hideBlueProgress();
+                showToast(msg);
+                huijiOutdateViperListAdapter.notifyDataSetChanged();
+                if (vipOutdateInfoList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    public void loadMore() {
+        empty_view.setVisibility(View.GONE);
+
+        showBlueProgress();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("pageNum", pageNum + "");
+        map.put("pageSize", pageSize + "");
+
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
 
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
@@ -175,15 +196,25 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
                     }
                 }
                 huijiOutdateViperListAdapter.notifyDataSetChanged();
+                if (vipOutdateInfoList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(HuijiOutdateViperListActivity.this,msg,Toast.LENGTH_SHORT).show();
+                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                showToast(msg);
+                huijiOutdateViperListAdapter.notifyDataSetChanged();
+                if (vipOutdateInfoList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
+
 
 }

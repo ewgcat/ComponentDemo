@@ -32,6 +32,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -51,8 +53,13 @@ import io.reactivex.functions.Consumer;
 
 public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
+    @BindView(R.id.rv)
+    RecyclerView rv_vip_all;
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    private RecyclerView rv_vip_all;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
+
     private List<TodayCoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
@@ -63,13 +70,12 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     private static CoachVipTodayVisitFragment coachVipTodayVisitFragment;
     private CoachTodayViperListAdapter coachViperListAdapter;
 
-    public static CoachVipTodayVisitFragment getInstance(){
-        if(coachVipTodayVisitFragment == null){
+    public static CoachVipTodayVisitFragment getInstance() {
+        if (coachVipTodayVisitFragment == null) {
             coachVipTodayVisitFragment = new CoachVipTodayVisitFragment();
         }
         return coachVipTodayVisitFragment;
     }
-
 
 
     @Override
@@ -82,14 +88,12 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         initView(rootView);
     }
 
-    private void initView(View view){
-        rv_vip_all = view.findViewById(R.id.rv_vip_all);
-        refreshLayout = view.findViewById(R.id.refreshLayout);
+    private void initView(View view) {
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
-        coachViperListAdapter = new CoachTodayViperListAdapter(getActivity(), coachViperBeanList,false);
+        coachViperListAdapter = new CoachTodayViperListAdapter(getActivity(), coachViperBeanList, false);
         rv_vip_all.setAdapter(coachViperListAdapter);
         initComponent();
         refresh(null);
@@ -99,14 +103,23 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 refresh(filterBean);
             }
         });
-    }
 
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh(coachViperFilterBean);
+            }
+        });
+    }
 
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
         coachViperBeanList.clear();
-        pageNum=1;
-        pageSize=10;
+        showBlueProgress();
+        empty_view.setVisibility(View.GONE);
+
+        pageNum = 1;
+        pageSize = 10;
         this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -119,60 +132,74 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
 
             if (coachViperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() );
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType());
             }
             if (coachViperFilterBean.getExpiringDay() != -1) {
                 map.put("expiringDay", coachViperFilterBean.getExpiringDay());
             }
-            if (coachViperFilterBean.getSex()!=-1) {
-                map.put("sex", coachViperFilterBean.getSex() );
+            if (coachViperFilterBean.getSex() != -1) {
+                map.put("sex", coachViperFilterBean.getSex());
             }
-            if (coachViperFilterBean.getCourseType()!=null) {
+            if (coachViperFilterBean.getCourseType() != null) {
                 map.put("courseType", coachViperFilterBean.getCourseType());
             }
-            if (coachViperFilterBean.getBuyTime()!=-1) {
+            if (coachViperFilterBean.getBuyTime() != -1) {
                 map.put("buyTime", coachViperFilterBean.getBuyTime());
             }
 
             if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
-                map.put("startTime", coachViperFilterBean.getStartTime() );
+                map.put("startTime", coachViperFilterBean.getStartTime());
             }
             if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
-                map.put("endTime", coachViperFilterBean.getEndTime() );
+                map.put("endTime", coachViperFilterBean.getEndTime());
             }
         }
 
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                 refreshLayout.finishRefresh(2000, true);
+                coachViperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         TodayCoachViperBean coachViperBean = new TodayCoachViperBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
-                    } catch (JSONException e) {
-
 
                     }
+                } catch (JSONException e) {
+
+
                 }
                 coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
+                showToast(msg);
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
 
             }
         });
     }
 
     public void loadMore() {
+        empty_view.setVisibility(View.GONE);
+        showBlueProgress();
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
@@ -184,38 +211,39 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
 
             if (coachViperFilterBean.getJoinTimeType() != -2) {
-                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType() );
+                map.put("joinTimeType", coachViperFilterBean.getJoinTimeType());
             }
             if (coachViperFilterBean.getExpiringDay() != -1) {
                 map.put("expiringDay", coachViperFilterBean.getExpiringDay());
             }
-            if (coachViperFilterBean.getSex()!=-1) {
-                map.put("sex", coachViperFilterBean.getSex() );
+            if (coachViperFilterBean.getSex() != -1) {
+                map.put("sex", coachViperFilterBean.getSex());
             }
-            if (coachViperFilterBean.getCourseType()!=null) {
+            if (coachViperFilterBean.getCourseType() != null) {
                 map.put("courseType", coachViperFilterBean.getCourseType());
             }
-            if (coachViperFilterBean.getBuyTime()!=-1) {
+            if (coachViperFilterBean.getBuyTime() != -1) {
                 map.put("buyTime", coachViperFilterBean.getBuyTime());
             }
 
             if (!TextUtils.isEmpty(coachViperFilterBean.getStartTime())) {
-                map.put("startTime", coachViperFilterBean.getStartTime() );
+                map.put("startTime", coachViperFilterBean.getStartTime());
             }
             if (!TextUtils.isEmpty(coachViperFilterBean.getEndTime())) {
-                map.put("endTime", coachViperFilterBean.getEndTime() );
+                map.put("endTime", coachViperFilterBean.getEndTime());
             }
 
         }
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
 
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
@@ -227,13 +255,21 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                     }
                 }
                 coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                showToast(msg);
+                coachViperListAdapter.update(coachViperBeanList);
+                if (coachViperBeanList.size() == 0) {
+                    empty_view.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -261,7 +297,6 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             }
         });
     }
-
 
 
 }

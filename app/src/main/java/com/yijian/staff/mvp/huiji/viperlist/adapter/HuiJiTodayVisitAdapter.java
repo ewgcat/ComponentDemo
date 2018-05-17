@@ -16,20 +16,27 @@ import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<TodayHuiJiViperBean> viperBeanList;
+    private List<TodayHuiJiViperBean> viperBeanList=new ArrayList<>();
     private Context context;
 
-    public HuiJiTodayVisitAdapter(Context context, List<TodayHuiJiViperBean> viperBeanList) {
-        this.viperBeanList = viperBeanList;
+
+    public HuiJiTodayVisitAdapter(Context context) {
         this.context = context;
     }
 
-    public void update(List<TodayHuiJiViperBean> viperBeanList) {
-        this.viperBeanList = viperBeanList;
+    public void update(List<TodayHuiJiViperBean> viperBeanList,boolean isAppend) {
+
+        if(!isAppend){
+            this.viperBeanList.clear();
+            this.viperBeanList = viperBeanList;
+        }else{
+            this.viperBeanList.addAll(viperBeanList);
+        }
         notifyDataSetChanged();
     }
 

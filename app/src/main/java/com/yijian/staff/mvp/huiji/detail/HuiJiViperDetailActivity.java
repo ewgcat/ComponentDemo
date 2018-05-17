@@ -8,18 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.contract.ContractActivity;
-import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
+import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -29,7 +28,6 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,20 +55,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     TextView tvBirthday;
     @BindView(R.id.tv_birthday_type)
     TextView tvBirthdayType;
-    @BindView(R.id.tv_viper_type)
-    TextView tvViperType;
-    /*@BindView(R.id.tv_vip_card_num)
-    TextView tvVipCardNum;*/
-    @BindView(R.id.tv_head_info)
-    TextView tvHeadInfo;
-    @BindView(R.id.tv_zhi_wen_info)
-    TextView tvZhiWenInfo;
-    @BindView(R.id.tv_jin_mai_info)
-    TextView tvJinMaiInfo;
-    @BindView(R.id.tv_certificateType)
-    TextView tv_certificateType;
-    @BindView(R.id.tv_shenfencard_num)
-    TextView tvShenfencardNum;
+
     //会籍信息
     @BindView(R.id.rv_card)
     RecyclerView rv_card;
@@ -135,6 +120,8 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     TextView tvHomeLocation;
     @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
+    @BindView(R.id.tv_lianxiren_phone)
+    TextView tvJinJiLianxirenphone;
 
 
     @BindView(R.id.tv_sijiao_class)
@@ -143,6 +130,11 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     RelativeLayout rlSijiaoClass;
 
     VipDetailBean vipDetailBean;
+    @BindView(R.id.tv_age)
+    TextView tvAge;
+    @BindView(R.id.tv_xiao_fei_total)
+    TextView tvXiaoFeiTotal;
+
 
 
     @Override
@@ -168,18 +160,18 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     @OnClick({R.id.ll_chakan_hetong, R.id.ll_chakan_wenjuan, R.id.ll_edit, R.id.iv_visit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_chakan_hetong:
-                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
-                intent1.putExtra("memberId", vipDetailBean.getMemberId());
-                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
-                startActivity(intent1);
-                break;
-            case R.id.ll_chakan_wenjuan:
-                Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
-                intent2.putExtra("memberId", vipDetailBean.getMemberId());
-                startActivity(intent2);
-
-                break;
+//            case R.id.ll_chakan_hetong:
+//                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
+//                intent1.putExtra("memberId", vipDetailBean.getMemberId());
+//                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
+//                startActivity(intent1);
+//                break;
+//            case R.id.ll_chakan_wenjuan:
+//                Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
+//                intent2.putExtra("memberId", vipDetailBean.getMemberId());
+//                startActivity(intent2);
+//
+//                break;
             case R.id.ll_edit:
                 Intent intent = new Intent(HuiJiViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
                 intent.putExtra("detail", vipDetailBean.getDetail());
@@ -249,14 +241,9 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
         tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
-        tvViperType.setText(judgeNull(vipDetailBean.getMemberType()));
-//        tvVipCardNum.setText(vipDetailBean.getMemberCardNo());
-        tvHeadInfo.setText(judgeNull(vipDetailBean.getFaceInfo()));
-        tvZhiWenInfo.setText(judgeNull(vipDetailBean.getFingerprint()));
-        tvJinMaiInfo.setText(judgeNull(vipDetailBean.getVein()));
-        tv_certificateType.setText(judgeNull(vipDetailBean.getCertificateType()));
-        tvShenfencardNum.setText(judgeNull(vipDetailBean.getCertificateNo()));
 
+        tvAge.setText(judgeNull(vipDetailBean.getAge()+""));
+        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption())+" 元");
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);
@@ -306,6 +293,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
+        tvJinJiLianxirenphone.setText(judgeNull(detailBean.getContactPhone()));
         tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
     }
 

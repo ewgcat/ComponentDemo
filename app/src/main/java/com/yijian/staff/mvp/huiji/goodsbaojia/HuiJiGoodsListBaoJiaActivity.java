@@ -35,6 +35,7 @@ import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
 import com.yijian.staff.mvp.huiji.goodsbaojia.filter.OptionDialog;
 import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,8 +66,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @BindView(R.id.ll_content)
     LinearLayout llContent;
-    @BindView(R.id.goods_rcv)
+    @BindView(R.id.rv)
     RecyclerView goodsRcv;
+
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.refreshLayout)
@@ -222,7 +226,18 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
 
         selectZongHe();
-
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tvZongHe.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                    empty_view.setVisibility(View.GONE);
+                    selectZongHe();
+                }else if (tvPrice.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                    empty_view.setVisibility(View.GONE);
+                    selectPrice();
+                }
+            }
+        });
 
     }
 
@@ -267,7 +282,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         Bundle bundle = new Bundle();
         bundle.putString("cardType", bodyCondition.getCardType());
         bundle.putString("startPrice", bodyCondition.getStartPrice());
-        bundle.putString("venueName", bodyCondition.getVenueName());
+        bundle.putString("venueId", bodyCondition.getVenueId());
         optionDialog.setArguments(bundle);
         optionDialog.show(getFragmentManager(), "OptionDialog");
     }
@@ -369,7 +384,6 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             if (isSucceed) Toast.makeText(getContext(), "未查询到相关数据", Toast.LENGTH_SHORT).show();
             goodsListAdapter.resetData(new ArrayList<>());
             cardRefreshLayout.finishRefresh(1000);
-
         } else {
             if (isSucceed) Toast.makeText(getContext(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishLoadMore(1000);

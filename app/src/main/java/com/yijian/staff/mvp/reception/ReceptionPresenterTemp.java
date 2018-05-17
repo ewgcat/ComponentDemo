@@ -63,7 +63,9 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter{
 
                 List<ReceptionRecordBean> records = recptionRecordListBean.getRecords();
                 if (records==null||records.size()==0){
-                    if (pageNum!=1) Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    if (pageNum==1){
+                        view.showNoData();
+                    }else  if (pageNum!=1) Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
                     return;
                 }
 //                Log.e(TAG, "onSuccess: "+records.size() );

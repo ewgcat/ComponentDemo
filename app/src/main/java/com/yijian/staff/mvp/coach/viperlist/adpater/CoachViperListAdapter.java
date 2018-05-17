@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -88,7 +89,8 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 0);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);

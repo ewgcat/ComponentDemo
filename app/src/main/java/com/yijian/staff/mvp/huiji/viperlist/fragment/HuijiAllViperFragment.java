@@ -112,6 +112,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         });
 
 
+
     }
 
     private void refresh(HuijiViperFilterBean huijiViperFilterBean) {

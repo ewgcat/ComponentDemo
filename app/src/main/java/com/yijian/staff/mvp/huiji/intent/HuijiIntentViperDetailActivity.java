@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -201,7 +202,9 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)){
-                    callVisit(mobile);
+                    CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
+
+
                 } else {
                     Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
                 }
@@ -216,7 +219,6 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
             }
 
             @Override

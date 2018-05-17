@@ -23,6 +23,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -91,7 +92,8 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 1);
                 intent.putExtra("coachViperBean", coachViperBean);
                 context.startActivity(intent);
@@ -103,7 +105,8 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 3);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
 

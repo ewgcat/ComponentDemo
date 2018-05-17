@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 
@@ -83,7 +84,8 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
+                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
                 intent.putExtra("vipType", 0);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);

@@ -2,6 +2,7 @@ package com.yijian.staff.bean;
 
 import android.support.annotation.NonNull;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.util.JsonUtil;
 
@@ -48,7 +49,7 @@ public class ClassInfo implements Comparable<ClassInfo>{
         this.cleassNum=  JsonUtil.getString(jsonObject,"cleassNum");
         this.lessonTime=  JsonUtil.getString(jsonObject,"lessonTime");
         this.lessonId=  JsonUtil.getString(jsonObject,"lessonId");
-        this.img=  JsonUtil.getString(jsonObject,"img");
+        this.img= BuildConfig.FILE_HOST+JsonUtil.getString(jsonObject,"img");
         this.baseTotalPrice=  JsonUtil.getInt(jsonObject,"baseTotalPrice")+"";
     }
 

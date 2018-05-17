@@ -14,9 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
+import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity_ycm;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -92,12 +93,14 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                     String subclassName = huiJiViperBean.getSubclassName();
                     if (subclassName.equals("CustomerInfoVO")) { //正式会员
-                        Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+//                        Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+                        Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
                         intent.putExtra("memberId",huiJiViperBean.getMemberId());
                         context.startActivity(intent);
                     } else if (subclassName.equals("PotentialVO")||subclassName.equals("CustomerIntentionVO")||subclassName.equals("CustomerExpireVO")) {
                         tv_role.setText("潜在会员");
-                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+//                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
                         intent.putExtra("id",huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);

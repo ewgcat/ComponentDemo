@@ -1,22 +1,18 @@
 package com.yijian.staff.mvp.huiji.viperlist.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.bean.TodayHuiJiViperBean;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -104,7 +100,8 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+//                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+                    Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
                     intent.putExtra("memberId",huiJiViperBean.getMemberId());
                     context.startActivity(intent);
                 }

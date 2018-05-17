@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
@@ -184,7 +185,8 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)) {
-                    callVisit(mobile);
+                    CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
+
                 } else {
                     Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                 }
@@ -199,7 +201,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
             }
 
             @Override
@@ -234,7 +235,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     }
 
     private void updateUi(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+vipDetailBean.getHeadImg(), this, ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));

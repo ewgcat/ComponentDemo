@@ -38,10 +38,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.dataList = dataList;
     }
 
-    public void update(List<HuiJiViperBean> dataList) {
-        this.dataList = dataList;
-        notifyDataSetChanged();
-    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

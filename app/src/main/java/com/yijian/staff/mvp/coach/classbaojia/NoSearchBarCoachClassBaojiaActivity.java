@@ -173,7 +173,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
                 mClassInfoList.clear();
                 refreshLayout.finishRefresh(2000, true);
 
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {
@@ -183,7 +183,8 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
                         ClassInfo classInfo = new ClassInfo(o);
                         mClassInfoList.add(classInfo);
                     }
-                    classListAdapter.update(mClassInfoList);
+                    classListAdapter.notifyDataSetChanged();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -222,7 +223,7 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
             HttpManager.getCoachPrivateCourseList( body, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    pageNum = JsonUtil.getInt(result, "current") + 1;
+                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
@@ -234,7 +235,8 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
                             ClassInfo classInfo = new ClassInfo(o);
                             mClassInfoList.add(classInfo);
                         }
-                        classListAdapter.update(mClassInfoList);
+                        classListAdapter.notifyDataSetChanged();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

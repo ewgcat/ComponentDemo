@@ -185,7 +185,8 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
                 if (!TextUtils.isEmpty(mobile)) {
-                    callVisit(mobile);
+                    CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
+
                 } else {
                     Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                 }
@@ -200,7 +201,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
             }
 
             @Override

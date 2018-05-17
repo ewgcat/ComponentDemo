@@ -113,7 +113,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                         coachViperBeanList.add(coachViperBean);
 
                     }
-                    coachOutdateViperListAdapter.update(coachViperBeanList);
+                    coachOutdateViperListAdapter.notifyDataSetChanged();
                     if (coachViperBeanList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
                     }
@@ -128,7 +128,8 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                 hideBlueProgress();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
-                coachOutdateViperListAdapter.update(coachViperBeanList);
+                coachOutdateViperListAdapter.notifyDataSetChanged();
+
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -164,7 +165,8 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                     } catch (JSONException e) {
                     }
                 }
-                coachOutdateViperListAdapter.update(coachViperBeanList);
+                coachOutdateViperListAdapter.notifyDataSetChanged();
+
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -176,6 +178,8 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 showToast(msg);
+                coachOutdateViperListAdapter.notifyDataSetChanged();
+
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

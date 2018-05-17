@@ -11,6 +11,7 @@
         layout="@layout/view_navigation_bar2" />
 
     <ScrollView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -326,5 +327,11 @@
 
         </LinearLayout>
     </ScrollView>
-
+    <com.yijian.staff.widget.EmptyView
+        android:id="@+id/empty_view"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 </LinearLayout>

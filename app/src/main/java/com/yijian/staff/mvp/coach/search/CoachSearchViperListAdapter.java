@@ -64,10 +64,6 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
         return holder;
     }
 
-    public void update(List<CoachSearchViperBean> viperBeanList) {
-        this.coachViperBeanList = viperBeanList;
-        notifyDataSetChanged();
-    }
 
     @Override
     public void onBindViewHolder(CoachSearchViperListAdapter.ViewHolder holder, int position) {

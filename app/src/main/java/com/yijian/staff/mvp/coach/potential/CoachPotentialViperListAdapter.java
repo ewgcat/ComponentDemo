@@ -57,10 +57,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
 
 
-    public void update(List<CoachViperBean> coachViperBeanList) {
-        this.coachViperBeanList = coachViperBeanList;
-        notifyDataSetChanged();
-    }
+
 
 
     @Override

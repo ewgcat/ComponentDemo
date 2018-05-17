@@ -36,8 +36,10 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
     private List<HuiJiViperBean> viperBeanList=new ArrayList<>();
     private Context context;
 
-    public HuijiViperListAdapter(Context context) {
+    public HuijiViperListAdapter(Context context,List<HuiJiViperBean> viperBeanList) {
         this.context = context;
+        this.viperBeanList = viperBeanList;
+
     }
 
     @Override
@@ -47,10 +49,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         return holder;
     }
 
-    public void update(List<HuiJiViperBean> viperBeanList) {
-        this.viperBeanList = viperBeanList;
-        notifyDataSetChanged();
-    }
+
 
 
     @Override

@@ -222,7 +222,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 mClassInfoList.clear();
                 refreshLayout.finishRefresh(2000, true);
 
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {
@@ -232,7 +232,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                         ClassInfo classInfo = new ClassInfo(o);
                         mClassInfoList.add(classInfo);
                     }
-                    classListAdapter.update(mClassInfoList);
+                    classListAdapter.notifyDataSetChanged();
                     if (mClassInfoList.size()==0){
                         empty_view.setVisibility(View.VISIBLE);
                     }
@@ -246,7 +246,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 hideBlueProgress();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
-                classListAdapter.update(mClassInfoList);
+                classListAdapter.notifyDataSetChanged();
+
                 if (mClassInfoList.size()==0){
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -294,7 +295,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                         ClassInfo classInfo = new ClassInfo(o);
                         mClassInfoList.add(classInfo);
                     }
-                    classListAdapter.update(mClassInfoList);
+                    classListAdapter.notifyDataSetChanged();
+
                     if (mClassInfoList.size()==0){
                         empty_view.setVisibility(View.VISIBLE);
                     }
@@ -311,7 +313,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
-                classListAdapter.update(mClassInfoList);
+                classListAdapter.notifyDataSetChanged();
+
                 if (mClassInfoList.size()==0){
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -365,7 +368,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             priceUp = false;
             isSortByPrice = 1;
             Collections.sort(mClassInfoList);
-            classListAdapter.update(mClassInfoList);
+            classListAdapter.notifyDataSetChanged();
+
 
         } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
@@ -375,7 +379,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             isSortByPrice = 0;
             Collections.sort(mClassInfoList);
             Collections.reverse(mClassInfoList);
-            classListAdapter.update(mClassInfoList);
+            classListAdapter.notifyDataSetChanged();
 
         }
 

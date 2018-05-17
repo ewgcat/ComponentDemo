@@ -65,7 +65,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
 
     private static HuijiTodayVisitFragment huijiTodayVisitFragment;
-    private final HuiJiTodayVisitAdapter huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity());
+    private final HuiJiTodayVisitAdapter huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(),viperBeanList);
 
     public static HuijiTodayVisitFragment getInstance() {
         if (huijiTodayVisitFragment == null) {
@@ -162,19 +162,22 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    try {
+
+                try {
+                    for (int i = 0; i < records.length(); i++) {
+
                         JSONObject jsonObject = (JSONObject) records.get(i);
                         TodayHuiJiViperBean viperBean = new TodayHuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
-                    } catch (JSONException e) {
-
 
                     }
-                }
-                huijiViperListAdapter.update(viperBeanList, false);
-                if (viperBeanList.size() == 0) {
-                    empty_view.setVisibility(View.VISIBLE);
+                    huijiViperListAdapter.notifyDataSetChanged();
+                    if (viperBeanList.size() == 0) {
+                        empty_view.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+
+
                 }
             }
 
@@ -183,10 +186,11 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 hideBlueProgress();
                 showToast(msg);
-                huijiViperListAdapter.update(viperBeanList, false);
+                huijiViperListAdapter.notifyDataSetChanged();
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
-                }            }
+                }
+            }
         });
     }
 
@@ -247,7 +251,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                     } catch (JSONException e) {
                     }
                 }
-                huijiViperListAdapter.update(viperBeanList, true);
+                huijiViperListAdapter.notifyDataSetChanged();
+
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -260,6 +265,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                 showToast(msg);
+                huijiViperListAdapter.notifyDataSetChanged();
+
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

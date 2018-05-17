@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -51,6 +53,10 @@ public class AddPotentialActivity extends MvcBaseActivity {
     TextView tvHobby;
     @BindView(R.id.tv_car_name)
     TextView tvCarName;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
+    @BindView(R.id.sv)
+    ScrollView sv;
 
     private OptionsPickerView optionsPickerView;
 
@@ -60,7 +66,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
     private List<String> fitnessHobbyList = new ArrayList<>(); //健身爱好
     private List<String> hobbyList = new ArrayList<>(); //兴趣爱好
     private List<String> userCarList = new ArrayList<>(); //使用车辆
-
+    private TextView textView;
 
 
     @Override
@@ -73,6 +79,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.add_potential_activity_navigation_bar);
         navigationBar2.setTitle("添加潜在");
         navigationBar2.setmRightTvText("确认");
+        textView = navigationBar2.getmRightTv();
         TextView textView = navigationBar2.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
@@ -107,6 +114,12 @@ public class AddPotentialActivity extends MvcBaseActivity {
         }).build();
         optionsPickerView.setPicker(sexDescList);
         optionsPickerView.setSelectOptions(0);
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downSourceFromService();
+            }
+        });
     }
 
 
@@ -129,19 +142,21 @@ public class AddPotentialActivity extends MvcBaseActivity {
         }
 
 
-
         if (CommonUtil.isPhoneFormat(phone)) {
+            showBlueProgress();
             AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, useCar, fitnessGoal, sex);
             HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    hideBlueProgress();
                     hideKeyBoard(etPhone);
                     finish();
                 }
 
                 @Override
                 public void onFail(String msg) {
-                    Toast.makeText(AddPotentialActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    hideBlueProgress();
+                    showToast(msg);
                 }
             });
         } else {
@@ -174,8 +189,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
     }
 
 
-
-    @OnClick({R.id.tv_body_status, R.id.tv_fithobby, R.id.tv_hobby, R.id.tv_sex,R.id.tv_fitness_goal, R.id.tv_car_name})
+    @OnClick({R.id.tv_body_status, R.id.tv_fithobby, R.id.tv_hobby, R.id.tv_sex, R.id.tv_fitness_goal, R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_body_status:
@@ -225,11 +239,16 @@ public class AddPotentialActivity extends MvcBaseActivity {
      * 从服务器上拉去字典数据
      */
     public void downSourceFromService() {
-
+        empty_view.setVisibility(View.GONE);
+        textView.setVisibility(View.GONE);
+        showBlueProgress();
         HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                 try {
+                    sv.setVisibility(View.VISIBLE);
+                    textView.setVisibility(View.VISIBLE);
 
 
                     //用车价格
@@ -280,6 +299,10 @@ public class AddPotentialActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 Toast.makeText(AddPotentialActivity.this, msg, Toast.LENGTH_SHORT).show();
+                empty_view.setVisibility(View.VISIBLE);
+                sv.setVisibility(View.GONE);
+                hideBlueProgress();
+
             }
         });
     }

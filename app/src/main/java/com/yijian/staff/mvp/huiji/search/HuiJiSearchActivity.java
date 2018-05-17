@@ -224,7 +224,8 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                             HuiJiViperBean huiJiSearchViperBean = new HuiJiViperBean(jsonObject);
                             viperBeanList.add(huiJiSearchViperBean);
                         }
-                        adapter.update(viperBeanList);
+                        adapter.notifyDataSetChanged();
+
                         if (viperBeanList.size() == 0) {
                             empty_view.setVisibility(View.VISIBLE);
                         }
@@ -241,7 +242,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                     showToast(msg);
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    adapter.update(viperBeanList);
+                    adapter.notifyDataSetChanged();
                     if (viperBeanList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
                     }
@@ -289,7 +290,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                             viperBeanList.add(viperBean);
 
                         }
-                        adapter.update(viperBeanList);
+                        adapter.notifyDataSetChanged();
                         if (viperBeanList.size() == 0) {
                             empty_view.setVisibility(View.VISIBLE);
                         }
@@ -302,12 +303,11 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                 @Override
                 public void onFail(String msg) {
                     hideBlueProgress();
-
                     clearEditTextFocus();
                     boolean hasMore = pages > pageNum ? true : false;
                     refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
                     showToast(msg);
-                    adapter.update(viperBeanList);
+                    adapter.notifyDataSetChanged();
                     if (viperBeanList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
                     }

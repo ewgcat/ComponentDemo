@@ -69,10 +69,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         return mClassInfoList.size();
     }
 
-    public void update(List<ClassInfo> mClassInfoList) {
-        this.mClassInfoList = mClassInfoList;
-        notifyDataSetChanged();
-    }
+
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {

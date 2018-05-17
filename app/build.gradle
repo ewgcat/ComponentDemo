@@ -22,9 +22,9 @@ android {
         renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-      /*  ndk {
-            abiFilters "armeabi", "x86"
-        }*/
+//        ndk {
+//            abiFilters "armeabi"//, "x86"
+//        }
 
         javaCompileOptions {
             annotationProcessorOptions {

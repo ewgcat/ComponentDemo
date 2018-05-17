@@ -91,7 +91,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         if (workFragment!=null)workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
             @Override
             public void startAct() {
-//                Intent intent = new Intent(MainActivity.this, ReceptionActivity.class);
+//                Intent intent = new Intent(FaceActivity.this, ReceptionActivity.class);
 //                startActivityForResult(intent, RESULT_OK_RECEPTION);
                 Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
                 startActivity(intent);

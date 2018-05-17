@@ -8,22 +8,24 @@ public class VenueBean extends SelectedBean {
 //    id (string, optional): id ,
 //    name (string, optional): 名称
 
-    private String id;
-    private String name;
+    private String venueId;
+    private String option;
 
-    public String getId() {
-        return id;
+    public String getVenueId() {
+        return venueId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setVenueId(String venueId) {
+        this.venueId = venueId;
     }
 
-    public String getName() {
-        return name;
+    public String getOption() {
+        return option;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOption(String option) {
+        this.option = option;
     }
+
+
 }

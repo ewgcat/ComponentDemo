@@ -932,7 +932,7 @@ public class HttpManager {
 
 
     //接待--会籍--step3-场馆信息列表
-    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/list";
+    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/listByShopId";
 
     //接待--会籍--step3-会员不愿意购买,会籍To给教练
     public static final String RECEPTION_STEP3_TO_COACH = BuildConfig.HOST + "reception/sale-to-coach";

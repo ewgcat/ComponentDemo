@@ -65,7 +65,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
         body.setStartPrice(null);
         body.setEndPrice(null);
         body.setIsSortByPrice(null);
-        body.setVenueName(null);
+        body.setVenueId(null);
 
         return body;
     }

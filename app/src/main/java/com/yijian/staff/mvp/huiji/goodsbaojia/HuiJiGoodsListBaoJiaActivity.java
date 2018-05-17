@@ -354,6 +354,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
+        empty_view.setVisibility(View.GONE);
 
         if (isRefresh) {
             mGoodsInfoList.clear();
@@ -384,6 +385,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             if (isSucceed) Toast.makeText(getContext(), "未查询到相关数据", Toast.LENGTH_SHORT).show();
             goodsListAdapter.resetData(new ArrayList<>());
             cardRefreshLayout.finishRefresh(1000);
+            empty_view.setVisibility(View.VISIBLE);
         } else {
             if (isSucceed) Toast.makeText(getContext(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishLoadMore(1000);

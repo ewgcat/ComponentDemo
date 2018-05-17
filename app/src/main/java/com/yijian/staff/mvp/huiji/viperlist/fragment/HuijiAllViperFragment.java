@@ -98,7 +98,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity());
+        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(),viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -173,7 +173,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                         HuiJiViperBean viperBean = new HuiJiViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     }
-                    huijiViperListAdapter.update(viperBeanList);
+                    huijiViperListAdapter.notifyDataSetChanged();
 
                     if (viperBeanList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
@@ -187,7 +187,8 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 hideBlueProgress();
-                huijiViperListAdapter.update(viperBeanList);
+                huijiViperListAdapter.notifyDataSetChanged();
+
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -253,7 +254,8 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                     } catch (JSONException e) {
                     }
                 }
-                huijiViperListAdapter.update(viperBeanList);
+                huijiViperListAdapter.notifyDataSetChanged();
+
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
@@ -265,7 +267,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
                 boolean hasMore = pages > pageNum ? true : false;
                 refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
-                huijiViperListAdapter.update(viperBeanList);
+                huijiViperListAdapter.notifyDataSetChanged();
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }

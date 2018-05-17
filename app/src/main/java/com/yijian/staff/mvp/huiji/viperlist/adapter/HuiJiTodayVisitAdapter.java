@@ -29,20 +29,13 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private Context context;
 
 
-    public HuiJiTodayVisitAdapter(Context context) {
+    public HuiJiTodayVisitAdapter(Context context,List<TodayHuiJiViperBean> viperBeanList) {
         this.context = context;
+        this.viperBeanList = viperBeanList;
+
     }
 
-    public void update(List<TodayHuiJiViperBean> viperBeanList,boolean isAppend) {
 
-        if(!isAppend){
-            this.viperBeanList.clear();
-            this.viperBeanList = viperBeanList;
-        }else{
-            this.viperBeanList.addAll(viperBeanList);
-        }
-        notifyDataSetChanged();
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -183,7 +183,8 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
                         ClassInfo classInfo = new ClassInfo(o);
                         mClassInfoList.add(classInfo);
                     }
-                    classListAdapter.update(mClassInfoList);
+                    classListAdapter.notifyDataSetChanged();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -234,7 +235,8 @@ public class NoSearchBarCoachClassBaojiaActivity extends MvcBaseActivity {
                             ClassInfo classInfo = new ClassInfo(o);
                             mClassInfoList.add(classInfo);
                         }
-                        classListAdapter.update(mClassInfoList);
+                        classListAdapter.notifyDataSetChanged();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

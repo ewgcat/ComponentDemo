@@ -48,6 +48,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.SystemUtil;
+import com.yijian.staff.widget.EmptyView;
 
 public class HuiJiSearchActivity extends AppCompatActivity {
 
@@ -59,8 +60,10 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
     @BindView(R.id.et_search)
     EditText etSearch;
-    @BindView(R.id.rcl)
+    @BindView(R.id.rv)
     RecyclerView rcl;
+    @BindView(R.id.empty_view)
+    EmptyView empty_view;
     @BindView(R.id.rcl_search)
     RecyclerView rcl_search;
     @BindView(R.id.refreshLayout)
@@ -102,7 +105,13 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         rcl_search.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
 
-
+        empty_view.setButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etSearch.getText().toString().trim();
+                refresh(name);
+            }
+        });
 
         etSearch.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
 
@@ -182,8 +191,11 @@ public class HuiJiSearchActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+            refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+
             return;
         } else {
+            empty_view.setVisibility(View.GONE);
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
@@ -221,8 +233,7 @@ public class HuiJiSearchActivity extends AppCompatActivity {
                 public void onFail(String msg) {
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                    adapter.update(viperBeanList);
-
+                    empty_view.setVisibility(View.VISIBLE);
                     Toast.makeText(HuiJiSearchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -237,6 +248,9 @@ public class HuiJiSearchActivity extends AppCompatActivity {
         String name = etSearch.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
+
+            boolean hasMore = pages > pageNum ? true : false;
+            refreshLayout.finishLoadMore(2000, true,  !hasMore);//传入false表示刷新失败
             return;
         } else {
             params.put("name", name);

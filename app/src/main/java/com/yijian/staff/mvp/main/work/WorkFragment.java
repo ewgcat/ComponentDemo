@@ -133,9 +133,9 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole == 1 || userRole == 3) {
+                if (userRole == 1 || userRole == 3|| userRole == 6) {
                     startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                } else if (userRole == 2 || userRole == 4) {
+                } else if (userRole == 2 || userRole == 4|| userRole == 7) {
                     startActivity(new Intent(getContext(), CoachSearchActivity.class));
                 }
 

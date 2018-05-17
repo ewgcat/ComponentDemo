@@ -156,7 +156,7 @@ public class BaseSubMessageFragment extends Fragment {
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
@@ -190,7 +190,7 @@ public class BaseSubMessageFragment extends Fragment {
             @Override
             public void onSuccess(JSONObject result) {
 
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {

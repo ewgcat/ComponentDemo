@@ -222,7 +222,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 mClassInfoList.clear();
                 refreshLayout.finishRefresh(2000, true);
 
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {

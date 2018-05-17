@@ -60,7 +60,7 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_CLASS_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 List<ExperienceClassBean> experienceClassBeans = com.alibaba.fastjson.JSONObject.parseArray(records.toString(), ExperienceClassBean.class);

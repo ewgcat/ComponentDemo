@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.util.Logger;
@@ -48,6 +50,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 //        }
 
         ClassInfo classInfo = mClassInfoList.get(position);
+        Glide.with(context).load(classInfo.getImg()).into(holder.iv_img);
         holder.tv_class_name.setText(classInfo.getName());
         holder.tv_class_long_time.setText(classInfo.getLessonTime());
         holder.tv_class_num.setText(classInfo.getCleassNum());
@@ -75,6 +78,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
         AlwaysMarqueeTextView tv_class_name;
         TextView tv_price;
+        ImageView iv_img;
         TextView tv_class_long_time;
         TextView tv_class_num;
         LinearLayout item_view;
@@ -83,6 +87,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         public ViewHolder(View view) {
             super(view);
             tv_class_name = view.findViewById(R.id.tv_class_name);
+            iv_img = view.findViewById(R.id.iv_img);
             tv_class_long_time = view.findViewById(R.id.tv_class_long_time);
             tv_price = view.findViewById(R.id.tv_price);
             tv_class_num = view.findViewById(R.id.tv_class_num);

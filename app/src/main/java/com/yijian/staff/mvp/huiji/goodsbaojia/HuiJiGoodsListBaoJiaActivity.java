@@ -407,6 +407,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                     etSearch.setCursorVisible(true);
                 } else {//软键盘未弹起
                     etSearch.setCursorVisible(false);
+                    etSearch.setFocusable(true);
+
                 }
             }
         });

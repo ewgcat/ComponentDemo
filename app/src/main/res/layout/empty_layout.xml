@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fl_empty_layout_container"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:visibility="visible">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:clickable="false"
+    android:focusable="false">
 
-
-
-    <RelativeLayout
-        android:id="@+id/rl_empty_layout_empty"
+    <ImageView
+        android:id="@+id/empty_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <ImageView
-            android:src="@mipmap/nodata"
-            android:id="@+id/iv_empty_empty_image"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@mipmap/nodata" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/iv_empty_empty_image"
-            android:id="@+id/tv_empty_empty_retry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="暂无数据"
-            android:textColor="#999999"
-            android:textSize="14sp" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/empty_msg_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="暂无数据"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/bt_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="重试"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="16sp"
+        android:background="@drawable/blue_button_bg"
+        android:textColor="@color/white"
+      />
+
+</LinearLayout>
 
 
 
 
-</FrameLayout>

@@ -78,6 +78,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
         View view_last_line;
         //        ImageView iv_status;
         ImageView iv_order_class_statu;
+        ImageView iv_status_ysk; //已上课
+        ImageView iv_status_sy; //爽约
         TextView tv_order_class_statu;
         RelativeLayout rel_statu;
 
@@ -96,6 +98,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
             iv_order_class_statu = view.findViewById(R.id.iv_order_class_statu);
             tv_order_class_statu = view.findViewById(R.id.tv_order_class_statu);
             rel_statu = view.findViewById(R.id.rel_statu);
+            iv_status_ysk = view.findViewById(R.id.iv_status_ysk);
+            iv_status_sy = view.findViewById(R.id.iv_status_sy);
         }
 
         public void bind(DayCanlendarInfo dayCanlendarInfo, int position, List<DayCanlendarInfo> dayCanlendarInfoList, Fragment fragment) throws ParseException {
@@ -107,18 +111,26 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
             tv_stuList.setText(dayCanlendarInfo.getMemberName());
             tv_stu_num.setText("1人");
 
-
+            iv_order_class_statu.setVisibility(View.GONE);
+            tv_order_class_statu.setVisibility(View.GONE);
+            iv_status_ysk.setVisibility(View.GONE);
+            iv_status_sy.setVisibility(View.GONE);
             //教练上课打卡状态(0:未打卡 1:正在上课 2:下课已打卡)
             int punchStatus = dayCanlendarInfo.getPunchStatus();
 
             int resStatu = 0;
             String strStatu = "";
             if (punchStatus == 0 || punchStatus == 1) {
+                iv_order_class_statu.setVisibility(View.VISIBLE);
+                tv_order_class_statu.setVisibility(View.VISIBLE);
                 resStatu = R.mipmap.lesson_class;
                 strStatu = "上课";
-            } else if (punchStatus == 2) {
-                resStatu = R.mipmap.lesson_restoration;
-                strStatu = "已完成";
+            }
+            int status  = dayCanlendarInfo.getStatus();
+            if(status == 4){ //爽约
+                iv_status_sy.setVisibility(View.VISIBLE);
+            }else if(status == 3){ //已上课
+                iv_status_ysk.setVisibility(View.VISIBLE);
             }
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override

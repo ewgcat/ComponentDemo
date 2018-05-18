@@ -184,12 +184,12 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 intent1.putExtra("memberName", memberName);
                 startActivity(intent1);
                 break;
-            case R.id.lin_baojia:
-                Intent intent2 = new Intent(CoachViperDetailActivity.this, NoSearchBarCoachClassBaojiaActivity.class);
-                intent2.putExtra("memberId", memberId);
-                intent2.putExtra("memberName", memberName);
-                startActivity(intent2);
-                break;
+//            case R.id.lin_baojia:
+//                Intent intent2 = new Intent(CoachViperDetailActivity.this, NoSearchBarCoachClassBaojiaActivity.class);
+//                intent2.putExtra("memberId", memberId);
+//                intent2.putExtra("memberName", memberName);
+//                startActivity(intent2);
+//                break;
 
             case R.id.iv_call:
                 String mobile = coachVipDetailBean.getMobile();

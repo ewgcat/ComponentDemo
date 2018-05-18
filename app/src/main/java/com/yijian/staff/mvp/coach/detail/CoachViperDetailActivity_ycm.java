@@ -47,7 +47,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     private TextView tvItem1;
     private TextView tvItem2;
     private AdapterAbsCoachViper adapter;
-    private CoachVipDetailBean coachVipDetailBean;
+    private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
 
     private int vipType = 0;//0 正式会员 、1、意向会员（有会籍信息）  2、 潜在会员3、 过期会员（无会籍信息）;
@@ -211,9 +211,8 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                coachVipDetailBean = new CoachVipDetailBean(result);
-//                updateUi(coachVipDetailBean);
-                adapter.setData(coachVipDetailBean);
+                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
+                adapter.setData(vipDetailBean);
                 hideBlueProgress();
             }
 
@@ -310,7 +309,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 
     @Override
     public void clickVisit() {
-        String mobile = coachVipDetailBean.getMobile();
+        String mobile = vipDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
             if (CommonUtil.isPhoneFormat(mobile)) {
                 CommonUtil.callPhone(CoachViperDetailActivity_ycm.this, mobile);
@@ -325,11 +324,11 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     @Override
     public void clickEdit() {
         Intent intent = new Intent(CoachViperDetailActivity_ycm.this, CoachVipInfoEditActivity.class);
-        if(coachVipDetailBean!=null){
-            intent.putExtra("detail", coachVipDetailBean.getDetail());
-            intent.putExtra("memberId", coachVipDetailBean.getMemberId());
-            intent.putExtra("name", coachVipDetailBean.getName());
-            CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfo = coachVipDetailBean.getCustomerServiceInfo();
+        if(vipDetailBean!=null){
+            intent.putExtra("detail", vipDetailBean.getDetail());
+            intent.putExtra("memberId", vipDetailBean.getMemberId());
+            intent.putExtra("name", vipDetailBean.getName());
+            VipDetailBean.CustomerServiceInfoBean customerServiceInfo = vipDetailBean.getCustomerServiceInfo();
             if (customerServiceInfo!=null){
                 intent.putExtra("source", customerServiceInfo.getUserChannel());
             }

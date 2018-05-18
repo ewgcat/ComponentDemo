@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipper;
@@ -30,7 +31,7 @@ class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
 
         ivVisit.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.util.ImageLoader;
@@ -13,11 +14,8 @@ import com.yijian.staff.util.ImageLoader;
  */
 
 public class ViewHolderHuijiVipType_0 extends  ViewHolderHuijiVipper{
-//    @BindView(R.id.iv_head)
     ImageView ivHead;
-//    @BindView(R.id.tv_name)
     TextView tvName;
-//    @BindView(R.id.tv_card_no)
     TextView tv_card_no;
     private final ImageView ivVisit;
 
@@ -33,7 +31,7 @@ public class ViewHolderHuijiVipType_0 extends  ViewHolderHuijiVipper{
 
     @Override
    public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
 
@@ -45,9 +43,4 @@ public class ViewHolderHuijiVipType_0 extends  ViewHolderHuijiVipper{
         });
     }
 
-//    private HuijiVipInterface huijiVipInterface;
-//
-//    public void setHuijiVipInterface(HuijiVipInterface huijiVipInterface) {
-//        this.huijiVipInterface = huijiVipInterface;
-//    }
 }

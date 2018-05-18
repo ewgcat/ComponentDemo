@@ -44,6 +44,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     TextView tvRole;
     @BindView(R.id.rootView)
     LinearLayout rootView;
+    private int role;
 
     @Override
     protected int getLayoutID() {
@@ -73,7 +74,8 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         if (user != null) {
             tvName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
-            if (user.getRole() == 1) {
+            role = user.getRole();
+            if (role == 1) {
                 tvRole.setText("会籍客服");
             } else if (user.getRole() == 2) {
                 tvRole.setText("教练");
@@ -110,8 +112,12 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 String url = JsonUtil.getString(result, "url");
+                if (role==2||role==4||role==7){
+
+                }
                 String id = url + "?coach_id=" + JsonUtil.getString(result, "id");
-                Bitmap qrCode = QRCodeManager.getInstance().createQRCode("id", 560, 560);
+//                Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);
+                Bitmap qrCode = QRCodeManager.getInstance().createQRCode("https://www.pgyer.com/ZuYu?action=1000", 560, 560);
                 iv.setImageBitmap(qrCode);
             }
 

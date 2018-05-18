@@ -101,7 +101,7 @@ public class ChoosePhotoView extends RelativeLayout {
 
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        choosePhotoAdapter = new ChoosePhotoAdapter(context, 6);
+        choosePhotoAdapter = new ChoosePhotoAdapter(context, 9);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(choosePhotoAdapter);
         choosePhotoAdapter.setListener(new OnUpdatePhotoAdapterListener() {

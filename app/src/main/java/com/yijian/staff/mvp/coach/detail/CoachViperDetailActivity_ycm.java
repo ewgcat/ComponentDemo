@@ -20,6 +20,8 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.detail.edit.CoachVipInfoEditActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.detail.AdapterHuijiViper;
+import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
+import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -323,25 +325,21 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 
     @Override
     public void clickEdit() {
-        Intent intent = new Intent(CoachViperDetailActivity_ycm.this, CoachVipInfoEditActivity.class);
-        if(vipDetailBean!=null){
-            intent.putExtra("detail", vipDetailBean.getDetail());
-            intent.putExtra("memberId", vipDetailBean.getMemberId());
-            intent.putExtra("name", vipDetailBean.getName());
-            VipDetailBean.CustomerServiceInfoBean customerServiceInfo = vipDetailBean.getCustomerServiceInfo();
-            if (customerServiceInfo!=null){
-                intent.putExtra("source", customerServiceInfo.getUserChannel());
-            }
-            startActivityForResult(intent,1111);
-        }
+        Intent intent = new Intent(CoachViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
+        intent.putExtra("detail", vipDetailBean.getDetail());
+        intent.putExtra("memberId", vipDetailBean.getMemberId());
+        intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("name", vipDetailBean.getName());
+        startActivityForResult(intent, 0);
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1234) {
-            loadData(memberId);
+        if (requestCode == 0 && resultCode == 1) {
+            initData();
         }
     }
 

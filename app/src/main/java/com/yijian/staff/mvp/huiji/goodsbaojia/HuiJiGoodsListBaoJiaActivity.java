@@ -111,8 +111,8 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             }
         });
 
-        etSearch.setCursorVisible(false);
-        setListenerToRootView();
+//        etSearch.setCursorVisible(false);
+//        setListenerToRootView();
 
 
         etSearch.setHintTextColor(Color.parseColor("#999999"));
@@ -405,6 +405,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 int heightDiff = view.getHeight() - r.bottom;
                 if (heightDiff > 100) {//软键盘弹起
                     etSearch.setCursorVisible(true);
+
                 } else {//软键盘未弹起
                     etSearch.setCursorVisible(false);
                     etSearch.setFocusable(true);

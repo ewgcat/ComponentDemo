@@ -233,7 +233,9 @@ public class CalendarSettingActivity extends AppCompatActivity {
             String strDate = data.getStringExtra("date");
             loadData(strDate);
         } else if (REQUEST_CODE_SETTING_PREVIEW == requestCode && resultCode == REQUEST_CODE_SETTING_PREVIEW) {
-            tv_previewTime.setText(data.getStringExtra("startTime") + "-" + data.getStringExtra("endTime"));
+            startTime = data.getStringExtra("startTime");
+            endTime = data.getStringExtra("endTime");
+            tv_previewTime.setText(startTime + "-" + endTime);
         } else if (RESULT_CODE_SETTING_INTERNAL == requestCode && resultCode == RESULT_CODE_SETTING_INTERNAL) {
             tv_internal.setText(data.getStringExtra("internal"));
         }

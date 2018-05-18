@@ -1,8 +1,11 @@
 package com.yijian.staff.mvp.main.mine.calendartable;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,8 +14,19 @@ import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.jaaksi.pickerview.picker.BasePicker;
+import org.jaaksi.pickerview.picker.MixedTimePicker;
+import org.jaaksi.pickerview.picker.TimePicker;
+import org.jaaksi.pickerview.topbar.DefaultTopBar;
+import org.jaaksi.pickerview.util.DateUtil;
+import org.jaaksi.pickerview.widget.DefaultCenterDecoration;
+import org.jaaksi.pickerview.widget.PickerView;
 import org.json.JSONObject;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,15 +95,55 @@ public class PreviewTimeActivity extends AppCompatActivity {
         });
     }
 
-    private void showTimeDialog(TextView tv_time) {
-        TimePickerView timePickerView = new TimePickerView.Builder(PreviewTimeActivity.this, new TimePickerView.OnTimeSelectListener() {
+
+    public void showTimeDialog(TextView tv_time, Date startDate, Date selectDate){
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        Date endDate = null;
+        try {
+            endDate = simpleDateFormat.parse("23:59");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        TimePicker mTimePicker = new TimePicker.Builder(this, TimePicker.TYPE_TIME, new TimePicker.OnTimeSelectListener() {
             @Override
-            public void onTimeSelect(Date date, View v) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+            public void onTimeSelect(TimePicker picker, Date date) {
+
                 tv_time.setText(simpleDateFormat.format(date));
             }
-        }).setType(new boolean[]{false, false, false, true, true, false}).build();
-        timePickerView.show();
+        })
+                // 设置时间区间
+                .setRangDate(startDate.getTime(), endDate.getTime())
+                // 设置选中时间
+                //.setSelectedDate()
+                // 设置pickerview样式
+                .setInterceptor(new BasePicker.Interceptor() {
+                    @Override public void intercept(PickerView pickerView) {
+                        pickerView.setColor(Color.parseColor("#d0000000"),Color.parseColor("#dddfe0"));
+                        pickerView.setTextSize(15, 20);
+                        pickerView.setVisibleItemCount(5);
+                         DefaultCenterDecoration decoration = new DefaultCenterDecoration(PreviewTimeActivity.this);
+                        decoration.setLineColor(Color.parseColor("#cccccc"));
+                        pickerView.setCenterDecoration(decoration);
+                    }
+
+                })
+                // 设置 Formatter
+                .setFormatter(new TimePicker.DefaultFormatter() {
+                    // 自定义Formatter显示去年，今年，明年
+                    @Override public CharSequence format(TimePicker picker, int type, int position, int num) {
+                        DefaultTopBar defaultTopBar = (DefaultTopBar) picker.getTopBar();
+                        defaultTopBar.setDividerColor(Color.parseColor("#dddfe0"));
+                        defaultTopBar.getBtnCancel().setTextColor(Color.parseColor("#1997f8"));
+                        defaultTopBar.getBtnConfirm().setTextColor(Color.parseColor("#1997f8"));
+                        defaultTopBar.getTopBarView().setBackgroundColor(Color.parseColor("#dddfe0"));
+                        return super.format(picker, type, position, num);
+                    }
+                }).create();
+
+        mTimePicker.setSelectedDate(selectDate.getTime());
+        mTimePicker.show();
+
     }
 
     @OnClick({R.id.rel_start, R.id.rel_end})
@@ -97,10 +151,38 @@ public class PreviewTimeActivity extends AppCompatActivity {
 
         switch (v.getId()) {
             case R.id.rel_start: //选择开始时间
-                showTimeDialog(tv_startTime);
+//                showTimeDialog(tv_startTime,10,20);
+                String startTime = tv_startTime.getText() == null ? "" : tv_startTime.getText().toString();
+                String endTime2 = tv_endTime.getText() == null ? "" : tv_endTime.getText().toString();;
+                if(TextUtils.isEmpty(startTime)){
+                    Calendar calendar = Calendar.getInstance();
+                    startTime = calendar.get(Calendar.HOUR)+":"+calendar.get(Calendar.MINUTE);
+                }
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                try {
+                    showTimeDialog(tv_startTime, simpleDateFormat.parse("00:00"), simpleDateFormat.parse(TextUtils.isEmpty(endTime2)?"00:00":endTime2));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.rel_end: //选择结束时间
-                showTimeDialog(tv_endTime);
+                String startTime2 = tv_startTime.getText() == null ? "" : tv_startTime.getText().toString();
+                if(!TextUtils.isEmpty(startTime2)){
+                    String endTime = tv_endTime.getText() == null ? "" : tv_endTime.getText().toString();
+                    if(TextUtils.isEmpty(endTime)){
+                        endTime = startTime2;
+                    }
+                    SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("HH:mm");
+                    try {
+                        showTimeDialog(tv_endTime, simpleDateFormat2.parse(startTime2), simpleDateFormat2.parse(endTime));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(PreviewTimeActivity.this, "请选择开始时间", Toast.LENGTH_SHORT).show();
+                }
+
+
                 break;
         }
 

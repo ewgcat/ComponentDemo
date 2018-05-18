@@ -64,7 +64,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
-        navigationBar2.setTitle("过期会员");
+        navigationBar2.setTitle("过期学员");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
 

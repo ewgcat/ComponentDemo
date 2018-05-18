@@ -52,10 +52,10 @@ public class CourseInterActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        tv_internal.setText(getIntent().getStringExtra("internal"));
+        String internal_time = getIntent().getStringExtra("internal");
+        tv_internal.setText(internal_time);
         ArrayList<String> timeList = new ArrayList<>();
         timeList.add("10");
-        timeList.add("15");
         timeList.add("20");
         timeList.add("30");
 
@@ -65,6 +65,8 @@ public class CourseInterActivity extends AppCompatActivity {
                 tv_internal.setText(timeList.get(options1));
             }
         }).build();
+        int index = timeList.indexOf(internal_time);
+        optionsPickerView.setSelectOptions(index==-1?0:index);
         optionsPickerView.setPicker(timeList);
     }
 

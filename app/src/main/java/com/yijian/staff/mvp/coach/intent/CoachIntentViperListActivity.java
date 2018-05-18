@@ -69,7 +69,7 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("意向会员");
+        navigationBar2.setTitle("意向学员");
 
         initComponent();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(CoachIntentViperListActivity.this);

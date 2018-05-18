@@ -182,7 +182,9 @@ dependencies {
     implementation 'cn.jiguang.sdk:jpush:3.1.2'
     implementation 'cn.jiguang.sdk:jcore:1.2.0'
     implementation 'com.github.jwkj:LibZXing:v1.1.2'
+    implementation 'com.youth.banner:banner:1.4.10'
 
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
+    implementation 'org.jaaksi:pickerview:1.0.1'
 }

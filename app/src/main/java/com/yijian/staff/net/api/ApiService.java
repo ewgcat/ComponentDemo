@@ -13,7 +13,6 @@ import com.yijian.staff.mvp.coach.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
-import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
@@ -100,11 +99,6 @@ public interface ApiService {
     @POST
     Observable<JSONObject> getQuestionnaireList(@Url String url, @HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
 
-
-    //添加职业证书
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> addCertificate(@Url String url, @HeaderMap Map<String, String> headers, @Body AuthCertificateRequestBody body);
 
 
     //体测录入

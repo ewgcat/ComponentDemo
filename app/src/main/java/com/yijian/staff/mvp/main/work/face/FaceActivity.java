@@ -107,6 +107,7 @@ public class FaceActivity extends AppCompatActivity {
     private String face_session;
     private ImageView btn_start_face;
     private Bitmap resultBitmap;
+    private List<Rectangle> faces;
 
     /******************START 弹出框 **************************/
 
@@ -202,7 +203,7 @@ public class FaceActivity extends AppCompatActivity {
      */
     private void showPanel(Bitmap resultBitmap, List<FaceDetail> faceDetails) {
         FaceInfoPanel faceInfoPanel = new FaceInfoPanel(this, resultBitmap, faceDetails);
-        faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP,0,0);
+        faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP, 0, 0);
         faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -268,30 +269,38 @@ public class FaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    PhotoResult photoResult = backFotoapparat.takePicture();
+
+                    if (faces.size() > 0) {
+
+                        PhotoResult photoResult = backFotoapparat.takePicture();
 //                    Bitmap resultBitmap = photoResult.toBitmap().await().bitmap;
-                    photoResult.toBitmap().whenDone(new PendingResult.Callback<BitmapPhoto>() {
-                        @Override
-                        public void onResult(BitmapPhoto bitmapPhoto) {
-                            btn_start_face.setEnabled(false);
-                            fotoapparatSwitcher.stop();
-                            resultBitmap = bitmapPhoto.bitmap;
+                        photoResult.toBitmap().whenDone(new PendingResult.Callback<BitmapPhoto>() {
+                            @Override
+                            public void onResult(BitmapPhoto bitmapPhoto) {
+                                btn_start_face.setEnabled(false);
+                                fotoapparatSwitcher.stop();
+                                resultBitmap = bitmapPhoto.bitmap;
 
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            resultBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
-                            byte[] datas = baos.toByteArray();
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                resultBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                                byte[] datas = baos.toByteArray();
 
-                            Log.e("Test", "resultBitmap.length====" + datas.length);
+                                Log.e("Test", "resultBitmap.length====" + datas.length);
                            /* Bitmap bitmap = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
                             Bitmap tempBitmap = rotateBitmap(bitmap,90);
                             iv_temp.setImageBitmap(tempBitmap);*/
-                            LoadingProgressDialog.showBlueProgress(FaceActivity.this);
-                            //调用搜索接口
-                            postData(datas);
-                        }
-                    });
+                                LoadingProgressDialog.showBlueProgress(FaceActivity.this);
+                                //调用搜索接口
+                                postData(datas);
+                            }
+                        });
 //                    iv_temp.setImageBitmap(resultBitmap);
+
+                    }else{
+                        Toast.makeText(FaceActivity.this, "请对准人脸", Toast.LENGTH_SHORT).show();
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -314,6 +323,8 @@ public class FaceActivity extends AppCompatActivity {
                                         Log.e("Test", "正在识别.....");
 
                                         Log.e("Test", "Detected faces: " + faces.size());
+
+                                        FaceActivity.this.faces = faces;
 
                                         rectanglesView.setRectangles(faces);
                                        /* if (faces.size() > 0) {
@@ -611,7 +622,7 @@ public class FaceActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        Log.e("Test","onRestart......");
+        Log.e("Test", "onRestart......");
         super.onRestart();
         if (fotoapparatSwitcher != null) {
             fotoapparatSwitcher.start();
@@ -621,7 +632,7 @@ public class FaceActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e("Test","onPause......");
+        Log.e("Test", "onPause......");
         if (fotoapparatSwitcher != null) {
             fotoapparatSwitcher.stop();
         }

@@ -2,8 +2,6 @@ package com.yijian.staff.mvp.coach.search;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,21 +18,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachSearchViperBean;
-import com.yijian.staff.bean.CoachViperBean;
-import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
-import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
-import com.yijian.staff.mvp.coach.recordchart.RecordChartActivity;
-import com.yijian.staff.mvp.coach.viperlist.adpater.CoachViperListAdapter;
-import com.yijian.staff.mvp.huiji.invitation.index.InvateIndexActivity;
-import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
 

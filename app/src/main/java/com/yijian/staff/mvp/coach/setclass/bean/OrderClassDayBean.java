@@ -46,6 +46,7 @@ public class OrderClassDayBean {
     private String startDate;
     private String startDatetime;
     private String startTimeActual;
+    private int status;
 
     public int getCourseNum() {
         return courseNum;
@@ -205,5 +206,13 @@ public class OrderClassDayBean {
 
     public void setStartTimeActual(String startTimeActual) {
         this.startTimeActual = startTimeActual;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

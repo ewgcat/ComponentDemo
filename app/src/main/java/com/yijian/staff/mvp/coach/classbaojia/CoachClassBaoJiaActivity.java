@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -27,10 +26,11 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
-import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
+import com.yijian.staff.mvp.coach.classbaojia.filter.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 
@@ -45,7 +45,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -63,7 +62,6 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     TextView tvShaixuan;
 
 
-
     @BindView(R.id.rv)
     RecyclerView goodsRcv;
     @BindView(R.id.empty_view)
@@ -73,13 +71,13 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
     private List<ClassInfo> mClassInfoList = new ArrayList<>();
     private ClassListAdapter classListAdapter;
-    private CoachClassFilterDialog coachClassFilterDialog;
     private ClassInfo selectedClassInfo;
     private EditText etSearch;
-    private CoachClassFilterBean coachClassFilterBean;
+    private CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
     private int pageNum = 1;
     private int pageSize = 4;
     private int pages;
+    private OptionDialog optionDialog;
 
 
     @Override
@@ -95,34 +93,47 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     private void initView() {
 
         initComponent();
-        coachClassFilterDialog = new CoachClassFilterDialog(this);
-        coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
-            @Override
-            public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
-                if (coachClassFilterBean != null) {
-                    refresh(coachClassFilterBean);
-                } else {
-                    refresh(coachClassFilterBean);
-                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
-                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
-                    drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
-                }
-            }
-        });
+
         selectZongHe();
         empty_view.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvZongHe.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
                     empty_view.setVisibility(View.GONE);
                     selectZongHe();
-                }else if (tvPrice.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                } else if (tvPrice.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
                     empty_view.setVisibility(View.GONE);
                     selectPrice();
                 }
             }
         });
+
+
+        optionDialog = new OptionDialog();
+        optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
+            @Override
+            public void onDismiss(CoachClassFilterBean body) {
+
+
+                if (body == null) {//属于重置
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
+                } else {//有条件
+                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
+                    tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+                    refresh(body);
+                }
+
+
+            }
+        });
+
     }
 
 
@@ -233,7 +244,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                         mClassInfoList.add(classInfo);
                     }
                     classListAdapter.notifyDataSetChanged();
-                    if (mClassInfoList.size()==0){
+                    if (mClassInfoList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
@@ -248,7 +259,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 classListAdapter.notifyDataSetChanged();
 
-                if (mClassInfoList.size()==0){
+                if (mClassInfoList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
             }
@@ -297,7 +308,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                     }
                     classListAdapter.notifyDataSetChanged();
 
-                    if (mClassInfoList.size()==0){
+                    if (mClassInfoList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);
                     }
 
@@ -315,7 +326,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 classListAdapter.notifyDataSetChanged();
 
-                if (mClassInfoList.size()==0){
+                if (mClassInfoList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
 
@@ -342,15 +353,18 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
     //点击筛选
     private void selectShaixuan() {
-        if (tvShaixuan.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
-            showFilterDialog();
-        } else {
-            tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
-            showFilterDialog();
-        }
+
+        tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
+        Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_blue);
+        drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
+        tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+        tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("coachClassFilterBean", coachClassFilterBean);
+        optionDialog.setArguments(bundle);
+        optionDialog.show(getFragmentManager(), "OptionDialog");
+
     }
 
     private boolean priceUp = false;
@@ -364,6 +378,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             priceUp = false;
             isSortByPrice = 1;
@@ -374,6 +390,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             priceUp = true;
             isSortByPrice = 0;
@@ -394,15 +412,14 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             tvZongHe.setTextColor(Color.parseColor("#1997f8"));
             tvPrice.setTextColor(Color.parseColor("#666666"));
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
+
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             isSortByPrice = -1;
             refresh(coachClassFilterBean);
         }
     }
 
-
-    private void showFilterDialog() {
-        coachClassFilterDialog.showFilterDialog();
-    }
 }

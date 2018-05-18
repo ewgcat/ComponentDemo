@@ -19,7 +19,6 @@ import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
-import com.yijian.staff.net.requestbody.authcertificate.AuthCertificateRequestBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huijigoods.HuiJiGoodsRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -866,18 +865,6 @@ public class HttpManager {
     }
 
 
-    //保存职业证书
-    public static void addCertificate(AuthCertificateRequestBody body, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.addCertificate(HttpManager.ADD_CERTIFICATE_URL, headers, body);
-            execute(observable, observer);
-        }
-    }
 
 
     //接待人的信息

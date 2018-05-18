@@ -1,19 +1,15 @@
 package com.yijian.staff.mvp.huiji.detail;
 
-import android.support.v7.widget.LinearLayoutManager;
+import android.provider.Telephony;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by The_P on 2018/5/15.
@@ -31,6 +27,8 @@ public class ViewHolderHuijiVipType_1 extends  ViewHolderHuijiVipper{
     TextView tvFuwuJiaolian;
     TextView tvSijiaoClass;
     RelativeLayout rlSijiaoClass;
+    TextView tvRecentFitNessTime;
+    TextView deadLine;
 
     public ViewHolderHuijiVipType_1(View itemView) {
         super(itemView);
@@ -40,23 +38,52 @@ public class ViewHolderHuijiVipType_1 extends  ViewHolderHuijiVipper{
         tvBirthdayType= itemView.findViewById(R.id.tv_birthday_type);
         tvAge= itemView.findViewById(R.id.tv_age);
 
+        deadLine = itemView.findViewById(R.id.tv_deadline);
         tvXiaoFeiTotal= itemView.findViewById(R.id.tv_xiao_fei_total);
         tvFuwuHuiji= itemView.findViewById(R.id.tv_fuwu_huiji);
         tvFuwuJiaolian= itemView.findViewById(R.id.tv_fuwu_jiaolian);
         tvSijiaoClass= itemView.findViewById(R.id.tv_sijiao_class);
         rlSijiaoClass= itemView.findViewById(R.id.rl_sijiao_class);
+        tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
+
     }
 
     @Override
    public void bindView(VipDetailBean vipDetailBean) {
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
-        tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
-        tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
 
+
+        long birthday = vipDetailBean.getBirthday();
+        if (birthday!=0){
+            tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
+        }else {
+            tvBirthday.setText("未录入");
+        }
+
+
+        tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
         tvAge.setText(judgeNull(vipDetailBean.getAge()+""));
+
+        long deadline = vipDetailBean.getDeadline();
+        if (deadline!=0) {
+            deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
+        }else {
+            deadLine.setText("未录入");
+        }
+
+        long recentlyFitTime = vipDetailBean.getRecentlyFitTime();
+        if (recentlyFitTime!=0){
+            tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
+        }else {
+            tvRecentFitNessTime.setText("未录入");
+        }
+
+
+
         tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption())+" 元");
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        if (customerServiceInfoBean==null)return;
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
@@ -71,6 +98,8 @@ public class ViewHolderHuijiVipType_1 extends  ViewHolderHuijiVipper{
         } else {
             rlSijiaoClass.setVisibility(View.GONE);
         }
+
+
 
     }
 }

@@ -38,13 +38,13 @@ public class ViewHolderHuijiVipType_2 extends  ViewHolderHuijiVipper{
         tvTuijianRenPhone= itemView.findViewById(R.id.tv_tuijian_ren_phone);
         tvHuoquQudao= itemView.findViewById(R.id.tv_huoqu_qudao);
         tvTianjiaRenName= itemView.findViewById(R.id.tv_tianjia_ren_name);
-
+        rv_card.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
+        rv_card.setNestedScrollingEnabled(false);
     }
 
     @Override
   public   void bindView(VipDetailBean vipDetailBean) {
-        rv_card.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
-        rv_card.setNestedScrollingEnabled(false);
+
         rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));

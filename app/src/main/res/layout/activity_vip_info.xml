@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="8dp"
-                android:text="全部会员"
+                android:text="全部学员"
                 android:textColor="#333333"
                 android:textSize="16sp" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="8dp"
-                android:text="今日来访"
+                android:text="今日健身"
                 android:textColor="#333333"
                 android:textSize="16sp" />
 

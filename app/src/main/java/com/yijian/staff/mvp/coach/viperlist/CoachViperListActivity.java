@@ -60,7 +60,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
         navigationBar2.setmRightTvClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
-        navigationBar2.setTitle("会员信息");
+        navigationBar2.setTitle("正式学员");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
         filterDialog = new CoachFilterViperDialog(this);

@@ -313,6 +313,8 @@
             android:name=".mvp.huiji.goodsbaojia.HuiJiGoodsListBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".mvp.huiji.ActivityHuiijiBaoJiaSeach"
+            android:screenOrientation="portrait"/>
 
         <!-- 教练 课程报价 -->
         <activity

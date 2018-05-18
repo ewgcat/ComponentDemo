@@ -59,7 +59,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
         navigationBar2.setBackClickListener(this);
         navigationBar2.setmRightTvClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
+        Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
         navigationBar2.setTitle("会员信息");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);

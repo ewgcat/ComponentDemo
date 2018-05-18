@@ -39,6 +39,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
+                android:maxLength="50"
                 android:hint="输入会员名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"

@@ -266,10 +266,6 @@
             android:name=".mvp.main.mine.qualification.MyQualificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.main.mine.qualification.EditQualificationActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
             android:name=".mvp.base.seepic.SeePicActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -388,10 +384,6 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.coach.preparelessons.all.PrepareAllLessonActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

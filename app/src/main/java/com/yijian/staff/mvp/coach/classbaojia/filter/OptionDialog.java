@@ -1,31 +1,49 @@
 package com.yijian.staff.mvp.coach.classbaojia.filter;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.Logger;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.VenueBean;
+import com.yijian.staff.mvp.huiji.goodsbaojia.bean.VenueWrapBean;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DensityUtil;
+
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachClassFilterDialog extends Dialog {
+/**
+ * Created by The_P on 2018/4/11.
+ */
 
-    private static String TAG = CoachClassFilterDialog.class.getSimpleName();
+public class OptionDialog extends DialogFragment {
 
     @BindView(R.id.tv_price1)
     TextView tvPrice1;
@@ -73,47 +91,119 @@ public class CoachClassFilterDialog extends Dialog {
     private int classYouXiaoQi;
 
 
-    public CoachClassFilterDialog(Activity activity) {
-        super(activity, R.style.Transparent);
-        setOwnerActivity(activity);
-        this.activity = activity;
-        View contentView = LayoutInflater.from(activity).inflate(R.layout.view_coach_class_filter, null);
-        int statusBarHeight = CommonUtil.getStatusBarHeight(activity);
+    private static final String TAG = "OptionDialog";
+
+    private CoachClassFilterBean coachClassFilterBean;
+
+    public OptionDialog() {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle arguments = getArguments();
+
+        coachClassFilterBean = (CoachClassFilterBean) arguments.getSerializable("coachClassFilterBean");
 
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.setMargins(0, statusBarHeight, 0, 0);
-        contentView.setLayoutParams(params);
+    }
 
 
-        Window window = getWindow();
-        //设置无标题栏
-        window.requestFeature(Window.FEATURE_NO_TITLE);
-        //背景为透明
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#602f2f2f")));
-        WindowManager.LayoutParams layoutParams = window.getAttributes();
-        //显示隐藏的动画效果
-        layoutParams.windowAnimations = R.style.MyDialogAnimationCenter;
-        params.gravity = Gravity.RIGHT;
+    @Override
+    public void onStart() {
 
-        this.setContentView(contentView);
+        //设置DialogFragment所依附的window背景透明（不设置会有一块灰色的背景）
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
+        getDialog().getWindow().setGravity(Gravity.RIGHT);
+        //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
+        getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        ButterKnife.bind(this, contentView);
+        super.onStart();
+    }
 
-
-
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.view_coach_class_filter, container, false);
+        ButterKnife.bind(this, view);
         initView();
+
+        return view;
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        super.onActivityCreated(savedInstanceState);
     }
 
 
     private void initView() {
-        resetView();
-        setCanceledOnTouchOutside(false);
+
+        String lcourseNum = coachClassFilterBean.getLcourseNum();
+        String rcourseNum = coachClassFilterBean.getRcourseNum();
+
+        if (!TextUtils.isEmpty(lcourseNum)) {
+            if (lcourseNum.equals("0") && rcourseNum.equals("10")) {
+                selectClassJieShu(1);
+            } else if (lcourseNum.equals("10") && rcourseNum.equals("30")) {
+                selectClassJieShu(2);
+            } else if (lcourseNum.equals("30") ) {
+                selectClassJieShu(3);
+            }
+        }
+
+
+        String ltotalPrice = coachClassFilterBean.getLtotalPrice();
+        String rtotalPrice = coachClassFilterBean.getRtotalPrice();
+        if (!TextUtils.isEmpty(ltotalPrice)) {
+            if (ltotalPrice.equals("0") && rtotalPrice.equals("1000")) {
+                selectPrice(1);
+            } else if (ltotalPrice.equals("1000") && rtotalPrice.equals("2000")) {
+                selectPrice(2);
+            } else if (ltotalPrice.equals("2000") && rtotalPrice.equals("3000")) {
+                selectPrice(3);
+            } else if (ltotalPrice.equals("3000")) {
+                selectPrice(4);
+            }
+        }
+
+
+        String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
+        String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
+        if (!TextUtils.isEmpty(lconsumingMinute)) {
+            if (lconsumingMinute.equals("0") && rconsumingMinute.equals("60")) {
+                selectClassLongTime(1);
+            } else if (lconsumingMinute.equals("60") && rconsumingMinute.equals("120")) {
+                selectClassLongTime(2);
+            } else if (lconsumingMinute.equals("120") && rconsumingMinute.equals("180")) {
+                selectClassLongTime(3);
+            } else if (lconsumingMinute.equals("180")) {
+                selectClassLongTime(4);
+            }
+        }
+
+
+        String indate = coachClassFilterBean.getIndate();
+        if (!TextUtils.isEmpty(indate)) {
+            if (indate.equals("3")) {
+                selectClassYouXiaoQi(1);
+            } else if (indate.equals("6")) {
+                selectClassYouXiaoQi(2);
+            } else if (indate.equals("12")) {
+                selectClassYouXiaoQi(3);
+            }
+        }
+
     }
 
-
-    public void showFilterDialog() {
-        show();
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
     }
 
 
@@ -142,23 +232,23 @@ public class CoachClassFilterDialog extends Dialog {
         tvLongtime3.setTextColor(Color.parseColor("#666666"));
         tvLongtime4.setTextColor(Color.parseColor("#666666"));
 
-        tvClassJieshu1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvClassJieshu2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvClassJieshu3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvYouxiaoqi1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvYouxiaoqi2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvYouxiaoqi3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvPrice1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvPrice2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvPrice3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvPrice4.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice4.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvLongtime1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvLongtime2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvLongtime3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvLongtime4.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvLongtime4.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
 
         tvLongtime1.setCompoundDrawables(null, null, null, null);
@@ -180,8 +270,8 @@ public class CoachClassFilterDialog extends Dialog {
 
     private void setSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#1997f8"));
-        textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-        Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+        textView.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+        Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
         jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
         textView.setCompoundDrawables(jd_choose, null, null, null);
 
@@ -190,7 +280,7 @@ public class CoachClassFilterDialog extends Dialog {
     private void setUnSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#666666"));
         textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
-        textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        textView.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         textView.setCompoundDrawables(null, null, null, null);
     }
 
@@ -273,7 +363,6 @@ public class CoachClassFilterDialog extends Dialog {
     }
 
 
-
     private void setResultForSure() {
         CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
         if (classJieShu == 1) {
@@ -342,15 +431,15 @@ public class CoachClassFilterDialog extends Dialog {
             String ltotalPrice = coachClassFilterBean.getLtotalPrice();
             String rtotalPrice = coachClassFilterBean.getRtotalPrice();
             if (TextUtils.isEmpty(indate)
-                    &&TextUtils.isEmpty(lconsumingMinute)
-                    &&TextUtils.isEmpty(rconsumingMinute)
-                    &&TextUtils.isEmpty(lcourseNum)
-                    &&TextUtils.isEmpty(rcourseNum)
-                    &&TextUtils.isEmpty(ltotalPrice)
-                    &&TextUtils.isEmpty(rtotalPrice)
-                    ){
+                    && TextUtils.isEmpty(lconsumingMinute)
+                    && TextUtils.isEmpty(rconsumingMinute)
+                    && TextUtils.isEmpty(lcourseNum)
+                    && TextUtils.isEmpty(rcourseNum)
+                    && TextUtils.isEmpty(ltotalPrice)
+                    && TextUtils.isEmpty(rtotalPrice)
+                    ) {
                 onDismissListener.onDismiss(null);
-            }else {
+            } else {
                 onDismissListener.onDismiss(coachClassFilterBean);
 
             }
@@ -462,15 +551,14 @@ public class CoachClassFilterDialog extends Dialog {
     }
 
 
-
-
     public interface OnDismissListener {
         void onDismiss(CoachClassFilterBean coachClassFilterBean);
     }
 
-    private CoachClassFilterDialog.OnDismissListener onDismissListener;
+    private OnDismissListener onDismissListener;
 
-    public void setOnDismissListener(CoachClassFilterDialog.OnDismissListener onDismissListener) {
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
 }
+

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.net.requestbody.authcertificate.AuthBean;
 
 import java.util.List;
 
@@ -17,9 +16,9 @@ import java.util.List;
  * time: 2018/4/17 16:09:05
  */
 public class ZiLiAdapter extends RecyclerView.Adapter<ZiLiAdapter.ViewHolder> {
-    private List<AuthBean> authList;
+    private List<String> authList;
 
-    public ZiLiAdapter(List<AuthBean> authList) {
+    public ZiLiAdapter(List<String> authList) {
         this.authList = authList;
     }
 
@@ -32,7 +31,7 @@ public class ZiLiAdapter extends RecyclerView.Adapter<ZiLiAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ZiLiAdapter.ViewHolder holder, int position) {
-        holder.tv.setText(authList.get(position).getAuthInfo());
+        holder.tv.setText(authList.get(position));
     }
 
     @Override
@@ -40,7 +39,7 @@ public class ZiLiAdapter extends RecyclerView.Adapter<ZiLiAdapter.ViewHolder> {
         return authList == null ? 0 : authList.size();
     }
 
-    public void update(List<AuthBean> authList) {
+    public void update(List<String> authList) {
         this.authList=authList;
         notifyDataSetChanged();
     }

@@ -132,6 +132,7 @@
 
         <View
             style="@style/SplitLineStyle"
+            android:layout_alignParentBottom="true"
             />
 
     </RelativeLayout>

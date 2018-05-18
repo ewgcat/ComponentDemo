@@ -10,19 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CardprodsBean;
-import com.yijian.staff.bean.CoachSearchViperBean;
-import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.bean.CoachVipDetailBean;
-import com.yijian.staff.bean.TodayCoachViperBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.card.CoachVipCardListAdapter;
-import com.yijian.staff.mvp.coach.classbaojia.NoSearchBarCoachClassBaojiaActivity;
 import com.yijian.staff.mvp.coach.detail.edit.CoachVipInfoEditActivity;
-import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -33,7 +26,6 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -27,7 +26,6 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.classbaojia.adapter.ClassListAdapter;
 import com.yijian.staff.bean.ClassInfo;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
-import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterDialog;
 import com.yijian.staff.mvp.coach.classbaojia.filter.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -47,7 +45,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -74,7 +71,6 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
     private List<ClassInfo> mClassInfoList = new ArrayList<>();
     private ClassListAdapter classListAdapter;
-    private CoachClassFilterDialog coachClassFilterDialog;
     private ClassInfo selectedClassInfo;
     private EditText etSearch;
     private CoachClassFilterBean coachClassFilterBean = new CoachClassFilterBean();
@@ -97,21 +93,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     private void initView() {
 
         initComponent();
-        coachClassFilterDialog = new CoachClassFilterDialog(this);
-        coachClassFilterDialog.setOnDismissListener(new CoachClassFilterDialog.OnDismissListener() {
-            @Override
-            public void onDismiss(CoachClassFilterBean coachClassFilterBean) {
-                if (coachClassFilterBean != null) {
-                    refresh(coachClassFilterBean);
-                } else {
-                    refresh(coachClassFilterBean);
-                    tvShaixuan.setTextColor(Color.parseColor("#666666"));
-                    Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_black);
-                    drawable.setBounds(6, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawables(null, null, drawable, null);
-                }
-            }
-        });
+
         selectZongHe();
         empty_view.setButton(new View.OnClickListener() {
             @Override
@@ -440,8 +422,4 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         }
     }
 
-
-    private void showFilterDialog() {
-        coachClassFilterDialog.showFilterDialog();
-    }
 }

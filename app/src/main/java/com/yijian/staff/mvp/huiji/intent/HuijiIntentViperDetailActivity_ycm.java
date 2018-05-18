@@ -46,18 +46,19 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
     private AdapterHuijiIntentViper adapter;
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
+    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huiji_intent_viper_ycm);
+        id = getIntent().getStringExtra("id");
         initView();
         initData();
 
     }
 
     private void initData() {
-        String id = getIntent().getStringExtra("id");
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);

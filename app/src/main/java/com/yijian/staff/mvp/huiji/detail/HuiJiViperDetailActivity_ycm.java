@@ -52,18 +52,20 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     private AdapterHuijiViper adapter;
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
+    private String memberId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huiviper_ycm);
+        memberId = getIntent().getStringExtra("memberId");
         initView();
         initData();
         Log.e(TAG, "onCreate: ");
     }
 
     private void initData() {
-        String memberId = getIntent().getStringExtra("memberId");
+
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
 
@@ -74,6 +76,7 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
                 adapter.setData(vipDetailBean);
 //                updateUi(vipDetailBean);
             }
+
 
             @Override
             public void onFail(String msg) {
@@ -139,14 +142,14 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
                 super.onScrolled(recyclerView, dx, dy);
 
                 if (!manualMove) {//不是用户通过点击进行的移动
-                    Log.e(TAG, "onScrolled: manualMove==" + manualMove);
+//                    Log.e(TAG, "onScrolled: manualMove==" + manualMove);
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
 
                     View firstView = layoutManager.findViewByPosition(0);
                     int headHeight = llHead.getHeight();//头部高度
                     int i = recyclerView.computeVerticalScrollOffset();
-                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
+//                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
                     if (firstView != null) {
                         llHead.setVisibility(i > 30 ? View.VISIBLE : View.GONE);
                         if (firstView.getHeight() != 0) {
@@ -258,7 +261,8 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     public void clickVisit() {
         String mobile = vipDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
-            callVisit(mobile);
+            CommonUtil.callPhone(HuiJiViperDetailActivity_ycm.this, mobile);
+
         } else {
             Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
         }
@@ -274,22 +278,22 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
         startActivityForResult(intent, 0);
     }
 
-    private void callVisit(String mobile) {
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", vipDetailBean.getMemberId());
-        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
-        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuiJiViperDetailActivity_ycm.this, mobile);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                Toast.makeText(HuiJiViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void callVisit(String mobile) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", vipDetailBean.getMemberId());
+//        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
+//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+//                CommonUtil.callPhone(HuiJiViperDetailActivity_ycm.this, mobile);
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//                Toast.makeText(HuiJiViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

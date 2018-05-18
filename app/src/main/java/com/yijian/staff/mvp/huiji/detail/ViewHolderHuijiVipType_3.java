@@ -134,9 +134,4 @@ public class ViewHolderHuijiVipType_3 extends  ViewHolderHuijiVipper{
         });
     }
 
-//    private HuijiVipInterface huijiVipInterface;
-//
-//    public void setHuijiVipInterface(HuijiVipInterface huijiVipInterface) {
-//        this.huijiVipInterface = huijiVipInterface;
-//    }
 }

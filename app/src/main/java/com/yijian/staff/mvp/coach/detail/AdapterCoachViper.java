@@ -2,20 +2,11 @@ package com.yijian.staff.mvp.coach.detail;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CoachVipDetailBean;
-import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.HuijiVipInterface;
-import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipType_0;
-import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipType_1;
-import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipType_2;
-import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipType_3;
-import com.yijian.staff.mvp.huiji.detail.ViewHolderHuijiVipper;
 
 /**
  * Created by The_P on 2018/5/15.

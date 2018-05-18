@@ -3,11 +3,15 @@ package com.yijian.staff.mvp.coach.detail;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachVipDetailBean;
+import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.util.DateUtil;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -16,58 +20,86 @@ import butterknife.BindView;
  */
 
 public class ViewHolderCoachVipType_1 extends ViewHolderCoachVipper {
-//    @BindView(R.id.tv_sex)
+
     TextView tvSex;
-//    @BindView(R.id.tv_phone)
     TextView tvPhone;
-//    @BindView(R.id.tv_birthday)
     TextView tvBirthday;
-//    @BindView(R.id.tv_birthday_type)
     TextView tvBirthdayType;
-//    @BindView(R.id.tv_viper_type)
-    TextView tvViperType;
-//    @BindView(R.id.tv_head_info)
-    TextView tvHeadInfo;
-//    @BindView(R.id.tv_zhi_wen_info)
-    TextView tvZhiWenInfo;
-//    @BindView(R.id.tv_jin_mai_info)
-    TextView tvJinMaiInfo;
-//    @BindView(R.id.tv_certificateType)
-    TextView tv_certificateType;
-//    @BindView(R.id.tv_shenfencard_num)
-    TextView tvShenfencardNum;
+    TextView tvAge;
+    TextView tvXiaoFeiTotal;
+    TextView tvFuwuHuiji;
+    TextView tvFuwuJiaolian;
+    TextView tvSijiaoClass;
+    RelativeLayout rlSijiaoClass;
+    TextView tvRecentFitNessTime;
+    TextView deadLine;
+
     public ViewHolderCoachVipType_1(View itemView) {
         super(itemView);
-
         tvSex= itemView.findViewById(R.id.tv_sex);
         tvPhone= itemView.findViewById(R.id.tv_phone);
         tvBirthday= itemView.findViewById(R.id.tv_birthday);
         tvBirthdayType= itemView.findViewById(R.id.tv_birthday_type);
-        tvViperType= itemView.findViewById(R.id.tv_viper_type);
-        tvHeadInfo= itemView.findViewById(R.id.tv_head_info);
-        tvZhiWenInfo= itemView.findViewById(R.id.tv_zhi_wen_info);
-        tvJinMaiInfo= itemView.findViewById(R.id.tv_jin_mai_info);
-        tv_certificateType= itemView.findViewById(R.id.tv_certificateType);
-        tvShenfencardNum= itemView.findViewById(R.id.tv_shenfencard_num);
+        tvAge= itemView.findViewById(R.id.tv_age);
+
+        deadLine = itemView.findViewById(R.id.tv_deadline);
+        tvXiaoFeiTotal= itemView.findViewById(R.id.tv_xiao_fei_total);
+        tvFuwuHuiji= itemView.findViewById(R.id.tv_fuwu_huiji);
+        tvFuwuJiaolian= itemView.findViewById(R.id.tv_fuwu_jiaolian);
+        tvSijiaoClass= itemView.findViewById(R.id.tv_sijiao_class);
+        rlSijiaoClass= itemView.findViewById(R.id.rl_sijiao_class);
+        tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
     }
 
     @Override
-    public void bindView(CoachVipDetailBean coachVipDetailBean) {
-        tvSex.setText(coachVipDetailBean.getSex());
-        tvPhone.setText(coachVipDetailBean.getMobile());
-        Long birthday = coachVipDetailBean.getBirthday();
-        if (birthday != null && birthday != -1) {
-            String s = DateUtil.parseLongDateToDateString(birthday);
-            tvBirthday.setText(s);
-        }
-        tvBirthdayType.setText(coachVipDetailBean.getBirthdayType());
-        tvViperType.setText(coachVipDetailBean.getMemberType());
-        tvHeadInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getHeadImg())) ? "未录入" : "未录入");
-        tvZhiWenInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFingerprint())) ? "未录入" : "未录入");
-        tvJinMaiInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getVein())) ? "未录入" : "未录入");
-        tv_certificateType.setText(coachVipDetailBean.getCertificateType());
-        tvShenfencardNum.setText(coachVipDetailBean.getCertificateNo());
-    }
+    public void bindView(VipDetailBean vipDetailBean) {
 
+        long birthday = vipDetailBean.getBirthday();
+        if (birthday!=0){
+            tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
+        }else {
+            tvBirthday.setText("未录入");
+        }
+
+
+        tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
+        tvAge.setText(judgeNull(vipDetailBean.getAge()+""));
+
+        long deadline = vipDetailBean.getDeadline();
+        if (deadline!=0) {
+            deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
+        }else {
+            deadLine.setText("未录入");
+        }
+
+        long recentlyFitTime = vipDetailBean.getRecentlyFitTime();
+        if (recentlyFitTime!=0){
+            tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
+        }else {
+            tvRecentFitNessTime.setText("未录入");
+        }
+
+
+
+        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption())+" 元");
+        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        if (customerServiceInfoBean==null)return;
+        tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
+        tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
+        List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+        if (privateCourses != null && privateCourses.size() > 0) {
+            rlSijiaoClass.setVisibility(View.VISIBLE);
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < privateCourses.size(); i++) {
+                String s = privateCourses.get(i) + " ";
+                sb.append(s);
+            }
+            tvSijiaoClass.setText(sb.toString());
+        } else {
+            rlSijiaoClass.setVisibility(View.GONE);
+        }
+
+
+    }
 }

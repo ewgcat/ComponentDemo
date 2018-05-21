@@ -1,25 +1,27 @@
-package com.yijian.staff.mvp.huiji.viperlist.filter;
+package com.yijian.staff.mvp.coach.viperlist.filter;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
 
 import java.util.Calendar;
 
@@ -27,18 +29,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HuijiFilterViperDialog extends Dialog {
+/**
+ * Created by The_P on 2018/4/11.
+ */
 
-    private static String TAG = HuijiFilterViperDialog.class.getSimpleName();
+public class OptionDialog extends DialogFragment {
 
-    @BindView(R.id.tv_time_card)
-    TextView tvTimeCard;
-    @BindView(R.id.tv_cishu_card)
-    TextView tvCishuCard;
-    @BindView(R.id.tv_chuzhi_card)
-    TextView tvChuzhiCard;
-    @BindView(R.id.tv_huiyuan_card)
-    TextView tvHuiyuanCard;
+    @BindView(R.id.tv_sex_man)
+    TextView tvSexMan;
+    @BindView(R.id.tv_sex_woman)
+    TextView tvSexWoman;
+    @BindView(R.id.tv_sijiao_class)
+    TextView tvSijiaoClass;
+    @BindView(R.id.tv_tiyan_class)
+    TextView tvTiyanClass;
     @BindView(R.id.tv_time1)
     TextView tvTime1;
     @BindView(R.id.tv_time2)
@@ -49,98 +53,175 @@ public class HuijiFilterViperDialog extends Dialog {
     TextView tvStartTime;
     @BindView(R.id.tv_end_time)
     TextView tvEndTime;
-    @BindView(R.id.tv_un_buy)
-    TextView tvUnBuy;
-    @BindView(R.id.tv_buy)
-    TextView tvBuy;
-    @BindView(R.id.tv_tiyanke)
-    TextView tvTiyanke;
+    @BindView(R.id.tv_buy_time1)
+    TextView tvBuyTime1;
+    @BindView(R.id.tv_buy_time2)
+    TextView tvBuyTime2;
+    @BindView(R.id.tv_buy_time3)
+    TextView tvBuyTime3;
     @BindView(R.id.tv_day1)
     TextView tvDay1;
     @BindView(R.id.tv_day2)
     TextView tvDay2;
     @BindView(R.id.tv_day3)
     TextView tvDay3;
-    @BindView(R.id.tv_xianxia)
-    TextView tvXianxia;
-    @BindView(R.id.tv_jianshen_guan)
-    TextView tvJianshenGuan;
-    @BindView(R.id.tv_sex_man)
-    TextView tvSexMan;
-    @BindView(R.id.tv_sex_woman)
-    TextView tvSexWoman;
+
 
 
     private Activity activity;
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
+    private String classType = null;//课程类型：【1:私教课，1:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private String startTime = null;//开始时间
     private String endTime = null;//结束时间
 
-    private int cardType = -1;//卡类型：【0:时间卡，1:次卡，2:储值卡，3:会员制卡，4:员工卡】
 
-    private int privateCourseState = -1;//私教课购买情况：【1.未购买，2.已购买，3.已购买的私课，且私课为体验课】
+    private int buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
 
     private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
-    private int source = -1;//来源（推广渠道)
+
+    private static final String TAG = "OptionDialog";
+
+    private CoachViperFilterBean coachViperFilterBean;
+
+    public OptionDialog() {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle arguments = getArguments();
+
+        coachViperFilterBean = (CoachViperFilterBean) arguments.getSerializable("coachViperFilterBean");
 
 
-    public HuijiFilterViperDialog(Activity activity) {
-        super(activity, R.style.Transparent);
-        setOwnerActivity(activity);
-        this.activity = activity;
-        View contentView = LayoutInflater.from(activity).inflate(R.layout.view_huiji_filter_viper, null);
-        int statusBarHeight = CommonUtil.getStatusBarHeight(activity);
+    }
 
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.setMargins(0, statusBarHeight, 0, 0);
-        contentView.setLayoutParams(params);
+    @Override
+    public void onStart() {
 
+        //设置DialogFragment所依附的window背景透明（不设置会有一块灰色的背景）
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
+        getDialog().getWindow().setGravity(Gravity.RIGHT);
+        //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
+        getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        Window window = getWindow();
-        //设置无标题栏
-        window.requestFeature(Window.FEATURE_NO_TITLE);
-        //背景为透明
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#602f2f2f")));
-        WindowManager.LayoutParams layoutParams = window.getAttributes();
-        //显示隐藏的动画效果
-        layoutParams.windowAnimations = R.style.MyDialogAnimationCenter;
-        params.gravity = Gravity.RIGHT;
+        super.onStart();
+    }
 
-        this.setContentView(contentView);
-
-        ButterKnife.bind(this, contentView);
-
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.view_coach_filter_viper, container, false);
+        ButterKnife.bind(this, view);
         initView();
+
+        return view;
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        super.onActivityCreated(savedInstanceState);
     }
 
 
     private void initView() {
-        resetView();
-        setCanceledOnTouchOutside(false);
+        if (coachViperFilterBean != null) {
+
+            int sex = coachViperFilterBean.getSex();
+            if (sex==0) {
+                selectSex(0);
+            }else if (sex==1){
+                selectSex(1);
+            }
+
+            String courseType = coachViperFilterBean.getCourseType();
+            if (!TextUtils.isEmpty(courseType)){
+                if (courseType.equals("1")){
+                    selectClassType(1);
+                }else if (courseType.equals("2")){
+                    selectClassType(2);
+                }
+            }
+
+
+            int joinTimeType = coachViperFilterBean.getJoinTimeType();
+            if (joinTimeType==-1){
+                selectRuJiTime(4);
+                tvStartTime.setText(coachViperFilterBean.getStartTime());
+                tvEndTime.setText(coachViperFilterBean.getEndTime());
+            }else   if (joinTimeType==0){
+                selectRuJiTime(1);
+            }else   if (joinTimeType==7){
+                selectRuJiTime(2);
+            }else   if (joinTimeType==30){
+                selectRuJiTime(3);
+            }
+
+            int buyTime = coachViperFilterBean.getBuyTime();
+            if (buyTime==0){
+                selectBuyClassTime(1);
+            }else  if (buyTime==7){
+                selectBuyClassTime(2);
+            }else  if (buyTime==30){
+                selectBuyClassTime(3);
+            }
+
+            int expiringDay = coachViperFilterBean.getExpiringDay();
+            if (expiringDay==7){
+                selectExpiringDay(1);
+            }else if (expiringDay==14){
+                selectExpiringDay(2);
+
+            }else if (expiringDay==30){
+                selectExpiringDay(3);
+
+            }
+
+
+
+        }
+
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
     }
 
 
-    public void showFilterDialog() {
-        show();
-    }
+
+
+
+
 
     private void resetView() {
 
+        sex = -1;//性别：【0:未知 1:男 2:女】
+        classType = null;//课程类型：【1:私教课，1:体验课】
+        joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
+        startTime = null;//开始时间
+        endTime = null;//结束时间
+        buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
+        expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
+
         tvStartTime.setText("");
         tvEndTime.setText("");
-
         tvSexMan.setTextColor(Color.parseColor("#666666"));
         tvSexWoman.setTextColor(Color.parseColor("#666666"));
 
-        tvTimeCard.setTextColor(Color.parseColor("#666666"));
-        tvCishuCard.setTextColor(Color.parseColor("#666666"));
-        tvChuzhiCard.setTextColor(Color.parseColor("#666666"));
-        tvHuiyuanCard.setTextColor(Color.parseColor("#666666"));
+        tvSijiaoClass.setTextColor(Color.parseColor("#666666"));
+        tvTiyanClass.setTextColor(Color.parseColor("#666666"));
+
 
         //互斥
         tvTime1.setTextColor(Color.parseColor("#666666"));
@@ -149,68 +230,61 @@ public class HuijiFilterViperDialog extends Dialog {
         tvStartTime.setTextColor(Color.parseColor("#666666"));
         tvEndTime.setTextColor(Color.parseColor("#666666"));
 
-        tvUnBuy.setTextColor(Color.parseColor("#666666"));
-        tvBuy.setTextColor(Color.parseColor("#666666"));
-        tvTiyanke.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime1.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime2.setTextColor(Color.parseColor("#666666"));
+        tvBuyTime3.setTextColor(Color.parseColor("#666666"));
 
         tvDay1.setTextColor(Color.parseColor("#666666"));
         tvDay2.setTextColor(Color.parseColor("#666666"));
         tvDay3.setTextColor(Color.parseColor("#666666"));
 
-        tvXianxia.setTextColor(Color.parseColor("#666666"));
-        tvJianshenGuan.setTextColor(Color.parseColor("#666666"));
 
-        tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvTimeCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvCishuCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvChuzhiCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvHuiyuanCard.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvTime1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvTime2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvTime3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvSijiaoClass.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTiyanClass.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvUnBuy.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvBuy.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvTiyanke.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTime1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTime2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvTime3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
-        tvDay1.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvDay2.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvDay3.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvXianxia.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-        tvJianshenGuan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvBuyTime3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+
+        tvDay1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvDay2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvDay3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+
 
 
         tvSexMan.setCompoundDrawables(null, null, null, null);
         tvSexWoman.setCompoundDrawables(null, null, null, null);
 
-        tvTimeCard.setCompoundDrawables(null, null, null, null);
-        tvCishuCard.setCompoundDrawables(null, null, null, null);
-        tvChuzhiCard.setCompoundDrawables(null, null, null, null);
-        tvHuiyuanCard.setCompoundDrawables(null, null, null, null);
+        tvSijiaoClass.setCompoundDrawables(null, null, null, null);
+        tvTiyanClass.setCompoundDrawables(null, null, null, null);
 
         tvTime1.setCompoundDrawables(null, null, null, null);
         tvTime2.setCompoundDrawables(null, null, null, null);
         tvTime3.setCompoundDrawables(null, null, null, null);
         tvStartTime.setCompoundDrawables(null, null, null, null);
         tvEndTime.setCompoundDrawables(null, null, null, null);
-        tvUnBuy.setCompoundDrawables(null, null, null, null);
-        tvBuy.setCompoundDrawables(null, null, null, null);
-        tvTiyanke.setCompoundDrawables(null, null, null, null);
+        tvBuyTime1.setCompoundDrawables(null, null, null, null);
+        tvBuyTime2.setCompoundDrawables(null, null, null, null);
+        tvBuyTime3.setCompoundDrawables(null, null, null, null);
         tvDay1.setCompoundDrawables(null, null, null, null);
         tvDay2.setCompoundDrawables(null, null, null, null);
         tvDay3.setCompoundDrawables(null, null, null, null);
 
-        tvXianxia.setCompoundDrawables(null, null, null, null);
-        tvJianshenGuan.setCompoundDrawables(null, null, null, null);
+
     }
 
     private void setSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#1997f8"));
-        textView.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-        Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+        textView.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+        Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
         jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
         textView.setCompoundDrawables(jd_choose, null, null, null);
     }
@@ -218,7 +292,7 @@ public class HuijiFilterViperDialog extends Dialog {
     private void setUnSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#666666"));
         textView.setBackgroundColor(Color.parseColor("#f2f2f2"));
-        textView.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        textView.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         textView.setCompoundDrawables(null, null, null, null);
     }
 
@@ -226,63 +300,47 @@ public class HuijiFilterViperDialog extends Dialog {
     //性别
     private void selectSex(int index) {
         if (index == 0) {
-            sex = 1;
+            sex = 0;
             tvSexMan.setTextColor(Color.parseColor("#1997f8"));
             tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+            tvSexMan.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+            Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexWoman.setTextColor(Color.parseColor("#666666"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexWoman.setCompoundDrawables(null, null, null, null);
         } else {
-            sex = 2;
+            sex = 1;
             tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
             tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+            tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+            Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
             jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
             tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
 
             tvSexMan.setTextColor(Color.parseColor("#666666"));
             tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+            tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
             tvSexMan.setCompoundDrawables(null, null, null, null);
         }
     }
 
-    //卡类型
-    private void selectCardType(int index) {
-        if (index == 0) {
-            cardType = 0;
-            setSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
+    //课程类型
+    private void selectClassType(int index) {
+        if (index == 1) {
+            classType = "1";
+            setSelectStyle(tvSijiaoClass);
+            setUnSelectStyle(tvTiyanClass);
 
-        } else if (index == 1) {
-            cardType = 1;
-            setSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
         } else if (index == 2) {
-            cardType = 2;
-            setSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvHuiyuanCard);
-        } else if (index == 3) {
-            cardType = 3;
-            setSelectStyle(tvHuiyuanCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
-
+            classType = "2";
+            setSelectStyle(tvTiyanClass);
+            setUnSelectStyle(tvSijiaoClass);
         }
+
     }
 
     //入籍时间
@@ -294,6 +352,7 @@ public class HuijiFilterViperDialog extends Dialog {
             setUnSelectStyle(tvTime3);
             tvStartTime.setText("");
             tvEndTime.setText("");
+
         } else if (index == 2) {
             joinTimeType = 7;
             setSelectStyle(tvTime2);
@@ -314,11 +373,10 @@ public class HuijiFilterViperDialog extends Dialog {
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
             Calendar c = Calendar.getInstance();
-            DatePickerDialog dialog = new DatePickerDialog(getContext(),
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(),
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
-
                             String time = "";
                             if (month < 9 && dayOfMonth < 10) {
                                 time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
@@ -351,10 +409,9 @@ public class HuijiFilterViperDialog extends Dialog {
                                 if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
                                     tvStartTime.setText("");
                                     tvEndTime.setText("");
-                                    Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
                             }
-
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));
@@ -365,11 +422,10 @@ public class HuijiFilterViperDialog extends Dialog {
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
             Calendar c = Calendar.getInstance();
-            DatePickerDialog dialog = new DatePickerDialog(getContext(),
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(),
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
-
                             String time = "";
 
                             if (month < 9 && dayOfMonth < 10) {
@@ -397,9 +453,10 @@ public class HuijiFilterViperDialog extends Dialog {
                                 if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
                                     tvStartTime.setText("");
                                     tvEndTime.setText("");
-                                    Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));
@@ -408,23 +465,23 @@ public class HuijiFilterViperDialog extends Dialog {
     }
 
     //私教课购买情况
-    private void selectPrivateCourseState(int index) {
+    private void selectBuyClassTime(int index) {
 
         if (index == 1) {
-            privateCourseState = 1;
-            setSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvTiyanke);
+            buyClassTime = 7;
+            setSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime2);
+            setUnSelectStyle(tvBuyTime3);
         } else if (index == 2) {
-            privateCourseState = 2;
-            setSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvTiyanke);
+            buyClassTime = 15;
+            setSelectStyle(tvBuyTime2);
+            setUnSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime3);
         } else if (index == 3) {
-            privateCourseState = 3;
-            setSelectStyle(tvTiyanke);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
+            buyClassTime = 30;
+            setSelectStyle(tvBuyTime3);
+            setUnSelectStyle(tvBuyTime1);
+            setUnSelectStyle(tvBuyTime2);
         }
 
 
@@ -452,7 +509,7 @@ public class HuijiFilterViperDialog extends Dialog {
         }
     }
 
-    @OnClick({R.id.empty_view, R.id.tv_sex_man, R.id.tv_sex_woman, R.id.tv_time_card, R.id.tv_cishu_card, R.id.tv_chuzhi_card, R.id.tv_huiyuan_card, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_un_buy, R.id.tv_buy, R.id.tv_tiyanke, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_xianxia, R.id.tv_jianshen_guan, R.id.scoll_view, R.id.tv_reset, R.id.tv_confirm})
+    @OnClick({R.id.empty_view, R.id.tv_sex_man, R.id.tv_sex_woman, R.id.tv_sijiao_class, R.id.tv_tiyan_class, R.id.tv_time1, R.id.tv_time2, R.id.tv_time3, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_buy_time1, R.id.tv_buy_time2, R.id.tv_buy_time3, R.id.tv_day1, R.id.tv_day2, R.id.tv_day3, R.id.tv_reset, R.id.tv_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -464,18 +521,12 @@ public class HuijiFilterViperDialog extends Dialog {
                 selectSex(1);
                 break;
 
-            //卡类型
-            case R.id.tv_time_card:
-                selectCardType(0);
+            //课程类型
+            case R.id.tv_sijiao_class:
+                selectClassType(1);
                 break;
-            case R.id.tv_cishu_card:
-                selectCardType(1);
-                break;
-            case R.id.tv_chuzhi_card:
-                selectCardType(2);
-                break;
-            case R.id.tv_huiyuan_card:
-                selectCardType(3);
+            case R.id.tv_tiyan_class:
+                selectClassType(2);
                 break;
 
             //入籍时间
@@ -495,15 +546,15 @@ public class HuijiFilterViperDialog extends Dialog {
                 selectRuJiTime(5);
                 break;
 
-            //私教课购买情况
-            case R.id.tv_un_buy:
-                selectPrivateCourseState(1);
+            //购买时间
+            case R.id.tv_buy_time1:
+                selectBuyClassTime(1);
                 break;
-            case R.id.tv_buy:
-                selectPrivateCourseState(2);
+            case R.id.tv_buy_time2:
+                selectBuyClassTime(2);
                 break;
-            case R.id.tv_tiyanke:
-                selectPrivateCourseState(3);
+            case R.id.tv_buy_time3:
+                selectBuyClassTime(3);
                 break;
 
             //快到期时间
@@ -517,11 +568,6 @@ public class HuijiFilterViperDialog extends Dialog {
                 selectExpiringDay(3);
                 break;
 
-            //来源
-            case R.id.tv_xianxia:
-                break;
-            case R.id.tv_jianshen_guan:
-                break;
 
             //按钮
             case R.id.tv_reset:
@@ -532,54 +578,64 @@ public class HuijiFilterViperDialog extends Dialog {
                 dismiss();
                 break;
             case R.id.empty_view:
+                reset();
                 setResultNoSure();
                 break;
         }
     }
 
+
+
     private void reset() {
         resetView();
-        sex = -1;
-        cardType = -1;
-        expiringDay = -1;
-        privateCourseState = -1;
-        joinTimeType = -2;
-        startTime = null;
-        endTime = null;
+        sex = -1;//性别：【0:未知 1:男 2:女】
+        classType = null;//课程类型：【1:私教课，1:体验课】
+        joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
+        startTime = null;//开始时间
+        endTime = null;//结束时间
+        buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
+        expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
     }
 
 
     private void setResultNoSure() {
-        reset();
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(new CoachViperFilterBean());
+        }
         dismiss();
     }
 
     private void setResultSure() {
-        startTime = tvStartTime.getText().toString();
-        endTime = tvEndTime.getText().toString();
-
-        HuijiViperFilterBean huijiViperFilterBean = new HuijiViperFilterBean();
-        huijiViperFilterBean.setSex(sex);
-        huijiViperFilterBean.setCardType(cardType);
-        huijiViperFilterBean.setJoinTimeType(joinTimeType);
+        startTime=tvStartTime.getText().toString();
+        endTime=tvEndTime.getText().toString();
+        CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
+        coachViperFilterBean.setSex(sex);
+        coachViperFilterBean.setCourseType(classType);
+        coachViperFilterBean.setJoinTimeType(joinTimeType);
         if (joinTimeType == -1) {
-            huijiViperFilterBean.setStartTime(startTime);
-            huijiViperFilterBean.setEndTime(endTime);
+            coachViperFilterBean.setStartTime(startTime);
+            coachViperFilterBean.setEndTime(endTime);
         }
-        huijiViperFilterBean.setPrivateCourseState(privateCourseState);
-        huijiViperFilterBean.setExpiringDay(expiringDay);
-        onDismissListener.onDismiss(huijiViperFilterBean);
+        coachViperFilterBean.setBuyTime(buyClassTime);
+        coachViperFilterBean.setExpiringDay(expiringDay);
+
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(coachViperFilterBean);
+        }
         dismiss();
     }
 
+
+
     public interface OnDismissListener {
-        void onDismiss(HuijiViperFilterBean huijiViperFilterBean);
+        void onDismiss(CoachViperFilterBean coachViperFilterBean);
     }
 
-    private OnDismissListener onDismissListener;
+    private CoachFilterViperDialog.OnDismissListener onDismissListener;
 
-    public void setOnDismissListener(OnDismissListener onDismissListener) {
+    public void setOnDismissListener(CoachFilterViperDialog.OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
 
 }
+

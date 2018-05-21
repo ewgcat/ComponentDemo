@@ -30,11 +30,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.NullCipher;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity.REQUEST_CODE_SETTING_PREVIEW;
+import static com.yijian.staff.util.CommonUtil.emptyIfNull;
 
 
 public class PreviewTimeActivity extends AppCompatActivity {
@@ -54,8 +58,8 @@ public class PreviewTimeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tv_startTime.setText(getIntent().getStringExtra("startTime"));
-        tv_endTime.setText(getIntent().getStringExtra("endTime"));
+        tv_startTime.setText(emptyIfNull(getIntent().getStringExtra("startTime")));
+        tv_endTime.setText(emptyIfNull(getIntent().getStringExtra("endTime")));
     }
 
     private void initTitle() {
@@ -96,15 +100,9 @@ public class PreviewTimeActivity extends AppCompatActivity {
     }
 
 
-    public void showTimeDialog(TextView tv_time, Date startDate, Date selectDate){
+    public void showTimeDialog(TextView tv_time, Date startDate, Date endDate, Date selectDate){
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-        Date endDate = null;
-        try {
-            endDate = simpleDateFormat.parse("23:59");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         TimePicker mTimePicker = new TimePicker.Builder(this, TimePicker.TYPE_TIME, new TimePicker.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(TimePicker picker, Date date) {
@@ -151,33 +149,48 @@ public class PreviewTimeActivity extends AppCompatActivity {
 
         switch (v.getId()) {
             case R.id.rel_start: //选择开始时间
-//                showTimeDialog(tv_startTime,10,20);
-                String startTime = tv_startTime.getText() == null ? "" : tv_startTime.getText().toString();
-                String endTime2 = tv_endTime.getText() == null ? "" : tv_endTime.getText().toString();;
-                if(TextUtils.isEmpty(startTime)){
-                    Calendar calendar = Calendar.getInstance();
-                    startTime = calendar.get(Calendar.HOUR)+":"+calendar.get(Calendar.MINUTE);
-                }
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
                 try {
-                    showTimeDialog(tv_startTime, simpleDateFormat.parse("00:00"), simpleDateFormat.parse(TextUtils.isEmpty(endTime2)?"00:00":endTime2));
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                    Date startDate = simpleDateFormat.parse("00:00");
+                    Date endDate = null;
+                    Date selectDate = null;
+                    if(TextUtils.isEmpty(tv_startTime.getText())){
+                        Calendar calendar = Calendar.getInstance();
+                        selectDate = calendar.getTime();
+                    }else{
+                        selectDate = simpleDateFormat.parse(tv_startTime.getText().toString());
+                    }
+                    if(TextUtils.isEmpty(tv_endTime.getText())){
+                        endDate = simpleDateFormat.parse("23:59");
+                    }else{
+                        endDate = simpleDateFormat.parse(tv_endTime.getText().toString());
+                        endDate = new Date(endDate.getTime()-(1*60*1000));
+                    }
+                    showTimeDialog(tv_startTime, startDate, endDate, selectDate);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 break;
             case R.id.rel_end: //选择结束时间
-                String startTime2 = tv_startTime.getText() == null ? "" : tv_startTime.getText().toString();
-                if(!TextUtils.isEmpty(startTime2)){
-                    String endTime = tv_endTime.getText() == null ? "" : tv_endTime.getText().toString();
-                    if(TextUtils.isEmpty(endTime)){
-                        endTime = startTime2;
-                    }
-                    SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("HH:mm");
+                if(!TextUtils.isEmpty(tv_startTime.getText().toString())){
+
                     try {
-                        showTimeDialog(tv_endTime, simpleDateFormat2.parse(startTime2), simpleDateFormat2.parse(endTime));
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                        Date startDate = simpleDateFormat.parse(tv_startTime.getText().toString());
+                        Date endDate = simpleDateFormat.parse("23:59");
+                        Date selectDate = null;
+                        if(TextUtils.isEmpty(tv_endTime.getText().toString())){
+                            selectDate = startDate;
+                        }else{
+                            selectDate = simpleDateFormat.parse(tv_endTime.getText().toString());
+                        }
+                        startDate = new Date(startDate.getTime()-(1*60*1000));
+                        showTimeDialog(tv_endTime, startDate, endDate, selectDate);
+
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
                 }else{
                     Toast.makeText(PreviewTimeActivity.this, "请选择开始时间", Toast.LENGTH_SHORT).show();
                 }

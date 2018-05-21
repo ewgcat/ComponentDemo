@@ -16,27 +16,27 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="280dp"
+            android:background="@color/white"
             android:layout_height="match_parent">
             <ScrollView
                 android:id="@+id/scoll_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:text="性别"
                         android:textColor="#333333"
                         android:textSize="16sp" />
@@ -53,10 +53,8 @@
                             android:layout_height="30dp"
                             android:layout_alignParentLeft="true"
                             android:layout_marginLeft="20dp"
-
                             android:background="@drawable/gray_stroke_unselect_bg"
                             android:gravity="center"
-
                             android:text="男"
                             android:textColor="#666666"
                             android:textSize="14sp" />
@@ -67,10 +65,8 @@
                             android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
-
                             android:background="@drawable/gray_stroke_unselect_bg"
                             android:gravity="center"
-
                             android:text="女"
                             android:textColor="#666666"
                             android:textSize="14sp" />
@@ -81,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:text="课程类型"
                         android:textColor="#333333"
                         android:textSize="16sp" />
@@ -124,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:text="入籍时间"
                         android:textColor="#333333"
                         android:textSize="16sp" />
@@ -190,7 +186,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-
                         android:background="@drawable/gray_stroke_unselect_bg"
                         android:layout_marginTop="10dp">
 
@@ -228,7 +223,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:text="购买时间"
                         android:textColor="#333333"
                         android:textSize="16sp" />
@@ -294,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:text="快过期天数"
                         android:textColor="#333333"
                         android:textSize="16sp" />
@@ -355,53 +350,7 @@
 
                     </RelativeLayout>
 
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="来源"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
 
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_xianxia"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/gray"
-                            android:gravity="center"
-                            android:paddingBottom="6dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="6dp"
-                            android:text="线下"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_jianshen_guan"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="健身馆"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                    </RelativeLayout>
 
 
                 </LinearLayout>
@@ -409,6 +358,7 @@
 
 
             <LinearLayout
+
                 android:orientation="vertical"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
@@ -417,7 +367,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray" />
 
                 <LinearLayout
@@ -457,7 +407,7 @@
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>

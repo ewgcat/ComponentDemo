@@ -141,8 +141,8 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
                 adapter.resetList(prepareLessonsBeans);
@@ -151,8 +151,8 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 showToast(msg);
                 hideBlueProgress();
             }

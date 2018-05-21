@@ -59,7 +59,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
     private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
     private HuijiViperFilterBean huijiViperFilterBean;
 
@@ -240,8 +240,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {
@@ -262,8 +262,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
             public void onFail(String msg) {
                 hideBlueProgress();
 
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 showToast(msg);
                 huijiViperListAdapter.notifyDataSetChanged();
 

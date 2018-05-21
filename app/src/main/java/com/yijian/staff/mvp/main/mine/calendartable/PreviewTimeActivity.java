@@ -184,7 +184,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
                         }else{
                             selectDate = simpleDateFormat.parse(tv_endTime.getText().toString());
                         }
-                        startDate = new Date(startDate.getTime()-(1*60*1000));
+//                        startDate = new Date(startDate.getTime()-(1*60*1000));
                         showTimeDialog(tv_endTime, startDate, endDate, selectDate);
 
                     } catch (ParseException e) {

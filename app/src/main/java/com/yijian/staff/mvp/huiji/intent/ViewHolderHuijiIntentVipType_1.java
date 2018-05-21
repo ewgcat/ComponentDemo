@@ -51,7 +51,8 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
-
+        tvSex.setText(judgeNull(vipDetailBean.getSex()));
+        tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
         long birthday = vipDetailBean.getBirthday();
         if (birthday!=0){
             tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));

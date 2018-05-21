@@ -26,6 +26,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvWeight;
 //    @BindView(R.id.tv_guaoji)
     TextView tvGuaoJi;
+
 //    @BindView(R.id.tv_jiguan)
     TextView tvJiguan;
 //    @BindView(R.id.tv_minzu)
@@ -36,6 +37,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvJianshenAihao;
 //    @BindView(R.id.tv_jianshen_mudi)
     TextView tvJianshenMudi;
+
 //    @BindView(R.id.tv_xingqu_aihao)
     TextView tvXingquAihao;
 //    @BindView(R.id.tv_shifou_canjia_club)
@@ -46,6 +48,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvYearIncome;
 //    @BindView(R.id.tv_car_value)
     TextView tvCarValue;
+
 //    @BindView(R.id.tv_marry_status)
     TextView tvMarryStatus;
 //    @BindView(R.id.tv_children_status)
@@ -56,6 +59,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvZhiwu;
 //    @BindView(R.id.tv_company_name)
     TextView tvCompanyName;
+
 //    @BindView(R.id.tv_company_phone)
     TextView tvCompanyPhone;
 //    @BindView(R.id.tv_company_location)
@@ -66,6 +70,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvJinJiLianxiren;
 
     TextView tvLianXiPhone;
+
     LinearLayout llEdit;
     public ViewHolderHuijiIntentVipType_2(View itemView) {
         super(itemView);
@@ -74,26 +79,31 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
         tvShengao= itemView.findViewById(R.id.tv_shengao);
         tvWeight= itemView.findViewById(R.id.tv_weight);
         tvGuaoJi= itemView.findViewById(R.id.tv_guaoji);
+
         tvJiguan= itemView.findViewById(R.id.tv_jiguan);
         tvMinzu= itemView.findViewById(R.id.tv_minzu);
         tvShentiStatus= itemView.findViewById(R.id.tv_shenti_status);
         tvJianshenAihao= itemView.findViewById(R.id.tv_jianshen_aihao);
         tvJianshenMudi= itemView.findViewById(R.id.tv_jianshen_mudi);
+
         tvXingquAihao= itemView.findViewById(R.id.tv_xingqu_aihao);
         tvShifouCanjiaClub= itemView.findViewById(R.id.tv_shifou_canjia_club);
         tvCanjiaClubName= itemView.findViewById(R.id.tv_canjia_clubName);
         tvYearIncome= itemView.findViewById(R.id.tv_year_income);
         tvCarValue= itemView.findViewById(R.id.tv_car_value);
+
         tvMarryStatus= itemView.findViewById(R.id.tv_marry_status);
         tvChildrenStatus= itemView.findViewById(R.id.tv_children_status);
         tvHangye= itemView.findViewById(R.id.tv_hangye);
         tvZhiwu= itemView.findViewById(R.id.tv_zhiwu);
         tvCompanyName= itemView.findViewById(R.id.tv_company_name);
+
         tvCompanyPhone= itemView.findViewById(R.id.tv_company_phone);
         tvCompanyLocation= itemView.findViewById(R.id.tv_company_location);
         tvHomeLocation= itemView.findViewById(R.id.tv_home_location);
         tvJinJiLianxiren= itemView.findViewById(R.id.tv_jin_ji_lianxiren);
         tvLianXiPhone=itemView.findViewById(R.id.tv_lianxiren_phone);
+
          llEdit = itemView.findViewById(R.id.ll_edit);
     }
 
@@ -106,21 +116,25 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
         tvShengao.setText(judgeNull(detailBean.getHeight()));
         tvWeight.setText(judgeNull(detailBean.getWeight()));
         tvGuaoJi.setText(judgeNull(detailBean.getNationality()));
+
         tvJiguan.setText(judgeNull(detailBean.getNativePlace()));
         tvMinzu.setText(judgeNull(detailBean.getNation()));
         tvShentiStatus.setText(judgeNull(detailBean.getHealthStatus()));
         tvJianshenAihao.setText(judgeNull(detailBean.getFitnessHobby()));
         tvJianshenMudi.setText(judgeNull(detailBean.getFitnessGoal()));
+
         tvXingquAihao.setText(judgeNull(detailBean.getHobby()));
         tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
         tvCanjiaClubName.setText(judgeNull(detailBean.getClubBrand()));
         tvYearIncome.setText(judgeNull(detailBean.getYearIncome()));
         tvCarValue.setText(judgeNull(detailBean.getCarPrice()));
+
         tvMarryStatus.setText(judgeNull(detailBean.getMarriageStatus()));
         tvChildrenStatus.setText(judgeNull(detailBean.getChildrenStatus()));
         tvHangye.setText(judgeNull(detailBean.getOccupation()));
         tvZhiwu.setText(judgeNull(detailBean.getPosition()));
         tvCompanyName.setText(judgeNull(detailBean.getCompany()));
+
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));

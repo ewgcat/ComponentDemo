@@ -146,7 +146,9 @@ public class MyQualificationActivity extends MvcBaseActivity {
                     goodAtTv.setText(skilled);
                 }
                 List<String> certList = certificateBean.getCertificateList();
-                setImageList(certList);
+                if (certList!=null&&certList.size()>0){
+                    setImageList(certList);
+                }
 
 
                 List<String> coach2picList = certificateBean.getCoach2picList();
@@ -166,11 +168,14 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     private void setBanner(List<String> coach2picList) {
         bannerImageList.clear();
-        for (int i = 0; i < coach2picList.size(); i++) {
-            bannerImageList.add(BuildConfig.FILE_HOST + coach2picList.get(i));
+        if (coach2picList!=null&&coach2picList.size()>0){
+            for (int i = 0; i < coach2picList.size(); i++) {
+                bannerImageList.add(BuildConfig.FILE_HOST + coach2picList.get(i));
+            }
+            banner.setImages(bannerImageList);
+            banner.start();
         }
-        banner.setImages(bannerImageList);
-        banner.start();
+
     }
 
 

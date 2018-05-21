@@ -413,11 +413,11 @@ public class OptionDialog extends DialogFragment {
         }
 
         if (classYouXiaoQi == 1) {
-            coachClassFilterBean.setIndate("3");
+            coachClassFilterBean.setIndate("90");
         } else if (classYouXiaoQi == 2) {
-            coachClassFilterBean.setIndate("6");
+            coachClassFilterBean.setIndate("180");
         } else if (classYouXiaoQi == 3) {
-            coachClassFilterBean.setIndate("12");
+            coachClassFilterBean.setIndate("365");
         } else {
             coachClassFilterBean.setIndate(null);
         }

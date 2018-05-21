@@ -63,7 +63,7 @@
                 android:textColor="@color/black333333"
                 android:layout_marginLeft="9dp"
                 android:layout_alignParentLeft="true"
-                android:text="打卡次数"/>
+                android:text="打卡总次数"/>
 
             <TextView
                 android:id="@+id/tv_today_consumption"

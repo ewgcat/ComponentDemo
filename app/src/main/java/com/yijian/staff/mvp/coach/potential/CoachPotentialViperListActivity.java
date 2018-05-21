@@ -71,7 +71,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("潜在学员");
+        navigationBar2.setTitle("潜在会员");
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_vip_intention.setLayoutManager(layoutmanager);

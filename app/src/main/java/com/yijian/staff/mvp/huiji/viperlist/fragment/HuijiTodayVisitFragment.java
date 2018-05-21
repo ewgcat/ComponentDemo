@@ -59,7 +59,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
     private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
     private HuijiViperFilterBean huijiViperFilterBean;
 

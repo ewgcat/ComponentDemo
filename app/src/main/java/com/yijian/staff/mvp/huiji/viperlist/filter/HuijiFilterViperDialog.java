@@ -131,6 +131,9 @@ public class HuijiFilterViperDialog extends Dialog {
 
     private void resetView() {
 
+        tvStartTime.setText("");
+        tvEndTime.setText("");
+
         tvSexMan.setTextColor(Color.parseColor("#666666"));
         tvSexWoman.setTextColor(Color.parseColor("#666666"));
 

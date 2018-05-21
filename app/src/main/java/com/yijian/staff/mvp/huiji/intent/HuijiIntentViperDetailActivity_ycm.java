@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.detail.AdapterHuijiViper;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
@@ -34,7 +35,7 @@ import java.util.Map;
  * Created by The_P on 2018/5/16.
  */
 
-public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implements View.OnClickListener, AdapterHuijiIntentViper.AdapterInterface {
+public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implements View.OnClickListener, AdapterHuijiIntentViper.AdapterInterface {
     private static final String TAG = "HuijiIntentViperDetailA";
     private LinearLayout llHead;
     private RelativeLayout rlItem0;
@@ -50,25 +51,39 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
 //    private String memberName;
     private NavigationBar2 navigation2;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_huiji_intent_viper_ycm);
-        id = getIntent().getStringExtra("id");
-//        memberName = getIntent().getStringExtra("memberName");
-        initView();
-        initData();
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_huiji_intent_viper_ycm);
+//        id = getIntent().getStringExtra("id");
+//        initView();
+//        initData();
+//
+//    }
 
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        id = getIntent().getStringExtra("id");
+        initview();
+        initData();
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_huiji_intent_viper_ycm;
     }
 
     private void initData() {
-
+        showBlueProgress();
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                   vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
 //                updateUi(vipDetailBean);
                 if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
@@ -77,12 +92,13 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void initView() {
+    private void initview() {
         navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
         navigation2.getmTitleView().setAlpha(0.0f);

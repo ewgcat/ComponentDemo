@@ -749,7 +749,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
-                tools:text="联系人电话:"
+                android:text="联系人电话:"
                 android:textColor="#999999"
                 android:textSize="14sp" />
 

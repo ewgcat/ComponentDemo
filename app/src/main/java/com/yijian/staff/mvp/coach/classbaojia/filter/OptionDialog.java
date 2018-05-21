@@ -143,59 +143,61 @@ public class OptionDialog extends DialogFragment {
 
 
     private void initView() {
+        if (coachClassFilterBean != null) {
 
-        String lcourseNum = coachClassFilterBean.getLcourseNum();
-        String rcourseNum = coachClassFilterBean.getRcourseNum();
+            String lcourseNum = coachClassFilterBean.getLcourseNum();
+            String rcourseNum = coachClassFilterBean.getRcourseNum();
 
-        if (!TextUtils.isEmpty(lcourseNum)) {
-            if (lcourseNum.equals("0") && rcourseNum.equals("10")) {
-                selectClassJieShu(1);
-            } else if (lcourseNum.equals("10") && rcourseNum.equals("30")) {
-                selectClassJieShu(2);
-            } else if (lcourseNum.equals("30") ) {
-                selectClassJieShu(3);
+            if (!TextUtils.isEmpty(lcourseNum)) {
+                if (lcourseNum.equals("0") && rcourseNum.equals("10")) {
+                    selectClassJieShu(1);
+                } else if (lcourseNum.equals("10") && rcourseNum.equals("30")) {
+                    selectClassJieShu(2);
+                } else if (lcourseNum.equals("30")) {
+                    selectClassJieShu(3);
+                }
             }
-        }
 
 
-        String ltotalPrice = coachClassFilterBean.getLtotalPrice();
-        String rtotalPrice = coachClassFilterBean.getRtotalPrice();
-        if (!TextUtils.isEmpty(ltotalPrice)) {
-            if (ltotalPrice.equals("0") && rtotalPrice.equals("1000")) {
-                selectPrice(1);
-            } else if (ltotalPrice.equals("1000") && rtotalPrice.equals("2000")) {
-                selectPrice(2);
-            } else if (ltotalPrice.equals("2000") && rtotalPrice.equals("3000")) {
-                selectPrice(3);
-            } else if (ltotalPrice.equals("3000")) {
-                selectPrice(4);
+            String ltotalPrice = coachClassFilterBean.getLtotalPrice();
+            String rtotalPrice = coachClassFilterBean.getRtotalPrice();
+            if (!TextUtils.isEmpty(ltotalPrice)) {
+                if (ltotalPrice.equals("0") && rtotalPrice.equals("1000")) {
+                    selectPrice(1);
+                } else if (ltotalPrice.equals("1000") && rtotalPrice.equals("2000")) {
+                    selectPrice(2);
+                } else if (ltotalPrice.equals("2000") && rtotalPrice.equals("3000")) {
+                    selectPrice(3);
+                } else if (ltotalPrice.equals("3000")) {
+                    selectPrice(4);
+                }
             }
-        }
 
 
-        String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
-        String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
-        if (!TextUtils.isEmpty(lconsumingMinute)) {
-            if (lconsumingMinute.equals("0") && rconsumingMinute.equals("60")) {
-                selectClassLongTime(1);
-            } else if (lconsumingMinute.equals("60") && rconsumingMinute.equals("120")) {
-                selectClassLongTime(2);
-            } else if (lconsumingMinute.equals("120") && rconsumingMinute.equals("180")) {
-                selectClassLongTime(3);
-            } else if (lconsumingMinute.equals("180")) {
-                selectClassLongTime(4);
+            String lconsumingMinute = coachClassFilterBean.getLconsumingMinute();
+            String rconsumingMinute = coachClassFilterBean.getRconsumingMinute();
+            if (!TextUtils.isEmpty(lconsumingMinute)) {
+                if (lconsumingMinute.equals("0") && rconsumingMinute.equals("60")) {
+                    selectClassLongTime(1);
+                } else if (lconsumingMinute.equals("60") && rconsumingMinute.equals("120")) {
+                    selectClassLongTime(2);
+                } else if (lconsumingMinute.equals("120") && rconsumingMinute.equals("180")) {
+                    selectClassLongTime(3);
+                } else if (lconsumingMinute.equals("180")) {
+                    selectClassLongTime(4);
+                }
             }
-        }
 
 
-        String indate = coachClassFilterBean.getIndate();
-        if (!TextUtils.isEmpty(indate)) {
-            if (indate.equals("3")) {
-                selectClassYouXiaoQi(1);
-            } else if (indate.equals("6")) {
-                selectClassYouXiaoQi(2);
-            } else if (indate.equals("12")) {
-                selectClassYouXiaoQi(3);
+            String indate = coachClassFilterBean.getIndate();
+            if (!TextUtils.isEmpty(indate)) {
+                if (indate.equals("90")) {
+                    selectClassYouXiaoQi(1);
+                } else if (indate.equals("180")) {
+                    selectClassYouXiaoQi(2);
+                } else if (indate.equals("365")) {
+                    selectClassYouXiaoQi(3);
+                }
             }
         }
 
@@ -389,7 +391,6 @@ public class OptionDialog extends DialogFragment {
             coachClassFilterBean.setRtotalPrice("3000");
         } else if (price == 4) {
             coachClassFilterBean.setLtotalPrice("3000");
-            coachClassFilterBean.setRtotalPrice("4000");
         } else {
             coachClassFilterBean.setLtotalPrice(null);
             coachClassFilterBean.setRtotalPrice(null);

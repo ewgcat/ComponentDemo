@@ -258,7 +258,7 @@
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-                    android:text="3个月"
+                    android:text="90天"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -270,7 +270,7 @@
                     android:layout_marginRight="20dp"
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-                    android:text="6个月"
+                    android:text="180天"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -289,7 +289,7 @@
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/gray_stroke_unselect_bg"
                     android:gravity="center"
-                    android:text="12个月"
+                    android:text="365天"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 

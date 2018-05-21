@@ -156,14 +156,14 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
             }
 
             @Override
             public void onFail(String msg) {
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+
+                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
             }
         });
     }

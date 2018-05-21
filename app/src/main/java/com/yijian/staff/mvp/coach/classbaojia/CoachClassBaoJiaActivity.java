@@ -32,6 +32,7 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
@@ -121,6 +122,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                     tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CoachClassBaoJiaActivity.this, 4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#666666"));
+                    refresh(body);
+
                 } else {//有条件
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -296,8 +299,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {
                     for (int i = 0; i < records.length(); i++) {
@@ -321,8 +323,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 hideBlueProgress();
-                boolean hasMore = pages > pageNum ? true : false;
-                refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 classListAdapter.notifyDataSetChanged();
 

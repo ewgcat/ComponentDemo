@@ -261,8 +261,8 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "请输入关键字", Toast.LENGTH_SHORT).show();
 
-            boolean hasMore = pages > pageNum ? true : false;
-            refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+
+            refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
             return;
         } else {
             params.put("name", name);
@@ -279,8 +279,8 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
 
-                    boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, true, !hasMore);//传入false表示刷新失败
+
+                    refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
                     try {
                         for (int i = 0; i < records.length(); i++) {
@@ -304,8 +304,8 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                 public void onFail(String msg) {
                     hideBlueProgress();
                     clearEditTextFocus();
-                    boolean hasMore = pages > pageNum ? true : false;
-                    refreshLayout.finishLoadMore(2000, false, !hasMore);//传入false表示刷新失败
+
+                    refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                     showToast(msg);
                     adapter.notifyDataSetChanged();
                     if (viperBeanList.size() == 0) {

@@ -53,12 +53,15 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
     private String memberId;
+//    private String memberName;
+    private NavigationBar2 navigation2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huiviper_ycm);
         memberId = getIntent().getStringExtra("memberId");
+//        memberName = getIntent().getStringExtra("memberName");
         initView();
         initData();
         Log.e(TAG, "onCreate: ");
@@ -73,6 +76,7 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
+                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
 //                updateUi(vipDetailBean);
             }
@@ -86,11 +90,12 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     }
 
     private void initView() {
-        NavigationBar2 navigation2 = findViewById(R.id.navigation_bar2);
+        navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
-
+        navigation2.getmTitleView().setVisibility(View.GONE);
+        navigation2.getmTitleView().setAlpha(0.0f);
 
         llHead = findViewById(R.id.ll_head);
         rlItem0 = findViewById(R.id.rl_item0);
@@ -152,9 +157,11 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
 //                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
                     if (firstView != null) {
                         llHead.setVisibility(i > 30 ? View.VISIBLE : View.GONE);
+                        navigation2.getmTitleView().setVisibility(i > 30 ? View.VISIBLE : View.GONE);
                         if (firstView.getHeight() != 0) {
                             float alpha = (i / (headHeight * 1.0f));
                             llHead.setAlpha(alpha);
+                            navigation2.getmTitleView().setAlpha(alpha);
                         }
                     }
 

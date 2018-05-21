@@ -103,6 +103,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 //                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
                     intent.putExtra("memberId",huiJiViperBean.getMemberId());
+//                    intent.putExtra("memberName",huiJiViperBean.getName());
                     context.startActivity(intent);
                 }
             });

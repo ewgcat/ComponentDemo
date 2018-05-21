@@ -47,12 +47,15 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
     private String id;
+//    private String memberName;
+    private NavigationBar2 navigation2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huiji_intent_viper_ycm);
         id = getIntent().getStringExtra("id");
+//        memberName = getIntent().getStringExtra("memberName");
         initView();
         initData();
 
@@ -68,6 +71,7 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
             public void onSuccess(JSONObject result) {
                   vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
 //                updateUi(vipDetailBean);
+                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
             }
 
@@ -79,8 +83,10 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
     }
 
     private void initView() {
-        NavigationBar2 navigation2 = findViewById(R.id.navigation_bar2);
+        navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
+        navigation2.getmTitleView().setAlpha(0.0f);
+        navigation2.getmTitleView().setVisibility( View.GONE);
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
 
@@ -138,9 +144,11 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
 //                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
                     if (firstView != null) {
                         llHead.setVisibility(i > 30 ? View.VISIBLE : View.GONE);
+                        navigation2.getmTitleView().setVisibility(i > 30 ? View.VISIBLE : View.GONE);
                         if (firstView.getHeight() != 0) {
                             float alpha = (i / (headHeight * 1.0f));
                             llHead.setAlpha(alpha);
+                            navigation2.getmTitleView().setAlpha(alpha);
                         }
                     }
 
@@ -238,28 +246,29 @@ public class HuijiIntentViperDetailActivity_ycm extends AppCompatActivity implem
     public void clickVisit() {
         String mobile = vipDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)){
-            callVisit(mobile);
+//            callVisit(mobile);
+            CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this,mobile);
         } else {
             Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void callVisit(String mobile){
-        Map<String,String> map = new HashMap<>();
-        map.put("memberId",vipDetailBean.getMemberId());
-        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
-        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this,mobile);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void callVisit(String mobile){
+//        Map<String,String> map = new HashMap<>();
+//        map.put("memberId",vipDetailBean.getMemberId());
+//        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
+//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+//                CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this,mobile);
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//                Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     public void clickEdit() {

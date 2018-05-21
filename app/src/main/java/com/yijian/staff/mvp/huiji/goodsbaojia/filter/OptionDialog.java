@@ -74,11 +74,11 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         String cardType = arguments.getString("cardType");
         String startPrice = arguments.getString("startPrice");
         String venueId = arguments.getString("venueId");
-
+        String cardName = arguments.getString("cardName");
         conditionBody.setVenueId(venueId);
         conditionBody.setStartPrice(startPrice);
         conditionBody.setCardType(cardType);
-
+       conditionBody.setCardName(cardName);
 
     }
 
@@ -247,7 +247,14 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        conditionBody.setStartPrice(null);
+        conditionBody.setEndPrice(null);
+        conditionBody.setCardType(null);
+        conditionBody.setVenueId(null);
+        conditionBody.setCardName(null);
         super.onDismiss(dialog);
+
+
     }
 
     @Override
@@ -305,6 +312,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 conditionBody.setEndPrice(null);
                 conditionBody.setCardType(null);
                 conditionBody.setVenueId(null);
+                conditionBody.setCardName(null);
                 List<VenueBean> list = optionAdapter.getList();
                 if (list != null && list.size() != 0) {
                     for (int i = 0; i < list.size(); i++) {
@@ -315,39 +323,45 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 break;
             case R.id.tv_confirm:
                 if (onDismissListener != null){
-                    String cardType = conditionBody.getCardType();
-                    String endPrice = conditionBody.getEndPrice();
-                    String startPrice = conditionBody.getStartPrice();
-                    String venueId = conditionBody.getVenueId();
-                    if (TextUtils.isEmpty(cardType)
-                            &&TextUtils.isEmpty(startPrice)
-                            &&TextUtils.isEmpty(venueId)
-                            &&TextUtils.isEmpty(endPrice)){
-                        onDismissListener.onDismiss(null);
-                    }else {
-                        onDismissListener.onDismiss(conditionBody);
-                    }
+//                    String cardType = conditionBody.getCardType();
+//                    String endPrice = conditionBody.getEndPrice();
+//                    String startPrice = conditionBody.getStartPrice();
+//                    String venueId = conditionBody.getVenueId();
+//                    String cardName = conditionBody.getCardName();
+//                    if (TextUtils.isEmpty(cardType)
+//                            &&TextUtils.isEmpty(startPrice)
+//                            &&TextUtils.isEmpty(venueId)
+//                            &&TextUtils.isEmpty(endPrice)&&TextUtils.isEmpty(cardName)){
+//                        onDismissListener.onDismiss(null);
+//                    }else {
+//                        onDismissListener.onDismiss(conditionBody);
+//                    }
+                    onDismissListener.onDismiss(conditionBody);
                 }
                 dismiss();
                 break;
 
             case R.id.empty_view:
-                if (onDismissListener != null){
-                    String cardType = conditionBody.getCardType();
-                    String endPrice = conditionBody.getEndPrice();
-                    String startPrice = conditionBody.getStartPrice();
-                    String venueId = conditionBody.getVenueId();
-                    if (TextUtils.isEmpty(cardType)
-                            &&TextUtils.isEmpty(startPrice)
-                            &&TextUtils.isEmpty(venueId)
-                            &&TextUtils.isEmpty(endPrice)){
-                        onDismissListener.onDismiss(null);
-                    }
-                }
+//                if (onDismissListener != null){
+//                    String cardType = conditionBody.getCardType();
+//                    String endPrice = conditionBody.getEndPrice();
+//                    String startPrice = conditionBody.getStartPrice();
+//                    String venueId = conditionBody.getVenueId();
+//                    String cardName = conditionBody.getCardName();
+//                    if (TextUtils.isEmpty(cardType)
+//                            &&TextUtils.isEmpty(startPrice)
+//                            &&TextUtils.isEmpty(venueId)
+//                            &&TextUtils.isEmpty(endPrice)&&TextUtils.isEmpty(cardName)){
+//                        onDismissListener.onDismiss(null);
+//                    }
+//                }
                 dismiss();
                 break;
         }
     }
+
+
+
 
     private void resetCardType() {
         setUnSelectStyle(tvTimeCard);
@@ -363,6 +377,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         setUnSelectStyle(tvPrice3);
         setUnSelectStyle(tvPrice4);
     }
+
 
 
     private void setSelectStyle(TextView textView) {

@@ -65,6 +65,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
 //    @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
 
+    TextView tvLianXiPhone;
     LinearLayout llEdit;
     public ViewHolderHuijiIntentVipType_2(View itemView) {
         super(itemView);
@@ -92,7 +93,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
         tvCompanyLocation= itemView.findViewById(R.id.tv_company_location);
         tvHomeLocation= itemView.findViewById(R.id.tv_home_location);
         tvJinJiLianxiren= itemView.findViewById(R.id.tv_jin_ji_lianxiren);
-
+        tvLianXiPhone=itemView.findViewById(R.id.tv_lianxiren_phone);
          llEdit = itemView.findViewById(R.id.ll_edit);
     }
 
@@ -124,7 +125,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
         tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
         tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
-
+        tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
 
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override

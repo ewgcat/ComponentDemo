@@ -34,7 +34,7 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
             default:
             case TYPE0:
                 view = LayoutInflater.from(context).inflate(R.layout.item_coachvip_type0, parent, false);
-                holder = new ViewHolderCoachVipType_0(view);
+                holder = new ViewHolderCoachVipType_0(view, false);
                 holder.setHuijiVipInterface(this);
                 break;
             case TYPE1:

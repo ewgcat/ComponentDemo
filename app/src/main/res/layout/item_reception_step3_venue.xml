@@ -9,6 +9,8 @@
         android:background="@drawable/gray_stroke_unselect_bg"
         android:gravity="center"
         android:text="1000以下"
+        android:singleLine="true"
+        android:ellipsize="middle"
         android:textColor="#666666"
         android:textSize="14sp" />
 </LinearLayout>

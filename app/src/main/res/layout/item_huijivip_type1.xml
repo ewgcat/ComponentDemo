@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginBottom="15dp"
@@ -308,6 +309,9 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:paddingBottom="15dp"
+            android:maxLength="24"
+            android:ellipsize="middle"
+            tools:text="aaaaaaaaaaaaaaaaaaaaaassssssssaaaaaaaaaaaaaaaa"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 

@@ -96,6 +96,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 //                        Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
                         intent.putExtra("memberId",huiJiViperBean.getMemberId());
+//                        intent.putExtra("memberName",huiJiViperBean.getName());
                         context.startActivity(intent);
                     } else if (subclassName.equals("PotentialVO")||subclassName.equals("CustomerIntentionVO")||subclassName.equals("CustomerExpireVO")) {
                         tv_role.setText("潜在会员");
@@ -103,6 +104,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
                         intent.putExtra("id",huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
+//                        intent.putExtra("memberName",huiJiViperBean.getName());
                         context.startActivity(intent);
                     }
 

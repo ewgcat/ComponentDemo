@@ -40,6 +40,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@null"
+                android:maxLength="20"
                 android:hint="输入产品名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"

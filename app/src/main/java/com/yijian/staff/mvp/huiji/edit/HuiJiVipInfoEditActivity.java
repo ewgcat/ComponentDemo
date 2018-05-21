@@ -120,45 +120,45 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         navigationBar2.setBackClickListener(this);
     }
 
-    @OnClick({R.id.right_tv, R.id.tv_source, R.id.tv_onceJoinedClub, R.id.tv_carPrice,
-            R.id.tv_yearIncome, R.id.tv_nationality, R.id.tv_nation, R.id.tv_marriageStatus,
-            R.id.tv_hasChildren, R.id.tv_occupation, R.id.tv_hobby, R.id.tv_fitnessGoal})
+    @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,
+            R.id.rl_yearIncome, R.id.rl_nationality, R.id.rl_nation, R.id.rl_marriageStatus,
+            R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
                 submitData();
                 break;
-            case R.id.tv_source: //用户渠道
+            case R.id.rl_source: //用户渠道
                 manualPickedView(resuorceList, "易健平台", tv_source);
                 break;
-            case R.id.tv_onceJoinedClub: // 是否参加过俱乐部
-                manualPickedView(onceJoinedClubList, "是", tv_onceJoinedClub);
+            case R.id.rl_onceJoinedClub: // 是否参加过俱乐部
+                manualPickedViewClub(onceJoinedClubList, "是", tv_onceJoinedClub);
                 break;
-            case R.id.tv_yearIncome: // 年收入
+            case R.id.rl_yearIncome: // 年收入
                 manualPickedView(yearIncomeList, "10万以内", tv_yearIncome);
                 break;
-            case R.id.tv_carPrice: // 用车价格
+            case R.id.rl_carPrice: // 用车价格
                 manualPickedView(carPriceList, "10万以内", tv_carPrice);
                 break;
-            case R.id.tv_nationality: // 国籍
+            case R.id.rl_nationality: // 国籍
                 manualPickedView(nationalityList, "中国", tv_nationality);
                 break;
-            case R.id.tv_nation: // 名族
+            case R.id.rl_nation: // 名族
                 manualPickedView(nationList, "汉族", tv_nation);
                 break;
-            case R.id.tv_marriageStatus: // 婚姻状态
+            case R.id.rl_marriageStatus: // 婚姻状态
                 manualPickedView(marriageStatusList, "未婚", tv_marriageStatus);
                 break;
-            case R.id.tv_hasChildren: // 是否有子女
+            case R.id.rl_hasChildren: // 是否有子女
                 manualPickedView(hasChildrenList, "无", tv_hasChildren);
                 break;
-            case R.id.tv_occupation: // 职业
+            case R.id.rl_occupation: // 职业
                 manualPickedView(occupationList, "", tv_occupation);
                 break;
-            case R.id.tv_hobby: // 爱好
+            case R.id.rl_hobby: // 爱好
                 manualPickedView(hobbyList, "", tv_hobby);
                 break;
-            case R.id.tv_fitnessGoal:  //健身目的
+            case R.id.rl_fitnessGoal:  //健身目的
                 manualPickedView(bodybuildingList, "", tv_fitnessGoal);
                 break;
         }
@@ -246,8 +246,20 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     private void updateUi() {
         tv_source.setText(resource);
         tv_fitnessGoal.setText(detailBean.getFitnessGoal());
-        tv_onceJoinedClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
-        et_clubBrand.setText(detailBean.getClubBrand());
+
+        boolean onceJoinedClub = detailBean.isOnceJoinedClub();
+
+        tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
+        if (!onceJoinedClub){
+            et_clubBrand.setEnabled(false);
+            et_clubBrand.setText("");
+
+        }else {
+            et_clubBrand.setEnabled(true);
+            et_clubBrand.setText(detailBean.getClubBrand());
+        }
+
+
         tv_yearIncome.setText(detailBean.getYearIncome());
         tv_carPrice.setText(detailBean.getCarPrice());
         tv_hobby.setText(detailBean.getHobby());
@@ -272,6 +284,34 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tv_widget.setText(opts.get(options1));
+            }
+        }).build();
+
+        pvNoLinkOptions.setNPicker(opts, null, null);
+        pvNoLinkOptions.setSelectOptions(opts.indexOf(defaultValue));
+        pvNoLinkOptions.show();
+    }
+
+
+    /**
+     * 选项弹出框选择俱乐部
+     *
+     * @param opts
+     * @param defaultValue
+     * @param tv_widget
+     */
+    private void manualPickedViewClub(List<String> opts, String defaultValue, TextView tv_widget) {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+
+                tv_widget.setText(opts.get(options1));
+                if (options1==1){
+                    et_clubBrand.setText("");
+                    et_clubBrand.setEnabled(false);
+                }else {
+                    et_clubBrand.setEnabled(true);
+                }
             }
         }).build();
 

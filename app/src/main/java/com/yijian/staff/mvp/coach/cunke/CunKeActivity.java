@@ -67,7 +67,7 @@ public class CunKeActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.cun_ke_navigation_bar2);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("存课列表");
+        navigationBar2.setTitle("存课信息");
     }
 
     private void initView() {

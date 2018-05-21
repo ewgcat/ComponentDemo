@@ -373,7 +373,6 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
     //点击价格
     private void selectPrice() {
-        if (mClassInfoList == null || mClassInfoList.size() == 0) return;
         tvPrice.setTextColor(Color.parseColor("#1997f8"));
         tvZongHe.setTextColor(Color.parseColor("#666666"));
         if (priceUp) {
@@ -384,8 +383,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             priceUp = false;
             isSortByPrice = 1;
-            Collections.sort(mClassInfoList);
-            classListAdapter.notifyDataSetChanged();
+            refresh(coachClassFilterBean);
 
 
         } else {
@@ -396,9 +394,8 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             tvPrice.setCompoundDrawables(null, null, drawable, null);
             priceUp = true;
             isSortByPrice = 0;
-            Collections.sort(mClassInfoList);
-            Collections.reverse(mClassInfoList);
-            classListAdapter.notifyDataSetChanged();
+            refresh(coachClassFilterBean);
+
 
         }
 
@@ -423,4 +420,9 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        hideKeyBoard(etSearch);
+    }
 }

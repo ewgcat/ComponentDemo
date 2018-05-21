@@ -63,7 +63,7 @@
                 android:textColor="@color/black333333"
                 android:layout_marginLeft="9dp"
                 android:layout_alignParentLeft="true"
-                android:text="打卡次数"/>
+                android:text="打卡总次数:"/>
 
             <TextView
                 android:id="@+id/tv_today_consumption"
@@ -92,7 +92,7 @@
                 android:textColor="@color/black333333"
                 android:layout_marginLeft="9dp"
                 android:layout_alignParentLeft="true"
-                android:text="到场时间"/>
+                android:text="到场时间:"/>
 
             <TextView android:id="@+id/tv_arrival_time"
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                 android:textColor="@color/black333333"
                 android:layout_marginLeft="9dp"
                 android:layout_alignParentLeft="true"
-                android:text="到场时间"/>
+                android:text="到场时间:"/>
 
             <TextView android:id="@+id/tv_leaving_time"
                 android:layout_width="wrap_content"

@@ -67,15 +67,8 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     private CoachViperFilterBean coachViperFilterBean;
 
 
-    private static CoachVipTodayVisitFragment coachVipTodayVisitFragment;
     private CoachTodayViperListAdapter coachViperListAdapter;
 
-    public static CoachVipTodayVisitFragment getInstance() {
-        if (coachVipTodayVisitFragment == null) {
-            coachVipTodayVisitFragment = new CoachVipTodayVisitFragment();
-        }
-        return coachVipTodayVisitFragment;
-    }
 
 
     @Override

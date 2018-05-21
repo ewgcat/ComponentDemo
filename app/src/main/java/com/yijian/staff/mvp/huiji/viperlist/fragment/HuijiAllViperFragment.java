@@ -59,18 +59,11 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
     private int pages;
 
-    private static HuijiAllViperFragment huijiAllViperFragment;
     private HuijiViperListAdapter huijiViperListAdapter;
     private HuijiViperFilterBean huijiViperFilterBean;
     List<HuiJiViperBean> viperBeanList = new ArrayList<>();
 
 
-    public static HuijiAllViperFragment getInstance() {
-        if (huijiAllViperFragment == null) {
-            huijiAllViperFragment = new HuijiAllViperFragment();
-        }
-        return huijiAllViperFragment;
-    }
 
 
     @Override
@@ -180,7 +173,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                         empty_view.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
-
+                    e.printStackTrace();
                 }
             }
 

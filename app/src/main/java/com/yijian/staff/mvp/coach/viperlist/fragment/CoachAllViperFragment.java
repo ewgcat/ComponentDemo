@@ -64,17 +64,9 @@ public class CoachAllViperFragment extends MvcBaseFragment {
     private int pageSize = 10;//每页数量
     private int pages;
 
-    private static CoachAllViperFragment coachAllViperFragment;
     private CoachViperListAdapter coachViperListAdapter;
     private CoachViperFilterBean coachViperFilterBean;
 
-
-    public static CoachAllViperFragment getInstance() {
-        if (coachAllViperFragment == null) {
-            coachAllViperFragment = new CoachAllViperFragment();
-        }
-        return coachAllViperFragment;
-    }
 
 
     @Override

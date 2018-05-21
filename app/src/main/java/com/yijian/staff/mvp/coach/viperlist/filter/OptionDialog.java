@@ -214,6 +214,8 @@ public class OptionDialog extends DialogFragment {
         buyClassTime = -1;//购买时间：【0:0天，7:7天，30:30天】
         expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
 
+        tvStartTime.setText("");
+        tvEndTime.setText("");
         tvSexMan.setTextColor(Color.parseColor("#666666"));
         tvSexWoman.setTextColor(Color.parseColor("#666666"));
 

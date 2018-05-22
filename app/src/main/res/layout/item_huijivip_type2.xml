@@ -22,7 +22,7 @@
             <View
                 android:layout_width="7dp"
                 android:layout_height="16dp"
-                android:background="#31a4fc"
+                android:background="@color/white"
                 android:visibility="gone"/>
 
             <TextView

@@ -20,7 +20,8 @@
             <View
                 android:layout_width="7dp"
                 android:layout_height="16dp"
-                android:background="#31a4fc" />
+                android:background="@color/white"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -392,7 +393,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
-            android:paddingRight="22dp"
+            android:layout_marginRight="22dp"
             android:paddingTop="15dp">
 
             <TextView
@@ -409,9 +410,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:maxWidth="180dp"
+                android:maxWidth="146dp"
                 android:inputType="textMultiLine"
-                tools:text="阿什拉夫酒啊就发觉啊手动阀啊沙发上"
+                tools:text="阿什拉夫afasdfasdf啊打发 阿斯顿发射点"
                 android:gravity="start"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp" />
@@ -638,7 +639,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
-            android:paddingRight="22dp"
+            android:layout_marginRight="22dp"
             android:paddingTop="15dp">
 
             <TextView
@@ -652,10 +653,11 @@
 
             <TextView
                 android:id="@+id/tv_company_location"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
+                android:maxWidth="180dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical|right"
+                android:gravity="start"
                 android:singleLine="false"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp" />
@@ -666,7 +668,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
-            android:paddingRight="22dp"
+            android:layout_marginRight="22dp"
             android:paddingTop="15dp">
 
             <TextView
@@ -679,11 +681,13 @@
                 android:textSize="14sp" />
 
             <TextView
+
                 android:id="@+id/tv_home_location"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
+                android:maxWidth="180dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical|right"
+                android:gravity="start"
                 android:singleLine="false"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp" />

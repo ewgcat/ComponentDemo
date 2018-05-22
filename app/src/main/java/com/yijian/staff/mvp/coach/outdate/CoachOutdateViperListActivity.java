@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -33,8 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-
-import static com.yijian.staff.tab.tools.ContextUtil.getContext;
 
 /**
  * 过期会员列表
@@ -93,11 +90,11 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         pageSize = 10;
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 coachViperBeanList.clear();
 
@@ -125,7 +122,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
                 coachOutdateViperListAdapter.notifyDataSetChanged();
@@ -144,11 +141,11 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -174,7 +171,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 showToast(msg);

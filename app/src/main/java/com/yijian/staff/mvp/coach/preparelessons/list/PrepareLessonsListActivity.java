@@ -3,10 +3,8 @@ package com.yijian.staff.mvp.coach.preparelessons.list;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -31,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 @Route(path = "/test/14")
 public class PrepareLessonsListActivity extends MvcBaseActivity {
@@ -105,7 +102,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
         Map<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.INDEX_COACH_QUERY_PREPARE_LESSON_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -116,14 +113,14 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
                 adapter.resetList(prepareLessonsBeans);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
 
@@ -134,7 +131,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
         Map<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -146,7 +143,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
                 adapter.resetList(prepareLessonsBeans);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
@@ -154,7 +151,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
 

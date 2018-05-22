@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -69,12 +68,12 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                         tvGetcode.setEnabled(false);
                         CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(tvGetcode, 30000, 1000);
                         countDownTimerUtils.start();
-                        showBlueProgress();
+                        showLoading();
                         HttpManager.getCode(account, telephone, new ResultJSONObjectObserver() {
                             @Override
                             public void onSuccess(JSONObject result) {
                                 showToast("验证码已发送!");
-                                hideBlueProgress();
+                                hideLoading();
                             }
 
                             @Override
@@ -83,7 +82,7 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                                 countDownTimerUtils.cancel();
                                 countDownTimerUtils.onFinish();
                                 showToast(msg);
-                                hideBlueProgress();
+                                hideLoading();
 
                             }
                         });
@@ -124,18 +123,18 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                     return;
                 }
                 if (CommonUtil.isPhoneFormat(telephone)) {
-                    showBlueProgress();
+                    showLoading();
                     HttpManager.resetPassword(account, telephone, verificationCode, newPwd, confirmPwd, new ResultJSONObjectObserver() {
                         @Override
                         public void onSuccess(JSONObject result) {
-                            hideBlueProgress();
+                            hideLoading();
                             finish();
                         }
 
                         @Override
                         public void onFail(String msg) {
                             showToast(msg);
-                            hideBlueProgress();
+                            hideLoading();
                         }
                     });
                 } else {

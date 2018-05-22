@@ -1,16 +1,14 @@
 package com.yijian.staff.mvp.base.mvc;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.yijian.staff.widget.BlueLoadingDialog;
+import com.yijian.staff.widget.LoadingDialog;
 import com.yijian.staff.widget.WhiteLoadingDialog;
 
 import butterknife.ButterKnife;
@@ -48,56 +46,29 @@ public abstract class MvcBaseFragment extends Fragment {
 
     public abstract void initView();
 
-    protected BlueLoadingDialog blueLoadingDialog;
+    protected LoadingDialog loadingDialog;
 
 
-    public void showBlueProgress() {
-        if (blueLoadingDialog == null) {
-            blueLoadingDialog =new BlueLoadingDialog(mContext);
+    public void showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog =new LoadingDialog(mContext);
         }
-        if (blueLoadingDialog != null) {
+        if (loadingDialog != null) {
             //防止弹出之前activity已经被销毁了
             if (!mContext.isFinishing()) {
-                blueLoadingDialog.show();
-                blueLoadingDialog.setCancelable(false);
+                loadingDialog.show();
+                loadingDialog.setCancelable(false);
             }
         }
 
     }
 
-    public void hideBlueProgress() {
-        if (blueLoadingDialog != null && blueLoadingDialog.isShowing()) {
+    public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
             //防止显示期间activity已经被销毁了
             if (!mContext.isFinishing()) {
-                blueLoadingDialog.dismiss();
-                blueLoadingDialog = null;
-            }
-        }
-    }
-
-    protected WhiteLoadingDialog whiteLoadingDialog;
-
-
-    public void showWhiteProgress() {
-        if (whiteLoadingDialog == null) {
-            whiteLoadingDialog =new WhiteLoadingDialog(mContext);
-        }
-        if (whiteLoadingDialog != null) {
-            //防止弹出之前activity已经被销毁了
-            if (!mContext.isFinishing()) {
-                whiteLoadingDialog.show();
-                whiteLoadingDialog.setCancelable(false);
-            }
-        }
-
-    }
-
-    public void hideWhiteProgress() {
-        if (whiteLoadingDialog != null && whiteLoadingDialog.isShowing()) {
-            //防止显示期间activity已经被销毁了
-            if (!mContext.isFinishing()) {
-                whiteLoadingDialog.dismiss();
-                whiteLoadingDialog = null;
+                loadingDialog.dismiss();
+                loadingDialog = null;
             }
         }
     }

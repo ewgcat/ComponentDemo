@@ -108,16 +108,19 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     private void initQRCode() {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("type", "3");
+        params.put("type", "6");
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 String url = JsonUtil.getString(result, "url");
+                String id;
                 if (role==2||role==4||role==7){
-
+                     id = url + "?action=1&coachId=" +user.getUserId() ;
+                }else {
+                    id = url;
                 }
-                String id = url + "?action=1&coachId=" +user.getUserId() ;
                 Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);
+
                 iv.setImageBitmap(qrCode);
             }
 

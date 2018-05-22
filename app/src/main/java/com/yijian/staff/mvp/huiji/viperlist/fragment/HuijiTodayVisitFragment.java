@@ -144,11 +144,11 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
             }
 
         }
-        showBlueProgress();
+        showLoading();
         HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishRefresh(2000, true);
 
@@ -177,8 +177,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                hideBlueProgress();
-                showToast(msg);
+                hideLoading();
                 huijiViperListAdapter.notifyDataSetChanged();
                 if (viperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
@@ -192,7 +191,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
         empty_view.setVisibility(View.GONE);
-        showBlueProgress();
+        showLoading();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
@@ -228,7 +227,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
         HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -253,11 +252,10 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
                 huijiViperListAdapter.notifyDataSetChanged();
 
                 if (viperBeanList.size() == 0) {

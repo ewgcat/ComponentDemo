@@ -2,12 +2,9 @@ package com.yijian.staff.mvp.huiji.intent;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,7 +15,6 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.AdapterHuijiViper;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -29,7 +25,6 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by The_P on 2018/5/16.
@@ -76,14 +71,14 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     }
 
     private void initData() {
-        showBlueProgress();
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                   vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
 //                updateUi(vipDetailBean);
                 if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
@@ -92,7 +87,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

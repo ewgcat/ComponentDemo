@@ -32,7 +32,6 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
@@ -40,7 +39,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -227,11 +225,11 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
 
-        showBlueProgress();
+        showLoading();
         HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 mClassInfoList.clear();
                 refreshLayout.finishRefresh(2000, true);
@@ -257,7 +255,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 classListAdapter.notifyDataSetChanged();
@@ -291,11 +289,11 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             body.setLcourseNum(coachClassFilterBean.getLcourseNum());
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
-        showBlueProgress();
+        showLoading();
         HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
@@ -322,7 +320,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 Toast.makeText(CoachClassBaoJiaActivity.this, msg, Toast.LENGTH_SHORT).show();
                 classListAdapter.notifyDataSetChanged();

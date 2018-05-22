@@ -3,15 +3,16 @@ package com.yijian.staff.util;
 import android.app.Activity;
 import android.content.Context;
 
-import com.yijian.staff.widget.BlueLoadingDialog;
+import com.yijian.staff.widget.LoadingDialog;
+import com.yijian.staff.widget.WhiteLoadingDialog;
 
 public class LoadingProgressDialog {
 
-    private static BlueLoadingDialog blueLoadingDialog;
+    private static WhiteLoadingDialog blueLoadingDialog;
 
     public static void showBlueProgress(Activity activity) {
         if (blueLoadingDialog == null) {
-            blueLoadingDialog =new BlueLoadingDialog(activity);
+            blueLoadingDialog =new WhiteLoadingDialog(activity);
         }
         if (blueLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了

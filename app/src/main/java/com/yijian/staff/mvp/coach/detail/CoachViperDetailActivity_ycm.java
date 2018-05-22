@@ -2,12 +2,9 @@ package com.yijian.staff.mvp.coach.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,12 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.detail.edit.CoachVipInfoEditActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.AdapterHuijiViper;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -215,20 +208,20 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     private void loadData(String memberId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
                 if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }

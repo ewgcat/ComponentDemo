@@ -2,21 +2,18 @@ package com.yijian.staff.mvp.coach.setclass;
 
 import android.content.Intent;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.coach.setclass.bean.AerobicsBean;
 import com.yijian.staff.mvp.coach.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.coach.setclass.bean.PowerBean;
-import com.yijian.staff.mvp.coach.setclass.orderclass.SaveDataDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -32,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ExperienceClassRecordActivity extends MvcBaseActivity {
@@ -115,7 +111,7 @@ public class ExperienceClassRecordActivity extends MvcBaseActivity {
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("privateApplyId", getIntent().getStringExtra("privateApplyId"));
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -128,13 +124,13 @@ public class ExperienceClassRecordActivity extends MvcBaseActivity {
                 noInstrumentAdapter.resetActionList(noInstrumentBeanList);
                 aerobicsAdapter.resetActionList(aerobicsBeanList);
                 powerAdapter.resetActionList(powerBeanList);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
 

@@ -250,19 +250,19 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 coachVipDetailBean = new CoachVipDetailBean(result);
                 updateUi(coachVipDetailBean);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }

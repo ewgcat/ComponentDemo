@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.coach.preparelessons.all;
 
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +13,14 @@ import com.jeek.calendar.widget.calendar.CalendarUtils;
 import com.jeek.calendar.widget.calendar.OnCalendarClickListener;
 import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
 import com.jeek.calendar.widget.calendar.month.MonthView;
-import com.jeek.calendar.widget.calendar.month.OnMonthClickListener;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.preparelessons.createlession.ActionViewAdapter;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
 
 import org.json.JSONArray;
 
@@ -39,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 所有私教课备课
@@ -203,7 +197,7 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
         map.put("dateStr", dateStr);
-        showBlueProgress();
+        showLoading();
 
         HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL, map, new ResultJSONArrayObserver() {
             @Override
@@ -216,13 +210,13 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
                     Toast.makeText(PrepareAllLessonActivity.this,"暂无数据",Toast.LENGTH_SHORT).show();
                     nestScrollView.setVisibility(View.GONE);
                 }
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
 
             }
         });

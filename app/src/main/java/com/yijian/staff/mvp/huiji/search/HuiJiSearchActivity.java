@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.huiji.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -30,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -200,12 +198,12 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
             viperBeanList.clear();
-            showBlueProgress();
+            showLoading();
             empty_view.setVisibility(View.GONE);
             HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    hideBlueProgress();
+                    hideLoading();
 
                     SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
@@ -238,8 +236,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
 
                 @Override
                 public void onFail(String msg) {
-                    hideBlueProgress();
-                    showToast(msg);
+                    hideLoading();
                     clearEditTextFocus();
                     refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                     adapter.notifyDataSetChanged();
@@ -268,13 +265,13 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             params.put("name", name);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
-            showBlueProgress();
+            showLoading();
             empty_view.setVisibility(View.GONE);
 
             HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    hideBlueProgress();
+                    hideLoading();
                     clearEditTextFocus();
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                     pages = JsonUtil.getInt(result, "pages");
@@ -302,11 +299,10 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
 
                 @Override
                 public void onFail(String msg) {
-                    hideBlueProgress();
+                    hideLoading();
                     clearEditTextFocus();
 
                     refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                    showToast(msg);
                     adapter.notifyDataSetChanged();
                     if (viperBeanList.size() == 0) {
                         empty_view.setVisibility(View.VISIBLE);

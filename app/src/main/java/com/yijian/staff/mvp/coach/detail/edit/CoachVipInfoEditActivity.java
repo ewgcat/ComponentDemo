@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.coach.detail.edit;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,7 +13,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachVipDetailBean;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -30,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoachVipInfoEditActivity extends MvcBaseActivity {
@@ -228,12 +225,12 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
 
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
-        showBlueProgress();
+        showLoading();
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
-                hideBlueProgress();
+                hideLoading();
                 Toast.makeText(CoachVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                 setResult(1234);
                 finish();
@@ -241,7 +238,7 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 Toast.makeText(CoachVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

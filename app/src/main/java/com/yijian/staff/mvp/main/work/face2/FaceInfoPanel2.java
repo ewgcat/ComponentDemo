@@ -34,7 +34,10 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.ImageLoader;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Handler;
 
@@ -123,15 +126,23 @@ public class FaceInfoPanel2 extends PopupWindow {
         tv_detail_name.setText(faceDetail.getMemberName());
         tv_detail_cardname.setText(faceDetail.getCardName());
         tv_detail_birthday.setText(faceDetail.getBirthDate());
-        tv_detail_age.setText(faceDetail.getAge());
+        tv_detail_age.setText(faceDetail.getAge()+"岁");
         tv_detail_huiji.setText(faceDetail.getSellerName());
-        tv_detail_kayouxiaoqi.setText(faceDetail.getExpirationDate());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            tv_detail_kayouxiaoqi.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
         tv_detail_coach.setText(faceDetail.getCoachName());
 
         tv_detail_progress.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
         tv_detail_biuld_time.setText(faceDetail.getBEntranceRecord());
         tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum())>0?"有":"无");
-        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()+"次"));
+        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount())+"次");
         rel_coach.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
         rel_course_progress.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
         rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
@@ -172,6 +183,8 @@ public class FaceInfoPanel2 extends PopupWindow {
             private TextView tv_cardName; //卡名称
             private TextView tv_expirationDate; //有效期
             private TextView tv_courseNameNum; //课程进度
+            private RelativeLayout rel_course_progress; //课程进度容器布局
+
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -181,6 +194,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 tv_cardName = itemView.findViewById(R.id.tv_cardName);
                 tv_expirationDate = itemView.findViewById(R.id.tv_expirationDate);
                 tv_courseNameNum = itemView.findViewById(R.id.tv_courseNameNum);
+                rel_course_progress = itemView.findViewById(R.id.rel_course_progress);
 
             }
 
@@ -188,8 +202,14 @@ public class FaceInfoPanel2 extends PopupWindow {
                 ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
-                tv_expirationDate.setText(faceDetail.getExpirationDate());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    tv_expirationDate.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 tv_courseNameNum.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
+                rel_course_progress.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

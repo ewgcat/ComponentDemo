@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
     <!-- 详细信息 -->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/white_bg"
-        android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/white_bg"
+    android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -713,7 +713,7 @@
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
             android:paddingTop="15dp"
-            android:paddingBottom="15dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -736,7 +736,7 @@
 
         </RelativeLayout>
 
-        <!--<RelativeLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="15dp"
@@ -750,7 +750,7 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
                 android:text="联系人电话:"
-                android:textColor="#999999"
+                android:textColor="@color/text_black1"
                 android:textSize="14sp" />
 
             <TextView
@@ -760,9 +760,9 @@
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:text="13838463329"
-                android:textColor="#333333"
+                android:textColor="@color/text_black1"
                 android:textSize="14sp" />
 
-        </RelativeLayout>-->
+        </RelativeLayout>
 
     </LinearLayout>

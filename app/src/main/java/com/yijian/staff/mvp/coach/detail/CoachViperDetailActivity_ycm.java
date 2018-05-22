@@ -52,9 +52,10 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
 
-    private int vipType = 0;//0 正式会员 、1、意向会员（有会籍信息）  2、 潜在会员3、 过期会员（无会籍信息）;
-    private String memberName;
+    private int vipType = 0;//0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
+//    private String memberName;
     private String memberId;
+    private NavigationBar2 navigation2;
 
 
     @Override
@@ -66,11 +67,13 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     protected void initView(Bundle savedInstanceState) {
 
         memberId = getIntent().getStringExtra("memberId");
-        memberName = getIntent().getStringExtra("memberName");
+//        memberName = getIntent().getStringExtra("memberName");
         vipType = getIntent().getIntExtra("vipType", 0);
 
-        NavigationBar2 navigation2 = findViewById(R.id.navigation_bar2);
+        navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
+        navigation2.getmTitleView().setAlpha(0.0f);
+        navigation2.getmTitleView().setVisibility(View.GONE);
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
 
@@ -142,9 +145,12 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 //                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
                     if (firstView != null) {
                         llHead.setVisibility(i > 30 ? View.VISIBLE : View.GONE);
+                        navigation2.getmTitleView().setVisibility(i > 30 ? View.VISIBLE : View.GONE);
                         if (firstView.getHeight() != 0) {
                             float alpha = (i / (headHeight * 1.0f));
                             llHead.setAlpha(alpha);
+
+                            navigation2.getmTitleView().setAlpha(alpha);
                         }
                     }
 
@@ -214,6 +220,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
+                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
                 hideBlueProgress();
             }

@@ -34,7 +34,7 @@
             android:layout_weight="1"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/goods_search_top_edittext_bg"
+            android:background="@drawable/goods_search_top_edittext_bg_gray"
             android:orientation="horizontal">
 
             <ImageView
@@ -45,18 +45,30 @@
                 android:scaleType="fitCenter"
                 android:src="@mipmap/home_serch" />
 
-            <EditText
-                android:id="@+id/et_search"
+            <!--<EditText-->
+                <!--android:id="@+id/et_search"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:background="@null"-->
+                <!--android:hint="输入产品名称，进行搜索"-->
+                <!--android:imeOptions="actionSearch"-->
+                <!--android:singleLine="true"-->
+                <!--android:textColor="#666666"-->
+                <!--android:textSize="14sp" />-->
+            <TextView
+                android:id="@+id/tv_search"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@null"
-                android:hint="输入产品名称，进行搜索"
+                android:text="输入产品名称，进行搜索"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
-                android:textColor="#666666"
+                android:textColor="@color/time_bar"
                 android:textSize="14sp" />
 
         </LinearLayout>

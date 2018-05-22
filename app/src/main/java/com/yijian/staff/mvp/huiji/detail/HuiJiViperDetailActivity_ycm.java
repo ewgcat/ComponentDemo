@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.base.mvp.MvpBaseActivity;
 import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
@@ -36,7 +38,7 @@ import java.util.Map;
  * Created by The_P on 2018/5/15.
  */
 
-public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements View.OnClickListener, AdapterHuijiViper.AdapterInterface {
+public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements View.OnClickListener, AdapterHuijiViper.AdapterInterface {
 
     private static final String TAG = "ViperDetailActivit";
     private LinearLayout llHead;
@@ -53,26 +55,47 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
     private String memberId;
+//    private String memberName;
+    private NavigationBar2 navigation2;
+
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_huiviper_ycm);
+//        memberId = getIntent().getStringExtra("memberId");
+////        memberName = getIntent().getStringExtra("memberName");
+//        initView();
+//        initData();
+//        Log.e(TAG, "onCreate: ");
+//    }
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_huiviper_ycm);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         memberId = getIntent().getStringExtra("memberId");
-        initView();
+//        memberName = getIntent().getStringExtra("memberName");
+        initview();
         initData();
-        Log.e(TAG, "onCreate: ");
+//        Log.e(TAG, "onCreate: ");
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_huiviper_ycm;
     }
 
     private void initData() {
-
+        showBlueProgress();
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                hideBlueProgress();
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
+                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
 //                updateUi(vipDetailBean);
             }
@@ -80,17 +103,19 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
 
             @Override
             public void onFail(String msg) {
+                hideBlueProgress();
                 Toast.makeText(HuiJiViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void initView() {
-        NavigationBar2 navigation2 = findViewById(R.id.navigation_bar2);
+    private void initview() {
+        navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
-
+        navigation2.getmTitleView().setVisibility(View.GONE);
+        navigation2.getmTitleView().setAlpha(0.0f);
 
         llHead = findViewById(R.id.ll_head);
         rlItem0 = findViewById(R.id.rl_item0);
@@ -152,9 +177,11 @@ public class HuiJiViperDetailActivity_ycm extends AppCompatActivity implements V
 //                    Log.e(TAG, "onScrolled: computeVerticalScrollOffset==" + i);
                     if (firstView != null) {
                         llHead.setVisibility(i > 30 ? View.VISIBLE : View.GONE);
+                        navigation2.getmTitleView().setVisibility(i > 30 ? View.VISIBLE : View.GONE);
                         if (firstView.getHeight() != 0) {
                             float alpha = (i / (headHeight * 1.0f));
                             llHead.setAlpha(alpha);
+                            navigation2.getmTitleView().setAlpha(alpha);
                         }
                     }
 

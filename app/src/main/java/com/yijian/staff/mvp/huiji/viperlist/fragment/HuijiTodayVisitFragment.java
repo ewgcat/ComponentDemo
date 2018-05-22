@@ -59,20 +59,12 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
     private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
-    private int pageSize = 1;//每页数量
+    private int pageSize = 10;//每页数量
     private int pages;
     private HuijiViperFilterBean huijiViperFilterBean;
 
 
-    private static HuijiTodayVisitFragment huijiTodayVisitFragment;
-    private final HuiJiTodayVisitAdapter huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(),viperBeanList);
-
-    public static HuijiTodayVisitFragment getInstance() {
-        if (huijiTodayVisitFragment == null) {
-            huijiTodayVisitFragment = new HuijiTodayVisitFragment();
-        }
-        return huijiTodayVisitFragment;
-    }
+    private  HuiJiTodayVisitAdapter huijiViperListAdapter;
 
 
     @Override
@@ -100,6 +92,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
+        huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(),viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
         initComponent();
         refresh(null);

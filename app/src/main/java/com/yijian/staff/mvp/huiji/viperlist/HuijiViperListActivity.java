@@ -62,7 +62,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
         navigationBar2.setmRightTvClickListener(this);
         navigationBar2.setBackClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
+        Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
         navigationBar2.setTitle("会员信息");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
@@ -101,7 +101,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
             view_all.setVisibility(View.VISIBLE);
             view_today_visit.setVisibility(View.GONE);
             if (huijiAllViperFragment == null) {
-                huijiAllViperFragment = HuijiAllViperFragment.getInstance();
+                huijiAllViperFragment = new HuijiAllViperFragment();
                 fragmentTransaction.add(R.id.fl_content, huijiAllViperFragment);
             } else {
                 fragmentTransaction.show(huijiAllViperFragment);
@@ -112,7 +112,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
             if (huijiTodayVisitFragment == null) {
-                huijiTodayVisitFragment = HuijiTodayVisitFragment.getInstance();
+                huijiTodayVisitFragment =new HuijiTodayVisitFragment();
                 fragmentTransaction.add(R.id.fl_content, huijiTodayVisitFragment);
             } else {
                 fragmentTransaction.show(huijiTodayVisitFragment);
@@ -125,13 +125,13 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        Fragment fragment = HuijiAllViperFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+
+        if (huijiAllViperFragment!=null&&huijiAllViperFragment.isAdded()) {
+            fragmentTransaction.hide(huijiAllViperFragment);
         }
-        fragment = HuijiTodayVisitFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+
+        if (huijiTodayVisitFragment!=null&&huijiTodayVisitFragment.isAdded()) {
+            fragmentTransaction.hide(huijiTodayVisitFragment);
         }
     }
 

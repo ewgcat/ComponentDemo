@@ -61,7 +61,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
         navigationBar2.setBackClickListener(this);
         navigationBar2.setmRightTvClickListener(this);
         ImageView rightIv = navigationBar2.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_white).into(rightIv);
+        Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
         navigationBar2.setTitle("正式学员");
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
@@ -102,7 +102,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
             view_all.setVisibility(View.VISIBLE);
             view_today_visit.setVisibility(View.GONE);
             if (coachAllViperFragment == null) {
-                coachAllViperFragment = CoachAllViperFragment.getInstance();
+                coachAllViperFragment =new  CoachAllViperFragment();
                 fragmentTransaction.add(R.id.fl_content, coachAllViperFragment);
             } else {
                 fragmentTransaction.show(coachAllViperFragment);
@@ -113,7 +113,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
             if (coachVipTodayVisitFragment == null) {
-                coachVipTodayVisitFragment = CoachVipTodayVisitFragment.getInstance();
+                coachVipTodayVisitFragment =new CoachVipTodayVisitFragment();
                 fragmentTransaction.add(R.id.fl_content, coachVipTodayVisitFragment);
             } else {
                 fragmentTransaction.show(coachVipTodayVisitFragment);
@@ -126,13 +126,12 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        Fragment fragment = CoachAllViperFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+        if (coachAllViperFragment!=null&&coachAllViperFragment.isAdded()) {
+            fragmentTransaction.hide(coachAllViperFragment);
         }
-        fragment = CoachVipTodayVisitFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+
+        if (coachVipTodayVisitFragment!=null&&coachVipTodayVisitFragment.isAdded()) {
+            fragmentTransaction.hide(coachVipTodayVisitFragment);
         }
     }
 

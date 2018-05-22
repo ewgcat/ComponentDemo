@@ -45,6 +45,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     @BindView(R.id.rootView)
     LinearLayout rootView;
     private int role;
+    private User user;
 
     @Override
     protected int getLayoutID() {
@@ -69,7 +70,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         navigationBar2.setBackClickListener(this);
         ImageView firstLeftIv = navigationBar2.getFirstLeftIv();
         Glide.with(this).load(R.mipmap.white_arrow_back).into(firstLeftIv);
-        User user = DBManager.getInstance().queryUser();
+        user = DBManager.getInstance().queryUser();
 
         if (user != null) {
             tvName.setText(user.getName());
@@ -115,9 +116,8 @@ public class MyQRCodeActivity extends MvcBaseActivity {
                 if (role==2||role==4||role==7){
 
                 }
-                String id = url + "?coach_id=" + JsonUtil.getString(result, "id");
-//                Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);
-                Bitmap qrCode = QRCodeManager.getInstance().createQRCode("https://www.pgyer.com/ZuYu?action=1000", 560, 560);
+                String id = url + "?action=1&coachId=" +user.getUserId() ;
+                Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);
                 iv.setImageBitmap(qrCode);
             }
 

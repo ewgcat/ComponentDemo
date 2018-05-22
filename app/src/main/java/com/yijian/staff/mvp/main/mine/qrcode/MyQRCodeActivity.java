@@ -115,7 +115,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
                 String url = JsonUtil.getString(result, "url");
                 String id;
                 if (role==2||role==4||role==7){
-                     id = url + "?action=1&coachId=" +user.getUserId() ;
+                     id = url + "?action=1&coachId=" +user.getUserId() +"&shopId="+user.getShopId();
                 }else {
                     id = url;
                 }

@@ -187,4 +187,6 @@ public class User {
     public void setChief(boolean chief) {
         this.chief = chief;
     }
+
+
 }

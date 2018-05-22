@@ -241,7 +241,7 @@
                             android:hint="开始时间"
                             android:background="@color/white"
                             android:inputType="datetime"
-                            android:textColor="#999999"
+                            android:textColor="@color/blue"
                             android:textSize="14sp" />
                         <TextView
                             android:text="-"
@@ -257,7 +257,7 @@
                             android:gravity="center"
                             android:inputType="datetime"
                             android:hint="结束时间"
-                            android:textColor="#999999"
+                            android:textColor="@color/blue"
                             android:textSize="14sp" />
 
                     </RelativeLayout>

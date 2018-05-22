@@ -8,6 +8,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.beta.UpgradeInfo;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.widget.LoadingDialog;
 import com.yijian.staff.widget.WhiteLoadingDialog;
 
@@ -59,7 +61,14 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mContext = this;
         initView(savedInstanceState);
-        Beta.checkUpgrade();
+        UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
+        if (upgradeInfo!=null){
+            int versionCode = upgradeInfo.versionCode;
+            if (versionCode> BuildConfig.VERSION_CODE){
+                Beta.checkUpgrade(false,false);
+            }
+        }
+
     }
 
     protected abstract int getLayoutID();

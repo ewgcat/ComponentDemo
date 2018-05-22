@@ -10,10 +10,8 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-
 
 import org.json.JSONObject;
 
@@ -37,9 +35,22 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     private final Gson gson = new Gson();//不要改成static，多线程会出现问题的
 
     public ResponseObserver() {
+        initResultType();
         initLife();
     }
 
+    public ResponseObserver(Activity activity, String msg) {
+        this(activity, msg, true);
+    }
+
+    public ResponseObserver(Activity activity, String msg, boolean isShowDialog) {
+        this();
+        this.isShowDialog = isShowDialog;
+        if (isShowDialog) {
+            progressDialog = new ProgressDialog(activity);
+            progressDialog.setMessage(msg);
+        }
+    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy(LifecycleOwner owner) {
@@ -56,7 +67,12 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     }
 
 
-
+    protected void initResultType() {
+        Type genericSuperclass = getClass().getGenericSuperclass();
+        ParameterizedType type = (ParameterizedType) genericSuperclass;
+        Type[] actualTypeArguments = type.getActualTypeArguments();
+        dataClassType = actualTypeArguments[0];
+    }
 
     private void initLife() {
         Object obj = getExternalClass();
@@ -103,18 +119,6 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
         return getField(name + "$");
     }
 
-    public ResponseObserver(Activity activity, String msg) {
-        this(activity, msg, true);
-    }
-
-    public ResponseObserver(Activity activity, String msg, boolean isShowDialog) {
-        this();
-        this.isShowDialog = isShowDialog;
-        if (isShowDialog) {
-            progressDialog = new ProgressDialog(activity);
-            progressDialog.setMessage(msg);
-        }
-    }
 
     @Override
     public void onSubscribe(Disposable d) {
@@ -142,7 +146,6 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
                     break;
                 case ResponseCode.TOKEN_TIME_OUT:
                     onFail(responseBean.getMsg());
-                    ARouter.getInstance().build("/test/login").navigation();
                     break;
                 default:
                     onFail(responseBean.getMsg());

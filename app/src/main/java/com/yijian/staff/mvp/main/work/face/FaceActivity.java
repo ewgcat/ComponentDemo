@@ -287,9 +287,11 @@ public class FaceActivity extends AppCompatActivity {
 
                                 Log.e("Test", "resultBitmap.length====" + datas.length);
                            /* Bitmap bitmap = BitmapFactory.decodeByteArray(datas, 0, datas.length);
-
                             Bitmap tempBitmap = rotateBitmap(bitmap,90);
                             iv_temp.setImageBitmap(tempBitmap);*/
+
+
+
                                 LoadingProgressDialog.showBlueProgress(FaceActivity.this);
                                 //调用搜索接口
                                 postData(datas);
@@ -474,7 +476,7 @@ public class FaceActivity extends AppCompatActivity {
                         StringBuffer sb = new StringBuffer();
                         int count = 0;
                         for (FaceBean faceBean : faceBeans) {
-                            if (faceBean.getScore() > 0.6) {
+                            if (faceBean.getScore() > 0.5) {
                                 sb.append(faceBean.getPeople_id() + ",");
                                 count++;
                             }

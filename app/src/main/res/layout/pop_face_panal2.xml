@@ -72,7 +72,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp">
+                        android:paddingLeft="16dp"
+                        android:paddingTop="16dp">
                         <ImageView
                             android:id="@+id/iv_detail_header"
                             android:layout_width="60dp"
@@ -92,7 +93,6 @@
                     <View
                         style="@style/SplitLineStyle"
                         android:layout_margin="16dp"
-                        android:layout_marginRight="16dp"
                         />
 
                     <RelativeLayout
@@ -118,6 +118,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -148,6 +149,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -178,6 +180,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -208,6 +211,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -238,6 +242,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -269,6 +274,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -301,6 +307,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -362,6 +369,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -392,6 +400,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 
@@ -422,6 +431,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:textSize="20sp"
                             android:layout_marginLeft="20dp"/>
 

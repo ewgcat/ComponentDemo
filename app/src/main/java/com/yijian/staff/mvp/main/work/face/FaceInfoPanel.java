@@ -200,7 +200,7 @@ public class FaceInfoPanel extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(faceDetail.getImgHeader(), context, iv_header);
+                ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 tv_expirationDate.setText(faceDetail.getExpirationDate());

@@ -45,6 +45,7 @@ import com.yijian.staff.mvp.main.work.face.FaceBean;
 import com.yijian.staff.mvp.main.work.face.FaceDetail;
 import com.yijian.staff.mvp.main.work.face.FaceInfoPanel;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.LoadingProgressDialog;
 
@@ -54,7 +55,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.fotoapparat.FotoapparatSwitcher;
@@ -381,7 +384,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             }
                         }
                         if (count > 0) {
-                            getMemberDatas(sb.toString().substring(0, sb.toString().length()));
+                            getMemberDatas(sb.toString().substring(0, sb.toString().length()-1));
                             return;
                         }
                         Message msg = mHandler.obtainMessage();
@@ -409,56 +412,30 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
      * 获取会员用户信息
      */
     public void getMemberDatas(String ids) {
-        OkHttpClient client = new OkHttpClient();
-        FormBody.Builder formBody = new FormBody.Builder();
-//        formBody.add("memberIds", "09b871dc38ba4e57b97782fb30d70517");
-        formBody.add("memberIds", ids);
 
-        Request request = new Request.Builder()
-                .url("http://bweb.dev.ejoyst.com/member/menberShowInfo")
-                .post(formBody.build())
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-
+        Map<String,String> param = new HashMap<>();
+        param.put("memberIds",ids);
+        HttpManager.postNoHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("Test", e.getMessage());
+            public void onSuccess(JSONArray result) {
+                if (result.length() > 0) {
+                    List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), FaceDetail.class);
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = USER_GET_VIP_INFO_SUCCESS;
+                    msg.obj = faceDetails;
+                    mHandler.sendMessage(msg);
+                    return;
+                }
+                Message msg = mHandler.obtainMessage();
+                msg.what = USER_GET_VIP_INFO_NO;
+                mHandler.sendMessage(msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                //响应消息体
-                String content = response.body().string();
-                Log.e("Test", content);
-                try {
-                    JSONObject jsonObject = new JSONObject(content);
-                    int code = jsonObject.getInt("code");
-                    if (code == 0) {
-                        JSONArray jsonArray = jsonObject.getJSONArray("data");
-                        if (jsonArray.length() > 0) {
-                            List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(), FaceDetail.class);
-                            Message msg = mHandler.obtainMessage();
-                            msg.what = USER_GET_VIP_INFO_SUCCESS;
-                            msg.obj = faceDetails;
-                            mHandler.sendMessage(msg);
-                            return;
-                        }
-                        Message msg = mHandler.obtainMessage();
-                        msg.what = USER_GET_VIP_INFO_NO;
-                        mHandler.sendMessage(msg);
-                    } else {
-                        Message msg = mHandler.obtainMessage();
-                        msg.what = USER_GET_VIP_INFO_FAIL;
-                        mHandler.sendMessage(msg);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = USER_GET_VIP_INFO_EXCEPTION;
-                    mHandler.sendMessage(msg);
-                }
-
-
+            public void onFail(String msg) {
+                Message msgHandle = mHandler.obtainMessage();
+                msgHandle.what = USER_GET_VIP_INFO_FAIL;
+                mHandler.sendMessage(msgHandle);
             }
         });
 
@@ -470,7 +447,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private final int USER_TEST_FACE_EXCEPTION = 3;//识别异常
     private final int USER_GET_VIP_INFO_NO = 4;//没有获取到对应会员数据
     private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
-    private final int USER_GET_VIP_INFO_EXCEPTION = 6;//获取对应会员数据异常
     private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
 
     Handler mHandler = new Handler() {
@@ -504,11 +480,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
                 case USER_GET_VIP_INFO_FAIL:
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
-                    btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    break;
-                case USER_GET_VIP_INFO_EXCEPTION:
-                    Toast.makeText(FaceDetectorActivity.this, "获取对应会员数据异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     mCamera.startPreview();
                     break;

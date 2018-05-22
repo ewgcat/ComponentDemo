@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
+            android:ellipsize="end"
             android:layout_toRightOf="@id/iv_header"
             android:text="刘葛岩"
             android:textColor="#333333"

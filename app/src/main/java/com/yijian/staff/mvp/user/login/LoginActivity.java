@@ -116,12 +116,12 @@ public class LoginActivity extends MvcBaseActivity  {
             showToast("账号和密码不能为空");
         } else {
             if (CommonUtil.isPassWordFormat(password)) {
-                showWhiteProgress();
+                showLoading();
                 LoginRequestBody loginRequest = new LoginRequestBody(account, password);
                 HttpManager.postLogin(loginRequest, new ResultJSONObjectObserver() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                        hideWhiteProgress();
+                        hideLoading();
                         User user = new User(result);
                         SharePreferenceUtil.setUserName(account);
                         SharePreferenceUtil.setUserId(user.getUserId());
@@ -134,7 +134,7 @@ public class LoginActivity extends MvcBaseActivity  {
 
                     @Override
                     public void onFail(String msg) {
-                        hideWhiteProgress();
+                        hideLoading();
                         showToast(msg);
                     }
                 });

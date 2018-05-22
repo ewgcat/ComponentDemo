@@ -10,6 +10,7 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -146,6 +147,7 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
                     break;
                 case ResponseCode.TOKEN_TIME_OUT:
                     onFail(responseBean.getMsg());
+                    ARouter.getInstance().build("/test/login").navigation();
                     break;
                 default:
                     onFail(responseBean.getMsg());

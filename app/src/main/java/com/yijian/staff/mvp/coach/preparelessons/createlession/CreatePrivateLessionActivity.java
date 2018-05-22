@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.coach.preparelessons.createlession;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyDepartView.OnDepartOprationListener {
@@ -124,18 +122,18 @@ public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyD
             contentListBeans.add(contentListBean);
         }
         privatePrepareLessonBody.setContentList(contentListBeans);
-        showBlueProgress();
+        showLoading();
         HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 showToast("创建备课成功");
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 showToast("创建备课失败");
             }
         });

@@ -109,7 +109,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
     }
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
-        showBlueProgress();
+        showLoading();
         empty_view.setVisibility(View.GONE);
         coachViperBeanList.clear();
         pageNum = 1;
@@ -152,7 +152,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
         HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishRefresh(2000, true);
 
                 coachViperBeanList.clear();
@@ -180,7 +180,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                hideBlueProgress();
+                hideLoading();
                 coachViperListAdapter.update(coachViperBeanList);
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
@@ -191,7 +191,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
     }
 
     public void loadMore() {
-        showBlueProgress();
+        showLoading();
         empty_view.setVisibility(View.GONE);
 
         HashMap<String, String> header = new HashMap<>();
@@ -230,7 +230,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
         HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -255,7 +255,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 coachViperListAdapter.update(coachViperBeanList);

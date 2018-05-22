@@ -34,7 +34,6 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implements View.OnClickListener {
@@ -128,7 +127,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         tv_huifang_type.setText(interviewType);
         llNextHuiFangTime.setOnClickListener(this);
         llNextHuiFangReason.setOnClickListener(this);
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_REASON_LIST_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -137,13 +136,13 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
                     CoachHuiFangReasonBean coachHuiFangReasonBean = new CoachHuiFangReasonBean(jsonObject);
                     coachHuiFangReasonBeanList.add(coachHuiFangReasonBean);
                 }
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }
@@ -236,12 +235,12 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
             body.setInterviewResult(result);
 
         }
-        showBlueProgress();
+        showLoading();
 
         HttpManager.postAddCoachHuiFangResult(body, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 finish();
             }
@@ -249,7 +248,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
 
             }
         });

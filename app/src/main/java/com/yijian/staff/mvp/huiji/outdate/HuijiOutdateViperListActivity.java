@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -18,10 +17,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
@@ -35,8 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 import static com.yijian.staff.net.httpmanager.HttpManager.GET_HUIJI_OUTDATE_VIPER_LIST_URL;
 
@@ -119,7 +114,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
         pageNum = 1;
         empty_view.setVisibility(View.GONE);
-        showBlueProgress();
+        showLoading();
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
@@ -128,7 +123,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishRefresh(2000, true);
                 vipOutdateInfoList.clear();
@@ -157,7 +152,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                hideBlueProgress();
+                hideLoading();
                 showToast(msg);
                 huijiOutdateViperListAdapter.notifyDataSetChanged();
                 if (vipOutdateInfoList.size() == 0) {
@@ -170,7 +165,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
     public void loadMore() {
         empty_view.setVisibility(View.GONE);
 
-        showBlueProgress();
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
@@ -178,7 +173,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -203,7 +198,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败

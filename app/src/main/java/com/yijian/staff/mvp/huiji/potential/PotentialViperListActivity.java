@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -110,7 +109,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         viperBeanList.clear();
         pageNum = 1;
         empty_view.setVisibility(View.GONE);
-        showBlueProgress();
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
@@ -118,7 +117,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishRefresh(2000, true);
                 viperBeanList.clear();
 
@@ -144,7 +143,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                hideBlueProgress();
+                hideLoading();
                 showToast(msg);
                 potentialViperListAdapter.notifyDataSetChanged();
                 if (viperBeanList.size() == 0) {
@@ -161,11 +160,11 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
@@ -189,7 +188,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 potentialViperListAdapter.notifyDataSetChanged();

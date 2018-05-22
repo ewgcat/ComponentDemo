@@ -6,14 +6,20 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.yijian.staff.widget.BlueRotateLoading
-        android:layout_width="70dp"
+    <ImageView
+        android:id="@+id/iv_loading"
         android:scaleType="fitXY"
         android:layout_gravity="center"
-        android:layout_height="70dp"
-        app:loading_speed="11"
-        app:loading_width="5dp"
-        android:id="@+id/iv_progress_dialog"
-        />
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <TextView
+        android:id="@+id/tv_loading_text"
+        android:text="加载中..."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

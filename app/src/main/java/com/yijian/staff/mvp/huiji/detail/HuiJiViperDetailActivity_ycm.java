@@ -1,14 +1,10 @@
 package com.yijian.staff.mvp.huiji.detail;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,11 +14,8 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.base.mvp.MvpBaseActivity;
-import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -32,7 +25,6 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by The_P on 2018/5/15.
@@ -86,14 +78,14 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     }
 
     private void initData() {
-        showBlueProgress();
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
                 if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
@@ -103,7 +95,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
                 Toast.makeText(HuiJiViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

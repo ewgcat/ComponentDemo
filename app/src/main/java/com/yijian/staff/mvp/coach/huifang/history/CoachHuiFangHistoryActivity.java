@@ -100,7 +100,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type",   "0");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -121,14 +121,14 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
                     }
                 }
                 huiFangHistoryAdapter.update(coachHuiFangInfoList);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }
@@ -139,7 +139,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type",  "0");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -160,7 +160,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
                     }
                 }
                 huiFangHistoryAdapter.update(coachHuiFangInfoList);
-                hideBlueProgress();
+                hideLoading();
 
             }
 
@@ -169,7 +169,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
 
             }
         });

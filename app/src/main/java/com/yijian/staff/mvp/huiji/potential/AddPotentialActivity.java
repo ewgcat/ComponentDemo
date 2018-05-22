@@ -13,7 +13,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -143,19 +141,19 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
 
         if (CommonUtil.isPhoneFormat(phone)) {
-            showBlueProgress();
+            showLoading();
             AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, useCar, fitnessGoal, sex);
             HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    hideBlueProgress();
+                    hideLoading();
                     hideKeyBoard(etPhone);
                     finish();
                 }
 
                 @Override
                 public void onFail(String msg) {
-                    hideBlueProgress();
+                    hideLoading();
                     showToast(msg);
                 }
             });
@@ -241,11 +239,11 @@ public class AddPotentialActivity extends MvcBaseActivity {
     public void downSourceFromService() {
         empty_view.setVisibility(View.GONE);
         textView.setVisibility(View.GONE);
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 try {
                     sv.setVisibility(View.VISIBLE);
                     textView.setVisibility(View.VISIBLE);
@@ -301,7 +299,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
                 Toast.makeText(AddPotentialActivity.this, msg, Toast.LENGTH_SHORT).show();
                 empty_view.setVisibility(View.VISIBLE);
                 sv.setVisibility(View.GONE);
-                hideBlueProgress();
+                hideLoading();
 
             }
         });

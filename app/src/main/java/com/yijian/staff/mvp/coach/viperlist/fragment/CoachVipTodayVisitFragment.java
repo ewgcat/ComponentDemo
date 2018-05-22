@@ -108,7 +108,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
     private void refresh(CoachViperFilterBean coachViperFilterBean) {
         coachViperBeanList.clear();
-        showBlueProgress();
+        showLoading();
         empty_view.setVisibility(View.GONE);
 
         pageNum = 1;
@@ -151,7 +151,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 refreshLayout.finishRefresh(2000, true);
                 coachViperBeanList.clear();
 
@@ -178,8 +178,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
-                showToast(msg);
+                hideLoading();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 coachViperListAdapter.update(coachViperBeanList);
                 if (coachViperBeanList.size() == 0) {
@@ -192,7 +191,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
     public void loadMore() {
         empty_view.setVisibility(View.GONE);
-        showBlueProgress();
+        showLoading();
         HashMap<String, String> header = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         header.put("token", user.getToken());
@@ -230,7 +229,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
@@ -255,10 +254,9 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
                 coachViperListAdapter.update(coachViperBeanList);
                 if (coachViperBeanList.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);

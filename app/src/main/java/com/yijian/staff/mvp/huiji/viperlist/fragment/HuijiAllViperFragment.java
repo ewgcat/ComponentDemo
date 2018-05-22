@@ -148,11 +148,11 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             }
 
         }
-        showBlueProgress();
+        showLoading();
         HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
 
                 refreshLayout.finishRefresh(2000, true);
 
@@ -180,7 +180,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                hideBlueProgress();
+                hideLoading();
                 huijiViperListAdapter.notifyDataSetChanged();
 
                 if (viperBeanList.size() == 0) {
@@ -228,11 +228,11 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             }
 
         }
-        showBlueProgress();
+        showLoading();
         HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 pages = JsonUtil.getInt(result, "pages");
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
@@ -257,7 +257,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
-                hideBlueProgress();
+                hideLoading();
 
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败

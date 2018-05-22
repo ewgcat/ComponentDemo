@@ -45,6 +45,7 @@ import com.yijian.staff.mvp.main.work.face.FaceBean;
 import com.yijian.staff.mvp.main.work.face.FaceDetail;
 import com.yijian.staff.mvp.main.work.face.FaceInfoPanel;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.LoadingProgressDialog;
 
@@ -54,7 +55,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.fotoapparat.FotoapparatSwitcher;
@@ -192,7 +195,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                 // mCamera.setPreviewCallback(null);// 防止 Method called after release()
                 if (mCamera != null) {
                     mCamera.stopPreview();
-                    // mCamera.setPreviewCallback(null);
+                     mCamera.setPreviewCallback(null);
                     mCamera.release();
                     mCamera = null;
                     holder = null;
@@ -381,7 +384,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             }
                         }
                         if (count > 0) {
-                            getMemberDatas(sb.toString().substring(0, sb.toString().length()));
+                            getMemberDatas(sb.toString().substring(0, sb.toString().length()-1));
                             return;
                         }
                         Message msg = mHandler.obtainMessage();
@@ -409,56 +412,30 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
      * 获取会员用户信息
      */
     public void getMemberDatas(String ids) {
-        OkHttpClient client = new OkHttpClient();
-        FormBody.Builder formBody = new FormBody.Builder();
-//        formBody.add("memberIds", "09b871dc38ba4e57b97782fb30d70517");
-        formBody.add("memberIds", ids);
 
-        Request request = new Request.Builder()
-                .url("http://bweb.dev.ejoyst.com/member/menberShowInfo")
-                .post(formBody.build())
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-
+        Map<String,String> param = new HashMap<>();
+        param.put("memberIds",ids);
+        HttpManager.postNoHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("Test", e.getMessage());
+            public void onSuccess(JSONArray result) {
+                if (result.length() > 0) {
+                    List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), FaceDetail.class);
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = USER_GET_VIP_INFO_SUCCESS;
+                    msg.obj = faceDetails;
+                    mHandler.sendMessage(msg);
+                    return;
+                }
+                Message msg = mHandler.obtainMessage();
+                msg.what = USER_GET_VIP_INFO_NO;
+                mHandler.sendMessage(msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                //响应消息体
-                String content = response.body().string();
-                Log.e("Test", content);
-                try {
-                    JSONObject jsonObject = new JSONObject(content);
-                    int code = jsonObject.getInt("code");
-                    if (code == 0) {
-                        JSONArray jsonArray = jsonObject.getJSONArray("data");
-                        if (jsonArray.length() > 0) {
-                            List<FaceDetail> faceDetails = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(), FaceDetail.class);
-                            Message msg = mHandler.obtainMessage();
-                            msg.what = USER_GET_VIP_INFO_SUCCESS;
-                            msg.obj = faceDetails;
-                            mHandler.sendMessage(msg);
-                            return;
-                        }
-                        Message msg = mHandler.obtainMessage();
-                        msg.what = USER_GET_VIP_INFO_NO;
-                        mHandler.sendMessage(msg);
-                    } else {
-                        Message msg = mHandler.obtainMessage();
-                        msg.what = USER_GET_VIP_INFO_FAIL;
-                        mHandler.sendMessage(msg);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = USER_GET_VIP_INFO_EXCEPTION;
-                    mHandler.sendMessage(msg);
-                }
-
-
+            public void onFail(String msg) {
+                Message msgHandle = mHandler.obtainMessage();
+                msgHandle.what = USER_GET_VIP_INFO_FAIL;
+                mHandler.sendMessage(msgHandle);
             }
         });
 
@@ -470,7 +447,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private final int USER_TEST_FACE_EXCEPTION = 3;//识别异常
     private final int USER_GET_VIP_INFO_NO = 4;//没有获取到对应会员数据
     private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
-    private final int USER_GET_VIP_INFO_EXCEPTION = 6;//获取对应会员数据异常
     private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
 
     Handler mHandler = new Handler() {
@@ -504,11 +480,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
                 case USER_GET_VIP_INFO_FAIL:
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
-                    btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    break;
-                case USER_GET_VIP_INFO_EXCEPTION:
-                    Toast.makeText(FaceDetectorActivity.this, "获取对应会员数据异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     mCamera.startPreview();
                     break;
@@ -569,10 +540,72 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     }*/
 
 
+    //上次记录的时间戳
+    long lastRecordTime = System.currentTimeMillis();
+
+    //上次记录的索引
+    int darkIndex = 0;
+    //一个历史记录的数组，255是代表亮度最大值
+    long[] darkList = new long[]{255, 255, 255, 255};
+    //扫描间隔
+    int waitScanTime = 300;
+
+    //亮度低的阀值
+    int darkValue = 60;
+
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
 //        Log.e("Test","onPreview....."+data.length);
 //        setCameraDisplayOrientation(this, Camera.CameraInfo.CAMERA_FACING_BACK,camera);
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastRecordTime < waitScanTime) {
+            return;
+        }
+        lastRecordTime = currentTime;
+
+        int width = camera.getParameters().getPreviewSize().width;
+        int height = camera.getParameters().getPreviewSize().height;
+        //像素点的总亮度
+        long pixelLightCount = 0L;
+        //像素点的总数
+        long pixeCount = width * height;
+        //采集步长，因为没有必要每个像素点都采集，可以跨一段采集一个，减少计算负担，必须大于等于1。
+        int step = 10;
+        //data.length - allCount * 1.5f的目的是判断图像格式是不是YUV420格式，只有是这种格式才相等
+        //因为int整形与float浮点直接比较会出问题，所以这么比
+        if (Math.abs(data.length - pixeCount * 1.5f) < 0.00001f) {
+            for (int i = 0; i < pixeCount; i += step) {
+                //如果直接加是不行的，因为data[i]记录的是色值并不是数值，byte的范围是+127到—128，
+                // 而亮度FFFFFF是11111111是-127，所以这里需要先转为无符号unsigned long参考Byte.toUnsignedLong()
+                pixelLightCount += ((long) data[i]) & 0xffL;
+            }
+            //平均亮度
+            long cameraLight = pixelLightCount / (pixeCount / step);
+            //更新历史记录
+            int lightSize = darkList.length;
+            darkList[darkIndex = darkIndex % lightSize] = cameraLight;
+            darkIndex++;
+            boolean isDarkEnv = true;
+            //判断在时间范围waitScanTime * lightSize内是不是亮度过暗
+            for (int i = 0; i < lightSize; i++) {
+                if (darkList[i] > darkValue) {
+                    isDarkEnv = false;
+                }
+            }
+            Log.e(TAG, "摄像头环境亮度为 ： " + cameraLight);
+            if (!isFinishing()) {
+                //亮度过暗就提醒
+                if (isDarkEnv) {
+                    Log.e(TAG,"亮度还行");
+                } else {
+                    Log.e(TAG,"亮度过低");
+                }
+            }
+        }
+
+
+
     }
 
     /**
@@ -696,8 +729,8 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         if (mCamera != null) {
             mCamera.setPreviewCallback(null);
             mCamera.stopPreview();
@@ -707,19 +740,12 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (mCamera != null) {
-            mCamera.stopPreview();
-        }
-    }
-
-    @Override
     protected void onRestart() {
         super.onRestart();
         if (mCamera != null) {
             mCamera.setPreviewCallback(this);
             mCamera.startPreview();
+            startFaceDetection();
         }
     }
 }

@@ -127,7 +127,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -148,13 +148,13 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
                     }
                 }
                 coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }
@@ -165,7 +165,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -185,7 +185,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
                     }
                 }
                 coachHuiFangTaskAdapter.update(coachHuiFangInfoList);
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
@@ -193,7 +193,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-                hideBlueProgress();
+                hideLoading();
             }
         });
     }

@@ -41,39 +41,49 @@ import java.util.logging.Handler;
 
 public class FaceInfoPanel2 extends PopupWindow {
 
-    private void setTranslucentStatus(Activity activity) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
-            Window window = activity.getWindow();
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        } else {//4.4 全透明状态栏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-    }
-
-
+    private View mMenuView;
     private ScrollView scrollview;
     private RecyclerView rv_face;
+    private Context context;
+    private List<FaceDetail> faceDetails;
+
+    private ImageView iv_detail_header; //头像
+    private TextView tv_detail_name; //会员名称
+    private TextView tv_detail_cardname; //卡名称
+    private TextView tv_detail_birthday; //生日
+    private TextView tv_detail_age; //年龄
+    private TextView tv_detail_huiji; //会籍
+    private TextView tv_detail_kayouxiaoqi; //卡有效期
+    private TextView tv_detail_coach; //教练
+    private TextView tv_detail_progress; //课程进度
+    private TextView tv_detail_biuld_time; //上一次健身的时间
+    private TextView tv_detail_has_child; //有无小孩
+    private TextView tv_detail_build_num; //健身次数
+    private RelativeLayout rel_coach; //教练
+    private RelativeLayout rel_course_progress; //课程进度
+    private RelativeLayout rel_record_build_time; //上次健身时间
+
+
 
     public FaceInfoPanel2(final Context context, List<FaceDetail> faceDetails) {
         super(context);
+        this.context = context;
+        this.faceDetails = faceDetails;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View mMenuView = inflater.inflate(R.layout.pop_face_panal2, null);
+        mMenuView = inflater.inflate(R.layout.pop_face_panal2, null);
         this.setContentView(mMenuView);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         setClippingEnabled(false);
+        initView();
+        this.setFocusable(true);
+        this.setOutsideTouchable(false);
+        ColorDrawable dw = new ColorDrawable(0xb0000000);
+        this.setBackgroundDrawable(dw);
+    }
 
-        /*setTranslucentStatus((Activity)context);
-        int statusBarHeight = CommonUtil.getStatusBarHeight(context);
-        RelativeLayout rel_header = mMenuView.findViewById(R.id.rel_header);
-        RelativeLayout.LayoutParams rel_top_lp = (RelativeLayout.LayoutParams) rel_header.getLayoutParams();
-        rel_top_lp.setMargins(0, statusBarHeight, 0, 0);
-        rel_header.setLayoutParams(rel_top_lp);*/
-
+    private void initView(){
         mMenuView.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +101,42 @@ public class FaceInfoPanel2 extends PopupWindow {
         rv_face.setAdapter(new FaceAdapter(faceDetails));
 
         scrollview = mMenuView.findViewById(R.id.scrollview);
-
-        this.setFocusable(true);
-        this.setOutsideTouchable(false);
-        ColorDrawable dw = new ColorDrawable(0xb0000000);
-        this.setBackgroundDrawable(dw);
+        iv_detail_header = mMenuView.findViewById(R.id.iv_detail_header);
+        tv_detail_name = mMenuView.findViewById(R.id.tv_detail_name);
+        tv_detail_cardname = mMenuView.findViewById(R.id.tv_detail_cardname);
+        tv_detail_birthday = mMenuView.findViewById(R.id.tv_detail_birthday);
+        tv_detail_age = mMenuView.findViewById(R.id.tv_detail_age);
+        tv_detail_huiji = mMenuView.findViewById(R.id.tv_detail_huiji);
+        tv_detail_kayouxiaoqi = mMenuView.findViewById(R.id.tv_detail_kayouxiaoqi);
+        tv_detail_coach = mMenuView.findViewById(R.id.tv_detail_coach);
+        tv_detail_progress = mMenuView.findViewById(R.id.tv_detail_progress);
+        tv_detail_biuld_time = mMenuView.findViewById(R.id.tv_detail_biuld_time);
+        tv_detail_has_child = mMenuView.findViewById(R.id.tv_detail_has_child);
+        tv_detail_build_num = mMenuView.findViewById(R.id.tv_detail_build_num);
+        rel_coach = mMenuView.findViewById(R.id.rel_coach);
+        rel_course_progress = mMenuView.findViewById(R.id.rel_course_progress);
+        rel_record_build_time = mMenuView.findViewById(R.id.rel_record_build_time);
     }
 
+    private void updateUi(FaceDetail faceDetail){
+        ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_detail_header);
+        tv_detail_name.setText(faceDetail.getMemberName());
+        tv_detail_cardname.setText(faceDetail.getCardName());
+        tv_detail_birthday.setText(faceDetail.getBirthDate());
+        tv_detail_age.setText(faceDetail.getAge());
+        tv_detail_huiji.setText(faceDetail.getSellerName());
+        tv_detail_kayouxiaoqi.setText(faceDetail.getExpirationDate());
+        tv_detail_coach.setText(faceDetail.getCoachName());
+
+        tv_detail_progress.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
+        tv_detail_biuld_time.setText(faceDetail.getBEntranceRecord());
+        tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum())>0?"有":"无");
+        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()+"次"));
+        rel_coach.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
+        rel_course_progress.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
+        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
+
+    }
 
     class FaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -146,16 +185,17 @@ public class FaceInfoPanel2 extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(faceDetail.getImgHeader(), context, iv_header);
+                ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 tv_expirationDate.setText(faceDetail.getExpirationDate());
-                tv_courseNameNum.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
+                tv_courseNameNum.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         scrollview.setVisibility(View.VISIBLE);
                         rv_face.setVisibility(View.GONE);
+                        updateUi(faceDetail);
                     }
                 });
             }

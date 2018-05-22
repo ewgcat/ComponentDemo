@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.coach.preparelessons;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TempBean;
@@ -31,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PrepareLessonsActivity extends MvcBaseActivity {
@@ -101,20 +98,20 @@ public class PrepareLessonsActivity extends MvcBaseActivity {
     }
 
     private void loadData() {
-        showBlueProgress();
+        showLoading();
         HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
                 tempBeans = com.alibaba.fastjson.JSONObject.parseArray(result.toString(), TempBean.class);
                 templeAdater.notifyDataSetChanged();
                 tv_template.setText("/" + tempBeans.size());
-                hideBlueProgress();
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
                 showToast(msg);
-                hideBlueProgress();
+                hideLoading();
 
             }
 

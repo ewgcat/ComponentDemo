@@ -1,11 +1,9 @@
 package com.yijian.staff.mvp.coach.preparelessons.createlession;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class PrepareLessonDetailActivity extends MvcBaseActivity {
 
@@ -85,11 +82,11 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
             contentListBeans.add(contentListBean);
         }
         privatePrepareLessonBody.setContentList(contentListBeans);
-        showBlueProgress();
+        showLoading();
         HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                hideBlueProgress();
+                hideLoading();
                 showToast("绑定模板成功");
                 finish();
             }
@@ -97,7 +94,7 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 showToast("绑定模板失败");
-                hideBlueProgress();
+                hideLoading();
             }
         });
 

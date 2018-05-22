@@ -404,18 +404,16 @@
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
+
         <TextView
             android:id="@+id/tv_canjia_clubName"
-            android:layout_width="wrap_content"
-            android:maxWidth="180dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:inputType="textMultiLine"
-            tools:text="斯爱上飞洒发生发射点发啊沙发沙发"
-            android:gravity="start"
+            android:gravity="center_vertical|right"
+            android:singleLine="false"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
-
     </RelativeLayout>
 
     <RelativeLayout

@@ -409,7 +409,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
+                android:maxWidth="180dp"
+                android:inputType="textMultiLine"
+                tools:text="阿什拉夫酒啊就发觉啊手动阀啊沙发上"
+                android:gravity="start"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp" />
 

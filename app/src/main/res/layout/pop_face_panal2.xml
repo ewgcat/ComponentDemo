@@ -246,6 +246,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/rel_coach"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:orientation="horizontal"
@@ -277,6 +278,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/rel_course_progress"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:orientation="horizontal"
@@ -306,7 +308,7 @@
                     </RelativeLayout>
 
 
-                    <RelativeLayout
+                    <!--<RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:orientation="horizontal"
@@ -333,10 +335,11 @@
                             android:layout_marginLeft="20dp"/>
 
 
-                    </RelativeLayout>
+                    </RelativeLayout>-->
 
 
                     <RelativeLayout
+                        android:id="@+id/rel_record_build_time"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:orientation="horizontal"

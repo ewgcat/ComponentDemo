@@ -66,6 +66,10 @@ android {
             buildConfigField "String", "HOST", "\"$dev_host\""
             buildConfigField "String", "FILE_HOST", "\"$dev_file_host\""
         }
+        prod {
+            buildConfigField "String", "HOST", "\"$prod_host\""
+            buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
+        }
         sittest {
             buildConfigField "String", "HOST", "\"$test_host\""
             buildConfigField "String", "FILE_HOST", "\"$test_file_host\""
@@ -75,7 +79,7 @@ android {
     variantFilter { variant ->
         if (variant.buildType.name.equals('release')) {
             variant.flavors.each { flavor ->
-                if (!flavor.name.equals("dev")) {
+                if (!flavor.name.equals("prod")) {
                     variant.setIgnore(true);
                 }
             }

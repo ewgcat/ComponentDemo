@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.tencent.bugly.beta.Beta;
 import com.yijian.staff.widget.LoadingDialog;
 import com.yijian.staff.widget.WhiteLoadingDialog;
 
@@ -58,6 +59,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mContext = this;
         initView(savedInstanceState);
+        Beta.checkUpgrade();
     }
 
     protected abstract int getLayoutID();

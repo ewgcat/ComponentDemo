@@ -17,10 +17,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="15dp">
 
-        <View
-            android:layout_width="7dp"
-            android:layout_height="16dp"
-            android:background="#31a4fc" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -404,12 +401,14 @@
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
+
         <TextView
             android:id="@+id/tv_canjia_clubName"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|right"
+            android:singleLine="false"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 

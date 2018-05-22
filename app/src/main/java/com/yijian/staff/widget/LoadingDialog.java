@@ -2,8 +2,6 @@ package com.yijian.staff.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +31,7 @@ public class LoadingDialog extends Dialog {
     public LoadingDialog(Activity activity) {
         super(activity, R.style.Transparent);
         setOwnerActivity(activity);
-        contentView = LayoutInflater.from(activity).inflate(R.layout.view_blue_rotate_loading, null);
+        contentView = LayoutInflater.from(activity).inflate(R.layout.view_loading, null);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         contentView.setLayoutParams(params);

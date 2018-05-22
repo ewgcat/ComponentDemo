@@ -136,6 +136,41 @@ public class RetrofitClient {
             "WJsggXVRNHNqywSPhjGST8Cd6wxrXDemzQpCsthRdl2eikQuMlt4teQ=\n" +
             "-----END CERTIFICATE-----";
 
+//    生产
+  public static String zs_4 = "-----BEGIN CERTIFICATE-----\n" +
+          "MIIFiTCCBHGgAwIBAgIQDvzTJ+7/SLVOrF8RjrcZ2jANBgkqhkiG9w0BAQsFADBu\n" +
+          "MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n" +
+          "d3cuZGlnaWNlcnQuY29tMS0wKwYDVQQDEyRFbmNyeXB0aW9uIEV2ZXJ5d2hlcmUg\n" +
+          "RFYgVExTIENBIC0gRzEwHhcNMTgwNTIxMDAwMDAwWhcNMTkwNTIxMTIwMDAwWjAa\n" +
+          "MRgwFgYDVQQDEw9id2ViLmVqb3lzdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB\n" +
+          "DwAwggEKAoIBAQDIfDCwQTPe2g6qihzcv7BEphc7xcYErCNtEWZomQcMJDhirmaq\n" +
+          "SWavl3TpMBUygrG9BpxtBADZIBRAISSOXcB6b7vF1KitrGgw1Vn1iQwFUKFtnoEw\n" +
+          "enggpkPmPPjUCnfsrqBP9bzDVH2dTgLGx23vn+TvkjVkSJZHsdPQpX20tDmGXGtN\n" +
+          "Ey0pedPwB50FNcB/sy8cWT8SttflEoI7PsnOuwsq4VsKpvCPsbJcVAFI5SPdc6Ls\n" +
+          "hRghGiJZvycamVFzVNrDCrKaDr9GCb9j5KJ3neREMbXTCkrwiGbhVQhtupSJd4M8\n" +
+          "biP32Jr7aKZUTMeF/+7t6p6OfC5U2nHSc41tAgMBAAGjggJ1MIICcTAfBgNVHSME\n" +
+          "GDAWgBRVdE+yck/1YLpQ0dfmUVyaAYca1zAdBgNVHQ4EFgQUoEAOY65x7sBgpWlm\n" +
+          "6X4W+uAy05MwGgYDVR0RBBMwEYIPYndlYi5lam95c3QuY29tMA4GA1UdDwEB/wQE\n" +
+          "AwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwTAYDVR0gBEUwQzA3\n" +
+          "BglghkgBhv1sAQIwKjAoBggrBgEFBQcCARYcaHR0cHM6Ly93d3cuZGlnaWNlcnQu\n" +
+          "Y29tL0NQUzAIBgZngQwBAgEwgYEGCCsGAQUFBwEBBHUwczAlBggrBgEFBQcwAYYZ\n" +
+          "aHR0cDovL29jc3AyLmRpZ2ljZXJ0LmNvbTBKBggrBgEFBQcwAoY+aHR0cDovL2Nh\n" +
+          "Y2VydHMuZGlnaWNlcnQuY29tL0VuY3J5cHRpb25FdmVyeXdoZXJlRFZUTFNDQS1H\n" +
+          "MS5jcnQwCQYDVR0TBAIwADCCAQUGCisGAQQB1nkCBAIEgfYEgfMA8QB2AKS5CZC0\n" +
+          "GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQAAABY4KAiuMAAAQDAEcwRQIhANrn\n" +
+          "Rn2U947rwPLFaPumCB926mysOYmeWn7+WkcNjfY6AiBJOms9pePz5NEo7EktdzA7\n" +
+          "SJZN1yS3Uak2MgYDJFfI8AB3AG9Tdqwx8DEZ2JkApFEV/3cVHBHZAsEAKQaNsgia\n" +
+          "N9kTAAABY4KAjBkAAAQDAEgwRgIhAMoQfNMzgH/Fs0ilJjZBNHuNTdOKk5SLigZS\n" +
+          "ZrChHY4AAiEA/0EAhrA0ZCABi63OMO+ymj2VovfNTeLcibFWJJgZIbkwDQYJKoZI\n" +
+          "hvcNAQELBQADggEBAId9bbu4nxxfycCWgynbyBl25SCcCdrN7J4mxnJzmj9f2kqC\n" +
+          "oePjZ03jmf//Xk8zcwsZOyCSdKuA5O8Ryq+dNl3ytWDaHdE9fZtHlX6vg7EWQ6fA\n" +
+          "7rpi86ZlLzmeMZDir0QaHq3gPzxFME5RO9zta2hZBT6nFhw2Tr/MTUeBO7z6bQhL\n" +
+          "vJEmCxfpwV/vBT7BbEwflIWotG3G88xDa5jQQQOtQ5Z9c+rzbLv98IVwCb41vR8B\n" +
+          "6UrsJQKbnMq2IrF1BYn020GHkMYY2RE/ON5SgbmudFJWCsGIPYHSiQHCM04u/oKS\n" +
+          "zPtYlBig+b+yTqI8WtvpoCpy4eku9RSZFJ8jhN8=\n" +
+          "-----END CERTIFICATE-----";
+
+
 
     //初始化一般请求客户端
     public static Retrofit init(Context context) {
@@ -158,6 +193,7 @@ public class RetrofitClient {
                     new Buffer().writeUtf8(zs_1).inputStream()
                     , new Buffer().writeUtf8(zs_2).inputStream()
                     ,new Buffer().writeUtf8(zs_3).inputStream()
+                    ,new Buffer().writeUtf8(zs_4).inputStream()
 
                     )
             );

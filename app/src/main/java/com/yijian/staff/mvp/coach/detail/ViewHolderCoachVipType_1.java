@@ -54,6 +54,8 @@ public class ViewHolderCoachVipType_1 extends ViewHolderCoachVipper {
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
+        tvSex.setText(judgeNull(vipDetailBean.getSex()));
+        tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
 
         long birthday = vipDetailBean.getBirthday();
         if (birthday!=0){

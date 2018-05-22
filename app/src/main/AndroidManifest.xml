@@ -592,6 +592,8 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".mvp.main.work.face.FaceActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".mvp.main.work.face2.FaceDetectorActivity"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

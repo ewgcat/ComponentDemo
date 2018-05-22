@@ -14,6 +14,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.main.work.face.FaceActivity;
+import com.yijian.staff.mvp.main.work.face2.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.MenuHelper;
@@ -152,7 +153,8 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 
 //                break;
             case R.id.iv_face:
-                startActivity(new Intent(getActivity(), FaceActivity.class));
+//                startActivity(new Intent(getActivity(), FaceActivity.class));
+                startActivity(new Intent(getActivity(), FaceDetectorActivity.class));
                 break;
         }
     }

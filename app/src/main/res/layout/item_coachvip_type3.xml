@@ -412,7 +412,7 @@
             android:layout_alignParentRight="true"
             android:inputType="textMultiLine"
             tools:text="斯爱上飞洒发生发射点发啊沙发沙发"
-            android:gravity="start"
+            android:gravity="right"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
@@ -657,7 +657,7 @@
 
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="start"
+            android:gravity="right"
             android:singleLine="false"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
@@ -686,7 +686,7 @@
             android:maxWidth="180dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="start"
+            android:gravity="right"
             android:singleLine="false"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />

@@ -17,10 +17,6 @@
             android:paddingLeft="20dp"
             android:paddingTop="15dp">
 
-            <View
-                android:layout_width="7dp"
-                android:layout_height="16dp"
-                android:background="#31a4fc" />
 
             <TextView
                 android:layout_width="wrap_content"

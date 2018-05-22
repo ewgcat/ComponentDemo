@@ -44,7 +44,7 @@ ext {
     versionName = "2.0.0"
     supportLibVersion = "27.0.2"
     designVersion = "27.0.2"
-    dbVersion = 2
+    dbVersion = 3
 
 }
 

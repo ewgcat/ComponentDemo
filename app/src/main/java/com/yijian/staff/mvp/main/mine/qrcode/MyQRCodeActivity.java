@@ -76,21 +76,8 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             tvName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
             role = user.getRole();
-            if (role == 1) {
-                tvRole.setText("会籍客服");
-            } else if (user.getRole() == 2) {
-                tvRole.setText("教练");
-            } else if (user.getRole() == 3) {
-                tvRole.setText("会籍总监");
-            } else if (user.getRole() == 4) {
-                tvRole.setText("教练总监");
-            } else if (user.getRole() == 5) {
-                tvRole.setText("店长");
-            }else if (user.getRole() == 6) {
-                tvRole.setText("会籍经理");
-            }else if (user.getRole() == 7) {
-                tvRole.setText("教练经理");
-            }
+            tvRole.setText(user.getPostName());
+
             ImageLoader.setImageResource(user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();
             int sexId;
@@ -114,9 +101,9 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             public void onSuccess(JSONObject result) {
                 String url = JsonUtil.getString(result, "url");
                 String id;
-                if (role==2||role==4||role==7){
-                     id = url + "?action=1&coachId=" +user.getUserId() +"&shopId="+user.getShopId();
-                }else {
+                if (role == 2 || role == 4 || role == 7) {
+                    id = url + "?action=1&coachId=" + user.getUserId() + "&shopId=" + user.getShopId();
+                } else {
                     id = url;
                 }
                 Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);

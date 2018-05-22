@@ -71,23 +71,10 @@ public class MineFragment extends Fragment {
         if (user != null) {
             tvUserName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5店长 6会籍经理 7教练经理
-            if (user.getRole() == 1) {
-                tvUserJobPostion.setText("会籍客服");
-            } else if (user.getRole() == 2) {
-                tvUserJobPostion.setText("教练");
-            } else if (user.getRole() == 3) {
-                tvUserJobPostion.setText("会籍总监");
-            } else if (user.getRole() == 4) {
-                tvUserJobPostion.setText("教练总监");
-            } else if (user.getRole() == 5) {
-                tvUserJobPostion.setText("店长");
-            }else if (user.getRole() == 6) {
-                tvUserJobPostion.setText("会籍经理");
-            }else if (user.getRole() == 7) {
-                tvUserJobPostion.setText("教练经理");
-            }
+            tvUserJobPostion.setText(user.getPostName());
 
-                setImageResource(user.getHeadImg(), ivUserHead);
+
+            setImageResource(user.getHeadImg(), ivUserHead);
         }
         return view;
     }
@@ -116,7 +103,7 @@ public class MineFragment extends Fragment {
                 if (user == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
                 }
                 break;
@@ -156,7 +143,7 @@ public class MineFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1234 ) {
+        if (resultCode == 1234) {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             getActivity().finish();

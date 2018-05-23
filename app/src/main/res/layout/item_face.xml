@@ -11,8 +11,9 @@
 
         <ImageView
             android:id="@+id/iv_header"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
             android:src="@mipmap/placeholder" />

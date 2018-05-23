@@ -103,13 +103,12 @@ public class WeekFragment_ycm extends Fragment  {
         adapter.setICourseListener(new AdapterWeekFragment.ICourseListener() {
             @Override
             public void onClick(DayTask.CoursesBean courseInfo) {
-                Toast.makeText(getContext(),""+courseInfo.toString(),Toast.LENGTH_SHORT).show();
                 int punchStatus = courseInfo.getPunchStatus();
                 if(punchStatus == 0 || punchStatus == 1){
                     Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
                     intent.putExtra("startDate",courseInfo.getStartDate());
-                    intent.putExtra("startDateTime",courseInfo.getStartDatetime());
-                    intent.putExtra("endDateTime",courseInfo.getEndDatetime());
+                    intent.putExtra("startTimeActual",courseInfo.getStartTimeActual());
+                    intent.putExtra("endTimeActual",courseInfo.getEndTimeActual());
                     intent.putExtra("punchStatus",courseInfo.getPunchStatus());
                     startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                 }
@@ -216,13 +215,13 @@ public class WeekFragment_ycm extends Fragment  {
 
     }
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ORDER_REFRESH_REQUESTCODE) {
             initDayCanlendarInfoList();
         }
     }
-
+*/
 
 }

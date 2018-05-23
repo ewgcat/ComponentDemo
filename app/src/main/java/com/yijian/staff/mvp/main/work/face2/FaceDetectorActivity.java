@@ -287,6 +287,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                         if (faces.length > 0) {
                             Log.e("Test", "taking()....." + data.length);
                             mCamera.stopPreview();
+                            facesView.removeRect();
                             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                             Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -677,7 +678,11 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         // start face detection only *after* preview has started
         if (params.getMaxNumDetectedFaces() > 0) {
             // mCamera supports face detection, so can start it:
+            try{
             mCamera.startFaceDetection();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         } else {
             Log.e("tag", "【FaceDetectorActivity】类的方法：【startFaceDetection】: " + "不支持");
         }

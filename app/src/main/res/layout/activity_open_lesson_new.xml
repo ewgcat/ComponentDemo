@@ -121,7 +121,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/tv_shangke_label"
-                    android:text="09:00:07"
+                    android:text=""
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 
@@ -154,7 +154,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/tv_xiake_label"
-                    android:text="12:30:07"
+                    android:text=""
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 

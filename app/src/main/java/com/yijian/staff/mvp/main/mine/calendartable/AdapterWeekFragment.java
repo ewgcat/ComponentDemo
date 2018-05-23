@@ -229,7 +229,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             }*/
 
 
-            textView.setBackgroundResource(R.color.textColor9acac4);
+            textView.setBackgroundResource(R.color.textColorde947d);
 
             textView.setTextColor(context.getResources().getColor(R.color.white));
             textView.setText("" + courseInfo.getLessonName());

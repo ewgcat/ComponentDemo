@@ -144,8 +144,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                     if(punchStatus == 0 || punchStatus == 1){
                         Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
                         intent.putExtra("startDate",dayCanlendarInfo.getStartDate());
-                        intent.putExtra("startDateTime",dayCanlendarInfo.getStartDatetime());
-                        intent.putExtra("endDateTime",dayCanlendarInfo.getEndDatetime());
+                        intent.putExtra("startTimeActual",dayCanlendarInfo.getStartTimeActual());
+                        intent.putExtra("endTimeActual",dayCanlendarInfo.getEndTimeActual());
                         intent.putExtra("punchStatus",dayCanlendarInfo.getPunchStatus());
                         intent.putExtra("privateApplyId",dayCanlendarInfo.getId());
                         fragment.startActivityForResult(intent,ORDER_REFRESH_REQUESTCODE);

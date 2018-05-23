@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.RelativeLayout;
@@ -69,7 +70,6 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     public int getPunchStatus() {
         return punchStatus;
     }
-
 
 
     @Override
@@ -189,11 +189,16 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         chronometer.start();
         tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
 
-        String startTime = getIntent().getStringExtra("startDateTime");
-        String endTime = getIntent().getStringExtra("endDateTime");
+        String startTime = getIntent().getStringExtra("startTimeActual");
+        String endTime = getIntent().getStringExtra("endTimeActual");
         startDate = getIntent().getStringExtra("startDate");
-        tv_shangke.setText(CommonUtil.emptyIfNull(startDate)+" "+CommonUtil.emptyIfNull(startTime));
-        tv_xiake.setText(CommonUtil.emptyIfNull(startDate)+" "+CommonUtil.emptyIfNull(endTime));
+        if (TextUtils.isEmpty(startTime)) {
+            tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(startTime));
+        }
+
+        if (TextUtils.isEmpty(startTime)) {
+            tv_xiake.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(endTime));
+        }
 
 
         punchStatus = getIntent().getIntExtra("punchStatus", -1);
@@ -241,8 +246,8 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
 //                SaveDataDialog saveDataDialog = new SaveDataDialog(this);
 //                saveDataDialog.showSaveDialog();
                 Intent intent = getIntent();
-                intent.putExtra("date",startDate);
-                setResult(ORDER_REFRESH_REQUESTCODE,intent);
+                intent.putExtra("date", startDate);
+                setResult(ORDER_REFRESH_REQUESTCODE, intent);
                 finish();
                 break;
             case R.id.rel_punch_card: //打卡

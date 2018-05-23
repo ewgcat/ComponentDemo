@@ -71,8 +71,8 @@ public class DayTask {
         private String startDatetime;
         private String endDatetime;
         private String startDate;
-        private Object startTimeActual;
-        private Object endTimeActual;
+        private String startTimeActual;
+        private String endTimeActual;
         private int punchStatus;
         private int isPrepare;
         private String memberName;
@@ -163,19 +163,19 @@ public class DayTask {
             this.startDate = startDate;
         }
 
-        public Object getStartTimeActual() {
+        public String getStartTimeActual() {
             return startTimeActual;
         }
 
-        public void setStartTimeActual(Object startTimeActual) {
+        public void setStartTimeActual(String startTimeActual) {
             this.startTimeActual = startTimeActual;
         }
 
-        public Object getEndTimeActual() {
+        public String getEndTimeActual() {
             return endTimeActual;
         }
 
-        public void setEndTimeActual(Object endTimeActual) {
+        public void setEndTimeActual(String endTimeActual) {
             this.endTimeActual = endTimeActual;
         }
 

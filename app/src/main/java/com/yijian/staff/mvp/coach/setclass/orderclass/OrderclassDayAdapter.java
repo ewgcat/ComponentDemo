@@ -134,8 +134,8 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                     if(punchStatus == 0 || punchStatus == 1){
                         Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
                         intent.putExtra("startDate",orderClassDayBean.getStartDate());
-                        intent.putExtra("startDateTime",orderClassDayBean.getStartDatetime());
-                        intent.putExtra("endDateTime",orderClassDayBean.getEndDatetime());
+                        intent.putExtra("startTimeActual",orderClassDayBean.getStartTimeActual());
+                        intent.putExtra("endTimeActual",orderClassDayBean.getEndTimeActual());
                         intent.putExtra("punchStatus",orderClassDayBean.getPunchStatus());
                         intent.putExtra("privateApplyId",orderClassDayBean.getId());
                         fragment.startActivityForResult(intent,ORDER_REFRESH_REQUESTCODE);

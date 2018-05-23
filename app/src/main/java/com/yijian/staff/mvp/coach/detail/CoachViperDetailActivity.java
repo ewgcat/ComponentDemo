@@ -261,7 +261,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
             }
         });

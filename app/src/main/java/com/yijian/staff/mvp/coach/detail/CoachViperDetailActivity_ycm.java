@@ -220,7 +220,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
             }
         });

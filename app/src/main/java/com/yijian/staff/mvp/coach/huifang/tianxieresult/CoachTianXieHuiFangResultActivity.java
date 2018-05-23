@@ -141,7 +141,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
             }
         });
@@ -247,7 +247,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
 
             }

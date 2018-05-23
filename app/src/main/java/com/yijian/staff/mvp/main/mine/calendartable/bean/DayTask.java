@@ -10,7 +10,13 @@ import java.util.List;
  */
 
 public class DayTask {
-
+    @Override
+    public String toString() {
+        return "DayTask{" +
+                "startDate='" + startDate + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
 
     /**
      * startDate : 2018-05-02

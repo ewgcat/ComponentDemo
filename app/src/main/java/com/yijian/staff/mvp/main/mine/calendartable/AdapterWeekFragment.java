@@ -123,6 +123,34 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
         }
 
         public void bind(DayTask dayTask) {
+            rlContainer.removeAllViews();
+            if (dayTask == null){
+                view_1.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_2.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_3.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_4.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_5.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_6.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_7.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_8.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_9.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_10.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_11.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_12.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_13.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_14.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_15.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_16.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_17.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_18.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_19.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_20.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_21.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_22.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_23.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                view_24.setBackgroundColor(Color.parseColor("#f1f2f6"));
+                return;
+            }
 
             Calendar calendar = Calendar.getInstance();
             String curDate = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
@@ -190,7 +218,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             }
 
 
-            if (dayTask == null) return;
+
             List<DayTask.CoursesBean> courseInfoList = dayTask.getCourses();
             if (courseInfoList == null || courseInfoList.size() <= 0) return;
             for (DayTask.CoursesBean courseBean : courseInfoList) {

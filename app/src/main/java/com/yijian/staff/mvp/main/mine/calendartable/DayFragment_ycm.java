@@ -251,7 +251,7 @@ public class DayFragment_ycm extends Fragment {
             dateList.add("2018-6-2");
             wcvCalendar.getCurrentWeekView().addDateTaskHint(dateList);
             mcvCalendar.getCurrentMonthView().addDateTaskHint(dateList);*/
-            mcvCalendar.getCurrentMonthView().selectMonthDay(year, month, 1);
+            mcvCalendar.getCurrentMonthView().selectMonthDay(year, month, day);
 
             wcvCalendar.setOnCalendarClickListener(null);
             int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, 1);

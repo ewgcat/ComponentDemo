@@ -193,6 +193,7 @@ public class WeekFragment_ycm extends Fragment  {
                 try {
                     JSONArray jsonArray = (JSONArray) result.get("mapList");
                     List<DayTask> dayTasks = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(),DayTask.class);
+                    Log.e(TAG, "onSuccess:000 "+dayTasks.size() );
                     for(DayTask dayTask : dayTasks){
                        for(int i = 0; i< dayTaskList.size(); i++){
                            DayTask curDayTask = dayTaskList.get(i);
@@ -201,6 +202,8 @@ public class WeekFragment_ycm extends Fragment  {
                            }
                        }
                     }
+
+                    Log.e(TAG, "onSuccess: "+dayTaskList.toString() );
                     adapter.resetData(dayTaskList);
                 } catch (JSONException e) {
                     e.printStackTrace();

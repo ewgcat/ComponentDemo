@@ -72,12 +72,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="16dp">
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp">
                         <ImageView
                             android:id="@+id/iv_detail_header"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:scaleType="fitCenter"
                             />
 

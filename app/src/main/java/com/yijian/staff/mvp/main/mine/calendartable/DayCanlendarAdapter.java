@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
     }
 
     public void resetDataList(List<DayCanlendarInfo> dayCanlendarInfos) {
+        Log.e("DayCanlendarAdapter", "resetDataList: "+dayCanlendarInfos.size());
+        Log.e("DayCanlendarAdapter", "resetDataList:111 "+dayCanlendarInfos.toString());
         this.dayCanlendarInfoList = dayCanlendarInfos;
         notifyDataSetChanged();
     }

@@ -5,7 +5,32 @@ package com.yijian.staff.mvp.main.mine.calendartable;
  */
 
 public class DayCanlendarInfo {
-
+    @Override
+    public String toString() {
+        return "DayCanlendarInfo{" +
+                "courseNum=" + courseNum +
+                ", courseType=" + courseType +
+                ", currentNum=" + currentNum +
+                ", endDatetime='" + endDatetime + '\'' +
+                ", endTimeActual='" + endTimeActual + '\'' +
+                ", gender=" + gender +
+                ", headPath='" + headPath + '\'' +
+                ", id='" + id + '\'' +
+                ", intervalTime=" + intervalTime +
+                ", isPrepare=" + isPrepare +
+                ", isUseTemplate='" + isUseTemplate + '\'' +
+                ", lessonName='" + lessonName + '\'' +
+                ", lessonPlace='" + lessonPlace + '\'' +
+                ", memberId='" + memberId + '\'' +
+                ", memberName='" + memberName + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", punchStatus=" + punchStatus +
+                ", startDate='" + startDate + '\'' +
+                ", startDatetime='" + startDatetime + '\'' +
+                ", startTimeActual='" + startTimeActual + '\'' +
+                ", status=" + status +
+                '}';
+    }
 
     /**
      * courseNum : 0

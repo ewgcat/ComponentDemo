@@ -50,6 +50,8 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 //        }
 
         ClassInfo classInfo = mClassInfoList.get(position);
+
+
         Glide.with(context).load(classInfo.getImg()).into(holder.iv_img);
         holder.tv_class_name.setText(classInfo.getName());
         holder.tv_class_long_time.setText(classInfo.getLessonTime());

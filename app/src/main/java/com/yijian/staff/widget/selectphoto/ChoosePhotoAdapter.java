@@ -20,6 +20,8 @@ import com.yijian.staff.R;
 import com.yijian.staff.constant.Constant;
 import com.yijian.staff.mvp.base.seepic.SeePicActivity;
 import com.yijian.staff.util.FileUtil;
+import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.GlideRoundTransform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +110,7 @@ public class ChoosePhotoAdapter extends RecyclerView.Adapter<ChoosePhotoAdapter.
 
                 RequestOptions options = new RequestOptions().centerCrop()
                         .placeholder(R.mipmap.placeholder)
-                        .error(R.mipmap.placeholder)
+                        .error(R.mipmap.placeholder)    //.transform(new GlideRoundTransform())
                         .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(mContext).load(R.mipmap.ic_add_pic).apply(options).into(holder.imageView);
                 holder.imageView.setOnClickListener(view14 -> {

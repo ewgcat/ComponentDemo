@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
@@ -54,6 +55,8 @@ public class ImageLoader {
         if(TextUtils.isEmpty(path)){
             path = "";
         }
+       
+
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.head_placeholder)

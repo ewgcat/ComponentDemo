@@ -70,6 +70,7 @@ public class ClubActivity extends BaseWebViewActivity {
             public void onSuccess(JSONObject result) {
 
                 webView.loadUrl(JsonUtil.getString(result,"url"));
+
                 String token = DBManager.getInstance().queryUser().getToken();
                 try {
                     JSONObject jsonObject = new JSONObject();
@@ -84,7 +85,6 @@ public class ClubActivity extends BaseWebViewActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
             }
 

@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -55,13 +56,8 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
         holder.tv_business_msg_content.setText(businessMessageBean.getName());
         holder.tv_business_msg_time.setText(businessMessageBean.getCreateTime());
 
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .error(R.mipmap.placeholder)
-                .transform(new GlideCircleTransform())
-                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(context).load(businessMessageBean.getMemberHeadPortrait()).apply(options).into(holder.iv_bussiness_msg_header);
+
+        ImageLoader.setHeadImageResource(businessMessageBean.getMemberHeadPortrait(),context,holder.iv_bussiness_msg_header);
 //        if (position==businessMessageBeans.size()-1){
 //            holder.ll_line.setVisibility(View.GONE);
 //        }else {

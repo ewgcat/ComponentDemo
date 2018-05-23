@@ -55,7 +55,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -94,7 +95,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -130,7 +132,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -167,7 +170,8 @@
                         android:gravity="center_vertical|right"
                         android:textColor="#333333"
                         android:background="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -205,7 +209,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
                 <View
@@ -240,7 +245,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -276,7 +282,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -314,7 +321,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -350,7 +358,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -389,7 +398,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
                 <View
@@ -424,7 +434,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -461,7 +472,8 @@
                         android:drawableRight="@mipmap/lg_xiala"
                         android:drawablePadding="5dp"
                         android:textColor="#333333"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 
@@ -501,7 +513,8 @@
                         android:textColor="#333333"
                         android:singleLine="false"
                         android:background="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:text="未录入"/>
 
                 </RelativeLayout>
 

@@ -359,7 +359,7 @@
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:layout_centerVertical="true"
-                            android:text="上一次健身时间："
+                            android:text="最近健身："
                             android:drawableLeft="@mipmap/shangyici"
                             android:drawablePadding="5dp"/>
 

@@ -13,6 +13,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,7 +68,6 @@ public class FaceInfoPanel2 extends PopupWindow {
     private RelativeLayout rel_record_build_time; //上次健身时间
 
 
-
     public FaceInfoPanel2(final Context context, List<FaceDetail> faceDetails) {
         super(context);
         this.context = context;
@@ -86,13 +86,13 @@ public class FaceInfoPanel2 extends PopupWindow {
         this.setBackgroundDrawable(dw);
     }
 
-    private void initView(){
+    private void initView() {
         mMenuView.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rv_face.getVisibility() == View.VISIBLE){
+                if (rv_face.getVisibility() == View.VISIBLE) {
                     dismiss();
-                }else{
+                } else {
                     rv_face.setVisibility(View.VISIBLE);
                     scrollview.setVisibility(View.GONE);
                 }
@@ -121,17 +121,22 @@ public class FaceInfoPanel2 extends PopupWindow {
         rel_record_build_time = mMenuView.findViewById(R.id.rel_record_build_time);
     }
 
-    private void updateUi(FaceDetail faceDetail){
+    private void updateUi(FaceDetail faceDetail) {
         ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_detail_header);
         tv_detail_name.setText(faceDetail.getMemberName());
         tv_detail_cardname.setText(faceDetail.getCardName());
         tv_detail_birthday.setText(faceDetail.getBirthDate());
-        tv_detail_age.setText(faceDetail.getAge()+"岁");
+        tv_detail_age.setText(faceDetail.getAge() + "岁");
         tv_detail_huiji.setText(faceDetail.getSellerName());
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             tv_detail_kayouxiaoqi.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
+            if (("无").equals(faceDetail.getBEntranceRecord()) || TextUtils.isEmpty(faceDetail.getBEntranceRecord())) {
+                tv_detail_biuld_time.setText("无");
+            } else {
+                tv_detail_biuld_time.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getBEntranceRecord())));
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -139,13 +144,14 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         tv_detail_coach.setText(faceDetail.getCoachName());
 
-        tv_detail_progress.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
-        tv_detail_biuld_time.setText(faceDetail.getBEntranceRecord());
-        tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum())>0?"有":"无");
-        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount())+"次");
-        rel_coach.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
-        rel_course_progress.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
-        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
+        tv_detail_progress.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
+
+        tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
+        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()) + "次");
+        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
+        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
+//        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
+
 
     }
 
@@ -208,8 +214,8 @@ public class FaceInfoPanel2 extends PopupWindow {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tv_courseNameNum.setText(faceDetail.getCourseName()+faceDetail.getCourseNum());
-                rel_course_progress.setVisibility(faceDetail.getCoachName()==null?View.GONE:View.VISIBLE);
+                tv_courseNameNum.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
+                rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

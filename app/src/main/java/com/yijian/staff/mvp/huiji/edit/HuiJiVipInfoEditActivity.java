@@ -244,32 +244,36 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      * 更新数据
      */
     private void updateUi() {
-        tv_source.setText(resource);
-        tv_fitnessGoal.setText(detailBean.getFitnessGoal());
+        tv_source.setText(strEmpty(resource));
+        tv_fitnessGoal.setText(strEmpty(detailBean.getFitnessGoal()));
 
         boolean onceJoinedClub = detailBean.isOnceJoinedClub();
 
         tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
         if (!onceJoinedClub){
             et_clubBrand.setEnabled(false);
-            et_clubBrand.setText("");
+            et_clubBrand.setText("未录入");
 
         }else {
             et_clubBrand.setEnabled(true);
-            et_clubBrand.setText(detailBean.getClubBrand());
+            et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
         }
 
 
-        tv_yearIncome.setText(detailBean.getYearIncome());
-        tv_carPrice.setText(detailBean.getCarPrice());
-        tv_hobby.setText(detailBean.getHobby());
-        tv_nationality.setText(detailBean.getNationality());
-        tv_nation.setText(detailBean.getNation());
-        tv_occupation.setText(detailBean.getPosition());
-        tv_marriageStatus.setText(detailBean.getMarriageStatus());
-        tv_hasChildren.setText(detailBean.getChildrenStatus());
-        et_address.setText(detailBean.getAddress());
+        tv_yearIncome.setText(strEmpty(detailBean.getYearIncome()));
+        tv_carPrice.setText(strEmpty(detailBean.getCarPrice()));
+        tv_hobby.setText(strEmpty(detailBean.getHobby()));
+        tv_nationality.setText(strEmpty(detailBean.getNationality()));
+        tv_nation.setText(strEmpty(detailBean.getNation()));
+        tv_occupation.setText(strEmpty(detailBean.getPosition()));
+        tv_marriageStatus.setText(strEmpty(detailBean.getMarriageStatus()));
+        tv_hasChildren.setText(strEmpty(detailBean.getChildrenStatus()));
+        et_address.setText(strEmpty(detailBean.getAddress()));
         downSourceFromService();
+    }
+
+    private String strEmpty(String str){
+        return TextUtils.isEmpty(str)?"未录入":str;
     }
 
     /**
@@ -307,7 +311,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
                 tv_widget.setText(opts.get(options1));
                 if (options1==1){
-                    et_clubBrand.setText("");
+//                    et_clubBrand.setText("未录入");
                     et_clubBrand.setEnabled(false);
                 }else {
                     et_clubBrand.setEnabled(true);

@@ -58,7 +58,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="线下推广"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -111,7 +111,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="否"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -192,7 +192,7 @@
                         android:background="@color/white"
                         android:gravity="center_vertical|right"
                         android:singleLine="false"
-                        android:text=""
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -248,7 +248,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="10-15万"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -289,7 +289,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="10万"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -329,7 +329,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="唱歌、跳舞"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -370,7 +370,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="中华人民共和国"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -410,7 +410,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="汉族"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -453,7 +453,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="舞蹈家"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -493,7 +493,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="未婚"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -533,7 +533,7 @@
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
                         android:gravity="center_vertical"
-                        android:text="无"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
                     <View
@@ -573,7 +573,7 @@
                         android:background="@color/white"
                         android:gravity="center_vertical|right"
                         android:singleLine="false"
-                        android:text="广东省广州市越秀区团一大广场地铁B出口"
+                        android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 

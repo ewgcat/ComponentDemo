@@ -136,7 +136,7 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
                 manualPickedView(resuorceList, "易健平台", tv_source);
                 break;
             case R.id.tv_onceJoinedClub: // 是否参加过俱乐部
-                manualPickedView(onceJoinedClubList, "易健平台", tv_onceJoinedClub);
+                manualPickedViewClub(onceJoinedClubList, "是", tv_onceJoinedClub);
                 break;
             case R.id.tv_yearIncome: // 年收入
                 manualPickedView(yearIncomeList, "10万以内", tv_yearIncome);
@@ -250,20 +250,35 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
      * 更新数据
      */
     private void updateUi() {
-        tv_source.setText(resource);
-        tv_fitnessGoal.setText(detailBean.getFitnessGoal());
-        tv_onceJoinedClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
-        et_clubBrand.setText(detailBean.getClubBrand());
-        tv_yearIncome.setText(detailBean.getYearIncome());
-        tv_carPrice.setText(detailBean.getCarPrice());
-        tv_hobby.setText(detailBean.getHobby());
-        tv_nationality.setText(detailBean.getNationality());
-        tv_nation.setText(detailBean.getNation());
-        tv_position.setText(detailBean.getPosition());
-        tv_marriageStatus.setText(detailBean.getMarriageStatus());
-        tv_hasChildren.setText(detailBean.getChildrenStatus());
-        et_address.setText(detailBean.getAddress());
+        tv_source.setText(strEmpty(resource));
+        tv_fitnessGoal.setText(strEmpty(detailBean.getFitnessGoal()));
+
+        boolean onceJoinedClub = detailBean.isOnceJoinedClub();
+        tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
+        if (!onceJoinedClub){
+            et_clubBrand.setEnabled(false);
+            et_clubBrand.setText("未录入");
+
+        }else {
+            et_clubBrand.setEnabled(true);
+            et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
+        }
+
+
+        tv_yearIncome.setText(strEmpty(detailBean.getYearIncome()));
+        tv_carPrice.setText(strEmpty(detailBean.getCarPrice()));
+        tv_hobby.setText(strEmpty(detailBean.getHobby()));
+        tv_nationality.setText(strEmpty(detailBean.getNationality()));
+        tv_nation.setText(strEmpty(detailBean.getNation()));
+        tv_position.setText(strEmpty(detailBean.getPosition()));
+        tv_marriageStatus.setText(strEmpty(detailBean.getMarriageStatus()));
+        tv_hasChildren.setText(strEmpty(detailBean.getChildrenStatus()));
+        et_address.setText(strEmpty(detailBean.getAddress()));
         downSourceFromService();
+    }
+
+    private String strEmpty(String str){
+        return TextUtils.isEmpty(str)?"未录入":str;
     }
 
     /**
@@ -285,6 +300,35 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
         pvNoLinkOptions.setSelectOptions(opts.indexOf(defaultValue));
         pvNoLinkOptions.show();
     }
+
+
+    /**
+     * 选项弹出框选择俱乐部
+     *
+     * @param opts
+     * @param defaultValue
+     * @param tv_widget
+     */
+    private void manualPickedViewClub(List<String> opts, String defaultValue, TextView tv_widget) {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+
+                tv_widget.setText(opts.get(options1));
+                if (options1==1){
+//                    et_clubBrand.setText("未录入");
+                    et_clubBrand.setEnabled(false);
+                }else {
+                    et_clubBrand.setEnabled(true);
+                }
+            }
+        }).build();
+
+        pvNoLinkOptions.setNPicker(opts, null, null);
+        pvNoLinkOptions.setSelectOptions(opts.indexOf(defaultValue));
+        pvNoLinkOptions.show();
+    }
+
 
     /**
      * 从服务器上拉去字典数据

@@ -110,17 +110,22 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
 
             int resStatu = 0;
             String strStatu = "";
-            if (punchStatus == 0 || punchStatus == 1) {
+            /* if (punchStatus == 0 || punchStatus == 1) {
                 iv_order_class_statu.setVisibility(View.VISIBLE);
                 tv_order_class_statu.setVisibility(View.VISIBLE);
                 resStatu = R.mipmap.lesson_class;
                 strStatu = "上课";
-            }
+            }*/
             int status  = orderClassDayBean.getStatus();
             if(status == 4){ //爽约
                 iv_status_sy.setVisibility(View.VISIBLE);
             }else if(status == 3){ //已上课
                 iv_status_ysk.setVisibility(View.VISIBLE);
+            }else if(status == 1){
+                iv_order_class_statu.setVisibility(View.VISIBLE);
+                tv_order_class_statu.setVisibility(View.VISIBLE);
+                resStatu = R.mipmap.lesson_class;
+                strStatu = "上课";
             }
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override

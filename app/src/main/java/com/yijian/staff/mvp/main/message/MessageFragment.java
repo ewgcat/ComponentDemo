@@ -50,7 +50,6 @@ public class MessageFragment extends MvcBaseFragment {
     private List<MessageInfo> messageInfoList = new ArrayList<>();
     private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MessageListAdapter messageListAdapter;
 
     private static final String TAG = "MessageFragment";
     //测试图片的存位置

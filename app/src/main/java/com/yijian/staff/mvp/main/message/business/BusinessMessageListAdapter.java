@@ -58,11 +58,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
 
 
         ImageLoader.setHeadImageResource(businessMessageBean.getMemberHeadPortrait(),context,holder.iv_bussiness_msg_header);
-//        if (position==businessMessageBeans.size()-1){
-//            holder.ll_line.setVisibility(View.GONE);
-//        }else {
-//            holder.ll_line.setVisibility(View.VISIBLE);
-//        }
+
     }
 
     @Override

@@ -43,7 +43,7 @@ public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachRe
     public void onBindViewHolder(CoachResourceAllocationAdatper.ViewHolder holder, int position) {
         CoachResourceAllocationInfo coachResourceAllocationInfo = list.get(position);
 
-        ImageLoader.setImageResource(coachResourceAllocationInfo.getHeadImg(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(coachResourceAllocationInfo.getHeadImg(), context, holder.iv_header);
         holder.tv_name.setText(coachResourceAllocationInfo.getMemberName());
         int resId = coachResourceAllocationInfo.getSex().equals("男") ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);

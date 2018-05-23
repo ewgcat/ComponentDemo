@@ -123,7 +123,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
 //        mWorkTv.setTextColor(Color.parseColor("#757575"));
         mWorkIv.setImageResource(R.mipmap.home_normal);
 
-//        mReportingIv.setImageResource(R.mipmap.icon_report_unselected);
+//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_unselected);
 //        mReportingTv.setTextColor(Color.parseColor("#757575"));
 
         mMessageIv.setImageResource(R.mipmap.message_norml);
@@ -135,7 +135,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
 
     public void selectreporting() {
         resetAllButtonState();
-//        mReportingIv.setImageResource(R.mipmap.icon_report_selected);
+//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_selected);
 //        mReportingTv.setTextColor(Color.parseColor("#1997f8"));
     }
 

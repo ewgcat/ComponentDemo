@@ -1,27 +1,13 @@
 package com.yijian.staff.mvp.main.work.face2;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -29,18 +15,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.work.face.BitmapUtils;
 import com.yijian.staff.mvp.main.work.face.FaceDetail;
-import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Handler;
 
 
 public class FaceInfoPanel2 extends PopupWindow {
@@ -122,7 +103,7 @@ public class FaceInfoPanel2 extends PopupWindow {
     }
 
     private void updateUi(FaceDetail faceDetail) {
-        ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_detail_header);
+        ImageLoader.setHeadImageResource(faceDetail.getHeadPath(), context, iv_detail_header);
         tv_detail_name.setText(faceDetail.getMemberName());
         tv_detail_cardname.setText(faceDetail.getCardName());
         tv_detail_birthday.setText(faceDetail.getBirthDate());
@@ -205,7 +186,7 @@ public class FaceInfoPanel2 extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
+                ImageLoader.setHeadImageResource(faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

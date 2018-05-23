@@ -123,7 +123,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
                 CertificateBean certificateBean = new Gson().fromJson(result.toString(), CertificateBean.class);
                 String qualification = certificateBean.getQualification();
                 if (!TextUtils.isEmpty(qualification)) {
-                    String[] split = qualification.split(",");
+                    String[] split = qualification.split("\\u005c\\u006e");
                     for (int i = 0; i < split.length; i++) {
                         authList.add(split[i]);
                     }
@@ -132,8 +132,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
                 String experience = certificateBean.getExperience();
                 if (!TextUtils.isEmpty(experience)) {
-                    experience.replaceAll(",", "\n");
-                    String[] split = experience.split(",");
+                    String[] split = experience.split("\\u005c\\u006e");
                     for (int i = 0; i < split.length; i++) {
                         list2.add(split[i]);
                     }

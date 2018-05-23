@@ -20,6 +20,7 @@ import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -71,15 +72,9 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         holder.iv_gender.setImageResource(resId);
 
         String headImg = coachViperBean.getHeadImg();
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(R.mipmap.placeholder)
-                .error(R.mipmap.placeholder)
-                .transform(new GlideCircleTransform())
-                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
 
+        ImageLoader.setHeadImageResource(headImg,context,holder.iv_header);
         //详情
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override

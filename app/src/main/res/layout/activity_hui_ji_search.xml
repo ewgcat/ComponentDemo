@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f1f2f6">
+    android:background="@color/gray_background_color">
 
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_marginLeft="16dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:background="@drawable/work_search_top_edittext_bg"
+            android:background="@drawable/home_search_bg"
             android:orientation="horizontal"
             android:focusableInTouchMode="true">
 

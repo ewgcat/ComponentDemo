@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.widget.AlwaysMarqueeTextView;
@@ -67,12 +69,14 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
         TextView tvYuEr;
         TextView tvChuzhiyouhui;
         TextView tvPrice;
+        ImageView iv;
         TextView tv_danwei;
 
 
         public ViewHolder(View view) {
             super(view);
             itemView = view.findViewById(R.id.item_view);
+            iv = view.findViewById(R.id.iv);
             tvGoodsName = view.findViewById(R.id.tv_goods_name);
 //            tvJianshenplace = view.findViewById(R.id.tv_jianshenplace);
             tvYuEr = view.findViewById(R.id.tv_yu_er);

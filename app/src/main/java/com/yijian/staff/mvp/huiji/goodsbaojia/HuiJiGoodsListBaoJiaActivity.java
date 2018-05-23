@@ -23,7 +23,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huiji.ActivityHuiijiBaoJiaSeach;
 import com.yijian.staff.mvp.huiji.goodsbaojia.adapter.CardsListAdapter;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardRequestBody;

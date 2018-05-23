@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.main.mine.qrcode;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MyQRCodeActivity extends MvcBaseActivity {
 
@@ -78,7 +76,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             role = user.getRole();
             tvRole.setText(user.getPostName());
 
-            ImageLoader.setImageResource(user.getHeadImg(), this, ivHeader);
+            ImageLoader.setHeadImageResource(user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();
             int sexId;
             if (sex.equals("男")) {

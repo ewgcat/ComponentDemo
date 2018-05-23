@@ -91,37 +91,30 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="34dp"
                         android:layout_marginRight="4dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="22dp"
                         android:gravity="center"
                         android:text="客户接待"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="10dp"
                         android:src="@mipmap/home_jd" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="8dp"
-                    android:text="俱乐部对来访客户的接待流程"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/ll_jiedai"
@@ -129,7 +122,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="end"
                     android:layout_marginRight="30dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="40dp"
                     android:background="@drawable/white_solid_rect_bg">
 
                     <TextView

@@ -23,6 +23,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
 
@@ -77,7 +78,8 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        Glide.with(context).load(headImg).apply(options).into( holder.iv_header);
+        ImageLoader.setHeadImageResource(headImg,context,holder.iv_header);
+
 
         String subclassName = coachViperBean.getSubclassName();
 //        Intent intent = new Intent(context, CoachViperDetailActivity.class);

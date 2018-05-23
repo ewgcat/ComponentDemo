@@ -16,8 +16,6 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
-import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity;
-import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity_ycm;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -78,7 +76,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean){
-            ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), (Activity)context, iv_header);
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity)context, iv_header);
             iv_gender.setImageResource(1==huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {

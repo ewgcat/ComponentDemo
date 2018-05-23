@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -143,7 +142,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     }
 
     private void updateUi(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : vipDetailBean.getHeadImg(), this, ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));

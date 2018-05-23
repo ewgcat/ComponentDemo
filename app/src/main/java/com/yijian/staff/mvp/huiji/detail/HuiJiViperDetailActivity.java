@@ -8,18 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.contract.ContractActivity;
 import com.yijian.staff.mvp.huiji.bean.HuiJiVipeCardAdapter;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
 import com.yijian.staff.mvp.huiji.edit.HuiJiVipInfoEditActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -235,7 +232,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     }
 
     private void updateUi(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+vipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+vipDetailBean.getHeadImg(), this, ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));

@@ -31,7 +31,7 @@ public class ViewHolderHuijiVipType_0 extends  ViewHolderHuijiVipper{
 
     @Override
    public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
 

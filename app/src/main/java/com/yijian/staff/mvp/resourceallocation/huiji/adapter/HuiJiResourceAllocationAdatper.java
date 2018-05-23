@@ -76,7 +76,7 @@ public class HuiJiResourceAllocationAdatper extends RecyclerView.Adapter<HuiJiRe
         }
 
         public void bind(HuiJiResourceAllocationInfo huijiResourceAllocationInfo,Context context){
-            ImageLoader.setImageResource(huijiResourceAllocationInfo.getHeadImg(), context, iv_header);
+            ImageLoader.setHeadImageResource(huijiResourceAllocationInfo.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(huijiResourceAllocationInfo.getGenderImg());
             tv_name.setText(huijiResourceAllocationInfo.getMemberName());
             tv_select_huiji.setText(huijiResourceAllocationInfo.getDistributeUser());

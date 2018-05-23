@@ -268,7 +268,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
     }
 
     private void updateUi(CoachVipDetailBean coachVipDetailBean) {
-        ImageLoader.setImageResource(coachVipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setHeadImageResource(coachVipDetailBean.getHeadImg(), this, ivHead);
 
 
         tvName.setText(coachVipDetailBean.getName());

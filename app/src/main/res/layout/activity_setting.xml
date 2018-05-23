@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/gray_background_color"
     android:orientation="vertical">
 
     <include
@@ -28,7 +28,7 @@
                 <LinearLayout
                     android:id="@+id/ll_head"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="90dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:orientation="horizontal">
@@ -51,10 +51,7 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/divide_view_style" />
 
                 <LinearLayout
                     android:id="@+id/ll_username"
@@ -81,10 +78,7 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/divide_view_style" />
 
                 <LinearLayout
                     android:id="@+id/ll_sex"
@@ -114,7 +108,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/gray" />
 
 
@@ -177,11 +171,7 @@
 
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/divide_view_style" />
 
                 <LinearLayout
                     android:id="@+id/ll_mendian"
@@ -208,10 +198,7 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/divide_view_style" />
 
                 <LinearLayout
                     android:id="@+id/ll_department"
@@ -237,10 +224,7 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/divide_view_style" />
 
                 <LinearLayout
                     android:id="@+id/ll_position"

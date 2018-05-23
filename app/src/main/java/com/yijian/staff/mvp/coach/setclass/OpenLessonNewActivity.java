@@ -122,9 +122,14 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(OpenLessonNewActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
-                punchStatus = 1;
-                tv_shangke_statu.setText("下课打卡");
+                try {
+                    Toast.makeText(OpenLessonNewActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
+                    punchStatus = 1;
+                    tv_shangke_statu.setText("下课打卡");
+                    tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(result.getString("clockTime")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -163,10 +168,18 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(OpenLessonNewActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();
-                punchStatus = 2;
-                tv_shangke_statu.setText("已完成");
-                rel_punch_card.setEnabled(false);
+
+                try {
+                    Toast.makeText(OpenLessonNewActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();
+                    punchStatus = 2;
+                    tv_shangke_statu.setText("已完成");
+                    rel_punch_card.setEnabled(false);
+                    tv_xiake.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(result.getString("clockTime")));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -192,11 +205,11 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         String startTime = getIntent().getStringExtra("startTimeActual");
         String endTime = getIntent().getStringExtra("endTimeActual");
         startDate = getIntent().getStringExtra("startDate");
-        if (TextUtils.isEmpty(startTime)) {
+        if (!TextUtils.isEmpty(startTime)) {
             tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(startTime));
         }
 
-        if (TextUtils.isEmpty(startTime)) {
+        if (!TextUtils.isEmpty(startTime)) {
             tv_xiake.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(endTime));
         }
 

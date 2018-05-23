@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="10dp"
         >
 
         <ImageView
@@ -14,15 +14,15 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_centerVertical="true"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:src="@mipmap/placeholder" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toRightOf="@id/iv_header"
             android:orientation="vertical">
 
@@ -38,7 +38,7 @@
                     android:layout_centerVertical="true"
                     android:text="超明哥"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_query_detail"
@@ -49,7 +49,7 @@
                     android:drawableRight="@mipmap/blue_arrow"
                     android:text="查看详情"
                     android:textColor="#1997f8"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -64,7 +64,7 @@
                     android:layout_centerVertical="true"
                     android:text="卡名称:"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_cardName"
@@ -74,7 +74,7 @@
                     android:layout_centerVertical="true"
                     android:text="健身储值卡"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -89,7 +89,7 @@
                     android:layout_centerVertical="true"
                     android:text="有效期："
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_expirationDate"
@@ -99,7 +99,7 @@
                     android:layout_centerVertical="true"
                     android:text="2018-05-06"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -115,7 +115,7 @@
                     android:layout_centerVertical="true"
                     android:text="课程进度："
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_courseNameNum"
@@ -125,7 +125,7 @@
                     android:layout_centerVertical="true"
                     android:text="增肌课第5节"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 

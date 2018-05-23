@@ -85,7 +85,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
                     </LinearLayout>
@@ -106,7 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="卡名称:"
                             android:drawableLeft="@mipmap/kamingchen"
@@ -119,7 +119,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -137,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="生日："
                             android:drawableLeft="@mipmap/shengri"
@@ -150,7 +150,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -168,7 +168,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="年龄："
                             android:drawableLeft="@mipmap/nianling"
@@ -181,7 +181,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -199,7 +199,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="会籍："
                             android:drawableLeft="@mipmap/huiji"
@@ -212,7 +212,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -230,7 +230,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="卡有效期："
                             android:drawableLeft="@mipmap/kayouxiaoqi"
@@ -243,7 +243,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -262,7 +262,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="教练："
                             android:drawableLeft="@mipmap/jiaolian"
@@ -275,7 +275,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -295,7 +295,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="最新私教课进度："
                             android:drawableLeft="@mipmap/sijiaokejindu"
@@ -308,7 +308,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -326,7 +326,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="最喜爱的课程："
                             android:drawableLeft="@mipmap/zuiaikechen"
@@ -338,7 +338,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -357,7 +357,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="最近健身："
                             android:drawableLeft="@mipmap/shangyici"
@@ -370,7 +370,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -388,7 +388,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="有无小孩："
                             android:drawableLeft="@mipmap/xiaohai"
@@ -401,7 +401,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 
@@ -419,7 +419,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:text="健身次数："
                             android:drawableLeft="@mipmap/jianshencishu"
@@ -432,7 +432,7 @@
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:layout_marginLeft="20dp"/>
 
 

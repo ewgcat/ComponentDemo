@@ -541,9 +541,16 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
                 case USER_TEST_FACE_LIBRARY_NO:
                     Toast.makeText(FaceDetectorActivity.this, "人脸库没找到相应的人员", Toast.LENGTH_SHORT).show();
+                    LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    isFaceDetector = true;
+                    if (mCamera != null) {
+                        mCamera.startPreview();
+                        mCamera.startFaceDetection();
+                        isFaceDetector = true;
+                        return;
+                    }
+                    restartCamera();
+
                     break;
                 case USER_GET_VIP_INFO_NO:
                     Toast.makeText(FaceDetectorActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
@@ -551,6 +558,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     mCamera.startPreview();
                     break;
                 case USER_GET_VIP_INFO_FAIL:
+                    LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     mCamera.startPreview();

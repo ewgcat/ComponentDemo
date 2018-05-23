@@ -94,17 +94,24 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private String face_session;
     private Camera.Face[] faces;
     private int screenOritation = 0;
+    private FaceInfoPanel2 faceInfoPanel;
 
     /**
      * 测试弹出框
      */
     private void showPanel(List<FaceDetail> faceDetails) {
-        FaceInfoPanel2 faceInfoPanel = new FaceInfoPanel2(this, faceDetails);
+        faceInfoPanel = new FaceInfoPanel2(this, faceDetails);
         faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP, 0, 0);
+        btn_start_face.setVisibility(View.GONE);
         faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                mCamera.startPreview();
+                btn_start_face.setVisibility(View.VISIBLE);
+                if (mCamera != null) {
+                    mCamera.startPreview();
+                    return;
+                }
+                restartCamera();
             }
         });
     }
@@ -192,7 +199,8 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         mHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                if (mCamera == null) {
+                Log.e("Test2", "surfaceCreated()....");
+                if(faceInfoPanel == null || !faceInfoPanel.isShowing()){
                     mCamera = Camera.open(0);
                     try {
                         mCamera.setFaceDetectionListener(new FaceDetectorListener());
@@ -206,6 +214,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                Log.e(TAG, "surfaceChanged.....");
                 if (mHolder.getSurface() == null) {
                     // preview surface does not exist
                     Log.e(TAG, "mHolder.getSurface() == null");
@@ -238,6 +247,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 // mCamera.setPreviewCallback(null);// 防止 Method called after release()
+                Log.e("Test2", "surfaceDestroyed()....");
                 if (mCamera != null) {
                     mCamera.stopPreview();
                     mCamera.setPreviewCallback(null);
@@ -452,7 +462,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
         Map<String, String> param = new HashMap<>();
         param.put("memberIds", ids);
-        HttpManager.postNoHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
             @Override
             public void onSuccess(JSONArray result) {
                 if (result.length() > 0) {
@@ -547,41 +557,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             }
         }
     }
-
-
-    /*public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, android.hardware.Camera camera) {
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
-        android.hardware.Camera.getCameraInfo(cameraId, info);
-        int rotation = activity.getWindowManager().getDefaultDisplay()
-                .getRotation();
-        int degrees = 0;
-        switch (rotation) {
-            case Surface.ROTATION_0:
-                degrees = 0;
-                break;
-            case Surface.ROTATION_90:
-                degrees = 90;
-                break;
-            case Surface.ROTATION_180:
-                degrees = 180;
-                break;
-            case Surface.ROTATION_270:
-                degrees = 270;
-                break;
-        }
-
-        int result;
-        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            result = (info.orientation + degrees) % 360;
-            result = (360 - result) % 360;  // compensate the mirror
-        } else {  // back-facing
-            result = (info.orientation - degrees + 360) % 360;
-        }
-        camera.setDisplayOrientation(result);
-    }*/
-
 
     //上次记录的时间戳
     long lastRecordTime = System.currentTimeMillis();
@@ -774,6 +749,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     @Override
     protected void onStop() {
         super.onStop();
+        Log.e("Test2", "onStop()....");
         if (mCamera != null) {
             mCamera.setPreviewCallback(null);
             mCamera.stopPreview();
@@ -785,10 +761,29 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (mCamera != null) {
-            mCamera.setPreviewCallback(this);
-            mCamera.startPreview();
-            startFaceDetection();
+        Log.e("Test2", "onRestart()....");
+        if (faceInfoPanel == null || (faceInfoPanel != null && (!faceInfoPanel.isShowing()))) {
+
+            restartCamera();
+
         }
     }
+
+    private void restartCamera() {
+        if (mCamera == null) {
+            mCamera = Camera.open(0);
+            try {
+                mCamera.setFaceDetectionListener(new FaceDetectorListener());
+                mCamera.setPreviewDisplay(mHolder);
+                int measuredWidth = surfaceView.getMeasuredWidth();
+                int measuredHeight = surfaceView.getMeasuredHeight();
+                setCameraParms(mCamera, measuredWidth, measuredHeight);
+                mCamera.startPreview();
+                startFaceDetection(); // re-start face detection feature
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

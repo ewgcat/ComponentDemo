@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.work.face.BitmapUtils;
 import com.yijian.staff.mvp.main.work.face.FaceDetail;
@@ -122,7 +123,7 @@ public class FaceInfoPanel2 extends PopupWindow {
     }
 
     private void updateUi(FaceDetail faceDetail) {
-        ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_detail_header);
+        ImageLoader.setImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_detail_header);
         tv_detail_name.setText(faceDetail.getMemberName());
         tv_detail_cardname.setText(faceDetail.getCardName());
         tv_detail_birthday.setText(faceDetail.getBirthDate());
@@ -205,7 +206,7 @@ public class FaceInfoPanel2 extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
+                ImageLoader.setImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

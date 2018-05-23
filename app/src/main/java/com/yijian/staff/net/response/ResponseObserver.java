@@ -160,13 +160,13 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     }
 
     protected void responData(JSONObject jsonObject) throws Exception {
-        String dataJson = jsonObject.get("data").toString();
+        /*String dataJson = jsonObject.get("data").toString();
         if (TextUtils.isEmpty(dataJson) || (dataJson.startsWith("{") && dataJson.length() <= 2)) {
             onSuccess(null);
         } else {
             T data = new Gson().fromJson(dataJson, dataClassType);
             onSuccess(data);
-        }
+        }*/
 
     }
 

@@ -20,6 +20,7 @@ public abstract class ResultStringObserver extends ResponseObserver<String> {
         super();
     }
 
+    @Override
     protected void initResultType() {
         dataClassType = String.class;
     }

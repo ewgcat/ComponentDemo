@@ -1,26 +1,21 @@
 package com.yijian.staff.net.response;
 
-
-
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+public abstract class ResultJSONIntegerObserver extends ResponseObserver<Integer> {
 
-
-
-public abstract  class ResultNullObserver extends ResponseObserver<Object> {
-
-    public ResultNullObserver() {
+    public ResultJSONIntegerObserver() {
         super();
     }
 
     @Override
     protected void initResultType() {
-        dataClassType = Object.class;
+        dataClassType = JSONArray.class;
     }
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {
-        onSuccess(jsonObject.get("data"));
+        onSuccess(jsonObject.getInt("data"));
     }
 }

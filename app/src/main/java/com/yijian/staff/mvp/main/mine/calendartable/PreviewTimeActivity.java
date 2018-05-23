@@ -13,6 +13,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.jaaksi.pickerview.picker.BasePicker;
@@ -82,9 +83,10 @@ public class PreviewTimeActivity extends AppCompatActivity {
         /*map.put("startTime ", tv_startTime.getText().toString());
         map.put("endTime ", tv_endTime.getText().toString());*/
         String path = HttpManager.COACH_PRIVATE_COURSE_SET_WORK_TIME_URL + "?startTime=" + tv_startTime.getText().toString() + "&endTime=" +tv_endTime.getText().toString();
-        HttpManager.postHasHeaderHasParam(path, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(path, map, new ResultNullObserver() {
+
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(Object result) {
                 Intent intent = getIntent();
                 intent.putExtra("startTime", tv_startTime.getText());
                 intent.putExtra("endTime", tv_endTime.getText());

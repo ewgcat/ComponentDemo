@@ -17,7 +17,10 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.questionnaire.detail.AllNoneSelectedDecorator;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResponseObserver;
+import com.yijian.staff.net.response.ResultJSONIntegerObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -151,9 +154,9 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         if (selectDateList.size() > 0) {
             map.put("date", selectDateList.toString().substring(1, selectDateList.toString().length() - 1));
         }
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_SETLEAVE_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_SETLEAVE_URL, map, new ResultJSONIntegerObserver() {
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(Integer result) {
                 Toast.makeText(EditNotPreviewActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
                 Intent intent = getIntent();
                 setResult(RESULT_CODE_SETTING_NO_PREVIEW, intent);

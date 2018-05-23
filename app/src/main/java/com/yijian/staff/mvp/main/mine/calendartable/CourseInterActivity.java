@@ -11,6 +11,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -73,9 +74,10 @@ public class CourseInterActivity extends AppCompatActivity {
     private void postData() {
         Map<String, Object> map = new HashMap<>();
 //        map.put("intervalTime  ", Integer.valueOf(tv_internal.getText().toString()));
-        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL+"?intervalTime="+Integer.valueOf(tv_internal.getText().toString()), map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL+"?intervalTime="+Integer.valueOf(tv_internal.getText().toString()), map, new ResultNullObserver() {
+
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(Object result) {
                 Intent intent = getIntent();
                 intent.putExtra("internal", tv_internal.getText());
                 setResult(RESULT_CODE_SETTING_INTERNAL, intent);

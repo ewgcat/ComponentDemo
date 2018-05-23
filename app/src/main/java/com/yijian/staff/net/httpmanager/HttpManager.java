@@ -341,7 +341,7 @@ public class HttpManager {
     public static String GET_FACE_LOGIN_SESSION = BuildConfig.HOST + "member/faceLogin";
 
     //获取所有id获取人员信息
-    public static String GET_FACE_MENBERSHOWINFO = "http://bweb.qa.ejoyst.com/member/menberShowInfo";
+    public static String GET_FACE_MENBERSHOWINFO = BuildConfig.HOST + "member/menberShowInfo";
 
 
     //公用方法

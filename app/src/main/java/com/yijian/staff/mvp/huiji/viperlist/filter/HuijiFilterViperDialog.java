@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.Calendar;
 
@@ -146,8 +147,7 @@ public class HuijiFilterViperDialog extends Dialog {
         tvTime1.setTextColor(Color.parseColor("#666666"));
         tvTime2.setTextColor(Color.parseColor("#666666"));
         tvTime3.setTextColor(Color.parseColor("#666666"));
-        tvStartTime.setTextColor(Color.parseColor("#666666"));
-        tvEndTime.setTextColor(Color.parseColor("#666666"));
+
 
         tvUnBuy.setTextColor(Color.parseColor("#666666"));
         tvBuy.setTextColor(Color.parseColor("#666666"));
@@ -194,8 +194,7 @@ public class HuijiFilterViperDialog extends Dialog {
         tvTime1.setCompoundDrawables(null, null, null, null);
         tvTime2.setCompoundDrawables(null, null, null, null);
         tvTime3.setCompoundDrawables(null, null, null, null);
-        tvStartTime.setCompoundDrawables(null, null, null, null);
-        tvEndTime.setCompoundDrawables(null, null, null, null);
+
         tvUnBuy.setCompoundDrawables(null, null, null, null);
         tvBuy.setCompoundDrawables(null, null, null, null);
         tvTiyanke.setCompoundDrawables(null, null, null, null);
@@ -347,6 +346,10 @@ public class HuijiFilterViperDialog extends Dialog {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
+                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                                tvStartTime.setText("");
+                                Toast.makeText(getContext(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
+                            }
                             if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
                                 if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
                                     tvStartTime.setText("");
@@ -354,6 +357,7 @@ public class HuijiFilterViperDialog extends Dialog {
                                     Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
 
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
@@ -393,11 +397,16 @@ public class HuijiFilterViperDialog extends Dialog {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
+                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                                tvEndTime.setText("");
+                                Toast.makeText(getContext(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
+
+                            }
                             if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
                                 if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
                                     tvStartTime.setText("");
                                     tvEndTime.setText("");
-                                    Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "结束时间不得于开始时间", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }

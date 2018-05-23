@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.classbaojia.filter.CoachClassFilterBean;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.Calendar;
 
@@ -227,8 +228,7 @@ public class OptionDialog extends DialogFragment {
         tvTime1.setTextColor(Color.parseColor("#666666"));
         tvTime2.setTextColor(Color.parseColor("#666666"));
         tvTime3.setTextColor(Color.parseColor("#666666"));
-        tvStartTime.setTextColor(Color.parseColor("#666666"));
-        tvEndTime.setTextColor(Color.parseColor("#666666"));
+
 
         tvBuyTime1.setTextColor(Color.parseColor("#666666"));
         tvBuyTime2.setTextColor(Color.parseColor("#666666"));
@@ -269,8 +269,6 @@ public class OptionDialog extends DialogFragment {
         tvTime1.setCompoundDrawables(null, null, null, null);
         tvTime2.setCompoundDrawables(null, null, null, null);
         tvTime3.setCompoundDrawables(null, null, null, null);
-        tvStartTime.setCompoundDrawables(null, null, null, null);
-        tvEndTime.setCompoundDrawables(null, null, null, null);
         tvBuyTime1.setCompoundDrawables(null, null, null, null);
         tvBuyTime2.setCompoundDrawables(null, null, null, null);
         tvBuyTime3.setCompoundDrawables(null, null, null, null);
@@ -405,6 +403,11 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
+                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                                tvStartTime.setText("");
+                                Toast.makeText(getActivity(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
+
+                            }
                             if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
                                 if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
                                     tvStartTime.setText("");
@@ -449,11 +452,16 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
+                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                                tvEndTime.setText("");
+                                Toast.makeText(getActivity(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
+
+                            }
                             if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
                                 if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
                                     tvStartTime.setText("");
                                     tvEndTime.setText("");
-                                    Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "结束时间不得大于开始时间", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

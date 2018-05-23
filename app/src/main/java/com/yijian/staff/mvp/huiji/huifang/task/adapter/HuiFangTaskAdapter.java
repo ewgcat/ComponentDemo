@@ -13,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 
 import com.yijian.staff.db.DBManager;
@@ -24,7 +21,6 @@ import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
 import com.yijian.staff.mvp.huiji.huifang.tianxieresult.HuijiTianXieHuiFangResultActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
@@ -69,7 +65,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
 
         String headImg = huiFangInfo.getHeadImg();
-        ImageLoader.setImageResource(headImg,context,holder.ivHead);
+        ImageLoader.setHeadImageResource(headImg,context,holder.ivHead);
 
         holder.tvViperName.setText(huiFangInfo.getName());
         String sex = huiFangInfo.getSex();

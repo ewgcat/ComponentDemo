@@ -100,7 +100,7 @@ showLoading();
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
-                showToast(msg);
+
                 hideLoading();
 
             }
@@ -140,7 +140,7 @@ showLoading();
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
+
                 hideLoading();
 
             }

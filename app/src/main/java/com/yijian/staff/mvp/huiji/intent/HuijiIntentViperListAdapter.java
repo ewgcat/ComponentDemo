@@ -78,7 +78,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean){
-            ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(1==huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {

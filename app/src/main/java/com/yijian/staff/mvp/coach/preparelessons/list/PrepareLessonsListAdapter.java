@@ -1,10 +1,7 @@
 package com.yijian.staff.mvp.coach.preparelessons.list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.PrepareLessonsActivity;
 import com.yijian.staff.util.ImageLoader;
@@ -58,7 +54,7 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
                 context.startActivity(intent);
             }
         });
-        ImageLoader.setImageResource(prepareLessonsBean.getHeadPath(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(prepareLessonsBean.getHeadPath(), context, holder.iv_header);
         holder.iv_gender.setImageResource((prepareLessonsBean.getGender()==1)?R.mipmap.wt_man:R.mipmap.wt_women);
         holder.tv_name.setText(prepareLessonsBean.getMemberName());
         holder.tv_class_name.setText(prepareLessonsBean.getLessonName());

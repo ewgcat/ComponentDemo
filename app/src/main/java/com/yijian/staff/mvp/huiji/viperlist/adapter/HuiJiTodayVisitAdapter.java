@@ -74,7 +74,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         public void bind(Context context, TodayHuiJiViperBean huiJiViperBean){
-            ImageLoader.setImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(huiJiViperBean.getGenderImg());
             tv_name.setText(huiJiViperBean.getName());
 

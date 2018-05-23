@@ -43,7 +43,7 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ViewHo
             ApprovalInfo vipPeopleInfo = approvalInfoList.get(position);
 
           /*  holder.tv_name.setText(vipPeopleInfo.getName());
-            holder.iv_gender.setImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
+            holder.iv_gender.setHeadImageResource("0".equals(vipPeopleInfo.getGender())?R.mipmap.lg_women:R.mipmap.lg_man);
             holder.tv_cardName.setText(vipPeopleInfo.getCardName());
             holder.tv_card_type.setText(vipPeopleInfo.getCardType());
             holder.tv_private_coach.setText(vipPeopleInfo.getPrivateCoach());

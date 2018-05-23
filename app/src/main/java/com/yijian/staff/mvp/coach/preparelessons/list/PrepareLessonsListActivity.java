@@ -119,7 +119,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                showToast(msg);
+
                 hideLoading();
             }
         });
@@ -150,7 +150,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
+
                 hideLoading();
             }
         });

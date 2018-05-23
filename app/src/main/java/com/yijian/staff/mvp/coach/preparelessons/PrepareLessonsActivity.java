@@ -110,7 +110,7 @@ public class PrepareLessonsActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
 
             }

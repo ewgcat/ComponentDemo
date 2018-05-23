@@ -117,7 +117,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
         String name = getIntent().getStringExtra("name");
         String interviewType = getIntent().getStringExtra("interviewType");
 
-        ImageLoader.setImageResource(headImg, this, ivHead);
+        ImageLoader.setHeadImageResource(headImg, this, ivHead);
         if ("男".equals(sex)) {
             Glide.with(this).load(R.mipmap.lg_man).into(ivSex);
         } else {
@@ -141,7 +141,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
             }
         });
@@ -247,7 +247,7 @@ public class CoachTianXieHuiFangResultActivity extends MvcBaseActivity implement
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
 
             }

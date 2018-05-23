@@ -50,7 +50,20 @@ public class ImageLoader {
     }
 
 
-    public static void setImageResource(String path, Context context,ImageView imageView) {
+    public static void setHeadImageResource(String path, Context context, ImageView imageView) {
+        if(TextUtils.isEmpty(path)){
+            path = "";
+        }
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.head_placeholder)
+                .error(R.mipmap.head_placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(path).apply(options).into(imageView);
+    }
+
+    public static void setImageResource(String path, Context context, ImageView imageView) {
         if(TextUtils.isEmpty(path)){
             path = "";
         }
@@ -62,4 +75,5 @@ public class ImageLoader {
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(context).load(path).apply(options).into(imageView);
     }
+
 }

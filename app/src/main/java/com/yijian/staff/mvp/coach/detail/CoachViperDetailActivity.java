@@ -261,14 +261,14 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
                 hideLoading();
             }
         });
     }
 
     private void updateUi(CoachVipDetailBean coachVipDetailBean) {
-        ImageLoader.setImageResource(coachVipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setHeadImageResource(coachVipDetailBean.getHeadImg(), this, ivHead);
 
 
         tvName.setText(coachVipDetailBean.getName());

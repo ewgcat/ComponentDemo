@@ -14,13 +14,11 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -34,7 +32,6 @@ import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 
 public class FaceInfoPanel extends PopupWindow {
@@ -200,7 +197,7 @@ public class FaceInfoPanel extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(faceDetail.getHeadPath(), context, iv_header);
+                ImageLoader.setHeadImageResource(faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 tv_expirationDate.setText(faceDetail.getExpirationDate());

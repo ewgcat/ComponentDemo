@@ -69,23 +69,23 @@ public class ClubActivity extends BaseWebViewActivity {
             @Override
             public void onSuccess(JSONObject result) {
 
-                JSONObject jsonObject = new JSONObject();
                 webView.loadUrl(JsonUtil.getString(result,"url"));
-//                webView.loadUrl("http://192.168.2.209:8080/#/club");
                 String token = DBManager.getInstance().queryUser().getToken();
                 try {
+                    JSONObject jsonObject = new JSONObject();
                     jsonObject.put("token",token);
+                    webView.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public void onPageFinished(WebView view, String url) {
+                            super.onPageFinished(view, url);
+                            view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                webView.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public void onPageFinished(WebView view, String url) {
-                        super.onPageFinished(view, url);
-                        view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
-                    }
-                });
+
             }
 
             @Override

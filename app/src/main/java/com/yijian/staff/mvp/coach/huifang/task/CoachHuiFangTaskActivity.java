@@ -75,7 +75,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
             }
         });
     }
@@ -120,7 +120,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
             }
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
             }
         });
     }

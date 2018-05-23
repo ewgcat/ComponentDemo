@@ -50,7 +50,6 @@ public class MessageFragment extends MvcBaseFragment {
     private List<MessageInfo> messageInfoList = new ArrayList<>();
     private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MessageListAdapter messageListAdapter;
 
     private static final String TAG = "MessageFragment";
     //测试图片的存位置
@@ -127,18 +126,17 @@ public class MessageFragment extends MvcBaseFragment {
     private void refresh() {
         businessMessageBeans.clear();
         pageNum = 1;
-        pageSize = 4;
-        pages = 0;
+        pageSize = 10;
         empty_view.setVisibility(View.GONE);
 
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
-        businessMessageRequestBody.setPageNum(1);
-        businessMessageRequestBody.setPageSize(4);
+        businessMessageRequestBody.setPageNum(pageNum);
+        businessMessageRequestBody.setPageSize(pageSize);
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
+                businessMessageBeans.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
@@ -147,7 +145,7 @@ public class MessageFragment extends MvcBaseFragment {
 
 
                 }
-                businessMessageListAdapter.update(businessMessageBeans);
+                businessMessageListAdapter.notifyDataSetChanged();
 
                 if (businessMessageBeans.size()==0){
                     empty_view.setVisibility(View.VISIBLE);
@@ -175,7 +173,6 @@ public class MessageFragment extends MvcBaseFragment {
             public void onSuccess(JSONObject result) {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
@@ -184,7 +181,8 @@ public class MessageFragment extends MvcBaseFragment {
 
 
                 }
-                businessMessageListAdapter.update(businessMessageBeans);
+                businessMessageListAdapter.notifyDataSetChanged();
+
 
 
                 if (businessMessageBeans.size()==0){

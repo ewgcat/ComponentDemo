@@ -42,7 +42,7 @@ public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryReso
     @Override
     public void onBindViewHolder(HistoryResourceListAdatper.ViewHolder holder, int position) {
         HistoryResourceInfo historyResourceInfo = list.get(position);
-        ImageLoader.setImageResource(historyResourceInfo.getHeadImg(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(historyResourceInfo.getHeadImg(), context, holder.iv_header);
         holder.tv_name.setText(historyResourceInfo.getMemberName());
         int resId = historyResourceInfo.getSex().equals("男") ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);

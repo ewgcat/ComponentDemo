@@ -127,7 +127,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);
-                showToast(msg);
+
                 hideLoading();
             }
         });
@@ -168,7 +168,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
+
                 hideLoading();
 
             }

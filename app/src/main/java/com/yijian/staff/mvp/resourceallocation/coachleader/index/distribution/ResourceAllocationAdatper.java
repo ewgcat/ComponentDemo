@@ -46,7 +46,7 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
     public void onBindViewHolder(ResourceAllocationAdatper.ViewHolder holder, int position) {
         ResourceInfo resourceInfo = resourceInfoList.get(position);
 
-        ImageLoader.setImageResource(resourceInfo.getHeadImg(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(resourceInfo.getHeadImg(), context, holder.iv_header);
         holder.tv_name.setText(resourceInfo.getName());
         int resId = resourceInfo.getSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);

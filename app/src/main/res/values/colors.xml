@@ -9,6 +9,7 @@
     <color name="colorText">#2C2C2C</color>
     <color name="colorLogo">#FED530</color>
     <color name="blue">#1997f8</color>
+    <color name="gray_background_color">#f1f2f6</color>
 
     <color name="fab_bg">#FF4081</color>
     <color name="bottom_shadow">#6e000000</color>

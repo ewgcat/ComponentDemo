@@ -149,7 +149,6 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
             public void onFail(String msg) {
                 hideLoading();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                showToast(msg);
                 coachIntentViperListAdapter.notifyDataSetChanged();
 
                 if (coachViperBeanList.size() == 0) {
@@ -204,7 +203,7 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
                 hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                showToast(msg);
+
                 coachIntentViperListAdapter.notifyDataSetChanged();
 
                 if (coachViperBeanList.size() == 0) {

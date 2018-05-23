@@ -1,19 +1,16 @@
-package com.yijian.staff.mvp.huiji;
+package com.yijian.staff.mvp.huiji.goodsbaojia;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.system.KeyBroadUtil;

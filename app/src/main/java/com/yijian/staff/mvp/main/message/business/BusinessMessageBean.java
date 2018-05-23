@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main.message.business;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
 
@@ -52,7 +53,7 @@ public class BusinessMessageBean {
         this. id = JsonUtil.getString(jsonObject, "id");
         this. name = JsonUtil.getString(jsonObject, "name");
         this. typeName = JsonUtil.getString(jsonObject, "typeName");
-        this. memberHeadPortrait = JsonUtil.getString(jsonObject, "memberHeadPortrait");
+        this. memberHeadPortrait = BuildConfig.FILE_HOST+JsonUtil.getString(jsonObject, "memberHeadPortrait");
         this. memberId = JsonUtil.getString(jsonObject, "memberId");
         this. memberName = JsonUtil.getString(jsonObject, "memberName");
         Long createTimeValue = JsonUtil.getLong(jsonObject, "createTime");

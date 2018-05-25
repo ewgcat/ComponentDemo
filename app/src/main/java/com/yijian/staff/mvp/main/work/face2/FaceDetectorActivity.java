@@ -295,17 +295,14 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void onClick(View v) {
                 if (faces != null && faces.length > 0) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
-                        }
-                    }, 800);
+                    LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
+
                     mCamera.takePicture(null, null, new Camera.PictureCallback() {
                         @Override
                         public void onPictureTaken(byte[] data, Camera camera) {
                             Log.e("Test", "onPictureTaken....");
                             Log.e("Test", "taking()....." + data.length);
+                            clearFaceRect();
                             mCamera.stopPreview();
                             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                             Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
@@ -459,10 +456,10 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 //                        JSONObject bodyJOb = resultJOb.getJSONObject("body");
                         List<FaceBean> faceBeans = new ArrayList<>();
                         JSONArray bodyJarray = resultJOb.getJSONArray("body");
-                        for(int i = 0; i < bodyJarray.length(); i++){
+                        for (int i = 0; i < bodyJarray.length(); i++) {
                             JSONObject jsonObject1 = bodyJarray.getJSONObject(i);
                             JSONArray bodyResultJarray = jsonObject1.getJSONArray("face_results");
-                            for(int j = 0; j < bodyResultJarray.length(); j++){
+                            for (int j = 0; j < bodyResultJarray.length(); j++) {
                                 JSONObject jsonObject2 = bodyResultJarray.getJSONObject(j);
                                 JSONArray bodyResultSubJarray = jsonObject2.getJSONArray("face_set_results");
                                 faceBeans.addAll(com.alibaba.fastjson.JSONArray.parseArray(bodyResultSubJarray.toString(), FaceBean.class));

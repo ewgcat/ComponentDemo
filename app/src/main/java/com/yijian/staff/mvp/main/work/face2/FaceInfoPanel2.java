@@ -147,7 +147,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         tv_detail_coach.setText(faceDetail.getCoachName());
 
-        tv_detail_progress.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
+        tv_detail_progress.setText(faceDetail.getCourseName() + "第" + faceDetail.getCourseNum() + "节");
 
         tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
         tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()) + "次");
@@ -217,7 +217,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tv_courseNameNum.setText(faceDetail.getCourseName() + faceDetail.getCourseNum());
+                tv_courseNameNum.setText(faceDetail.getCourseName()  + "第" + faceDetail.getCourseNum() + "节");
                 rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override

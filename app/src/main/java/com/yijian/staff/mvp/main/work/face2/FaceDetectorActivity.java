@@ -44,6 +44,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.work.face.BitmapUtils;
 import com.yijian.staff.mvp.main.work.face.FaceActivity;
@@ -63,6 +64,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +97,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private Camera.Face[] faces;
     private int screenOritation = 0;
     private FaceInfoPanel2 faceInfoPanel;
-    private boolean isFaceDetector = true;
+//    private boolean isFaceDetector = true;
 
     /**
      * 测试弹出框
@@ -108,13 +110,13 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void onDismiss() {
                 btn_start_face.setVisibility(View.VISIBLE);
+                facesView.removeRect();
                 if (mCamera != null) {
                     mCamera.startPreview();
                     mCamera.startFaceDetection();
-                    isFaceDetector = true;
                     return;
                 }
-                restartCamera();
+//                restartCamera();
             }
         });
     }
@@ -135,9 +137,8 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void onOrientationChanged(int orientation) {
                 if (orientation == OrientationEventListener.ORIENTATION_UNKNOWN) {
-                    return;  //手机平放时，检测不到有效的角度
+                    return;
                 }
-//可以根据不同角度检测处理，这里只检测四个角度的改变
                 if (orientation > 350 || orientation < 10) { //0度
                     orientation = 0;
                     FaceDetectorActivity.this.screenOritation = orientation + 90;
@@ -203,12 +204,22 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 Log.e("Test2", "surfaceCreated()....");
-                if(faceInfoPanel == null || !faceInfoPanel.isShowing()){
+                if (faceInfoPanel == null || !faceInfoPanel.isShowing()) {
+                    if (mCamera != null) {
+                        mCamera.stopPreview();
+                        mCamera.setPreviewCallback(null);
+                        mCamera.release();
+                    }
                     mCamera = Camera.open(0);
                     try {
                         mCamera.setFaceDetectionListener(new FaceDetectorListener());
-                        mCamera.setPreviewDisplay(holder);
-                        startFaceDetection();
+//                        mCamera.setPreviewDisplay(holder);
+                        mCamera.setPreviewDisplay(mHolder);
+                        int measuredWidth = surfaceView.getMeasuredWidth();
+                        int measuredHeight = surfaceView.getMeasuredHeight();
+                        setCameraParms(mCamera, measuredWidth, measuredHeight);
+                        mCamera.startPreview();
+                        startFaceDetection(); // re-start face detection feature
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -218,7 +229,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                 Log.e(TAG, "surfaceChanged.....");
-                if (mHolder.getSurface() == null) {
+                /*if (mHolder.getSurface() == null) {
                     // preview surface does not exist
                     Log.e(TAG, "mHolder.getSurface() == null");
                     return;
@@ -244,7 +255,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                 } catch (Exception e) {
                     // ignore: tried to stop a non-existent preview
                     Log.d(TAG, "Error starting camera preview: " + e.getMessage());
-                }
+                }*/
             }
 
             @Override
@@ -256,7 +267,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     mCamera.setPreviewCallback(null);
                     mCamera.release();
                     mCamera = null;
-                    holder = null;
                 }
 
             }
@@ -284,19 +294,36 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         btn_start_face.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
-                isFaceDetector = false;
-                mCamera.stopFaceDetection();
-                facesView.removeRect();
-                mCamera.takePicture(null, null, new Camera.PictureCallback() {
-                    @Override
-                    public void onPictureTaken(byte[] data, Camera camera) {
-                        Log.e("Test","onPictureTaken....");
-
-                        if (faces != null && faces.length > 0) {
+                if (faces != null && faces.length > 0) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
+                        }
+                    }, 800);
+                    mCamera.takePicture(null, null, new Camera.PictureCallback() {
+                        @Override
+                        public void onPictureTaken(byte[] data, Camera camera) {
+                            Log.e("Test", "onPictureTaken....");
                             Log.e("Test", "taking()....." + data.length);
                             mCamera.stopPreview();
-                            facesView.removeRect();
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                            byte[] datas = baos.toByteArray();
+                            Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
+//                            iv_test.setImageBitmap(bitmap2);
+                            Log.e("Test", "taking()....." + datas.length);
+                            //请求人脸搜索
+
+                            //调用搜索接口
+                            postData(datas);
+
+                        /*if (faces != null && faces.length > 0) {
+                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
+                            Log.e("Test", "taking()....." + data.length);
+                            mCamera.stopPreview();
                             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                             Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -311,16 +338,16 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             postData(datas);
                         } else {
                             Toast.makeText(FaceDetectorActivity.this, "没有搜索到可识别的人脸", Toast.LENGTH_SHORT).show();
-                            LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
-                            if(mCamera != null){
-                                mCamera.startPreview();
-                                mCamera.startFaceDetection();
-                                isFaceDetector = true;
-                            }
-                        }
+                        }*/
 
-                    }
-                });
+                        }
+                    });
+
+
+                } else {
+                    Toast.makeText(FaceDetectorActivity.this, "没有搜索到可识别的人脸", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -381,14 +408,17 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("type", "req");
-            jsonObject.put("name", "FaceSearch");
+            jsonObject.put("name", "AdvancedFaceSearch");
             jsonObject.put("session", face_session);
 
             JSONObject bodyJsonObj = new JSONObject();
-            bodyJsonObj.put("max_result", "10");
+            bodyJsonObj.put("max_result", "3");
             bodyJsonObj.put("min_score", "0");
             bodyJsonObj.put("image", "msg://0");
-            bodyJsonObj.put("face_set", "10");
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put("10");
+            bodyJsonObj.put("face_set", jsonArray);
+//            bodyJsonObj.put("face_set", "10");
 
             jsonObject.put("body", bodyJsonObj);
 
@@ -426,8 +456,20 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     JSONObject resultJOb = new JSONObject(content);
                     int code = resultJOb.getInt("code");
                     if (code == 0) {
-                        JSONObject bodyJOb = resultJOb.getJSONObject("body");
-                        List<FaceBean> faceBeans = com.alibaba.fastjson.JSONArray.parseArray(bodyJOb.getJSONArray("result").toString(), FaceBean.class);
+//                        JSONObject bodyJOb = resultJOb.getJSONObject("body");
+                        List<FaceBean> faceBeans = new ArrayList<>();
+                        JSONArray bodyJarray = resultJOb.getJSONArray("body");
+                        for(int i = 0; i < bodyJarray.length(); i++){
+                            JSONObject jsonObject1 = bodyJarray.getJSONObject(i);
+                            JSONArray bodyResultJarray = jsonObject1.getJSONArray("face_results");
+                            for(int j = 0; j < bodyResultJarray.length(); j++){
+                                JSONObject jsonObject2 = bodyResultJarray.getJSONObject(j);
+                                JSONArray bodyResultSubJarray = jsonObject2.getJSONArray("face_set_results");
+                                faceBeans.addAll(com.alibaba.fastjson.JSONArray.parseArray(bodyResultSubJarray.toString(), FaceBean.class));
+                            }
+                        }
+
+
                         StringBuffer sb = new StringBuffer();
                         if (faceBeans.size() > 0) {
 
@@ -453,6 +495,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
 
                     } else {
+                        Log.e("Test", "请求结果....识别失败");
                         Message msg = mHandler.obtainMessage();
                         msg.what = USER_TEST_FACE_FAIL;
                         mHandler.sendMessage(msg);
@@ -503,6 +546,16 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
     }
 
+    private void clearFaceRect() {
+        facesView.isRemove(true);
+        facesView.removeRect();
+        if (mCamera != null) {
+            mCamera.startPreview();
+            mCamera.startFaceDetection();
+            return;
+        }
+    }
+
     private final int USER_VERIFICATION_USER_FAIL = 0;//验证失败
     private final int USER_TEST_FACE_NO = 1;//没有检测到人脸
     private final int USER_TEST_FACE_FAIL = 2;//识别失败
@@ -524,50 +577,37 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                 case USER_TEST_FACE_NO:
                     Toast.makeText(FaceDetectorActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    isFaceDetector = true;
+                    clearFaceRect();
                     break;
                 case USER_TEST_FACE_FAIL:
                     Toast.makeText(FaceDetectorActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    isFaceDetector = true;
+                    clearFaceRect();
+
                     break;
                 case USER_TEST_FACE_EXCEPTION:
                     Toast.makeText(FaceDetectorActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    isFaceDetector = true;
+                    clearFaceRect();
                     break;
                 case USER_TEST_FACE_LIBRARY_NO:
                     Toast.makeText(FaceDetectorActivity.this, "人脸库没找到相应的人员", Toast.LENGTH_SHORT).show();
-                    LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
                     btn_start_face.setEnabled(true);
-                    if (mCamera != null) {
-                        mCamera.startPreview();
-                        mCamera.startFaceDetection();
-                        isFaceDetector = true;
-                        return;
-                    }
-                    restartCamera();
-
+                    clearFaceRect();
                     break;
                 case USER_GET_VIP_INFO_NO:
                     Toast.makeText(FaceDetectorActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
+                    clearFaceRect();
                     break;
                 case USER_GET_VIP_INFO_FAIL:
-                    LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    mCamera.startPreview();
-                    isFaceDetector = true;
+                    clearFaceRect();
                     break;
                 case USER_GET_VIP_INFO_SUCCESS:
                     showPanel((List<FaceDetail>) msg.obj);
                     btn_start_face.setEnabled(true);
-                    isFaceDetector = true;
                     break;
 
             }
@@ -661,26 +701,26 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         @Override
         public void onFaceDetection(Camera.Face[] faces, Camera camera) {
 //            Log.e("Test","face.size==="+faces.length);
-            Log.e("Test","onFaceDetection.......face");
-            if(isFaceDetector){
-                FaceDetectorActivity.this.faces = faces;
-                if (faces.length > 0) {
-                    Camera.Face face = faces[0];
-                    Rect rect = face.rect;
-                    Log.e("FaceDetection", "可信度：" + face.score + "face detected: " + faces.length +
-                            " Face 1 Location X: " + rect.centerX() +
-                            "Y: " + rect.centerY() + "   " + rect.left + " " + rect.top + " " + rect.right + " " + rect.bottom);
-                    Log.e("tag", "【FaceDetectorListener】类的方法：【onFaceDetection】: ");
-                    Matrix matrix = updateFaceRect();
-                    facesView.updateFaces(matrix, faces);
-                } else {
-                    // 只会执行一次
-                    Log.e("tag", "【FaceDetectorListener】类的方法：【onFaceDetection】: " + "没有脸部");
-                    facesView.removeRect();
-                }
+            Log.e("Test", "onFaceDetection.......face");
+//            if (isFaceDetector) {
+            FaceDetectorActivity.this.faces = faces;
+            if (faces.length > 0) {
+                Camera.Face face = faces[0];
+                Rect rect = face.rect;
+                Log.e("FaceDetection", "可信度：" + face.score + "face detected: " + faces.length +
+                        " Face 1 Location X: " + rect.centerX() +
+                        "Y: " + rect.centerY() + "   " + rect.left + " " + rect.top + " " + rect.right + " " + rect.bottom);
+                Log.e("tag", "【FaceDetectorListener】类的方法：【onFaceDetection】: ");
+                Matrix matrix = updateFaceRect();
+                facesView.updateFaces(matrix, faces);
+            } else {
+                // 只会执行一次
+                Log.e("tag", "【FaceDetectorListener】类的方法：【onFaceDetection】: " + "没有脸部");
+                facesView.removeRect();
             }
-
         }
+
+//        }
     }
 
     /**
@@ -710,9 +750,9 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         // start face detection only *after* preview has started
         if (params.getMaxNumDetectedFaces() > 0) {
             // mCamera supports face detection, so can start it:
-            try{
-            mCamera.startFaceDetection();
-            }catch(Exception e){
+            try {
+                mCamera.startFaceDetection();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {

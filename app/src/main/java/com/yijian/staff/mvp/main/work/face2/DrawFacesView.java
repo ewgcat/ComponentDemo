@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -23,6 +24,7 @@ public class DrawFacesView extends View {
     private boolean isClear;
     private int strokeLinePaintWidth = 1;
     private int strokePaintWidth = 1;
+    private boolean isRemove = false;
 
     public DrawFacesView(Context context) {
         this(context, null);
@@ -56,36 +58,47 @@ public class DrawFacesView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.setMatrix(matrix);
-        for (Camera.Face face : faces) {
-            if (face == null) break;
-            canvas.drawRect(face.rect, paint);
-            Rect rectangle = face.rect;
-            canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.top-strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //左上(横)
-            canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.top-strokePaintWidth-2,rectangle.left-strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint);//左上（竖）
-
-            canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.top-strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //右上（横）
-            canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.top-strokePaintWidth-2, rectangle.right+strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右上 （竖）
-
-            canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.bottom+strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //左下（横）
-            canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.left-strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //左下（竖）
-
-            canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.bottom+strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //右下（横）
-            canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.right+strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右下（竖）
-
-
-            if (face.leftEye != null)
-                canvas.drawPoint(face.leftEye.x, face.leftEye.y, paint);
-            if (face.rightEye != null)
-                canvas.drawPoint(face.rightEye.x, face.rightEye.y, paint);
-            if (face.mouth != null)
-                canvas.drawPoint(face.mouth.x, face.mouth.y, paint);
-            // 因为旋转了画布矩阵，所以字体也跟着旋转
-//            canvas.drawText(String.valueOf("id:" + face.id + "\n置信度:" + face.score), face.rect.left, face.rect.bottom + 10, paint);
-        }
-        if (isClear) {
+        if(isClear){
+            Log.e("Test","清楚人脸框......");
             canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
             isClear = false;
+        }else{
+
+            canvas.setMatrix(matrix);
+            for (Camera.Face face : faces) {
+                Log.e("Test","获取到人脸数据。。。。。");
+                if (face == null) break;
+                canvas.drawRect(face.rect, paint);
+                Rect rectangle = face.rect;
+                canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.top-strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //左上(横)
+                canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.top-strokePaintWidth-2,rectangle.left-strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint);//左上（竖）
+
+                canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.top-strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //右上（横）
+                canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.top-strokePaintWidth-2, rectangle.right+strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右上 （竖）
+
+                canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.bottom+strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //左下（横）
+                canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.left-strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //左下（竖）
+
+                canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.bottom+strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //右下（横）
+                canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.right+strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右下（竖）
+
+
+                if (face.leftEye != null)
+                    canvas.drawPoint(face.leftEye.x, face.leftEye.y, paint);
+                if (face.rightEye != null)
+                    canvas.drawPoint(face.rightEye.x, face.rightEye.y, paint);
+                if (face.mouth != null)
+                    canvas.drawPoint(face.mouth.x, face.mouth.y, paint);
+                // 因为旋转了画布矩阵，所以字体也跟着旋转
+//            canvas.drawText(String.valueOf("id:" + face.id + "\n置信度:" + face.score), face.rect.left, face.rect.bottom + 10, paint);
+
+            }
+            if(isRemove){
+                Log.e("Test","isRemove....."+isRemove);
+                canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
+                isRemove = false;
+            }
+
         }
     }
 
@@ -108,4 +121,9 @@ public class DrawFacesView extends View {
         isClear = true;
         invalidate();
     }
+
+    public void isRemove(boolean isRemove){
+        this.isRemove = isRemove;
+    }
+
 }

@@ -136,7 +136,9 @@ public class FaceInfoPanel2 extends PopupWindow {
             if (("无").equals(faceDetail.getBEntranceRecord()) || TextUtils.isEmpty(faceDetail.getBEntranceRecord())) {
                 tv_detail_biuld_time.setText("无");
             } else {
-                tv_detail_biuld_time.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getBEntranceRecord())));
+//                tv_detail_biuld_time.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getBEntranceRecord())));
+                tv_detail_biuld_time.setText(faceDetail.getBEntranceRecord());
+
             }
         } catch (ParseException e) {
             e.printStackTrace();

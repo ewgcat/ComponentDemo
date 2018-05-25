@@ -391,7 +391,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
-                                android:text="最新私教课进度："
+                                android:text="课程进度："
                                 android:layout_marginLeft="5dp"/>
 
                         </LinearLayout>

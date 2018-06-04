@@ -229,33 +229,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                 Log.e(TAG, "surfaceChanged.....");
-                /*if (mHolder.getSurface() == null) {
-                    // preview surface does not exist
-                    Log.e(TAG, "mHolder.getSurface() == null");
-                    return;
-                }
-
-                try {
-                    mCamera.stopPreview();
-
-                } catch (Exception e) {
-                    // ignore: tried to stop a non-existent preview
-                    Log.e(TAG, "Error stopping camera preview: " + e.getMessage());
-                }
-
-                try {
-                    mCamera.setPreviewDisplay(mHolder);
-                    int measuredWidth = surfaceView.getMeasuredWidth();
-                    int measuredHeight = surfaceView.getMeasuredHeight();
-                    setCameraParms(mCamera, measuredWidth, measuredHeight);
-                    mCamera.startPreview();
-
-                    startFaceDetection(); // re-start face detection feature
-
-                } catch (Exception e) {
-                    // ignore: tried to stop a non-existent preview
-                    Log.d(TAG, "Error starting camera preview: " + e.getMessage());
-                }*/
             }
 
             @Override
@@ -314,28 +287,14 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             Log.e("Test", "taking()....." + datas.length);
                             //请求人脸搜索
 
-                            //调用搜索接口
-                            postData(datas);
-
-                        /*if (faces != null && faces.length > 0) {
-                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
-                            Log.e("Test", "taking()....." + data.length);
-                            mCamera.stopPreview();
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
-                            byte[] datas = baos.toByteArray();
-                            Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
-//                            iv_test.setImageBitmap(bitmap2);
-                            Log.e("Test", "taking()....." + datas.length);
-                            //请求人脸搜索
+                            try {
+                                baos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
                             //调用搜索接口
                             postData(datas);
-                        } else {
-                            Toast.makeText(FaceDetectorActivity.this, "没有搜索到可识别的人脸", Toast.LENGTH_SHORT).show();
-                        }*/
 
                         }
                     });
@@ -442,6 +401,9 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("Test", e.getMessage());
+                Message msg = mHandler.obtainMessage();
+                msg.what = USER_GET_FACE_SEARCH_FAIL;
+                mHandler.sendMessage(msg);
             }
 
             @Override
@@ -561,6 +523,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private final int USER_GET_VIP_INFO_NO = 4;//没有获取到对应会员数据
     private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
     private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
+    private final int USER_GET_FACE_SEARCH_FAIL = 8;//人脸搜索连接失败
 
     Handler mHandler = new Handler() {
         @Override
@@ -599,6 +562,11 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
                 case USER_GET_VIP_INFO_FAIL:
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
+                    clearFaceRect();
+                    break;
+                    case USER_GET_FACE_SEARCH_FAIL:
+                    Toast.makeText(FaceDetectorActivity.this, "人脸服务器连接失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;

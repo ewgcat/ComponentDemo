@@ -126,7 +126,7 @@
                     android:textColor="@color/black333333"
                     android:layout_marginLeft="9dp"
                     android:layout_alignParentLeft="true"
-                    android:text="到场时间:"/>
+                    android:text="离场时间:"/>
 
             <TextView android:id="@+id/tv_leaving_time"
                       android:layout_width="wrap_content"

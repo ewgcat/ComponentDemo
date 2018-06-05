@@ -5,15 +5,15 @@ package com.yijian.staff.mvp.reception.step2;
  */
 
 public interface KeFuReceptionStepTwoContract {
-    interface View{
+    interface View {
 
         void showJumpBodyCheck();
 
         void showCoachBodyCheck();
     }
 
-    interface Presenter{
-//        sale-jump-body-check
+    interface Presenter {
+        //        sale-jump-body-check
         void jumpBodyCheck(String memberId);
 
         void coachBodyCheck(String memberId);

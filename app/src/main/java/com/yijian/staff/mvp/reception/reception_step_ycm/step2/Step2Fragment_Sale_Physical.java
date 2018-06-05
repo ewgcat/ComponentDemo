@@ -56,18 +56,18 @@ public class Step2Fragment_Sale_Physical extends Fragment implements PhysicalRep
         navigationBar2.setmRightTvText("下一步");
         navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2ToStep3();
+            @Override
+            public void onClick(View v) {
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2ToStep3();
 
-                }
+            }
         });
 
 
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2Back();
             }
         });
     }

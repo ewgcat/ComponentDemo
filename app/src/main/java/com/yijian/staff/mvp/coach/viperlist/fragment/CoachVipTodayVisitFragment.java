@@ -70,7 +70,6 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     private CoachTodayViperListAdapter coachViperListAdapter;
 
 
-
     @Override
     public int getLayoutId() {
         return R.layout.fragment_vip_all_people_info;

@@ -10,6 +10,7 @@ import io.reactivex.processors.PublishProcessor;
 public class RxBus {
     // 主题
     private final FlowableProcessor<Object> bus;
+
     // PublishSubject只会把在订阅发生的时间点之后来自原始Flowable的数据发射给观察者
     private RxBus() {
         bus = PublishProcessor.create().toSerialized();

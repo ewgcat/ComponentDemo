@@ -22,12 +22,12 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
     OpenLessonNewActivity openLessonNewActivity;
     EditActionObservable editActionObservable;
 
-    public void resetData(List<PrivateLessonRecordBean> privateLessonRecordBeans){
+    public void resetData(List<PrivateLessonRecordBean> privateLessonRecordBeans) {
         this.privateLessonRecordBeans = privateLessonRecordBeans;
         notifyDataSetChanged();
     }
 
-    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans,OpenLessonNewActivity openLessonNewActivity,EditActionObservable editActionObservable) {
+    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans, OpenLessonNewActivity openLessonNewActivity, EditActionObservable editActionObservable) {
         this.privateLessonRecordBeans = privateLessonRecordBeans;
         this.openLessonNewActivity = openLessonNewActivity;
         this.editActionObservable = editActionObservable;
@@ -43,8 +43,8 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         PrivateLessonRecordBean openLessonNewBean = privateLessonRecordBeans.get(position);
-        ViewHolder viewHolder = (ViewHolder)holder;
-        viewHolder.view_openlesson.initActionRecord(openLessonNewBean,position,openLessonNewActivity);
+        ViewHolder viewHolder = (ViewHolder) holder;
+        viewHolder.view_openlesson.initActionRecord(openLessonNewBean, position, openLessonNewActivity);
         editActionObservable.addObserver(viewHolder.view_openlesson);
     }
 
@@ -53,7 +53,7 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
         return privateLessonRecordBeans == null ? 0 : privateLessonRecordBeans.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private OpenLessonNewView view_openlesson;
 

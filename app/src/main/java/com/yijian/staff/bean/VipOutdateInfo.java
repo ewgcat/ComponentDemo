@@ -27,19 +27,21 @@ public class VipOutdateInfo {
     private String outDate; //过期时间
     private String outDateReason; //过期原因
 
-    public VipOutdateInfo(){}
-    public VipOutdateInfo(JSONObject jsonObject){
-        this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
-        this.name = JsonUtil.getString(jsonObject,"name");
-        this.gender = "0".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;
-        this.cardName = JsonUtil.getString(jsonObject,"cardName");
-        this.cardType = JsonUtil.getString(jsonObject,"cardType");
-        this.privateCoach = JsonUtil.getString(jsonObject,"privateCoach");
-        this.likeLesson = JsonUtil.getString(jsonObject,"likeLesson");
-        this.likeTeacher = JsonUtil.getString(jsonObject,"likeTeacher");
-        this.registTime = JsonUtil.getString(jsonObject,"registTime");
-        this.contractOutDate = JsonUtil.getString(jsonObject,"contractOutDate");
-        this.outDateDay = JsonUtil.getString(jsonObject,"outDateDay");
+    public VipOutdateInfo() {
+    }
+
+    public VipOutdateInfo(JSONObject jsonObject) {
+        this.headerUrl = JsonUtil.getString(jsonObject, "headerUrl");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.gender = "0".equals(JsonUtil.getString(jsonObject, "gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;
+        this.cardName = JsonUtil.getString(jsonObject, "cardName");
+        this.cardType = JsonUtil.getString(jsonObject, "cardType");
+        this.privateCoach = JsonUtil.getString(jsonObject, "privateCoach");
+        this.likeLesson = JsonUtil.getString(jsonObject, "likeLesson");
+        this.likeTeacher = JsonUtil.getString(jsonObject, "likeTeacher");
+        this.registTime = JsonUtil.getString(jsonObject, "registTime");
+        this.contractOutDate = JsonUtil.getString(jsonObject, "contractOutDate");
+        this.outDateDay = JsonUtil.getString(jsonObject, "outDateDay");
 
     }
 

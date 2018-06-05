@@ -40,20 +40,18 @@ public class MenuView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        ivTab =  findViewById(R.id.iv_tab);
+        ivTab = findViewById(R.id.iv_tab);
         tvTab = findViewById(R.id.tv_tab);
 
     }
 
-    public void setTabIcon(int resId){
+    public void setTabIcon(int resId) {
         Glide.with(context).load(resId).into(ivTab);
     }
 
-    public void setTabText(String tabText){
+    public void setTabText(String tabText) {
         tvTab.setText(tabText);
     }
-
-
 
 
 }

@@ -10,7 +10,7 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/4/20 15:40:15
  */
-public class HuiFangReasonBean implements IPickerViewData{
+public class HuiFangReasonBean implements IPickerViewData {
 
 
     /**
@@ -25,11 +25,11 @@ public class HuiFangReasonBean implements IPickerViewData{
     private String dictItemName;
     private String sort;
 
-    public HuiFangReasonBean(JSONObject jsonObject){
-        this. dictItemId = JsonUtil.getString(jsonObject, "dictItemId");
-        this. dictItemKey = JsonUtil.getString(jsonObject, "dictItemKey");
-        this. dictItemName = JsonUtil.getString(jsonObject, "dictItemName");
-        this. sort = JsonUtil.getString(jsonObject, "sort");
+    public HuiFangReasonBean(JSONObject jsonObject) {
+        this.dictItemId = JsonUtil.getString(jsonObject, "dictItemId");
+        this.dictItemKey = JsonUtil.getString(jsonObject, "dictItemKey");
+        this.dictItemName = JsonUtil.getString(jsonObject, "dictItemName");
+        this.sort = JsonUtil.getString(jsonObject, "sort");
     }
 
     public String getDictItemId() {

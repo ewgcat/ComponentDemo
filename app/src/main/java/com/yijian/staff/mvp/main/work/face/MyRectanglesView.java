@@ -28,7 +28,6 @@ public class MyRectanglesView extends View {
     private int strokeLinePaintWidth = 1;
 
 
-
     public MyRectanglesView(Context context) {
         super(context);
     }
@@ -58,7 +57,7 @@ public class MyRectanglesView extends View {
             strokeLinePaint.setStyle(Paint.Style.FILL);
             strokeLinePaint.setColor(Color.WHITE);
             strokeLinePaint.setAntiAlias(true);
-            strokeLinePaintWidth = strokePaintWidth+5;
+            strokeLinePaintWidth = strokePaintWidth + 5;
             strokeLinePaint.setStrokeWidth(strokeLinePaintWidth);
         } finally {
             attributes.recycle();
@@ -96,17 +95,17 @@ public class MyRectanglesView extends View {
         for (Rect rectangle : rectangles) {
             canvas.drawRect(rectangle, strokePaint);
 
-            canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.top-strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/3,rectangle.top-strokePaintWidth,strokeLinePaint); //左上(横)
-            canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.top-strokePaintWidth-2,rectangle.left-strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/3,strokeLinePaint);//左上（竖）
+            canvas.drawLine(rectangle.left - strokePaintWidth - 2, rectangle.top - strokePaintWidth, rectangle.left + (rectangle.right - rectangle.left) / 3, rectangle.top - strokePaintWidth, strokeLinePaint); //左上(横)
+            canvas.drawLine(rectangle.left - strokePaintWidth, rectangle.top - strokePaintWidth - 2, rectangle.left - strokePaintWidth, rectangle.top + (rectangle.bottom - rectangle.top) / 3, strokeLinePaint);//左上（竖）
 
-            canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.top-strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/3,rectangle.top-strokePaintWidth,strokeLinePaint); //右上（横）
-            canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.top-strokePaintWidth-2, rectangle.right+strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/3,strokeLinePaint); //右上 （竖）
+            canvas.drawLine(rectangle.right + strokePaintWidth + 2, rectangle.top - strokePaintWidth, rectangle.right - (rectangle.right - rectangle.left) / 3, rectangle.top - strokePaintWidth, strokeLinePaint); //右上（横）
+            canvas.drawLine(rectangle.right + strokePaintWidth, rectangle.top - strokePaintWidth - 2, rectangle.right + strokePaintWidth, rectangle.top + (rectangle.bottom - rectangle.top) / 3, strokeLinePaint); //右上 （竖）
 
-            canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.bottom+strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/3,rectangle.bottom+strokePaintWidth,strokeLinePaint); //左下（横）
-            canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.left-strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/3,strokeLinePaint); //左下（竖）
+            canvas.drawLine(rectangle.left - strokePaintWidth - 2, rectangle.bottom + strokePaintWidth, rectangle.left + (rectangle.right - rectangle.left) / 3, rectangle.bottom + strokePaintWidth, strokeLinePaint); //左下（横）
+            canvas.drawLine(rectangle.left - strokePaintWidth, rectangle.bottom + strokePaintWidth + 2, rectangle.left - strokePaintWidth, rectangle.bottom - (rectangle.bottom - rectangle.top) / 3, strokeLinePaint); //左下（竖）
 
-            canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.bottom+strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/3,rectangle.bottom+strokePaintWidth,strokeLinePaint); //右下（横）
-            canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.right+strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/3,strokeLinePaint); //右下（竖）
+            canvas.drawLine(rectangle.right + strokePaintWidth + 2, rectangle.bottom + strokePaintWidth, rectangle.right - (rectangle.right - rectangle.left) / 3, rectangle.bottom + strokePaintWidth, strokeLinePaint); //右下（横）
+            canvas.drawLine(rectangle.right + strokePaintWidth, rectangle.bottom + strokePaintWidth + 2, rectangle.right + strokePaintWidth, rectangle.bottom - (rectangle.bottom - rectangle.top) / 3, strokeLinePaint); //右下（竖）
         }
     }
 

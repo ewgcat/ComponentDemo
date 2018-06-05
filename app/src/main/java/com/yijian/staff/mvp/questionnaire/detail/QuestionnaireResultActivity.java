@@ -35,12 +35,11 @@ import io.reactivex.disposables.Disposable;
 public class QuestionnaireResultActivity extends MvcBaseActivity {
     private static final String TAG = QuestionnaireResultActivity.class.getSimpleName();
     private RecyclerView recyclerView;
-    private List<DataListBean> step1bean =new ArrayList<>();
+    private List<DataListBean> step1bean = new ArrayList<>();
     private QuestionnaireAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     private String memberId;
     private MaterialCalendarView calendarView;
-
 
 
     @Override
@@ -59,14 +58,14 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(false);
-        adapter = new QuestionnaireAdapter(step1bean,QuestionnaireResultActivity.this);
+        adapter = new QuestionnaireAdapter(step1bean, QuestionnaireResultActivity.this);
         recyclerView.setAdapter(adapter);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("memberId")){
+        if (intent.hasExtra("memberId")) {
             memberId = intent.getStringExtra("memberId");
-        }else {
-            Toast.makeText(QuestionnaireResultActivity.this,"用户信息获取失败",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(QuestionnaireResultActivity.this, "用户信息获取失败", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -79,7 +78,7 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         widget.setPagingEnabled(false);
         widget.setTopbarVisible(false);
-        widget.setWeekDayLabels(new String[]{"日","一","二","三","四","五","六"});
+        widget.setWeekDayLabels(new String[]{"日", "一", "二", "三", "四", "五", "六"});
 
         widget.setWeekDayTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_WeekDay);
         widget.setDateTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_Date);
@@ -89,14 +88,14 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
     private void initData() {
 
 
-        Map<String ,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT,params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = new Gson().fromJson(result.toString(), TemplateBean.class);
-                if (templateBean==null)return;
+                if (templateBean == null) return;
 //                view.showQuestion(templateBean);
                 adapter.resetData(templateBean.getDataList());
             }
@@ -106,7 +105,6 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
 
             }
         });
-
 
 
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT_FITNESSTIME, params, new Observer<JSONObject>() {
@@ -123,7 +121,7 @@ public class QuestionnaireResultActivity extends MvcBaseActivity {
                 try {
                     int code = jsonObject.getInt("code");
 
-                    if (code==0){
+                    if (code == 0) {
                         JSONArray data = jsonObject.getJSONArray("data");
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         ArrayList<CalendarDay> dates = new ArrayList<>();

@@ -15,27 +15,28 @@ import com.yijian.staff.util.ImageLoader;
  */
 
 class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
-//    @BindView(R.id.iv_head)
+    //    @BindView(R.id.iv_head)
     ImageView ivHead;
-//    @BindView(R.id.tv_name)
+    //    @BindView(R.id.tv_name)
     TextView tvName;
     TextView tv_card_no;
     TextView tv_card_tips;
     ImageView ivVisit;
+
     public ViewHolderHuijiIntentVipType_0(View itemView) {
         super(itemView);
-        ivHead=   itemView.findViewById(R.id.iv_head);
-        tvName=   itemView.findViewById(R.id.tv_name);
-        tv_card_no=   itemView.findViewById(R.id.tv_card_no);
-        tv_card_tips=itemView.findViewById(R.id.tv_card_tips);
+        ivHead = itemView.findViewById(R.id.iv_head);
+        tvName = itemView.findViewById(R.id.tv_name);
+        tv_card_no = itemView.findViewById(R.id.tv_card_no);
+        tv_card_tips = itemView.findViewById(R.id.tv_card_tips);
 
-        ivVisit=   itemView.findViewById(R.id.iv_visit);
+        ivVisit = itemView.findViewById(R.id.iv_visit);
 
     }
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
 
 //        if (TextUtils.isEmpty(vipDetailBean.getMemberCardNo())){
@@ -47,7 +48,7 @@ class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
         ivVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (huijiVipInterface!=null)huijiVipInterface.visit();
+                if (huijiVipInterface != null) huijiVipInterface.visit();
             }
         });
     }

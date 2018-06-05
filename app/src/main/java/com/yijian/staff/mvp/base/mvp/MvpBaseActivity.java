@@ -18,14 +18,14 @@ public abstract class MvpBaseActivity<T extends BasePresenter> extends MvcBaseAc
     @Inject
     protected T mPresenter;
 
-    protected ActivityComponent getActivityComponent(){
-        return  DaggerActivityComponent.builder()
+    protected ActivityComponent getActivityComponent() {
+        return DaggerActivityComponent.builder()
                 .appComponent(CustomApplication.getAppComponent())
                 .activityModule(getActivityModule())
                 .build();
     }
 
-    protected ActivityModule getActivityModule(){
+    protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
 

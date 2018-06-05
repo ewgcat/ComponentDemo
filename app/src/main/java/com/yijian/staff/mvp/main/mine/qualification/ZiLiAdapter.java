@@ -40,7 +40,7 @@ public class ZiLiAdapter extends RecyclerView.Adapter<ZiLiAdapter.ViewHolder> {
     }
 
     public void update(List<String> authList) {
-        this.authList=authList;
+        this.authList = authList;
         notifyDataSetChanged();
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/17 19:29:17
  */
-public class CardInfo implements Comparable<CardInfo>{
+public class CardInfo implements Comparable<CardInfo> {
 
 
     @Override

@@ -24,7 +24,7 @@ public class AerobicsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.recordTitleBean = new RecordTitleBean("器材", "程式/级数", "时间(s)");
     }
 
-    public void  resetActionList(List<AerobicsBean> list){
+    public void resetActionList(List<AerobicsBean> list) {
         aerobicsBeans.clear();
         aerobicsBeans.add(recordTitleBean);//添加头部
         aerobicsBeans.addAll(list);

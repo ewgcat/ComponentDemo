@@ -25,7 +25,7 @@ public class ExperienceClassVipCardListAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, null);
         ExperienceClassVipCardListAdapter.ViewHolder viewHolder = new ExperienceClassVipCardListAdapter.ViewHolder(view);
         return viewHolder;
     }
@@ -33,26 +33,26 @@ public class ExperienceClassVipCardListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CardprodVOsBean cardprodsBean = cardprodsBeans.get(position);
-        ((ExperienceClassVipCardListAdapter.ViewHolder)holder).bind(cardprodsBean);
+        ((ExperienceClassVipCardListAdapter.ViewHolder) holder).bind(cardprodsBean);
     }
 
     @Override
     public int getItemCount() {
-        return cardprodsBeans==null?0:cardprodsBeans.size();
+        return cardprodsBeans == null ? 0 : cardprodsBeans.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_cardName;
         private TextView tv_cardType;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_cardName  = itemView.findViewById(R.id.tv_cardName);
-            tv_cardType  = itemView.findViewById(R.id.tv_cardType);
+            tv_cardName = itemView.findViewById(R.id.tv_cardName);
+            tv_cardType = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(CardprodVOsBean cardprodsBean){
+        public void bind(CardprodVOsBean cardprodsBean) {
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

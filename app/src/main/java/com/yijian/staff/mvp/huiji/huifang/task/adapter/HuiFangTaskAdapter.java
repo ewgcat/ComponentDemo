@@ -65,7 +65,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
 
         String headImg = huiFangInfo.getHeadImg();
-        ImageLoader.setHeadImageResource(headImg,context,holder.ivHead);
+        ImageLoader.setHeadImageResource(headImg, context, holder.ivHead);
 
         holder.tvViperName.setText(huiFangInfo.getName());
         String sex = huiFangInfo.getSex();
@@ -175,8 +175,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 String lastFitTime = huiFangInfo.getLastFitTime();
                 holder.tvPreJianShenDate.setText(lastFitTime);
                 Long breakDay = huiFangInfo.getBreakDay();
-                if (breakDay!=null&&breakDay!=-1){
-                    holder.tvWeiJianShenTime.setText(breakDay+"");
+                if (breakDay != null && breakDay != -1) {
+                    holder.tvWeiJianShenTime.setText(breakDay + "");
                 }
                 break;
             case "PotentialVO"://潜在会员
@@ -184,8 +184,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             case "EjoyVO"://易健平台
                 holder.llChenMoTianShu.setVisibility(View.VISIBLE);
                 Long sinkDay = huiFangInfo.getSinkDay();
-                if (sinkDay!=null&&sinkDay!=-1){
-                    holder.tvChenMoTianShu.setText(sinkDay+"");
+                if (sinkDay != null && sinkDay != -1) {
+                    holder.tvChenMoTianShu.setText(sinkDay + "");
                 }
                 break;
 
@@ -205,20 +205,20 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 holder.tvCardName.setText(huiFangInfo.getCardName());
                 holder.tvCardType.setText(huiFangInfo.getCardType());
                 Long openCardTime = huiFangInfo.getOpenCardTime();
-                if (openCardTime!=null&&openCardTime!=-1){
+                if (openCardTime != null && openCardTime != -1) {
                     String s = DateUtil.parseLongDateToDateString(openCardTime);
                     holder.tvKaiKaDate.setText(s);
                 }
 
                 Long recentlyFitTime = huiFangInfo.getRecentlyFitTime();
-                if (recentlyFitTime!=null&&recentlyFitTime!=-1){
+                if (recentlyFitTime != null && recentlyFitTime != -1) {
                     String s = DateUtil.parseLongDateToDateString(recentlyFitTime);
                     holder.tvZuijinJianshen.setText(s);
                 }
 
                 Long sinkDay1 = huiFangInfo.getSinkDay();
-                if (sinkDay1!=null&&sinkDay1!=-1){
-                    holder.tvChenMoTianShu.setText(sinkDay1+"");
+                if (sinkDay1 != null && sinkDay1 != -1) {
+                    holder.tvChenMoTianShu.setText(sinkDay1 + "");
                 }
                 break;
         }
@@ -234,7 +234,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                     if (CommonUtil.isPhoneFormat(mobile)) {
                         HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean("15");
                         Intent i = new Intent(context, HuijiTianXieHuiFangResultActivity.class);
-                        i.putExtra("huiFangInfo",huiFangInfo);
+                        i.putExtra("huiFangInfo", huiFangInfo);
                         context.startActivity(i);
                         CommonUtil.callPhone(context, mobile);
 

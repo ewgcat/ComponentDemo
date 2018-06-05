@@ -33,7 +33,6 @@ public class CoachHuiFangInfo {
      */
 
 
-
     private String interviewRecordId;
     private String id;
     private String name;
@@ -71,7 +70,7 @@ public class CoachHuiFangInfo {
 
 
     public CoachHuiFangInfo(JSONObject jsonObject) {
-        this.headImg = BuildConfig.FILE_HOST+  JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
         this.healthStatus = JsonUtil.getString(jsonObject, "healthStatus");
@@ -185,8 +184,6 @@ public class CoachHuiFangInfo {
     public void setInviteCourseTime(Long inviteCourseTime) {
         this.inviteCourseTime = inviteCourseTime;
     }
-
-
 
 
     public Long getDeadline() {

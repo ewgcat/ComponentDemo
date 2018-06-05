@@ -139,7 +139,7 @@ public class HeaderScrollingBehaviorWeek extends CoordinatorLayout.Behavior<Nest
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, NestedScrollView child, View dependency) {
 
-        child.setTranslationY(dependency.getHeight()  + dependency.getTranslationY() + getWeekBarViewHeight());
+        child.setTranslationY(dependency.getHeight() + dependency.getTranslationY() + getWeekBarViewHeight());
         return true;
     }
 

@@ -107,9 +107,9 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
                 break;
             case R.id.tv_chakanxiangqing:
 //                startActivity(new Intent(ReceptionStepFourActivity.this, GoodsRightSupportActivity.class));
-                if (productDetail==null)return;
+                if (productDetail == null) return;
                 Intent intent2 = new Intent(ReceptionStepFourActivity.this, RightsAcitity.class);
-                intent2.putExtra("productDetail",productDetail);
+                intent2.putExtra("productDetail", productDetail);
                 startActivity(intent2);
                 break;
         }
@@ -117,24 +117,24 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail =productDetail;
+        this.productDetail = productDetail;
 
 
         String cardTypeName = productDetail.getCardTypeName();
-        tvCardName.setText(""+cardTypeName);
+        tvCardName.setText("" + cardTypeName);
 
 //        BigDecimal salePrice = productDetail.getSalePrice();
 //        if (salePrice!=null) tvPrice.setText(""+salePrice.doubleValue());
 
         Integer cardType = productDetail.getCardType();// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
-        if (cardType!=null){
-            if (cardType==0){
+        if (cardType != null) {
+            if (cardType == 0) {
                 tvCardtype.setText("期限卡");
-            }else if (cardType==1){
+            } else if (cardType == 1) {
                 tvCardtype.setText("次数卡");
-            }else if (cardType==2){
+            } else if (cardType == 2) {
                 tvCardtype.setText("储值卡");
-            }else if (cardType==3){
+            } else if (cardType == 3) {
                 tvCardtype.setText("会员制卡");
             }
         }
@@ -165,15 +165,15 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
 
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuer.setText(strRestKey+strRestVal);
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
+            tvYuer.setText(strRestKey + strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
         List<String> rightsInterestsList = productDetail.getRightsInterestsList();
         if (rightsInterestsList != null && rightsInterestsList.size() != 0) {
@@ -188,11 +188,10 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
 
 
         String createDate = productDetail.getCreateDate();
-        tvStartTime.setText(""+createDate);
+        tvStartTime.setText("" + createDate);
 
         String expirationDate = productDetail.getExpirationDate();
-        tvEndTime.setText(""+expirationDate);
-
+        tvEndTime.setText("" + expirationDate);
 
 
     }
@@ -200,7 +199,7 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
     @Override
     public void showToStepFive() {
         Intent intent = new Intent(ReceptionStepFourActivity.this, ReceptionStepFiveActivity.class);
-        if (!TextUtils.isEmpty(memberId))intent.putExtra("memberId",memberId);
+        if (!TextUtils.isEmpty(memberId)) intent.putExtra("memberId", memberId);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 

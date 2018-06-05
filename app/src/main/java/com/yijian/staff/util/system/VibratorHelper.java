@@ -6,7 +6,7 @@ import android.os.Vibrator;
 
 /**
  * desc: 震动工具类
- *
+ * <p>
  * date:2017/2/22 0022
  * time:上午 9:25
  */

@@ -6,5 +6,6 @@ package com.yijian.staff.mvp.huiji.detail;
 
 public interface HuijiVipInterface {
     void visit();
+
     void edit();
 }

@@ -16,6 +16,7 @@ import com.yijian.staff.R;
 @SuppressLint("ValidFragment")
 public class ReportingFragment extends Fragment {
     public static ReportingFragment mReportingFragment = null;
+
     public static ReportingFragment getInstance() {
         if (mReportingFragment == null) {
             mReportingFragment = new ReportingFragment();
@@ -30,7 +31,6 @@ public class ReportingFragment extends Fragment {
 
         return view;
     }
-
 
 
 }

@@ -48,21 +48,22 @@ public class BusinessMessageBean {
     private String createTime;
 
 
-    public BusinessMessageBean(JSONObject jsonObject){
+    public BusinessMessageBean(JSONObject jsonObject) {
 
-        this. id = JsonUtil.getString(jsonObject, "id");
-        this. name = JsonUtil.getString(jsonObject, "name");
-        this. typeName = JsonUtil.getString(jsonObject, "typeName");
-        this. memberHeadPortrait = BuildConfig.FILE_HOST+JsonUtil.getString(jsonObject, "memberHeadPortrait");
-        this. memberId = JsonUtil.getString(jsonObject, "memberId");
-        this. memberName = JsonUtil.getString(jsonObject, "memberName");
+        this.id = JsonUtil.getString(jsonObject, "id");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.typeName = JsonUtil.getString(jsonObject, "typeName");
+        this.memberHeadPortrait = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "memberHeadPortrait");
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.memberName = JsonUtil.getString(jsonObject, "memberName");
         Long createTimeValue = JsonUtil.getLong(jsonObject, "createTime");
-        if (createTimeValue!=-1){
-            this. createTime = DateUtil.parseLongDateToTimeString(createTimeValue);
+        if (createTimeValue != -1) {
+            this.createTime = DateUtil.parseLongDateToTimeString(createTimeValue);
         }
-        this. type = JsonUtil.getInt(jsonObject, "type");
+        this.type = JsonUtil.getInt(jsonObject, "type");
 
     }
+
     public String getId() {
         return id;
     }

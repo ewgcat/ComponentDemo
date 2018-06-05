@@ -38,7 +38,7 @@ public class OpenLessonNewBean {
     /**
      * 个动作的数据装载对象
      */
-    static class SubOpenLessonNewBean{
+    static class SubOpenLessonNewBean {
 
         /**
          * 是否可以启动秒表计时的标志位
@@ -48,11 +48,11 @@ public class OpenLessonNewBean {
         /**
          * 动作内容的Map容器
          */
-        private Map<String,String> actionMap;
+        private Map<String, String> actionMap;
         /**
          * 个动作的操作项目Map容器
          */
-        private Map<String,String> actionOprationMap;
+        private Map<String, String> actionOprationMap;
 
         public boolean isStartClolck() {
             return isStartClolck;

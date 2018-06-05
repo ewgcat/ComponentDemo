@@ -18,14 +18,16 @@ public class ApprovalInfo {
     private String applayEndTime;
 
 
-    public ApprovalInfo(){}
-    public ApprovalInfo(JSONObject jsonObject){
-        this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
-        this.name = JsonUtil.getString(jsonObject,"name");
-        this.applyType = JsonUtil.getString(jsonObject,"applyType");
-        this.applayTotalTime = JsonUtil.getString(jsonObject,"applayTotalTime");
-        this.applayStartTime = JsonUtil.getString(jsonObject,"applayStartTime");
-        this.applayEndTime = JsonUtil.getString(jsonObject,"applayEndTime");
+    public ApprovalInfo() {
+    }
+
+    public ApprovalInfo(JSONObject jsonObject) {
+        this.headerUrl = JsonUtil.getString(jsonObject, "headerUrl");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.applyType = JsonUtil.getString(jsonObject, "applyType");
+        this.applayTotalTime = JsonUtil.getString(jsonObject, "applayTotalTime");
+        this.applayStartTime = JsonUtil.getString(jsonObject, "applayStartTime");
+        this.applayEndTime = JsonUtil.getString(jsonObject, "applayEndTime");
     }
 
 

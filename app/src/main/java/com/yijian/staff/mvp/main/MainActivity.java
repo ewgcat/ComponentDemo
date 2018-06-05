@@ -37,7 +37,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
-    public static final int RESULT_OK_RECEPTION=1;
+    public static final int RESULT_OK_RECEPTION = 1;
     private int selectedIndex = 0;
     protected long mExitTime;
 
@@ -88,15 +88,16 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
             // 选择上一次保存的Fragment界面
             selectTab(lastSelectedIndex);
         }
-        if (workFragment!=null)workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
-            @Override
-            public void startAct() {
+        if (workFragment != null)
+            workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
+                @Override
+                public void startAct() {
 //                Intent intent = new Intent(FaceActivity.this, ReceptionActivity.class);
 //                startActivityForResult(intent, RESULT_OK_RECEPTION);
-                Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
-                startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
+                    startActivity(intent);
+                }
+            });
     }
 
 
@@ -153,11 +154,11 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 if (!workFragment.isAdded()) {
                     // 如果WorkFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, workFragment, FRAGMENT_TAG[index]);
-                }else {
+                } else {
 
                     transaction.show(workFragment);
                 }
-            // 如果WorkFragment不为空，则直接将它显示出来
+                // 如果WorkFragment不为空，则直接将它显示出来
 
                 break;
             case 2:
@@ -188,13 +189,13 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        if (workFragment!=null&&workFragment.isAdded()) {
+        if (workFragment != null && workFragment.isAdded()) {
             fragmentTransaction.hide(workFragment);
         }
-        if (mesageFragment!=null&&mesageFragment.isAdded()) {
+        if (mesageFragment != null && mesageFragment.isAdded()) {
             fragmentTransaction.hide(mesageFragment);
         }
-        if (mineFragment!=null&&mineFragment.isAdded()) {
+        if (mineFragment != null && mineFragment.isAdded()) {
             fragmentTransaction.hide(mineFragment);
         }
     }
@@ -202,13 +203,13 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 根据上面发送过去的请求吗来区别
-        if (resultCode==1234&&mineFragment!=null){
-            mineFragment.onActivityResult(requestCode,resultCode,data);
-        }else {
+        if (resultCode == 1234 && mineFragment != null) {
+            mineFragment.onActivityResult(requestCode, resultCode, data);
+        } else {
             switch (resultCode) {
                 case RESULT_OK_RECEPTION:
                     RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
-                    recetionCompleteDialog.show(getFragmentManager(),"RecetionCompleteDialog");
+                    recetionCompleteDialog.show(getFragmentManager(), "RecetionCompleteDialog");
                     break;
                 default:
                     break;

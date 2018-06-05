@@ -23,12 +23,13 @@ import io.reactivex.disposables.Disposable;
 public class ExperienceClassProcess3Presenter implements ExperienceClassProcess3Contract.Presenter {
     private Context context;
     private ExperienceClassProcess3Contract.View view;
+
     public ExperienceClassProcess3Presenter(Context context) {
-            this.context=context;
+        this.context = context;
     }
 
-    public void setView( ExperienceClassProcess3Contract.View  view){
-        this.view=view;
+    public void setView(ExperienceClassProcess3Contract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ExperienceClassProcess3Presenter implements ExperienceClassProcess3
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -65,12 +66,12 @@ public class ExperienceClassProcess3Presenter implements ExperienceClassProcess3
             @Override
             public void onNext(JSONObject jsonObject) {
                 try {
-                    int   code = jsonObject.getInt("code");
-                    if (code==0){
-                            view.showSaveSecceed();
-                    }else {
+                    int code = jsonObject.getInt("code");
+                    if (code == 0) {
+                        view.showSaveSecceed();
+                    } else {
                         String msg = jsonObject.getString("msg");
-                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

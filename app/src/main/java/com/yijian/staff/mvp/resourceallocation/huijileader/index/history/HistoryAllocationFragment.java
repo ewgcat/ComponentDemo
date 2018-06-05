@@ -39,8 +39,9 @@ import java.util.Map;
 public class HistoryAllocationFragment extends Fragment {
 
     private static HistoryAllocationFragment historyAllocationFragment;
-    public static HistoryAllocationFragment getInstance(){
-        if(historyAllocationFragment == null){
+
+    public static HistoryAllocationFragment getInstance() {
+        if (historyAllocationFragment == null) {
             historyAllocationFragment = new HistoryAllocationFragment();
         }
         return historyAllocationFragment;
@@ -48,7 +49,7 @@ public class HistoryAllocationFragment extends Fragment {
 
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
-    private List<HistoryResourceInfo> resourceAllocationInfoList=new ArrayList<>();
+    private List<HistoryResourceInfo> resourceAllocationInfoList = new ArrayList<>();
     public HistoryResourceListAdatper adapter;
 
     private int pageNum = 1;
@@ -62,7 +63,7 @@ public class HistoryAllocationFragment extends Fragment {
         return view;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         rv_resource_allocation = view.findViewById(R.id.rv_resource_allocation);
         refreshLayout = view.findViewById(R.id.refreshLayout);
 
@@ -77,7 +78,6 @@ public class HistoryAllocationFragment extends Fragment {
 
     }
 
-  
 
     public void initComponent() {
         resourceAllocationInfoList.clear();
@@ -111,7 +111,7 @@ public class HistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -128,7 +128,7 @@ public class HistoryAllocationFragment extends Fragment {
                     adapter.update(resourceAllocationInfoList);
 
                 } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
+                    Logger.i("TEST", e.getMessage());
 
                 }
 
@@ -150,7 +150,7 @@ public class HistoryAllocationFragment extends Fragment {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL,params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

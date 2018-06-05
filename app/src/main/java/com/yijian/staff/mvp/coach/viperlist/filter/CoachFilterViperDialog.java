@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CoachFilterViperDialog extends Dialog  {
+public class CoachFilterViperDialog extends Dialog {
 
     private static String TAG = CoachFilterViperDialog.class.getSimpleName();
     @BindView(R.id.tv_sex_man)
@@ -505,7 +505,6 @@ public class CoachFilterViperDialog extends Dialog  {
     }
 
 
-
     private void reset() {
         resetView();
         sex = -1;//性别：【0:未知 1:男 2:女】
@@ -523,8 +522,8 @@ public class CoachFilterViperDialog extends Dialog  {
     }
 
     private void setResultSure() {
-        startTime=tvStartTime.getText().toString();
-        endTime=tvEndTime.getText().toString();
+        startTime = tvStartTime.getText().toString();
+        endTime = tvEndTime.getText().toString();
         CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
         coachViperFilterBean.setSex(sex);
         coachViperFilterBean.setCourseType(classType);
@@ -541,7 +540,6 @@ public class CoachFilterViperDialog extends Dialog  {
         }
         dismiss();
     }
-
 
 
     public interface OnDismissListener {

@@ -46,7 +46,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     private RecyclerView recyclerView;
 
     private int vipType = 0;//0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
-//    private String memberName;
+    //    private String memberName;
     private String memberId;
     private NavigationBar2 navigation2;
 
@@ -88,15 +88,14 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         llHead.setVisibility(View.GONE);
 
 
-
         rlItem0.setOnClickListener(this);
         rlItem1.setOnClickListener(this);
         rlItem2.setOnClickListener(this);
 
-        if (vipType==2){
+        if (vipType == 2) {
             rlItem1.setVisibility(View.GONE);
             adapter = new AdapterCoachViper_2(this);
-        }else {
+        } else {
             rlItem1.setVisibility(View.VISIBLE);
             adapter = new AdapterCoachViper(this);
 
@@ -110,8 +109,6 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter.setAdapterInterface(this);
         recyclerView.setAdapter(adapter);
-
-
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -155,17 +152,17 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
                             }
                         } else if (firstVisibleItemPosition == 1 && headHeight != 0) {
                             if (viewByPosition.getBottom() - headHeight < 0) {
-                                if (vipType==2){
+                                if (vipType == 2) {
                                     if (!tvItem2.isSelected()) itemSelecte(2);
-                                }else {
+                                } else {
                                     if (!tvItem1.isSelected()) itemSelecte(1);
                                 }
                             }
                         } else if (firstVisibleItemPosition == 2 && headHeight != 0) {
                             if (viewByPosition.getBottom() - headHeight < 0) {
-                                if (vipType==2){
+                                if (vipType == 2) {
 
-                                }else {
+                                } else {
                                     if (!tvItem2.isSelected()) itemSelecte(2);
                                 }
                             }
@@ -176,15 +173,15 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
                         } else if (firstVisibleItemPosition == 1) {
                             if (!tvItem0.isSelected()) itemSelecte(0);
                         } else if (firstVisibleItemPosition == 2) {
-                            if (vipType==2){
+                            if (vipType == 2) {
                                 if (!tvItem2.isSelected()) itemSelecte(2);
-                            }else {
+                            } else {
                                 if (!tvItem1.isSelected()) itemSelecte(1);
                             }
                         } else if (firstVisibleItemPosition == 3) {
-                            if (vipType==2){
+                            if (vipType == 2) {
 
-                            }else {
+                            } else {
                                 if (!tvItem2.isSelected()) itemSelecte(2);
                             }
 
@@ -213,7 +210,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
             @Override
             public void onSuccess(JSONObject result) {
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
+                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
                 hideLoading();
             }
@@ -288,19 +285,19 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
                 itemSelecte(0);
                 break;
             case R.id.rl_item1:
-                if (vipType==2){
+                if (vipType == 2) {
 
-                }else {
+                } else {
                     moveToPosition(2);
                     itemSelecte(1);
                 }
 
                 break;
             case R.id.rl_item2:
-                if (vipType==2){
+                if (vipType == 2) {
                     moveToPosition(2);
                     itemSelecte(2);
-                }else {
+                } else {
                     moveToPosition(3);
                     itemSelecte(2);
                 }

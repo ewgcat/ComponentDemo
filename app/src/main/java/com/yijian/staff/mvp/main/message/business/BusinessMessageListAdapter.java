@@ -57,13 +57,13 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
         holder.tv_business_msg_time.setText(businessMessageBean.getCreateTime());
 
 
-        ImageLoader.setHeadImageResource(businessMessageBean.getMemberHeadPortrait(),context,holder.iv_bussiness_msg_header);
+        ImageLoader.setHeadImageResource(businessMessageBean.getMemberHeadPortrait(), context, holder.iv_bussiness_msg_header);
 
     }
 
     @Override
     public int getItemCount() {
-        return businessMessageBeans==null?0:businessMessageBeans.size();
+        return businessMessageBeans == null ? 0 : businessMessageBeans.size();
     }
 
 
@@ -78,6 +78,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
         TextView tv_business_msg_time; //业务消息发送的时间
 
         View ll_line;
+
         public ViewHolder(View view) {
             super(view);
 

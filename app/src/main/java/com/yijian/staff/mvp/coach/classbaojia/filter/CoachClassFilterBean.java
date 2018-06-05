@@ -7,7 +7,7 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/3/26 21:05:32
  */
-public class CoachClassFilterBean implements Serializable{
+public class CoachClassFilterBean implements Serializable {
     private String lcourseNum;
     private String rcourseNum;
 

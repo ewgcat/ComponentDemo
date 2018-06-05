@@ -88,14 +88,14 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 
         String result = experienceClassBean.getResult();
         holder.tv_result.setText(result);
-        if (!TextUtils.isEmpty(result)){
-            if (result.equals("无")){
+        if (!TextUtils.isEmpty(result)) {
+            if (result.equals("无")) {
                 holder.tv_result.setTextColor(Color.parseColor("#999999"));
-            }else  if (result.equals("T.O领导")){
+            } else if (result.equals("T.O领导")) {
                 holder.tv_result.setTextColor(Color.parseColor("#1997f8"));
-            }else  if (result.equals("确认报价")){
+            } else if (result.equals("确认报价")) {
                 holder.tv_result.setTextColor(Color.parseColor("#2cc8a1"));
-            }else  if (result.equals("结束流程")){
+            } else if (result.equals("结束流程")) {
                 holder.tv_result.setTextColor(Color.parseColor("#f1523d"));
             }
         }
@@ -134,7 +134,7 @@ public class ExperienceClassListAdatper extends RecyclerView.Adapter<ExperienceC
 //                context.startActivity(intent);
 
                 Intent intent = new Intent(context, ExperienceClass_ycm.class);
-                intent.putExtra("experienceClassBean",experienceClassBean);
+                intent.putExtra("experienceClassBean", experienceClassBean);
                 context.startActivity(intent);
 
 //                Intent intent = new Intent(context, ExperienceClassInvateActivity_ycm.class);

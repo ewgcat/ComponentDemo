@@ -68,7 +68,6 @@ public class CoachAllViperFragment extends MvcBaseFragment {
     private CoachViperFilterBean coachViperFilterBean;
 
 
-
     @Override
     public int getLayoutId() {
         return R.layout.fragment_vip_all_people_info;

@@ -45,9 +45,9 @@ public class SelectCoachAdapter extends RecyclerView.Adapter<SelectCoachAdapter.
         CoachInfo coachInfo = coachInfos.get(position);
         holder.tv_name.setText(coachInfo.getUserName());
 
-        ImageLoader.setHeadImageResource(coachInfo.getHeadImg(),context,holder.iv_header);
+        ImageLoader.setHeadImageResource(coachInfo.getHeadImg(), context, holder.iv_header);
         int sex = coachInfo.getSex();
-        int resId=sex==1?R.mipmap.lg_man:R.mipmap.lg_women;
+        int resId = sex == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);
         if (position == selectPosition) {
             holder.ck_select.setChecked(true);

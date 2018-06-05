@@ -28,11 +28,11 @@ public class MenuRecyclerGridHolder extends RecyclerView.ViewHolder {
 
     public MenuRecyclerGridHolder(View itemView) {
         super(itemView);
-        fl_item_view=  itemView.findViewById(R.id.fl_item_view);
-        tv_count= (TextView) itemView.findViewById(R.id.tv_count);
-        tv_name= (TextView) itemView.findViewById(R.id.desc);
-        iv_icon= (ImageView) itemView.findViewById(R.id.pic);
-        iv_delete= (ImageView) itemView.findViewById(R.id.delete);
-        iv_add= (ImageView) itemView.findViewById(R.id.add);
+        fl_item_view = itemView.findViewById(R.id.fl_item_view);
+        tv_count = (TextView) itemView.findViewById(R.id.tv_count);
+        tv_name = (TextView) itemView.findViewById(R.id.desc);
+        iv_icon = (ImageView) itemView.findViewById(R.id.pic);
+        iv_delete = (ImageView) itemView.findViewById(R.id.delete);
+        iv_add = (ImageView) itemView.findViewById(R.id.add);
     }
 }

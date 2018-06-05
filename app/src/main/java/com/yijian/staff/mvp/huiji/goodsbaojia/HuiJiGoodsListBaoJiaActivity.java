@@ -126,12 +126,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HuiJiGoodsListBaoJiaActivity.this,ActivityHuiijiBaoJiaSeach.class);
-                startActivityForResult(intent,0);
+                Intent intent = new Intent(HuiJiGoodsListBaoJiaActivity.this, ActivityHuiijiBaoJiaSeach.class);
+                startActivityForResult(intent, 0);
             }
         });
-
-
 
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
@@ -153,7 +151,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
-                Log.e(TAG, "onRefresh: "+bodyCondition.toString() );
+                Log.e(TAG, "onRefresh: " + bodyCondition.toString());
                 presenter.resetBodyPage(bodyCondition);
                 presenter.getRecptionCards(bodyCondition, true);
 
@@ -161,23 +159,21 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onLoadMore: "+bodyCondition.toString() );
+                Log.e(TAG, "onLoadMore: " + bodyCondition.toString());
                 bodyCondition.setPageNum(bodyCondition.getPageNum() + 1);
                 presenter.getRecptionCards(bodyCondition, false);
             }
         });
 
 
-
-
         selectZongHe();
         empty_view.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvZongHe.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                if (tvZongHe.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
                     empty_view.setVisibility(View.GONE);
                     selectZongHe();
-                }else if (tvPrice.getTextColors().getDefaultColor()==Color.parseColor("#1997f8")){
+                } else if (tvPrice.getTextColors().getDefaultColor() == Color.parseColor("#1997f8")) {
                     empty_view.setVisibility(View.GONE);
                     selectPrice();
                 }
@@ -198,10 +194,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 selectZongHe();
                 break;
             case R.id.ll_price:
-                if (priceUp){
-                    priceUp=false;
-                }else {
-                    priceUp=true;
+                if (priceUp) {
+                    priceUp = false;
+                } else {
+                    priceUp = true;
                 }
                 selectPrice();
 
@@ -223,11 +219,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         bundle.putString("venueId", bodyCondition.getVenueId());
         bundle.putString("cardName", bodyCondition.getCardName());
 
-        OptionDialog    optionDialog = new OptionDialog();
+        OptionDialog optionDialog = new OptionDialog();
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {
-
 
 
                 String startPrice = body.getStartPrice();
@@ -237,22 +232,22 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 String cardName = body.getCardName();
 
                 if (TextUtils.isEmpty(startPrice)
-                        &&TextUtils.isEmpty(endPrice)
-                        &&TextUtils.isEmpty(cardType)
-                        &&TextUtils.isEmpty(venueId)
-                        &&TextUtils.isEmpty(cardName)){//重置
+                        && TextUtils.isEmpty(endPrice)
+                        && TextUtils.isEmpty(cardType)
+                        && TextUtils.isEmpty(venueId)
+                        && TextUtils.isEmpty(cardName)) {//重置
                     Drawable drawable1 = getResources().getDrawable(R.mipmap.shaixuan_black);
                     drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this,4));
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this, 4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable1, null);
                     tvShaixuan.setTextColor(Color.parseColor("#666666"));
 
                     tvSearch.setText("输入产品名称，进行搜索");
                     tvSearch.setTextColor(getResources().getColor(R.color.time_bar));
-                }else {
+                } else {
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this,4));
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this, 4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
                 }
@@ -266,7 +261,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 bodyCondition.setPageSize(4);
                 bodyCondition.setPageNum(1);
 
-                Log.e(TAG, "onDismiss: "+bodyCondition.toString());
+                Log.e(TAG, "onDismiss: " + bodyCondition.toString());
                 presenter.getRecptionCards(bodyCondition, true);
 
             }
@@ -281,17 +276,17 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
         resetStateNoShaixuan();
         tvPrice.setTextColor(Color.parseColor("#1997f8"));
-        if (priceUp){//（0：升序，1：降序） ,
+        if (priceUp) {//（0：升序，1：降序） ,
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this,4));
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this, 4));
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 
             bodyCondition.setIsSortByPrice(0);
-        }else {
+        } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this,4));
+            tvPrice.setCompoundDrawablePadding(DensityUtil.dip2px(this, 4));
             tvPrice.setCompoundDrawables(null, null, drawable, null);
 
             bodyCondition.setIsSortByPrice(1);
@@ -299,7 +294,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
         bodyCondition.setPageSize(4);
         bodyCondition.setPageNum(1);
-        Log.e(TAG, "selectPrice: "+bodyCondition.toString() );
+        Log.e(TAG, "selectPrice: " + bodyCondition.toString());
         presenter.getRecptionCards(bodyCondition, true);
     }
 
@@ -336,10 +331,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
         empty_view.setVisibility(View.GONE);
 
-        if (isRefresh){
+        if (isRefresh) {
             goodsListAdapter.resetData(goodsInfos);
             cardRefreshLayout.finishRefresh(1000);
-        }else {
+        } else {
             goodsListAdapter.addDatas(goodsInfos);
             cardRefreshLayout.finishLoadMore(1000);
         }
@@ -369,10 +364,10 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             String search = data.getStringExtra("search");
             bodyCondition.setCardName(search);
             presenter.getRecptionCards(bodyCondition, true);
-            if (TextUtils.isEmpty(search)){
+            if (TextUtils.isEmpty(search)) {
                 tvSearch.setText("输入产品名称，进行搜索");
                 tvSearch.setTextColor(getResources().getColor(R.color.time_bar));
-            }else {
+            } else {
                 tvSearch.setText(search);
                 tvSearch.setTextColor(getResources().getColor(R.color.text_black1));
             }

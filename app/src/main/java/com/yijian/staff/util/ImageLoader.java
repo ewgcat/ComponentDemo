@@ -18,10 +18,10 @@ public class ImageLoader {
 
 
     public static void load(Activity activity, String url, ImageView iv) {
-        if(TextUtils.isEmpty(url)){
+        if (TextUtils.isEmpty(url)) {
             url = "";
         }
-        if(!activity.isDestroyed()) {
+        if (!activity.isDestroyed()) {
             RequestOptions options = centerCropTransform()
                     .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .transform(new GlideCircleTransform());
@@ -32,17 +32,17 @@ public class ImageLoader {
     }
 
     public static void loadAll(Context context, String url, ImageView iv) {    //不缓存，全部从网络加载
-        if(TextUtils.isEmpty(url)){
+        if (TextUtils.isEmpty(url)) {
             url = "";
         }
         Glide.with(context).load(url).into(iv);
     }
 
     public static void loadAll(Activity activity, String url, ImageView iv) {    //不缓存，全部从网络加载
-        if(TextUtils.isEmpty(url)){
+        if (TextUtils.isEmpty(url)) {
             url = "";
         }
-        if(!activity.isDestroyed()) {
+        if (!activity.isDestroyed()) {
             RequestOptions options = centerCropTransform()
                     .priority(Priority.HIGH).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .transform(new GlideCircleTransform());
@@ -52,10 +52,10 @@ public class ImageLoader {
 
 
     public static void setHeadImageResource(String path, Context context, ImageView imageView) {
-        if(TextUtils.isEmpty(path)){
+        if (TextUtils.isEmpty(path)) {
             path = "";
         }
-       
+
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
@@ -67,7 +67,7 @@ public class ImageLoader {
     }
 
     public static void setImageResource(String path, Context context, ImageView imageView) {
-        if(TextUtils.isEmpty(path)){
+        if (TextUtils.isEmpty(path)) {
             path = "";
         }
         RequestOptions options = new RequestOptions()

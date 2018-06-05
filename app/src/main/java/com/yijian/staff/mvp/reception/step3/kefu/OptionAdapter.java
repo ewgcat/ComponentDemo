@@ -21,9 +21,10 @@ import java.util.List;
 
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
     private Context context;
-    private List<VenueBean> list=new ArrayList<>();
+    private List<VenueBean> list = new ArrayList<>();
+
     public OptionAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -32,8 +33,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
         return new Holder(view);
     }
 
-    public void resetData( List<VenueBean> list){
-        this.list=list;
+    public void resetData(List<VenueBean> list) {
+        this.list = list;
         notifyDataSetChanged();
     }
 
@@ -59,9 +60,9 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
         public void bindView(int position) {
             VenueBean venueBean = list.get(position);
             tvName.setText(venueBean.getName());
-            if (venueBean.isSelect){
+            if (venueBean.isSelect) {
                 setSelectStyle(tvName);
-            }else {
+            } else {
                 setUnSelectStyle(tvName);
             }
 
@@ -70,7 +71,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
                 public void onClick(View v) {
                     resetSelectState();
                     venueBean.setSelect(true);
-                    if (lisenter!=null)lisenter.onVenueClick(position,venueBean);
+                    if (lisenter != null) lisenter.onVenueClick(position, venueBean);
 
                     notifyDataSetChanged();
                 }
@@ -90,7 +91,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
     private void setSelectStyle(TextView textView) {
         textView.setTextColor(Color.parseColor("#1997f8"));
         textView.setBackground(context.getDrawable(R.drawable.blue_stroke_select_bg));
-        Drawable jd_choose =context.getResources().getDrawable(R.mipmap.jd_choose);
+        Drawable jd_choose = context.getResources().getDrawable(R.mipmap.jd_choose);
         jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
         textView.setCompoundDrawables(jd_choose, null, null, null);
 
@@ -103,7 +104,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
         textView.setCompoundDrawables(null, null, null, null);
     }
 
-    public interface OptionLisenter{
+    public interface OptionLisenter {
         void onVenueClick(int position, VenueBean venueBean);
     }
 

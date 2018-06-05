@@ -24,15 +24,15 @@ public class ViewHolderCoachVipType_0 extends ViewHolderCoachVipper {
 
     public ViewHolderCoachVipType_0(View itemView, boolean hasCard) {
         super(itemView);
-        ivHead=   itemView.findViewById(R.id.iv_head);
-        tvName=   itemView.findViewById(R.id.tv_name);
-        tv_card_no=   itemView.findViewById(R.id.tv_card_no);
+        ivHead = itemView.findViewById(R.id.iv_head);
+        tvName = itemView.findViewById(R.id.tv_name);
+        tv_card_no = itemView.findViewById(R.id.tv_card_no);
 
 
-        ll_card_no  = itemView.findViewById(R.id.ll_card_no);
-        if (hasCard){
+        ll_card_no = itemView.findViewById(R.id.ll_card_no);
+        if (hasCard) {
             ll_card_no.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             ll_card_no.setVisibility(View.GONE);
         }
         ivVisit = itemView.findViewById(R.id.iv_visit);
@@ -40,14 +40,14 @@ public class ViewHolderCoachVipType_0 extends ViewHolderCoachVipper {
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+ vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
 
         ivVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (huijiVipInterface!=null)huijiVipInterface.visit();
+                if (huijiVipInterface != null) huijiVipInterface.visit();
             }
         });
     }

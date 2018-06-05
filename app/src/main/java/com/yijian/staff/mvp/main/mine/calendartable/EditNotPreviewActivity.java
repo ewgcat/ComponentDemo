@@ -96,18 +96,17 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         courseTimeList = getIntent().getStringArrayListExtra("courseTimeList");
 
 
-
         hasClassList = new ArrayList<CalendarDay>();
         for (int i = 0; i < spaceTimeList.size(); i++) {
             String[] spaceArray = spaceTimeList.get(i).split("-");
-            CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1])-1, Integer.parseInt(spaceArray[2]));
+            CalendarDay day = CalendarDay.from(Integer.parseInt(spaceArray[0]), Integer.parseInt(spaceArray[1]) - 1, Integer.parseInt(spaceArray[2]));
             hasClassList.add(day);
         }
 
         disableAppointmentList = new ArrayList<CalendarDay>();
         for (int i = 0; i < courseTimeList.size(); i++) {
             String[] courseArray = courseTimeList.get(i).split("-");
-            CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1])-1, Integer.parseInt(courseArray[2]));
+            CalendarDay day = CalendarDay.from(Integer.parseInt(courseArray[0]), Integer.parseInt(courseArray[1]) - 1, Integer.parseInt(courseArray[2]));
             disableAppointmentList.add(day);
         }
 
@@ -149,7 +148,7 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         List<String> selectDateList = new ArrayList<>();
         for (CalendarDay calendarDay : calendarSelectDayList) {
-            selectDateList.add(calendarDay.getYear() + "-" + (calendarDay.getMonth()+1) + "-" + calendarDay.getDay());
+            selectDateList.add(calendarDay.getYear() + "-" + (calendarDay.getMonth() + 1) + "-" + calendarDay.getDay());
         }
         if (selectDateList.size() > 0) {
             map.put("date", selectDateList.toString().substring(1, selectDateList.toString().length() - 1));

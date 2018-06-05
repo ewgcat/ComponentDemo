@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by The_P on 2018/4/13.
  */
 
-public  class PowerListBean extends BaseGroupBean implements Parcelable {
+public class PowerListBean extends BaseGroupBean implements Parcelable {
     @Override
     public String toString() {
         return "PowerListBean{" +

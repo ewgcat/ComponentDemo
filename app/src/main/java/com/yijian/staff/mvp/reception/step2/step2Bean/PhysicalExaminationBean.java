@@ -177,7 +177,7 @@ public class PhysicalExaminationBean implements Parcelable {
 ///*************************** 体态评估-侧面 *******************************/
 //    sCervicalV (string, optional): 侧面-颈椎 ,
 
-///** 侧面-头 */
+    ///** 侧面-头 */
 //    @property (nonatomic, copy) NSString *sHead;
     String sHead;
 

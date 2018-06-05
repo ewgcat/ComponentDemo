@@ -33,7 +33,7 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public static final int TYPE_TITLE = 0;
     public static final int TYPE_ITEM = 1;
 
-    public int index_point=1;//可以点击的最大位置（只能按顺序点击）
+    public int index_point = 1;//可以点击的最大位置（只能按顺序点击）
 
     public AdapterLesson(Context context) {
         this.context = context;
@@ -44,7 +44,7 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     }
 
-    public void   resetActionList(List<Object> list){
+    public void resetActionList(List<Object> list) {
         actionList.clear();
         actionList.add(typeOfAction);//添加头部
         actionList.addAll(list);
@@ -75,7 +75,7 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if (holder instanceof TitleHolder && o instanceof TypeOfActionTitle) {
             ((TitleHolder) holder).bind((TypeOfActionTitle) o);
         } else if (holder instanceof ItemHolder && o instanceof TypeOfActionItem) {
-            ((ItemHolder) holder).bind((TypeOfActionItem) o,position);
+            ((ItemHolder) holder).bind((TypeOfActionItem) o, position);
         }
     }
 
@@ -133,9 +133,10 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView tvActionTime;
         TextView tvActionInterval;
         private View itemView;
+
         public ItemHolder(View itemView) {
             super(itemView);
-            this.itemView=itemView;
+            this.itemView = itemView;
             tvActionName = itemView.findViewById(R.id.tv_action_name);
             tvActionType = itemView.findViewById(R.id.tv_action_type);
             tvActionIntensity = itemView.findViewById(R.id.tv_action_intensity);
@@ -146,41 +147,40 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         public void bind(TypeOfActionItem typeOfActionItem, int parentPosition) {
             tvActionName.setText(typeOfActionItem.getActionName());
 
-            if (!TextUtils.isEmpty(typeOfActionItem.getActionForm())){
-                tvActionType.setText(""+typeOfActionItem.getActionForm());
+            if (!TextUtils.isEmpty(typeOfActionItem.getActionForm())) {
+                tvActionType.setText("" + typeOfActionItem.getActionForm());
 //                index_point=parentPosition;//记录当前应该点击的位置
             }
 
-            if (!TextUtils.isEmpty(typeOfActionItem.getActionIntensity())){
-                tvActionIntensity.setText(""+typeOfActionItem.getActionIntensity());
+            if (!TextUtils.isEmpty(typeOfActionItem.getActionIntensity())) {
+                tvActionIntensity.setText("" + typeOfActionItem.getActionIntensity());
 //                index_point=parentPosition;//记录当前点击的位置
             }
 
-            if (!TextUtils.isEmpty(typeOfActionItem.getActionTime())){
-                tvActionTime.setText(""+typeOfActionItem.getActionTime());
-                tvActionTime.setPadding(0,0,0,0);
-                tvActionTime.setCompoundDrawables(null,null,null,null);
-               if (index_point<parentPosition+1)index_point=parentPosition+1;//记录当前可以点击的最大位置
+            if (!TextUtils.isEmpty(typeOfActionItem.getActionTime())) {
+                tvActionTime.setText("" + typeOfActionItem.getActionTime());
+                tvActionTime.setPadding(0, 0, 0, 0);
+                tvActionTime.setCompoundDrawables(null, null, null, null);
+                if (index_point < parentPosition + 1) index_point = parentPosition + 1;//记录当前可以点击的最大位置
             }
             tvActionType.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    if (parentPosition>index_point){
-                        Toast.makeText(context,"请按顺序测试所有项目",Toast.LENGTH_SHORT).show();
+                    if (parentPosition > index_point) {
+                        Toast.makeText(context, "请按顺序测试所有项目", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
 
-
 //                    showPopupWindows(tvActionType,typeOfActionItem);
-                    PopupWindowUtil popupWindowUtil = new PopupWindowUtil(context, Arrays.asList("标准","非标准"));
+                    PopupWindowUtil popupWindowUtil = new PopupWindowUtil(context, Arrays.asList("标准", "非标准"));
                     popupWindowUtil.showUp(v);
                     popupWindowUtil.setPopupWindowsItemListener(new PopupWindowUtil.PopupWindowsItemListener() {
                         @Override
                         public void onItemClick(String name, int position) {
                             popupWindowUtil.dissmiss();
-                            tvActionType.setText(name+"position=="+position);
+                            tvActionType.setText(name + "position==" + position);
                             typeOfActionItem.setActionForm(name);
                         }
                     });
@@ -188,21 +188,21 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
             });
 
-           tvActionIntensity.setOnClickListener(new View.OnClickListener() {
+            tvActionIntensity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (parentPosition>index_point){
-                        Toast.makeText(context,"请按顺序测试所有项目",Toast.LENGTH_SHORT).show();
+                    if (parentPosition > index_point) {
+                        Toast.makeText(context, "请按顺序测试所有项目", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    PopupWindowUtil popupWindowUtil = new PopupWindowUtil(context,Arrays.asList("强","中","弱"));
+                    PopupWindowUtil popupWindowUtil = new PopupWindowUtil(context, Arrays.asList("强", "中", "弱"));
                     popupWindowUtil.showUp(v);
                     popupWindowUtil.setPopupWindowsItemListener(new PopupWindowUtil.PopupWindowsItemListener() {
                         @Override
                         public void onItemClick(String name, int position) {
                             popupWindowUtil.dissmiss();
-                            tvActionIntensity.setText(name+"position=="+position);
+                            tvActionIntensity.setText(name + "position==" + position);
                             typeOfActionItem.setActionIntensity(name);
                         }
                     });
@@ -210,23 +210,22 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             });
 
 
-
             tvActionTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e(TAG, "onClick: parentPosition--------"+parentPosition+"   index_point-----"
-                    +index_point);
-                    if (parentPosition>index_point){
-                        Toast.makeText(context,"请按顺序测试所有项目",Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onClick: parentPosition--------" + parentPosition + "   index_point-----"
+                            + index_point);
+                    if (parentPosition > index_point) {
+                        Toast.makeText(context, "请按顺序测试所有项目", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    ((ActivityOpenLesson)context).showClockView(parentPosition-1);//去除标题栏
+                    ((ActivityOpenLesson) context).showClockView(parentPosition - 1);//去除标题栏
 
                 }
             });
 
 
-            if (!TextUtils.isEmpty(typeOfActionItem.getActionTimeInterval())){
+            if (!TextUtils.isEmpty(typeOfActionItem.getActionTimeInterval())) {
                 tvActionInterval.setText(typeOfActionItem.getActionTimeInterval());
             }
 
@@ -237,8 +236,8 @@ public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 
-    public void setIndex_point(int index){
-        index_point=index;
+    public void setIndex_point(int index) {
+        index_point = index;
     }
 
     public int getIndex_point() {

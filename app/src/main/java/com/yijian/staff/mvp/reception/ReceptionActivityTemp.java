@@ -58,6 +58,7 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         Intent intent = new Intent(context, ReceptionActivityTemp.class);
         context.startActivity(intent);
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);

@@ -22,7 +22,7 @@ public class AdviceListActivity extends AppCompatActivity {
     @BindView(R.id.rlv)
     RecyclerView rlv;
 
-    private List<AdviceBean> adviceBeanList=new ArrayList<>();
+    private List<AdviceBean> adviceBeanList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,9 @@ public class AdviceListActivity extends AppCompatActivity {
         navigationBar2.setTitle("建议与反馈");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        for (int i = 0; i <3 ; i++) {
-            adviceBeanList.add(new AdviceBean("百度新闻是包含海量资讯的新闻服务平台,真实反映每时每刻的新闻热点。您可以搜索新闻事件、热点话题、人物动态、产品资讯等,快速了解它们的最新进展。","" +
-                    "朱沙","2018-03-17 09:54:54"));
+        for (int i = 0; i < 3; i++) {
+            adviceBeanList.add(new AdviceBean("百度新闻是包含海量资讯的新闻服务平台,真实反映每时每刻的新闻热点。您可以搜索新闻事件、热点话题、人物动态、产品资讯等,快速了解它们的最新进展。", "" +
+                    "朱沙", "2018-03-17 09:54:54"));
 
         }
 

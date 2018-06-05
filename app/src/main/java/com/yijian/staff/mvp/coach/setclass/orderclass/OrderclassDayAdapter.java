@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.coach.setclass.bean.OrderClassDayBean;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +23,14 @@ import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.
 
 public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdapter.ViewHolder> {
 
-    private List<OrderClassDayBean> orderClassDayBeanList  = new ArrayList<>();
+    private List<OrderClassDayBean> orderClassDayBeanList = new ArrayList<>();
     private Fragment fragment;
 
-    public OrderclassDayAdapter(Fragment fragment){
+    public OrderclassDayAdapter(Fragment fragment) {
         this.fragment = fragment;
     }
 
-    public void resetDataList(List<OrderClassDayBean> orderClassDayBeans){
+    public void resetDataList(List<OrderClassDayBean> orderClassDayBeans) {
         this.orderClassDayBeanList = orderClassDayBeans;
         notifyDataSetChanged();
     }
@@ -45,7 +46,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
     public void onBindViewHolder(OrderclassDayAdapter.ViewHolder holder, int position) {
         OrderClassDayBean orderClassDayBean = orderClassDayBeanList.get(position);
         try {
-            holder.bind(orderClassDayBean,position,orderClassDayBeanList,fragment);
+            holder.bind(orderClassDayBean, position, orderClassDayBeanList, fragment);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -77,11 +78,11 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
 
         public ViewHolder(View view) {
             super(view);
-            tv_startOrderTime =  view.findViewById(R.id.tv_startOrderTime);
-            tv_endOrderTime =  view.findViewById(R.id.tv_endOrderTime);
-            tv_className   = view.findViewById(R.id.tv_className);
-            tv_venue   = view.findViewById(R.id.tv_venue);
-            tv_stuList =     view.findViewById(R.id.tv_stuList);
+            tv_startOrderTime = view.findViewById(R.id.tv_startOrderTime);
+            tv_endOrderTime = view.findViewById(R.id.tv_endOrderTime);
+            tv_className = view.findViewById(R.id.tv_className);
+            tv_venue = view.findViewById(R.id.tv_venue);
+            tv_stuList = view.findViewById(R.id.tv_stuList);
             tv_stu_num = view.findViewById(R.id.tv_stu_num);
             tv_intervalTime = view.findViewById(R.id.tv_intervalTime);
             view_last_line = view.findViewById(R.id.view_last_line);
@@ -116,12 +117,12 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                 resStatu = R.mipmap.lesson_class;
                 strStatu = "上课";
             }*/
-            int status  = orderClassDayBean.getStatus();
-            if(status == 4){ //爽约
+            int status = orderClassDayBean.getStatus();
+            if (status == 4) { //爽约
                 iv_status_sy.setVisibility(View.VISIBLE);
-            }else if(status == 3){ //已上课
+            } else if (status == 3) { //已上课
                 iv_status_ysk.setVisibility(View.VISIBLE);
-            }else if(status == 1){
+            } else if (status == 1) {
                 iv_order_class_statu.setVisibility(View.VISIBLE);
                 tv_order_class_statu.setVisibility(View.VISIBLE);
                 resStatu = R.mipmap.lesson_class;
@@ -131,14 +132,14 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                 @Override
                 public void onClick(View v) {
 
-                    if(punchStatus == 0 || punchStatus == 1){
+                    if (punchStatus == 0 || punchStatus == 1) {
                         Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
-                        intent.putExtra("startDate",orderClassDayBean.getStartDate());
-                        intent.putExtra("startTimeActual",orderClassDayBean.getStartTimeActual());
-                        intent.putExtra("endTimeActual",orderClassDayBean.getEndTimeActual());
-                        intent.putExtra("punchStatus",orderClassDayBean.getPunchStatus());
-                        intent.putExtra("privateApplyId",orderClassDayBean.getId());
-                        fragment.startActivityForResult(intent,ORDER_REFRESH_REQUESTCODE);
+                        intent.putExtra("startDate", orderClassDayBean.getStartDate());
+                        intent.putExtra("startTimeActual", orderClassDayBean.getStartTimeActual());
+                        intent.putExtra("endTimeActual", orderClassDayBean.getEndTimeActual());
+                        intent.putExtra("punchStatus", orderClassDayBean.getPunchStatus());
+                        intent.putExtra("privateApplyId", orderClassDayBean.getId());
+                        fragment.startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
 
                     }
 
@@ -148,7 +149,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             iv_order_class_statu.setImageResource(resStatu);
             tv_order_class_statu.setText(strStatu);
 
-            tv_intervalTime.setText("约课时间间隔"+orderClassDayBean.getIntervalTime()+"分钟");
+            tv_intervalTime.setText("约课时间间隔" + orderClassDayBean.getIntervalTime() + "分钟");
 
             if (position == orderClassDayBeanList.size() - 1) {
                 view_last_line.setVisibility(View.GONE);

@@ -60,12 +60,12 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_experience_step4,container,false);
+        View view = inflater.inflate(R.layout.fragment_experience_step4, container, false);
         presenter = new ExperienceClassProcess4Presenter(getContext());
         presenter.setView(this);
         initView();
         presenter.getClassRecordList(bean.getProcessId());
-        unbinder= ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -81,16 +81,15 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
             public void onClick(ExperienceClassRecordTable bean) {
                 TemplateListBean prepareRecord = bean.getPrepareRecord();
                 ClassRecordTable definedRecord = bean.getDefinedRecord();
-                if (prepareRecord!=null){//体验课上课记录表(采用备课模板)
+                if (prepareRecord != null) {//体验课上课记录表(采用备课模板)
                     Intent intent = new Intent(getContext(), Template1ClassActivity_ycm.class);
-                    intent.putExtra("templateListBean",prepareRecord);
+                    intent.putExtra("templateListBean", prepareRecord);
                     startActivity(intent);
 
 
-                }else if (definedRecord!=null){//体验课上课记录表(使用自定义模板)
+                } else if (definedRecord != null) {//体验课上课记录表(使用自定义模板)
 
                 }
-
 
 
             }
@@ -100,11 +99,11 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
 
     @OnClick({R.id.tv_invitation_again})
     public void onViewClicked(View view) {
-        if (inviteVO!=null){
+        if (inviteVO != null) {
 //            Intent intent = new Intent(getContext(), ExperienceClassInvateAgainActivity_ycm.class);
 //            intent.putExtra("inviteVO",inviteVO);
 //            startActivity(intent);
-            if (statusLisenter!=null)statusLisenter.toInvateAgainActivity(inviteVO);
+            if (statusLisenter != null) statusLisenter.toInvateAgainActivity(inviteVO);
         }
     }
 
@@ -119,7 +118,7 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
     public void showClassRecordList(InvitationAgainBean bean) {
         List<ExperienceClassRecordTable> recordList = bean.getRecordList();
         inviteVO = bean.getInviteVO();
-        if (recordList!=null&&!recordList.isEmpty()){
+        if (recordList != null && !recordList.isEmpty()) {
             adapter.resetData(recordList);
         }
     }

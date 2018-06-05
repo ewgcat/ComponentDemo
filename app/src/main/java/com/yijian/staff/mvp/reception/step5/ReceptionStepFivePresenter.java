@@ -17,30 +17,31 @@ import java.util.Map;
  * Created by The_P on 2018/4/23.
  */
 
-public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Presenter{
+public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Presenter {
     private Context context;
     private ReceptionStepFiveContract.View view;
+
     public ReceptionStepFivePresenter(Context context) {
-            this.context=context;
+        this.context = context;
     }
 
-    public void setView(ReceptionStepFiveContract.View view){
-        this.view=view;
+    public void setView(ReceptionStepFiveContract.View view) {
+        this.view = view;
     }
 
     @Override
     public void getStatus(boolean isFirst, String memberId) {
         Map<String, String> params = new HashMap<>();
-        params.put("memberId",memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
+        params.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
-                if (receptionStastuBean==null||receptionStastuBean.getOperatorType()==null)return;
+                if (receptionStastuBean == null || receptionStastuBean.getOperatorType() == null) return;
 
-                if (receptionStastuBean.getOperatorType()==51){
+                if (receptionStastuBean.getOperatorType() == 51) {
                     view.showStatus(receptionStastuBean);
-                }else {
+                } else {
                     if (isFirst) view.needEndProcess();
                 }
 
@@ -55,8 +56,8 @@ public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Pre
 
     @Override
     public void endProcess(String memberId) {
-        Map<String ,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {

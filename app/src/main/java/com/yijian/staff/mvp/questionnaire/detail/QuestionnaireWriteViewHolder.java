@@ -23,17 +23,16 @@ public class QuestionnaireWriteViewHolder extends ChildViewHolderGroup {
 
     public QuestionnaireWriteViewHolder(@NonNull View itemView) {
         super(itemView);
-        editText=itemView.findViewById(R.id.et_write);
+        editText = itemView.findViewById(R.id.et_write);
         tvLimit = itemView.findViewById(R.id.tv_limit);
     }
 
 
     public void bind(ItemsBean child, int parentPosition, int childPosition) {
-        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
-            editText.setText(""+child.getInputContent());
+        if (!"null".equals(child.getInputContent()) && !TextUtils.isEmpty(child.getInputContent()))
+            editText.setText("" + child.getInputContent());
 
     }
-
 
 
 }

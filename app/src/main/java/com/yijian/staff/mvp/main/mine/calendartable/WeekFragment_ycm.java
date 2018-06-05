@@ -56,7 +56,7 @@ import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.
 /**
  * 周视图
  */
-public class WeekFragment_ycm extends Fragment  {
+public class WeekFragment_ycm extends Fragment {
 
     private static final String TAG = "WeekFragment_ycm";
     private static WeekFragment_ycm weekFragment;
@@ -74,8 +74,8 @@ public class WeekFragment_ycm extends Fragment  {
         this.onChangeDateListener = onChangeDateListener;
     }
 
-    public static WeekFragment_ycm getInstance(){
-        if(weekFragment == null){
+    public static WeekFragment_ycm getInstance() {
+        if (weekFragment == null) {
             weekFragment = new WeekFragment_ycm();
         }
         return weekFragment;
@@ -95,7 +95,7 @@ public class WeekFragment_ycm extends Fragment  {
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
         rv_day = view.findViewById(R.id.recyclerview);
         rv_day.setNestedScrollingEnabled(false);
-        GridLayoutManager layout = new GridLayoutManager(getContext(),7);
+        GridLayoutManager layout = new GridLayoutManager(getContext(), 7);
 
         rv_day.setLayoutManager(layout);
         adapter = new AdapterWeekFragment(getContext());
@@ -104,17 +104,17 @@ public class WeekFragment_ycm extends Fragment  {
             @Override
             public void onClick(DayTask.CoursesBean courseInfo) {
                 int punchStatus = courseInfo.getPunchStatus();
-                if(punchStatus == 0 || punchStatus == 1){
+                if (punchStatus == 0 || punchStatus == 1) {
                     Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
-                    intent.putExtra("startDate",courseInfo.getStartDate());
-                    intent.putExtra("startTimeActual",courseInfo.getStartTimeActual());
-                    intent.putExtra("endTimeActual",courseInfo.getEndTimeActual());
-                    intent.putExtra("punchStatus",courseInfo.getPunchStatus());
+                    intent.putExtra("startDate", courseInfo.getStartDate());
+                    intent.putExtra("startTimeActual", courseInfo.getStartTimeActual());
+                    intent.putExtra("endTimeActual", courseInfo.getEndTimeActual());
+                    intent.putExtra("punchStatus", courseInfo.getPunchStatus());
                     startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                 }
             }
 
-            });
+        });
         initData();
         initDayTaskList();
     }
@@ -141,14 +141,14 @@ public class WeekFragment_ycm extends Fragment  {
 
         @Override
         public void onPageChange(int year, int month, int day) {
-            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
-            Log.e("Test","year222==="+year+"  month==="+month + "   day==="+day);
+            Log.e("Test", "year222===" + year + "  month===" + month + "   day===" + day);
+            Log.e("Test", "year222===" + year + "  month===" + month + "   day===" + day);
             CalendarDay calendarDay = CalendarDay.from(year, month, day);
             onChangeDateListener.onChangeDate(calendarDay);
            /*
            每次滑动周视图的时候，设置成每周的第一天
            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,1);*/
-            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year,month,day);
+            wcvCalendar.getCurrentWeekView().setSelectYearMonth(year, month, day);
             initDayTaskList();
         }
     };
@@ -156,6 +156,7 @@ public class WeekFragment_ycm extends Fragment  {
     private void resetMonthView() {
         onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
     }
+
     //当日期被改变后
     private void onDataChanged(int mCurrentSelectYear, int mCurrentSelectMonth, int mCurrentSelectDay) {
 
@@ -164,18 +165,18 @@ public class WeekFragment_ycm extends Fragment  {
     /**
      * 初始化周视图列表数据
      */
-    private void initDayTaskList(){
+    private void initDayTaskList() {
         dayTaskList.clear();
         WeekView weekView;
         if (wcvCalendar.getCurrentWeekView() == null) {
             weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
-        }else{
+        } else {
             weekView = wcvCalendar.getCurrentWeekView();
         }
         for (int i = 0; i < 7; i++) {
             DayTask dayTask = new DayTask();
             DateTime dateTime = weekView.getStartDate().plusDays(i);
-            dayTask.setStartDate(dateTime.getYear()+"-"+dateTime.getMonthOfYear()+"-"+dateTime.getDayOfMonth());
+            dayTask.setStartDate(dateTime.getYear() + "-" + dateTime.getMonthOfYear() + "-" + dateTime.getDayOfMonth());
             dayTaskList.add(dayTask);
         }
         //添加测试数据
@@ -184,26 +185,26 @@ public class WeekFragment_ycm extends Fragment  {
 
     private void initDayCanlendarInfoList() {
 
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("leftTime",dayTaskList.get(0).getStartDate());
-        map.put("rightTime",dayTaskList.get(dayTaskList.size()-1).getStartDate());
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("leftTime", dayTaskList.get(0).getStartDate());
+        map.put("rightTime", dayTaskList.get(dayTaskList.size() - 1).getStartDate());
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
                     JSONArray jsonArray = (JSONArray) result.get("mapList");
-                    List<DayTask> dayTasks = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(),DayTask.class);
-                    Log.e(TAG, "onSuccess:000 "+dayTasks.size() );
-                    for(DayTask dayTask : dayTasks){
-                       for(int i = 0; i< dayTaskList.size(); i++){
-                           DayTask curDayTask = dayTaskList.get(i);
-                           if(dayTask.equals(curDayTask)){
-                                dayTaskList.set(i,dayTask);
-                           }
-                       }
+                    List<DayTask> dayTasks = com.alibaba.fastjson.JSONArray.parseArray(jsonArray.toString(), DayTask.class);
+                    Log.e(TAG, "onSuccess:000 " + dayTasks.size());
+                    for (DayTask dayTask : dayTasks) {
+                        for (int i = 0; i < dayTaskList.size(); i++) {
+                            DayTask curDayTask = dayTaskList.get(i);
+                            if (dayTask.equals(curDayTask)) {
+                                dayTaskList.set(i, dayTask);
+                            }
+                        }
                     }
 
-                    Log.e(TAG, "onSuccess: "+dayTaskList.toString() );
+                    Log.e(TAG, "onSuccess: " + dayTaskList.toString());
                     adapter.resetData(dayTaskList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -212,7 +213,7 @@ public class WeekFragment_ycm extends Fragment  {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
             }
         });
 

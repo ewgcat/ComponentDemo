@@ -346,7 +346,7 @@ public class HuijiFilterViperDialog extends Dialog {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                            if (DateUtil.getCurrentDay() < dayOfMonth) {
                                 tvStartTime.setText("");
                                 Toast.makeText(getContext(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
                             }
@@ -397,7 +397,7 @@ public class HuijiFilterViperDialog extends Dialog {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                            if (DateUtil.getCurrentDay() < dayOfMonth) {
                                 tvEndTime.setText("");
                                 Toast.makeText(getContext(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
 

@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class VenueWrapBean {
-//    id (string, optional): id ,
+    //    id (string, optional): id ,
 //    name (string, optional): 名称
     private List<VenueBean> dataList;
 

@@ -29,6 +29,7 @@ public class SystemUtil {
                 .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return wifiInfo != null;
     }
+
     /**
      * 检查手机网络(4G/3G/2G)是否连接
      */
@@ -38,6 +39,7 @@ public class SystemUtil {
                 .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return mobileNetworkInfo != null;
     }
+
     /**
      * 检查是否有可用网络
      */
@@ -48,6 +50,7 @@ public class SystemUtil {
 
     /**
      * 保存文字到剪贴板
+     *
      * @param context
      * @param text
      */
@@ -56,7 +59,6 @@ public class SystemUtil {
         ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         manager.setPrimaryClip(clipData);
     }
-
 
 
     /**
@@ -115,9 +117,9 @@ public class SystemUtil {
     }
 
     /**
-     *  隐藏键盘
+     * 隐藏键盘
      */
-    public static void hideKeyBoard(View v,Context context) {
+    public static void hideKeyBoard(View v, Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -125,12 +127,12 @@ public class SystemUtil {
     }
 
     /**
-     *  显示键盘
+     * 显示键盘
      */
-    public static void showKeyBoard(View v,Context context) {
+    public static void showKeyBoard(View v, Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
-            imm.showSoftInput(v,0);
+            imm.showSoftInput(v, 0);
 
         }
     }

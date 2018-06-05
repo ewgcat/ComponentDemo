@@ -23,15 +23,15 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder > {
+public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<MultiOptBean> mMultiOptBeans=new ArrayList<>();
+    private List<MultiOptBean> mMultiOptBeans = new ArrayList<>();
     private static final String TAG = "MultiAdapter";
-    public static final int TYPE_NORMAL=0;
-    public static final int TYPE_MIX=1;
+    public static final int TYPE_NORMAL = 0;
+    public static final int TYPE_MIX = 1;
 
     public MultiAdapter(Activity mContext) {
-        context=mContext;
+        context = mContext;
     }
 
     @Override
@@ -44,8 +44,7 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
 //        Log.e(TAG, "onCreateViewHolder:layoutParamsclass===== "+layoutParams.getClass() );
 
 
-
-        switch (viewType){
+        switch (viewType) {
             default:
             case TYPE_NORMAL:
                 View view = LayoutInflater.from(context).inflate(R.layout.item_child_type_multi, parent, false);
@@ -53,7 +52,7 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
                 return myViewHolder;
             case TYPE_MIX:
                 View view1 = LayoutInflater.from(context).inflate(R.layout.item_quest_step2_option_mix, parent, false);
-                MyMixViewHolder mixViewHolder=new MyMixViewHolder(view1);
+                MyMixViewHolder mixViewHolder = new MyMixViewHolder(view1);
                 return mixViewHolder;
         }
 
@@ -62,20 +61,21 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
 
     private int childPosition;
     private int parentPosition;
-    public void resetData(List<MultiOptBean> multiOptBeans, int cPosition, int pPosition){
+
+    public void resetData(List<MultiOptBean> multiOptBeans, int cPosition, int pPosition) {
         mMultiOptBeans.clear();
         mMultiOptBeans.addAll(multiOptBeans);
-        childPosition=   cPosition;
-        parentPosition=pPosition;
+        childPosition = cPosition;
+        parentPosition = pPosition;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MyViewHolder){
-            ((MyViewHolder)holder).bindView(mMultiOptBeans.get(position));
-        }else if (holder instanceof MyMixViewHolder){
-            ((MyMixViewHolder)holder).bindView(mMultiOptBeans.get(position));
+        if (holder instanceof MyViewHolder) {
+            ((MyViewHolder) holder).bindView(mMultiOptBeans.get(position));
+        } else if (holder instanceof MyMixViewHolder) {
+            ((MyMixViewHolder) holder).bindView(mMultiOptBeans.get(position));
         }
 
     }
@@ -108,7 +108,8 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
             rlOption.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener!=null)listener.onChildMultiClick(multiOptBean,getLayoutPosition(),childPosition,parentPosition);
+                    if (listener != null)
+                        listener.onChildMultiClick(multiOptBean, getLayoutPosition(), childPosition, parentPosition);
                 }
             });
         }
@@ -139,7 +140,8 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
             optName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener!=null)listener.onChildMultiClick(multiOptBean,getLayoutPosition(),childPosition,parentPosition);
+                    if (listener != null)
+                        listener.onChildMultiClick(multiOptBean, getLayoutPosition(), childPosition, parentPosition);
                 }
             });
 
@@ -156,33 +158,34 @@ public class MultiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder >
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    if (listener!=null)listener.onMixWrited(multiOptBean,getLayoutPosition(),childPosition,parentPosition,s);
+                    if (listener != null)
+                        listener.onMixWrited(multiOptBean, getLayoutPosition(), childPosition, parentPosition, s);
                 }
             });
         }
     }
 
 
-
     @Override
     public int getItemViewType(int position) {
         String typename = mMultiOptBeans.get(position).getType();
-        if ("mix".equals(typename)){//有填空及单选
+        if ("mix".equals(typename)) {//有填空及单选
             return TYPE_MIX;
-        }else{//单选
+        } else {//单选
             return TYPE_NORMAL;
         }
     }
 
-    public interface ChildMultiListener{
+    public interface ChildMultiListener {
         void onChildMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition);
+
         void onMixWrited(MultiOptBean multiOptBean, int layoutPosition, int childPosition, int parentPosition, Editable s);
     }
 
     private ChildMultiListener listener;
 
 
-    public void setChildMultiListener(ChildMultiListener childMultiListener){
-        listener=childMultiListener;
+    public void setChildMultiListener(ChildMultiListener childMultiListener) {
+        listener = childMultiListener;
     }
 }

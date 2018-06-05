@@ -1,345 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:orientation="horizontal">
 
         <View
-            android:id="@+id/empty_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+                android:id="@+id/empty_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
         <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="课程节数"
-                android:textColor="#333333"
-                android:textSize="16sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="课程节数"
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_class_jieshu1"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="10节以下"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_class_jieshu1"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="10节以下"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_class_jieshu2"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="10节-30节"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_class_jieshu2"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="10节-30节"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_class_jieshu3"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="30节以上"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_class_jieshu3"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="30节以上"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="价格区间(元)"
-                android:textColor="#333333"
-                android:textSize="16sp" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/tv_price1"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@color/gray"
-                    android:gravity="center"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="6dp"
-                    android:text="1000以下"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_price2"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="1000-2000"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/tv_price3"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="2000-3000"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_price4"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="3000以上"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
 
             </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="单节时长"
-                android:visibility="gone"
-                android:textColor="#333333"
-                android:textSize="16sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="价格区间(元)"
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
 
 
             <RelativeLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_longtime1"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@color/gray"
-                    android:gravity="center"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="6dp"
-                    android:text="1小时以下"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_price1"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/gray"
+                        android:gravity="center"
+                        android:paddingBottom="6dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="6dp"
+                        android:text="1000以下"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_longtime2"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="1小时-2小时"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_price2"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="1000-2000"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_longtime3"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="2小时-3小时"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_price3"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="2000-3000"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_longtime4"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="3小时以上"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_price4"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="3000以上"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
             </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="有效期"
-                android:textColor="#333333"
-                android:textSize="16sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="单节时长"
+                    android:visibility="gone"
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_youxiaoqi1"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="90天"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_longtime1"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/gray"
+                        android:gravity="center"
+                        android:paddingBottom="6dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="6dp"
+                        android:text="1小时以下"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_youxiaoqi2"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="180天"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_longtime2"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="1小时-2小时"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_youxiaoqi3"
-                    android:layout_width="114dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
+                        android:id="@+id/tv_longtime3"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="2小时-3小时"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+                <TextView
+                        android:id="@+id/tv_longtime4"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="3小时以上"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/gray_stroke_unselect_bg"
-                    android:gravity="center"
-                    android:text="365天"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="20dp"
+                    android:text="有效期"
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                <TextView
+                        android:id="@+id/tv_youxiaoqi1"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="90天"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+                <TextView
+                        android:id="@+id/tv_youxiaoqi2"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="180天"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                <TextView
+                        android:id="@+id/tv_youxiaoqi3"
+                        android:layout_width="114dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="365天"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
 
             </RelativeLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray" />
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_reset"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:text="重置"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_reset"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="重置"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
 
                 <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray" />
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray"/>
 
                 <TextView
-                    android:id="@+id/tv_confirm"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/blue"
-                    android:gravity="center"
-                    android:text="确定"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
+                        android:id="@+id/tv_confirm"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/blue"
+                        android:gravity="center"
+                        android:text="确定"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"/>
 
 
             </LinearLayout>

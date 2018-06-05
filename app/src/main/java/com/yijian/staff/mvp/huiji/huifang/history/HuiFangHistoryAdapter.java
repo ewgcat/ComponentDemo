@@ -44,8 +44,6 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
     }
 
 
-
-
     public void update(List<HuiFangInfo> mHuiFangInfoList) {
         this.mHuiFangInfoList = mHuiFangInfoList;
         notifyDataSetChanged();
@@ -199,8 +197,8 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                 String lastFitTime = huiFangInfo.getLastFitTime();
                 holder.tvPreJianShenDate.setText(lastFitTime);
                 Long breakDay = huiFangInfo.getBreakDay();
-                if (breakDay!=null&&breakDay!=-1){
-                    holder.tvWeiJianShenTime.setText(breakDay+"");
+                if (breakDay != null && breakDay != -1) {
+                    holder.tvWeiJianShenTime.setText(breakDay + "");
                 }
                 break;
             case "PotentialVO"://潜在会员
@@ -208,8 +206,8 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             case "EjoyVO":
                 holder.llChenMoTianShu.setVisibility(View.VISIBLE);
                 Long sinkDay = huiFangInfo.getSinkDay();
-                if (sinkDay!=null&&sinkDay!=-1){
-                    holder.tvChenMoTianShu.setText(sinkDay+"");
+                if (sinkDay != null && sinkDay != -1) {
+                    holder.tvChenMoTianShu.setText(sinkDay + "");
                 }
                 break;
 
@@ -229,24 +227,23 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                 holder.tvCardName.setText(huiFangInfo.getCardName());
                 holder.tvCardType.setText(huiFangInfo.getCardType());
                 Long openCardTime = huiFangInfo.getOpenCardTime();
-                if (openCardTime!=null&&openCardTime!=-1){
+                if (openCardTime != null && openCardTime != -1) {
                     String s = DateUtil.parseLongDateToDateString(openCardTime);
                     holder.tvKaiKaDate.setText(s);
                 }
 
                 Long recentlyFitTime = huiFangInfo.getRecentlyFitTime();
-                if (recentlyFitTime!=null&&recentlyFitTime!=-1){
+                if (recentlyFitTime != null && recentlyFitTime != -1) {
                     String s = DateUtil.parseLongDateToDateString(recentlyFitTime);
                     holder.tvZuijinJianshen.setText(s);
                 }
 
                 Long sinkDay1 = huiFangInfo.getSinkDay();
-                if (sinkDay1!=null&&sinkDay1!=-1){
-                    holder.tvChenMoTianShu.setText(sinkDay1+"");
+                if (sinkDay1 != null && sinkDay1 != -1) {
+                    holder.tvChenMoTianShu.setText(sinkDay1 + "");
                 }
                 break;
         }
-
 
 
     }
@@ -337,7 +334,6 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
 
         TextView tvHuifangType;
         TextView tv_huifang_result;
-
 
 
         public ViewHolder(View view) {

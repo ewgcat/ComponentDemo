@@ -20,7 +20,7 @@ import com.yijian.staff.widget.TimeBar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener,KeFuReceptionStepTwoContract.View {
+public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements View.OnClickListener, KeFuReceptionStepTwoContract.View {
 
     private static final String TAG = "KeFuReceptionStepTwoAct";
     private ScanBodyView scanBodyView;
@@ -36,10 +36,10 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("memberId")){
+        if (intent.hasExtra("memberId")) {
             memberId = intent.getStringExtra("memberId");
-        }else {
-            Toast.makeText(KeFuReceptionStepTwoActivity.this,"获取客户信息失败,请重新进入接待界面", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(KeFuReceptionStepTwoActivity.this, "获取客户信息失败,请重新进入接待界面", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -62,7 +62,7 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 
         scanBodyView = findViewById(R.id.scan_view);
 
-         findViewById(R.id.tv_next_step).setOnClickListener(this);
+        findViewById(R.id.tv_next_step).setOnClickListener(this);
         ll_to_coach = findViewById(R.id.ll_to_coach);
 //       if( SharePreferenceUtil.getHasToScan()){
 //           ll_to_coach.setVisibility(View.INVISIBLE);
@@ -132,17 +132,17 @@ public class KeFuReceptionStepTwoActivity extends AppCompatActivity implements V
 //        Intent intent = new Intent(KeFuReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
-        Log.e(TAG, "showJumpBodyCheck: " );
+        Log.e(TAG, "showJumpBodyCheck: ");
         scanBodyView.stopScan();
 
         Intent intent = new Intent(KeFuReceptionStepTwoActivity.this, ReceptionStepThreeActivity.class);
-        intent.putExtra("memberId",memberId);
+        intent.putExtra("memberId", memberId);
         startActivity(intent);
     }
 
     @Override
     public void showCoachBodyCheck() {
-        Log.e(TAG, "showCoachBodyCheck: " );
+        Log.e(TAG, "showCoachBodyCheck: ");
 //        scanBodyView.stopScan();
     }
 }

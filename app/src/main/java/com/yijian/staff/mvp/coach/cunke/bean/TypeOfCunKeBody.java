@@ -12,7 +12,8 @@ public class TypeOfCunKeBody {
     private String totalCourseCount; //总课程
     private String stockCourseCount; //存课
 
-    public TypeOfCunKeBody(){}
+    public TypeOfCunKeBody() {
+    }
 
     public TypeOfCunKeBody(String userName, String lessonName, String totalLessonNum, String remainLessonNum) {
         this.memberName = memberName;

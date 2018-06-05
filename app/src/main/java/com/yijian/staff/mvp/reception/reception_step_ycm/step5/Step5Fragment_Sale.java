@@ -35,7 +35,7 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
         consumerBean = arguments.getParcelable("recptionerInfoBean");
 
 //        Log.e(TAG, "onCreate: "+consumerBean.toString() );
-        if (consumerBean==null)return;
+        if (consumerBean == null) return;
         memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
@@ -44,14 +44,14 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (presenter!=null)presenter.getStatus(true,memberId);
+                if (presenter != null) presenter.getStatus(true, memberId);
             }
         });
 
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep5Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep5Back();
             }
         });
 
@@ -75,10 +75,10 @@ public class Step5Fragment_Sale extends Fragment implements ReceptionStepFiveCon
     }
 
 
-
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
-        if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionCompleted( receptionStastuBean.getOperatorType());
+        if (statusChangeLisenter != null)
+            statusChangeLisenter.ReceptionCompleted(receptionStastuBean.getOperatorType());
     }
 
     @Override

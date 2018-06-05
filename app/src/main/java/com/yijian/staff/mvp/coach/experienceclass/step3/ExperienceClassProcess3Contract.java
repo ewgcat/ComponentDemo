@@ -7,15 +7,15 @@ import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ConsultationProgram
  */
 
 public interface ExperienceClassProcess3Contract {
-    interface View{
+    interface View {
         void showConsultationProgramme(ConsultationProgrammeBean consultationProgrammeBean);
 
         void showSaveSecceed();
     }
 
-    interface Presenter{
+    interface Presenter {
         void getConsultationProgramme(String processId);
 
-        void postConsultationProgramme(String processId,String programmeContext);
+        void postConsultationProgramme(String processId, String programmeContext);
     }
 }

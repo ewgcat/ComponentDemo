@@ -47,16 +47,17 @@ public class ExperienceClassProcess5Bean {
     private String conclusionContext;
     private List<RecordListBean> recordList;
 
-    public ExperienceClassProcess5Bean(JSONObject jsonObject){
-       this.conclusionContext= JsonUtil.getString(jsonObject,"conclusionContext");
+    public ExperienceClassProcess5Bean(JSONObject jsonObject) {
+        this.conclusionContext = JsonUtil.getString(jsonObject, "conclusionContext");
         if (jsonObject.has("recordList")) {
             try {
-                this.recordList= com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONObject("recordList").toString(), RecordListBean.class);
+                this.recordList = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONObject("recordList").toString(), RecordListBean.class);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
+
     public String getConclusionContext() {
         return conclusionContext;
     }

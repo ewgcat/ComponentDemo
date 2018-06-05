@@ -25,12 +25,13 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
 
     private List<PrepareLessonsBean> prepareLessonsBeanList;
     private Context context;
-    public PrepareLessonsListAdapter(Context context,List<PrepareLessonsBean> prepareLessonsBeanList) {
+
+    public PrepareLessonsListAdapter(Context context, List<PrepareLessonsBean> prepareLessonsBeanList) {
         this.context = context;
         this.prepareLessonsBeanList = prepareLessonsBeanList;
     }
 
-    public void resetList(List<PrepareLessonsBean> prepareLessonsBeans){
+    public void resetList(List<PrepareLessonsBean> prepareLessonsBeans) {
         this.prepareLessonsBeanList = prepareLessonsBeans;
         notifyDataSetChanged();
     }
@@ -49,18 +50,18 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
         holder.lin_beike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,PrepareLessonsActivity.class);
+                Intent intent = new Intent(context, PrepareLessonsActivity.class);
                 intent.putExtra("parepareLessonBean", prepareLessonsBean);
                 context.startActivity(intent);
             }
         });
         ImageLoader.setHeadImageResource(prepareLessonsBean.getHeadPath(), context, holder.iv_header);
-        holder.iv_gender.setImageResource((prepareLessonsBean.getGender()==1)?R.mipmap.wt_man:R.mipmap.wt_women);
+        holder.iv_gender.setImageResource((prepareLessonsBean.getGender() == 1) ? R.mipmap.wt_man : R.mipmap.wt_women);
         holder.tv_name.setText(prepareLessonsBean.getMemberName());
         holder.tv_class_name.setText(prepareLessonsBean.getLessonName());
-        holder.tv_class_time.setText(prepareLessonsBean.getStartDate()+" "+prepareLessonsBean.getStartDatetime());
-        holder.tv_class_num.setText(prepareLessonsBean.getCourseNum()+"");
-        holder.tv_has_shang_class_count.setText(prepareLessonsBean.getCurrentNum()+"");
+        holder.tv_class_time.setText(prepareLessonsBean.getStartDate() + " " + prepareLessonsBean.getStartDatetime());
+        holder.tv_class_num.setText(prepareLessonsBean.getCourseNum() + "");
+        holder.tv_has_shang_class_count.setText(prepareLessonsBean.getCurrentNum() + "");
 
     }
 
@@ -68,8 +69,6 @@ public class PrepareLessonsListAdapter extends RecyclerView.Adapter<PrepareLesso
     public int getItemCount() {
         return prepareLessonsBeanList == null ? 0 : prepareLessonsBeanList.size();
     }
-
-
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {

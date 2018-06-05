@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.hengte.retrofit.net.utils.NetworkUtil;
+
 import java.io.IOException;
 
 import okhttp3.CacheControl;
@@ -49,7 +50,6 @@ public class CaheInterceptor implements Interceptor {
                     .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                     .build();
         }
-
 
 
     }

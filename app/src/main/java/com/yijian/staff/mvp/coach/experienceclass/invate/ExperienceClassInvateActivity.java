@@ -95,10 +95,10 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
                 ExperienceClassProcess1Bean experienceClassProcess1Bean = new ExperienceClassProcess1Bean(result);
                 etName.setText(experienceClassProcess1Bean.getMemberName());
                 etCoach.setText(experienceClassProcess1Bean.getCoachName());
-                etClassCount.setText(experienceClassProcess1Bean.getCourseCurrent()+"");
-                etClassNum.setText(experienceClassProcess1Bean.getCourseNum()+"");
+                etClassCount.setText(experienceClassProcess1Bean.getCourseCurrent() + "");
+                etClassNum.setText(experienceClassProcess1Bean.getCourseNum() + "");
                 Long startTime = experienceClassProcess1Bean.getStartTime();
-                if (startTime!=null){
+                if (startTime != null) {
                     String time = DateUtil.parseLongDateToTimeString(startTime);
                     tvTime.setText(time);
                 }
@@ -107,7 +107,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(ExperienceClassInvateActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExperienceClassInvateActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

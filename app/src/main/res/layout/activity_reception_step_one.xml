@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <include
-        android:id="@+id/reception_step_one_navigation_bar2"
-        layout="@layout/view_navigation_bar2" />
+            android:id="@+id/reception_step_one_navigation_bar2"
+            layout="@layout/view_navigation_bar2"/>
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/reception_step_one_navigation_bar2">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/reception_step_one_navigation_bar2">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/step_one_timebar"
-                layout="@layout/view_time_bar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_below="@+id/reception_step_one_navigation_bar"
-                android:layout_marginTop="10dp" />
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_fillet_white_solid_5"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:gravity="center"
-                    android:text="问卷调查"
 
-                    android:textSize="16sp"
-                    android:textColor="@color/blue"
-                    ></TextView>
-                <View
+            <include
+                    android:id="@+id/step_one_timebar"
+                    layout="@layout/view_time_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/division"/>
-                <include
-                    android:id="@+id/questionsGroup"
-                    layout="@layout/view_query_questions_ycm"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/reception_step_one_navigation_bar"
+                    android:layout_marginTop="10dp"/>
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:layout_marginBottom="20dp"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/division"/>
+                    android:background="@drawable/shape_fillet_white_solid_5"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
                 <TextView
-                    android:gravity="center"
-                    android:text="选择健身时间"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_black1"
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:gravity="center"
+                        android:text="问卷调查"
+
+                        android:textSize="16sp"
+                        android:textColor="@color/blue"
+                ></TextView>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/division"/>
+                <include
+                        android:id="@+id/questionsGroup"
+                        layout="@layout/view_query_questions_ycm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="20dp"/>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/division"/>
+                <TextView
+                        android:gravity="center"
+                        android:text="选择健身时间"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_black1"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"/>
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                />
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_save"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/register_button_bg"
-                android:text="保存（已完成）"
-                android:textColor="@color/white" />
+                    android:id="@+id/btn_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/register_button_bg"
+                    android:text="保存（已完成）"
+                    android:textColor="@color/white"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

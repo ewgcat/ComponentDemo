@@ -26,34 +26,34 @@ public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, null);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CoachVipDetailBean. CardprodsBean cardprodsBean = cardprodsBeans.get(position);
-        ((ViewHolder)holder).bind(cardprodsBean);
+        CoachVipDetailBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+        ((ViewHolder) holder).bind(cardprodsBean);
     }
 
     @Override
     public int getItemCount() {
-        return cardprodsBeans==null?0:cardprodsBeans.size();
+        return cardprodsBeans == null ? 0 : cardprodsBeans.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_cardName;
         private TextView tv_cardType;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_cardName  = itemView.findViewById(R.id.tv_cardName);
-            tv_cardType  = itemView.findViewById(R.id.tv_cardType);
+            tv_cardName = itemView.findViewById(R.id.tv_cardName);
+            tv_cardType = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(CoachVipDetailBean.CardprodsBean cardprodsBean){
+        public void bind(CoachVipDetailBean.CardprodsBean cardprodsBean) {
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

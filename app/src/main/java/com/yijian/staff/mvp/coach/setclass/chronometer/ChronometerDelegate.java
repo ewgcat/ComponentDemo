@@ -38,7 +38,7 @@ import java.util.Locale;
 
 /**
  * Created by Phillip Hsu on 9/7/2016.
- *
+ * <p>
  * A helper class for BaseChronometer that handles formatting the text.
  * Can also be used independent of Chronometer to format elapsed times and return the result
  * as a CharSequence.

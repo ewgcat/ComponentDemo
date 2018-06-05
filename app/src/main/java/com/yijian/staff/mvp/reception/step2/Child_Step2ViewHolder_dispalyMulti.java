@@ -34,7 +34,8 @@ public class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implemen
 
     /**
      * Default constructor.
-     *  @param itemView The {@link View} being hosted in this ViewHolder
+     *
+     * @param itemView The {@link View} being hosted in this ViewHolder
      * @param
      */
     public Child_Step2ViewHolder_dispalyMulti(@NonNull View itemView, Activity mContext) {
@@ -55,17 +56,16 @@ public class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implemen
 
         List<MultiOptBean> multiOptBeans = child.getMultiOptBeans();
 //        Log.e(TAG, "bind:multiOptBeans ");
-        if (multiOptBeans==null||multiOptBeans.size()==0){
+        if (multiOptBeans == null || multiOptBeans.size() == 0) {
 //            Log.e(TAG, "bind:multiOptBeans 111");
             recyclerview.setVisibility(View.GONE);
-        }else {
+        } else {
 
 //            Log.e(TAG, "bind:multiOptBeans ");
-            multiAdapter.resetData(multiOptBeans,childPosition,parentPosition);
+            multiAdapter.resetData(multiOptBeans, childPosition, parentPosition);
             recyclerview.setVisibility(View.VISIBLE);
 
         }
-
 
 
         // 关键代码
@@ -84,24 +84,26 @@ public class Child_Step2ViewHolder_dispalyMulti extends ChildViewHolder implemen
 
     @Override
     public void onChildMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition) {
-        if (listener!=null)listener.onItemMultiClick(child_demo,multiItemPosition,childPosition,parentPosition);
+        if (listener != null) listener.onItemMultiClick(child_demo, multiItemPosition, childPosition, parentPosition);
     }
 
     @Override
     public void onMixWrited(MultiOptBean multiOptBean, int multiItemPosition, int childPosition, int parentPosition, Editable s) {
-            if (listener!=null)listener.onItemMultiWrited(multiOptBean,multiItemPosition,childPosition,parentPosition,s);
+        if (listener != null)
+            listener.onItemMultiWrited(multiOptBean, multiItemPosition, childPosition, parentPosition, s);
     }
 
-    public interface ItemMultiListener{
+    public interface ItemMultiListener {
         void onItemMultiClick(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition);
+
         void onItemMultiWrited(MultiOptBean child_demo, int multiItemPosition, int childPosition, int parentPosition, Editable s);
     }
 
     private ItemMultiListener listener;
 
 
-    public void setChildMultiListener(ItemMultiListener itemMultiListener){
-        listener=itemMultiListener;
+    public void setChildMultiListener(ItemMultiListener itemMultiListener) {
+        listener = itemMultiListener;
     }
 
 

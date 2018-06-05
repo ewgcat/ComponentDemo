@@ -10,13 +10,13 @@ import java.util.List;
 public class ActionBean {
 
     //动作内容id
-    private String  motionId ;
+    private String motionId;
     //训练难度
     private String moDifficulty;
     //动作名称
     private String moName;
     //训练部位
-    private String moParts ;
+    private String moParts;
     //训练次数(x次/x组)
     private String buildDesc;
     //器械名称
@@ -24,12 +24,13 @@ public class ActionBean {
     //动作难易程度描述
     private String moDifficultyDesc;
     //训练部位描述
-    private String moPartsDesc  ;
+    private String moPartsDesc;
     //是否选中标志位
     private boolean isCheck = false;
     private boolean isShowHeader = false;
 
-    public ActionBean(){}
+    public ActionBean() {
+    }
 
     public ActionBean(String motionId, String moDifficulty, String moName, String moParts, String buildDesc, String moApplianceName) {
         this.motionId = motionId;

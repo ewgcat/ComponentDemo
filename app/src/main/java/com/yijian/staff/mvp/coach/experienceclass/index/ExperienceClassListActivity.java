@@ -32,17 +32,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/17")
-public class ExperienceClassListActivity extends MvcBaseActivity implements ExperienceClassContract.View{
+public class ExperienceClassListActivity extends MvcBaseActivity implements ExperienceClassContract.View {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout experienceClassRefreshLayout;
 
-    List<ExperienceClassBean> experienceClassBeanList=new ArrayList<>();
+    List<ExperienceClassBean> experienceClassBeanList = new ArrayList<>();
     private ExperienceClassPresenter experienceClassPresenter;
     private ExperienceClassListAdatper experienceClassListAdatper;
-
 
 
     @Override
@@ -76,18 +75,17 @@ public class ExperienceClassListActivity extends MvcBaseActivity implements Expe
         experienceClassRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,true);
+                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout, true);
             }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,false);
+                experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout, false);
             }
         });
-        experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout,true);
+        experienceClassPresenter.getExperienceClassListInfo(experienceClassRefreshLayout, true);
 
     }
-
-
 
 
     @Override

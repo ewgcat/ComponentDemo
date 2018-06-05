@@ -59,6 +59,5 @@ public class CountDownTimerUtils extends CountDownTimer {
     }
 
 
-
 }
 

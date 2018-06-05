@@ -40,19 +40,19 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
     private CoachReceptionStepTwoContract.View view;
 
     public CoachReceptionStepTwoPresenter(Context context) {
-        this.context=context;
+        this.context = context;
         user = DBManager.getInstance().queryUser();
     }
 
-    public void setView(CoachReceptionStepTwoContract.View view){
-        this.view=view;
+    public void setView(CoachReceptionStepTwoContract.View view) {
+        this.view = view;
     }
 
     @Override
     public void saveTestData(PhysicalExaminationBean bean, String memberId) {
 
 
-        HttpManager.postRecptionTest( memberId, bean, new Observer<JSONObject>() {
+        HttpManager.postRecptionTest(memberId, bean, new Observer<JSONObject>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -62,11 +62,11 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
             public void onNext(JSONObject jsonObject) {
                 try {
                     int code = jsonObject.getInt("code");
-                    if (code==0){
+                    if (code == 0) {
                         view.showSavaSucceed();
-                    }else {
+                    } else {
                         String msg = jsonObject.getString("msg");
-                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -87,8 +87,8 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 
     @Override
     public void viewTestData(String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("shopId",user.getShopId());
+        Map<String, String> params = new HashMap<>();
+        params.put("shopId", user.getShopId());
         params.put("memberId", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
@@ -96,13 +96,13 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
                 PhysicalExaminationBean o = GsonNullString.getGson().fromJson(result.toString(), PhysicalExaminationBean.class);
-                if (o==null)return;
+                if (o == null) return;
                 view.showUserData(o);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -111,9 +111,9 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 
     @Override
     public void postReject(String rejectReason, String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("rejectReason",rejectReason);
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("rejectReason", rejectReason);
+        params.put("memberId", memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_REJECT, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {
@@ -122,15 +122,15 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
 
-    public void saveData(String memberId,List<ParentQuestionBean> parentObj,String height, String age) {
-        PhysicalExaminationBean   physicalExaminationBean = new PhysicalExaminationBean();
+    public void saveData(String memberId, List<ParentQuestionBean> parentObj, String height, String age) {
+        PhysicalExaminationBean physicalExaminationBean = new PhysicalExaminationBean();
 
         if ("请选择".equals(height) || "请选择".equals(age)) {
             Toast.makeText(context, "请填写完所有必填字段", Toast.LENGTH_SHORT).show();
@@ -342,59 +342,60 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
                     String qustion = childOptBean.getQustion();
                     if ("(多选)健身目标".equals(qustion)) {
                         StringBuffer stringBuffer = new StringBuffer();
-                        String stitchingSymbol =String.format("%c", 1);//拼接符号
+                        String stitchingSymbol = String.format("%c", 1);//拼接符号
                         List<MultiOptBean> multiOptBeans = childOptBean.getMultiOptBeans();
                         for (int i = 0; i < multiOptBeans.size(); i++) {
                             MultiOptBean multiOptBean = multiOptBeans.get(i);
-                            if ("normal".equals(multiOptBean.getType())){
-                                if (multiOptBean.isIsSelected())stringBuffer.append(stitchingSymbol).append(multiOptBean.getOptName());
-                            }else if ("mix".equals(multiOptBean.getType())){
-                                if (!TextUtils.isEmpty(multiOptBean.getUserValue())){
+                            if ("normal".equals(multiOptBean.getType())) {
+                                if (multiOptBean.isIsSelected())
+                                    stringBuffer.append(stitchingSymbol).append(multiOptBean.getOptName());
+                            } else if ("mix".equals(multiOptBean.getType())) {
+                                if (!TextUtils.isEmpty(multiOptBean.getUserValue())) {
                                     stringBuffer.append(stitchingSymbol).append(multiOptBean.getOptName()).append(multiOptBean.getUserValue());
-                                }else if (multiOptBean.isIsSelected()){
+                                } else if (multiOptBean.isIsSelected()) {
                                     stringBuffer.append(stitchingSymbol).append(multiOptBean.getOptName());
                                 }
                             }
                         }
-                        if (stringBuffer.length()!=0){
+                        if (stringBuffer.length() != 0) {
                             String substring = stringBuffer.substring(1);
                             String[] split = substring.split(stitchingSymbol);
 
                             for (int i = 0; i < split.length; i++) {
 
-                                Log.e(TAG, "saveData: "+split[i] );
+                                Log.e(TAG, "saveData: " + split[i]);
                             }
                             physicalExaminationBean.setBodyTargetSelect(substring);
-                        }else {
+                        } else {
                             physicalExaminationBean.setBodyTargetSelect("");
                         }
 
                     } else if ("健身次数(每周)".equals(qustion)) {
-                        if (!"请选择".equals(userValue)){
+                        if (!"请选择".equals(userValue)) {
                             physicalExaminationBean.setBodyTimesSelect(Integer.valueOf(userValue));
-                        }else {
+                        } else {
                             physicalExaminationBean.setBodyTimesSelect(0);
                         }
 
                     } else if ("心肺运动(选填)".equals(qustion)) {
-                        if (!TextUtils.isEmpty(userValue)){
+                        if (!TextUtils.isEmpty(userValue)) {
                             physicalExaminationBean.setBeartLungMovement(userValue);
-                        }else {
+                        } else {
                             physicalExaminationBean.setBeartLungMovement("");
                         }
 
                     } else if ("伸展运动(选填)".equals(qustion)) {
-                        if (!TextUtils.isEmpty(userValue)){
+                        if (!TextUtils.isEmpty(userValue)) {
                             physicalExaminationBean.setExtensionalMovement(userValue);
-                        }else {
+                        } else {
                             physicalExaminationBean.setExtensionalMovement("");
                         }
 
 
-                    } else if ("重量训练(选填)".equals(qustion) ) {
-                        if (!TextUtils.isEmpty(userValue)){
+                    } else if ("重量训练(选填)".equals(qustion)) {
+                        if (!TextUtils.isEmpty(userValue)) {
                             physicalExaminationBean.setWeightTraining(userValue);
-                        }else {
+                        } else {
                             physicalExaminationBean.setWeightTraining("");
                         }
                     }
@@ -407,30 +408,30 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
         }
 
 //        Log.e(TAG, "saveData: "+physicalExaminationBean.toString() );
-        saveTestData(physicalExaminationBean,memberId);
+        saveTestData(physicalExaminationBean, memberId);
     }
 
 
-   public void computerCompletePercent(List<ParentQuestionBean> parentObj, String height, String age){
-       int unanswered=0;//未填写的（必填的）题目
-       int totalQustion=43;//共43道必选题
-       for (ParentQuestionBean parentQuestionBean : parentObj) {
-           String title = parentQuestionBean.getTitle();
-           if (!"健身处方".equals(title)){
-               List<ChildOptBean> childList = parentQuestionBean.getChildList();
-               for (ChildOptBean bean : childList) {
-                   String userValue = bean.getUserValue();
-                   if ("请选择".equals(userValue))unanswered++;
-               }
-           }
-       }
+    public void computerCompletePercent(List<ParentQuestionBean> parentObj, String height, String age) {
+        int unanswered = 0;//未填写的（必填的）题目
+        int totalQustion = 43;//共43道必选题
+        for (ParentQuestionBean parentQuestionBean : parentObj) {
+            String title = parentQuestionBean.getTitle();
+            if (!"健身处方".equals(title)) {
+                List<ChildOptBean> childList = parentQuestionBean.getChildList();
+                for (ChildOptBean bean : childList) {
+                    String userValue = bean.getUserValue();
+                    if ("请选择".equals(userValue)) unanswered++;
+                }
+            }
+        }
 
-       if ("请选择".equals(height))unanswered++;
-       if ("请选择".equals(age))unanswered++;
+        if ("请选择".equals(height)) unanswered++;
+        if ("请选择".equals(age)) unanswered++;
 
 //       Log.e(TAG, "computerCompletePercent: "+unanswered );
-       double persent=1-unanswered*1.0d/totalQustion;
+        double persent = 1 - unanswered * 1.0d / totalQustion;
 //       Log.e(TAG, "computerCompletePercent: "+persent );
-       view.showCompletePercent(persent);
-   }
+        view.showCompletePercent(persent);
+    }
 }

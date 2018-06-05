@@ -5,7 +5,7 @@ package com.yijian.staff.mvp.huiji.goodsbaojia.bean;
  */
 
 public class SelectedBean {
-   public boolean isSelect;
+    public boolean isSelect;
 
     public boolean isSelect() {
         return isSelect;

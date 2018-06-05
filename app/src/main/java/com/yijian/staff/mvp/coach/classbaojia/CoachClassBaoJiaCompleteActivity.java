@@ -46,7 +46,6 @@ public class CoachClassBaoJiaCompleteActivity extends MvcBaseActivity {
     private String memberId;
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_coach_class_bao_jia_complete;

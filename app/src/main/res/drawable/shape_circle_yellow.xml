@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:shape="oval"
+        android:shape="oval"
 
-    android:useLevel="false">
+        android:useLevel="false">
 
 
-    <solid android:color="#ffe720" />
+    <solid android:color="#ffe720"/>
 
 
 </shape>

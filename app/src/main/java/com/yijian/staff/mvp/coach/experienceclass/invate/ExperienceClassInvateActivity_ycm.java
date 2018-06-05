@@ -125,13 +125,12 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
         pvNoLinkOptions.setSelectOptions(0);
 
 
-
     }
 
 
     @OnClick({R.id.ll_time_start,
-            R.id.ll_time_class,R.id.ll_select_template1_status,R.id.ll_select_template2_status,
-            R.id.ll_template1,R.id.ll_template2
+            R.id.ll_time_class, R.id.ll_select_template1_status, R.id.ll_select_template2_status,
+            R.id.ll_template1, R.id.ll_template2
     })
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -158,9 +157,9 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
                 break;
 
             case R.id.ll_template1:
-                if (templateList!=null){
-                    if (templateList==null){
-                        Toast.makeText(this,"模板数据异常",Toast.LENGTH_SHORT).show();
+                if (templateList != null) {
+                    if (templateList == null) {
+                        Toast.makeText(this, "模板数据异常", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Intent intent = new Intent(this, Template1ClassActivity_ycm.class);
@@ -192,7 +191,7 @@ public class ExperienceClassInvateActivity_ycm extends AppCompatActivity impleme
 //        templateList = inviterBean.getTemplateList();
 
 //        if (templateList != null && templateList.size() != 0) {
-            //显示系统提供的模板
+        //显示系统提供的模板
 //            Glide.with(ExperienceClassInvateActivity_ycm.this).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
 //            tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
 //        }

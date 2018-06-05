@@ -27,16 +27,15 @@ import com.yijian.staff.tab.recyclerview.BaseHeaderFooterRecyclerAdapterWrapper;
  *
  * @version 1.0
  */
-public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapterWrapper<EditItem,EditItem,MenuEditRecyclerListHolder,MenuEditRecyclerListHolder> implements RecyclerViewDragDropManager.OnItemDragEventListener {
+public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapterWrapper<EditItem, EditItem, MenuEditRecyclerListHolder, MenuEditRecyclerListHolder> implements RecyclerViewDragDropManager.OnItemDragEventListener {
     private OnDeleteListener onDeleteClickListener;
     private RecyclerViewDragDropManager mDragDropManager;
     private MenuHeaderRecyclerGridAdapter adapter;//原装适配器
     private RecyclerView.Adapter dragAdapter;//对原装适配器封装包裹后的实现了拖拽功能的适配器
-    private int itemMoveMode= RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT;
+    private int itemMoveMode = RecyclerViewDragDropManager.ITEM_MOVE_MODE_DEFAULT;
     private boolean hasDragChanged;//优化刷新数据的参数，是否发生过拖拽
-    private  MenuRecyclerListAdapter listAdapter;
-    private  boolean showEditIcon=true;
-
+    private MenuRecyclerListAdapter listAdapter;
+    private boolean showEditIcon = true;
 
 
     public void setOnDeleteListener(OnDeleteListener onDeleteClickListener) {
@@ -50,12 +49,12 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
      */
     public MenuRecyclerListHeaderWrapper(RecyclerView.Adapter adapter) {
         super(adapter);
-        this.listAdapter= (MenuRecyclerListAdapter) adapter;
+        this.listAdapter = (MenuRecyclerListAdapter) adapter;
     }
 
     @Override
     public MenuEditRecyclerListHolder createHeaderViewHolder(ViewGroup parent, int viewType) {
-        return new MenuEditRecyclerListHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.header_menu_edit_recycler,parent,false));
+        return new MenuEditRecyclerListHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.header_menu_edit_recycler, parent, false));
     }
 
     @Override
@@ -66,9 +65,9 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     @Override
     public void bindHeaderViewHolder(MenuEditRecyclerListHolder headerViewHolder, EditItem headerItem) {
         headerViewHolder.tv_group_name.setText(headerItem.getGroup());
-        adapter=new MenuHeaderRecyclerGridAdapter(headerItem.getMenuItemList(),headerViewHolder.recyclerView,headerViewHolder.recyclerView.getContext());
+        adapter = new MenuHeaderRecyclerGridAdapter(headerItem.getMenuItemList(), headerViewHolder.recyclerView, headerViewHolder.recyclerView.getContext());
         adapter.setOnDeleteListener(onDeleteClickListener);
-        mDragDropManager=new RecyclerViewDragDropManager();
+        mDragDropManager = new RecyclerViewDragDropManager();
         mDragDropManager.setItemMoveMode(itemMoveMode);
         // Start dragging after long press
         mDragDropManager.setInitiateOnLongPress(true);
@@ -81,10 +80,10 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
 //        dragDropManager.setDraggingItemAlpha(0.8f);
         mDragDropManager.setDraggingItemScale(1.1f);
 //        dragDropManager.setDraggingItemRotation(15.0f);
-        dragAdapter =mDragDropManager.createWrappedAdapter(adapter);
+        dragAdapter = mDragDropManager.createWrappedAdapter(adapter);
         headerViewHolder.recyclerView.setAdapter(dragAdapter);
-        headerViewHolder.recyclerView.setLayoutManager(new GridLayoutManager(headerViewHolder.recyclerView.getContext(),4));
-        GeneralItemAnimator itemAnimator=new DraggableItemAnimator();
+        headerViewHolder.recyclerView.setLayoutManager(new GridLayoutManager(headerViewHolder.recyclerView.getContext(), 4));
+        GeneralItemAnimator itemAnimator = new DraggableItemAnimator();
         headerViewHolder.recyclerView.setItemAnimator(itemAnimator);
 
         mDragDropManager.attachRecyclerView(headerViewHolder.recyclerView);//关键步骤，设置好DragDropManager和RecyclerView后将二者绑定实现拖拽功能
@@ -107,10 +106,10 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
 
     @Override
     public void onItemDragFinished(int fromPosition, int toPosition, boolean result) {
-        if(fromPosition!=toPosition && result){
-            if(adapter!=null){
+        if (fromPosition != toPosition && result) {
+            if (adapter != null) {
                 TabMenuHelper.savePreferFrequentlyList(adapter.getRecyclerItems());
-                hasDragChanged=true;
+                hasDragChanged = true;
             }
         }
     }
@@ -123,19 +122,20 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     /**
      * 外部页面销毁之前调用
      */
-    public void releaseDragManager(){
-        if(mDragDropManager!=null){
+    public void releaseDragManager() {
+        if (mDragDropManager != null) {
             mDragDropManager.release();
-            mDragDropManager=null;
+            mDragDropManager = null;
         }
-        if(dragAdapter !=null){
+        if (dragAdapter != null) {
             WrapperAdapterUtils.releaseAll(dragAdapter);
-            dragAdapter =null;
+            dragAdapter = null;
         }
     }
 
     /**
      * 是否发生过拖拽变化
+     *
      * @return
      */
     public boolean isHasDragChanged() {
@@ -145,23 +145,23 @@ public class MenuRecyclerListHeaderWrapper extends BaseHeaderFooterRecyclerAdapt
     /**
      * 通知刷新子列表数据
      */
-    public void notifyChildDataChanged(){
-        if(adapter!=null){
+    public void notifyChildDataChanged() {
+        if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
     }
 
-    public void notifyChildDataAdded(MenuItem item){
-        if(adapter!=null){
-            if(!adapter.getRecyclerItems().contains(item)){
+    public void notifyChildDataAdded(MenuItem item) {
+        if (adapter != null) {
+            if (!adapter.getRecyclerItems().contains(item)) {
                 adapter.getRecyclerItems().add(item);
                 adapter.notifyDataSetChanged();
             }
         }
     }
 
-    public void notifyChildDataRemoved(MenuItem item){
-        if(adapter!=null){
+    public void notifyChildDataRemoved(MenuItem item) {
+        if (adapter != null) {
             adapter.getRecyclerItems().remove(item);
             adapter.notifyDataSetChanged();
         }

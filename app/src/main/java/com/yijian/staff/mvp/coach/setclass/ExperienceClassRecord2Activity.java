@@ -34,8 +34,6 @@ public class ExperienceClassRecord2Activity extends MvcBaseActivity {
     private List<String> mTitleList = new ArrayList<>();
 
 
-
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_open_lesson_new2;
@@ -117,7 +115,7 @@ public class ExperienceClassRecord2Activity extends MvcBaseActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            return super.instantiateItem(container,position);
+            return super.instantiateItem(container, position);
         }
 
         @Override

@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyclerGridHolder, MenuItem> {
     private Context context;
-    private Boolean isWorkMenu=false;
+    private Boolean isWorkMenu = false;
     private OnDeleteListener onDeleteListener;
     private OnAddListener onAddListener;
     protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
@@ -67,7 +67,8 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         this.context = context;
 
     }
-    public MenuRecyclerGridAdapter(List<MenuItem> recyclerItems, Context context,Boolean isWorkMenu) {
+
+    public MenuRecyclerGridAdapter(List<MenuItem> recyclerItems, Context context, Boolean isWorkMenu) {
         super(recyclerItems, context);
         this.context = context;
         this.isWorkMenu = isWorkMenu;
@@ -83,10 +84,10 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
     public void bindViewHolder(MenuRecyclerGridHolder holder, MenuItem item) {
         boolean showEditIcon = SharePreferenceUtil.getShowEditIcon();
 
-        if (isWorkMenu){
+        if (isWorkMenu) {
             holder.fl_item_view.setBackground(null);
-            showEditIcon=false;
-        }else {
+            showEditIcon = false;
+        } else {
             holder.fl_item_view.setBackground(context.getDrawable(R.drawable.light_black_stroke_bg));
         }
         RequestOptions options = new RequestOptions()
@@ -114,8 +115,8 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
             int count = item.getCount();
             if (count > 0) {
                 if (count < 100) {
-                    holder.tv_count.setText(""+count);
-                }else {
+                    holder.tv_count.setText("" + count);
+                } else {
                     holder.tv_count.setText("99+");
                 }
                 holder.tv_count.setVisibility(View.VISIBLE);
@@ -128,7 +129,7 @@ public class MenuRecyclerGridAdapter extends BaseSimpleRecyclerAdapter<MenuRecyc
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-               @Override
+            @Override
             public void onClick(View v) {
                 if (holder.iv_add.getVisibility() == View.VISIBLE) {
                     item.setType(0);

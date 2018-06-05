@@ -25,7 +25,7 @@ public class Child_physical_edit extends ChildViewHolder {
      */
     public Child_physical_edit(@NonNull View itemView) {
         super(itemView);
-        tvKey =  itemView.findViewById(R.id.tv_key);
+        tvKey = itemView.findViewById(R.id.tv_key);
         tvValue = itemView.findViewById(R.id.tv_value);
     }
 

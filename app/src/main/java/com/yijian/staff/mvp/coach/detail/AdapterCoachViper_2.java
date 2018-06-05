@@ -14,14 +14,14 @@ import com.yijian.staff.R;
 
 public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
 
-    public static final int TYPE0=0;
-    public static final int TYPE1=1;
-    public static final int TYPE3=3;
+    public static final int TYPE0 = 0;
+    public static final int TYPE1 = 1;
+    public static final int TYPE3 = 3;
 
     private Context context;
 
     public AdapterCoachViper_2(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
 
@@ -30,7 +30,7 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
     public ViewHolderCoachVipper onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         ViewHolderCoachVipper holder;
-        switch (viewType){
+        switch (viewType) {
             default:
             case TYPE0:
                 view = LayoutInflater.from(context).inflate(R.layout.item_coachvip_type0, parent, false);
@@ -53,7 +53,7 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCoachVipper holder, int position) {
-        if (mVipDetailBean!=null)holder.bindView(mVipDetailBean);
+        if (mVipDetailBean != null) holder.bindView(mVipDetailBean);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
 
     @Override
     public int getItemViewType(int position) {
-        switch (position){
+        switch (position) {
             default:
             case 0:
                 return TYPE0;
@@ -77,12 +77,12 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
 
     @Override
     public void visit() {
-        if (adapterInterface!=null)adapterInterface.clickVisit();
+        if (adapterInterface != null) adapterInterface.clickVisit();
     }
 
     @Override
     public void edit() {
-        if (adapterInterface!=null)adapterInterface.clickEdit();
+        if (adapterInterface != null) adapterInterface.clickEdit();
     }
 
 

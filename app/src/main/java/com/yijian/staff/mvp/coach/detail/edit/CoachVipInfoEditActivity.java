@@ -87,8 +87,6 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
     List<String> bodybuildingIdList = new ArrayList<String>();  //健身目的
 
 
-
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_coach_vip_info_edit;
@@ -255,11 +253,11 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
 
         boolean onceJoinedClub = detailBean.isOnceJoinedClub();
         tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
-        if (!onceJoinedClub){
+        if (!onceJoinedClub) {
             et_clubBrand.setEnabled(false);
             et_clubBrand.setText("未录入");
 
-        }else {
+        } else {
             et_clubBrand.setEnabled(true);
             et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
         }
@@ -277,8 +275,8 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
         downSourceFromService();
     }
 
-    private String strEmpty(String str){
-        return TextUtils.isEmpty(str)?"未录入":str;
+    private String strEmpty(String str) {
+        return TextUtils.isEmpty(str) ? "未录入" : str;
     }
 
     /**
@@ -315,10 +313,10 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
 
                 tv_widget.setText(opts.get(options1));
-                if (options1==1){
+                if (options1 == 1) {
 //                    et_clubBrand.setText("未录入");
                     et_clubBrand.setEnabled(false);
-                }else {
+                } else {
                     et_clubBrand.setEnabled(true);
                 }
             }

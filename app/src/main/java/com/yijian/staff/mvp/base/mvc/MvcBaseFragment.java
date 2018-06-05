@@ -25,7 +25,6 @@ public abstract class MvcBaseFragment extends Fragment {
     protected View rootView;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (rootView == null) {
@@ -51,7 +50,7 @@ public abstract class MvcBaseFragment extends Fragment {
 
     public void showLoading() {
         if (loadingDialog == null) {
-            loadingDialog =new LoadingDialog(mContext);
+            loadingDialog = new LoadingDialog(mContext);
         }
         if (loadingDialog != null) {
             //防止弹出之前activity已经被销毁了
@@ -80,7 +79,6 @@ public abstract class MvcBaseFragment extends Fragment {
     public <T extends View> T findView(int viewId) {
         return (T) rootView.findViewById(viewId);
     }
-
 
 
     @Override

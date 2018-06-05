@@ -82,7 +82,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         /*map.put("startTime ", tv_startTime.getText().toString());
         map.put("endTime ", tv_endTime.getText().toString());*/
-        String path = HttpManager.COACH_PRIVATE_COURSE_SET_WORK_TIME_URL + "?startTime=" + tv_startTime.getText().toString() + "&endTime=" +tv_endTime.getText().toString();
+        String path = HttpManager.COACH_PRIVATE_COURSE_SET_WORK_TIME_URL + "?startTime=" + tv_startTime.getText().toString() + "&endTime=" + tv_endTime.getText().toString();
         HttpManager.postHasHeaderHasParam(path, map, new ResultNullObserver() {
 
             @Override
@@ -102,7 +102,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
     }
 
 
-    public void showTimeDialog(TextView tv_time, Date startDate, Date endDate, Date selectDate){
+    public void showTimeDialog(TextView tv_time, Date startDate, Date endDate, Date selectDate) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         TimePicker mTimePicker = new TimePicker.Builder(this, TimePicker.TYPE_TIME, new TimePicker.OnTimeSelectListener() {
@@ -118,11 +118,12 @@ public class PreviewTimeActivity extends AppCompatActivity {
                 //.setSelectedDate()
                 // 设置pickerview样式
                 .setInterceptor(new BasePicker.Interceptor() {
-                    @Override public void intercept(PickerView pickerView) {
-                        pickerView.setColor(Color.parseColor("#d0000000"),Color.parseColor("#dddfe0"));
+                    @Override
+                    public void intercept(PickerView pickerView) {
+                        pickerView.setColor(Color.parseColor("#d0000000"), Color.parseColor("#dddfe0"));
                         pickerView.setTextSize(15, 20);
                         pickerView.setVisibleItemCount(5);
-                         DefaultCenterDecoration decoration = new DefaultCenterDecoration(PreviewTimeActivity.this);
+                        DefaultCenterDecoration decoration = new DefaultCenterDecoration(PreviewTimeActivity.this);
                         decoration.setLineColor(Color.parseColor("#cccccc"));
                         pickerView.setCenterDecoration(decoration);
                     }
@@ -131,7 +132,8 @@ public class PreviewTimeActivity extends AppCompatActivity {
                 // 设置 Formatter
                 .setFormatter(new TimePicker.DefaultFormatter() {
                     // 自定义Formatter显示去年，今年，明年
-                    @Override public CharSequence format(TimePicker picker, int type, int position, int num) {
+                    @Override
+                    public CharSequence format(TimePicker picker, int type, int position, int num) {
                         DefaultTopBar defaultTopBar = (DefaultTopBar) picker.getTopBar();
                         defaultTopBar.setDividerColor(Color.parseColor("#dddfe0"));
                         defaultTopBar.getBtnCancel().setTextColor(Color.parseColor("#1997f8"));
@@ -156,17 +158,17 @@ public class PreviewTimeActivity extends AppCompatActivity {
                     Date startDate = simpleDateFormat.parse("00:00");
                     Date endDate = null;
                     Date selectDate = null;
-                    if(TextUtils.isEmpty(tv_startTime.getText())){
+                    if (TextUtils.isEmpty(tv_startTime.getText())) {
                         Calendar calendar = Calendar.getInstance();
                         selectDate = calendar.getTime();
-                    }else{
+                    } else {
                         selectDate = simpleDateFormat.parse(tv_startTime.getText().toString());
                     }
-                    if(TextUtils.isEmpty(tv_endTime.getText())){
+                    if (TextUtils.isEmpty(tv_endTime.getText())) {
                         endDate = simpleDateFormat.parse("23:59");
-                    }else{
+                    } else {
                         endDate = simpleDateFormat.parse(tv_endTime.getText().toString());
-                        endDate = new Date(endDate.getTime()-(1*60*1000));
+                        endDate = new Date(endDate.getTime() - (1 * 60 * 1000));
                     }
                     showTimeDialog(tv_startTime, startDate, endDate, selectDate);
                 } catch (ParseException e) {
@@ -174,16 +176,16 @@ public class PreviewTimeActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.rel_end: //选择结束时间
-                if(!TextUtils.isEmpty(tv_startTime.getText().toString())){
+                if (!TextUtils.isEmpty(tv_startTime.getText().toString())) {
 
                     try {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
                         Date startDate = simpleDateFormat.parse(tv_startTime.getText().toString());
                         Date endDate = simpleDateFormat.parse("23:59");
                         Date selectDate = null;
-                        if(TextUtils.isEmpty(tv_endTime.getText().toString())){
+                        if (TextUtils.isEmpty(tv_endTime.getText().toString())) {
                             selectDate = startDate;
-                        }else{
+                        } else {
                             selectDate = simpleDateFormat.parse(tv_endTime.getText().toString());
                         }
 //                        startDate = new Date(startDate.getTime()-(1*60*1000));
@@ -193,7 +195,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(PreviewTimeActivity.this, "请选择开始时间", Toast.LENGTH_SHORT).show();
                 }
 

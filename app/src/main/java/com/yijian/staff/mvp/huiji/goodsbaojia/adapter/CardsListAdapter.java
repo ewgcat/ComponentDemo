@@ -62,10 +62,10 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
     }
 
 
-     class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemView;
-         AlwaysMarqueeTextView tvGoodsName;
-//        TextView tvJianshenplace;
+        AlwaysMarqueeTextView tvGoodsName;
+        //        TextView tvJianshenplace;
         TextView tvYuEr;
         TextView tvChuzhiyouhui;
         TextView tvPrice;
@@ -92,30 +92,30 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
 //                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 //
 //            } else {
-                itemView.setBackgroundResource(R.drawable.white_bg);
+            itemView.setBackgroundResource(R.drawable.white_bg);
 //            }
 
             CardInfo goodsInfo = mGoodsInfoList.get(position);
             tvGoodsName.setText(goodsInfo.getCardName());
 //            tvJianshenplace.setText(goodsInfo.getVenusNames()!=null?""+goodsInfo.getVenusNames():"");
             //:0:时间卡 1:次卡 2:储值卡 3:会员制卡 4:员工卡 ,
-            if (goodsInfo.getCardType()!=null&&goodsInfo.getCardType() == 0) {//时间卡
-                tvYuEr.setText(goodsInfo.getValidDay()!=null?""+goodsInfo.getValidDay():"");
-               tv_danwei.setText("天");
-            } else if (goodsInfo.getCardType()!=null&&goodsInfo.getCardType() == 1) {//次卡
-               tvYuEr.setText(goodsInfo.getValidTime()!=null?""+goodsInfo.getValidTime():"");
+            if (goodsInfo.getCardType() != null && goodsInfo.getCardType() == 0) {//时间卡
+                tvYuEr.setText(goodsInfo.getValidDay() != null ? "" + goodsInfo.getValidDay() : "");
+                tv_danwei.setText("天");
+            } else if (goodsInfo.getCardType() != null && goodsInfo.getCardType() == 1) {//次卡
+                tvYuEr.setText(goodsInfo.getValidTime() != null ? "" + goodsInfo.getValidTime() : "");
                 tv_danwei.setText("次");
-            } else if (goodsInfo.getCardType()!=null&&goodsInfo.getCardType() == 2) {//储值卡
-               tvYuEr.setText(goodsInfo.getAmount()!=null?""+goodsInfo.getAmount():"");
-               tv_danwei.setText("元");
-            } else if (goodsInfo.getCardType()!=null&&goodsInfo.getCardType() == 3) {//会员制卡
-               tvYuEr.setText(goodsInfo.getAmount()!=null?""+goodsInfo.getAmount():"");
-               tv_danwei.setText("元");
+            } else if (goodsInfo.getCardType() != null && goodsInfo.getCardType() == 2) {//储值卡
+                tvYuEr.setText(goodsInfo.getAmount() != null ? "" + goodsInfo.getAmount() : "");
+                tv_danwei.setText("元");
+            } else if (goodsInfo.getCardType() != null && goodsInfo.getCardType() == 3) {//会员制卡
+                tvYuEr.setText(goodsInfo.getAmount() != null ? "" + goodsInfo.getAmount() : "");
+                tv_danwei.setText("元");
             }
 
-           tvChuzhiyouhui.setText(goodsInfo.getRechargeGivePercent()!=null?""+goodsInfo.getRechargeGivePercent():"");
-           tvPrice.setText(goodsInfo.getSalePrice()!=null?""+goodsInfo.getSalePrice():"");
-           itemView.setOnClickListener(new View.OnClickListener() {
+            tvChuzhiyouhui.setText(goodsInfo.getRechargeGivePercent() != null ? "" + goodsInfo.getRechargeGivePercent() : "");
+            tvPrice.setText(goodsInfo.getSalePrice() != null ? "" + goodsInfo.getSalePrice() : "");
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onItemClickListener != null) {

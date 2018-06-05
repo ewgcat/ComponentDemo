@@ -21,6 +21,7 @@ import com.yijian.staff.util.system.KeyBroadUtil;
 
 public class ActivityHuiijiBaoJiaSeach extends AppCompatActivity {
     private static final String TAG = "ActivityHuiijiBaoJiaSea";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,9 @@ public class ActivityHuiijiBaoJiaSeach extends AppCompatActivity {
 
                         String name = etSearch.getText().toString().trim();
                         Intent intent = new Intent();
-                        intent.putExtra("search",name);
-                        KeyBroadUtil.hideKeyBroad(ActivityHuiijiBaoJiaSeach.this,etSearch);
-                        setResult(1,intent);
+                        intent.putExtra("search", name);
+                        KeyBroadUtil.hideKeyBroad(ActivityHuiijiBaoJiaSeach.this, etSearch);
+                        setResult(1, intent);
                         finish();
                         break;
                 }
@@ -56,12 +57,12 @@ public class ActivityHuiijiBaoJiaSeach extends AppCompatActivity {
             public void onClick(View v) {
                 Editable text = etSearch.getText();
                 String s = text.toString().trim();
-                Log.e(TAG, "onClick: "+s.length());
-                    Intent intent = new Intent();
-                    intent.putExtra("search",s);
-                    setResult(1,intent);
-                     KeyBroadUtil.hideKeyBroad(ActivityHuiijiBaoJiaSeach.this,etSearch);
-                    finish();
+                Log.e(TAG, "onClick: " + s.length());
+                Intent intent = new Intent();
+                intent.putExtra("search", s);
+                setResult(1, intent);
+                KeyBroadUtil.hideKeyBroad(ActivityHuiijiBaoJiaSeach.this, etSearch);
+                finish();
             }
         });
 

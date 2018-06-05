@@ -28,7 +28,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
     public void showLoading() {
         if (loadingDialog == null) {
-            loadingDialog =new LoadingDialog(this);
+            loadingDialog = new LoadingDialog(this);
         }
         if (loadingDialog != null) {
             //防止弹出之前activity已经被销毁了
@@ -53,7 +53,6 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     protected WhiteLoadingDialog whiteLoadingDialog;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +61,10 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         mContext = this;
         initView(savedInstanceState);
         UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
-        if (upgradeInfo!=null){
+        if (upgradeInfo != null) {
             int versionCode = upgradeInfo.versionCode;
-            if (versionCode> BuildConfig.VERSION_CODE){
-                Beta.checkUpgrade(false,false);
+            if (versionCode > BuildConfig.VERSION_CODE) {
+                Beta.checkUpgrade(false, false);
             }
         }
 
@@ -77,8 +76,8 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
 
     }
 
-    protected  void initView(Bundle savedInstanceState){}
-
+    protected void initView(Bundle savedInstanceState) {
+    }
 
 
     /**

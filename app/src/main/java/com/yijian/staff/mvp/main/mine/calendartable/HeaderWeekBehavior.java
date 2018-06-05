@@ -42,7 +42,6 @@ public class HeaderWeekBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
 
-
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
         return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
@@ -57,34 +56,31 @@ public class HeaderWeekBehavior extends CoordinatorLayout.Behavior<View> {
 //        Log.e(TAG, "onDependentViewChanged: ="+translationY );
 
 
-        if (dependency instanceof LinearLayout){
+        if (dependency instanceof LinearLayout) {
 //            Log.e(TAG, "onDependentViewChanged: LinearLayout" );
             View view = ((LinearLayout) dependency).getChildAt(1);
-            if (view instanceof MonthCalendarView){
+            if (view instanceof MonthCalendarView) {
                 int selectYear = ((MonthCalendarView) view).getCurrentMonthView().getSelectYear();
                 int selectMonth = ((MonthCalendarView) view).getCurrentMonthView().getSelectMonth();
                 int selectDay = ((MonthCalendarView) view).getCurrentMonthView().getSelectDay();
                 //返回当前月份1号位于周几
                 int weekNumber = CalendarUtils.getFirstDayWeek(selectYear, selectMonth);
 //            Log.e(TAG, "onDependentViewChanged: weekNumber="+weekNumber+"   ----selectDay="+selectDay );
-                row = (selectDay + weekNumber-2 ) / 7;
+                row = (selectDay + weekNumber - 2) / 7;
 //            Log.e(TAG, "onDependentViewChanged: row=="+row );
                 rowSize = ((MonthCalendarView) view).getCurrentMonthView().getRowSize();
-                if (-translationY >row*rowSize){
+                if (-translationY > row * rowSize) {
                     child.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     child.setVisibility(View.GONE);
                 }
-        }
+            }
 
         }
 
 
         return true;
     }
-
-
-
 
 
     private View getDependentView() {

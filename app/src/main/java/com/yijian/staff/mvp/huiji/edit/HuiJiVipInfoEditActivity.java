@@ -112,7 +112,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_edit_navigation_bar);
-        navigationBar2.setTitle(name+"详细信息");
+        navigationBar2.setTitle(name + "详细信息");
         navigationBar2.hideLeftSecondIv();
         TextView rightTv = navigationBar2.getmRightTv();
         rightTv.setText("保存");
@@ -250,11 +250,11 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         boolean onceJoinedClub = detailBean.isOnceJoinedClub();
 
         tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
-        if (!onceJoinedClub){
+        if (!onceJoinedClub) {
             et_clubBrand.setEnabled(false);
             et_clubBrand.setText("未录入");
 
-        }else {
+        } else {
             et_clubBrand.setEnabled(true);
             et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
         }
@@ -272,8 +272,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         downSourceFromService();
     }
 
-    private String strEmpty(String str){
-        return TextUtils.isEmpty(str)?"未录入":str;
+    private String strEmpty(String str) {
+        return TextUtils.isEmpty(str) ? "未录入" : str;
     }
 
     /**
@@ -310,10 +310,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
 
                 tv_widget.setText(opts.get(options1));
-                if (options1==1){
+                if (options1 == 1) {
 //                    et_clubBrand.setText("未录入");
                     et_clubBrand.setEnabled(false);
-                }else {
+                } else {
                     et_clubBrand.setEnabled(true);
                 }
             }

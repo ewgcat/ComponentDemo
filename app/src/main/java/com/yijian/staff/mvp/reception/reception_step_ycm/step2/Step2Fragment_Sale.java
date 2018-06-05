@@ -22,7 +22,7 @@ import com.yijian.staff.widget.ScanBodyView;
  * Created by The_P on 2018/4/20.
  */
 
-public class Step2Fragment_Sale extends Fragment implements View.OnClickListener,KeFuReceptionStepTwoContract.View {
+public class Step2Fragment_Sale extends Fragment implements View.OnClickListener, KeFuReceptionStepTwoContract.View {
     private ScanBodyView scanBodyView;
     private View ll_to_coach;
     private KeFuReceptionStepTwoPresenter presenter;
@@ -30,7 +30,7 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
     private TextView tvTip;
     private TextView tvNextStep;
 
-//          case 20:// SALEFINISHQS(20, "会籍完成问卷调查录入"),
+    //          case 20:// SALEFINISHQS(20, "会籍完成问卷调查录入"),
 //          case 21: //SALESENDCOACH(21, "会籍选择发送给教练"),
 //          case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
 //          case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
@@ -44,7 +44,7 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2Back();
             }
         });
     }
@@ -72,14 +72,14 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
         tvNextStep.setOnClickListener(this);
 
         //status ==20||status==21||status==32
-        if (consumerBean.getStatus()==20){//SALEFINISHQS(20, "会籍完成问卷调查录入"),
+        if (consumerBean.getStatus() == 20) {//SALEFINISHQS(20, "会籍完成问卷调查录入"),
 
-        }else if (consumerBean.getStatus()==21){//SALESENDCOACH(21, "会籍选择发送给教练"),
+        } else if (consumerBean.getStatus() == 21) {//SALESENDCOACH(21, "会籍选择发送给教练"),
             scanBodyView.startScan();
             tvTip.setVisibility(View.VISIBLE);
             ll_to_coach.setVisibility(View.GONE);
             tvNextStep.setVisibility(View.GONE);
-        }else if (consumerBean.getStatus()==32){//MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
+        } else if (consumerBean.getStatus() == 32) {//MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),
             tvNextStep.setVisibility(View.GONE);
             ll_to_coach.setVisibility(View.GONE);
             tvTip.setVisibility(View.GONE);
@@ -88,7 +88,7 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_next_step:
                 presenter.jumpBodyCheck(consumerBean.getId());
                 break;
@@ -102,7 +102,7 @@ public class Step2Fragment_Sale extends Fragment implements View.OnClickListener
     @Override
     public void showJumpBodyCheck() {
         scanBodyView.stopScan();
-        if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2SaleSkipCoach();
+        if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2SaleSkipCoach();
     }
 
     @Override

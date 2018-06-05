@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_checked="true" />
-    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_selected="true" />
-    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_pressed="true" />
+    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_checked="true"/>
+    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_selected="true"/>
+    <item android:drawable="@mipmap/fp_gouxuanlan" android:state_pressed="true"/>
 
-    <item android:drawable="@mipmap/fp_gouxuan" />
+    <item android:drawable="@mipmap/fp_gouxuan"/>
 
 </selector>

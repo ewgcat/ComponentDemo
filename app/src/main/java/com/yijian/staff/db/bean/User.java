@@ -82,7 +82,7 @@ public class User {
         this.merchantId = JsonUtil.getString(jsonObject, "merchantId");
         this.token = JsonUtil.getString(jsonObject, "token");
         this.tokenAge = JsonUtil.getString(jsonObject, "tokenAge");
-        this.headImg = BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.postName = JsonUtil.getString(jsonObject, "postName");

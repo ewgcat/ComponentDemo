@@ -16,15 +16,16 @@ import com.yijian.staff.R;
 public class MyDailyWorkFragment extends Fragment {
 
     private static MyDailyWorkFragment myDailyWorkFragment;
-    public static MyDailyWorkFragment getInstance(){
-        if(myDailyWorkFragment == null){
+
+    public static MyDailyWorkFragment getInstance() {
+        if (myDailyWorkFragment == null) {
             myDailyWorkFragment = new MyDailyWorkFragment();
         }
         return myDailyWorkFragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_my_daily_work, container, false);
     }
 

@@ -76,7 +76,7 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_leader_product_quotation, container, false);
+        View view = inflater.inflate(R.layout.fragment_leader_product_quotation, container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
@@ -94,7 +94,7 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao,R.id.item_view})
+    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao, R.id.item_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
@@ -109,9 +109,9 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
                 startActivity(intent1);
                 break;
             case R.id.item_view:
-                if (productDetail!=null){
+                if (productDetail != null) {
                     Intent intent2 = new Intent(getContext(), ProductDetailActivity.class);
-                    intent2.putExtra("productDetail",productDetail);
+                    intent2.putExtra("productDetail", productDetail);
                     startActivity(intent2);
                 }
                 break;
@@ -127,12 +127,12 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
         tvJiedaiName.setText("" + receptionUserInfo.getSaleName());
         tvCoachName.setText("" + receptionUserInfo.getCoachName());
 
-        tvToReason.setText(""+receptionUserInfo.getMemberBcRejectReason());
+        tvToReason.setText("" + receptionUserInfo.getMemberBcRejectReason());
     }
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail =productDetail;
+        this.productDetail = productDetail;
 
         tvGoodsName.setText("" + productDetail.getCardTypeName());
         List<String> venueNames = productDetail.getVenueNames();
@@ -166,15 +166,15 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
 
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuEr.setText(strRestKey+strRestVal);
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
+            tvYuEr.setText(strRestKey + strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
     }
 

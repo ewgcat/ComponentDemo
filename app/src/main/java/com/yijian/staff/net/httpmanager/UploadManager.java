@@ -28,7 +28,7 @@ public class UploadManager {
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
-    public static String UPLOAD_URL = BuildConfig.HOST+"/file/newUploadFiles";
+    public static String UPLOAD_URL = BuildConfig.HOST + "/file/newUploadFiles";
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -64,8 +64,6 @@ public class UploadManager {
             execute(observable, observer);
         }
     }
-
-
 
 
 }

@@ -19,16 +19,16 @@ public class RecptionCards {
 //            "records":
 
 
-   public Integer offset;
-   public Integer limit;
-   public Integer total;
-   public Integer size;
-   public Integer pages;
-   public Integer current;
-   public Boolean searchCount;
-   public Boolean openSort;
-   public String orderByField;
-   public List<CardInfo> records;
+    public Integer offset;
+    public Integer limit;
+    public Integer total;
+    public Integer size;
+    public Integer pages;
+    public Integer current;
+    public Boolean searchCount;
+    public Boolean openSort;
+    public String orderByField;
+    public List<CardInfo> records;
 
     public Integer getOffset() {
         return offset;

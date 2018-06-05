@@ -11,18 +11,16 @@ import java.util.List;
  */
 
 public interface HuiJiProductContract {
-    interface View{
+    interface View {
         void showCards(List<CardInfo> goodsInfos, Boolean isRefresh);
 
 
         void showNoCards(boolean isRefresh, boolean isSucceed);
 
 
-
-
     }
 
-    interface Presenter{
+    interface Presenter {
         void getRecptionCards(CardRequestBody bodyCondition, boolean isRefresh);
 
 

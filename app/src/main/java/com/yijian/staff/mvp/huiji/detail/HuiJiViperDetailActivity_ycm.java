@@ -47,7 +47,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
     private String memberId;
-//    private String memberName;
+    //    private String memberName;
     private NavigationBar2 navigation2;
 
 //    @Override
@@ -87,7 +87,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
             public void onSuccess(JSONObject result) {
                 hideLoading();
                 vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
+                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
 //                updateUi(vipDetailBean);
             }
@@ -149,8 +149,8 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState==RecyclerView.SCROLL_STATE_IDLE){
-                    manualMove=false;
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    manualMove = false;
                 }
             }
 
@@ -323,6 +323,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     }
 
     private boolean manualMove;//手动移动——指通过点击的移动
+
     private void moveToPosition(int n) {
         llHead.setAlpha(1.0f);
         manualMove = true;
@@ -332,13 +333,13 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
         int lastItem = layoutManager.findLastVisibleItemPosition();
         int headHeight = llHead.getHeight();//头部高度
 
-        if (n<firstItem){
-            layoutManager.scrollToPositionWithOffset(n, headHeight );
+        if (n < firstItem) {
+            layoutManager.scrollToPositionWithOffset(n, headHeight);
 
-        }else if (n==firstItem||n<=lastItem){
+        } else if (n == firstItem || n <= lastItem) {
             View viewByPosition = layoutManager.findViewByPosition(n);
-            recyclerView.scrollBy(0,viewByPosition.getTop()-(headHeight+DensityUtil.dip2px(this,16)));
-        }else {
+            recyclerView.scrollBy(0, viewByPosition.getTop() - (headHeight + DensityUtil.dip2px(this, 16)));
+        } else {
             layoutManager.scrollToPositionWithOffset(n, headHeight);
         }
     }

@@ -27,7 +27,7 @@ public class Step3Fragment_Coach_NoData extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
-       if (arguments!=null)tips = arguments.getString("tips");
+        if (arguments != null) tips = arguments.getString("tips");
 
     }
 
@@ -36,7 +36,7 @@ public class Step3Fragment_Coach_NoData extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step3_coach_nodata, container, false);
         TextView tip = view.findViewById(R.id.tv);
-        if (!TextUtils.isEmpty(tips))tip.setText(tips);
+        if (!TextUtils.isEmpty(tips)) tip.setText(tips);
         return view;
     }
 

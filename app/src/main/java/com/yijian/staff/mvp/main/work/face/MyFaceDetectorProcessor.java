@@ -40,7 +40,7 @@ public class MyFaceDetectorProcessor implements FrameProcessor {
         MAIN_THREAD_HANDLER.post(new Runnable() {
             @Override
             public void run() {
-                listener.onFacesDetected(faces,frame);
+                listener.onFacesDetected(faces, frame);
             }
         });
     }
@@ -55,7 +55,7 @@ public class MyFaceDetectorProcessor implements FrameProcessor {
          */
         MyFaceDetectorProcessor.OnFacesDetectedListener NULL = new MyFaceDetectorProcessor.OnFacesDetectedListener() {
             @Override
-            public void onFacesDetected(List<Rectangle> faces,Frame frame) {
+            public void onFacesDetected(List<Rectangle> faces, Frame frame) {
                 // Do nothing
             }
         };

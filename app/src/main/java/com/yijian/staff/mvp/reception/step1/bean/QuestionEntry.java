@@ -13,7 +13,6 @@ public class QuestionEntry implements ParentImp<QuestionOption> {
     private int id;
 
 
-
     private List<QuestionOption> list;
 
     public QuestionEntry(String name, int id, List<QuestionOption> list) {

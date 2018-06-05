@@ -51,7 +51,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract.View{
+public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract.View {
 
     @BindView(R.id.rl_goods)
     RelativeLayout rlGoods;
@@ -96,8 +96,8 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
-        if (consumerBean==null)return;
-        memberId=consumerBean.getId();
+        if (consumerBean == null) return;
+        memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
@@ -105,7 +105,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (presenter!=null)presenter.getStatus(true,memberId);
+                if (presenter != null) presenter.getStatus(true, memberId);
 //                TOLeadersDialog  toLeadersDialog = new TOLeadersDialog();
 //                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
             }
@@ -114,7 +114,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep3Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep3Back();
             }
         });
     }
@@ -154,14 +154,14 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.resetBodyPage(bodyCondition);
-                presenter.getRecptionCards(bodyCondition,true);
+                presenter.getRecptionCards(bodyCondition, true);
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                bodyCondition.setPageNum(bodyCondition.getPageNum()+1);
-                presenter.getRecptionCards(bodyCondition,false);
+                bodyCondition.setPageNum(bodyCondition.getPageNum() + 1);
+                presenter.getRecptionCards(bodyCondition, false);
             }
         });
 
@@ -171,10 +171,10 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
             @Override
             public void onDismiss(ConditionBody body) {
 //                Log.e(TAG, "onDismiss: " );
-                bodyCondition=body;
+                bodyCondition = body;
                 bodyCondition.setPageNum(1);
                 bodyCondition.setPageSize(10);
-                presenter.getRecptionCards(bodyCondition,true);
+                presenter.getRecptionCards(bodyCondition, true);
 
 
             }
@@ -189,7 +189,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         selectZongHe();
 
         Integer status = consumerBean.getStatus();
-        if (status==null)return;
+        if (status == null) return;
 //            case 31:// COACHSENDBACKSALE(31, "教练录完体测数据发送回会籍"),
 //            case 32://  MEMBERREJECT(32, "会员拒绝录入数据发送回会籍"),————手动点击确认，进入
 //            case 30:// SALEJUMPCOACH(30, "会籍跳过教练"),
@@ -199,27 +199,24 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 //            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
 
 
-
-        if (status ==32||status==30||status==31){
+        if (status == 32 || status == 30 || status == 31) {
             llToCoach.setVisibility(View.VISIBLE);
             rlGoods.setVisibility(View.VISIBLE);
             tvSendToStatus.setVisibility(View.GONE);
-        }else if (status ==33||status==35){
+        } else if (status == 33 || status == 35) {
             llToCoach.setVisibility(View.GONE);
             rlGoods.setVisibility(View.GONE);
             tvSendToStatus.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             llToCoach.setVisibility(View.GONE);
             rlGoods.setVisibility(View.VISIBLE);
             tvSendToStatus.setVisibility(View.GONE);
         }
 
-        if (status==34||status==36){
+        if (status == 34 || status == 36) {
             presenter.getProductDetail(memberId);
         }
     }
-
-
 
 
     //点击筛选
@@ -230,14 +227,14 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
         Bundle bundle = new Bundle();
 //        bundle.set("bodyCondition",bodyCondition);
-        bundle.putString("cardType",bodyCondition.getCardType());
-        bundle.putString("startPrice",bodyCondition.getStartPrice());
-        bundle.putString("venueName",bodyCondition.getVenueName());
+        bundle.putString("cardType", bodyCondition.getCardType());
+        bundle.putString("startPrice", bodyCondition.getStartPrice());
+        bundle.putString("venueName", bodyCondition.getVenueName());
 
 
         optionDialog.setArguments(bundle);
 
-        optionDialog.show(getActivity().getFragmentManager(),"OptionDialog");
+        optionDialog.show(getActivity().getFragmentManager(), "OptionDialog");
 
     }
 
@@ -245,14 +242,14 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
     //点击价格
     private void selectPrice() {
-        List<CardInfo>   mGoodsInfoList=goodsListAdapter.getmGoodsInfoList();
+        List<CardInfo> mGoodsInfoList = goodsListAdapter.getmGoodsInfoList();
 
 
-        if (mGoodsInfoList==null||mGoodsInfoList.size()==0)return;
+        if (mGoodsInfoList == null || mGoodsInfoList.size() == 0) return;
 //        Log.e(TAG, "mGoodsInfoList"+mGoodsInfoList.size());
         resetTabColor();
 
-        if (priceUp){
+        if (priceUp) {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_down_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
@@ -261,7 +258,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
             goodsListAdapter.notifyDataSetChanged();
             priceUp = false;
             bodyCondition.setIsSortByPrice(1);
-        }else {
+        } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.jd_up_arrow);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvPrice.setCompoundDrawables(null, null, drawable, null);
@@ -280,9 +277,8 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
         resetTabColor();
         tvZongHe.setTextColor(Color.parseColor("#1997f8"));
         presenter.resetBody(bodyCondition);
-        presenter.getRecptionCards(bodyCondition,true);
+        presenter.getRecptionCards(bodyCondition, true);
     }
-
 
 
     @OnClick({R.id.ll_zong_he, R.id.ll_price, R.id.ll_shai_xuan, R.id.ll_to_coach})
@@ -299,7 +295,7 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
                 break;
             case R.id.ll_to_coach:
                 if (selectedGoodsInfo != null) {
-                    presenter.toCoach(memberId,selectedGoodsInfo.getCardprodbaseId());
+                    presenter.toCoach(memberId, selectedGoodsInfo.getCardprodbaseId());
                 } else {
                     Toast.makeText(getContext(), "请先点击选取一个产品,再TO给教练!", Toast.LENGTH_SHORT).show();
                 }
@@ -315,14 +311,13 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
     }
 
 
-
     @Override
     public void showCards(List<CardInfo> goodsInfos, Boolean isRefresh) {
 
-        if (isRefresh){
+        if (isRefresh) {
             goodsListAdapter.resetData(goodsInfos);
             cardRefreshLayout.finishRefresh(1000);
-        }else {
+        } else {
             goodsListAdapter.addDatas(goodsInfos);
             cardRefreshLayout.finishLoadMore(1000);
         }
@@ -337,15 +332,15 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
     }
 
     @Override
-    public void showNoCards(boolean isRefresh,boolean isSucceed) {
+    public void showNoCards(boolean isRefresh, boolean isSucceed) {
 
-        if (isRefresh){
-           if (isSucceed)Toast.makeText(getContext(),"未查询到相关数据",Toast.LENGTH_SHORT).show();
+        if (isRefresh) {
+            if (isSucceed) Toast.makeText(getContext(), "未查询到相关数据", Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishRefresh(1000);
             goodsListAdapter.resetData(new ArrayList<>());
 
-        }else {
-            if (isSucceed)  Toast.makeText(getContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+        } else {
+            if (isSucceed) Toast.makeText(getContext(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
 
             cardRefreshLayout.finishLoadMore(1000);
         }
@@ -355,7 +350,8 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
 
-        if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep3SaleToStep4( receptionStastuBean.getOperatorType());
+        if (statusChangeLisenter != null)
+            statusChangeLisenter.ReceptionStep3SaleToStep4(receptionStastuBean.getOperatorType());
     }
 
     @Override
@@ -365,18 +361,18 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 
     @Override
     public void shouldCardToOrder() {
-        if (selectedGoodsInfo==null){
-            Toast.makeText(getContext(),"请选择一个产品，再进行下一步",Toast.LENGTH_SHORT).show();
+        if (selectedGoodsInfo == null) {
+            Toast.makeText(getContext(), "请选择一个产品，再进行下一步", Toast.LENGTH_SHORT).show();
             return;
         }
-        presenter.cardToOrder(memberId,selectedGoodsInfo.getCardprodbaseId());
+        presenter.cardToOrder(memberId, selectedGoodsInfo.getCardprodbaseId());
 
     }
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
 
-        Log.e(TAG, "showProductDetail: "+ productDetail.toString());
+        Log.e(TAG, "showProductDetail: " + productDetail.toString());
 //        CancelReasonDialog dialogFragment = new CancelReasonDialog();
 //        dialogFragment.setOklisenter(new CancelReasonDialog.DialogOklisenter() {
 //            @Override
@@ -390,24 +386,24 @@ public class Step3Fragment_Sale extends Fragment implements HuiJiProductContract
 //            }
 //        });
         String cardId = productDetail.getCardId();
-        if (TextUtils.isEmpty(cardId)){
-                    Toast.makeText(getContext(),"卡产品id获取失败",Toast.LENGTH_SHORT).show();
-                    return;
-           }
-        presenter.cardToOrder(memberId,cardId);
+        if (TextUtils.isEmpty(cardId)) {
+            Toast.makeText(getContext(), "卡产品id获取失败", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        presenter.cardToOrder(memberId, cardId);
 
     }
 
-    public void resetTabColor(){
-            tvZongHe.setTextColor(Color.parseColor("#666666"));
-            tvPrice.setTextColor(Color.parseColor("#666666"));
-            tvShaixuan.setTextColor(Color.parseColor("#666666"));
-            Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvPrice.setCompoundDrawables(null, null, drawable, null);
-            Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
-            drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
-            tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
+    public void resetTabColor() {
+        tvZongHe.setTextColor(Color.parseColor("#666666"));
+        tvPrice.setTextColor(Color.parseColor("#666666"));
+        tvShaixuan.setTextColor(Color.parseColor("#666666"));
+        Drawable drawable = getResources().getDrawable(R.mipmap.jd_normal_arrow);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tvPrice.setCompoundDrawables(null, null, drawable, null);
+        Drawable drawableShaixuan = getResources().getDrawable(R.mipmap.shaixuan_black);
+        drawableShaixuan.setBounds(0, 0, drawableShaixuan.getMinimumWidth(), drawableShaixuan.getMinimumHeight());
+        tvShaixuan.setCompoundDrawables(null, null, drawableShaixuan, null);
     }
 
     private ReceptionStatusChange statusChangeLisenter;

@@ -16,7 +16,7 @@ public class PrepareLessonDetailAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private List<TempBean.TemplateContextListBean> templateContextListBeans = new ArrayList<>();
 
-    public void resetList(List<TempBean.TemplateContextListBean> list){
+    public void resetList(List<TempBean.TemplateContextListBean> list) {
         this.templateContextListBeans.clear();
         this.templateContextListBeans = list;
         notifyDataSetChanged();
@@ -24,22 +24,22 @@ public class PrepareLessonDetailAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_prepare_lesson_detail,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_prepare_lesson_detail, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder)holder).bind(templateContextListBeans.get(position),position);
+        ((ViewHolder) holder).bind(templateContextListBeans.get(position), position);
     }
 
     @Override
     public int getItemCount() {
-        return templateContextListBeans==null?0:templateContextListBeans.size();
+        return templateContextListBeans == null ? 0 : templateContextListBeans.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_sort;
         private TextView tv_moName;
@@ -60,14 +60,14 @@ public class PrepareLessonDetailAdapter extends RecyclerView.Adapter<RecyclerVie
             view_line = itemView.findViewById(R.id.view_line);
         }
 
-        public void bind(TempBean.TemplateContextListBean templateContextListBean, int position){
-            tv_sort.setText(templateContextListBean.getSort()+"");
+        public void bind(TempBean.TemplateContextListBean templateContextListBean, int position) {
+            tv_sort.setText(templateContextListBean.getSort() + "");
             tv_moName.setText(templateContextListBean.getMoName());
-            tv_groupTime.setText(templateContextListBean.getGroupNum()+"x"+templateContextListBean.getGroupTime());
+            tv_groupTime.setText(templateContextListBean.getGroupNum() + "x" + templateContextListBean.getGroupTime());
             tv_moDifficulty.setText(templateContextListBean.getMoDifficultyDesc());
             tv_moParts.setText(templateContextListBean.getMoPartsDesc());
             tv_moApplianceName.setText(templateContextListBean.getMoApplianceName());
-            if(position >= (templateContextListBeans.size()-1)){
+            if (position >= (templateContextListBeans.size() - 1)) {
                 view_line.setVisibility(View.GONE);
             }
         }

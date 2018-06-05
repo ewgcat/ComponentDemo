@@ -18,7 +18,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     protected LinearLayout mWorkLL;
     protected ImageView mWorkIv;
     protected TextView mWorkTv;
-//    protected LinearLayout mReportingLl;
+    //    protected LinearLayout mReportingLl;
 //    protected ImageView mReportingIv;
 //    protected TextView mReportingTv;
     protected LinearLayout mMessageLl;

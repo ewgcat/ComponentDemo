@@ -84,7 +84,7 @@ public class HuiJiResourceAllocationInfo {
         this.sex = sex;
     }
 
-    public int getGenderImg(){
+    public int getGenderImg() {
         return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
     }
 

@@ -106,7 +106,7 @@ public class ResourceAllocationFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             refresh();
         }
     }
@@ -139,7 +139,7 @@ public class ResourceAllocationFragment extends Fragment {
                     adapter.update(resourceAllocationInfoList);
 
                 } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
+                    Logger.i("TEST", e.getMessage());
 
                 }
             }
@@ -177,7 +177,7 @@ public class ResourceAllocationFragment extends Fragment {
                     adapter.update(resourceAllocationInfoList);
 
                 } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
+                    Logger.i("TEST", e.getMessage());
 
                 }
             }

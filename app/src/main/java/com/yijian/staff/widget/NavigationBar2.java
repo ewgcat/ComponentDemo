@@ -62,8 +62,8 @@ public class NavigationBar2 extends LinearLayout {
     }
 
     /*
-    * @see android.view.View#getBottomFadingEdgeStrength()
-    */
+     * @see android.view.View#getBottomFadingEdgeStrength()
+     */
     @Override
     protected float getBottomFadingEdgeStrength() {
         return 1.0f;
@@ -109,7 +109,7 @@ public class NavigationBar2 extends LinearLayout {
         secondLeftIv.setVisibility(i);
     }
 
-    public void setBackLLVisiable(int i){
+    public void setBackLLVisiable(int i) {
         backLL.setVisibility(i);
     }
 

@@ -1,156 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/my_circle_blue"
-                    android:layout_centerInParent="true"/>
-                <TextView
-                    android:id="@+id/tv_sort"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:layout_centerInParent="true"
-                    />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/my_circle_blue"
+                        android:layout_centerInParent="true"/>
+                <TextView
+                        android:id="@+id/tv_sort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_centerInParent="true"
+                />
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_moName"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="8dp"
-                />
+                    android:id="@+id/tv_moName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="8dp"
+            />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_groupTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@color/black333333"
-            android:gravity="center_vertical|right"
-            />
-        
+                android:id="@+id/tv_groupTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:textColor="@color/black333333"
+                android:gravity="center_vertical|right"
+        />
+
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:paddingLeft="28dp">
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="28dp">
 
         <TextView
-            android:id="@+id/tv_moDifficulty_label"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical"
-            android:text="动作难度:"
-            />
+                android:id="@+id/tv_moDifficulty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="动作难度:"
+        />
 
         <TextView
-            android:id="@+id/tv_moDifficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:text="动作难度"
-            />
+                android:id="@+id/tv_moDifficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="动作难度"
+        />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:paddingLeft="28dp">
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="28dp">
 
         <TextView
-            android:id="@+id/tv_moParts_label"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical"
-            android:text="训练部位:"
-            />
+                android:id="@+id/tv_moParts_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="训练部位:"
+        />
 
         <TextView
-            android:id="@+id/tv_moParts"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:text="动作难度"
-            />
+                android:id="@+id/tv_moParts"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="动作难度"
+        />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:paddingLeft="28dp">
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="28dp">
 
         <TextView
-            android:id="@+id/tv_moApplianceName_label"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical"
-            android:text="使用器械:"
-            />
+                android:id="@+id/tv_moApplianceName_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="使用器械:"
+        />
 
         <TextView
-            android:id="@+id/tv_moApplianceName"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:textColor="@color/gray666666"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:text="动作难度"
-            />
+                android:id="@+id/tv_moApplianceName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/gray666666"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="动作难度"
+        />
 
     </RelativeLayout>
 
     <View
-        android:id="@+id/view_line"
-        style="@style/SplitLineStyle"
-        />
+            android:id="@+id/view_line"
+            style="@style/SplitLineStyle"
+    />
 
 </LinearLayout>

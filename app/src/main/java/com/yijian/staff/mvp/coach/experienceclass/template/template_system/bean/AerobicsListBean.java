@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 
-public  class AerobicsListBean extends BaseGroupBean implements Parcelable {
+public class AerobicsListBean extends BaseGroupBean implements Parcelable {
     @Override
     public String toString() {
         return "AerobicsListBean{" +

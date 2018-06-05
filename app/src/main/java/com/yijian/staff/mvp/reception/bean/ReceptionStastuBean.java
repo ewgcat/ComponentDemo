@@ -14,12 +14,12 @@ public class ReceptionStastuBean {
 //    status (integer, optional): 状态 ,
 //    statusDesc (string, optional): 状态描述
 
-   public Integer isFinish;
-   public Integer operatorType;
-   public String  operatorTypeDesc;
-   public List<ReceptionLog> receptionLogs;
-   public Integer status;
-   public String statusDesc;
+    public Integer isFinish;
+    public Integer operatorType;
+    public String operatorTypeDesc;
+    public List<ReceptionLog> receptionLogs;
+    public Integer status;
+    public String statusDesc;
 
     public Integer getIsFinish() {
         return isFinish;

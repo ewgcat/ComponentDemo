@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
 
-
 /**
  * Created by ming on 2015/9/16.
  */
@@ -21,7 +20,6 @@ public class LoadingDialog extends Dialog {
 
 
     private ImageView loading;
-
 
 
     private Activity activity;
@@ -41,7 +39,6 @@ public class LoadingDialog extends Dialog {
         Window dialogWindow = this.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
     }
-
 
 
     @Override

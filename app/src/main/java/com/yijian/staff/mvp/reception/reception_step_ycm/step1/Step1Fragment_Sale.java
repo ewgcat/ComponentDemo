@@ -45,7 +45,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
     private static final String TAG = "Step1Fragment_Sale";
     private Step1QuestAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private List<DataListBean> step1bean =new ArrayList<>();
+    private List<DataListBean> step1bean = new ArrayList<>();
     private RecptionStep1Presenter presenter;
     private RecptionerInfoBean consumerBean;
     private MaterialCalendarView calendarView;
@@ -61,13 +61,13 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
-        if (consumerBean.getStatus()!=0&&(consumerBean.getStatus()!=10)){
+        if (consumerBean.getStatus() != 0 && (consumerBean.getStatus() != 10)) {
             navigationBar2.setmRightTvText("下一步");
             navigationBar2.getmRightTv().setVisibility(View.VISIBLE);
             navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep1ToStep2();
+                    if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep1ToStep2();
 
                 }
             });
@@ -76,7 +76,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep1Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep1Back();
             }
         });
     }
@@ -98,7 +98,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_request);
         recyclerView.setNestedScrollingEnabled(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        adapter = new Step1QuestAdapter(step1bean,getContext());
+        adapter = new Step1QuestAdapter(step1bean, getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -113,24 +113,24 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (consumerBean==null) return;
+                if (consumerBean == null) return;
                 List<DataListBean> questionList = adapter.getQuestionList();
                 List<CalendarDay> selectedDates = calendarView.getSelectedDates();
-                presenter.uploadQusetion(questionList,consumerBean,selectedDates);
+                presenter.uploadQusetion(questionList, consumerBean, selectedDates);
 
             }
         });
 
 
-        if (consumerBean.getStatus()!=0&&(consumerBean.getStatus()!=10)){
+        if (consumerBean.getStatus() != 0 && (consumerBean.getStatus() != 10)) {
             btnSave.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(memberId)){
+            if (!TextUtils.isEmpty(memberId)) {
                 presenter.getQuestionAndAnswer(memberId);
 //                presenter.getQuestion();
-            }else {
+            } else {
                 presenter.getQuestion();
             }
-        }else {
+        } else {
             presenter.getQuestion();
         }
 
@@ -140,11 +140,11 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         widget.setPagingEnabled(false);
         widget.setTopbarVisible(false);
-        widget.setWeekDayLabels(new String[]{"日","一","二","三","四","五","六"});
+        widget.setWeekDayLabels(new String[]{"日", "一", "二", "三", "四", "五", "六"});
 
         widget.setWeekDayTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_WeekDay);
         widget.setDateTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_Date);
-        widget.addDecorators( new MySelectorDecorator(getActivity()),oneDayDecorator);
+        widget.addDecorators(new MySelectorDecorator(getActivity()), oneDayDecorator);
 
         widget.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -171,7 +171,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
     @Override
     public void saveSucceed() {
 
-        if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep1RequestionSaved();
+        if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep1RequestionSaved();
     }
 
 
@@ -181,7 +181,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
         List<DataListBean> questionList = adapter.getQuestionList();
         List<CalendarDay> selectedDates = calendarView.getSelectedDates();
         String percent = presenter.computerPercent(questionList, selectedDates);
-        btnSave.setText("保存（已完成"+percent+")");
+        btnSave.setText("保存（已完成" + percent + ")");
     }
 
 

@@ -44,7 +44,6 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     ImageView iv_history_allowcation;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,20 +55,16 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     }
 
 
-
     private void initView() {
         navigationBar2 = findViewById(R.id.coach_leader_navigation_bar2);
 
         navigationBar2.setTitle("资源分配");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        resourceAllocationFragment= ResourceAllocationFragment.getInstance();
-        historyAllocationFragment= HistoryAllocationFragment.getInstance();
+        resourceAllocationFragment = ResourceAllocationFragment.getInstance();
+        historyAllocationFragment = HistoryAllocationFragment.getInstance();
         selectTab(0);
     }
-
-
-
 
 
     @OnClick({R.id.lin_resource_allowcation, R.id.lin_history_allowcation})
@@ -91,12 +86,12 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
                 popFragement(index);
                 break;
             case 1:
-                popFragement( index);
+                popFragement(index);
                 break;
         }
     }
 
-    public void popFragement( int index) {
+    public void popFragement(int index) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 
@@ -106,7 +101,7 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
                 if (!resourceAllocationFragment.isAdded()) {
                     // 如果WorkFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, resourceAllocationFragment, FRAGMENT_TAG[index]);
-                }else {
+                } else {
 
                     transaction.show(resourceAllocationFragment);
                 }
@@ -129,13 +124,12 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     }
 
 
-
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        if (resourceAllocationFragment!=null&&resourceAllocationFragment.isAdded()) {
+        if (resourceAllocationFragment != null && resourceAllocationFragment.isAdded()) {
             fragmentTransaction.hide(resourceAllocationFragment);
         }
-        if (historyAllocationFragment!=null&&historyAllocationFragment.isAdded()) {
+        if (historyAllocationFragment != null && historyAllocationFragment.isAdded()) {
             fragmentTransaction.hide(historyAllocationFragment);
         }
 

@@ -34,13 +34,13 @@ public class CancelReasonDialog extends DialogFragment {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (oklisenter!=null)oklisenter.onClick();
+                if (oklisenter != null) oklisenter.onClick();
                 dismiss();
             }
         });
 
         TextView tvContent = view.findViewById(R.id.tv_content);
-        tvContent.setText(TextUtils.isEmpty(cancelReason)?"其他":cancelReason);
+        tvContent.setText(TextUtils.isEmpty(cancelReason) ? "其他" : cancelReason);
 
     }
 
@@ -66,9 +66,10 @@ public class CancelReasonDialog extends DialogFragment {
 
     }
 
-    public interface DialogOklisenter{
+    public interface DialogOklisenter {
         void onClick();
     }
+
     private DialogOklisenter oklisenter;
 
     public void setOklisenter(DialogOklisenter oklisenter) {

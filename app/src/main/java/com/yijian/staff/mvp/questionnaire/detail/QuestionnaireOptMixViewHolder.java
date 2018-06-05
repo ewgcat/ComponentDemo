@@ -39,14 +39,11 @@ public class QuestionnaireOptMixViewHolder extends ChildViewHolderGroup {
         ctvMixCheck.setText(child.getItem());
 
 
-
-        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent()))
-            etMix.setText(""+child.getInputContent());
+        if (!"null".equals(child.getInputContent()) && !TextUtils.isEmpty(child.getInputContent()))
+            etMix.setText("" + child.getInputContent());
 
 
     }
-
-
 
 
 }

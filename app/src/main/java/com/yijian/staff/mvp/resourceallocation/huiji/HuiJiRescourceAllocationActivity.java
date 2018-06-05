@@ -36,7 +36,7 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 
-@Route(path="/test/10")
+@Route(path = "/test/10")
 public class HuiJiRescourceAllocationActivity extends AppCompatActivity {
 
     SmartRefreshLayout refreshLayout;
@@ -120,7 +120,7 @@ public class HuiJiRescourceAllocationActivity extends AppCompatActivity {
                 resourceAllocationInfoList.add(new HuiJiResourceAllocationInfo());
                 try {
                     org.json.JSONArray jsonArray = result.getJSONArray("records");
-                    resourceAllocationInfoList = JSONArray.parseArray(jsonArray.toString(),HuiJiResourceAllocationInfo.class);
+                    resourceAllocationInfoList = JSONArray.parseArray(jsonArray.toString(), HuiJiResourceAllocationInfo.class);
                     resourceAllocationAdatper.update(resourceAllocationInfoList);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -6,8 +6,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="header_scrolling_behavior_day">com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorDay</string>
+    <string name="header_scrolling_behavior_day">
+        com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorDay
+    </string>
     <string name="header_float_behavior">com.yijian.staff.mvp.main.mine.calendartable.HeaderWeekBehavior</string>
-    <string name="header_scrolling_behavior_week">com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorWeek</string>
-    <string name="negative_duration">\u2212<xliff:g example="1:14" id="time">%1$s</xliff:g></string>
+    <string name="header_scrolling_behavior_week">
+        com.yijian.staff.mvp.main.mine.calendartable.HeaderScrollingBehaviorWeek
+    </string>
+    <string name="negative_duration">\u2212
+        <xliff:g example="1:14" id="time">%1$s</xliff:g>
+    </string>
 </resources>

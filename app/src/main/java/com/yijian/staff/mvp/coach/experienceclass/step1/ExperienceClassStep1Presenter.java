@@ -23,11 +23,11 @@ public class ExperienceClassStep1Presenter implements ExperienceClassStep1Contra
     private ExperienceClassStep1Contract.View view;
 
     public ExperienceClassStep1Presenter(Context context) {
-            this.context=context;
+        this.context = context;
     }
 
-    public void setView(ExperienceClassStep1Contract.View view){
-        this.view=view;
+    public void setView(ExperienceClassStep1Contract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -41,14 +41,14 @@ public class ExperienceClassStep1Presenter implements ExperienceClassStep1Contra
                 Gson gson = GsonNullString.getGson();
                 InviterBean inviterBean = gson.fromJson(result.toString(), InviterBean.class);
 
-                if (inviterBean==null)return;
+                if (inviterBean == null) return;
                 view.showInviterInfo(inviterBean);
 
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

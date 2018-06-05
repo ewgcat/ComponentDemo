@@ -7,12 +7,12 @@ import com.yijian.staff.mvp.coach.experienceclass.step4.bean.InvitationAgainBean
  */
 
 public interface ExperienceClassProcess4Contract {
-    interface View{
+    interface View {
 
         void showClassRecordList(InvitationAgainBean bean);
     }
 
-    interface Presenter{
+    interface Presenter {
         void getClassRecordList(String processId);
 
 

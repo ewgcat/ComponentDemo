@@ -25,6 +25,7 @@ public class Parent_Step2ViewHolder extends ParentViewHolder {
     private final TextView tvToggle;
     private final RelativeLayout rlToggle;
     private Context context;
+
     /**
      * Default constructor.
      *
@@ -33,11 +34,11 @@ public class Parent_Step2ViewHolder extends ParentViewHolder {
      */
     public Parent_Step2ViewHolder(@NonNull View itemView, Activity mContext) {
         super(itemView);
-        context=mContext;
-        this.itemView=itemView;
+        context = mContext;
+        this.itemView = itemView;
         tvQuestion = (TextView) itemView.findViewById(R.id.tv_question);
         rlToggle = itemView.findViewById(R.id.rl_toggle);
-        tvToggle =  itemView.findViewById(R.id.tv_toggle);
+        tvToggle = itemView.findViewById(R.id.tv_toggle);
 
     }
 
@@ -56,13 +57,13 @@ public class Parent_Step2ViewHolder extends ParentViewHolder {
 
             Drawable drawable = context.getDrawable(R.mipmap.lg_shouqi);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvToggle.setCompoundDrawables(null,null, drawable,null);
+            tvToggle.setCompoundDrawables(null, null, drawable, null);
         } else {
             itemView.setBackgroundResource(R.drawable.shape_fillet_white_8);
             tvToggle.setText("展开");
             Drawable drawable = context.getDrawable(R.mipmap.lg_zhankai);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvToggle.setCompoundDrawables(null,null, drawable,null);
+            tvToggle.setCompoundDrawables(null, null, drawable, null);
         }
     }
 

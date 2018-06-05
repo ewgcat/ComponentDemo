@@ -21,7 +21,7 @@ public class ActionViewAdapter extends RecyclerView.Adapter<ActionViewAdapter.Vi
     private CreatePrivateLessionActivity createPrivateLessionActivity;
 
 
-    public ActionViewAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable,CreatePrivateLessionActivity createPrivateLessionActivity){
+    public ActionViewAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable, CreatePrivateLessionActivity createPrivateLessionActivity) {
         this.recyclerViewActionBean = recyclerViewActionBean;
         this.editActionObservable = editActionObservable;
         this.createPrivateLessionActivity = createPrivateLessionActivity;
@@ -40,14 +40,14 @@ public class ActionViewAdapter extends RecyclerView.Adapter<ActionViewAdapter.Vi
             ActionBean actionBean = recyclerViewActionBean.get(position);
             holder.view_action_content.initAction(actionBean, position, createPrivateLessionActivity);
             editActionObservable.addObserver(holder.view_action_content);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public int getItemCount() {
-        return recyclerViewActionBean==null?0:recyclerViewActionBean.size();
+        return recyclerViewActionBean == null ? 0 : recyclerViewActionBean.size();
     }
 
 

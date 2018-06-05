@@ -10,22 +10,22 @@ import java.util.HashSet;
 
 public class BlueEventDecorator implements DayViewDecorator {
 
-        private int color;
-        private HashSet<CalendarDay> dates;
+    private int color;
+    private HashSet<CalendarDay> dates;
 
-        public BlueEventDecorator(int color, Collection<CalendarDay> dates) {
-            this.color = color;
-            this.dates = new HashSet<>(dates);
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            return dates.contains(day);
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new DotSpan(5, color));
-            view.setDaysDisabled(true);
-        }
+    public BlueEventDecorator(int color, Collection<CalendarDay> dates) {
+        this.color = color;
+        this.dates = new HashSet<>(dates);
     }
+
+    @Override
+    public boolean shouldDecorate(CalendarDay day) {
+        return dates.contains(day);
+    }
+
+    @Override
+    public void decorate(DayViewFacade view) {
+        view.addSpan(new DotSpan(5, color));
+        view.setDaysDisabled(true);
+    }
+}

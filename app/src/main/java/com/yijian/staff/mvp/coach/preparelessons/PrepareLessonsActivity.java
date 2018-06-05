@@ -54,7 +54,6 @@ public class PrepareLessonsActivity extends MvcBaseActivity {
     PrepareLessonsBean prepareLessonsBean;
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_prepare_lessons;
@@ -123,13 +122,13 @@ public class PrepareLessonsActivity extends MvcBaseActivity {
         switch (v.getId()) {
             case R.id.lin_create: //创建私教备课
                 Intent intent = new Intent(PrepareLessonsActivity.this, CreatePrivateLessionActivity.class);
-                intent.putExtra("privateApplyId",prepareLessonsBean.getId());
+                intent.putExtra("privateApplyId", prepareLessonsBean.getId());
                 startActivity(intent);
                 break;
 
             case R.id.rel_all_lesson: //查询所有备课内容
                 Intent all_intent = new Intent(PrepareLessonsActivity.this, PrepareAllLessonActivity.class);
-                all_intent.putExtra("memberId",prepareLessonsBean.getMemberId());
+                all_intent.putExtra("memberId", prepareLessonsBean.getMemberId());
                 startActivity(all_intent);
                 break;
         }

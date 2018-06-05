@@ -26,16 +26,16 @@ public class ClassTimeBar extends LinearLayout {
     private ViewGroup timebarGroup;
 
     public ClassTimeBar(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public ClassTimeBar(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public ClassTimeBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context=context;
+        this.context = context;
     }
 
     @Override

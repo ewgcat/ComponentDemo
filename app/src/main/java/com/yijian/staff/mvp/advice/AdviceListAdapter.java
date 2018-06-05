@@ -46,7 +46,6 @@ public class AdviceListAdapter extends RecyclerView.Adapter<AdviceListAdapter.Vi
         return adviceBeanList.size();
     }
 
- 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_content;
@@ -62,5 +61,5 @@ public class AdviceListAdapter extends RecyclerView.Adapter<AdviceListAdapter.Vi
 
         }
     }
- 
+
 }

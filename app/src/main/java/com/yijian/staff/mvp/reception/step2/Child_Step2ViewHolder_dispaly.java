@@ -32,7 +32,7 @@ public class Child_Step2ViewHolder_dispaly extends ChildViewHolder {
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
-        if (!"请选择".equals(child.getUserValue())){
+        if (!"请选择".equals(child.getUserValue())) {
             tvValue.setText(child.getUserValue());
         }
     }

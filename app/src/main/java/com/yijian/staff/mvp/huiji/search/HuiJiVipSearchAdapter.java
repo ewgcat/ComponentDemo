@@ -38,7 +38,6 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vip_search, parent, false);
@@ -49,7 +48,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HuiJiViperBean viperBean = dataList.get(position);
-        ((ViewHolder)holder).bind(context,viperBean);
+        ((ViewHolder) holder).bind(context, viperBean);
     }
 
     @Override
@@ -80,9 +79,9 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tv_role = view.findViewById(R.id.tv_role);
         }
 
-        public void bind(Context context, HuiJiViperBean huiJiViperBean){
-            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity)context, iv_header);
-            iv_gender.setImageResource(1==huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
+        public void bind(Context context, HuiJiViperBean huiJiViperBean) {
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity) context, iv_header);
+            iv_gender.setImageResource(1 == huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,14 +93,14 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     if (subclassName.equals("CustomerInfoVO")) { //正式会员
 //                        Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
-                        intent.putExtra("memberId",huiJiViperBean.getMemberId());
+                        intent.putExtra("memberId", huiJiViperBean.getMemberId());
 //                        intent.putExtra("memberName",huiJiViperBean.getName());
                         context.startActivity(intent);
-                    } else if (subclassName.equals("PotentialVO")||subclassName.equals("CustomerIntentionVO")||subclassName.equals("CustomerExpireVO")) {
+                    } else if (subclassName.equals("PotentialVO") || subclassName.equals("CustomerIntentionVO") || subclassName.equals("CustomerExpireVO")) {
 //                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
                         Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
-                        intent.putExtra("id",huiJiViperBean.getMemberId());
-                        intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
+                        intent.putExtra("id", huiJiViperBean.getMemberId());
+                        intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
 //                        intent.putExtra("memberName",huiJiViperBean.getName());
                         context.startActivity(intent);
                     }
@@ -110,16 +109,16 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
             //回访
             Boolean isProtected = huiJiViperBean.isUnderProtected();
-            tv_protect_seven.setVisibility(isProtected?View.VISIBLE:View.GONE);
-            iv_visit.setVisibility(isProtected?View.GONE:View.VISIBLE);
+            tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);
+            iv_visit.setVisibility(isProtected ? View.GONE : View.VISIBLE);
             iv_visit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String mobile = huiJiViperBean.getMobile();
-                    if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
+                    if (!TextUtils.isEmpty(mobile)) {
+                        CommonUtil.callPhone(context, mobile);
                     } else {
-                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

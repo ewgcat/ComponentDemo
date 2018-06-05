@@ -39,8 +39,8 @@ public class InvitationResultFragment extends Fragment {
     private static InvitationResultFragment invitaionResultFragment;
     private InvitationResultAdatper invitationResultAdatper;
 
-    public static InvitationResultFragment getInstance(){
-        if(invitaionResultFragment == null){
+    public static InvitationResultFragment getInstance() {
+        if (invitaionResultFragment == null) {
             invitaionResultFragment = new InvitationResultFragment();
         }
         return invitaionResultFragment;
@@ -52,7 +52,7 @@ public class InvitationResultFragment extends Fragment {
     private int pageSize = 1;//每页数量
 
     private int pages;
-    private List<InvitationResultBean> iinvitationResultBeanList =new ArrayList<>();
+    private List<InvitationResultBean> iinvitationResultBeanList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class InvitationResultFragment extends Fragment {
         return view;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         rv_invitation = view.findViewById(R.id.rv_invitation);
         refreshLayout = view.findViewById(R.id.refreshLayout);
         initComponent();
@@ -72,8 +72,8 @@ public class InvitationResultFragment extends Fragment {
     private void refresh() {
 
 
-        pageNum=1;
-        pageSize=4;
+        pageNum = 1;
+        pageSize = 4;
         String curDate = DateUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 
         HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
@@ -95,7 +95,7 @@ public class InvitationResultFragment extends Fragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -122,7 +122,7 @@ public class InvitationResultFragment extends Fragment {
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
             }
         });

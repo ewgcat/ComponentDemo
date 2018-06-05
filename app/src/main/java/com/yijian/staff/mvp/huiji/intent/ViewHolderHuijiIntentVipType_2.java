@@ -18,93 +18,94 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     //详细信息
 //    @BindView(R.id.tv_wechat_num)
     TextView tvWechatNum;
-//    @BindView(R.id.tv_email)
+    //    @BindView(R.id.tv_email)
     TextView tvEmail;
-//    @BindView(R.id.tv_shengao)
+    //    @BindView(R.id.tv_shengao)
     TextView tvShengao;
-//    @BindView(R.id.tv_weight)
+    //    @BindView(R.id.tv_weight)
     TextView tvWeight;
-//    @BindView(R.id.tv_guaoji)
+    //    @BindView(R.id.tv_guaoji)
     TextView tvGuaoJi;
 
-//    @BindView(R.id.tv_jiguan)
+    //    @BindView(R.id.tv_jiguan)
     TextView tvJiguan;
-//    @BindView(R.id.tv_minzu)
+    //    @BindView(R.id.tv_minzu)
     TextView tvMinzu;
-//    @BindView(R.id.tv_shenti_status)
+    //    @BindView(R.id.tv_shenti_status)
     TextView tvShentiStatus;
-//    @BindView(R.id.tv_jianshen_aihao)
+    //    @BindView(R.id.tv_jianshen_aihao)
     TextView tvJianshenAihao;
-//    @BindView(R.id.tv_jianshen_mudi)
+    //    @BindView(R.id.tv_jianshen_mudi)
     TextView tvJianshenMudi;
 
-//    @BindView(R.id.tv_xingqu_aihao)
+    //    @BindView(R.id.tv_xingqu_aihao)
     TextView tvXingquAihao;
-//    @BindView(R.id.tv_shifou_canjia_club)
+    //    @BindView(R.id.tv_shifou_canjia_club)
     TextView tvShifouCanjiaClub;
-//    @BindView(R.id.tv_canjia_clubName)
+    //    @BindView(R.id.tv_canjia_clubName)
     TextView tvCanjiaClubName;
-//    @BindView(R.id.tv_year_income)
+    //    @BindView(R.id.tv_year_income)
     TextView tvYearIncome;
-//    @BindView(R.id.tv_car_value)
+    //    @BindView(R.id.tv_car_value)
     TextView tvCarValue;
 
-//    @BindView(R.id.tv_marry_status)
+    //    @BindView(R.id.tv_marry_status)
     TextView tvMarryStatus;
-//    @BindView(R.id.tv_children_status)
+    //    @BindView(R.id.tv_children_status)
     TextView tvChildrenStatus;
-//    @BindView(R.id.tv_hangye)
+    //    @BindView(R.id.tv_hangye)
     TextView tvHangye;
-//    @BindView(R.id.tv_zhiwu)
+    //    @BindView(R.id.tv_zhiwu)
     TextView tvZhiwu;
-//    @BindView(R.id.tv_company_name)
+    //    @BindView(R.id.tv_company_name)
     TextView tvCompanyName;
 
-//    @BindView(R.id.tv_company_phone)
+    //    @BindView(R.id.tv_company_phone)
     TextView tvCompanyPhone;
-//    @BindView(R.id.tv_company_location)
+    //    @BindView(R.id.tv_company_location)
     TextView tvCompanyLocation;
-//    @BindView(R.id.tv_home_location)
+    //    @BindView(R.id.tv_home_location)
     TextView tvHomeLocation;
-//    @BindView(R.id.tv_jin_ji_lianxiren)
+    //    @BindView(R.id.tv_jin_ji_lianxiren)
     TextView tvJinJiLianxiren;
 
     TextView tvLianXiPhone;
 
     LinearLayout llEdit;
+
     public ViewHolderHuijiIntentVipType_2(View itemView) {
         super(itemView);
-        tvWechatNum= itemView.findViewById(R.id.tv_wechat_num);
-        tvEmail= itemView.findViewById(R.id.tv_email);
-        tvShengao= itemView.findViewById(R.id.tv_shengao);
-        tvWeight= itemView.findViewById(R.id.tv_weight);
-        tvGuaoJi= itemView.findViewById(R.id.tv_guaoji);
+        tvWechatNum = itemView.findViewById(R.id.tv_wechat_num);
+        tvEmail = itemView.findViewById(R.id.tv_email);
+        tvShengao = itemView.findViewById(R.id.tv_shengao);
+        tvWeight = itemView.findViewById(R.id.tv_weight);
+        tvGuaoJi = itemView.findViewById(R.id.tv_guaoji);
 
-        tvJiguan= itemView.findViewById(R.id.tv_jiguan);
-        tvMinzu= itemView.findViewById(R.id.tv_minzu);
-        tvShentiStatus= itemView.findViewById(R.id.tv_shenti_status);
-        tvJianshenAihao= itemView.findViewById(R.id.tv_jianshen_aihao);
-        tvJianshenMudi= itemView.findViewById(R.id.tv_jianshen_mudi);
+        tvJiguan = itemView.findViewById(R.id.tv_jiguan);
+        tvMinzu = itemView.findViewById(R.id.tv_minzu);
+        tvShentiStatus = itemView.findViewById(R.id.tv_shenti_status);
+        tvJianshenAihao = itemView.findViewById(R.id.tv_jianshen_aihao);
+        tvJianshenMudi = itemView.findViewById(R.id.tv_jianshen_mudi);
 
-        tvXingquAihao= itemView.findViewById(R.id.tv_xingqu_aihao);
-        tvShifouCanjiaClub= itemView.findViewById(R.id.tv_shifou_canjia_club);
-        tvCanjiaClubName= itemView.findViewById(R.id.tv_canjia_clubName);
-        tvYearIncome= itemView.findViewById(R.id.tv_year_income);
-        tvCarValue= itemView.findViewById(R.id.tv_car_value);
+        tvXingquAihao = itemView.findViewById(R.id.tv_xingqu_aihao);
+        tvShifouCanjiaClub = itemView.findViewById(R.id.tv_shifou_canjia_club);
+        tvCanjiaClubName = itemView.findViewById(R.id.tv_canjia_clubName);
+        tvYearIncome = itemView.findViewById(R.id.tv_year_income);
+        tvCarValue = itemView.findViewById(R.id.tv_car_value);
 
-        tvMarryStatus= itemView.findViewById(R.id.tv_marry_status);
-        tvChildrenStatus= itemView.findViewById(R.id.tv_children_status);
-        tvHangye= itemView.findViewById(R.id.tv_hangye);
-        tvZhiwu= itemView.findViewById(R.id.tv_zhiwu);
-        tvCompanyName= itemView.findViewById(R.id.tv_company_name);
+        tvMarryStatus = itemView.findViewById(R.id.tv_marry_status);
+        tvChildrenStatus = itemView.findViewById(R.id.tv_children_status);
+        tvHangye = itemView.findViewById(R.id.tv_hangye);
+        tvZhiwu = itemView.findViewById(R.id.tv_zhiwu);
+        tvCompanyName = itemView.findViewById(R.id.tv_company_name);
 
-        tvCompanyPhone= itemView.findViewById(R.id.tv_company_phone);
-        tvCompanyLocation= itemView.findViewById(R.id.tv_company_location);
-        tvHomeLocation= itemView.findViewById(R.id.tv_home_location);
-        tvJinJiLianxiren= itemView.findViewById(R.id.tv_jin_ji_lianxiren);
-        tvLianXiPhone=itemView.findViewById(R.id.tv_lianxiren_phone);
+        tvCompanyPhone = itemView.findViewById(R.id.tv_company_phone);
+        tvCompanyLocation = itemView.findViewById(R.id.tv_company_location);
+        tvHomeLocation = itemView.findViewById(R.id.tv_home_location);
+        tvJinJiLianxiren = itemView.findViewById(R.id.tv_jin_ji_lianxiren);
+        tvLianXiPhone = itemView.findViewById(R.id.tv_lianxiren_phone);
 
-         llEdit = itemView.findViewById(R.id.ll_edit);
+        llEdit = itemView.findViewById(R.id.ll_edit);
     }
 
     @Override
@@ -144,7 +145,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (huijiVipInterface!=null)huijiVipInterface.edit();
+                if (huijiVipInterface != null) huijiVipInterface.edit();
             }
         });
     }

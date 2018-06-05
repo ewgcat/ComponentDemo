@@ -29,7 +29,7 @@ public class SubActionBean {
         this.subChildBeanList = subChildBeanList;
     }
 
-    public static class SubChildBean{
+    public static class SubChildBean {
         private String key; //动作名称
         private String value; //动作限制
 

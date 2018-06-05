@@ -7,11 +7,11 @@ import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
  */
 
 public interface ExperienceClassInvateAgainContract_ycm {
-    interface View{
+    interface View {
         void showSendSucceed();
     }
 
-    interface Presenter{
+    interface Presenter {
         void saveAndSendInvite(InvateBean bean);
     }
 

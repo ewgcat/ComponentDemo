@@ -58,8 +58,8 @@ public class ExperienceClassStep5CoachFragment extends Fragment implements Exper
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_experience_step5_coach,container,false);
-        unbinder= ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_experience_step5_coach, container, false);
+        unbinder = ButterKnife.bind(this, view);
         ExperienceClassStep5CoachPresenter presenter = new ExperienceClassStep5CoachPresenter(getContext());
         presenter.setView(this);
         initRecyclerView();
@@ -79,12 +79,12 @@ public class ExperienceClassStep5CoachFragment extends Fragment implements Exper
             public void onClick(ExperienceClassRecordTable bean) {
                 TemplateListBean prepareRecord = bean.getPrepareRecord();
                 ClassRecordTable definedRecord = bean.getDefinedRecord();
-                if (prepareRecord!=null){//体验课上课记录表(采用备课模板)
+                if (prepareRecord != null) {//体验课上课记录表(采用备课模板)
                     Intent intent = new Intent(getContext(), Template1ClassActivity_ycm.class);
-                    intent.putExtra("templateListBean",prepareRecord);
+                    intent.putExtra("templateListBean", prepareRecord);
                     startActivity(intent);
 
-                }else if (definedRecord!=null){//体验课上课记录表(使用自定义模板)
+                } else if (definedRecord != null) {//体验课上课记录表(使用自定义模板)
 
                 }
             }
@@ -95,7 +95,7 @@ public class ExperienceClassStep5CoachFragment extends Fragment implements Exper
     @Override
     public void showConclusion(ConsultationConclusionBean bean) {
         List<ExperienceClassRecordTable> recordList = bean.getRecordList();
-        if (recordList!=null&&!recordList.isEmpty()){
+        if (recordList != null && !recordList.isEmpty()) {
             adapter.resetData(recordList);
         }
 

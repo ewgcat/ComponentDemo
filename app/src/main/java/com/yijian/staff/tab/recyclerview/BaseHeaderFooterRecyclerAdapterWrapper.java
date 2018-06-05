@@ -13,10 +13,10 @@ import java.util.List;
 
 /**
  * 描述:对RecyclerView的Adapter进行二次包裹，使其具有设置Header和Footer的功能<br>
- *     FI-FooterItem 尾部数据模型<br>
- *     HI-HeaderItem 头部数据类型<br>
- *     HeaderVH-头部的ViewHolder<br>
- *     FooterVH-尾部的ViewHolder<br>
+ * FI-FooterItem 尾部数据模型<br>
+ * HI-HeaderItem 头部数据类型<br>
+ * HeaderVH-头部的ViewHolder<br>
+ * FooterVH-尾部的ViewHolder<br>
  * <p>
  * 作者:cjs
  * 创建时间:2017年10月17日 17:02
@@ -24,10 +24,11 @@ import java.util.List;
  *
  * @version 1.0
  */
-public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecyclerItem, HI extends BaseRecyclerItem,HeaderVH extends RecyclerView.ViewHolder, FooterVH extends RecyclerView.ViewHolder> extends AbstractHeaderFooterWrapperAdapter<HeaderVH,FooterVH> {
+public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecyclerItem, HI extends BaseRecyclerItem, HeaderVH extends RecyclerView.ViewHolder, FooterVH extends RecyclerView.ViewHolder> extends AbstractHeaderFooterWrapperAdapter<HeaderVH, FooterVH> {
 
     /**
      * 创建头部的ViewHolder
+     *
      * @param parent
      * @param viewType
      * @return
@@ -36,6 +37,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 创建尾部的ViewHolder
+     *
      * @param parent
      * @param viewType
      * @return
@@ -44,17 +46,19 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 绑定头部的ViewHolder
+     *
      * @param headerViewHolder
      * @param headerItem
      */
-    public abstract void bindHeaderViewHolder(HeaderVH headerViewHolder,HI headerItem);
+    public abstract void bindHeaderViewHolder(HeaderVH headerViewHolder, HI headerItem);
 
     /**
      * 绑定尾部的ViewHolder
+     *
      * @param footerViewHolder
      * @param footerItem
      */
-    public abstract void bindFooterViewHolder(FooterVH footerViewHolder,FI footerItem);
+    public abstract void bindFooterViewHolder(FooterVH footerViewHolder, FI footerItem);
 
     /**
      * 存放当前适配器中的所有尾部视图的数据列表
@@ -71,6 +75,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 具有设置Header和Footer功能的RecyclerView适配器
+     *
      * @param adapter 原始的RecyclerView适配器
      */
     public BaseHeaderFooterRecyclerAdapterWrapper(RecyclerView.Adapter adapter) {
@@ -90,6 +95,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 获取当前列表的头部数量
+     *
      * @return
      */
     @Override
@@ -99,6 +105,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 获取当前列表的尾部数量
+     *
      * @return
      */
     @Override
@@ -108,6 +115,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 获取当前头部的视图类型
+     *
      * @param localPosition The header adapter local position to query
      * @return
      */
@@ -118,6 +126,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 获取当前尾部的视图类型
+     *
      * @param localPosition The footer adapter local position to query
      * @return
      */
@@ -128,7 +137,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     @Override
     public HeaderVH onCreateHeaderItemViewHolder(ViewGroup parent, int viewType) {
-        return createHeaderViewHolder(parent,viewType);
+        return createHeaderViewHolder(parent, viewType);
     }
 
     @Override
@@ -138,15 +147,15 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     @Override
     public void onBindFooterItemViewHolder(FooterVH holder, int localPosition) {
-        final int position=localPosition;
-        final FI item=mFooterItems.get(localPosition);
-        bindFooterViewHolder(holder,item);
+        final int position = localPosition;
+        final FI item = mFooterItems.get(localPosition);
+        bindFooterViewHolder(holder, item);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(mOnFooterItemLongClickListener!=null){
-                    mOnFooterItemLongClickListener.onItemLongClick(v,item,position,SEGMENT_TYPE_FOOTER);
+                if (mOnFooterItemLongClickListener != null) {
+                    mOnFooterItemLongClickListener.onItemLongClick(v, item, position, SEGMENT_TYPE_FOOTER);
                 }
                 return true;
             }
@@ -155,15 +164,15 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     @Override
     public void onBindHeaderItemViewHolder(HeaderVH holder, int localPosition) {
-        final int position=localPosition;
-        final HI item=mHeaderItems.get(localPosition);
-        bindHeaderViewHolder(holder,item);
+        final int position = localPosition;
+        final HI item = mHeaderItems.get(localPosition);
+        bindHeaderViewHolder(holder, item);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(mOnHeaderItemLongClickListener!=null){
-                    mOnHeaderItemLongClickListener.onItemLongClick(v,item,position,SEGMENT_TYPE_HEADER);
+                if (mOnHeaderItemLongClickListener != null) {
+                    mOnHeaderItemLongClickListener.onItemLongClick(v, item, position, SEGMENT_TYPE_HEADER);
                 }
                 return true;
             }
@@ -173,6 +182,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 添加一个头部
+     *
      * @param headerItem
      */
     public void addHeader(HI headerItem) {
@@ -182,14 +192,15 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 移除掉一个头部<br>
-     *     移除掉头部列表的最后一个
+     * 移除掉头部列表的最后一个
      */
     public void removeHeader() {
-        removeHeader(mHeaderItems.size()-1);
+        removeHeader(mHeaderItems.size() - 1);
     }
 
     /**
      * 移除掉一个头部
+     *
      * @param position 当前头部在头部列表中的位置
      */
     public void removeHeader(int position) {
@@ -202,6 +213,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 添加一个尾部
+     *
      * @param footerItem
      */
     public void addFooter(FI footerItem) {
@@ -211,14 +223,15 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
 
     /**
      * 移除掉一个尾部<br>
-     *     移除掉尾部列表的最后一个
+     * 移除掉尾部列表的最后一个
      */
     public void removeFooter() {
-        removeFooter(mFooterItems.size()-1);
+        removeFooter(mFooterItems.size() - 1);
     }
 
     /**
      * 移除掉一个尾部
+     *
      * @param position
      */
     public void removeFooter(int position) {
@@ -229,7 +242,7 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
         getFooterAdapter().notifyItemRemoved(mFooterItems.size());
     }
 
-    private long getSegmentedPosition(View holderView){
+    private long getSegmentedPosition(View holderView) {
         RecyclerView rv = RecyclerViewAdapterUtils.getParentRecyclerView(holderView);
         RecyclerView.ViewHolder vh = rv.findContainingViewHolder(holderView);
 
@@ -247,12 +260,12 @@ public abstract class BaseHeaderFooterRecyclerAdapterWrapper<FI extends BaseRecy
         return segmentedPosition;
     }
 
-    public int getSegment(View holderView){
+    public int getSegment(View holderView) {
         return extractSegmentPart(getSegmentedPosition(holderView));
     }
 
-    public int getSegmentPosition(View holderView){
-       return extractSegmentOffsetPart(getSegmentedPosition(holderView));
+    public int getSegmentPosition(View holderView) {
+        return extractSegmentOffsetPart(getSegmentedPosition(holderView));
     }
 
     @Override

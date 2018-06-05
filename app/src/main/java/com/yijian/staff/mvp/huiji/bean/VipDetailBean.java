@@ -264,7 +264,7 @@ public class VipDetailBean implements Serializable {
         this.cardprods = cardprods;
     }
 
-    public static class CustomerServiceInfoBean implements Serializable{
+    public static class CustomerServiceInfoBean implements Serializable {
         /**
          * sellerId :
          * referee : 硬件测试
@@ -350,7 +350,7 @@ public class VipDetailBean implements Serializable {
         }
     }
 
-    public static class DetailBean implements Serializable{
+    public static class DetailBean implements Serializable {
         /**
          * wechatNo :
          * email : aaaa@asdf.com
@@ -606,7 +606,7 @@ public class VipDetailBean implements Serializable {
         }
     }
 
-    public static class CardprodsBean implements Serializable{
+    public static class CardprodsBean implements Serializable {
         /**
          * cardprodId : 74c6b3004ed7464eb8f04ea0bfcd2452
          * cardName : 硬件相关

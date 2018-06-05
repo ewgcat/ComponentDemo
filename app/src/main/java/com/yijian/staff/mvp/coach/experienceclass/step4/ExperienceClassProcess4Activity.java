@@ -118,7 +118,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(ExperienceClassProcess4Activity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExperienceClassProcess4Activity.this, msg, Toast.LENGTH_SHORT).show();
                 llEmptyView.setVisibility(View.VISIBLE);
                 llContent.setVisibility(View.GONE);
             }

@@ -4,7 +4,7 @@ package com.yijian.staff.mvp.reception.step3.bean;
  * Created by The_P on 2018/4/11.
  */
 
-public class VenueBean extends SelectedBean{
+public class VenueBean extends SelectedBean {
 //    id (string, optional): id ,
 //    name (string, optional): 名称
 

@@ -118,6 +118,7 @@ public class CoachHuiFangTaskActivity extends MvcBaseActivity {
                 //初始化显示第一页
                 viewPager.setCurrentItem(0);
             }
+
             @Override
             public void onFail(String msg) {
 

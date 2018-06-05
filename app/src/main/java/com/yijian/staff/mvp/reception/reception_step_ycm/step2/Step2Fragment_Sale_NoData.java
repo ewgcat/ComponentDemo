@@ -20,6 +20,7 @@ import com.yijian.staff.widget.NavigationBar2;
 
 public class Step2Fragment_Sale_NoData extends Fragment {
     private static final String TAG = "Step2Fragment_Sale_NoDa";
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class Step2Fragment_Sale_NoData extends Fragment {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2ToStep3();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2ToStep3();
 
             }
         });
@@ -39,10 +40,11 @@ public class Step2Fragment_Sale_NoData extends Fragment {
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep2Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep2Back();
             }
         });
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

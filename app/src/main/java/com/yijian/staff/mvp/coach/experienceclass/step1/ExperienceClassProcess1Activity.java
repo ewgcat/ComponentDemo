@@ -103,7 +103,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
     public void onViewClicked() {
         Intent intent = new Intent(ExperienceClassProcess1Activity.this, ExperienceClassInvateActivity.class);
         intent.putExtra("memberId", memberId);
-        intent.putExtra("processId",processId);
+        intent.putExtra("processId", processId);
         startActivityForResult(intent, 1001);
     }
 

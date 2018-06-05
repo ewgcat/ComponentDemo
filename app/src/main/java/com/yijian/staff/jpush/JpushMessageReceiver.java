@@ -38,8 +38,8 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 
     public static boolean shouldToReception = false;
     public static String bundleString = "";
-    public static int notifactionId=-1;
-    public static int businessType=-1;
+    public static int notifactionId = -1;
+    public static int businessType = -1;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -52,9 +52,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         Logger.i(TAG, "接收到推送下来的自定义消息: " + bundleString);
 
 
-
-
-
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
 
@@ -64,11 +61,11 @@ public class JpushMessageReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
             notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
             Logger.i(TAG, "接收到推送下来的通知");
-             Vibrator vibrator = (Vibrator)context.getSystemService(context.VIBRATOR_SERVICE);
-             if (vibrator.hasVibrator()){
-                 long[] patter = {600, 200, 600, 200};
-                 vibrator.vibrate(patter, -1);
-             }
+            Vibrator vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
+            if (vibrator.hasVibrator()) {
+                long[] patter = {600, 200, 600, 200};
+                vibrator.vibrate(patter, -1);
+            }
             try {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");
@@ -76,10 +73,10 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 businessType = jsonObject1.getInt("businessType");
                 boolean background = isBackground(context);
 
-                if (businessType == 0&&!background) {// //属于接待消息&&属于前台
+                if (businessType == 0 && !background) {// //属于接待消息&&属于前台
 //                        toReception(context, bundleString);
                     ReceptionActivityTemp.toReceptionActivityTemp(context);
-                        JPushInterface.clearNotificationById(context, notifactionId);
+                    JPushInterface.clearNotificationById(context, notifactionId);
                 }
 
             } catch (Exception e) {
@@ -140,7 +137,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             }
             List<Integer> operatorTypes = messager.getOperatorTypes();
             ArrayList<Integer> types = new ArrayList<>();
-            if (operatorTypes!=null&&!operatorTypes.isEmpty()){
+            if (operatorTypes != null && !operatorTypes.isEmpty()) {
                 types.addAll(operatorTypes);
             }
             recptionerInfoBean.setHistoryNode(types);

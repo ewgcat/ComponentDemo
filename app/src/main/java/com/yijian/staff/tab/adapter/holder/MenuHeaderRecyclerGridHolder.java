@@ -13,8 +13,8 @@ import com.yijian.staff.R;
 
 /**
  * 描述:菜单编辑列表适配器的头部的ViewHolder<br>
- *     注意，一定要继承{@link AbstractDraggableItemViewHolder}或者照着这个类实现{@link com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder}
- *     才能有拖拽效果
+ * 注意，一定要继承{@link AbstractDraggableItemViewHolder}或者照着这个类实现{@link com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder}
+ * 才能有拖拽效果
  * <p>
  * 作者:陈俊森
  * 创建时间:2017年11月03日 17:07
@@ -32,15 +32,15 @@ public class MenuHeaderRecyclerGridHolder extends MenuRecyclerGridHolder impleme
 
     public MenuHeaderRecyclerGridHolder(View itemView) {
         super(itemView);
-        iv_delete= (ImageView) itemView.findViewById(R.id.delete);
-        tv_count= (TextView) itemView.findViewById(R.id.tv_head_count);
-        fl_item_view= (FrameLayout) itemView.findViewById(R.id.fl_item_view);
+        iv_delete = (ImageView) itemView.findViewById(R.id.delete);
+        tv_count = (TextView) itemView.findViewById(R.id.tv_head_count);
+        fl_item_view = (FrameLayout) itemView.findViewById(R.id.fl_item_view);
 
     }
 
     @Override
     public void setDragStateFlags(@DraggableItemStateFlags int flags) {
-        mDragStateFlags=flags;
+        mDragStateFlags = flags;
     }
 
     @Override

@@ -46,11 +46,11 @@ public class RoundImageView extends ImageView {
     }
 
     public void setRound(int round) {
-        if(round > getWidth()/2 || round > getHeight()/2){
-            if(getWidth() > getHeight()){
-                round = getHeight()/2;
-            }else{
-                round = getWidth()/2;
+        if (round > getWidth() / 2 || round > getHeight() / 2) {
+            if (getWidth() > getHeight()) {
+                round = getHeight() / 2;
+            } else {
+                round = getWidth() / 2;
             }
         }
         this.roundHeight = round;

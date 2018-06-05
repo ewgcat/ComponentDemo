@@ -4,7 +4,7 @@ package com.yijian.staff.mvp.reception.step1.bean;
  * Created by The_P on 2018/3/16.
  */
 
-public  class QuestOptBean {
+public class QuestOptBean {
     /**
      * name : 报纸
      * type : normal

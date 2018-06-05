@@ -30,8 +30,10 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,7 +42,7 @@ import butterknife.OnClick;
  * 投诉列表
  */
 @Route(path = "/test/8")
-public class ComplaintListActivity extends MvcBaseActivity implements View.OnClickListener{
+public class ComplaintListActivity extends MvcBaseActivity implements View.OnClickListener {
 
     /*@BindView(R.id.fl_content)
     FrameLayout flContent;*/
@@ -78,7 +80,6 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
     private int roleFlag = 1; // 作为虚拟角色的标志位， 0 用户身份1，1 用户身份2
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_complaint_list;
@@ -110,14 +111,14 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
             taskCommentArray.put("太差了");
             taskCommentArray.put("用了之后还挺爽的");
             jsonObject.put("evaluateContentList", taskCommentArray);
-            jsonObject.put("evaluateGrade","2");
+            jsonObject.put("evaluateGrade", "2");
 
             JSONObject handResultJsonObj = new JSONObject();
-            handResultJsonObj.put("headerUrl","");
-            handResultJsonObj.put("name","老王");
-            handResultJsonObj.put("taskResult","嗯嗯");
-            handResultJsonObj.put("handTaskTime","2015-09-02");
-            jsonObject.put("handTaskResultInfo",handResultJsonObj);
+            handResultJsonObj.put("headerUrl", "");
+            handResultJsonObj.put("name", "老王");
+            handResultJsonObj.put("taskResult", "嗯嗯");
+            handResultJsonObj.put("handTaskTime", "2015-09-02");
+            jsonObject.put("handTaskResultInfo", handResultJsonObj);
 
             for (int i = 0; i < 10; i++) {
                 HandTaskInfo handTaskInfo = new HandTaskInfo(jsonObject);
@@ -128,7 +129,7 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
             LinearLayoutManager layoutmanager = new LinearLayoutManager(ComplaintListActivity.this);
             //设置RecyclerView 布局
             rv_complaint.setLayoutManager(layoutmanager);
-            HandTaskAdapter invitationRecordAdatper = new HandTaskAdapter(ComplaintListActivity.this, handTaskInfoList,flagHand,1);
+            HandTaskAdapter invitationRecordAdatper = new HandTaskAdapter(ComplaintListActivity.this, handTaskInfoList, flagHand, 1);
             rv_complaint.setAdapter(invitationRecordAdatper);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);
@@ -145,13 +146,13 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
         navigationBar2.hideBottomLine();
     }
 
-    public void initView(){
-        linStaff.setVisibility(roleFlag == 0 ? View.VISIBLE:View.GONE);
-        linCoach.setVisibility(roleFlag == 0 ? View.GONE:View.VISIBLE);
+    public void initView() {
+        linStaff.setVisibility(roleFlag == 0 ? View.VISIBLE : View.GONE);
+        linCoach.setVisibility(roleFlag == 0 ? View.GONE : View.VISIBLE);
         initComponent();
     }
 
-    @OnClick({R.id.lin_handling_condition, R.id.lin_handling_task,R.id.lin_feipei_condition, R.id.lin_feipei_task})
+    @OnClick({R.id.lin_handling_condition, R.id.lin_handling_task, R.id.lin_feipei_condition, R.id.lin_feipei_task})
     public void onViewClicked(View view) {
         selectTab(view.getId());
     }
@@ -170,9 +171,10 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
 
     /**
      * 这里以导航栏的控件ID作为导航的导向
+     *
      * @param resId
      */
-    private void selectTab(int resId){
+    private void selectTab(int resId) {
         setBottomStyle(resId);
         switch (resId) {
             case R.id.lin_handling_condition: //处理情况
@@ -190,31 +192,31 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
         }
     }
 
-    private void setBottomStyle(int viewId){
-        if(roleFlag == 0){ //用户角色1
-            navigationBar2.setTitle(viewId==R.id.lin_handling_condition?"处理情况":"处理任务");
-            iv_handling_condition.setImageResource(viewId==R.id.lin_handling_condition?
-                    R.mipmap.ts_chulilan:R.mipmap.ts_chuli);
-            tv_handling_condition.setTextColor(ContextCompat.getColor(this,viewId==R.id.lin_handling_condition?
-                    R.color.blue1997f8:R.color.gray666666));
+    private void setBottomStyle(int viewId) {
+        if (roleFlag == 0) { //用户角色1
+            navigationBar2.setTitle(viewId == R.id.lin_handling_condition ? "处理情况" : "处理任务");
+            iv_handling_condition.setImageResource(viewId == R.id.lin_handling_condition ?
+                    R.mipmap.ts_chulilan : R.mipmap.ts_chuli);
+            tv_handling_condition.setTextColor(ContextCompat.getColor(this, viewId == R.id.lin_handling_condition ?
+                    R.color.blue1997f8 : R.color.gray666666));
 
-            iv_handling_task.setImageResource(viewId==R.id.lin_handling_condition?
-                    R.mipmap.ts_renwu:R.mipmap.ts_renwulan);
-            tv_handling_task.setTextColor(ContextCompat.getColor(this,viewId==R.id.lin_handling_condition?
-                    R.color.gray666666:R.color.blue1997f8));
+            iv_handling_task.setImageResource(viewId == R.id.lin_handling_condition ?
+                    R.mipmap.ts_renwu : R.mipmap.ts_renwulan);
+            tv_handling_task.setTextColor(ContextCompat.getColor(this, viewId == R.id.lin_handling_condition ?
+                    R.color.gray666666 : R.color.blue1997f8));
 
 
-        }else { // 用户角色2
-            navigationBar2.setTitle(viewId==R.id.lin_feipei_condition?"分配情况":"分配任务");
-            iv_feipei_condition.setImageResource(viewId==R.id.lin_feipei_condition?
-                    R.mipmap.ts_chulilan:R.mipmap.ts_chuli);
-            tv_feipei_condition.setTextColor(ContextCompat.getColor(this,viewId==R.id.lin_feipei_condition?
-                    R.color.blue1997f8:R.color.gray666666));
+        } else { // 用户角色2
+            navigationBar2.setTitle(viewId == R.id.lin_feipei_condition ? "分配情况" : "分配任务");
+            iv_feipei_condition.setImageResource(viewId == R.id.lin_feipei_condition ?
+                    R.mipmap.ts_chulilan : R.mipmap.ts_chuli);
+            tv_feipei_condition.setTextColor(ContextCompat.getColor(this, viewId == R.id.lin_feipei_condition ?
+                    R.color.blue1997f8 : R.color.gray666666));
 
-            iv_feipei_task.setImageResource(viewId==R.id.lin_feipei_condition?
-                    R.mipmap.ts_renwu:R.mipmap.ts_renwulan);
-            tv_feipei_task.setTextColor(ContextCompat.getColor(this,viewId==R.id.lin_feipei_condition?
-                    R.color.gray666666:R.color.blue1997f8));
+            iv_feipei_task.setImageResource(viewId == R.id.lin_feipei_condition ?
+                    R.mipmap.ts_renwu : R.mipmap.ts_renwulan);
+            tv_feipei_task.setTextColor(ContextCompat.getColor(this, viewId == R.id.lin_feipei_condition ?
+                    R.color.gray666666 : R.color.blue1997f8));
         }
     }
 
@@ -232,6 +234,7 @@ public class ComplaintListActivity extends MvcBaseActivity implements View.OnCli
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示刷新失败

@@ -61,10 +61,10 @@ public class ExperienceClassStep3Fragment extends Fragment implements Experience
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_experience_step3,container,false);
+        View view = inflater.inflate(R.layout.fragment_experience_step3, container, false);
         presenter = new ExperienceClassProcess3Presenter(getContext());
         presenter.setView(this);
-        unbinder= ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -76,8 +76,8 @@ public class ExperienceClassStep3Fragment extends Fragment implements Experience
 
     @Override
     public void showConsultationProgramme(ConsultationProgrammeBean consultationProgrammeBean) {
-        etHuishangFanganResult.setText(""+consultationProgrammeBean.getProgrammeContext());
-        tvCoachHuifangRecord.setText(""+consultationProgrammeBean.getVisitRecord());
+        etHuishangFanganResult.setText("" + consultationProgrammeBean.getProgrammeContext());
+        tvCoachHuifangRecord.setText("" + consultationProgrammeBean.getVisitRecord());
     }
 
     @Override
@@ -90,13 +90,13 @@ public class ExperienceClassStep3Fragment extends Fragment implements Experience
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_ticeshuju:
-                if (TextUtils.isEmpty(memberId)||TextUtils.isEmpty(memberName)) {
-                    Toast.makeText(getContext(),"错误：用户id或用户名称为空",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(memberId) || TextUtils.isEmpty(memberName)) {
+                    Toast.makeText(getContext(), "错误：用户id或用户名称为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(getActivity(), PhysicalReportActivity.class);
                 intent.putExtra("memberId", memberId);
-                intent.putExtra("memberName",memberName);
+                intent.putExtra("memberName", memberName);
                 startActivity(intent);
                 break;
             case R.id.ll_huifang_jilu:

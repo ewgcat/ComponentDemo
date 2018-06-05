@@ -41,11 +41,11 @@ public class LeaveApprovalActivity extends AppCompatActivity {
         navigationBar2.setBackClickListener(this);
     }
 
-    private void initView(){
+    private void initView() {
         rg_approval_result.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                rel_refuse_reason.setVisibility(checkedId == R.id.rb_agree? View.GONE:View.VISIBLE);
+                rel_refuse_reason.setVisibility(checkedId == R.id.rb_agree ? View.GONE : View.VISIBLE);
             }
         });
     }

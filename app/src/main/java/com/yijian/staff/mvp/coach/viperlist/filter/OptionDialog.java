@@ -68,7 +68,6 @@ public class OptionDialog extends DialogFragment {
     TextView tvDay3;
 
 
-
     private Activity activity;
 
     private int sex = -1;//性别：【0:未知 1:男 2:女】
@@ -139,55 +138,54 @@ public class OptionDialog extends DialogFragment {
         if (coachViperFilterBean != null) {
 
             int sex = coachViperFilterBean.getSex();
-            if (sex==0) {
+            if (sex == 0) {
                 selectSex(0);
-            }else if (sex==1){
+            } else if (sex == 1) {
                 selectSex(1);
             }
 
             String courseType = coachViperFilterBean.getCourseType();
-            if (!TextUtils.isEmpty(courseType)){
-                if (courseType.equals("1")){
+            if (!TextUtils.isEmpty(courseType)) {
+                if (courseType.equals("1")) {
                     selectClassType(1);
-                }else if (courseType.equals("2")){
+                } else if (courseType.equals("2")) {
                     selectClassType(2);
                 }
             }
 
 
             int joinTimeType = coachViperFilterBean.getJoinTimeType();
-            if (joinTimeType==-1){
+            if (joinTimeType == -1) {
                 selectRuJiTime(4);
                 tvStartTime.setText(coachViperFilterBean.getStartTime());
                 tvEndTime.setText(coachViperFilterBean.getEndTime());
-            }else   if (joinTimeType==0){
+            } else if (joinTimeType == 0) {
                 selectRuJiTime(1);
-            }else   if (joinTimeType==7){
+            } else if (joinTimeType == 7) {
                 selectRuJiTime(2);
-            }else   if (joinTimeType==30){
+            } else if (joinTimeType == 30) {
                 selectRuJiTime(3);
             }
 
             int buyTime = coachViperFilterBean.getBuyTime();
-            if (buyTime==0){
+            if (buyTime == 0) {
                 selectBuyClassTime(1);
-            }else  if (buyTime==7){
+            } else if (buyTime == 7) {
                 selectBuyClassTime(2);
-            }else  if (buyTime==30){
+            } else if (buyTime == 30) {
                 selectBuyClassTime(3);
             }
 
             int expiringDay = coachViperFilterBean.getExpiringDay();
-            if (expiringDay==7){
+            if (expiringDay == 7) {
                 selectExpiringDay(1);
-            }else if (expiringDay==14){
+            } else if (expiringDay == 14) {
                 selectExpiringDay(2);
 
-            }else if (expiringDay==30){
+            } else if (expiringDay == 30) {
                 selectExpiringDay(3);
 
             }
-
 
 
         }
@@ -198,11 +196,6 @@ public class OptionDialog extends DialogFragment {
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
     }
-
-
-
-
-
 
 
     private void resetView() {
@@ -239,7 +232,6 @@ public class OptionDialog extends DialogFragment {
         tvDay3.setTextColor(Color.parseColor("#666666"));
 
 
-
         tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
 
@@ -257,7 +249,6 @@ public class OptionDialog extends DialogFragment {
         tvDay1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvDay2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvDay3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
-
 
 
         tvSexMan.setCompoundDrawables(null, null, null, null);
@@ -403,7 +394,7 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                            if (DateUtil.getCurrentDay() < dayOfMonth) {
                                 tvStartTime.setText("");
                                 Toast.makeText(getActivity(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
 
@@ -452,7 +443,7 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay()<dayOfMonth){
+                            if (DateUtil.getCurrentDay() < dayOfMonth) {
                                 tvEndTime.setText("");
                                 Toast.makeText(getActivity(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
 
@@ -593,7 +584,6 @@ public class OptionDialog extends DialogFragment {
     }
 
 
-
     private void reset() {
         resetView();
         sex = -1;//性别：【0:未知 1:男 2:女】
@@ -614,8 +604,8 @@ public class OptionDialog extends DialogFragment {
     }
 
     private void setResultSure() {
-        startTime=tvStartTime.getText().toString();
-        endTime=tvEndTime.getText().toString();
+        startTime = tvStartTime.getText().toString();
+        endTime = tvEndTime.getText().toString();
         CoachViperFilterBean coachViperFilterBean = new CoachViperFilterBean();
         coachViperFilterBean.setSex(sex);
         coachViperFilterBean.setCourseType(classType);
@@ -632,7 +622,6 @@ public class OptionDialog extends DialogFragment {
         }
         dismiss();
     }
-
 
 
     public interface OnDismissListener {

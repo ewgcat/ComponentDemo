@@ -249,7 +249,6 @@ public class HuiFangInfo implements Serializable {
     }
 
 
-
     public long getBirthday() {
         return birthday;
     }
@@ -322,7 +321,7 @@ public class HuiFangInfo implements Serializable {
         this.recentlyFitTime = recentlyFitTime;
     }
 
-    public int getGenderImg(){
+    public int getGenderImg() {
         return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
     }
 

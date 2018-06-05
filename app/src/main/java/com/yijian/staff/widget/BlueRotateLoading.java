@@ -24,7 +24,6 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
 
-
 public class BlueRotateLoading extends View {
 
     private static final int DEFAULT_WIDTH = 6;

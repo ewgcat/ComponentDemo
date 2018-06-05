@@ -80,7 +80,7 @@ public class ExperienceClassProcess5Activity extends AppCompatActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(ExperienceClassProcess5Activity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExperienceClassProcess5Activity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -135,11 +135,11 @@ public class ExperienceClassProcess5Activity extends AppCompatActivity {
 
     private void commit() {
 
-        if (selectButtonPosition==0){
+        if (selectButtonPosition == 0) {
 
-        }else   if (selectButtonPosition==1){
+        } else if (selectButtonPosition == 1) {
 
-        }else   if (selectButtonPosition==2){
+        } else if (selectButtonPosition == 2) {
 
         }
     }

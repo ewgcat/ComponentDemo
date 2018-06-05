@@ -33,18 +33,18 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
 
     public ViewHolderHuijiIntentVipType_1(View itemView) {
         super(itemView);
-        tvSex= itemView.findViewById(R.id.tv_sex);
-        tvPhone= itemView.findViewById(R.id.tv_phone);
-        tvBirthday= itemView.findViewById(R.id.tv_birthday);
-        tvBirthdayType= itemView.findViewById(R.id.tv_birthday_type);
-        tvAge= itemView.findViewById(R.id.tv_age);
+        tvSex = itemView.findViewById(R.id.tv_sex);
+        tvPhone = itemView.findViewById(R.id.tv_phone);
+        tvBirthday = itemView.findViewById(R.id.tv_birthday);
+        tvBirthdayType = itemView.findViewById(R.id.tv_birthday_type);
+        tvAge = itemView.findViewById(R.id.tv_age);
 
         deadLine = itemView.findViewById(R.id.tv_deadline);
-        tvXiaoFeiTotal= itemView.findViewById(R.id.tv_xiao_fei_total);
-        tvFuwuHuiji= itemView.findViewById(R.id.tv_fuwu_huiji);
-        tvFuwuJiaolian= itemView.findViewById(R.id.tv_fuwu_jiaolian);
-        tvSijiaoClass= itemView.findViewById(R.id.tv_sijiao_class);
-        rlSijiaoClass= itemView.findViewById(R.id.rl_sijiao_class);
+        tvXiaoFeiTotal = itemView.findViewById(R.id.tv_xiao_fei_total);
+        tvFuwuHuiji = itemView.findViewById(R.id.tv_fuwu_huiji);
+        tvFuwuJiaolian = itemView.findViewById(R.id.tv_fuwu_jiaolian);
+        tvSijiaoClass = itemView.findViewById(R.id.tv_sijiao_class);
+        rlSijiaoClass = itemView.findViewById(R.id.rl_sijiao_class);
         tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
     }
@@ -54,35 +54,34 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
         tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
         long birthday = vipDetailBean.getBirthday();
-        if (birthday!=0){
+        if (birthday != 0) {
             tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
-        }else {
+        } else {
             tvBirthday.setText("未录入");
         }
 
 
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
-        tvAge.setText(judgeNull(vipDetailBean.getAge()+""));
+        tvAge.setText(judgeNull(vipDetailBean.getAge() + ""));
 
         long deadline = vipDetailBean.getDeadline();
-        if (deadline!=0) {
+        if (deadline != 0) {
             deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
-        }else {
+        } else {
             deadLine.setText("未录入");
         }
 
         long recentlyFitTime = vipDetailBean.getRecentlyFitTime();
-        if (recentlyFitTime!=0){
+        if (recentlyFitTime != 0) {
             tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
-        }else {
+        } else {
             tvRecentFitNessTime.setText("未录入");
         }
 
 
-
-        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption())+" 元");
+        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption()) + " 元");
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
-        if (customerServiceInfoBean==null)return;
+        if (customerServiceInfoBean == null) return;
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();

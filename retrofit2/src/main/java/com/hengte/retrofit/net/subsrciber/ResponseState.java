@@ -5,6 +5,7 @@ package com.hengte.retrofit.net.subsrciber;
  */
 
 public interface ResponseState<T> {
-   void onFail(String error);
-   void onSuccess(T t);
+    void onFail(String error);
+
+    void onSuccess(T t);
 }

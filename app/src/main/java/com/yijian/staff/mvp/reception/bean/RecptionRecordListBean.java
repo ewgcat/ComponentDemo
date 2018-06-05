@@ -114,7 +114,7 @@ public class RecptionRecordListBean {
 
 //        private String receptionId;
         private String memberId;
-//        private String merchantId;
+        //        private String merchantId;
 //        private String shopId;
 //        private String cardId;
 //        private String coachId;
@@ -126,7 +126,7 @@ public class RecptionRecordListBean {
 //        private String updateBy;
 //        private int isDelete;
         private int isFinish;
-//        private int smallStatus;
+        //        private int smallStatus;
 //        private String smallStatusDesc;
 //        private int bigStatus;
 //        private String memberBcRejectReason;
@@ -204,8 +204,6 @@ public class RecptionRecordListBean {
             this.sex = sex;
         }
     }
-
-
 
 
 }

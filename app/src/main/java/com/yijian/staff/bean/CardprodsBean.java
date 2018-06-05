@@ -7,7 +7,7 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/5/8 16:00:44
  */
-public  class CardprodsBean implements Serializable {
+public class CardprodsBean implements Serializable {
     /**
      * cardName : string
      * cardType : string

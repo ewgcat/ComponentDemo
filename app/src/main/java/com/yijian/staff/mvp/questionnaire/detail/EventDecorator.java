@@ -20,7 +20,7 @@ public class EventDecorator implements DayViewDecorator {
 
     public EventDecorator(QuestionnaireResultActivity context, Collection<CalendarDay> dates) {
         this.dates = new HashSet<>(dates);
-        this.context=context;
+        this.context = context;
     }
 
     @Override

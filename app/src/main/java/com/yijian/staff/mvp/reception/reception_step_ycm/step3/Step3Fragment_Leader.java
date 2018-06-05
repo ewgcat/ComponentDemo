@@ -77,6 +77,7 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
     private String memberName;
     private ProductDetail productDetail;
     private RecptionerInfoBean consumerBean;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +85,8 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
 //        memberId = arguments.getString("memberId");
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
-        if (consumerBean==null)return;
-        memberId=consumerBean.getId();
+        if (consumerBean == null) return;
+        memberId = consumerBean.getId();
 
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
@@ -94,14 +95,14 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (presenter!=null)presenter.leaderToSale(memberId);
+                if (presenter != null) presenter.leaderToSale(memberId);
             }
         });
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_leader_product_quotation, container, false);
+        View view = inflater.inflate(R.layout.fragment_leader_product_quotation, container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
@@ -119,7 +120,7 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao,R.id.item_view})
+    @OnClick({R.id.tv_wenjuan, R.id.tv_ticebaogao, R.id.item_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
@@ -134,9 +135,9 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
                 startActivity(intent1);
                 break;
             case R.id.item_view:
-                if (productDetail!=null){
+                if (productDetail != null) {
                     Intent intent2 = new Intent(getContext(), ProductDetailActivity.class);
-                    intent2.putExtra("productDetail",productDetail);
+                    intent2.putExtra("productDetail", productDetail);
                     startActivity(intent2);
                 }
                 break;
@@ -152,12 +153,12 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
         tvJiedaiName.setText("" + receptionUserInfo.getSaleName());
         tvCoachName.setText("" + receptionUserInfo.getCoachName());
 
-        tvToReason.setText(""+receptionUserInfo.getMemberBcRejectReason());
+        tvToReason.setText("" + receptionUserInfo.getMemberBcRejectReason());
     }
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail =productDetail;
+        this.productDetail = productDetail;
 
         tvGoodsName.setText("" + productDetail.getCardTypeName());
         List<String> venueNames = productDetail.getVenueNames();
@@ -191,21 +192,21 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
 
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuEr.setText(strRestKey+strRestVal);
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
+            tvYuEr.setText(strRestKey + strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
     }
 
     @Override
     public void leaderToSaleSecceed() {
-        Toast.makeText(getContext(),"领导通知会籍成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "领导通知会籍成功", Toast.LENGTH_SHORT).show();
     }
 
 

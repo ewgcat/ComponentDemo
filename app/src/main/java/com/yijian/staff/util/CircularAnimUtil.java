@@ -3,6 +3,7 @@ package com.yijian.staff.util;
 /**
  * Created by codeest on 2016/7/25.
  */
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;

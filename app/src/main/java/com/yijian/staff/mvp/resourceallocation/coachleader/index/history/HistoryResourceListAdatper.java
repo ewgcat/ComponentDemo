@@ -49,7 +49,7 @@ public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryReso
         holder.tv_last_coach.setText(historyResourceInfo.getHistoryUser());
         holder.tv_coach.setText(historyResourceInfo.getDistributeUser());
         Long distributeTime = historyResourceInfo.getDistributeTime();
-        if (distributeTime!=null&&distributeTime!=-1){
+        if (distributeTime != null && distributeTime != -1) {
             String s = DateUtil.parseLongDateToTimeString(distributeTime);
             holder.tv_time.setText(s);
         }
@@ -61,7 +61,7 @@ public class HistoryResourceListAdatper extends RecyclerView.Adapter<HistoryReso
     }
 
     public void update(List<HistoryResourceInfo> resourceAllocationInfoList) {
-        this.list=resourceAllocationInfoList;
+        this.list = resourceAllocationInfoList;
         notifyDataSetChanged();
     }
 

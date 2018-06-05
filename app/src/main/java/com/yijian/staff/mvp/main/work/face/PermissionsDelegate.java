@@ -27,12 +27,12 @@ class PermissionsDelegate {
     boolean hasCameraPermission() {
 
 
-        for(String permissionStr : permissionArray){
+        for (String permissionStr : permissionArray) {
             int permissionCheckResult = ContextCompat.checkSelfPermission(
                     activity,
                     permissionStr
             );
-            if(!(permissionCheckResult == PackageManager.PERMISSION_GRANTED)) return false;
+            if (!(permissionCheckResult == PackageManager.PERMISSION_GRANTED)) return false;
         }
 //        return permissionCheckResult == PackageManager.PERMISSION_GRANTED;
         return true;

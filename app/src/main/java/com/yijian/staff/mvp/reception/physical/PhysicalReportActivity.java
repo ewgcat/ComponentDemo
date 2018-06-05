@@ -113,12 +113,12 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
     @Override
     public void showUserData(PhysicalExaminationBean bean) {
         Integer age = bean.getAge();
-        if (age!=null&&age>0){
+        if (age != null && age > 0) {
             tvAge.setText(String.valueOf(age));
         }
         BigDecimal height = bean.getHeight();
-        if (height!=null&&height.intValue()>0){
-            tvHeight.setText(height.intValue()+"cm");
+        if (height != null && height.intValue() > 0) {
+            tvHeight.setText(height.intValue() + "cm");
         }
 
 //        Log.e(TAG, "showUserData: "+bean.toString());

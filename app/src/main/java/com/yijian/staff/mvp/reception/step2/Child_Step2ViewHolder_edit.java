@@ -37,7 +37,7 @@ public class Child_Step2ViewHolder_edit extends ChildViewHolder {
     public void bind(ChildOptBean child, int childPosition, int parentPosition) {
         tvKey.setText(child.getQustion());
 
-        if (!TextUtils.isEmpty(child.getUserValue())&&!"请选择".equals(child.getUserValue()))
+        if (!TextUtils.isEmpty(child.getUserValue()) && !"请选择".equals(child.getUserValue()))
             etValue.setText(child.getUserValue());
 
         etValue.addTextChangedListener(new TextWatcher() {
@@ -53,19 +53,19 @@ public class Child_Step2ViewHolder_edit extends ChildViewHolder {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (listener!=null)listener.onChildEdited(child,childPosition,parentPosition,s);
+                if (listener != null) listener.onChildEdited(child, childPosition, parentPosition, s);
             }
         });
     }
 
 
-    public interface ChildEditListener{
-        void onChildEdited(ChildOptBean child,int childPosition, int parentPosition, Editable s);
+    public interface ChildEditListener {
+        void onChildEdited(ChildOptBean child, int childPosition, int parentPosition, Editable s);
     }
 
     private ChildEditListener listener;
 
-    public void setChildEditListener(ChildEditListener childEditListener){
-        listener=childEditListener;
+    public void setChildEditListener(ChildEditListener childEditListener) {
+        listener = childEditListener;
     }
 }

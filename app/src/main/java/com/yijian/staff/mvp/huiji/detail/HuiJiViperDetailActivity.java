@@ -134,7 +134,6 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     TextView tvXiaoFeiTotal;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,7 +231,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     }
 
     private void updateUi(VipDetailBean vipDetailBean) {
-        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST+vipDetailBean.getHeadImg(), this, ivHead);
+        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + vipDetailBean.getHeadImg(), this, ivHead);
         tvName.setText(judgeNull(vipDetailBean.getName()));
         tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
         tvSex.setText(judgeNull(vipDetailBean.getSex()));
@@ -240,8 +239,8 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
         tvBirthday.setText(DateUtil.parseLongDateToDateString(vipDetailBean.getBirthday()));
         tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
 
-        tvAge.setText(judgeNull(vipDetailBean.getAge()+""));
-        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption())+" 元");
+        tvAge.setText(judgeNull(vipDetailBean.getAge() + ""));
+        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption()) + " 元");
         //会籍信息
         rv_card.setLayoutManager(new LinearLayoutManager(this));
         rv_card.setNestedScrollingEnabled(false);

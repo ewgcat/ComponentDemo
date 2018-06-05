@@ -141,9 +141,9 @@ public class MenuHelper {
      */
     private static List<MenuItem> getPreferMenuListData(String group) {
         String jsonStr = getMenuDataConfig().getString(group, "");
-        if (jsonStr.equals("")||jsonStr.equals("null")){
+        if (jsonStr.equals("") || jsonStr.equals("null")) {
             return null;
-        }else {
+        } else {
             com.alibaba.fastjson.JSONArray array = com.alibaba.fastjson.JSONArray.parseArray(jsonStr);
             return array.toJavaList(MenuItem.class);
         }
@@ -186,8 +186,6 @@ public class MenuHelper {
     }
 
 
-
-
     public static void savePreferOtherList(List<MenuItem> list) {
         savePreferMenuListData(GROUP_OTHER, list);
     }
@@ -209,7 +207,6 @@ public class MenuHelper {
     public static List<MenuItem> getPreferCoachList() {
         return getPreferMenuListData(GROUP_COCAH);
     }
-
 
 
     public static List<MenuItem> getPreferOtherList() {

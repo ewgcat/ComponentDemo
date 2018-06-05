@@ -217,7 +217,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tv_courseNameNum.setText(faceDetail.getCourseName()  + "第" + faceDetail.getCourseNum() + "节");
+                tv_courseNameNum.setText(faceDetail.getCourseName() + "第" + faceDetail.getCourseNum() + "节");
                 rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override

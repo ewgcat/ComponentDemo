@@ -18,11 +18,12 @@ import com.yijian.staff.R;
  * email：850716183@qq.com
  * time: 2018/5/17 10:15:52
  */
-public class ErrorView extends LinearLayout{
+public class ErrorView extends LinearLayout {
 
     public ErrorView(Context context) {
         super(context);
     }
+
     private Button emptyBt;
     private ImageView emptyImg;
     private TextView emptyTv;
@@ -61,7 +62,6 @@ public class ErrorView extends LinearLayout{
             emptyImg.setImageResource(resId);
         }
     }
-
 
 
     public Button getEmptyBt() {

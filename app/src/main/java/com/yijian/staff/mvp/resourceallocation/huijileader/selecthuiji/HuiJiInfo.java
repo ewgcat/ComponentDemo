@@ -24,12 +24,13 @@ public class HuiJiInfo {
     private String headImg;
 
 
-    public HuiJiInfo(JSONObject jsonObject){
+    public HuiJiInfo(JSONObject jsonObject) {
         this.userId = JsonUtil.getString(jsonObject, "userId");
         this.userName = JsonUtil.getString(jsonObject, "userName");
         this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
     }
+
     public String getUserId() {
         return userId;
     }
@@ -62,7 +63,7 @@ public class HuiJiInfo {
         this.headImg = headImg;
     }
 
-    public int getGenderImg(){
+    public int getGenderImg() {
         return "0".equals(sex) ? R.mipmap.lg_women : R.mipmap.lg_man;
     }
 

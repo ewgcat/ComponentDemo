@@ -83,15 +83,15 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_experience_step1,container,false);
-        unbinder= ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_experience_step1, container, false);
+        unbinder = ButterKnife.bind(this, view);
         presenter = new ExperienceClassStep1Presenter(getContext());
         presenter.setView(this);
 
         if (!TextUtils.isEmpty(bean.getProcessId())) {
             presenter.getInviterInfo(bean.getProcessId());
         }
-        return  view;
+        return view;
     }
 
     @OnClick({R.id.ll_template1_root,
@@ -105,7 +105,7 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
                     return;
                 }
                 Intent intent = new Intent(getContext(), Template1ClassActivity_ycm.class);
-                intent.putExtra("templateListBean",templateListBean);
+                intent.putExtra("templateListBean", templateListBean);
                 startActivity(intent);
                 break;
             case R.id.ll_template2_root://自定义模板
@@ -116,36 +116,35 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
     }
 
 
-
     @Override
     public void showInviterInfo(InviterBean inviterBean) {
         etName.setText(inviterBean.getMemberName());
         etCoach.setText(inviterBean.getCoachName());
-        etClassCount.setText( inviterBean.getCourseCurrent()==null?"":"" + inviterBean.getCourseCurrent());
-        etClassNum.setText(inviterBean.getCourseNum()==null?"":"" + inviterBean.getCourseNum());
+        etClassCount.setText(inviterBean.getCourseCurrent() == null ? "" : "" + inviterBean.getCourseCurrent());
+        etClassNum.setText(inviterBean.getCourseNum() == null ? "" : "" + inviterBean.getCourseNum());
 
-        tvTimeStart.setText(""+inviterBean.getStartTime());
+        tvTimeStart.setText("" + inviterBean.getStartTime());
 
         etRemark.setText("备注信息：" + inviterBean.getRemark());
 
         Integer courseTime = inviterBean.getCourseTime();
-        tvTimeClass.setText(courseTime==null?"":""+courseTime);
+        tvTimeClass.setText(courseTime == null ? "" : "" + courseTime);
 
         List<TemplateListBean> experienceTemplateList = inviterBean.getExperienceTemplateList();
 
-                if (experienceTemplateList!=null&&!experienceTemplateList.isEmpty()){
-                    templateListBean = experienceTemplateList.get(0);
+        if (experienceTemplateList != null && !experienceTemplateList.isEmpty()) {
+            templateListBean = experienceTemplateList.get(0);
 
-                    //显示系统提供的模板
-                Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
-                tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
-                }else if (inviterBean.getPrepareVO()!=null){
-                    templateListBean = inviterBean.getPrepareVO().getTemplateVO();
+            //显示系统提供的模板
+            Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
+            tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
+        } else if (inviterBean.getPrepareVO() != null) {
+            templateListBean = inviterBean.getPrepareVO().getTemplateVO();
 
-                    //显示系统提供的模板
-                    Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
-                    tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
-                }
+            //显示系统提供的模板
+            Glide.with(getContext()).load(R.mipmap.trialclass_select_small).into(ivTemplate1);
+            tvTemplate1.setTextColor(getResources().getColor(R.color.blue));
+        }
 
 //
 //
@@ -162,7 +161,6 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
 //
 //
 //        }
-
 
 
     }

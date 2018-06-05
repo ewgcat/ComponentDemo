@@ -12,7 +12,7 @@ public class LoadingProgressDialog {
 
     public static void showBlueProgress(Activity activity) {
         if (blueLoadingDialog == null) {
-            blueLoadingDialog =new WhiteLoadingDialog(activity);
+            blueLoadingDialog = new WhiteLoadingDialog(activity);
         }
         if (blueLoadingDialog != null) {
             //防止弹出之前activity已经被销毁了
@@ -34,11 +34,11 @@ public class LoadingProgressDialog {
         }
     }
 
-    public static void showLoading(Activity activity){
+    public static void showLoading(Activity activity) {
         showBlueProgress(activity);
     }
 
-    public static void hideLoading(Activity activity){
+    public static void hideLoading(Activity activity) {
         hideBlueProgress(activity);
     }
 

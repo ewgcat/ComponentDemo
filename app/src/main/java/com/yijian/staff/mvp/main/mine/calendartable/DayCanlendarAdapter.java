@@ -38,8 +38,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
     }
 
     public void resetDataList(List<DayCanlendarInfo> dayCanlendarInfos) {
-        Log.e("DayCanlendarAdapter", "resetDataList: "+dayCanlendarInfos.size());
-        Log.e("DayCanlendarAdapter", "resetDataList:111 "+dayCanlendarInfos.toString());
+        Log.e("DayCanlendarAdapter", "resetDataList: " + dayCanlendarInfos.size());
+        Log.e("DayCanlendarAdapter", "resetDataList:111 " + dayCanlendarInfos.toString());
         this.dayCanlendarInfoList = dayCanlendarInfos;
         notifyDataSetChanged();
     }
@@ -129,12 +129,12 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                 resStatu = R.mipmap.lesson_class;
                 strStatu = "上课";
             }*/
-            int status  = dayCanlendarInfo.getStatus();
-            if(status == 4){ //爽约
+            int status = dayCanlendarInfo.getStatus();
+            if (status == 4) { //爽约
                 iv_status_sy.setVisibility(View.VISIBLE);
-            }else if(status == 3){ //已上课
+            } else if (status == 3) { //已上课
                 iv_status_ysk.setVisibility(View.VISIBLE);
-            }else if(status == 1){
+            } else if (status == 1) {
                 iv_order_class_statu.setVisibility(View.VISIBLE);
                 tv_order_class_statu.setVisibility(View.VISIBLE);
                 resStatu = R.mipmap.lesson_class;
@@ -144,14 +144,14 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                 @Override
                 public void onClick(View v) {
 
-                    if(punchStatus == 0 || punchStatus == 1){
+                    if (punchStatus == 0 || punchStatus == 1) {
                         Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
-                        intent.putExtra("startDate",dayCanlendarInfo.getStartDate());
-                        intent.putExtra("startTimeActual",dayCanlendarInfo.getStartTimeActual());
-                        intent.putExtra("endTimeActual",dayCanlendarInfo.getEndTimeActual());
-                        intent.putExtra("punchStatus",dayCanlendarInfo.getPunchStatus());
-                        intent.putExtra("privateApplyId",dayCanlendarInfo.getId());
-                        fragment.startActivityForResult(intent,ORDER_REFRESH_REQUESTCODE);
+                        intent.putExtra("startDate", dayCanlendarInfo.getStartDate());
+                        intent.putExtra("startTimeActual", dayCanlendarInfo.getStartTimeActual());
+                        intent.putExtra("endTimeActual", dayCanlendarInfo.getEndTimeActual());
+                        intent.putExtra("punchStatus", dayCanlendarInfo.getPunchStatus());
+                        intent.putExtra("privateApplyId", dayCanlendarInfo.getId());
+                        fragment.startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                     }
 
                 }
@@ -160,7 +160,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
             iv_order_class_statu.setImageResource(resStatu);
             tv_order_class_statu.setText(strStatu);
 
-            tv_intervalTime.setText("约课时间间隔"+dayCanlendarInfo.getIntervalTime()+"分钟");
+            tv_intervalTime.setText("约课时间间隔" + dayCanlendarInfo.getIntervalTime() + "分钟");
 
             if (position == dayCanlendarInfoList.size() - 1) {
                 view_last_line.setVisibility(View.GONE);

@@ -7,12 +7,12 @@ package com.yijian.staff.mvp.coach.experienceclass.index;
  */
 public class CardprodVOsBean {
     /**
- * cardName : 储值卡
- * cardType : 储值卡
- * cardTypeId : 2
- */
+     * cardName : 储值卡
+     * cardType : 储值卡
+     * cardTypeId : 2
+     */
 
-private String cardName;
+    private String cardName;
     private String cardType;
     private int cardTypeId;
 

@@ -14,12 +14,12 @@ import java.util.List;
 
 public class InviterBean implements Parcelable {
 
-  public   String coachName;//教练名字 ,
+    public String coachName;//教练名字 ,
     public Integer courseCurrent;//上课次数 ,
-    public  Integer courseNum;//课程数量 ,
+    public Integer courseNum;//课程数量 ,
     public Integer courseTime;//上课时长 ,
-    public  List<TemplateListBean> experienceTemplateList;// (Array[体验课备课模板返回对象], optional): 体验课程模板 ,
-    public  String memberId;// 会员id(受邀人) ,
+    public List<TemplateListBean> experienceTemplateList;// (Array[体验课备课模板返回对象], optional): 体验课程模板 ,
+    public String memberId;// 会员id(受邀人) ,
     public String memberName;//会员名字(受邀人) ,
     public String processId;//体验课流程id，假如当前教练没有邀约过则无 ,
     public String recordId;//邀约记录ID ,
@@ -27,9 +27,9 @@ public class InviterBean implements Parcelable {
     public String startTime;//上课时间
 
 
-    public  List<TemplatePrivate> privateTemplateList;//(Array[私教课备课模板返回对象], optional): 私教课模板 ,
+    public List<TemplatePrivate> privateTemplateList;//(Array[私教课备课模板返回对象], optional): 私教课模板 ,
 
-    public  LessonPreparation prepareVO;//(体验课备课内容, optional): 如果是已经邀约过了，这个里面会有内容邀约时的备课内容 ,
+    public LessonPreparation prepareVO;//(体验课备课内容, optional): 如果是已经邀约过了，这个里面会有内容邀约时的备课内容 ,
 
     public String getCoachName() {
         return coachName;

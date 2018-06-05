@@ -23,7 +23,6 @@ import android.widget.RelativeLayout;
 import com.yijian.staff.R;
 
 
-
 public class ShadowImageView extends RelativeLayout {
 
     private int shadowRound = 0;

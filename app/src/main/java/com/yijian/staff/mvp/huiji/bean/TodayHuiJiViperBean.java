@@ -13,7 +13,7 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/5/8 16:24:54
  */
-public class TodayHuiJiViperBean implements Serializable{
+public class TodayHuiJiViperBean implements Serializable {
     /**
      * CoachExpireVO：教练过期
      * CoachInfoVO ：教练正式
@@ -55,14 +55,13 @@ public class TodayHuiJiViperBean implements Serializable{
     private boolean underProtected;
 
 
-
     public TodayHuiJiViperBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
-        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
@@ -96,8 +95,8 @@ public class TodayHuiJiViperBean implements Serializable{
         this.sex = sex;
     }
 
-    public int getGenderImg(){
-        return 2==sex ? R.mipmap.lg_women : R.mipmap.lg_man;
+    public int getGenderImg() {
+        return 2 == sex ? R.mipmap.lg_women : R.mipmap.lg_man;
     }
 
     public String getMobile() {

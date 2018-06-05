@@ -19,28 +19,28 @@ import java.util.Map;
  * Created by The_P on 2018/4/4.
  */
 
-public class PhysicalReportPresenter implements PhysicalReportConstract.Presenter{
+public class PhysicalReportPresenter implements PhysicalReportConstract.Presenter {
     private final User user;
-//    private final HashMap<String, String> head;
+    //    private final HashMap<String, String> head;
     private Context context;
     private PhysicalReportConstract.View view;
 
     public PhysicalReportPresenter(Context context) {
-        this.context=context;
+        this.context = context;
 
         user = DBManager.getInstance().queryUser();
 //        head = new HashMap<>();
 //        head.put("token", user.getToken());
     }
 
-    public void setView(PhysicalReportConstract.View activity){
-        this.view=activity;
+    public void setView(PhysicalReportConstract.View activity) {
+        this.view = activity;
     }
 
     @Override
     public void loadData(String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("shopId",user.getShopId());
+        Map<String, String> params = new HashMap<>();
+        params.put("shopId", user.getShopId());
         params.put("memberId", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
@@ -48,13 +48,13 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
                 PhysicalExaminationBean o = new Gson().fromJson(result.toString(), PhysicalExaminationBean.class);
-                if( o==null)return;
+                if (o == null) return;
                 view.showUserData(o);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

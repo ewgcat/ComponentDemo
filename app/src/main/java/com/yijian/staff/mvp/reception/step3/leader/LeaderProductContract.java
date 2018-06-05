@@ -8,14 +8,15 @@ import com.yijian.staff.mvp.reception.step3.coach.bean.ReceptionUserInfo;
  */
 
 public interface LeaderProductContract {
-    interface View{
+    interface View {
         void showUserInfo(ReceptionUserInfo receptionUserInfo);
+
         void showProductDetail(ProductDetail productDetail);
 
         void leaderToSaleSecceed();
     }
 
-    interface Presenter{
+    interface Presenter {
         void getUserInfo(String memberId);//获取用户资料
 
         void getProductDetail(String memberId);//获取产品详情

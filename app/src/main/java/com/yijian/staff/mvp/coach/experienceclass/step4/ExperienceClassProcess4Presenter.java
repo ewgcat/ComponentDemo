@@ -23,30 +23,30 @@ public class ExperienceClassProcess4Presenter implements ExperienceClassProcess4
     private ExperienceClassProcess4Contract.View view;
 
     public ExperienceClassProcess4Presenter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView(ExperienceClassProcess4Contract.View view){
-        this.view=view;
+    public void setView(ExperienceClassProcess4Contract.View view) {
+        this.view = view;
     }
 
     @Override
     public void getClassRecordList(String processId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("processId",processId);
+        Map<String, String> params = new HashMap<>();
+        params.put("processId", processId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 InvitationAgainBean invitationAgainBean = GsonNullString.getGson().fromJson(result.toString(), InvitationAgainBean.class);
-                if (invitationAgainBean==null)return;
+                if (invitationAgainBean == null) return;
                 view.showClassRecordList(invitationAgainBean);
 
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

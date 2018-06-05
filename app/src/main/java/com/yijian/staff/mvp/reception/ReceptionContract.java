@@ -12,9 +12,11 @@ import java.util.List;
  */
 
 public interface ReceptionContract {
-    interface View{
+    interface View {
         void showRecptionInfo(RecptionerInfoBean bean);
+
         void showRecptionRecordList(List<RecptionRecordListBean.RecordsBean> recordList, boolean isRefresh);
+
         void showRecptionRecordListTemp(List<ReceptionRecordBean> recordList, boolean isRefresh);
 
         void finishRefresh(boolean isRefresh);
@@ -26,8 +28,9 @@ public interface ReceptionContract {
         void showNoData();
     }
 
-    interface Presenter{
-       void getRecptionerInfo();
+    interface Presenter {
+        void getRecptionerInfo();
+
         void getRecptionRecord(boolean isRefresh);
 
         void getRecptionStatus(String id);

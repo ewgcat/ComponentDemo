@@ -107,7 +107,7 @@ public class TabMenuHelper {
         savePreferOtherList(otherList);
     }
 
-    public  void parseJSONArrayToMenuList(JSONArray  jsonArray){
+    public void parseJSONArrayToMenuList(JSONArray jsonArray) {
         JSONArray dataJsonArray = JSON.parseArray(jsonArray.toString());
 
         for (int i = 0; i < jsonArray.size(); i++) {

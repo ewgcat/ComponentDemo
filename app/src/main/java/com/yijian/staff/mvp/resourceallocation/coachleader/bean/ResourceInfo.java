@@ -28,17 +28,18 @@ public class ResourceInfo {
     private String subclassName;
 
 
-    public ResourceInfo(JSONObject jsonObject){
-        this. memberId = JsonUtil.getString(jsonObject, "memberId");
-        this. name = JsonUtil.getString(jsonObject, "name");
-        this. sex = JsonUtil.getInt(jsonObject, "sex");
-        this. headImg = JsonUtil.getString(jsonObject, "headImg");
-        this. viperRole = JsonUtil.getString(jsonObject, "viperRole");
-        this. memberId = JsonUtil.getString(jsonObject, "memberId");
-        this. subclassName = JsonUtil.getString(jsonObject, "subclassName");
-        this. dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
-        this. underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
+    public ResourceInfo(JSONObject jsonObject) {
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.sex = JsonUtil.getInt(jsonObject, "sex");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
+        this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
+        this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
     }
+
     public String getMemberId() {
         return memberId;
     }

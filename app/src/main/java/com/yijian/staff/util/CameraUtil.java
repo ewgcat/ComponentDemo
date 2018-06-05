@@ -14,25 +14,27 @@ public class CameraUtil {
 
     /**
      * 调用系统摄像头
+     *
      * @param activity
      * @param TAKE_PHOTO_WITH_DATA 请求code
-     * @param imageUri 图片路径
+     * @param imageUri             图片路径
      */
-    public static void takePhoto(Activity activity, int TAKE_PHOTO_WITH_DATA, Uri imageUri ){
+    public static void takePhoto(Activity activity, int TAKE_PHOTO_WITH_DATA, Uri imageUri) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        activity.startActivityForResult(intent,TAKE_PHOTO_WITH_DATA);
+        activity.startActivityForResult(intent, TAKE_PHOTO_WITH_DATA);
     }
 
     /**
      * 调用系统裁剪
+     *
      * @param activity
-     * @param uri 图片路径
-     * @param outputX 图片宽
-     * @param outputY 高
+     * @param uri         图片路径
+     * @param outputX     图片宽
+     * @param outputY     高
      * @param requestCode 请求code
      */
-    public static void cropImageUri(Activity activity, Uri uri, int outputX, int outputY, int requestCode){
+    public static void cropImageUri(Activity activity, Uri uri, int outputX, int outputY, int requestCode) {
 
         Intent intent = new Intent("com.android.camera.action.CROP");
 
@@ -61,8 +63,6 @@ public class CameraUtil {
         activity.startActivityForResult(intent, requestCode);
 
     }
-
-
 
 
 }

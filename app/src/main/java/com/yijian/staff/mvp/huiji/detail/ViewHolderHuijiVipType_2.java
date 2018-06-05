@@ -18,7 +18,7 @@ import butterknife.BindView;
  * Created by The_P on 2018/5/15.
  */
 
-public class ViewHolderHuijiVipType_2 extends  ViewHolderHuijiVipper{
+public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
     @BindView(R.id.tv_tuijian_ren)
     TextView tvTuijianRen;
     @BindView(R.id.tv_tuijian_ren_phone)
@@ -33,17 +33,17 @@ public class ViewHolderHuijiVipType_2 extends  ViewHolderHuijiVipper{
 
     public ViewHolderHuijiVipType_2(View itemView) {
         super(itemView);
-        rv_card= itemView.findViewById(R.id.rv_card);
-        tvTuijianRen= itemView.findViewById(R.id.tv_tuijian_ren);
-        tvTuijianRenPhone= itemView.findViewById(R.id.tv_tuijian_ren_phone);
-        tvHuoquQudao= itemView.findViewById(R.id.tv_huoqu_qudao);
-        tvTianjiaRenName= itemView.findViewById(R.id.tv_tianjia_ren_name);
+        rv_card = itemView.findViewById(R.id.rv_card);
+        tvTuijianRen = itemView.findViewById(R.id.tv_tuijian_ren);
+        tvTuijianRenPhone = itemView.findViewById(R.id.tv_tuijian_ren_phone);
+        tvHuoquQudao = itemView.findViewById(R.id.tv_huoqu_qudao);
+        tvTianjiaRenName = itemView.findViewById(R.id.tv_tianjia_ren_name);
         rv_card.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
         rv_card.setNestedScrollingEnabled(false);
     }
 
     @Override
-  public   void bindView(VipDetailBean vipDetailBean) {
+    public void bindView(VipDetailBean vipDetailBean) {
 
         rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();

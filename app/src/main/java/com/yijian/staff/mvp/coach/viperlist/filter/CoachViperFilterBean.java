@@ -7,10 +7,10 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/3/24 11:20:56
  */
-public class CoachViperFilterBean implements Serializable{
+public class CoachViperFilterBean implements Serializable {
 
     private int sex = -1;//性别：【0:男 1:女】
-    private String courseType =null;//课程类型：【1:私教课，2:体验课】
+    private String courseType = null;//课程类型：【1:私教课，2:体验课】
 
     private int joinTimeType = -2;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
     private String startTime = null;//开始时间

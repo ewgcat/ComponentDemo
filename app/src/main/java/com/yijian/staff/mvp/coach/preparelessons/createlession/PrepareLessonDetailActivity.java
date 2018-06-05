@@ -66,13 +66,13 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
         });
     }
 
-    private void saveData(){
+    private void saveData() {
         String privateApplyId = getIntent().getStringExtra("id");
         List<TempBean.TemplateContextListBean> templateContextListBeans = tempBean.getTemplateContextList();
         List<PrivatePrepareLessonBody.ContentListBean> contentListBeans = new ArrayList<>();
         PrivatePrepareLessonBody privatePrepareLessonBody = new PrivatePrepareLessonBody();
         privatePrepareLessonBody.setPrivateApplyId(privateApplyId);
-        for(TempBean.TemplateContextListBean templateContextListBean : templateContextListBeans){
+        for (TempBean.TemplateContextListBean templateContextListBean : templateContextListBeans) {
             PrivatePrepareLessonBody.ContentListBean contentListBean = new PrivatePrepareLessonBody.ContentListBean();
             contentListBean.setBuildDesc(templateContextListBean.getBuildDesc());
             contentListBean.setMoApplianceName(templateContextListBean.getMoApplianceName());

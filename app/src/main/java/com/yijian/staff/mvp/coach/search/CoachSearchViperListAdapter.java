@@ -78,24 +78,24 @@ public class CoachSearchViperListAdapter extends RecyclerView.Adapter<CoachSearc
                 .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        ImageLoader.setHeadImageResource(headImg,context,holder.iv_header);
+        ImageLoader.setHeadImageResource(headImg, context, holder.iv_header);
 
 
         String subclassName = coachViperBean.getSubclassName();
 //        Intent intent = new Intent(context, CoachViperDetailActivity.class);
         Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
 
-        if (!TextUtils.isEmpty(subclassName)){
-            if (subclassName.equals("CoachInfoVO")){
+        if (!TextUtils.isEmpty(subclassName)) {
+            if (subclassName.equals("CoachInfoVO")) {
                 intent.putExtra("vipType", 0);
                 holder.tv_role.setText("正式学员");
-            }else   if (subclassName.equals("PotentialVO")){
+            } else if (subclassName.equals("PotentialVO")) {
                 intent.putExtra("vipType", 1);
                 holder.tv_role.setText("潜在会员");
-            }else   if (subclassName.equals("CoachIntentionVO")){
+            } else if (subclassName.equals("CoachIntentionVO")) {
                 intent.putExtra("vipType", 2);
                 holder.tv_role.setText("意向会员");
-            }else   if (subclassName.equals("CoachExpireVO")){
+            } else if (subclassName.equals("CoachExpireVO")) {
                 intent.putExtra("vipType", 3);
                 holder.tv_role.setText("过期会员");
             }

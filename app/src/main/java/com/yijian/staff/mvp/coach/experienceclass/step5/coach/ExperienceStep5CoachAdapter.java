@@ -19,10 +19,11 @@ import java.util.List;
  */
 
 public class ExperienceStep5CoachAdapter extends RecyclerView.Adapter<ExperienceStep5CoachAdapter.Holder> {
-   private Context context;
-   private List<ExperienceClassRecordTable> list=new ArrayList<>();
+    private Context context;
+    private List<ExperienceClassRecordTable> list = new ArrayList<>();
+
     public ExperienceStep5CoachAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class ExperienceStep5CoachAdapter extends RecyclerView.Adapter<Experience
         return new Holder(view);
     }
 
-    public void resetData( List<ExperienceClassRecordTable> list1){
+    public void resetData(List<ExperienceClassRecordTable> list1) {
         list.clear();
         list.addAll(list1);
         notifyDataSetChanged();
@@ -59,20 +60,20 @@ public class ExperienceStep5CoachAdapter extends RecyclerView.Adapter<Experience
 
 
         public void bindView(ExperienceClassRecordTable experienceClassRecordTable) {
-            if (experienceClassRecordTable==null)return;
+            if (experienceClassRecordTable == null) return;
             String templateName = experienceClassRecordTable.getTemplateName();
-            tvName.setText(TextUtils.isEmpty(templateName)?"无名":templateName);
+            tvName.setText(TextUtils.isEmpty(templateName) ? "无名" : templateName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (itemClickLisenter!=null)itemClickLisenter.onClick(experienceClassRecordTable);
+                    if (itemClickLisenter != null) itemClickLisenter.onClick(experienceClassRecordTable);
                 }
             });
         }
     }
 
-    public interface ItemClickLisenter{
+    public interface ItemClickLisenter {
         void onClick(ExperienceClassRecordTable bean);
     }
 

@@ -75,10 +75,10 @@ public class PersistentCookieStore {
         //讲cookies持久化到本地
         SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
         ConcurrentHashMap<String, Cookie> stringCookieConcurrentHashMap = cookies.get(url.host());
-        if (stringCookieConcurrentHashMap!=null){
+        if (stringCookieConcurrentHashMap != null) {
             Set<String> stringSet = stringCookieConcurrentHashMap.keySet();
-            if (stringSet!=null){
-                prefsWriter.putString(url.host(), TextUtils.join(",",stringSet ));
+            if (stringSet != null) {
+                prefsWriter.putString(url.host(), TextUtils.join(",", stringSet));
             }
 
             prefsWriter.putString(name, encodeCookie(new SerializableOkHttpCookies(cookie)));

@@ -59,7 +59,6 @@ public class InitializeService extends IntentService {
         QbSdk.initX5Environment(getApplicationContext(), cb);
 
 
-
     }
 
 

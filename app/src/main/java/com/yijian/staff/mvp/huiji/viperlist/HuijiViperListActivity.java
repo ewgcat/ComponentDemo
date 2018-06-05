@@ -112,7 +112,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
             if (huijiTodayVisitFragment == null) {
-                huijiTodayVisitFragment =new HuijiTodayVisitFragment();
+                huijiTodayVisitFragment = new HuijiTodayVisitFragment();
                 fragmentTransaction.add(R.id.fl_content, huijiTodayVisitFragment);
             } else {
                 fragmentTransaction.show(huijiTodayVisitFragment);
@@ -126,11 +126,11 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
 
-        if (huijiAllViperFragment!=null&&huijiAllViperFragment.isAdded()) {
+        if (huijiAllViperFragment != null && huijiAllViperFragment.isAdded()) {
             fragmentTransaction.hide(huijiAllViperFragment);
         }
 
-        if (huijiTodayVisitFragment!=null&&huijiTodayVisitFragment.isAdded()) {
+        if (huijiTodayVisitFragment != null && huijiTodayVisitFragment.isAdded()) {
             fragmentTransaction.hide(huijiTodayVisitFragment);
         }
     }

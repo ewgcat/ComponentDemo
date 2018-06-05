@@ -29,13 +29,13 @@ public class HistoryResourceInfo {
 
     public HistoryResourceInfo(JSONObject jsonObject) {
 
-        this. memberId = JsonUtil.getString(jsonObject, "memberId");
-        this. memberName = JsonUtil.getString(jsonObject, "memberName");
-        this. sex = JsonUtil.getString(jsonObject, "sex");
-        this. headImg = JsonUtil.getString(jsonObject, "headImg");
-        this. historyUser = JsonUtil.getString(jsonObject, "historyUser");
-        this. distributeUser = JsonUtil.getString(jsonObject, "distributeUser");
-        this. distributeTime = JsonUtil.getLong(jsonObject, "distributeTime");
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.memberName = JsonUtil.getString(jsonObject, "memberName");
+        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.historyUser = JsonUtil.getString(jsonObject, "historyUser");
+        this.distributeUser = JsonUtil.getString(jsonObject, "distributeUser");
+        this.distributeTime = JsonUtil.getLong(jsonObject, "distributeTime");
     }
 
     public String getMemberId() {

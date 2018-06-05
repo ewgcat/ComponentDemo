@@ -16,7 +16,7 @@ import com.yijian.staff.mvp.reception.step1.recyclerView.ParentViewHolderGroup;
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionViewHolder extends AbsParentViewHolder{
+public class QuestionViewHolder extends AbsParentViewHolder {
 
     private final TextView tvTitle;
 
@@ -32,6 +32,6 @@ public class QuestionViewHolder extends AbsParentViewHolder{
 
 
     public void bind(DataListBean parent, int parentPosition) {
-        tvTitle.setText(""+parent.getOrder()+"."+parent.getDesc());
+        tvTitle.setText("" + parent.getOrder() + "." + parent.getDesc());
     }
 }

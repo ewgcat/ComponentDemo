@@ -35,13 +35,13 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-public class ReceptionStepOneActivity extends AppCompatActivity implements  View.OnClickListener ,ReceptionStep1Contract.View, Step1QuestAdapter.ComputerPercentLisenter {
+public class ReceptionStepOneActivity extends AppCompatActivity implements View.OnClickListener, ReceptionStep1Contract.View, Step1QuestAdapter.ComputerPercentLisenter {
 
     private static final String TAG = ReceptionStepOneActivity.class.getSimpleName();
 
     private Step1QuestAdapter adapter;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private List<DataListBean> step1bean =new ArrayList<>();
+    private List<DataListBean> step1bean = new ArrayList<>();
     private RecptionStep1Presenter presenter;
     private RecptionerInfoBean consumerBean;
     private MaterialCalendarView calendarView;
@@ -54,14 +54,12 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         setContentView(R.layout.activity_reception_step_one);
         initView();
         Intent intent = getIntent();
-        if (intent.hasExtra(ReceptionActivity.CONSUMER)){
+        if (intent.hasExtra(ReceptionActivity.CONSUMER)) {
             consumerBean = intent.getParcelableExtra(ReceptionActivity.CONSUMER);
-        }else {
-            Toast.makeText(ReceptionStepOneActivity.this,"获取客户信息失败,请重新获取用户信息", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ReceptionStepOneActivity.this, "获取客户信息失败,请重新获取用户信息", Toast.LENGTH_SHORT).show();
             return;
         }
-
-
 
 
         presenter = new RecptionStep1Presenter(this);
@@ -85,7 +83,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         RecyclerView recyclerView = findViewById(R.id.recyclerview_request);
         recyclerView.setNestedScrollingEnabled(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        adapter = new Step1QuestAdapter(step1bean,this);
+        adapter = new Step1QuestAdapter(step1bean, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -100,10 +98,10 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (consumerBean==null) return;
+                if (consumerBean == null) return;
                 List<DataListBean> questionList = adapter.getQuestionList();
                 List<CalendarDay> selectedDates = calendarView.getSelectedDates();
-                presenter.uploadQusetion(questionList,consumerBean,selectedDates);
+                presenter.uploadQusetion(questionList, consumerBean, selectedDates);
 
             }
         });
@@ -113,11 +111,11 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         widget.setPagingEnabled(false);
         widget.setTopbarVisible(false);
-        widget.setWeekDayLabels(new String[]{"日","一","二","三","四","五","六"});
+        widget.setWeekDayLabels(new String[]{"日", "一", "二", "三", "四", "五", "六"});
 
         widget.setWeekDayTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_WeekDay);
         widget.setDateTextAppearance(R.style.MyTextAppearance_MaterialCalendarWidget_Date);
-        widget.addDecorators( new MySelectorDecorator(this),oneDayDecorator);
+        widget.addDecorators(new MySelectorDecorator(this), oneDayDecorator);
 
         widget.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -136,7 +134,6 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     }
 
 
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -148,14 +145,13 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
 
             case R.id.right_tv:
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole==1){
+                if (userRole == 1) {
                     Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
                     startActivity(intent);
-                }else if (userRole==2){
+                } else if (userRole == 2) {
                     Intent intent = new Intent(ReceptionStepOneActivity.this, CoachReceptionStepTwoActivity.class);
                     startActivity(intent);
                 }
-
 
 
                 break;
@@ -173,18 +169,18 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements  View
     public void saveSucceed() {
         String id = consumerBean.getId();
         Intent intent = new Intent(ReceptionStepOneActivity.this, KeFuReceptionStepTwoActivity.class);
-        intent.putExtra("memberId",id);
+        intent.putExtra("memberId", id);
         startActivity(intent);
     }
 
 
     @Override
     public void computerPercent() {
-        Log.e(TAG, "computerPercent: " );
+        Log.e(TAG, "computerPercent: ");
         List<DataListBean> questionList = adapter.getQuestionList();
         List<CalendarDay> selectedDates = calendarView.getSelectedDates();
         String percent = presenter.computerPercent(questionList, selectedDates);
-        btnSave.setText("保存（已完成"+percent+")");
+        btnSave.setText("保存（已完成" + percent + ")");
 
     }
 }

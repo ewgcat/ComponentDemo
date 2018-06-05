@@ -76,7 +76,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_resource_allocation.setLayoutManager(layoutmanager);
-         resourceAllocationAdatper = new CoachResourceAllocationAdatper(this, resourceAllocationInfoList);
+        resourceAllocationAdatper = new CoachResourceAllocationAdatper(this, resourceAllocationInfoList);
         rv_resource_allocation.setAdapter(resourceAllocationAdatper);
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -131,7 +131,7 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
                     resourceAllocationAdatper.update(resourceAllocationInfoList);
 
                 } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
+                    Logger.i("TEST", e.getMessage());
 
                 }
             }

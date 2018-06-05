@@ -99,7 +99,7 @@ public class SelectActionPopwindow extends PopupWindow {
             @Override
             public void onClick(View v) {
                 Log.e("Test", "parentP===" + cussorIndex + "  subP===" + defaultPosition);
-                if(parentList.get(cussorIndex).size()>0){
+                if (parentList.get(cussorIndex).size() > 0) {
                     ActionBean actionBean = parentList.get(cussorIndex).get(defaultPosition);
                     activity.addSingleAction(actionBean);
                 }

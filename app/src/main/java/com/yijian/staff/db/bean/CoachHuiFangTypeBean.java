@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.json.JSONObject;
 
 import java.util.List;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -34,14 +35,15 @@ public class CoachHuiFangTypeBean {
     private int order;
 
 
-    public CoachHuiFangTypeBean(JSONObject jsonObject){
-        this.id= JsonUtil.getInt(jsonObject,"id");
-        this.configType= JsonUtil.getInt(jsonObject,"configType");
-        this.postId= JsonUtil.getInt(jsonObject,"postId");
-        this.triggerDay= JsonUtil.getInt(jsonObject,"triggerDay");
-        this.order= JsonUtil.getInt(jsonObject,"order");
-        this.configName= JsonUtil.getString(jsonObject,"configName");
+    public CoachHuiFangTypeBean(JSONObject jsonObject) {
+        this.id = JsonUtil.getInt(jsonObject, "id");
+        this.configType = JsonUtil.getInt(jsonObject, "configType");
+        this.postId = JsonUtil.getInt(jsonObject, "postId");
+        this.triggerDay = JsonUtil.getInt(jsonObject, "triggerDay");
+        this.order = JsonUtil.getInt(jsonObject, "order");
+        this.configName = JsonUtil.getString(jsonObject, "configName");
     }
+
     @Generated(hash = 506956304)
     public CoachHuiFangTypeBean(int id, int configType, int postId, String configName, int triggerDay, int order) {
         this.id = id;
@@ -51,9 +53,11 @@ public class CoachHuiFangTypeBean {
         this.triggerDay = triggerDay;
         this.order = order;
     }
+
     @Generated(hash = 660955335)
     public CoachHuiFangTypeBean() {
     }
+
     public int getId() {
         return id;
     }

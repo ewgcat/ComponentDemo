@@ -18,7 +18,8 @@ import java.security.MessageDigest;
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/5/24 01:01:37
- */public class GlideRoundTransform extends BitmapTransformation {
+ */
+public class GlideRoundTransform extends BitmapTransformation {
     private static float radius = 0f;
 
     public GlideRoundTransform() {
@@ -30,7 +31,8 @@ import java.security.MessageDigest;
         this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
     }
 
-    @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    @Override
+    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
         return roundCrop(pool, toTransform);
     }
 

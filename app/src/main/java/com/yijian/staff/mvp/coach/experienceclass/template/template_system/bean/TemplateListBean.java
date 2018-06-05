@@ -10,7 +10,7 @@ import java.util.List;
  * Created by The_P on 2018/4/13.
  */
 
-public  class TemplateListBean implements Parcelable {
+public class TemplateListBean implements Parcelable {
     @Override
     public String toString() {
         return "TemplateListBean{" +

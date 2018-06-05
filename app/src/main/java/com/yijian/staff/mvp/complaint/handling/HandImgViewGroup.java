@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.yijian.staff.R;
+
 import java.util.List;
 
 /**
@@ -33,8 +34,8 @@ public class HandImgViewGroup extends ViewGroup {
         this.mContext = context;
     }
 
-    public void setImgs(List<String>imgs){
-        for (int i = 0 ; i < imgs.size(); i++){
+    public void setImgs(List<String> imgs) {
+        for (int i = 0; i < imgs.size(); i++) {
             ImageView ivTask = (ImageView) LayoutInflater.from(mContext).inflate(R.layout.item_task_img, null);
             ivTask.setImageResource(R.mipmap.lg_vip);
             this.addView(ivTask);
@@ -57,7 +58,7 @@ public class HandImgViewGroup extends ViewGroup {
 //        measureChildren(widthMeasureSpec, heightMeasureSpec);
         for (int i = 0; i < childCount; i++) {
             View childView = getChildAt(i);
-            LayoutParams lp = new LayoutParams((widthSpc-margin*2)/3, (widthSpc-margin*2)/3);
+            LayoutParams lp = new LayoutParams((widthSpc - margin * 2) / 3, (widthSpc - margin * 2) / 3);
             childView.setLayoutParams(lp);
             measureChild(childView, widthMeasureSpec, heightMeasureSpec);
         }
@@ -66,8 +67,8 @@ public class HandImgViewGroup extends ViewGroup {
             parentWidth += childView.getMeasuredWidth();
             parentHeight = childView.getMeasuredHeight();
         }
-        parentHeight+=margin*2;
-        setMeasuredDimension((widthMode == MeasureSpec.EXACTLY?widthSpc:parentWidth),(heightMode == MeasureSpec.EXACTLY?heightSpc:parentHeight));
+        parentHeight += margin * 2;
+        setMeasuredDimension((widthMode == MeasureSpec.EXACTLY ? widthSpc : parentWidth), (heightMode == MeasureSpec.EXACTLY ? heightSpc : parentHeight));
 
     }
 
@@ -85,7 +86,7 @@ public class HandImgViewGroup extends ViewGroup {
                 top = (getHeight() - childView.getMeasuredHeight()) / 2;
                 bottom = top + childView.getMeasuredHeight();
                 childView.layout(left, top, right, bottom);
-                left += childView.getMeasuredWidth()+margin;
+                left += childView.getMeasuredWidth() + margin;
             }
         }
     }

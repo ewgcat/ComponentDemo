@@ -39,26 +39,26 @@ public class HuiJiVipeCardAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         VipDetailBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
-        ((ViewHolder)holder).bind(cardprodsBean);
+        ((ViewHolder) holder).bind(cardprodsBean);
     }
 
     @Override
     public int getItemCount() {
-        return cardprodsBeans==null?0:cardprodsBeans.size();
+        return cardprodsBeans == null ? 0 : cardprodsBeans.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_cardName;
         private TextView tv_cardType;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_cardName  = itemView.findViewById(R.id.tv_cardName);
-            tv_cardType  = itemView.findViewById(R.id.tv_cardType);
+            tv_cardName = itemView.findViewById(R.id.tv_cardName);
+            tv_cardType = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(VipDetailBean.CardprodsBean cardprodsBean){
+        public void bind(VipDetailBean.CardprodsBean cardprodsBean) {
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

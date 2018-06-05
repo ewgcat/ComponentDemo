@@ -64,8 +64,6 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
     List<HuiJiViperBean> viperBeanList = new ArrayList<>();
 
 
-
-
     @Override
     public int getLayoutId() {
         return R.layout.fragment_vip_huiji_all_info;
@@ -91,7 +89,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(),viperBeanList);
+        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -103,7 +101,6 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                 refresh(filterBean);
             }
         });
-
 
 
     }

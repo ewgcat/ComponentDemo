@@ -14,15 +14,15 @@ import com.yijian.staff.R;
 
 public class AdapterCoachViper extends AdapterAbsCoachViper {
 
-    public static final int TYPE0=0;
-    public static final int TYPE1=1;
-    public static final int TYPE2=2;
-    public static final int TYPE3=3;
+    public static final int TYPE0 = 0;
+    public static final int TYPE1 = 1;
+    public static final int TYPE2 = 2;
+    public static final int TYPE3 = 3;
 
     private Context context;
 
     public AdapterCoachViper(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
 
@@ -31,11 +31,11 @@ public class AdapterCoachViper extends AdapterAbsCoachViper {
     public ViewHolderCoachVipper onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         ViewHolderCoachVipper holder;
-        switch (viewType){
+        switch (viewType) {
             default:
             case TYPE0:
                 view = LayoutInflater.from(context).inflate(R.layout.item_coachvip_type0, parent, false);
-                holder = new ViewHolderCoachVipType_0(view,true);
+                holder = new ViewHolderCoachVipType_0(view, true);
                 holder.setHuijiVipInterface(this);
                 break;
             case TYPE1:
@@ -58,7 +58,7 @@ public class AdapterCoachViper extends AdapterAbsCoachViper {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCoachVipper holder, int position) {
-        if (mVipDetailBean!=null)holder.bindView(mVipDetailBean);
+        if (mVipDetailBean != null) holder.bindView(mVipDetailBean);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class AdapterCoachViper extends AdapterAbsCoachViper {
 
     @Override
     public int getItemViewType(int position) {
-        switch (position){
+        switch (position) {
             default:
             case 0:
                 return TYPE0;
@@ -84,14 +84,13 @@ public class AdapterCoachViper extends AdapterAbsCoachViper {
 
     @Override
     public void visit() {
-        if (adapterInterface!=null)adapterInterface.clickVisit();
+        if (adapterInterface != null) adapterInterface.clickVisit();
     }
 
     @Override
     public void edit() {
-        if (adapterInterface!=null)adapterInterface.clickEdit();
+        if (adapterInterface != null) adapterInterface.clickEdit();
     }
-
 
 
 }

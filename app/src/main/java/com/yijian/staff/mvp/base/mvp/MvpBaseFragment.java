@@ -21,14 +21,14 @@ public abstract class MvpBaseFragment<T extends BasePresenter> extends MvcBaseFr
     @Inject
     protected T mPresenter;
 
-    protected FragmentComponent getFragmentComponent(){
+    protected FragmentComponent getFragmentComponent() {
         return DaggerFragmentComponent.builder()
                 .appComponent(CustomApplication.getAppComponent())
                 .fragmentModule(getFragmentModule())
                 .build();
     }
 
-    protected FragmentModule getFragmentModule(){
+    protected FragmentModule getFragmentModule() {
         return new FragmentModule(this);
     }
 
@@ -43,7 +43,6 @@ public abstract class MvpBaseFragment<T extends BasePresenter> extends MvcBaseFr
         if (mPresenter != null) mPresenter.detachView();
         super.onDestroyView();
     }
-
 
 
 }

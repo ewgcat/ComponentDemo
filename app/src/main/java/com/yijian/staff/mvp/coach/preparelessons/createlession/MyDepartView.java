@@ -185,9 +185,9 @@ public class MyDepartView extends LinearLayout {
         for (DepartBean departBean : selectedDepartList) {
             sb.append(departBean.getPartName() + "、");
         }
-        if(selectedDepartList.size() > 0) {
+        if (selectedDepartList.size() > 0) {
             tv_depart_title_check.setText(sb.toString().substring(0, sb.toString().lastIndexOf("、")));
-        }else{
+        } else {
             tv_depart_title_check.setText("");
         }
     }

@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * Created by ottozheng on 15/9/11.
  */
-public class ApplicationHolder
-{
+public class ApplicationHolder {
     private static final String TAG = "ApplicationHolder";
     private static Application mApplication = null;
 
@@ -20,10 +19,8 @@ public class ApplicationHolder
      *
      * @return the mapplication
      */
-    public static Application getmApplication()
-    {
-        if (mApplication == null)
-        {
+    public static Application getmApplication() {
+        if (mApplication == null) {
             //Logger.e(TAG, "Global ApplicationContext is null, Please call ApplicationHolder.setmApplication(application) at the onCreate() method of Activity and Application.");
         }
         return mApplication;
@@ -32,26 +29,22 @@ public class ApplicationHolder
     /**
      * 设置Application
      *
-     * @param mapplication
-     *            the mapplication to set
+     * @param mapplication the mapplication to set
      */
-    public static void setmApplication(Application mapplication)
-    {
-        if (mapplication == null)
-        {
+    public static void setmApplication(Application mapplication) {
+        if (mapplication == null) {
             //Logger.e(TAG, "try to set null application, return.");
             return;
         }
 
-        if (mapplication != mApplication)
-        {
+        if (mapplication != mApplication) {
             mApplication = mapplication;
         }
 
     }
 
     /**
-     *判断当前应用程序处于前台还是后台
+     * 判断当前应用程序处于前台还是后台
      */
     public static boolean isApplicationBroughtToBackground(final Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

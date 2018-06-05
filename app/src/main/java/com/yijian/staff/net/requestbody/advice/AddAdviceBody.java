@@ -14,11 +14,10 @@ import org.json.JSONObject;
 public class AddAdviceBody {
 
     Advice feedBack;
-    public AddAdviceBody(Advice advice){
-       this.feedBack=advice;
+
+    public AddAdviceBody(Advice advice) {
+        this.feedBack = advice;
     }
-
-
 
 
 }

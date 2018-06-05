@@ -15,29 +15,29 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/3/29 16:17:53
  */
-public class CoachSearchViperBean implements Serializable{
+public class CoachSearchViperBean implements Serializable {
 
     /**
      * {
-     "memberId": "85fec0bef849466fb95697d4bb7f2901",
-     "name": "值0",
-     "sex": "2",
-     "headImg": "值0",
-     "cardprodId": "0063514bd77a4f77979393c8efe27b68",
-     "cardName": "值4",
-     "cardType": "员工卡",
-     "favorCourse": "卡卡技术",
-     "favorTeacher": "faker大魔王",
-     "registerTime": 1521118474000,
-     "contractId": "60d3b1b531c946f1b6ed6294f21efea5",
-     "contractDeadline": 1520920430000,
-     "contractBalance": "3.00",
-     "purchaseCount": 0,
-     "seller": "树根",
-     "experienceClassTimes": 2,
-     "viperRole": "意向会员",
-     "subclassName": "CoachIntentionVO"
-     }
+     * "memberId": "85fec0bef849466fb95697d4bb7f2901",
+     * "name": "值0",
+     * "sex": "2",
+     * "headImg": "值0",
+     * "cardprodId": "0063514bd77a4f77979393c8efe27b68",
+     * "cardName": "值4",
+     * "cardType": "员工卡",
+     * "favorCourse": "卡卡技术",
+     * "favorTeacher": "faker大魔王",
+     * "registerTime": 1521118474000,
+     * "contractId": "60d3b1b531c946f1b6ed6294f21efea5",
+     * "contractDeadline": 1520920430000,
+     * "contractBalance": "3.00",
+     * "purchaseCount": 0,
+     * "seller": "树根",
+     * "experienceClassTimes": 2,
+     * "viperRole": "意向会员",
+     * "subclassName": "CoachIntentionVO"
+     * }
      */
     //("头像图片")
     private String headImg;
@@ -52,14 +52,14 @@ public class CoachSearchViperBean implements Serializable{
     //会员类别
     /**
      * CoachExpireVO：教练过期
-     CoachInfoVO ：教练正式
-     CoachIntentionVO：教练意向
-     CoachTodayVisitVO：教练今日来访
-     CustomerInfoVO：会籍正式
-     CustomerTodayVisitVO：会籍今日来访
-     CustomerExpireVO：会籍过期
-     CustomerIntentionVO：会籍意向
-     PotentialVO：潜在（会籍教练共用）
+     * CoachInfoVO ：教练正式
+     * CoachIntentionVO：教练意向
+     * CoachTodayVisitVO：教练今日来访
+     * CustomerInfoVO：会籍正式
+     * CustomerTodayVisitVO：会籍今日来访
+     * CustomerExpireVO：会籍过期
+     * CustomerIntentionVO：会籍意向
+     * PotentialVO：潜在（会籍教练共用）
      */
     private String subclassName;
 
@@ -109,8 +109,8 @@ public class CoachSearchViperBean implements Serializable{
     //("使用车辆")
     private String useCar;
 
-    private String mobile ;
-    private Boolean underProtected ;
+    private String mobile;
+    private Boolean underProtected;
     private String fiirstId;//第一次体验课上课记录id ,
     private String secondId;//第二次体验课上课记录id
 
@@ -136,7 +136,7 @@ public class CoachSearchViperBean implements Serializable{
     }
 
     public CoachSearchViperBean(JSONObject jsonObject) {
-        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.name = JsonUtil.getString(jsonObject, "name");
         this.sex = JsonUtil.getString(jsonObject, "sex");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
@@ -172,10 +172,10 @@ public class CoachSearchViperBean implements Serializable{
         this.secondId = JsonUtil.getString(jsonObject, "secondId");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
-        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"contractIds").toString(),String.class);
+        this.contractIds = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "contractIds").toString(), String.class);
 
         try {
-            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(),CardprodsBean.class);
+            this.cardprodsBeans = com.alibaba.fastjson.JSONObject.parseArray(jsonObject.getJSONArray("cardprods").toString(), CardprodsBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

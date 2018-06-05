@@ -23,7 +23,6 @@ public class OptionItemData {
     }
 
 
-
     public ArrayList<String> getSymbol() {
         return optionDataFactory.getSymbol();
     }

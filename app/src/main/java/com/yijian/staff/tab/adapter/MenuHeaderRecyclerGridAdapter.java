@@ -65,12 +65,12 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
         if (showEditIcon) {
             holder.iv_delete.setVisibility(View.VISIBLE);
             holder.tv_count.setVisibility(View.GONE);
-        }else {
+        } else {
             int count = menuItem.getCount();
             if (count > 0) {
                 if (count < 100) {
-                    holder.tv_count.setText(""+count);
-                }else {
+                    holder.tv_count.setText("" + count);
+                } else {
                     holder.tv_count.setText("99+");
                 }
                 holder.tv_count.setVisibility(View.VISIBLE);
@@ -90,11 +90,11 @@ public class MenuHeaderRecyclerGridAdapter extends BaseDraggableRecyclerAdapter<
         holder.fl_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (showEditIcon){
+                if (showEditIcon) {
                     if (onDeleteListener != null) {
                         onDeleteListener.onDeleteClick(v, menuItem, holder.getAdapterPosition());
                     }
-                }else {
+                } else {
                     ARouter.getInstance().build(item.getPath()).navigation();
                 }
             }

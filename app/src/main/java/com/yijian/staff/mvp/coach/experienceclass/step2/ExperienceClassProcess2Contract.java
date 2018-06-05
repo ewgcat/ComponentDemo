@@ -7,14 +7,15 @@ import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
  */
 
 public interface ExperienceClassProcess2Contract {
-    interface View{
+    interface View {
         void showAccessRecord(AccessRecordBean accessRecordBean);
 
         void showSavaSucceed();
     }
 
-    interface Presenter{
-            void getAccessRecord(String processId);
-            void postCoachAccessRecord(AccessRecordBean bean);
+    interface Presenter {
+        void getAccessRecord(String processId);
+
+        void postCoachAccessRecord(AccessRecordBean bean);
     }
 }

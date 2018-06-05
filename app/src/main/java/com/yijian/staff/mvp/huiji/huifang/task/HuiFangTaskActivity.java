@@ -42,7 +42,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
     private ArrayList<HuiFangTypeBean> huiFangTypeBeanArrayList = new ArrayList<>();
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_hui_fang_task;
@@ -65,7 +64,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
     }
-
 
 
     private void initData() {
@@ -98,7 +96,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
     private void initIndicatorAndViewPager() {
 
 
-
         List<String> mTitleList = new ArrayList<>();
         List<Fragment> fragmentList = new ArrayList<>();
         mTitleList.add("全部");
@@ -127,6 +124,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
                 //初始化显示第一页
                 viewPager.setCurrentItem(0);
             }
+
             @Override
             public void onFail(String msg) {
                 showToast(msg);
@@ -135,15 +133,12 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
     }
 
 
-
-
-
-    @OnClick({ R.id.ll_hui_fang_ji_lu})
+    @OnClick({R.id.ll_hui_fang_ji_lu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             case R.id.ll_hui_fang_ji_lu:
-                startActivity(new Intent(HuiFangTaskActivity.this,HuiFangHistoryActivity.class));
+                startActivity(new Intent(HuiFangTaskActivity.this, HuiFangHistoryActivity.class));
                 break;
         }
     }

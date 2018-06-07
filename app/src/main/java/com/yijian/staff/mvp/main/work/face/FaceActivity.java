@@ -291,7 +291,6 @@ public class FaceActivity extends AppCompatActivity {
                             iv_temp.setImageBitmap(tempBitmap);*/
 
 
-
                                 LoadingProgressDialog.showBlueProgress(FaceActivity.this);
                                 //调用搜索接口
                                 postData(datas);
@@ -299,7 +298,7 @@ public class FaceActivity extends AppCompatActivity {
                         });
 //                    iv_temp.setImageBitmap(resultBitmap);
 
-                    }else{
+                    } else {
                         Toast.makeText(FaceActivity.this, "请对准人脸", Toast.LENGTH_SHORT).show();
                     }
 

@@ -25,7 +25,7 @@ import java.util.List;
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ViewHolder> {
     private List<ClassInfo> mClassInfoList;
     private Context context;
-    private int clickIndex=-1;
+    private int clickIndex = -1;
 
     public ClassListAdapter(Context context, List<ClassInfo> mClassInfoList) {
         this.mClassInfoList = mClassInfoList;
@@ -46,7 +46,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 //            holder.item_view.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
 //
 //        }else {
-            holder.item_view.setBackgroundResource(R.drawable.white_bg);
+        holder.item_view.setBackgroundResource(R.drawable.white_bg);
 //        }
 
         ClassInfo classInfo = mClassInfoList.get(position);
@@ -60,10 +60,10 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         holder.item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClickListener!=null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, classInfo);
                 }
-                clickIndex=position;
+                clickIndex = position;
                 notifyDataSetChanged();
             }
         });
@@ -73,8 +73,6 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
     public int getItemCount() {
         return mClassInfoList.size();
     }
-
-
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,12 +95,15 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
         }
     }
-  private   OnItemClickListener onItemClickListener;
-    public interface OnItemClickListener{
 
-       void onItemClick(View v, ClassInfo classInfo);
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+
+        void onItemClick(View v, ClassInfo classInfo);
     }
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-        this.onItemClickListener=onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

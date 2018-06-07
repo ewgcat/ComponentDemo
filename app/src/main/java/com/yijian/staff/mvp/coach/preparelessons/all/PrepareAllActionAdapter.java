@@ -14,13 +14,13 @@ import java.util.List;
  * Created by yangk on 2018/3/27.
  */
 
-public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActionAdapter.ViewHolder>  {
+public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActionAdapter.ViewHolder> {
 
     private List<PrepareLessonAllBean.PrepareListBean> recyclerViewActionBean; //装载RecyclerView的集合
     private EditActionObservable editActionObservable;
     private PrepareAllLessonActivity prepareAllLessonActivity;
 
-    public PrepareAllActionAdapter(List<PrepareLessonAllBean.PrepareListBean> recyclerViewActionBean, EditActionObservable editActionObservable, PrepareAllLessonActivity prepareAllLessonActivity){
+    public PrepareAllActionAdapter(List<PrepareLessonAllBean.PrepareListBean> recyclerViewActionBean, EditActionObservable editActionObservable, PrepareAllLessonActivity prepareAllLessonActivity) {
         this.recyclerViewActionBean = recyclerViewActionBean;
         this.editActionObservable = editActionObservable;
         this.prepareAllLessonActivity = prepareAllLessonActivity;
@@ -39,20 +39,21 @@ public class PrepareAllActionAdapter extends RecyclerView.Adapter<PrepareAllActi
             PrepareLessonAllBean.PrepareListBean prepareListBean = recyclerViewActionBean.get(position);
             holder.subActionContentView.initAction(prepareListBean, position, prepareAllLessonActivity);
             editActionObservable.addObserver(holder.subActionContentView);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public int getItemCount() {
-        return recyclerViewActionBean==null?0:recyclerViewActionBean.size();
+        return recyclerViewActionBean == null ? 0 : recyclerViewActionBean.size();
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private SubActionContentView subActionContentView;
+
         public ViewHolder(View view) {
             super(view);
             subActionContentView = view.findViewById(R.id.subActionContentView);

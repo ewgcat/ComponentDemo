@@ -24,15 +24,15 @@ public class ConditionBody implements Parcelable {
 
     /**
      * 筛选查询卡产品列表参数载体 {
-     cardName (string, optional): 卡名字 ,
-     cardType (integer, optional): 卡类型 ,卡类型:1时间卡,2次数卡,3储值卡,4会员制卡 ,
-     endPrice (number, optional): 价格范围上限 ,
-     isSortByPrice (integer, optional): 是否需要价格排序（0：升序，1：降序） ,
-     pageNum (integer, optional),
-     pageSize (integer, optional),
-     startPrice (number, optional): 价格范围下限 ,
-     venueName (string, optional): 场馆
-     }
+     * cardName (string, optional): 卡名字 ,
+     * cardType (integer, optional): 卡类型 ,卡类型:1时间卡,2次数卡,3储值卡,4会员制卡 ,
+     * endPrice (number, optional): 价格范围上限 ,
+     * isSortByPrice (integer, optional): 是否需要价格排序（0：升序，1：降序） ,
+     * pageNum (integer, optional),
+     * pageSize (integer, optional),
+     * startPrice (number, optional): 价格范围下限 ,
+     * venueName (string, optional): 场馆
+     * }
      */
 
     private String cardName;

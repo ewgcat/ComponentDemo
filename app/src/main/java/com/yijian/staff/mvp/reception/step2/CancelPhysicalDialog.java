@@ -76,7 +76,7 @@ public class CancelPhysicalDialog extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_cancel:
                 dismiss();
                 break;
@@ -99,33 +99,29 @@ public class CancelPhysicalDialog extends DialogFragment implements View.OnClick
 
             case R.id.tv_ok:
                 String reason = getReason();
-                if (TextUtils.isEmpty(reason)){
-                    Toast.makeText(getActivity(),"请选择原因",Toast.LENGTH_SHORT).show();
-                return;
+                if (TextUtils.isEmpty(reason)) {
+                    Toast.makeText(getActivity(), "请选择原因", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                if (cancelLisenter!=null)cancelLisenter.cancelReason(reason);
+                if (cancelLisenter != null) cancelLisenter.cancelReason(reason);
                 break;
         }
     }
 
     private String getReason() {
-        String reason="";
-        if (tvReason0.isSelected()){
-            reason= tvReason0.getText().toString();
-        }
-        else if (tvReason1.isSelected()){
+        String reason = "";
+        if (tvReason0.isSelected()) {
+            reason = tvReason0.getText().toString();
+        } else if (tvReason1.isSelected()) {
 
-            reason=tvReason1.getText().toString();
+            reason = tvReason1.getText().toString();
+        } else if (tvReason2.isSelected()) {
+            reason = tvReason2.getText().toString();
+        } else {
+            reason = "";
         }
-        else if (tvReason2.isSelected())
-        {
-            reason= tvReason2.getText().toString();
-        }
-        else{
-            reason="";
-        }
-            return reason;
+        return reason;
     }
 
     @Override
@@ -134,13 +130,13 @@ public class CancelPhysicalDialog extends DialogFragment implements View.OnClick
         resetState();
     }
 
-    public void resetState(){
+    public void resetState() {
         tvReason0.setSelected(false);
         tvReason1.setSelected(false);
         tvReason2.setSelected(false);
     }
 
-    public interface CancelLisenter{
+    public interface CancelLisenter {
         void cancelReason(String reason);
     }
 

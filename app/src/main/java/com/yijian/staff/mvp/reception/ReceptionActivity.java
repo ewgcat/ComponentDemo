@@ -42,7 +42,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private List<ReceptionInfo> mReceptionInfoList = new ArrayList<>();
     private RecptionerInfoBean consumer;
 
-    public static final int RESULT_OK=3;
+    public static final int RESULT_OK = 3;
 
     public static final String CONSUMER = "consumer";
     private RecyclerView recyclerView;
@@ -53,7 +53,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     private ReceptionHistoryAdapter receptionHistoryAdapter;
     private SmartRefreshLayout refreshLayout;
     private Integer operatorType;
-    private boolean isInit=true;
+    private boolean isInit = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         presenter = new ReceptionPresenter(this);
 
         presenter.setView(this);
-       presenter.getRecptionerInfo();
+        presenter.getRecptionerInfo();
 
         presenter.getRecptionRecord(true);
 
@@ -84,8 +84,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
-       if (!isInit)presenter.getRecptionerInfo();
-        isInit=false;
+        if (!isInit) presenter.getRecptionerInfo();
+        isInit = false;
     }
 
     private void initView() {
@@ -95,7 +95,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         navigationBar2.setBackClickListener(this);
 
 
-       int userRole = SharePreferenceUtil.getUserRole();
+        int userRole = SharePreferenceUtil.getUserRole();
 
         tvName = findViewById(R.id.tv_name);
         tvSex = findViewById(R.id.tv_sex);
@@ -103,7 +103,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         findViewById(R.id.tv_jiedai).setOnClickListener(this);
         TextView stopJiedai = findViewById(R.id.tv_stopJieDai);
-        if (userRole!=1){
+        if (userRole != 1) {
             stopJiedai.setVisibility(View.GONE);
         }
         stopJiedai.setOnClickListener(this);
@@ -153,8 +153,8 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         switch (id) {
             case R.id.tv_stopJieDai:
-                if (consumer==null){
-                    Toast.makeText(this,"未获得接待人信息",Toast.LENGTH_SHORT).show();
+                if (consumer == null) {
+                    Toast.makeText(this, "未获得接待人信息", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -165,15 +165,15 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
                         presenter.endRecption(consumer.getId());
                     }
                 });
-                endReceptionDialog.show(getFragmentManager(),"EndReceptionDialog");
+                endReceptionDialog.show(getFragmentManager(), "EndReceptionDialog");
                 break;
             case R.id.tv_jiedai:
-                if (consumer==null){
-                    Toast.makeText(this,"未获得接待人信息",Toast.LENGTH_SHORT).show();
+                if (consumer == null) {
+                    Toast.makeText(this, "未获得接待人信息", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (operatorType==null){
-                    Toast.makeText(this,"未获得接待人节点",Toast.LENGTH_SHORT).show();
+                if (operatorType == null) {
+                    Toast.makeText(this, "未获得接待人节点", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -218,13 +218,14 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private List<Integer> HistoryNode=new ArrayList<>();
+    private List<Integer> HistoryNode = new ArrayList<>();
+
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
         operatorType = receptionStastuBean.getOperatorType();
         HistoryNode.clear();
         List<ReceptionLog> receptionLogs = receptionStastuBean.getReceptionLogs();
-        if (receptionLogs !=null&&!receptionLogs.isEmpty()){
+        if (receptionLogs != null && !receptionLogs.isEmpty()) {
             for (ReceptionLog log : receptionLogs) {
                 HistoryNode.add(log.getOperatorType());
             }
@@ -233,7 +234,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void showEndRecption() {
-        Toast.makeText(this,"接待已结束",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "接待已结束", Toast.LENGTH_SHORT).show();
 
         finish();
 
@@ -248,17 +249,17 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
     public void onRequestClicked(int position) {
         RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
         Intent intent = new Intent(this, QuestionnaireResultActivity.class);
-        intent.putExtra("memberId",recordsBean.getMemberId());
-        intent.putExtra("memberName",recordsBean.getMemberName());
+        intent.putExtra("memberId", recordsBean.getMemberId());
+        intent.putExtra("memberName", recordsBean.getMemberName());
         startActivity(intent);
     }
 
     @Override
     public void onPhysicalReportClicked(int position) {
         RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
-        Intent i = new Intent(this,PhysicalReportActivity.class);
+        Intent i = new Intent(this, PhysicalReportActivity.class);
         i.putExtra("memberId", recordsBean.getMemberId());
-        i.putExtra("memberName",recordsBean.getMemberName());
+        i.putExtra("memberName", recordsBean.getMemberName());
         startActivity(i);
     }
 
@@ -270,7 +271,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
         switch (resultCode) {
             case RESULT_OK:
                 ReceptionActivity.this.setResult(MainActivity.RESULT_OK_RECEPTION);
-               finish();
+                finish();
                 break;
 
             default:

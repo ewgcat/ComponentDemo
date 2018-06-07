@@ -25,8 +25,8 @@ public class Template1ClassActivity_ycm extends AppCompatActivity {
         setContentView(R.layout.activity_experience_template1);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("templateListBean")){
-             templateListBean = intent.getParcelableExtra("templateListBean");
+        if (intent.hasExtra("templateListBean")) {
+            templateListBean = intent.getParcelableExtra("templateListBean");
         }
 
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);

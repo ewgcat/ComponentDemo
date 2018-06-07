@@ -27,7 +27,7 @@
         "path": "/test/7",
         "group": "会籍(客服)",
         "count": 0,
-        "className":"YJAddPotentialViewController"
+        "className": "YJAddPotentialViewController"
       },
       {
         "type": 0,
@@ -118,7 +118,7 @@
         "path": "/test/7",
         "group": "会籍(客服)",
         "count": 0,
-        "className":"YJAddPotentialViewController"
+        "className": "YJAddPotentialViewController"
       },
       {
         "type": 1,
@@ -127,7 +127,7 @@
         "path": "/test/9",
         "group": "会籍(客服)",
         "count": 0,
-        "className":"YJPQViewController"
+        "className": "YJPQViewController"
       },
       {
         "type": 1,
@@ -160,7 +160,6 @@
   {
     "title": "教练",
     "item": [
-
       {
         "type": 1,
         "name": "教练回访",
@@ -176,7 +175,7 @@
         "path": "/test/14",
         "group": "教练",
         "count": 0,
-        "className":"YJPrepareClassViewController"
+        "className": "YJPrepareClassViewController"
       },
       {
         "type": 1,
@@ -185,7 +184,7 @@
         "path": "/test/15",
         "group": "教练",
         "count": 0,
-        "className":"YJTakeClassViewController"
+        "className": "YJTakeClassViewController"
       },
       {
         "type": 1,
@@ -194,7 +193,7 @@
         "path": "/test/16",
         "group": "教练",
         "count": 0,
-        "className":"YJTrailStoreClassController"
+        "className": "YJTrailStoreClassController"
       },
       {
         "type": 1,
@@ -203,8 +202,9 @@
         "path": "/test/17",
         "group": "教练",
         "count": 0,
-        "className":"YJTrialClassController"
-      },  {
+        "className": "YJTrialClassController"
+      },
+      {
         "type": 1,
         "name": "课程报价",
         "icon": "url",
@@ -224,7 +224,7 @@
         "path": "/test/30",
         "group": "其他",
         "count": 0,
-        "className":"YJSuggestFeedbackViewController"
+        "className": "YJSuggestFeedbackViewController"
       }
     ]
   }

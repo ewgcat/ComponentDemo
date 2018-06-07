@@ -13,7 +13,7 @@ import java.util.List;
  * Created by The_P on 2018/4/13.
  */
 
-public class TypeItemAerobicsViewHolder extends  TypeViewHolder{
+public class TypeItemAerobicsViewHolder extends TypeViewHolder {
 
     private final TextView column0;
     private final TextView column1;
@@ -42,9 +42,9 @@ public class TypeItemAerobicsViewHolder extends  TypeViewHolder{
                 itemView.setBackgroundResource(R.drawable.shape_fillet_white_up_8);
 
             } else {
-                if (((AerobicsListBean) o).isLastItem){
+                if (((AerobicsListBean) o).isLastItem) {
                     itemView.setBackgroundResource(R.drawable.shape_fillet_white_down_8);
-                }else {
+                } else {
                     itemView.setBackgroundResource(R.color.white);
                 }
                 column0.setTextColor(itemView.getContext().getResources().getColor(R.color.text_black2));
@@ -52,9 +52,9 @@ public class TypeItemAerobicsViewHolder extends  TypeViewHolder{
                 column2.setTextColor(itemView.getContext().getResources().getColor(R.color.text_black2));
 
 
-                column0.setText(""+((AerobicsListBean) o).getName());
-                column1.setText(""+((AerobicsListBean) o).getGrade());
-                column2.setText(""+((AerobicsListBean) o).getTime());
+                column0.setText("" + ((AerobicsListBean) o).getName());
+                column1.setText("" + ((AerobicsListBean) o).getGrade());
+                column2.setText("" + ((AerobicsListBean) o).getTime());
             }
         }
     }

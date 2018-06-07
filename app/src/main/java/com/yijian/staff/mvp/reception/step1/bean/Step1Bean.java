@@ -8,7 +8,7 @@ import java.util.List;
  * Created by The_P on 2018/3/16.
  */
 
-public  class Step1Bean implements ParentImp<QuestOptBean> {
+public class Step1Bean implements ParentImp<QuestOptBean> {
     /**
      * questName : 1.信息来源(单选)
      * questOpt : [{"name":"报纸","type":"normal","selected":false},{"name":"电视TV","type":"normal","selected":false},{"name":"广播","type":"normal","selected":false},{"name":"广播","type":"mix","selected":false}]

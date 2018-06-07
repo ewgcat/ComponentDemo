@@ -6,7 +6,7 @@ import com.yijian.staff.mvp.reception.step3.bean.SelectedBean;
  * Created by The_P on 2018/4/19.
  */
 
-public  class LeaderBean extends SelectedBean {
+public class LeaderBean extends SelectedBean {
     /**
      * id : null
      * post : 3
@@ -40,7 +40,6 @@ public  class LeaderBean extends SelectedBean {
     public void setPostName(String postName) {
         this.postName = postName;
     }
-
 
 
 }

@@ -35,7 +35,8 @@ public class PrivateLessonRecordBean {
     private Integer actionStrength;
     private String time;
     private Integer interval;
-    private boolean isStartClock = false;;
+    private boolean isStartClock = false;
+    ;
 
  /*   public PrivateLessonRecordBean(JSONObject jsonObj) {
         try {

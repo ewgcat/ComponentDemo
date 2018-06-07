@@ -58,7 +58,7 @@ public class EventSetDao {
     }
 
     public List<EventSet> getAllEventSet() {
-        List<EventSet>  eventSets = new ArrayList<>();
+        List<EventSet> eventSets = new ArrayList<>();
         SQLiteDatabase db = mHelper.getReadableDatabase();
         Cursor cursor = db.query(JeekDBConfig.EVENT_SET_TABLE_NAME, null, null, null, null, null, null);
         EventSet eventSet;

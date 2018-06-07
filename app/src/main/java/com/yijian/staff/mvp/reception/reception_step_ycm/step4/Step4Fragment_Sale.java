@@ -71,12 +71,13 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
     private RecptionerInfoBean consumerBean;
 
     Unbinder unbinder;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
-        if (consumerBean!=null)memberId = consumerBean.getId();
+        if (consumerBean != null) memberId = consumerBean.getId();
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
         navigationBar2.setmRightTvText("下一步");
@@ -85,14 +86,14 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
             @Override
             public void onClick(View v) {
 //                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep3SaleToStep4();
-                if (presenter!=null)presenter.getStatus(true,memberId);
+                if (presenter != null) presenter.getStatus(true, memberId);
             }
         });
 
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep4Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep4Back();
             }
         });
     }
@@ -121,9 +122,9 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         tvChakanxiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (productDetail==null)return;
+                if (productDetail == null) return;
                 Intent intent2 = new Intent(getContext(), RightsAcitity.class);
-                intent2.putExtra("productDetail",productDetail);
+                intent2.putExtra("productDetail", productDetail);
                 startActivity(intent2);
             }
         });
@@ -132,18 +133,18 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail =productDetail;
+        this.productDetail = productDetail;
 
         String cardName = productDetail.getCardName();
-        tvCardName.setText(""+cardName );
+        tvCardName.setText("" + cardName);
 
         String cardTypeName = productDetail.getCardTypeName();
-        tvCardtype.setText(""+cardTypeName);
+        tvCardtype.setText("" + cardTypeName);
 
 //        BigDecimal salePrice = productDetail.getSalePrice();
 //        if (salePrice!=null) tvPrice.setText(""+salePrice.doubleValue());
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText(""+salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
 
 //        Integer cardType = productDetail.getCardType();// 卡类型:0期限卡,1次数卡,2储值卡,3会员制卡 ,
@@ -178,30 +179,29 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
 //        if (validTime != null) tvYuer.setText("" + validTime + "次");
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
             tvYuErTip.setText(strRestKey);
             tvYuer.setText(strRestVal);
         }
 
 
-
         Map<Integer, List<CardGiftDto>> gift = productDetail.getGift();
-        if (gift!=null){
-            String giftName="";
-            for(Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()){
+        if (gift != null) {
+            String giftName = "";
+            for (Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()) {
                 List<CardGiftDto> value = vo.getValue();
                 for (int i = 0; i < value.size(); i++) {
-                    giftName=giftName+" ";
-                    giftName=giftName+value.get(i).getName();
+                    giftName = giftName + " ";
+                    giftName = giftName + value.get(i).getName();
                     if (!TextUtils.isEmpty(value.get(i).getNum()))
-                        giftName= giftName+"x"+value.get(i).getNum();
+                        giftName = giftName + "x" + value.get(i).getNum();
                 }
             }
             tvZengsongkecheng.setText(giftName);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         List<String> rightsInterestsList = productDetail.getRightsInterestsList();
         if (rightsInterestsList != null && rightsInterestsList.size() != 0) {
@@ -216,10 +216,10 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
 
 
         String createDate = productDetail.getCreateDate();
-        tvStartTime.setText(""+createDate);
+        tvStartTime.setText("" + createDate);
 
         String expirationDate = productDetail.getExpirationDate();
-        tvEndTime.setText(""+expirationDate);
+        tvEndTime.setText("" + expirationDate);
 
 
     }
@@ -231,7 +231,8 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
 
     @Override
     public void showStatus(ReceptionStastuBean receptionStastuBean) {
-        if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep4SaleToStep5( receptionStastuBean.getOperatorType());
+        if (statusChangeLisenter != null)
+            statusChangeLisenter.ReceptionStep4SaleToStep5(receptionStastuBean.getOperatorType());
     }
 
     @Override

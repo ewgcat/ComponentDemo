@@ -4,7 +4,7 @@ package com.yijian.staff.mvp.reception.step2.step2Bean;
  * Created by The_P on 2018/3/15.
  */
 
-public  class MultiOptBean {
+public class MultiOptBean {
 
 
     /**

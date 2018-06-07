@@ -63,18 +63,18 @@ public class ClubActivity extends BaseWebViewActivity {
         }
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String ,String> params=new HashMap<>();
-        params.put("type",""+BaseWebViewActivity.CLUB_TYPE);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("type", "" + BaseWebViewActivity.CLUB_TYPE);
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 
-                webView.loadUrl(JsonUtil.getString(result,"url"));
+                webView.loadUrl(JsonUtil.getString(result, "url"));
 
                 String token = DBManager.getInstance().queryUser().getToken();
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("token",token);
+                    jsonObject.put("token", token);
                     webView.setWebViewClient(new WebViewClient() {
                         @Override
                         public void onPageFinished(WebView view, String url) {
@@ -95,9 +95,7 @@ public class ClubActivity extends BaseWebViewActivity {
         });
 
 
-
     }
-
 
 
 }

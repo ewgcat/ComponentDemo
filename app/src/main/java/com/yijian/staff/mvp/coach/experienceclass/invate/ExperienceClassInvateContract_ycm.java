@@ -7,11 +7,11 @@ import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
  */
 
 public interface ExperienceClassInvateContract_ycm {
-    interface View{
+    interface View {
         void showInviterInfo(InviterBean inviterBean);
     }
 
-    interface Presenter{
+    interface Presenter {
         void getInviterInfo(String memberId);
     }
 

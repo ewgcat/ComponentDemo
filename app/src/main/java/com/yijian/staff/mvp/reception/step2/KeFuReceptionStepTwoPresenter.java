@@ -25,16 +25,16 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
     private KeFuReceptionStepTwoContract.View view;
 
     public KeFuReceptionStepTwoPresenter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView(KeFuReceptionStepTwoContract.View view){
-        this.view=view;
+    public void setView(KeFuReceptionStepTwoContract.View view) {
+        this.view = view;
     }
 
     @Override
     public void jumpBodyCheck(String memberId) {
-        Map<String,String> params=new HashMap<>();
+        Map<String, String> params = new HashMap<>();
 //        memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
@@ -49,11 +49,11 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
                 try {
                     int code = jsonObject.getInt("code");
 
-                    if (code==0){
+                    if (code == 0) {
                         view.showJumpBodyCheck();
-                    }else {
+                    } else {
                         String msg = jsonObject.getString("msg");
-                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -74,11 +74,11 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
 
     @Override
     public void coachBodyCheck(String memberId) {
-        Map<String,String> params=new HashMap<>();
+        Map<String, String> params = new HashMap<>();
 //        memberId="076c3096caf04559b9abe112542a9cd0";
         params.put("memberId", memberId);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new Observer<JSONObject>(){
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_TOCOACH, params, new Observer<JSONObject>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -90,11 +90,11 @@ public class KeFuReceptionStepTwoPresenter implements KeFuReceptionStepTwoContra
                 try {
                     int code = jsonObject.getInt("code");
 
-                    if (code==0){
+                    if (code == 0) {
                         view.showCoachBodyCheck();
-                    }else {
+                    } else {
                         String msg = jsonObject.getString("msg");
-                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

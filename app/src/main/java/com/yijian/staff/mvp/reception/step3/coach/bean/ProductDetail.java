@@ -271,32 +271,30 @@ public class ProductDetail implements Serializable {
 
     String strRestKey;
     String strRestVal;
-//    Object gift; //品
-    Map<Integer,List<CardGiftDto>> gift; //赠品类型（0：会员卡  1：团课  2：私课）
+    //    Object gift; //品
+    Map<Integer, List<CardGiftDto>> gift; //赠品类型（0：会员卡  1：团课  2：私课）
     List<String> rightsInterestsList;//权益
 
     String changeShopPoundageFee;//转店手续费费用，当转店手续费类型是1的时候值是百分比 ,
     String changeShopPoundageType;// 转店手续费类型：0固定金额，1百分比 ,
 
-    String  renewPoundageFee ;//续费折扣费用，当续费类型是1的时候值是百分比 ,
-    Integer  renewPoundageType ;//续费折扣类型：0固定金额，1百分比 ,
+    String renewPoundageFee;//续费折扣费用，当续费类型是1的时候值是百分比 ,
+    Integer renewPoundageType;//续费折扣类型：0固定金额，1百分比 ,
 
-    String   returnPoundageFee ;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
-    Integer   returnPoundageType ;//退卡手续费类型：0固定金额，1百分比 ,
+    String returnPoundageFee;//退卡手续费费用，当退卡手续费类型是1的时候值是百分比 ,
+    Integer returnPoundageType;//退卡手续费类型：0固定金额，1百分比 ,
 
-    String   stopPoundageFee ;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
-    Integer    stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
+    String stopPoundageFee;// 停卡手续费费用，当停卡手续费类型是1的时候值是百分比 ,
+    Integer stopPoundageType;//停卡手续费类型：0固定金额，1百分比 ,
 
-    String  switchPoundageFee ;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
-    String   switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
+    String switchPoundageFee;// 卡品转换手续费费用，当转换手续费类型是1的时候值是百分比 ,
+    String switchPoundageType;// 卡品转换手续费类型：0固定金额，1百分比 ,
 
-    String  transferPoundageFee ;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
-    String  transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
+    String transferPoundageFee;// 转让手续费费用，当转让手续费类型是1的时候值是百分比 ,
+    String transferPoundageType;// 转让手续费类型：0固定金额，1百分比 ,
 
     String createDate;//创建时间
     String expirationDate;//结束时间
-
-
 
 
 }

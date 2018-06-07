@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/login")
-public class LoginActivity extends MvcBaseActivity  {
+public class LoginActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.et_account)
@@ -101,7 +101,6 @@ public class LoginActivity extends MvcBaseActivity  {
     }
 
 
-
     private void jumpToForgetPassword() {
         String account = etAccount.getText().toString();
         Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
@@ -143,8 +142,6 @@ public class LoginActivity extends MvcBaseActivity  {
             }
         }
     }
-
-
 
 
     @OnClick({R.id.ll_login, R.id.forget_password})

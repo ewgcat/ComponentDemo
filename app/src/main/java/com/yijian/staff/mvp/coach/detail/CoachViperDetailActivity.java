@@ -205,15 +205,15 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
                 break;
             case R.id.ll_edit:
                 Intent intent = new Intent(CoachViperDetailActivity.this, CoachVipInfoEditActivity.class);
-                if(coachVipDetailBean!=null){
+                if (coachVipDetailBean != null) {
                     intent.putExtra("detail", coachVipDetailBean.getDetail());
                     intent.putExtra("memberId", coachVipDetailBean.getMemberId());
                     intent.putExtra("name", coachVipDetailBean.getName());
                     CoachVipDetailBean.CustomerServiceInfoBean customerServiceInfo = coachVipDetailBean.getCustomerServiceInfo();
-                    if (customerServiceInfo!=null){
+                    if (customerServiceInfo != null) {
                         intent.putExtra("source", customerServiceInfo.getUserChannel());
                     }
-                    startActivityForResult(intent,1111);
+                    startActivityForResult(intent, 1111);
                 }
 
                 break;

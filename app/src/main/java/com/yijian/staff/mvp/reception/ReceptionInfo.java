@@ -16,12 +16,12 @@ public class ReceptionInfo {
     private String product;
     private String status;
 
-    public ReceptionInfo(JSONObject jsonObject){
-      this.name=  JsonUtil.getString(jsonObject,"name");
-      this.phone=  JsonUtil.getString(jsonObject,"phone");
-      this.sex=  JsonUtil.getString(jsonObject,"sex");
-      this.product=  JsonUtil.getString(jsonObject,"product");
-      this.status=  JsonUtil.getString(jsonObject,"status");
+    public ReceptionInfo(JSONObject jsonObject) {
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.phone = JsonUtil.getString(jsonObject, "phone");
+        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.product = JsonUtil.getString(jsonObject, "product");
+        this.status = JsonUtil.getString(jsonObject, "status");
     }
 
     public String getName() {

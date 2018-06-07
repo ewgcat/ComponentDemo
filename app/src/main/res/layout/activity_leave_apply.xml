@@ -1,248 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:orientation="vertical">
-
-    <include
-        android:id="@+id/vip_over_navigation_bar2"
-        layout="@layout/view_navigation_bar2" />
-
-    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        android:orientation="vertical">
 
-        <LinearLayout
+    <include
+            android:id="@+id/vip_over_navigation_bar2"
+            layout="@layout/view_navigation_bar2"/>
+
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="15dp">
+            android:background="@color/gray">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="15dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/white_bg">
-
-                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/white_bg">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingTop="15dp">
 
                     <TextView
-                        android:id="@+id/tv_label_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="姓名:"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:layout_alignParentLeft="true"/>
+                            android:id="@+id/tv_label_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="姓名:"
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"/>
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/tv_label_name"
-                        android:gravity="center_vertical|right"
-                        android:text="原力俱乐部30年年卡"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:background="@color/white"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/tv_label_name"
+                            android:gravity="center_vertical|right"
+                            android:text="原力俱乐部30年年卡"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:background="@color/white"/>
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
-
-                    <TextView
-                        android:id="@+id/tv_label_starttime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="开始时间:"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:layout_alignParentLeft="true"/>
-
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:text="时间卡"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:layout_toRightOf="@id/tv_label_starttime"
-                        android:background="@color/white"
-                        android:drawableRight="@mipmap/wt_jiantou"
-                        android:drawablePadding="3dp"/>
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingTop="15dp">
+
+                    <TextView
+                            android:id="@+id/tv_label_starttime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="开始时间:"
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:text="时间卡"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:layout_toRightOf="@id/tv_label_starttime"
+                            android:background="@color/white"
+                            android:drawableRight="@mipmap/wt_jiantou"
+                            android:drawablePadding="3dp"/>
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
-
-                    <TextView
-                        android:id="@+id/tv_label_endtime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="结束时间:"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:layout_alignParentLeft="true"/>
-
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:text="邹市明"
-                        android:textColor="#333333"
-                        android:background="@color/white"
-                        android:textSize="14sp"
-                        android:layout_toRightOf="@id/tv_label_endtime"
-                        android:drawableRight="@mipmap/wt_jiantou"
-                        android:drawablePadding="3dp"/>
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingTop="15dp">
+
+                    <TextView
+                            android:id="@+id/tv_label_endtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="结束时间:"
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:text="邹市明"
+                            android:textColor="#333333"
+                            android:background="@color/white"
+                            android:textSize="14sp"
+                            android:layout_toRightOf="@id/tv_label_endtime"
+                            android:drawableRight="@mipmap/wt_jiantou"
+                            android:drawablePadding="3dp"/>
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingTop="15dp">
 
                     <TextView
-                        android:id="@+id/tv_label_totaltime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="共计时间:"
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:layout_alignParentLeft="true"/>
+                            android:id="@+id/tv_label_totaltime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="共计时间:"
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"/>
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:text="健身课"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:background="@color/white"
-                        android:layout_toRightOf="@id/tv_label_totaltime"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:text="健身课"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:background="@color/white"
+                            android:layout_toRightOf="@id/tv_label_totaltime"/>
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp">
-
-                    <TextView
-                        android:id="@+id/tv_leave_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="请假类型: "
-                        android:textColor="#999999"
-                        android:textSize="14sp"
-                        android:layout_alignParentLeft="true"/>
-
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:text="陈周奇老师"
-                        android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:background="@color/white"
-                        android:layout_toRightOf="@id/tv_leave_type"
-                        android:drawableRight="@mipmap/wt_jiantou"
-                        android:drawablePadding="3dp"/>
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp">
+
+                    <TextView
+                            android:id="@+id/tv_leave_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="请假类型: "
+                            android:textColor="#999999"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:text="陈周奇老师"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:background="@color/white"
+                            android:layout_toRightOf="@id/tv_leave_type"
+                            android:drawableRight="@mipmap/wt_jiantou"
+                            android:drawablePadding="3dp"/>
 
                 </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="21dp"
-                android:gravity="center_vertical"
-                android:layout_marginTop="31dp">
-                <View
-                    android:layout_width="7dp"
-                    android:layout_height="16dp"
-                    android:background="#31a4fc"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="请假说明"
-                    android:textColor="@color/black333333"
-                    android:layout_marginLeft="5dp"
-                    android:textStyle="bold"
-                    />
+                    android:orientation="horizontal"
+                    android:paddingLeft="21dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="31dp">
+                <View
+                        android:layout_width="7dp"
+                        android:layout_height="16dp"
+                        android:background="#31a4fc"
+                />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="请假说明"
+                        android:textColor="@color/black333333"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                />
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/rel_refuse_reason"
-                android:layout_width="match_parent"
-                android:layout_height="125dp"
-                android:background="@drawable/white_bg"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="21dp"
-                >
+                    android:id="@+id/rel_refuse_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:background="@drawable/white_bg"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="21dp"
+            >
 
                 <EditText
-                    android:id="@+id/et_refuse_reason"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left|top"
-                    android:background="@drawable/white_bg"
-                    android:paddingTop="15dp"
-                    android:paddingLeft="21dp"
-                    android:paddingRight="21dp"
-                    android:paddingBottom="15dp"
-                    android:singleLine="false"
-                    android:hint="请说明你的请假说明"
-                    android:textSize="14sp"/>
+                        android:id="@+id/et_refuse_reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left|top"
+                        android:background="@drawable/white_bg"
+                        android:paddingTop="15dp"
+                        android:paddingLeft="21dp"
+                        android:paddingRight="21dp"
+                        android:paddingBottom="15dp"
+                        android:singleLine="false"
+                        android:hint="请说明你的请假说明"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="50字"
-                    android:textSize="12sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:textColor="#999999"
-                    />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50字"
+                        android:textSize="12sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="#999999"
+                />
 
             </RelativeLayout>
 

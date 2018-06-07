@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <include
-        android:id="@+id/hui_fang_task_navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+            android:id="@+id/hui_fang_task_navigation_bar"
+            layout="@layout/view_navigation_bar2"/>
 
     <com.yijian.staff.widget.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textColor="#666666"
-        android:textSize="14sp"
-        app:pstsDividerColor="@android:color/transparent"
-        app:pstsIndicatorColor="@color/blue"
-        app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="false"
-        app:pstsTabPaddingLeftRight="16dp"
-        android:background="@color/white"
-        app:pstsTextSelectedColor="@color/blue"
-        app:pstsUnderlineColor="@android:color/transparent" />
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            app:pstsDividerColor="@android:color/transparent"
+            app:pstsIndicatorColor="@color/blue"
+            app:pstsIndicatorHeight="2dp"
+            app:pstsShouldExpand="false"
+            app:pstsTabPaddingLeftRight="16dp"
+            android:background="@color/white"
+            app:pstsTextSelectedColor="@color/blue"
+            app:pstsUnderlineColor="@android:color/transparent"/>
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     <View
-        android:id="@+id/bottom_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#f2f2f2" />
+            android:id="@+id/bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f2f2f2"/>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_height="match_parent">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent">
             <ImageView
-                android:src="@mipmap/wt_renwulan"
-                android:layout_width="18dp"
-                android:layout_height="18dp" />
+                    android:src="@mipmap/wt_renwulan"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"/>
             <TextView
-                android:id="@+id/tv_hui_fang_ren_wu"
-                android:text="回访任务"
-                android:textColor="@color/blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    android:id="@+id/tv_hui_fang_ren_wu"
+                    android:text="回访任务"
+                    android:textColor="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/ll_hui_fang_ji_lu"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_height="match_parent">
+                android:id="@+id/ll_hui_fang_ji_lu"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/iv_hui_fang_ji_lu"
-                android:src="@mipmap/wt_jilu"
-                android:layout_width="18dp"
-                android:layout_height="18dp" />
+                    android:id="@+id/iv_hui_fang_ji_lu"
+                    android:src="@mipmap/wt_jilu"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"/>
             <TextView
-                android:id="@+id/tv_hui_fang_ji_lu"
-                android:text="回访记录"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    android:id="@+id/tv_hui_fang_ji_lu"
+                    android:text="回访记录"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

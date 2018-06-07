@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
-    <ImageView
-        android:id="@+id/iv_kefu_head"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@mipmap/placeholder" />
-
-    <TextView
-        android:id="@+id/tv_name"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="@dimen/text_size_16"
-        android:text="朱沙"
-        android:textColor="#333333" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_marginTop="6dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="会籍总监"
-        android:textColor="#333333" />
-
-    <TextView
-        android:layout_marginTop="12dp"
-        android:id="@+id/tv_select"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:background="@drawable/selector_fillet_12_blue"
         android:gravity="center"
-        android:text="选择"
-        android:textColor="@drawable/selector_textcolor_white"
-        android:textSize="14sp" />
+        android:orientation="vertical">
+    <ImageView
+            android:id="@+id/iv_kefu_head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/placeholder"/>
+
+    <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/text_size_16"
+            android:text="朱沙"
+            android:textColor="#333333"/>
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="会籍总监"
+            android:textColor="#333333"/>
+
+    <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/tv_select"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="@drawable/selector_fillet_12_blue"
+            android:gravity="center"
+            android:text="选择"
+            android:textColor="@drawable/selector_textcolor_white"
+            android:textSize="14sp"/>
 </LinearLayout>

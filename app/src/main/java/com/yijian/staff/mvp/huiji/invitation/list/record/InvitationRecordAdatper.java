@@ -24,7 +24,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
     private List<InvitationRecordBean> invitationRecordBeanList;
     private Context context;
 
-    public InvitationRecordAdatper(Context context, List<InvitationRecordBean> invitationRecordBeanList){
+    public InvitationRecordAdatper(Context context, List<InvitationRecordBean> invitationRecordBeanList) {
         this.context = context;
         this.invitationRecordBeanList = invitationRecordBeanList;
     }
@@ -44,18 +44,18 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.lin_invate_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,InvateDetailActivity.class));
+                context.startActivity(new Intent(context, InvateDetailActivity.class));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return invitationRecordBeanList ==null?0: invitationRecordBeanList.size();
+        return invitationRecordBeanList == null ? 0 : invitationRecordBeanList.size();
     }
 
     public void update(List<InvitationRecordBean> invitationRecordBeanList) {
-        this.invitationRecordBeanList=invitationRecordBeanList;
+        this.invitationRecordBeanList = invitationRecordBeanList;
         notifyDataSetChanged();
     }
 
@@ -73,14 +73,14 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
 
         public ViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_cardName   = view.findViewById(R.id.tv_cardName);
-            tv_invitation_over_time =     view.findViewById(R.id.tv_invitation_over_time);
-            tv_invitation_over_reason =     view.findViewById(R.id.tv_invitation_over_reason);
-            tv_invitation_type  =     view.findViewById(R.id.tv_invitation_type);
-            lin_invate_detail  =     view.findViewById(R.id.lin_invate_detail);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_cardName = view.findViewById(R.id.tv_cardName);
+            tv_invitation_over_time = view.findViewById(R.id.tv_invitation_over_time);
+            tv_invitation_over_reason = view.findViewById(R.id.tv_invitation_over_reason);
+            tv_invitation_type = view.findViewById(R.id.tv_invitation_type);
+            lin_invate_detail = view.findViewById(R.id.lin_invate_detail);
         }
     }
 

@@ -15,8 +15,8 @@ import java.util.List;
  * time: 2018/3/5 19:14:06
  */
 public class CoachHuiFangPagerAdapter extends FragmentPagerAdapter {
-    private  List<Fragment> fragments;
-    private  FragmentManager mFragmentManager;
+    private List<Fragment> fragments;
+    private FragmentManager mFragmentManager;
     private List<String> mTitleDataList = new ArrayList<>();
     private FragmentTransaction fragmentTransaction;
 
@@ -47,7 +47,7 @@ public class CoachHuiFangPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container,position);
+        return super.instantiateItem(container, position);
     }
 
     @Override

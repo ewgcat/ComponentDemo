@@ -124,7 +124,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
 
         public void bind(DayTask dayTask) {
             rlContainer.removeAllViews();
-            if (dayTask == null){
+            if (dayTask == null) {
                 view_1.setBackgroundColor(Color.parseColor("#f1f2f6"));
                 view_2.setBackgroundColor(Color.parseColor("#f1f2f6"));
                 view_3.setBackgroundColor(Color.parseColor("#f1f2f6"));
@@ -153,7 +153,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             }
 
             Calendar calendar = Calendar.getInstance();
-            String curDate = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+            String curDate = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
 
 
             try {
@@ -187,7 +187,7 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
                     view_23.setBackgroundColor(Color.parseColor("#d0ebff"));
                     view_24.setBackgroundColor(Color.parseColor("#d0ebff"));
 
-                }else{
+                } else {
                     view_1.setBackgroundColor(Color.parseColor("#f1f2f6"));
                     view_2.setBackgroundColor(Color.parseColor("#f1f2f6"));
                     view_3.setBackgroundColor(Color.parseColor("#f1f2f6"));
@@ -216,7 +216,6 @@ public class AdapterWeekFragment extends RecyclerView.Adapter<AdapterWeekFragmen
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
 
 
             List<DayTask.CoursesBean> courseInfoList = dayTask.getCourses();

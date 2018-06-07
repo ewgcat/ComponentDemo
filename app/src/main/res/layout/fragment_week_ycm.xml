@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
 
     <!--<LinearLayout
@@ -41,71 +41,71 @@
     </LinearLayout>-->
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_bar_height"
-            android:layout_weight="1">
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_bar_height"
+                android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/iv_toggle"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:padding="7dp"
-                android:src="@mipmap/wt_kaoqinlan" />
+                    android:id="@+id/iv_toggle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:padding="7dp"
+                    android:src="@mipmap/wt_kaoqinlan"/>
         </RelativeLayout>
 
         <com.jeek.calendar.widget.calendar.WeekBarView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_bar_height"
-            android:layout_weight="7"
-            android:background="@color/calendar_bg_color"
-            app:week_text_size="@integer/calendar_text_size" />
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_bar_height"
+                android:layout_weight="7"
+                android:background="@color/calendar_bg_color"
+                app:week_text_size="@integer/calendar_text_size"/>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/edit_search"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/week_calendar_height"
-        android:orientation="horizontal">
+            android:id="@+id/edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/week_calendar_height"
+            android:orientation="horizontal">
         <!--app:layout_behavior="@string/header_float_behavior"-->
 
         <android.support.v4.widget.Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
         <com.jeek.calendar.widget.calendar.week.WeekCalendarView
-            android:id="@+id/wcvCalendar"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/week_calendar_height"
-            android:layout_weight="7"
-            android:background="@color/calendar_bg_color"
-            android:overScrollMode="never"
-            app:week_day_hint_task="false"
-            app:week_day_text_size="12"
-            app:week_hint_circle_color="@color/red"
-            app:week_holiday_color="@color/holiday_text_color"
-            app:week_selected_circle_color="@color/blue"
-            app:week_selected_circle_today_color="@color/blue"
-            app:week_selected_text_color="@color/white"
-            app:week_show_holiday_hint="false"
-            app:week_show_lunar="false"
-            app:week_show_task_hint="true" />
+                android:id="@+id/wcvCalendar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/week_calendar_height"
+                android:layout_weight="7"
+                android:background="@color/calendar_bg_color"
+                android:overScrollMode="never"
+                app:week_day_hint_task="false"
+                app:week_day_text_size="12"
+                app:week_hint_circle_color="@color/red"
+                app:week_holiday_color="@color/holiday_text_color"
+                app:week_selected_circle_color="@color/blue"
+                app:week_selected_circle_today_color="@color/blue"
+                app:week_selected_text_color="@color/white"
+                app:week_show_holiday_hint="false"
+                app:week_show_lunar="false"
+                app:week_show_task_hint="true"/>
 
 
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:id="@+id/nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <include layout="@layout/weekfragment_calendar_child_view" />
+        <include layout="@layout/weekfragment_calendar_child_view"/>
     </android.support.v4.widget.NestedScrollView>
 
     <!--<android.support.v7.widget.RecyclerView-->

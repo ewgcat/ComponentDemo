@@ -71,7 +71,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
 
     private void initView() {
         Calendar calendar = Calendar.getInstance();
-        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        currentDay = CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         titleChanger = new TitleChanger(tv_change_date);
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
         titleChanger.setPreviousMonth(currentDay);

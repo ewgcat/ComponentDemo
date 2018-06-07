@@ -14,12 +14,15 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultNullObserver;
 import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import static com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity.RESULT_CODE_SETTING_INTERNAL;
 
 public class CourseInterActivity extends AppCompatActivity {
@@ -52,7 +55,7 @@ public class CourseInterActivity extends AppCompatActivity {
 
     }
 
-    private void initView(){
+    private void initView() {
         String internal_time = getIntent().getStringExtra("internal");
         tv_internal.setText(internal_time);
         ArrayList<String> timeList = new ArrayList<>();
@@ -67,14 +70,14 @@ public class CourseInterActivity extends AppCompatActivity {
             }
         }).build();
         int index = timeList.indexOf(internal_time);
-        optionsPickerView.setSelectOptions(index==-1?0:index);
+        optionsPickerView.setSelectOptions(index == -1 ? 0 : index);
         optionsPickerView.setPicker(timeList);
     }
 
     private void postData() {
         Map<String, Object> map = new HashMap<>();
 //        map.put("intervalTime  ", Integer.valueOf(tv_internal.getText().toString()));
-        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL+"?intervalTime="+Integer.valueOf(tv_internal.getText().toString()), map, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL + "?intervalTime=" + Integer.valueOf(tv_internal.getText().toString()), map, new ResultNullObserver() {
 
             @Override
             public void onSuccess(Object result) {

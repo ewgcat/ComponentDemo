@@ -9,7 +9,7 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public  class ParentQuestionBean implements Parent<ChildOptBean> {
+public class ParentQuestionBean implements Parent<ChildOptBean> {
 
     /**
      * title : 体测数据

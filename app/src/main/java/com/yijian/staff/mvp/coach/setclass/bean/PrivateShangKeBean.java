@@ -66,7 +66,7 @@ public class PrivateShangKeBean {
 
         public void setActionForm(Integer actionForm) {
             this.actionForm = actionForm;
-            if(actionForm == null){
+            if (actionForm == null) {
                 this.actionForm = 0;
             }
         }
@@ -77,7 +77,7 @@ public class PrivateShangKeBean {
 
         public void setActionStrength(Integer actionStrength) {
             this.actionStrength = actionStrength;
-            if(actionStrength == null){
+            if (actionStrength == null) {
                 this.actionStrength = 0;
             }
         }
@@ -88,7 +88,7 @@ public class PrivateShangKeBean {
 
         public void setId(String id) {
             this.id = id;
-            if(TextUtils.isEmpty(id)){
+            if (TextUtils.isEmpty(id)) {
                 this.id = "";
             }
         }
@@ -99,7 +99,7 @@ public class PrivateShangKeBean {
 
         public void setInterval(Integer interval) {
             this.interval = interval;
-            if(interval == null){
+            if (interval == null) {
                 this.interval = 0;
             }
         }
@@ -126,7 +126,7 @@ public class PrivateShangKeBean {
 
         public void setTime(String time) {
             this.time = time;
-            if(time == null){
+            if (time == null) {
                 this.time = "";
             }
         }

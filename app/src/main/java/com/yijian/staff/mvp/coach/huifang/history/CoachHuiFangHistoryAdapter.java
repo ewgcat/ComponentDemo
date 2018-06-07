@@ -100,7 +100,6 @@ public class CoachHuiFangHistoryAdapter extends RecyclerView.Adapter<CoachHuiFan
         holder.tvXingquAihao.setText(hobby);
 
 
-
         String huifangType = coachHuiFangInfo.getInterviewType();
         holder.tvHuifangType.setText(huifangType);
 

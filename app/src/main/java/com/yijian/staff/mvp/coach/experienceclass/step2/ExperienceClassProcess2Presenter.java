@@ -25,14 +25,14 @@ import io.reactivex.disposables.Disposable;
 public class ExperienceClassProcess2Presenter implements ExperienceClassProcess2Contract.Presenter {
 
     private Context context;
-    private  ExperienceClassProcess2Contract.View view;
+    private ExperienceClassProcess2Contract.View view;
 
     public ExperienceClassProcess2Presenter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView( ExperienceClassProcess2Contract.View view){
-        this.view=view;
+    public void setView(ExperienceClassProcess2Contract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -46,14 +46,14 @@ public class ExperienceClassProcess2Presenter implements ExperienceClassProcess2
 
 //                AccessRecordBean accessRecordBean = new Gson().fromJson(result.toString(), AccessRecordBean.class);
                 AccessRecordBean accessRecordBean = GsonNullString.getGson().fromJson(result.toString(), AccessRecordBean.class);
-                if (accessRecordBean==null)return;
+                if (accessRecordBean == null) return;
 
                 view.showAccessRecord(accessRecordBean);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -71,11 +71,11 @@ public class ExperienceClassProcess2Presenter implements ExperienceClassProcess2
             public void onNext(JSONObject jsonObject) {
                 try {
                     int code = jsonObject.getInt("code");
-                    if (code==0){
+                    if (code == 0) {
                         view.showSavaSucceed();
-                    }else {
+                    } else {
                         String msg = jsonObject.getString("msg");
-                        Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

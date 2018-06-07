@@ -10,7 +10,7 @@ import java.util.List;
 
 public class InvitationAgainBean {
 
-    public  InviterBean inviteVO;//(邀约节点返回对象, optional): 邀约相关信息 ,
+    public InviterBean inviteVO;//(邀约节点返回对象, optional): 邀约相关信息 ,
 
     public List<ExperienceClassRecordTable> recordList;//(Array[体验课上课记录表返回对象], optional): 体验课上课记录表
 

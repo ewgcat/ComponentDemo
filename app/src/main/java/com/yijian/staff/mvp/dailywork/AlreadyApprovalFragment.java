@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 
 /**
-  * 已审批
+ * 已审批
  */
 public class AlreadyApprovalFragment extends Fragment {
 

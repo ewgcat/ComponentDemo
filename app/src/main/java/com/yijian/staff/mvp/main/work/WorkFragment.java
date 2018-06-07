@@ -46,7 +46,6 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
     Unbinder unbinder;
 
 
-
     private List<MenuItem> menuItemList = new ArrayList<>();
 
     private MenuRecyclerGridAdapter adapter;
@@ -110,7 +109,6 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
     }
 
 
-
     private void initMenu() {
         List<MenuItem> preferFrequentlyList = MenuHelper.getPreferFrequentlyList();
         menuItemList.clear();
@@ -126,17 +124,15 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
     }
 
 
-
-
-    @OnClick({R.id.et_search, R.id.ll_jiedai,R.id.iv_face})
+    @OnClick({R.id.et_search, R.id.ll_jiedai, R.id.iv_face})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
                 int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole == 1 || userRole == 3|| userRole == 6) {
+                if (userRole == 1 || userRole == 3 || userRole == 6) {
                     startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                } else if (userRole == 2 || userRole == 4|| userRole == 7) {
+                } else if (userRole == 2 || userRole == 4 || userRole == 7) {
                     startActivity(new Intent(getContext(), CoachSearchActivity.class));
                 }
 
@@ -145,7 +141,7 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
 //                Intent intent = new Intent(getActivity(), ReceptionActivity.class);
 ////                startActivity(intent);
 //                startActivityForResult(intent, RESULT_OK_RECEPTION);
-                if (receptionActivityLisenter!=null)receptionActivityLisenter.startAct();
+                if (receptionActivityLisenter != null) receptionActivityLisenter.startAct();
 
                 break;
 //            case R.id.iv_all_function:
@@ -159,7 +155,7 @@ public class WorkFragment extends MvcBaseFragment implements AllFunctionActivity
         }
     }
 
-    public interface ReceptionActivityLisenter{
+    public interface ReceptionActivityLisenter {
         void startAct();
     }
 

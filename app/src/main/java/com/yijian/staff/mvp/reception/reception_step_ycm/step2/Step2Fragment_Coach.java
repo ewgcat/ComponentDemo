@@ -99,7 +99,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         demoAdapter.setItemClickListener(new ReceptionStep2Adapter.PhysicalItemClickListener() {
             @Override
             public void itemClick(int childPosition, int parentPosition) {
-                showBottomView(childPosition,parentPosition);
+                showBottomView(childPosition, parentPosition);
             }
         });
 
@@ -108,7 +108,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
     private void initView(View view) {
 
-        RelativeLayout rlName =view.findViewById(R.id.rl_name);
+        RelativeLayout rlName = view.findViewById(R.id.rl_name);
         RelativeLayout rlHeight = view.findViewById(R.id.rl_height);
         RelativeLayout rlAge = view.findViewById(R.id.rl_age);
         RelativeLayout rlSave = view.findViewById(R.id.rl_save);
@@ -116,7 +116,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         tvSaveTip = view.findViewById(R.id.tv_save_tip);
 
         tvName = view.findViewById(R.id.tv_name);
-        if (consumerBean!=null) tvName.setText(""+consumerBean.getName());
+        if (consumerBean != null) tvName.setText("" + consumerBean.getName());
 
         tvHeight = view.findViewById(R.id.tv_height);
         tvAge = view.findViewById(R.id.tv_age);
@@ -133,8 +133,6 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
 
     }
-
-
 
 
     @Override
@@ -155,18 +153,18 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.rl_save:
-                if (consumerBean!=null){
+                if (consumerBean != null) {
                     String height = tvHeight.getText().toString();
                     String age = tvAge.getText().toString();
-                    presenter.saveData(consumerBean.getId(),parentObj,height,age);
-                }else {
-                    Toast.makeText(getContext(),"获取客户信息失败,请重新进入接待流程", Toast.LENGTH_SHORT).show();
+                    presenter.saveData(consumerBean.getId(), parentObj, height, age);
+                } else {
+                    Toast.makeText(getContext(), "获取客户信息失败,请重新进入接待流程", Toast.LENGTH_SHORT).show();
 
                 }
                 break;
 
             case R.id.tv_cancel:
-                cancelPhysicalDialog.show(getActivity().getFragmentManager(),"cancelPhysicalDialog");
+                cancelPhysicalDialog.show(getActivity().getFragmentManager(), "cancelPhysicalDialog");
                 break;
         }
     }
@@ -253,10 +251,10 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
     }
 
     private void computerCompletePercent() {
-        if (parentObj!=null){
+        if (parentObj != null) {
             String height = tvHeight.getText().toString();
             String age = tvAge.getText().toString();
-            presenter.computerCompletePercent(parentObj,height,age);
+            presenter.computerCompletePercent(parentObj, height, age);
         }
 
     }
@@ -342,7 +340,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                         Double weight = Double.valueOf(userWeight);
                         Double fat = Double.valueOf(userFat);
                         double i = weight / (fat * 1.00d);
-                        childOptBean.setUserValue(String.format("%.2f", i) );
+                        childOptBean.setUserValue(String.format("%.2f", i));
                         demoAdapter.notifyChildChanged(parentPosition, childPosition);
                     }
                 } else if ("腰臀比".equals(childOptBean.getQustion())) {
@@ -361,14 +359,14 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
     @Override
     public void showSavaSucceed() {
 //        Log.e(TAG, "showSavaSucceed: ");
-        Toast.makeText(getContext(),"保存成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "保存成功", Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 
     @Override
     public void showUserData(PhysicalExaminationBean bean) {
-       if (bean.getAge()!=null)tvAge.setText(bean.getAge().toString());
-       if (bean.getHeight()!=null)tvHeight.setText(bean.getHeight().toString());
+        if (bean.getAge() != null) tvAge.setText(bean.getAge().toString());
+        if (bean.getHeight() != null) tvHeight.setText(bean.getHeight().toString());
 
 
         for (ParentQuestionBean parentQuestionBean : parentObj) {
@@ -380,71 +378,71 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                         case "体重(kg)":
 
                             BigDecimal weight = bean.getWeight();
-                            if (weight!=null&&!TextUtils.isEmpty(weight.toString()))
+                            if (weight != null && !TextUtils.isEmpty(weight.toString()))
                                 childOptBean.setUserValue(weight.toString());
                             break;
                         case "骨骼肌(kg)":
 //                            physicalExaminationBean.setSkeletalMuscle(new BigDecimal(userValue));
                             BigDecimal skeletalMuscle = bean.getSkeletalMuscle();
-                            if (skeletalMuscle!=null&&!TextUtils.isEmpty(skeletalMuscle.toString()))
+                            if (skeletalMuscle != null && !TextUtils.isEmpty(skeletalMuscle.toString()))
                                 childOptBean.setUserValue(skeletalMuscle.toString());
                             break;
                         case "体脂肪(kg)":
 //                            physicalExaminationBean.setFat(new BigDecimal(userValue));
                             BigDecimal fat = bean.getFat();
-                            if (fat!=null&&!TextUtils.isEmpty(fat.toString()))
+                            if (fat != null && !TextUtils.isEmpty(fat.toString()))
                                 childOptBean.setUserValue(fat.toString());
                             break;
 
                         case "身体水份含量(kg)":
 //                            physicalExaminationBean.setWater(new BigDecimal(userValue));
                             BigDecimal water = bean.getWater();
-                            if (water!=null&&!TextUtils.isEmpty(water.toString()))
+                            if (water != null && !TextUtils.isEmpty(water.toString()))
                                 childOptBean.setUserValue(water.toString());
                             break;
                         case "去脂体重(kg)":
 //                            physicalExaminationBean.setWeightNoFat(new BigDecimal(userValue));
                             BigDecimal weightNoFat = bean.getWeightNoFat();
-                            if (weightNoFat!=null&&!TextUtils.isEmpty(weightNoFat.toString()))
+                            if (weightNoFat != null && !TextUtils.isEmpty(weightNoFat.toString()))
                                 childOptBean.setUserValue(weightNoFat.toString());
                             break;
                         case "身体质量指数BMI(kg/m2)":
 //                            physicalExaminationBean.setBmi(new BigDecimal(userValue));
                             BigDecimal bmi = bean.getBmi();
-                            if (bmi!=null&&!TextUtils.isEmpty(bmi.toString()))
+                            if (bmi != null && !TextUtils.isEmpty(bmi.toString()))
                                 childOptBean.setUserValue(bmi.toString());
                             break;
                         case "体脂百分比PBF(%)":
 //                            physicalExaminationBean.setPbf(new BigDecimal(userValue));
                             BigDecimal pbf = bean.getPbf();
-                            if (pbf!=null&&!TextUtils.isEmpty(pbf.toString()))
+                            if (pbf != null && !TextUtils.isEmpty(pbf.toString()))
                                 childOptBean.setUserValue(pbf.toString());
                             break;
 
                         case "腰臀比":
 //                            physicalExaminationBean.setWhr(new BigDecimal(userValue));
                             BigDecimal whr = bean.getWhr();
-                            if (whr!=null&&!TextUtils.isEmpty(whr.toString()))
+                            if (whr != null && !TextUtils.isEmpty(whr.toString()))
                                 childOptBean.setUserValue(whr.toString());
                             break;
 
                         case "基础代谢":
 //                            physicalExaminationBean.setBasalMetabolism(new BigDecimal(userValue));
                             BigDecimal basalMetabolism = bean.getBasalMetabolism();
-                            if (basalMetabolism!=null&&!TextUtils.isEmpty(basalMetabolism.toString()))
+                            if (basalMetabolism != null && !TextUtils.isEmpty(basalMetabolism.toString()))
                                 childOptBean.setUserValue(basalMetabolism.toString());
                             break;
                         case "肌肉控制(kg)":
 //                            physicalExaminationBean.setMuscleController(new BigDecimal(userValue));
                             BigDecimal muscleController = bean.getMuscleController();
-                            if (muscleController!=null&&!TextUtils.isEmpty(muscleController.toString()))
+                            if (muscleController != null && !TextUtils.isEmpty(muscleController.toString()))
                                 childOptBean.setUserValue(muscleController.toString());
                             break;
 
                         case "脂肪控制(kg)":
 //                            physicalExaminationBean.setFatController(new BigDecimal(userValue));
                             BigDecimal fatController = bean.getFatController();
-                            if (fatController!=null&&!TextUtils.isEmpty(fatController.toString()))
+                            if (fatController != null && !TextUtils.isEmpty(fatController.toString()))
                                 childOptBean.setUserValue(fatController.toString());
                             break;
 
@@ -463,74 +461,74 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                         case "腰围(cm)":
 //                            physicalExaminationBean.setWaist(new BigDecimal(userValue));
                             BigDecimal waist = bean.getWaist();
-                            if (waist!=null&&!TextUtils.isEmpty(waist.toString()))
+                            if (waist != null && !TextUtils.isEmpty(waist.toString()))
                                 childOptBean.setUserValue(waist.toString());
 
                             break;
                         case "臀围(cm)":
 //                            physicalExaminationBean.setHipline(new BigDecimal(userValue));
                             BigDecimal hipline = bean.getHipline();
-                            if (hipline!=null&&!TextUtils.isEmpty(hipline.toString()))
+                            if (hipline != null && !TextUtils.isEmpty(hipline.toString()))
                                 childOptBean.setUserValue(hipline.toString());
                             break;
                         case "皮脂厚度(cm)":
 //                            physicalExaminationBean.setSkinFatLand(new BigDecimal(userValue));
                             BigDecimal skinFatLand = bean.getSkinFatLand();
-                            if (skinFatLand!=null&&!TextUtils.isEmpty(skinFatLand.toString()))
+                            if (skinFatLand != null && !TextUtils.isEmpty(skinFatLand.toString()))
                                 childOptBean.setUserValue(skinFatLand.toString());
                             break;
                         case "左臂(cm)":
 //                            physicalExaminationBean.setLeftHand(new BigDecimal(userValue));
                             BigDecimal leftHand = bean.getLeftHand();
-                            if (leftHand!=null&&!TextUtils.isEmpty(leftHand.toString()))
+                            if (leftHand != null && !TextUtils.isEmpty(leftHand.toString()))
                                 childOptBean.setUserValue(leftHand.toString());
                             break;
                         case "右臂(cm)":
 //                            physicalExaminationBean.setRightHand(new BigDecimal(userValue));
                             BigDecimal rightHand = bean.getRightHand();
-                            if (rightHand!=null&&!TextUtils.isEmpty(rightHand.toString()))
+                            if (rightHand != null && !TextUtils.isEmpty(rightHand.toString()))
                                 childOptBean.setUserValue(rightHand.toString());
                             break;
                         case "左大腿(cm)":
 //                            physicalExaminationBean.setLeftHhigh(new BigDecimal(userValue));
                             BigDecimal leftHhigh = bean.getLeftHhigh();
-                            if (leftHhigh!=null&&!TextUtils.isEmpty(leftHhigh.toString()))
+                            if (leftHhigh != null && !TextUtils.isEmpty(leftHhigh.toString()))
                                 childOptBean.setUserValue(leftHhigh.toString());
                             break;
                         case "右大腿(cm)":
 //                            physicalExaminationBean.setRightHhigh(new BigDecimal(userValue));
                             BigDecimal rightHhigh = bean.getRightHhigh();
-                            if (rightHhigh!=null&&!TextUtils.isEmpty(rightHhigh.toString()))
+                            if (rightHhigh != null && !TextUtils.isEmpty(rightHhigh.toString()))
                                 childOptBean.setUserValue(rightHhigh.toString());
                             break;
                         case "左小腿(cm)":
 //                            physicalExaminationBean.setLeftShins(new BigDecimal(userValue));
                             BigDecimal leftShins = bean.getLeftShins();
-                            if (leftShins!=null&&!TextUtils.isEmpty(leftShins.toString()))
+                            if (leftShins != null && !TextUtils.isEmpty(leftShins.toString()))
                                 childOptBean.setUserValue(leftShins.toString());
                             break;
                         case "右小腿(cm)":
 //                            physicalExaminationBean.setRightShins(new BigDecimal(userValue));
                             BigDecimal rightShins = bean.getRightShins();
-                            if (rightShins!=null&&!TextUtils.isEmpty(rightShins.toString()))
+                            if (rightShins != null && !TextUtils.isEmpty(rightShins.toString()))
                                 childOptBean.setUserValue(rightShins.toString());
                             break;
                         case "血压(收缩压)mmHg":
 //                            physicalExaminationBean.setShrinkBloodPressure(new BigDecimal(userValue));
                             BigDecimal shrinkBloodPressure = bean.getShrinkBloodPressure();
-                            if (shrinkBloodPressure!=null&&!TextUtils.isEmpty(shrinkBloodPressure.toString()))
+                            if (shrinkBloodPressure != null && !TextUtils.isEmpty(shrinkBloodPressure.toString()))
                                 childOptBean.setUserValue(shrinkBloodPressure.toString());
                             break;
                         case "血压(舒张压)mmHg":
 //                            physicalExaminationBean.setDiastoleBloodPressure(new BigDecimal(userValue));
                             BigDecimal diastoleBloodPressure = bean.getDiastoleBloodPressure();
-                            if (diastoleBloodPressure!=null&&!TextUtils.isEmpty(diastoleBloodPressure.toString()))
+                            if (diastoleBloodPressure != null && !TextUtils.isEmpty(diastoleBloodPressure.toString()))
                                 childOptBean.setUserValue(diastoleBloodPressure.toString());
                             break;
                         case "静态心跳率(次/分钟)":
 //                            physicalExaminationBean.setHeartbeat(Integer.valueOf(userValue));
                             Integer heartbeat = bean.getHeartbeat();
-                            if (heartbeat!=null&&!TextUtils.isEmpty(heartbeat.toString()))
+                            if (heartbeat != null && !TextUtils.isEmpty(heartbeat.toString()))
                                 childOptBean.setUserValue(heartbeat.toString());
                             break;
                     }
@@ -639,33 +637,33 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                     if ("(多选)健身目标".equals(qustion)) {
                         List<MultiOptBean> multiOptBeans = childOptBean.getMultiOptBeans();
 
-                        String stitchingSymbol =String.format("%c", 1);//拼接符号
+                        String stitchingSymbol = String.format("%c", 1);//拼接符号
                         String bodyTargetSelect = bean.getBodyTargetSelect();
                         String[] split1 = bodyTargetSelect.split(stitchingSymbol);
-                        if (split1!=null&&split1.length!=0){
+                        if (split1 != null && split1.length != 0) {
                             for (int i = 0; i < split1.length; i++) {
-                                if ("减肥".equals(split1[i])){
+                                if ("减肥".equals(split1[i])) {
 
-                                    for (int j = 0; j <multiOptBeans.size() ; j++) {
-                                        if ("减肥".equals(multiOptBeans.get(j).getOptName())){
+                                    for (int j = 0; j < multiOptBeans.size(); j++) {
+                                        if ("减肥".equals(multiOptBeans.get(j).getOptName())) {
                                             multiOptBeans.get(j).setIsSelected(true);
                                         }
                                     }
 
-                                }else if ("增加肌肉".equals(split1[i])){
-                                    for (int j = 0; j <multiOptBeans.size() ; j++) {
-                                        if ("增加肌肉".equals(multiOptBeans.get(j).getOptName())){
+                                } else if ("增加肌肉".equals(split1[i])) {
+                                    for (int j = 0; j < multiOptBeans.size(); j++) {
+                                        if ("增加肌肉".equals(multiOptBeans.get(j).getOptName())) {
                                             multiOptBeans.get(j).setIsSelected(true);
                                         }
                                     }
-                                }else if ("改善线条".equals(split1[i])){
-                                    for (int j = 0; j <multiOptBeans.size() ; j++) {
-                                        if ("改善线条".equals(multiOptBeans.get(j).getOptName())){
+                                } else if ("改善线条".equals(split1[i])) {
+                                    for (int j = 0; j < multiOptBeans.size(); j++) {
+                                        if ("改善线条".equals(multiOptBeans.get(j).getOptName())) {
                                             multiOptBeans.get(j).setIsSelected(true);
                                         }
                                     }
-                                }else {
-                                    for (int j = 0; j <multiOptBeans.size() ; j++) {
+                                } else {
+                                    for (int j = 0; j < multiOptBeans.size(); j++) {
 //                                        if ("其他".equals(multiOptBeans.get(j).getOptName())){
 //                                            multiOptBeans.get(j).setIsSelected(true);
 //                                        }
@@ -681,7 +679,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
                     } else if ("健身次数(每周)".equals(qustion)) {
                         Integer bodyTimesSelect = bean.getBodyTimesSelect();
-                        if (bodyTimesSelect!=null&&bodyTimesSelect!=0){
+                        if (bodyTimesSelect != null && bodyTimesSelect != 0) {
                             childOptBean.setUserValue(bodyTimesSelect.toString());
                         }
 
@@ -694,7 +692,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
                         if (!TextUtils.isEmpty(bean.getExtensionalMovement()))
                             childOptBean.setUserValue(bean.getExtensionalMovement());
 
-                    } else if ("重量训练(选填)".equals(qustion) ) {
+                    } else if ("重量训练(选填)".equals(qustion)) {
 
                         if (!TextUtils.isEmpty(bean.getWeightTraining()))
                             childOptBean.setUserValue(bean.getWeightTraining());
@@ -709,23 +707,23 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
 
     @Override
     public void showRejected() {
-        Toast.makeText(getContext(),"消息推送成功",Toast.LENGTH_SHORT).show();
-       if (cancelPhysicalDialog!=null)cancelPhysicalDialog.dismiss();
+        Toast.makeText(getContext(), "消息推送成功", Toast.LENGTH_SHORT).show();
+        if (cancelPhysicalDialog != null) cancelPhysicalDialog.dismiss();
         getActivity().finish();
     }
 
     @Override
     public void showCompletePercent(double persent) {
         DecimalFormat df = new DecimalFormat("0.00%");
-        BigDecimal d=new BigDecimal(persent);
-        String percent=df.format(d);
-        tvSaveTip.setText("已完成"+percent);
+        BigDecimal d = new BigDecimal(persent);
+        String percent = df.format(d);
+        tvSaveTip.setText("已完成" + percent);
     }
 
     @Override
     public void cancelReason(String reason) {
 //        Log.e(TAG, "cancelReason: "+reason);
-        presenter.postReject(reason,consumerBean.getId());
+        presenter.postReject(reason, consumerBean.getId());
 
     }
 

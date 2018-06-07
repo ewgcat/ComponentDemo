@@ -38,7 +38,6 @@ public class RecordChartActivity extends MvcBaseActivity {
     SmartRefreshLayout refreshLayout;
 
 
-
     private int pageNum = 1;//页码
     private int pageSize = 2;//每页数量
     private int pages;
@@ -59,9 +58,8 @@ public class RecordChartActivity extends MvcBaseActivity {
         navigationBar2.setTitle("上课记录表");
 
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecordChartAdapter(this,classRecordBeanArrayList);
+        adapter = new RecordChartAdapter(this, classRecordBeanArrayList);
         recyclerView.setAdapter(adapter);
 
 
@@ -74,7 +72,7 @@ public class RecordChartActivity extends MvcBaseActivity {
         pageNum = 1;
         pageSize = 2;
         classRecordBeanArrayList.clear();
-showLoading();
+        showLoading();
         HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -112,7 +110,7 @@ showLoading();
 
     public void loadMore() {
         showLoading();
-        HttpManager.getCoachVipCourseListList(memberId,pageNum, pageSize, new ResultJSONObjectObserver() {
+        HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
 

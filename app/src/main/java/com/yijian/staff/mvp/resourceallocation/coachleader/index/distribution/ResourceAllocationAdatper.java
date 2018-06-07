@@ -53,7 +53,7 @@ public class ResourceAllocationAdatper extends RecyclerView.Adapter<ResourceAllo
         holder.tv_viper_type.setText(resourceInfo.getViperRole());
         String subclassName = resourceInfo.getSubclassName();
         String memberId = resourceInfo.getMemberId();
-        Logger.i("ResourceAllocationAdatper","memberId="+memberId);
+        Logger.i("ResourceAllocationAdatper", "memberId=" + memberId);
 
         /**
          * CoachExpireVO：教练过期

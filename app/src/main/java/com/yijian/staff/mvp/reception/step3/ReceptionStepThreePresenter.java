@@ -12,20 +12,22 @@ import java.util.Map;
  * Created by The_P on 2018/4/19.
  */
 
-public class ReceptionStepThreePresenter implements  ReceptionStepThreeContract.Presenter{
+public class ReceptionStepThreePresenter implements ReceptionStepThreeContract.Presenter {
     private Context context;
     private ReceptionStepThreeContract.View view;
-    public ReceptionStepThreePresenter(Context context){
-        this.context=context;
+
+    public ReceptionStepThreePresenter(Context context) {
+        this.context = context;
     }
-    public void setView(ReceptionStepThreeContract.View view){
-        this.view=view;
+
+    public void setView(ReceptionStepThreeContract.View view) {
+        this.view = view;
     }
 
     @Override
     public void leaderToSale(String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_LEADERTOSALE, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {
@@ -41,8 +43,8 @@ public class ReceptionStepThreePresenter implements  ReceptionStepThreeContract.
 
     @Override
     public void coachToSale(String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACHTOSALE, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {

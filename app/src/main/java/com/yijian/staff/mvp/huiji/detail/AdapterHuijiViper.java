@@ -14,23 +14,23 @@ import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
  * Created by The_P on 2018/5/15.
  */
 
-public class AdapterHuijiViper  extends RecyclerView.Adapter<ViewHolderHuijiVipper> implements HuijiVipInterface {
+public class AdapterHuijiViper extends RecyclerView.Adapter<ViewHolderHuijiVipper> implements HuijiVipInterface {
 
-    public static final int TYPE0=0;
-    public static final int TYPE1=1;
-    public static final int TYPE2=2;
-    public static final int TYPE3=3;
+    public static final int TYPE0 = 0;
+    public static final int TYPE1 = 1;
+    public static final int TYPE2 = 2;
+    public static final int TYPE3 = 3;
 
     private Context context;
     private VipDetailBean mVipDetailBean;
 
     public AdapterHuijiViper(Context context) {
-        this.context=context;
+        this.context = context;
 
     }
 
-    public void setData( VipDetailBean vipDetailBean){
-        mVipDetailBean=vipDetailBean;
+    public void setData(VipDetailBean vipDetailBean) {
+        mVipDetailBean = vipDetailBean;
         notifyDataSetChanged();
     }
 
@@ -39,7 +39,7 @@ public class AdapterHuijiViper  extends RecyclerView.Adapter<ViewHolderHuijiVipp
     public ViewHolderHuijiVipper onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         ViewHolderHuijiVipper holder;
-        switch (viewType){
+        switch (viewType) {
             default:
             case TYPE0:
                 view = LayoutInflater.from(context).inflate(R.layout.item_huijivip_type0, parent, false);
@@ -66,7 +66,7 @@ public class AdapterHuijiViper  extends RecyclerView.Adapter<ViewHolderHuijiVipp
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderHuijiVipper holder, int position) {
-        if (mVipDetailBean!=null)holder.bindView(mVipDetailBean);
+        if (mVipDetailBean != null) holder.bindView(mVipDetailBean);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class AdapterHuijiViper  extends RecyclerView.Adapter<ViewHolderHuijiVipp
 
     @Override
     public int getItemViewType(int position) {
-        switch (position){
+        switch (position) {
             default:
             case 0:
                 return TYPE0;
@@ -92,16 +92,17 @@ public class AdapterHuijiViper  extends RecyclerView.Adapter<ViewHolderHuijiVipp
 
     @Override
     public void visit() {
-        if (adapterInterface!=null)adapterInterface.clickVisit();
+        if (adapterInterface != null) adapterInterface.clickVisit();
     }
 
     @Override
     public void edit() {
-        if (adapterInterface!=null)adapterInterface.clickEdit();
+        if (adapterInterface != null) adapterInterface.clickEdit();
     }
 
-    public interface AdapterInterface{
+    public interface AdapterInterface {
         void clickVisit();
+
         void clickEdit();
     }
 

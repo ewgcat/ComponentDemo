@@ -24,11 +24,11 @@ public class QuestionNaireVipBean {
     private Long createTime;
     private String sellerName;
 
-    public QuestionNaireVipBean(JSONObject jsonObject){
-        this. memberId = JsonUtil.getString(jsonObject, "memberId");
-        this. memberName = JsonUtil.getString(jsonObject, "memberName");
-        this. sellerName = JsonUtil.getString(jsonObject, "sellerName");
-        this. createTime = JsonUtil.getLong(jsonObject, "createTime");
+    public QuestionNaireVipBean(JSONObject jsonObject) {
+        this.memberId = JsonUtil.getString(jsonObject, "memberId");
+        this.memberName = JsonUtil.getString(jsonObject, "memberName");
+        this.sellerName = JsonUtil.getString(jsonObject, "sellerName");
+        this.createTime = JsonUtil.getLong(jsonObject, "createTime");
     }
 
 

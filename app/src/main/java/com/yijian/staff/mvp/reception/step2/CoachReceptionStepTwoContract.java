@@ -7,7 +7,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
  */
 
 public interface CoachReceptionStepTwoContract {
-    interface View{
+    interface View {
         void showSavaSucceed();
 
         void showUserData(PhysicalExaminationBean bean);
@@ -17,12 +17,12 @@ public interface CoachReceptionStepTwoContract {
         void showCompletePercent(double persent);
     }
 
-    interface Presenter{
-          void   saveTestData(PhysicalExaminationBean bean, String memberId);
+    interface Presenter {
+        void saveTestData(PhysicalExaminationBean bean, String memberId);
 
-          void viewTestData(String id);
+        void viewTestData(String id);
 
-          void postReject(String rejectReason,String memberId);
+        void postReject(String rejectReason, String memberId);
 
     }
 }

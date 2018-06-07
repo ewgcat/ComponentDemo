@@ -24,27 +24,28 @@ public class QuestionSingleCheckViewHolder extends ChildViewHolderGroup {
 
     public void bind(ItemsBean child, int parentPosition, int childPosition) {
         ctvSingleCheck.setChecked(child.isSelect());
-        ctvSingleCheck.setBackgroundResource(child.isSelect()?R.drawable.shape_fillet_blue:R.drawable.shape_fillet_gray_5);
+        ctvSingleCheck.setBackgroundResource(child.isSelect() ? R.drawable.shape_fillet_blue : R.drawable.shape_fillet_gray_5);
 
         ctvSingleCheck.setText(child.getItem());
 
         ctvSingleCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener!=null){
-                    listener.onSingleClick(child,parentPosition,childPosition);
+                if (listener != null) {
+                    listener.onSingleClick(child, parentPosition, childPosition);
                 }
             }
         });
     }
 
-    public  interface SingleCheckListener{
-        void onSingleClick(ItemsBean child, int parentPosition,int childPosition);
+    public interface SingleCheckListener {
+        void onSingleClick(ItemsBean child, int parentPosition, int childPosition);
     }
 
     private SingleCheckListener listener;
-    public void setSingleCheckListener(SingleCheckListener singleCheckListener){
-        listener=singleCheckListener;
+
+    public void setSingleCheckListener(SingleCheckListener singleCheckListener) {
+        listener = singleCheckListener;
     }
 
 

@@ -52,7 +52,7 @@ public class RecordChartAdapter extends RecyclerView.Adapter<RecordChartAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ClassRecordDetailActivity.class);
-                intent.putExtra("id",classRecordBean.getId());
+                intent.putExtra("id", classRecordBean.getId());
                 context.startActivity(intent);
             }
         });

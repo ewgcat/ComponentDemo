@@ -15,9 +15,9 @@ import java.util.Map;
 public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private int type;
-    private List<Map<String,String>> recordList = new ArrayList<>();
+    private List<Map<String, String>> recordList = new ArrayList<>();
 
-    public ExperienceRecorderAdapter(List<Map<String, String>> recordList,int type) {
+    public ExperienceRecorderAdapter(List<Map<String, String>> recordList, int type) {
         this.recordList = recordList;
         this.type = type;
     }
@@ -26,14 +26,14 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         RecyclerView.ViewHolder viewHolder = null;
-        if(type == 1){ //无器械
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_1,parent,false);
+        if (type == 1) { //无器械
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_1, parent, false);
             viewHolder = new ViewHolder1(view);
-        }else if(type == 2){ //有氧器械
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_2,parent,false);
+        } else if (type == 2) { //有氧器械
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_2, parent, false);
             viewHolder = new ViewHolder2(view);
-        }else if(type == 3){ //力量器械
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_3,parent,false);
+        } else if (type == 3) { //力量器械
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_record_3, parent, false);
             viewHolder = new ViewHolder3(view);
         }
 
@@ -42,12 +42,12 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(type == 1){
-            ((ViewHolder1)holder).bind(recordList.get(position),position);
-        }else if(type == 2){
-            ((ViewHolder2)holder).bind(recordList.get(position),position);
-        }else if(type == 3){
-            ((ViewHolder3)holder).bind(recordList.get(position),position);
+        if (type == 1) {
+            ((ViewHolder1) holder).bind(recordList.get(position), position);
+        } else if (type == 2) {
+            ((ViewHolder2) holder).bind(recordList.get(position), position);
+        } else if (type == 3) {
+            ((ViewHolder3) holder).bind(recordList.get(position), position);
         }
     }
 
@@ -56,7 +56,7 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
         return recordList != null ? recordList.size() : 0;
     }
 
-    private class ViewHolder1 extends RecyclerView.ViewHolder{
+    private class ViewHolder1 extends RecyclerView.ViewHolder {
 
         private TextView tv_rank;
         private TextView tv_project_label;
@@ -79,15 +79,15 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
             view_line = itemView.findViewById(R.id.view_line);
         }
 
-        public void bind(Map<String,String> map, int position){
-            tv_rank.setText((position+1)+"");
+        public void bind(Map<String, String> map, int position) {
+            tv_rank.setText((position + 1) + "");
             tv_project_label.setText(map.get("projectlabel"));
             tv_project.setText(map.get("project"));
             tv_group_label.setText(map.get("grouplabel"));
             tv_group.setText(map.get("group"));
             tv_time_label.setText(map.get("timelabel"));
             tv_time.setText(map.get("time"));
-            if(position == recordList.size()){
+            if (position == recordList.size()) {
                 view_line.setVisibility(View.GONE);
             }
         }
@@ -95,7 +95,7 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
 
-    private class ViewHolder2 extends RecyclerView.ViewHolder{
+    private class ViewHolder2 extends RecyclerView.ViewHolder {
 
         private TextView tv_rank;
         private TextView tv_project_label;
@@ -118,21 +118,21 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
             view_line = itemView.findViewById(R.id.view_line);
         }
 
-        public void bind(Map<String,String> map, int position){
-            tv_rank.setText((position+1)+"");
+        public void bind(Map<String, String> map, int position) {
+            tv_rank.setText((position + 1) + "");
             tv_project_label.setText(map.get("projectlabel"));
             tv_group_label.setText(map.get("grouplabel"));
             tv_group.setText(map.get("group"));
             tv_time_label.setText(map.get("timelabel"));
             tv_time.setText(map.get("time"));
-            if(position == recordList.size()){
+            if (position == recordList.size()) {
                 view_line.setVisibility(View.GONE);
             }
         }
 
     }
 
-    private class ViewHolder3 extends RecyclerView.ViewHolder{
+    private class ViewHolder3 extends RecyclerView.ViewHolder {
 
         private TextView tv_rank;
         private TextView tv_project_label;
@@ -159,8 +159,8 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
             view_line = itemView.findViewById(R.id.view_line);
         }
 
-        public void bind(Map<String,String> map, int position){
-            tv_rank.setText((position+1)+"");
+        public void bind(Map<String, String> map, int position) {
+            tv_rank.setText((position + 1) + "");
             tv_project_label.setText(map.get("projectlabel"));
             tv_project.setText(map.get("project"));
             tv_weight_label.setText(map.get("weightlabel"));
@@ -169,7 +169,7 @@ public class ExperienceRecorderAdapter extends RecyclerView.Adapter<RecyclerView
             tv_group.setText(map.get("group"));
             tv_time_label.setText(map.get("timelabel"));
             tv_time.setText(map.get("time"));
-            if(position == recordList.size()){
+            if (position == recordList.size()) {
                 view_line.setVisibility(View.GONE);
             }
         }

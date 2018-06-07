@@ -26,14 +26,13 @@ import butterknife.BindView;
 
 public abstract class BaseWebViewActivity extends MvcBaseActivity {
 
-    public static final int  ABOUT_US_TYPE=1;
-    public static final int CLUB_TYPE=2;
-    public static final int QR_TYPE=3;
-    public static final int CONTRACT_TYPE=5;
+    public static final int ABOUT_US_TYPE = 1;
+    public static final int CLUB_TYPE = 2;
+    public static final int QR_TYPE = 3;
+    public static final int CONTRACT_TYPE = 5;
 
 
-
-    public void initWebView( WebView webView,int type) {
+    public void initWebView(WebView webView, int type) {
         WebSettings webviewSettings = webView.getSettings();
         webviewSettings.setJavaScriptEnabled(true); // 开启Javascript支持
         webviewSettings.setAllowContentAccess(true);
@@ -48,12 +47,12 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
         }
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String ,String> params=new HashMap<>();
-        params.put("type",""+type);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("type", "" + type);
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                webView.loadUrl(JsonUtil.getString(result,"url"));
+                webView.loadUrl(JsonUtil.getString(result, "url"));
             }
 
             @Override
@@ -65,7 +64,7 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
         webView.loadUrl("http://192.168.2.209:8080/#/contract");
         String token = DBManager.getInstance().queryUser().getToken();
         try {
-            jsonObject.put("token",token);
+            jsonObject.put("token", token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -80,8 +79,6 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
 
 
     }
-
-
 
 
 }

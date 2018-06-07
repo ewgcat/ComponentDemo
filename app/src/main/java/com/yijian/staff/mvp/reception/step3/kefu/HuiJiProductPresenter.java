@@ -85,8 +85,8 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     public void getStatus(boolean isFirst, String memberId) {
 
         Map<String, String> params = new HashMap<>();
-        params.put("memberId",memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS,params, new ResultJSONObjectObserver() {
+        params.put("memberId", memberId);
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
@@ -94,7 +94,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
                 if (receptionStastuBean == null || operatorType == null)
                     return;
 
-                if (operatorType ==40|| operatorType >40) {
+                if (operatorType == 40 || operatorType > 40) {
                     view.showStatus(receptionStastuBean);
                 } else {
                     if (isFirst) {
@@ -107,16 +107,16 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
 //            case 34:// COACHTOSALE(34, "教练接待会员，会员同意购买,TO回会籍"),
 //            case 35:// COACHTOLEADER(35, "教练接待会员，会员不同意购买,TO领导 "),
 //            case 36:// LEADERTOSALE(36, "领导接待会员,TO回会籍 "),
-                        if (operatorType==33){
-                            Toast.makeText(context,"会员没购买意愿，会籍通知教练",Toast.LENGTH_SHORT).show();
-                        }else if (operatorType==34){
-                            Toast.makeText(context,"教练接待会员，会员同意购买,通知回会籍",Toast.LENGTH_SHORT).show();
-                        }else if (operatorType==35){
-                            Toast.makeText(context,"教练接待会员，会员不同意购买,通知领导 ",Toast.LENGTH_SHORT).show();
-                        }else if (operatorType==36){
-                            Toast.makeText(context,"领导接待会员,通知回会籍",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(context,"节点出现异常",Toast.LENGTH_SHORT).show();
+                        if (operatorType == 33) {
+                            Toast.makeText(context, "会员没购买意愿，会籍通知教练", Toast.LENGTH_SHORT).show();
+                        } else if (operatorType == 34) {
+                            Toast.makeText(context, "教练接待会员，会员同意购买,通知回会籍", Toast.LENGTH_SHORT).show();
+                        } else if (operatorType == 35) {
+                            Toast.makeText(context, "教练接待会员，会员不同意购买,通知领导 ", Toast.LENGTH_SHORT).show();
+                        } else if (operatorType == 36) {
+                            Toast.makeText(context, "领导接待会员,通知回会籍", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "节点出现异常", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -154,20 +154,20 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
 
     @Override
     public void getProductDetail(String memberId) {
-        Map<String,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
         HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ProductDetail productDetail = GsonNullString.getGson().fromJson(result.toString(), ProductDetail.class);
-                if (productDetail==null)return;
+                if (productDetail == null) return;
                 view.showProductDetail(productDetail);
 
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT);
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT);
             }
         });
     }

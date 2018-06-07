@@ -23,10 +23,11 @@ import java.util.List;
 
 public class ReceptionHistoryAdapterTemp extends RecyclerView.Adapter<ReceptionHistoryAdapterTemp.Holder> {
 
-    private List<ReceptionRecordBean> list=new ArrayList<>();
+    private List<ReceptionRecordBean> list = new ArrayList<>();
     private Context context;
+
     public ReceptionHistoryAdapterTemp(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     public void addData(List<ReceptionRecordBean> lists) {
@@ -48,7 +49,7 @@ public class ReceptionHistoryAdapterTemp extends RecyclerView.Adapter<ReceptionH
 
     @Override
     public void onBindViewHolder(ReceptionHistoryAdapterTemp.Holder holder, int position) {
-        holder.bindView(list.get(position),position);
+        holder.bindView(list.get(position), position);
     }
 
     @Override
@@ -82,32 +83,32 @@ public class ReceptionHistoryAdapterTemp extends RecyclerView.Adapter<ReceptionH
 
 
         public void bindView(ReceptionRecordBean receptionRecordBean, int position) {
-            if (receptionRecordBean==null)return;
-           if (!TextUtils.isEmpty(receptionRecordBean.getMemberName()))
-               tvMemberName.setText(receptionRecordBean.getMemberName());
+            if (receptionRecordBean == null) return;
+            if (!TextUtils.isEmpty(receptionRecordBean.getMemberName()))
+                tvMemberName.setText(receptionRecordBean.getMemberName());
 
-           if (!TextUtils.isEmpty(receptionRecordBean.getMobile()))
-               tvMemberPhone.setText(receptionRecordBean.getMobile());
+            if (!TextUtils.isEmpty(receptionRecordBean.getMobile()))
+                tvMemberPhone.setText(receptionRecordBean.getMobile());
 
-           if (!TextUtils.isEmpty(receptionRecordBean.getVisitTime()))
-               tvReceptionTime.setText(receptionRecordBean.getVisitTime());
+            if (!TextUtils.isEmpty(receptionRecordBean.getVisitTime()))
+                tvReceptionTime.setText(receptionRecordBean.getVisitTime());
 
-           if (!TextUtils.isEmpty(receptionRecordBean.getSellerName()))
-               tvReceptionSale.setText(receptionRecordBean.getSellerName());
+            if (!TextUtils.isEmpty(receptionRecordBean.getSellerName()))
+                tvReceptionSale.setText(receptionRecordBean.getSellerName());
 
-           if (!TextUtils.isEmpty(receptionRecordBean.getCoachName()))
-               tvReceptionCoach.setText(receptionRecordBean.getCoachName());
+            if (!TextUtils.isEmpty(receptionRecordBean.getCoachName()))
+                tvReceptionCoach.setText(receptionRecordBean.getCoachName());
 
-           if (!TextUtils.isEmpty(receptionRecordBean.getReferrerUserName())){
-               rlReferee.setVisibility(View.VISIBLE);
-               tvReceptionReferee.setText(receptionRecordBean.getReferrerUserName());
-           }else {
-               rlReferee.setVisibility(View.GONE);
-           }
+            if (!TextUtils.isEmpty(receptionRecordBean.getReferrerUserName())) {
+                rlReferee.setVisibility(View.VISIBLE);
+                tvReceptionReferee.setText(receptionRecordBean.getReferrerUserName());
+            } else {
+                rlReferee.setVisibility(View.GONE);
+            }
 
-            if (receptionRecordBean.getSex()==2){
+            if (receptionRecordBean.getSex() == 2) {
                 Glide.with(context).load(R.mipmap.wt_women).into(ivMemberSex);
-            }else {
+            } else {
                 Glide.with(context).load(R.mipmap.wt_man).into(ivMemberSex);
             }
 

@@ -67,8 +67,8 @@ public class TempBean implements Serializable {
         private String groupTime;
         private String moApplianceName;
         private String moDifficulty;
-        private String moDifficultyDesc ;
-        private String moPartsDesc  ;
+        private String moDifficultyDesc;
+        private String moPartsDesc;
         private String moName;
         private String moParts;
         private int sort;

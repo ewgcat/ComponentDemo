@@ -38,7 +38,7 @@ public class MonthCalendarView extends ViewPager implements OnMonthClickListener
         mMonthAdapter = new MonthAdapter(context, array, this);
         setAdapter(mMonthAdapter);
 //        Log.e(TAG, "initMonthAdapter: mMonthAdapter.getMonthCount() / 2="+mMonthAdapter.getMonthCount() / 2 );
-        Log.e("Test","initMonthAdapter.....");
+        Log.e("Test", "initMonthAdapter.....");
         setCurrentItem(mMonthAdapter.getMonthCount() / 2, false);
     }
 

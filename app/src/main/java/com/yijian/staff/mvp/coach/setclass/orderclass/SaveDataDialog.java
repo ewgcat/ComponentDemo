@@ -64,7 +64,7 @@ public class SaveDataDialog extends PopupWindow {
         });
     }
 
-    public void showSaveDialog(){
+    public void showSaveDialog() {
         showAtLocation(activity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
 
     }

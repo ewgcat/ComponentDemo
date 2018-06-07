@@ -13,7 +13,7 @@ import java.util.List;
  * Created by The_P on 2018/4/13.
  */
 
-public class TypeTitleViewHolder extends  TypeViewHolder{
+public class TypeTitleViewHolder extends TypeViewHolder {
 
     private final TextView tvTitle;
 
@@ -24,8 +24,8 @@ public class TypeTitleViewHolder extends  TypeViewHolder{
 
     @Override
     void bindView(int position, List<Object> objects) {
-        if (objects.get(position) instanceof TitleTemplate){
-            tvTitle.setText(""+((TitleTemplate) objects.get(position)).getTitle());
+        if (objects.get(position) instanceof TitleTemplate) {
+            tvTitle.setText("" + ((TitleTemplate) objects.get(position)).getTitle());
         }
     }
 

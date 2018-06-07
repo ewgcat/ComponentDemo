@@ -7,8 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-
-public class ProgressImageView extends AppCompatImageView{
+public class ProgressImageView extends AppCompatImageView {
 
 
     public ProgressImageView(Context context) {

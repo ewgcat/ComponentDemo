@@ -1,357 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:orientation="horizontal">
 
         <View
-            android:id="@+id/empty_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+                android:id="@+id/empty_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
         <RelativeLayout
-            android:orientation="vertical"
-            android:layout_width="280dp"
-            android:background="@color/white"
-            android:layout_height="match_parent">
-            <ScrollView
-                android:id="@+id/scoll_view"
-                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_width="280dp"
+                android:background="@color/white"
                 android:layout_height="match_parent">
+            <ScrollView
+                    android:id="@+id/scoll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
 
-                    android:orientation="vertical">
+                        android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="性别"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_sex_man"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="男"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_sex_woman"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="女"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="课程类型"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_sijiao_class"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="私教课"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_tiyan_class"
-                            android:visibility="gone"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="体验课"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                    </RelativeLayout>
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="入籍时间"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_time1"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:paddingBottom="6dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="6dp"
-                            android:text="今日"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_time2"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="最近7天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_time3"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="最近30天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/gray_stroke_unselect_bg"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_start_time"
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center"
-                            android:hint="开始时间"
-                            android:background="@color/white"
-                            android:inputType="datetime"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp" />
-                        <TextView
-                            android:text="-"
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="16dp"
+                            android:text="性别"
+                            android:textColor="#333333"
+                            android:textSize="16sp"/>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
                         <TextView
-                            android:id="@+id/tv_end_time"
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/white"
-                            android:gravity="center"
-                            android:inputType="datetime"
-                            android:hint="结束时间"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp" />
+                                android:id="@+id/tv_sex_man"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="男"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                        <TextView
+                                android:id="@+id/tv_sex_woman"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="女"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
                     </RelativeLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="购买时间"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="16dp"
+                            android:text="课程类型"
+                            android:textColor="#333333"
+                            android:textSize="16sp"/>
 
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                         <TextView
-                            android:id="@+id/tv_buy_time1"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
+                                android:id="@+id/tv_sijiao_class"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="私教课"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                        <TextView
+                                android:id="@+id/tv_tiyan_class"
+                                android:visibility="gone"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="体验课"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:paddingBottom="6dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="6dp"
-                            android:text="今日"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                            android:layout_marginTop="16dp"
+                            android:text="入籍时间"
+                            android:textColor="#333333"
+                            android:textSize="16sp"/>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                         <TextView
-                            android:id="@+id/tv_buy_time2"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="最近7天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                                android:id="@+id/tv_time1"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="6dp"
+                                android:text="今日"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                        <TextView
+                                android:id="@+id/tv_time2"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="最近7天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                         <TextView
-                            android:id="@+id/tv_buy_time3"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
+                                android:id="@+id/tv_time3"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="最近30天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
                             android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="最近30天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                            android:layout_marginTop="10dp">
+
+                        <TextView
+                                android:id="@+id/tv_start_time"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:gravity="center"
+                                android:hint="开始时间"
+                                android:background="@color/white"
+                                android:inputType="datetime"
+                                android:textColor="@color/blue"
+                                android:textSize="14sp"/>
+                        <TextView
+                                android:text="-"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:id="@+id/tv_end_time"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@color/white"
+                                android:gravity="center"
+                                android:inputType="datetime"
+                                android:hint="结束时间"
+                                android:textColor="@color/blue"
+                                android:textSize="14sp"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="16dp"
+                            android:text="购买时间"
+                            android:textColor="#333333"
+                            android:textSize="16sp"/>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                        <TextView
+                                android:id="@+id/tv_buy_time1"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="6dp"
+                                android:text="今日"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                        <TextView
+                                android:id="@+id/tv_buy_time2"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="最近7天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                        <TextView
+                                android:id="@+id/tv_buy_time3"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="最近30天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
 
                     </RelativeLayout>
 
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="快过期天数"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="16dp"
+                            android:text="快过期天数"
+                            android:textColor="#333333"
+                            android:textSize="16sp"/>
 
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                         <TextView
-                            android:id="@+id/tv_day1"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:paddingBottom="6dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="6dp"
-                            android:text="7天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                                android:id="@+id/tv_day1"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="6dp"
+                                android:text="7天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
                         <TextView
-                            android:id="@+id/tv_day2"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="14天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                                android:id="@+id/tv_day2"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="14天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                         <TextView
-                            android:id="@+id/tv_day3"
-                            android:layout_width="110dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/gray_stroke_unselect_bg"
-                            android:gravity="center"
-                            android:text="30天"
-                            android:textColor="#666666"
-                            android:textSize="14sp" />
+                                android:id="@+id/tv_day3"
+                                android:layout_width="110dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/gray_stroke_unselect_bg"
+                                android:gravity="center"
+                                android:text="30天"
+                                android:textColor="#666666"
+                                android:textSize="14sp"/>
 
 
                     </RelativeLayout>
-
-
 
 
                 </LinearLayout>
@@ -360,48 +357,48 @@
 
             <LinearLayout
 
-                android:orientation="vertical"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/gray" />
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/gray"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_reset"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:background="@color/white"
-                        android:text="重置"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
+                            android:id="@+id/tv_reset"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="@color/white"
+                            android:text="重置"
+                            android:textColor="#666666"
+                            android:textSize="14sp"/>
 
                     <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/gray" />
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/gray"/>
 
                     <TextView
-                        android:id="@+id/tv_confirm"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/blue"
-                        android:gravity="center"
-                        android:text="确定"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
+                            android:id="@+id/tv_confirm"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/blue"
+                            android:gravity="center"
+                            android:text="确定"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"/>
 
 
                 </LinearLayout>

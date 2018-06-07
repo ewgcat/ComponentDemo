@@ -11,16 +11,17 @@ import com.yijian.staff.net.response.ResultNullObserver;
  * Created by The_P on 2018/4/16.
  */
 
-public class ExperienceClassInvateAgainPresenter_ycm implements ExperienceClassInvateAgainContract_ycm.Presenter{
+public class ExperienceClassInvateAgainPresenter_ycm implements ExperienceClassInvateAgainContract_ycm.Presenter {
 
     private Context context;
     private ExperienceClassInvateAgainContract_ycm.View view;
+
     public ExperienceClassInvateAgainPresenter_ycm(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView(ExperienceClassInvateAgainContract_ycm.View view){
-        this.view=view;
+    public void setView(ExperienceClassInvateAgainContract_ycm.View view) {
+        this.view = view;
     }
 
 
@@ -34,7 +35,7 @@ public class ExperienceClassInvateAgainPresenter_ycm implements ExperienceClassI
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

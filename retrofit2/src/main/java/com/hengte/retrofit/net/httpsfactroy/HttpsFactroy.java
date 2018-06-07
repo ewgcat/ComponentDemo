@@ -73,8 +73,6 @@ public class HttpsFactroy {
     }
 
 
-
-
     //注册证书
     public static SSLSocketFactory getSSLSocketFactory(Context context, InputStream... certificates) {
 

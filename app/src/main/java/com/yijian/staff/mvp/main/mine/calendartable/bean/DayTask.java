@@ -260,14 +260,14 @@ public class DayTask {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(obj instanceof DayTask){
+        if (this == obj) return true;
+        if (obj instanceof DayTask) {
             DayTask dayTask = (DayTask) obj;
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 Date date1 = simpleDateFormat.parse(dayTask.getStartDate());
                 Date date2 = simpleDateFormat.parse(startDate);
-                if(date1.getTime() == date2.getTime()){
+                if (date1.getTime() == date2.getTime()) {
                     return true;
                 }
             } catch (ParseException e) {

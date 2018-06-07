@@ -11,7 +11,6 @@ import android.util.TypedValue;
 import android.view.View;
 
 
-
 /**
  * 绘制选图框
  */
@@ -58,9 +57,8 @@ public class ClipImageBorderView extends View {
         //canvas.drawRect(mHorizontalPadding, mVerticalPadding, getWidth()- mHorizontalPadding, getHeight() - mVerticalPadding, mPaint);
 
 
-            //圆形边框
-            canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2 - mHorizontalPadding, mPaint);
-
+        //圆形边框
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2 - mHorizontalPadding, mPaint);
 
 
     }

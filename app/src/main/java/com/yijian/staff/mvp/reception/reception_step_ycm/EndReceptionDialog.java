@@ -33,7 +33,7 @@ public class EndReceptionDialog extends DialogFragment {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (oklisenter!=null)oklisenter.onClick();
+                if (oklisenter != null) oklisenter.onClick();
                 dismiss();
             }
         });
@@ -63,9 +63,10 @@ public class EndReceptionDialog extends DialogFragment {
 
     }
 
-    public interface DialogOklisenter{
+    public interface DialogOklisenter {
         void onClick();
     }
+
     private DialogOklisenter oklisenter;
 
     public void setOklisenter(DialogOklisenter oklisenter) {

@@ -86,7 +86,7 @@ public class WeekView extends View {
             // 从数据库中获取圆点提示数据
             ScheduleDao dao = ScheduleDao.getInstance(getContext());
             if (CalendarUtils.getInstance(getContext()).getTaskHints(date.getYear(), date.getMonthOfYear() - 1, mIsDayHintTask).size() == 0)
-                CalendarUtils.getInstance(getContext()).addTaskHints(date.getYear(), date.getMonthOfYear() - 1, dao.getTaskHintByMonth(mSelYear, mSelMonth),mIsDayHintTask);
+                CalendarUtils.getInstance(getContext()).addTaskHints(date.getYear(), date.getMonthOfYear() - 1, dao.getTaskHintByMonth(mSelYear, mSelMonth), mIsDayHintTask);
         }
     }
 
@@ -342,14 +342,14 @@ public class WeekView extends View {
             int endMonth = mStartDate.plusDays(7).getMonthOfYear();
             int startDay = mStartDate.getDayOfMonth();
             if (startMonth == endMonth) {
-                List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear() - 1,mIsDayHintTask);
+                List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear() - 1, mIsDayHintTask);
                 for (int i = 0; i < 7; i++) {
                     drawHintCircle(hints, startDay + i, i, canvas);
                 }
             } else {
                 for (int i = 0; i < 7; i++) {
-                    List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear() - 1,mIsDayHintTask);
-                    List<Integer> nextHints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear(),mIsDayHintTask);
+                    List<Integer> hints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear() - 1, mIsDayHintTask);
+                    List<Integer> nextHints = CalendarUtils.getInstance(getContext()).getTaskHints(mStartDate.getYear(), mStartDate.getMonthOfYear(), mIsDayHintTask);
                     DateTime date = mStartDate.plusDays(i);
                     int month = date.getMonthOfYear();
                     if (month == startMonth) {
@@ -396,11 +396,10 @@ public class WeekView extends View {
         invalidate();
     }
 
-    public void selectWeekDay(int year, int month, int day){
+    public void selectWeekDay(int year, int month, int day) {
         setSelectYearMonth(year, month, day);
         invalidate();
     }
-
 
 
     public void setOnWeekClickListener(OnWeekClickListener onWeekClickListener) {
@@ -450,7 +449,7 @@ public class WeekView extends View {
      */
     public void addTaskHints(List<Integer> hints) {
         if (mIsShowHint) {
-            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, hints,mIsDayHintTask);
+            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, hints, mIsDayHintTask);
             invalidate();
         }
     }
@@ -462,7 +461,7 @@ public class WeekView extends View {
      */
     public void removeTaskHints(List<Integer> hints) {
         if (mIsShowHint) {
-            CalendarUtils.getInstance(getContext()).removeTaskHints(mSelYear, mSelMonth, hints,mIsDayHintTask);
+            CalendarUtils.getInstance(getContext()).removeTaskHints(mSelYear, mSelMonth, hints, mIsDayHintTask);
             invalidate();
         }
     }
@@ -474,7 +473,7 @@ public class WeekView extends View {
      */
     public void addTaskHint(Integer day) {
         if (mIsShowHint) {
-            if (CalendarUtils.getInstance(getContext()).addTaskHint(mSelYear, mSelMonth, day,mIsDayHintTask)) {
+            if (CalendarUtils.getInstance(getContext()).addTaskHint(mSelYear, mSelMonth, day, mIsDayHintTask)) {
                 invalidate();
             }
         }
@@ -507,7 +506,7 @@ public class WeekView extends View {
      */
     public void removeTaskHint(Integer day) {
         if (mIsShowHint) {
-            if (CalendarUtils.getInstance(getContext()).removeTaskHint(mSelYear, mSelMonth, day,mIsDayHintTask)) {
+            if (CalendarUtils.getInstance(getContext()).removeTaskHint(mSelYear, mSelMonth, day, mIsDayHintTask)) {
                 invalidate();
             }
         }

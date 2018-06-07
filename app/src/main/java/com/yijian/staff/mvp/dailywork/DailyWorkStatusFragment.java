@@ -16,8 +16,9 @@ import com.yijian.staff.R;
 public class DailyWorkStatusFragment extends Fragment {
 
     private static DailyWorkStatusFragment dailyWorkStatusFragment;
-    public static DailyWorkStatusFragment getInstance(){
-        if(dailyWorkStatusFragment == null){
+
+    public static DailyWorkStatusFragment getInstance() {
+        if (dailyWorkStatusFragment == null) {
             dailyWorkStatusFragment = new DailyWorkStatusFragment();
         }
         return dailyWorkStatusFragment;

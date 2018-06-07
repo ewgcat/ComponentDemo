@@ -73,7 +73,7 @@ public class CoachVipDetailBean {
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.birthdayType = JsonUtil.getString(jsonObject, "birthdayType");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
-        this.headImg =  BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.memberType = JsonUtil.getString(jsonObject, "memberType");
         this.cardName = JsonUtil.getString(jsonObject, "cardName");
         this.cardType = JsonUtil.getInt(jsonObject, "cardType");
@@ -362,7 +362,7 @@ public class CoachVipDetailBean {
         }
     }
 
-    public static class DetailBean implements Serializable{
+    public static class DetailBean implements Serializable {
         /**
          * wechatNo : 值0
          * email : 值0
@@ -443,7 +443,6 @@ public class CoachVipDetailBean {
             this.address = JsonUtil.getString(jsonObject, "address");
             this.urgentContact = JsonUtil.getString(jsonObject, "urgentContact");
             this.contactPhone = JsonUtil.getString(jsonObject, "contactPhone");
-
 
 
         }

@@ -11,10 +11,9 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.widget.NavigationBar2;
 
 /**
- *员工的处理投诉 界面
+ * 员工的处理投诉 界面
  */
-public class ComplaintHandlingActivity extends MvcBaseActivity{
-
+public class ComplaintHandlingActivity extends MvcBaseActivity {
 
 
     @Override

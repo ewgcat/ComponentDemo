@@ -17,7 +17,7 @@ import java.io.Serializable;
  *
  * @version 1.0
  */
-public class MenuItem implements BaseRecyclerItem,Serializable{
+public class MenuItem implements BaseRecyclerItem, Serializable {
 
     /**
      * name : 匕首
@@ -31,7 +31,7 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     private String path;
     private String group;
     private int count;
-    private int  type;//0 已添加在常用列表，1未添加在常用列表
+    private int type;//0 已添加在常用列表，1未添加在常用列表
 
     private int viewType;
     private int itemId;
@@ -39,14 +39,14 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     public MenuItem() {
     }
 
-    public MenuItem(JSONObject jsonObject){
-       this. name=  JsonUtil.getString(jsonObject,"name");
-       this. icon=  JsonUtil.getString(jsonObject,"icon");
-       this. path=  JsonUtil.getString(jsonObject,"path");
-       this. group=  JsonUtil.getString(jsonObject,"group");
-       this. count=  JsonUtil.getInt(jsonObject,"count");
-       this. type=  JsonUtil.getInt(jsonObject,"type");
-       this. itemId=  JsonUtil.getInt(jsonObject,"itemId");
+    public MenuItem(JSONObject jsonObject) {
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.icon = JsonUtil.getString(jsonObject, "icon");
+        this.path = JsonUtil.getString(jsonObject, "path");
+        this.group = JsonUtil.getString(jsonObject, "group");
+        this.count = JsonUtil.getInt(jsonObject, "count");
+        this.type = JsonUtil.getInt(jsonObject, "type");
+        this.itemId = JsonUtil.getInt(jsonObject, "itemId");
     }
 
     public int getCount() {
@@ -66,6 +66,7 @@ public class MenuItem implements BaseRecyclerItem,Serializable{
     public long getItemId() {
         return itemId;
     }
+
     public int getType() {
         return type;
     }

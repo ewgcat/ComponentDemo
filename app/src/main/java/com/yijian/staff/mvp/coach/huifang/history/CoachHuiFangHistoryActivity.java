@@ -55,10 +55,6 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
     }
 
 
-
-
-
-
     public void initComponent() {
         refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
         //设置 Header 为 BezierRadar 样式
@@ -99,7 +95,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-        params.put("type",   "0");
+        params.put("type", "0");
         showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override
@@ -138,7 +134,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
-        params.put("type",  "0");
+        params.put("type", "0");
         showLoading();
         HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
             @Override

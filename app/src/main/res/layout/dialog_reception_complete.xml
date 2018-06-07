@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical">
     <LinearLayout
-        android:layout_width="290dp"
-        android:layout_height="230dp"
-        android:orientation="vertical">
+            android:layout_width="290dp"
+            android:layout_height="230dp"
+            android:orientation="vertical">
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@mipmap/wt_gouxuan"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"/>
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@mipmap/wt_gouxuan"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
         <TextView
-            android:layout_marginTop="16dp"
-            android:text="完成接待"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_16"/>
+                android:layout_marginTop="16dp"
+                android:text="完成接待"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="已经向教练发送通知"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:textSize="@dimen/text_size_16"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已经向教练发送通知"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/text_size_16"
+        />
         <View
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/text_black2"/>
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/text_black2"/>
         <TextView
-            android:id="@+id/tv_ok"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:gravity="center"
-            android:text="确定"
-            android:textColor="@color/text_black1"
-            android:textSize="@dimen/text_size_16"
-            />
+                android:id="@+id/tv_ok"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_16"
+        />
     </LinearLayout>
-    
+
 </LinearLayout>

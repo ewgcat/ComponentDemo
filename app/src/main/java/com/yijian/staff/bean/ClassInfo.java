@@ -13,7 +13,7 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/3/17 19:29:17
  */
-public class ClassInfo implements Comparable<ClassInfo>{
+public class ClassInfo implements Comparable<ClassInfo> {
 
     @Override
     public String toString() {
@@ -44,13 +44,13 @@ public class ClassInfo implements Comparable<ClassInfo>{
     private String baseTotalPrice;
 
 
-    public ClassInfo(JSONObject jsonObject){
-        this.name=  JsonUtil.getString(jsonObject,"name");
-        this.cleassNum=  JsonUtil.getString(jsonObject,"cleassNum");
-        this.lessonTime=  JsonUtil.getString(jsonObject,"lessonTime");
-        this.lessonId=  JsonUtil.getString(jsonObject,"lessonId");
-        this.img= BuildConfig.FILE_HOST+JsonUtil.getString(jsonObject,"img");
-        this.baseTotalPrice=  JsonUtil.getInt(jsonObject,"baseTotalPrice")+"";
+    public ClassInfo(JSONObject jsonObject) {
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.cleassNum = JsonUtil.getString(jsonObject, "cleassNum");
+        this.lessonTime = JsonUtil.getString(jsonObject, "lessonTime");
+        this.lessonId = JsonUtil.getString(jsonObject, "lessonId");
+        this.img = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "img");
+        this.baseTotalPrice = JsonUtil.getInt(jsonObject, "baseTotalPrice") + "";
     }
 
     public String getLessonId() {
@@ -105,7 +105,7 @@ public class ClassInfo implements Comparable<ClassInfo>{
     public int compareTo(@NonNull ClassInfo o) {
         int i1 = Integer.parseInt(this.baseTotalPrice);
         int i2 = Integer.parseInt(o.baseTotalPrice);
-        int i = i1-i2;//先按照年龄排序
+        int i = i1 - i2;//先按照年龄排序
         return i;
     }
 }

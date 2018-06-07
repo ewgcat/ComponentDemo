@@ -8,21 +8,23 @@ import com.yijian.staff.mvp.reception.step3.coach.bean.ReceptionUserInfo;
  */
 
 public interface CoachProductContract {
-    interface View{
+    interface View {
         void showUserInfo(ReceptionUserInfo receptionUserInfo);
+
         void showProductDetail(ProductDetail productDetail);
+
         void showToLeaderSucceed();
 
         void coachToSaleSecceed();
     }
 
-    interface Presenter{
+    interface Presenter {
         void getUserInfo(String memberId);//获取用户资料
 
         void getProductDetail(String memberId);//获取产品详情
 
-        void postToLeader(String memberId,String reason,Integer postId);//TO给领导
+        void postToLeader(String memberId, String reason, Integer postId);//TO给领导
 
-        void coachToSale(String memberId,String cardId);//发送给会籍——客户愿意购买
+        void coachToSale(String memberId, String cardId);//发送给会籍——客户愿意购买
     }
 }

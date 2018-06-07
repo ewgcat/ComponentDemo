@@ -74,9 +74,9 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
         navigationBar2.hideLeftSecondIv();
     }
 
-    @OnClick({R.id.lin_invitation_record,R.id.lin_invitation_result})
-    public void click(View v){
-        switch(v.getId()){
+    @OnClick({R.id.lin_invitation_record, R.id.lin_invitation_result})
+    public void click(View v) {
+        switch (v.getId()) {
             case R.id.lin_invitation_record: //邀约记录
                 selectTab(0);
                 break;
@@ -130,13 +130,13 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
         }
     }
 
-    public void setBotoomStyle(int index){
-        navigationBar2.setTitle(index == 0?"邀约记录":"邀约结果");
-        tv_invitaion_record.setTextColor(index == 0? Color.parseColor("#1997f8"):Color.parseColor("#666666"));
-        tv_invitaion_result.setTextColor(index == 0? Color.parseColor("#666666"):Color.parseColor("#1997f8"));
+    public void setBotoomStyle(int index) {
+        navigationBar2.setTitle(index == 0 ? "邀约记录" : "邀约结果");
+        tv_invitaion_record.setTextColor(index == 0 ? Color.parseColor("#1997f8") : Color.parseColor("#666666"));
+        tv_invitaion_result.setTextColor(index == 0 ? Color.parseColor("#666666") : Color.parseColor("#1997f8"));
 
-        iv_invitaion_record.setImageResource(index == 0?R.mipmap.wt_jilulan:R.mipmap.wt_jilu);
-        iv_invitaion_result.setImageResource(index == 0?R.mipmap.wt_jieguo:R.mipmap.wt_jieguolan);
+        iv_invitaion_record.setImageResource(index == 0 ? R.mipmap.wt_jilulan : R.mipmap.wt_jilu);
+        iv_invitaion_result.setImageResource(index == 0 ? R.mipmap.wt_jieguo : R.mipmap.wt_jieguolan);
     }
 
 }

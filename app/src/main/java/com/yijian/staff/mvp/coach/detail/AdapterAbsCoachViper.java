@@ -13,17 +13,19 @@ import com.yijian.staff.mvp.huiji.detail.HuijiVipInterface;
 public abstract class AdapterAbsCoachViper extends RecyclerView.Adapter<ViewHolderCoachVipper> implements HuijiVipInterface {
     public AdapterInterface adapterInterface;
     public VipDetailBean mVipDetailBean;
+
     public void setAdapterInterface(AdapterInterface adapterInterface) {
         this.adapterInterface = adapterInterface;
     }
 
-    public interface AdapterInterface{
+    public interface AdapterInterface {
         void clickVisit();
+
         void clickEdit();
     }
 
-    public void setData(VipDetailBean vipDetailBean){
-        mVipDetailBean=vipDetailBean;
+    public void setData(VipDetailBean vipDetailBean) {
+        mVipDetailBean = vipDetailBean;
         notifyDataSetChanged();
     }
 }

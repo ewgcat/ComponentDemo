@@ -43,7 +43,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     private VipDetailBean vipDetailBean;
     private RecyclerView recyclerView;
     private String id;
-//    private String memberName;
+    //    private String memberName;
     private NavigationBar2 navigation2;
 
 //    @Override
@@ -79,9 +79,9 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                  vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
+                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
 //                updateUi(vipDetailBean);
-                if (!TextUtils.isEmpty(vipDetailBean.getName()))navigation2.setTitle(vipDetailBean.getName());
+                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
                 adapter.setData(vipDetailBean);
             }
 
@@ -97,7 +97,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
         navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
         navigation2.getmTitleView().setAlpha(0.0f);
-        navigation2.getmTitleView().setVisibility( View.GONE);
+        navigation2.getmTitleView().setVisibility(View.GONE);
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
 
@@ -135,8 +135,8 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState==RecyclerView.SCROLL_STATE_IDLE){
-                    manualMove=false;
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    manualMove = false;
                 }
             }
 
@@ -218,7 +218,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.rl_item0:
                 moveToPosition(1);
@@ -233,6 +233,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     }
 
     private boolean manualMove;//手动移动——指通过点击的移动
+
     private void moveToPosition(int n) {
         llHead.setAlpha(1.0f);
         manualMove = true;
@@ -242,13 +243,13 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
         int lastItem = layoutManager.findLastVisibleItemPosition();
         int headHeight = llHead.getHeight();//头部高度
 
-        if (n<firstItem){
-            layoutManager.scrollToPositionWithOffset(n, headHeight );
+        if (n < firstItem) {
+            layoutManager.scrollToPositionWithOffset(n, headHeight);
 
-        }else if (n==firstItem||n<=lastItem){
+        } else if (n == firstItem || n <= lastItem) {
             View viewByPosition = layoutManager.findViewByPosition(n);
-            recyclerView.scrollBy(0,viewByPosition.getTop()-(headHeight+ DensityUtil.dip2px(this,16)));
-        }else {
+            recyclerView.scrollBy(0, viewByPosition.getTop() - (headHeight + DensityUtil.dip2px(this, 16)));
+        } else {
             layoutManager.scrollToPositionWithOffset(n, headHeight);
         }
     }
@@ -256,11 +257,11 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     @Override
     public void clickVisit() {
         String mobile = vipDetailBean.getMobile();
-        if (!TextUtils.isEmpty(mobile)){
+        if (!TextUtils.isEmpty(mobile)) {
 //            callVisit(mobile);
-            CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this,mobile);
+            CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this, mobile);
         } else {
-            Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
         }
     }
 

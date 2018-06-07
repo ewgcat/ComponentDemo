@@ -8,13 +8,12 @@ import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import java.util.List;
 
 
-
 public interface ExperienceClassContract {
-    interface View{
+    interface View {
         void showExperienceClassListView(List<ExperienceClassBean> experienceClassBeanList);
     }
 
-    interface Presenter{
-       void getExperienceClassListInfo(SmartRefreshLayout refreshLayout,boolean isRefresh);
+    interface Presenter {
+        void getExperienceClassListInfo(SmartRefreshLayout refreshLayout, boolean isRefresh);
     }
 }

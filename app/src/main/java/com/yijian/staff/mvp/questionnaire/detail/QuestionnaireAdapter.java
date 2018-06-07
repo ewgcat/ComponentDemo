@@ -31,14 +31,14 @@ import java.util.Map;
  * Created by The_P on 2018/3/12.
  */
 
-public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataListBean, ItemsBean,AbsParentViewHolder, ChildViewHolderGroup> {
+public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataListBean, ItemsBean, AbsParentViewHolder, ChildViewHolderGroup> {
     private static final String TAG = "Step1QuestAdapter";
     private static final int SINGLECHECK = 13;
-    private static final int MULTICHECK =14;
+    private static final int MULTICHECK = 14;
     private static final int WRITE = 15;
-    public static final int CHILDNORMAL=16;
-    public static final int CHILDMIX=17;
-    public static final int CHILDINPUT=18;
+    public static final int CHILDNORMAL = 16;
+    public static final int CHILDMIX = 17;
+    public static final int CHILDINPUT = 18;
 
     private LayoutInflater mInflater;
     private List<DataListBean> QuestionList;
@@ -52,7 +52,7 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
         mContext = context;
     }
 
-    public void   resetData(List<DataListBean> list){
+    public void resetData(List<DataListBean> list) {
         QuestionList.clear();
         QuestionList.addAll(list);
         setParentList(list);
@@ -66,7 +66,7 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
     @Override
     public AbsParentViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
 
-        switch (viewType){
+        switch (viewType) {
             default:
             case SINGLECHECK:
             case MULTICHECK:
@@ -80,7 +80,7 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
     @Override
     public ChildViewHolderGroup onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
         ChildViewHolderGroup viewHolder;
-        switch (viewType){
+        switch (viewType) {
             default:
             case CHILDNORMAL:
                 View singleView = mInflater.inflate(R.layout.item_quest_option_single, childViewGroup, false);
@@ -98,7 +98,7 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
             case CHILDINPUT:
                 View titleview1 = mInflater.inflate(R.layout.item_questnaire_option_write, childViewGroup, false);
                 QuestionnaireWriteViewHolder questionWriteViewHolder = new QuestionnaireWriteViewHolder(titleview1);
-                viewHolder= questionWriteViewHolder;
+                viewHolder = questionWriteViewHolder;
                 break;
         }
 
@@ -107,8 +107,8 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
 
     @Override
     public void onBindParentViewHolder(@NonNull AbsParentViewHolder parentViewHolder, int parentPosition, @NonNull DataListBean parent) {
-        if (parentViewHolder instanceof QuestionViewHolder){
-            ((QuestionViewHolder)parentViewHolder) .bind(parent,parentPosition);
+        if (parentViewHolder instanceof QuestionViewHolder) {
+            ((QuestionViewHolder) parentViewHolder).bind(parent, parentPosition);
         }
 
     }
@@ -117,31 +117,31 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
     public void onBindChildViewHolder(@NonNull ChildViewHolderGroup childViewHolder, int parentPosition, int childPosition,
                                       @NonNull ItemsBean child, int flatPosition) {
 
-        if (childViewHolder instanceof QuestionSingleCheckViewHolder){
-            ((QuestionSingleCheckViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionnaireOptMixViewHolder){
-            ((QuestionnaireOptMixViewHolder) childViewHolder).bind(child,parentPosition,childPosition);
-        }else if (childViewHolder instanceof QuestionnaireWriteViewHolder){
-            ((QuestionnaireWriteViewHolder)childViewHolder)  .bind(child,parentPosition,childPosition);
+        if (childViewHolder instanceof QuestionSingleCheckViewHolder) {
+            ((QuestionSingleCheckViewHolder) childViewHolder).bind(child, parentPosition, childPosition);
+        } else if (childViewHolder instanceof QuestionnaireOptMixViewHolder) {
+            ((QuestionnaireOptMixViewHolder) childViewHolder).bind(child, parentPosition, childPosition);
+        } else if (childViewHolder instanceof QuestionnaireWriteViewHolder) {
+            ((QuestionnaireWriteViewHolder) childViewHolder).bind(child, parentPosition, childPosition);
         }
 
     }
 
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
-        int type=CHILDNORMAL;
+        int type = CHILDNORMAL;
 //        String childType = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
         int type1 = QuestionList.get(parentPosition).getChildList().get(childPosition).getType();
-        switch (type1){//item_type:0选择,1输入,2选择加输入
+        switch (type1) {//item_type:0选择,1输入,2选择加输入
             case 0:
-                type=CHILDNORMAL;
+                type = CHILDNORMAL;
                 break;
 
             case 1:
-                type=CHILDINPUT;
+                type = CHILDINPUT;
                 break;
             case 2:
-                type=CHILDMIX;
+                type = CHILDMIX;
                 break;
         }
 
@@ -150,17 +150,17 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
 
     @Override
     public int getParentViewType(int parentPosition) {
-        int type=WRITE;
+        int type = WRITE;
         int selectType = QuestionList.get(parentPosition).getSelectType();
-        switch (selectType){//select_type: 选择类型：0单选,1多选,2填空
+        switch (selectType) {//select_type: 选择类型：0单选,1多选,2填空
             case 0:
-                type=SINGLECHECK;
+                type = SINGLECHECK;
                 break;
             case 1:
-                type=MULTICHECK;
+                type = MULTICHECK;
                 break;
             case 2:
-                type=WRITE;
+                type = WRITE;
                 break;
         }
         return type;
@@ -168,6 +168,6 @@ public class QuestionnaireAdapter extends ExpandableRecyclerAdapterGroup<DataLis
 
     @Override
     public boolean isParentViewType(int viewType) {
-        return viewType==SINGLECHECK||viewType==MULTICHECK||viewType==WRITE;
+        return viewType == SINGLECHECK || viewType == MULTICHECK || viewType == WRITE;
     }
 }

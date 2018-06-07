@@ -18,7 +18,7 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public class Child_physical_dispalyMulti extends ChildViewHolder  {
+public class Child_physical_dispalyMulti extends ChildViewHolder {
 
     private final TextView name;
     private final RecyclerView recyclerview;
@@ -28,7 +28,8 @@ public class Child_physical_dispalyMulti extends ChildViewHolder  {
 
     /**
      * Default constructor.
-     *  @param itemView The {@link View} being hosted in this ViewHolder
+     *
+     * @param itemView The {@link View} being hosted in this ViewHolder
      * @param
      */
     public Child_physical_dispalyMulti(@NonNull View itemView, Activity mContext) {
@@ -47,22 +48,17 @@ public class Child_physical_dispalyMulti extends ChildViewHolder  {
         name.setText(child.getQustion());
 
         List<MultiOptBean> multiOptBeans = child.getMultiOptBeans();
-        if (multiOptBeans==null||multiOptBeans.size()==0){
+        if (multiOptBeans == null || multiOptBeans.size() == 0) {
             recyclerview.setVisibility(View.GONE);
-        }else {
+        } else {
 
-            multiAdapter.resetData(multiOptBeans,childPosition,parentPosition);
+            multiAdapter.resetData(multiOptBeans, childPosition, parentPosition);
             recyclerview.setVisibility(View.VISIBLE);
 
         }
 
 
-
-
     }
-
-
-
 
 
 }

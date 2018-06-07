@@ -7,13 +7,13 @@ import com.yijian.staff.mvp.coach.experienceclass.step5.bean.ConsultationConclus
  */
 
 public interface ExperienceClassStep5CoachContract {
-    interface View{
+    interface View {
 
         void showConclusion(ConsultationConclusionBean bean);
     }
 
-    interface Presenter{
-//        GET /experienceProcess/toConsultationConclusion
-       void getConsultationConclusion(String processId);
+    interface Presenter {
+        //        GET /experienceProcess/toConsultationConclusion
+        void getConsultationConclusion(String processId);
     }
 }

@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 public class IOKit {
     /**
      * 从asset目录下获取指定文件里面的string
+     *
      * @param context
      * @param fileName 文件名字
      * @return
@@ -40,7 +41,7 @@ public class IOKit {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return str;

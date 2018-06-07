@@ -32,13 +32,13 @@ public class HuiFangTypeBean {
     private int order;
 
 
-    public HuiFangTypeBean(JSONObject jsonObject){
-        this.id= JsonUtil.getInt(jsonObject,"id");
-        this.configType= JsonUtil.getInt(jsonObject,"configType");
-        this.postId= JsonUtil.getInt(jsonObject,"postId");
-        this.triggerDay= JsonUtil.getInt(jsonObject,"triggerDay");
-        this.order= JsonUtil.getInt(jsonObject,"order");
-        this.configName= JsonUtil.getString(jsonObject,"configName");
+    public HuiFangTypeBean(JSONObject jsonObject) {
+        this.id = JsonUtil.getInt(jsonObject, "id");
+        this.configType = JsonUtil.getInt(jsonObject, "configType");
+        this.postId = JsonUtil.getInt(jsonObject, "postId");
+        this.triggerDay = JsonUtil.getInt(jsonObject, "triggerDay");
+        this.order = JsonUtil.getInt(jsonObject, "order");
+        this.configName = JsonUtil.getString(jsonObject, "configName");
     }
 
 
@@ -116,5 +116,5 @@ public class HuiFangTypeBean {
     public void setOrder(int order) {
         this.order = order;
     }
-   
+
 }

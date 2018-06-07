@@ -9,6 +9,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.setclass.bean.NoInstrumentBean;
 import com.yijian.staff.mvp.coach.setclass.bean.PowerBean;
 import com.yijian.staff.mvp.coach.setclass.bean.RecordTitleBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class NoInstrumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final int TYPE_ITEM = 1;
 
     public NoInstrumentAdapter() {
-        this.recordTitleBean = new RecordTitleBean("测试","组数","次数");
+        this.recordTitleBean = new RecordTitleBean("测试", "组数", "次数");
     }
 
-    public void  resetActionList(List<NoInstrumentBean> list){
+    public void resetActionList(List<NoInstrumentBean> list) {
         noInstrumentBeans.clear();
         noInstrumentBeans.add(recordTitleBean);//添加头部
         noInstrumentBeans.addAll(list);
@@ -63,7 +64,7 @@ public class NoInstrumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return noInstrumentBeans == null ? 0 : noInstrumentBeans.size();
     }
 
-    class TitleViewHolder extends RecyclerView.ViewHolder{
+    class TitleViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_title1;
         private TextView tv_title2;
@@ -78,7 +79,7 @@ public class NoInstrumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_title4 = itemView.findViewById(R.id.tv_title4);
         }
 
-        public void bind(RecordTitleBean recordTitleBean){
+        public void bind(RecordTitleBean recordTitleBean) {
             tv_title1.setText(recordTitleBean.getTitle1());
             tv_title2.setText(recordTitleBean.getTitle2());
             tv_title3.setText(recordTitleBean.getTitle3());
@@ -87,7 +88,7 @@ public class NoInstrumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    class BodyViewHolder extends RecyclerView.ViewHolder{
+    class BodyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_name;
         private TextView tv_groupNum;
@@ -100,7 +101,7 @@ public class NoInstrumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_groupTime = itemView.findViewById(R.id.tv_groupTime);
         }
 
-        public void bind(NoInstrumentBean noInstrumentBean){
+        public void bind(NoInstrumentBean noInstrumentBean) {
             tv_name.setText(noInstrumentBean.getName());
             tv_groupNum.setText(noInstrumentBean.getGroupNum());
             tv_groupTime.setText(noInstrumentBean.getGroupTime());

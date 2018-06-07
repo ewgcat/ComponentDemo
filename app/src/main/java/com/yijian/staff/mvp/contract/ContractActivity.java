@@ -64,8 +64,8 @@ public class ContractActivity extends BaseWebViewActivity {
         }
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String ,String> params=new HashMap<>();
-        params.put("type",""+BaseWebViewActivity.CONTRACT_TYPE);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("type", "" + BaseWebViewActivity.CONTRACT_TYPE);
         HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
@@ -81,8 +81,8 @@ public class ContractActivity extends BaseWebViewActivity {
         webView.loadUrl("http://192.168.2.209:8080/#/contract");
         String token = DBManager.getInstance().queryUser().getToken();
         try {
-            jsonObject.put("token",token);
-            jsonObject.put("memberId",memberId);
+            jsonObject.put("token", token);
+            jsonObject.put("memberId", memberId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

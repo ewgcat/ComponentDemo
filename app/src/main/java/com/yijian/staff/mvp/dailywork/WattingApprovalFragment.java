@@ -26,8 +26,9 @@ public class WattingApprovalFragment extends Fragment {
     private List<ApprovalInfo> approvalInfoList = new ArrayList<>();
 
     private static WattingApprovalFragment wattingApprovalFragment;
-    public static WattingApprovalFragment getInstance(){
-        if(wattingApprovalFragment == null){
+
+    public static WattingApprovalFragment getInstance() {
+        if (wattingApprovalFragment == null) {
             wattingApprovalFragment = new WattingApprovalFragment();
         }
         return wattingApprovalFragment;
@@ -59,7 +60,7 @@ public class WattingApprovalFragment extends Fragment {
             LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
             //设置RecyclerView 布局
             rv_vip_watting_approval.setLayoutManager(layoutmanager);
-            ApprovalAdapter vipPeopleInfoAdapter = new ApprovalAdapter(getActivity(), approvalInfoList,true);
+            ApprovalAdapter vipPeopleInfoAdapter = new ApprovalAdapter(getActivity(), approvalInfoList, true);
             rv_vip_watting_approval.setAdapter(vipPeopleInfoAdapter);
         } catch (JSONException e) {
             Logger.i("TEST", "JSONException: " + e);

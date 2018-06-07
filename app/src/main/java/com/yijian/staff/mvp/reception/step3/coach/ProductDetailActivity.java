@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * Created by The_P on 2018/4/18.
  */
 
-public class ProductDetailActivity extends AppCompatActivity{
+public class ProductDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_card_name)
     TextView tvCardName;
@@ -67,14 +67,14 @@ public class ProductDetailActivity extends AppCompatActivity{
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.setBackClickListener(this);
         Intent intent = getIntent();
-        if (intent.hasExtra("productDetail")){
+        if (intent.hasExtra("productDetail")) {
             productDetail = (ProductDetail) intent.getSerializableExtra("productDetail");
 
             String cardName = productDetail.getCardName();
-            tvCardName.setText(""+cardName );
+            tvCardName.setText("" + cardName);
 
             String cardTypeName = productDetail.getCardTypeName();
-            tvCardtype.setText(""+cardTypeName);
+            tvCardtype.setText("" + cardTypeName);
 
 
 //            BigDecimal salePrice = productDetail.getSalePrice();
@@ -94,15 +94,15 @@ public class ProductDetailActivity extends AppCompatActivity{
 //            }
 
             Map<Integer, List<CardGiftDto>> gift = productDetail.getGift();
-            if (gift!=null){
-                String giftName="";
-                for(Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()){
+            if (gift != null) {
+                String giftName = "";
+                for (Map.Entry<Integer, List<CardGiftDto>> vo : gift.entrySet()) {
                     List<CardGiftDto> value = vo.getValue();
                     for (int i = 0; i < value.size(); i++) {
-                        giftName=giftName+" ";
-                        giftName=giftName+value.get(i).getName();
+                        giftName = giftName + " ";
+                        giftName = giftName + value.get(i).getName();
                         if (!TextUtils.isEmpty(value.get(i).getNum()))
-                            giftName= giftName+"x"+value.get(i).getNum();
+                            giftName = giftName + "x" + value.get(i).getNum();
                     }
                 }
 
@@ -136,16 +136,16 @@ public class ProductDetailActivity extends AppCompatActivity{
 
             String strRestKey = productDetail.getStrRestKey();
             String strRestVal = productDetail.getStrRestVal();
-            if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+            if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
                 tvYuer.setText(strRestVal);
                 tvYuErTip.setText(strRestKey);
             }
 
             String rechargeGivePercent = productDetail.getRechargeGivePercent();
-            if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+            if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
             String salePrice = productDetail.getSalePrice();
-            if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+            if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
             List<String> rightsInterestsList = productDetail.getRightsInterestsList();
             if (rightsInterestsList != null && rightsInterestsList.size() != 0) {
@@ -160,25 +160,23 @@ public class ProductDetailActivity extends AppCompatActivity{
 
 
             String createDate = productDetail.getCreateDate();
-            tvStartTime.setText(""+createDate);
+            tvStartTime.setText("" + createDate);
 
             String expirationDate = productDetail.getExpirationDate();
-            tvEndTime.setText(""+expirationDate);
-
+            tvEndTime.setText("" + expirationDate);
 
 
         }
-
 
 
     }
 
     @OnClick({R.id.tv_chakanxiangqing})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv_chakanxiangqing:
                 Intent intent2 = new Intent(ProductDetailActivity.this, RightsAcitity.class);
-                intent2.putExtra("productDetail",productDetail);
+                intent2.putExtra("productDetail", productDetail);
                 startActivity(intent2);
                 break;
         }

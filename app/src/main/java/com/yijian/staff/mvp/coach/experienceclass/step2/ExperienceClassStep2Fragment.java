@@ -49,10 +49,10 @@ public class ExperienceClassStep2Fragment extends Fragment implements Experience
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_experience_step2,container,false);
+        View view = inflater.inflate(R.layout.fragment_experience_step2, container, false);
         presenter = new ExperienceClassProcess2Presenter(getContext());
         presenter.setView(this);
-        unbinder= ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 

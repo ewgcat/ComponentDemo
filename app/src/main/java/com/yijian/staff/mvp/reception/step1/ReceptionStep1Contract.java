@@ -12,15 +12,18 @@ import java.util.List;
  */
 
 public interface ReceptionStep1Contract {
-    interface View{
+    interface View {
         void showQuestion(TemplateBean templateBean);
+
         void saveSucceed();
     }
 
-    interface Presenter{
-      void  getQuestionAndAnswer(String memberId);
-      void  getQuestion();
-      void  uploadQusetion(List<DataListBean> questionList, RecptionerInfoBean consumerBean, List<CalendarDay> selectedDates);
+    interface Presenter {
+        void getQuestionAndAnswer(String memberId);
+
+        void getQuestion();
+
+        void uploadQusetion(List<DataListBean> questionList, RecptionerInfoBean consumerBean, List<CalendarDay> selectedDates);
 
 
         String computerPercent(List<DataListBean> questionList, List<CalendarDay> selectedDates);

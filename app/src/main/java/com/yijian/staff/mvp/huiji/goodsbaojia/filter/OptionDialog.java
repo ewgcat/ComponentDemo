@@ -78,7 +78,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         conditionBody.setVenueId(venueId);
         conditionBody.setStartPrice(startPrice);
         conditionBody.setCardType(cardType);
-       conditionBody.setCardName(cardName);
+        conditionBody.setCardName(cardName);
 
     }
 
@@ -91,7 +91,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
         getDialog().getWindow().setGravity(Gravity.RIGHT);
         //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
-        getDialog().getWindow().setLayout( RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
         super.onStart();
     }
@@ -322,7 +322,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
                 }
                 break;
             case R.id.tv_confirm:
-                if (onDismissListener != null){
+                if (onDismissListener != null) {
 //                    String cardType = conditionBody.getCardType();
 //                    String endPrice = conditionBody.getEndPrice();
 //                    String startPrice = conditionBody.getStartPrice();
@@ -361,8 +361,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     }
 
 
-
-
     private void resetCardType() {
         setUnSelectStyle(tvTimeCard);
         setUnSelectStyle(tvCishuCard);
@@ -377,7 +375,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         setUnSelectStyle(tvPrice3);
         setUnSelectStyle(tvPrice4);
     }
-
 
 
     private void setSelectStyle(TextView textView) {

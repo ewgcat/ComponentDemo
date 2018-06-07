@@ -72,7 +72,7 @@ public class FaceInfoPanel extends PopupWindow {
     }
 
     private void setTranslucentStatus(Activity activity) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
             Window window = activity.getWindow();
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -97,7 +97,7 @@ public class FaceInfoPanel extends PopupWindow {
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         setClippingEnabled(false);
 
-        setTranslucentStatus((Activity)context);
+        setTranslucentStatus((Activity) context);
         int statusBarHeight = CommonUtil.getStatusBarHeight(context);
         RelativeLayout rel_header = mMenuView.findViewById(R.id.rel_header);
         RelativeLayout.LayoutParams rel_top_lp = (RelativeLayout.LayoutParams) rel_header.getLayoutParams();
@@ -128,9 +128,9 @@ public class FaceInfoPanel extends PopupWindow {
         mMenuView.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rv_face.getVisibility() == View.VISIBLE){
+                if (rv_face.getVisibility() == View.VISIBLE) {
                     dismiss();
-                }else{
+                } else {
                     rv_face.setVisibility(View.VISIBLE);
                     scrollview.setVisibility(View.GONE);
                 }

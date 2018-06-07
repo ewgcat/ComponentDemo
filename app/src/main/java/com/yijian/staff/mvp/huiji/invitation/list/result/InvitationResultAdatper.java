@@ -17,12 +17,12 @@ import java.util.List;
  * Created by yangk on 2018/3/8.
  */
 
-public class InvitationResultAdatper  extends RecyclerView.Adapter<InvitationResultAdatper.ViewHolder> {
+public class InvitationResultAdatper extends RecyclerView.Adapter<InvitationResultAdatper.ViewHolder> {
 
     private List<InvitationResultBean> iinvitationResultBeanList;
     private Context context;
 
-    public InvitationResultAdatper(Context context, List<InvitationResultBean> iinvitationResultBeanList){
+    public InvitationResultAdatper(Context context, List<InvitationResultBean> iinvitationResultBeanList) {
         this.context = context;
         this.iinvitationResultBeanList = iinvitationResultBeanList;
     }
@@ -49,11 +49,11 @@ public class InvitationResultAdatper  extends RecyclerView.Adapter<InvitationRes
 
     @Override
     public int getItemCount() {
-        return iinvitationResultBeanList ==null?0: iinvitationResultBeanList.size();
+        return iinvitationResultBeanList == null ? 0 : iinvitationResultBeanList.size();
     }
 
     public void update(List<InvitationResultBean> invitationResultBeans) {
-        this.iinvitationResultBeanList=invitationResultBeans;
+        this.iinvitationResultBeanList = invitationResultBeans;
         notifyDataSetChanged();
     }
 
@@ -73,16 +73,16 @@ public class InvitationResultAdatper  extends RecyclerView.Adapter<InvitationRes
 
         public ViewHolder(View view) {
             super(view);
-            iv_header =  view.findViewById(R.id.iv_header);
-            iv_gender =  view.findViewById(R.id.iv_gender);
-            tv_name   = view.findViewById(R.id.tv_name);
-            tv_rightsandinterests  =     view.findViewById(R.id.tv_rightsandinterests);
-            tv_invitation_over_time =     view.findViewById(R.id.tv_invitation_over_time);
-            tv_invitation_over_reason =     view.findViewById(R.id.tv_invitation_over_reason);
-            tv_invitation_time =     view.findViewById(R.id.tv_invitation_time);
-            tv_invitation_content =     view.findViewById(R.id.tv_invitation_content);
-            tv_invitation_type  =     view.findViewById(R.id.tv_invitation_type);
-            tv_invitation_result  =     view.findViewById(R.id.tv_invitation_result);
+            iv_header = view.findViewById(R.id.iv_header);
+            iv_gender = view.findViewById(R.id.iv_gender);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_rightsandinterests = view.findViewById(R.id.tv_rightsandinterests);
+            tv_invitation_over_time = view.findViewById(R.id.tv_invitation_over_time);
+            tv_invitation_over_reason = view.findViewById(R.id.tv_invitation_over_reason);
+            tv_invitation_time = view.findViewById(R.id.tv_invitation_time);
+            tv_invitation_content = view.findViewById(R.id.tv_invitation_content);
+            tv_invitation_type = view.findViewById(R.id.tv_invitation_type);
+            tv_invitation_result = view.findViewById(R.id.tv_invitation_result);
         }
     }
 

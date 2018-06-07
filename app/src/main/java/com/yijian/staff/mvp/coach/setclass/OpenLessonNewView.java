@@ -135,9 +135,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
             public void onClick(View v) {
 
                 int punchStatus = openLessonNewActivity.getPunchStatus();
-                if(punchStatus == 0){ //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
-                }else if(punchStatus == 1){
+                if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
+                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 1) {
 
                     if (itemPosition == 0) {
                         manualPickedView(actionFormList, "标准", tv_actionForm, ACTION_FORM_KEY);
@@ -150,8 +150,8 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                     }
 
 
-                }else if(punchStatus == 2){
-                    Toast.makeText(openLessonNewActivity,"已完成不能操作",Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 2) {
+                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -160,9 +160,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
             @Override
             public void onClick(View v) {
                 int punchStatus = openLessonNewActivity.getPunchStatus();
-                if(punchStatus == 0){ //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
-                }else if(punchStatus == 1){
+                if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
+                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 1) {
 
                     if (itemPosition == 0) {
                         manualPickedView(actionStrengthList, "中", tv_actionStrength, ACTION_STRENGTH_KEY);
@@ -175,8 +175,8 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                     }
 
 
-                }else if(punchStatus == 2){
-                    Toast.makeText(openLessonNewActivity,"已完成不能操作",Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 2) {
+                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 //                manualPickedView(actionStrengthList, "中", tv_actionStrength, ACTION_STRENGTH_KEY);
             }
@@ -186,9 +186,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
             public void onClick(View v) {
 
                 int punchStatus = openLessonNewActivity.getPunchStatus();
-                if(punchStatus == 0){ //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
-                }else if(punchStatus == 1){
+                if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
+                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 1) {
 //                    Toast.makeText(openLessonNewActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
 
                     if (itemPosition == 0) {
@@ -201,8 +201,8 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                         }
                     }
 
-                }else if(punchStatus == 2){
-                    Toast.makeText(openLessonNewActivity,"已完成不能操作",Toast.LENGTH_SHORT).show();
+                } else if (punchStatus == 2) {
+                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -231,10 +231,10 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
     private void addBodyData() {
 //        tv_actionForm.setText(actionFormList.get(privateLessonRecordBean.getActionForm()));
 
-        tv_actionForm.setText((privateLessonRecordBean.getActionForm()==null) ? "" : actionFormList.get(privateLessonRecordBean.getActionForm()-1));
+        tv_actionForm.setText((privateLessonRecordBean.getActionForm() == null) ? "" : actionFormList.get(privateLessonRecordBean.getActionForm() - 1));
 //        tv_actionStrength.setText(actionStrengthList.get(privateLessonRecordBean.getActionStrength()));
-        tv_actionStrength.setText((privateLessonRecordBean.getActionStrength()==null) ? "" : actionStrengthList.get(privateLessonRecordBean.getActionStrength()-1));
-        et_interval.setText((privateLessonRecordBean.getInterval()==null) ? "" : privateLessonRecordBean.getInterval()+"");
+        tv_actionStrength.setText((privateLessonRecordBean.getActionStrength() == null) ? "" : actionStrengthList.get(privateLessonRecordBean.getActionStrength() - 1));
+        et_interval.setText((privateLessonRecordBean.getInterval() == null) ? "" : privateLessonRecordBean.getInterval() + "");
         tv_time.setText(privateLessonRecordBean.getTime());
 
         setTimeVisible(!TextUtils.isEmpty(privateLessonRecordBean.getId()));
@@ -256,9 +256,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                 String value = opts.get(options1);
                 tv_name.setText(value);
                 if (key.equals(ACTION_FORM_KEY)) {
-                    privateLessonRecordBean.setActionForm(options1+1);
+                    privateLessonRecordBean.setActionForm(options1 + 1);
                 } else if (key.equals(ACTION_STRENGTH_KEY)) {
-                    privateLessonRecordBean.setActionStrength(options1+1);
+                    privateLessonRecordBean.setActionStrength(options1 + 1);
                 }
                 openLessonNewActivity.setOpenLessonList(itemPosition, privateLessonRecordBean);
             }

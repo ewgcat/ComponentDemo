@@ -15,8 +15,7 @@ public class MessageInfo {
     private String time;
     private String icon;
     private int sex;
-    private  int type;
-
+    private int type;
 
 
     public MessageInfo(JSONObject jsonObject) {
@@ -25,6 +24,7 @@ public class MessageInfo {
         this.icon = JsonUtil.getString(jsonObject, "icon");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
     }
+
     public String getContent() {
         return content;
     }

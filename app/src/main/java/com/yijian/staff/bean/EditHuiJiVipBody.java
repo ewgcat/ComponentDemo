@@ -41,7 +41,7 @@ public class EditHuiJiVipBody {
     private String source;
     private String yearIncome;
 
-    public EditHuiJiVipBody(Map<String, Object> map){
+    public EditHuiJiVipBody(Map<String, Object> map) {
         this.address = (String) map.get("address");
         this.carPrice = (String) map.get("carPrice");
         this.clubBrand = (String) map.get("clubBrand");

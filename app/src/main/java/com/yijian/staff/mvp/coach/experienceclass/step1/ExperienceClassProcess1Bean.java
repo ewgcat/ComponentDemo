@@ -81,8 +81,8 @@ public class ExperienceClassProcess1Bean {
             this.memberName = jsonObject.getString("memberName");
             this.memberId = jsonObject.getString("memberId");
             this.processId = jsonObject.getString("processId");
-            this.remark = JsonUtil.getString(jsonObject,"remark");
-            if (jsonObject.has("startTime")){
+            this.remark = JsonUtil.getString(jsonObject, "remark");
+            if (jsonObject.has("startTime")) {
                 this.startTime = jsonObject.getLong("startTime");
             }
             this.courseNum = jsonObject.getInt("courseNum");
@@ -96,6 +96,7 @@ public class ExperienceClassProcess1Bean {
         }
 
     }
+
     public String getCoachName() {
         return coachName;
     }

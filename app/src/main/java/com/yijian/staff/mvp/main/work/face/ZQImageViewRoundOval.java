@@ -18,8 +18,8 @@ import android.widget.ImageView;
 
 /**
  * 实现圆形、圆角，椭圆等自定义图片View。
- * @author zhangqie
  *
+ * @author zhangqie
  */
 public class ZQImageViewRoundOval extends ImageView {
 
@@ -93,7 +93,7 @@ public class ZQImageViewRoundOval extends ImageView {
         } else if (mType == TYPE_ROUND) {
             mPaint.setColor(Color.RED);
             canvas.drawRoundRect(mRect, mRoundRadius, mRoundRadius, mPaint);
-        }else if(mType == TYPE_OVAL){
+        } else if (mType == TYPE_OVAL) {
             canvas.drawOval(mRect, mPaint);
         }
     }
@@ -136,7 +136,7 @@ public class ZQImageViewRoundOval extends ImageView {
 
     /**
      * drawable转bitmap
-     * 
+     *
      * @param drawable
      * @return
      */
@@ -153,41 +153,47 @@ public class ZQImageViewRoundOval extends ImageView {
         drawable.draw(canvas);
         return bitmap;
     }
+
     /**
      * 单位dp转单位px
      */
-    public int dpTodx(int dp){
-        
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,  
-                dp, getResources().getDisplayMetrics());  
+    public int dpTodx(int dp) {
+
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dp, getResources().getDisplayMetrics());
     }
-    
+
     public int getType() {
         return mType;
     }
+
     /**
      * 设置图片类型：圆形、圆角矩形、椭圆形
+     *
      * @param mType
      */
     public void setType(int mType) {
-        if(this.mType != mType){
+        if (this.mType != mType) {
             this.mType = mType;
             invalidate();
         }
-        
+
     }
+
     public int getRoundRadius() {
         return mRoundRadius;
     }
+
     /**
      * 设置圆角大小
+     *
      * @param mRoundRadius
      */
     public void setRoundRadius(int mRoundRadius) {
-        if(this.mRoundRadius != mRoundRadius){
+        if (this.mRoundRadius != mRoundRadius) {
             this.mRoundRadius = mRoundRadius;
             invalidate();
         }
-        
+
     }
 }

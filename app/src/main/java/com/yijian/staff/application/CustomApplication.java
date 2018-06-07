@@ -32,7 +32,7 @@ import java.util.Map;
 import cn.jpush.android.api.JPushInterface;
 
 
-public class CustomApplication extends TinkerApplication implements Application.ActivityLifecycleCallbacks{
+public class CustomApplication extends TinkerApplication implements Application.ActivityLifecycleCallbacks {
 
 
     private static final String TAG = "CustomApplication";
@@ -54,13 +54,11 @@ public class CustomApplication extends TinkerApplication implements Application.
     }
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
 
         instance = this;
-
 
 
         //极光推送
@@ -96,10 +94,8 @@ public class CustomApplication extends TinkerApplication implements Application.
     }
 
 
-
-
     public void getScreenSize() {
-        WindowManager windowManager = (WindowManager)this.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         Display display = windowManager.getDefaultDisplay();
         display.getMetrics(dm);
@@ -107,14 +103,14 @@ public class CustomApplication extends TinkerApplication implements Application.
         DIMEN_DPI = dm.densityDpi;
         SCREEN_WIDTH = dm.widthPixels;
         SCREEN_HEIGHT = dm.heightPixels;
-        if(SCREEN_WIDTH > SCREEN_HEIGHT) {
+        if (SCREEN_WIDTH > SCREEN_HEIGHT) {
             int t = SCREEN_HEIGHT;
             SCREEN_HEIGHT = SCREEN_WIDTH;
             SCREEN_WIDTH = t;
         }
     }
 
-    public static AppComponent getAppComponent(){
+    public static AppComponent getAppComponent() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(instance))
@@ -129,7 +125,7 @@ public class CustomApplication extends TinkerApplication implements Application.
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         activityMap.put(activity.hashCode() + "", activity);
-        Log.e(TAG, "onActivityCreated: " );
+        Log.e(TAG, "onActivityCreated: ");
     }
 
     @Override
@@ -142,20 +138,20 @@ public class CustomApplication extends TinkerApplication implements Application.
 //        Log.e(TAG, "onActivityResumed: " );
 //        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
         try {
-            if (JpushMessageReceiver.shouldToReception&&JpushMessageReceiver.businessType==0){//应该跳转到接待流程
+            if (JpushMessageReceiver.shouldToReception && JpushMessageReceiver.businessType == 0) {//应该跳转到接待流程
 //                Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
-               if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)){
+                if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)) {
 //                   Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.bundleString);
 //                   JpushMessageReceiver.toReception(activity,JpushMessageReceiver.bundleString);
-                   ReceptionActivityTemp.toReceptionActivityTemp(activity);
-                   JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
-               }
-                JpushMessageReceiver.shouldToReception=false;
-                JpushMessageReceiver.businessType=-1;
+                    ReceptionActivityTemp.toReceptionActivityTemp(activity);
+                    JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
+                }
+                JpushMessageReceiver.shouldToReception = false;
+                JpushMessageReceiver.businessType = -1;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
 
         }
     }

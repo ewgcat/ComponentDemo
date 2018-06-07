@@ -28,7 +28,7 @@ import java.lang.reflect.Field;
 public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
     private static final String TAG = "BottomSheetDialogFragme";
     private long mRecordTime;//暂停的时刻
-    private boolean isPause=true;
+    private boolean isPause = true;
     private BottomSheetDialog bottomSheetDialog;
     private ChronometerWithMillis chronometer;
     private Button btnStartUp;
@@ -37,8 +37,8 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 //        Log.e(TAG, "onCreateDialog: "+mRecordTime );
-        mRecordTime=0;
-        isPause=true;
+        mRecordTime = 0;
+        isPause = true;
 
         bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         bottomSheetDialog.setContentView(R.layout.dialog_bottom_sheet_chronometer);
@@ -52,23 +52,23 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 //                Log.e(TAG, "onClick: " );
-                if (!isPause){//暂停
+                if (!isPause) {//暂停
 //                    Log.e(TAG, "onClick: 暂停" );
                     chronometer.stop();
                     mRecordTime = SystemClock.elapsedRealtime();
                     btnStartUp.setText("继续");
                     btnStartUp.setBackgroundResource(R.mipmap.lesson_activate);
-                    isPause=true;
-                }else {//开启
+                    isPause = true;
+                } else {//开启
                     long l = mRecordTime - chronometer.getBase();
-                    if (l<=0)l=0;
+                    if (l <= 0) l = 0;
 //                    Log.e(TAG, "onClick: 开启" );
-                    chronometer.setBase(SystemClock.elapsedRealtime()- l);//设置初始时刻
+                    chronometer.setBase(SystemClock.elapsedRealtime() - l);//设置初始时刻
                     chronometer.start();
-                    mRecordTime=0;
+                    mRecordTime = 0;
                     btnStartUp.setText("暂停");
                     btnStartUp.setBackgroundResource(R.mipmap.lesson_stop);
-                    isPause=false;
+                    isPause = false;
                 }
 
             }
@@ -79,8 +79,8 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
             public void onClick(View v) {//重置
                 chronometer.setBase(SystemClock.elapsedRealtime());
                 chronometer.stop();
-                mRecordTime=0;
-                isPause=true;
+                mRecordTime = 0;
+                isPause = true;
                 btnStartUp.setText("启动");
                 btnStartUp.setBackgroundResource(R.mipmap.lesson_activate);
             }
@@ -113,13 +113,12 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
     }
 
 
-
     private void showOkDialog() {
 
         chronometer.stop();
         mRecordTime = SystemClock.elapsedRealtime();
         btnStartUp.setText("启动");
-        isPause=true;
+        isPause = true;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("是否提交此次计时数据？");
@@ -131,16 +130,16 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // positive button logic
-                        if (listener!=null){
+                        if (listener != null) {
                             String text = chronometer.getText().toString();
-                            Log.e(TAG, "onClick: text=="+text );
+                            Log.e(TAG, "onClick: text==" + text);
                             String[] split = text.split(":");
-                           String minute=split[0];
+                            String minute = split[0];
                             String[] split1 = split[1].split("\\.");
-                           String ss= split1[0];
-                            String sss= split1[1];
+                            String ss = split1[0];
+                            String sss = split1[1];
 
-                           Long time=(Long.valueOf(minute)*60*1000)+Long.valueOf(ss)*1000+Long.valueOf(sss);
+                            Long time = (Long.valueOf(minute) * 60 * 1000) + Long.valueOf(ss) * 1000 + Long.valueOf(sss);
                             listener.getTimes(time);
 
                         }
@@ -201,14 +200,14 @@ public class BottomSheetDialogFragmentLesson extends BottomSheetDialogFragment {
 
     }
 
-    public interface ResultChronometerListener{
-        void getTimes( long time);
+    public interface ResultChronometerListener {
+        void getTimes(long time);
     }
 
     private ResultChronometerListener listener;
 
-    public void setResultChronometerListener(ResultChronometerListener resultChronometerListener){
-        listener=resultChronometerListener;
+    public void setResultChronometerListener(ResultChronometerListener resultChronometerListener) {
+        listener = resultChronometerListener;
     }
 
 

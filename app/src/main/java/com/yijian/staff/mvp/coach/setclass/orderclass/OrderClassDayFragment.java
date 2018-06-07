@@ -65,7 +65,6 @@ public class OrderClassDayFragment extends Fragment {
     private OrderclassDayAdapter orderclassDayAdapter;
 
 
-
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
         this.onChangeDateListener = onChangeDateListener;
     }
@@ -163,7 +162,7 @@ public class OrderClassDayFragment extends Fragment {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                Date date = dateFormat.parse(year + "-" + (month+1)  + "-" + day);
+                Date date = dateFormat.parse(year + "-" + (month + 1) + "-" + day);
                 loadDayData(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -225,7 +224,7 @@ public class OrderClassDayFragment extends Fragment {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                Date date = dateFormat.parse(year + "-" + (month+1) + "-" + day);
+                Date date = dateFormat.parse(year + "-" + (month + 1) + "-" + day);
                 loadDayData(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -241,7 +240,7 @@ public class OrderClassDayFragment extends Fragment {
             CalendarDay calendarDay = CalendarDay.from(year, month, day);
             onChangeDateListener.onChangeDate(calendarDay);
 
-            loadPreviewDayData(year + "-" + (month+1));
+            loadPreviewDayData(year + "-" + (month + 1));
 
             //添加小圆点
            /* List<String> dateList = new ArrayList<String>();
@@ -329,18 +328,18 @@ public class OrderClassDayFragment extends Fragment {
             @Override
             public void onSuccess(JSONArray result) {
                 List<String> dateStrList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), String.class);
-                if(dateStrList!=null){
+                if (dateStrList != null) {
 
                     //添加小圆点
                     mcvCalendar.getCurrentMonthView().addDateTaskHint(dateStrList);
 
-                    for(int i = 0; i < dateStrList.size(); i++){
+                    for (int i = 0; i < dateStrList.size(); i++) {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         try {
                             Date date = simpleDateFormat.parse(dateStrList.get(i));
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(date);
-                            dateStrList.set(i,calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)-1)+calendar.get(Calendar.DAY_OF_MONTH));
+                            dateStrList.set(i, calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) - 1) + calendar.get(Calendar.DAY_OF_MONTH));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -349,7 +348,7 @@ public class OrderClassDayFragment extends Fragment {
                     if (wcvCalendar.getCurrentWeekView() == null) {
                         WeekView weekView = wcvCalendar.getWeekAdapter().instanceWeekView(wcvCalendar.getCurrentItem());
                         weekView.addDateTaskHint(dateStrList);
-                    }else{
+                    } else {
                         wcvCalendar.getCurrentWeekView().addDateTaskHint(dateStrList);
                     }
                     Log.e("Test", "loadPreviewDayData.....");

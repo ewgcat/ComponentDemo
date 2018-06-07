@@ -20,13 +20,14 @@ import java.util.List;
  *
  * @version 1.0
  */
-public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHolder,RI extends BaseRecyclerItem> extends RecyclerView.Adapter<VH> {
+public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHolder, RI extends BaseRecyclerItem> extends RecyclerView.Adapter<VH> {
     protected List<RI> mRecyclerItems;
 
     protected OnRecyclerItemLongClickListener<RI> mOnRecyclerItemLongClickListener;
 
     /**
      * 创建ViewHolder
+     *
      * @param parent
      * @param viewType
      * @return
@@ -35,10 +36,11 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
 
     /**
      * 绑定ViewHolder
+     *
      * @param holder
      * @param item
      */
-    public abstract void bindViewHolder(VH holder,RI item);
+    public abstract void bindViewHolder(VH holder, RI item);
 
     public BaseSimpleRecyclerAdapter(List<RI> recyclerItems, Context context) {
         mRecyclerItems = recyclerItems;
@@ -50,14 +52,14 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
     }
 
     public void updateRecyclerItems(RecyclerView recyclerView, List<RI> recyclerItems) {
-        if(recyclerView==null){
+        if (recyclerView == null) {
             return;
         }
         mRecyclerItems = recyclerItems;
         recyclerView.post(new Runnable() {
             @Override
             public void run() {
-             notifyDataSetChanged();
+                notifyDataSetChanged();
             }
         });
     }
@@ -73,14 +75,14 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return createRecyclerViewHolder(parent,viewType);
+        return createRecyclerViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        final int p=position;
-        final RI item=mRecyclerItems.get(p);
-        bindViewHolder(holder,item);
+        final int p = position;
+        final RI item = mRecyclerItems.get(p);
+        bindViewHolder(holder, item);
     }
 
     @Override
@@ -93,7 +95,6 @@ public abstract class BaseSimpleRecyclerAdapter<VH extends RecyclerView.ViewHold
         return position;
 
     }
-
 
 
 }

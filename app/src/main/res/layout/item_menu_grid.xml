@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fl_item_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:layout_marginTop="6dp"
-    android:background="@drawable/light_black_stroke_bg"
-    android:gravity="center">
+             android:id="@+id/fl_item_view"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="6dp"
+             android:layout_marginRight="6dp"
+             android:layout_marginTop="6dp"
+             android:background="@drawable/light_black_stroke_bg"
+             android:gravity="center">
 
     <ImageView
-        android:id="@+id/delete"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/icon_delete"
-        />
+            android:id="@+id/delete"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/icon_delete"
+    />
 
     <ImageView
-        android:id="@+id/add"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/icon_add" />
+            android:id="@+id/add"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/icon_add"/>
     <TextView
-        android:id="@+id/tv_count"
-        android:text="99+"
-        android:gravity="center"
-        android:background="@drawable/red_circle_bg"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_horizontal"
-        />
+            android:id="@+id/tv_count"
+            android:text="99+"
+            android:gravity="center"
+            android:background="@drawable/red_circle_bg"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_horizontal"
+    />
 
 
     <LinearLayout
-        android:id="@+id/item_grid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="3dp">
+            android:id="@+id/item_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
 
 
         <ImageView
-            android:id="@+id/pic"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="6dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/lg_all" />
+                android:id="@+id/pic"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/lg_all"/>
 
         <TextView
-            android:id="@+id/desc"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:text="全部功能"
-            android:textSize="10sp" />
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="全部功能"
+                android:textSize="10sp"/>
     </LinearLayout>
 
 </FrameLayout>

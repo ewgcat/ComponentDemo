@@ -89,7 +89,7 @@ public class MonthView extends View {
         if (mIsShowHint) {
             // 从数据库中获取圆点提示数据
             ScheduleDao dao = ScheduleDao.getInstance(getContext());
-            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, dao.getTaskHintByMonth(mSelYear, mSelMonth),mIsDayHintTask);
+            CalendarUtils.getInstance(getContext()).addTaskHints(mSelYear, mSelMonth, dao.getTaskHintByMonth(mSelYear, mSelMonth), mIsDayHintTask);
         }
     }
 
@@ -455,7 +455,6 @@ public class MonthView extends View {
     }
 
 
-
     public void setSelectYearMonth(int year, int month, int day) {
         mSelYear = year;
         mSelMonth = month;
@@ -521,7 +520,7 @@ public class MonthView extends View {
         invalidate();
     }
 
-    public void selectMonthDay(int year, int month, int day){
+    public void selectMonthDay(int year, int month, int day) {
         setSelectYearMonth(year, month, day);
         invalidate();
     }
@@ -576,7 +575,7 @@ public class MonthView extends View {
     /**
      * 格式化日期后添加小圆点
      */
-    public void addDateTaskHint(List<String> dateList){
+    public void addDateTaskHint(List<String> dateList) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for (String time : dateList) {
             try {

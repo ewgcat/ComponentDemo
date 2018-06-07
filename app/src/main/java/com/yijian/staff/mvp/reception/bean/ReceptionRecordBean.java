@@ -19,15 +19,15 @@ public class ReceptionRecordBean {
 //      sex（int,optional） 0：未知  1：男 2：女
 
 
-  private   String coachId;
-    private  String coachName;
-    private  String memberId;
+    private String coachId;
+    private String coachName;
+    private String memberId;
     private String memberName;
     private String mobile;
     private String referrerUserId;
     private String referrerUserName;
     private String sellerId;
-    private  String sellerName;
+    private String sellerName;
     private String visitRecordId;
     private String visitTime;
     private int sex;

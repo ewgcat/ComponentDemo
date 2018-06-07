@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/activity_background">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/activity_background">
 
     <include
-        android:id="@+id/navigation_bar2"
-        layout="@layout/view_navigation_bar2" />
+            android:id="@+id/navigation_bar2"
+            layout="@layout/view_navigation_bar2"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/navigation_bar2">
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/navigation_bar2">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"></android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <!--<RelativeLayout-->
-        <!--android:id="@+id/rl_nodata"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:visibility="gone">-->
+    <!--android:id="@+id/rl_nodata"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:visibility="gone">-->
 
-        <!--<ImageView-->
-            <!--android:id="@+id/iv_nodata"-->
-            <!--android:layout_width="164dp"-->
-            <!--android:layout_height="164dp"-->
-            <!--android:src="@mipmap/nodata" />-->
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_nodata"-->
+    <!--android:layout_width="164dp"-->
+    <!--android:layout_height="164dp"-->
+    <!--android:src="@mipmap/nodata" />-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/iv_nodata"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:text="没有相关数据"-->
-            <!--android:textColor="@color/text_black2"-->
-            <!--android:textSize="@dimen/text_size_18" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/iv_nodata"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:text="没有相关数据"-->
+    <!--android:textColor="@color/text_black2"-->
+    <!--android:textSize="@dimen/text_size_18" />-->
     <!--</RelativeLayout>-->
     <com.yijian.staff.widget.EmptyView
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:visibility="visible" />
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:visibility="visible"/>
 </RelativeLayout>

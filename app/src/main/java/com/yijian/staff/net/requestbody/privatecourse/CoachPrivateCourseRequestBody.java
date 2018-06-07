@@ -8,20 +8,20 @@ package com.yijian.staff.net.requestbody.privatecourse;
 public class CoachPrivateCourseRequestBody {
 
     /**
-     私课产品查询列表传参对象 {
-     courseName (string, optional): 私课名称 ,
-     indate (integer, optional): 有效期 ,
-     isSortByPrice (integer, optional): 是否需要价格排序（0：升序，1：降序） ,
-     lconsumingMinute (integer, optional): 单节时长-左区间(分钟) ,
-     lcourseNum (integer, optional): 课程节数-左区间 ,
-     ltotalPrice (number, optional): 价格-左区间 ,
-     pageNum (integer, optional),
-     pageSize (integer, optional),
-     rconsumingMinute (integer, optional): 单节时长-右区间(分钟) ,
-     rcourseNum (integer, optional): 课程节数-右区间 ,
-     rtotalPrice (number, optional): 价格-右区间
-
-     }
+     * 私课产品查询列表传参对象 {
+     * courseName (string, optional): 私课名称 ,
+     * indate (integer, optional): 有效期 ,
+     * isSortByPrice (integer, optional): 是否需要价格排序（0：升序，1：降序） ,
+     * lconsumingMinute (integer, optional): 单节时长-左区间(分钟) ,
+     * lcourseNum (integer, optional): 课程节数-左区间 ,
+     * ltotalPrice (number, optional): 价格-左区间 ,
+     * pageNum (integer, optional),
+     * pageSize (integer, optional),
+     * rconsumingMinute (integer, optional): 单节时长-右区间(分钟) ,
+     * rcourseNum (integer, optional): 课程节数-右区间 ,
+     * rtotalPrice (number, optional): 价格-右区间
+     * <p>
+     * }
      */
     private String lcourseNum;
     private String rcourseNum;

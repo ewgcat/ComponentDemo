@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/gray">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/gray">
 
     <LinearLayout
-        android:id="@+id/lin_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/white_bg"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
-
-        <LinearLayout
+            android:id="@+id/lin_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:orientation="vertical"
+            android:background="@drawable/white_bg"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
             <ImageView
-                android:id="@+id/iv_header"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@mipmap/people"/>
+                    android:id="@+id/iv_header"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/people"/>
 
             <TextView
-                android:id="@+id/tv_name"
-                android:maxWidth="120dp"
-                android:ellipsize="end"
-                android:singleLine="true"
+                    android:id="@+id/tv_name"
+                    android:maxWidth="120dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="9dp"/>
 
             <ImageView
-                android:id="@+id/iv_gender"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="5dp"/>
-            
+                    android:id="@+id/iv_gender"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"/>
+
         </LinearLayout>
 
         <View
-            style="@style/SplitLineStyle"
-            />
+                style="@style/SplitLineStyle"
+        />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/tv_today_consumption_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentLeft="true"
-                android:text="打卡总次数:"/>
+                    android:id="@+id/tv_today_consumption_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="9dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="打卡总次数:"/>
 
             <TextView
-                android:id="@+id/tv_today_consumption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentRight="true"/>
+                    android:id="@+id/tv_today_consumption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="9dp"
+                    android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/tv_arrival_time_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentLeft="true"
-                android:text="到场时间:"/>
+                    android:id="@+id/tv_arrival_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="9dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="到场时间:"/>
 
             <TextView android:id="@+id/tv_arrival_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentRight="true"/>
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="14sp"
+                      android:textColor="@color/black333333"
+                      android:layout_marginLeft="9dp"
+                      android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/tv_leaving_time_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentLeft="true"
-                android:text="到场时间:"/>
+                    android:id="@+id/tv_leaving_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/black333333"
+                    android:layout_marginLeft="9dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="离场时间:"/>
 
             <TextView android:id="@+id/tv_leaving_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentRight="true"/>
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="14sp"
+                      android:textColor="@color/black333333"
+                      android:layout_marginLeft="9dp"
+                      android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 

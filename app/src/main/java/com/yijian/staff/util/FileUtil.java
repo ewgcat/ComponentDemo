@@ -78,8 +78,8 @@ public class FileUtil {
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
-                if (fis!=null){
+            } finally {
+                if (fis != null) {
                     try {
                         fis.close();
                     } catch (IOException e) {
@@ -92,6 +92,7 @@ public class FileUtil {
         }
         return size;
     }
+
     /**
      * 创建未存在的文件夹
      *
@@ -118,10 +119,9 @@ public class FileUtil {
     }
 
 
-
-
     /**
      * 读取 assets 文件
+     *
      * @param context
      * @param fileName
      * @return
@@ -180,10 +180,11 @@ public class FileUtil {
 
     /**
      * 获取随机存取文件
-     * @param path  文件路径
-     * @param loadBytes 文件已下载大小
-     * @param totalBytes    文件总大小
-     * @return  文件
+     *
+     * @param path       文件路径
+     * @param loadBytes  文件已下载大小
+     * @param totalBytes 文件总大小
+     * @return 文件
      * @throws IOException
      */
     public static RandomAccessFile getRandomAccessFile(String path, int loadBytes, int totalBytes) throws IOException {
@@ -233,9 +234,10 @@ public class FileUtil {
 
     /**
      * 格式化字符串
-     * @param msg   格式数据
-     * @param args  参数
-     * @return  格式化字符串
+     *
+     * @param msg  格式数据
+     * @param args 参数
+     * @return 格式化字符串
      */
     public static String formatString(final String msg, Object... args) {
         return String.format(Locale.ENGLISH, msg, args);
@@ -243,8 +245,9 @@ public class FileUtil {
 
     /**
      * 获取空闲的空间大小
-     * @param path  文件路径
-     * @return  空间大小
+     *
+     * @param path 文件路径
+     * @return 空间大小
      */
     public static long getFreeSpaceBytes(final String path) {
         long freeSpaceBytes;
@@ -258,6 +261,7 @@ public class FileUtil {
 
         return freeSpaceBytes;
     }
+
     public interface CompressCallback {
         void onSuccess(File file);
     }

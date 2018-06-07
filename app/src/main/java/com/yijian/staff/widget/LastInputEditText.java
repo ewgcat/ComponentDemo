@@ -28,7 +28,7 @@ public class LastInputEditText extends AppCompatEditText {
     protected void onSelectionChanged(int selStart, int selEnd) {
         super.onSelectionChanged(selStart, selEnd);
         //保证光标始终在最后面
-        if(selStart==selEnd){//防止不能多选
+        if (selStart == selEnd) {//防止不能多选
             setSelection(getText().length());
         }
 

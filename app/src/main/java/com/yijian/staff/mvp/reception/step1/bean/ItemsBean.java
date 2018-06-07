@@ -4,7 +4,7 @@ package com.yijian.staff.mvp.reception.step1.bean;
  * Created by The_P on 2018/4/9.
  */
 
-public  class ItemsBean {
+public class ItemsBean {
     /**
      * id : 3
      * item : 报纸

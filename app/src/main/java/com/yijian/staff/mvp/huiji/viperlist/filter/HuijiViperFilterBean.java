@@ -7,14 +7,14 @@ package com.yijian.staff.mvp.huiji.viperlist.filter;
  */
 public class HuijiViperFilterBean {
 
-    private int joinTimeType=-1;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
-    private int expiringDay=-1;//快过期天数:【7:7天，14:14天，30:30天】
-    private int sex=-1;//性别：【0:未知 1:男 2:女】
-    private int cardType=-1;//卡类型：【0:时间卡，1:次卡，2:储值卡，3:会员制卡，4:员工卡】
-    private int privateCourseState=-1;//私教课购买情况：【1.未购买，2.已购买，3.已购买的私课，且私课为体验课】
-    private int source=-1;//来源（推广渠道)
-    private String startTime=null;//开始时间
-    private String endTime=null;//结束时间
+    private int joinTimeType = -1;//入籍时间类型：【0:今日，7:最近七天，30:最近30天，-1:可编辑日期】
+    private int expiringDay = -1;//快过期天数:【7:7天，14:14天，30:30天】
+    private int sex = -1;//性别：【0:未知 1:男 2:女】
+    private int cardType = -1;//卡类型：【0:时间卡，1:次卡，2:储值卡，3:会员制卡，4:员工卡】
+    private int privateCourseState = -1;//私教课购买情况：【1.未购买，2.已购买，3.已购买的私课，且私课为体验课】
+    private int source = -1;//来源（推广渠道)
+    private String startTime = null;//开始时间
+    private String endTime = null;//结束时间
 
     public HuijiViperFilterBean() {
     }

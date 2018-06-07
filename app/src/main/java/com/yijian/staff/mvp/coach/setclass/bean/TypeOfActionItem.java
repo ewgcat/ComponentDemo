@@ -10,8 +10,8 @@ public class TypeOfActionItem {
     String actionIntensity;//动作强度
     String actionTime; //动作时间
     String actionTimeInterval;//动作时间间隔
-    Long  startTime; //开始时间
-    Long  endTime;  //结束时间
+    Long startTime; //开始时间
+    Long endTime;  //结束时间
 
     public Long getStartTime() {
         return startTime;

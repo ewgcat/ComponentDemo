@@ -69,12 +69,12 @@ public class TOLeadersDialog extends DialogFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 LeadersBeanWrap leadersBean = GsonNullString.getGson().fromJson(result.toString(), LeadersBeanWrap.class);
-                if (leadersBean==null||leadersBean.getDataList().isEmpty()){
+                if (leadersBean == null || leadersBean.getDataList().isEmpty()) {
                     return;
-                }else {
+                } else {
                     toLeaderAdapter.resetData(leadersBean.getDataList());
                 }
-                
+
 
             }
 
@@ -111,7 +111,6 @@ public class TOLeadersDialog extends DialogFragment {
         toLeaderAdapter.setItemSelectLisenter(new TOLeaderAdapter.ItemSelectLisenter() {
 
 
-
             @Override
             public void onclick(LeaderBean bean) {
                 postId = bean.getPost();
@@ -119,24 +118,22 @@ public class TOLeadersDialog extends DialogFragment {
         });
 
 
-
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etToReason.getText().toString())){
-                    Toast.makeText(getActivity(),"请填写详情",Toast.LENGTH_SHORT).show();
-                        return;
-                }
-
-
-                if (postId==null){
-                    Toast.makeText(getActivity(),"领导id不能为空",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(etToReason.getText().toString())) {
+                    Toast.makeText(getActivity(), "请填写详情", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
+                if (postId == null) {
+                    Toast.makeText(getActivity(), "领导id不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                if (lisenter!=null)lisenter.onConfirm(postId,etToReason.getText().toString().trim());
+
+                if (lisenter != null) lisenter.onConfirm(postId, etToReason.getText().toString().trim());
 
 
             }
@@ -148,13 +145,14 @@ public class TOLeadersDialog extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        postId=null;
+        postId = null;
         etToReason.setText("");
     }
 
-    public interface ToLeaderLisenter{
-        void onConfirm(Integer postid,String content);
+    public interface ToLeaderLisenter {
+        void onConfirm(Integer postid, String content);
     }
+
     private ToLeaderLisenter lisenter;
 
     public void setLisenter(ToLeaderLisenter lisenter) {

@@ -6,13 +6,13 @@ package com.yijian.staff.mvp.coach.experienceclass.step1.bean;
 
 public class TemplatePrivateContent {
 
-    public   String buildDesc;// 训练描述 ,
-    public  String contentId;//模板内容id ,
-    public  Integer groupNum;//组数 ,
-    public  Integer groupTime;//次数/时长 ,
+    public String buildDesc;// 训练描述 ,
+    public String contentId;//模板内容id ,
+    public Integer groupNum;//组数 ,
+    public Integer groupTime;//次数/时长 ,
     public String moApplianceName;//器械名称 ,
-    public  String moDifficulty;//训练难度(1：高，2：中，3：低) ,
-    public  String moDifficultyDesc;//动作难度描述 ,
+    public String moDifficulty;//训练难度(1：高，2：中，3：低) ,
+    public String moDifficultyDesc;//动作难度描述 ,
     public String moName;//动作名称 ,
     public String moParts;//训练部位 ,
     public String moPartsDesc;//训练部位描述 ,

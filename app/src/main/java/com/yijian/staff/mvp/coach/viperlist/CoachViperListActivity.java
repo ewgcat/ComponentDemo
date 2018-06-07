@@ -70,11 +70,10 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
             @Override
             public void onDismiss(CoachViperFilterBean viperFilterBean) {
                 RxBus.getDefault().post(viperFilterBean);
-                coachViperFilterBean=viperFilterBean;
+                coachViperFilterBean = viperFilterBean;
             }
         });
     }
-
 
 
     @OnClick({R.id.lin_all_vip, R.id.lin_today_visit})
@@ -102,7 +101,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
             view_all.setVisibility(View.VISIBLE);
             view_today_visit.setVisibility(View.GONE);
             if (coachAllViperFragment == null) {
-                coachAllViperFragment =new  CoachAllViperFragment();
+                coachAllViperFragment = new CoachAllViperFragment();
                 fragmentTransaction.add(R.id.fl_content, coachAllViperFragment);
             } else {
                 fragmentTransaction.show(coachAllViperFragment);
@@ -113,7 +112,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
             view_all.setVisibility(View.GONE);
             view_today_visit.setVisibility(View.VISIBLE);
             if (coachVipTodayVisitFragment == null) {
-                coachVipTodayVisitFragment =new CoachVipTodayVisitFragment();
+                coachVipTodayVisitFragment = new CoachVipTodayVisitFragment();
                 fragmentTransaction.add(R.id.fl_content, coachVipTodayVisitFragment);
             } else {
                 fragmentTransaction.show(coachVipTodayVisitFragment);
@@ -126,11 +125,11 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
 
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        if (coachAllViperFragment!=null&&coachAllViperFragment.isAdded()) {
+        if (coachAllViperFragment != null && coachAllViperFragment.isAdded()) {
             fragmentTransaction.hide(coachAllViperFragment);
         }
 
-        if (coachVipTodayVisitFragment!=null&&coachVipTodayVisitFragment.isAdded()) {
+        if (coachVipTodayVisitFragment != null && coachVipTodayVisitFragment.isAdded()) {
             fragmentTransaction.hide(coachVipTodayVisitFragment);
         }
     }

@@ -24,7 +24,7 @@ import android.util.Log;
 
 /**
  * Created by Phillip Hsu on 8/9/2016.
- *
+ * <p>
  * A modified version of the framework's Chronometer widget that shows
  * up to hundredths of a second.
  */
@@ -47,13 +47,13 @@ public class ChronometerWithMillis extends BaseChronometer {
     @TargetApi(21)
     public ChronometerWithMillis(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        Log.e(TAG, "ChronometerWithMillis: " );
+        Log.e(TAG, "ChronometerWithMillis: ");
 
         init();
     }
 
     private void init() {
-        Log.e(TAG, "init: " );
+        Log.e(TAG, "init: ");
         setShowCentiseconds(true, false);
     }
 }

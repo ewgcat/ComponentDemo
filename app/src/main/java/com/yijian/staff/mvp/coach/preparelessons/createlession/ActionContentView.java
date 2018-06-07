@@ -32,7 +32,7 @@ public class ActionContentView extends LinearLayout implements Observer {
     private TextView tv_action_limit; //动作次数
     private TextView tv_action_qixie; //器械选择
     private CheckBox ck_group; //选中删除复选框
-//    private ImageView iv_rank; //排序
+    //    private ImageView iv_rank; //排序
     private RelativeLayout rel_rank; //排序
     private TextView tv_rank; //排序
     private LinearLayout lin_action_content_container; //动作内容容器
@@ -100,7 +100,7 @@ public class ActionContentView extends LinearLayout implements Observer {
         tv_action_name.setText(actionBean.getMoName());
         tv_action_limit.setText(actionBean.getBuildDesc());
         tv_action_qixie.setText(actionBean.getMoApplianceName());
-        tv_rank.setText((itemPosition+1)+"");
+        tv_rank.setText((itemPosition + 1) + "");
     }
 
     @Override
@@ -130,7 +130,7 @@ public class ActionContentView extends LinearLayout implements Observer {
                     lin_action_content_container.setVisibility(View.GONE);
                     actionBean.setShowHeader(false);
                 }
-                createPrivateLessionActivity.setActionBeanList(itemPosition,actionBean);
+                createPrivateLessionActivity.setActionBeanList(itemPosition, actionBean);
                 break;
 
             case 2: //确定

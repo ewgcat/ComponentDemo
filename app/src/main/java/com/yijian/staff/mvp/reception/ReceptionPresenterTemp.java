@@ -20,18 +20,18 @@ import java.util.Map;
  * Created by The_P on 2018/5/14.
  */
 
-public class ReceptionPresenterTemp implements ReceptionContract.Presenter{
+public class ReceptionPresenterTemp implements ReceptionContract.Presenter {
     private static final String TAG = "ReceptionPresenterTemp";
     private Context context;
     private ReceptionContract.View view;
 
     public ReceptionPresenterTemp(Context context) {
-        this.context=context;
+        this.context = context;
 
     }
 
-    public void setView(ReceptionContract.View view){
-        this.view=view;
+    public void setView(ReceptionContract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -39,14 +39,15 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter{
 
     }
 
-    private int pageNum=1;//默认页码
+    private int pageNum = 1;//默认页码
+
     @Override
     public void getRecptionRecord(boolean isRefresh) {
-        if (isRefresh) pageNum=1;
+        if (isRefresh) pageNum = 1;
 
         Map<String, Integer> params = new HashMap<>();
-        params.put("pageNum",pageNum);
-        params.put("pageSize",10);
+        params.put("pageNum", pageNum);
+        params.put("pageSize", 10);
 
 
         HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD_TEMP, params, new ResultJSONObjectObserver() {
@@ -55,21 +56,21 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter{
 //                Log.e(TAG, "onSuccess: "+result.toString() );
                 view.finishRefresh(isRefresh);
                 ReceptionListBeanTemp recptionRecordListBean = new Gson().fromJson(result.toString(), ReceptionListBeanTemp.class);
-                if (recptionRecordListBean==null){
-                    Toast.makeText(context,"数据异常",Toast.LENGTH_SHORT).show();
+                if (recptionRecordListBean == null) {
+                    Toast.makeText(context, "数据异常", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
 
                 List<ReceptionRecordBean> records = recptionRecordListBean.getRecords();
-                if (records==null||records.size()==0){
-                    if (pageNum==1){
+                if (records == null || records.size() == 0) {
+                    if (pageNum == 1) {
                         view.showNoData();
-                    }else  if (pageNum!=1) Toast.makeText(context,"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    } else if (pageNum != 1) Toast.makeText(context, "已经是最后一页了", Toast.LENGTH_SHORT).show();
                     return;
                 }
 //                Log.e(TAG, "onSuccess: "+records.size() );
-                view.showRecptionRecordListTemp(records,isRefresh);
+                view.showRecptionRecordListTemp(records, isRefresh);
                 pageNum++;
             }
 

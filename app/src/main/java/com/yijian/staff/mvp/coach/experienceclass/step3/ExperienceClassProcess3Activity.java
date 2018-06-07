@@ -78,7 +78,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
                 if (TextUtils.isEmpty(s)) {
                     Toast.makeText(ExperienceClassProcess3Activity.this, "请先填写会商方案，才可以进行下一步", Toast.LENGTH_SHORT).show();
                 } else {
-                    presenter.postConsultationProgramme(processId,s.trim());
+                    presenter.postConsultationProgramme(processId, s.trim());
 
                 }
             }
@@ -93,13 +93,13 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_ticeshuju:
-                if (TextUtils.isEmpty(memberId)||TextUtils.isEmpty(memberName)) {
-                    Toast.makeText(this,"错误：用户id或用户名称为空",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(memberId) || TextUtils.isEmpty(memberName)) {
+                    Toast.makeText(this, "错误：用户id或用户名称为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 intent = new Intent(ExperienceClassProcess3Activity.this, PhysicalReportActivity.class);
                 intent.putExtra("memberId", memberId);
-                intent.putExtra("memberName",memberName);
+                intent.putExtra("memberName", memberName);
                 startActivity(intent);
                 break;
             case R.id.ll_huifang_jilu:
@@ -129,9 +129,9 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
 
     @Override
     public void showConsultationProgramme(ConsultationProgrammeBean consultationProgrammeBean) {
-        etHuishangFanganResult.setText(""+consultationProgrammeBean.getProgrammeContext());
-        tvCoachHuifangRecord.setText(""+consultationProgrammeBean.getVisitRecord());
-        }
+        etHuishangFanganResult.setText("" + consultationProgrammeBean.getProgrammeContext());
+        tvCoachHuifangRecord.setText("" + consultationProgrammeBean.getVisitRecord());
+    }
 
     @Override
     public void showSaveSecceed() {

@@ -96,8 +96,8 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
 
         Bundle arguments = getArguments();
         consumerBean = arguments.getParcelable("recptionerInfoBean");
-        if (consumerBean==null)return;
-        memberId=consumerBean.getId();
+        if (consumerBean == null) return;
+        memberId = consumerBean.getId();
 
         NavigationBar2 navigationBar2 = ((ReceptionStepActivity) getActivity()).getNavigationBar2();
 
@@ -107,7 +107,8 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (presenter!=null&&productDetail!=null)presenter.coachToSale(memberId,productDetail.getCardId());
+                if (presenter != null && productDetail != null)
+                    presenter.coachToSale(memberId, productDetail.getCardId());
             }
         });
     }
@@ -149,9 +150,9 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
 
             case R.id.item_view:
 
-                if (productDetail!=null){
+                if (productDetail != null) {
                     Intent intent2 = new Intent(getContext(), ProductDetailActivity.class);
-                    intent2.putExtra("productDetail",productDetail);
+                    intent2.putExtra("productDetail", productDetail);
                     startActivity(intent2);
 
                 }
@@ -160,13 +161,12 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
             case R.id.ll_to_leader:
                 toLeadersDialog = new TOLeadersDialog();
                 toLeadersDialog.setLisenter(this);
-                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
+                toLeadersDialog.show(getActivity().getFragmentManager(), "TOLeadersDialog");
                 break;
 
 
         }
     }
-
 
 
     @Override
@@ -184,7 +184,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail=productDetail;
+        this.productDetail = productDetail;
 
         tvGoodsName.setText("" + productDetail.getCardTypeName());
         List<String> venueNames = productDetail.getVenueNames();
@@ -218,38 +218,38 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
 
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
             tvYuErTip.setText(strRestKey);
             tvYuEr.setText(strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
     }
 
     @Override
     public void showToLeaderSucceed() {
 
-       if (toLeadersDialog!=null)toLeadersDialog.dismiss();
-        Toast.makeText(getContext(),"发送给领导成功",Toast.LENGTH_SHORT).show();
+        if (toLeadersDialog != null) toLeadersDialog.dismiss();
+        Toast.makeText(getContext(), "发送给领导成功", Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 
     @Override
     public void coachToSaleSecceed() {
-        Toast.makeText(getContext(),"发送给会籍成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "发送给会籍成功", Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 
     //TO给领导
     @Override
     public void onConfirm(Integer postid, String content) {
-        if (TextUtils.isEmpty(memberId))return;
-        presenter.postToLeader(memberId,content,postid);
+        if (TextUtils.isEmpty(memberId)) return;
+        presenter.postToLeader(memberId, content, postid);
     }
 
 

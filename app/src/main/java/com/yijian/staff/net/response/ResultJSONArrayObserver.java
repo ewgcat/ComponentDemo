@@ -15,7 +15,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-public abstract  class ResultJSONArrayObserver extends ResponseObserver<JSONArray> {
+public abstract class ResultJSONArrayObserver extends ResponseObserver<JSONArray> {
 
     public ResultJSONArrayObserver() {
         super();

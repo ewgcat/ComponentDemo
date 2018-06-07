@@ -56,7 +56,7 @@ public class ReceptionUserInfo {
 //    private int bigStatus;
 //    private String bigStatusDesc;
     private String memberBcRejectReason;
-//    private String toLeaderReason;
+    //    private String toLeaderReason;
 //    private int qsCompletionRate;
 //    private int bodyCheckCompletionRate;
     private String memberMobile;

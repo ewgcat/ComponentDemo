@@ -72,9 +72,9 @@ public class InvateIndexActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvViperType.setText((getIntent().getStringExtra("memberType")).equals("0")?"潜在会员":"意向会员");
+        tvViperType.setText((getIntent().getStringExtra("memberType")).equals("0") ? "潜在会员" : "意向会员");
         Calendar calendar = Calendar.getInstance();
-        tvFuyueTime.setText(calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DAY_OF_MONTH));
+        tvFuyueTime.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
         //提交结果
         timePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
             @Override
@@ -90,23 +90,23 @@ public class InvateIndexActivity extends AppCompatActivity {
         timePickerView.show();
     }
 
-    private void postData(){
-        Map<String,String> map = new HashMap<>();
-        map.put("memberId",getIntent().getStringExtra("memberId"));
-        map.put("content",etInvateContent.getText().toString());
-        map.put("visitTime",tvFuyueTime.getText().toString());
-        map.put("memberType",getIntent().getStringExtra("memberType"));
+    private void postData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", getIntent().getStringExtra("memberId"));
+        map.put("content", etInvateContent.getText().toString());
+        map.put("visitTime", tvFuyueTime.getText().toString());
+        map.put("memberType", getIntent().getStringExtra("memberType"));
 
         HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(InvateIndexActivity.this,"邀约成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(InvateIndexActivity.this, "邀约成功", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(InvateIndexActivity.this,msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(InvateIndexActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

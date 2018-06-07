@@ -29,24 +29,23 @@ public class Child_physical_write extends ChildViewHolder {
      */
     public Child_physical_write(@NonNull View itemView) {
         super(itemView);
-        tvContent =  itemView.findViewById(R.id.tv_content);
+        tvContent = itemView.findViewById(R.id.tv_content);
         seatView = itemView.findViewById(R.id.seat_view);
-        this.itemView =itemView;
+        this.itemView = itemView;
     }
 
     public void bind(ChildOptBean child, int childPosition, int parentPosition, List<ParentQuestionBean> parentList) {
         tvContent.setText(child.getUserValue());
 
         int size = parentList.get(parentPosition).getChildList().size();
-        if (childPosition==size-1){
+        if (childPosition == size - 1) {
             seatView.setVisibility(View.VISIBLE);
             itemView.setBackgroundResource(R.drawable.shape_fillet_white_down_8);
-        }else {
+        } else {
             seatView.setVisibility(View.GONE);
             itemView.setBackgroundResource(R.color.white);
         }
     }
-
 
 
 }

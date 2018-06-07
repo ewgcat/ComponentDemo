@@ -36,17 +36,17 @@ public class UserInfo {
     private String department;
     private String post;
 
-    public UserInfo(JSONObject jsonObject){
-       this.userId= JsonUtil.getString(jsonObject,"userId");
-       this.name= JsonUtil.getString(jsonObject,"name");
-       this.mobile= JsonUtil.getString(jsonObject,"mobile");
-       this.sex= JsonUtil.getString(jsonObject,"sex");
-       this.headImg= BuildConfig.FILE_HOST+ JsonUtil.getString(jsonObject,"headImg");
-       this.jobNo= JsonUtil.getString(jsonObject,"jobNo");
-       this.shop= JsonUtil.getString(jsonObject,"shop");
-       this.department= JsonUtil.getString(jsonObject,"department");
-       this.post= JsonUtil.getString(jsonObject,"post");
-       this.age= JsonUtil.getInt(jsonObject,"age");
+    public UserInfo(JSONObject jsonObject) {
+        this.userId = JsonUtil.getString(jsonObject, "userId");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.mobile = JsonUtil.getString(jsonObject, "mobile");
+        this.sex = JsonUtil.getString(jsonObject, "sex");
+        this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
+        this.jobNo = JsonUtil.getString(jsonObject, "jobNo");
+        this.shop = JsonUtil.getString(jsonObject, "shop");
+        this.department = JsonUtil.getString(jsonObject, "department");
+        this.post = JsonUtil.getString(jsonObject, "post");
+        this.age = JsonUtil.getInt(jsonObject, "age");
 
     }
 

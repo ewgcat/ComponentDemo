@@ -144,7 +144,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, RecyclerView child, View dependency) {
 
-        child.setTranslationY(dependency.getHeight()  + dependency.getTranslationY() + getWeekBarViewHeight());
+        child.setTranslationY(dependency.getHeight() + dependency.getTranslationY() + getWeekBarViewHeight());
         return true;
     }
 

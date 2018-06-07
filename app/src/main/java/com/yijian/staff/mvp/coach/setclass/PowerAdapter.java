@@ -22,10 +22,10 @@ public class PowerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public static final int TYPE_ITEM = 1;
 
     public PowerAdapter() {
-        this.recordTitleBean = new RecordTitleBean("器材", "重量", "次数","组数");
+        this.recordTitleBean = new RecordTitleBean("器材", "重量", "次数", "组数");
     }
 
-    public void  resetActionList(List<PowerBean> list){
+    public void resetActionList(List<PowerBean> list) {
         powerBeans.clear();
         powerBeans.add(recordTitleBean);//添加头部
         powerBeans.addAll(list);

@@ -14,9 +14,8 @@ import java.util.List;
  * adds the ability to expand and collapse list items.
  * <p>
  * Changes should be notified through:
-
+ * <p>
  * methods and not the notify methods of RecyclerView.Adapter.
- *
  */
 public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, PVH extends ParentViewHolderGroup, CVH extends ChildViewHolderGroup>
         extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -48,25 +47,19 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     private List<P> mParentList;
 
 
-
-
-
     @NonNull
     private List<RecyclerView> mAttachedRecyclerViewPool;
-
-
-
 
 
     /**
      * Primary constructor. Sets up {@link #mParentList} and {@link #mFlatItemList}.
      * <p>
      * Any changes to {@link #mParentList} should be made on the original instance, and notified via
-
+     * <p>
      * methods and not the notify methods of RecyclerView.Adapter.
      *
      * @param parentList List of all parents to be displayed in the RecyclerView that this
-     *                       adapter is linked to
+     *                   adapter is linked to
      */
     public ExpandableRecyclerAdapterGroup(@NonNull List<P> parentList) {
         super();
@@ -82,8 +75,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
         mFlatItemList = generateFlattenedParentChildList(mParentList);
         notifyDataSetChanged();
     }
-
-
 
 
     /**
@@ -120,7 +111,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * {@link #onBindParentViewHolder(ParentViewHolderGroup, int, ParentImp)} or
      * {@link #onBindChildViewHolder(ChildViewHolderGroup, int, int, Object, int)}.
      *
-     * @param holder The RecyclerView.ViewHolder to bind data to
+     * @param holder       The RecyclerView.ViewHolder to bind data to
      * @param flatPosition The index in the merged list of children and parents at which to bind
      */
     @Override
@@ -141,7 +132,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
         } else {
             CVH childViewHolder = (CVH) holder;
             childViewHolder.mChild = listItem.getChild();
-            onBindChildViewHolder(childViewHolder, getNearestParentPosition(flatPosition), getChildPosition(flatPosition), listItem.getChild(),flatPosition);
+            onBindChildViewHolder(childViewHolder, getNearestParentPosition(flatPosition), getChildPosition(flatPosition), listItem.getChild(), flatPosition);
         }
     }
 
@@ -176,8 +167,8 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * Bind data to the {@link PVH} here.
      *
      * @param parentViewHolder The {@code PVH} to bind data to
-     * @param parentPosition The position of the parent to bind
-     * @param parent The parent which holds the data to be bound to the {@code PVH}
+     * @param parentPosition   The position of the parent to bind
+     * @param parent           The parent which holds the data to be bound to the {@code PVH}
      */
     @UiThread
     public abstract void onBindParentViewHolder(@NonNull PVH parentViewHolder, int parentPosition, @NonNull P parent);
@@ -187,10 +178,11 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * when the list item bound to is a child.
      * <p>
      * Bind data to the {@link CVH} here.
-     *  @param childViewHolder The {@code CVH} to bind data to
-     * @param parentPosition The position of the parent that contains the child to bind
-     * @param childPosition The position of the child to bind
-     * @param child The child which holds that data to be bound to the {@code CVH}
+     *
+     * @param childViewHolder The {@code CVH} to bind data to
+     * @param parentPosition  The position of the parent that contains the child to bind
+     * @param childPosition   The position of the child to bind
+     * @param child           The child which holds that data to be bound to the {@code CVH}
      * @param flatPosition
      */
     @UiThread
@@ -240,7 +232,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      *
      * @param parentPosition The index of the parent to query
      * @return integer value identifying the type of the view needed to represent the parent at
-     *                 {@code parentPosition}. Type codes need not be contiguous.
+     * {@code parentPosition}. Type codes need not be contiguous.
      */
     public int getParentViewType(int parentPosition) {
         return TYPE_PARENT;
@@ -258,9 +250,9 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * Start your defined viewtypes at {@link #TYPE_FIRST_USER}
      *
      * @param parentPosition The index of the parent continaing the child to query
-     * @param childPosition The index of the child within the parent to query
+     * @param childPosition  The index of the child within the parent to query
      * @return integer value identifying the type of the view needed to represent the child at
-     *                 {@code parentPosition}. Type codes need not be contiguous.
+     * {@code parentPosition}. Type codes need not be contiguous.
      */
     public int getChildViewType(int parentPosition, int childPosition) {
         return TYPE_CHILD;
@@ -281,9 +273,8 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     /**
      * Gets the list of parents that is backing this adapter.
      * Changes can be made to the list and the adapter notified via the
-
+     * <p>
      * methods.
-     *
      *
      * @return The list of parents that this adapter represents
      */
@@ -292,7 +283,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     public List<P> getParentList() {
         return mParentList;
     }
-
 
 
     /**
@@ -325,10 +315,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
         super.onDetachedFromRecyclerView(recyclerView);
         mAttachedRecyclerViewPool.remove(recyclerView);
     }
-
-
-
-
 
 
     /**
@@ -379,7 +365,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     }
 
 
-
     // endregion
 
     /**
@@ -391,7 +376,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      */
     private List<ExpandableWrapperGroup<P, C>> generateFlattenedParentChildList(List<P> parentList) {
         List<ExpandableWrapperGroup<P, C>> flatItemList = new ArrayList<>();
-        if (parentList==null||parentList.size()==0)return flatItemList;
+        if (parentList == null || parentList.size() == 0) return flatItemList;
         int parentCount = parentList.size();
         for (int i = 0; i < parentCount; i++) {
             P parent = parentList.get(i);
@@ -400,7 +385,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
         return flatItemList;
     }
-
 
 
     private void generateParentWrapper(List<ExpandableWrapperGroup<P, C>> flatItemList, P parent) {
@@ -419,7 +403,6 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
             flatItemList.add(childWrapper);
         }
     }
-
 
 
 }

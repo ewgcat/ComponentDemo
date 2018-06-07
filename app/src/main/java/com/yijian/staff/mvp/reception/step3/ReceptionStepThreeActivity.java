@@ -60,7 +60,7 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
 
         userRole = SharePreferenceUtil.getUserRole();
 //        Log.e(TAG, "initView: userRole=" + userRole);
-        userRole =2;
+        userRole = 2;
 
         if (userRole == 1) {
             fragment = new HuiJiProductQuotationFragment();
@@ -97,19 +97,19 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
     }
 
     private void rightAction() {
-            if (userRole==1){//会籍
-                Intent intent = new Intent(ReceptionStepThreeActivity.this, ReceptionStepFourActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("memberId",memberId);
-                startActivity(intent);
-            }else if (userRole==2){//教练
-                if (TextUtils.isEmpty(memberId))return;
-                presenter.coachToSale(memberId);
+        if (userRole == 1) {//会籍
+            Intent intent = new Intent(ReceptionStepThreeActivity.this, ReceptionStepFourActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("memberId", memberId);
+            startActivity(intent);
+        } else if (userRole == 2) {//教练
+            if (TextUtils.isEmpty(memberId)) return;
+            presenter.coachToSale(memberId);
 
-            }else if (userRole==3){//总监
-                if (TextUtils.isEmpty(memberId))return;
-                presenter.leaderToSale(memberId);
-            }
+        } else if (userRole == 3) {//总监
+            if (TextUtils.isEmpty(memberId)) return;
+            presenter.leaderToSale(memberId);
+        }
     }
 
 

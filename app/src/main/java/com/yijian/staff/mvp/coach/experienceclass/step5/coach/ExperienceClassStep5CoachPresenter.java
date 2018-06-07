@@ -17,35 +17,36 @@ import java.util.Map;
  * Created by The_P on 2018/5/4.
  */
 
-public class ExperienceClassStep5CoachPresenter implements ExperienceClassStep5CoachContract.Presenter{
+public class ExperienceClassStep5CoachPresenter implements ExperienceClassStep5CoachContract.Presenter {
 
     private Context context;
     private ExperienceClassStep5CoachContract.View view;
+
     public ExperienceClassStep5CoachPresenter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView(ExperienceClassStep5CoachContract.View view){
-        this.view=view;
+    public void setView(ExperienceClassStep5CoachContract.View view) {
+        this.view = view;
     }
 
 
     @Override
     public void getConsultationConclusion(String processId) {
         Map<String, String> params = new HashMap<>();
-        params.put("processId",processId);
+        params.put("processId", processId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, params, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 ConsultationConclusionBean bean = GsonNullString.getGson().fromJson(result.toString(), ConsultationConclusionBean.class);
-                if (bean==null)return;
+                if (bean == null) return;
                 view.showConclusion(bean);
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

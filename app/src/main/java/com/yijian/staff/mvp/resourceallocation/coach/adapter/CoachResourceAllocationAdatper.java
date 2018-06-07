@@ -50,7 +50,7 @@ public class CoachResourceAllocationAdatper extends RecyclerView.Adapter<CoachRe
         holder.tv_last_coach.setText(coachResourceAllocationInfo.getHistoryUser());
         holder.tv_coach.setText(coachResourceAllocationInfo.getDistributeUser());
         Long distributeTime = coachResourceAllocationInfo.getDistributeTime();
-        if (distributeTime!=null&&distributeTime!=-1){
+        if (distributeTime != null && distributeTime != -1) {
             String s = DateUtil.parseLongDateToTimeString(distributeTime);
             holder.tv_time.setText(s);
         }

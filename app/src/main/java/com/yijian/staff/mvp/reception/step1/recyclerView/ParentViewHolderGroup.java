@@ -22,7 +22,6 @@ public class ParentViewHolderGroup<P extends ParentImp<C>, C> extends RecyclerVi
     ExpandableRecyclerAdapterGroup mExpandableAdapter;
 
 
-
     /**
      * Default constructor.
      *
@@ -59,7 +58,6 @@ public class ParentViewHolderGroup<P extends ParentImp<C>, C> extends RecyclerVi
 
         return mExpandableAdapter.getNearestParentPosition(flatPosition);
     }
-
 
 
 }

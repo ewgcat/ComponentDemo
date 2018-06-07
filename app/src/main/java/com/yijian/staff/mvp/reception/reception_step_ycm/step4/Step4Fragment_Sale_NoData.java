@@ -27,10 +27,11 @@ public class Step4Fragment_Sale_NoData extends Fragment {
         navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statusChangeLisenter!=null)statusChangeLisenter.ReceptionStep4Back();
+                if (statusChangeLisenter != null) statusChangeLisenter.ReceptionStep4Back();
             }
         });
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

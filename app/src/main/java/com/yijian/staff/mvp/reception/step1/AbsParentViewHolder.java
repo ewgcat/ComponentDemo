@@ -13,7 +13,7 @@ import com.yijian.staff.mvp.reception.step1.recyclerView.ParentViewHolderGroup;
  * Created by The_P on 2018/3/17.
  */
 
-public  class AbsParentViewHolder  extends ParentViewHolderGroup<DataListBean,ItemsBean> {
+public class AbsParentViewHolder extends ParentViewHolderGroup<DataListBean, ItemsBean> {
 
 
     /**

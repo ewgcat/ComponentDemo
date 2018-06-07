@@ -7,5 +7,5 @@ package com.yijian.staff.util;
 
 public class ConstantUtil {
 
-    public static final String NOTIFY_REFRESH_MENU_LIST_DATA="refreshMenuList";
+    public static final String NOTIFY_REFRESH_MENU_LIST_DATA = "refreshMenuList";
 }

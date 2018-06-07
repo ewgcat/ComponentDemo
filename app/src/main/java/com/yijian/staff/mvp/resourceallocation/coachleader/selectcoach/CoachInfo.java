@@ -27,12 +27,13 @@ public class CoachInfo {
     private String headImg;
 
 
-    public CoachInfo(JSONObject jsonObject){
-        this. userId = JsonUtil.getString(jsonObject, "userId");
-        this. userName = JsonUtil.getString(jsonObject, "userName");
-        this. headImg = JsonUtil.getString(jsonObject, "headImg");
-        this. sex = JsonUtil.getInt(jsonObject, "sex");
+    public CoachInfo(JSONObject jsonObject) {
+        this.userId = JsonUtil.getString(jsonObject, "userId");
+        this.userName = JsonUtil.getString(jsonObject, "userName");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
+        this.sex = JsonUtil.getInt(jsonObject, "sex");
     }
+
     public String getUserId() {
         return userId;
     }

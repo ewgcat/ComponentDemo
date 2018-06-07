@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
           android:enterFadeDuration="@android:integer/config_shortAnimTime"
           android:exitFadeDuration="@android:integer/config_mediumAnimTime"
-    >
+>
     <item android:state_pressed="true">
         <shape
-            android:shape="rectangle">
+                android:shape="rectangle">
             <solid android:color="#33ffffff"/>
         </shape>
     </item>

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_centerInParent="true"
-        android:layout_width="120dp"
-        android:layout_height="120dp">
-
-        <ImageView
             android:layout_centerInParent="true"
-            android:id="@+id/iv_back_vs_item"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_add_pic" />
+            android:layout_width="120dp"
+            android:layout_height="120dp">
 
         <ImageView
-            android:id="@+id/iv_btn_delete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_delete_pic"
-            android:visibility="visible" />
+                android:layout_centerInParent="true"
+                android:id="@+id/iv_back_vs_item"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_add_pic"/>
+
+        <ImageView
+                android:id="@+id/iv_btn_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_delete_pic"
+                android:visibility="visible"/>
 
 
     </RelativeLayout>

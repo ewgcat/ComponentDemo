@@ -21,21 +21,20 @@ import java.util.List;
 
 public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<TodayHuiJiViperBean> viperBeanList=new ArrayList<>();
+    private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private Context context;
 
 
-    public HuiJiTodayVisitAdapter(Context context,List<TodayHuiJiViperBean> viperBeanList) {
+    public HuiJiTodayVisitAdapter(Context context, List<TodayHuiJiViperBean> viperBeanList) {
         this.context = context;
         this.viperBeanList = viperBeanList;
 
     }
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_today_visit,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_today_visit, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         this.context = parent.getContext();
         return viewHolder;
@@ -44,7 +43,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TodayHuiJiViperBean huiJiViperBean = viperBeanList.get(position);
-        ((ViewHolder)holder).bind(context,huiJiViperBean);
+        ((ViewHolder) holder).bind(context, huiJiViperBean);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return viperBeanList != null ? viperBeanList.size() : 0;
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder{
+    private class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView iv_header;
         private TextView tv_name;
@@ -73,24 +72,24 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             lin_container = itemView.findViewById(R.id.lin_container);
         }
 
-        public void bind(Context context, TodayHuiJiViperBean huiJiViperBean){
+        public void bind(Context context, TodayHuiJiViperBean huiJiViperBean) {
             ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(huiJiViperBean.getGenderImg());
             tv_name.setText(huiJiViperBean.getName());
 
             int clockedCount = huiJiViperBean.getClockedCount();
-            if (clockedCount!=-1){
+            if (clockedCount != -1) {
 
-                tv_today_consumption.setText(clockedCount+"次");
+                tv_today_consumption.setText(clockedCount + "次");
             }
             Long bePresentTime = huiJiViperBean.getVisitTime();
-            if (bePresentTime!=null&&bePresentTime!=-1){
+            if (bePresentTime != null && bePresentTime != -1) {
                 String s = DateUtil.parseLongDateToTimeString(bePresentTime);
                 tv_arrival_time.setText(s);
             }
 
             Long departureTime = huiJiViperBean.getLeaveTime();
-            if (departureTime!=null&&departureTime!=-1){
+            if (departureTime != null && departureTime != -1) {
                 String s1 = DateUtil.parseLongDateToTimeString(departureTime);
                 tv_leaving_time.setText(s1);
             }
@@ -102,7 +101,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     //viperDetailBean
 //                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
-                    intent.putExtra("memberId",huiJiViperBean.getMemberId());
+                    intent.putExtra("memberId", huiJiViperBean.getMemberId());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
                     context.startActivity(intent);
                 }

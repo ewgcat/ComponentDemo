@@ -7,10 +7,11 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
  */
 
 public interface PhysicalReportConstract {
-    interface View{
+    interface View {
         void showUserData(PhysicalExaminationBean bean);
     }
-    interface Presenter{
+
+    interface Presenter {
         void loadData(String memberId);
     }
 }

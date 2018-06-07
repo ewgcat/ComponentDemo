@@ -8,8 +8,11 @@ import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
 
 public interface ExperienceStatusLisenter {
     void step1ToStep2();
+
     void step2ToStep3();
+
     void step3ToStep4();
+
     void step4ToStep5();
 
     void toInvateAgainActivity(InviterBean prepareRecord);

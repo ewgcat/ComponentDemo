@@ -1,135 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/white_bg"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/white_bg"
+                    android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:src="@mipmap/trialclass_record" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/trialclass_record"/>
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="4dp"
-                        android:layout_weight="1"
-                        android:text="回访记录-教练"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="回访记录-教练"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"/>
 
                     <TextView
-                        android:id="@+id/tv_call_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/green_stoke_bg"
-                        android:drawableStart="@mipmap/trialclass_phone"
-                        android:text="回访"
-                        android:textColor="#3ecca9"
-                        android:textSize="12sp" />
+                            android:id="@+id/tv_call_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/green_stoke_bg"
+                            android:drawableStart="@mipmap/trialclass_phone"
+                            android:text="回访"
+                            android:textColor="#3ecca9"
+                            android:textSize="12sp"/>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"/>
 
                 <EditText
-                    android:id="@+id/et_coach_huifang_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:background="@null"
-                    android:gravity="left"
-                    android:hint="请填写回访记录"
-                    android:maxLength="140"
-                    android:padding="10dp"
-                    android:textSize="14sp" />
+                        android:id="@+id/et_coach_huifang_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@null"
+                        android:gravity="left"
+                        android:hint="请填写回访记录"
+                        android:maxLength="140"
+                        android:padding="10dp"
+                        android:textSize="14sp"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:gravity="right"
-                    android:text="140字"
-                    android:textColor="#999999"
-                    android:textSize="12sp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:text="140字"
+                        android:textColor="#999999"
+                        android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/white_bg"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/white_bg"
+                    android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:src="@mipmap/trialclass_record" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/trialclass_record"/>
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="4dp"
-                        android:layout_weight="1"
-                        android:text="回访记录-会籍"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="回访记录-会籍"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"/>
 
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"/>
 
                 <TextView
-                    android:id="@+id/tv_huiji_huifang_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:gravity="left"
-                    android:padding="10dp"
-                    android:textSize="14sp"
-                    tools:text="学员体质较弱，不适合高强度的训练。学员很少运动，比较宅。希望私教能进行针对性训练。" />
+                        android:id="@+id/tv_huiji_huifang_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:textSize="14sp"
+                        tools:text="学员体质较弱，不适合高强度的训练。学员很少运动，比较宅。希望私教能进行针对性训练。"/>
 
             </LinearLayout>
         </LinearLayout>

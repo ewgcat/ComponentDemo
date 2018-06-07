@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/shape_fillet_white_up_8"
-    android:orientation="vertical">
-        <RelativeLayout
+              android:id="@+id/ll_root"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/shape_fillet_white_up_8"
+              android:orientation="vertical">
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
-            <TextView
+        <TextView
                 android:id="@+id/tv_cancel"
                 android:layout_marginLeft="6dp"
                 android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="16sp"
                 android:textColor="@color/text_black3"/>
-            <TextView
+        <TextView
                 android:id="@+id/tv_ok"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="6dp"
@@ -29,14 +29,14 @@
                 android:layout_centerVertical="true"
                 android:textSize="16sp"
                 android:textColor="#2cc8a1"/>
-        </RelativeLayout>
-    
-        <RelativeLayout
+    </RelativeLayout>
+
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="335dp">
-            <com.yijian.staff.mvp.coach.setclass.chronometer.ChronometerWithMillis
+        <com.yijian.staff.mvp.coach.setclass.chronometer.ChronometerWithMillis
                 android:gravity="center"
-                 android:layout_centerHorizontal="true"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/chronometer"
                 android:layout_marginTop="52dp"
                 android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                 android:textColor="@color/text_black1"
                 android:text="aaaa"
                 style="@style/Stopwatch"/>
-            <Button
+        <Button
                 android:id="@+id/btn_restore"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="64dp"
@@ -56,7 +56,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@mipmap/lesson_restoration"/>
-            <Button
+        <Button
                 android:id="@+id/btn_start_up"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
@@ -68,5 +68,5 @@
                 android:layout_width="87dp"
                 android:layout_height="87dp"
                 android:background="@mipmap/lesson_activate"/>
-        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -56,7 +56,6 @@ public class SplashActivity extends MvcBaseActivity {
     ImageView ivSplashBg;
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_splash;
@@ -96,7 +95,6 @@ public class SplashActivity extends MvcBaseActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, 1000 * 2);
-
 
 
     }

@@ -29,159 +29,159 @@ import java.util.Calendar;
 
 public class DialogManager {
 
-	private Context mContext;
-	private AlertDialog.Builder builder;
+    private Context mContext;
+    private AlertDialog.Builder builder;
 
-	public DialogManager(Context context) {
-		mContext = context;
-		builder = new AlertDialog.Builder(mContext);
-	}
+    public DialogManager(Context context) {
+        mContext = context;
+        builder = new AlertDialog.Builder(mContext);
+    }
 
-	/**
-	 * 简易对话框
-	 * 
-	 * @param title
-	 * @param msg
-	 */
-	public void simpleDialog(String title, String msg) {
-		setButton(title);
-		builder.setMessage(msg).create().show();
-	}
+    /**
+     * 简易对话框
+     *
+     * @param title
+     * @param msg
+     */
+    public void simpleDialog(String title, String msg) {
+        setButton(title);
+        builder.setMessage(msg).create().show();
+    }
 
-	/**
-	 * 列表对话框
-	 * 
-	 * @param title
-	 * @param str
-	 */
-	public void listDialog(String title, final String[] str) {
-		setButton(title);
-		// 设置了列表就不能设置内容了，否则就会出问题
-		builder.setItems(str, new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				showToast("选中了：" + str[which]);
-			}
-		}).create().show();
-	}
+    /**
+     * 列表对话框
+     *
+     * @param title
+     * @param str
+     */
+    public void listDialog(String title, final String[] str) {
+        setButton(title);
+        // 设置了列表就不能设置内容了，否则就会出问题
+        builder.setItems(str, new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showToast("选中了：" + str[which]);
+            }
+        }).create().show();
+    }
 
-	/**
-	 * 单选对话框
-	 * 
-	 * @param title
-	 * @param str
-	 */
-	public void singleChoiceDialog(String title, final String[] str) {
-		setButton(title);
-		builder
-		// 设置选中了第二项
-		.setSingleChoiceItems(str, 1, new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				showToast("选中了：" + str[which]);
-			}
-		}).create().show();
-	}
+    /**
+     * 单选对话框
+     *
+     * @param title
+     * @param str
+     */
+    public void singleChoiceDialog(String title, final String[] str) {
+        setButton(title);
+        builder
+                // 设置选中了第二项
+                .setSingleChoiceItems(str, 1, new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showToast("选中了：" + str[which]);
+                    }
+                }).create().show();
+    }
 
-	/**
-	 * 多选对话框
-	 * 
-	 * @param title
-	 * @param str
-	 */
-	public void MultiChoiceDialog(String title, final String[] str) {
-		setButton(title);
-		builder
-		// 默认选中几项
-		.setMultiChoiceItems(str, new boolean[] { true, false, true },
-				new OnMultiChoiceClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which,
-							boolean isChecked) {
-						showToast("你选择的id为" + which + " , " + "选中了："
-								+ str[which]);
-					}
-				}).create().show();
-	}
+    /**
+     * 多选对话框
+     *
+     * @param title
+     * @param str
+     */
+    public void MultiChoiceDialog(String title, final String[] str) {
+        setButton(title);
+        builder
+                // 默认选中几项
+                .setMultiChoiceItems(str, new boolean[]{true, false, true},
+                        new OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which,
+                                                boolean isChecked) {
+                                showToast("你选择的id为" + which + " , " + "选中了："
+                                        + str[which]);
+                            }
+                        }).create().show();
+    }
 
-	/**
-	 * 适配器对话框
-	 * 
-	 * @param title
-	 * @param str
-	 */
-	public void adapterDialog(String title, final String[] str) {
-		setButton(title);
-		builder.setAdapter(
-				new ArrayAdapter<String>(mContext,
-						android.R.layout.simple_list_item_multiple_choice, str),
-				new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						showToast("选中了：" + str[which]);
-					}
-				}).create().show();
-	}
+    /**
+     * 适配器对话框
+     *
+     * @param title
+     * @param str
+     */
+    public void adapterDialog(String title, final String[] str) {
+        setButton(title);
+        builder.setAdapter(
+                new ArrayAdapter<String>(mContext,
+                        android.R.layout.simple_list_item_multiple_choice, str),
+                new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showToast("选中了：" + str[which]);
+                    }
+                }).create().show();
+    }
 
 
-	/**
-	 * 进度条对话框
-	 * 
-	 * @param title
-	 * @param msg
-	 */
-	public void progressDialog(String title, String msg) {
-		final ProgressDialog dialog = new ProgressDialog(mContext);
-		dialog.setTitle(title);
-		dialog.setMessage(msg);
-		dialog.setCancelable(false);// 设置点击空白处也不能关闭该对话框
+    /**
+     * 进度条对话框
+     *
+     * @param title
+     * @param msg
+     */
+    public void progressDialog(String title, String msg) {
+        final ProgressDialog dialog = new ProgressDialog(mContext);
+        dialog.setTitle(title);
+        dialog.setMessage(msg);
+        dialog.setCancelable(false);// 设置点击空白处也不能关闭该对话框
 
-		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		// dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置采用圆形进度条
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        // dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置采用圆形进度条
 
-		dialog.setMax(100);
-		// dialog.setIndeterminate(true);//设置不显示明确的进度
-		dialog.setIndeterminate(false);// 设置显示明确的进度
+        dialog.setMax(100);
+        // dialog.setIndeterminate(true);//设置不显示明确的进度
+        dialog.setIndeterminate(false);// 设置显示明确的进度
 
-		dialog.setButton(ProgressDialog.BUTTON_POSITIVE, "确定",
-				new OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击后的逻辑
-					}
-				});
-		dialog.setButton(ProgressDialog.BUTTON_NEUTRAL, "中立",
-				new OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击后的逻辑
-					}
-				});
-		dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "取消",
-				new OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击后的逻辑
-					}
-				});
-		dialog.show();
+        dialog.setButton(ProgressDialog.BUTTON_POSITIVE, "确定",
+                new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // 这里添加点击后的逻辑
+                    }
+                });
+        dialog.setButton(ProgressDialog.BUTTON_NEUTRAL, "中立",
+                new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // 这里添加点击后的逻辑
+                    }
+                });
+        dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "取消",
+                new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // 这里添加点击后的逻辑
+                    }
+                });
+        dialog.show();
 
-		//启动线程，模拟一个耗时的操作
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				int Progress = 0;
-				while (Progress < 100) {
-					try {
-						Thread.sleep(100);
-						Progress++;
-						// dialog.setProgress(Progress);
-						dialog.incrementProgressBy(1);// 进度条一次加10
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				dialog.dismiss();// 完成后消失
-			}
-		}).start();
-	}
+        //启动线程，模拟一个耗时的操作
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int Progress = 0;
+                while (Progress < 100) {
+                    try {
+                        Thread.sleep(100);
+                        Progress++;
+                        // dialog.setProgress(Progress);
+                        dialog.incrementProgressBy(1);// 进度条一次加10
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                dialog.dismiss();// 完成后消失
+            }
+        }).start();
+    }
 //
 //	/**
 //	 * PopupWindow做的对话框 感谢： http://www.apkbus.com/android-56965-1-1.html
@@ -219,83 +219,83 @@ public class DialogManager {
 //		pWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
 //	}
 
-	/**
-	 * 日期对话框
-	 */
-	public void dateDialog() {
-		Calendar c = Calendar.getInstance();
-		DatePickerDialog dialog = new DatePickerDialog(mContext,
-				new DatePickerDialog.OnDateSetListener() {
+    /**
+     * 日期对话框
+     */
+    public void dateDialog() {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContext,
+                new DatePickerDialog.OnDateSetListener() {
 
-					@Override
-					public void onDateSet(DatePicker dp, int year, int month,
-							int dayOfMonth) {
-						showToast(year + "-" + (month + 1) + "-" + dayOfMonth);
-					}
-				}, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-				c.get(Calendar.DAY_OF_MONTH));
-		dialog.show();
-	}
+                    @Override
+                    public void onDateSet(DatePicker dp, int year, int month,
+                                          int dayOfMonth) {
+                        showToast(year + "-" + (month + 1) + "-" + dayOfMonth);
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
 
-	/**
-	 * 时间对话框
-	 */
-	public void timeDialog() {
-		Calendar c = Calendar.getInstance();
-		new TimePickerDialog(mContext,
-				new TimePickerDialog.OnTimeSetListener() {
+    /**
+     * 时间对话框
+     */
+    public void timeDialog() {
+        Calendar c = Calendar.getInstance();
+        new TimePickerDialog(mContext,
+                new TimePickerDialog.OnTimeSetListener() {
 
-					@Override
-					public void onTimeSet(TimePicker arg0, int hourOfDay, int minute) {
-						showToast(hourOfDay + ":" + minute);
-					}
-				}, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true)
-				.show();
-	}
+                    @Override
+                    public void onTimeSet(TimePicker arg0, int hourOfDay, int minute) {
+                        showToast(hourOfDay + ":" + minute);
+                    }
+                }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true)
+                .show();
+    }
 
-	/**
-	 * 设置对话框的标题+图标+按钮
-	 *
-	 * @param title
-	 */
-	private void setButton(String title) {
-		builder.setTitle(title).setIcon(R.mipmap.ic_launcher)
-				.setPositiveButton("好", new positiveListener())
-				.setNeutralButton("中", new NeutralListener())
-				.setNegativeButton("差", new NegativeListener());
-		// .setCancelable(false);//设置点击空白处，不能消除该对话框
-	}
+    /**
+     * 设置对话框的标题+图标+按钮
+     *
+     * @param title
+     */
+    private void setButton(String title) {
+        builder.setTitle(title).setIcon(R.mipmap.ic_launcher)
+                .setPositiveButton("好", new positiveListener())
+                .setNeutralButton("中", new NeutralListener())
+                .setNegativeButton("差", new NegativeListener());
+        // .setCancelable(false);//设置点击空白处，不能消除该对话框
+    }
 
-	/**
-	 * @author:Jack Tony
-	 * @tips : 监听器
-	 * @date :2014-7-25
-	 */
-	private class positiveListener implements OnClickListener {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
+    /**
+     * @author:Jack Tony
+     * @tips : 监听器
+     * @date :2014-7-25
+     */
+    private class positiveListener implements OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
 
-			// dialog.dismiss();//设置对话框强制退出
-			showToast("好");
+            // dialog.dismiss();//设置对话框强制退出
+            showToast("好");
 
-		}
-	}
+        }
+    }
 
-	private class NeutralListener implements OnClickListener {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			showToast("中");
-		}
-	}
+    private class NeutralListener implements OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            showToast("中");
+        }
+    }
 
-	private class NegativeListener implements OnClickListener {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			showToast("差");
-		}
-	}
+    private class NegativeListener implements OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            showToast("差");
+        }
+    }
 
-	private void showToast(String msg) {
-		Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
-	}
+    private void showToast(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
 }

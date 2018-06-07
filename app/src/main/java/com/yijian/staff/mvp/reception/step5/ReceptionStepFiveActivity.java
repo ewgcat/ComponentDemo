@@ -16,7 +16,7 @@ import com.yijian.staff.widget.TimeBar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReceptionStepFiveActivity extends AppCompatActivity implements View.OnClickListener{
+public class ReceptionStepFiveActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String memberId;
 
@@ -61,20 +61,20 @@ public class ReceptionStepFiveActivity extends AppCompatActivity implements View
             case R.id.iv_second_left:
 
 
-                Intent i = new Intent(this,ReceptionActivity.class);
+                Intent i = new Intent(this, ReceptionActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
             case R.id.right_tv:
-               if (!TextUtils.isEmpty(memberId))endProcess();
+                if (!TextUtils.isEmpty(memberId)) endProcess();
 
                 break;
         }
     }
 
     private void endProcess() {
-        Map<String ,String> params=new HashMap<>();
-        params.put("memberId",memberId);
+        Map<String, String> params = new HashMap<>();
+        params.put("memberId", memberId);
         HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver() {
             @Override
             public void onSuccess(Object result) {

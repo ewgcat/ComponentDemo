@@ -9,6 +9,6 @@ import com.yijian.staff.tab.entity.MenuItem;
  * email：850716183@qq.com
  * time: 2018/3/9 15:11:13
  */
-public interface OnDeleteListener{
+public interface OnDeleteListener {
     void onDeleteClick(View v, MenuItem item, int position);
 }

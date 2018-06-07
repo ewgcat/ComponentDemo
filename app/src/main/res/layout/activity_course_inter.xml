@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/gray">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/gray">
 
     <include
-        android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+            android:id="@+id/navigation_bar"
+            layout="@layout/view_navigation_bar2"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/white_bg"
-        android:layout_margin="16dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/white_bg"
+            android:layout_margin="16dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
         <RelativeLayout
-            android:id="@+id/rel_internal"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            >
+                android:id="@+id/rel_internal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+        >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#333333"
-                android:text="课程时间间隔(分)"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:text="课程时间间隔(分)"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"/>
 
 
             <TextView
-                android:id="@+id/tv_internal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#333333"
-                android:text="请选择"
-                android:drawableRight="@mipmap/my_time_pulldonw"
-                android:layout_centerVertical="true"
-                android:drawablePadding="5dp"
-                android:layout_alignParentRight="true"/>
+                    android:id="@+id/tv_internal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:text="请选择"
+                    android:drawableRight="@mipmap/my_time_pulldonw"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="5dp"
+                    android:layout_alignParentRight="true"/>
 
 
         </RelativeLayout>
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>

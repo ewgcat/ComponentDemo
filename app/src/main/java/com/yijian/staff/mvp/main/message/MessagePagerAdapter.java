@@ -14,7 +14,7 @@ import java.util.List;
  * time: 2018/3/5 19:14:06
  */
 public class MessagePagerAdapter extends FragmentPagerAdapter {
-    private  List<Fragment> fragments;
+    private List<Fragment> fragments;
     private List<String> mTitleDataList = new ArrayList<>();
 
 
@@ -43,7 +43,7 @@ public class MessagePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container,position);
+        return super.instantiateItem(container, position);
     }
 
     @Override

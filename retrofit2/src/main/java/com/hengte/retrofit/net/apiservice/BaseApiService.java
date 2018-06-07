@@ -22,15 +22,14 @@ import io.reactivex.Observable;
 public interface BaseApiService {
 
 
-
     /**************************************************************************************/
-     /*GET 请求  无参*/
+    /*GET 请求  无参*/
     @GET
     Observable<JSONObject> executeJSONObjectGet1(
             @Url String url
     );
 
-     /*GET 请求  有参*/
+    /*GET 请求  有参*/
     @GET
     Observable<JSONObject> executeJSONObjectGet2(
             @Url String url,
@@ -43,7 +42,7 @@ public interface BaseApiService {
             @Url String url
     );
 
-     /*POST 请求 有参*/
+    /*POST 请求 有参*/
     @POST
     Observable<JSONObject> executeJSONObjectPost2(
             @Url String url,
@@ -51,13 +50,13 @@ public interface BaseApiService {
     );
 
     /**************************************************************************************/
-  /*GET 请求  无参*/
+    /*GET 请求  无参*/
     @GET
     Observable<ResponseBody> executeResponseBodyGet1(
             @Url String url
     );
 
-     /*GET 请求  有参*/
+    /*GET 请求  有参*/
     @GET
     Observable<ResponseBody> executeResponseBodyGet2(
             @Url String url,
@@ -70,7 +69,7 @@ public interface BaseApiService {
             @Url String url
     );
 
-     /*POST 请求 有参*/
+    /*POST 请求 有参*/
     @POST
     Observable<ResponseBody> executeResponseBodyPost2(
             @Url String url,

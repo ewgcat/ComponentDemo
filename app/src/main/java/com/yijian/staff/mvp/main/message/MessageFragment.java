@@ -147,7 +147,7 @@ public class MessageFragment extends MvcBaseFragment {
                 }
                 businessMessageListAdapter.notifyDataSetChanged();
 
-                if (businessMessageBeans.size()==0){
+                if (businessMessageBeans.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
                 refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
@@ -184,8 +184,7 @@ public class MessageFragment extends MvcBaseFragment {
                 businessMessageListAdapter.notifyDataSetChanged();
 
 
-
-                if (businessMessageBeans.size()==0){
+                if (businessMessageBeans.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
@@ -196,7 +195,7 @@ public class MessageFragment extends MvcBaseFragment {
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                if (businessMessageBeans.size()==0){
+                if (businessMessageBeans.size() == 0) {
                     empty_view.setVisibility(View.VISIBLE);
                 }
             }

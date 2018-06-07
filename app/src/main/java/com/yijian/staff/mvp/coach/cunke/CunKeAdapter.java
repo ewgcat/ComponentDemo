@@ -42,10 +42,10 @@ public class CunKeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder;
-        if(viewType == TYPE_TITLE){
+        if (viewType == TYPE_TITLE) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cunke_title, parent, false);
             viewHolder = new TitleViewHolder(view);
-        }else {
+        } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cunke_body, parent, false);
             viewHolder = new BodyViewHolder(view);
         }
@@ -54,9 +54,9 @@ public class CunKeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(getItemViewType(position) == TYPE_TITLE){
+        if (getItemViewType(position) == TYPE_TITLE) {
             ((TitleViewHolder) holder).bind((TypeOfCunKeTitle) dataList.get(position));
-        }else{
+        } else {
             ((BodyViewHolder) holder).bind((TypeOfCunKeBody) dataList.get(position));
         }
     }

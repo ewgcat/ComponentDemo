@@ -67,7 +67,6 @@ public class CoachBaseHuiFangTaskFragment extends MvcBaseFragment {
     }
 
 
-
     @Override
     public int getLayoutId() {
         return defaultViewId;
@@ -108,7 +107,7 @@ public class CoachBaseHuiFangTaskFragment extends MvcBaseFragment {
 
         recyclerView = view.findViewById(R.id.rlv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        coachHuiFangTaskAdapter=new CoachHuiFangTaskAdapter(context,coachHuiFangInfoList,type);
+        coachHuiFangTaskAdapter = new CoachHuiFangTaskAdapter(context, coachHuiFangInfoList, type);
         recyclerView.setAdapter(coachHuiFangTaskAdapter);
     }
 
@@ -185,7 +184,7 @@ public class CoachBaseHuiFangTaskFragment extends MvcBaseFragment {
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                 hideLoading();
             }
         });

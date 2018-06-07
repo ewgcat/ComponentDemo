@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @version 1.0
  */
-public class EditItem implements BaseRecyclerItem,Serializable{
+public class EditItem implements BaseRecyclerItem, Serializable {
     private String mGroup;
     private List<MenuItem> mMenuItemList;
 

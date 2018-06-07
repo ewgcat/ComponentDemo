@@ -256,16 +256,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     ArrayList<Integer> countList = new ArrayList<>();
 
 
-
-
     private void addTextTab(final int position, String title) {
         TextView tab = new TextView(getContext());
         tab.setText(title);
         tab.setGravity(Gravity.CENTER);
         tab.setSingleLine();
         tab.setIncludeFontPadding(false);
-
-
 
 
         TextView tab2 = new TextView(getContext());
@@ -286,13 +282,15 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tab.setImageResource(resId);
         addTab(position, tab, null);
     }
-    private ArrayList<TextView> titleViewArrayList1=new ArrayList<>();
-    private ArrayList<TextView> titleViewArrayList2=new ArrayList<>();
-    public void updateBubbleNum(int position,int count){
+
+    private ArrayList<TextView> titleViewArrayList1 = new ArrayList<>();
+    private ArrayList<TextView> titleViewArrayList2 = new ArrayList<>();
+
+    public void updateBubbleNum(int position, int count) {
         Context context = getContext();
         if (context != null) {
 
-            if (count > 0&&titleViewArrayList1.size()>position) {
+            if (count > 0 && titleViewArrayList1.size() > position) {
                 TextView targetView = titleViewArrayList1.get(position);
                 new QBadgeView(context)
                         .bindTarget(targetView)

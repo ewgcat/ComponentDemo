@@ -43,12 +43,10 @@ public class AboutUsActivity extends BaseWebViewActivity {
         navigationBar2.setBackClickListener(this);
 
 
-        initWebView(webView,ABOUT_US_TYPE);
+        initWebView(webView, ABOUT_US_TYPE);
 
 
     }
-
-
 
 
 }

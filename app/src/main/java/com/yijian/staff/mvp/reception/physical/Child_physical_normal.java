@@ -20,7 +20,7 @@ public class Child_physical_normal extends ChildViewHolder {
 
     private final TextView tvKey;
     private final TextView tvValue;
-    private  final View itemView;
+    private final View itemView;
     private final View spaceview;
 
     /**
@@ -33,7 +33,7 @@ public class Child_physical_normal extends ChildViewHolder {
         tvKey = (TextView) itemView.findViewById(R.id.tv_key);
         tvValue = (TextView) itemView.findViewById(R.id.tv_value);
         spaceview = itemView.findViewById(R.id.view_space);
-        this.itemView= itemView;
+        this.itemView = itemView;
     }
 
     public void bind(ChildOptBean child, final int childPosition, final int parentPosition, List<ParentQuestionBean> parentList) {
@@ -43,16 +43,15 @@ public class Child_physical_normal extends ChildViewHolder {
 
         int size = parentList.get(parentPosition).getChildList().size();
 
-        if (childPosition==size-1){
+        if (childPosition == size - 1) {
             spaceview.setVisibility(View.VISIBLE);
             itemView.setBackgroundResource(R.drawable.shape_fillet_white_down_8);
-        }else {
+        } else {
             spaceview.setVisibility(View.GONE);
             itemView.setBackgroundResource(R.color.white);
         }
 
     }
-
 
 
 }

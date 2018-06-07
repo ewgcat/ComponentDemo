@@ -8,7 +8,7 @@ import java.util.List;
  * Created by The_P on 2018/4/9.
  */
 
-public  class DataListBean implements ParentImp<ItemsBean> {
+public class DataListBean implements ParentImp<ItemsBean> {
     /**
      * id : 1
      * desc : 信息来源
@@ -36,7 +36,7 @@ public  class DataListBean implements ParentImp<ItemsBean> {
     }
 
     public void setDesc(String desc) {
-        this.desc = (desc!=null)?desc:"";
+        this.desc = (desc != null) ? desc : "";
     }
 
     public int getSelectType() {

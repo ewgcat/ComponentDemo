@@ -7,7 +7,7 @@ import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
  */
 
 public interface ReceptionStepFiveContract {
-    interface View{
+    interface View {
 
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
@@ -16,7 +16,7 @@ public interface ReceptionStepFiveContract {
         void needEndProcess();
     }
 
-    interface Presenter{
+    interface Presenter {
 
         void getStatus(boolean isFirst, String memberId);
 

@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 public interface HuiJiProductContract {
-    interface View{
+    interface View {
         void showCards(List<CardInfo> goodsInfos, Boolean isRefresh);
 
         void showToCoachSucceed();
 
-        void showNoCards(boolean isRefresh,boolean isSucceed);
+        void showNoCards(boolean isRefresh, boolean isSucceed);
 
         void showStatus(ReceptionStastuBean receptionStastuBean);
 
@@ -31,15 +31,15 @@ public interface HuiJiProductContract {
 
     }
 
-    interface Presenter{
+    interface Presenter {
         void getRecptionCards(ConditionBody bodyCondition, boolean isRefresh);
 
-        void toCoach(String memberId,String cardId);
+        void toCoach(String memberId, String cardId);
 
         void getStatus(boolean isFirst, String memberId);
 
         void cardToOrder(String memberId, String cardprodbaseId);
 
-       void getProductDetail(String memberId);
+        void getProductDetail(String memberId);
     }
 }

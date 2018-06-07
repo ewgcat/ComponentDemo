@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <include
-        android:id="@+id/complaint_list_navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+            android:id="@+id/complaint_list_navigation_bar"
+            layout="@layout/view_navigation_bar2"/>
     <!--<FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
@@ -15,124 +15,124 @@
         android:layout_weight="1"/>-->
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_complaint"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+                android:id="@+id/rv_complaint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <LinearLayout
-        android:id="@+id/lin_staff"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white">
+            android:id="@+id/lin_staff"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/lin_handling_condition"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center">
+                android:id="@+id/lin_handling_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
             <ImageView
-                android:id="@+id/iv_handling_condition"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/ts_chuli"/>
+                    android:id="@+id/iv_handling_condition"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ts_chuli"/>
             <TextView
-                android:id="@+id/tv_handling_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="处理情况"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:layout_marginLeft="5dp"/>
+                    android:id="@+id/tv_handling_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处理情况"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lin_handling_task"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center">
+                android:id="@+id/lin_handling_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
             <ImageView
-                android:id="@+id/iv_handling_task"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/ts_renwu"/>
+                    android:id="@+id/iv_handling_task"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ts_renwu"/>
             <TextView
-                android:id="@+id/tv_handling_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="处理任务"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:layout_marginLeft="5dp"/>
+                    android:id="@+id/tv_handling_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处理任务"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/lin_coach"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/white">
+            android:id="@+id/lin_coach"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/lin_feipei_condition"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center">
+                android:id="@+id/lin_feipei_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
             <ImageView
-                android:id="@+id/iv_feipei_condition"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/ts_chuli"/>
+                    android:id="@+id/iv_feipei_condition"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ts_chuli"/>
 
             <TextView
-                android:id="@+id/tv_feipei_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="分配情况"
-                android:textSize="12sp" />
+                    android:id="@+id/tv_feipei_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="分配情况"
+                    android:textSize="12sp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lin_feipei_task"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center">
+                android:id="@+id/lin_feipei_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
             <ImageView
-                android:id="@+id/iv_feipei_task"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/ts_renwu"/>
+                    android:id="@+id/iv_feipei_task"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ts_renwu"/>
             <TextView
-                android:id="@+id/tv_feipei_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分配任务"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:layout_marginLeft="5dp"/>
+                    android:id="@+id/tv_feipei_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分配任务"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
 

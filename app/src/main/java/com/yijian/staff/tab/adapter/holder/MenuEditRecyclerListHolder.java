@@ -22,7 +22,7 @@ public class MenuEditRecyclerListHolder extends RecyclerView.ViewHolder {
 
     public MenuEditRecyclerListHolder(View itemView) {
         super(itemView);
-        tv_group_name= (TextView) itemView.findViewById(R.id.title);
-        recyclerView= (RecyclerView) itemView.findViewById(R.id.recycler);
+        tv_group_name = (TextView) itemView.findViewById(R.id.title);
+        recyclerView = (RecyclerView) itemView.findViewById(R.id.recycler);
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
  * Created by The_P on 2018/4/13.
  */
 
-public class TypeItemPowerViewHolder extends  TypeViewHolder{
+public class TypeItemPowerViewHolder extends TypeViewHolder {
     private final TextView column0;
     private final TextView column1;
     private final TextView column2;
@@ -53,9 +53,9 @@ public class TypeItemPowerViewHolder extends  TypeViewHolder{
                 column3.setTextColor(itemView.getContext().getResources().getColor(R.color.blue));
                 itemView.setBackgroundResource(R.drawable.shape_fillet_white_up_8);
             } else {
-                if (((PowerListBean) o).isLastItem){
+                if (((PowerListBean) o).isLastItem) {
                     itemView.setBackgroundResource(R.drawable.shape_fillet_white_down_8);
-                }else {
+                } else {
                     itemView.setBackgroundResource(R.color.white);
                 }
 
@@ -66,10 +66,10 @@ public class TypeItemPowerViewHolder extends  TypeViewHolder{
 
 
                 column0.setGravity(Gravity.CENTER_VERTICAL);
-                column0.setText(""+((PowerListBean) o).getName());
-                column1.setText(""+((PowerListBean) o).getWeight());
-                column2.setText(""+((PowerListBean) o).getGroupTime());
-                column2.setText(""+((PowerListBean) o).getGroupNum());
+                column0.setText("" + ((PowerListBean) o).getName());
+                column1.setText("" + ((PowerListBean) o).getWeight());
+                column2.setText("" + ((PowerListBean) o).getGroupTime());
+                column2.setText("" + ((PowerListBean) o).getGroupNum());
             }
         }
     }

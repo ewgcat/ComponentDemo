@@ -16,16 +16,17 @@ import java.util.HashMap;
  * Created by The_P on 2018/4/16.
  */
 
-public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvateContract_ycm.Presenter{
+public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvateContract_ycm.Presenter {
 
     private Context context;
     private ExperienceClassInvateContract_ycm.View view;
+
     public ExperienceClassInvatePresenter_ycm(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void setView(ExperienceClassInvateContract_ycm.View view){
-        this.view=view;
+    public void setView(ExperienceClassInvateContract_ycm.View view) {
+        this.view = view;
     }
 
     @Override
@@ -39,14 +40,14 @@ public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvate
 
                 InviterBean inviterBean = new Gson().fromJson(result.toString(), InviterBean.class);
 
-                if (inviterBean==null)return;
+                if (inviterBean == null) return;
                 view.showInviterInfo(inviterBean);
 
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(context,""+msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

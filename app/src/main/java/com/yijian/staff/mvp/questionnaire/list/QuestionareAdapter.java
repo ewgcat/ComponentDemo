@@ -49,7 +49,7 @@ public class QuestionareAdapter extends RecyclerView.Adapter<QuestionareAdapter.
         QuestionNaireVipBean questionNaireVipBean = questionNaireVipBeanList.get(position);
         holder.tv_name.setText(questionNaireVipBean.getMemberName());
         Long createTime = questionNaireVipBean.getCreateTime();
-        if (createTime != null&&createTime!=-1) {
+        if (createTime != null && createTime != -1) {
             holder.tv_time.setText(DateUtil.parseLongDateToTimeString(createTime));
         }
         holder.tv_seller_name.setText(questionNaireVipBean.getSellerName());
@@ -57,8 +57,8 @@ public class QuestionareAdapter extends RecyclerView.Adapter<QuestionareAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, QuestionnaireResultActivity.class);
-                intent.putExtra("memberId",questionNaireVipBean.getMemberId());
-                intent.putExtra("memberName",questionNaireVipBean.getMemberName());
+                intent.putExtra("memberId", questionNaireVipBean.getMemberId());
+                intent.putExtra("memberName", questionNaireVipBean.getMemberName());
                 context.startActivity(intent);
             }
         });

@@ -9,14 +9,15 @@ import com.google.gson.GsonBuilder;
 
 public class GsonNullString {
     private static Gson instance = null;
+
     private GsonNullString() {
 
     }
 
-    public static Gson getGson(){
+    public static Gson getGson() {
 
-        if (null == instance){
-            instance  = new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).create();
+        if (null == instance) {
+            instance = new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).create();
         }
         return instance;
     }

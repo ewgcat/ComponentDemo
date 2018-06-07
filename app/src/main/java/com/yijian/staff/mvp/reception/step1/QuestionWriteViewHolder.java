@@ -24,16 +24,16 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
 
     public QuestionWriteViewHolder(@NonNull View itemView) {
         super(itemView);
-        editText=(EditText)itemView.findViewById(R.id.et_write);
+        editText = (EditText) itemView.findViewById(R.id.et_write);
         tvLimit = itemView.findViewById(R.id.tv_limit);
     }
 
 
     public void bind(ItemsBean child, int parentPosition, int childPosition) {
-        Log.e(TAG, "bind: "+child.toString() );
-        if (!"null".equals(child.getInputContent())&&!TextUtils.isEmpty(child.getInputContent())){
-            editText.setText(""+child.getInputContent());
-        }else {
+        Log.e(TAG, "bind: " + child.toString());
+        if (!"null".equals(child.getInputContent()) && !TextUtils.isEmpty(child.getInputContent())) {
+            editText.setText("" + child.getInputContent());
+        } else {
             editText.setText("");
         }
 
@@ -51,7 +51,7 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(editText.hasFocus()){//判断当前EditText是否有焦点在
+                if (editText.hasFocus()) {//判断当前EditText是否有焦点在
 
                     if (listener != null) listener.onWrited(child, parentPosition, childPosition, s);
                     tvLimit.setText(s.toString().length() + "字");
@@ -65,22 +65,23 @@ public class QuestionWriteViewHolder extends ChildViewHolderGroup {
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     editText.addTextChangedListener(watcher);
-                }else{
+                } else {
                     editText.removeTextChangedListener(watcher);
                 }
             }
         });
     }
 
-    public  interface WriteListener{
+    public interface WriteListener {
         void onWrited(ItemsBean child, int position, int parentPosition, CharSequence s);
     }
 
     private WriteListener listener;
-    public void setWriteListener(WriteListener writeListener){
-        listener=writeListener;
+
+    public void setWriteListener(WriteListener writeListener) {
+        listener = writeListener;
     }
 
 }

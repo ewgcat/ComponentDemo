@@ -20,20 +20,20 @@ import java.util.List;
  * Created by The_P on 2018/3/15.
  */
 
-public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder > {
+public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<MultiOptBean> mMultiOptBeans=new ArrayList<>();
+    private List<MultiOptBean> mMultiOptBeans = new ArrayList<>();
     private static final String TAG = "MultiAdapter";
-    public static final int TYPE_NORMAL=0;
-    public static final int TYPE_MIX=1;
+    public static final int TYPE_NORMAL = 0;
+    public static final int TYPE_MIX = 1;
 
     public Multi_physicalAdapter(Activity mContext) {
-        context=mContext;
+        context = mContext;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType){
+        switch (viewType) {
             default:
             case TYPE_NORMAL:
                 View view = LayoutInflater.from(context).inflate(R.layout.item_child_type_multi, parent, false);
@@ -41,7 +41,7 @@ public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 return myViewHolder;
             case TYPE_MIX:
                 View view1 = LayoutInflater.from(context).inflate(R.layout.item_physical_option_mix, parent, false);
-                MyMixViewHolder mixViewHolder=new MyMixViewHolder(view1);
+                MyMixViewHolder mixViewHolder = new MyMixViewHolder(view1);
                 return mixViewHolder;
         }
 
@@ -50,20 +50,21 @@ public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private int childPosition;
     private int parentPosition;
-    public void resetData(List<MultiOptBean> multiOptBeans, int cPosition, int pPosition){
+
+    public void resetData(List<MultiOptBean> multiOptBeans, int cPosition, int pPosition) {
         mMultiOptBeans.clear();
         mMultiOptBeans.addAll(multiOptBeans);
-        childPosition=   cPosition;
-        parentPosition=pPosition;
+        childPosition = cPosition;
+        parentPosition = pPosition;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MyViewHolder){
-            ((MyViewHolder)holder).bindView(mMultiOptBeans.get(position));
-        }else {
-            ((MyMixViewHolder)holder).bindView(mMultiOptBeans.get(position));
+        if (holder instanceof MyViewHolder) {
+            ((MyViewHolder) holder).bindView(mMultiOptBeans.get(position));
+        } else {
+            ((MyMixViewHolder) holder).bindView(mMultiOptBeans.get(position));
         }
 
     }
@@ -123,13 +124,12 @@ public class Multi_physicalAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
-
     @Override
     public int getItemViewType(int position) {
         String typename = mMultiOptBeans.get(position).getType();
-        if ("mix".equals(typename)){//有填空及单选
+        if ("mix".equals(typename)) {//有填空及单选
             return TYPE_MIX;
-        }else{//单选
+        } else {//单选
             return TYPE_NORMAL;
         }
     }

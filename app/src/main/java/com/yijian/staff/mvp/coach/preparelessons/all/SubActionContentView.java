@@ -88,7 +88,7 @@ public class SubActionContentView extends LinearLayout implements Observer {
         tv_action_degree.setText(prepareListBean.getMoDifficultyDesc());
         tv_action_moPartsDesc.setText(prepareListBean.getMoPartsDesc());
         tv_action_qixie.setText(prepareListBean.getMoApplianceName());
-        tv_rank.setText((itemPosition+1)+"");
+        tv_rank.setText((itemPosition + 1) + "");
     }
 
     @Override
@@ -114,7 +114,6 @@ public class SubActionContentView extends LinearLayout implements Observer {
                     prepareListBean.setShowHeader(false);
                 }
                 break;
-
 
 
         }

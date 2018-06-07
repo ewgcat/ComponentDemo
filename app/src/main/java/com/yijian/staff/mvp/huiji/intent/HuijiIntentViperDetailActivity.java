@@ -200,21 +200,21 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
                 break;
             case R.id.iv_visit: //回访
                 String mobile = vipDetailBean.getMobile();
-                if (!TextUtils.isEmpty(mobile)){
-                    CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
+                if (!TextUtils.isEmpty(mobile)) {
+                    CommonUtil.callPhone(HuijiIntentViperDetailActivity.this, mobile);
 
 
                 } else {
-                    Toast.makeText(this,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
 
-    private void callVisit(String mobile){
-        Map<String,String> map = new HashMap<>();
-        map.put("memberId",vipDetailBean.getMemberId());
-        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
+    private void callVisit(String mobile) {
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", vipDetailBean.getMemberId());
+        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
         HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {

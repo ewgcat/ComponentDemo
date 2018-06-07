@@ -12,9 +12,9 @@ public class LoginResponse {
      * "tokenAge":1800000,
      * "role":0
      */
-    public  String userId;
-    public  String token;
-    public  Long tokenAge;
-    public  int role;
+    public String userId;
+    public String token;
+    public Long tokenAge;
+    public int role;
 
 }

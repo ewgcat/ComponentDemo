@@ -40,7 +40,7 @@ public class BitmapFaceUtils {
     public static int readPictureDegree(String path) {
         int degree = 0;
         try {
-            Log.e("Test","path==="+path);
+            Log.e("Test", "path===" + path);
             ExifInterface exifInterface = new ExifInterface(path);
             int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
@@ -60,23 +60,23 @@ public class BitmapFaceUtils {
         return degree;
     }
 
-    public static void getPictureDegree(Context context){
-        int angle = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+    public static void getPictureDegree(Context context) {
+        int angle = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
         switch (angle) {
             case Surface.ROTATION_0:
-                Log.d("Test","Rotation_0");
+                Log.d("Test", "Rotation_0");
                 break;
             case Surface.ROTATION_90:
-                Log.d("Test","ROTATION_90");
+                Log.d("Test", "ROTATION_90");
                 break;
             case Surface.ROTATION_180:
-                Log.d("Test","ROTATION_180");
+                Log.d("Test", "ROTATION_180");
                 break;
             case Surface.ROTATION_270:
-                Log.d("Test","ROTATION_270");
+                Log.d("Test", "ROTATION_270");
                 break;
             default:
-                Log.d("Test","Default Rotation!");
+                Log.d("Test", "Default Rotation!");
                 break;
         }
 

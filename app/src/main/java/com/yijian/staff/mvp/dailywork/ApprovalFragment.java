@@ -16,8 +16,9 @@ import com.yijian.staff.R;
 public class ApprovalFragment extends Fragment {
 
     private static ApprovalFragment approvalFragment;
-    public static ApprovalFragment getInstance(){
-        if(approvalFragment == null){
+
+    public static ApprovalFragment getInstance() {
+        if (approvalFragment == null) {
             approvalFragment = new ApprovalFragment();
         }
         return approvalFragment;
@@ -26,7 +27,7 @@ public class ApprovalFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_apporal,container,false);
+        View view = inflater.inflate(R.layout.fragment_apporal, container, false);
         return view;
     }
 }

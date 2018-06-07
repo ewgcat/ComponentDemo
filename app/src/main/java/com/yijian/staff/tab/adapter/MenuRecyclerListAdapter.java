@@ -43,12 +43,12 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
     public void setOnAddListener(OnAddListener onAddListener) {
         this.onAddListener = onAddListener;
     }
+
     protected OnRecyclerItemLongClickListener<MenuItem> mOnRecyclerItemLongClickListener;
+
     public void setOnRecyclerItemLongClickListener(OnRecyclerItemLongClickListener onRecyclerItemLongClickListener) {
         mOnRecyclerItemLongClickListener = onRecyclerItemLongClickListener;
     }
-
-
 
 
     public MenuRecyclerListAdapter(List<EditItem> recyclerItems, Context context) {
@@ -85,8 +85,6 @@ public class MenuRecyclerListAdapter extends BaseSimpleRecyclerAdapter<MenuEditR
             adapter.update(item);
         }
     }
-
-
 
 
 }

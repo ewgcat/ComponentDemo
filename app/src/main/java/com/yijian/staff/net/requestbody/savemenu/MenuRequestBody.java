@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class MenuRequestBody {
     private List<MenuBean> dtos;
-    public MenuRequestBody(List<MenuBean> dtos){
-       this.dtos=dtos;
+
+    public MenuRequestBody(List<MenuBean> dtos) {
+        this.dtos = dtos;
     }
 }

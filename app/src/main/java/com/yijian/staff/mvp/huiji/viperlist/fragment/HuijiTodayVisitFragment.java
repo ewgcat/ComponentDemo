@@ -64,7 +64,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
     private HuijiViperFilterBean huijiViperFilterBean;
 
 
-    private  HuiJiTodayVisitAdapter huijiViperListAdapter;
+    private HuiJiTodayVisitAdapter huijiViperListAdapter;
 
 
     @Override
@@ -92,7 +92,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
-        huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(),viperBeanList);
+        huijiViperListAdapter = new HuiJiTodayVisitAdapter(getActivity(), viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
         initComponent();
         refresh(null);

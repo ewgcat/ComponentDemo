@@ -20,7 +20,6 @@ public class SharePreferenceUtil {
     private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
 
 
-
     public static void setShowEditIcon(boolean b) {
         setBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON, b);
     }
@@ -273,7 +272,6 @@ public class SharePreferenceUtil {
     public static String getUserName() {
         return getString("username", "");
     }
-
 
 
 }

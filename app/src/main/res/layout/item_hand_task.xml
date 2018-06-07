@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/gray"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/gray"
+              android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/white_bg"
-        android:orientation="vertical">
-
-        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
-            android:paddingTop="15dp">
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_bg"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="15dp">
 
             <ImageView
-                android:id="@+id/iv_header"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@mipmap/people" />
+                    android:id="@+id/iv_header"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:src="@mipmap/people"/>
 
             <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@id/iv_header"
-                android:text="刘葛岩"
-                android:textColor="#333333"
-                android:textSize="16sp" />
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/iv_header"
+                    android:text="刘葛岩"
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
 
             <ImageView
-                android:id="@+id/iv_gender"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@id/tv_name"
-                android:src="@mipmap/lg_man" />
+                    android:id="@+id/iv_gender"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/tv_name"
+                    android:src="@mipmap/lg_man"/>
 
             <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="8dp"
-                android:text="等待处理"
-                android:textColor="#1997f8"
-                android:textSize="16sp" />
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:text="等待处理"
+                    android:textColor="#1997f8"
+                    android:textSize="16sp"/>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="8dp">
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
 
                 <TextView
-                    android:id="@+id/tv_taskContent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:alpha="0.85"
-                    android:ellipsize="end"
-                    android:text=""
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:id="@+id/lin_expand_or_collapse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <TextView
-                        android:id="@+id/tv_expand_or_collapse"
+                        android:id="@+id/tv_taskContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="全文"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
+                        android:layout_marginBottom="8dp"
+                        android:alpha="0.85"
+                        android:ellipsize="end"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="14sp"/>
+
+                <LinearLayout
+                        android:id="@+id/lin_expand_or_collapse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                    <TextView
+                            android:id="@+id/tv_expand_or_collapse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="全文"
+                            android:textColor="#666666"
+                            android:textSize="14sp"/>
                     <ImageView
-                        android:id="@+id/iv_expand_or_collapse"
-                        android:layout_width="10dp"
-                        android:layout_height="15dp"
-                        android:layout_marginLeft="6dp"
-                        android:src="@mipmap/ts_quanwen"
-                        />
+                            android:id="@+id/iv_expand_or_collapse"
+                            android:layout_width="10dp"
+                            android:layout_height="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:src="@mipmap/ts_quanwen"
+                    />
                 </LinearLayout>
 
             </LinearLayout>
@@ -111,193 +111,193 @@
         </RelativeLayout>
 
         <com.yijian.staff.mvp.complaint.handling.HandImgViewGroup
-            android:id="@+id/img_hand_task"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp" />
+                android:id="@+id/img_hand_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
         <TextView
-            android:id="@+id/tv_dispatchTaskTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="20dp"
-            android:text="2018-03-09" />
+                android:id="@+id/tv_dispatchTaskTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="20dp"
+                android:text="2018-03-09"/>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/gray"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/iv_result_header"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:src="@mipmap/people" />
+                        android:id="@+id/iv_result_header"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@mipmap/people"/>
 
                 <TextView
-                    android:id="@+id/tv_result_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@id/iv_header"
-                    android:text="刘葛岩"
-                    android:textColor="#333333"
-                    android:textSize="16sp" />
+                        android:id="@+id/tv_result_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/iv_header"
+                        android:text="刘葛岩"
+                        android:textColor="#333333"
+                        android:textSize="16sp"/>
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_result_taskResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:text="处理结果....."
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_result_handTaskTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="2018-03-09" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lin_evaluate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="客户评价："
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
-            <com.yijian.staff.mvp.complaint.handling.CommentFlowLayout
-                android:id="@+id/fl_comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lin_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="客户评分："
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RatingBar
-                    android:id="@+id/rb"
-                    style="@style/RadingStyle"
+                    android:id="@+id/tv_result_taskResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:isIndicator="true"
-                    android:maxHeight="16dp"
-                    android:minHeight="16dp"
-                    android:rating="0"
-                    android:stepSize="0.5" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:text="处理结果....."
+                    android:textColor="#999999"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tv_result_handTaskTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="2018-03-09"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/lin_evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="客户评价："
+                    android:textColor="#999999"
+                    android:textSize="14sp"/>
+
+            <com.yijian.staff.mvp.complaint.handling.CommentFlowLayout
+                    android:id="@+id/fl_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/lin_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="客户评分："
+                    android:textColor="#999999"
+                    android:textSize="14sp"/>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <RatingBar
+                        android:id="@+id/rb"
+                        style="@style/RadingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:isIndicator="true"
+                        android:maxHeight="16dp"
+                        android:minHeight="16dp"
+                        android:rating="0"
+                        android:stepSize="0.5"/>
             </LinearLayout>
 
         </LinearLayout>
 
         <View
-            android:id="@+id/view_line"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
-            android:background="@color/gray"
-            android:paddingTop="15dp" />
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:background="@color/gray"
+                android:paddingTop="15dp"/>
 
         <LinearLayout
-            android:id="@+id/lin_task_hand"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="15dp">
-
-            <LinearLayout
-                android:id="@+id/lin_immediately_hand"
+                android:id="@+id/lin_task_hand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:paddingBottom="16dp"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp">
+
+            <LinearLayout
+                    android:id="@+id/lin_immediately_hand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/icon_ts_chuli"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:text="立即处理"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/icon_ts_chuli"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="立即处理"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_immediately_fenpei"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                    android:id="@+id/lin_immediately_fenpei"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/ts_fenpei"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:text="分配任务"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ts_fenpei"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="分配任务"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
             </LinearLayout>
 
         </LinearLayout>

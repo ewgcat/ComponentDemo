@@ -14,7 +14,6 @@ import com.yijian.staff.mvp.splash.SplashActivity;
 import dagger.Component;
 
 
-
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
@@ -23,9 +22,13 @@ public interface ActivityComponent {
 
 
     void inject(MainActivity mainActivity);
+
     void inject(SplashActivity splashActivity);
+
     void inject(LoginActivity loginActivity);
+
     void inject(ForgetPasswordActivity forgetPasswordActivity);
+
     void inject(ReceptionActivity receptionActivity);
 
 }

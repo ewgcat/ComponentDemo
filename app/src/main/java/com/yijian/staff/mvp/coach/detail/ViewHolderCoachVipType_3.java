@@ -70,34 +70,34 @@ public class ViewHolderCoachVipType_3 extends ViewHolderCoachVipper {
 
     public ViewHolderCoachVipType_3(View itemView) {
         super(itemView);
-        tvWechatNum= itemView.findViewById(R.id.tv_wechat_num);
-        tvEmail= itemView.findViewById(R.id.tv_email);
-        tvShengao= itemView.findViewById(R.id.tv_shengao);
-        tvWeight= itemView.findViewById(R.id.tv_weight);
-        tvGuaoJi= itemView.findViewById(R.id.tv_guaoji);
+        tvWechatNum = itemView.findViewById(R.id.tv_wechat_num);
+        tvEmail = itemView.findViewById(R.id.tv_email);
+        tvShengao = itemView.findViewById(R.id.tv_shengao);
+        tvWeight = itemView.findViewById(R.id.tv_weight);
+        tvGuaoJi = itemView.findViewById(R.id.tv_guaoji);
 
-        tvJiguan= itemView.findViewById(R.id.tv_jiguan);
-        tvMinzu= itemView.findViewById(R.id.tv_minzu);
-        tvShentiStatus= itemView.findViewById(R.id.tv_shenti_status);
-        tvJianshenAihao= itemView.findViewById(R.id.tv_jianshen_aihao);
-        tvJianshenMudi= itemView.findViewById(R.id.tv_jianshen_mudi);
+        tvJiguan = itemView.findViewById(R.id.tv_jiguan);
+        tvMinzu = itemView.findViewById(R.id.tv_minzu);
+        tvShentiStatus = itemView.findViewById(R.id.tv_shenti_status);
+        tvJianshenAihao = itemView.findViewById(R.id.tv_jianshen_aihao);
+        tvJianshenMudi = itemView.findViewById(R.id.tv_jianshen_mudi);
 
-        tvXingquAihao= itemView.findViewById(R.id.tv_xingqu_aihao);
-        tvShifouCanjiaClub= itemView.findViewById(R.id.tv_shifou_canjia_club);
-        tvCanjiaClubName= itemView.findViewById(R.id.tv_canjia_clubName);
-        tvYearIncome= itemView.findViewById(R.id.tv_year_income);
-        tvCarValue= itemView.findViewById(R.id.tv_car_value);
+        tvXingquAihao = itemView.findViewById(R.id.tv_xingqu_aihao);
+        tvShifouCanjiaClub = itemView.findViewById(R.id.tv_shifou_canjia_club);
+        tvCanjiaClubName = itemView.findViewById(R.id.tv_canjia_clubName);
+        tvYearIncome = itemView.findViewById(R.id.tv_year_income);
+        tvCarValue = itemView.findViewById(R.id.tv_car_value);
 
-        tvMarryStatus= itemView.findViewById(R.id.tv_marry_status);
-        tvChildrenStatus= itemView.findViewById(R.id.tv_children_status);
-        tvHangye= itemView.findViewById(R.id.tv_hangye);
-        tvZhiwu= itemView.findViewById(R.id.tv_zhiwu);
-        tvCompanyName= itemView.findViewById(R.id.tv_company_name);
+        tvMarryStatus = itemView.findViewById(R.id.tv_marry_status);
+        tvChildrenStatus = itemView.findViewById(R.id.tv_children_status);
+        tvHangye = itemView.findViewById(R.id.tv_hangye);
+        tvZhiwu = itemView.findViewById(R.id.tv_zhiwu);
+        tvCompanyName = itemView.findViewById(R.id.tv_company_name);
 
-        tvCompanyPhone= itemView.findViewById(R.id.tv_company_phone);
-        tvCompanyLocation= itemView.findViewById(R.id.tv_company_location);
-        tvHomeLocation= itemView.findViewById(R.id.tv_home_location);
-        tvJinJiLianxiren= itemView.findViewById(R.id.tv_jin_ji_lianxiren);
+        tvCompanyPhone = itemView.findViewById(R.id.tv_company_phone);
+        tvCompanyLocation = itemView.findViewById(R.id.tv_company_location);
+        tvHomeLocation = itemView.findViewById(R.id.tv_home_location);
+        tvJinJiLianxiren = itemView.findViewById(R.id.tv_jin_ji_lianxiren);
         tvLianXiPhone = itemView.findViewById(R.id.tv_lianxiren_phone);
 
         llEdit = itemView.findViewById(R.id.ll_edit);
@@ -135,7 +135,7 @@ public class ViewHolderCoachVipType_3 extends ViewHolderCoachVipper {
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (huijiVipInterface!=null)huijiVipInterface.edit();
+                if (huijiVipInterface != null) huijiVipInterface.edit();
             }
         });
     }

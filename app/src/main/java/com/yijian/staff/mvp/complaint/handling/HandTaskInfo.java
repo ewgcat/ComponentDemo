@@ -24,17 +24,17 @@ public class HandTaskInfo {
     private List<String> evaluateContentList; //客户评价内容集合
     private String evaluateGrade; //客户评分星级
 
-    public HandTaskInfo(JSONObject jsonObject){
-        this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
-        this.name = JsonUtil.getString(jsonObject,"name");
-        this.gender = "0".equals(JsonUtil.getString(jsonObject,"gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;
-        this.status = "0".equals(JsonUtil.getString(jsonObject,"status"))?"待处理":"已处理";
-        this.taskContent = JsonUtil.getString(jsonObject,"taskContent");
-        this.dispatchTaskTime = JsonUtil.getString(jsonObject,"dispatchTaskTime");
-        this.taskImgs = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"taskImgs").toString(),String.class);
-        this.handTaskResultInfo = new HandTaskResultInfo(JsonUtil.getJsonObject(jsonObject,"handTaskResultInfo"));
-        this.evaluateContentList = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject,"evaluateContentList").toString(),String.class);
-        this.evaluateGrade = JsonUtil.getString(jsonObject,"evaluateGrade");
+    public HandTaskInfo(JSONObject jsonObject) {
+        this.headerUrl = JsonUtil.getString(jsonObject, "headerUrl");
+        this.name = JsonUtil.getString(jsonObject, "name");
+        this.gender = "0".equals(JsonUtil.getString(jsonObject, "gender")) ? R.mipmap.lg_women : R.mipmap.lg_man;
+        this.status = "0".equals(JsonUtil.getString(jsonObject, "status")) ? "待处理" : "已处理";
+        this.taskContent = JsonUtil.getString(jsonObject, "taskContent");
+        this.dispatchTaskTime = JsonUtil.getString(jsonObject, "dispatchTaskTime");
+        this.taskImgs = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "taskImgs").toString(), String.class);
+        this.handTaskResultInfo = new HandTaskResultInfo(JsonUtil.getJsonObject(jsonObject, "handTaskResultInfo"));
+        this.evaluateContentList = com.alibaba.fastjson.JSONArray.parseArray(JsonUtil.getJsonArray(jsonObject, "evaluateContentList").toString(), String.class);
+        this.evaluateGrade = JsonUtil.getString(jsonObject, "evaluateGrade");
     }
 
     public String getHeaderUrl() {
@@ -117,17 +117,17 @@ public class HandTaskInfo {
         this.evaluateGrade = evaluateGrade;
     }
 
-    class HandTaskResultInfo{
+    class HandTaskResultInfo {
         private String headerUrl;
         private String name;
         private String taskResult; //处理任务的结果
         private String handTaskTime;//任务处理的时间
 
-        public HandTaskResultInfo(JSONObject jsonObject){
-            this.headerUrl = JsonUtil.getString(jsonObject,"headerUrl");
-            this.name = JsonUtil.getString(jsonObject,"name");
-            this.taskResult = JsonUtil.getString(jsonObject,"taskResult");
-            this.handTaskTime = JsonUtil.getString(jsonObject,"handTaskTime");
+        public HandTaskResultInfo(JSONObject jsonObject) {
+            this.headerUrl = JsonUtil.getString(jsonObject, "headerUrl");
+            this.name = JsonUtil.getString(jsonObject, "name");
+            this.taskResult = JsonUtil.getString(jsonObject, "taskResult");
+            this.handTaskTime = JsonUtil.getString(jsonObject, "handTaskTime");
         }
 
         public String getHeaderUrl() {

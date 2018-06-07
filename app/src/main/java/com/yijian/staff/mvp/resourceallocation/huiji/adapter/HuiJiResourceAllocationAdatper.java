@@ -40,7 +40,7 @@ public class HuiJiResourceAllocationAdatper extends RecyclerView.Adapter<HuiJiRe
     @Override
     public void onBindViewHolder(HuiJiResourceAllocationAdatper.ViewHolder holder, int position) {
         HuiJiResourceAllocationInfo huijiResourceAllocationInfo = list.get(position);
-        holder.bind(huijiResourceAllocationInfo,context);
+        holder.bind(huijiResourceAllocationInfo, context);
 
     }
 
@@ -50,7 +50,7 @@ public class HuiJiResourceAllocationAdatper extends RecyclerView.Adapter<HuiJiRe
     }
 
     public void update(List<HuiJiResourceAllocationInfo> resourceAllocationInfoList) {
-        this.list=resourceAllocationInfoList;
+        this.list = resourceAllocationInfoList;
         notifyDataSetChanged();
     }
 
@@ -75,7 +75,7 @@ public class HuiJiResourceAllocationAdatper extends RecyclerView.Adapter<HuiJiRe
             tv_time = view.findViewById(R.id.tv_time);
         }
 
-        public void bind(HuiJiResourceAllocationInfo huijiResourceAllocationInfo,Context context){
+        public void bind(HuiJiResourceAllocationInfo huijiResourceAllocationInfo, Context context) {
             ImageLoader.setHeadImageResource(huijiResourceAllocationInfo.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(huijiResourceAllocationInfo.getGenderImg());
             tv_name.setText(huijiResourceAllocationInfo.getMemberName());

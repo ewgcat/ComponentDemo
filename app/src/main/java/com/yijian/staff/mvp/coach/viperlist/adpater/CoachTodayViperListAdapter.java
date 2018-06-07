@@ -52,9 +52,10 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         notifyDataSetChanged();
     }
 
-    private void setImageResource(String path,ImageView imageView) {
+    private void setImageResource(String path, ImageView imageView) {
 
     }
+
     @Override
     public void onBindViewHolder(CoachTodayViperListAdapter.ViewHolder holder, int position) {
         TodayCoachViperBean coachViperBean = coachViperBeanList.get(position);
@@ -62,9 +63,9 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
 
         holder.tv_name.setText(coachViperBean.getName());
         int resId;
-        if (coachViperBean.getSex()==1) {
+        if (coachViperBean.getSex() == 1) {
             resId = R.mipmap.lg_man;
-        } else if (coachViperBean.getSex()==2) {
+        } else if (coachViperBean.getSex() == 2) {
             resId = R.mipmap.lg_women;
         } else {
             resId = R.mipmap.lg_man;
@@ -74,7 +75,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         String headImg = coachViperBean.getHeadImg();
 
 
-        ImageLoader.setHeadImageResource(headImg,context,holder.iv_header);
+        ImageLoader.setHeadImageResource(headImg, context, holder.iv_header);
         //详情
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,18 +89,18 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         });
 
         int clockedCount = coachViperBean.getClockedCount();
-        if (clockedCount!=-1){
+        if (clockedCount != -1) {
 
-            holder.tv_daka_total_count.setText(clockedCount+"次");
+            holder.tv_daka_total_count.setText(clockedCount + "次");
         }
         Long bePresentTime = coachViperBean.getVisitTime();
-        if (bePresentTime!=null&&bePresentTime!=-1){
+        if (bePresentTime != null && bePresentTime != -1) {
             String s = DateUtil.parseLongDateToTimeString(bePresentTime);
             holder.tv_be_present_time.setText(s);
         }
 
         Long departureTime = coachViperBean.getLeaveTime();
-        if (departureTime!=null&&departureTime!=-1){
+        if (departureTime != null && departureTime != -1) {
             String s1 = DateUtil.parseLongDateToTimeString(departureTime);
             holder.tv_be_departure_time.setText(s1);
         }

@@ -23,15 +23,14 @@ import java.util.List;
 
 /**
  * Created by yangk on 2018/3/26.
- *
  */
 
-public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutdateViperListAdapter.ViewHolder>  {
+public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutdateViperListAdapter.ViewHolder> {
 
     private List<HuiJiViperBean> vipOutdateInfoList;
     private Context context;
 
-    public HuijiOutdateViperListAdapter(Context context, List<HuiJiViperBean> vipOutdateInfoList){
+    public HuijiOutdateViperListAdapter(Context context, List<HuiJiViperBean> vipOutdateInfoList) {
         this.context = context;
         this.vipOutdateInfoList = vipOutdateInfoList;
     }
@@ -47,12 +46,12 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
     @Override
     public void onBindViewHolder(HuijiOutdateViperListAdapter.ViewHolder holder, int position) {
         HuiJiViperBean viperBean = vipOutdateInfoList.get(position);
-        holder.bind(context,viperBean);
+        holder.bind(context, viperBean);
     }
 
     @Override
     public int getItemCount() {
-        return vipOutdateInfoList==null?0:vipOutdateInfoList.size();
+        return vipOutdateInfoList == null ? 0 : vipOutdateInfoList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,9 +74,9 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
             rel_content = view.findViewById(R.id.rel_content);
         }
 
-        public void bind(Context context, HuiJiViperBean huiJiViperBean){
-            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity)context, iv_header);
-            iv_gender.setImageResource(1==huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
+        public void bind(Context context, HuiJiViperBean huiJiViperBean) {
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity) context, iv_header);
+            iv_gender.setImageResource(1 == huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,7 +84,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                     //viperDetailBean
 //                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
                     Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
-                    intent.putExtra("memberId",huiJiViperBean.getMemberId());
+                    intent.putExtra("memberId", huiJiViperBean.getMemberId());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
 //                    intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
                     context.startActivity(intent);
@@ -93,16 +92,16 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
             });
             //回访
             Boolean isProtected = huiJiViperBean.isUnderProtected();
-            tv_protect_seven.setVisibility(isProtected?View.VISIBLE:View.GONE);
-            iv_visit.setVisibility(isProtected?View.GONE:View.VISIBLE);
+            tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);
+            iv_visit.setVisibility(isProtected ? View.GONE : View.VISIBLE);
             iv_visit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String mobile = huiJiViperBean.getMobile();
-                    if (!TextUtils.isEmpty(mobile)){
-                        CommonUtil.callPhone(context,mobile);
+                    if (!TextUtils.isEmpty(mobile)) {
+                        CommonUtil.callPhone(context, mobile);
                     } else {
-                        Toast.makeText(context,"未录入手机号,无法进行电话回访",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

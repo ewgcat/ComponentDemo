@@ -39,7 +39,8 @@ public class ActivityOpenLesson extends AppCompatActivity {
         initView();
     }
 
-    private Handler handler=new Handler();
+    private Handler handler = new Handler();
+
     private void initView() {
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -61,22 +62,23 @@ public class ActivityOpenLesson extends AppCompatActivity {
             public void run() {
                 adapterLesson.resetActionList(typeOfActionItems);
             }
-        },2000);
+        }, 2000);
 
 
         Chronometer chronometer = findViewById(R.id.chronometer);
 //        chronometer.setFormat("H:MM:SS");
-        Calendar mCalendar= Calendar.getInstance();
+        Calendar mCalendar = Calendar.getInstance();
         int hour = mCalendar.get(Calendar.HOUR);
         int minute = mCalendar.get(Calendar.MINUTE);
         int second = mCalendar.get(Calendar.SECOND);
 
-        int time= hour*60*60+minute*60+second;
-        chronometer.setBase(SystemClock.elapsedRealtime()-time*1000);//计时器清零
+        int time = hour * 60 * 60 + minute * 60 + second;
+        chronometer.setBase(SystemClock.elapsedRealtime() - time * 1000);//计时器清零
         chronometer.start();
     }
 
-    private List<Object> typeOfActionItems=new ArrayList<>();
+    private List<Object> typeOfActionItems = new ArrayList<>();
+
     private void mockData() {
         TypeOfActionItem typeOfActionItem = new TypeOfActionItem();
         typeOfActionItem.setActionName("心肺功能测试罚款浪费的说法");
@@ -105,36 +107,36 @@ public class ActivityOpenLesson extends AppCompatActivity {
         typeOfActionItems.add(typeOfActionItem1);
     }
 
-   private BottomSheetDialogFragmentLesson bottomSheetDialogFragmentLesson;
+    private BottomSheetDialogFragmentLesson bottomSheetDialogFragmentLesson;
 
     //打开秒表
     public void showClockView(int position) {
-        if (bottomSheetDialogFragmentLesson==null){
+        if (bottomSheetDialogFragmentLesson == null) {
             bottomSheetDialogFragmentLesson = new BottomSheetDialogFragmentLesson();
         }
-        bottomSheetDialogFragmentLesson.show(getSupportFragmentManager(),"BottomSheetDialogFragmentLesson");
+        bottomSheetDialogFragmentLesson.show(getSupportFragmentManager(), "BottomSheetDialogFragmentLesson");
         bottomSheetDialogFragmentLesson.setResultChronometerListener(new BottomSheetDialogFragmentLesson.ResultChronometerListener() {
             @Override
-            public void getTimes( long time) {
+            public void getTimes(long time) {
 
 
-                Log.e(TAG, "getTimes: time="+time );
+                Log.e(TAG, "getTimes: time=" + time);
                 Object o = typeOfActionItems.get(position);
-                if (o instanceof TypeOfActionItem){
-                    ((TypeOfActionItem) o).setActionTime(""+time/1000.00f+"s");
-                    ((TypeOfActionItem) o).setStartTime(SystemClock.elapsedRealtime()-time);//记录开始时间
+                if (o instanceof TypeOfActionItem) {
+                    ((TypeOfActionItem) o).setActionTime("" + time / 1000.00f + "s");
+                    ((TypeOfActionItem) o).setStartTime(SystemClock.elapsedRealtime() - time);//记录开始时间
                     ((TypeOfActionItem) o).setEndTime(SystemClock.elapsedRealtime());//记录结束时间
 
-                    if (position!=0){//计算间隔时间
+                    if (position != 0) {//计算间隔时间
                         Long startTime = ((TypeOfActionItem) o).getStartTime();
                         Long endTime = ((TypeOfActionItem) typeOfActionItems.get(position - 1)).getEndTime();//上一item的结束时间
-                        ((TypeOfActionItem) o).setActionTimeInterval(""+((startTime-endTime)/1000)+"s");
+                        ((TypeOfActionItem) o).setActionTimeInterval("" + ((startTime - endTime) / 1000) + "s");
                     }
 
-                    adapterLesson.notifyItemChanged(position+1);//加上标题item
+                    adapterLesson.notifyItemChanged(position + 1);//加上标题item
 
-                    if (adapterLesson.getIndex_point()==position+1){
-                        adapterLesson.setIndex_point(position+1+1);//可以点击的位置+1
+                    if (adapterLesson.getIndex_point() == position + 1) {
+                        adapterLesson.setIndex_point(position + 1 + 1);//可以点击的位置+1
                     }
                 }
             }

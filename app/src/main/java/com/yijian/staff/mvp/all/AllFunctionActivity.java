@@ -35,9 +35,9 @@ import java.util.List;
 @Route(path = "/test/all")
 public class AllFunctionActivity extends MvcBaseActivity implements View.OnClickListener {
 
-    public static void startToActivity(Context context,  ObserveDataChange observeDataChange2){
+    public static void startToActivity(Context context, ObserveDataChange observeDataChange2) {
         observeDataChange = observeDataChange2;
-        context.startActivity(new Intent(context,AllFunctionActivity.class));
+        context.startActivity(new Intent(context, AllFunctionActivity.class));
     }
 
 
@@ -79,7 +79,6 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
     }
 
 
-
     private void initEvents() {
         frequentlyList = MenuHelper.getPreferFrequentlyList();
         vipmanagerList = MenuHelper.getPreferVipManageList();
@@ -119,7 +118,7 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
                     frequentlyList.add(item);
                     mListHeaderWrapper.notifyDataSetChanged();
                 }
-                hasChangedListData=true;
+                hasChangedListData = true;
             }
         });
 
@@ -149,7 +148,7 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
                         mListHeaderWrapper.notifyDataSetChanged();
                     }
                 }
-                hasChangedListData=true;
+                hasChangedListData = true;
             }
         });
 
@@ -185,7 +184,7 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
                 }
                 frequentlyList.remove(item);
                 mListHeaderWrapper.notifyDataSetChanged();
-                hasChangedListData=true;
+                hasChangedListData = true;
             }
         });
         mListHeaderWrapper.addHeader(new EditItem(MenuHelper.GROUP_FREQUENTLY, frequentlyList));
@@ -234,16 +233,16 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
     private void postSaveMenu() {
         List<MenuBean> list = new ArrayList<>();
         if (frequentlyList != null) {
-                for (int i = 0; i < frequentlyList.size(); i++) {
-                    MenuItem menuItem = frequentlyList.get(i);
-                    long itemId = menuItem.getItemId();
-                    MenuBean menuBean = new MenuBean(itemId,i);
-                    list.add(menuBean);
-                }
+            for (int i = 0; i < frequentlyList.size(); i++) {
+                MenuItem menuItem = frequentlyList.get(i);
+                long itemId = menuItem.getItemId();
+                MenuBean menuBean = new MenuBean(itemId, i);
+                list.add(menuBean);
+            }
         }
         showLoading();
         MenuHelper.savePreferFrequentlyList(frequentlyList);
-        HttpManager.saveMenuChange( new MenuRequestBody(list), new ResultJSONObjectObserver() {
+        HttpManager.saveMenuChange(new MenuRequestBody(list), new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -257,7 +256,7 @@ public class AllFunctionActivity extends MvcBaseActivity implements View.OnClick
         });
     }
 
-    public interface ObserveDataChange{
+    public interface ObserveDataChange {
         void updateChange();
     }
 

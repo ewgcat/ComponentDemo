@@ -83,7 +83,6 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
     }
 
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coach_product_quotation, container, false);
@@ -122,9 +121,9 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
 
             case R.id.item_view:
 
-                if (productDetail!=null){
+                if (productDetail != null) {
                     Intent intent2 = new Intent(getContext(), ProductDetailActivity.class);
-                    intent2.putExtra("productDetail",productDetail);
+                    intent2.putExtra("productDetail", productDetail);
                     startActivity(intent2);
 
                 }
@@ -134,13 +133,12 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
 
             case R.id.ll_to_leader:
 
-                toLeadersDialog.show(getActivity().getFragmentManager(),"TOLeadersDialog");
+                toLeadersDialog.show(getActivity().getFragmentManager(), "TOLeadersDialog");
                 break;
 
 
         }
     }
-
 
 
     @Override
@@ -155,7 +153,7 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
 
     @Override
     public void showProductDetail(ProductDetail productDetail) {
-        this.productDetail=productDetail;
+        this.productDetail = productDetail;
 
         tvGoodsName.setText("" + productDetail.getCardTypeName());
         List<String> venueNames = productDetail.getVenueNames();
@@ -189,15 +187,15 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
 
         String strRestKey = productDetail.getStrRestKey();
         String strRestVal = productDetail.getStrRestVal();
-        if (!TextUtils.isEmpty(strRestKey)&&!TextUtils.isEmpty(strRestVal)){
-            tvYuEr.setText(strRestKey+strRestVal);
+        if (!TextUtils.isEmpty(strRestKey) && !TextUtils.isEmpty(strRestVal)) {
+            tvYuEr.setText(strRestKey + strRestVal);
         }
 
         String rechargeGivePercent = productDetail.getRechargeGivePercent();
-        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent+"%");
+        if (!TextUtils.isEmpty(rechargeGivePercent)) tvChuzhiyouhui.setText("赠送" + rechargeGivePercent + "%");
 
         String salePrice = productDetail.getSalePrice();
-        if (!TextUtils.isEmpty(salePrice))tvPrice.setText("" + salePrice);
+        if (!TextUtils.isEmpty(salePrice)) tvPrice.setText("" + salePrice);
 
     }
 
@@ -210,15 +208,15 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
 
     @Override
     public void coachToSaleSecceed() {
-        Toast.makeText(getContext(),"发送给会籍成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "发送给会籍成功", Toast.LENGTH_SHORT).show();
     }
 
     //TO给领导
     @Override
     public void onConfirm(Integer postid, String content) {
-        if (TextUtils.isEmpty(memberId))return;
+        if (TextUtils.isEmpty(memberId)) return;
 
-        presenter.postToLeader(memberId,content,postid);
+        presenter.postToLeader(memberId, content, postid);
     }
 
 

@@ -101,7 +101,7 @@ public class CommonUtil {
         return str == null ? "" : str;
     }
 
-    public static boolean isEmpty(String str){
+    public static boolean isEmpty(String str) {
         return TextUtils.isEmpty(str) || "null".equals(str);
     }
 

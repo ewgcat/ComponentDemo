@@ -595,8 +595,6 @@ public class HttpManager {
     }
 
 
-
-
     //会籍卡产品查询列表_ycm
     public static void getHuiJiCardGoodsList_ycm(ConditionBody body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
@@ -863,8 +861,6 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
-
-
 
 
     //接待人的信息

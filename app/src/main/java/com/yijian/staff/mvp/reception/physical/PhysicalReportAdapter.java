@@ -49,16 +49,16 @@ public class PhysicalReportAdapter extends ExpandableRecyclerAdapter<ParentQuest
         mContext = context;
     }
 
-  public void  resetData(List<ParentQuestionBean> list){
-      parentList=list;
-      setParentList(list,true);
-  }
+    public void resetData(List<ParentQuestionBean> list) {
+        parentList = list;
+        setParentList(list, true);
+    }
 
     @NonNull
     @Override
     public Parent_Step2ViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
         View inflate = mInflater.inflate(R.layout.item_parent_demo, parentViewGroup, false);
-        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate,mContext);
+        Parent_Step2ViewHolder parent_demoViewHolder = new Parent_Step2ViewHolder(inflate, mContext);
         return parent_demoViewHolder;
     }
 
@@ -68,30 +68,30 @@ public class PhysicalReportAdapter extends ExpandableRecyclerAdapter<ParentQuest
 //        View inflate = mInflater.inflate(R.layout.item_parent_demo, parentViewGroup, false);
         ChildViewHolder childViewHolder;
 
-        switch (viewType){
+        switch (viewType) {
             case 3:
                 View view0 = mInflater.inflate(R.layout.item_child_type_normal, childViewGroup, false);
-                childViewHolder=new Child_physical_normal(view0);
+                childViewHolder = new Child_physical_normal(view0);
                 break;
 
             case 5:
                 View view2 = mInflater.inflate(R.layout.item_child_type_write_physical, childViewGroup, false);
-                childViewHolder=new Child_physical_write(view2);
+                childViewHolder = new Child_physical_write(view2);
                 break;
             default:
             case 6:
                 View view3 = mInflater.inflate(R.layout.item_child_type_display, childViewGroup, false);
-                childViewHolder=new Child_physical_dispaly(view3);
+                childViewHolder = new Child_physical_dispaly(view3);
                 break;
 
             case 8:
                 View view8 = mInflater.inflate(R.layout.item_child_type_display_multi, childViewGroup, false);
-                childViewHolder=new Child_physical_dispalyMulti(view8,mContext);
+                childViewHolder = new Child_physical_dispalyMulti(view8, mContext);
                 break;
 
             case 9:
                 View view9 = mInflater.inflate(R.layout.item_child_type_edit_physical, childViewGroup, false);
-                childViewHolder=new Child_physical_edit(view9);
+                childViewHolder = new Child_physical_edit(view9);
 
                 break;
         }
@@ -106,16 +106,16 @@ public class PhysicalReportAdapter extends ExpandableRecyclerAdapter<ParentQuest
 
     @Override
     public void onBindChildViewHolder(@NonNull ChildViewHolder childViewHolder, int parentPosition, int childPosition, @NonNull ChildOptBean child) {
-        if (childViewHolder instanceof Child_physical_normal){
-            ((Child_physical_normal) childViewHolder).bind(child,childPosition,parentPosition,parentList);
-        }else if (childViewHolder instanceof Child_physical_write){
-            ((Child_physical_write) childViewHolder).bind(child,childPosition,parentPosition,parentList);
-        }else if (childViewHolder instanceof Child_physical_dispaly){
-            ((Child_physical_dispaly) childViewHolder).bind(child,childPosition,parentPosition);
-        }else if(childViewHolder instanceof Child_physical_dispalyMulti){
-            ((Child_physical_dispalyMulti) childViewHolder).bind(child,childPosition,parentPosition,mContext);
-        }else if (childViewHolder instanceof Child_physical_edit){
-            ((Child_physical_edit) childViewHolder).bind(child,childPosition,parentPosition);
+        if (childViewHolder instanceof Child_physical_normal) {
+            ((Child_physical_normal) childViewHolder).bind(child, childPosition, parentPosition, parentList);
+        } else if (childViewHolder instanceof Child_physical_write) {
+            ((Child_physical_write) childViewHolder).bind(child, childPosition, parentPosition, parentList);
+        } else if (childViewHolder instanceof Child_physical_dispaly) {
+            ((Child_physical_dispaly) childViewHolder).bind(child, childPosition, parentPosition);
+        } else if (childViewHolder instanceof Child_physical_dispalyMulti) {
+            ((Child_physical_dispalyMulti) childViewHolder).bind(child, childPosition, parentPosition, mContext);
+        } else if (childViewHolder instanceof Child_physical_edit) {
+            ((Child_physical_edit) childViewHolder).bind(child, childPosition, parentPosition);
         }
     }
 
@@ -125,30 +125,28 @@ public class PhysicalReportAdapter extends ExpandableRecyclerAdapter<ParentQuest
         int type;
 
         ChildOptBean childObjBean = parentList.get(parentPosition).getChildList().get(childPosition);
-        switch (childObjBean.getQusType()){
+        switch (childObjBean.getQusType()) {
             case "normal"://默认的单选
-                type=3;
+                type = 3;
                 break;
             case "write"://填空
-                type=5;
+                type = 5;
                 break;
             default:
             case "dispaly"://展示
-                type=6;
+                type = 6;
                 break;
 
             case "display_multi_opt"://多选
-                type=8;
+                type = 8;
                 break;
             case "edit"://编辑类
-                type=9;
+                type = 9;
                 break;
         }
 
         return type;
     }
-
-
 
 
 }

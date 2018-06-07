@@ -66,7 +66,7 @@ public class SettingActivity extends MvcBaseActivity {
         User user = DBManager.getInstance().queryUser();
 
         HashMap<String, String> map = new HashMap<>();
-        if (user!=null){
+        if (user != null) {
             map.put("userId", user.getUserId());
             HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver() {
                 @Override
@@ -79,7 +79,7 @@ public class SettingActivity extends MvcBaseActivity {
                     tvMendian.setText(userInfo.getShop());
                     tvDepartment.setText(userInfo.getDepartment());
                     tvPosition.setText(userInfo.getPost());
-                    user.setAge(userInfo.getAge() );
+                    user.setAge(userInfo.getAge());
                     user.setHeadImg(userInfo.getHeadImg());
                     DBManager.getInstance().insertOrReplaceUser(user);
                     setImageResource(userInfo.getHeadImg(), ivHead);
@@ -92,7 +92,6 @@ public class SettingActivity extends MvcBaseActivity {
                 }
             });
         }
-
 
 
     }

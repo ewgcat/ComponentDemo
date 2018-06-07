@@ -52,17 +52,14 @@ public class ExpandableWrapperGroup<P extends ParentImp<C>, C> {
     }
 
 
-
     public C getChild() {
         return mChild;
     }
 
 
-
     public boolean isParent() {
         return mWrappedParent;
     }
-
 
 
     /**
@@ -81,7 +78,7 @@ public class ExpandableWrapperGroup<P extends ParentImp<C>, C> {
         List<ExpandableWrapperGroup<P, C>> childItemList = new ArrayList<>();
 
         List<C> childList = parentListItem.getChildList();
-        if (childList==null)return childItemList;
+        if (childList == null) return childItemList;
         for (C child : childList) {
             childItemList.add(new ExpandableWrapperGroup<P, C>(child));
         }

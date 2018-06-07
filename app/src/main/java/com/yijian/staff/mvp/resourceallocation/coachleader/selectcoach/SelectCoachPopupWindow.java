@@ -86,7 +86,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
                     adapter = new SelectCoachAdapter(context, coachInfos);
                     rcl.setAdapter(adapter);
                 } catch (JSONException e) {
-                    Logger.i("TEST",e.getMessage());
+                    Logger.i("TEST", e.getMessage());
 
                 }
             }
@@ -126,8 +126,8 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
                 if (selectCoachInfo == null) {
                     Toast.makeText(context, "请先选择教练", Toast.LENGTH_SHORT).show();
                     return;
-                }else {
-                    if (selectCoachListener!=null){
+                } else {
+                    if (selectCoachListener != null) {
                         selectCoachListener.onSelect(selectCoachInfo);
                         dismiss();
                     }
@@ -142,7 +142,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
         void onSelect(CoachInfo coachInfo);
     }
 
-  private   SelectCoachListener selectCoachListener;
+    private SelectCoachListener selectCoachListener;
 
     public void setSelectCoachListener(SelectCoachListener selectCoachListener) {
         this.selectCoachListener = selectCoachListener;

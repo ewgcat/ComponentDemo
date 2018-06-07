@@ -19,13 +19,13 @@ import java.util.List;
  * time: 2018/3/5 19:14:06
  */
 public class HuiFangPagerAdapter extends FragmentPagerAdapter {
-    private  List<Fragment> fragments;
-    private  FragmentManager mFragmentManager;
+    private List<Fragment> fragments;
+    private FragmentManager mFragmentManager;
     private List<String> mTitleDataList = new ArrayList<>();
     private FragmentTransaction fragmentTransaction;
 
 
-    public HuiFangPagerAdapter(FragmentManager mFragmentManager,  List<Fragment> fragments,List<String> mTitleDataList) {
+    public HuiFangPagerAdapter(FragmentManager mFragmentManager, List<Fragment> fragments, List<String> mTitleDataList) {
         super(mFragmentManager);
         this.mFragmentManager = mFragmentManager;
         this.fragments = fragments;
@@ -51,7 +51,7 @@ public class HuiFangPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container,position);
+        return super.instantiateItem(container, position);
     }
 
     @Override

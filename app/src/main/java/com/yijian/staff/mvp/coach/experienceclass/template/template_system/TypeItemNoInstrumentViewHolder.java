@@ -30,7 +30,7 @@ public class TypeItemNoInstrumentViewHolder extends TypeViewHolder {
     void bindView(int position, List<Object> objects) {
 
         Object o = objects.get(position);
-        if (o instanceof NoInstrumentListBean &&o!=null) {
+        if (o instanceof NoInstrumentListBean && o != null) {
 
             final NoInstrumentListBean o1 = (NoInstrumentListBean) o;
 
@@ -47,9 +47,9 @@ public class TypeItemNoInstrumentViewHolder extends TypeViewHolder {
                 itemView.setBackgroundResource(R.drawable.shape_fillet_white_up_8);
             } else {
 
-                if (o1.isLastItem){
+                if (o1.isLastItem) {
                     itemView.setBackgroundResource(R.drawable.shape_fillet_white_down_8);
-                }else {
+                } else {
                     itemView.setBackgroundResource(R.color.white);
                 }
 
@@ -57,9 +57,9 @@ public class TypeItemNoInstrumentViewHolder extends TypeViewHolder {
                 column1.setTextColor(itemView.getContext().getResources().getColor(R.color.text_black2));
                 column2.setTextColor(itemView.getContext().getResources().getColor(R.color.text_black2));
 
-                column0.setText(""+((NoInstrumentListBean) o).getName());
-                column1.setText(""+((NoInstrumentListBean) o).getGroupNum());
-                column2.setText(""+((NoInstrumentListBean) o).getGroupTime());
+                column0.setText("" + ((NoInstrumentListBean) o).getName());
+                column1.setText("" + ((NoInstrumentListBean) o).getGroupNum());
+                column2.setText("" + ((NoInstrumentListBean) o).getGroupTime());
             }
 
 
@@ -70,7 +70,6 @@ public class TypeItemNoInstrumentViewHolder extends TypeViewHolder {
                 }
             });
         }
-
 
 
     }

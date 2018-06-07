@@ -7,8 +7,8 @@ import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
  * Created by The_P on 2018/4/19.
  */
 
-public interface ReceptionStepFourContract  {
-    interface View{
+public interface ReceptionStepFourContract {
+    interface View {
         void showProductDetail(ProductDetail productDetail);
 
         void showToStepFive();
@@ -20,7 +20,7 @@ public interface ReceptionStepFourContract  {
 //        void shouldOrderToFinish();
     }
 
-    interface Presenter{
+    interface Presenter {
         void getProductDetail(String memberId);//获取产品详情
 
         void toReceptionStepFive(String memberId);//到接待第5步

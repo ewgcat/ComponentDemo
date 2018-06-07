@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 /**
  * Created by Phillip Hsu on 9/9/2016.
- *
+ * <p>
  * Based on the framework's Chronometer class. Can be configured as a countdown
  * chronometer and can also show centiseconds.
  */
@@ -87,7 +87,7 @@ public class BaseChronometer extends TextView {
     @TargetApi(21)
     public BaseChronometer(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        Log.e(TAG, "BaseChronometer: " );
+        Log.e(TAG, "BaseChronometer: ");
 //        final TypedArray a = context.obtainStyledAttributes(
 //                attrs, com.android.internal.R.styleable.Chronometer, defStyleAttr, defStyleRes);
 //        setFormat(a.getString(com.android.internal.R.styleable.Chronometer_format));
@@ -97,7 +97,7 @@ public class BaseChronometer extends TextView {
     }
 
     private void init() {
-        Log.e(TAG, "init: " );
+        Log.e(TAG, "init: ");
         mDelegate.init();
         updateText(SystemClock.elapsedRealtime());
         mTickInterval = 1000;
@@ -107,7 +107,6 @@ public class BaseChronometer extends TextView {
      * Set this view to count down to the base instead of counting up from it.
      *
      * @param countDown whether this view should count down
-     *
      * @see #setBase(long)
      */
     public void setCountDown(boolean countDown) {
@@ -117,7 +116,6 @@ public class BaseChronometer extends TextView {
 
     /**
      * @return whether this view counts down
-     *
      * @see #setCountDown(boolean)
      */
     public boolean isCountDown() {
@@ -132,7 +130,7 @@ public class BaseChronometer extends TextView {
      * centiseconds any time after the start of ticking.
      *
      * @param showCentiseconds whether this view should show centiseconds
-     * @param applySizeSpan whether a size span should be applied to the centiseconds text
+     * @param applySizeSpan    whether a size span should be applied to the centiseconds text
      */
     public void setShowCentiseconds(boolean showCentiseconds, boolean applySizeSpan) {
         mDelegate.setShowCentiseconds(showCentiseconds, applySizeSpan);
@@ -152,7 +150,6 @@ public class BaseChronometer extends TextView {
 
     /**
      * @return whether this view shows centiseconds
-     *
      * @see #setShowCentiseconds(boolean, boolean)
      */
     public boolean showsCentiseconds() {
@@ -161,7 +158,6 @@ public class BaseChronometer extends TextView {
 
     /**
      * @return whether this view is currently running
-     *
      * @see #start()
      * @see #stop()
      */
@@ -203,7 +199,7 @@ public class BaseChronometer extends TextView {
      * Sets the format string used for display.  The Chronometer will display
      * this string, with the first "%s" replaced by the current timer value in
      * "MM:SS" or "H:MM:SS" form.
-     *
+     * <p>
      * If the format string is null, or if you never call setFormat(), the
      * Chronometer will simply display the timer value in "MM:SS" or "H:MM:SS"
      * form.
@@ -233,7 +229,7 @@ public class BaseChronometer extends TextView {
 
     /**
      * @return The listener (may be null) that is listening for chronometer change
-     *         events.
+     * events.
      */
     public OnChronometerTickListener getOnChronometerTickListener() {
         return mOnChronometerTickListener;
@@ -242,7 +238,7 @@ public class BaseChronometer extends TextView {
     /**
      * Start counting up.  This does not affect the base as set from {@link #setBase}, just
      * the view display.
-     *
+     * <p>
      * Chronometer works by regularly scheduling messages to the handler, even when the
      * Widget is not visible.  To make sure resource leaks do not occur, the user should
      * make sure that each start() call has a reciprocal call to {@link #stop}.
@@ -255,7 +251,7 @@ public class BaseChronometer extends TextView {
     /**
      * Stop counting up.  This does not affect the base as set from {@link #setBase}, just
      * the view display.
-     *
+     * <p>
      * This stops the messages to the handler, effectively releasing resources that would
      * be held as the chronometer is running, via {@link #start}.
      */
@@ -266,6 +262,7 @@ public class BaseChronometer extends TextView {
 
     /**
      * The same as calling {@link #start} or {@link #stop}.
+     *
      * @hide pending API council approval
      */
 //    @android.view.RemotableViewMethod
@@ -335,7 +332,7 @@ public class BaseChronometer extends TextView {
     }
 
     private static final int MIN_IN_SEC = 60;
-    private static final int HOUR_IN_SEC = MIN_IN_SEC*60;
+    private static final int HOUR_IN_SEC = MIN_IN_SEC * 60;
 //    private static String formatDuration(long ms) {
 //        final Resources res = Resources.getSystem();
 //        final StringBuilder text = new StringBuilder();

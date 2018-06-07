@@ -15,7 +15,8 @@ public abstract class ViewHolderHuijiVipper extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public  abstract void bindView(VipDetailBean bean);
+    public abstract void bindView(VipDetailBean bean);
+
     public String judgeNull(String str) {
         return TextUtils.isEmpty(str) ? "未录入" : str;
     }

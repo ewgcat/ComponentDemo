@@ -51,36 +51,36 @@ public class DrawFacesView extends View {
         strokeLinePaint.setStyle(Paint.Style.FILL);
         strokeLinePaint.setColor(Color.WHITE);
         strokeLinePaint.setAntiAlias(true);
-        strokeLinePaintWidth = strokePaintWidth+5;
+        strokeLinePaintWidth = strokePaintWidth + 5;
         strokeLinePaint.setStrokeWidth(strokeLinePaintWidth);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(isClear){
-            Log.e("Test","清楚人脸框......");
+        if (isClear) {
+            Log.e("Test", "清楚人脸框......");
             canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
             isClear = false;
-        }else{
+        } else {
 
             canvas.setMatrix(matrix);
             for (Camera.Face face : faces) {
-                Log.e("Test","获取到人脸数据。。。。。");
+                Log.e("Test", "获取到人脸数据。。。。。");
                 if (face == null) break;
                 canvas.drawRect(face.rect, paint);
                 Rect rectangle = face.rect;
-                canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.top-strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //左上(横)
-                canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.top-strokePaintWidth-2,rectangle.left-strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint);//左上（竖）
+                canvas.drawLine(rectangle.left - strokePaintWidth - 2, rectangle.top - strokePaintWidth, rectangle.left + (rectangle.right - rectangle.left) / 4, rectangle.top - strokePaintWidth, strokeLinePaint); //左上(横)
+                canvas.drawLine(rectangle.left - strokePaintWidth, rectangle.top - strokePaintWidth - 2, rectangle.left - strokePaintWidth, rectangle.top + (rectangle.bottom - rectangle.top) / 4, strokeLinePaint);//左上（竖）
 
-                canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.top-strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.top-strokePaintWidth,strokeLinePaint); //右上（横）
-                canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.top-strokePaintWidth-2, rectangle.right+strokePaintWidth,rectangle.top+(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右上 （竖）
+                canvas.drawLine(rectangle.right + strokePaintWidth + 2, rectangle.top - strokePaintWidth, rectangle.right - (rectangle.right - rectangle.left) / 4, rectangle.top - strokePaintWidth, strokeLinePaint); //右上（横）
+                canvas.drawLine(rectangle.right + strokePaintWidth, rectangle.top - strokePaintWidth - 2, rectangle.right + strokePaintWidth, rectangle.top + (rectangle.bottom - rectangle.top) / 4, strokeLinePaint); //右上 （竖）
 
-                canvas.drawLine(rectangle.left-strokePaintWidth-2,rectangle.bottom+strokePaintWidth,rectangle.left+(rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //左下（横）
-                canvas.drawLine(rectangle.left-strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.left-strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //左下（竖）
+                canvas.drawLine(rectangle.left - strokePaintWidth - 2, rectangle.bottom + strokePaintWidth, rectangle.left + (rectangle.right - rectangle.left) / 4, rectangle.bottom + strokePaintWidth, strokeLinePaint); //左下（横）
+                canvas.drawLine(rectangle.left - strokePaintWidth, rectangle.bottom + strokePaintWidth + 2, rectangle.left - strokePaintWidth, rectangle.bottom - (rectangle.bottom - rectangle.top) / 4, strokeLinePaint); //左下（竖）
 
-                canvas.drawLine(rectangle.right+strokePaintWidth+2,rectangle.bottom+strokePaintWidth,rectangle.right - (rectangle.right-rectangle.left)/4,rectangle.bottom+strokePaintWidth,strokeLinePaint); //右下（横）
-                canvas.drawLine(rectangle.right+strokePaintWidth,rectangle.bottom+strokePaintWidth+2,rectangle.right+strokePaintWidth,rectangle.bottom-(rectangle.bottom-rectangle.top)/4,strokeLinePaint); //右下（竖）
+                canvas.drawLine(rectangle.right + strokePaintWidth + 2, rectangle.bottom + strokePaintWidth, rectangle.right - (rectangle.right - rectangle.left) / 4, rectangle.bottom + strokePaintWidth, strokeLinePaint); //右下（横）
+                canvas.drawLine(rectangle.right + strokePaintWidth, rectangle.bottom + strokePaintWidth + 2, rectangle.right + strokePaintWidth, rectangle.bottom - (rectangle.bottom - rectangle.top) / 4, strokeLinePaint); //右下（竖）
 
 
                 if (face.leftEye != null)
@@ -93,8 +93,8 @@ public class DrawFacesView extends View {
 //            canvas.drawText(String.valueOf("id:" + face.id + "\n置信度:" + face.score), face.rect.left, face.rect.bottom + 10, paint);
 
             }
-            if(isRemove){
-                Log.e("Test","isRemove....."+isRemove);
+            if (isRemove) {
+                Log.e("Test", "isRemove....." + isRemove);
                 canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
                 isRemove = false;
             }
@@ -106,7 +106,7 @@ public class DrawFacesView extends View {
      * 绘制脸部方框
      *
      * @param matrix 旋转画布的矩阵
-     * @param faces 脸部信息数组
+     * @param faces  脸部信息数组
      */
     public void updateFaces(Matrix matrix, Camera.Face[] faces) {
         this.matrix = matrix;
@@ -122,7 +122,7 @@ public class DrawFacesView extends View {
         invalidate();
     }
 
-    public void isRemove(boolean isRemove){
+    public void isRemove(boolean isRemove) {
         this.isRemove = isRemove;
     }
 

@@ -67,8 +67,6 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
     String memberId;
 
 
-
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_prepare_all_lesson;
@@ -173,9 +171,10 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
         }
         onDataChanged(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay);
     }
+
     //当日期被改变后
     private void onDataChanged(int mCurrentSelectYear, int mCurrentSelectMonth, int mCurrentSelectDay) {
-        Log.e("Test","日期发生改变......");
+        Log.e("Test", "日期发生改变......");
     }
 
     private void initData() {
@@ -206,8 +205,8 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
                 if (prepareLessonAllBeans.size() > 0) {
                     updateUI(prepareLessonAllBeans.get(0));
                     nestScrollView.setVisibility(View.VISIBLE);
-                }else{
-                    Toast.makeText(PrepareAllLessonActivity.this,"暂无数据",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PrepareAllLessonActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
                     nestScrollView.setVisibility(View.GONE);
                 }
                 hideLoading();
@@ -231,16 +230,15 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
             Date date = simpleDateFormat.parse(prepareLessonAllBean.getStartDate());
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            dateStr = calendar.get(Calendar.YEAR)+"年"+(calendar.get(Calendar.MONTH)+1)+"月"+calendar.get(Calendar.DAY_OF_MONTH)+"日";
+            dateStr = calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DAY_OF_MONTH) + "日";
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        tv_lesson_time.setText(dateStr+" "+prepareLessonAllBean.getStartTime()+"-"+prepareLessonAllBean.getEndTime());
+        tv_lesson_time.setText(dateStr + " " + prepareLessonAllBean.getStartTime() + "-" + prepareLessonAllBean.getEndTime());
         prepareLessonAllBeanList.clear();
         prepareLessonAllBeanList.addAll(prepareLessonAllBean.getPrepareList());
         prepareAllActionAdapter.notifyDataSetChanged();
     }
-
 
 
     /**

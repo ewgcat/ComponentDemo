@@ -1,6 +1,8 @@
 package com.yijian.staff.net.response;
 
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 
@@ -17,6 +19,12 @@ public abstract class ResultJSONObjectObserver extends ResponseObserver<JSONObje
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {
-        onSuccess(jsonObject.getJSONObject("data"));
+        JSONObject jsonObj = null;
+        if(jsonObject.get("data") instanceof JSONObject){
+            jsonObj = jsonObject.getJSONObject("data");
+        }else{
+            jsonObj = new JSONObject();
+        }
+        onSuccess(jsonObj);
     }
 }

@@ -27,6 +27,12 @@ public abstract class ResultJSONArrayObserver extends ResponseObserver<JSONArray
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {
-        onSuccess(jsonObject.getJSONArray("data"));
+        JSONArray jsonArray = null;
+        if(jsonObject.get("data") instanceof JSONArray){
+            jsonArray = jsonObject.getJSONArray("data");
+        }else{
+            jsonArray = new JSONArray();
+        }
+        onSuccess(jsonArray);
     }
 }

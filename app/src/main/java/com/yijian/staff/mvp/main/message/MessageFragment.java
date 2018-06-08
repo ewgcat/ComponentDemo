@@ -136,7 +136,7 @@ public class MessageFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 businessMessageBeans.clear();
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
@@ -172,7 +172,7 @@ public class MessageFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
 
-                pageNum = JsonUtil.getInt(result, "current") + 1;
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);

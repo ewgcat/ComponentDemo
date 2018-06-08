@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main.mine.club;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
@@ -70,18 +71,40 @@ public class ClubActivity extends BaseWebViewActivity {
             public void onSuccess(JSONObject result) {
 
                 webView.loadUrl(JsonUtil.getString(result, "url"));
+//                webView.loadUrl("http://192.168.2.136:8080/#/club");
 
                 String token = DBManager.getInstance().queryUser().getToken();
                 try {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("token", token);
                     webView.setWebViewClient(new WebViewClient() {
+
                         @Override
                         public void onPageFinished(WebView view, String url) {
+                            //加载完成
                             super.onPageFinished(view, url);
                             view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
+                            hideLoading();
                         }
+
+                        @Override
+                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                            //加载开始
+                            showLoading();
+
+
+
+                        }
+
+                        @Override
+                        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                            super.onReceivedError(view, errorCode, description, failingUrl);
+                            //加载失败
+                            hideLoading();
+                        }
+
                     });
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -19,8 +19,11 @@ android {
         flavorDimensions '' + rootProject.versionCode
         resConfigs "zh"
         multiDexEnabled true
-        renderscriptTargetApi 23
+
+        //使用renderscript 兼容包
+        renderscriptTargetApi 25
         renderscriptSupportModeEnabled true
+
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
 //        ndk {
 //            abiFilters "armeabi"//, "x86"

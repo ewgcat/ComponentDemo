@@ -54,6 +54,7 @@ import com.yijian.staff.mvp.main.work.face.FaceInfoPanel;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.util.EasyBlur;
 import com.yijian.staff.util.LoadingProgressDialog;
 
 import org.json.JSONArray;
@@ -109,6 +110,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                iv_test.setImageBitmap(null);
                 btn_start_face.setVisibility(View.VISIBLE);
                 facesView.removeRect();
                 if (mCamera != null) {
@@ -282,8 +284,21 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
                             byte[] datas = baos.toByteArray();
+
                             Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
-//                            iv_test.setImageBitmap(bitmap2);
+
+
+                            //截屏上传后 显示高斯模糊照片
+                            Bitmap finalBitmap = EasyBlur.with(FaceDetectorActivity.this)
+                                    .bitmap(bitmap2) //要模糊的图片
+                                    .radius(10)//模糊半径
+                                    .scale(4)
+                                    .policy(EasyBlur.BlurPolicy.FAST_BLUR)//使用fastBlur
+                                    .blur();
+
+                            iv_test.setImageBitmap(finalBitmap);
+
+
                             Log.e("Test", "taking()....." + datas.length);
                             //请求人脸搜索
 
@@ -531,41 +546,49 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             super.handleMessage(msg);
             switch (msg.what) {
                 case USER_VERIFICATION_USER_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 case USER_TEST_FACE_NO:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;
                 case USER_TEST_FACE_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
 
                     break;
                 case USER_TEST_FACE_EXCEPTION:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;
                 case USER_TEST_FACE_LIBRARY_NO:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸库没找到相应的人员", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;
                 case USER_GET_VIP_INFO_NO:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;
                 case USER_GET_VIP_INFO_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();
                     break;
-                    case USER_GET_FACE_SEARCH_FAIL:
+                case USER_GET_FACE_SEARCH_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸服务器连接失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect();

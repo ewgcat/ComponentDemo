@@ -3,8 +3,10 @@ package com.yijian.staff.mvp.main.work.face;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.renderscript.Allocation;
@@ -26,8 +28,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.main.work.face2.FaceDetectorActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.util.EasyBlur;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
@@ -106,14 +110,20 @@ public class FaceInfoPanel extends PopupWindow {
 
         ImageView iv_bg = mMenuView.findViewById(R.id.iv_bg);
         Bitmap newBitmap = zoomImg(resultBitmap, DensityUtil.getScreenWidth(context), DensityUtil.getScreenHeight(context));
-        iv_bg.setImageBitmap(blur(newBitmap, 20, context));
+
+        Bitmap finalBitmap = EasyBlur.with(context)
+                .bitmap(newBitmap) //要模糊的图片
+                .radius(10)//模糊半径
+                .scale(4)
+                .policy(EasyBlur.BlurPolicy.FAST_BLUR)//使用fastBlur
+                .blur();
+        iv_bg.setImageBitmap(finalBitmap);
         RelativeLayout rel_container = mMenuView.findViewById(R.id.rel_container);
         ViewTreeObserver vto = iv_bg.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
             @Override
             public void onGlobalLayout() {
-
                 // 保证只调用一次
                 iv_bg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 // 组件生成cache（组件显示内容）
@@ -121,7 +131,15 @@ public class FaceInfoPanel extends PopupWindow {
                 // 得到组件显示内容
                 Bitmap bitmap = iv_bg.getDrawingCache();
                 // 局部模糊处理
-                BitmapUtils.blur(context, bitmap, rel_container, 25);
+                Bitmap finalBitmap = EasyBlur.with(context)
+                        .bitmap(bitmap) //要模糊的图片
+                        .radius(10)//模糊半径
+                        .scale(4)
+                        .policy(EasyBlur.BlurPolicy.FAST_BLUR)//使用fastBlur
+                        .blur();
+
+                rel_container.setBackground(new BitmapDrawable(
+                        context.getResources(), finalBitmap));
             }
         });
 
@@ -145,9 +163,11 @@ public class FaceInfoPanel extends PopupWindow {
 
         this.setFocusable(true);
         this.setOutsideTouchable(false);
-        ColorDrawable dw = new ColorDrawable(0xb0000000);
+        ColorDrawable dw = new ColorDrawable(Color.parseColor("#99000000"));
         this.setBackgroundDrawable(dw);
     }
+
+
 
 
     class FaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

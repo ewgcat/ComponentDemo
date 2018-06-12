@@ -5,8 +5,7 @@
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-    >
+            android:layout_height="wrap_content">
 
         <ImageView
                 android:id="@+id/iv_header"
@@ -14,8 +13,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/people"
-        />
+                android:src="@mipmap/people" />
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -54,27 +52,31 @@
             </RelativeLayout>
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp">
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+               >
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:text="卡名称:"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="卡名称:"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
                 <TextView
-                        android:id="@+id/tv_cardName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="健身储值卡"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:id="@+id/tv_cardName"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="180dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="健身储值卡"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -93,10 +95,13 @@
 
                 <TextView
                         android:id="@+id/tv_expirationDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:singleLine="true"
                         android:text="2018-05-06"
                         android:textColor="#ffffff"
                         android:textSize="14sp"/>
@@ -119,10 +124,13 @@
 
                 <TextView
                         android:id="@+id/tv_courseNameNum"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:singleLine="true"
                         android:text="增肌课第5节"
                         android:textColor="#ffffff"
                         android:textSize="14sp"/>

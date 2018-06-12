@@ -144,15 +144,26 @@ public class FaceInfoPanel2 extends PopupWindow {
             e.printStackTrace();
         }
 
+        String coachName = faceDetail.getCoachName();
+        if (TextUtils.isEmpty(coachName)){
+            tv_detail_coach.setText("无");
+        }else {
+            tv_detail_coach.setText(coachName);
+        }
 
-        tv_detail_coach.setText(faceDetail.getCoachName());
 
-        tv_detail_progress.setText(faceDetail.getCourseName() + "第" + faceDetail.getCourseNum() + "节");
+        String courseName = faceDetail.getCourseName();
+        int courseNum = faceDetail.getCourseNum();
+        if (TextUtils.isEmpty(courseName)){
+            tv_detail_progress.setText("无");
+        }else {
+            tv_detail_progress.setText(courseName + "第" + courseNum + "节");
+        }
 
         tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
         tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()) + "次");
-        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
-        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
+//        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
+//        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
 //        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
 
 
@@ -208,7 +219,7 @@ public class FaceInfoPanel2 extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_header);
+                ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(faceDetail.getMemberName());
                 tv_cardName.setText(faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

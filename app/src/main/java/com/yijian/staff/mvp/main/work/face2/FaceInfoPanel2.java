@@ -154,7 +154,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         String courseName = faceDetail.getCourseName();
         int courseNum = faceDetail.getCourseNum();
-        if (TextUtils.isEmpty(courseName)){
+        if (TextUtils.isEmpty(courseName)||courseNum==0){
             tv_detail_progress.setText("无");
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");

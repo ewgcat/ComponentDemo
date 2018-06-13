@@ -173,6 +173,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     }
 
+
     private void setBanner(List<String> coach2picList) {
         bannerImageList.clear();
         if (coach2picList != null && coach2picList.size() > 0) {

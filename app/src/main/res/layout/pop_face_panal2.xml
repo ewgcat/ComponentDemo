@@ -14,7 +14,7 @@
                 android:id="@+id/rel_header"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:paddingLeft="15dp">
+                android:paddingLeft="25dp">
 
             <TextView
                     android:layout_width="wrap_content"
@@ -114,8 +114,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/kamingchen"/>
 
                             <TextView
@@ -161,8 +161,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/shengri"/>
 
                             <TextView
@@ -208,8 +208,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/nianling"/>
 
                             <TextView
@@ -256,8 +256,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/huiji"/>
 
                             <TextView
@@ -303,8 +303,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/kayouxiaoqi"/>
 
                             <TextView
@@ -351,8 +351,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/jiaolian"/>
 
                             <TextView
@@ -400,8 +400,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/sijiaokejindu"/>
 
                             <TextView
@@ -477,8 +477,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/shangyici"/>
 
                             <TextView
@@ -520,8 +520,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/xiaohai"/>
 
                             <TextView
@@ -563,8 +563,8 @@
                                 android:orientation="horizontal">
 
                             <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
                                     android:src="@mipmap/jianshencishu"/>
 
                             <TextView

@@ -1,60 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
-                android:id="@+id/iv_header"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/people" />
+            android:id="@+id/iv_header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/people" />
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/iv_header"
-                android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@id/iv_header"
+            android:orientation="vertical">
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp">
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                >
 
                 <TextView
-                        android:id="@+id/tv_memberName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:text="超明哥"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:id="@+id/tv_memberName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="超明哥"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
                 <TextView
-                        android:id="@+id/tv_query_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:drawableRight="@mipmap/blue_arrow"
-                        android:text="查看详情"
-                        android:textColor="#1997f8"
-                        android:textSize="14sp"/>
+                    android:id="@+id/tv_query_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@mipmap/blue_arrow"
+                    android:text="查看详情"
+                    android:textColor="#1997f8"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-               >
+                android:layout_height="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -67,10 +70,10 @@
 
                 <TextView
                     android:id="@+id/tv_cardName"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_width="180dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
@@ -81,68 +84,68 @@
             </RelativeLayout>
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp">
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:text="有效期："
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="有效期："
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
                 <TextView
-                        android:id="@+id/tv_expirationDate"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                    android:id="@+id/tv_expirationDate"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                        android:text="2018-05-06"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:text="2018-05-06"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                    android:id="@+id/rel_course_progress"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp">
+                android:id="@+id/rel_course_progress"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+            >
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:text="课程进度："
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="课程进度："
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
                 <TextView
-                        android:id="@+id/tv_courseNameNum"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                    android:id="@+id/tv_courseNameNum"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                        android:text="增肌课第5节"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"/>
+                    android:text="增肌课第5节"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
         </LinearLayout>
 
         <View
-                style="@style/SplitLineStyle"
-                android:layout_alignParentBottom="true"
-        />
+            style="@style/SplitLineStyle"
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

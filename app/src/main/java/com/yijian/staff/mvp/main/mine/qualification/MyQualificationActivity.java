@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -55,6 +56,8 @@ public class MyQualificationActivity extends MvcBaseActivity {
     RecyclerView rv1;
     @BindView(R.id.rv2)
     RecyclerView rv2;
+    @BindView(R.id.ll_my_zhenshu_img)
+    LinearLayout ll_my_zhenshu_img;
 
 
     private List<String> authList = new ArrayList<>();
@@ -128,7 +131,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
                         authList.add(split[i]);
                     }
                 }
-                if (authList.size()==0){
+                if (authList.size() == 0) {
                     authList.add("暂未录入");
                 }
                 ziLiAdapter.update(authList);
@@ -140,7 +143,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
                         list2.add(split[i]);
                     }
                 }
-                if (list2.size()==0){
+                if (list2.size() == 0) {
                     list2.add("暂未录入");
                 }
                 adapter2.update(list2);
@@ -149,12 +152,15 @@ public class MyQualificationActivity extends MvcBaseActivity {
                 String skilled = certificateBean.getSkilled();
                 if (!TextUtils.isEmpty(skilled)) {
                     goodAtTv.setText(skilled);
-                }else {
+                } else {
                     goodAtTv.setText("暂未录入");
                 }
                 List<String> certList = certificateBean.getCertificateList();
                 if (certList != null && certList.size() > 0) {
+                    ll_my_zhenshu_img.setVisibility(View.VISIBLE);
                     setImageList(certList);
+                }else {
+                    ll_my_zhenshu_img.setVisibility(View.GONE);
                 }
 
 

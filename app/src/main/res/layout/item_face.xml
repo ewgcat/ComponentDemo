@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="课程进度："
+                    android:text="私教课进度："
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 

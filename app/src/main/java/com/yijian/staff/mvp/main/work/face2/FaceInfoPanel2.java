@@ -228,8 +228,15 @@ public class FaceInfoPanel2 extends PopupWindow {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tv_courseNameNum.setText(faceDetail.getCourseName() + "第" + faceDetail.getCourseNum() + "节");
-                rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
+
+                String courseName = faceDetail.getCourseName();
+                int courseNum = faceDetail.getCourseNum();
+                if (TextUtils.isEmpty(courseName)||courseNum==0){
+                    tv_courseNameNum.setText("未知");
+                }else {
+                    tv_courseNameNum.setText(courseName + "第" + courseNum + "节");
+                }
+//                rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
                 tv_query_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

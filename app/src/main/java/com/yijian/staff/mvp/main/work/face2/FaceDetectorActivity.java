@@ -44,6 +44,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.JsonArray;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.work.face.BitmapUtils;
@@ -54,6 +56,7 @@ import com.yijian.staff.mvp.main.work.face.FaceInfoPanel;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.util.BlurTransformation;
 import com.yijian.staff.util.EasyBlur;
 import com.yijian.staff.util.LoadingProgressDialog;
 
@@ -288,16 +291,12 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
 
-                            //截屏上传后 显示高斯模糊照片
-                            Bitmap finalBitmap = EasyBlur.with(FaceDetectorActivity.this)
-                                    .bitmap(bitmap2) //要模糊的图片
-                                    .radius(10)//模糊半径
-                                    .scale(4)
-                                    .policy(EasyBlur.BlurPolicy.FAST_BLUR)//使用fastBlur
-                                    .blur();
+                           //截屏上传后 显示高斯模糊照片
 
-                            iv_test.setImageBitmap(finalBitmap);
-
+                            RequestOptions options=RequestOptions.bitmapTransform(new BlurTransformation(10, 5));
+                            Glide.with(FaceDetectorActivity.this).load(bitmap2)
+                                    .apply(options)
+                                    .into(iv_test);
 
                             Log.e("Test", "taking()....." + datas.length);
                             //请求人脸搜索

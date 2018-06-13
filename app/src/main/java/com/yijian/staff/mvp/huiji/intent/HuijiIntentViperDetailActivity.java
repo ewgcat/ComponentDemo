@@ -180,7 +180,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity {
     }
 
     private String judgeNull(String str) {
-        return TextUtils.isEmpty(str) ? "未录入" : str;
+        return TextUtils.isEmpty(str) ? "暂未录入" : str;
     }
 
     @OnClick({R.id.ll_edit, R.id.ll_chakan_wenjuan, R.id.iv_visit})

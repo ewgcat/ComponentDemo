@@ -282,9 +282,11 @@ public class CoachViperDetailActivity extends MvcBaseActivity {
         }
         tvBirthdayType.setText(coachVipDetailBean.getBirthdayType());
         tvViperType.setText(coachVipDetailBean.getMemberType());
-        tvHeadInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getHeadImg())) ? "未录入" : "未录入");
-        tvZhiWenInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFingerprint())) ? "未录入" : "未录入");
-        tvJinMaiInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getVein())) ? "未录入" : "未录入");
+
+        tvHeadInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFaceInfo())) ? "暂未录入" : coachVipDetailBean.getFaceInfo());
+        tvZhiWenInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getFingerprint())) ? "暂未录入" :coachVipDetailBean.getFingerprint());
+        tvJinMaiInfo.setText((TextUtils.isEmpty(coachVipDetailBean.getVein())) ? "暂未录入" :coachVipDetailBean.getVein());
+        
         tv_certificateType.setText(coachVipDetailBean.getCertificateType());
         tvShenfencardNum.setText(coachVipDetailBean.getCertificateNo());
 

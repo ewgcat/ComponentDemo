@@ -18,7 +18,7 @@ public abstract class ViewHolderHuijiVipper extends RecyclerView.ViewHolder {
     public abstract void bindView(VipDetailBean bean);
 
     public String judgeNull(String str) {
-        return TextUtils.isEmpty(str) ? "未录入" : str;
+        return TextUtils.isEmpty(str) ? "暂未录入" : str;
     }
 
     public HuijiVipInterface huijiVipInterface;

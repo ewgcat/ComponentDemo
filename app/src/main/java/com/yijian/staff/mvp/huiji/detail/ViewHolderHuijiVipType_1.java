@@ -58,7 +58,7 @@ public class ViewHolderHuijiVipType_1 extends ViewHolderHuijiVipper {
         if (birthday != 0) {
             tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
         } else {
-            tvBirthday.setText("未录入");
+            tvBirthday.setText("暂未录入");
         }
 
 
@@ -69,14 +69,14 @@ public class ViewHolderHuijiVipType_1 extends ViewHolderHuijiVipper {
         if (deadline != 0) {
             deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
         } else {
-            deadLine.setText("未录入");
+            deadLine.setText("暂未录入");
         }
 
         long recentlyFitTime = vipDetailBean.getRecentlyFitTime();
         if (recentlyFitTime != 0) {
             tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
         } else {
-            tvRecentFitNessTime.setText("未录入");
+            tvRecentFitNessTime.setText("暂未录入");
         }
 
 

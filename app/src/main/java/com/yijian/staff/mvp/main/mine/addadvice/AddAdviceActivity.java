@@ -39,7 +39,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_view_navigation_bar2);
-        navigationBar2.setTitle("意见反馈");
+        navigationBar2.setTitle("系统意见");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
             @Override

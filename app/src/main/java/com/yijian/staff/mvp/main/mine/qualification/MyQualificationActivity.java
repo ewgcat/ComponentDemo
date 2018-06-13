@@ -128,6 +128,9 @@ public class MyQualificationActivity extends MvcBaseActivity {
                         authList.add(split[i]);
                     }
                 }
+                if (authList.size()==0){
+                    authList.add("暂未录入");
+                }
                 ziLiAdapter.update(authList);
 
                 String experience = certificateBean.getExperience();
@@ -137,12 +140,17 @@ public class MyQualificationActivity extends MvcBaseActivity {
                         list2.add(split[i]);
                     }
                 }
+                if (list2.size()==0){
+                    list2.add("暂未录入");
+                }
                 adapter2.update(list2);
 
 
                 String skilled = certificateBean.getSkilled();
                 if (!TextUtils.isEmpty(skilled)) {
                     goodAtTv.setText(skilled);
+                }else {
+                    goodAtTv.setText("暂未录入");
                 }
                 List<String> certList = certificateBean.getCertificateList();
                 if (certList != null && certList.size() > 0) {

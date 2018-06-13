@@ -295,7 +295,7 @@ public class HuiJiViperDetailActivity extends AppCompatActivity {
     }
 
     private String judgeNull(String str) {
-        return TextUtils.isEmpty(str) ? "未录入" : str;
+        return TextUtils.isEmpty(str) ? "暂未录入" : str;
     }
 
     @Override

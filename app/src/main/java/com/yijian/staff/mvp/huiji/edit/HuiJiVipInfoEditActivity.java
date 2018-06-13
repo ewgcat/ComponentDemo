@@ -252,7 +252,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
         if (!onceJoinedClub) {
             et_clubBrand.setEnabled(false);
-            et_clubBrand.setText("未录入");
+            et_clubBrand.setText("暂未录入");
 
         } else {
             et_clubBrand.setEnabled(true);
@@ -273,7 +273,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     }
 
     private String strEmpty(String str) {
-        return TextUtils.isEmpty(str) ? "未录入" : str;
+        return TextUtils.isEmpty(str) ? "暂未录入" : str;
     }
 
     /**

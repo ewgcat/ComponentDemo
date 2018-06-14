@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -63,6 +64,7 @@ public class OrderClassDayFragment extends Fragment {
     private RecyclerView rv_day;
     OnChangeDateListener onChangeDateListener;
     private OrderclassDayAdapter orderclassDayAdapter;
+    private  ImageView ivToggle;
 
 
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
@@ -90,7 +92,7 @@ public class OrderClassDayFragment extends Fragment {
 
     private void initView(View view) {
 
-        ImageView ivToggle = view.findViewById(R.id.iv_toggle);
+        ivToggle = view.findViewById(R.id.iv_toggle);
 
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
         mcvCalendar = view.findViewById(R.id.mcvCalendar);
@@ -133,6 +135,12 @@ public class OrderClassDayFragment extends Fragment {
 
         loadDayData(new Date());
         loadPreviewDayData(new Date());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ivToggle.performClick();
+            }
+        },150);
 
     }
 
@@ -250,11 +258,11 @@ public class OrderClassDayFragment extends Fragment {
             dateList.add("2018-6-2");
             wcvCalendar.getCurrentWeekView().addDateTaskHint(dateList);
             mcvCalendar.getCurrentMonthView().addDateTaskHint(dateList);*/
-            mcvCalendar.getCurrentMonthView().selectMonthDay(year, month, 1);
+            mcvCalendar.getCurrentMonthView().selectMonthDay(year, month, day);
 
             wcvCalendar.setOnCalendarClickListener(null);
-            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, 1);
-            resetCurrentSelectDate(year, month, 1);
+            int weeks = CalendarUtils.getWeeksAgo(mCurrentSelectYear, mCurrentSelectMonth, mCurrentSelectDay, year, month, day);
+            resetCurrentSelectDate(year, month, day);
             int position = wcvCalendar.getCurrentItem() + weeks;
             if (weeks != 0) {
                 wcvCalendar.setCurrentItem(position, false);

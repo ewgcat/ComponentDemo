@@ -95,7 +95,7 @@ public class BitmapFaceUtils {
         if (newBM.equals(origin)) {
             return newBM;
         }
-        //   origin.recycle();
+//           origin.recycle();
         return newBM;
     }
 

@@ -95,6 +95,8 @@ public class JpushMessageReceiver extends BroadcastReceiver {
 //                        toReception(context, bundleString);
                     ReceptionActivityTemp.toReceptionActivityTemp(context);
                 }
+
+//                约课 OrderClassActivity
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -13,7 +13,6 @@ import com.yijian.staff.mvp.all.AllFunctionActivity;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
 import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
-import com.yijian.staff.mvp.main.work.face.FaceActivity;
 import com.yijian.staff.mvp.main.work.face2.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;

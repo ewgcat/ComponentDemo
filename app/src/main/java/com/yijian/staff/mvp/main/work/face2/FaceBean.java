@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.main.work.face;
+package com.yijian.staff.mvp.main.work.face2;
 
 public class FaceBean {
 

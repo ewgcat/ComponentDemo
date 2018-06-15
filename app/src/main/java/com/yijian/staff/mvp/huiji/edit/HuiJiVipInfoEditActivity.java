@@ -175,10 +175,15 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(o)) {
             paramMap.put("carPrice", o);
         }
-        paramMap.put("clubBrand", et_clubBrand.getText().toString());
+
         paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
         String anObject = tv_hasChildren.getText().toString();
         if (!TextUtils.isEmpty(anObject)) {
+            if ("有".equals(anObject)){
+                paramMap.put("clubBrand", et_clubBrand.getText().toString());
+            }else {
+                paramMap.put("clubBrand", "暂未录入");
+            }
             paramMap.put("hasChildren", ("有".equals(anObject)));
         }
         String o6 = tv_hobby.getText().toString();
@@ -313,6 +318,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                 if (options1 == 1) {
 //                    et_clubBrand.setText("未录入");
                     et_clubBrand.setEnabled(false);
+                    et_clubBrand.setText("");
                 } else {
                     et_clubBrand.setEnabled(true);
                 }

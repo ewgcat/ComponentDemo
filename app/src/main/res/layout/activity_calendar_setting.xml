@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#333333"
-                    android:text=""
+                    android:text="0"
                     android:drawableRight="@mipmap/bk_youjiantou"
                     android:layout_centerVertical="true"
                     android:drawablePadding="10dp"

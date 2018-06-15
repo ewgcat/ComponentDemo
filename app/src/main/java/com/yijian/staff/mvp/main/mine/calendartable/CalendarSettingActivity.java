@@ -175,18 +175,20 @@ public class CalendarSettingActivity extends AppCompatActivity {
         HttpManager.postHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_GET_TIME_URL, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                try {
-                    if (!CommonUtil.isEmpty(result.getString("startTime")))
-                        startTime = result.getString("startTime").substring(0, result.getString("startTime").lastIndexOf(":"));
-                    if (!CommonUtil.isEmpty(result.getString("endTime")))
-                        endTime = result.getString("endTime").substring(0, result.getString("endTime").lastIndexOf(":"));
-                    intervalTime = result.getInt("intervalTime") + "";
-                    tv_internal.setText(intervalTime);
-                    if (!CommonUtil.isEmpty(result.getString("startTime")) || !CommonUtil.isEmpty(result.getString("endTime"))) {
-                        tv_previewTime.setText(startTime + "-" + endTime);
+                if(result != null && result.length() > 0){
+                    try {
+                        if (!CommonUtil.isEmpty(result.getString("startTime")))
+                            startTime = result.getString("startTime").substring(0, result.getString("startTime").lastIndexOf(":"));
+                        if (!CommonUtil.isEmpty(result.getString("endTime")))
+                            endTime = result.getString("endTime").substring(0, result.getString("endTime").lastIndexOf(":"));
+                        intervalTime = result.getInt("intervalTime") + "";
+                        tv_internal.setText(intervalTime);
+                        if (!CommonUtil.isEmpty(result.getString("startTime")) || !CommonUtil.isEmpty(result.getString("endTime"))) {
+                            tv_previewTime.setText(startTime + "-" + endTime);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
 

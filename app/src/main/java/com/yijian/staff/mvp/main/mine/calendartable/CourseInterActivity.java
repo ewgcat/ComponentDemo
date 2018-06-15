@@ -59,6 +59,7 @@ public class CourseInterActivity extends AppCompatActivity {
         String internal_time = getIntent().getStringExtra("internal");
         tv_internal.setText(internal_time);
         ArrayList<String> timeList = new ArrayList<>();
+        timeList.add("0");
         timeList.add("10");
         timeList.add("20");
         timeList.add("30");

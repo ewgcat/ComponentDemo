@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,6 +67,7 @@ public class OrderClassDayFragment extends Fragment {
     OnChangeDateListener onChangeDateListener;
     private OrderclassDayAdapter orderclassDayAdapter;
     private  ImageView ivToggle;
+    private String pushDate = "";
 
 
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
@@ -130,11 +133,23 @@ public class OrderClassDayFragment extends Fragment {
     }
 
     private void initData() {
+        pushDate = getArguments().getString("date");
         Calendar calendar = Calendar.getInstance();
         resetCurrentSelectDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        loadDayData(new Date());
-        loadPreviewDayData(new Date());
+        if(!TextUtils.isEmpty(pushDate)){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date pushDateObj = simpleDateFormat.parse(pushDate);
+                loadDayData(pushDateObj);
+                loadPreviewDayData(pushDateObj);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else{
+            loadDayData(new Date());
+            loadPreviewDayData(new Date());
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -35,10 +35,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.LoadingProgressDialog;
+import com.yijian.staff.util.system.ScreenUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -227,6 +229,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         });
     }
 
+    private Bitmap resizeBmp;
 
     private void initViews() {
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -263,26 +266,42 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
                             byte[] datas = baos.toByteArray();
-
                             Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
-
+                            int bitmapHeight = bitmap2.getHeight();
+                            int bitmapWidth = bitmap2.getWidth();
+                            double sWidth = ScreenUtil.getScreenWidth(FaceDetectorActivity.this);
+                            double sHeight = ScreenUtil.getScreenHeight(FaceDetectorActivity.this);
+                            double scale = sHeight/sWidth;
                            //截屏上传后 显示高斯模糊照片
+                            resizeBmp = Bitmap.createBitmap(bitmap2,0,0,(int)(bitmapHeight/(scale)),bitmapHeight);
 
-                            RequestOptions options=RequestOptions.bitmapTransform(new BlurTransformation(10, 5));
-                            Glide.with(FaceDetectorActivity.this).load(bitmap2)
+                            /*int bitmapHeight = bitmap2.getHeight();
+                            int bitmapWidth = bitmap2.getWidth();
+                            double sWidth = ScreenUtil.getScreenWidth(FaceDetectorActivity.this);
+                            double sHeight = ScreenUtil.getScreenHeight(FaceDetectorActivity.this);
+                            float scaleWidth = ((float) sWidth) / bitmapWidth;
+                            float scaleHeight = ((float) sHeight) / bitmapHeight;
+
+                            Matrix matrix = new Matrix();
+                            matrix.postScale(scaleWidth, scaleHeight);
+                            resizeBmp = Bitmap.createBitmap(bitmap2, 0, 0, bitmapWidth,
+                                    bitmapHeight, matrix, true);*/
+
+
+                            bitmap2.recycle();
+
+                            RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(10, 4));
+                            Glide.with(FaceDetectorActivity.this).load(resizeBmp)
                                     .apply(options)
                                     .into(iv_test);
-
                             Log.e("Test", "taking()....." + datas.length);
                             //请求人脸搜索
-
                             try {
                                 baos.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                             //调用搜索接口
                             postData(datas);
 
@@ -574,6 +593,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
 
             }
+//            resizeBmp.recycle();
             LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
 
         }

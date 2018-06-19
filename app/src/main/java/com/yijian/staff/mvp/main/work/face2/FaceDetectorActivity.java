@@ -8,8 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
+import android.media.FaceDetector;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,12 +35,19 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.util.EasyBlur;
 import com.yijian.staff.util.LoadingProgressDialog;
 import com.yijian.staff.util.system.ScreenUtil;
 
@@ -79,7 +88,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private Camera.Face[] faces;
     private int screenOritation = 0;
     private FaceInfoPanel2 faceInfoPanel;
-//    private boolean isFaceDetector = true;
+    private Bitmap resizeBmp;
 
     /**
      * 测试弹出框
@@ -229,7 +238,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         });
     }
 
-    private Bitmap resizeBmp;
+    private Bitmap bitmap2;
 
     private void initViews() {
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -252,58 +261,56 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             @Override
             public void onClick(View v) {
                 if (faces != null && faces.length > 0) {
-                    LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
+                        }
+                    }, 0);
 
                     mCamera.takePicture(null, null, new Camera.PictureCallback() {
                         @Override
                         public void onPictureTaken(byte[] data, Camera camera) {
-                            Log.e("Test", "onPictureTaken....");
-                            Log.e("Test", "taking()....." + data.length);
-                            clearFaceRect();
+                            clearFaceRect(false);
                             mCamera.stopPreview();
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
-                            byte[] datas = baos.toByteArray();
-                            Bitmap bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                            int bitmapHeight = bitmap2.getHeight();
-                            int bitmapWidth = bitmap2.getWidth();
-                            double sWidth = ScreenUtil.getScreenWidth(FaceDetectorActivity.this);
-                            double sHeight = ScreenUtil.getScreenHeight(FaceDetectorActivity.this);
-                            double scale = sHeight/sWidth;
-                           //截屏上传后 显示高斯模糊照片
-                            resizeBmp = Bitmap.createBitmap(bitmap2,0,0,(int)(bitmapHeight/(scale)),bitmapHeight);
+                                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
+                                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                    roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                                    byte[] datas = baos.toByteArray();
+                                    bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
-                            /*int bitmapHeight = bitmap2.getHeight();
-                            int bitmapWidth = bitmap2.getWidth();
-                            double sWidth = ScreenUtil.getScreenWidth(FaceDetectorActivity.this);
-                            double sHeight = ScreenUtil.getScreenHeight(FaceDetectorActivity.this);
-                            float scaleWidth = ((float) sWidth) / bitmapWidth;
-                            float scaleHeight = ((float) sHeight) / bitmapHeight;
+                                    int bitmapHeight = bitmap2.getHeight();
+                                    int bitmapWidth = bitmap2.getWidth();
+                                    double sWidth = ScreenUtil.getScreenWidth(FaceDetectorActivity.this);
+                                    double sHeight = ScreenUtil.getScreenHeight(FaceDetectorActivity.this);
+                                    double scale = sHeight / sWidth;
+                                    //截屏上传后 显示高斯模糊照片
+                                    resizeBmp = Bitmap.createBitmap(bitmap2, 0, 0, (int) (bitmapHeight / (scale)), bitmapHeight);
 
-                            Matrix matrix = new Matrix();
-                            matrix.postScale(scaleWidth, scaleHeight);
-                            resizeBmp = Bitmap.createBitmap(bitmap2, 0, 0, bitmapWidth,
-                                    bitmapHeight, matrix, true);*/
+                                    FaceDetectorActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(10, 4));
+                                            Glide.with(FaceDetectorActivity.this).load(resizeBmp)
+                                                    .apply(options).into(iv_test);
+                                            try {
+                                                baos.close();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            //调用搜索接口
+                                            postData(datas);
+                                        }
+                                    });
 
-
-                            bitmap2.recycle();
-
-                            RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(10, 4));
-                            Glide.with(FaceDetectorActivity.this).load(resizeBmp)
-                                    .apply(options)
-                                    .into(iv_test);
-                            Log.e("Test", "taking()....." + datas.length);
-                            //请求人脸搜索
-                            try {
-                                baos.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            //调用搜索接口
-                            postData(datas);
+                                }
+                            }).start();
 
                         }
                     });
@@ -514,10 +521,10 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
     }
 
-    private void clearFaceRect() {
+    private void clearFaceRect(boolean isStart) {
         facesView.isRemove(true);
         facesView.removeRect();
-        if (mCamera != null) {
+        if (isStart && mCamera != null) {
             mCamera.startPreview();
             mCamera.startFaceDetection();
             return;
@@ -533,6 +540,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
     private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
     private final int USER_GET_FACE_SEARCH_FAIL = 8;//人脸搜索连接失败
+    private final int USER_GET_FACE_REFRESH_MOHU = 9;//刷新UI人脸框
 
     Handler mHandler = new Handler() {
         @Override
@@ -540,52 +548,46 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             super.handleMessage(msg);
             switch (msg.what) {
                 case USER_VERIFICATION_USER_FAIL:
-                    iv_test.setImageBitmap(null);
+//
                     Toast.makeText(FaceDetectorActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 case USER_TEST_FACE_NO:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_TEST_FACE_FAIL:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
 
                     break;
                 case USER_TEST_FACE_EXCEPTION:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_TEST_FACE_LIBRARY_NO:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸库没找到相应的人员", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_GET_VIP_INFO_NO:
                     iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "没有获取到对应会员数据", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_GET_VIP_INFO_FAIL:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_GET_FACE_SEARCH_FAIL:
-                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸服务器连接失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
-                    clearFaceRect();
+                    clearFaceRect(true);
                     break;
                 case USER_GET_VIP_INFO_SUCCESS:
                     showPanel((List<FaceDetail>) msg.obj);
@@ -593,7 +595,9 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
 
             }
-//            resizeBmp.recycle();
+            iv_test.setImageBitmap(null);
+            bitmap2.recycle();
+            resizeBmp.recycle();
             LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
 
         }

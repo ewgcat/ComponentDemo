@@ -137,13 +137,13 @@ public class OrderClassDayFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         resetCurrentSelectDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        pushDate = "2018-06-05";
-
         if(!TextUtils.isEmpty(pushDate)){
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 Date pushDateObj = simpleDateFormat.parse(pushDate);
-                mcvCalendar.onClickThisMonth(pushDateObj.getYear(),pushDateObj.getMonth(),pushDateObj.getDate());
+                Calendar calendar1 = Calendar.getInstance();
+                calendar1.setTime(pushDateObj);
+                mcvCalendar.onClickThisMonth(calendar1.get(Calendar.YEAR),calendar1.get(Calendar.MONTH),calendar1.get(Calendar.DAY_OF_MONTH));
                 loadDayData(pushDateObj);
                 loadPreviewDayData(pushDateObj);
             } catch (ParseException e) {

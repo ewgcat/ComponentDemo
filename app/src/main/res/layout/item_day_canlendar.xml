@@ -196,7 +196,7 @@
                 android:id="@+id/iv_status_cancel"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/my_unfinished"
+                android:src="@mipmap/my_cancel"
                 android:layout_alignParentRight="true"
                 android:visibility="gone"
                 />

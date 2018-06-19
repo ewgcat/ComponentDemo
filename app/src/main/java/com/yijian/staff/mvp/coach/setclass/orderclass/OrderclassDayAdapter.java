@@ -72,6 +72,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
         ImageView iv_order_class_statu;
         ImageView iv_status_ysk; //已上课
         ImageView iv_status_sy; //爽约
+        ImageView iv_status_cancel; //取消预约
         TextView tv_order_class_statu;
         RelativeLayout rel_statu;
 
@@ -91,6 +92,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             rel_statu = view.findViewById(R.id.rel_statu);
             iv_status_ysk = view.findViewById(R.id.iv_status_ysk);
             iv_status_sy = view.findViewById(R.id.iv_status_sy);
+            iv_status_cancel = view.findViewById(R.id.iv_status_cancel);
         }
 
         public void bind(OrderClassDayBean orderClassDayBean, int position, List<OrderClassDayBean> orderClassDayBeanList, Fragment fragment) throws ParseException {
@@ -106,6 +108,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             tv_order_class_statu.setVisibility(View.GONE);
             iv_status_ysk.setVisibility(View.GONE);
             iv_status_sy.setVisibility(View.GONE);
+            iv_status_cancel.setVisibility(View.GONE);
             //教练上课打卡状态(0:未打卡 1:正在上课 2:下课已打卡)
             int punchStatus = orderClassDayBean.getPunchStatus();
 
@@ -122,7 +125,9 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                 iv_status_sy.setVisibility(View.VISIBLE);
             } else if (status == 3) { //已上课
                 iv_status_ysk.setVisibility(View.VISIBLE);
-            } else if (status == 1) {
+            } else if(status == 2){
+                iv_status_cancel.setVisibility(View.VISIBLE);
+            }else if (status == 1) {
                 iv_order_class_statu.setVisibility(View.VISIBLE);
                 tv_order_class_statu.setVisibility(View.VISIBLE);
                 resStatu = R.mipmap.lesson_class;

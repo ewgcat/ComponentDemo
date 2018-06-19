@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
@@ -263,26 +264,18 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             public void onClick(View v) {
                 if (faces != null && faces.length > 0) {
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
-                        }
-                    }, 0);
-
                     mCamera.takePicture(null, null, new Camera.PictureCallback() {
                         @Override
                         public void onPictureTaken(byte[] data, Camera camera) {
                             clearFaceRect(false);
-                            mCamera.stopPreview();
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-
+                                    mCamera.stopPreview();
                                     Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                                     Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
                                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                                    roateBitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                                    roateBitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
                                     byte[] datas = baos.toByteArray();
                                     bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
@@ -297,6 +290,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                                     FaceDetectorActivity.this.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
                                             RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(10, 4));
                                             Glide.with(FaceDetectorActivity.this).load(resizeBmp)
                                                     .apply(options).into(iv_test);
@@ -541,7 +535,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private final int USER_GET_VIP_INFO_FAIL = 5;//获取到对应会员数据失败
     private final int USER_GET_VIP_INFO_SUCCESS = 7;//获取对应会员数据成功
     private final int USER_GET_FACE_SEARCH_FAIL = 8;//人脸搜索连接失败
-    private final int USER_GET_FACE_REFRESH_MOHU = 9;//刷新UI人脸框
 
     Handler mHandler = new Handler() {
         @Override

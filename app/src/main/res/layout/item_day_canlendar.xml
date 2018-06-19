@@ -192,6 +192,15 @@
                     android:visibility="gone"
             />
 
+            <ImageView
+                android:id="@+id/iv_status_cancel"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/my_unfinished"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                />
+
             <RelativeLayout
                     android:id="@+id/rel_statu"
                     android:layout_width="wrap_content"

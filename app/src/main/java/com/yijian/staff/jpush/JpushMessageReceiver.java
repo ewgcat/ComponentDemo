@@ -71,14 +71,14 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
-                businessType = jsonObject1.getInt("businessType");
-                int type = jsonObject1.getInt("type");
-                boolean background = isBackground(context);
-
-                if (businessType == 0 && !background) {// //属于接待消息&&属于前台
+                if (jsonObject1.has("businessType")){
+                    businessType = jsonObject1.getInt("businessType");
+                    boolean background = isBackground(context);
+                    if (businessType == 0 && !background) {// //属于接待消息&&属于前台
 //                        toReception(context, bundleString);
-                    ReceptionActivityTemp.toReceptionActivityTemp(context);
-                    JPushInterface.clearNotificationById(context, notifactionId);
+                        ReceptionActivityTemp.toReceptionActivityTemp(context);
+                        JPushInterface.clearNotificationById(context, notifactionId);
+                    }
                 }
 
             } catch (Exception e) {
@@ -93,20 +93,21 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
                 int businessType = jsonObject1.getInt("businessType");
-                int type = jsonObject1.getInt("type");
-
-                if (businessType == 0) {// //属于接待消息
+                if (jsonObject1.has("businessType")){
+                    if (businessType == 0) {// //属于接待消息
 //                        toReception(context, bundleString);
-                    ReceptionActivityTemp.toReceptionActivityTemp(context);
+                        ReceptionActivityTemp.toReceptionActivityTemp(context);
+                    }
                 }
-
-                if (type == 4){
-                    String date= jsonObject1.getString("data");
-                    Intent intent1 = new Intent(context, OrderClassActivity.class);
-                    intent1.putExtra("date",date);
-                    context.startActivity(intent1);
+                if (jsonObject1.has("type")){
+                    int type = jsonObject1.getInt("type");
+                    if (type == 4){
+                        String date= jsonObject1.getString("data");
+                        Intent intent1 = new Intent(context, OrderClassActivity.class);
+                        intent1.putExtra("date",date);
+                        context.startActivity(intent1);
+                    }
                 }
-
 //                约课 OrderClassActivity
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.yijian.staff.jpush.bean.Messager;
+import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
@@ -71,6 +72,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
                 businessType = jsonObject1.getInt("businessType");
+                int type = jsonObject1.getInt("type");
                 boolean background = isBackground(context);
 
                 if (businessType == 0 && !background) {// //属于接待消息&&属于前台
@@ -91,9 +93,18 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
                 int businessType = jsonObject1.getInt("businessType");
+                int type = jsonObject1.getInt("type");
+
                 if (businessType == 0) {// //属于接待消息
 //                        toReception(context, bundleString);
                     ReceptionActivityTemp.toReceptionActivityTemp(context);
+                }
+
+                if (type == 4){
+                    String date= jsonObject1.getString("data");
+                    Intent intent1 = new Intent(context, OrderClassActivity.class);
+                    intent1.putExtra("date",date);
+                    context.startActivity(intent1);
                 }
 
 //                约课 OrderClassActivity

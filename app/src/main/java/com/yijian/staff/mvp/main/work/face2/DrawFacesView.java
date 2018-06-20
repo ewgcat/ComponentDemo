@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.Xfermode;
 import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -64,11 +66,23 @@ public class DrawFacesView extends View {
             isClear = false;
         } else {
 
+            int sc=canvas.saveLayer(0,0,getMeasuredWidth(),getMeasuredHeight(),paint,Canvas.ALL_SAVE_FLAG);
+
+            paint.setColor(Color.parseColor("#50000000"));
+            canvas.drawRect(new Rect(0, 0, getMeasuredWidth(), getMeasuredHeight()), paint);
+
             canvas.setMatrix(matrix);
             for (Camera.Face face : faces) {
                 Log.e("Test", "获取到人脸数据。。。。。");
                 if (face == null) break;
+
+                paint.setStyle(Paint.Style.FILL);
+                paint.setAlpha(254);
+                Xfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
+                paint.setXfermode(xfermode);
                 canvas.drawRect(face.rect, paint);
+                paint.setXfermode(null);
+
                 Rect rectangle = face.rect;
                 canvas.drawLine(rectangle.left - strokePaintWidth - 2, rectangle.top - strokePaintWidth, rectangle.left + (rectangle.right - rectangle.left) / 4, rectangle.top - strokePaintWidth, strokeLinePaint); //左上(横)
                 canvas.drawLine(rectangle.left - strokePaintWidth, rectangle.top - strokePaintWidth - 2, rectangle.left - strokePaintWidth, rectangle.top + (rectangle.bottom - rectangle.top) / 4, strokeLinePaint);//左上（竖）
@@ -92,7 +106,11 @@ public class DrawFacesView extends View {
                 // 因为旋转了画布矩阵，所以字体也跟着旋转
 //            canvas.drawText(String.valueOf("id:" + face.id + "\n置信度:" + face.score), face.rect.left, face.rect.bottom + 10, paint);
 
+
             }
+
+            canvas.restoreToCount(sc);
+
             if (isRemove) {
                 Log.e("Test", "isRemove....." + isRemove);
                 canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);

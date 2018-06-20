@@ -75,7 +75,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                     boolean background = isBackground(context);
                     if (type == 0 && !background) {// //属于接待消息&&属于前台
                         ReceptionActivityTemp.toReceptionActivityTemp(context);
-//                        JPushInterface.clearNotificationById(context, notifactionId);
+                        JPushInterface.clearNotificationById(context, notifactionId);
                     }
                 }
 

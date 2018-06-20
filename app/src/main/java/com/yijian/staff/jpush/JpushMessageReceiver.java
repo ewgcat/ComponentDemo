@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.yijian.staff.jpush.bean.Messager;
 import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity;
+import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
@@ -40,7 +41,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
     public static boolean shouldToReception = false;
     public static String bundleString = "";
     public static int notifactionId = -1;
-    public static int businessType = -1;
+    public static int type = -1;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -57,11 +58,8 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-
-
-        } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
             notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-            Logger.i(TAG, "接收到推送下来的通知");
+            Logger.i(TAG, "接收到推送下来的自定义消息");
             Vibrator vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
             if (vibrator.hasVibrator()) {
                 long[] patter = {600, 200, 600, 200};
@@ -71,13 +69,13 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
-                if (jsonObject1.has("businessType")){
-                    businessType = jsonObject1.getInt("businessType");
+                if (jsonObject1.has("type")){
+                    type = jsonObject1.getInt("type");
+                    Logger.i(TAG, "type="+type);
                     boolean background = isBackground(context);
-                    if (businessType == 0 && !background) {// //属于接待消息&&属于前台
-//                        toReception(context, bundleString);
+                    if (type == 0 && !background) {// //属于接待消息&&属于前台
                         ReceptionActivityTemp.toReceptionActivityTemp(context);
-                        JPushInterface.clearNotificationById(context, notifactionId);
+//                        JPushInterface.clearNotificationById(context, notifactionId);
                     }
                 }
 
@@ -86,28 +84,32 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             }
 
 
+        } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
+
+            Logger.i(TAG, "接收到推送下来的通知");
+
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {//用户点击打开了通知
             Logger.i(TAG, "用户点击打开了通知");
             try {
                 JSONObject jsonObject = new JSONObject(bundleString);
                 String data = jsonObject.getString("data");
                 JSONObject jsonObject1 = new JSONObject(data);
-                int businessType = jsonObject1.getInt("businessType");
-                if (jsonObject1.has("businessType")){
-                    if (businessType == 0) {// //属于接待消息
-//                        toReception(context, bundleString);
-                        ReceptionActivityTemp.toReceptionActivityTemp(context);
-                    }
-                }
                 if (jsonObject1.has("type")){
                     int type = jsonObject1.getInt("type");
-                    if (type == 4){
+                    if (type == 0) {// //属于接待消息
+                        ReceptionActivityTemp.toReceptionActivityTemp(context);
+                    }else   if (type == 1||type == 2){
                         String date= jsonObject1.getString("data");
                         Intent intent1 = new Intent(context, OrderClassActivity.class);
                         intent1.putExtra("date",date);
                         context.startActivity(intent1);
+                    }else   if (type>2&&type<18){
+                        Intent intent1 = new Intent(context, MainActivity.class);
+                        intent1.putExtra("push_message",2);
+                        context.startActivity(intent1);
                     }
                 }
+
 //                约课 OrderClassActivity
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -125,80 +127,9 @@ public class JpushMessageReceiver extends BroadcastReceiver {
     }
 
 
-    public static void toReception(Context context, String bundleString) {
-        try {
-            JSONObject jsonObject = new JSONObject(bundleString);
-            String data = jsonObject.getString("data");
 
 
-            JSONObject jsonObject1 = new JSONObject(data);
-            String data1 = jsonObject1.getString("data");
-//            Log.e(TAG, "onReceive: " + data);
-//            Log.e(TAG, "onReceive:---- " + data1);
-            Messager messager = GsonNullString.getGson().fromJson(data1, Messager.class);
-            RecptionerInfoBean recptionerInfoBean = new RecptionerInfoBean();
-            recptionerInfoBean.setId(messager.getId());
-            recptionerInfoBean.setStatus(messager.getOperatorType());
-            recptionerInfoBean.setMobile(messager.getMobile());
-            recptionerInfoBean.setName(messager.getName());
-            Integer sex = messager.getSex();
-            if (sex == 0) {
-                recptionerInfoBean.setSex("未知");
-            } else if (sex == 1) {
-                recptionerInfoBean.setSex("男");
-            } else if (sex == 2) {
-                recptionerInfoBean.setSex("女");
-            }
-            List<Integer> operatorTypes = messager.getOperatorTypes();
-            ArrayList<Integer> types = new ArrayList<>();
-            if (operatorTypes != null && !operatorTypes.isEmpty()) {
-                types.addAll(operatorTypes);
-            }
-            recptionerInfoBean.setHistoryNode(types);
 
-            Log.e(TAG, "onReceive: " + recptionerInfoBean.toString());
-            Intent intent1 = new Intent(context, ReceptionStepActivity.class);
-            intent1.putExtra(ReceptionActivity.CONSUMER, recptionerInfoBean);
-            context.startActivity(intent1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * 打印所有的 intent extra 数据
-     */
-    private static String printBundle(Bundle bundle) {
-        StringBuilder sb = new StringBuilder();
-        for (String key : bundle.keySet()) {
-            if (key.equals(JPushInterface.EXTRA_NOTIFICATION_ID)) {
-                sb.append("\nkey:" + key + ", value:" + bundle.getInt(key));
-            } else if (key.equals(JPushInterface.EXTRA_CONNECTION_CHANGE)) {
-                sb.append("\nkey:" + key + ", value:" + bundle.getBoolean(key));
-            } else if (key.equals(JPushInterface.EXTRA_EXTRA)) {
-                if (TextUtils.isEmpty(bundle.getString(JPushInterface.EXTRA_EXTRA))) {
-                    //Logger.i(TAG, "This message has no Extra data");
-                    continue;
-                }
-                try {
-                    JSONObject json = new JSONObject(bundle.getString(JPushInterface.EXTRA_EXTRA));
-                    Iterator<String> it = json.keys();
-
-                    while (it.hasNext()) {
-                        String myKey = it.next().toString();
-                        sb.append("\nkey:" + key + ", value: [" +
-                                myKey + " - " + json.optString(myKey) + "]");
-                    }
-                } catch (JSONException e) {
-                    Logger.i(TAG, "Get message extra JSON error!");
-                }
-            } else {
-                sb.append("\nkey:" + key + ", value:" + bundle.getString(key));
-            }
-        }
-        return sb.toString();
-    }
 
     public static boolean isBackground(Context context) {
         ActivityManager activityManager = (ActivityManager) context
@@ -214,22 +145,22 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 BACKGROUND=400 EMPTY=500 FOREGROUND=100
                 GONE=1000 PERCEPTIBLE=130 SERVICE=300 ISIBLE=200
                  */
-                Log.i(context.getPackageName(), "此appimportace ="
+                Log.i(TAG, "此appimportace ="
                         + appProcess.importance
                         + ",context.getClass().getName()="
                         + context.getClass().getName());
                 if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                    Log.i(context.getPackageName(), "处于前台"
+                    Log.i(TAG, "处于前台"
                             + appProcess.processName);
                     shouldToReception = false;
                     return false;
                 } else if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_TOP_SLEEPING) {
-                    Log.i(context.getPackageName(), "处于后台,屏幕熄频"
+                    Log.i(TAG, "处于后台,屏幕熄频"
                             + appProcess.processName);
                     shouldToReception = true;
                     return true;
                 } else {
-                    Log.i(context.getPackageName(), "处于后台台"
+                    Log.i(TAG, "处于后台台"
                             + appProcess.processName);
                     shouldToReception = false;
                     return true;

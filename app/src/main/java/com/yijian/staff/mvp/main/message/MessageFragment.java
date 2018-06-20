@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
@@ -43,7 +44,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-@SuppressLint("ValidFragment")
 public class MessageFragment extends MvcBaseFragment {
 
     private RefreshLayout refreshLayout;

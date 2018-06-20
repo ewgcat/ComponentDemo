@@ -6,14 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.graphics.YuvImage;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
-import android.media.FaceDetector;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,19 +33,11 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.util.EasyBlur;
 import com.yijian.staff.util.LoadingProgressDialog;
 import com.yijian.staff.util.system.ScreenUtil;
 
@@ -275,7 +263,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                                     Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                                     Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
                                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                                    roateBitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
+                                    roateBitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
                                     byte[] datas = baos.toByteArray();
                                     bitmap2 = BitmapFactory.decodeByteArray(datas, 0, datas.length);
 
@@ -291,7 +279,11 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                                         @Override
                                         public void run() {
                                             LoadingProgressDialog.showBlueProgress(FaceDetectorActivity.this);
-                                            RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(10, 4));
+                                            int radius = 10;
+                                            if(bitmapWidth*bitmapHeight <= 320*240){
+                                                radius = 1;
+                                            }
+                                            RequestOptions options = RequestOptions.bitmapTransform(new BlurTransformation(radius, 4));
                                             Glide.with(FaceDetectorActivity.this).load(resizeBmp)
                                                     .apply(options).into(iv_test);
                                             try {

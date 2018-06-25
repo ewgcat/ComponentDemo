@@ -73,6 +73,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideKeyBoard(etAdvice);
+                    showToast("发送成功");
                     finish();
                 }
 

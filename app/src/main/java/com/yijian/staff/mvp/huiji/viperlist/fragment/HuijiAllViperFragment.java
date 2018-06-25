@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -54,10 +56,12 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
     private EmptyView empty_view;
+    @BindView(R.id.tv_total_num)
+    TextView tv_total_num;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
 
-    private int pages;
+    private int total;
 
     private HuijiViperListAdapter huijiViperListAdapter;
     private HuijiViperFilterBean huijiViperFilterBean;
@@ -154,7 +158,8 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
                 refreshLayout.finishRefresh(2000, true);
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+                total = JsonUtil.getInt(result, "total");
+                tv_total_num.setText("会员总人数："+total+"人");
                 viperBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
@@ -230,7 +235,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                pages = JsonUtil.getInt(result, "pages");
+
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
 

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg"
+            android:orientation="vertical">
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="取消"
+                    android:textColor="#999999"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TO领导"
+                    android:textColor="#666666"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:text="发送"
+                    android:textColor="#2cc8a1"/>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="TO原因"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/gray_stroke_bg"
+                android:orientation="vertical">
+
+            <EditText
+                    android:id="@+id/et_to_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="请说明处理详情"
+                    android:maxLength="30"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="right"
+                    android:text="30字"
+                    android:textColor="#cccccc"/>
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="TO对象"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/iv_kefu_head"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/placeholder"/>
+
+                <TextView
+                        android:id="@+id/tv_kefu_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="朱沙"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="会籍总监"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:id="@+id/tv_select_kefu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="选择"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/iv_coach_head"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/placeholder"/>
+
+                <TextView
+                        android:id="@+id/tv_coach_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="朱沙"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="教练总监"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:id="@+id/tv_select_coach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="选择"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/iv_dianzhang_head"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/placeholder"/>
+
+                <TextView
+                        android:id="@+id/tv_dianzhang_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="朱沙"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="店长总监"
+                        android:textColor="#333333"/>
+
+                <TextView
+                        android:id="@+id/tv_select_dianzhang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/gray_stroke_unselect_bg"
+                        android:gravity="center"
+                        android:text="选择"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

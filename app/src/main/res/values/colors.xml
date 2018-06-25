@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--#0398db-->
-    <color name="colorPrimary"> #1997F8</color>
-    <color name="colorPrimaryDark">#1997F8</color>
-    <color name="colorAccent">#1997F8</color>
-    <color name="gray">#f2f2f2</color>
+    <color name="colorPrimary">#1997f8</color>
+    <color name="colorPrimaryDark">#565656</color>
+    <color name="colorAccent">#1997f8</color>
+    <color name="gray">#eaeaea</color>
     <color name="colorCard">#FFFFFF</color>
     <color name="colorText">#2C2C2C</color>
     <color name="colorLogo">#FED530</color>
+    <color name="blue">#1997f8</color>
+    <color name="gray_background_color">#f1f2f6</color>
 
     <color name="fab_bg">#FF4081</color>
     <color name="bottom_shadow">#6e000000</color>
@@ -16,6 +18,7 @@
     <color name="drawer_header_text">#2c2c2c</color>
     <color name="toast_bg">#dddfe0</color>
     <color name="black_bg">#d0000000</color>
+    <color name="time_bar">#cccccc</color>
     <color name="bottom_text">#a9a9a9</color>
     <color name="news_unread">#000000</color>
     <color name="news_read">#898989</color>
@@ -30,4 +33,32 @@
     <color name="topic_text">#afafaf</color>
     <color name="white">#ffffff</color>
     <color name="red_50">#fed1d6</color>
+
+    <color name="activity_background">#eff0f4</color>
+    <color name="red">#FF0000</color>
+
+    <color name="gray_text_desc">#808080</color>
+    <color name="gray_switch_track">#66999999</color>
+    <color name="gray_switch_thumb">#f1999999</color>
+    <color name="black_text_title">#222222</color>
+    <color name="gray_divide_line">#e5e5e5</color>
+    <color name="gray_bg">#f1f3f5</color>
+    <color name="cyan_main">#27b5ce</color>
+    <color name="cyan_main_66">#6627b5ce</color>
+    <color name="green">#2cc8a1</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black333333">#333333</color>
+    <color name="blue1997f8">#1997f8</color>
+    <color name="gray666666">#666666</color>
+
+    <color name="text_black1">#333333</color>
+    <color name="text_black2">#666666</color>
+    <color name="text_black3">#999999</color>
+    <color name="division">#eaeaea</color>
+    <color name="textColor999999">#999999</color>
+    <color name="textColorde947d">#de947d</color>
+    <color name="textColor9acac4">#9acac4</color>
+
+
 </resources>

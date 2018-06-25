@@ -20,4 +20,48 @@
     <dimen name="vtex_image_size">36dp</dimen>
     <dimen name="vtex_author_image_size">20dp</dimen>
     <dimen name="vtex_node_image_size">60dp</dimen>
+
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="height_banner_item">200dp</dimen>
+
+    <dimen name="radius_msg_dialog">8dp</dimen>
+
+    <dimen name="width_default_indicator">10dp</dimen>
+    <dimen name="height_default_indicator">10dp</dimen>
+    <dimen name="margin_default_indicator">3dp</dimen>
+
+    <dimen name="width_menu_image_grid">25dp</dimen>
+    <dimen name="height_menu_image_grid">25dp</dimen>
+
+    <dimen name="width_menu_image_grid_func">40dp</dimen>
+    <dimen name="height_menu_image_grid_func">40dp</dimen>
+
+    <dimen name="height_menu_item_grid">60dp</dimen>
+    <dimen name="height_menu_item_grid_func">75dp</dimen>
+    <dimen name="height_menu_item_pager">150dp</dimen>
+
+    <dimen name="height_app_head">55dp</dimen>
+
+    <dimen name="height_switch">30dp</dimen>
+    <dimen name="radius_switch">15dp</dimen>
+    <dimen name="collapsed_header_height">48dp</dimen>
+
+
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+
+    <dimen name="margin_left">15dp</dimen>
+    <dimen name="margin_right">15dp</dimen>
+
+
 </resources>

@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 public class KeyBroadUtil {
 
 
-    public static void openKeyBroad(Context context, View view){
+    public static void openKeyBroad(Context context, View view) {
 
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
@@ -22,16 +22,12 @@ public class KeyBroadUtil {
     }
 
 
-    public static void hideKeyBroad(Context context, View view){
+    public static void hideKeyBroad(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-
-
-
 
 
 }

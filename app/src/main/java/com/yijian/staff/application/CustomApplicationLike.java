@@ -25,7 +25,8 @@ public class CustomApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
-        Bugly.init(getApplication(), "900013902", BuildConfig.DEBUG);
+        Bugly.init(getApplication(), "9de22ca904", BuildConfig.DEBUG);
+
     }
 
 

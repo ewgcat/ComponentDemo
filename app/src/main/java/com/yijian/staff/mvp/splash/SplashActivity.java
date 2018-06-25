@@ -5,21 +5,26 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.user.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.rx.RxUtil;
-import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.NotificationsUtil;
-import com.yijian.staff.mvp.base.BaseActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +32,7 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 
 
-public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.View {
+public class SplashActivity extends MvcBaseActivity {
 
     String[] permissions = {
             Manifest.permission.READ_PHONE_STATE,
@@ -49,43 +54,50 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     @BindView(R.id.iv_splash_bg)
     ImageView ivSplashBg;
-    @BindView(R.id.tv_splash_author)
-    TextView tvSplashAuthor;
+
 
     @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
-    }
-
-    @Override
-    protected int getLayout() {
+    protected int getLayoutID() {
         return R.layout.activity_splash;
     }
 
     @Override
-    protected void initEventAndData() {
-        mPresenter.getSplashInfo();
-
-    }
-
-    public void jumpToMain() {
-        Intent intent = new Intent();
-        intent.setClass(this,LoginActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
-
-    @Override
-    public void checkPremession() {
+    protected void initView(Bundle savedInstanceState) {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initRxPermissions(index, permissions);
     }
 
 
+    public void jumpToNext() {
+        new Handler().postDelayed(() -> {
+            User user = DBManager.getInstance().queryUser();
+            if (user != null) {
+                String token = user.getToken().trim();
+                if (TextUtils.isEmpty(token)) {
+                    Intent intent = new Intent();
+                    intent.setClass(this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                } else {
+
+                    Intent intent = new Intent();
+                    intent.setClass(this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            } else {
+                Intent intent = new Intent();
+                intent.setClass(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }, 1000 * 2);
 
 
-
-
+    }
 
 
     /**
@@ -107,7 +119,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
                         if (!TextUtils.isEmpty(msg) && msg.contains("【通知与状态栏权限】")) {
                             requestPermissions("    【通知与状态栏权限】\n");
                         } else {
-                            jumpToMain();
+                            jumpToNext();
                         }
                     }
                 });
@@ -117,7 +129,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
      * 请求通知权限  100
      */
     private void requestPermissions(String msg) {
-        AlertDialog alertDialog = new AlertDialog.Builder(SplashActivity.this)
+        AlertDialog alertDialog = new AlertDialog.Builder(new ContextThemeWrapper(SplashActivity.this, R.style.AlertDialogCustom))
+
                 .setTitle("获取必要权限")
                 .setMessage(msg)
                 .setPositiveButton("立即获取", (dialog, which) -> {
@@ -127,7 +140,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
                     startActivityForResult(intent, 100);
                 })
                 .setNegativeButton("拒绝", (dialog, which) -> {
-                    jumpToMain();
+                    jumpToNext();
                 }).create();
 
         alertDialog.setCancelable(false);
@@ -142,9 +155,6 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         }
         return msg;
     }
-
-
-
 
 
     /**

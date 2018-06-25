@@ -1,44 +1,50 @@
 package com.yijian.staff.mvp.main;
 
-
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputFilter;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.message.MessageFragment;
-import com.yijian.staff.mvp.mine.MineFragment;
-import com.yijian.staff.mvp.report.ReportingFragment;
-import com.yijian.staff.mvp.work.WorkFragment;
-import com.yijian.staff.util.system.StatusBarUtil;
-import com.yijian.staff.mvp.base.BaseActivity;
-import com.yijian.staff.mvp.main.contract.MainContract;
-import com.yijian.staff.mvp.main.presenter.MainPresenter;
+import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.main.message.MessageFragment;
+import com.yijian.staff.mvp.main.mine.MineFragment;
+import com.yijian.staff.mvp.main.work.WorkFragment;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
+import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
+import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.Bottombar;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View  , Bottombar.OnClickBottomButtonListener {
+import cn.jpush.android.api.JPushInterface;
 
+import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
+
+public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBottomButtonListener {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final String[] FRAGMENT_TAG = {"WorkFragment", "ReportingFragment", "ViperFragemnt", "MimeFragment"};
+    private static final String[] FRAGMENT_TAG = {"WorkFragment", "ReportingFragment", "MessageFragment", "MimeFragment"};
     /**
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
+    public static final int RESULT_OK_RECEPTION = 1;
     private int selectedIndex = 0;
     protected long mExitTime;
 
 
     private WorkFragment workFragment;
-    private ReportingFragment reportingFragment;
-    private MessageFragment viperFragment;
+    private MessageFragment mesageFragment;
     private MineFragment mineFragment;
     private Bottombar mBottombar;
 
@@ -51,21 +57,33 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        StatusBarUtil.setLightStatusBar(this, Color.parseColor("#3699FC"));
+    protected int getLayoutID() {
+        return R.layout.activity_main;
+    }
 
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+
+        initJPush();
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);
 
+
         if (savedInstanceState == null) {
+            workFragment = new WorkFragment();
+            mesageFragment = new MessageFragment();
+            mineFragment = new MineFragment();
             // 默认选中0
+
+            //
             selectTab(0);
+
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
-            reportingFragment = (ReportingFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
-            viperFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
+            mesageFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
             mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
 
 
@@ -73,10 +91,49 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             int lastSelectedIndex = savedInstanceState.getInt(PRESELECTEDINDEX, selectedIndex);
 
             // 选择上一次保存的Fragment界面
-            selectTab(lastSelectedIndex);
+                selectTab(lastSelectedIndex);
+
+
         }
+        if (workFragment != null){
+            workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
+                @Override
+                public void startAct() {
+//                Intent intent = new Intent(FaceActivity.this, ReceptionActivity.class);
+//                startActivityForResult(intent, RESULT_OK_RECEPTION);
+                    Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+
+
     }
 
+
+    private void initJPush() {
+        String userId = SharePreferenceUtil.getUserId();
+        //设置别名和分组
+        JPushInterface.init(getApplicationContext());
+        JPushInterface.resumePush(getApplicationContext());
+        setAlias(userId + "");
+    }
+
+
+    // 这是来自 JPush Example 的设置别名的 Activity 里的代码。一般 App 的设置的调用入口，在任何方便的地方调用都可以。
+    private void setAlias(String alias) {
+        if (TextUtils.isEmpty(alias)) {
+            return;
+        }
+        if (!CommonUtil.isValidTagAndAlias(alias)) {
+            return;
+        }
+        JPushTagAliasOperatorHelper.TagAliasBean tagAliasBean = new JPushTagAliasOperatorHelper.TagAliasBean(JPushTagAliasOperatorHelper.ACTION_SET, alias, true);
+
+        JPushTagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(), sequence, tagAliasBean);
+        JPushInterface.resumePush(getApplicationContext());
+    }
 
     /**
      * 监听按键的点击
@@ -90,7 +147,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 mExitTime = secondTime;
                 return true;
             } else {
-                android.os.Process.killProcess(android.os.Process.myPid());
+                CustomApplication.getInstance().exitApp();
             }
         }
         return true;
@@ -105,42 +162,32 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         hideAllIndex(transaction);
         switch (index) {
             case 0:
-                if (workFragment == null) {
+                if (!workFragment.isAdded()) {
                     // 如果WorkFragment为空，则创建一个并添加到界面上
-                    workFragment = WorkFragment.getInstance();
                     transaction.add(R.id.fl_home, workFragment, FRAGMENT_TAG[index]);
                 } else {
-                    // 如果WorkFragment不为空，则直接将它显示出来
+
                     transaction.show(workFragment);
                 }
-                break;
-            case 1:
-
-                if (reportingFragment == null) {
-                    // 如果ReportingFragment为空，则创建一个并添加到界面上
-                    reportingFragment = ReportingFragment.getInstance();
-                    transaction.add(R.id.fl_home, reportingFragment, FRAGMENT_TAG[index]);
-                } else {
-                    // 如果ReportingFragment不为空，则直接将它显示出来
-                    transaction.show(reportingFragment);
-                }
+                // 如果WorkFragment不为空，则直接将它显示出来
 
                 break;
             case 2:
-                if (viperFragment == null) {
-                    // 如果ViperFragment为空，则创建一个并添加到界面上
-                    viperFragment = MessageFragment.getInstance();
-                    transaction.add(R.id.fl_home, viperFragment, FRAGMENT_TAG[index]);
-                } else {
-                    // 如果ViperFragment不为空，则直接将它显示出来
-                    transaction.show(viperFragment);
+                if (!mesageFragment.isAdded()) {
+                    // 如果mesageFragment为空，则创建一个并添加到界面上
+                    transaction.add(R.id.fl_home, mesageFragment, FRAGMENT_TAG[index]);
+                    transaction.show(mesageFragment);
                 }
+                // 如果mesageFragment不为空，则直接将它显示出来
+                transaction.show(mesageFragment);
+
                 break;
             case 3:
-                if (mineFragment == null) {
+                if (!mineFragment.isAdded()) {
                     // 如果MimeFragment为空，则创建一个并添加到界面上
-                    mineFragment = MineFragment.getInstance();
                     transaction.add(R.id.fl_home, mineFragment, FRAGMENT_TAG[index]);
+                    transaction.show(mineFragment);
+
                 } else {
                     // 如果MimeFragment不为空，则直接将它显示出来
                     transaction.show(mineFragment);
@@ -151,42 +198,44 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
 
+
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-        Fragment fragment = WorkFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+        if (workFragment != null && workFragment.isAdded()) {
+            fragmentTransaction.hide(workFragment);
         }
-        fragment = ReportingFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
+        if (mesageFragment != null && mesageFragment.isAdded()) {
+            fragmentTransaction.hide(mesageFragment);
         }
-        fragment = MessageFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
-
+        if (mineFragment != null && mineFragment.isAdded()) {
+            fragmentTransaction.hide(mineFragment);
         }
-        fragment = MineFragment.getInstance();
-        if (fragment.isAdded()) {
-            fragmentTransaction.hide(fragment);
-        }
-    }
-
-
-
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_main;
     }
 
     @Override
-    protected void initEventAndData() {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 根据上面发送过去的请求吗来区别
+        if (resultCode == 1234 && mineFragment != null) {
+            mineFragment.onActivityResult(requestCode, resultCode, data);
+        } else {
+            switch (resultCode) {
+                case RESULT_OK_RECEPTION:
+                    RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
+                    recetionCompleteDialog.show(getFragmentManager(), "RecetionCompleteDialog");
+                    break;
+                default:
+                    break;
+            }
+        }
 
     }
 
-    protected void initInject() {
-        getActivityComponent().inject(this);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        int push_message = intent.getIntExtra("push_message", 0);
+        if (push_message==2){
+            selectTab(push_message);
+        }
     }
-
-
 }

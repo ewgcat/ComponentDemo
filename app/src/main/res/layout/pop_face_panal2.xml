@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/rel_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <RelativeLayout
+                android:id="@+id/rel_header"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="25dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="人脸识别"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+
+        <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/face_back"/>
+
+
+        <RelativeLayout
+                android:id="@+id/rel_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/iv_back"
+                android:layout_below="@id/rel_header"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@mipmap/face_bg"
+        >
+
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_face"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+            />
+
+            <ScrollView
+                    android:id="@+id/scrollview"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="13dp"
+                            android:paddingTop="13dp"
+                            android:gravity="center_vertical">
+                        <ImageView
+                                android:id="@+id/iv_detail_header"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                        />
+
+                        <TextView
+                                android:id="@+id/tv_detail_name"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+                    </LinearLayout>
+
+                    <View
+                            style="@style/SplitLineStyle"
+                            android:layout_margin="16dp"
+                    />
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/kamingchen"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="卡名称:"
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_cardname"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/shengri"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="生日："/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_birthday"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/nianling"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="年龄："/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                                android:id="@+id/tv_detail_age"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/huiji"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="会籍："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_huiji"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/kayouxiaoqi"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="卡有效期："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                                android:id="@+id/tv_detail_kayouxiaoqi"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:id="@+id/rel_coach"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jiaolian"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:layout_centerVertical="true"
+                                    android:text="教练："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                                android:id="@+id/tv_detail_coach"
+                            android:layout_width="180dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:singleLine="true"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:id="@+id/rel_course_progress"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/sijiaokejindu"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="最新私教课进度："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                                android:id="@+id/tv_detail_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <!--<RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_centerVertical="true"
+                            android:text="最喜爱的课程："
+                            android:drawableLeft="@mipmap/zuiaikechen"
+                            android:drawablePadding="5dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_detail_like_course"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_centerVertical="true"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>-->
+
+
+                    <RelativeLayout
+                            android:id="@+id/rel_record_build_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/shangyici"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="最近健身："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_biuld_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/xiaohai"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="有无小孩："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_has_child"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jianshencishu"/>
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:text="健身次数："
+                                    android:layout_marginLeft="5dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/tv_detail_build_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

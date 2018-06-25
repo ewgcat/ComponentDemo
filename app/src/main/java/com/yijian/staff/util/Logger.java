@@ -12,12 +12,12 @@ public final class Logger {
     private static boolean debug = BuildConfig.DEBUG;
 
 
-    public void setDebug(boolean debug){
-        this.debug=debug;
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 
-    public void setTag(String tag){
-        this.TAG=tag;
+    public void setTag(String tag) {
+        this.TAG = tag;
     }
 
 

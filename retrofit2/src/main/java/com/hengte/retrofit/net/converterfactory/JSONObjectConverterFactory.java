@@ -13,7 +13,7 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 
 
-public  class JSONObjectConverterFactory extends Converter.Factory {
+public class JSONObjectConverterFactory extends Converter.Factory {
 
     public static final JSONObjectConverterFactory INSTANCE = new JSONObjectConverterFactory();
 

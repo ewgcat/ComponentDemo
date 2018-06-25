@@ -54,7 +54,7 @@ public class BlurBitmapUtil {
         }
 
         Bitmap overlay = Bitmap.createBitmap(
-                (int) (toView.getMeasuredWidth()/ scaleFactor),
+                (int) (toView.getMeasuredWidth() / scaleFactor),
                 (int) (toView.getMeasuredHeight() / scaleFactor),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(overlay);

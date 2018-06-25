@@ -11,7 +11,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-public class DownObserver<ResponseBody> implements Observer<ResponseBody>  {
+public class DownObserver<ResponseBody> implements Observer<ResponseBody> {
     CallBack callBack;
     Context mContext;
 
@@ -19,7 +19,6 @@ public class DownObserver<ResponseBody> implements Observer<ResponseBody>  {
         this.mContext = context;
         this.callBack = callBack;
     }
-
 
 
     @Override

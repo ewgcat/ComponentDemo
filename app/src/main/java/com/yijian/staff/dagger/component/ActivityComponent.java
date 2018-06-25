@@ -4,15 +4,14 @@ import android.app.Activity;
 
 import com.yijian.staff.dagger.scope.ActivityScope;
 import com.yijian.staff.dagger.module.ActivityModule;
-import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
-import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.user.forgetpassword.ForgetPasswordActivity;
+import com.yijian.staff.mvp.user.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.splash.SplashActivity;
 
 
 import dagger.Component;
-
 
 
 @ActivityScope
@@ -23,9 +22,13 @@ public interface ActivityComponent {
 
 
     void inject(MainActivity mainActivity);
+
     void inject(SplashActivity splashActivity);
+
     void inject(LoginActivity loginActivity);
+
     void inject(ForgetPasswordActivity forgetPasswordActivity);
+
     void inject(ReceptionActivity receptionActivity);
 
 }

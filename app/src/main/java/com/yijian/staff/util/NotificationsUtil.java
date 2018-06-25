@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 /**
  * Created by lenovo on 2017/1/6.
  * 获取通知栏权限是否开启
- *
  */
 public class NotificationsUtil {
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
@@ -27,7 +26,7 @@ public class NotificationsUtil {
         int uid = appInfo.uid;
 
         Class appOpsClass = null;
-      /* Context.APP_OPS_MANAGER */
+        /* Context.APP_OPS_MANAGER */
         try {
             appOpsClass = Class.forName(AppOpsManager.class.getName());
             Method checkOpNoThrowMethod = appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE,

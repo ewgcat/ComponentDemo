@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray">
+
+    <include
+            android:id="@+id/vip_over_navigation_bar2"
+            layout="@layout/view_navigation_bar2"/>
+
+    <LinearLayout
+            android:id="@+id/lin_history_resouce_allocation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+    >
+
+        <LinearLayout
+                android:id="@+id/lin_resource_allowcation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+            <ImageView
+                    android:id="@+id/iv_resource_allowcation"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/fp_ziyuanlan"/>
+            <TextView
+                    android:id="@+id/tv_resource_allowcation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="资源分配"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/lin_history_allowcation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+            <ImageView
+                    android:id="@+id/iv_history_allowcation"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/fp_lishi"/>
+            <TextView
+                    android:id="@+id/tv_history_allowcation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="历史分配"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:id="@+id/fl_invitation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/vip_over_navigation_bar2"
+            android:layout_above="@id/lin_history_resouce_allocation"/>
+
+</RelativeLayout>

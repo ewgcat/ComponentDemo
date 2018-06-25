@@ -8,8 +8,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-public abstract class BaseObserver<T> implements Observer<T> ,ResponseState<T> {
-
+public abstract class BaseObserver<T> implements Observer<T>, ResponseState<T> {
 
 
     private Disposable mDisposable;
@@ -33,7 +32,7 @@ public abstract class BaseObserver<T> implements Observer<T> ,ResponseState<T> {
     @Override
     public void onError(Throwable e) {
         onFail(e.getMessage());
-        Log.i("test", "onError "+e.toString());
+        Log.i("test", "onError " + e.toString());
     }
 
     @Override

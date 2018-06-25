@@ -18,9 +18,9 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     protected LinearLayout mWorkLL;
     protected ImageView mWorkIv;
     protected TextView mWorkTv;
-    protected LinearLayout mReportingLl;
-    protected ImageView mReportingIv;
-    protected TextView mReportingTv;
+    //    protected LinearLayout mReportingLl;
+//    protected ImageView mReportingIv;
+//    protected TextView mReportingTv;
     protected LinearLayout mMessageLl;
     protected ImageView mMessageIv;
     protected TextView mMessageTv;
@@ -56,9 +56,9 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         mWorkLL = (LinearLayout) this.findViewById(R.id.ll_main_work);
         mWorkIv = (ImageView) this.findViewById(R.id.iv_main_work);
         mWorkTv = (TextView) this.findViewById(R.id.tv_main_work);
-        mReportingLl = (LinearLayout) this.findViewById(R.id.ll_main_reporting);
-        mReportingIv = (ImageView) this.findViewById(R.id.iv_main_reporting);
-        mReportingTv = (TextView) this.findViewById(R.id.tv_main_reporting);
+//        mReportingLl = (LinearLayout) this.findViewById(R.id.ll_main_reporting);
+//        mReportingIv = (ImageView) this.findViewById(R.id.iv_main_reporting);
+//        mReportingTv = (TextView) this.findViewById(R.id.tv_main_reporting);
         mMessageLl = (LinearLayout) this.findViewById(R.id.ll_main_message);
         mMessageIv = (ImageView) this.findViewById(R.id.iv_main_message);
         mMessageTv = (TextView) this.findViewById(R.id.tv_main_message);
@@ -67,7 +67,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         mMimeTv = (TextView) this.findViewById(R.id.tv_main_mime);
 
         mWorkLL.setOnClickListener(this);
-        mReportingLl.setOnClickListener(this);
+//        mReportingLl.setOnClickListener(this);
         mMessageLl.setOnClickListener(this);
         mMimeLl.setOnClickListener(this);
     }
@@ -79,9 +79,9 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
             case R.id.ll_main_work:
                 mListener.selectTab(0);
                 break;
-            case R.id.ll_main_reporting:
-                mListener.selectTab(1);
-                break;
+//            case R.id.ll_main_reporting:
+//                mListener.selectTab(1);
+//                break;
             case R.id.ll_main_message:
                 mListener.selectTab(2);
                 break;
@@ -106,10 +106,10 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
             case 0:
                 selectWork();
                 break;
-            case 1:
-                selectreporting();
-
-                break;
+//            case 1:
+//                selectreporting();
+//
+//                break;
             case 2:
                 selectMessage();
                 break;
@@ -120,41 +120,41 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     }
 
     public void resetAllButtonState() {
-        mWorkTv.setTextColor(Color.parseColor("#757575"));
-        mWorkIv.setImageResource(R.mipmap.icon_work_unselected);
+//        mWorkTv.setTextColor(Color.parseColor("#757575"));
+        mWorkIv.setImageResource(R.mipmap.home_normal);
 
-        mReportingIv.setImageResource(R.mipmap.icon_report_unselected);
-        mReportingTv.setTextColor(Color.parseColor("#757575"));
+//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_unselected);
+//        mReportingTv.setTextColor(Color.parseColor("#757575"));
 
-        mMessageIv.setImageResource(R.mipmap.icon_message_unselected);
-        mMessageTv.setTextColor(Color.parseColor("#757575"));
+        mMessageIv.setImageResource(R.mipmap.message_norml);
+//        mMessageTv.setTextColor(Color.parseColor("#757575"));
 
-        mMimeIv.setImageResource(R.mipmap.icon_mine_unselected);
-        mMimeTv.setTextColor(Color.parseColor("#757575"));
+        mMimeIv.setImageResource(R.mipmap.my_normal);
+//        mMimeTv.setTextColor(Color.parseColor("#757575"));
     }
 
     public void selectreporting() {
         resetAllButtonState();
-        mReportingIv.setImageResource(R.mipmap.icon_report_selected);
-        mReportingTv.setTextColor(Color.parseColor("#1997f8"));
+//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_selected);
+//        mReportingTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectWork() {
         resetAllButtonState();
-        mWorkIv.setImageResource(R.mipmap.icon_work_seleceted);
-        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
+        mWorkIv.setImageResource(R.mipmap.home_select);
+//        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMessage() {
         resetAllButtonState();
-        mMessageIv.setImageResource(R.mipmap.icon_message_selected);
-        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
+        mMessageIv.setImageResource(R.mipmap.message_select);
+//        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMine() {
         resetAllButtonState();
-        mMimeIv.setImageResource(R.mipmap.icon_mine_selected);
-        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
+        mMimeIv.setImageResource(R.mipmap.my_select);
+//        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
 

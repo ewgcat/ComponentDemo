@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/rel_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <ImageView
+                android:id="@+id/iv_header"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/people"/>
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="刘葛岩刘葛岩岩岩"
+                android:maxWidth="120dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_toRightOf="@id/iv_header"
+                android:layout_centerVertical="true"/>
+
+        <ImageView
+                android:id="@+id/iv_gender"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/lg_man"
+                android:layout_toRightOf="@id/tv_name"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"/>
+
+        <TextView
+                android:id="@+id/tv_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:gravity="right"
+                android:text="正式会员"
+                android:ellipsize="end"
+                android:textColor="#1997f8"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+
+        <TextView
+                android:id="@+id/tv_protect_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor999999"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/passwd_gray"
+                android:text="保护7天"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:visibility="gone"/>
+
+        <ImageView
+                android:id="@+id/iv_visit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/dianhua"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <View
+            style="@style/SplitLineStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+</LinearLayout>

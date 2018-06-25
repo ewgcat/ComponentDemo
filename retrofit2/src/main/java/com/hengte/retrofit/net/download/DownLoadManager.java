@@ -26,7 +26,7 @@ public class DownLoadManager {
 
     private static String JPG_CONTENTTYPE = "image/jpg";
 
-    private static String fileSuffix="";
+    private static String fileSuffix = "";
 
     private Handler handler;
 
@@ -37,7 +37,7 @@ public class DownLoadManager {
     private static DownLoadManager sInstance;
 
     /**
-     *DownLoadManager getInstance
+     * DownLoadManager getInstance
      */
     public static synchronized DownLoadManager getInstance(CallBack callBack) {
         if (sInstance == null) {
@@ -47,15 +47,14 @@ public class DownLoadManager {
     }
 
 
+    public boolean writeResponseBodyToDisk(Context context, ResponseBody body) {
 
-    public boolean  writeResponseBodyToDisk(Context context, ResponseBody body) {
-
-        Log.d(TAG, "contentType:>>>>"+ body.contentType().toString());
+        Log.d(TAG, "contentType:>>>>" + body.contentType().toString());
 
         String type = body.contentType().toString();
 
         if (type.equals(APK_CONTENTTYPE)) {
-           fileSuffix = ".apk";
+            fileSuffix = ".apk";
         } else if (type.equals(PNG_CONTENTTYPE)) {
             fileSuffix = ".png";
         } else if (type.equals(JPG_CONTENTTYPE)) {
@@ -67,7 +66,7 @@ public class DownLoadManager {
         final String name = System.currentTimeMillis() + fileSuffix;
         final String path = context.getExternalFilesDir(null) + File.separator + name;
 
-        Log.d(TAG, "path:>>>>"+ path);
+        Log.d(TAG, "path:>>>>" + path);
 
         try {
             // todo change the file location/name according to your needs
@@ -85,7 +84,7 @@ public class DownLoadManager {
 
                 final long fileSize = body.contentLength();
                 long fileSizeDownloaded = 0;
-                Log.d(TAG, "file length: "+ fileSize);
+                Log.d(TAG, "file length: " + fileSize);
                 inputStream = body.byteStream();
                 outputStream = new FileOutputStream(futureStudioIconFile);
 
@@ -127,7 +126,7 @@ public class DownLoadManager {
                     });
                     Log.d(TAG, "file downloaded: " + fileSizeDownloaded + " of " + fileSize);
                 }
-                
+
                 return true;
             } catch (IOException e) {
                 if (callBack != null) {

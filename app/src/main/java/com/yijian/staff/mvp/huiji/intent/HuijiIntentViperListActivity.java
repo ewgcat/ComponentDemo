@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -45,12 +46,13 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
     RecyclerView rv_vip_intention;
     @BindView(R.id.empty_view)
     EmptyView empty_view;
-
+    @BindView(R.id.tv_total_num)
+    TextView tv_total_num;
     private HuijiIntentViperListAdapter huijiIntentViperListAdapter;
     private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
-    private int pages;
+    private int total;
 
 
     @Override
@@ -127,7 +129,8 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 viperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+                total = JsonUtil.getInt(result, "total");
+                tv_total_num.setText("意向会员总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {
@@ -172,7 +175,6 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
 
 
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败

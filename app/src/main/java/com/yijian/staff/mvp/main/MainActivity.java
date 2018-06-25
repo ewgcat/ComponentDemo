@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
@@ -69,12 +70,16 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         mBottombar = findViewById(R.id.bottom_bar);
         mBottombar.setmListener(this);
 
+
         if (savedInstanceState == null) {
             workFragment = new WorkFragment();
             mesageFragment = new MessageFragment();
             mineFragment = new MineFragment();
             // 默认选中0
+
+            //
             selectTab(0);
+
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
@@ -86,9 +91,11 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
             int lastSelectedIndex = savedInstanceState.getInt(PRESELECTEDINDEX, selectedIndex);
 
             // 选择上一次保存的Fragment界面
-            selectTab(lastSelectedIndex);
+                selectTab(lastSelectedIndex);
+
+
         }
-        if (workFragment != null)
+        if (workFragment != null){
             workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
                 @Override
                 public void startAct() {
@@ -98,6 +105,10 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     startActivity(intent);
                 }
             });
+        }
+
+
+
     }
 
 
@@ -187,6 +198,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     }
 
 
+
     //隐藏所有的Fragment
     public void hideAllIndex(FragmentTransaction fragmentTransaction) {
         if (workFragment != null && workFragment.isAdded()) {
@@ -218,4 +230,12 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        int push_message = intent.getIntExtra("push_message", 0);
+        if (push_message==2){
+            selectTab(push_message);
+        }
+    }
 }

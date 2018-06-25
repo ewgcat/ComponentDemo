@@ -9,7 +9,13 @@
     <include
             android:id="@+id/vip_over_navigation_bar2"
             layout="@layout/view_navigation_bar2"/>
-
+    <TextView
+        android:id="@+id/tv_total_num"
+        android:layout_marginLeft="16dp"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
 
     <include
             layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>

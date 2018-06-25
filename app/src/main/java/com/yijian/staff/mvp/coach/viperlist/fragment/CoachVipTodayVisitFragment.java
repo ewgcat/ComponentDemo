@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -48,7 +49,7 @@ import io.reactivex.functions.Consumer;
 
 /**
  * Created by yangk on 2018/3/6.
- * 今日来访
+ * 今日健身
  */
 
 public class CoachVipTodayVisitFragment extends MvcBaseFragment {
@@ -59,11 +60,12 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.empty_view)
     EmptyView empty_view;
-
+    @BindView(R.id.tv_total_num)
+    TextView tv_total_num;
     private List<TodayCoachViperBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
-    private int pages;
+    private int total;
     private CoachViperFilterBean coachViperFilterBean;
 
 
@@ -155,7 +157,9 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 coachViperBeanList.clear();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+                total = JsonUtil.getInt(result, "total");
+                tv_total_num.setText("今日健身总人数："+total+"人");
+
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {
                     for (int i = 0; i < records.length(); i++) {
@@ -231,7 +235,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+
 
 
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败

@@ -138,7 +138,7 @@ public class CustomApplication extends TinkerApplication implements Application.
 //        Log.e(TAG, "onActivityResumed: " );
 //        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
         try {
-            if (JpushMessageReceiver.shouldToReception && JpushMessageReceiver.businessType == 0) {//应该跳转到接待流程
+            if (JpushMessageReceiver.shouldToReception && JpushMessageReceiver.type == 0) {//应该跳转到接待流程
 //                Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
                 if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)) {
 //                   Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.bundleString);
@@ -147,7 +147,7 @@ public class CustomApplication extends TinkerApplication implements Application.
                     JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
                 }
                 JpushMessageReceiver.shouldToReception = false;
-                JpushMessageReceiver.businessType = -1;
+                JpushMessageReceiver.type = -1;
             }
         } catch (Exception e) {
             e.printStackTrace();

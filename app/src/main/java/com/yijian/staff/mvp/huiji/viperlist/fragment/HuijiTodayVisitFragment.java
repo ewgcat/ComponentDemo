@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -56,11 +58,12 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
     SmartRefreshLayout refreshLayout;
     private RecyclerView rv_vip_all;
     private EmptyView empty_view;
-
+    @BindView(R.id.tv_total_num)
+    TextView tv_total_num;
     private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
-    private int pages;
+    private int total;
     private HuijiViperFilterBean huijiViperFilterBean;
 
 
@@ -153,7 +156,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 refreshLayout.finishRefresh(2000, true);
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+                total = JsonUtil.getInt(result, "total");
+                tv_total_num.setText("今日来访总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
                 try {
@@ -230,7 +234,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+
 
 
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:gravity="center_vertical"
-                android:text="详细信息"
+                android:text="更多信息"
                 android:textColor="@color/blue"
                 android:textSize="14sp"
         />

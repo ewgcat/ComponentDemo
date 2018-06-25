@@ -114,7 +114,7 @@ public class FaceInfoPanel2 extends PopupWindow {
         try {
             tv_detail_kayouxiaoqi.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
             if (("无").equals(faceDetail.getBEntranceRecord()) || TextUtils.isEmpty(faceDetail.getBEntranceRecord())) {
-                tv_detail_biuld_time.setText("未知");
+                tv_detail_biuld_time.setText("无");
             } else {
 //                tv_detail_biuld_time.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getBEntranceRecord())));
                 tv_detail_biuld_time.setText(faceDetail.getBEntranceRecord());
@@ -126,7 +126,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         String coachName = faceDetail.getCoachName();
         if (TextUtils.isEmpty(coachName)){
-            tv_detail_coach.setText("未知");
+            tv_detail_coach.setText("无");
         }else {
             tv_detail_coach.setText(coachName);
         }
@@ -135,7 +135,7 @@ public class FaceInfoPanel2 extends PopupWindow {
         String courseName = faceDetail.getCourseName();
         int courseNum = faceDetail.getCourseNum();
         if (TextUtils.isEmpty(courseName)||courseNum==0){
-            tv_detail_progress.setText("未知");
+            tv_detail_progress.setText("无");
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
         }
@@ -212,7 +212,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 String courseName = faceDetail.getCourseName();
                 int courseNum = faceDetail.getCourseNum();
                 if (TextUtils.isEmpty(courseName)||courseNum==0){
-                    tv_courseNameNum.setText("未知");
+                    tv_courseNameNum.setText("无");
                 }else {
                     tv_courseNameNum.setText(courseName + "第" + courseNum + "节");
                 }

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.edit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,11 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.huiji.detail.SelectAdressActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
@@ -61,6 +62,16 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     TextView tv_hasChildren;
     @BindView(R.id.et_address)
     EditText et_address;
+    @BindView(R.id.et_wx)
+    EditText et_wx;
+    @BindView(R.id.et_email)
+    EditText et_email;
+    @BindView(R.id.tv_height)
+    TextView tv_height;
+    @BindView(R.id.tv_weight)
+    TextView tv_weight;
+
+
 
     com.alibaba.fastjson.JSONObject detailJsonObj = new com.alibaba.fastjson.JSONObject();
     VipDetailBean.DetailBean detailBean;
@@ -127,6 +138,9 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.right_tv: //保存
                 submitData();
+
+//                startActivity(new Intent(this, SelectAdressActivity.class));
+
                 break;
             case R.id.rl_source: //用户渠道
                 manualPickedView(resuorceList, "易健平台", tv_source);

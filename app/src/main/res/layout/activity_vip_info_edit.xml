@@ -30,14 +30,177 @@
                     android:background="@drawable/white_bg"
                     android:orientation="vertical">
 
+
+                <RelativeLayout
+                    android:id="@+id/rl_wx"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="微信号:"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+
+                    <EditText
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="5dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:text="未录入"
+                        android:textColor="#333333"
+                        android:textSize="14sp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/gray"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="邮箱:"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+
+                    <EditText
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:text="未录入"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:background="@color/white"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/gray"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="身高(cm):"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:text="未录入"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/gray"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="体重(kg):"
+                        android:textColor="#999999"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:text="未录入"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:drawableRight="@mipmap/lg_xiala"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/gray"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
                 <RelativeLayout
                         android:id="@+id/rl_source"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:paddingLeft="22dp"
-                        android:paddingRight="22dp"
-
-                >
+                        android:paddingRight="22dp">
 
                     <TextView
                             android:layout_centerVertical="true"

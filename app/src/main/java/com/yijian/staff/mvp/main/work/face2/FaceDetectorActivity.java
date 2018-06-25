@@ -250,6 +250,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
         btn_start_face.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_start_face.setEnabled(false);
                 if (faces != null && faces.length > 0) {
 
                     mCamera.takePicture(null, null, new Camera.PictureCallback() {
@@ -305,6 +306,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
                 } else {
                     Toast.makeText(FaceDetectorActivity.this, "没有搜索到可识别的人脸", Toast.LENGTH_SHORT).show();
+                    btn_start_face.setEnabled(true);
                 }
 
             }
@@ -460,6 +462,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                         Log.e("Test", "请求结果....识别失败");
                         Message msg = mHandler.obtainMessage();
                         msg.what = USER_TEST_FACE_FAIL;
+                        msg.arg1 = code;
                         mHandler.sendMessage(msg);
                     }
                 } catch (JSONException e) {
@@ -520,7 +523,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
     private final int USER_VERIFICATION_USER_FAIL = 0;//验证失败
     private final int USER_TEST_FACE_NO = 1;//没有检测到人脸
-    private final int USER_TEST_FACE_FAIL = 2;//识别失败
+    private final int USER_TEST_FACE_FAIL = 2;//识别失败 (如果调用搜索 code 返回101，session过期)
     private final int USER_TEST_FACE_EXCEPTION = 3;//识别异常
     private final int USER_TEST_FACE_LIBRARY_NO = 6;//返回的数据里面的相似度都小于0.8
     private final int USER_GET_VIP_INFO_NO = 4;//没有获取到对应会员数据
@@ -534,27 +537,33 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             super.handleMessage(msg);
             switch (msg.what) {
                 case USER_VERIFICATION_USER_FAIL:
-//
                     Toast.makeText(FaceDetectorActivity.this, "用户验证失败", Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 case USER_TEST_FACE_NO:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "没有检测到人脸", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
                     break;
                 case USER_TEST_FACE_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
-
+                    int code = msg.arg1;
+                    if(code == 101){ //session过期,重新刷新session
+                        loginData();
+                    }
                     break;
                 case USER_TEST_FACE_EXCEPTION:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "识别异常", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
                     break;
                 case USER_TEST_FACE_LIBRARY_NO:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸库没找到相应的人员", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
@@ -566,11 +575,13 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     clearFaceRect(true);
                     break;
                 case USER_GET_VIP_INFO_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "获取到对应会员数据失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
                     break;
                 case USER_GET_FACE_SEARCH_FAIL:
+                    iv_test.setImageBitmap(null);
                     Toast.makeText(FaceDetectorActivity.this, "人脸服务器连接失败", Toast.LENGTH_SHORT).show();
                     btn_start_face.setEnabled(true);
                     clearFaceRect(true);
@@ -581,7 +592,6 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
                     break;
 
             }
-            iv_test.setImageBitmap(null);
             bitmap2.recycle();
             resizeBmp.recycle();
             LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);

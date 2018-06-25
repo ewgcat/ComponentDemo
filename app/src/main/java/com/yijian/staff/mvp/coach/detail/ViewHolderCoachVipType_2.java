@@ -27,6 +27,19 @@ public class ViewHolderCoachVipType_2 extends ViewHolderCoachVipper {
     TextView tvTianjiaRenName;
     @BindView(R.id.rv_card)
     RecyclerView rv_card;
+    @BindView(R.id.tv_card_totalamount)
+    TextView tv_card_totalamount;
+    @BindView(R.id.tv_card_classamount)
+    TextView tv_card_classamount;
+    @BindView(R.id.tv_card_classnum)
+    TextView tv_card_classnum;
+    @BindView(R.id.tv_card_totalcost)
+    TextView tv_card_totalcost;
+    @BindView(R.id.tv_card_consumenum)
+    TextView tv_card_consumenum;
+    @BindView(R.id.tv_card_remaindernum)
+    TextView tv_card_remaindernum;
+
 
     public ViewHolderCoachVipType_2(View itemView) {
         super(itemView);

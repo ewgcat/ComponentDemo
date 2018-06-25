@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.huiji.huifang.tianxieresult;
 
-import com.bigkoo.pickerview.model.IPickerViewData;
+import com.contrarywind.interfaces.IPickerViewData;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;

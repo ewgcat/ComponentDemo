@@ -10,8 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -76,7 +77,7 @@ public class InvateIndexActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         tvFuyueTime.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
         //提交结果
-        timePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        timePickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View view) {
                 String result = new SimpleDateFormat("yyyy-MM-dd").format(date);

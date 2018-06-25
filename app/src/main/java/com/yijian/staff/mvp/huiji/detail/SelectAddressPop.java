@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.util.DensityUtil;
@@ -55,7 +55,18 @@ public class SelectAddressPop extends PopupWindow {
         this.setAnimationStyle(R.style.commen_pop_animation);
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         this.setBackgroundDrawable(dw);
+        mMenuView.findViewById(R.id.tv_nav).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        mMenuView.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         rel_address = mMenuView.findViewById(R.id.rel_address);
         mHandler.sendEmptyMessage(MSG_LOAD_DATA);
 
@@ -168,7 +179,7 @@ public class SelectAddressPop extends PopupWindow {
     }
 
     public void showPickerView(){
-        OptionsPickerView pvNoLinkOptions = new  OptionsPickerView.Builder(context, new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
                 //返回的分别是三个级别的选中位置
@@ -177,6 +188,7 @@ public class SelectAddressPop extends PopupWindow {
         })
                 .setDecorView(rel_address)
                 .setBackgroundId(Color.WHITE)
+                .setOutSideCancelable(false)
                 .build();
         pvNoLinkOptions.setPicker(options1Items, options2Items, options3Items);//添加数据源
 //        rel_address.addView(pvNoLinkOptions.rootView);

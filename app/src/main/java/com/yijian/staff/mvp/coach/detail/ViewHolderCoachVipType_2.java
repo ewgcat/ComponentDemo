@@ -54,14 +54,12 @@ public class ViewHolderCoachVipType_2 extends ViewHolderCoachVipper {
 
     @Override
     public void bindView(VipDetailBean vipDetailBean) {
-
         rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
-
     }
 
 }

@@ -15,7 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
@@ -166,7 +168,7 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
 
     private void showPickerView(int type, ChildOptBean childObjBean, int childPosition, int parentPosition) {
 
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String str = "";
@@ -288,7 +290,7 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
 
 
     private void manualPickedView(ArrayList<String> opts, String defaultValue, TextView name) {
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 name.setText(opts.get(options1));

@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -64,7 +66,7 @@ public class CourseInterActivity extends AppCompatActivity {
         timeList.add("20");
         timeList.add("30");
 
-        optionsPickerView = new OptionsPickerView.Builder(CourseInterActivity.this, new OptionsPickerView.OnOptionsSelectListener() {
+        optionsPickerView = new OptionsPickerBuilder(CourseInterActivity.this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tv_internal.setText(timeList.get(options1));

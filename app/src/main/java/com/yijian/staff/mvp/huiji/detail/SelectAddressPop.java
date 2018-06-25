@@ -43,14 +43,13 @@ public class SelectAddressPop extends PopupWindow {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mMenuView = inflater.inflate(R.layout.activity_select_adress, null);
-        this.setContentView(mMenuView);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         LinearLayout container = mMenuView.findViewById(R.id.container);
-        LinearLayout.LayoutParams containerLP = (LinearLayout.LayoutParams) container.getLayoutParams();
-        containerLP.height = DensityUtil.getScreenHeight(context)-DensityUtil.px2dip(context,60);
+        RelativeLayout.LayoutParams containerLP = (RelativeLayout.LayoutParams) container.getLayoutParams();
+        containerLP.height = DensityUtil.getScreenHeight(context)-DensityUtil.dip2px(context,60);
         container.setLayoutParams(containerLP);
-
+        this.setContentView(mMenuView);
         this.setFocusable(true);
         this.setOutsideTouchable(true);
         this.setAnimationStyle(R.style.commen_pop_animation);

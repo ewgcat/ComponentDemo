@@ -44,6 +44,7 @@ public class FaceInfoPanel2 extends PopupWindow {
     private TextView tv_detail_biuld_time; //上一次健身的时间
     private TextView tv_detail_has_child; //有无小孩
     private TextView tv_detail_build_num; //健身次数
+    private TextView tv_detail_expe_num; //体验课次数
     private RelativeLayout rel_coach; //教练
     private RelativeLayout rel_course_progress; //课程进度
     private RelativeLayout rel_record_build_time; //上次健身时间
@@ -97,6 +98,7 @@ public class FaceInfoPanel2 extends PopupWindow {
         tv_detail_biuld_time = mMenuView.findViewById(R.id.tv_detail_biuld_time);
         tv_detail_has_child = mMenuView.findViewById(R.id.tv_detail_has_child);
         tv_detail_build_num = mMenuView.findViewById(R.id.tv_detail_build_num);
+        tv_detail_expe_num = mMenuView.findViewById(R.id.tv_detail_expe_num);
         rel_coach = mMenuView.findViewById(R.id.rel_coach);
         rel_course_progress = mMenuView.findViewById(R.id.rel_course_progress);
         rel_record_build_time = mMenuView.findViewById(R.id.rel_record_build_time);

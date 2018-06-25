@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.huiji.edit;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,7 +12,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.SelectAdressActivity;
+import com.yijian.staff.mvp.huiji.detail.SelectAddressPop;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
@@ -137,9 +136,12 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
-                submitData();
+//                submitData();
 
 //                startActivity(new Intent(this, SelectAdressActivity.class));
+
+                SelectAddressPop selectAdressPop = new SelectAddressPop(this);
+                selectAdressPop.showAsDropDown(getWindow().getDecorView());
 
                 break;
             case R.id.rl_source: //用户渠道

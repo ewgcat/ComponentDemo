@@ -9,13 +9,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.huiji.detail.picker.GetJsonDataUtil;
+import com.yijian.staff.mvp.huiji.detail.picker.JsonBean;
+import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerBuilder;
+import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerView;
 import com.yijian.staff.util.DensityUtil;
 
 import org.json.JSONArray;
@@ -36,10 +42,15 @@ public class SelectAddressPop extends PopupWindow {
     private static final int MSG_LOAD_FAILED = 0x0003;
 
     private boolean isLoaded = false;
+    private OptionsPickerView pvNoLinkOptions;
+    private EditText et_detail;
 
-    public SelectAddressPop(Context context) {
+    private TextView tv_address;
+
+    public SelectAddressPop(Context context,TextView tv_address) {
         super(context);
         this.context = context;
+        this.tv_address = tv_address;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mMenuView = inflater.inflate(R.layout.activity_select_adress, null);
@@ -64,10 +75,11 @@ public class SelectAddressPop extends PopupWindow {
         mMenuView.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                pvNoLinkOptions.returnData();
             }
         });
         rel_address = mMenuView.findViewById(R.id.rel_address);
+        et_detail = mMenuView.findViewById(R.id.et_detail);
         mHandler.sendEmptyMessage(MSG_LOAD_DATA);
 
     }
@@ -179,16 +191,24 @@ public class SelectAddressPop extends PopupWindow {
     }
 
     public void showPickerView(){
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+        pvNoLinkOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
                 //返回的分别是三个级别的选中位置
-                Log.e("Test","op1==="+options1);
+                String tx = options1Items.get(options1).getPickerViewText() +
+                        options2Items.get(options1).get(option2) +
+                        options3Items.get(options1).get(option2).get(options3);
+                String detail = et_detail.getText().toString();
+                Log.e("Test","address==="+tx+"  detail==="+detail);
+                tv_address.setText(tx + detail);
+                dismiss();
             }
         })
                 .setDecorView(rel_address)
                 .setBackgroundId(Color.WHITE)
                 .setOutSideCancelable(false)
+                .isRestoreItem(true)
+                .setSelectOptions(2, 2, 3)  //设置默认选中项
                 .build();
         pvNoLinkOptions.setPicker(options1Items, options2Items, options3Items);//添加数据源
 //        rel_address.addView(pvNoLinkOptions.rootView);

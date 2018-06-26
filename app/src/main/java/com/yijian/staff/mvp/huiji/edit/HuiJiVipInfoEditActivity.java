@@ -61,8 +61,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     TextView tv_marriageStatus;
     @BindView(R.id.tv_hasChildren)
     TextView tv_hasChildren;
-    @BindView(R.id.et_address)
-    EditText et_address;
+    @BindView(R.id.tv_address)
+    TextView tv_address;
     @BindView(R.id.et_wx)
     EditText et_wx;
     @BindView(R.id.et_email)
@@ -134,17 +134,11 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,
             R.id.rl_yearIncome, R.id.rl_nationality, R.id.rl_nation, R.id.rl_marriageStatus,
-            R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal})
+            R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal,R.id.tv_address})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
-//                submitData();
-
-//                startActivity(new Intent(this, SelectAdressActivity.class));
-
-                SelectAddressPop selectAdressPop = new SelectAddressPop(this);
-                selectAdressPop.showAsDropDown(getWindow().getDecorView());
-
+                submitData();
                 break;
             case R.id.rl_source: //用户渠道
                 manualPickedView(resuorceList, "易健平台", tv_source);
@@ -179,6 +173,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             case R.id.rl_fitnessGoal:  //健身目的
                 manualPickedView(bodybuildingList, "", tv_fitnessGoal);
                 break;
+                case R.id.tv_address:
+                    SelectAddressPop selectAdressPop = new SelectAddressPop(this,tv_address);
+                    selectAdressPop.showAsDropDown(getWindow().getDecorView());
+                    break;
         }
     }
 
@@ -188,7 +186,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      */
     private void submitData() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("address", et_address.getText().toString());
+        paramMap.put("address", tv_address.getText().toString());
         String o = tv_carPrice.getText().toString();
         if (!TextUtils.isEmpty(o)) {
             paramMap.put("carPrice", o);
@@ -291,7 +289,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_occupation.setText(strEmpty(detailBean.getPosition()));
         tv_marriageStatus.setText(strEmpty(detailBean.getMarriageStatus()));
         tv_hasChildren.setText(strEmpty(detailBean.getChildrenStatus()));
-        et_address.setText(strEmpty(detailBean.getAddress()));
+        tv_address.setText(strEmpty(detailBean.getAddress()));
         downSourceFromService();
     }
 

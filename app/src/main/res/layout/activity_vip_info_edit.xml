@@ -726,8 +726,8 @@
                             android:textColor="#999999"
                             android:textSize="14sp"/>
 
-                    <EditText
-                            android:id="@+id/et_address"
+                    <TextView
+                            android:id="@+id/tv_address"
                             android:layout_width="134dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"

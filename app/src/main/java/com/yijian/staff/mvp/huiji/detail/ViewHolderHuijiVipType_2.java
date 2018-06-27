@@ -19,28 +19,18 @@ import butterknife.BindView;
  */
 
 public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
-    @BindView(R.id.tv_tuijian_ren)
-    TextView tvTuijianRen;
-    @BindView(R.id.tv_tuijian_ren_phone)
-    TextView tvTuijianRenPhone;
-    @BindView(R.id.tv_huoqu_qudao)
-    TextView tvHuoquQudao;
 
-    @BindView(R.id.tv_tianjia_ren_name)
+    TextView tvTuijianRen;
+    TextView tvTuijianRenPhone;
+    TextView tvHuoquQudao;
     TextView tvTianjiaRenName;
-    @BindView(R.id.rv_card)
     RecyclerView rv_card;
-    @BindView(R.id.tv_card_totalamount)
-    TextView tv_card_totalamount;
-    @BindView(R.id.tv_card_classamount)
+
     TextView tv_card_classamount;
-    @BindView(R.id.tv_card_classnum)
     TextView tv_card_classnum;
-    @BindView(R.id.tv_card_totalcost)
     TextView tv_card_totalcost;
-    @BindView(R.id.tv_card_consumenum)
     TextView tv_card_consumenum;
-    @BindView(R.id.tv_card_remaindernum)
+    TextView tv_card_remaindermoney;
     TextView tv_card_remaindernum;
 
     public ViewHolderHuijiVipType_2(View itemView) {
@@ -52,6 +42,13 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
         tvTianjiaRenName = itemView.findViewById(R.id.tv_tianjia_ren_name);
         rv_card.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
         rv_card.setNestedScrollingEnabled(false);
+
+        tv_card_classamount = itemView.findViewById(R.id.tv_card_classamount);
+        tv_card_classnum = itemView.findViewById(R.id.tv_card_classnum);
+        tv_card_totalcost = itemView.findViewById(R.id.tv_card_totalcost);
+        tv_card_consumenum = itemView.findViewById(R.id.tv_card_consumenum);
+        tv_card_remaindermoney = itemView.findViewById(R.id.tv_card_remaindermoney);
+        tv_card_remaindernum = itemView.findViewById(R.id.tv_card_remaindernum);
     }
 
     @Override
@@ -63,6 +60,16 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
+
+        VipDetailBean.PrivateCourseInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseInfo();
+        VipDetailBean.ConsumeInfoBean consumeInfoBean = vipDetailBean.getConsumeInfo();
+        tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+""));
+        tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+""));
+        tv_card_totalcost.setText(judgeNull(consumeInfoBean.getConsumeAmount()+""));
+        tv_card_consumenum.setText(judgeNull(privateCourseInfoBean.getCourseConsumeNum()+""));
+        tv_card_remaindermoney.setText(judgeNull(consumeInfoBean.getCardSurplusAmount()+""));
+        tv_card_remaindernum.setText(judgeNull(privateCourseInfoBean.getCourseSurplusNum()+""));
+
 
     }
 }

@@ -61,13 +61,12 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
 
-        VipDetailBean.PrivateCourseInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseInfo();
-        VipDetailBean.ConsumeInfoBean consumeInfoBean = vipDetailBean.getConsumeInfo();
+        VipDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseAndConsumeInfo();
         tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+""));
         tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+""));
-        tv_card_totalcost.setText(judgeNull(consumeInfoBean.getConsumeAmount()+""));
+        tv_card_totalcost.setText(judgeNull(privateCourseInfoBean.getConsumeAmount()+""));
         tv_card_consumenum.setText(judgeNull(privateCourseInfoBean.getCourseConsumeNum()+""));
-        tv_card_remaindermoney.setText(judgeNull(consumeInfoBean.getCardSurplusAmount()+""));
+        tv_card_remaindermoney.setText(judgeNull(privateCourseInfoBean.getCardSurplusAmount()+""));
         tv_card_remaindernum.setText(judgeNull(privateCourseInfoBean.getCourseSurplusNum()+""));
 
 

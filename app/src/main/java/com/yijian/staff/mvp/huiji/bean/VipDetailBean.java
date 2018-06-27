@@ -60,8 +60,7 @@ public class VipDetailBean implements Serializable {
     private String totalConsumption;
     private long recentlyFitTime;
     private CustomerServiceInfoBean customerServiceInfo;
-    private PrivateCourseInfoBean privateCourseInfo;
-    private ConsumeInfoBean consumeInfo;
+    private PrivateCourseAndConsumeInfoBean privateCourseAndConsumeInfo;
     private DetailBean detail;
     private List<String> contractIds;
     private List<CardprodsBean> cardprods;
@@ -242,20 +241,12 @@ public class VipDetailBean implements Serializable {
         this.customerServiceInfo = customerServiceInfo;
     }
 
-    public PrivateCourseInfoBean getPrivateCourseInfo() {
-        return privateCourseInfo;
+    public PrivateCourseAndConsumeInfoBean getPrivateCourseAndConsumeInfo() {
+        return privateCourseAndConsumeInfo;
     }
 
-    public void setPrivateCourseInfo(PrivateCourseInfoBean privateCourseInfo) {
-        this.privateCourseInfo = privateCourseInfo;
-    }
-
-    public ConsumeInfoBean getConsumeInfo() {
-        return consumeInfo;
-    }
-
-    public void setConsumeInfo(ConsumeInfoBean consumeInfo) {
-        this.consumeInfo = consumeInfo;
+    public void setPrivateCourseAndConsumeInfo(PrivateCourseAndConsumeInfoBean privateCourseAndConsumeInfo) {
+        this.privateCourseAndConsumeInfo = privateCourseAndConsumeInfo;
     }
 
     public DetailBean getDetail() {
@@ -283,8 +274,12 @@ public class VipDetailBean implements Serializable {
     }
 
 
-    public static class ConsumeInfoBean implements Serializable {
+    public static class PrivateCourseAndConsumeInfoBean implements Serializable {
 
+        private int courseAmount; //课程总金额
+        private int courseConsumeNum; //课程消耗总节数
+        private int courseNum; //课程总节数
+        private int courseSurplusNum; //课程剩余总节数
         private int cardSurplusAmount; //会员卡剩余金额
         private int consumeAmount; //消耗总金额
 
@@ -303,14 +298,6 @@ public class VipDetailBean implements Serializable {
         public void setConsumeAmount(int consumeAmount) {
             this.consumeAmount = consumeAmount;
         }
-    }
-
-    public static class PrivateCourseInfoBean implements Serializable {
-
-        private int courseAmount; //课程总金额
-        private int courseConsumeNum; //课程消耗总节数
-        private int courseNum; //课程总节数
-        private int courseSurplusNum; //课程剩余总节数
 
         public int getCourseAmount() {
             return courseAmount;

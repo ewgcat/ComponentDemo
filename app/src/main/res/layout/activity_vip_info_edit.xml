@@ -815,7 +815,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:gravity="center_vertical"
-                        android:text="家庭住址:"
+                        android:text="家庭地址:"
                         android:textColor="#999999"
                         android:textSize="14sp" />
 

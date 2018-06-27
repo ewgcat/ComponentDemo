@@ -73,7 +73,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     private void initData() {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", id);
+        map.put("id", id);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override

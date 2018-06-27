@@ -80,7 +80,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     private void initData() {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+        map.put("id", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override

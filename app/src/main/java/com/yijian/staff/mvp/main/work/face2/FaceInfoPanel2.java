@@ -144,6 +144,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
         tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()) + "次");
+        tv_detail_expe_num.setText(Integer.valueOf(faceDetail.getExperienceCourseCount()) + "次");
 //        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
 //        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
 //        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);

@@ -80,33 +80,6 @@
             android:layout_height="1dp"
             android:background="@color/gray"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingTop="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical"
-            android:text="卡总金额:"
-            android:textColor="@color/text_black1"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:id="@+id/tv_card_totalamount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:textColor="@color/blue"
-            android:text="2000元"
-            android:textSize="14sp"/>
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -120,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:text="课程金额:"
+            android:text="课程总金额:"
             android:textColor="@color/text_black1"
             android:textSize="14sp"/>
 
@@ -148,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:text="课程节数:"
+            android:text="课程总节数:"
             android:textColor="@color/text_black1"
             android:textSize="14sp"/>
 
@@ -233,6 +206,34 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
+            android:text="剩余金额:"
+            android:textColor="@color/text_black1"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_card_remaindermoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/blue"
+            android:text="15节"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:text="剩余节数:"
             android:textColor="@color/text_black1"
             android:textSize="14sp"/>
@@ -248,6 +249,7 @@
             android:textSize="14sp"/>
 
     </RelativeLayout>
+
 
     <RelativeLayout
             android:layout_width="match_parent"

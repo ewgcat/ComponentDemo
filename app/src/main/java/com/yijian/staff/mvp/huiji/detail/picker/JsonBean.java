@@ -1,6 +1,7 @@
-package com.yijian.staff.mvp.huiji.detail;
+package com.yijian.staff.mvp.huiji.detail.picker;
 
-import com.bigkoo.pickerview.model.IPickerViewData;
+
+import com.contrarywind.interfaces.IPickerViewData;
 
 import java.util.List;
 

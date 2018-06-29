@@ -9,7 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.step1.ExperienceClassProcess1Bean;
@@ -78,7 +81,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
         });
 
         //提交结果
-        pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        pickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View view) {
                 String result = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);

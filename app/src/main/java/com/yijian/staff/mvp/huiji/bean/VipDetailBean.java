@@ -60,6 +60,7 @@ public class VipDetailBean implements Serializable {
     private String totalConsumption;
     private long recentlyFitTime;
     private CustomerServiceInfoBean customerServiceInfo;
+    private PrivateCourseAndConsumeInfoBean privateCourseAndConsumeInfo;
     private DetailBean detail;
     private List<String> contractIds;
     private List<CardprodsBean> cardprods;
@@ -240,6 +241,14 @@ public class VipDetailBean implements Serializable {
         this.customerServiceInfo = customerServiceInfo;
     }
 
+    public PrivateCourseAndConsumeInfoBean getPrivateCourseAndConsumeInfo() {
+        return privateCourseAndConsumeInfo;
+    }
+
+    public void setPrivateCourseAndConsumeInfo(PrivateCourseAndConsumeInfoBean privateCourseAndConsumeInfo) {
+        this.privateCourseAndConsumeInfo = privateCourseAndConsumeInfo;
+    }
+
     public DetailBean getDetail() {
         return detail;
     }
@@ -262,6 +271,65 @@ public class VipDetailBean implements Serializable {
 
     public void setCardprods(List<CardprodsBean> cardprods) {
         this.cardprods = cardprods;
+    }
+
+
+    public static class PrivateCourseAndConsumeInfoBean implements Serializable {
+
+        private int courseAmount; //课程总金额
+        private int courseConsumeNum; //课程消耗总节数
+        private int courseNum; //课程总节数
+        private int courseSurplusNum; //课程剩余总节数
+        private int cardSurplusAmount; //会员卡剩余金额
+        private int consumeAmount; //消耗总金额
+
+        public int getCardSurplusAmount() {
+            return cardSurplusAmount;
+        }
+
+        public void setCardSurplusAmount(int cardSurplusAmount) {
+            this.cardSurplusAmount = cardSurplusAmount;
+        }
+
+        public int getConsumeAmount() {
+            return consumeAmount;
+        }
+
+        public void setConsumeAmount(int consumeAmount) {
+            this.consumeAmount = consumeAmount;
+        }
+
+        public int getCourseAmount() {
+            return courseAmount;
+        }
+
+        public void setCourseAmount(int courseAmount) {
+            this.courseAmount = courseAmount;
+        }
+
+        public int getCourseConsumeNum() {
+            return courseConsumeNum;
+        }
+
+        public void setCourseConsumeNum(int courseConsumeNum) {
+            this.courseConsumeNum = courseConsumeNum;
+        }
+
+        public int getCourseNum() {
+            return courseNum;
+        }
+
+        public void setCourseNum(int courseNum) {
+            this.courseNum = courseNum;
+        }
+
+        public int getCourseSurplusNum() {
+            return courseSurplusNum;
+        }
+
+        public void setCourseSurplusNum(int courseSurplusNum) {
+            this.courseSurplusNum = courseSurplusNum;
+        }
     }
 
     public static class CustomerServiceInfoBean implements Serializable {

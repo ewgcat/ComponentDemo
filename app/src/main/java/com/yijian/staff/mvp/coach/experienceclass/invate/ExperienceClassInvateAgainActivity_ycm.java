@@ -2,9 +2,7 @@ package com.yijian.staff.mvp.coach.experienceclass.invate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -13,8 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.TimePickerView;
-import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
@@ -26,7 +28,6 @@ import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -125,7 +126,7 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
         });
 
         //上课时间选择
-        pickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        pickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View view) {
                 String result = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
@@ -136,7 +137,7 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
 
         //课程时间选择
         List<String> times = Arrays.asList("60分钟", "120分钟", "180分钟");
-        pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tvTimeLength.setText(times.get(options1));

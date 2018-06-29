@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huiji.detail;
+package com.yijian.staff.mvp.huiji.detail.picker;
 
 import android.content.Context;
 import android.content.res.AssetManager;

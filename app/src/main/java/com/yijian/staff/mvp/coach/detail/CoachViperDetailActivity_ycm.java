@@ -92,7 +92,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         rlItem1.setOnClickListener(this);
         rlItem2.setOnClickListener(this);
 
-        if (vipType == 2) {
+        if (vipType == 2 || vipType == 1) {
             rlItem1.setVisibility(View.GONE);
             adapter = new AdapterCoachViper_2(this);
         } else {

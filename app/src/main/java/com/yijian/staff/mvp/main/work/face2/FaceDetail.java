@@ -26,6 +26,7 @@ public class FaceDetail {
     private String bEntranceRecord;
     private String birthDate;
     private int buildCount;
+    private int experienceCourseCount;
     private String cardName;
     private String cardTYpe;
     private String childrenNum;
@@ -165,5 +166,21 @@ public class FaceDetail {
 
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
+    }
+
+    public String getbEntranceRecord() {
+        return bEntranceRecord;
+    }
+
+    public void setbEntranceRecord(String bEntranceRecord) {
+        this.bEntranceRecord = bEntranceRecord;
+    }
+
+    public int getExperienceCourseCount() {
+        return experienceCourseCount;
+    }
+
+    public void setExperienceCourseCount(int experienceCourseCount) {
+        this.experienceCourseCount = experienceCourseCount;
     }
 }

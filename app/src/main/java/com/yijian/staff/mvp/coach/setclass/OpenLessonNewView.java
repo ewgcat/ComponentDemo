@@ -12,7 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.preparelessons.createlession.Observer;
 import com.yijian.staff.mvp.coach.setclass.bean.PrivateLessonRecordBean;
@@ -250,7 +252,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
      * @param tv_name
      */
     private void manualPickedView(List<String> opts, String defaultValue, TextView tv_name, String key) {
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(mContext, new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(mContext, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String value = opts.get(options1);

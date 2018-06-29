@@ -2,28 +2,22 @@ package com.yijian.staff.mvp.coach.experienceclass.step1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.experienceclass.step1.bean.InviterBean;
 import com.yijian.staff.mvp.coach.experienceclass.step2.ExperienceClassProcess2Activity;
-import com.yijian.staff.mvp.coach.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.coach.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.mvp.coach.experienceclass.template.template_system.bean.TemplateListBean;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.LastInputEditText;
 import com.yijian.staff.widget.NavigationBar2;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

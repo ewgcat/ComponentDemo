@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:gravity="center_vertical"
-                android:text="详细信息"
+                android:text="更多信息"
                 android:textColor="@color/blue"
                 android:textSize="14sp"
         />
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
-                android:text="身高:"
+                android:text="身高(cm):"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp"/>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
-                android:text="体重:"
+                android:text="体重(kg):"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp"/>
 

@@ -175,7 +175,7 @@ dependencies {
     })
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
     //选择时间，日期，多级联动
-    implementation 'com.contrarywind:Android-PickerView:3.2.6'
+    implementation 'com.contrarywind:Android-PickerView:4.1.4'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
     //没有使用特殊Header，可以不加这行

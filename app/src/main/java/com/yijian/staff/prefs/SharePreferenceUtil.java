@@ -18,6 +18,9 @@ public class SharePreferenceUtil {
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
     private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
+    private static String KEY_HAS_NEW_JIEDAI_PUSH="has_new_jiedai_push";
+    private static String KEY_HAS_NEW_YUE_KE_PUSH="has_new_yue_ke_push";
+    private static String KEY_HAS_NEW_BUSINESS_PUSH="has_new_business_push";
 
 
     public static void setShowEditIcon(boolean b) {
@@ -271,6 +274,33 @@ public class SharePreferenceUtil {
 
     public static String getUserName() {
         return getString("username", "");
+    }
+
+
+    public static boolean hasNewJiedaiPush() {
+        return getBoolean(KEY_HAS_NEW_JIEDAI_PUSH, false);
+    }
+
+    public static void setHasNewJiedaiPush(boolean b) {
+        setBoolean(KEY_HAS_NEW_JIEDAI_PUSH, b);
+    }
+
+
+    public static boolean hasNewYueKePush() {
+        return getBoolean(KEY_HAS_NEW_YUE_KE_PUSH, false);
+    }
+
+    public static void setHasNewYueKePush(boolean b) {
+        setBoolean(KEY_HAS_NEW_YUE_KE_PUSH, b);
+    }
+
+
+    public static boolean hasNewBusinessPush() {
+        return getBoolean(KEY_HAS_NEW_BUSINESS_PUSH, false);
+    }
+
+    public static void setHasNewBusinessPush(boolean b) {
+        setBoolean(KEY_HAS_NEW_BUSINESS_PUSH, b);
     }
 
 

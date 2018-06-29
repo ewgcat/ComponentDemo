@@ -26,7 +26,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Key = new Property(1, String.class, "key", false, "KEY");
-        public final static Property RoleId = new Property(2, String.class, "roleId", false, "ROLE_ID");
+        public final static Property UserId = new Property(2, String.class, "userId", false, "USER_ID");
     }
 
 
@@ -44,7 +44,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"SEARCH_KEY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"KEY\" TEXT," + // 1: key
-                "\"ROLE_ID\" TEXT);"); // 2: roleId
+                "\"USER_ID\" TEXT);"); // 2: userId
     }
 
     /** Drops the underlying database table. */
@@ -67,9 +67,9 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
             stmt.bindString(2, key);
         }
  
-        String roleId = entity.getRoleId();
-        if (roleId != null) {
-            stmt.bindString(3, roleId);
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(3, userId);
         }
     }
 
@@ -87,9 +87,9 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
             stmt.bindString(2, key);
         }
  
-        String roleId = entity.getRoleId();
-        if (roleId != null) {
-            stmt.bindString(3, roleId);
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(3, userId);
         }
     }
 
@@ -103,7 +103,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
         SearchKey entity = new SearchKey( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // key
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // roleId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // userId
         );
         return entity;
     }
@@ -112,7 +112,7 @@ public class SearchKeyDao extends AbstractDao<SearchKey, Long> {
     public void readEntity(Cursor cursor, SearchKey entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setKey(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setRoleId(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setUserId(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override

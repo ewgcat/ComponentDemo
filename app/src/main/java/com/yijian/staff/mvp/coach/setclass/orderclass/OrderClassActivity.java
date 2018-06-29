@@ -21,6 +21,7 @@ import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;
@@ -85,6 +86,8 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(currentDay);
         selectTab(0);
+        SharePreferenceUtil.setHasNewYueKePush(false);
+
     }
 
 

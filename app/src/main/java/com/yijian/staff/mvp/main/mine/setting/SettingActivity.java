@@ -99,7 +99,6 @@ public class SettingActivity extends MvcBaseActivity {
     @OnClick({R.id.tv_exit_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.tv_exit_login:
                 exitLogin();
                 break;
@@ -110,6 +109,8 @@ public class SettingActivity extends MvcBaseActivity {
         //发送退出登录请求
 
         DBManager.getInstance().clearUser();
+        DBManager.getInstance().clearRoleVoBean();
+        DBManager.getInstance().clearOthermodelVo();
         setResult(1234);
         finish();
     }

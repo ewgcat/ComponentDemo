@@ -15,42 +15,36 @@ public class SearchKey {
     @Id(autoincrement = true)
     private Long id;
     private String key;
-    private String roleId;
-
-    @Generated(hash = 2107353739)
-    public SearchKey(Long id, String key, String roleId) {
+    private String userId;
+    @Generated(hash = 1890037094)
+    public SearchKey(Long id, String key, String userId) {
         this.id = id;
         this.key = key;
-        this.roleId = roleId;
+        this.userId = userId;
     }
-
     @Generated(hash = 11165861)
     public SearchKey() {
     }
-
     public Long getId() {
         return this.id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getKey() {
         return this.key;
     }
-
     public void setKey(String key) {
         this.key = key;
     }
-
-    public String getRoleId() {
-        return this.roleId;
+    public String getUserId() {
+        return this.userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
+
 
 
 }

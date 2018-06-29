@@ -4,12 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.yijian.staff.db.bean.OthermodelVo;
+import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.greendao.gen.CoachHuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
 import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
+import com.yijian.staff.greendao.gen.OthermodelVoDao;
+import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
@@ -87,6 +91,44 @@ public class DBManager {
         userDao.deleteAll();
     }
 
+    //查询RoleVoBean信息
+    public RoleVoBean queryRoleVoBean() {
+        return mDaoSession.getRoleVoBeanDao().queryBuilder().build().unique();
+    }
+
+    //插入RoleVoBean信息
+    public void insertOrReplaceRoleVoBean(RoleVoBean roleVoBean) {
+        RoleVoBeanDao roleVoBeanDao = mDaoSession.getRoleVoBeanDao();
+        roleVoBeanDao.deleteAll();
+        roleVoBeanDao.insertOrReplace(roleVoBean);
+    }
+
+
+    public void clearRoleVoBean() {
+        RoleVoBeanDao roleVoBeanDao = mDaoSession.getRoleVoBeanDao();
+        roleVoBeanDao.deleteAll();
+    }
+
+
+    //查询OthermodelVo信息
+    public OthermodelVo queryOthermodelVo() {
+        return mDaoSession.getOthermodelVoDao().queryBuilder().build().unique();
+    }
+
+    //插入OthermodelVo信息
+    public void insertOrReplaceOthermodelVo(OthermodelVo othermodelVo) {
+        OthermodelVoDao othermodelVoDao = mDaoSession.getOthermodelVoDao();
+        othermodelVoDao.deleteAll();
+        othermodelVoDao.insertOrReplace(othermodelVo);
+    }
+
+
+    public void clearOthermodelVo() {
+        OthermodelVoDao othermodelVo = mDaoSession.getOthermodelVoDao();
+        othermodelVo.deleteAll();
+    }
+
+
     public void insertOrReplaceSearch(SearchKey searchKey) {
         String key = searchKey.getKey();
         if (TextUtils.isEmpty(key)) {
@@ -107,9 +149,9 @@ public class DBManager {
 
     public List<SearchKey> querySearchList() {
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
-        String roleId = SharePreferenceUtil.getUserRole() + "";
+        String userId = SharePreferenceUtil.getUserId() + "";
         List<SearchKey> list = searchKeyDao.queryBuilder()
-                .where(SearchKeyDao.Properties.RoleId.eq(roleId))
+                .where(SearchKeyDao.Properties.UserId.eq(userId))
                 .orderDesc(SearchKeyDao.Properties.Id)
                 .list();
         return list;

@@ -105,7 +105,7 @@ public class FaceInfoPanel2 extends PopupWindow {
     }
 
     private void updateUi(FaceDetail faceDetail) {
-        ImageLoader.setImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_detail_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_detail_header);
         tv_detail_name.setText(faceDetail.getMemberName());
         tv_detail_cardname.setText(faceDetail.getCardName());
         tv_detail_birthday.setText(faceDetail.getBirthDate());

@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.OthermodelVo;
+import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.user.forgetpassword.ForgetPasswordActivity;
@@ -24,6 +26,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.AndroidKeyBoardAssit;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
@@ -126,6 +129,13 @@ public class LoginActivity extends MvcBaseActivity {
                         SharePreferenceUtil.setUserId(user.getUserId());
                         SharePreferenceUtil.setUserRole(user.getRole());
                         DBManager.getInstance().insertOrReplaceUser(user);
+                        JSONObject roleVo = JsonUtil.getJsonObject(result, "RoleVo");
+                        DBManager.getInstance().insertOrReplaceRoleVoBean(new RoleVoBean(roleVo));
+                        JSONObject homePageModelVO = JsonUtil.getJsonObject(result, "homePageModelVO");
+                        JSONObject othermodelVo = JsonUtil.getJsonObject(homePageModelVO, "othermodelVo");
+                        DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
+
+
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);
                         finish();

@@ -10,12 +10,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.yijian.staff.jpush.bean.Messager;
+import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
+import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.GsonNullString;
 import com.yijian.staff.util.Logger;
 
@@ -58,35 +61,38 @@ public class JpushMessageReceiver extends BroadcastReceiver {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-            Logger.i(TAG, "接收到推送下来的自定义消息");
-            Vibrator vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
-            if (vibrator.hasVibrator()) {
-                long[] patter = {600, 200, 600, 200};
-                vibrator.vibrate(patter, -1);
-            }
-            try {
-                JSONObject jsonObject = new JSONObject(bundleString);
-                String data = jsonObject.getString("data");
-                JSONObject jsonObject1 = new JSONObject(data);
-                if (jsonObject1.has("type")){
-                    type = jsonObject1.getInt("type");
-                    Logger.i(TAG, "type="+type);
-                    boolean background = isBackground(context);
-                    if (type == 0 && !background) {// //属于接待消息&&属于前台
-                        ReceptionActivityTemp.toReceptionActivityTemp(context);
-                        JPushInterface.clearNotificationById(context, notifactionId);
-                    }
-                }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {//接收到推送下来的通知
 
             Logger.i(TAG, "接收到推送下来的通知");
+            try {
+                JSONObject jsonObject = new JSONObject(bundleString);
+                String data = jsonObject.getString("data");
+                JSONObject jsonObject1 = new JSONObject(data);
+                PushInfoBean pushInfoBean=new PushInfoBean();
+                if (jsonObject1.has("type")){
+                    int type = jsonObject1.getInt("type");
+                    if (type == 0) {// //属于接待消息
+                        SharePreferenceUtil.setHasNewJiedaiPush(true);
+                    }else   if (type == 1||type == 2){//约课取消约课
+                        SharePreferenceUtil.setHasNewYueKePush(true);
+                        Logger.i(TAG,"有排课信息推送");
+                    }else   if (type>2&&type<18){//业务消息
+                        SharePreferenceUtil.setHasNewBusinessPush(true);
+                    }
+                    pushInfoBean.setHasNewJiedaiPush(SharePreferenceUtil.hasNewJiedaiPush());
+                    pushInfoBean.setHasNewYueKePush(SharePreferenceUtil.hasNewYueKePush());
+                    pushInfoBean.setHasNewBusinessPush(SharePreferenceUtil.hasNewBusinessPush());
+                    RxBus.getDefault().post(pushInfoBean);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {//用户点击打开了通知
             Logger.i(TAG, "用户点击打开了通知");
@@ -98,12 +104,12 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                     int type = jsonObject1.getInt("type");
                     if (type == 0) {// //属于接待消息
                         ReceptionActivityTemp.toReceptionActivityTemp(context);
-                    }else   if (type == 1||type == 2){
+                    }else   if (type == 1||type == 2){//约课取消约课
                         String date= jsonObject1.getString("data");
                         Intent intent1 = new Intent(context, OrderClassActivity.class);
                         intent1.putExtra("date",date);
                         context.startActivity(intent1);
-                    }else   if (type>2&&type<18){
+                    }else   if (type>2&&type<18){//业务消息
                         Intent intent1 = new Intent(context, MainActivity.class);
                         intent1.putExtra("push_message",2);
                         context.startActivity(intent1);

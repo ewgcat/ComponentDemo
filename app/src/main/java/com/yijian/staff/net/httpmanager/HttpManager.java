@@ -115,8 +115,8 @@ public class HttpManager {
     //教练  意向会员列表
     public static String GET_COACH_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/intention/list";
 
-    //教练  潜在会员列表
-    public static String GET_COACH_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/potential/list";
+    //教练  潜在学员列表
+    public static String GET_COACH_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/potentialStudent/list";
 
     //首页搜索 教练
     public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
@@ -194,6 +194,9 @@ public class HttpManager {
 
     //工作台 首页图标
     public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
+
+    //工作台 首页图标
+    public static String GET_WORK_NEW_MENU_URL = BuildConfig.HOST + "homepage/new/data";
 
     //保存 图标位置
     public static String SAVE_MENU_CHANGE_URL = BuildConfig.HOST + "menu/common/item/save";
@@ -342,6 +345,12 @@ public class HttpManager {
 
     //获取所有id获取人员信息
     public static String GET_FACE_MENBERSHOWINFO = BuildConfig.HOST + "member/menberShowInfo";
+
+    //消除app模块小红点
+    public static String CLEAR_RED_POINT_URL = BuildConfig.HOST + "message/eliminateAppModuleFlag";
+
+    //获取app模块小红点
+    public static String QUERY_RED_POINT_URL = BuildConfig.HOST + "message/findAppModuleFlagByAlias";
 
 
     //公用方法
@@ -516,6 +525,20 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_INDEX_URL, headers);
+            execute(observable, observer);
+        }
+    }
+
+    // 首页图标
+    public static void getNewIndexMenuList(Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.getIndexMenuList(GET_WORK_NEW_MENU_URL, headers);
             execute(observable, observer);
         }
     }

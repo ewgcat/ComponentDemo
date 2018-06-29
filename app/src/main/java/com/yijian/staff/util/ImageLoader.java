@@ -74,7 +74,6 @@ public class ImageLoader {
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
-                .transform(new GlideCircleTransform())
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(context).load(path).apply(options).into(imageView);
     }

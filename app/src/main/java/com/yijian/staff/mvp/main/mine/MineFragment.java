@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
@@ -19,6 +20,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.OthermodelVo;
+import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
 import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
@@ -111,18 +114,20 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), ClubActivity.class));
                 break;
             case R.id.ll_my_zhengshu:
-                if (user.getRole() == 2 || user.getRole() == 4) {
-                    startActivity(new Intent(getContext(), MyQualificationActivity.class));
-                } else {
-                    ARouter.getInstance().build("/test/empty").navigation();
-
-                }
+                startActivity(new Intent(getContext(), MyQualificationActivity.class));
                 break;
             case R.id.ll_my_date:
-                if (user.getRole() == 2 || user.getRole() == 4) {
-                    startActivity(new Intent(getContext(), CalendarTableActivity.class));
+                OthermodelVo othermodelVo = DBManager.getInstance().queryOthermodelVo();
+                RoleVoBean roleVoBean = DBManager.getInstance().queryRoleVoBean();
+                if (othermodelVo.getSchedule()) {
+                    int classification = roleVoBean.getClassification();
+                    if (classification == 1) {
+                        startActivity(new Intent(getContext(), CalendarTableActivity.class));
+                    } else {
+                        Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    ARouter.getInstance().build("/test/empty").navigation();
+                    Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.ll_erweima:
@@ -131,13 +136,11 @@ public class MineFragment extends Fragment {
             case R.id.ll_edit_password:
                 startActivityForResult(new Intent(getContext(), EditPasswordActivity.class), 1234);
                 break;
-//            case R.id.ll_about_us:
-//                startActivity(new Intent(getContext(), AboutUsActivity.class));
-//                break;
             case R.id.ll_suggestion:
                 startActivity(new Intent(getContext(), AddAdviceActivity.class));
                 break;
         }
+
     }
 
     @Override

@@ -123,7 +123,7 @@ public class MessageFragment extends MvcBaseFragment {
     }
 
 
-    private void refresh() {
+    public void refresh() {
         businessMessageBeans.clear();
         pageNum = 1;
         pageSize = 10;

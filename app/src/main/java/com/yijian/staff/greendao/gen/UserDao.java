@@ -25,21 +25,22 @@ public class UserDao extends AbstractDao<User, Void> {
      */
     public static class Properties {
         public final static Property Age = new Property(0, int.class, "age", false, "AGE");
-        public final static Property Role = new Property(1, int.class, "role", false, "ROLE");
-        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
-        public final static Property Birthday = new Property(3, long.class, "birthday", false, "BIRTHDAY");
-        public final static Property UserId = new Property(4, String.class, "userId", false, "USER_ID");
-        public final static Property Sex = new Property(5, String.class, "sex", false, "SEX");
-        public final static Property HeadImg = new Property(6, String.class, "headImg", false, "HEAD_IMG");
+        public final static Property Birthday = new Property(1, Long.class, "birthday", false, "BIRTHDAY");
+        public final static Property Chief = new Property(2, boolean.class, "chief", false, "CHIEF");
+        public final static Property DepartmentId = new Property(3, String.class, "departmentId", false, "DEPARTMENT_ID");
+        public final static Property FaceRecognitionType = new Property(4, int.class, "faceRecognitionType", false, "FACE_RECOGNITION_TYPE");
+        public final static Property HeadImg = new Property(5, String.class, "headImg", false, "HEAD_IMG");
+        public final static Property MerchantId = new Property(6, String.class, "merchantId", false, "MERCHANT_ID");
         public final static Property Mobile = new Property(7, String.class, "mobile", false, "MOBILE");
-        public final static Property DepartmentId = new Property(8, String.class, "departmentId", false, "DEPARTMENT_ID");
-        public final static Property ShopId = new Property(9, String.class, "shopId", false, "SHOP_ID");
-        public final static Property MerchantId = new Property(10, String.class, "merchantId", false, "MERCHANT_ID");
-        public final static Property Token = new Property(11, String.class, "token", false, "TOKEN");
-        public final static Property TokenAge = new Property(12, String.class, "tokenAge", false, "TOKEN_AGE");
-        public final static Property Post = new Property(13, int.class, "post", false, "POST");
-        public final static Property PostName = new Property(14, String.class, "postName", false, "POST_NAME");
-        public final static Property Chief = new Property(15, boolean.class, "chief", false, "CHIEF");
+        public final static Property Name = new Property(8, String.class, "name", false, "NAME");
+        public final static Property Post = new Property(9, int.class, "post", false, "POST");
+        public final static Property PostName = new Property(10, String.class, "postName", false, "POST_NAME");
+        public final static Property Role = new Property(11, int.class, "role", false, "ROLE");
+        public final static Property Sex = new Property(12, String.class, "sex", false, "SEX");
+        public final static Property ShopId = new Property(13, String.class, "shopId", false, "SHOP_ID");
+        public final static Property Token = new Property(14, String.class, "token", false, "TOKEN");
+        public final static Property TokenAge = new Property(15, String.class, "tokenAge", false, "TOKEN_AGE");
+        public final static Property UserId = new Property(16, String.class, "userId", false, "USER_ID");
     }
 
 
@@ -56,21 +57,22 @@ public class UserDao extends AbstractDao<User, Void> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"AGE\" INTEGER NOT NULL ," + // 0: age
-                "\"ROLE\" INTEGER NOT NULL ," + // 1: role
-                "\"NAME\" TEXT," + // 2: name
-                "\"BIRTHDAY\" INTEGER NOT NULL ," + // 3: birthday
-                "\"USER_ID\" TEXT," + // 4: userId
-                "\"SEX\" TEXT," + // 5: sex
-                "\"HEAD_IMG\" TEXT," + // 6: headImg
+                "\"BIRTHDAY\" INTEGER," + // 1: birthday
+                "\"CHIEF\" INTEGER NOT NULL ," + // 2: chief
+                "\"DEPARTMENT_ID\" TEXT," + // 3: departmentId
+                "\"FACE_RECOGNITION_TYPE\" INTEGER NOT NULL ," + // 4: faceRecognitionType
+                "\"HEAD_IMG\" TEXT," + // 5: headImg
+                "\"MERCHANT_ID\" TEXT," + // 6: merchantId
                 "\"MOBILE\" TEXT," + // 7: mobile
-                "\"DEPARTMENT_ID\" TEXT," + // 8: departmentId
-                "\"SHOP_ID\" TEXT," + // 9: shopId
-                "\"MERCHANT_ID\" TEXT," + // 10: merchantId
-                "\"TOKEN\" TEXT," + // 11: token
-                "\"TOKEN_AGE\" TEXT," + // 12: tokenAge
-                "\"POST\" INTEGER NOT NULL ," + // 13: post
-                "\"POST_NAME\" TEXT," + // 14: postName
-                "\"CHIEF\" INTEGER NOT NULL );"); // 15: chief
+                "\"NAME\" TEXT," + // 8: name
+                "\"POST\" INTEGER NOT NULL ," + // 9: post
+                "\"POST_NAME\" TEXT," + // 10: postName
+                "\"ROLE\" INTEGER NOT NULL ," + // 11: role
+                "\"SEX\" TEXT," + // 12: sex
+                "\"SHOP_ID\" TEXT," + // 13: shopId
+                "\"TOKEN\" TEXT," + // 14: token
+                "\"TOKEN_AGE\" TEXT," + // 15: tokenAge
+                "\"USER_ID\" TEXT);"); // 16: userId
     }
 
     /** Drops the underlying database table. */
@@ -83,27 +85,27 @@ public class UserDao extends AbstractDao<User, Void> {
     protected final void bindValues(DatabaseStatement stmt, User entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getAge());
-        stmt.bindLong(2, entity.getRole());
  
-        String name = entity.getName();
-        if (name != null) {
-            stmt.bindString(3, name);
+        Long birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindLong(2, birthday);
         }
-        stmt.bindLong(4, entity.getBirthday());
+        stmt.bindLong(3, entity.getChief() ? 1L: 0L);
  
-        String userId = entity.getUserId();
-        if (userId != null) {
-            stmt.bindString(5, userId);
+        String departmentId = entity.getDepartmentId();
+        if (departmentId != null) {
+            stmt.bindString(4, departmentId);
         }
- 
-        String sex = entity.getSex();
-        if (sex != null) {
-            stmt.bindString(6, sex);
-        }
+        stmt.bindLong(5, entity.getFaceRecognitionType());
  
         String headImg = entity.getHeadImg();
         if (headImg != null) {
-            stmt.bindString(7, headImg);
+            stmt.bindString(6, headImg);
+        }
+ 
+        String merchantId = entity.getMerchantId();
+        if (merchantId != null) {
+            stmt.bindString(7, merchantId);
         }
  
         String mobile = entity.getMobile();
@@ -111,64 +113,69 @@ public class UserDao extends AbstractDao<User, Void> {
             stmt.bindString(8, mobile);
         }
  
-        String departmentId = entity.getDepartmentId();
-        if (departmentId != null) {
-            stmt.bindString(9, departmentId);
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(9, name);
+        }
+        stmt.bindLong(10, entity.getPost());
+ 
+        String postName = entity.getPostName();
+        if (postName != null) {
+            stmt.bindString(11, postName);
+        }
+        stmt.bindLong(12, entity.getRole());
+ 
+        String sex = entity.getSex();
+        if (sex != null) {
+            stmt.bindString(13, sex);
         }
  
         String shopId = entity.getShopId();
         if (shopId != null) {
-            stmt.bindString(10, shopId);
-        }
- 
-        String merchantId = entity.getMerchantId();
-        if (merchantId != null) {
-            stmt.bindString(11, merchantId);
+            stmt.bindString(14, shopId);
         }
  
         String token = entity.getToken();
         if (token != null) {
-            stmt.bindString(12, token);
+            stmt.bindString(15, token);
         }
  
         String tokenAge = entity.getTokenAge();
         if (tokenAge != null) {
-            stmt.bindString(13, tokenAge);
+            stmt.bindString(16, tokenAge);
         }
-        stmt.bindLong(14, entity.getPost());
  
-        String postName = entity.getPostName();
-        if (postName != null) {
-            stmt.bindString(15, postName);
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(17, userId);
         }
-        stmt.bindLong(16, entity.getChief() ? 1L: 0L);
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, User entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getAge());
-        stmt.bindLong(2, entity.getRole());
  
-        String name = entity.getName();
-        if (name != null) {
-            stmt.bindString(3, name);
+        Long birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindLong(2, birthday);
         }
-        stmt.bindLong(4, entity.getBirthday());
+        stmt.bindLong(3, entity.getChief() ? 1L: 0L);
  
-        String userId = entity.getUserId();
-        if (userId != null) {
-            stmt.bindString(5, userId);
+        String departmentId = entity.getDepartmentId();
+        if (departmentId != null) {
+            stmt.bindString(4, departmentId);
         }
- 
-        String sex = entity.getSex();
-        if (sex != null) {
-            stmt.bindString(6, sex);
-        }
+        stmt.bindLong(5, entity.getFaceRecognitionType());
  
         String headImg = entity.getHeadImg();
         if (headImg != null) {
-            stmt.bindString(7, headImg);
+            stmt.bindString(6, headImg);
+        }
+ 
+        String merchantId = entity.getMerchantId();
+        if (merchantId != null) {
+            stmt.bindString(7, merchantId);
         }
  
         String mobile = entity.getMobile();
@@ -176,37 +183,42 @@ public class UserDao extends AbstractDao<User, Void> {
             stmt.bindString(8, mobile);
         }
  
-        String departmentId = entity.getDepartmentId();
-        if (departmentId != null) {
-            stmt.bindString(9, departmentId);
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(9, name);
+        }
+        stmt.bindLong(10, entity.getPost());
+ 
+        String postName = entity.getPostName();
+        if (postName != null) {
+            stmt.bindString(11, postName);
+        }
+        stmt.bindLong(12, entity.getRole());
+ 
+        String sex = entity.getSex();
+        if (sex != null) {
+            stmt.bindString(13, sex);
         }
  
         String shopId = entity.getShopId();
         if (shopId != null) {
-            stmt.bindString(10, shopId);
-        }
- 
-        String merchantId = entity.getMerchantId();
-        if (merchantId != null) {
-            stmt.bindString(11, merchantId);
+            stmt.bindString(14, shopId);
         }
  
         String token = entity.getToken();
         if (token != null) {
-            stmt.bindString(12, token);
+            stmt.bindString(15, token);
         }
  
         String tokenAge = entity.getTokenAge();
         if (tokenAge != null) {
-            stmt.bindString(13, tokenAge);
+            stmt.bindString(16, tokenAge);
         }
-        stmt.bindLong(14, entity.getPost());
  
-        String postName = entity.getPostName();
-        if (postName != null) {
-            stmt.bindString(15, postName);
+        String userId = entity.getUserId();
+        if (userId != null) {
+            stmt.bindString(17, userId);
         }
-        stmt.bindLong(16, entity.getChief() ? 1L: 0L);
     }
 
     @Override
@@ -218,21 +230,22 @@ public class UserDao extends AbstractDao<User, Void> {
     public User readEntity(Cursor cursor, int offset) {
         User entity = new User( //
             cursor.getInt(offset + 0), // age
-            cursor.getInt(offset + 1), // role
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.getLong(offset + 3), // birthday
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // userId
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // sex
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // headImg
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // birthday
+            cursor.getShort(offset + 2) != 0, // chief
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // departmentId
+            cursor.getInt(offset + 4), // faceRecognitionType
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // headImg
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // merchantId
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // mobile
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // departmentId
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // shopId
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // merchantId
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // token
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // tokenAge
-            cursor.getInt(offset + 13), // post
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // postName
-            cursor.getShort(offset + 15) != 0 // chief
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // name
+            cursor.getInt(offset + 9), // post
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // postName
+            cursor.getInt(offset + 11), // role
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // sex
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // shopId
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // token
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // tokenAge
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16) // userId
         );
         return entity;
     }
@@ -240,21 +253,22 @@ public class UserDao extends AbstractDao<User, Void> {
     @Override
     public void readEntity(Cursor cursor, User entity, int offset) {
         entity.setAge(cursor.getInt(offset + 0));
-        entity.setRole(cursor.getInt(offset + 1));
-        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setBirthday(cursor.getLong(offset + 3));
-        entity.setUserId(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setSex(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setHeadImg(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setBirthday(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
+        entity.setChief(cursor.getShort(offset + 2) != 0);
+        entity.setDepartmentId(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setFaceRecognitionType(cursor.getInt(offset + 4));
+        entity.setHeadImg(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setMerchantId(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setMobile(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setDepartmentId(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setShopId(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setMerchantId(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setToken(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setTokenAge(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPost(cursor.getInt(offset + 13));
-        entity.setPostName(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setChief(cursor.getShort(offset + 15) != 0);
+        entity.setName(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setPost(cursor.getInt(offset + 9));
+        entity.setPostName(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setRole(cursor.getInt(offset + 11));
+        entity.setSex(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setShopId(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setToken(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setTokenAge(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setUserId(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
      }
     
     @Override

@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
@@ -39,7 +40,11 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
         initResultType();
         initLife();
     }
-
+    public ResponseObserver(Lifecycle lifecycle) {
+        initResultType();
+        this.lifecycle=lifecycle;
+        this. lifecycle.addObserver(this);
+    }
     public ResponseObserver(Activity activity, String msg) {
         this(activity, msg, true);
     }
@@ -75,7 +80,7 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
         dataClassType = actualTypeArguments[0];
     }
 
-    private void initLife() {
+    protected void initLife() {
         Object obj = getExternalClass();
         if (obj != null && obj instanceof LifecycleOwner) {
             lifecycle = ((LifecycleOwner) obj).getLifecycle();
@@ -159,15 +164,27 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
 
     }
 
+    @SuppressWarnings("unchecked")
     protected void responData(JSONObject jsonObject) throws Exception {
-        /*String dataJson = jsonObject.get("data").toString();
+        String dataJson = jsonObject.get("data").toString();
+        try {
+            if (dataClassType == JSONObject.class) {
+                onSuccess((T) new JSONObject(dataJson));
+                return;
+            } else if (dataClassType == JSONArray.class) {
+                onSuccess((T) new JSONArray(dataJson));
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
         if (TextUtils.isEmpty(dataJson) || (dataJson.startsWith("{") && dataJson.length() <= 2)) {
             onSuccess(null);
         } else {
             T data = new Gson().fromJson(dataJson, dataClassType);
             onSuccess(data);
-        }*/
-
+        }
     }
 
     @Override

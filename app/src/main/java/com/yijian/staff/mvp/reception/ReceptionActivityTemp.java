@@ -24,6 +24,7 @@ import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
 import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
 import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -62,6 +63,7 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        SharePreferenceUtil.setHasNewJiedaiPush(false);
         presenterTemp.getRecptionRecord(true);
     }
 

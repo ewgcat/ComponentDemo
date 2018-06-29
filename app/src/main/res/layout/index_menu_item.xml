@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_item_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="6dp"
+    android:gravity="center">
+
+
+
+    <LinearLayout
+        android:id="@+id/item_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="3dp">
+
+
+        <ImageView
+            android:id="@+id/menu_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="6dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/lg_all"/>
+
+        <TextView
+            android:id="@+id/menu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="全部功能"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/view_notice"
+        android:gravity="center"
+        android:background="@drawable/red_circle_bg"
+        android:textColor="@color/white"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="14dp"
+        android:layout_gravity="center_horizontal"
+        />
+</FrameLayout>

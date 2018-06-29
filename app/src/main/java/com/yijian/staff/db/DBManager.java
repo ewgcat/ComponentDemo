@@ -146,6 +146,22 @@ public class DBManager {
         searchKeyDao.deleteByKey(id);
         searchKeyDao.insertOrReplace(searchKey);
     }
+    public void deleteSearch(SearchKey searchKey) {
+        String key = searchKey.getKey();
+        if (TextUtils.isEmpty(key)) {
+            return;
+        }
+        SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();
+        List<SearchKey> searchKeys = querySearchList();
+        Long id = 0L;
+        for (int i = 0; i < searchKeys.size(); i++) {
+            SearchKey searchKey1 = searchKeys.get(i);
+            if (searchKey.getKey().equals(searchKey1.getKey())) {
+                id = searchKey1.getId();
+            }
+        }
+        searchKeyDao.deleteByKey(id);
+    }
 
     public List<SearchKey> querySearchList() {
         SearchKeyDao searchKeyDao = mDaoSession.getSearchKeyDao();

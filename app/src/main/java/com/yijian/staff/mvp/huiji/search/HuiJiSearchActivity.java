@@ -205,7 +205,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                 public void onSuccess(JSONObject result) {
                     hideLoading();
 
-                    SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserRole() + "");
+                    SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserId() + "");
                     DBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 

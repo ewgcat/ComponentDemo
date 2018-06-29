@@ -111,6 +111,7 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
             iv_remove = view.findViewById(R.id.iv_remove);
             tv_clean_history = view.findViewById(R.id.tv_clean_history);
 
+
         }
     }
 
@@ -141,7 +142,7 @@ public class SearchKeyAdapter extends RecyclerView.Adapter<SearchKeyAdapter.View
     }
 
     public void setRemoveKeyListener(RemoveKeyListener removeKeyListener) {
-        this.clearKeyListener = clearKeyListener;
+        this.removeKeyListener = removeKeyListener;
     }
 
 }

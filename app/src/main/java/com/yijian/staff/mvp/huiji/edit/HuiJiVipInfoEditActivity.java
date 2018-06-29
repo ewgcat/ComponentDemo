@@ -9,16 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
-import com.yijian.staff.mvp.huiji.detail.SelectAddressPop;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.SystemUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -63,8 +59,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     TextView tv_marriageStatus;
     @BindView(R.id.tv_hasChildren)
     TextView tv_hasChildren;
-    @BindView(R.id.tv_homeaddress)
-    TextView tv_homeaddress;
+    @BindView(R.id.et_address)
+    EditText et_address;
     @BindView(R.id.et_wx)
     EditText et_wx;
     @BindView(R.id.et_email)
@@ -73,16 +69,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     TextView tv_height;
     @BindView(R.id.tv_weight)
     TextView tv_weight;
-    @BindView(R.id.tv_healthStatus)
-    TextView tv_healthStatus;
-    @BindView(R.id.et_relationmobile)
-    EditText et_relationmobile;
-    @BindView(R.id.et_relationname)
-    EditText et_relationname;
-    @BindView(R.id.tv_workdress)
-    TextView tv_workdress;
-    @BindView(R.id.tv_position)
-    TextView tv_position;
+
 
 
     com.alibaba.fastjson.JSONObject detailJsonObj = new com.alibaba.fastjson.JSONObject();
@@ -98,12 +85,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> marriageStatusList = new ArrayList<String>();  //婚姻状况集合
     List<String> nationalityList = new ArrayList<String>();  //国籍集合
     List<String> occupationList = new ArrayList<String>();  //职业集合
-    List<String> positionList = new ArrayList<String>();  //行业集合
     List<String> hobbyList = new ArrayList<String>();  //爱好集合
     List<String> bodybuildingList = new ArrayList<String>();  //健身目的
-    List<String> heightList = new ArrayList<String>();  //身高
-    List<String> weightList = new ArrayList<String>();  //体重
-    List<String> healthStatusList = new ArrayList<String>();  //体重
 
 
     List<String> resuorceIdList = new ArrayList<>(); //用户获取渠道集合
@@ -149,12 +132,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,
             R.id.rl_yearIncome, R.id.rl_nationality, R.id.rl_nation, R.id.rl_marriageStatus,
-            R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal, R.id.tv_homeaddress,
-            R.id.rl_healthStatus,R.id.rl_height,R.id.rl_weight,R.id.rl_position})
+            R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //保存
                 submitData();
+
+//                startActivity(new Intent(this, SelectAdressActivity.class));
+
                 break;
             case R.id.rl_source: //用户渠道
                 manualPickedView(resuorceList, "易健平台", tv_source);
@@ -180,7 +165,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             case R.id.rl_hasChildren: // 是否有子女
                 manualPickedView(hasChildrenList, "无", tv_hasChildren);
                 break;
-            case R.id.rl_occupation: // 行业
+            case R.id.rl_occupation: // 职业
                 manualPickedView(occupationList, "", tv_occupation);
                 break;
             case R.id.rl_hobby: // 爱好
@@ -189,23 +174,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             case R.id.rl_fitnessGoal:  //健身目的
                 manualPickedView(bodybuildingList, "", tv_fitnessGoal);
                 break;
-            case R.id.tv_homeaddress:
-                SelectAddressPop selectAdressPop = new SelectAddressPop(this, tv_homeaddress);
-                selectAdressPop.showAsDropDown(getWindow().getDecorView());
-                break;
-            case R.id.rl_healthStatus: //身体状态
-                manualPickedView(healthStatusList, "", tv_healthStatus);
-                break;
-            case R.id.rl_height: //身高
-                manualPickedView(heightList, "", tv_height);
-                break;
-            case R.id.rl_weight: //体重
-                manualPickedView(weightList, "", tv_weight);
-                break;
-            case R.id.rl_position: //行业
-                manualPickedView(positionList, "", tv_position);
-                break;
-
         }
     }
 
@@ -215,38 +183,61 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      */
     private void submitData() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("address", tv_homeaddress.getText().toString());
-        setParaMap(tv_carPrice, "carPrice", paramMap);
-        setParaMap(et_clubBrand, "clubBrand", paramMap);
-        setParaMap(tv_workdress, "companyAddress", paramMap);
-        setParaMap(et_relationmobile, "contactPhone", paramMap);
-        setParaMap(et_email, "email", paramMap);
-        paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
-        String hasChildren = tv_hasChildren.getText().toString();
-        if (!TextUtils.isEmpty(hasChildren)) {
-            paramMap.put("hasChildren", hasChildren.equals("无") ? false : true);
+        paramMap.put("address", et_address.getText().toString());
+        String o = tv_carPrice.getText().toString();
+        if (!TextUtils.isEmpty(o)) {
+            paramMap.put("carPrice", o);
         }
-        setParaMap(tv_healthStatus, "healthStatus", paramMap);
-        setParaMap(tv_height, "height", paramMap);
-        setParaMap(tv_hobby, "hobby", paramMap);
+
+        paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
+        String anObject = tv_hasChildren.getText().toString();
+        if (!TextUtils.isEmpty(anObject)) {
+            if ("有".equals(anObject)){
+                paramMap.put("clubBrand", et_clubBrand.getText().toString());
+            }else {
+                paramMap.put("clubBrand", "暂未录入");
+            }
+            paramMap.put("hasChildren", ("有".equals(anObject)));
+        }
+        String o6 = tv_hobby.getText().toString();
+        if (!TextUtils.isEmpty(o6)) {
+            paramMap.put("hobby", o6);
+        }
         String anObject1 = tv_marriageStatus.getText().toString();
         if (!TextUtils.isEmpty(anObject1)) {
             paramMap.put("marriageStatus", ("未婚".equals(anObject1)) ? 0 : 1);
         }
         paramMap.put("memberId", memberId);
-        setParaMap(tv_nation, "nation", paramMap);
-        setParaMap(tv_nationality, "nationality", paramMap);
-        setParaMap(tv_position, "position", paramMap);
+
+        String o1 = tv_nation.getText().toString();
+        if (!TextUtils.isEmpty(o1)) {
+            paramMap.put("nation", o1);
+        }
+        String o2 = tv_nationality.getText().toString();
+        if (!TextUtils.isEmpty(o2)) {
+            paramMap.put("nationality", o2);
+        }
+        String o3 = tv_occupation.getText().toString();
+        if (!TextUtils.isEmpty(o3)) {
+            paramMap.put("position", o3);
+        }
+
+
         String anObject2 = tv_onceJoinedClub.getText().toString();
         if (!TextUtils.isEmpty(anObject2)) {
             paramMap.put("onceJoinedClub", ("是".equals(anObject2)));
         }
-        setParaMap(tv_occupation, "occupation", paramMap);
-        setParaMap(tv_source, "source", paramMap);
-        setParaMap(et_relationname, "urgentContact", paramMap);
-        setParaMap(et_wx, "wechatNo", paramMap);
-        setParaMap(tv_weight, "weight", paramMap);
-        setParaMap(tv_yearIncome, "yearIncome", paramMap);
+        String o4 = tv_source.getText().toString();
+        if (!TextUtils.isEmpty(o4)) {
+            paramMap.put("source", o4);
+        }
+
+        String o5 = tv_yearIncome.getText().toString();
+        if (!TextUtils.isEmpty(o5)) {
+            paramMap.put("yearIncome", o5);
+        }
+
+
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
 
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver() {
@@ -265,13 +256,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    private void setParaMap(TextView tv, String key, Map<String, Object> paramMap) {
-        String obj = tv.getText().toString();
-        if (!TextUtils.isEmpty(obj)) {
-            paramMap.put(key, obj);
-        }
     }
 
     /**
@@ -299,21 +283,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_hobby.setText(strEmpty(detailBean.getHobby()));
         tv_nationality.setText(strEmpty(detailBean.getNationality()));
         tv_nation.setText(strEmpty(detailBean.getNation()));
-        tv_occupation.setText(strEmpty(detailBean.getOccupation()));
+        tv_occupation.setText(strEmpty(detailBean.getPosition()));
         tv_marriageStatus.setText(strEmpty(detailBean.getMarriageStatus()));
         tv_hasChildren.setText(strEmpty(detailBean.getChildrenStatus()));
-        tv_homeaddress.setText(strEmpty(detailBean.getAddress()));
-
-        et_wx.setText(strEmpty(detailBean.getWechatNo()));
-        et_email.setText(strEmpty(detailBean.getEmail()));
-        tv_height.setText(strEmpty(detailBean.getHeight()));
-        tv_weight.setText(strEmpty(detailBean.getWeight()));
-        tv_healthStatus.setText(strEmpty(detailBean.getHealthStatus()));
-        tv_position.setText(strEmpty(detailBean.getPosition()));
-        tv_workdress.setText(strEmpty(detailBean.getCompanyAddress()));
-        et_relationname.setText(strEmpty(detailBean.getUrgentContact()));
-        et_relationmobile.setText(strEmpty(detailBean.getContactPhone()));
-
+        et_address.setText(strEmpty(detailBean.getAddress()));
         downSourceFromService();
     }
 
@@ -329,7 +302,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      * @param tv_widget
      */
     private void manualPickedView(List<String> opts, String defaultValue, TextView tv_widget) {
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 tv_widget.setText(opts.get(options1));
@@ -350,7 +323,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      * @param tv_widget
      */
     private void manualPickedViewClub(List<String> opts, String defaultValue, TextView tv_widget) {
-        OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+        OptionsPickerView pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
 
@@ -383,13 +356,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         marriageStatusList.add("未婚");
         marriageStatusList.add("已婚");
 
-        for (int i = 150; i < 200; i++) {
-            heightList.add(i+"");
-        }
-
-        for(int i = 40;i<100;i++){
-            weightList.add(i+"");
-        }
 
         HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
             @Override
@@ -455,14 +421,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     JSONArray zwJsonArray = zw.getJSONArray("items");
                     for (int j = 0; j < zwJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) zwJsonArray.get(j);
-                        positionList.add(itemJsonObj.getString("dictItemName"));
-                    }
-
-                    //行业
-                    JSONObject hy = result.getJSONObject("HY");
-                    JSONArray hyJsonArray = hy.getJSONArray("items");
-                    for (int j = 0; j < hyJsonArray.length(); j++) {
-                        JSONObject itemJsonObj = (JSONObject) hyJsonArray.get(j);
                         occupationList.add(itemJsonObj.getString("dictItemName"));
                         occupationIdList.add(itemJsonObj.getString("dictItemId"));
                     }
@@ -475,15 +433,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                         bodybuildingList.add(itemJsonObj.getString("dictItemName"));
                         bodybuildingIdList.add(itemJsonObj.getString("dictItemId"));
                     }
-
-                    //健身目的
-                    JSONObject stzt = result.getJSONObject("STZT");
-                    JSONArray stztJsonArray = stzt.getJSONArray("items");
-                    for (int j = 0; j < stztJsonArray.length(); j++) {
-                        JSONObject itemJsonObj = (JSONObject) stztJsonArray.get(j);
-                        healthStatusList.add(itemJsonObj.getString("dictItemName"));
-                    }
-
 
                     /*if(TextUtils.isEmpty(tv_source.getText().toString())){
                         tv_source.setText(resuorceList.get(0));

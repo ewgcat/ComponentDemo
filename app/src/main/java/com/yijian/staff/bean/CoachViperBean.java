@@ -48,6 +48,7 @@ public class CoachViperBean implements Serializable {
     private String viperRole;
     private boolean underProtected;
 
+
     public CoachViperBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");

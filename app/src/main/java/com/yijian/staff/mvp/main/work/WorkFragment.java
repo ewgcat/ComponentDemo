@@ -65,7 +65,6 @@ public class WorkFragment extends MvcBaseFragment {
     LinearLayout llJiedai;
     @BindView(R.id.ll_jie_dai_container)
     LinearLayout llJieDaiContainer;
-    Unbinder unbinder1;
 
     private IndexMenuAdapter indexMenuAdapter;
     private List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean> menuList = new ArrayList<>();
@@ -210,12 +209,7 @@ public class WorkFragment extends MvcBaseFragment {
         switch (view.getId()) {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
-                int userRole = SharePreferenceUtil.getUserRole();
-                if (userRole == 1 || userRole == 3 || userRole == 6) {
-                    startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                } else if (userRole == 2 || userRole == 4 || userRole == 7) {
-                    startActivity(new Intent(getContext(), CoachSearchActivity.class));
-                }
+                startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
                 break;
             case R.id.ll_jiedai:
                 ClearRedPointUtil.clearJieDaiNotice(lifecycle);

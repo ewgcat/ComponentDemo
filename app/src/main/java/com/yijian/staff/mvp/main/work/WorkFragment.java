@@ -88,16 +88,16 @@ public class WorkFragment extends MvcBaseFragment {
         params.setMargins(0, statusBarHeight, 0, 0);
         topView.setLayoutParams(params);
 
-        indexMenuAdapter = new IndexMenuAdapter(lifecycle,getContext(), menuList);
+        indexMenuAdapter = new IndexMenuAdapter(lifecycle, getContext(), menuList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(indexMenuAdapter);
 
         OthermodelVo othermodelVo = DBManager.getInstance().queryOthermodelVo();
-        Logger.i(TAG,othermodelVo.toString());
+        Logger.i(TAG, othermodelVo.toString());
         faceRecognition = othermodelVo.getFaceRecognition();
-        if (faceRecognition){
+        if (faceRecognition) {
             ivFace.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             ivFace.setVisibility(View.GONE);
         }
         reception = othermodelVo.getReception();
@@ -109,19 +109,20 @@ public class WorkFragment extends MvcBaseFragment {
     }
 
     public void showJieDaiView(int i) {
-
-        if (i == 0) {//没有接待权限
-            llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_no_jd));
-            llJiedaiContainer.setVisibility(View.GONE);
-            llJiedai.setVisibility(View.GONE);
-        } else if (i == 1) {//有接待权限，没有新消息
-            llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_no_new_jd));
-            llJiedaiContainer.setVisibility(View.VISIBLE);
-            llJiedai.setVisibility(View.VISIBLE);
-        } else if (i == 2) {//有接待权限，有新消息
-            llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_new_jd));
-            llJiedaiContainer.setVisibility(View.VISIBLE);
-            llJiedai.setVisibility(View.VISIBLE);
+        if (isAdded()) {
+            if (i == 0) {//没有接待权限
+                llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_no_jd));
+                llJiedaiContainer.setVisibility(View.GONE);
+                llJiedai.setVisibility(View.GONE);
+            } else if (i == 1) {//有接待权限，没有新消息
+                llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_no_new_jd));
+                llJiedaiContainer.setVisibility(View.VISIBLE);
+                llJiedai.setVisibility(View.VISIBLE);
+            } else if (i == 2) {//有接待权限，有新消息
+                llJieDaiContainer.setBackground(getResources().getDrawable(R.mipmap.home_new_jd));
+                llJiedaiContainer.setVisibility(View.VISIBLE);
+                llJiedai.setVisibility(View.VISIBLE);
+            }
         }
     }
 

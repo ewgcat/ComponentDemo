@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
+import com.yijian.staff.mvp.coach.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.mvp.huiji.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.mvp.huiji.intent.HuijiIntentViperDetailActivity_ycm;
 import com.yijian.staff.util.CommonUtil;
@@ -103,10 +104,30 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
 //                        intent.putExtra("memberName",huiJiViperBean.getName());
                         context.startActivity(intent);
+                    } else if (subclassName.equals("CoachInfoVO") || subclassName.equals("CoachIntentionVO") || subclassName.equals("CoachExpireVO")) {
+
+                        Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
+                        if (subclassName.equals("CoachInfoVO")) {
+                            intent.putExtra("vipType", 0);
+//                        holder.tv_role.setText("正式学员");
+                        } else if (subclassName.equals("CoachIntentionVO")) {
+                            intent.putExtra("vipType", 2);
+//                        holder.tv_role.setText("意向学员");
+                        } else if (subclassName.equals("CoachExpireVO")) {
+                            intent.putExtra("vipType", 3);
+//                        holder.tv_role.setText("过期学员");
+                        }
+                        intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                        context.startActivity(intent);
+
                     }
+
 
                 }
             });
+
+
+
             //回访
             Boolean isProtected = huiJiViperBean.isUnderProtected();
             tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);

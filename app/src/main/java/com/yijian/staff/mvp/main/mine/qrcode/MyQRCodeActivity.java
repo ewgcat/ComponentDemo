@@ -12,6 +12,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.jwsd.libzxing.QRCodeManager;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -73,8 +74,8 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         if (user != null) {
             tvName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
-            role = user.getRole();
-            tvRole.setText(user.getPostName());
+            RoleVoBean roleVoBean = DBManager.getInstance().queryRoleVoBean();
+            tvRole.setText(roleVoBean.getRoleName());
 
             ImageLoader.setHeadImageResource(user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();

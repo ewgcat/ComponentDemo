@@ -73,10 +73,8 @@ public class MineFragment extends Fragment {
         user = DBManager.getInstance().queryUser();
         if (user != null) {
             tvUserName.setText(user.getName());
-            // 1 会籍客服 2教练  3会籍总监 4教练总监 5店长 6会籍经理 7教练经理
-            tvUserJobPostion.setText(user.getPostName());
-
-
+            RoleVoBean roleVoBean = DBManager.getInstance().queryRoleVoBean();
+            tvUserJobPostion.setText(roleVoBean.getRoleName());
             setImageResource(user.getHeadImg(), ivUserHead);
         }
         return view;

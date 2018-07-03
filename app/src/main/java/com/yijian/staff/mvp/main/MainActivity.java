@@ -132,7 +132,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         Disposable disposable = RxBus.getDefault().toDefaultFlowable(PushInfoBean.class, new Consumer<PushInfoBean>() {
             @Override
             public void accept(PushInfoBean pushInfoBean) throws Exception {
-                if (workFragment != null) {
+                if (workFragment != null&&workFragment.isAdded()) {
                     workFragment.observe(pushInfoBean);
                 }
 

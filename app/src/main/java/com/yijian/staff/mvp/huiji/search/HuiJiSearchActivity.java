@@ -100,6 +100,14 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                 initSearchData();
             }
         });
+        searchKeyAdapter.setRemoveKeyListener(new SearchKeyAdapter.RemoveKeyListener() {
+            @Override
+            public void onClick(SearchKey searchKey) {
+                hideKeyBoard(etSearch);
+                DBManager.getInstance().deleteSearch(searchKey);
+                initSearchData();
+            }
+        });
         rcl_search.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
 

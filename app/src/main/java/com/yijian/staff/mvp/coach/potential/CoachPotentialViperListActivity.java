@@ -130,7 +130,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 total = JsonUtil.getInt(result, "total");
 
-                tv_total_num.setText("潜在会员总人数："+total+"人");
+                tv_total_num.setText("潜在学员总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
                 try {

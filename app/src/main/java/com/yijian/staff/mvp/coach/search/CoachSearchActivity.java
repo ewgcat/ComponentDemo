@@ -173,6 +173,7 @@ public class CoachSearchActivity extends MvcBaseActivity {
         searchKeyAdapter.setRemoveKeyListener(new SearchKeyAdapter.RemoveKeyListener() {
             @Override
             public void onClick(SearchKey searchKey) {
+                hideKeyBoard(etSearch);
                 DBManager.getInstance().deleteSearch(searchKey);
                 initSearchData();
             }

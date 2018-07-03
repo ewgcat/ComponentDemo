@@ -102,7 +102,7 @@ public class PickerOptions {
     public int dividerColor = 0xFFd5d5d5; //分割线的颜色
     public int backgroundId = -1; //显示时的外部背景色颜色,默认是灰色
 
-    public float lineSpacingMultiplier = 2.2F; // 条目间距倍数 默认1.6
+    public float lineSpacingMultiplier = 2.7F; // 条目间距倍数 默认1.6
     public boolean isDialog;//是否是对话框模式
 
     public boolean cancelable = true;//是否能取消

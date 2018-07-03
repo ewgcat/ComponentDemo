@@ -41,6 +41,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_wx_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -52,13 +53,16 @@
 
                     <EditText
                         android:id="@+id/et_wx"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
+                        android:layout_toRightOf="@id/tv_wx_label"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -81,6 +85,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_email_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -92,13 +97,16 @@
 
                     <EditText
                         android:id="@+id/et_email"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/tv_email_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -120,6 +128,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_height_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -131,13 +140,15 @@
 
                     <TextView
                         android:id="@+id/tv_height"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_height_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -160,6 +171,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_weight_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -171,13 +183,15 @@
 
                     <TextView
                         android:id="@+id/tv_weight"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_weight_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -200,6 +214,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_nationality_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -211,13 +226,15 @@
 
                     <TextView
                         android:id="@+id/tv_nationality"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_nationality_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -240,6 +257,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_nation_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -253,11 +271,14 @@
                         android:id="@+id/tv_nation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_nation_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -280,6 +301,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_healthStatus_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -291,13 +313,16 @@
 
                     <TextView
                         android:id="@+id/tv_healthStatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_healthStatus_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -320,6 +345,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_hobby_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -331,13 +357,16 @@
 
                     <TextView
                         android:id="@+id/tv_hobby"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_hobby_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -360,6 +389,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_source_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -371,13 +401,16 @@
 
                     <TextView
                         android:id="@+id/tv_source"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_source_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -411,13 +444,16 @@
 
                     <TextView
                         android:id="@+id/tv_fitnessGoal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_fitnessGoal_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -439,6 +475,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_onceJoinedClub_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -450,13 +487,16 @@
 
                     <TextView
                         android:id="@+id/tv_onceJoinedClub"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_onceJoinedClub_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="否"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -479,6 +519,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_clubBrand_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -490,13 +531,15 @@
 
                     <EditText
                         android:id="@+id/et_clubBrand"
-                        android:layout_width="134dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_clubBrand_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
-                        android:gravity="center_vertical|right"
-                        android:singleLine="false"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -534,6 +577,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_yearIncome_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -545,13 +589,16 @@
 
                     <TextView
                         android:id="@+id/tv_yearIncome"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_yearIncome_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -574,6 +621,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_carPrice_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -585,13 +633,16 @@
 
                     <TextView
                         android:id="@+id/tv_carPrice"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_carPrice_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -614,6 +665,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_marriageStatus_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -625,13 +677,16 @@
 
                     <TextView
                         android:id="@+id/tv_marriageStatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_marriageStatus_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -654,6 +709,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_hasChildren_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -665,13 +721,16 @@
 
                     <TextView
                         android:id="@+id/tv_hasChildren"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_hasChildren_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -693,6 +752,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_occupation_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -705,13 +765,16 @@
 
                     <TextView
                         android:id="@+id/tv_occupation"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_occupation_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -733,6 +796,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_position_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -745,13 +809,16 @@
 
                     <TextView
                         android:id="@+id/tv_position"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_position_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/lg_xiala"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -766,12 +833,14 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_workdress"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_workdress_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -784,12 +853,16 @@
 
                     <TextView
                         android:id="@+id/tv_workdress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_workdress_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
+                        android:drawableRight="@mipmap/lg_xiala"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -804,12 +877,14 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_homeaddress"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_homeaddress_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -822,13 +897,17 @@
 
                     <TextView
                         android:id="@+id/tv_homeaddress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_homeaddress_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
                         android:text="未录入"
+                        android:drawableRight="@mipmap/lg_xiala"
                         android:textColor="#333333"
                         android:textSize="14sp" />
 
@@ -848,6 +927,7 @@
                     android:paddingRight="22dp">
 
                     <TextView
+                        android:id="@+id/tv_relationname_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -860,13 +940,16 @@
 
                     <EditText
                         android:id="@+id/et_relationname"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_relationname_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -889,6 +972,7 @@
                     android:paddingTop="15dp">
 
                     <TextView
+                        android:id="@+id/tv_relationmobile_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -901,10 +985,12 @@
                         android:id="@+id/et_relationmobile"
                         android:layout_width="134dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@color/white"
+                        android:layout_toRightOf="@id/tv_relationmobile_label"
                         android:gravity="center_vertical|right"
                         android:singleLine="false"
+                        android:paddingLeft="20dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/white"
                         android:text="未录入"
                         android:textColor="#333333"
                         android:textSize="14sp" />

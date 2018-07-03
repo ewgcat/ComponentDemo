@@ -22,8 +22,8 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
 
     TextView tvTuijianRen;
     TextView tvTuijianRenPhone;
-    TextView tvHuoquQudao;
-    TextView tvTianjiaRenName;
+//    TextView tvHuoquQudao;
+//    TextView tvTianjiaRenName;
     RecyclerView rv_card;
 
     TextView tv_card_classamount;
@@ -38,8 +38,8 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
         rv_card = itemView.findViewById(R.id.rv_card);
         tvTuijianRen = itemView.findViewById(R.id.tv_tuijian_ren);
         tvTuijianRenPhone = itemView.findViewById(R.id.tv_tuijian_ren_phone);
-        tvHuoquQudao = itemView.findViewById(R.id.tv_huoqu_qudao);
-        tvTianjiaRenName = itemView.findViewById(R.id.tv_tianjia_ren_name);
+//        tvHuoquQudao = itemView.findViewById(R.id.tv_huoqu_qudao);
+//        tvTianjiaRenName = itemView.findViewById(R.id.tv_tianjia_ren_name);
         rv_card.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
         rv_card.setNestedScrollingEnabled(false);
 
@@ -58,8 +58,8 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
-        tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
+//        tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
+//        tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
 
         VipDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseAndConsumeInfo();
         tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+""));

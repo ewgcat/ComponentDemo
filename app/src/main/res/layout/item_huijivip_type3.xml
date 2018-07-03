@@ -357,6 +357,33 @@
 
     </RelativeLayout>
 
+     <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="用户获取渠道:"
+                android:textColor="@color/text_black1"
+                android:textSize="14sp"/>
+
+        <TextView
+                android:id="@+id/tv_huoqu_qudao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_black1"
+                android:textSize="14sp"/>
+
+    </RelativeLayout>
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -668,7 +695,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
-                android:text="住址:"
+                android:text="家庭地址:"
                 android:textColor="@color/text_black1"
                 android:textSize="14sp"/>
 

@@ -47,8 +47,9 @@ public class SelectAddressPop extends PopupWindow {
     private EditText et_detail;
 
     private TextView tv_address;
+    private TextView tv_address_title;
 
-    public SelectAddressPop(Context context,TextView tv_address) {
+    public SelectAddressPop(Context context, String title, TextView tv_address) {
         super(context);
         this.context = context;
         this.tv_address = tv_address;
@@ -81,6 +82,8 @@ public class SelectAddressPop extends PopupWindow {
         });
         rel_address = mMenuView.findViewById(R.id.rel_address);
         et_detail = mMenuView.findViewById(R.id.et_detail);
+        tv_address_title = mMenuView.findViewById(R.id.tv_address_title);
+        tv_address_title.setText(title);
         mHandler.sendEmptyMessage(MSG_LOAD_DATA);
 
     }
@@ -175,7 +178,7 @@ public class SelectAddressPop extends PopupWindow {
     }
 
 
-    public ArrayList<JsonBean> parseData(String result) {//Gson 解析
+    private ArrayList<JsonBean> parseData(String result) {//Gson 解析
         ArrayList<JsonBean> detail = new ArrayList<>();
         try {
             JSONArray data = new JSONArray(result);
@@ -191,17 +194,21 @@ public class SelectAddressPop extends PopupWindow {
         return detail;
     }
 
-    public void showPickerView(){
+    private void showPickerView(){
         pvNoLinkOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getPickerViewText() +
-                        options2Items.get(options1).get(option2) +
-                        options3Items.get(options1).get(option2).get(options3);
+                String province = options1Items.get(options1).getPickerViewText();
+                String city = options2Items.get(options1).get(option2);
+                String area = options3Items.get(options1).get(option2).get(options3);
                 String detail = et_detail.getText().toString();
-                Log.e("Test","address==="+tx+"  detail==="+detail);
-                tv_address.setText(tx + detail);
+                StringBuffer address = new StringBuffer(province);
+                if(!province.equals(city)){
+                    address.append(city);
+                }
+                address.append(area);
+                tv_address.setText(address.toString() + detail);
                 dismiss();
             }
         })

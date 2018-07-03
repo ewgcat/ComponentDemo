@@ -48,6 +48,7 @@ public class VipDetailBean implements Serializable {
     private int dictItemKey;
     private boolean underProtected;
     private String headImg;
+    private boolean editEnable;
     private String memberType;
     private String cardName;
     private int cardType;
@@ -79,6 +80,14 @@ public class VipDetailBean implements Serializable {
 
     public void setBirthday(long birthday) {
         this.birthday = birthday;
+    }
+
+    public boolean isEditEnable() {
+        return editEnable;
+    }
+
+    public void setEditEnable(boolean editEnable) {
+        this.editEnable = editEnable;
     }
 
     public String getMemberId() {

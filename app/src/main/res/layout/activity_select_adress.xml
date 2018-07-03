@@ -31,6 +31,7 @@
                 android:textColor="@color/gray666666"/>
 
             <TextView
+                android:id="@+id/tv_address_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_17"
@@ -92,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/shape_corner_gray_border"
-                android:text="234324324423"
+                android:text=""
                 android:gravity="top|left"
                 android:padding="8dp"
                 android:layout_marginTop="10dp"/>

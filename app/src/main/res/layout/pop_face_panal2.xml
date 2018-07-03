@@ -429,37 +429,6 @@
 
                     </RelativeLayout>
 
-
-                    <!--<RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:layout_centerVertical="true"
-                            android:text="最喜爱的课程："
-                            android:drawableLeft="@mipmap/zuiaikechen"
-                            android:drawablePadding="5dp"/>
-
-                        <TextView
-                            android:id="@+id/tv_detail_like_course"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:layout_centerVertical="true"
-                            android:textSize="14sp"
-                            android:layout_marginLeft="20dp"/>
-
-
-                    </RelativeLayout>-->
-
-
                     <RelativeLayout
                         android:id="@+id/rel_record_build_time"
                         android:layout_width="match_parent"

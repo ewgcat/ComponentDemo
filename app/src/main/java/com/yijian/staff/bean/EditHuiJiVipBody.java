@@ -75,6 +75,7 @@ public class EditHuiJiVipBody {
         this.wechatNo = (String) map.get("wechatNo");
         this.weight = (String) map.get("weight");
         this.yearIncome = (String) map.get("yearIncome");
+
     }
 
     public String getAddress() {

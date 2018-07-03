@@ -64,6 +64,7 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
     TextView tvJinJiLianxiren;
 
     TextView tvLianXiPhone;
+    TextView tvHuoquQudao;
     private final LinearLayout llEdit;
 
     public ViewHolderHuijiVipType_3(View itemView) {
@@ -97,6 +98,7 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
         tvHomeLocation = itemView.findViewById(R.id.tv_home_location);
         tvJinJiLianxiren = itemView.findViewById(R.id.tv_jin_ji_lianxiren);
         tvLianXiPhone = itemView.findViewById(R.id.tv_lianxiren_phone);
+        tvHuoquQudao = itemView.findViewById(R.id.tv_huoqu_qudao);
 
         llEdit = itemView.findViewById(R.id.ll_edit);
     }
@@ -129,6 +131,9 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
         tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
+        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
+        llEdit.setEnabled(vipDetailBean.isEditEnable());
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

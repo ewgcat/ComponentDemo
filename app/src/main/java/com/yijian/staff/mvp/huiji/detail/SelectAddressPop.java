@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.huiji.detail.picker.GetJsonDataUtil;
-import com.yijian.staff.mvp.huiji.detail.picker.JsonBean;
+import com.yijian.staff.mvp.huiji.detail.picker.JsonBean_Service;
 import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerBuilder;
 import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerView;
 import com.yijian.staff.util.DensityUtil;
@@ -34,7 +33,7 @@ public class SelectAddressPop extends PopupWindow {
     private Context context;
     private RelativeLayout rel_address;
 
-    private ArrayList<JsonBean> options1Items = new ArrayList<>();
+    private ArrayList<JsonBean_Service> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
     private Thread thread;
@@ -131,9 +130,9 @@ public class SelectAddressPop extends PopupWindow {
          * 关键逻辑在于循环体
          *
          * */
-        String JsonData = new GetJsonDataUtil().getJson(context, "province.json");//获取assets目录下的json文件数据
+        String JsonData = new GetJsonDataUtil().getJson(context, "service_province.json");//获取assets目录下的json文件数据
 
-        ArrayList<JsonBean> jsonBean = parseData(JsonData);//用Gson 转成实体
+        ArrayList<JsonBean_Service> jsonBean = parseData(JsonData);//用Gson 转成实体
 
         /**
          * 添加省份数据
@@ -147,18 +146,21 @@ public class SelectAddressPop extends PopupWindow {
             ArrayList<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
             ArrayList<ArrayList<String>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
 
-            for (int c = 0; c < jsonBean.get(i).getCityList().size(); c++) {//遍历该省份的所有城市
-                String CityName = jsonBean.get(i).getCityList().get(c).getName();
+            for (int c = 0; c < jsonBean.get(i).getCitys().size(); c++) {//遍历该省份的所有城市
+                JsonBean_Service.CitysBean citysBean = jsonBean.get(i).getCitys().get(c);
+                String CityName = citysBean.getCityName();
                 CityList.add(CityName);//添加城市
                 ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
 
-                //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
-                if (jsonBean.get(i).getCityList().get(c).getArea() == null
-                        || jsonBean.get(i).getCityList().get(c).getArea().size() == 0) {
+                if(citysBean.getDistricts() == null){
                     City_AreaList.add("");
-                } else {
-                    City_AreaList.addAll(jsonBean.get(i).getCityList().get(c).getArea());
+                }else{
+                    for(int d = 0; d < citysBean.getDistricts().size(); d++){
+                        JsonBean_Service.CitysBean.DistrictsBean districtsBean = citysBean.getDistricts().get(d);
+                        City_AreaList.add(districtsBean.getDistrictName());
+                    }
                 }
+
                 Province_AreaList.add(City_AreaList);//添加该省所有地区数据
             }
 
@@ -178,13 +180,13 @@ public class SelectAddressPop extends PopupWindow {
     }
 
 
-    private ArrayList<JsonBean> parseData(String result) {//Gson 解析
-        ArrayList<JsonBean> detail = new ArrayList<>();
+    private ArrayList<JsonBean_Service> parseData(String result) {//Gson 解析
+        ArrayList<JsonBean_Service> detail = new ArrayList<>();
         try {
             JSONArray data = new JSONArray(result);
             Gson gson = new Gson();
             for (int i = 0; i < data.length(); i++) {
-                JsonBean entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
+                JsonBean_Service entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean_Service.class);
                 detail.add(entity);
             }
         } catch (Exception e) {

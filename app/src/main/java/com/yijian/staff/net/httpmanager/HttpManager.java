@@ -352,6 +352,10 @@ public class HttpManager {
     //获取app模块小红点
     public static String QUERY_RED_POINT_URL = BuildConfig.HOST + "message/findAppModuleFlagByAlias";
 
+    //地区列表
+    public static String QUERY_ADDRESS_URL = BuildConfig.HOST + "province";
+
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {

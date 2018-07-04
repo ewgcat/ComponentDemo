@@ -90,33 +90,33 @@ public class SelectAddressActivity extends MvcBaseActivity {
             public void onClick(View v) {
                 detail = et_detail.getText().toString();
                 resultAddress.append(province);
-                resultAddress.append((char)1);
+                resultAddress.append((char) 1);
                 resultAddress.append(city);
-                resultAddress.append((char)1);
+                resultAddress.append((char) 1);
                 resultAddress.append(area);
-                resultAddress.append((char)1);
+                resultAddress.append((char) 1);
                 resultAddress.append(detail);
                 Intent intent = getIntent();
-                intent.putExtra("resultAddress",resultAddress.toString());
-                setResult(RESULT_OK,intent);
+                intent.putExtra("resultAddress", resultAddress.toString());
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
     }
 
-    private void initData(){
-        split = (char)1;
+    private void initData() {
+        split = (char) 1;
         fileName = getCacheDir() + "/service_province.json";
-        char split = (char)1;
-        if(!TextUtils.isEmpty(address)){
-            String [] addressArray = address.split(split+"");
-            if(addressArray.length>1){
+        char split = (char) 1;
+        if (!TextUtils.isEmpty(address)) {
+            String[] addressArray = address.split(split + "");
+            if (addressArray.length > 1) {
                 province = addressArray[0];
                 city = addressArray[1];
                 area = addressArray[2];
                 detail = addressArray[3];
                 et_detail.setText(detail);
-                tv_address.setText(province+split+city+split+area);
+                tv_address.setText(province + split + city + split + area);
             }
         }
         File addressFile = new File(fileName);
@@ -129,7 +129,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
 
     @OnClick({R.id.rl_address})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.rl_address: //选择地址
                 showPickerView();
                 break;
@@ -233,7 +233,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 JsonBean_Service.CitysBean citysBean = jsonBean.get(i).getCitys().get(c);
                 String CityName = citysBean.getCityName();
                 CityList.add(CityName);//添加城市
-                if((!TextUtils.isEmpty(city))&&city.equals(CityName)){
+                if ((!TextUtils.isEmpty(city)) && city.equals(CityName)) {
                     selectOption2 = c;
                 }
                 ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
@@ -244,7 +244,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
                     for (int d = 0; d < citysBean.getDistricts().size(); d++) {
                         JsonBean_Service.CitysBean.DistrictsBean districtsBean = citysBean.getDistricts().get(d);
                         City_AreaList.add(districtsBean.getDistrictName());
-                        if((!TextUtils.isEmpty(area))&&area.equals(districtsBean.getDistrictName())){
+                        if ((!TextUtils.isEmpty(area)) && area.equals(districtsBean.getDistrictName())) {
                             selectOption3 = d;
                         }
                     }
@@ -277,7 +277,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
             for (int i = 0; i < data.length(); i++) {
                 JsonBean_Service entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean_Service.class);
                 detail.add(entity);
-                if((!TextUtils.isEmpty(province))&&province.equals(entity.getProvinceName())){
+                if ((!TextUtils.isEmpty(province)) && province.equals(entity.getProvinceName())) {
                     selectOption1 = i;
                 }
             }
@@ -298,8 +298,10 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 area = options3Items.get(options1).get(option2).get(options3);
                 StringBuffer address = new StringBuffer(province);
                 if (!province.equals(city)) {
+                    address.append(split);
                     address.append(city);
                 }
+                address.append(split);
                 address.append(area);
                 tv_address.setText(address.toString());
             }

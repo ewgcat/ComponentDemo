@@ -18,6 +18,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
@@ -49,6 +50,8 @@ public class SettingActivity extends MvcBaseActivity {
     TextView tvDepartment;
     @BindView(R.id.tv_position)
     TextView tvPosition;
+    @BindView(R.id.tv_version)
+    TextView tvVersion;
     private Dialog dialog;
 
 
@@ -93,7 +96,7 @@ public class SettingActivity extends MvcBaseActivity {
             });
         }
 
-
+        tvVersion.setText(CommonUtil.getVersionName(this)+" "+CommonUtil.getVersionCode(this));
     }
 
     @OnClick({R.id.tv_exit_login})

@@ -133,7 +133,7 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        llEdit.setEnabled(vipDetailBean.isEditEnable());
+        llEdit.setVisibility(vipDetailBean.isEditEnable()?View.VISIBLE:View.GONE);
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

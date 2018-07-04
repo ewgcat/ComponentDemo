@@ -592,7 +592,8 @@
         <activity
             android:name=".mvp.main.work.face2.FaceDetectorActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.huiji.detail.SelectAdressActivity"></activity>
+        <activity android:name=".mvp.huiji.detail.SelectAdressActivity" />
+        <activity android:name=".mvp.huiji.detail.SelectAddressActivity"></activity>
     </application>
 
 </manifest>

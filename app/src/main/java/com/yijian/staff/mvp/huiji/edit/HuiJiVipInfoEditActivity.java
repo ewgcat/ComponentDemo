@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.huiji.edit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.huiji.detail.SelectAddressActivity;
 import com.yijian.staff.mvp.huiji.detail.SelectAddressPop;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -103,17 +105,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> positionList = new ArrayList<String>();  //职务
     List<String> heightList = new ArrayList<String>();  //职务
     List<String> weightList = new ArrayList<String>();  //职务
+    final int REQUEST_ADDRESS_CODE = 100; //修改地址请求码
 
-
-
-    List<String> resuorceIdList = new ArrayList<>(); //用户获取渠道集合
-    List<String> yearIncomeIdList = new ArrayList<>();  //年收入集合
-    List<String> carPriceIdList = new ArrayList();  //用车价格集合
-    List<String> nationIdList = new ArrayList<>(); // 名族集合
-    List<String> nationalityIdList = new ArrayList<>();  //国籍集合
-    List<String> occupationIdList = new ArrayList<>();  //职业集合
-    List<String> hobbyIdList = new ArrayList<>();  //爱好集合
-    List<String> bodybuildingIdList = new ArrayList<String>();  //健身目的
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,8 +199,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     manualPickedView(weightList, "", tv_weight);
                     break;
                 case R.id.rl_workdress: //工作地址
-                    SelectAddressPop workAddressPop = new SelectAddressPop(this, "工作地址", tv_workdress);
-                    workAddressPop.showAsDropDown(getWindow().getDecorView());
+                   /* SelectAddressPop workAddressPop = new SelectAddressPop(this, "工作地址", tv_workdress);
+                    workAddressPop.showAsDropDown(getWindow().getDecorView());*/
+
+                    Intent intent = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
+                    intent.putExtra("title","工作地址");
+                    intent.putExtra("address",detailBean.getCompanyAddress());
+                    startActivityForResult(intent,REQUEST_ADDRESS_CODE);
+
                     break;
                 case R.id.rl_homeaddress: //家庭地址
                     SelectAddressPop homeAddressPop = new SelectAddressPop(this, "家庭地址", tv_homeaddress);
@@ -262,7 +261,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
-                Toast.makeText(HuiJiVipInfoEditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuiJiVipInfoEditActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
                 setResult(1);
                 finish();
             }
@@ -413,7 +412,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < yhhqqdJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) yhhqqdJsonArray.get(j);
                         resuorceList.add(itemJsonObj.getString("dictItemName"));
-                        resuorceIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //年收入
@@ -422,7 +420,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < nsrJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) nsrJsonArray.get(j);
                         yearIncomeList.add(itemJsonObj.getString("dictItemName"));
-                        yearIncomeIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //用车价格
@@ -431,7 +428,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < ycjzJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) ycjzJsonArray.get(j);
                         carPriceList.add(itemJsonObj.getString("dictItemName"));
-                        carPriceIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //爱好
@@ -440,7 +436,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < xqahJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) xqahJsonArray.get(j);
                         hobbyList.add(itemJsonObj.getString("dictItemName"));
-                        hobbyIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //国籍
@@ -449,7 +444,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < gjJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) gjJsonArray.get(j);
                         nationalityList.add(itemJsonObj.getString("dictItemName"));
-                        nationalityIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //民族
@@ -458,7 +452,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < mzJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) mzJsonArray.get(j);
                         nationList.add(itemJsonObj.getString("dictItemName"));
-                        nationIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //职务
@@ -475,7 +468,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < hyJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) hyJsonArray.get(j);
                         occupationList.add(itemJsonObj.getString("dictItemName"));
-                        occupationIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //健身目的
@@ -484,7 +476,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     for (int j = 0; j < jsmdJsonArray.length(); j++) {
                         JSONObject itemJsonObj = (JSONObject) jsmdJsonArray.get(j);
                         bodybuildingList.add(itemJsonObj.getString("dictItemName"));
-                        bodybuildingIdList.add(itemJsonObj.getString("dictItemId"));
                     }
 
                     //身体状态
@@ -505,5 +496,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                 Toast.makeText(HuiJiVipInfoEditActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_ADDRESS_CODE && resultCode == RESULT_OK){
+            detailBean.setCompanyAddress(data.getStringExtra("resultAddress"));
+            tv_workdress.setText(detailBean.getCompanyAddress());
+        }
     }
 }

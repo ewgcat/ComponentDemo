@@ -3,8 +3,10 @@ package com.yijian.staff.mvp.huiji.detail;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,19 @@ import com.yijian.staff.mvp.huiji.detail.picker.GetJsonDataUtil;
 import com.yijian.staff.mvp.huiji.detail.picker.JsonBean_Service;
 import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerBuilder;
 import com.yijian.staff.mvp.huiji.detail.picker.OptionsPickerView;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.helper.StringUtil;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class SelectAddressPop extends PopupWindow {
@@ -59,7 +70,7 @@ public class SelectAddressPop extends PopupWindow {
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         LinearLayout container = mMenuView.findViewById(R.id.container);
         RelativeLayout.LayoutParams containerLP = (RelativeLayout.LayoutParams) container.getLayoutParams();
-        containerLP.height = DensityUtil.getScreenHeight(context)-DensityUtil.dip2px(context,60);
+        containerLP.height = DensityUtil.getScreenHeight(context) - DensityUtil.dip2px(context, 60);
         container.setLayoutParams(containerLP);
         this.setContentView(mMenuView);
         this.setFocusable(true);
@@ -83,8 +94,46 @@ public class SelectAddressPop extends PopupWindow {
         et_detail = mMenuView.findViewById(R.id.et_detail);
         tv_address_title = mMenuView.findViewById(R.id.tv_address_title);
         tv_address_title.setText(title);
-        mHandler.sendEmptyMessage(MSG_LOAD_DATA);
+        File addressFile = new File(context.getCacheDir() + "/service_province.json");
+        if (!addressFile.exists()) {
+            downloadService();
+        } else {
+            mHandler.sendEmptyMessage(MSG_LOAD_DATA);
+        }
 
+    }
+
+    private void downloadService() {
+        HttpManager.getHasHeaderNoParam(HttpManager.QUERY_ADDRESS_URL, new ResultJSONObjectObserver() {
+
+            @Override
+            public void onSuccess(JSONObject result) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            String addressArray = result.getJSONArray("dataList").toString();
+                            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                                FileOutputStream fos = new FileOutputStream(new File(context.getCacheDir() + "/service_province.json"));
+                                fos.write(addressArray.getBytes());
+                                fos.close();
+                                mHandler.sendEmptyMessage(MSG_LOAD_DATA);
+                            }
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private Handler mHandler = new Handler() {
@@ -94,7 +143,7 @@ public class SelectAddressPop extends PopupWindow {
                 case MSG_LOAD_DATA:
                     if (thread == null) {//如果已创建就不再重新创建子线程了
 
-                        Toast.makeText(context, "Begin Parse Data", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Begin Parse Data", Toast.LENGTH_SHORT).show();
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -107,17 +156,17 @@ public class SelectAddressPop extends PopupWindow {
                     break;
 
                 case MSG_LOAD_SUCCESS:
-                    Toast.makeText(context, "Parse Succeed", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Parse Succeed", Toast.LENGTH_SHORT).show();
                     isLoaded = true;
                     if (isLoaded) {
                         showPickerView();
                     } else {
-                        Toast.makeText(context, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
                     }
                     break;
 
                 case MSG_LOAD_FAILED:
-                    Toast.makeText(context, "Parse Failed", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Parse Failed", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -130,7 +179,7 @@ public class SelectAddressPop extends PopupWindow {
          * 关键逻辑在于循环体
          *
          * */
-        String JsonData = new GetJsonDataUtil().getJson(context, "service_province.json");//获取assets目录下的json文件数据
+        String JsonData = new GetJsonDataUtil().getJsonFromSD(context, context.getCacheDir() + "/service_province.json");//获取assets目录下的json文件数据
 
         ArrayList<JsonBean_Service> jsonBean = parseData(JsonData);//用Gson 转成实体
 
@@ -152,10 +201,10 @@ public class SelectAddressPop extends PopupWindow {
                 CityList.add(CityName);//添加城市
                 ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
 
-                if(citysBean.getDistricts() == null){
+                if (citysBean.getDistricts() == null) {
                     City_AreaList.add("");
-                }else{
-                    for(int d = 0; d < citysBean.getDistricts().size(); d++){
+                } else {
+                    for (int d = 0; d < citysBean.getDistricts().size(); d++) {
                         JsonBean_Service.CitysBean.DistrictsBean districtsBean = citysBean.getDistricts().get(d);
                         City_AreaList.add(districtsBean.getDistrictName());
                     }
@@ -196,17 +245,17 @@ public class SelectAddressPop extends PopupWindow {
         return detail;
     }
 
-    private void showPickerView(){
+    private void showPickerView() {
         pvNoLinkOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String province = options1Items.get(options1).getPickerViewText();
                 String city = options2Items.get(options1).get(option2);
                 String area = options3Items.get(options1).get(option2).get(options3);
                 String detail = et_detail.getText().toString();
                 StringBuffer address = new StringBuffer(province);
-                if(!province.equals(city)){
+                if (!province.equals(city)) {
                     address.append(city);
                 }
                 address.append(area);
@@ -221,7 +270,6 @@ public class SelectAddressPop extends PopupWindow {
                 .setSelectOptions(2, 2, 3)  //设置默认选中项
                 .build();
         pvNoLinkOptions.setPicker(options1Items, options2Items, options3Items);//添加数据源
-//        rel_address.addView(pvNoLinkOptions.rootView);
         pvNoLinkOptions.show(false);
     }
 

@@ -2,8 +2,11 @@ package com.yijian.staff.mvp.huiji.detail.picker;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.Environment;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -33,4 +36,20 @@ public class GetJsonDataUtil {
         }
         return stringBuilder.toString();
     }
+
+    public String getJsonFromSD(Context context,String fileName){
+        File addressFile = new File(fileName);
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(addressFile)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
+
 }

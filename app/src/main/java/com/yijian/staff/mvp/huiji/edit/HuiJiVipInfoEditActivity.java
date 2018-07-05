@@ -105,7 +105,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> positionList = new ArrayList<String>();  //职务
     List<String> heightList = new ArrayList<String>();  //职务
     List<String> weightList = new ArrayList<String>();  //职务
-    final int REQUEST_ADDRESS_CODE = 100; //修改地址请求码
+    final int REQUEST_ADDRESS_HOME_CODE = 100; //修改地址请求码
+    final int REQUEST_ADDRESS_COMPANY_CODE = 101; //修改地址请求码
 
 
     @Override
@@ -205,12 +206,16 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     Intent intent = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
                     intent.putExtra("title","工作地址");
                     intent.putExtra("address",detailBean.getCompanyAddress());
-                    startActivityForResult(intent,REQUEST_ADDRESS_CODE);
+                    startActivityForResult(intent,REQUEST_ADDRESS_COMPANY_CODE);
 
                     break;
                 case R.id.rl_homeaddress: //家庭地址
-                    SelectAddressPop homeAddressPop = new SelectAddressPop(this, "家庭地址", tv_homeaddress);
-                    homeAddressPop.showAsDropDown(getWindow().getDecorView());
+                    /*SelectAddressPop homeAddressPop = new SelectAddressPop(this, "家庭地址", tv_homeaddress);
+                    homeAddressPop.showAsDropDown(getWindow().getDecorView());*/
+                    Intent intent2 = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
+                    intent2.putExtra("title","家庭地址");
+                    intent2.putExtra("address",detailBean.getAddress());
+                    startActivityForResult(intent2,REQUEST_ADDRESS_HOME_CODE);
                     break;
         }
     }
@@ -501,9 +506,12 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_ADDRESS_CODE && resultCode == RESULT_OK){
+        if(requestCode == REQUEST_ADDRESS_COMPANY_CODE && resultCode == RESULT_OK){ //工作地址
             detailBean.setCompanyAddress(data.getStringExtra("resultAddress"));
             tv_workdress.setText(detailBean.getCompanyAddress());
+        }else if(requestCode == REQUEST_ADDRESS_HOME_CODE && resultCode == RESULT_OK){ //家庭地址
+            detailBean.setAddress(data.getStringExtra("resultAddress"));
+            tv_homeaddress.setText(detailBean.getAddress());
         }
     }
 }

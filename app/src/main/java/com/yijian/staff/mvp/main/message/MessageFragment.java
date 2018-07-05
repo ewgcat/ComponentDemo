@@ -64,7 +64,6 @@ public class MessageFragment extends MvcBaseFragment {
         MessagePagerAdapter messagePagerAdapter = new MessagePagerAdapter(getFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(messagePagerAdapter);
         tabs.setViewPager(viewPager);
-        setCurrentItem(0);
         tabs.setOnPagerTitleItemClickListener(new PagerSlidingTabStrip.OnPagerTitleItemClickListener() {
             @Override
             public void onSingleClickItem(int position) {
@@ -87,19 +86,47 @@ public class MessageFragment extends MvcBaseFragment {
 
             }
         });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentItem = position;
+                refresh();
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        updateRedPoint();
+        setCurrentItem(0);
+
+
+    }
+
+    private void updateRedPoint() {
         boolean hasNewSellBusinessPush = SharePreferenceUtil.hasNewSellBusinessPush();
         Boolean hasNewCourseBusinessPush = SharePreferenceUtil.hasNewCourseBusinessPush();
         if (hasNewSellBusinessPush) {
             tabs.updateBubblePoint(0, 1);
-        } else if (hasNewCourseBusinessPush) {
+        }else {
+            tabs.updateBubblePoint(0, 0);
+        }
+        if (hasNewCourseBusinessPush) {
             tabs.updateBubblePoint(1, 1);
-
+        }else {
+            tabs.updateBubblePoint(1, 0);
         }
         ClearRedPointUtil.clearBusinessNotice(getLifecycle());
 
-
     }
+
 
     public void setCurrentItem(int i) {
         currentItem = i;
@@ -108,11 +135,15 @@ public class MessageFragment extends MvcBaseFragment {
 
     public void refresh() {
         if (currentItem == 0) {
-            tabs.updateBubblePoint(0, 1);
+            SharePreferenceUtil.setHasNewSellBusinessPush(false);
             fragment1.refresh();
+            tabs.updateBubblePoint(0, 0);
+            ClearRedPointUtil.clearSellBusinessNotice(getLifecycle());
         } else if (currentItem == 1) {
-            tabs.updateBubblePoint(1, 1);
+            SharePreferenceUtil.setHasNewCourseBusinessPush(false);
             fragment2.refresh();
+            tabs.updateBubblePoint(1, 0);
+            ClearRedPointUtil.clearCourseBusinessNotice(getLifecycle());
         }
     }
 

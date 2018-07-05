@@ -20,7 +20,7 @@
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="@color/blue"
         app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="true"
+        app:pstsShouldExpand="false"
         app:pstsTabPaddingLeftRight="16dp"
         android:background="@color/white"
         app:pstsTextSelectedColor="@color/blue"

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.text.SimpleDateFormat;
@@ -42,6 +44,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
     private static final String PRESELECTEDINDEX = "PREV_SELECTED_INDEX";
+    private static final String TAG = OrderClassActivity.class.getSimpleName();
 
     //    private DayFragment dayFragment;  //日视图Fragment
     private OrderClassDayFragment dayFragment;  //日视图Fragment
@@ -182,4 +185,11 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
             }
         }
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+            Logger.i(TAG,"push_message");
+    }
+    
 }

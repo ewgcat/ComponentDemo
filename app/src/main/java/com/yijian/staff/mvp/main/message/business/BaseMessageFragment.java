@@ -3,10 +3,14 @@ package com.yijian.staff.mvp.main.message.business;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -36,16 +40,15 @@ import butterknife.BindView;
  */
 
 @SuppressLint("ValidFragment")
-public class BaseMessageFragment extends MvcBaseFragment {
+public class BaseMessageFragment extends Fragment {
 
     private RefreshLayout refreshLayout;
     private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
     private RecyclerView recyclerView;
 
-    private static final String TAG = "BaseBusiniessMessageFragment";
+    private static final String TAG = "BaseMessageFragment";
     //测试图片的存位置
 
-    @BindView(R.id.empty_view)
     EmptyView empty_view;
     private int pageSize = 10;
     private int pageNum = 1;
@@ -60,20 +63,21 @@ public class BaseMessageFragment extends MvcBaseFragment {
         super();
     }
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_base_message;
-    }
+
 
     @Override
-    public void initView() {
-        initComponent(rootView);
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View view = inflater.inflate(R.layout.fragment_base_message, container, false);
+        initComponent(view);
+        return view;
+    }
 
     public void initComponent(View view) {
 
         recyclerView = view.findViewById(R.id.rv);
+        empty_view=view.findViewById(R.id.empty_view);
+
         empty_view.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

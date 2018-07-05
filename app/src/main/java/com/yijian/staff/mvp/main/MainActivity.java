@@ -320,7 +320,16 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         super.onNewIntent(intent);
         int push_message = intent.getIntExtra("push_message", 0);
         if (push_message == 2) {
+            Logger.i(TAG,"push_message");
             selectTab(push_message);
+            mBottombar.showRedPointNotice(View.INVISIBLE);
+            ClearRedPointUtil.clearBusinessNotice(getLifecycle());
+            if (SharePreferenceUtil.hasNewSellBusinessPush()){
+                mesageFragment.setCurrentItem(0);
+            }else if (SharePreferenceUtil.hasNewCourseBusinessPush()){
+                mesageFragment.setCurrentItem(1);
+            }
+
         }
     }
 }

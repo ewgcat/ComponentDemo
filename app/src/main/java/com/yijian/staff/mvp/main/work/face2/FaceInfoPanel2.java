@@ -114,7 +114,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            tv_detail_kayouxiaoqi.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
+            tv_detail_kayouxiaoqi.setText(faceDetail.getExpirationDate()==null?"未知":simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
             if (("无").equals(faceDetail.getBEntranceRecord()) || TextUtils.isEmpty(faceDetail.getBEntranceRecord())) {
                 tv_detail_biuld_time.setText("无");
             } else {
@@ -128,7 +128,7 @@ public class FaceInfoPanel2 extends PopupWindow {
 
         String coachName = faceDetail.getCoachName();
         if (TextUtils.isEmpty(coachName)){
-            tv_detail_coach.setText("无");
+            tv_detail_coach.setText("未知");
         }else {
             tv_detail_coach.setText(coachName);
         }
@@ -137,7 +137,7 @@ public class FaceInfoPanel2 extends PopupWindow {
         String courseName = faceDetail.getCourseName();
         int courseNum = faceDetail.getCourseNum();
         if (TextUtils.isEmpty(courseName)||courseNum==0){
-            tv_detail_progress.setText("无");
+            tv_detail_progress.setText("未知");
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
         }
@@ -207,7 +207,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 tv_cardName.setText(faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 try {
-                    tv_expirationDate.setText(simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
+                    tv_expirationDate.setText(faceDetail.getExpirationDate()==null?"未知":simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -215,7 +215,7 @@ public class FaceInfoPanel2 extends PopupWindow {
                 String courseName = faceDetail.getCourseName();
                 int courseNum = faceDetail.getCourseNum();
                 if (TextUtils.isEmpty(courseName)||courseNum==0){
-                    tv_courseNameNum.setText("无");
+                    tv_courseNameNum.setText("未知");
                 }else {
                     tv_courseNameNum.setText(courseName + "第" + courseNum + "节");
                 }

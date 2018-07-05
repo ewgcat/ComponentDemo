@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
@@ -20,6 +22,8 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.user.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.mvp.user.permission.PermissionBean;
+import com.yijian.staff.mvp.user.permission.PermissionUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -29,6 +33,8 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -135,6 +141,13 @@ public class LoginActivity extends MvcBaseActivity {
                         JSONObject othermodelVo = JsonUtil.getJsonObject(homePageModelVO, "othermodelVo");
                         DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
 
+                       try{
+                           //存储菜单子选项
+                           List<PermissionBean> permissionBeanList = JSONArray.parseArray(homePageModelVO.getJSONArray("menuModelList").toString(),PermissionBean.class);
+                           PermissionUtils.getInstance().savePermissionMenu(LoginActivity.this, permissionBeanList);
+                       }catch (Exception e){
+                           e.printStackTrace();
+                       }
 
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);

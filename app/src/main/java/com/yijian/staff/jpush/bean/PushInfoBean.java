@@ -6,16 +6,25 @@ package com.yijian.staff.jpush.bean;
  * time: 2018/6/28 14:37:26
  */
 public class PushInfoBean {
-    private Boolean hasNewBusinessPush;
+    private Boolean hasNewSellBusinessPush;
+    private Boolean hasNewCourseBusinessPush;
     private Boolean hasNewJiedaiPush;
     private Boolean hasNewYueKePush;
 
-    public Boolean getHasNewBusinessPush() {
-        return hasNewBusinessPush;
+    public Boolean getHasNewSellBusinessPush() {
+        return hasNewSellBusinessPush;
     }
 
-    public void setHasNewBusinessPush(Boolean hasNewBusinessPush) {
-        this.hasNewBusinessPush = hasNewBusinessPush;
+    public void setHasNewSellBusinessPush(Boolean hasNewSellBusinessPush) {
+        this.hasNewSellBusinessPush = hasNewSellBusinessPush;
+    }
+
+    public Boolean getHasNewCourseBusinessPush() {
+        return hasNewCourseBusinessPush;
+    }
+
+    public void setHasNewCourseBusinessPush(Boolean hasNewCourseBusinessPush) {
+        this.hasNewCourseBusinessPush = hasNewCourseBusinessPush;
     }
 
     public Boolean getHasNewJiedaiPush() {

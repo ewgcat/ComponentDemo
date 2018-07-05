@@ -5,24 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.huiji.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.main.mine.MineFragment;
 import com.yijian.staff.mvp.main.work.WorkFragment;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -136,15 +132,17 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     workFragment.observe(pushInfoBean);
                 }
 
-                boolean hasNewBusinessPush = pushInfoBean.getHasNewBusinessPush();
+                boolean hasNewSellBusinessPush = pushInfoBean.getHasNewSellBusinessPush();
+                Boolean hasNewCourseBusinessPush = pushInfoBean.getHasNewCourseBusinessPush();
                 if (mesageFragment.isVisible()) {
-                    if (hasNewBusinessPush) {
+                    if (hasNewSellBusinessPush) {
                         ClearRedPointUtil.clearBusinessNotice(lifecycle);
-                        SharePreferenceUtil.setHasNewBusinessPush(false);
-                        mesageFragment.refresh();
+                        mesageFragment.setCurrentItem(0);
+                    }else if (hasNewCourseBusinessPush){
+                        mesageFragment.setCurrentItem(1);
                     }
                 } else {
-                    if (hasNewBusinessPush) {
+                    if (hasNewSellBusinessPush||hasNewCourseBusinessPush) {
                         mBottombar.showRedPointNotice(View.VISIBLE);
                     } else {
                         mBottombar.showRedPointNotice(View.INVISIBLE);
@@ -157,20 +155,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
     }
 
-    public void clearBusinessNotice() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("moduleCode", "app_business_message");
-        HttpManager.postHasHeaderHasParam(HttpManager.CLEAR_RED_POINT_URL, map, new ResultJSONArrayObserver() {
-            @Override
-            public void onSuccess(JSONArray result) {
-            }
 
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
-    }
 
     public void hasNotice() {
         HttpManager.postHasHeaderNoParam(HttpManager.QUERY_RED_POINT_URL, new ResultJSONArrayObserver() {
@@ -181,10 +166,10 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     String moduleCode = JsonUtil.getString(jsonObject, "moduleCode");
                     if (!TextUtils.isEmpty(moduleCode)) {
                         if (moduleCode.equals("app_business_message")) {
-                            SharePreferenceUtil.setHasNewBusinessPush(true);
+                            SharePreferenceUtil.setHasNewSellBusinessPush(true);
                             mBottombar.showRedPointNotice(View.VISIBLE);
                         } else {
-                            SharePreferenceUtil.setHasNewBusinessPush(false);
+                            SharePreferenceUtil.setHasNewSellBusinessPush(false);
                             mBottombar.showRedPointNotice(View.INVISIBLE);
                         }
                         if (moduleCode.equals("app_course_appoint_info")) {

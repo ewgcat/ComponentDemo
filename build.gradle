@@ -42,8 +42,8 @@ ext {
     applicationId = "com.yijian.staff"
     versionCode = 2
     versionName = "1.1.0"
-    supportLibVersion = "27.0.2"
-    designVersion = "27.0.2"
+    supportLibVersion = "27.1.1"
+    designVersion = "27.1.1"
     dbVersion = 3
 
 }

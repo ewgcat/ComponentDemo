@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
 
 /****
@@ -306,6 +307,39 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
+    public void updateBubblePoint(int position, int count) {
+        Context context = getContext();
+        if (context != null) {
+
+            if (count > 0 && titleViewArrayList1.size() > position) {
+                TextView targetView = titleViewArrayList1.get(position);
+                QBadgeView qBadgeView = map.get(position);
+                if (qBadgeView!=null){
+                    qBadgeView.setVisibility(VISIBLE);
+                }else {
+                     qBadgeView = new QBadgeView(context);
+                    qBadgeView
+                            .bindTarget(targetView)
+                            .setBadgeBackgroundColor(Color.parseColor("#ff6347"))
+                            .setBadgeTextColor(Color.parseColor("#ff6347")).
+                            setBadgeTextSize(2, true)
+                            .setBadgeGravity(Gravity.END | Gravity.TOP)
+                            .setGravityOffset(-0.4f, 4f, true)
+                            .setBadgeNumber(count);
+                    map.put(position,qBadgeView);
+                    targetView.setTextColor(Color.parseColor("#666666"));
+                }
+            }else {
+                QBadgeView qBadgeView = map.get(position);
+                if (qBadgeView!=null){
+                    qBadgeView.setVisibility(GONE);
+                }
+            }
+
+        }
+    }
+
+    public HashMap<Integer,QBadgeView> map=new HashMap<>();
     private void addTab(final int position, View tab, View tab2) {
 
         tab.setPadding(tabPadding, 0, tabPadding, 0);

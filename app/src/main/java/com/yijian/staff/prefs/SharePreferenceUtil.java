@@ -20,7 +20,8 @@ public class SharePreferenceUtil {
     private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
     private static String KEY_HAS_NEW_JIEDAI_PUSH="has_new_jiedai_push";
     private static String KEY_HAS_NEW_YUE_KE_PUSH="has_new_yue_ke_push";
-    private static String KEY_HAS_NEW_BUSINESS_PUSH="has_new_business_push";
+    private static String KEY_HAS_NEW_SELL_BUSINESS_PUSH="has_new_sell_business_push";
+    private static String KEY_HAS_NEW_COURSE_BUSINESS_PUSH="has_new_course_business_push";
 
 
     public static void setShowEditIcon(boolean b) {
@@ -295,12 +296,20 @@ public class SharePreferenceUtil {
     }
 
 
-    public static boolean hasNewBusinessPush() {
-        return getBoolean(KEY_HAS_NEW_BUSINESS_PUSH, false);
+    public static boolean hasNewSellBusinessPush() {
+        return getBoolean(KEY_HAS_NEW_SELL_BUSINESS_PUSH, false);
     }
 
-    public static void setHasNewBusinessPush(boolean b) {
-        setBoolean(KEY_HAS_NEW_BUSINESS_PUSH, b);
+    public static void setHasNewSellBusinessPush(boolean b) {
+        setBoolean(KEY_HAS_NEW_SELL_BUSINESS_PUSH, b);
+    }
+
+    public static boolean hasNewCourseBusinessPush() {
+        return getBoolean(KEY_HAS_NEW_COURSE_BUSINESS_PUSH, false);
+    }
+
+    public static void setHasNewCourseBusinessPush(boolean b) {
+        setBoolean(KEY_HAS_NEW_COURSE_BUSINESS_PUSH, b);
     }
 
 

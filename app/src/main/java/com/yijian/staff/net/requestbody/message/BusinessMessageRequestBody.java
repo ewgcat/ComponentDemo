@@ -8,6 +8,15 @@ package com.yijian.staff.net.requestbody.message;
 public class BusinessMessageRequestBody {
     private int pageSize;
     private int pageNum;
+    private int businessType;
+
+    public int getBusinessType() {
+        return businessType;
+    }
+
+    public void setBusinessType(int businessType) {
+        this.businessType = businessType;
+    }
 
     public int getPageSize() {
         return pageSize;

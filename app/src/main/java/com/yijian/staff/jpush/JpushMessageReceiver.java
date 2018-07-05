@@ -5,28 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.yijian.staff.jpush.bean.Messager;
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
-import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxBus;
-import com.yijian.staff.util.GsonNullString;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
@@ -78,13 +69,15 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                         SharePreferenceUtil.setHasNewJiedaiPush(true);
                     }else   if (type == 1||type == 2){//约课取消约课
                         SharePreferenceUtil.setHasNewYueKePush(true);
-                        Logger.i(TAG,"有排课信息推送");
-                    }else   if (type>2&&type<18){//业务消息
-                        SharePreferenceUtil.setHasNewBusinessPush(true);
+                    }else   if (type>2&&type<13){//卡业务消息
+                        SharePreferenceUtil.setHasNewSellBusinessPush(true);
+                    }else if (type>=13&&type<18){//课程业务消息
+                        SharePreferenceUtil.setHasNewCourseBusinessPush(true);
                     }
                     pushInfoBean.setHasNewJiedaiPush(SharePreferenceUtil.hasNewJiedaiPush());
                     pushInfoBean.setHasNewYueKePush(SharePreferenceUtil.hasNewYueKePush());
-                    pushInfoBean.setHasNewBusinessPush(SharePreferenceUtil.hasNewBusinessPush());
+                    pushInfoBean.setHasNewSellBusinessPush(SharePreferenceUtil.hasNewSellBusinessPush());
+                    pushInfoBean.setHasNewCourseBusinessPush(SharePreferenceUtil.hasNewCourseBusinessPush());
                     RxBus.getDefault().post(pushInfoBean);
 
                 }
@@ -115,8 +108,6 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                         context.startActivity(intent1);
                     }
                 }
-
-//                约课 OrderClassActivity
             } catch (JSONException e) {
                 e.printStackTrace();
             }

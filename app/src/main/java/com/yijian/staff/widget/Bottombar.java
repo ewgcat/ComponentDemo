@@ -2,8 +2,6 @@ package com.yijian.staff.widget;
 
 import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
-import android.graphics.Color;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,16 +10,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.jpush.ClearRedPointUtil;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.JsonUtil;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 
 public class Bottombar extends LinearLayout implements View.OnClickListener {
@@ -117,7 +106,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
                 if (  lifecycle!=null){
                     ClearRedPointUtil.clearBusinessNotice(lifecycle);
                 }
-                SharePreferenceUtil.setHasNewBusinessPush(false);
+                SharePreferenceUtil.setHasNewSellBusinessPush(false);
                 showRedPointNotice(View.INVISIBLE);
                 break;
             case R.id.ll_main_mime:

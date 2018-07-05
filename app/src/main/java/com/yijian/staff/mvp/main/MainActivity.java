@@ -134,22 +134,22 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
                 boolean hasNewSellBusinessPush = pushInfoBean.getHasNewSellBusinessPush();
                 Boolean hasNewCourseBusinessPush = pushInfoBean.getHasNewCourseBusinessPush();
-                if (mesageFragment.isVisible()) {
-                    if (hasNewSellBusinessPush) {
-                        ClearRedPointUtil.clearBusinessNotice(lifecycle);
-                        mesageFragment.setCurrentItem(0);
-                    }else if (hasNewCourseBusinessPush){
-                        mesageFragment.setCurrentItem(1);
-                    }
+                if (hasNewSellBusinessPush||hasNewCourseBusinessPush) {
+                    mBottombar.showRedPointNotice(View.VISIBLE);
                 } else {
-                    if (hasNewSellBusinessPush||hasNewCourseBusinessPush) {
-                        mBottombar.showRedPointNotice(View.VISIBLE);
-                    } else {
-                        mBottombar.showRedPointNotice(View.INVISIBLE);
+                    mBottombar.showRedPointNotice(View.INVISIBLE);
+                }
+                if (mesageFragment.isVisible()) {
+                    mBottombar.showRedPointNotice(View.INVISIBLE);
+                    if (hasNewSellBusinessPush) {
+
+                        mesageFragment.setCurrentItem(0);
+                    }else {
+                        if (hasNewCourseBusinessPush){
+                            mesageFragment.setCurrentItem(1);
+                        }
                     }
                 }
-
-
             }
         });
 

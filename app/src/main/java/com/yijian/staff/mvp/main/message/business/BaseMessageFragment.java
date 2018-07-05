@@ -64,6 +64,11 @@ public class BaseMessageFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,7 +116,6 @@ public class BaseMessageFragment extends Fragment {
                 loadMore();
             }
         });
-        refresh();
 
     }
 

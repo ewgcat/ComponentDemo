@@ -122,7 +122,7 @@ public class MineFragment extends Fragment {
                     if (classification == 1) {
                         startActivity(new Intent(getContext(), CalendarTableActivity.class));
                     } else {
-                        Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "此版本无法提供该服务！", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();

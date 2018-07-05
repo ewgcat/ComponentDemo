@@ -100,7 +100,6 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (TextUtils.isEmpty(path)) {
 
                     } else {
-                        String menuKey = menuModel.getMenuKey();
                         List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
                         boolean allEditable = false;
                         boolean allQueryable = false;

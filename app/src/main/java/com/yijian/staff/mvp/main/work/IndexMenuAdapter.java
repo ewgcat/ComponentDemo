@@ -100,7 +100,21 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (TextUtils.isEmpty(path)) {
 
                     } else {
-                        ARouter.getInstance().build(path).navigation();
+                        String menuKey = menuModel.getMenuKey();
+                        List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
+                        boolean allEditable = false;
+                        boolean allQueryable = false;
+                        for (IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2 menuActionListBean2 : menuActionList) {
+                            if ("edit".equals(menuActionListBean2.getTag())) {
+                                allEditable = menuActionListBean2.isCheck();
+                            }
+                            if ("query".equals(menuActionListBean2.getTag())) {
+                                allQueryable = menuActionListBean2.isCheck();
+                            }
+                        }
+                        if (allQueryable) {
+                            ARouter.getInstance().build(path).navigation();
+                        }
                     }
 
                 }

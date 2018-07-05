@@ -7,6 +7,8 @@ import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.yijian.staff.greendao.gen.CoachHuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
+import com.yijian.staff.greendao.gen.OthermodelVoDao;
+import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 
@@ -36,7 +38,7 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
             public void onDropAllTables(Database db, boolean ifExists) {
                 DaoMaster.dropAllTables(db, ifExists);
             }
-        }, SearchKeyDao.class, UserDao.class, CoachHuiFangTypeBeanDao.class, HuiFangTypeBeanDao.class);
+        }, SearchKeyDao.class, UserDao.class, CoachHuiFangTypeBeanDao.class, HuiFangTypeBeanDao.class, OthermodelVoDao.class, RoleVoBeanDao.class);
     }
 
 }

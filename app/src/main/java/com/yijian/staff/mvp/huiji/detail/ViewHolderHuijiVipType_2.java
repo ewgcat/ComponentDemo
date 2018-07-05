@@ -62,12 +62,12 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
 //        tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
 
         VipDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseAndConsumeInfo();
-        tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+""));
-        tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+""));
-        tv_card_totalcost.setText(judgeNull(privateCourseInfoBean.getConsumeAmount()+""));
-        tv_card_consumenum.setText(judgeNull(privateCourseInfoBean.getCourseConsumeNum()+""));
-        tv_card_remaindermoney.setText(judgeNull(privateCourseInfoBean.getCardSurplusAmount()+""));
-        tv_card_remaindernum.setText(judgeNull(privateCourseInfoBean.getCourseSurplusNum()+""));
+        tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+"元"));
+        tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+"节"));
+        tv_card_totalcost.setText(judgeNull(privateCourseInfoBean.getConsumeAmount()+"元"));
+        tv_card_consumenum.setText(judgeNull(privateCourseInfoBean.getCourseConsumeNum()+"节"));
+        tv_card_remaindermoney.setText(judgeNull(privateCourseInfoBean.getCardSurplusAmount()+"元"));
+        tv_card_remaindernum.setText(judgeNull(privateCourseInfoBean.getCourseSurplusNum()+"节"));
 
 
     }

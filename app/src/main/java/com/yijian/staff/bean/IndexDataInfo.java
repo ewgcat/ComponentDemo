@@ -301,9 +301,47 @@ public class IndexDataInfo {
             }
 
             public static class MenuActionListBean2 {
+
+                private int id;
+                private String name;
+                private boolean check;
+                private String tag;
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public boolean isCheck() {
+                    return check;
+                }
+
+                public void setCheck(boolean check) {
+                    this.check = check;
+                }
+
+                public String getTag() {
+                    return tag;
+                }
+
+                public void setTag(String tag) {
+                    this.tag = tag;
+                }
             }
 
             public static class SubMeneModelListBean2 {
+
 
             }
         }

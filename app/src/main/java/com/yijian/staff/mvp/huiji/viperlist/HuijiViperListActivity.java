@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
@@ -41,6 +42,7 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     View view_all;
     @BindView(R.id.view_today_visit)
     View view_today_visit;
+
     private HuijiTodayVisitFragment huijiTodayVisitFragment;
     private HuijiAllViperFragment huijiAllViperFragment;
     private HuijiFilterViperDialog filterDialog;

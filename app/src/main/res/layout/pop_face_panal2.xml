@@ -455,7 +455,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
-                                android:text="最近健身："
+                                android:text="最近健身时间："
                                 android:layout_marginLeft="5dp"/>
 
                         </LinearLayout>

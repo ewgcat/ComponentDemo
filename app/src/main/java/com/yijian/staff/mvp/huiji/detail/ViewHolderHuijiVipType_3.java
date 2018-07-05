@@ -5,7 +5,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.huiji.bean.VipDetailBean;
+import com.yijian.staff.mvp.user.permission.PermissionUtils;
 
 import butterknife.BindView;
 
@@ -133,7 +137,12 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        llEdit.setVisibility(vipDetailBean.isEditEnable()?View.VISIBLE:View.GONE);
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", "app_formal_member");
+        if (allEditable) {
+            llEdit.setVisibility(vipDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
+        } else {
+            llEdit.setVisibility(View.GONE);
+        }
         llEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

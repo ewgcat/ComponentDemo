@@ -116,14 +116,8 @@ public class MineFragment extends Fragment {
                 break;
             case R.id.ll_my_date:
                 OthermodelVo othermodelVo = DBManager.getInstance().queryOthermodelVo();
-                RoleVoBean roleVoBean = DBManager.getInstance().queryRoleVoBean();
-                if (othermodelVo.getSchedule()) {
-                    int classification = roleVoBean.getClassification();
-                    if (classification == 1) {
-                        startActivity(new Intent(getContext(), CalendarTableActivity.class));
-                    } else {
-                        Toast.makeText(getContext(), "此版本无法提供该服务！", Toast.LENGTH_SHORT).show();
-                    }
+                if (othermodelVo.getCoachSchedule()) {
+                    startActivity(new Intent(getContext(), CalendarTableActivity.class));
                 } else {
                     Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();
                 }

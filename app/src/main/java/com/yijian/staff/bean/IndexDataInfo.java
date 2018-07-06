@@ -41,9 +41,9 @@ public class IndexDataInfo {
          * schedule : false
          * reception : false
          */
-
         private boolean faceRecognition;
-        private boolean schedule;
+        private boolean coachSchedule;
+        private boolean sellerSchedule;
         private boolean reception;
 
         public boolean isFaceRecognition() {
@@ -54,12 +54,20 @@ public class IndexDataInfo {
             this.faceRecognition = faceRecognition;
         }
 
-        public boolean isSchedule() {
-            return schedule;
+        public boolean isCoachSchedule() {
+            return coachSchedule;
         }
 
-        public void setSchedule(boolean schedule) {
-            this.schedule = schedule;
+        public void setCoachSchedule(boolean coachSchedule) {
+            this.coachSchedule = coachSchedule;
+        }
+
+        public boolean isSellerSchedule() {
+            return sellerSchedule;
+        }
+
+        public void setSellerSchedule(boolean sellerSchedule) {
+            this.sellerSchedule = sellerSchedule;
         }
 
         public boolean isReception() {
@@ -109,6 +117,7 @@ public class IndexDataInfo {
          * className : string
          * count : 0
          * icon : string
+         * "menuKey": "app_workbench",
          * level : 0
          * menuActionList : [{"check":false,"id":0,"name":"string","tag":"string"}]
          * menuId : 0
@@ -125,12 +134,21 @@ public class IndexDataInfo {
         private String className;
         private int count;
         private String icon;
+        private String menuKey;
         private int level;
         private int menuId;
         private String path;
         private String title;
         private List<MenuActionListBean> menuActionList;
         private List<SubMeneModelListBean> subMeneModelList;
+
+        public String getMenuKey() {
+            return menuKey;
+        }
+
+        public void setMenuKey(String menuKey) {
+            this.menuKey = menuKey;
+        }
 
         public String getClassName() {
             return className;

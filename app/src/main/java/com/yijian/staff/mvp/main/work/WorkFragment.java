@@ -171,7 +171,8 @@ public class WorkFragment extends MvcBaseFragment {
                 try {
                     jsonObject.put("faceRecognition", othermodelVoBean.isFaceRecognition());
                     jsonObject.put("schedule", othermodelVoBean.isReception());
-                    jsonObject.put("reception", othermodelVoBean.isSchedule());
+                    jsonObject.put("coachSchedule", othermodelVoBean.isCoachSchedule());
+                    jsonObject.put("sellerSchedule", othermodelVoBean.isSellerSchedule());
                     DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(jsonObject));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -180,13 +181,25 @@ public class WorkFragment extends MvcBaseFragment {
 
                 menuList.clear();
                 List<IndexDataInfo.MenuModelListBean> menuModelList = result.getMenuModelList();
+                SharePreferenceUtil.setAppSellerBuiness(false);
+                SharePreferenceUtil.setAppCourseBuiness(false);
                 for (int i = 0; i < menuModelList.size(); i++) {
                     IndexDataInfo.MenuModelListBean menuModelListBean = menuModelList.get(i);
-                    if (menuModelListBean != null) {
+                    if (menuModelListBean != null && menuModelListBean.getMenuKey().equals("app_workbench")) {
                         List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean> subMeneModelList = menuModelListBean.getSubMeneModelList();
                         for (int j = 0; j < subMeneModelList.size(); j++) {
                             IndexDataInfo.MenuModelListBean.SubMeneModelListBean subMeneModelListBean = subMeneModelList.get(j);
                             menuList.add(subMeneModelListBean);
+                        }
+                    } else if (menuModelListBean != null && menuModelListBean.getMenuKey().equals("app_business_message")) {
+                        List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean> subMeneModelList = menuModelListBean.getSubMeneModelList();
+                        for (int j = 0; j < subMeneModelList.size(); j++) {
+                            IndexDataInfo.MenuModelListBean.SubMeneModelListBean subMeneModelListBean = subMeneModelList.get(j);
+                            if (subMeneModelListBean.getMenuKey().equals("app_seller_business")) {
+                                SharePreferenceUtil.setAppSellerBuiness(true);
+                            } else if (subMeneModelListBean.getMenuKey().equals("app_course_business")) {
+                                SharePreferenceUtil.setAppCourseBuiness(true);
+                            }
                         }
                     }
                 }

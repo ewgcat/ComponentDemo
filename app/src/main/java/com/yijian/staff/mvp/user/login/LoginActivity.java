@@ -139,6 +139,7 @@ public class LoginActivity extends MvcBaseActivity {
                         DBManager.getInstance().insertOrReplaceRoleVoBean(new RoleVoBean(roleVo));
                         JSONObject homePageModelVO = JsonUtil.getJsonObject(result, "homePageModelVO");
                         JSONObject othermodelVo = JsonUtil.getJsonObject(homePageModelVO, "othermodelVo");
+
                         DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
 
                        try{

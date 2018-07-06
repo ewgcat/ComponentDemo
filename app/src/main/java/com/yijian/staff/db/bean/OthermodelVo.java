@@ -22,65 +22,82 @@ public class OthermodelVo {
      */
 
     private boolean faceRecognition;
-    private boolean schedule;
+    private boolean coachSchedule;
+    private boolean sellerSchedule;
     private boolean reception;
 
 
 
     public OthermodelVo(JSONObject jsonObject) {
         this.faceRecognition = JsonUtil.getBoolean(jsonObject, "faceRecognition");
-        this.schedule = JsonUtil.getBoolean(jsonObject, "schedule");
+        this.coachSchedule = JsonUtil.getBoolean(jsonObject, "coachSchedule");
+        this.sellerSchedule = JsonUtil.getBoolean(jsonObject, "sellerSchedule");
         this.reception = JsonUtil.getBoolean(jsonObject, "reception");
     }
-    @Generated(hash = 701914135)
-    public OthermodelVo(boolean faceRecognition, boolean schedule,
-            boolean reception) {
+
+
+
+    @Generated(hash = 1988909857)
+    public OthermodelVo(boolean faceRecognition, boolean coachSchedule,
+            boolean sellerSchedule, boolean reception) {
         this.faceRecognition = faceRecognition;
-        this.schedule = schedule;
+        this.coachSchedule = coachSchedule;
+        this.sellerSchedule = sellerSchedule;
         this.reception = reception;
     }
+
+
+
     @Generated(hash = 806863264)
     public OthermodelVo() {
     }
-    public boolean isFaceRecognition() {
-        return faceRecognition;
+
+
+
+    public boolean getFaceRecognition() {
+        return this.faceRecognition;
     }
+
+
 
     public void setFaceRecognition(boolean faceRecognition) {
         this.faceRecognition = faceRecognition;
     }
 
-    public boolean isSchedule() {
-        return schedule;
+
+
+    public boolean getCoachSchedule() {
+        return this.coachSchedule;
     }
 
-    public void setSchedule(boolean schedule) {
-        this.schedule = schedule;
+
+
+    public void setCoachSchedule(boolean coachSchedule) {
+        this.coachSchedule = coachSchedule;
     }
 
-    public boolean isReception() {
-        return reception;
+
+
+    public boolean getSellerSchedule() {
+        return this.sellerSchedule;
     }
 
-    public void setReception(boolean reception) {
-        this.reception = reception;
+
+
+    public void setSellerSchedule(boolean sellerSchedule) {
+        this.sellerSchedule = sellerSchedule;
     }
-    public boolean getFaceRecognition() {
-        return this.faceRecognition;
-    }
-    public boolean getSchedule() {
-        return this.schedule;
-    }
+
+
+
     public boolean getReception() {
         return this.reception;
     }
 
-    @Override
-    public String toString() {
-        return "OthermodelVo{" +
-                "faceRecognition=" + faceRecognition +
-                ", schedule=" + schedule +
-                ", reception=" + reception +
-                '}';
+
+
+    public void setReception(boolean reception) {
+        this.reception = reception;
     }
+
 }

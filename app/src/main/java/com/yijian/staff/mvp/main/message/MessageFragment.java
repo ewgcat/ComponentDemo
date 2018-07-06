@@ -55,13 +55,19 @@ public class MessageFragment extends MvcBaseFragment {
     }
 
     private void initIndicatorAndViewPager() {
-        mTitleList.add("会籍消息");
-        mTitleList.add("课程消息");
+        boolean appSellerBuiness = SharePreferenceUtil.getAppSellerBuiness();
+        if (appSellerBuiness){
+            mTitleList.add("会籍消息");
+            fragment1 = new BaseMessageFragment(0);
+            fragmentList.add(fragment1);
+        }
+        boolean appCourseBuiness = SharePreferenceUtil.getAppCourseBuiness();
+        if (appCourseBuiness){
+            mTitleList.add("课程消息");
+            fragment2 = new BaseMessageFragment(1);
+            fragmentList.add(fragment2);
+        }
 
-        fragment1 = new BaseMessageFragment(0);
-        fragmentList.add(fragment1);
-        fragment2 = new BaseMessageFragment(1);
-        fragmentList.add(fragment2);
         MessagePagerAdapter messagePagerAdapter = new MessagePagerAdapter(getFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(messagePagerAdapter);
         tabs.setViewPager(viewPager);

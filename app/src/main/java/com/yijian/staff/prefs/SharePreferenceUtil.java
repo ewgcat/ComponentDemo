@@ -17,11 +17,13 @@ public class SharePreferenceUtil {
     public static final String KEY_JPUSH_ALIAS = "jpush_alias";
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
-    private static String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
-    private static String KEY_HAS_NEW_JIEDAI_PUSH="has_new_jiedai_push";
-    private static String KEY_HAS_NEW_YUE_KE_PUSH="has_new_yue_ke_push";
-    private static String KEY_HAS_NEW_SELL_BUSINESS_PUSH="has_new_sell_business_push";
-    private static String KEY_HAS_NEW_COURSE_BUSINESS_PUSH="has_new_course_business_push";
+    private static final String KEY_SELLER_BUSINESS ="key_seller_business" ;
+    private static final String KEY_COURSE_BUSINESS = "key_course_business";
+    private static final String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
+    private static final String KEY_HAS_NEW_JIEDAI_PUSH="has_new_jiedai_push";
+    private static final String KEY_HAS_NEW_YUE_KE_PUSH="has_new_yue_ke_push";
+    private static final String KEY_HAS_NEW_SELL_BUSINESS_PUSH="has_new_sell_business_push";
+    private static final String KEY_HAS_NEW_COURSE_BUSINESS_PUSH="has_new_course_business_push";
 
 
     public static void setShowEditIcon(boolean b) {
@@ -313,4 +315,22 @@ public class SharePreferenceUtil {
     }
 
 
+    public static void setAppSellerBuiness(boolean b) {
+        setBoolean(KEY_SELLER_BUSINESS, b);
+
+    }
+
+    public static void setAppCourseBuiness(boolean b) {
+        setBoolean(KEY_COURSE_BUSINESS, b);
+
+    }
+
+    public static boolean getAppSellerBuiness(){
+        return getBoolean(KEY_SELLER_BUSINESS, false);
+
+    }
+    public static boolean getAppCourseBuiness(){
+        return getBoolean(KEY_COURSE_BUSINESS, false);
+
+    }
 }

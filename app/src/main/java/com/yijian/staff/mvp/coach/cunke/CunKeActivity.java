@@ -131,7 +131,6 @@ public class CunKeActivity extends MvcBaseActivity {
                 refreshLayout.finishRefresh(2000, true);
 
                 bodyList.clear();
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pagesTotal = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {

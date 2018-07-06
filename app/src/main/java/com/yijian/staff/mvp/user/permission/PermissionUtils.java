@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.user.permission;
 
 import android.content.Context;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

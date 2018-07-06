@@ -180,7 +180,7 @@ public class CunKeActivity extends MvcBaseActivity {
                     } catch (JSONException e) {
                     }
                 }
-                cunKeAdapter.notifyDataSetChanged();
+                cunKeAdapter.resetDataList(bodyList);
             }
 
             @Override

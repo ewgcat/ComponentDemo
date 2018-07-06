@@ -538,8 +538,8 @@
 
         <activity
             android:name=".mvp.coach.setclass.orderclass.OrderClassActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.coach.setclass.ExperienceClassRecordActivity"
@@ -594,7 +594,8 @@
             android:name=".mvp.main.work.face2.FaceDetectorActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.huiji.detail.SelectAdressActivity" />
-        <activity android:name=".mvp.huiji.detail.SelectAddressActivity"></activity>
+        <activity android:name=".mvp.huiji.detail.SelectAddressActivity" />
+        <activity android:name=".mvp.coach.cunke.CunkeNewActivity"></activity>
     </application>
 
 </manifest>

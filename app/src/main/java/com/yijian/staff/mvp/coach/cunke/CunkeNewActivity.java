@@ -17,12 +17,9 @@ public class CunkeNewActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_edit_navigation_bar);
-        navigationBar2.setTitle( "详细信息");
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        navigationBar2.setTitle( "存课信息");
         navigationBar2.hideLeftSecondIv();
-        TextView rightTv = navigationBar2.getmRightTv();
-        rightTv.setText("保存");
-        rightTv.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.setBackClickListener(this);
     }
 

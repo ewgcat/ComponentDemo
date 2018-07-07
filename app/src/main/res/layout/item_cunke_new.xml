@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/white_bg"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="17dp">
+
+            <TextView
+                android:id="@+id/tv_courseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="增肌课"
+                android:textSize="@dimen/text_size_20"
+                android:textColor="@color/black333333"
+                android:includeFontPadding="false"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_memberName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="陈牛哥"
+                android:layout_toRightOf="@id/tv_courseName"
+                android:layout_alignBottom="@id/tv_courseName"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/black333333"
+                android:layout_marginLeft="13dp"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"/>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stockCourseCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textSize="@dimen/text_size_30"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_marginTop="12dp"
+                            android:text="存课数量(节)"
+                            android:textColor="@color/text_black3"
+                            />
+
+                    </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_totalCourseCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#1997f8"
+                    android:textSize="@dimen/text_size_30"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_12"
+                    android:layout_marginTop="12dp"
+                    android:text="课程总数量(节)"
+                    android:textColor="@color/text_black3"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <com.yijian.staff.widget.CircleProgressBar
+                    android:id="@+id/cunkeProgress"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

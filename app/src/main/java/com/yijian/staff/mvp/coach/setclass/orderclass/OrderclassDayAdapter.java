@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
@@ -111,28 +112,26 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             iv_status_cancel.setVisibility(View.GONE);
             //教练上课打卡状态(0:未打卡 1:正在上课 2:下课已打卡)
             int punchStatus = orderClassDayBean.getPunchStatus();
+            //状态（1已约课，2取消约课，3：会员已上课，4：会员爽约）
+            int status = orderClassDayBean.getStatus();
 
             int resStatu = 0;
             String strStatu = "";
-            /* if (punchStatus == 0 || punchStatus == 1) {
-                iv_order_class_statu.setVisibility(View.VISIBLE);
-                tv_order_class_statu.setVisibility(View.VISIBLE);
-                resStatu = R.mipmap.lesson_class;
-                strStatu = "上课";
-            }*/
-            int status = orderClassDayBean.getStatus();
-            if (status == 4) { //爽约
-                iv_status_sy.setVisibility(View.VISIBLE);
-            } else if (status == 3) { //已上课
-                iv_status_ysk.setVisibility(View.VISIBLE);
-            } else if(status == 2){
+            if(status == 2){
                 iv_status_cancel.setVisibility(View.VISIBLE);
-            }else if (status == 1) {
-                iv_order_class_statu.setVisibility(View.VISIBLE);
-                tv_order_class_statu.setVisibility(View.VISIBLE);
-                resStatu = R.mipmap.lesson_class;
-                strStatu = "上课";
+            }else if(status == 4){
+                iv_status_sy.setVisibility(View.VISIBLE);
+            }else{
+                if (punchStatus == 0 || punchStatus == 1) {
+                    iv_order_class_statu.setVisibility(View.VISIBLE);
+                    tv_order_class_statu.setVisibility(View.VISIBLE);
+                    resStatu = R.mipmap.lesson_class;
+                    strStatu = "上课";
+                }else{
+                    iv_status_ysk.setVisibility(View.VISIBLE);
+                }
             }
+
             rel_statu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

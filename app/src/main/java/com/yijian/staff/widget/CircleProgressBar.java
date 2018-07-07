@@ -9,20 +9,25 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.yijian.staff.R;
 
 public class CircleProgressBar extends View {
 
-    private Paint mPaint;
+    private Paint mPaint,txtBasePaint;
     private int radius;
     private int circleStrokeWidth;
     private int textStrokeWidth;
-    private int cx,cy;
+    private int textBaseStrokeWidth;
+    private int cx, cy;
     private Context mContext;
     private float progress = 0;
     private int textSize;
+    private int textBaseSize;
     private int mSpeed = 30;
+    private TextView cunkeProgress;
 
 
     public CircleProgressBar(Context context, AttributeSet attrs) {
@@ -30,11 +35,15 @@ public class CircleProgressBar extends View {
         // TODO Auto-generated constructor stub
         this.mContext = context;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        txtBasePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         TypedArray tArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
         textSize = tArray.getDimensionPixelSize(R.styleable.CircleProgressBar_textSize, (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics()));
+        textBaseSize = tArray.getDimensionPixelSize(R.styleable.CircleProgressBar_textBaseSize, (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics()));
         circleStrokeWidth = (int) tArray.getDimension(R.styleable.CircleProgressBar_circleStrokeWidth, 10);
         textStrokeWidth = (int) tArray.getDimension(R.styleable.CircleProgressBar_textStrokeWidth, 5);
+        textBaseStrokeWidth = (int) tArray.getDimension(R.styleable.CircleProgressBar_textBaseStrokeWidth, 5);
         tArray.recycle();
     }
 
@@ -42,24 +51,51 @@ public class CircleProgressBar extends View {
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
-        Toast.makeText(mContext, "onDraw.....", 0).show();
         mPaint.setStrokeWidth(circleStrokeWidth);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#fcdfdf"));
-        canvas.drawCircle(cx, cy, radius, mPaint);
-        mPaint.setColor(Color.parseColor("#f27a7a"));
-        canvas.drawArc(new RectF(circleStrokeWidth/2, circleStrokeWidth/2,
-                        getMeasuredWidth()-circleStrokeWidth/2, getMeasuredWidth()-circleStrokeWidth/2)
-                , 270, (360*progress/100), false, mPaint);
 
-        String txtProgress = progress+"%";
+        if (progress <= 20) {
+            mPaint.setColor(Color.parseColor("#fcdfdf"));
+        } else {
+            mPaint.setColor(Color.parseColor("#d3f3ea"));
+        }
+
+
+        canvas.drawCircle(cx, cy, radius, mPaint);
+        if (progress <= 20) {
+            mPaint.setColor(Color.parseColor("#f27a7a"));
+            cunkeProgress.setTextColor(Color.parseColor("#f27a7a"));
+            txtBasePaint.setColor(Color.parseColor("#f27a7a"));
+        }else{
+            mPaint.setColor(Color.parseColor("#46cba7"));
+            cunkeProgress.setTextColor(Color.parseColor("#46cba7"));
+            txtBasePaint.setColor(Color.parseColor("#46cba7"));
+        }
+        canvas.drawArc(new RectF(circleStrokeWidth / 2, circleStrokeWidth / 2,
+                        getMeasuredWidth() - circleStrokeWidth / 2, getMeasuredWidth() - circleStrokeWidth / 2)
+                , 270, (360 * progress / 100), false, mPaint);
+
+        String txtProgress = progress+"";
         mPaint.setTextSize(textSize);
         mPaint.setStrokeWidth(textStrokeWidth);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         Paint.FontMetricsInt fm = mPaint.getFontMetricsInt();
-        float diff = Math.abs(fm.top) - (fm.bottom-fm.top)/2;
-        float baseLine = (getMeasuredHeight())/2 + diff;
-        canvas.drawText(txtProgress, (getMeasuredWidth()-mPaint.measureText(txtProgress))/2, baseLine, mPaint);
+        float diff = Math.abs(fm.top) - (fm.bottom - fm.top) / 2;
+        float baseLine = (getMeasuredHeight()) / 2 + diff;
+//        canvas.drawText(txtProgress, (getMeasuredWidth() - mPaint.measureText(txtProgress)) / 2, baseLine, mPaint);
+
+        String txtBase = "%";
+        txtBasePaint.setTextSize(textBaseSize);
+        txtBasePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        txtBasePaint.setStrokeWidth(textBaseStrokeWidth);
+        Paint.FontMetricsInt fm2 = mPaint.getFontMetricsInt();
+
+        float txtProgressWidth = mPaint.measureText(txtProgress);
+        float txtBaseWidth = txtBasePaint.measureText(txtBase);
+
+        canvas.drawText(txtProgress, (getMeasuredWidth() - (txtProgressWidth+txtBaseWidth)) / 2, baseLine, mPaint);
+        canvas.drawText(txtBase, (getMeasuredWidth() - (txtProgressWidth+txtBaseWidth)) / 2 + txtProgressWidth, baseLine, txtBasePaint);
+
     }
 
 
@@ -67,34 +103,35 @@ public class CircleProgressBar extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         // TODO Auto-generated method stub
         super.onSizeChanged(w, h, oldw, oldh);
-        radius = w/2-circleStrokeWidth/2;
-        cx = w/2;
-        cy = w/2;
+        radius = w / 2 - circleStrokeWidth / 2;
+        cx = w / 2;
+        cy = w / 2;
     }
 
-    public void setProgress(int totalProgress){
-        new Thread()
-        {
+    public void setProgress(int totalProgress) {
+        progress = 0;
+        new Thread() {
             @Override
-            public void run()
-            {
-                while (true)
-                {
-                    progress++;
-                    if (progress <= totalProgress)
-                    {
+            public void run() {
+                while (true) {
+                    if (progress < totalProgress) {
+                        progress++;
                         postInvalidate();
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(mSpeed);
-                    } catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-            };
+            }
+
+            ;
         }.start();
+    }
+
+    public void setCunkeViewTextColor(TextView cunkeProgress){
+        this.cunkeProgress = cunkeProgress;
     }
 
 }

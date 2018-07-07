@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/gray">
 
     <LinearLayout
@@ -9,6 +11,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/white_bg"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
         >
 
         <RelativeLayout
@@ -111,8 +116,13 @@
 
                 <com.yijian.staff.widget.CircleProgressBar
                     android:id="@+id/cunkeProgress"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:textSize="25sp"
+                    app:circleStrokeWidth="3dp"
+                    app:textStrokeWidth="1dp"
+                    app:textBaseSize="15sp"
+                    app:textBaseStrokeWidth="1dp"
                     />
 
             </LinearLayout>

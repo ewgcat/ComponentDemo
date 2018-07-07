@@ -18,6 +18,12 @@ public class CunKeNewAdapter extends RecyclerView.Adapter {
 
     private List<TypeOfCunKeBody> dataList = new ArrayList<>();
 
+    public void resetDataList(List<TypeOfCunKeBody> dataList) {
+        this.dataList.clear();
+        this.dataList.addAll(dataList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cunke_new,parent,false);
@@ -27,7 +33,7 @@ public class CunKeNewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        ((ViewHolder)holder).bindView(dataList.get(position));
     }
 
     @Override
@@ -61,6 +67,7 @@ public class CunKeNewAdapter extends RecyclerView.Adapter {
             int stockCourseCount = Integer.valueOf(typeOfCunKeBody.getStockCourseCount());
             int totalCourseCount = Integer.valueOf(typeOfCunKeBody.getTotalCourseCount());
             cunkeProgress.setProgress((totalCourseCount-stockCourseCount)/totalCourseCount*100);
+            cunkeProgress.setCunkeViewTextColor(tv_stockCourseCount);
         }
 
     }

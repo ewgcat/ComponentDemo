@@ -209,7 +209,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
             tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(startTime));
         }
 
-        if (!TextUtils.isEmpty(startTime)) {
+        if (!TextUtils.isEmpty(endTime)) {
             tv_xiake.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(endTime));
         }
 
@@ -280,5 +280,12 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         submitXiake();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = getIntent();
+        intent.putExtra("date", startDate);
+        setResult(ORDER_REFRESH_REQUESTCODE, intent);
+        finish();
+    }
 }
 

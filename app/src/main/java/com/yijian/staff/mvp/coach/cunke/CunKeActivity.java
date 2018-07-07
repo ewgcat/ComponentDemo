@@ -36,7 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@Route(path = "/test/16")
+/*@Route(path = "/test/16")*/
 public class CunKeActivity extends MvcBaseActivity {
 
     @BindView(R.id.rc_ck)

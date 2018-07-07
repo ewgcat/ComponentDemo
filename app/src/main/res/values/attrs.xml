@@ -70,6 +70,8 @@
         <attr name="textSize" format="dimension" />
         <attr name="circleStrokeWidth" format="dimension" />
         <attr name="textStrokeWidth" format="dimension" />
+        <attr name="textBaseStrokeWidth" format="dimension" />
+        <attr name="textBaseSize" format="dimension" />
     </declare-styleable>
 
 </resources>

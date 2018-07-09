@@ -6,7 +6,7 @@
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refreshLayout"
-            android:background="@color/gray"
+            android:background="@color/gray_background_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

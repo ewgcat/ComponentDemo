@@ -14,9 +14,10 @@
     <com.yijian.staff.widget.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textColor="#c0c0c0"
         android:textSize="14sp"
+        android:layout_marginLeft="16dp"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="@color/blue"
         app:pstsIndicatorHeight="2dp"

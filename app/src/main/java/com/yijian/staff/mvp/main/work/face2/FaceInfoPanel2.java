@@ -106,11 +106,11 @@ public class FaceInfoPanel2 extends PopupWindow {
 
     private void updateUi(FaceDetail faceDetail) {
         ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_detail_header);
-        tv_detail_name.setText(faceDetail.getMemberName());
-        tv_detail_cardname.setText(faceDetail.getCardName());
-        tv_detail_birthday.setText(faceDetail.getBirthDate());
-        tv_detail_age.setText(faceDetail.getAge() + "岁");
-        tv_detail_huiji.setText(faceDetail.getSellerName());
+        tv_detail_name.setText(emptyNull(faceDetail.getMemberName(),""));
+        tv_detail_cardname.setText(emptyNull(faceDetail.getCardName(),""));
+        tv_detail_birthday.setText(emptyNull(faceDetail.getBirthDate(),""));
+        tv_detail_age.setText(emptyNull(faceDetail.getAge()+"","岁"));
+        tv_detail_huiji.setText(emptyNull(faceDetail.getSellerName(),""));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -125,31 +125,27 @@ public class FaceInfoPanel2 extends PopupWindow {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        String coachName = faceDetail.getCoachName();
-        if (TextUtils.isEmpty(coachName)){
-            tv_detail_coach.setText("未知");
-        }else {
-            tv_detail_coach.setText(coachName);
-        }
-
-
+        tv_detail_coach.setText(emptyNull(faceDetail.getCoachName(),""));
         String courseName = faceDetail.getCourseName();
         int courseNum = faceDetail.getCourseNum();
         if (TextUtils.isEmpty(courseName)||courseNum==0){
-            tv_detail_progress.setText("未知");
+            tv_detail_progress.setText("无");
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
         }
 
         tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
-        tv_detail_build_num.setText(Integer.valueOf(faceDetail.getBuildCount()) + "次");
-        tv_detail_expe_num.setText(Integer.valueOf(faceDetail.getExperienceCourseCount()) + "次");
+        tv_detail_build_num.setText(emptyNull(faceDetail.getBuildCount()+"","次"));
+        tv_detail_expe_num.setText(emptyNull(faceDetail.getExperienceCourseCount()+"","次"));
 //        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
 //        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
 //        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
 
 
+    }
+
+    private String emptyNull(String str,String appendStr){
+        return (TextUtils.isEmpty(str) ? "无" : str) + (TextUtils.isEmpty(appendStr) ? "" : appendStr);
     }
 
     class FaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

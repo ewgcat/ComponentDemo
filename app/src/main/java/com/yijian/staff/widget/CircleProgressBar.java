@@ -62,7 +62,7 @@ public class CircleProgressBar extends View {
 
 
         canvas.drawCircle(cx, cy, radius, mPaint);
-        if (progress <= 20) {
+        if (progress < 60) {
             mPaint.setColor(Color.parseColor("#f27a7a"));
             cunkeProgress.setTextColor(Color.parseColor("#f27a7a"));
             txtBasePaint.setColor(Color.parseColor("#f27a7a"));

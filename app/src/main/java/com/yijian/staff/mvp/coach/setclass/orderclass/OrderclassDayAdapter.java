@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
@@ -76,6 +77,8 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
         ImageView iv_status_cancel; //取消预约
         TextView tv_order_class_statu;
         RelativeLayout rel_statu;
+        RelativeLayout rel_course;
+
 
 
         public ViewHolder(View view) {
@@ -91,6 +94,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
             iv_order_class_statu = view.findViewById(R.id.iv_order_class_statu);
             tv_order_class_statu = view.findViewById(R.id.tv_order_class_statu);
             rel_statu = view.findViewById(R.id.rel_statu);
+            rel_course = view.findViewById(R.id.rel_course);
             iv_status_ysk = view.findViewById(R.id.iv_status_ysk);
             iv_status_sy = view.findViewById(R.id.iv_status_sy);
             iv_status_cancel = view.findViewById(R.id.iv_status_cancel);
@@ -132,19 +136,22 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                 }
             }
 
-            rel_statu.setOnClickListener(new View.OnClickListener() {
+            rel_course.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    if (punchStatus == 0 || punchStatus == 1) {
-                        Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
-                        intent.putExtra("startDate", orderClassDayBean.getStartDate());
-                        intent.putExtra("startTimeActual", orderClassDayBean.getStartTimeActual());
-                        intent.putExtra("endTimeActual", orderClassDayBean.getEndTimeActual());
-                        intent.putExtra("punchStatus", orderClassDayBean.getPunchStatus());
-                        intent.putExtra("privateApplyId", orderClassDayBean.getId());
-                        fragment.startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
-
+                    if(status == 2){
+                        Toast.makeText(fragment.getActivity(),"该课已取消预约",Toast.LENGTH_SHORT).show();
+                    }else if(status == 4){
+                        Toast.makeText(fragment.getActivity(),"该课已爽约",Toast.LENGTH_SHORT).show();
+                    }else{
+                            Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
+                            intent.putExtra("startDate", orderClassDayBean.getStartDate());
+                            intent.putExtra("startTimeActual", orderClassDayBean.getStartTimeActual());
+                            intent.putExtra("endTimeActual", orderClassDayBean.getEndTimeActual());
+                            intent.putExtra("punchStatus", orderClassDayBean.getPunchStatus());
+                            intent.putExtra("privateApplyId", orderClassDayBean.getId());
+                            fragment.startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                     }
 
                 }

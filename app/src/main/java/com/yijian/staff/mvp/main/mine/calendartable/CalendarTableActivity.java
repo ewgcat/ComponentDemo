@@ -59,6 +59,8 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
     TitleChanger titleChanger;
     OnChangeDateListener onChangeDateListener;
     CalendarDay currentDay;
+    private CalendarDay currentDay_D; //日视图日期
+    private CalendarDay currentDay_W; //周视图日期
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,8 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(currentDay);
+        currentDay_D = currentDay;
+        currentDay_W = currentDay;
         selectTab(0);
     }
 
@@ -115,7 +119,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
         switch (index) {
 
             case 0:
-
+                onChangeDate(currentDay_D);
                 if (dayFragment_ycm == null) {
                     dayFragment_ycm = DayFragment_ycm.getInstance();
                     dayFragment_ycm.setOnChangeDateListener(this);
@@ -125,6 +129,7 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
                 transaction.commitAllowingStateLoss();
                 break;
             case 1:
+                onChangeDate(currentDay_W);
                 if (weekFragment == null) {
                     weekFragment = WeekFragment_ycm.getInstance();
                     weekFragment.setOnChangeDateListener(this);
@@ -163,6 +168,11 @@ public class CalendarTableActivity extends AppCompatActivity implements OnChange
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(calendarDay);
         currentDay = calendarDay;
+        if(selectedIndex == 0){
+            currentDay_D = calendarDay;
+        }else if(selectedIndex == 1){
+            currentDay_W = calendarDay;
+        }
     }
 
     @Override

@@ -66,7 +66,12 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     CalendarDay currentDay;
 
     public static int ORDER_REFRESH_REQUESTCODE = 110;
+
     private String pushDate = "";
+    private CalendarDay currentDay_D; //日视图日期
+    private CalendarDay currentDay_W; //周视图日期
+    private int currentIndex = 0; //记录现在tab的位置
+
 
 
     @Override
@@ -88,6 +93,8 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
         titleChanger.setTitleFormatter(new DateFormatTitleFormatter(new SimpleDateFormat("yyyy年MM月")));
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(currentDay);
+        currentDay_D = currentDay;
+        currentDay_W = currentDay;
         selectTab(0);
         SharePreferenceUtil.setHasNewYueKePush(false);
 
@@ -114,13 +121,14 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     }
 
     public void selectTab(int index) {
+        currentIndex = index;
         setBotoomStyle(index);
         hideFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (index) {
 
             case 0:
-
+                onChangeDate(currentDay_D);
                 if (dayFragment == null) {
                     dayFragment = OrderClassDayFragment.getInstance();
                     Bundle dayBundle = new Bundle();
@@ -128,11 +136,13 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
                     dayFragment.setArguments(dayBundle);
                     dayFragment.setOnChangeDateListener(this);
                     transaction.add(R.id.fl_calendarTab, dayFragment, "Homefragment");
+
                 }
                 transaction.show(dayFragment);
                 transaction.commitAllowingStateLoss();
                 break;
             case 1:
+                onChangeDate(currentDay_W);
                 if (weekFragment == null) {
                     weekFragment = OrderClassWeekFragment.getInstance();
                     weekFragment.setOnChangeDateListener(this);
@@ -171,6 +181,11 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
         titleChanger.setPreviousMonth(currentDay);
         titleChanger.change(calendarDay);
         currentDay = calendarDay;
+        if(currentIndex == 0){
+           currentDay_D = calendarDay;
+        }else if(currentIndex == 1){
+            currentDay_W = calendarDay;
+        }
     }
 
     @Override

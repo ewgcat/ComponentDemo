@@ -28,11 +28,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -191,15 +195,18 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-//        chronometer.setFormat("H:MM:SS");
         Calendar mCalendar = Calendar.getInstance();
-        int hour = mCalendar.get(Calendar.HOUR);
-        int minute = mCalendar.get(Calendar.MINUTE);
-        int second = mCalendar.get(Calendar.SECOND);
-
-        int time = hour * 60 * 60 + minute * 60 + second;
-        chronometer.setBase(SystemClock.elapsedRealtime() - time * 1000);//计时器清零
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer cArg) {
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                chronometer.setText(sdf.format(d));
+            }
+        });
+        chronometer.setBase(System.currentTimeMillis());
         chronometer.start();
+
         tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
 
         String startTime = getIntent().getStringExtra("startTimeActual");
@@ -219,6 +226,8 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
             tv_shangke_statu.setText("上课打卡");
         } else if (punchStatus == 1) {
             tv_shangke_statu.setText("下课打卡");
+        }else if(punchStatus == 2) {
+            tv_shangke_statu.setText("已完成");
         }
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);

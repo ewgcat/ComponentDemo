@@ -103,13 +103,18 @@ public class WeekFragment_ycm extends Fragment {
         adapter.setICourseListener(new AdapterWeekFragment.ICourseListener() {
             @Override
             public void onClick(DayTask.CoursesBean courseInfo) {
-                int punchStatus = courseInfo.getPunchStatus();
-                if (punchStatus == 0 || punchStatus == 1) {
+                int status = courseInfo.getStatus();
+                if(status == 2){
+                    Toast.makeText(getActivity(),"该课已取消预约",Toast.LENGTH_SHORT).show();
+                }else if(status == 4){
+                    Toast.makeText(getActivity(),"该课已爽约",Toast.LENGTH_SHORT).show();
+                }else{
                     Intent intent = new Intent(getActivity(), OpenLessonNewActivity.class);
                     intent.putExtra("startDate", courseInfo.getStartDate());
                     intent.putExtra("startTimeActual", courseInfo.getStartTimeActual());
                     intent.putExtra("endTimeActual", courseInfo.getEndTimeActual());
                     intent.putExtra("punchStatus", courseInfo.getPunchStatus());
+                    intent.putExtra("privateApplyId", courseInfo.getId());
                     startActivityForResult(intent, ORDER_REFRESH_REQUESTCODE);
                 }
             }

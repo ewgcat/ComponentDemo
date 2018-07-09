@@ -80,6 +80,7 @@ public class DayTask {
         private String startTimeActual;
         private String endTimeActual;
         private int punchStatus;
+        private int status;
         private int isPrepare;
         private String memberName;
         private Object courseNum;
@@ -191,6 +192,14 @@ public class DayTask {
 
         public void setPunchStatus(int punchStatus) {
             this.punchStatus = punchStatus;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
         }
 
         public int getIsPrepare() {

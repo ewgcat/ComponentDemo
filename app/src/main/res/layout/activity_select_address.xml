@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray">
+    android:background="@color/gray_background_color">
 
     <include
         android:id="@+id/navigation_bar2"
@@ -50,7 +50,7 @@
                 android:layout_centerVertical="true"
                 android:drawablePadding="5dp"
                 android:drawableRight="@mipmap/lg_xiala"
-                android:text="未录入"
+                android:text="暂未录入"
                 android:textColor="#999999"
                 android:textSize="14sp" />
 

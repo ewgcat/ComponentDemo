@@ -5,34 +5,25 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Scroller;
 
-
-import com.jeek.calendar.widget.calendar.CalendarUtils;
-import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
 import com.yijian.staff.R;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by cyandev on 2016/11/3.
- */
-public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<RecyclerView> {
+public class EmptyScrollingBehavior extends CoordinatorLayout.Behavior<NestedScrollView> {
     private static final String TAG = "HeaderScrollingBehavior";
     private boolean isExpanded = false;
     private boolean isScrolling = false;
+
     private WeakReference<View> dependentView;
     private Scroller scroller;
     private Handler handler;
 
-    public HeaderScrollingBehaviorDay(Context context, AttributeSet attrs) {
+    public EmptyScrollingBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
 //        Log.e(TAG, "HeaderScrollingBehavior: " );
         scroller = new Scroller(context);
@@ -44,7 +35,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
     }
 
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, RecyclerView child, View dependency) {
+    public boolean layoutDependsOn(CoordinatorLayout parent, NestedScrollView child, View dependency) {
 //        Log.e(TAG, "layoutDependsOn: " );
         if (dependency != null && dependency.getId() == R.id.ll_calendar) {
             dependentView = new WeakReference<>(dependency);
@@ -54,7 +45,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
     }
 
     @Override
-    public boolean onLayoutChild(CoordinatorLayout parent, RecyclerView child, int layoutDirection) {
+    public boolean onLayoutChild(CoordinatorLayout parent, NestedScrollView child, int layoutDirection) {
 //        Log.e(TAG, "onLayoutChild: " );
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         if (lp.height == CoordinatorLayout.LayoutParams.MATCH_PARENT) {
@@ -67,7 +58,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
 
 
     @Override
-    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull NestedScrollView child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
 //        Log.e(TAG, "onNestedPreScroll: " );
         if (dy < 0) {//向下拉
             return;
@@ -91,7 +82,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
     }
 
     @Override
-    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull NestedScrollView child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
 //        Log.e(TAG, "onStartNestedScroll: " );
         return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
 //        return true;
@@ -99,7 +90,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
 
 
     @Override
-    public void onNestedScrollAccepted(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+    public void onNestedScrollAccepted(@NonNull CoordinatorLayout coordinatorLayout, @NonNull NestedScrollView child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
 //        Log.e(TAG, "onNestedScrollAccepted: " );
         scroller.abortAnimation();
         isScrolling = false;
@@ -109,7 +100,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
 
 
     @Override
-    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull NestedScrollView child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
 //        Log.e(TAG, "onNestedScroll: dyUnconsumed=="+dyUnconsumed );
 //        Log.e(TAG, "onNestedScroll: " );
         if (dyUnconsumed > 0) {
@@ -127,14 +118,14 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
 
 
     @Override
-    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, float velocityX, float velocityY) {
+    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, NestedScrollView child, View target, float velocityX, float velocityY) {
 //        Log.e(TAG, "onNestedPreFling: " );
         return onUserStopDragging(velocityY);
     }
 
 
     @Override
-    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View target, int type) {
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull NestedScrollView child, @NonNull View target, int type) {
 //        Log.e(TAG, "onStopNestedScroll: " );
         if (!isScrolling) {
             onUserStopDragging(800);
@@ -142,7 +133,7 @@ public class HeaderScrollingBehaviorDay extends CoordinatorLayout.Behavior<Recyc
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, RecyclerView child, View dependency) {
+    public boolean onDependentViewChanged(CoordinatorLayout parent, NestedScrollView child, View dependency) {
 
         child.setTranslationY(dependency.getHeight() + dependency.getTranslationY() + getWeekBarViewHeight());
         return true;

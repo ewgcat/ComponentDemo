@@ -1,208 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/gray"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/lin_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:orientation="horizontal">
-        <View
+
+            <Space
                 android:layout_width="50dp"
-                android:layout_height="70dp"/>
-        <LinearLayout
-                android:layout_width="15dp"
+                android:layout_height="70dp" />
+
+            <LinearLayout
+                android:layout_width="12dp"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-            <View
+
+                <View
                     android:layout_width="3dp"
                     android:layout_height="match_parent"
-                    android:background="#dddddd"
-            />
+                    android:background="#dddddd" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
-
-    </LinearLayout>
-
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <RelativeLayout
+            <RelativeLayout
                 android:layout_width="50dp"
                 android:layout_height="match_parent">
 
-            <TextView
+                <TextView
                     android:id="@+id/tv_startOrderTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:text="09:00"/>
+                    android:text="09:00" />
 
-            <TextView
+                <TextView
                     android:id="@+id/tv_endOrderTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="11:00"/>
-        </RelativeLayout>
+                    android:text="11:00" />
+            </RelativeLayout>
 
-        <RelativeLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-            <ImageView
+                <ImageView
                     android:id="@+id/iv_circle_top"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@mipmap/my_time_select"/>
+                    android:src="@mipmap/my_time_select" />
 
-            <ImageView
+                <ImageView
                     android:id="@+id/iv_circle_bottom"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@mipmap/my_time_select"/>
+                    android:src="@mipmap/my_time_select" />
 
-            <View
+                <View
                     android:id="@+id/line_center"
                     android:layout_width="3dp"
                     android:layout_height="match_parent"
                     android:layout_above="@id/iv_circle_bottom"
                     android:layout_below="@id/iv_circle_top"
                     android:layout_centerHorizontal="true"
-                    android:background="#1997f8"/>
+                    android:background="#1997f8" />
 
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/rel_course"
+            <RelativeLayout
+                android:id="@+id/rel_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_bg"
+                android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp">
+                android:background="@drawable/white_bg">
 
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="15dp">
 
-                <TextView
+                    <TextView
                         android:id="@+id/tv_className"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="体验课"
                         android:textColor="#333333"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
-                <LinearLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="10dp">
 
-                    <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/icon_position"/>
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@mipmap/icon_position" />
 
-                    <TextView
+                        <TextView
                             android:id="@+id/tv_venue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="体验馆401"
                             android:textColor="#999999"
-                            android:textSize="16sp"/>
-                </LinearLayout>
+                            android:textSize="@dimen/text_size_12" />
+                    </LinearLayout>
 
-                <LinearLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="10dp">
 
-                    <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/icon_man"/>
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@mipmap/icon_man" />
 
-                    <TextView
+                        <TextView
                             android:id="@+id/tv_stuList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="张三"
                             android:textColor="#999999"
-                            android:textSize="16sp"/>
-                </LinearLayout>
+                            android:textSize="@dimen/text_size_12" />
+                    </LinearLayout>
 
-                <LinearLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="10dp">
 
-                    <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/my_numberofpeople"/>
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@mipmap/my_numberofpeople" />
 
-                    <TextView
+                        <TextView
                             android:id="@+id/tv_stu_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="1人"
                             android:textColor="#999999"
-                            android:textSize="16sp"/>
+                            android:textSize="@dimen/text_size_12" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <ImageView
+                <ImageView
                     android:id="@+id/iv_status_ysk"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@mipmap/my_finish"
                     android:layout_alignParentRight="true"
-                    android:visibility="gone"
-            />
+                    android:src="@mipmap/my_finish"
+                    android:visibility="gone" />
 
-            <ImageView
+                <ImageView
                     android:id="@+id/iv_status_sy"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@mipmap/my_unfinished"
                     android:layout_alignParentRight="true"
-                    android:visibility="gone"
-            />
+                    android:src="@mipmap/my_unfinished"
+                    android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/iv_status_cancel"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@mipmap/my_cancel"
-                android:layout_alignParentRight="true"
-                android:visibility="gone"
-                />
+                <ImageView
+                    android:id="@+id/iv_status_cancel"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/my_cancel"
+                    android:visibility="gone" />
 
-            <RelativeLayout
+                <RelativeLayout
                     android:id="@+id/rel_statu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -210,83 +214,88 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp">
 
-                <ImageView
+                    <ImageView
                         android:id="@+id/iv_order_class_statu"
                         android:layout_width="65dp"
                         android:layout_height="65dp"
-                        android:src="@mipmap/lessons_beike"/>
+                        android:src="@mipmap/lessons_beike" />
 
-                <TextView
+                    <TextView
                         android:id="@+id/tv_order_class_statu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="上课"
-                        android:layout_marginRight="25dp"
                         android:layout_centerInParent="true"
-                        android:textSize="16sp"
-                        android:textColor="@color/white"/>
+                        android:layout_marginRight="25dp"
+                        android:text="上课"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <View
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"/>
-            <LinearLayout
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                <View
-                        android:id="@+id/view_last_line"
-                        android:layout_width="3dp"
-                        android:layout_height="match_parent"
-                        android:background="#dddddd"
-                />
-            </LinearLayout>
-
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <View
+                        android:id="@+id/view_last_line"
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="#dddddd" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_bg_f8f8f8"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:orientation="horizontal"
+                android:background="@drawable/shape_bg_f8f8f8"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp">
+                android:paddingTop="8dp">
 
-            <ImageView
+                <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@mipmap/my_rest"/>
+                    android:src="@mipmap/my_rest" />
 
-            <TextView
+                <TextView
                     android:id="@+id/tv_intervalTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text=""
                     android:textColor="#e9bf4d"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 

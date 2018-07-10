@@ -67,7 +67,6 @@ public class DayFragment_ycm extends Fragment {
     private EmptyRecyclerView rv_day;
     OnChangeDateListener onChangeDateListener;
     private DayCanlendarAdapter dayCanlendarAdapter;
-    private CoordinatorLayout coordinatorLayout;
     private EmptyView empty_view;
     private LinearLayout lin_bg_line;
 

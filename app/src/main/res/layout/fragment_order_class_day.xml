@@ -8,7 +8,9 @@
     android:background="@color/white"
     android:fitsSystemWindows="false">
 
+
     <LinearLayout
+        android:id="@+id/lin_bg_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -128,12 +130,31 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+
+
+    <com.yijian.staff.widget.EmptyRecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
         app:layout_behavior="@string/header_scrolling_behavior_day" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.yijian.staff.mvp.main.mine.calendartable.EmptyScrollingBehavior"
+        >
+
+        <com.yijian.staff.widget.EmptyView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </android.support.v4.widget.NestedScrollView>
+
+
     <!--<android.support.v4.view.ViewPager-->
     <!--app:layoutManager="LinearLayoutManager"-->
     <!--android:id="@+id/view_pager"-->

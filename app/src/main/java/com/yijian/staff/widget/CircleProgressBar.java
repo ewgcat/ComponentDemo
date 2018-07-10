@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -22,18 +23,17 @@ public class CircleProgressBar extends View {
     private int textStrokeWidth;
     private int textBaseStrokeWidth;
     private int cx, cy;
-    private Context mContext;
-    private float progress = 0;
+    private int progress = 0;
     private int textSize;
     private int textBaseSize;
     private int mSpeed = 30;
     private TextView cunkeProgress;
+    private Typeface typeFace_diy;
 
 
     public CircleProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
-        this.mContext = context;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         txtBasePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         TypedArray tArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
@@ -51,10 +51,16 @@ public class CircleProgressBar extends View {
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
+
+        if(typeFace_diy != null){
+            mPaint.setTypeface(typeFace_diy);
+            txtBasePaint.setTypeface(typeFace_diy);
+
+        }
         mPaint.setStrokeWidth(circleStrokeWidth);
         mPaint.setStyle(Paint.Style.STROKE);
 
-        if (progress <= 20) {
+        if (progress < 60) {
             mPaint.setColor(Color.parseColor("#fcdfdf"));
         } else {
             mPaint.setColor(Color.parseColor("#d3f3ea"));
@@ -132,6 +138,10 @@ public class CircleProgressBar extends View {
 
     public void setCunkeViewTextColor(TextView cunkeProgress){
         this.cunkeProgress = cunkeProgress;
+    }
+
+    public void setTypeFace_DIY(Typeface typeFace_diy){
+        this.typeFace_diy = typeFace_diy;
     }
 
 }

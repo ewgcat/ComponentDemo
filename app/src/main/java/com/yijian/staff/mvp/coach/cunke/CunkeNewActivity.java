@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,6 +105,7 @@ public class CunkeNewActivity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
+        empty_view.setVisibility(View.GONE);
 
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver() {
             @Override
@@ -117,10 +119,10 @@ public class CunkeNewActivity extends AppCompatActivity {
                         TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(), TypeOfCunKeBody.class);
                         typeOfCunKeBodyList.add(typeOfCunKeBody);
                     } catch (JSONException e) {
-
-
+                        e.printStackTrace();
                     }
                 }
+                empty_view.setVisibility(typeOfCunKeBodyList.size()>0?View.GONE:View.VISIBLE);
                 cunKeNewAdapter.resetDataList(typeOfCunKeBodyList);
             }
 

@@ -37,6 +37,8 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyRecyclerView;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,11 +65,13 @@ public class OrderClassDayFragment extends Fragment {
     private int mCurrentSelectDay;
     private WeekCalendarView wcvCalendar;
     private MonthCalendarView mcvCalendar;
-    private RecyclerView rv_day;
+    private EmptyRecyclerView rv_day;
     OnChangeDateListener onChangeDateListener;
     private OrderclassDayAdapter orderclassDayAdapter;
     private  ImageView ivToggle;
     private String pushDate = "";
+    private EmptyView empty_view;
+    private LinearLayout lin_bg_line;
 
 
     public void setOnChangeDateListener(OnChangeDateListener onChangeDateListener) {
@@ -95,17 +99,14 @@ public class OrderClassDayFragment extends Fragment {
 
     private void initView(View view) {
 
+        lin_bg_line = view.findViewById(R.id.lin_bg_line);
+        empty_view = view.findViewById(R.id.empty_view);
         ivToggle = view.findViewById(R.id.iv_toggle);
-
         wcvCalendar = view.findViewById(R.id.wcvCalendar);
         mcvCalendar = view.findViewById(R.id.mcvCalendar);
         llCalendar = view.findViewById(R.id.ll_calendar);
-
         mcvCalendar.setOnCalendarClickListener(mMonthCalendarClickListener);
-
         wcvCalendar.setOnCalendarClickListener(mWeekCalendarClickListener);
-
-
         ivToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,14 +123,13 @@ public class OrderClassDayFragment extends Fragment {
             }
         });
 
-
         rv_day = view.findViewById(R.id.rv);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getActivity());
         //设置RecyclerView 布局
         rv_day.setLayoutManager(layoutmanager);
         orderclassDayAdapter = new OrderclassDayAdapter(this);
         rv_day.setAdapter(orderclassDayAdapter);
-
+        rv_day.setEmptyView(empty_view,lin_bg_line);
     }
 
     private void initData() {

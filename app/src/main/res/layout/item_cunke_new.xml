@@ -27,7 +27,7 @@
                 android:includeFontPadding="false"
                 android:text="增肌课"
                 android:textColor="@color/black333333"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="@dimen/text_size_16" />
 
             <TextView
                 android:id="@+id/tv_memberName"
@@ -49,8 +49,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -77,14 +75,15 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:paddingTop="5dp"
                 android:gravity="center">
 
                 <com.yijian.staff.widget.CircleProgressBar
                     android:id="@+id/cunkeProgress"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     app:circleStrokeWidth="3dp"
-                    app:textBaseSize="15sp"
+                    app:textBaseSize="16sp"
                     app:textBaseStrokeWidth="1dp"
                     app:textSize="25sp"
                     app:textStrokeWidth="1dp" />
@@ -97,8 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"

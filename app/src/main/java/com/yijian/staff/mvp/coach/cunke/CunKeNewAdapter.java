@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class CunKeNewAdapter extends RecyclerView.Adapter {
             float stockCourseCount = Integer.valueOf(typeOfCunKeBody.getStockCourseCount());
             float totalCourseCount = Integer.valueOf(typeOfCunKeBody.getTotalCourseCount());
             cunkeProgress.setProgress((int)((totalCourseCount-stockCourseCount)/totalCourseCount*100));
+            Log.e("Test",typeOfCunKeBody.getMemberName()+"====="+(int)((totalCourseCount-stockCourseCount)/totalCourseCount*100));
             cunkeProgress.setCunkeViewTextColor(tv_stockCourseCount);
         }
 

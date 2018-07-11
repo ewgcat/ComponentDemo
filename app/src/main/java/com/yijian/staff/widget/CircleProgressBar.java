@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -24,12 +25,12 @@ public class CircleProgressBar extends View {
     private int textBaseStrokeWidth;
     private int cx, cy;
     private int progress = 0;
+    private int totalProgress = 0;
     private int textSize;
     private int textBaseSize;
     private int mSpeed = 30;
     private TextView cunkeProgress;
     private Typeface typeFace_diy;
-
 
     public CircleProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -51,7 +52,6 @@ public class CircleProgressBar extends View {
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
-
         if(typeFace_diy != null){
             mPaint.setTypeface(typeFace_diy);
             txtBasePaint.setTypeface(typeFace_diy);
@@ -102,6 +102,11 @@ public class CircleProgressBar extends View {
         canvas.drawText(txtProgress, (getMeasuredWidth() - (txtProgressWidth+txtBaseWidth)) / 2, baseLine, mPaint);
         canvas.drawText(txtBase, (getMeasuredWidth() - (txtProgressWidth+txtBaseWidth)) / 2 + txtProgressWidth, baseLine, txtBasePaint);
 
+        if(progress < totalProgress){
+            progress++;
+            postInvalidate();
+        }
+
     }
 
 
@@ -116,24 +121,26 @@ public class CircleProgressBar extends View {
 
     public void setProgress(int totalProgress) {
         progress = 0;
+        this.totalProgress = totalProgress;
+        /*progress = 0;
         new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (progress < totalProgress) {
-                        progress++;
-                        postInvalidate();
-                    }
-                    try {
-                        Thread.sleep(mSpeed);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                @Override
+                public void run() {
+                    while (true) {
+                        if (progress < totalProgress) {
+                            progress++;
+                            postInvalidate();
+                        }
+                        try {
+                            Thread.sleep(mSpeed);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
 
-            ;
-        }.start();
+                ;
+            }.start();*/
     }
 
     public void setCunkeViewTextColor(TextView cunkeProgress){

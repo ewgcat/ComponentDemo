@@ -122,25 +122,6 @@ public class CircleProgressBar extends View {
     public void setProgress(int totalProgress) {
         progress = 0;
         this.totalProgress = totalProgress;
-        /*progress = 0;
-        new Thread() {
-                @Override
-                public void run() {
-                    while (true) {
-                        if (progress < totalProgress) {
-                            progress++;
-                            postInvalidate();
-                        }
-                        try {
-                            Thread.sleep(mSpeed);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-                ;
-            }.start();*/
     }
 
     public void setCunkeViewTextColor(TextView cunkeProgress){

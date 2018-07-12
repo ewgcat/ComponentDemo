@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -67,7 +68,7 @@ public class DayFragment_ycm extends Fragment {
     private EmptyRecyclerView rv_day;
     OnChangeDateListener onChangeDateListener;
     private DayCanlendarAdapter dayCanlendarAdapter;
-    private EmptyView empty_view;
+    private NestedScrollView empty_view;
     private LinearLayout lin_bg_line;
 
 

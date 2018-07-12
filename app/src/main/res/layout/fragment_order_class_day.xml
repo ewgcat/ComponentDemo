@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,8 +12,8 @@
         android:id="@+id/lin_bg_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/gray_background_color">
+        android:background="@color/gray_background_color"
+        android:orientation="horizontal">
 
         <Space
             android:layout_width="50dp"
@@ -39,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/month_calendar_height"
         android:layout_marginTop="@dimen/week_bar_height"
-        android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -70,8 +69,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -99,9 +98,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/week_calendar_height"
         android:layout_marginTop="@dimen/week_bar_height"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:visibility="gone"
-        android:background="@color/white"
         app:layout_behavior="@string/header_float_behavior">
 
         <android.support.v4.widget.Space
@@ -131,7 +130,6 @@
     </LinearLayout>
 
 
-
     <com.yijian.staff.widget.EmptyRecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
@@ -140,17 +138,15 @@
         app:layout_behavior="@string/header_scrolling_behavior_day" />
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.yijian.staff.mvp.main.mine.calendartable.EmptyScrollingBehavior"
-        >
+        app:layout_behavior="com.yijian.staff.mvp.main.mine.calendartable.EmptyScrollingBehavior">
 
         <com.yijian.staff.widget.EmptyView
-            android:id="@+id/empty_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            />
+            android:layout_gravity="center" />
 
     </android.support.v4.widget.NestedScrollView>
 

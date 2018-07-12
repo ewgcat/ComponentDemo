@@ -138,12 +138,11 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
             tv_order_class_statu.setVisibility(View.GONE);
             iv_status_ysk.setVisibility(View.GONE);
             iv_status_sy.setVisibility(View.GONE);
-
+            iv_status_cancel.setVisibility(View.GONE);
             //教练上课打卡状态(0:未打卡 1:正在上课 2:下课已打卡)
             int punchStatus = dayCanlendarInfo.getPunchStatus();
             //状态（1已约课，2取消约课，3：会员已上课，4：会员爽约）
             int status = dayCanlendarInfo.getStatus();
-
             int resStatu = 0;
             String strStatu = "";
             if (status == 2) {
@@ -160,7 +159,6 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                     iv_status_ysk.setVisibility(View.VISIBLE);
                 }
             }
-
             rel_course.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -181,11 +179,8 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
 
                 }
             });
-
-
             iv_order_class_statu.setImageResource(resStatu);
             tv_order_class_statu.setText(strStatu);
-
             tv_intervalTime.setText("约课时间间隔" + dayCanlendarInfo.getIntervalTime() + "分钟");
 
         }

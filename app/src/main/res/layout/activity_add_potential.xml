@@ -251,7 +251,7 @@
                     android:layout_marginRight="18dp"
                     android:background="@color/gray"/>
 
-           
+
 
             <View
                     android:layout_width="match_parent"

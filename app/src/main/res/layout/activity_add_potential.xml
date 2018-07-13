@@ -251,36 +251,7 @@
                     android:layout_marginRight="18dp"
                     android:background="@color/gray"/>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
 
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="18dp"
-                        android:layout_marginRight="18dp"
-                        android:text="兴趣爱好"/>
-
-
-                <TextView
-                        android:id="@+id/tv_hobby"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="18dp"
-                        android:layout_weight="1"
-                        android:drawableRight="@mipmap/wt_jiantou"
-                        android:gravity="center_vertical|right"
-                        android:drawablePadding="10dp"
-                        android:hint="请选择"
-                        android:textColor="#333333"
-                        android:textSize="14sp"/>
-            </LinearLayout>
 
             <View
                     android:layout_width="match_parent"

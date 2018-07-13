@@ -26,6 +26,7 @@ public class CustomApplicationLike extends DefaultApplicationLike {
     public void onCreate() {
         super.onCreate();
         Bugly.init(getApplication(), "9de22ca904", BuildConfig.DEBUG);
+        Beta.checkUpgrade(false, false);
 
     }
 

@@ -2,6 +2,8 @@ package com.yijian.staff.mvp.main.mine.setting;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SettingActivity extends MvcBaseActivity {
+public class SettingActivity extends AppCompatActivity {
 
     private static final String TAG = SettingActivity.class.getSimpleName();
     @BindView(R.id.iv_head)
@@ -54,14 +56,18 @@ public class SettingActivity extends MvcBaseActivity {
     TextView tvVersion;
     private Dialog dialog;
 
-
     @Override
-    protected int getLayoutID() {
-        return R.layout.activity_setting;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(  R.layout.activity_setting);
+
+        ButterKnife.bind(this);
+        initView();
     }
 
-    @Override
-    protected void initView(Bundle savedInstanceState) {
+
+
+    protected void initView() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
         navigationBar2.setTitle("");
         navigationBar2.setBackClickListener(this);
@@ -91,7 +97,7 @@ public class SettingActivity extends MvcBaseActivity {
 
                 @Override
                 public void onFail(String msg) {
-                    showToast(msg);
+
                 }
             });
         }

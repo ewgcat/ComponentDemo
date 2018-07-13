@@ -43,7 +43,7 @@ public static java.lang.String TABLENAME;
 # If you do not use Rx:
 -dontwarn rx.**
 
--dontobfuscate
+#-dontobfuscate
 -dontoptimize
 # removes such information by default, so configure it to keep all of it.
 -keepattributes Signature
@@ -66,6 +66,7 @@ public static java.lang.String TABLENAME;
 -dontpreverify
 -verbose
 
+-keep public class com.yijian.staff.bean.**{*;}
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -202,7 +203,9 @@ public static java.lang.String TABLENAME;
 #bugly混淆
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
-
+# tinker混淆规则
+-dontwarn com.tencent.tinker.**
+-keep class com.tencent.tinker.** { *; }
 #混淆ssl证书
 -dontwarn android.net.**
 -keep class android.net.SSLCertificateSocketFactory{*;}

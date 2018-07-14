@@ -67,7 +67,12 @@ public static java.lang.String TABLENAME;
 -verbose
 
 -keep public class com.yijian.staff.bean.**{*;}
+-keep public class com.yijian.staff.net.requestbody.**{*;}
 -keep public class * extends android.app.Activity
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends com.yijian.staff.mvp.base.mvc.MvcBaseFragment
+-keep public class * extends om.yijian.staff.mvp.base.mvc.MvcBaseActivity
+-keep public class * extends android.support.v7.app.AppCompatActivity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver

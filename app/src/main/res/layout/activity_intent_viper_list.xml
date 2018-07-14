@@ -1,22 +1,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background_color"
+    android:orientation="vertical">
 
     <include
-            android:id="@+id/vip_intent_navigation_bar"
-            layout="@layout/view_navigation_bar2"/>
+        android:id="@+id/vip_intent_navigation_bar"
+        layout="@layout/view_navigation_bar2" />
 
 
     <TextView
         android:id="@+id/tv_total_num"
-        android:layout_marginLeft="16dp"
-        android:textSize="14sp"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="24dp" />
-    <include
-            layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
+        android:layout_height="24dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_vertical"
+        android:textSize="14sp" />
+
+    <include layout="@layout/layout_base_smart_refresh_layout_recyclerview" />
 
 </LinearLayout>

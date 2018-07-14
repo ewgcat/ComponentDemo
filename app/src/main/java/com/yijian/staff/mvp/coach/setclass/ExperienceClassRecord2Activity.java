@@ -4,16 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.coach.huifang.task.pageadapter.CoachHuiFangPagerAdapter;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 
@@ -21,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ExperienceClassRecord2Activity extends MvcBaseActivity {
 

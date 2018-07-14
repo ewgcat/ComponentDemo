@@ -18,19 +18,19 @@
         android:background="@android:color/white"
         android:orientation="horizontal">
 
-        <com.yijian.staff.mvp.huiji.detail.picker.WheelView
+        <com.yijian.staff.mvp.vipermanage.viper.detail.picker.WheelView
             android:id="@+id/options1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.yijian.staff.mvp.huiji.detail.picker.WheelView
+        <com.yijian.staff.mvp.vipermanage.viper.detail.picker.WheelView
             android:id="@+id/options2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.yijian.staff.mvp.huiji.detail.picker.WheelView
+        <com.yijian.staff.mvp.vipermanage.viper.detail.picker.WheelView
             android:id="@+id/options3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

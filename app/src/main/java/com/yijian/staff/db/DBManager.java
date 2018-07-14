@@ -17,7 +17,7 @@ import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
-import com.yijian.staff.mvp.huiji.huifang.bean.HuiFangTypeBean;
+import com.yijian.staff.mvp.huifang.huiji.bean.HuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;

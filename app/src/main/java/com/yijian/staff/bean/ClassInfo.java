@@ -3,7 +3,6 @@ package com.yijian.staff.bean;
 import android.support.annotation.NonNull;
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.mvp.huiji.goodsbaojia.bean.CardInfo;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;

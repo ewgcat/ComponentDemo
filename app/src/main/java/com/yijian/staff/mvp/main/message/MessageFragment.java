@@ -1,16 +1,12 @@
 package com.yijian.staff.mvp.main.message;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.yijian.staff.R;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.huiji.huifang.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.mvp.main.message.business.BaseMessageFragment;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
@@ -20,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 public class MessageFragment extends MvcBaseFragment {

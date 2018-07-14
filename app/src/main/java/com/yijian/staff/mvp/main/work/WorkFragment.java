@@ -3,12 +3,9 @@ package com.yijian.staff.mvp.main.work;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -20,26 +17,21 @@ import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.coach.search.CoachSearchActivity;
-import com.yijian.staff.mvp.huiji.search.HuiJiSearchActivity;
-import com.yijian.staff.mvp.main.work.face2.FaceDetectorActivity;
+import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
+import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 

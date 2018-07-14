@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.course.experienceclass.index;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,21 +14,16 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.experienceclass.index.contract.ExperienceClassContract;
 import com.yijian.staff.mvp.course.experienceclass.index.presenter.ExperienceClassPresenter;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.NavigationBarItemFactory;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 @Route(path = "/test/17")
 public class ExperienceClassListActivity extends MvcBaseActivity implements ExperienceClassContract.View {

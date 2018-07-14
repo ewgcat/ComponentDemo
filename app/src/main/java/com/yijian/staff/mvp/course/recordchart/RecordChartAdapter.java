@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ClassRecordBean;
 import com.yijian.staff.mvp.course.recordchart.detail.ClassRecordDetailActivity;
-import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 

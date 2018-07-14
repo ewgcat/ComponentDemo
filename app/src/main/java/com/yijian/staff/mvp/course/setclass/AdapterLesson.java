@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.bean.TypeOfActionItem;
-import com.yijian.staff.mvp.course.setclass.bean.TypeOfActionTitle;
+import com.yijian.staff.bean.TypeOfActionItem;
+import com.yijian.staff.bean.TypeOfActionTitle;
 import com.yijian.staff.util.PopupWindowUtil;
 
 import java.util.ArrayList;

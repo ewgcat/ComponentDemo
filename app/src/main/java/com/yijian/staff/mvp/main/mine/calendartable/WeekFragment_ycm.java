@@ -1,41 +1,28 @@
 package com.yijian.staff.mvp.main.mine.calendartable;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jeek.calendar.widget.calendar.CalendarUtils;
 import com.jeek.calendar.widget.calendar.OnCalendarClickListener;
-import com.jeek.calendar.widget.calendar.month.MonthCalendarView;
-import com.jeek.calendar.widget.calendar.month.MonthView;
 import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
-import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
-import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
-import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
+import com.yijian.staff.bean.DayTask;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.Logger;
 
 import org.joda.time.DateTime;
 import org.json.JSONArray;
@@ -43,13 +30,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.security.auth.login.LoginException;
 
 import static com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 

@@ -6,9 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.bean.NoInstrumentBean;
-import com.yijian.staff.mvp.course.setclass.bean.PowerBean;
-import com.yijian.staff.mvp.course.setclass.bean.RecordTitleBean;
+import com.yijian.staff.bean.NoInstrumentBean;
+import com.yijian.staff.bean.RecordTitleBean;
 
 import java.util.ArrayList;
 import java.util.List;

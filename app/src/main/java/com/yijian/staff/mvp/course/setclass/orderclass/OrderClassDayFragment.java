@@ -1,8 +1,6 @@
 package com.yijian.staff.mvp.course.setclass.orderclass;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -10,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,25 +26,19 @@ import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 
-import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarAdapter;
-import com.yijian.staff.mvp.main.mine.calendartable.DayCanlendarInfo;
-import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
-import com.yijian.staff.mvp.course.setclass.bean.OrderClassDayBean;
+import com.yijian.staff.bean.OrderClassDayBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyRecyclerView;
-import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;

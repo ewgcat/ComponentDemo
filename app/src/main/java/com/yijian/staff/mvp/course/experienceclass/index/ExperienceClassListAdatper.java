@@ -20,6 +20,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.course.experienceclass.invate_ycm.ExperienceClass_ycm;
 
 import java.util.List;

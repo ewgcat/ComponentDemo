@@ -130,8 +130,8 @@ public class PotentialViperListActivity extends MvcBaseActivity {
 
                 if (total==-1){
                     total=0;
-                    tv_total_num.setText("潜在会员总人数："+total+"人");
                 }
+                tv_total_num.setText("潜在会员总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     try {

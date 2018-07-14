@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ActionBean;
+import com.yijian.staff.bean.PrepareLessonAllBean;
 import com.yijian.staff.mvp.course.preparelessons.createlession.CreatePrivateLessionActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.Observer;
 

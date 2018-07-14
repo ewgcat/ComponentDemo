@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.ExperienceClassProcess2Activity;
 import com.yijian.staff.mvp.course.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;

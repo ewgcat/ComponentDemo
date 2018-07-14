@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.bean.AerobicsBean;
-import com.yijian.staff.mvp.course.setclass.bean.RecordTitleBean;
+import com.yijian.staff.bean.AerobicsBean;
+import com.yijian.staff.bean.RecordTitleBean;
 
 import java.util.ArrayList;
 import java.util.List;

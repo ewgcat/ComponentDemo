@@ -9,16 +9,13 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Chronometer;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.bean.TypeOfActionItem;
+import com.yijian.staff.bean.TypeOfActionItem;
 import com.yijian.staff.widget.MDividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 

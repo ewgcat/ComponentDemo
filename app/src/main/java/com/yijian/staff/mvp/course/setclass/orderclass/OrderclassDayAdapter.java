@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.course.setclass.orderclass;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.ExperienceClassRecordActivity;
 import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
-import com.yijian.staff.mvp.course.setclass.bean.OrderClassDayBean;
+import com.yijian.staff.bean.OrderClassDayBean;
 
 import java.text.ParseException;
 import java.util.ArrayList;

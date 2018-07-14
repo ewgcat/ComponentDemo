@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step4.bean;
 
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 
 import java.util.List;
 

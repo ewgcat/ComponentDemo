@@ -5,7 +5,7 @@ import android.content.Context;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.course.experienceclass.index.contract.ExperienceClassContract;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;

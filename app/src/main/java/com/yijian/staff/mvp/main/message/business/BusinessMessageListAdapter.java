@@ -8,12 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.util.GlideCircleTransform;
+import com.yijian.staff.bean.BusinessMessageBean;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;

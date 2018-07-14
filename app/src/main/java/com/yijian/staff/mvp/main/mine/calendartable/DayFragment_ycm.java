@@ -5,19 +5,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeek.calendar.widget.calendar.CalendarUtils;
@@ -30,20 +27,18 @@ import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
 
+import com.yijian.staff.bean.DayCanlendarInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyRecyclerView;
-import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -379,13 +374,16 @@ public class DayFragment_ycm extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ORDER_REFRESH_REQUESTCODE) {
             String strDate = data.getStringExtra("date");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                loadDayData(simpleDateFormat.parse(strDate));
-                loadPreviewDayData(strDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (!TextUtils.isEmpty(strDate)){
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    loadDayData(simpleDateFormat.parse(strDate));
+                    loadPreviewDayData(strDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
     }
 

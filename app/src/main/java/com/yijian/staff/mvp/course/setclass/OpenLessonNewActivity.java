@@ -1,8 +1,6 @@
 package com.yijian.staff.mvp.course.setclass;
 
 import android.content.Intent;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +14,8 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.course.setclass.bean.PrivateLessonRecordBean;
-import com.yijian.staff.mvp.course.setclass.bean.PrivateShangKeBean;
-import com.yijian.staff.mvp.course.setclass.orderclass.SaveDataDialog;
+import com.yijian.staff.bean.PrivateLessonRecordBean;
+import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -34,12 +31,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;

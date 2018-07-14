@@ -152,8 +152,8 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
                 if (total==-1){
                     total=0;
-                    tv_total_num.setText("今日来访总人数："+total+"人");
                 }
+                tv_total_num.setText("今日来访总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
                 try {

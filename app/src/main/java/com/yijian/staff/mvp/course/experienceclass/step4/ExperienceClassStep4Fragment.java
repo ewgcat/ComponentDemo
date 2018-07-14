@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
-import com.yijian.staff.mvp.course.experienceclass.invate.ExperienceClassInvateActivity_ycm;
-import com.yijian.staff.mvp.course.experienceclass.invate.ExperienceClassInvateAgainActivity_ycm;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.course.experienceclass.invate_ycm.ExperienceStatusLisenter;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.ClassRecordTable;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.ClassRecordTable;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.step4.bean.ExperienceClassRecordTable;
 import com.yijian.staff.mvp.course.experienceclass.step4.bean.InvitationAgainBean;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm;

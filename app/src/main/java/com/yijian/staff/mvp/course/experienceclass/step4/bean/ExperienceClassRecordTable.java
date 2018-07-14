@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step4.bean;
 
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.ClassRecordTable;
+import com.yijian.staff.bean.ClassRecordTable;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;
 
 /**

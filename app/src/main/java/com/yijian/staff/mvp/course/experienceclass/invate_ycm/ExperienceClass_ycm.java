@@ -6,14 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.course.experienceclass.invate.ExperienceClassInvateAgainActivity_ycm;
 import com.yijian.staff.mvp.course.experienceclass.step1.ExperienceClassStep1Fragment;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.ExperienceClassStep2Fragment;
 import com.yijian.staff.mvp.course.experienceclass.step3.ExperienceClassStep3Fragment;
 import com.yijian.staff.mvp.course.experienceclass.step4.ExperienceClassStep4Fragment;
-import com.yijian.staff.mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.widget.ClassTimeBar;
 import com.yijian.staff.widget.NavigationBar2;
 

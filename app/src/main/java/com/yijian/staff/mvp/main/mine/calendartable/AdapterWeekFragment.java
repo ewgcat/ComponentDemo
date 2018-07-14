@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.main.mine.calendartable;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
+import com.yijian.staff.bean.DayTask;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

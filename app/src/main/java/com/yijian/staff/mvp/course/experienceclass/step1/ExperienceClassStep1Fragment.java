@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.course.experienceclass.step1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,15 +16,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.LessonPreparation;
+import com.yijian.staff.bean.ExperienceClassBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.template.Template2ClassActivity;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;
-import com.yijian.staff.widget.LastInputEditText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

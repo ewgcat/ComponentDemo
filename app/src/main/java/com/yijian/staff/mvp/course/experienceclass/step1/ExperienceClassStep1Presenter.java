@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.GsonNullString;

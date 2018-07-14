@@ -19,7 +19,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;
 import com.yijian.staff.widget.NavigationBar2;

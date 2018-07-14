@@ -17,7 +17,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.preparelessons.createlession.Observer;
-import com.yijian.staff.mvp.course.setclass.bean.PrivateLessonRecordBean;
+import com.yijian.staff.bean.PrivateLessonRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;

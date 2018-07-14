@@ -152,8 +152,8 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 total = JsonUtil.getInt(result, "total");
                 if (total==-1){
                     total=0;
-                    tv_total_num.setText("今日健身总人数："+total+"人");
                 }
+                tv_total_num.setText("今日健身总人数："+total+"人");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 try {
                     for (int i = 0; i < records.length(); i++) {

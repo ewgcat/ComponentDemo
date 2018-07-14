@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.ActionBean;
+import com.yijian.staff.bean.PrepareLessonAllBean;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 
 import java.util.List;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
+import com.yijian.staff.bean.ExperienceClassBean;
 import com.yijian.staff.mvp.course.experienceclass.step3.bean.ConsultationProgrammeBean;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 

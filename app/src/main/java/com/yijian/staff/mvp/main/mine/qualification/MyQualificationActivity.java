@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CertificateBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -36,7 +37,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MyQualificationActivity extends MvcBaseActivity {
     @BindView(R.id.choose_photo_view)

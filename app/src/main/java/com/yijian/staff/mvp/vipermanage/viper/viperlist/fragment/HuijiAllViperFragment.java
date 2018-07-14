@@ -162,8 +162,8 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
                 if (total==-1){
                     total=0;
-                    tv_total_num.setText("会员总人数："+total+"人");
                 }
+                tv_total_num.setText("会员总人数："+total+"人");
                 viperBeanList.clear();
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 

@@ -1,9 +1,7 @@
 package com.yijian.staff.mvp.course.experienceclass.index.contract;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.yijian.staff.mvp.course.experienceclass.index.ExperienceClassBean;
-import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.ExperienceClassBean;
 
 import java.util.List;
 

@@ -19,6 +19,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ReceptionInfo;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.bean.ReceptionLog;
@@ -34,8 +35,6 @@ import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.yijian.staff.mvp.main.MainActivity.RESULT_OK_RECEPTION;
 
 public class ReceptionActivity extends AppCompatActivity implements View.OnClickListener, ReceptionContract.View, ReceptionHistoryAdapter.ReceptionHistoryListener {
 

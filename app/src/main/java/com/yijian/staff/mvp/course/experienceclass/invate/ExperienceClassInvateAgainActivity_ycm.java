@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.invate_ycm.ExperienceClass_ycm;
-import com.yijian.staff.mvp.course.experienceclass.step1.bean.InviterBean;
+import com.yijian.staff.bean.InviterBean;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm;
 import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;
 import com.yijian.staff.widget.LastInputEditText;

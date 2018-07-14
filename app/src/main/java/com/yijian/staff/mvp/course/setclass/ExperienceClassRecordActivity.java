@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.setclass.bean.AerobicsBean;
-import com.yijian.staff.mvp.course.setclass.bean.NoInstrumentBean;
-import com.yijian.staff.mvp.course.setclass.bean.PowerBean;
+import com.yijian.staff.bean.AerobicsBean;
+import com.yijian.staff.bean.NoInstrumentBean;
+import com.yijian.staff.bean.PowerBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.cunke.bean.TypeOfCunKeBody;
+import com.yijian.staff.bean.TypeOfCunKeBody;
 import com.yijian.staff.widget.CircleProgressBar;
 
 import java.util.ArrayList;

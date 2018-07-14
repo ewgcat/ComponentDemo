@@ -1,15 +1,15 @@
 package com.yijian.staff.net.api;
 
 
-import com.yijian.staff.mvp.coach.experienceclass.invate.bean.InvateBean;
-import com.yijian.staff.mvp.coach.experienceclass.step2.bean.AccessRecordBean;
-import com.yijian.staff.mvp.coach.preparelessons.PrivatePrepareLessonBody;
+import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
+import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
+import com.yijian.staff.mvp.course.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.mvp.price.cardprice.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.mvp.coach.setclass.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.course.setclass.bean.PrivateShangKeBean;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;

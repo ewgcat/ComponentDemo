@@ -28,8 +28,8 @@ import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
-import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.course.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.bean.DayTask;
@@ -51,7 +51,7 @@ import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 
-import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+import static com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 
 /**
  * 周视图

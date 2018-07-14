@@ -8,7 +8,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <com.yijian.staff.mvp.coach.preparelessons.createlession.ActionContentView
+        <com.yijian.staff.mvp.course.preparelessons.createlession.ActionContentView
                 android:id="@+id/view_action_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.experienceclass.step3.bean.ExperienceClassProcess3Bean;
+import com.yijian.staff.mvp.course.experienceclass.step3.bean.ExperienceClassProcess3Bean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;

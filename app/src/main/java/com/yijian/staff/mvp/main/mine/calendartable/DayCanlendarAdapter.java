@@ -15,14 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.coach.setclass.ExperienceClassRecordActivity;
-import com.yijian.staff.mvp.coach.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.course.setclass.ExperienceClassRecordActivity;
+import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.yijian.staff.mvp.coach.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
+import static com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 
 /**
  * Created by yangk on 2018/3/15.

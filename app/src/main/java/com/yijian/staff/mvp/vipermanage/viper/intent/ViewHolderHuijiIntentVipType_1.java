@@ -5,7 +5,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
 import com.yijian.staff.util.DateUtil;
 
@@ -48,10 +48,10 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
     }
 
     @Override
-    public void bindView(VipDetailBean vipDetailBean) {
-        tvSex.setText(judgeNull(vipDetailBean.getSex()));
-        tvPhone.setText(judgeNull(vipDetailBean.getMobile()));
-        long birthday = vipDetailBean.getBirthday();
+    public void bindView(ViperDetailBean viperDetailBean) {
+        tvSex.setText(judgeNull(viperDetailBean.getSex()));
+        tvPhone.setText(judgeNull(viperDetailBean.getMobile()));
+        long birthday = viperDetailBean.getBirthday();
         if (birthday != 0) {
             tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
         } else {
@@ -59,17 +59,17 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
         }
 
 
-        tvBirthdayType.setText(judgeNull(vipDetailBean.getBirthdayType()));
-        tvAge.setText(judgeNull(vipDetailBean.getAge() + ""));
+        tvBirthdayType.setText(judgeNull(viperDetailBean.getBirthdayType()));
+        tvAge.setText(judgeNull(viperDetailBean.getAge() + ""));
 
-        long deadline = vipDetailBean.getDeadline();
+        long deadline = viperDetailBean.getDeadline();
         if (deadline != 0) {
             deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
         } else {
             deadLine.setText("暂未录入");
         }
 
-        long recentlyFitTime = vipDetailBean.getRecentlyFitTime();
+        long recentlyFitTime = viperDetailBean.getRecentlyFitTime();
         if (recentlyFitTime != 0) {
             tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
         } else {
@@ -77,8 +77,8 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
         }
 
 
-        tvXiaoFeiTotal.setText(judgeNull(vipDetailBean.getTotalConsumption()) + " 元");
-        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        tvXiaoFeiTotal.setText(judgeNull(viperDetailBean.getTotalConsumption()) + " 元");
+        ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         if (customerServiceInfoBean == null) return;
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));

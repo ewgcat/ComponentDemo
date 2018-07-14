@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.bean;
+package com.yijian.staff.bean;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/5/8 16:24:54
  */
-public class TodayHuiJiViperBean implements Serializable {
+public class TodayVisitViperBean implements Serializable {
     /**
      * CoachExpireVO：教练过期
      * CoachInfoVO ：教练正式
@@ -55,7 +55,7 @@ public class TodayHuiJiViperBean implements Serializable {
     private boolean underProtected;
 
 
-    public TodayHuiJiViperBean(JSONObject jsonObject) {
+    public TodayVisitViperBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");

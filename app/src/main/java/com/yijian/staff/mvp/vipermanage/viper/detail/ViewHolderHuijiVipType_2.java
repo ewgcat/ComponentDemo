@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.HuiJiVipeCardAdapter;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.mvp.vipermanage.card.ViperCardAdapter;
+import com.yijian.staff.bean.ViperDetailBean;
 
 /**
  * Created by The_P on 2018/5/15.
@@ -47,16 +47,16 @@ public class ViewHolderHuijiVipType_2 extends ViewHolderHuijiVipper {
     }
 
     @Override
-    public void bindView(VipDetailBean vipDetailBean) {
+    public void bindView(ViperDetailBean viperDetailBean) {
 
-        rv_card.setAdapter(new HuiJiVipeCardAdapter(vipDetailBean.getCardprods()));
-        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        rv_card.setAdapter(new ViperCardAdapter(viperDetailBean.getCardprods()));
+        ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvTuijianRen.setText(judgeNull(customerServiceInfoBean.getReferee()));
         tvTuijianRenPhone.setText(judgeNull(customerServiceInfoBean.getRefereeMobile()));
 //        tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
 //        tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));
 
-        VipDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = vipDetailBean.getPrivateCourseAndConsumeInfo();
+        ViperDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = viperDetailBean.getPrivateCourseAndConsumeInfo();
         tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+"元"));
         tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+"节"));
         tv_card_totalcost.setText(judgeNull(privateCourseInfoBean.getConsumeAmount()+"元"));

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
 import com.yijian.staff.util.ImageLoader;
 
@@ -35,15 +35,15 @@ class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
     }
 
     @Override
-    public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
-        tvName.setText(judgeNull(vipDetailBean.getName()));
+    public void bindView(ViperDetailBean viperDetailBean) {
+        ImageLoader.setHeadImageResource((viperDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + viperDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        tvName.setText(judgeNull(viperDetailBean.getName()));
 
-//        if (TextUtils.isEmpty(vipDetailBean.getMemberCardNo())){
+//        if (TextUtils.isEmpty(viperDetailBean.getMemberCardNo())){
 //            tv_card_tips.setVisibility(View.GONE);
 //        }else {
 //            tv_card_tips.setVisibility(View.VISIBLE);
-//            tv_card_no.setText(vipDetailBean.getMemberCardNo());
+//            tv_card_no.setText(viperDetailBean.getMemberCardNo());
 //        }
         ivVisit.setOnClickListener(new View.OnClickListener() {
             @Override

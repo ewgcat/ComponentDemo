@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 
 /**
  * Created by The_P on 2018/5/15.
@@ -22,15 +22,15 @@ public class AdapterHuijiViper extends RecyclerView.Adapter<ViewHolderHuijiVippe
     public static final int TYPE3 = 3;
 
     private Context context;
-    private VipDetailBean mVipDetailBean;
+    private ViperDetailBean mViperDetailBean;
 
     public AdapterHuijiViper(Context context) {
         this.context = context;
 
     }
 
-    public void setData(VipDetailBean vipDetailBean) {
-        mVipDetailBean = vipDetailBean;
+    public void setData(ViperDetailBean viperDetailBean) {
+        mViperDetailBean = viperDetailBean;
         notifyDataSetChanged();
     }
 
@@ -66,7 +66,7 @@ public class AdapterHuijiViper extends RecyclerView.Adapter<ViewHolderHuijiVippe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderHuijiVipper holder, int position) {
-        if (mVipDetailBean != null) holder.bindView(mVipDetailBean);
+        if (mViperDetailBean != null) holder.bindView(mViperDetailBean);
     }
 
     @Override

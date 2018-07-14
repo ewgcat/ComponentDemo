@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -42,7 +42,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     private TextView tvItem1;
     private TextView tvItem2;
     private AdapterAbsCoachViper adapter;
-    private VipDetailBean vipDetailBean;
+    private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
 
     private int vipType = 0;//0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
@@ -209,9 +209,9 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
             @Override
             public void onSuccess(JSONObject result) {
-                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
-                adapter.setData(vipDetailBean);
+                viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
+                if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
+                adapter.setData(viperDetailBean);
                 hideLoading();
             }
 
@@ -308,7 +308,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 
     @Override
     public void clickVisit() {
-        String mobile = vipDetailBean.getMobile();
+        String mobile = viperDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
             if (CommonUtil.isPhoneFormat(mobile)) {
                 CommonUtil.callPhone(CoachViperDetailActivity_ycm.this, mobile);
@@ -323,10 +323,10 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
     @Override
     public void clickEdit() {
         Intent intent = new Intent(CoachViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
-        intent.putExtra("detail", vipDetailBean.getDetail());
-        intent.putExtra("memberId", vipDetailBean.getMemberId());
-        intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
-        intent.putExtra("name", vipDetailBean.getName());
+        intent.putExtra("detail", viperDetailBean.getDetail());
+        intent.putExtra("memberId", viperDetailBean.getMemberId());
+        intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
 
     }

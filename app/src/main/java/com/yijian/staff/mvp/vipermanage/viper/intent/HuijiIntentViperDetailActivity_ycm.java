@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -40,7 +40,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     private TextView tvItem0;
     private TextView tvItem1;
     private AdapterHuijiIntentViper adapter;
-    private VipDetailBean vipDetailBean;
+    private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
     private String id;
     //    private String memberName;
@@ -79,10 +79,10 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-//                updateUi(vipDetailBean);
-                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
-                adapter.setData(vipDetailBean);
+                viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
+//                updateUi(viperDetailBean);
+                if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
+                adapter.setData(viperDetailBean);
             }
 
             @Override
@@ -256,7 +256,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
 
     @Override
     public void clickVisit() {
-        String mobile = vipDetailBean.getMobile();
+        String mobile = viperDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
 //            callVisit(mobile);
             CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this, mobile);
@@ -267,7 +267,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
 
 //    private void callVisit(String mobile){
 //        Map<String,String> map = new HashMap<>();
-//        map.put("memberId",vipDetailBean.getMemberId());
+//        map.put("memberId",viperDetailBean.getMemberId());
 //        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
 //        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
 //            @Override
@@ -285,10 +285,10 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
     @Override
     public void clickEdit() {
         Intent intent = new Intent(HuijiIntentViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
-        intent.putExtra("detail", vipDetailBean.getDetail());
-        intent.putExtra("memberId", vipDetailBean.getMemberId());
-        intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
-        intent.putExtra("name", vipDetailBean.getName());
+        intent.putExtra("detail", viperDetailBean.getDetail());
+        intent.putExtra("memberId", viperDetailBean.getMemberId());
+        intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
     }
 

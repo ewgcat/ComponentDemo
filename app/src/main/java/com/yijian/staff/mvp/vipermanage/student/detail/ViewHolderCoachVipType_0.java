@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.util.ImageLoader;
 
 /**
@@ -39,10 +39,10 @@ public class ViewHolderCoachVipType_0 extends ViewHolderCoachVipper {
     }
 
     @Override
-    public void bindView(VipDetailBean vipDetailBean) {
-        ImageLoader.setHeadImageResource((vipDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + vipDetailBean.getHeadImg(), itemView.getContext(), ivHead);
-        tvName.setText(judgeNull(vipDetailBean.getName()));
-        tv_card_no.setText(judgeNull(vipDetailBean.getMemberCardNo()));
+    public void bindView(ViperDetailBean viperDetailBean) {
+        ImageLoader.setHeadImageResource((viperDetailBean.getHeadImg() == null) ? "" : BuildConfig.FILE_HOST + viperDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        tvName.setText(judgeNull(viperDetailBean.getName()));
+        tv_card_no.setText(judgeNull(viperDetailBean.getMemberCardNo()));
 
         ivVisit.setOnClickListener(new View.OnClickListener() {
             @Override

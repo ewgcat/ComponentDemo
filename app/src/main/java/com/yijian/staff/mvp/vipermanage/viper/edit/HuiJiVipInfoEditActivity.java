@@ -15,7 +15,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.EditHuiJiVipBody;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.SelectAddressActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -86,7 +86,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
 
     com.alibaba.fastjson.JSONObject detailJsonObj = new com.alibaba.fastjson.JSONObject();
-    VipDetailBean.DetailBean detailBean;
+    ViperDetailBean.DetailBean detailBean;
     String memberId = "";
     String resource;
     List<String> resuorceList = new ArrayList<String>(); //用户获取渠道集合
@@ -121,7 +121,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     private void initData() {
         memberId = getIntent().getStringExtra("memberId");
 
-        detailBean = (VipDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
+        detailBean = (ViperDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
         resource = getIntent().getStringExtra("source");
         detailJsonObj = (com.alibaba.fastjson.JSONObject) com.alibaba.fastjson.JSONObject.toJSON(detailBean);
         detailJsonObj.put("source", resource);

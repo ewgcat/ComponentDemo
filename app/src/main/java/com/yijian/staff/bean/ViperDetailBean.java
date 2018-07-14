@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.bean;
+package com.yijian.staff.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.List;
  * Created by yangk on 2018/4/2.
  */
 
-public class VipDetailBean implements Serializable {
+public class ViperDetailBean implements Serializable {
 
 
     /**

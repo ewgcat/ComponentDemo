@@ -15,7 +15,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.TodayCoachViperBean;
+import com.yijian.staff.bean.TodayVisitStudentBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
@@ -54,7 +54,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
     EmptyView empty_view;
     @BindView(R.id.tv_total_num)
     TextView tv_total_num;
-    private List<TodayCoachViperBean> coachViperBeanList = new ArrayList<>();
+    private List<TodayVisitStudentBean> coachViperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 1;//每页数量
     private int total;
@@ -159,7 +159,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                     for (int i = 0; i < records.length(); i++) {
 
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TodayCoachViperBean coachViperBean = new TodayCoachViperBean(jsonObject);
+                        TodayVisitStudentBean coachViperBean = new TodayVisitStudentBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
 
                     }
@@ -238,7 +238,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TodayCoachViperBean coachViperBean = new TodayCoachViperBean(jsonObject);
+                        TodayVisitStudentBean coachViperBean = new TodayVisitStudentBean(jsonObject);
                         coachViperBeanList.add(coachViperBean);
                     } catch (JSONException e) {
                     }

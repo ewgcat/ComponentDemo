@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.user.permission.PermissionUtils;
 
 /**
@@ -104,8 +104,8 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
     }
 
     @Override
-    public void bindView(VipDetailBean vipDetailBean) {
-        VipDetailBean.DetailBean detailBean = vipDetailBean.getDetail();
+    public void bindView(ViperDetailBean viperDetailBean) {
+        ViperDetailBean.DetailBean detailBean = viperDetailBean.getDetail();
         tvWechatNum.setText(judgeNull(detailBean.getWechatNo()));
         tvEmail.setText(judgeNull(detailBean.getEmail()));
         tvShengao.setText(judgeNull(detailBean.getHeight()));
@@ -131,11 +131,11 @@ public class ViewHolderHuijiVipType_3 extends ViewHolderHuijiVipper {
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
         tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
-        VipDetailBean.CustomerServiceInfoBean customerServiceInfoBean = vipDetailBean.getCustomerServiceInfo();
+        ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
         boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", "app_formal_member");
         if (allEditable) {
-            llEdit.setVisibility(vipDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
+            llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {
             llEdit.setVisibility(View.GONE);
         }

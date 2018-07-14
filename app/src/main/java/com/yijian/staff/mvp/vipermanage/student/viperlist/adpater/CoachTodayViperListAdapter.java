@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.TodayCoachViperBean;
+import com.yijian.staff.bean.TodayVisitStudentBean;
 import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
@@ -24,11 +24,11 @@ import java.util.List;
 
 public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayViperListAdapter.ViewHolder> {
 
-    private List<TodayCoachViperBean> coachViperBeanList;
+    private List<TodayVisitStudentBean> coachViperBeanList;
     private Context context;
     private Boolean isAllVipInfo; // true 全部会员，false  今日来访
 
-    public CoachTodayViperListAdapter(Context context, List<TodayCoachViperBean> coachViperBeanList, boolean isAllVipInfo) {
+    public CoachTodayViperListAdapter(Context context, List<TodayVisitStudentBean> coachViperBeanList, boolean isAllVipInfo) {
         this.context = context;
         this.coachViperBeanList = coachViperBeanList;
         this.isAllVipInfo = isAllVipInfo;
@@ -41,7 +41,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         return holder;
     }
 
-    public void update(List<TodayCoachViperBean> coachViperBeanList) {
+    public void update(List<TodayVisitStudentBean> coachViperBeanList) {
         this.coachViperBeanList = coachViperBeanList;
         notifyDataSetChanged();
     }
@@ -52,7 +52,7 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
 
     @Override
     public void onBindViewHolder(CoachTodayViperListAdapter.ViewHolder holder, int position) {
-        TodayCoachViperBean coachViperBean = coachViperBeanList.get(position);
+        TodayVisitStudentBean coachViperBean = coachViperBeanList.get(position);
 
 
         holder.tv_name.setText(coachViperBean.getName());

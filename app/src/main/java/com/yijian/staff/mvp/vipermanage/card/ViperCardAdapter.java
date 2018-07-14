@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.student.card;
+package com.yijian.staff.mvp.vipermanage.card;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CoachVipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,24 +16,29 @@ import java.util.List;
  * Created by yangk on 2018/3/31.
  */
 
-public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ViperCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<CoachVipDetailBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
+    List<ViperDetailBean.CardprodsBean> cardprodsBeans = new ArrayList<>();
 
-    public CoachVipCardListAdapter(List<CoachVipDetailBean.CardprodsBean> cardprodsBeans) {
+    public ViperCardAdapter(List<ViperDetailBean.CardprodsBean> cardprodsBeans) {
         this.cardprodsBeans = cardprodsBeans;
+    }
+
+    public void setCardprodsBeans(List<ViperDetailBean.CardprodsBean> cardprodsBeans) {
+        this.cardprodsBeans = cardprodsBeans;
+        notifyDataSetChanged();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_huiji_vip_card, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CoachVipDetailBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
+        ViperDetailBean.CardprodsBean cardprodsBean = cardprodsBeans.get(position);
         ((ViewHolder) holder).bind(cardprodsBean);
     }
 
@@ -53,7 +58,7 @@ public class CoachVipCardListAdapter extends RecyclerView.Adapter<RecyclerView.V
             tv_cardType = itemView.findViewById(R.id.tv_cardType);
         }
 
-        public void bind(CoachVipDetailBean.CardprodsBean cardprodsBean) {
+        public void bind(ViperDetailBean.CardprodsBean cardprodsBean) {
             tv_cardName.setText(cardprodsBean.getCardName());
             tv_cardType.setText(cardprodsBean.getCardType());
 

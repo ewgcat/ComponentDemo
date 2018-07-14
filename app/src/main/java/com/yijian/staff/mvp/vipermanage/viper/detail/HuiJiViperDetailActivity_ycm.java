@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -44,7 +44,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     private TextView tvItem1;
     private TextView tvItem2;
     private AdapterHuijiViper adapter;
-    private VipDetailBean vipDetailBean;
+    private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
     private String memberId;
     //    private String memberName;
@@ -86,10 +86,10 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                vipDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), VipDetailBean.class);
-                if (!TextUtils.isEmpty(vipDetailBean.getName())) navigation2.setTitle(vipDetailBean.getName());
-                adapter.setData(vipDetailBean);
-//                updateUi(vipDetailBean);
+                viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
+                if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
+                adapter.setData(viperDetailBean);
+//                updateUi(viperDetailBean);
             }
 
 
@@ -249,13 +249,13 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
         switch (v.getId()) {
             case R.id.ll_chakan_hetong:
 //                Intent intent1 = new Intent(HuiJiViperDetailActivity_ycm.this, ContractActivity.class);
-//                intent1.putExtra("memberId", vipDetailBean.getMemberId());
-//                intent1.putStringArrayListExtra("contractIds", vipDetailBean.getContractIds());
+//                intent1.putExtra("memberId", viperDetailBean.getMemberId());
+//                intent1.putStringArrayListExtra("contractIds", viperDetailBean.getContractIds());
 //                startActivity(intent1);
                 break;
             case R.id.ll_chakan_wenjuan:
 //                Intent intent2 = new Intent(HuiJiViperDetailActivity_ycm.this, QuestionnaireResultActivity.class);
-//                intent2.putExtra("memberId", vipDetailBean.getMemberId());
+//                intent2.putExtra("memberId", viperDetailBean.getMemberId());
 //                startActivity(intent2);
 
                 break;
@@ -278,7 +278,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
 
     @Override
     public void clickVisit() {
-        String mobile = vipDetailBean.getMobile();
+        String mobile = viperDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
             CommonUtil.callPhone(HuiJiViperDetailActivity_ycm.this, mobile);
 
@@ -290,16 +290,16 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
     @Override
     public void clickEdit() {
         Intent intent = new Intent(HuiJiViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
-        intent.putExtra("detail", vipDetailBean.getDetail());
-        intent.putExtra("memberId", vipDetailBean.getMemberId());
-        intent.putExtra("source", vipDetailBean.getCustomerServiceInfo().getUserChannel());
-        intent.putExtra("name", vipDetailBean.getName());
+        intent.putExtra("detail", viperDetailBean.getDetail());
+        intent.putExtra("memberId", viperDetailBean.getMemberId());
+        intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
     }
 
 //    private void callVisit(String mobile) {
 //        Map<String, String> map = new HashMap<>();
-//        map.put("memberId", vipDetailBean.getMemberId());
+//        map.put("memberId", viperDetailBean.getMemberId());
 //        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
 //        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
 //            @Override

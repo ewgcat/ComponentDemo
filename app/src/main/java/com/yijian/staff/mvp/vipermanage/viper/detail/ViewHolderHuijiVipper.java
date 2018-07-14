@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 
 /**
  * Created by The_P on 2018/5/15.
@@ -15,7 +15,7 @@ public abstract class ViewHolderHuijiVipper extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public abstract void bindView(VipDetailBean bean);
+    public abstract void bindView(ViperDetailBean bean);
 
     public String judgeNull(String str) {
         return TextUtils.isEmpty(str) ? "暂未录入" : str;

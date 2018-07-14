@@ -12,7 +12,7 @@ import java.io.Serializable;
  * email：850716183@qq.com
  * time: 2018/5/8 16:24:54
  */
-public class TodayCoachViperBean implements Serializable {
+public class TodayVisitStudentBean implements Serializable {
     /**
      * CoachExpireVO：教练过期
      * CoachInfoVO ：教练正式
@@ -54,7 +54,7 @@ public class TodayCoachViperBean implements Serializable {
     private boolean underProtected;
 
 
-    public TodayCoachViperBean(JSONObject jsonObject) {
+    public TodayVisitStudentBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");

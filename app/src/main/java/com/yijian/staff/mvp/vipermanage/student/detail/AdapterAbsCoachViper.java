@@ -2,7 +2,7 @@ package com.yijian.staff.mvp.vipermanage.student.detail;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.yijian.staff.mvp.vipermanage.viper.bean.VipDetailBean;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.HuijiVipInterface;
 
 /**
@@ -11,7 +11,7 @@ import com.yijian.staff.mvp.vipermanage.viper.detail.HuijiVipInterface;
 
 public abstract class AdapterAbsCoachViper extends RecyclerView.Adapter<ViewHolderCoachVipper> implements HuijiVipInterface {
     public AdapterInterface adapterInterface;
-    public VipDetailBean mVipDetailBean;
+    public ViperDetailBean mViperDetailBean;
 
     public void setAdapterInterface(AdapterInterface adapterInterface) {
         this.adapterInterface = adapterInterface;
@@ -23,8 +23,8 @@ public abstract class AdapterAbsCoachViper extends RecyclerView.Adapter<ViewHold
         void clickEdit();
     }
 
-    public void setData(VipDetailBean vipDetailBean) {
-        mVipDetailBean = vipDetailBean;
+    public void setData(ViperDetailBean viperDetailBean) {
+        mViperDetailBean = viperDetailBean;
         notifyDataSetChanged();
     }
 }

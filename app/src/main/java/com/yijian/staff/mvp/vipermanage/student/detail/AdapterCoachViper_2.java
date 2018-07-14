@@ -53,7 +53,7 @@ public class AdapterCoachViper_2 extends AdapterAbsCoachViper {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCoachVipper holder, int position) {
-        if (mVipDetailBean != null) holder.bindView(mVipDetailBean);
+        if (mViperDetailBean != null) holder.bindView(mViperDetailBean);
     }
 
     @Override

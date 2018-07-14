@@ -18,7 +18,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.vipermanage.viper.bean.TodayHuiJiViperBean;
+import com.yijian.staff.bean.TodayVisitViperBean;
 import com.yijian.staff.mvp.huiji.viperlist.adapter.HuiJiTodayVisitAdapter;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -51,7 +51,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
     private EmptyView empty_view;
     @BindView(R.id.tv_total_num)
     TextView tv_total_num;
-    private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
+    private List<TodayVisitViperBean> viperBeanList = new ArrayList<>();
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
     private int total;
@@ -160,7 +160,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                     for (int i = 0; i < records.length(); i++) {
 
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TodayHuiJiViperBean viperBean = new TodayHuiJiViperBean(jsonObject);
+                        TodayVisitViperBean viperBean = new TodayVisitViperBean(jsonObject);
                         viperBeanList.add(viperBean);
 
                     }
@@ -238,7 +238,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
                 for (int i = 0; i < records.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) records.get(i);
-                        TodayHuiJiViperBean viperBean = new TodayHuiJiViperBean(jsonObject);
+                        TodayVisitViperBean viperBean = new TodayVisitViperBean(jsonObject);
                         viperBeanList.add(viperBean);
                     } catch (JSONException e) {
                     }

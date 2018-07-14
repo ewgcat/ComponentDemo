@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.vipermanage.viper.bean.TodayHuiJiViperBean;
+import com.yijian.staff.bean.TodayVisitViperBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
@@ -21,11 +21,11 @@ import java.util.List;
 
 public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<TodayHuiJiViperBean> viperBeanList = new ArrayList<>();
+    private List<TodayVisitViperBean> viperBeanList = new ArrayList<>();
     private Context context;
 
 
-    public HuiJiTodayVisitAdapter(Context context, List<TodayHuiJiViperBean> viperBeanList) {
+    public HuiJiTodayVisitAdapter(Context context, List<TodayVisitViperBean> viperBeanList) {
         this.context = context;
         this.viperBeanList = viperBeanList;
 
@@ -42,7 +42,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TodayHuiJiViperBean huiJiViperBean = viperBeanList.get(position);
+        TodayVisitViperBean huiJiViperBean = viperBeanList.get(position);
         ((ViewHolder) holder).bind(context, huiJiViperBean);
     }
 
@@ -72,7 +72,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             lin_container = itemView.findViewById(R.id.lin_container);
         }
 
-        public void bind(Context context, TodayHuiJiViperBean huiJiViperBean) {
+        public void bind(Context context, TodayVisitViperBean huiJiViperBean) {
             ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(huiJiViperBean.getGenderImg());
             tv_name.setText(huiJiViperBean.getName());

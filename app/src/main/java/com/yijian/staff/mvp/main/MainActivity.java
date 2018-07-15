@@ -139,10 +139,9 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 } else {
                     mBottombar.showRedPointNotice(View.INVISIBLE);
                 }
-                if (mesageFragment.isVisible()) {
+                if (mesageFragment!=null&&mesageFragment.isVisible()) {
                     mBottombar.showRedPointNotice(View.INVISIBLE);
                     if (hasNewSellBusinessPush) {
-
                         mesageFragment.setCurrentItem(0);
                     }else {
                         if (hasNewCourseBusinessPush){

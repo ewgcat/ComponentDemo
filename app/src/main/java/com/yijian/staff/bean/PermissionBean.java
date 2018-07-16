@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.user.permission;
+package com.yijian.staff.bean;
 
 import java.io.Serializable;
 import java.util.List;

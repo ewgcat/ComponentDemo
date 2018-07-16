@@ -13,7 +13,6 @@ import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -21,7 +20,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.user.login.LoginActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;

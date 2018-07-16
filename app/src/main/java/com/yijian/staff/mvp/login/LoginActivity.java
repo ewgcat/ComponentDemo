@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.user.login;
+package com.yijian.staff.mvp.login;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
@@ -20,10 +19,10 @@ import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.user.forgetpassword.ForgetPasswordActivity;
+import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.mvp.user.permission.PermissionBean;
-import com.yijian.staff.mvp.user.permission.PermissionUtils;
+import com.yijian.staff.bean.PermissionBean;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -37,7 +36,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/login")

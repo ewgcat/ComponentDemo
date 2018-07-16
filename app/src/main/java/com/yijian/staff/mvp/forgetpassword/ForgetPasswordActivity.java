@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.user.forgetpassword;
+package com.yijian.staff.mvp.forgetpassword;
 
 import android.os.Bundle;
 import android.text.TextUtils;

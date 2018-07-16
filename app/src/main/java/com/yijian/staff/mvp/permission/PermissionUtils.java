@@ -1,6 +1,9 @@
-package com.yijian.staff.mvp.user.permission;
+package com.yijian.staff.mvp.permission;
 
 import android.content.Context;
+
+import com.yijian.staff.bean.PermissionBean;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

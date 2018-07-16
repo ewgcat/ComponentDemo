@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.main.mine;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
@@ -25,8 +22,7 @@ import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
 import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
-import com.yijian.staff.mvp.user.login.LoginActivity;
-import com.yijian.staff.mvp.main.mine.aboutus.AboutUsActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.mine.club.ClubActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
@@ -38,8 +34,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by lishuaihua on 2018/2/5.

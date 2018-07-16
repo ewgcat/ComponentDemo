@@ -8,7 +8,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
-import com.yijian.staff.mvp.user.permission.PermissionUtils;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 
 /**
  * Created by The_P on 2018/5/16.

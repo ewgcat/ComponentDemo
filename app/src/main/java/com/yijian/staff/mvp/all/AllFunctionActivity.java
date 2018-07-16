@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/test/all")
-public class AllFunctionActivity extends MvcBaseActivity implements View.OnClickListener {
+public class  AllFunctionActivity extends MvcBaseActivity implements View.OnClickListener {
 
     public static void startToActivity(Context context, ObserveDataChange observeDataChange2) {
         observeDataChange = observeDataChange2;

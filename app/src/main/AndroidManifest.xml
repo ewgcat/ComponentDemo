@@ -595,5 +595,6 @@
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
     </application>
+    
 
 </manifest>

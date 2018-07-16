@@ -1,7 +1,7 @@
 package com.yijian.staff.mvp.reception.step1;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
 

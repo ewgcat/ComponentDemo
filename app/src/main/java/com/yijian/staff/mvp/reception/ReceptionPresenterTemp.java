@@ -1,12 +1,11 @@
 package com.yijian.staff.mvp.reception;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.yijian.staff.mvp.reception.bean.ReceptionListBeanTemp;
-import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
+import com.yijian.staff.bean.ReceptionListBeanTemp;
+import com.yijian.staff.bean.ReceptionRecordBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 

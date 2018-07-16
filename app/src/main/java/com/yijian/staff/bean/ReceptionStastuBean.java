@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.bean;
+package com.yijian.staff.bean;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step1.Step1Fragment_Message;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step1.Step1Fragment_Sale;
 import com.yijian.staff.mvp.reception.reception_step_ycm.step2.CancelReasonDialog;

@@ -2,7 +2,7 @@ package com.yijian.staff.mvp.reception.step5;
 
 import android.content.Context;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultNullObserver;

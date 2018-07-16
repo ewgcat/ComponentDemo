@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.price.cardprice.bean.VenueBean;
+import com.yijian.staff.bean.VenueBean;
 
 import java.util.ArrayList;
 import java.util.List;

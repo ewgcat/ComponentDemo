@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.reception.bean;
+package com.yijian.staff.bean;
 
 /**
  * Created by The_P on 2018/5/14.

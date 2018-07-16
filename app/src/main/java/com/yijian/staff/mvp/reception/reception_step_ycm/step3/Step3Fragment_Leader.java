@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step3.coach.ProductDetailActivity;
@@ -27,8 +27,6 @@ import com.yijian.staff.mvp.reception.step3.leader.LeaderProductContract;
 import com.yijian.staff.mvp.reception.step3.leader.LeaderProductPresenter;
 import com.yijian.staff.widget.NavigationBar2;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;

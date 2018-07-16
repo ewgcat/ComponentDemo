@@ -1,15 +1,12 @@
 package com.yijian.staff.mvp.reception.reception_step_ycm.step1;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +16,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
@@ -30,9 +26,7 @@ import com.yijian.staff.mvp.reception.step1.RecptionStep1Presenter;
 import com.yijian.staff.mvp.reception.step1.Step1QuestAdapter;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.TemplateBean;
-import com.yijian.staff.mvp.reception.step2.KeFuReceptionStepTwoActivity;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.TimeBar;
 
 import java.util.ArrayList;
 import java.util.List;

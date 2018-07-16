@@ -5,7 +5,7 @@ import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.mvp.course.preparelessons.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
-import com.yijian.staff.mvp.price.cardprice.bean.CardRequestBody;
+import com.yijian.staff.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;

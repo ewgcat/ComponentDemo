@@ -22,10 +22,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.price.cardprice.bean.CardRequestBody;
+import com.yijian.staff.bean.CardRequestBody;
 
-import com.yijian.staff.mvp.price.cardprice.bean.VenueBean;
-import com.yijian.staff.mvp.price.cardprice.bean.VenueWrapBean;
+import com.yijian.staff.bean.VenueBean;
+import com.yijian.staff.bean.VenueWrapBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;

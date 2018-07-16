@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
 import com.yijian.staff.mvp.reception.step3.coach.RightsAcitity;
@@ -23,12 +23,8 @@ import com.yijian.staff.mvp.reception.step4.ReceptionStepFourContract;
 import com.yijian.staff.mvp.reception.step4.ReceptionStepFourPresenter;
 import com.yijian.staff.widget.NavigationBar2;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

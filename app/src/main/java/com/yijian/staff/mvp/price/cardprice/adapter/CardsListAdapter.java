@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.price.cardprice.bean.CardInfo;
+import com.yijian.staff.bean.CardInfo;
 import com.yijian.staff.widget.AlwaysMarqueeTextView;
 
 import java.util.ArrayList;

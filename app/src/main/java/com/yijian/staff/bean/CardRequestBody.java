@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.price.cardprice.bean;
+package com.yijian.staff.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@mipmap/account_gray"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:paddingRight="24dp" />
+</RelativeLayout>

@@ -36,8 +36,6 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     private Fragment searchFragment2;
     private final String tag1 = "search1";
     private final String tag2 = "search2";
-    private String moduleType;
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_workspace_search;
@@ -46,7 +44,6 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        moduleType = getIntent().getStringExtra("moduleType");
         fm = getSupportFragmentManager();
         searchFragment1 = new SearchFragment1();
         ActivityUtils.addFragment(fm, R.id.fl_container, searchFragment1, tag1);
@@ -97,6 +94,7 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
                 et_search.requestFocus();
                 showKeyBoard(et_search);
                 break;
+                default:
         }
     }
 

@@ -28,7 +28,7 @@ public class SearchFragment1 extends MvcBaseFragment {
         rv_search_all.setLayoutManager(new LinearLayoutManager(getActivity()));
         //添加Android自带的分割线
         rv_search_all.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
-        SearchAllAdapter searchAllAdapter = new SearchAllAdapter(ActivityUtils.moduleType);
+        SearchAllAdapter searchAllAdapter = new SearchAllAdapter();
         rv_search_all.setAdapter(searchAllAdapter);
     }
 

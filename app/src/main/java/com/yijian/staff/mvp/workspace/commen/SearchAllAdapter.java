@@ -16,11 +16,6 @@ import com.yijian.staff.R;
 public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context mContext;
-    private String moduleType;
-
-    public SearchAllAdapter(String moduleType) {
-        this.moduleType = moduleType;
-    }
 
     @NonNull
     @Override

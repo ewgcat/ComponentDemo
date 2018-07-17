@@ -82,9 +82,11 @@ public class SportTestActivity1 extends MvcBaseActivity {
                 }
                 if(currentIndex == 0){
                     rightTv.setVisibility(View.GONE);
+                    btn_next.setText("下一步");
                     ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, new String[]{tag1, tag2, tag3});
                 }else if(currentIndex == 1){
                     rightTv.setVisibility(View.VISIBLE);
+                    btn_next.setText("下一步");
                     ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag2, new String[]{tag1, tag2, tag3});
                 }
                 break;

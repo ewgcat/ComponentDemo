@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_template"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="153dp"
+        android:layout_height="115dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/white_bg">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_template_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="模板一"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/blue" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line_cursor"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/shape_temp_line" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/view_line_cursor"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shape_fillet_gray_20"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="查看详情"
+            android:textColor="@color/gray666666"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

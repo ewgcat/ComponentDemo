@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.preparelessons.list;
+package com.yijian.staff.bean;
 
 import java.io.Serializable;
 
@@ -34,15 +34,15 @@ public class PrepareLessonsBean implements Serializable {
 
     private String id;
     private String lessonName;
-    private Object isExperience;
-    private Object isUseTemplate;
-    private Object experienceRecordId;
+    private Boolean isExperience;
+    private Boolean isUseTemplate;
+    private String experienceRecordId;
     private String lessonPlace;
     private String startDatetime;
     private String endDatetime;
     private String startDate;
-    private Object startTimeActual;
-    private Object endTimeActual;
+    private String startTimeActual;
+    private String endTimeActual;
     private int punchStatus;
     private int isPrepare;
     private String memberName;
@@ -69,27 +69,27 @@ public class PrepareLessonsBean implements Serializable {
         this.lessonName = lessonName;
     }
 
-    public Object getIsExperience() {
+    public Boolean getIsExperience() {
         return isExperience;
     }
 
-    public void setIsExperience(Object isExperience) {
+    public void setIsExperience(Boolean isExperience) {
         this.isExperience = isExperience;
     }
 
-    public Object getIsUseTemplate() {
+    public Boolean getIsUseTemplate() {
         return isUseTemplate;
     }
 
-    public void setIsUseTemplate(Object isUseTemplate) {
+    public void setIsUseTemplate(Boolean isUseTemplate) {
         this.isUseTemplate = isUseTemplate;
     }
 
-    public Object getExperienceRecordId() {
+    public String getExperienceRecordId() {
         return experienceRecordId;
     }
 
-    public void setExperienceRecordId(Object experienceRecordId) {
+    public void setExperienceRecordId(String experienceRecordId) {
         this.experienceRecordId = experienceRecordId;
     }
 
@@ -125,19 +125,19 @@ public class PrepareLessonsBean implements Serializable {
         this.startDate = startDate;
     }
 
-    public Object getStartTimeActual() {
+    public String getStartTimeActual() {
         return startTimeActual;
     }
 
-    public void setStartTimeActual(Object startTimeActual) {
+    public void setStartTimeActual(String startTimeActual) {
         this.startTimeActual = startTimeActual;
     }
 
-    public Object getEndTimeActual() {
+    public String getEndTimeActual() {
         return endTimeActual;
     }
 
-    public void setEndTimeActual(Object endTimeActual) {
+    public void setEndTimeActual(String endTimeActual) {
         this.endTimeActual = endTimeActual;
     }
 

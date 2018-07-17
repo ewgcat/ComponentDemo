@@ -8,7 +8,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
-import com.yijian.staff.mvp.course.preparelessons.PrivatePrepareLessonBody;
+import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;

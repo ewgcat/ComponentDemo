@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.preparelessons;
+package com.yijian.staff.bean;
 
 import java.util.List;
 

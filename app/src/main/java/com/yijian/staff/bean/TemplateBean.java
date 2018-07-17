@@ -3,7 +3,7 @@ package com.yijian.staff.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class TempBean implements Serializable {
+public class TemplateBean implements Serializable {
 
 
     /**

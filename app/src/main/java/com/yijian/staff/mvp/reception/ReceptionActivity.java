@@ -21,7 +21,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ReceptionInfo;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.bean.ReceptionLog;
 import com.yijian.staff.bean.ReceptionRecordBean;
 import com.yijian.staff.bean.ReceptionStastuBean;
@@ -246,11 +245,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onRequestClicked(int position) {
-        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
-        Intent intent = new Intent(this, QuestionnaireResultActivity.class);
-        intent.putExtra("memberId", recordsBean.getMemberId());
-        intent.putExtra("memberName", recordsBean.getMemberName());
-        startActivity(intent);
+//        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
+//        Intent intent = new Intent(this, QuestionnaireResultActivity.class);
+//        intent.putExtra("memberId", recordsBean.getMemberId());
+//        intent.putExtra("memberName", recordsBean.getMemberName());
+//        startActivity(intent);
     }
 
     @Override

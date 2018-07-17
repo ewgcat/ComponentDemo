@@ -40,8 +40,8 @@ ext {
     compileSdkVersion = 27
     buildToolsVersion = '27.0.3'
     applicationId = "com.yijian.staff"
-    versionCode = 5
-    versionName = "1.1.0"
+    versionCode = 10
+    versionName = "2.0.0"
     supportLibVersion = "27.1.1"
     designVersion = "27.1.1"
     dbVersion = 3

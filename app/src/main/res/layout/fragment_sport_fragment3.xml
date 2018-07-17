@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#1996f8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="柔韧性测试"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="坐位体前屈"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_15" />
+
+            <TextView
+                android:id="@+id/tv_label_qianqu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="6dp"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_15"
+                android:text="cm"/>
+
+            <EditText
+                android:id="@+id/et_qianqu"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:hint="手离脚尖的距离"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                android:textCursorDrawable="@null"
+                android:singleLine="true"
+                android:inputType="number"
+                android:layout_toLeftOf="@id/tv_label_qianqu"
+                />
+
+        </RelativeLayout>
+        <View style="@style/SplitLineStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#1996f8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关节灵活度测试"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View style="@style/SplitLineStyle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_jian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="肩"
+                android:textColor="@color/textColor999999"
+                android:textSize="@dimen/text_size_13" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_jian"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="肩部测试动作"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_jian_num"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_15"
+                        android:hint="两手手尖的距离"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:layout_marginRight="5dp"
+                        android:textCursorDrawable="@null"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="6dp"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="cm"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View style="@style/SplitLineStyle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_xiongtui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="胸椎"
+                android:textColor="@color/textColor999999"
+                android:textSize="@dimen/text_size_13" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xiongtui"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="胸椎测试动作"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_xiongtui_num"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_15"
+                        android:hint="两手手尖的距离"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:layout_marginRight="5dp"
+                        android:textCursorDrawable="@null"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="6dp"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="cm"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View style="@style/SplitLineStyle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_tuijiqun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="腿后肌群"
+                android:textColor="@color/textColor999999"
+                android:textSize="@dimen/text_size_13" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tuijiqun"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="腿后肌群测试动作"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_tuijiqun_num"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_15"
+                        android:hint="双腿的角度"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:layout_marginRight="5dp"
+                        android:textCursorDrawable="@null"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="6dp"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="度"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View style="@style/SplitLineStyle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_jiaohuai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="脚踝"
+                android:textColor="@color/textColor999999"
+                android:textSize="@dimen/text_size_13" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_jiaohuai"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="脚踝测试动作"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_jiaohuai_num"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_15"
+                        android:hint="脚背与胫骨的角度"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:layout_marginRight="5dp"
+                        android:textCursorDrawable="@null"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="6dp"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="度"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

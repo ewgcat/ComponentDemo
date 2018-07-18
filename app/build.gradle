@@ -198,4 +198,12 @@ dependencies {
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
     implementation 'org.jaaksi:pickerview:1.0.1'
 
+    //友盟 start
+    implementation 'com.umeng.sdk:common:1.5.1'
+    implementation 'com.umeng.sdk:share-core:latest.integration'
+    implementation 'com.umeng.sdk:share-wechat:latest.integration'
+    implementation 'com.umeng.sdk:debug:latest.integration'
+    implementation 'com.umeng.sdk:share-sina:latest.integration'
+    //友盟 end
+
 }

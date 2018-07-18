@@ -59,6 +59,7 @@
     <color name="textColor999999">#999999</color>
     <color name="textColorde947d">#de947d</color>
     <color name="textColor9acac4">#9acac4</color>
+    <color name="theme_bg_color">#f4f4f4</color>
 
 
 </resources>

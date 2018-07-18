@@ -66,7 +66,7 @@ public class ActivityUtils {
     }
 
     public static void startActivity(Context context, Class clazz, Bundle bundle){
-        Intent intent = new Intent();
+        Intent intent = new Intent(context,clazz);
         intent.putExtras(bundle);
         context.startActivity(intent);
     }

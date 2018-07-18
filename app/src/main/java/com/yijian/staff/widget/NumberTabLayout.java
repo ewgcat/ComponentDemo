@@ -163,8 +163,14 @@ public class NumberTabLayout extends FrameLayout {
         addType=i;
         switch (i) {
             case ADD_TYPE:
-                add.setVisibility(VISIBLE);
-                ImageLoader.setImageResource(R.mipmap.account_gray, mContext, add);
+
+                if (pointsLayout.getChildCount() == 6) {
+                    add.setVisibility(INVISIBLE);
+                }else {
+                    add.setVisibility(VISIBLE);
+                    ImageLoader.setImageResource(R.mipmap.account_gray, mContext, add);
+                }
+
                 break;
             case CHE_XIAO_TYPE:
                 add.setVisibility(VISIBLE);

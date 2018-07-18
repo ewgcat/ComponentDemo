@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -35,6 +36,7 @@ public class PerfectTestActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch(view.getId()){
             case R.id.btn_finish: //完成
+                ActivityUtils.startActivity(this, ShareTestActivity.class);
                 finish();
                 break;
         }

@@ -121,6 +121,10 @@ public class NavigationBar2 extends LinearLayout {
         secondLeftIv.setVisibility(GONE);
     }
 
+    public void setmRightIv(int resId){
+        mRightIv.setImageResource(resId);
+    }
+
     public void setBackClickListener(Activity activity) {
         backLL.setOnClickListener(new OnClickListener() {
 
@@ -133,6 +137,10 @@ public class NavigationBar2 extends LinearLayout {
 
     public void setmRightTvClickListener(View.OnClickListener listener) {
         mRightTv.setOnClickListener(listener);
+    }
+
+    public void setmRightIvClickListener(OnClickListener listener){
+        mRightIv.setOnClickListener(listener);
     }
 
     public LinearLayout getBackLL() {

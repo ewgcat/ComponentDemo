@@ -17,6 +17,11 @@ public class ActivityUtils {
 
     public static String moduleType = ""; // 测试模块名称
     public static String name = ""; // 测试者名字
+    public static String MODULE_PERFECT = "完美围度";
+    public static String MODULE_SPORT = "运动表现";
+    public static String MODULE_STATIC_EVALUATE = "静态评估";
+    public static String MODULE_DYNAMIC_EVALUATE = "动态评估";
+
 
     public static void addFragment(FragmentManager fragmentManager, int idRes, Fragment fragment,String tag){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -61,7 +66,7 @@ public class ActivityUtils {
         }
     }
 
-    public static void statrActivity(Context context, Class clazz){
+    public static void startActivity(Context context, Class clazz){
         context.startActivity(new Intent(context,clazz));
     }
 

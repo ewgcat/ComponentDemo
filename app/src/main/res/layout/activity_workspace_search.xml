@@ -104,7 +104,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:maxLength="50"
-                android:hint="输入会员名称，进行搜索"
+                android:hint="输入会员名或手机号"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 />

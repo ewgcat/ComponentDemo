@@ -38,12 +38,12 @@ public class WorkSpaceActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.fl_sport_behavior: //运动表现
-                ActivityUtils.moduleType = "运动表现";
+                ActivityUtils.moduleType = ActivityUtils.MODULE_SPORT;
                 startActivity(new Intent(this, WorkSpaceSearchActivity.class));
                 break;
             case R.id.fl_perfect: //完美维度
-                ActivityUtils.moduleType = "完美维度";
-                startActivity(new Intent(this, PerfectActivity.class));
+                ActivityUtils.moduleType = ActivityUtils.MODULE_PERFECT;
+                startActivity(new Intent(this, WorkSpaceSearchActivity.class));
                 break;
             case R.id.fl_static: //静态评估
                 popDialog();

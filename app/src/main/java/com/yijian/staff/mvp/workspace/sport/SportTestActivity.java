@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -70,6 +71,7 @@ public class SportTestActivity extends MvcBaseActivity {
                         rightTv.setVisibility(View.VISIBLE);
                         break;
                     case 3:
+                        ActivityUtils.startActivity(this, ShareTestActivity.class);
                         finish();
                         break;
                     default:

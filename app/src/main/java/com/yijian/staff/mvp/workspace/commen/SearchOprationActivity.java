@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.widget.NavigationBar2;
@@ -36,7 +37,7 @@ public class SearchOprationActivity extends MvcBaseActivity {
         navigationBar2.setBackClickListener(this);
     }
 
-    private void initData(){
+    private void initData() {
 
     }
 
@@ -44,12 +45,16 @@ public class SearchOprationActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_start: //测试
-                mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+                if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
+                    mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+                }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
+                    mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+                }
                 break;
             case R.id.btn_record: //记录
-                mContext.startActivity(new Intent(mContext,WorkSpaceRecordActivity.class));
+                mContext.startActivity(new Intent(mContext, WorkSpaceRecordActivity.class));
                 break;
-                default:
+            default:
         }
     }
 }

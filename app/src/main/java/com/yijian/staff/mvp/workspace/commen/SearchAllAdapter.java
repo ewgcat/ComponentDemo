@@ -55,7 +55,9 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             rel_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivityUtils.statrActivity(mContext, SearchOprationActivity.class);
+                    ActivityUtils.name = "小明";
+                    ActivityUtils.startActivity(mContext, SearchOprationActivity.class);
+
                 }
             });
         }

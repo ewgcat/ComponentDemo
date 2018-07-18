@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:text="知道了"
+            android:textColor="@color/blue1997f8"
             android:gravity="center"/>
 
     </LinearLayout>

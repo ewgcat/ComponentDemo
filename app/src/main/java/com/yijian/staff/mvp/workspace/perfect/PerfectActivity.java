@@ -84,7 +84,7 @@ public class PerfectActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //跳过
-                ActivityUtils.statrActivity(this,PerfectTestActivity.class);
+                ActivityUtils.startActivity(this,PerfectTestActivity.class);
                 break;
             case R.id.iv_take: //拍照
                 mCamera.takePicture(null, null, new Camera.PictureCallback(){
@@ -106,7 +106,7 @@ public class PerfectActivity extends MvcBaseActivity {
                 space_view.setVisibility(View.GONE);
                 break;
             case R.id.iv_sure: //确定
-                ActivityUtils.statrActivity(this,PerfectTestActivity.class);
+                ActivityUtils.startActivity(this,PerfectTestActivity.class);
                 break;
             default:
         }

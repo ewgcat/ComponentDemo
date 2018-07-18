@@ -115,6 +115,7 @@ public class NumberTabLayout extends FrameLayout {
                     public void run() {
                         pointsLayout.removeView(v);
                         resetPointNum();
+                        changeAddView(ADD_TYPE);
                     }
                 });
 

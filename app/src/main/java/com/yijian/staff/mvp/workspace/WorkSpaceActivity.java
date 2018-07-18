@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
@@ -42,7 +43,7 @@ public class WorkSpaceActivity extends AppCompatActivity {
                 break;
             case R.id.fl_perfect: //完美维度
                 ActivityUtils.moduleType = "完美维度";
-                startActivity(new Intent(this, WorkSpaceSearchActivity.class));
+                startActivity(new Intent(this, PerfectActivity.class));
                 break;
             case R.id.fl_static: //静态评估
                 popDialog();
@@ -50,6 +51,7 @@ public class WorkSpaceActivity extends AppCompatActivity {
             case R.id.fl_sport: //动态评估
                 popDialog();
                 break;
+                default:
         }
     }
 

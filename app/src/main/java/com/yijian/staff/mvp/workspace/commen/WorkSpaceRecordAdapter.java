@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.sport.SportTestActivity1;
+import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 
 public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -48,7 +48,7 @@ public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             rel_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, SportTestActivity1.class));
+
                 }
             });
         }

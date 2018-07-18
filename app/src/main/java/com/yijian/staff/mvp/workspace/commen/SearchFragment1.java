@@ -1,18 +1,10 @@
 package com.yijian.staff.mvp.workspace.commen;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-
-import butterknife.BindView;
 
 
 public class SearchFragment1 extends MvcBaseFragment {

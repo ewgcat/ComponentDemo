@@ -1,122 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijian.staff.mvp.workspace.commen.ExpandableLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/expandable_layout"
+    android:id="@+id/rel_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    app:expWithParentScroll="true"
-    android:background="@color/white">
+    android:padding="20dp">
 
-    <RelativeLayout
-        android:id="@+id/firstLayer"
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@mipmap/people" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp">
-
-
-        <ImageView
-            android:id="@+id/iv_header"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@mipmap/people"/>
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_header"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@id/iv_header"
-            android:layout_centerVertical="true">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="刘葛岩"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:maxWidth="120dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:layout_toRightOf="@id/iv_header"
-                    android:layout_centerVertical="true"/>
-
-                <ImageView
-                    android:id="@+id/iv_gender"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@mipmap/lg_man"
-                    android:layout_toRightOf="@id/tv_name"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"/>
-
-            </LinearLayout>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_age"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/textColor999999"
+                android:layout_toRightOf="@id/iv_header"
                 android:ellipsize="end"
-                android:layout_marginTop="5dp"
-                android:textSize="14sp"
-                android:text="27岁"/>
+                android:maxWidth="120dp"
+                android:singleLine="true"
+                android:text="刘葛岩"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/iv_gender"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_name"
+                android:src="@mipmap/lg_man" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_role"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_age"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textColor="@color/blue1997f8"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:textSize="14sp"
-            android:text="意向学员"/>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="开始测试"
-            android:background="@drawable/shape_blue_half"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/white"
-            android:gravity="center"/>
-
-        <Button
-            android:id="@+id/btn_record"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="测评记录"
-            android:background="@drawable/shape_blue_harlf_stroke"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="15dp"
-            android:textColor="@color/blue1997f8"
-            android:gravity="center"/>
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:text="27岁"
+            android:textColor="@color/textColor999999"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:text="意向学员"
+        android:textColor="@color/blue1997f8"
+        android:textSize="14sp" />
 
-
-</com.yijian.staff.mvp.workspace.commen.ExpandableLayout>
+</RelativeLayout>

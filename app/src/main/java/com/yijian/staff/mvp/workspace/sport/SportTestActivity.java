@@ -13,7 +13,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SportTestActivity1 extends MvcBaseActivity {
+public class SportTestActivity extends MvcBaseActivity {
 
     private final String tag1 = "com.yijian.staff.mvp.workspace.sport.SportFragment1";
     private final String tag2 = "com.yijian.staff.mvp.workspace.sport.SportFragment2";

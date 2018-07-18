@@ -1,11 +1,16 @@
 package com.yijian.staff.mvp.workspace.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 /**
- *  全局数据池及小部分Fragment工具
+ *  1. 全局数据池
+ *  2.小部分Fragment工具
+ *  3.Activity 跳转
  */
 
 public class ActivityUtils {
@@ -54,6 +59,16 @@ public class ActivityUtils {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void statrActivity(Context context, Class clazz){
+        context.startActivity(new Intent(context,clazz));
+    }
+
+    public static void startActivity(Context context, Class clazz, Bundle bundle){
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 
 }

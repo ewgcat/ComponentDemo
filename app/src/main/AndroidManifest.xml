@@ -599,7 +599,10 @@
             android:name=".mvp.workspace.WorkSpaceActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.workspace.commen.WorkSpaceRecordActivity" />
-        <activity android:name=".mvp.workspace.sport.SportTestActivity1"></activity>
+        <activity android:name=".mvp.workspace.sport.SportTestActivity" />
+        <activity android:name=".mvp.workspace.perfect.PerfectActivity" />
+        <activity android:name=".mvp.workspace.perfect.PerfectTestActivity" />
+        <activity android:name=".mvp.workspace.commen.SearchOprationActivity"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.BusinessMessageBean;
+import com.yijian.staff.bean.MessageBean;
+import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.main.message.business.MessageListAdapter;
@@ -34,7 +35,7 @@ public class MessageFragment extends MvcBaseFragment {
 
     private static final String TAG = "MessageFragment";
     private RefreshLayout refreshLayout;
-    private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
+    private List<MessageBean> businessMessageBeans = new ArrayList<>();
     private RecyclerView recyclerView;
     EmptyView empty_view;
     private int pageSize = 10;
@@ -118,7 +119,7 @@ public class MessageFragment extends MvcBaseFragment {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
+                    MessageBean businessMessageBean = new MessageBean(jsonObject);
                     businessMessageBeans.add(businessMessageBean);
                 }
                 messageListAdapter.notifyDataSetChanged();
@@ -153,7 +154,7 @@ public class MessageFragment extends MvcBaseFragment {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
+                    MessageBean businessMessageBean = new MessageBean(jsonObject);
                     businessMessageBeans.add(businessMessageBean);
 
 

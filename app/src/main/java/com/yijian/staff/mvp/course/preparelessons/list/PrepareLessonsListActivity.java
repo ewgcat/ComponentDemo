@@ -14,6 +14,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.PrepareLessonsBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -39,10 +40,11 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
     SmartRefreshLayout refreshLayout;
 
     private int pageNum = 1;
-    private int pageSize = 1;
+    private int pageSize = 10;
     private int pages;
     private List<PrepareLessonsBean> prepareLessonsBeans = new ArrayList<>();
     private PrepareLessonsListAdapter adapter;
+    private int total;
 
 
     @Override
@@ -61,7 +63,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = findViewById(R.id.bei_ke_navigation_bar);
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.setTitle("备课");
+        navigationBar2.setTitle("备课列表");
     }
 
     private void initView() {
@@ -97,7 +99,6 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
 
     private void refresh() {
         pageNum = 1;
-        pageSize = 1;
         prepareLessonsBeans.clear();
         Map<String, String> params = new HashMap<>();
         params.put("pageNum", pageNum + "");
@@ -110,8 +111,13 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+                total = JsonUtil.getInt(result, "total");
+
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
+                for (int i = 0; i < 10; i++) {
+                    prepareLessonsBeans.add(new PrepareLessonsBean());
+                }
                 adapter.resetList(prepareLessonsBeans);
                 hideLoading();
             }
@@ -127,33 +133,38 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
     }
 
     private void loadMore() {
+        boolean hasMore = total > pageNum * pageSize;
+        if (hasMore){
+            Map<String, String> params = new HashMap<>();
+            params.put("pageNum", pageNum + "");
+            params.put("pageSize", pageSize + "");
+            showLoading();
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    pageNum = JsonUtil.getInt(result, "pageNum") + 1;
 
-        Map<String, String> params = new HashMap<>();
-        params.put("pageNum", pageNum + "");
-        params.put("pageSize", pageSize + "");
-        showLoading();
-        HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
+                    boolean hasMore = total > pageNum * pageSize;
+                    refreshLayout.finishLoadMore(2000, true, hasMore);//传入false表示刷新失败
+                    JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
+                    adapter.resetList(prepareLessonsBeans);
+                    hideLoading();
+                }
 
+                @Override
+                public void onFail(String msg) {
 
-                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
-                JSONArray records = JsonUtil.getJsonArray(result, "records");
-                prepareLessonsBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), PrepareLessonsBean.class);
-                adapter.resetList(prepareLessonsBeans);
-                hideLoading();
-            }
+                    refreshLayout.finishLoadMore(2000, false, hasMore);//传入false表示刷新失败
 
-            @Override
-            public void onFail(String msg) {
+                    hideLoading();
+                }
+            });
+        }else {
+            refreshLayout.finishLoadMore(2000, false, true);//传入false表示刷新失败
 
-                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
+        }
 
-                hideLoading();
-            }
-        });
 
     }
 

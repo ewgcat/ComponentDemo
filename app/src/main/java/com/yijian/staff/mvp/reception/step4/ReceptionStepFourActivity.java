@@ -10,16 +10,13 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.coach.RightsAcitity;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step5.ReceptionStepFiveActivity;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

@@ -83,9 +83,7 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".mvp.questionnaire.detail.QuestionnaireResultActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.reception.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"
@@ -210,27 +208,11 @@
         <activity
             android:name=".mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.all.AllFunctionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.dailywork.DailyWorkActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.dailywork.LeaveApprovalActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.dailywork.LeaveApplyActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.huifang.huiji.invitation.list.HuiJiInvitationListActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.complaint.handling.ComplaintHandlingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.complaint.list.ComplaintListActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
@@ -310,11 +292,21 @@
         <activity
             android:name=".mvp.course.preparelessons.list.PrepareLessonsListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.preparelessons.PrepareLessonsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
+        <activity android:name="com.yijian.staff.mvp.course.preparelessons.TestActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
+
+        <activity
+            android:name=".mvp.course.preparelessons.index.PrepareLessonsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
         <activity
             android:name=".mvp.course.preparelessons.createlession.CreatePrivateLessionActivity"
             android:screenOrientation="portrait"
@@ -549,10 +541,7 @@
             android:name=".mvp.main.mine.aboutus.AboutUsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.questionnaire.list.QuestionListActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name=".mvp.course.recordchart.detail.ClassRecordDetailActivity"
             android:screenOrientation="portrait"
@@ -605,5 +594,6 @@
         <activity android:name=".mvp.workspace.commen.SearchOprationActivity" />
         <activity android:name=".mvp.workspace.commen.ShareTestActivity"></activity>
     </application>
+
 
 </manifest>

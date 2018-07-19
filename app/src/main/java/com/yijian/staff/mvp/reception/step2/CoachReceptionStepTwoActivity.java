@@ -21,8 +21,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
-import com.yijian.staff.mvp.reception.step1.ReceptionStepOneActivity;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.ChildOptBean;
 import com.yijian.staff.mvp.reception.step2.step2Bean.JsonStringData;
 import com.yijian.staff.mvp.reception.step2.step2Bean.MultiOptBean;
@@ -33,8 +32,6 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
 import com.yijian.staff.mvp.reception.step3.ReceptionStepThreeActivity;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
-
-import org.jsoup.helper.StringUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

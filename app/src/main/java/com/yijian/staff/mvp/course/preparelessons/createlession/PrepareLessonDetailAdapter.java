@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.TempBean;
+import com.yijian.staff.bean.TemplateBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PrepareLessonDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<TempBean.TemplateContextListBean> templateContextListBeans = new ArrayList<>();
+    private List<TemplateBean.TemplateContextListBean> templateContextListBeans = new ArrayList<>();
 
-    public void resetList(List<TempBean.TemplateContextListBean> list) {
+    public void resetList(List<TemplateBean.TemplateContextListBean> list) {
         this.templateContextListBeans.clear();
         this.templateContextListBeans = list;
         notifyDataSetChanged();
@@ -60,7 +60,7 @@ public class PrepareLessonDetailAdapter extends RecyclerView.Adapter<RecyclerVie
             view_line = itemView.findViewById(R.id.view_line);
         }
 
-        public void bind(TempBean.TemplateContextListBean templateContextListBean, int position) {
+        public void bind(TemplateBean.TemplateContextListBean templateContextListBean, int position) {
             tv_sort.setText(templateContextListBean.getSort() + "");
             tv_moName.setText(templateContextListBean.getMoName());
             tv_groupTime.setText(templateContextListBean.getGroupNum() + "x" + templateContextListBean.getGroupTime());

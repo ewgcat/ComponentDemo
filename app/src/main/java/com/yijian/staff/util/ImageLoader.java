@@ -78,4 +78,14 @@ public class ImageLoader {
         Glide.with(context).load(path).apply(options).into(imageView);
     }
 
+    public static void setImageResource(int resId, Context context, ImageView imageView) {
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(resId).apply(options).into(imageView);
+    }
+
 }

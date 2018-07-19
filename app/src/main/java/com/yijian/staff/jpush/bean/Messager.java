@@ -1,6 +1,6 @@
 package com.yijian.staff.jpush.bean;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionLog;
+import com.yijian.staff.bean.ReceptionLog;
 
 import java.util.List;
 

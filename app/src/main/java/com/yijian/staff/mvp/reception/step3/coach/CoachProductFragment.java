@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ReceptionUserInfo;
 
@@ -108,9 +107,9 @@ public class CoachProductFragment extends Fragment implements CoachProductContra
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_wenjuan:
-                Intent intent = new Intent(getContext(), QuestionnaireResultActivity.class);
-                intent.putExtra("memberId", memberId);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), QuestionnaireResultActivity.class);
+//                intent.putExtra("memberId", memberId);
+//                startActivity(intent);
                 break;
             case R.id.tv_ticebaogao:
                 Intent intent1 = new Intent(getContext(), PhysicalReportActivity.class);

@@ -5,9 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
 import com.yijian.staff.mvp.reception.step1.bean.ItemQuestionnaire;
 import com.yijian.staff.mvp.reception.step1.bean.ItemsBean;

@@ -3,7 +3,7 @@ package com.yijian.staff.mvp.reception.step4;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;

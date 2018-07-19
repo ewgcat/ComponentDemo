@@ -20,7 +20,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStatusChange;
 import com.yijian.staff.mvp.reception.step2.CancelPhysicalDialog;
 import com.yijian.staff.mvp.reception.step2.CoachReceptionStepTwoContract;
@@ -36,7 +36,6 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.QustionBean;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 

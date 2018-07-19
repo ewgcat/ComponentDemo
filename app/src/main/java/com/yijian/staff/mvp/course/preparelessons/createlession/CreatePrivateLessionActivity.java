@@ -13,7 +13,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.ActionBean;
 import com.yijian.staff.bean.DepartBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.PrivatePrepareLessonBody;
+import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;

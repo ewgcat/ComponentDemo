@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.kefu;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;

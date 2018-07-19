@@ -5,9 +5,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import com.yijian.staff.mvp.price.cardprice.bean.CardInfo;
-import com.yijian.staff.mvp.price.cardprice.bean.RecptionCards;
-import com.yijian.staff.mvp.price.cardprice.bean.CardRequestBody;
+import com.yijian.staff.bean.CardInfo;
+import com.yijian.staff.bean.RecptionCards;
+import com.yijian.staff.bean.CardRequestBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 

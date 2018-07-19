@@ -11,7 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.preparelessons.PrepareLessonsActivity;
+import com.yijian.staff.bean.PrepareLessonsBean;
+import com.yijian.staff.mvp.course.preparelessons.index.PrepareLessonsActivity;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;

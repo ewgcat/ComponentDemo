@@ -21,12 +21,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ReceptionInfo;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.mvp.questionnaire.detail.QuestionnaireResultActivity;
-import com.yijian.staff.mvp.reception.bean.ReceptionLog;
-import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
-import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.ReceptionLog;
+import com.yijian.staff.bean.ReceptionRecordBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.RecptionRecordListBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.physical.PhysicalReportActivity;
 import com.yijian.staff.mvp.reception.reception_step_ycm.EndReceptionDialog;
 import com.yijian.staff.mvp.reception.reception_step_ycm.ReceptionStepActivity;
@@ -246,11 +245,11 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onRequestClicked(int position) {
-        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
-        Intent intent = new Intent(this, QuestionnaireResultActivity.class);
-        intent.putExtra("memberId", recordsBean.getMemberId());
-        intent.putExtra("memberName", recordsBean.getMemberName());
-        startActivity(intent);
+//        RecptionRecordListBean.RecordsBean recordsBean = receptionHistoryAdapter.getmReceptionInfoList().get(position);
+//        Intent intent = new Intent(this, QuestionnaireResultActivity.class);
+//        intent.putExtra("memberId", recordsBean.getMemberId());
+//        intent.putExtra("memberName", recordsBean.getMemberName());
+//        startActivity(intent);
     }
 
     @Override

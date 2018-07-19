@@ -1,239 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/gray_background_color"
->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background_color"
+    android:orientation="vertical">
 
     <include
-            android:id="@+id/navigation_bar2"
-            layout="@layout/view_navigation_bar2"/>
+        android:id="@+id/navigation_bar2"
+        layout="@layout/view_navigation_bar2" />
 
     <LinearLayout
-            android:id="@+id/lin_controller"
+        android:id="@+id/lin_controller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/navigation_bar2"
+        android:layout_margin="15dp"
+        android:background="@drawable/white_bg"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="22dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/white_bg"
-            android:layout_margin="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="22dp"
-            android:layout_below="@id/navigation_bar2">
+            android:orientation="horizontal">
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-        >
             <ImageView
-                    android:id="@+id/iv_header"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/wt_boysmall"/>
+                android:id="@+id/iv_header"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/wt_boysmall" />
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_toRightOf="@id/iv_header"
-                    android:layout_marginLeft="10dp"
-                    android:layout_centerVertical="true">
-                <TextView
-                        android:id="@+id/tv_memberName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="#333333"
-                        android:text="张三三"/>
-                <TextView
-                        android:id="@+id/tv_member_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="#333333"
-                        android:text="13666866606"/>
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <View
-                style="@style/SplitLineStyle"
-                android:layout_marginTop="10dp"
-        />
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="13dp"
-                android:paddingBottom="13dp">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#999999"
-                    android:text="课程名称："
-                    android:layout_alignParentLeft="true"/>
-            <TextView
-                    android:id="@+id/tv_lessonName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#999999"
-                    android:text="瘦身课"
-                    android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <View
-                style="@style/SplitLineStyle"
-        />
-
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp">
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#999999"
-                android:text="上节上课时间："
-                android:layout_alignParentLeft="true"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="张三三"
+                android:textColor="#333333"
+                android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+            <ImageView
+                android:id="@+id/iv_call_phone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical">
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/dianhua" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#999999"
-                android:text="1-29 周一 10:00-11:00"
-                android:layout_marginRight="5dp"
-                />
+                android:layout_alignParentLeft="true"
+                android:text="课程名称："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_lesson_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="瘦身课"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="课程总数量："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_total_lessons_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text=""
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="节"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
         </RelativeLayout>
--->
+
         <View
-                style="@style/SplitLineStyle"
-        />
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp" />
 
         <RelativeLayout
-                android:id="@+id/rel_all_lesson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="13dp"
-                android:paddingBottom="13dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="剩余节数："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_remaining_lessons_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#999999"
-                    android:text="所有课程时间安排"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_marginRight="5dp"
+                    android:text=""
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
 
-            <ImageView
-                    android:layout_width="8dp"
-                    android:layout_height="15dp"
-                    android:src="@mipmap/bk_youjiantou"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="节"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </RelativeLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="上次上课时间："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_last_lesson_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="2018年1月2日 14:00"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/rel_all_lesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="所有课程"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/bk_youjiantou" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/lin_controller">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lin_controller"
+        android:orientation="horizontal">
 
         <CheckBox
-                android:id="@+id/ck_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="选择备课模板"
-                android:button="@drawable/selector_rb_blue"
-                android:paddingLeft="6dp"
-                android:textSize="18sp"
-                android:textColor="@color/black333333"
-                android:layout_marginLeft="20dp"
-                android:layout_alignParentLeft="true"/>
+            android:id="@+id/ck_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:button="@drawable/selector_rb_blue"
+            android:paddingLeft="6dp"
+            android:text="选择备课模板"
+            android:textColor="@color/black333333"
+            android:textSize="18sp" />
 
         <LinearLayout
-                android:id="@+id/lin_select_num"
+            android:id="@+id/ll_template_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_template_position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentRight="true"
-                android:visibility="gone">
+                android:text="0"
+                android:textColor="@color/black333333"
+                android:textSize="18sp" />
 
             <TextView
-                    android:id="@+id/tv_template_position"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"
-                    android:textColor="@color/black333333"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" / "
+                android:textSize="16sp" />
 
             <TextView
-                    android:id="@+id/tv_template"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="/12"
-                    android:textSize="16sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"/>
+                android:id="@+id/tv_template_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:text="12"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_temple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ck_select"
-                android:layout_marginTop="20dp"
-                android:visibility="gone"
-        />
+            android:id="@+id/rv_templalte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ck_select"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
 
     <LinearLayout
-            android:id="@+id/lin_create"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@mipmap/button_invite"
-            android:gravity="center">
+        android:id="@+id/lin_create"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@mipmap/button_invite"
+        android:gravity="center">
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="创建备课内容"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="创建备课内容"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
 
 

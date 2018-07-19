@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.TemplateBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.PrivatePrepareLessonBody;
-import com.yijian.staff.bean.TempBean;
+import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
@@ -24,7 +24,7 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv_detail)
     RecyclerView rv_detail;
-    private TempBean tempBean;
+    private TemplateBean tempBean;
     private PrepareLessonDetailAdapter adapter;
 
 
@@ -35,7 +35,7 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        tempBean = (TempBean) getIntent().getSerializableExtra("tempBean");
+        tempBean = (TemplateBean) getIntent().getSerializableExtra("TemplateBean");
         initTitle();
         initView();
         loadData();
@@ -48,7 +48,7 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
     }
 
     private void loadData() {
-        List<TempBean.TemplateContextListBean> list = tempBean.getTemplateContextList();
+        List<TemplateBean.TemplateContextListBean> list = tempBean.getTemplateContextList();
         adapter.resetList(list);
     }
 
@@ -68,11 +68,11 @@ public class PrepareLessonDetailActivity extends MvcBaseActivity {
 
     private void saveData() {
         String privateApplyId = getIntent().getStringExtra("id");
-        List<TempBean.TemplateContextListBean> templateContextListBeans = tempBean.getTemplateContextList();
+        List<TemplateBean.TemplateContextListBean> templateContextListBeans = tempBean.getTemplateContextList();
         List<PrivatePrepareLessonBody.ContentListBean> contentListBeans = new ArrayList<>();
         PrivatePrepareLessonBody privatePrepareLessonBody = new PrivatePrepareLessonBody();
         privatePrepareLessonBody.setPrivateApplyId(privateApplyId);
-        for (TempBean.TemplateContextListBean templateContextListBean : templateContextListBeans) {
+        for (TemplateBean.TemplateContextListBean templateContextListBean : templateContextListBeans) {
             PrivatePrepareLessonBody.ContentListBean contentListBean = new PrivatePrepareLessonBody.ContentListBean();
             contentListBean.setBuildDesc(templateContextListBean.getBuildDesc());
             contentListBean.setMoApplianceName(templateContextListBean.getMoApplianceName());

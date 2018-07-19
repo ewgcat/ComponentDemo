@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.reception.step4;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.coach.bean.ProductDetail;
 
 /**

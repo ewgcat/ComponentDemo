@@ -16,7 +16,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 import com.yijian.staff.mvp.reception.step1.Decorator.MySelectorDecorator;
 import com.yijian.staff.mvp.reception.step1.Decorator.OneDayDecorator;
 import com.yijian.staff.mvp.reception.step1.bean.DataListBean;
@@ -27,13 +27,8 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.TimeBar;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 
 public class ReceptionStepOneActivity extends AppCompatActivity implements View.OnClickListener, ReceptionStep1Contract.View, Step1QuestAdapter.ComputerPercentLisenter {
 

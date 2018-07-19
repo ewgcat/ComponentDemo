@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.mvp.reception.step3.bean.CardInfo;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.reception.step3.bean.RecptionCards;

@@ -1,9 +1,9 @@
 package com.yijian.staff.mvp.reception;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
-import com.yijian.staff.mvp.reception.bean.RecptionRecordListBean;
-import com.yijian.staff.mvp.reception.bean.RecptionerInfoBean;
+import com.yijian.staff.bean.ReceptionRecordBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.RecptionRecordListBean;
+import com.yijian.staff.bean.RecptionerInfoBean;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.yijian.staff.mvp.reception.step5;
 
-import com.yijian.staff.mvp.reception.bean.ReceptionStastuBean;
+import com.yijian.staff.bean.ReceptionStastuBean;
 
 /**
  * Created by The_P on 2018/4/23.

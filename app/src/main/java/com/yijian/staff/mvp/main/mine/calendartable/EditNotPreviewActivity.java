@@ -15,7 +15,6 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.questionnaire.detail.AllNoneSelectedDecorator;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONIntegerObserver;

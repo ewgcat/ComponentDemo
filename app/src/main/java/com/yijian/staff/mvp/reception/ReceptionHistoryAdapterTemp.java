@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.reception.bean.ReceptionRecordBean;
+import com.yijian.staff.bean.ReceptionRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;

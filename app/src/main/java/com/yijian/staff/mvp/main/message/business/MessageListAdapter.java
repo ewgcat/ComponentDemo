@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.BusinessMessageBean;
+import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
@@ -19,20 +19,20 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/2/28 17:08:17
  */
-public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMessageListAdapter.ViewHolder> {
+public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {
 
-    private List<BusinessMessageBean> businessMessageBeans;
+    private List<MessageBean> messageBeans;
     private Context context;
     private int type;
 
-    public BusinessMessageListAdapter(Context context, List<BusinessMessageBean> businessMessageBeans) {
+    public MessageListAdapter(Context context, List<MessageBean> messageBeans) {
         this.context = context;
         this.type = type;
-        this.businessMessageBeans = businessMessageBeans;
+        this.messageBeans = messageBeans;
     }
 
-    public void update(List<BusinessMessageBean> businessMessageBeans) {
-        this.businessMessageBeans = businessMessageBeans;
+    public void update(List<MessageBean> messageBeans) {
+        this.messageBeans = messageBeans;
         notifyDataSetChanged();
     }
 
@@ -46,20 +46,20 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        BusinessMessageBean businessMessageBean = businessMessageBeans.get(position);
-        holder.tv_bussiness_msg_name.setText(businessMessageBean.getMemberName());
-        holder.tv_business_msg_type.setText(businessMessageBean.getTypeName());
-        holder.tv_business_msg_content.setText(businessMessageBean.getName());
-        holder.tv_business_msg_time.setText(businessMessageBean.getCreateTime());
+        MessageBean messageBean = messageBeans.get(position);
+        holder.tv_bussiness_msg_name.setText(messageBean.getMemberName());
+        holder.tv_money.setText(messageBean.getMoney());
+        holder.tv_business_msg_content.setText(messageBean.getName());
+        holder.tv_business_msg_time.setText(messageBean.getCreateTime());
 
 
-        ImageLoader.setHeadImageResource(businessMessageBean.getMemberHeadPortrait(), context, holder.iv_bussiness_msg_header);
+        ImageLoader.setHeadImageResource(messageBean.getMemberHeadPortrait(), context, holder.iv_bussiness_msg_header);
 
     }
 
     @Override
     public int getItemCount() {
-        return businessMessageBeans == null ? 0 : businessMessageBeans.size();
+        return messageBeans == null ? 0 : messageBeans.size();
     }
 
 
@@ -69,7 +69,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
         /***  业务消息  **/
         ImageView iv_bussiness_msg_header; //业务消息发送者头像
         TextView tv_bussiness_msg_name; //业务消息发送者姓名
-        TextView tv_business_msg_type; //业务消息的处理状态
+        TextView tv_money; //业务消息的金钱
         TextView tv_business_msg_content; //业务消息内容
         TextView tv_business_msg_time; //业务消息发送的时间
 
@@ -82,7 +82,7 @@ public class BusinessMessageListAdapter extends RecyclerView.Adapter<BusinessMes
             /***  业务消息  **/
             iv_bussiness_msg_header = view.findViewById(R.id.iv_bussiness_msg_header);
             tv_bussiness_msg_name = view.findViewById(R.id.tv_bussiness_msg_name);
-            tv_business_msg_type = view.findViewById(R.id.tv_business_msg_type);
+            tv_money = view.findViewById(R.id.tv_money);
             tv_business_msg_content = view.findViewById(R.id.tv_business_msg_content);
             tv_business_msg_time = view.findViewById(R.id.tv_business_msg_time);
             ll_line = view.findViewById(R.id.ll_line);

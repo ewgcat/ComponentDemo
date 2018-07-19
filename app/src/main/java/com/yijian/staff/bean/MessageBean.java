@@ -11,7 +11,7 @@ import org.json.JSONObject;
  * email：850716183@qq.com
  * time: 2018/4/12 11:08:32
  */
-public class BusinessMessageBean {
+public class MessageBean {
 
 
     /**
@@ -29,7 +29,7 @@ public class BusinessMessageBean {
     /**
      * 业务类型名称（如停课、延期）
      */
-    private String typeName;
+    private String money;
     /**
      * 头像url
      */
@@ -48,11 +48,11 @@ public class BusinessMessageBean {
     private String createTime;
 
 
-    public BusinessMessageBean(JSONObject jsonObject) {
+    public MessageBean(JSONObject jsonObject) {
 
         this.id = JsonUtil.getString(jsonObject, "id");
         this.name = JsonUtil.getString(jsonObject, "name");
-        this.typeName = JsonUtil.getString(jsonObject, "typeName");
+        this.money = JsonUtil.getString(jsonObject, "money");
         this.memberHeadPortrait = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "memberHeadPortrait");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
         this.memberName = JsonUtil.getString(jsonObject, "memberName");
@@ -76,8 +76,8 @@ public class BusinessMessageBean {
         return type;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getMoney() {
+        return money;
     }
 
     public String getMemberHeadPortrait() {

@@ -11,25 +11,16 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/status_bar_bg"/>
 
-    <com.yijian.staff.widget.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="#c0c0c0"
-        android:textSize="14sp"
-        android:layout_marginLeft="16dp"
-        app:pstsDividerColor="@android:color/transparent"
-        app:pstsIndicatorColor="@color/blue"
-        app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="false"
-        app:pstsTabPaddingLeftRight="16dp"
-        android:background="@color/white"
-        app:pstsTextSelectedColor="@color/blue"
-        app:pstsUnderlineColor="@android:color/transparent"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+    <TextView
+        android:text="业务消息"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
 
 </LinearLayout>

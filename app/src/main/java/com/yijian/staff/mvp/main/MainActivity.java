@@ -141,13 +141,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 }
                 if (mesageFragment!=null&&mesageFragment.isVisible()) {
                     mBottombar.showRedPointNotice(View.INVISIBLE);
-                    if (hasNewSellBusinessPush) {
-                        mesageFragment.setCurrentItem(0);
-                    }else {
-                        if (hasNewCourseBusinessPush){
-                            mesageFragment.setCurrentItem(1);
-                        }
-                    }
+
                 }
             }
         });
@@ -323,11 +317,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
             selectTab(push_message);
             mBottombar.showRedPointNotice(View.INVISIBLE);
             ClearRedPointUtil.clearBusinessNotice(getLifecycle());
-            if (SharePreferenceUtil.hasNewSellBusinessPush()){
-                mesageFragment.setCurrentItem(0);
-            }else if (SharePreferenceUtil.hasNewCourseBusinessPush()){
-                mesageFragment.setCurrentItem(1);
-            }
+
 
         }
     }

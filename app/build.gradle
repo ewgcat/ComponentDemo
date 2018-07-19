@@ -76,6 +76,11 @@ android {
             buildConfigField "String", "HOST", "\"$prod_host\""
             buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
         }
+        train {
+            buildConfigField "String", "HOST", "\"$train_host\""
+            buildConfigField "String", "FILE_HOST", "\"$train_file_host\""
+
+        }
         sittest {
             buildConfigField "String", "HOST", "\"$test_host\""
             buildConfigField "String", "FILE_HOST", "\"$test_file_host\""

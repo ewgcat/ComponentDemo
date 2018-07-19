@@ -170,6 +170,7 @@
         <activity
             android:name=".mvp.vipermanage.viper.outdate.HuijiOutdateViperListActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.vipermanage.search.HuiJiSearchActivity"
             android:screenOrientation="portrait"
@@ -572,6 +573,7 @@
         <activity
             android:name=".mvp.main.mine.calendartable.CourseInterActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
@@ -581,6 +583,7 @@
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"></activity>
         <activity
             android:name=".mvp.workspace.commen.WorkSpaceSearchActivity"
             android:screenOrientation="portrait" />

@@ -23,7 +23,7 @@ public class ActionViewAdapter extends RecyclerView.Adapter<ActionViewAdapter.Vi
 
     public ActionViewAdapter(List<ActionBean> recyclerViewActionBean, EditActionObservable editActionObservable, CreatePrivateLessionActivity createPrivateLessionActivity) {
         this.recyclerViewActionBean = recyclerViewActionBean;
-        this.editActionObservable = editActionObservable;
+            this.editActionObservable = editActionObservable;
         this.createPrivateLessionActivity = createPrivateLessionActivity;
     }
 

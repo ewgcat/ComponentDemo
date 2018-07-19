@@ -4,18 +4,34 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SearchOprationActivity extends MvcBaseActivity {
+
+    @BindView(R.id.iv_header)
+    ImageView iv_header;
+    @BindView(R.id.iv_gender)
+    ImageView iv_gender;
+    @BindView(R.id.tv_name)
+    TextView tv_name;
+    @BindView(R.id.tv_age)
+    TextView tv_age;
+    @BindView(R.id.tv_role)
+    TextView tv_role;
 
 
     @Override
@@ -38,7 +54,40 @@ public class SearchOprationActivity extends MvcBaseActivity {
     }
 
     private void initData() {
-
+        Bundle bundle = getIntent().getExtras();
+        WorkSpaceVipBean workSpaceVipBean = (WorkSpaceVipBean) bundle.getSerializable("workSpaceVipBean");
+        ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadImg(), mContext, iv_header);
+        iv_gender.setImageResource("1".equals(workSpaceVipBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        tv_name.setText(workSpaceVipBean.getName());
+        tv_age.setText(String.valueOf(workSpaceVipBean.getAge()));
+        String subclassName = workSpaceVipBean.getSubclassName();
+        switch (subclassName) {
+            case "CustomerInfoVO":
+                tv_role.setText("正式会员");
+                break;
+            case "PotentialVO":
+                tv_role.setText("潜在会员");
+                break;
+            case "CustomerIntentionVO":
+                tv_role.setText("意向会员");
+                break;
+            case "CustomerExpireVO":
+                tv_role.setText("过期会员");
+                break;
+            case "CoachInfoVO":
+                tv_role.setText("正式学员");
+                break;
+            case "CoachIntentionVO":
+                tv_role.setText("意向学员");
+                break;
+            case "CoachExpireVO":
+                tv_role.setText("过期学员");
+                break;
+            case "CoachPotentialStudentVO":
+                tv_role.setText("潜在学员");
+                break;
+            default:
+        }
     }
 
     @OnClick({R.id.btn_start, R.id.btn_record})

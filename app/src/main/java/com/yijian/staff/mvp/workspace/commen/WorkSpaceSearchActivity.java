@@ -6,13 +6,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,10 +36,11 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     @BindView(R.id.lin_search_bt)
     LinearLayout lin_search_bt;
 
-    private Fragment searchFragment1;
-    private Fragment searchFragment2;
-    private final String tag1 = "search1";
-    private final String tag2 = "search2";
+    private final String tag1 = "com.yijian.staff.mvp.workspace.commen.SearchFragment1";
+    private final String tag2 = "com.yijian.staff.mvp.workspace.commen.SearchFragment2";
+    private EditActionObservable editActionObservable = new EditActionObservable();
+
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_workspace_search;
@@ -44,9 +49,22 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch (actionId) {
+                    case EditorInfo.IME_ACTION_SEARCH:
+                        String name = et_search.getText().toString().trim();
+                        editActionObservable.notifyObservers(name);
+                        hideKeyBoard(et_search);
+                        break;
+                        default:
+                }
+                return true;
+            }
+        });
         fm = getSupportFragmentManager();
-        searchFragment1 = new SearchFragment1();
-        ActivityUtils.addFragment(fm, R.id.fl_container, searchFragment1, tag1);
+        ActivityUtils.showFragment(fm, R.id.fl_container, tag1, editActionObservable, new String[]{tag1,tag2});
     }
 
     @OnClick({R.id.ll_back, R.id.tv_cancel, R.id.lin_search_bt})
@@ -56,35 +74,16 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
                 finish();
                 break;
             case R.id.tv_cancel: //取消
-                searchFragment1 = fm.findFragmentByTag(tag1);
-                searchFragment2 = fm.findFragmentByTag(tag2);
-                if(searchFragment2 != null){
-                    ActivityUtils.hideFragment(fm,searchFragment2);
-                }
-                if(searchFragment1 == null){
-                    searchFragment1 = new SearchFragment1();
-                    ActivityUtils.addFragment(fm,R.id.fl_container,searchFragment1,tag1);
-                }else{
-                    ActivityUtils.showFragment(fm,searchFragment1);
-                }
+                ActivityUtils.showFragment(fm, R.id.fl_container, tag1, editActionObservable, new String[]{tag1,tag2});
                 ll_back.setVisibility(View.VISIBLE);
                 tv_cancel.setVisibility(View.GONE);
                 lin_search_et.setVisibility(View.GONE);
                 lin_search_bt.setVisibility(View.VISIBLE);
                 hideKeyBoard(et_search);
+                et_search.setText("");
                 break;
             case R.id.lin_search_bt: //搜索
-                searchFragment1 = fm.findFragmentByTag(tag1);
-                searchFragment2 = fm.findFragmentByTag(tag2);
-                if(searchFragment1 != null){
-                    ActivityUtils.hideFragment(fm,searchFragment1);
-                }
-                if(searchFragment2 == null){
-                    searchFragment2 = new SearchFragment2();
-                    ActivityUtils.addFragment(fm,R.id.fl_container,searchFragment2,tag2);
-                }else{
-                    ActivityUtils.showFragment(fm,searchFragment2);
-                }
+                ActivityUtils.showFragment(fm, R.id.fl_container, tag2, editActionObservable, new String[]{tag1,tag2});
                 ll_back.setVisibility(View.GONE);
                 tv_cancel.setVisibility(View.VISIBLE);
                 lin_search_et.setVisibility(View.VISIBLE);

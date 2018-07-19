@@ -354,6 +354,9 @@ public class HttpManager {
     //地区列表
     public static String QUERY_ADDRESS_URL = BuildConfig.HOST + "province";
 
+    /************* 工作室 ****************/
+    public static String WORKSPACE_QUERY_SEARCH__URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/query/list";
+
 
 
     //公用方法

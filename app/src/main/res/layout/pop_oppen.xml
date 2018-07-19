@@ -10,7 +10,7 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_corner_white">
+        android:background="@drawable/bg_big_corner_white">
 
         <TextView
             android:layout_width="match_parent"

@@ -293,7 +293,10 @@
         <activity
             android:name=".mvp.course.preparelessons.TestActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+
+        </activity>
         <activity
             android:name=".mvp.course.preparelessons.index.PrepareLessonsActivity"
             android:screenOrientation="portrait"
@@ -571,7 +574,10 @@
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"></activity>
+        <activity android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

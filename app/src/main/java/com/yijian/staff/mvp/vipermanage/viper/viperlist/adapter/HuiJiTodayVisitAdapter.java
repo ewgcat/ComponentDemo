@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huiji.viperlist.adapter;
+package com.yijian.staff.mvp.vipermanage.viper.viperlist.adapter;
 
 import android.content.Context;
 import android.content.Intent;

@@ -565,15 +565,21 @@
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity" />
-        <activity android:name=".mvp.taskcenter.TaskCenterActivity">
+        <activity
+            android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.taskcenter.TaskCenterActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.taskcenter.list.RankListActivity"></activity>
+        <activity
+            android:name=".mvp.taskcenter.list.RankListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -44,6 +44,7 @@ public class AddViperMonthRankFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
+        rankBeanList.clear();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局
         rv.setLayoutManager(layoutmanager);

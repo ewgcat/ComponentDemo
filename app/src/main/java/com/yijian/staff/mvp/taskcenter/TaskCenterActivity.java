@@ -56,6 +56,7 @@ public class TaskCenterActivity extends MvcBaseActivity {
 
         TaskCenterPagerAdapter taskCenterPagerAdapter = new TaskCenterPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(taskCenterPagerAdapter);
+        viewPager.setOffscreenPageLimit(3);
         tabs.setViewPager(viewPager);
         viewPager.setCurrentItem(0);
 

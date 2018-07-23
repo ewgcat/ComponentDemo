@@ -56,7 +56,14 @@
         <activity
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".mvp.main.MainActivity"
             android:launchMode="singleTop"
@@ -571,11 +578,7 @@
         <activity
             android:name=".mvp.taskcenter.TaskCenterActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.taskcenter.list.RankListActivity"

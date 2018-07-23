@@ -74,7 +74,6 @@
 
     <ScrollView
         android:layout_below="@id/ll_club_brand"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
@@ -83,7 +82,10 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/tv_content"
-            android:padding="16dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
             android:text="哈哈哈哈哈哈哈哈哈或或或或或或哈哈或或或或或或哈哈或或或或或或哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

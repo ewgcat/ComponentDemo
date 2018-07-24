@@ -45,13 +45,20 @@
                         android:textColor="@color/text_black1"
                         android:textSize="@dimen/text_size_15" />
 
+                    <Space
+                        android:id="@+id/spce_sex"
+                        android:layout_width="18dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentRight="true"/>
+
                     <TextView
+                        android:id="@+id/tv_sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:drawablePadding="10dp"
-                        android:drawableRight="@mipmap/icon_black_right_arrow"
+                        android:layout_toLeftOf="@id/spce_sex"
                         android:hint="选择性别"
+                        android:gravity="right"
+                        android:text="3"
                         android:textColor="@color/text_black1"
                         android:textColorHint="#cccccc"
                         android:textSize="@dimen/text_size_15" />
@@ -78,12 +85,14 @@
                         android:textSize="@dimen/text_size_15" />
 
                     <TextView
+                        android:id="@+id/tv_height"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:drawablePadding="10dp"
                         android:drawableRight="@mipmap/icon_black_right_arrow"
                         android:hint="选择身高"
+                        android:gravity="right"
                         android:textColor="@color/text_black1"
                         android:textColorHint="#cccccc"
                         android:textSize="@dimen/text_size_15" />
@@ -117,7 +126,7 @@
                         android:text="cm"/>
 
                     <EditText
-                        android:id="@+id/et_jieqiu"
+                        android:id="@+id/et_jianwei"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_size_15"
@@ -203,7 +212,7 @@
                         android:text="cm"/>
 
                     <EditText
-                        android:id="@+id/et_bi"
+                        android:id="@+id/et_biwei"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_size_15"
@@ -246,7 +255,7 @@
                         android:text="cm"/>
 
                     <EditText
-                        android:id="@+id/et_yao"
+                        android:id="@+id/et_yaowei"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_size_15"
@@ -290,7 +299,7 @@
                         android:text="cm"/>
 
                     <EditText
-                        android:id="@+id/et_tun"
+                        android:id="@+id/et_tunwei"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_size_15"
@@ -335,7 +344,7 @@
                         android:text="cm"/>
 
                     <EditText
-                        android:id="@+id/et_tui"
+                        android:id="@+id/et_tuiwei"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_size_15"

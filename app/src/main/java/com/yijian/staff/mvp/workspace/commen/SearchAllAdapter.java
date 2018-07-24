@@ -81,13 +81,14 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void bind(WorkSpaceVipBean workSpaceVipBean) {
+            ActivityUtils.workSpaceVipBean = workSpaceVipBean;
             rel_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ActivityUtils.name = workSpaceVipBean.getName();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("workSpaceVipBean",workSpaceVipBean);
-                    ActivityUtils.startActivity(mContext, SearchOprationActivity.class,bundle);
+                    bundle.putSerializable("workSpaceVipBean", workSpaceVipBean);
+                    ActivityUtils.startActivity(mContext, SearchOprationActivity.class, bundle);
 
                 }
             });
@@ -109,6 +110,9 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case "CustomerExpireVO":
                     tv_role.setText("过期会员");
                     break;
+                case "CustomerTodayVisitVO":
+                    tv_role.setText("今日来访会员");
+                    break;
                 case "CoachInfoVO":
                     tv_role.setText("正式学员");
                     break;
@@ -120,6 +124,9 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     break;
                 case "CoachPotentialStudentVO":
                     tv_role.setText("潜在学员");
+                    break;
+                case "CoachTodayVisitVO":
+                    tv_role.setText("今日来访学员");
                     break;
                 default:
             }

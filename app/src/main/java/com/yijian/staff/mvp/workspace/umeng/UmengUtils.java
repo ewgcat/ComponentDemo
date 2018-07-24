@@ -14,8 +14,8 @@ import com.umeng.socialize.UMShareConfig;
 public class UmengUtils {
     public static void init(Application application) {//内存泄漏
         UMConfigure.setLogEnabled(true);
-        UMConfigure.init(application, "5afe85d08f4a9d5101000042", "umeng", UMConfigure.DEVICE_TYPE_PHONE, "5afe85d08f4a9d5101000042");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
-        PlatformConfig.setWeixin("wxd88a5796b3d11fcf", "b6955f6092f388a922edbd197e2a005e");
-        PlatformConfig.setSinaWeibo("1959171506", "1dbf4bb8ec913ea3e7703e93a748ec6e", "https://www.pgyer.com/wr0A");
+        UMConfigure.init(application, "5b56954df43e48214c000049", "umeng", UMConfigure.DEVICE_TYPE_PHONE, "5b56954df43e48214c000049");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
+        PlatformConfig.setWeixin("wxa43603c935a858ec", "b6955f6092f388a922edbd197e2a005e");
+        PlatformConfig.setSinaWeibo("4169776103", "866dee2aeed8ddf8160a2ac4737c4d24", "http://www.pgyer.com/ZuYu");
     }
 }

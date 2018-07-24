@@ -2,20 +2,34 @@ package com.yijian.staff.mvp.workspace.commen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceRecordBean;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
+    private List<WorkSpaceRecordBean> dataList = new ArrayList<>();
+
+    public void resetDataList(List<WorkSpaceRecordBean> dataList) {
+        this.dataList.clear();
+        this.dataList.addAll(dataList);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -28,30 +42,41 @@ public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder)holder).bind();
+        ((ViewHolder)holder).bind(dataList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return dataList == null ? 0 : dataList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout rel_record;
+        TextView tv_date;
+        TextView tv_time;
+        TextView tv_result_score;
 
         public ViewHolder(View itemView) {
             super(itemView);
             rel_record = itemView.findViewById(R.id.rel_record);
+            tv_date = itemView.findViewById(R.id.tv_date);
+            tv_time = itemView.findViewById(R.id.tv_time);
+            tv_result_score = itemView.findViewById(R.id.tv_result_score);
         }
 
-        public void bind(){
+        public void bind(WorkSpaceRecordBean workSpaceRecordBean){
             rel_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivityUtils.startActivity(mContext,ShareTestActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("recordId",workSpaceRecordBean.getId());
+                    ActivityUtils.startActivity(mContext,ShareTestActivity.class,bundle);
                 }
             });
+            tv_date.setText(workSpaceRecordBean.getDay());
+            tv_time.setText(workSpaceRecordBean.getTime());
+            tv_result_score.setText(workSpaceRecordBean.getGrade()+"分");
         }
 
     }

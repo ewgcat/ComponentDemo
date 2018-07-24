@@ -155,7 +155,7 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
                     ARouter.getInstance().build("/test/login").navigation();
                     break;
                 default:
-                    onFail(responseBean.getMsg());
+                     onFail(responseBean.getMsg());
                     break;
             }
         } catch (Exception e) {

@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 
 /**
  *  1. 全局数据池
@@ -25,6 +27,7 @@ public class ActivityUtils {
     public static String MODULE_STATIC_EVALUATE = "静态评估";
     public static String MODULE_DYNAMIC_EVALUATE = "动态评估";
     public static String searchMemberName = ""; //搜索过滤的字段
+    public static WorkSpaceVipBean workSpaceVipBean = null;
 
 
     public static void addFragment(FragmentManager fragmentManager, int idRes, Fragment fragment,String tag){

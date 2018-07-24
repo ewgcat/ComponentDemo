@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_black1"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_17"
         android:layout_centerVertical="true"
         android:text="23423442424"/>
 
@@ -25,17 +25,17 @@
         android:layout_toRightOf="@id/tv_date"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_17"
         android:text="23423442424"/>
 
     <TextView
-        android:id="@+id/tv_score"
+        android:id="@+id/tv_result_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#f85919"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_17"
         android:text="54分"/>
 
     <View

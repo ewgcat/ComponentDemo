@@ -11,16 +11,16 @@ import java.lang.ref.WeakReference;
 
 public class NoLeakHandler<T extends Context> extends Handler {
 
-    private WeakReference<T> mActivity;
+    private WeakReference<T> weakReferenceBean;
 
-    public NoLeakHandler(T activity){
-        mActivity = new WeakReference<>(activity);
+    public NoLeakHandler(T t){
+        weakReferenceBean = new WeakReference<>(t);
     }
 
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-        Toast.makeText(mActivity.get(),"消息来了...",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mActivity.get(),"消息来了...",Toast.LENGTH_SHORT).show();
     }
 
 

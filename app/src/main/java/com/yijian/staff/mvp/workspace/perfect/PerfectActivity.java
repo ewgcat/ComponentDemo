@@ -2,6 +2,8 @@ package com.yijian.staff.mvp.workspace.perfect;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,13 +18,23 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.face.BitmapFaceUtils;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,6 +56,7 @@ public class PerfectActivity extends MvcBaseActivity {
     ImageView iv_sure;
     @BindView(R.id.space_view)
     Space space_view;
+    byte[] imgData = null;
 
     @Override
     protected int getLayoutID() {
@@ -95,6 +108,8 @@ public class PerfectActivity extends MvcBaseActivity {
                         iv_sure.setVisibility(View.VISIBLE);
                         space_view.setVisibility(View.VISIBLE);
                         mCamera.stopPreview();
+                        imgData = data;
+
                     }
                 } );
                 break;
@@ -106,7 +121,32 @@ public class PerfectActivity extends MvcBaseActivity {
                 space_view.setVisibility(View.GONE);
                 break;
             case R.id.iv_sure: //确定
-                ActivityUtils.startActivity(this,PerfectTestActivity.class);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                byte[] datas = baos.toByteArray();
+                StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
+
+                HttpManager.upLoadImageHasParam(HttpManager.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        try {
+                            JSONArray jsonArray = result.getJSONArray("dataList");
+                            String imgUrl = jsonArray.getString(0);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("imgUrl",imgUrl);
+                            ActivityUtils.startActivity(PerfectActivity.this,PerfectTestActivity.class,bundle);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        Toast.makeText(PerfectActivity.this,msg,Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
             default:
         }

@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.workspace.sport;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
@@ -24,6 +25,14 @@ public class SportTestActivity extends MvcBaseActivity {
     private TextView rightTv;
     @BindView(R.id.btn_next)
     Button btn_next;
+    @BindView(R.id.view_mingjie_sel)
+    View view_mingjie_sel;
+    @BindView(R.id.view_rouren_sel)
+    View view_rouren_sel;
+    @BindView(R.id.iv_mingjie_sel)
+    ImageView iv_mingjie_sel;
+    @BindView(R.id.iv_rouren_sel)
+    ImageView iv_rouren_sel;
 
     @Override
     protected int getLayoutID() {
@@ -64,11 +73,15 @@ public class SportTestActivity extends MvcBaseActivity {
                     case 1:
                         ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag2, new String[]{tag1, tag2, tag3});
                         rightTv.setVisibility(View.VISIBLE);
+                        view_mingjie_sel.setVisibility(View.VISIBLE);
+                        iv_mingjie_sel.setVisibility(View.VISIBLE);
                         break;
                     case 2:
                         ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag3, new String[]{tag1, tag2, tag3});
                         btn_next.setText("完成");
                         rightTv.setVisibility(View.VISIBLE);
+                        view_rouren_sel.setVisibility(View.VISIBLE);
+                        iv_rouren_sel.setVisibility(View.VISIBLE);
                         break;
                     case 3:
                         ActivityUtils.startActivity(this, ShareTestActivity.class);
@@ -83,10 +96,14 @@ public class SportTestActivity extends MvcBaseActivity {
                     currentIndex--;
                 }
                 if(currentIndex == 0){
+                    view_mingjie_sel.setVisibility(View.GONE);
+                    iv_mingjie_sel.setVisibility(View.GONE);
                     rightTv.setVisibility(View.GONE);
                     btn_next.setText("下一步");
                     ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, new String[]{tag1, tag2, tag3});
                 }else if(currentIndex == 1){
+                    view_rouren_sel.setVisibility(View.GONE);
+                    iv_rouren_sel.setVisibility(View.GONE);
                     rightTv.setVisibility(View.VISIBLE);
                     btn_next.setText("下一步");
                     ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag2, new String[]{tag1, tag2, tag3});
@@ -96,6 +113,5 @@ public class SportTestActivity extends MvcBaseActivity {
 
         }
     }
-
 
 }

@@ -33,6 +33,8 @@ public class SearchOprationActivity extends MvcBaseActivity {
     @BindView(R.id.tv_role)
     TextView tv_role;
 
+    WorkSpaceVipBean workSpaceVipBean;
+
 
     @Override
     protected int getLayoutID() {
@@ -55,7 +57,7 @@ public class SearchOprationActivity extends MvcBaseActivity {
 
     private void initData() {
         Bundle bundle = getIntent().getExtras();
-        WorkSpaceVipBean workSpaceVipBean = (WorkSpaceVipBean) bundle.getSerializable("workSpaceVipBean");
+        workSpaceVipBean = (WorkSpaceVipBean) bundle.getSerializable("workSpaceVipBean");
         ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadImg(), mContext, iv_header);
         iv_gender.setImageResource("1".equals(workSpaceVipBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         tv_name.setText(workSpaceVipBean.getName());
@@ -74,6 +76,9 @@ public class SearchOprationActivity extends MvcBaseActivity {
             case "CustomerExpireVO":
                 tv_role.setText("过期会员");
                 break;
+            case "CustomerTodayVisitVO":
+                tv_role.setText("今日来访会员");
+                break;
             case "CoachInfoVO":
                 tv_role.setText("正式学员");
                 break;
@@ -85,6 +90,9 @@ public class SearchOprationActivity extends MvcBaseActivity {
                 break;
             case "CoachPotentialStudentVO":
                 tv_role.setText("潜在学员");
+                break;
+            case "CoachTodayVisitVO":
+                tv_role.setText("今日来访学员");
                 break;
             default:
         }

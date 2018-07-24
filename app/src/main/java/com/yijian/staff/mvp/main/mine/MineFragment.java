@@ -118,6 +118,7 @@ public class MineFragment extends Fragment {
                 break;
             case R.id.ll_erweima:
                 startActivity(new Intent(getContext(), MyQRCodeActivity.class));
+
                 break;
             case R.id.ll_edit_password:
                 startActivityForResult(new Intent(getContext(), EditPasswordActivity.class), 1234);

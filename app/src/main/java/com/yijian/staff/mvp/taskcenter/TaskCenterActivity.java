@@ -49,7 +49,7 @@ public class TaskCenterActivity extends MvcBaseActivity {
         List<Fragment> fragmentList = new ArrayList<>();
         mTitleList.add("今日添加");
         mTitleList.add("今日邀约");
-        mTitleList.add("今日来访");
+        mTitleList.add("今日回访");
         fragmentList.add(new AddViperTaskCenterFragment());
         fragmentList.add(new InviteTaskCenterFragment());
         fragmentList.add(new VisitTaskCenterFragment());

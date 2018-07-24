@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.taskcenter.add;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.taskcenter.add.rankfragment.AddViperMonthRankFragment;
 import com.yijian.staff.mvp.taskcenter.add.rankfragment.AddViperTodayRankFragment;
+import com.yijian.staff.mvp.vipermanage.viper.potential.AddPotentialActivity;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.TaskCircleProgressBar;
 
@@ -67,6 +69,7 @@ public class AddViperTaskCenterFragment extends Fragment implements View.OnClick
         tvMonthRank=  view.findViewById(R.id.tv_month_rank);
         progressBar=  view.findViewById(R.id.progress_bar);
 
+        tvTaskStatus.setOnClickListener(this);
         tvTodayRank.setOnClickListener(this);
         tvMonthRank.setOnClickListener(this);
         taskProgress.setProgress(100);
@@ -122,7 +125,10 @@ public class AddViperTaskCenterFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_today_rank:
+            case R.id.tv_task_status:
+                startActivity(new Intent(getContext(),AddPotentialActivity.class));
+                break;
+          case R.id.tv_today_rank:
                 Logger.i("TEST", "点击了日排名");
                 changeFragment(0);
                 break;

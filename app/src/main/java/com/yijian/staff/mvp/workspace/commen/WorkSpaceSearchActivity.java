@@ -1,10 +1,5 @@
 package com.yijian.staff.mvp.workspace.commen;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,7 +11,6 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;

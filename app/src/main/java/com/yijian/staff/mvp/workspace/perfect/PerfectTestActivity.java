@@ -97,12 +97,12 @@ public class PerfectTestActivity extends MvcBaseActivity {
 //                perfectRequestBody.setGender("男".equals(tv_sex.getText()) ? 1 : 0);
                 perfectRequestBody.setGender(1);
                 perfectRequestBody.setHeight(TextUtils.isEmpty(tv_height.getText().toString()) ? 0 : Integer.parseInt(tv_height.getText().toString()));
-                perfectRequestBody.setJw(TextUtils.isEmpty(et_jianwei.getText().toString()) ? 0 : Integer.parseInt(et_jianwei.getText().toString()));
-                perfectRequestBody.setXw(TextUtils.isEmpty(et_xiongwei.getText().toString()) ? 0 : Integer.parseInt(et_xiongwei.getText().toString()));
-                perfectRequestBody.setWaist(TextUtils.isEmpty(et_yaowei.getText().toString()) ? 0 : Integer.parseInt(et_yaowei.getText().toString()));
-                perfectRequestBody.setDtw(TextUtils.isEmpty(et_tuiwei.getText().toString()) ? 0 : Integer.parseInt(et_tuiwei.getText().toString()));
-                perfectRequestBody.setHipline(TextUtils.isEmpty(et_tunwei.getText().toString()) ? 0 : Integer.parseInt(et_tunwei.getText().toString()));
-                perfectRequestBody.setDtunw(TextUtils.isEmpty(et_biwei.getText().toString()) ? 0 : Integer.parseInt(et_biwei.getText().toString()));
+                perfectRequestBody.setJw(TextUtils.isEmpty(et_jianwei.getText().toString()) ? 0 : Double.parseDouble(et_jianwei.getText().toString()));
+                perfectRequestBody.setXw(TextUtils.isEmpty(et_xiongwei.getText().toString()) ? 0 : Double.parseDouble(et_xiongwei.getText().toString()));
+                perfectRequestBody.setWaist(TextUtils.isEmpty(et_yaowei.getText().toString()) ? 0 : Double.parseDouble(et_yaowei.getText().toString()));
+                perfectRequestBody.setDtw(TextUtils.isEmpty(et_tuiwei.getText().toString()) ? 0 : Double.parseDouble(et_tuiwei.getText().toString()));
+                perfectRequestBody.setHipline(TextUtils.isEmpty(et_tunwei.getText().toString()) ? 0 : Double.parseDouble(et_tunwei.getText().toString()));
+                perfectRequestBody.setDtunw(TextUtils.isEmpty(et_biwei.getText().toString()) ? 0 : Double.parseDouble(et_biwei.getText().toString()));
                 perfectRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
                 perfectRequestBody.setUrl1(imgUrl);
                 HttpManager.postPerfectInfo(perfectRequestBody, new ResultStringObserver() {

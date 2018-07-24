@@ -35,14 +35,14 @@ public class PerfectRequestBody {
     private String createById;
     private String createByName;
     private String createTime;
-    private int dtunw; //大臂围
-    private int dtw; //大腿围
+    private double dtunw; //大臂围
+    private double dtw; //大腿围
     private int gender;
     private int grade;
     private String gradeName;
     private int height;
-    private int hipline; // 臀围
-    private int jw;
+    private double hipline; // 臀围
+    private double jw;
     private String memberId;
     private String merchantId;
     private String shopId;
@@ -52,10 +52,10 @@ public class PerfectRequestBody {
     private String url2;
     private String url3;
     private String url4;
-    private int waist; //腰围
+    private double waist; //腰围
     private String wdId;
     private int weight;
-    private int xw;
+    private double xw;
 
     public int getAge() {
         return age;
@@ -89,19 +89,19 @@ public class PerfectRequestBody {
         this.createTime = createTime;
     }
 
-    public int getDtunw() {
+    public double getDtunw() {
         return dtunw;
     }
 
-    public void setDtunw(int dtunw) {
+    public void setDtunw(double dtunw) {
         this.dtunw = dtunw;
     }
 
-    public int getDtw() {
+    public double getDtw() {
         return dtw;
     }
 
-    public void setDtw(int dtw) {
+    public void setDtw(double dtw) {
         this.dtw = dtw;
     }
 
@@ -137,19 +137,19 @@ public class PerfectRequestBody {
         this.height = height;
     }
 
-    public int getHipline() {
+    public double getHipline() {
         return hipline;
     }
 
-    public void setHipline(int hipline) {
+    public void setHipline(double hipline) {
         this.hipline = hipline;
     }
 
-    public int getJw() {
+    public double getJw() {
         return jw;
     }
 
-    public void setJw(int jw) {
+    public void setJw(double jw) {
         this.jw = jw;
     }
 
@@ -225,11 +225,11 @@ public class PerfectRequestBody {
         this.url4 = url4;
     }
 
-    public int getWaist() {
+    public double getWaist() {
         return waist;
     }
 
-    public void setWaist(int waist) {
+    public void setWaist(double waist) {
         this.waist = waist;
     }
 
@@ -249,11 +249,11 @@ public class PerfectRequestBody {
         this.weight = weight;
     }
 
-    public int getXw() {
+    public double getXw() {
         return xw;
     }
 
-    public void setXw(int xw) {
+    public void setXw(double xw) {
         this.xw = xw;
     }
 }

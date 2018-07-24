@@ -242,8 +242,6 @@ public static java.lang.String TABLENAME;
 -dontwarn com.umeng.**
 -keep class com.umeng*.** {*; }
 
-
-
 #greendao
 -keep class org.greenrobot.greendao.**{*;}
 -keep public interface org.greenrobot.greendao.**

@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.main.mine.club;
 
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ClubActivity extends BaseWebViewActivity {
-
     private static final String TAG = ClubActivity.class.getSimpleName();
     @BindView(R.id.banner)
     Banner banner;
@@ -29,7 +29,6 @@ public class ClubActivity extends BaseWebViewActivity {
     TextView tvClubName;
     @BindView(R.id.tv_content)
     TextView tvContent;
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_club;

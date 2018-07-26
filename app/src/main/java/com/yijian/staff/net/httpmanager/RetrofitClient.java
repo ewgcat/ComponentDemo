@@ -226,7 +226,6 @@ public class RetrofitClient {
                     return true;
                 }
             });
-
             builder.connectTimeout(30, TimeUnit.SECONDS);
             builder.readTimeout(30, TimeUnit.SECONDS);
             builder.writeTimeout(30, TimeUnit.SECONDS);

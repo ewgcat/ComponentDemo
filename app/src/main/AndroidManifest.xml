@@ -596,6 +596,11 @@
         <activity android:name=".mvp.workspace.perfect.PerfectTestActivity" />
         <activity android:name=".mvp.workspace.commen.SearchOprationActivity" />
         <activity android:name=".mvp.workspace.commen.ShareTestActivity"></activity>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 

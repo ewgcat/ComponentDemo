@@ -177,7 +177,7 @@ public class WeekFragment_ycm extends Fragment {
         Map<String, String> map = new HashMap<String, String>();
         map.put("leftTime", dayTaskList.get(0).getStartDate());
         map.put("rightTime", dayTaskList.get(dayTaskList.size() - 1).getStartDate());
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 try {

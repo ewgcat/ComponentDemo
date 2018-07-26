@@ -84,7 +84,7 @@ public class ExperienceClassInvateAgainActivity_ycm extends AppCompatActivity im
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_experience_class_invate_again_ycm);
         ButterKnife.bind(this);
-        presenter = new ExperienceClassInvateAgainPresenter_ycm(this);
+        presenter = new ExperienceClassInvateAgainPresenter_ycm(getLifecycle(),this);
         presenter.setView(this);
         initData();
         initView();

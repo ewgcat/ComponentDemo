@@ -73,7 +73,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_intention_student",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -91,7 +91,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_vip_intention.setLayoutManager(layoutmanager);
-        coachPotentialViperListAdapter = new CoachPotentialViperListAdapter(this, viperBeanList);
+        coachPotentialViperListAdapter = new CoachPotentialViperListAdapter(getLifecycle(),this, viperBeanList);
         rv_vip_intention.setAdapter(coachPotentialViperListAdapter);
         initComponent();
         refresh();
@@ -135,7 +135,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -188,7 +188,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_COACH_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

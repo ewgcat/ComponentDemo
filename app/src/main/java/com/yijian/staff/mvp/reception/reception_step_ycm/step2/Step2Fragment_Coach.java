@@ -77,7 +77,7 @@ public class Step2Fragment_Coach extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_step2_coach, container, false);
 
         initView(view);
-        presenter = new CoachReceptionStepTwoPresenter(getContext());
+        presenter = new CoachReceptionStepTwoPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         initData();
 

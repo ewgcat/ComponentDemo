@@ -74,7 +74,7 @@ public class RecordChartActivity extends MvcBaseActivity {
         pageSize = 2;
         classRecordBeanArrayList.clear();
         showLoading();
-        HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver() {
+        HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -111,7 +111,7 @@ public class RecordChartActivity extends MvcBaseActivity {
 
     public void loadMore() {
         showLoading();
-        HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver() {
+        HttpManager.getCoachVipCourseListList(memberId, pageNum, pageSize, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

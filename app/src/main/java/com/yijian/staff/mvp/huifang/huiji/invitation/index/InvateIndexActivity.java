@@ -94,7 +94,7 @@ public class InvateIndexActivity extends AppCompatActivity {
         map.put("visitTime", tvFuyueTime.getText().toString());
         map.put("memberType", getIntent().getStringExtra("memberType"));
 
-        HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 Toast.makeText(InvateIndexActivity.this, "邀约成功", Toast.LENGTH_SHORT).show();

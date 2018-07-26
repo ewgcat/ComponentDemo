@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step4;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -20,9 +21,11 @@ import java.util.Map;
 public class ExperienceClassProcess4Presenter implements ExperienceClassProcess4Contract.Presenter {
 
     private Context context;
+    private Lifecycle lifecycle;
     private ExperienceClassProcess4Contract.View view;
 
-    public ExperienceClassProcess4Presenter(Context context) {
+    public ExperienceClassProcess4Presenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -35,7 +38,7 @@ public class ExperienceClassProcess4Presenter implements ExperienceClassProcess4
         Map<String, String> params = new HashMap<>();
         params.put("processId", processId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 InvitationAgainBean invitationAgainBean = GsonNullString.getGson().fromJson(result.toString(), InvitationAgainBean.class);

@@ -199,7 +199,7 @@ public class PrepareAllLessonActivity extends MvcBaseActivity {
         map.put("dateStr", dateStr);
         showLoading();
 
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL, map, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 List<PrepareLessonAllBean> prepareLessonAllBeans = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), PrepareLessonAllBean.class);

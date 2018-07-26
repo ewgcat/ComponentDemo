@@ -116,7 +116,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -154,7 +154,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         params.put("pageSize", pageSize + "");
         params.put("type", type + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

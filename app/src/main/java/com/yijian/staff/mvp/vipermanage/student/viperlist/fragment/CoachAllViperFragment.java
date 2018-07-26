@@ -82,7 +82,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
         String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_formal_student",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -97,7 +97,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        coachViperListAdapter = new CoachViperListAdapter(getActivity(), coachViperBeanList, true);
+        coachViperListAdapter = new CoachViperListAdapter(getLifecycle(),getActivity(), coachViperBeanList, true);
         rv_vip_all.setAdapter(coachViperListAdapter);
 
 
@@ -159,7 +159,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
         }
 
-        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -241,7 +241,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
 
         }
-        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getCoachAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

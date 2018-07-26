@@ -1,6 +1,7 @@
 package com.yijian.staff.net.response;
 
 
+import android.arch.lifecycle.Lifecycle;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -17,8 +18,8 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class ResultJSONArrayObserver extends ResponseObserver<JSONArray> {
 
-    public ResultJSONArrayObserver() {
-        super();
+    public ResultJSONArrayObserver(Lifecycle lifecycle) {
+        super(lifecycle);
     }
 
     protected void initResultType() {

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -40,9 +41,12 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
         this.view = view;
     }
 
-    public ReceptionPresenter(Context context) {
-        this.context = context;
 
+    private Lifecycle lifecycle;
+
+    public ReceptionPresenter( Lifecycle lifecycle,Context context) {
+        this.context = context;
+        this.lifecycle = lifecycle;
         user = DBManager.getInstance().queryUser();
         headerParam = new HashMap<>();
         headerParam.put("token", user.getToken());
@@ -56,7 +60,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     public void getRecptionerInfo() {
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_INFO, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
@@ -87,7 +91,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
         params.put("pageSize", 10);
 
 
-        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
@@ -122,7 +126,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
@@ -141,7 +145,7 @@ public class ReceptionPresenter implements ReceptionContract.Presenter {
     public void endRecption(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_END, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_END, params, new ResultNullObserver(lifecycle) {
 
             @Override
             public void onSuccess(Object result) {

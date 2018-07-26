@@ -57,7 +57,7 @@ public class ReceptionStepOneActivity extends AppCompatActivity implements View.
         }
 
 
-        presenter = new RecptionStep1Presenter(this);
+        presenter = new RecptionStep1Presenter(getLifecycle(),this);
         presenter.setView(this);
 //        presenter.getQuestion();
     }

@@ -81,7 +81,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_add_potential",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -161,7 +161,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
         if (CommonUtil.isPhoneFormat(phone)) {
             showLoading();
             AddPotentialRequestBody addPotentialRequestBody = new AddPotentialRequestBody(phone, name, healthStatus, fitnessHobby, hobby, useCar, fitnessGoal, sex);
-            HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver() {
+            HttpManager.postAddPotential(addPotentialRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
@@ -258,7 +258,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
         empty_view.setVisibility(View.GONE);
         textView.setVisibility(View.GONE);
         showLoading();
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

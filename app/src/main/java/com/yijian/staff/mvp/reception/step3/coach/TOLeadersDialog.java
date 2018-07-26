@@ -1,7 +1,9 @@
 package com.yijian.staff.mvp.reception.step3.coach;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.arch.lifecycle.Lifecycle;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,7 +32,7 @@ import java.util.List;
 /**
  * Created by The_P on 2018/4/19.
  */
-
+@SuppressLint("ValidFragment")
 public class TOLeadersDialog extends DialogFragment {
 
     private TextView cancel;
@@ -38,7 +40,11 @@ public class TOLeadersDialog extends DialogFragment {
     private EditText etToReason;
     private TOLeaderAdapter toLeaderAdapter;
     private Integer postId;//岗位id
+    private Lifecycle lifecycle;
 
+    public TOLeadersDialog(Lifecycle lifecycle) {
+        this.lifecycle = lifecycle;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +71,7 @@ public class TOLeadersDialog extends DialogFragment {
     }
 
     private void initData() {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STEP3_GET_LEADERS, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STEP3_GET_LEADERS, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 LeadersBeanWrap leadersBean = GsonNullString.getGson().fromJson(result.toString(), LeadersBeanWrap.class);

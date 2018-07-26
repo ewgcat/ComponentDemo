@@ -100,7 +100,7 @@ public class Step4Fragment_Sale extends Fragment implements ReceptionStepFourCon
         View view = inflater.inflate(R.layout.fragment_step4_sale, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        presenter = new ReceptionStepFourPresenter(getContext());
+        presenter = new ReceptionStepFourPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         if (!TextUtils.isEmpty(memberId)) presenter.getProductDetail(memberId);
         initView(view);

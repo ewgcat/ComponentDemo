@@ -226,7 +226,7 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
         showLoading();
-        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver() {
+        HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e("Test", result.toString());
@@ -344,7 +344,7 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
         marriageStatusList.add("已婚");
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_VIPER_DICT_URL, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 try {

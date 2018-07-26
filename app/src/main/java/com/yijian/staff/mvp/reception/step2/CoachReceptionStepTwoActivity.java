@@ -77,7 +77,7 @@ public class CoachReceptionStepTwoActivity extends AppCompatActivity implements 
         }
 
 
-        presenter = new CoachReceptionStepTwoPresenter(this);
+        presenter = new CoachReceptionStepTwoPresenter(getLifecycle(),this);
         presenter.setView(this);
         initData();
 

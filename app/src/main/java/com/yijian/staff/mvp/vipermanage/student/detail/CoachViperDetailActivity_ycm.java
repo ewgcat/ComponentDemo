@@ -206,7 +206,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);

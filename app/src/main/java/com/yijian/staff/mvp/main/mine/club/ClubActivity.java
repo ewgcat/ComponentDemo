@@ -40,7 +40,7 @@ public class ClubActivity extends BaseWebViewActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_club",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

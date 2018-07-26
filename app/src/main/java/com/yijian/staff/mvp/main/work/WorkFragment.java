@@ -155,7 +155,7 @@ public class WorkFragment extends MvcBaseFragment {
     private void initData() {
 
 
-        HttpManager.getNewIndexMenuList(new ResponseObserver<IndexDataInfo>() {
+        HttpManager.getNewIndexMenuList(new ResponseObserver<IndexDataInfo>(getLifecycle()) {
             @Override
             public void onSuccess(IndexDataInfo result) {
                 IndexDataInfo.OthermodelVoBean othermodelVoBean = result.getOthermodelVo();

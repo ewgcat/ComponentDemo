@@ -67,7 +67,7 @@ public class PhysicalReportActivity extends AppCompatActivity implements Physica
             Toast.makeText(PhysicalReportActivity.this, "用户信息获取失败", Toast.LENGTH_SHORT).show();
             return;
         }
-        PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(this);
+        PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(getLifecycle(),this);
         physicalReportPresenter.setView(this);
         physicalReportPresenter.loadData(memberId);
         initData();

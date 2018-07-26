@@ -80,7 +80,7 @@ public class Step1Fragment_Sale extends Fragment implements ReceptionStep1Contra
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step1_sale, container, false);
 
-        presenter = new RecptionStep1Presenter(getContext());
+        presenter = new RecptionStep1Presenter(getLifecycle(),getContext());
         presenter.setView(this);
         initView(view);
 

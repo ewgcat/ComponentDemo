@@ -77,7 +77,7 @@ public class Step2Fragment_Coach_Physical extends Fragment implements PhysicalRe
         View view = inflater.inflate(R.layout.activity_physical_report, container, false);
 
         initView(view);
-        PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(getContext());
+        PhysicalReportPresenter physicalReportPresenter = new PhysicalReportPresenter(getLifecycle(),getContext());
         physicalReportPresenter.setView(this);
         initData();
         physicalReportPresenter.loadData(consumerBean.getId());

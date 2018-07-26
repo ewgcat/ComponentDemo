@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step3;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -22,9 +23,11 @@ import io.reactivex.disposables.Disposable;
 
 public class ExperienceClassProcess3Presenter implements ExperienceClassProcess3Contract.Presenter {
     private Context context;
+    private Lifecycle lifecycle;
     private ExperienceClassProcess3Contract.View view;
 
-    public ExperienceClassProcess3Presenter(Context context) {
+    public ExperienceClassProcess3Presenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -36,7 +39,7 @@ public class ExperienceClassProcess3Presenter implements ExperienceClassProcess3
     public void getConsultationProgramme(String processId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_FANG_AN_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_FANG_AN_URL, map, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ConsultationProgrammeBean consultationProgrammeBean = GsonNullString.getGson().fromJson(result.toString(), ConsultationProgrammeBean.class);

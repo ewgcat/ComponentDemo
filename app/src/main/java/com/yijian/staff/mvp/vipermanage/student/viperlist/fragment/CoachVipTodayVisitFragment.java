@@ -141,7 +141,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             }
         }
 
-        HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -223,7 +223,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
             }
 
         }
-        HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getCoachTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

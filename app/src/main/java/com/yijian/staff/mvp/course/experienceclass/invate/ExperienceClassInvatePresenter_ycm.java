@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.invate;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -19,10 +20,12 @@ import java.util.HashMap;
 public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvateContract_ycm.Presenter {
 
     private Context context;
+    private Lifecycle lifecycle;
     private ExperienceClassInvateContract_ycm.View view;
 
     public ExperienceClassInvatePresenter_ycm(Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
     }
 
     public void setView(ExperienceClassInvateContract_ycm.View view) {
@@ -34,7 +37,7 @@ public class ExperienceClassInvatePresenter_ycm implements ExperienceClassInvate
         HashMap<String, String> map = new HashMap<>();
 //        memberId="666";
         map.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 

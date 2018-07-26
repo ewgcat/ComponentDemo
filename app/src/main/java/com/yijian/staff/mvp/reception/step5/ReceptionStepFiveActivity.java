@@ -75,7 +75,7 @@ public class ReceptionStepFiveActivity extends AppCompatActivity implements View
     private void endProcess() {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver(getLifecycle()) {
             @Override
             public void onSuccess(Object result) {
 

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step2;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,11 +39,15 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
     private final User user;
 
     private CoachReceptionStepTwoContract.View view;
+    private Lifecycle lifecycle;
 
-    public CoachReceptionStepTwoPresenter(Context context) {
+    public CoachReceptionStepTwoPresenter( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
         user = DBManager.getInstance().queryUser();
+
     }
+
 
     public void setView(CoachReceptionStepTwoContract.View view) {
         this.view = view;
@@ -91,7 +96,7 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
         params.put("shopId", user.getShopId());
         params.put("memberId", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );
@@ -114,7 +119,7 @@ public class CoachReceptionStepTwoPresenter implements CoachReceptionStepTwoCont
         Map<String, String> params = new HashMap<>();
         params.put("rejectReason", rejectReason);
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_REJECT, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP2_REJECT, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.showRejected();

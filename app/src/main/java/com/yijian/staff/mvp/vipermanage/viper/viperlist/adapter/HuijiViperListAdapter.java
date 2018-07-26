@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vipermanage.viper.viperlist.adapter;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -35,9 +36,11 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
     private List<HuiJiViperBean> viperBeanList = new ArrayList<>();
     private Context context;
+    private Lifecycle lifecycle;
 
-    public HuijiViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
+    public HuijiViperListAdapter(Lifecycle lifecycle,Context context, List<HuiJiViperBean> viperBeanList) {
         this.context = context;
+        this.lifecycle = lifecycle;
         this.viperBeanList = viperBeanList;
 
     }
@@ -111,7 +114,6 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                     String mobile = huiJiViperBean.getMobile();
                     if (!TextUtils.isEmpty(mobile)) {
                         CommonUtil.callPhone(context, mobile);
-//                        callVisit(context,huiJiViperBean.getMemberId(), huiJiViperBean.getDictItemKey(), mobile);
                     } else {
                         Toast.makeText(context, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
                     }
@@ -121,22 +123,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         }
 
 
-        private void callVisit(Context context, String memberId, int dictItemKey, String mobile) {
-            Map<String, String> map = new HashMap<>();
-            map.put("memberId", memberId);
-            map.put("dictItemKey", dictItemKey + "");
-            HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    CommonUtil.callPhone(context, mobile);
-                }
 
-                @Override
-                public void onFail(String msg) {
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
 
     }

@@ -59,7 +59,7 @@ public class ExperienceClassStep4Fragment extends Fragment implements Experience
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_experience_step4, container, false);
-        presenter = new ExperienceClassProcess4Presenter(getContext());
+        presenter = new ExperienceClassProcess4Presenter(getLifecycle(),getContext());
         presenter.setView(this);
         initView();
         presenter.getClassRecordList(bean.getProcessId());

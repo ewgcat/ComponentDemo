@@ -117,7 +117,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_credentials",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -135,7 +135,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
         User user = DBManager.getInstance().queryUser();
         HashMap<String, String> param = new HashMap<>();
         param.put("coachId", user.getUserId());
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 CertificateBean certificateBean = new Gson().fromJson(result.toString(), CertificateBean.class);

@@ -118,7 +118,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_face_recognition",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -336,7 +336,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
      */
     private void loginData() {
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_FACE_LOGIN_SESSION, new ResultStringObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_FACE_LOGIN_SESSION, new ResultStringObserver(getLifecycle()) {
             @Override
             public void onSuccess(String result) {
                 LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
@@ -502,7 +502,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
         Map<String, String> param = new HashMap<>();
         param.put("memberIds", ids);
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 if (result.length() > 0) {

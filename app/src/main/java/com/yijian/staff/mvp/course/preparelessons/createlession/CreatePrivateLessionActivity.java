@@ -123,7 +123,7 @@ public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyD
         }
         privatePrepareLessonBody.setContentList(contentListBeans);
         showLoading();
-        HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver() {
+        HttpManager.savePrivatePrepareLesson(HttpManager.COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL, privatePrepareLessonBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -143,7 +143,7 @@ public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyD
      * 获取训练部位
      */
     public void loadDepartData() {
-        HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BODYPART_URL, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_BODYPART_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 List<DepartBean> departArray = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), DepartBean.class);
@@ -170,7 +170,7 @@ public class CreatePrivateLessionActivity extends MvcBaseActivity implements MyD
         }
 
         map.put("bodyPartIds", departIdList.toString().substring(1, departIdList.toString().length() - 1));
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
 
             @Override
             public void onSuccess(JSONObject result) {

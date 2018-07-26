@@ -88,7 +88,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_production_list",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -99,7 +99,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
             }
         });
-        presenter = new HuiJiProductPresenter(this);
+        presenter = new HuiJiProductPresenter(getLifecycle(),this);
         presenter.setView(this);
         bodyCondition = new CardRequestBody();
 
@@ -238,7 +238,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         bundle.putString("venueId", bodyCondition.getVenueId());
         bundle.putString("cardName", bodyCondition.getCardName());
 
-        OptionDialog optionDialog = new OptionDialog();
+        OptionDialog optionDialog = new OptionDialog(getLifecycle());
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {

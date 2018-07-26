@@ -126,7 +126,7 @@ public class LoginActivity extends MvcBaseActivity {
             if (CommonUtil.isPassWordFormat(password)) {
                 showLoading();
                 LoginRequestBody loginRequest = new LoginRequestBody(account, password);
-                HttpManager.postLogin(loginRequest, new ResultJSONObjectObserver() {
+                HttpManager.postLogin(loginRequest, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
                         hideLoading();

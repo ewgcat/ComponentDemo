@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step5.coach;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -20,10 +21,12 @@ import java.util.Map;
 public class ExperienceClassStep5CoachPresenter implements ExperienceClassStep5CoachContract.Presenter {
 
     private Context context;
+    private Lifecycle lifecycle;
     private ExperienceClassStep5CoachContract.View view;
 
-    public ExperienceClassStep5CoachPresenter(Context context) {
+    public ExperienceClassStep5CoachPresenter(Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
     }
 
     public void setView(ExperienceClassStep5CoachContract.View view) {
@@ -36,7 +39,7 @@ public class ExperienceClassStep5CoachPresenter implements ExperienceClassStep5C
         Map<String, String> params = new HashMap<>();
         params.put("processId", processId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ConsultationConclusionBean bean = GsonNullString.getGson().fromJson(result.toString(), ConsultationConclusionBean.class);

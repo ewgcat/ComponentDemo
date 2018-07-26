@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step4;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -21,10 +22,12 @@ import java.util.Map;
 
 public class ReceptionStepFourPresenter implements ReceptionStepFourContract.Presenter {
     private Context context;
+    private Lifecycle lifecycle;
     private ReceptionStepFourContract.View view;
 
-    public ReceptionStepFourPresenter(Context context) {
+    public ReceptionStepFourPresenter(Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
     }
 
     public void setView(ReceptionStepFourContract.View view) {
@@ -36,7 +39,7 @@ public class ReceptionStepFourPresenter implements ReceptionStepFourContract.Pre
     public void getProductDetail(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP4_GET_ORDER_DETAIL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP4_GET_ORDER_DETAIL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ProductDetail productDetail = GsonNullString.getGson().fromJson(result.toString(), ProductDetail.class);
@@ -56,7 +59,7 @@ public class ReceptionStepFourPresenter implements ReceptionStepFourContract.Pre
     public void toReceptionStepFive(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP4_TOFINISH, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.showToStepFive();
@@ -74,7 +77,7 @@ public class ReceptionStepFourPresenter implements ReceptionStepFourContract.Pre
     public void getStatus(boolean isFirst, String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);

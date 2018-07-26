@@ -75,7 +75,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -269,7 +269,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
 //        Map<String,String> map = new HashMap<>();
 //        map.put("memberId",viperDetailBean.getMemberId());
 //        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
-//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver(getLifecycle()) {
 //            @Override
 //            public void onSuccess(JSONObject result) {
 //                CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);

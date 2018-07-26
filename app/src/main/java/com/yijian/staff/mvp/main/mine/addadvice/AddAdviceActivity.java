@@ -69,7 +69,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
             Advice advicebody = new Advice(advice, userId);
 
             AddAdviceBody addAdviceBody = new AddAdviceBody(advicebody);
-            HttpManager.postAddAdvice(HttpManager.ADD_FEEDBACK_URL, addAdviceBody, new ResultJSONObjectObserver() {
+            HttpManager.postAddAdvice(HttpManager.ADD_FEEDBACK_URL, addAdviceBody, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideKeyBoard(etAdvice);

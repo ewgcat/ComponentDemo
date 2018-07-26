@@ -87,7 +87,7 @@ public class EditPasswordActivity extends MvcBaseActivity {
         params.put("confirmPwd", psd2);
         params.put("originalPwd", password);
         params.put("username", username);
-        HttpManager.postHasHeaderHasParam(HttpManager.EDIT_PASSWORD_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.EDIT_PASSWORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 setResult(RESULT_OK);

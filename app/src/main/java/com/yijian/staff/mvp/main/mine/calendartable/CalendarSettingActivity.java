@@ -121,7 +121,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
 
 //        map.put("date", strDate);
         //教练查询当月是否有课或者休息
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_GETLIST_TIME_URL + "?date=" + newStrDate, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_GETLIST_TIME_URL + "?date=" + newStrDate, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -172,7 +172,7 @@ public class CalendarSettingActivity extends AppCompatActivity {
         });
 
         // 查询工作时间与间隔时间
-        HttpManager.postHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_GET_TIME_URL, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_GET_TIME_URL, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 if(result != null && result.length() > 0){

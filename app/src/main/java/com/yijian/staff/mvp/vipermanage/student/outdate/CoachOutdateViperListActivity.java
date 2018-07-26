@@ -67,7 +67,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_expire_student",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -86,7 +86,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_outdate.setLayoutManager(layoutmanager);
-        coachOutdateViperListAdapter = new CoachOutdateViperListAdapter(this, coachViperBeanList);
+        coachOutdateViperListAdapter = new CoachOutdateViperListAdapter(getLifecycle(),this, coachViperBeanList);
         rv_outdate.setAdapter(coachOutdateViperListAdapter);
         initComponent();
         refresh();
@@ -109,7 +109,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -163,7 +163,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageSize", pageSize + "");
 
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

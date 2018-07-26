@@ -140,7 +140,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -225,7 +225,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
             }
 
         }
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

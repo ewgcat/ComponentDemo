@@ -92,7 +92,7 @@ public class ExperienceClassInvateActivity extends AppCompatActivity {
         processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 ExperienceClassProcess1Bean experienceClassProcess1Bean = new ExperienceClassProcess1Bean(result);

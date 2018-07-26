@@ -67,7 +67,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_intention_member",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -92,7 +92,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
                 refresh();
             }
         });
-        huijiIntentViperListAdapter = new HuijiIntentViperListAdapter(this, viperBeanList);
+        huijiIntentViperListAdapter = new HuijiIntentViperListAdapter(getLifecycle(),this, viperBeanList);
         rv_vip_intention.setAdapter(huijiIntentViperListAdapter);
         initComponent();
         refresh();
@@ -137,7 +137,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -188,7 +188,7 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_INTENT_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

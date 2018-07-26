@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.price.cardprice;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -21,8 +22,12 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     private HuiJiProductContract.View view;
 
 
-    public HuiJiProductPresenter(Context context) {
+    private Lifecycle lifecycle;
+
+    public HuiJiProductPresenter( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
+
     }
 
     public void setView(HuiJiProductContract.View view) {
@@ -32,7 +37,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     @Override
     public void getRecptionCards(CardRequestBody bodyCondition, boolean isRefresh) {
 
-        HttpManager.getHuiJiCardGoodsList(bodyCondition, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiCardGoodsList(bodyCondition, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 RecptionCards recptionCards = new Gson().fromJson(result.toString(), RecptionCards.class);

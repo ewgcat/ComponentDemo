@@ -70,7 +70,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_expire_member",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -139,7 +139,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -195,7 +195,7 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(GET_HUIJI_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

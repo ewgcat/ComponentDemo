@@ -79,7 +79,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
     public void initView() {
         String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_formal_member",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -108,7 +108,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
+        huijiViperListAdapter = new HuijiViperListAdapter(getLifecycle(),getActivity(), viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -165,7 +165,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -250,7 +250,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

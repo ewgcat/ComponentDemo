@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.jpush.bean.PushInfoBean;
@@ -34,6 +35,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+
+import javax.inject.Inject;
 
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.disposables.Disposable;
@@ -77,8 +80,12 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     }
 
 
+
+
+
     @Override
     protected void initView(Bundle savedInstanceState) {
+
 
 
         initJPush();
@@ -151,7 +158,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
 
     public void hasNotice() {
-        HttpManager.postHasHeaderNoParam(HttpManager.QUERY_RED_POINT_URL, new ResultJSONArrayObserver() {
+        HttpManager.postHasHeaderNoParam(HttpManager.QUERY_RED_POINT_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 for (int i = 0; i < result.length(); i++) {

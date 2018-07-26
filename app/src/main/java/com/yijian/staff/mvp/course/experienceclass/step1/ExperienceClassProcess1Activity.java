@@ -72,7 +72,7 @@ public class ExperienceClassProcess1Activity extends AppCompatActivity {
         processId = getIntent().getStringExtra("processId");
         HashMap<String, String> map = new HashMap<>();
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 llEmptyView.setVisibility(View.GONE);

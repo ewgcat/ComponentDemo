@@ -78,7 +78,7 @@ public class InvitationResultFragment extends Fragment {
 
         HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
 
-        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -105,7 +105,7 @@ public class InvitationResultFragment extends Fragment {
         String curDate = DateUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
         HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
 
-        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiInviteResult(huiJiInviteListRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);

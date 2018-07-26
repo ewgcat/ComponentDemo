@@ -82,7 +82,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -301,7 +301,7 @@ public class HuiJiViperDetailActivity_ycm extends MvcBaseActivity implements Vie
 //        Map<String, String> map = new HashMap<>();
 //        map.put("memberId", viperDetailBean.getMemberId());
 //        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
-//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
+//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver(getLifecycle()) {
 //            @Override
 //            public void onSuccess(JSONObject result) {
 //                CommonUtil.callPhone(HuiJiViperDetailActivity_ycm.this, mobile);

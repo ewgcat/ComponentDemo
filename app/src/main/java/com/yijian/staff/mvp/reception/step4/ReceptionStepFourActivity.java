@@ -59,7 +59,7 @@ public class ReceptionStepFourActivity extends AppCompatActivity implements View
         if (intent.hasExtra("memberId")) {
             memberId = intent.getStringExtra("memberId");
         }
-        presenter = new ReceptionStepFourPresenter(this);
+        presenter = new ReceptionStepFourPresenter(getLifecycle(),this);
         presenter.setView(this);
         if (!TextUtils.isEmpty(memberId)) presenter.getProductDetail(memberId);
         initView();

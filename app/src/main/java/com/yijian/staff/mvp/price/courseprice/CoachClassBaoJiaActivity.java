@@ -94,7 +94,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     private void initView() {
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_course_price",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -240,7 +240,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         }
 
         showLoading();
-        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -304,7 +304,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
         showLoading();
-        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

@@ -76,7 +76,7 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
         }
 
-        selectCoachPopupWindow = new SelectCoachPopupWindow(this);
+        selectCoachPopupWindow = new SelectCoachPopupWindow(getLifecycle(),this);
         selectCoachPopupWindow.setSelectCoachListener(new SelectCoachPopupWindow.SelectCoachListener() {
             @Override
             public void onSelect(CoachInfo coachInfo) {
@@ -137,7 +137,7 @@ public class ResourceDetailActivity extends MvcBaseActivity {
         param.put("memberId", memberId);
         param.put("distributedUserId", coachInfo.getUserId());
         param.put("subclassName", subclassName);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL, param, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL, param, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 finish();

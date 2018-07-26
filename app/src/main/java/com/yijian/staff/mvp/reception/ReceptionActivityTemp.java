@@ -56,7 +56,7 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_reception",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -67,7 +67,7 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
 
             }
         });
-        presenterTemp = new ReceptionPresenterTemp(this);
+        presenterTemp = new ReceptionPresenterTemp(getLifecycle(),this);
         presenterTemp.setView(this);
         presenterTemp.getRecptionRecord(true);
     }

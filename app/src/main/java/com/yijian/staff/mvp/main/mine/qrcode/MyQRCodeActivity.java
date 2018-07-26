@@ -56,7 +56,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_qr_code",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -108,7 +108,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("type", "6");
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 String url = JsonUtil.getString(result, "url");

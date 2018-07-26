@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.physical;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -25,12 +26,15 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
     private Context context;
     private PhysicalReportConstract.View view;
 
-    public PhysicalReportPresenter(Context context) {
+
+    private Lifecycle lifecycle;
+
+    public PhysicalReportPresenter( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
 
         user = DBManager.getInstance().queryUser();
-//        head = new HashMap<>();
-//        head.put("token", user.getToken());
+
     }
 
     public void setView(PhysicalReportConstract.View activity) {
@@ -43,7 +47,7 @@ public class PhysicalReportPresenter implements PhysicalReportConstract.Presente
         params.put("shopId", user.getShopId());
         params.put("memberId", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_TEST_VIEW, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

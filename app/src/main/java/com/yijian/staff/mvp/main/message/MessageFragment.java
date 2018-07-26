@@ -61,7 +61,7 @@ public class MessageFragment extends MvcBaseFragment {
 
         String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_business_message",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -129,7 +129,7 @@ public class MessageFragment extends MvcBaseFragment {
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
         businessMessageRequestBody.setBusinessType(businessType);
-        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 businessMessageBeans.clear();
@@ -164,7 +164,7 @@ public class MessageFragment extends MvcBaseFragment {
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
         businessMessageRequestBody.setBusinessType(businessType);
-        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

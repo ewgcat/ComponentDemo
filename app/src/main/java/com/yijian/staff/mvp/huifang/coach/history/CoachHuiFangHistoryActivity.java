@@ -97,7 +97,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageSize", pageSize + "");
         params.put("type", "0");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -136,7 +136,7 @@ public class CoachHuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageSize", pageSize + "");
         params.put("type", "0");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

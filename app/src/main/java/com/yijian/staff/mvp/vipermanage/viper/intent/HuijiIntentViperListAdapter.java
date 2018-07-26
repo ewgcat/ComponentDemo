@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vipermanage.viper.intent;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -33,8 +34,10 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
 
     private List<HuiJiViperBean> viperBeanList;
     private Context context;
+    private Lifecycle lifecycle;
 
-    public HuijiIntentViperListAdapter(Context context, List<HuiJiViperBean> viperBeanList) {
+    public HuijiIntentViperListAdapter(Lifecycle lifecycle, Context context, List<HuiJiViperBean> viperBeanList) {
+        this.lifecycle = lifecycle;
         this.context = context;
         this.viperBeanList = viperBeanList;
     }
@@ -111,22 +114,6 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
         }
 
 
-        private void callVisit(Context context, String memberId, int dictItemKey, String mobile) {
-            Map<String, String> map = new HashMap<>();
-            map.put("memberId", memberId);
-            map.put("dictItemKey", dictItemKey + "");
-            HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    CommonUtil.callPhone(context, mobile);
-                }
-
-                @Override
-                public void onFail(String msg) {
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
 
     }

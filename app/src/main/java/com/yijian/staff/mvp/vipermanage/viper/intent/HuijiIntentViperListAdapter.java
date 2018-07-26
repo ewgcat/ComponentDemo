@@ -86,7 +86,7 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
                 public void onClick(View v) {
                     //viperDetailBean
 //                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
+                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
                     intent.putExtra("id", huiJiViperBean.getMemberId());
                     intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());

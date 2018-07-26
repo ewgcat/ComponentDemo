@@ -12,6 +12,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.jpush.ClearRedPointUtil;
@@ -20,6 +21,7 @@ import com.yijian.staff.mvp.main.message.business.MessageListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 
@@ -55,6 +57,22 @@ public class MessageFragment extends MvcBaseFragment {
 
 
     public void initComponent(View view) {
+
+
+        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_business_message",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+
         ClearRedPointUtil.clearBusinessNotice(getLifecycle());
         recyclerView = view.findViewById(R.id.rv);
         empty_view=view.findViewById(R.id.empty_view);

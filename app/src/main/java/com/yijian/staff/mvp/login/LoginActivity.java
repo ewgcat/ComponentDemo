@@ -30,6 +30,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.AndroidKeyBoardAssit;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -42,6 +43,7 @@ import butterknife.OnClick;
 public class LoginActivity extends MvcBaseActivity {
 
 
+    private static final String TAG = LoginActivity.class.getSimpleName();
     @BindView(R.id.et_account)
     EditText etAccount;
     @BindView(R.id.et_password)
@@ -145,7 +147,7 @@ public class LoginActivity extends MvcBaseActivity {
                            List<PermissionBean> permissionBeanList = JSONArray.parseArray(homePageModelVO.getJSONArray("menuModelList").toString(),PermissionBean.class);
                            PermissionUtils.getInstance().savePermissionMenu(LoginActivity.this, permissionBeanList);
                        }catch (Exception e){
-                           e.printStackTrace();
+                           Logger.i(TAG,e.getMessage());
                        }
 
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
@@ -156,6 +158,7 @@ public class LoginActivity extends MvcBaseActivity {
                     @Override
                     public void onFail(String msg) {
                         hideLoading();
+                        Logger.i(TAG,msg);
                         showToast(msg);
                     }
                 });

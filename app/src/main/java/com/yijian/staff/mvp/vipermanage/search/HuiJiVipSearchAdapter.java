@@ -17,7 +17,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm;
 import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm;
-import com.yijian.staff.mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity_ycm;
+import com.yijian.staff.mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -99,7 +99,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         context.startActivity(intent);
                     } else if (subclassName.equals("PotentialVO") || subclassName.equals("CustomerIntentionVO") || subclassName.equals("CustomerExpireVO")) {
 //                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity_ycm.class);
+                        Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
                         intent.putExtra("id", huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
 //                        intent.putExtra("memberName",huiJiViperBean.getName());

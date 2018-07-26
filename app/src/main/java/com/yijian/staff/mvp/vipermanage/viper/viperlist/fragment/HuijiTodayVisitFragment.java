@@ -70,6 +70,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
     public void initView() {
         initView(rootView);
 
+
     }
 
     private void initView(View view) {

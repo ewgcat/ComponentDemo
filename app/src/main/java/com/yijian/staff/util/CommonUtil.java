@@ -187,6 +187,21 @@ public class CommonUtil {
         }
     }
 
+    /**
+     * 获取版本名
+     *
+     * @param context
+     * @return
+     */
+    public static String getAccessStatisticsVersionName(Context context) {
+        try {
+            PackageInfo manager = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return "Android_"+manager.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "Unknown";
+        }
+    }
+
     public static void fitPopupWindowOverStatusBar(PopupWindow popupWindow, boolean needFullScreen) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
@@ -244,66 +259,6 @@ public class CommonUtil {
     }
 
 
-    /**
-     * deviceID的组成为：渠道标志+识别符来源标志+hash后的终端识别符
-     * <p>
-     * 渠道标志为：
-     * 1，andriod（a）
-     * <p>
-     * 识别符来源标志：
-     * 1， IMEI（imei）；
-     * 2， 序列号（sn）；
-     * 3， wifi mac地址（wifi）；
-     * 4， id：随机码。若前面的都取不到时，则随机生成一个随机码，需要缓存。
-     *
-     * @param context
-     * @return
-     */
-    public static String getdeviceId(Context context) {
-        StringBuilder deviceId = new StringBuilder();
-        // 渠道标志
-        deviceId.append("a");
-        try {
-            //IMEI（imei）
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            String imei = tm.getDeviceId();
-            if (!TextUtils.isEmpty(imei)) {
-                deviceId.append("imei");
-                deviceId.append(imei);
-                return deviceId.toString();
-            }
-
-            //序列号（sn）
-            String sn = tm.getSimSerialNumber();
-            if (!TextUtils.isEmpty(sn)) {
-                deviceId.append("sn");
-                deviceId.append(sn);
-                return deviceId.toString();
-            }
-
-            //wifi mac地址
-            WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            WifiInfo info = wifi.getConnectionInfo();
-            String wifiMac = info.getMacAddress();
-            if (!TextUtils.isEmpty(wifiMac)) {
-                deviceId.append("wifi");
-                deviceId.append(wifiMac);
-                return deviceId.toString();
-            }
-
-            //如果上面都没有， 则生成一个id：随机码
-            String uuid = getUUID(context);
-            if (!TextUtils.isEmpty(uuid)) {
-                deviceId.append("id");
-                deviceId.append(uuid);
-                return deviceId.toString();
-            }
-        } catch (Exception e) {
-            Logger.i(TAG, e.toString());
-            deviceId.append("id").append(getUUID(context));
-        }
-        return deviceId.toString();
-    }
 
 
     /**

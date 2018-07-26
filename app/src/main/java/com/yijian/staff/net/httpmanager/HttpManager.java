@@ -4,6 +4,7 @@ package com.yijian.staff.net.httpmanager;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.BuildConfig;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
@@ -299,6 +300,8 @@ public class HttpManager {
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
 
+    public static String POST_ACCESS_STATISTICS_URL = "http://192.168.2.136:8003" + "/syslog/addAccessLog";
+
 
     /************** 分配资源*******************/
 
@@ -355,7 +358,6 @@ public class HttpManager {
     public static String QUERY_ADDRESS_URL = BuildConfig.HOST + "province";
 
 
-
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())
@@ -368,6 +370,20 @@ public class HttpManager {
     public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
         Observable<JSONObject> loginObservable = apiService.login(LOGIN_URL, loginRequestBody);
         execute(loginObservable, observer);
+    }
+
+    //登陆
+    public static void postAccessStatistics(AccessStatisticsRequestBody accessStatisticsRequestBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            Observable<JSONObject> loginObservable = apiService.postAccessStatistics(POST_ACCESS_STATISTICS_URL,headers, accessStatisticsRequestBody);
+            execute(loginObservable, observer);
+        }
     }
 
     //保存教练回访结果
@@ -874,7 +890,7 @@ public class HttpManager {
         }
     }
 
-    //登陆
+    //
     public static void getBusinessMessage(BusinessMessageRequestBody businessMessageRequestBody, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();

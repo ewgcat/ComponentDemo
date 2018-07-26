@@ -164,7 +164,7 @@
             android:screenOrientation="portrait" />
         <!-- 会籍 意向会员详情 -->
         <activity
-            android:name=".mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity_ycm"
+            android:name=".mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 会籍 过期会员 -->
         <activity

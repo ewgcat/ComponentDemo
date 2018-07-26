@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.CertificateBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -111,6 +112,20 @@ public class MyQualificationActivity extends MvcBaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_credentials",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
             }
         });
     }

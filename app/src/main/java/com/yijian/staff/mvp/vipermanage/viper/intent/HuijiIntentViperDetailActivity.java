@@ -30,7 +30,7 @@ import java.util.HashMap;
  * Created by The_P on 2018/5/16.
  */
 
-public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implements View.OnClickListener, AdapterHuijiIntentViper.AdapterInterface {
+public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, AdapterHuijiIntentViper.AdapterInterface {
     private static final String TAG = "HuijiIntentViperDetailA";
     private LinearLayout llHead;
     private RelativeLayout rlItem0;
@@ -88,7 +88,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
             @Override
             public void onFail(String msg) {
                 hideLoading();
-                Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -259,7 +259,7 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
         String mobile = viperDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
 //            callVisit(mobile);
-            CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this, mobile);
+            CommonUtil.callPhone(HuijiIntentViperDetailActivity.this, mobile);
         } else {
             Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
         }
@@ -272,19 +272,19 @@ public class HuijiIntentViperDetailActivity_ycm extends MvcBaseActivity implemen
 //        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver() {
 //            @Override
 //            public void onSuccess(JSONObject result) {
-//                CommonUtil.callPhone(HuijiIntentViperDetailActivity_ycm.this,mobile);
+//                CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
 //            }
 //
 //            @Override
 //            public void onFail(String msg) {
-//                Toast.makeText(HuijiIntentViperDetailActivity_ycm.this, msg, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
 //            }
 //        });
 //    }
 
     @Override
     public void clickEdit() {
-        Intent intent = new Intent(HuijiIntentViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
+        Intent intent = new Intent(HuijiIntentViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
         intent.putExtra("detail", viperDetailBean.getDetail());
         intent.putExtra("memberId", viperDetailBean.getMemberId());
         intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());

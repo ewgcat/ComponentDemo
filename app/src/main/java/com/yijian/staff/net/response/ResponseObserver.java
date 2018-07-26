@@ -13,6 +13,7 @@ import android.util.Log;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -145,7 +146,9 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     @Override
     public void onNext(JSONObject jsonObject) {
         try {
-            ResponseBean responseBean = gson.fromJson(jsonObject.toString(), ResponseBean.class);
+            ResponseBean responseBean = new ResponseBean();
+            responseBean.setCode(JsonUtil.getInt(jsonObject,"code"));
+            responseBean.setMsg(JsonUtil.getString(jsonObject,"msg"));
             switch (responseBean.getCode()) {
                 case ResponseCode.SUCCESS:
                     responData(jsonObject);

@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
@@ -250,4 +251,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getHuiJiInviteRecord(@Url String indexHuiJiInvitationRecordUrl, @HeaderMap HashMap<String, String> headers, @Body HuiJiInviteListRequestBody body);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body AccessStatisticsRequestBody accessStatisticsRequestBody);
 }

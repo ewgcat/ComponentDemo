@@ -16,6 +16,7 @@ import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
@@ -365,7 +366,8 @@ public class HttpManager {
     public static String WORKSPACE_QUERY_RESULT_LIST__URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/getTestList";
     //上传单个或多个文件
     public static String WORKSPACE_UPLOAD_FILE__URL = "http://bwebapp-dev-wr.ejoyst.com/file/newUploadFiles";
-
+    //保存运动表现
+    public static String WORKSPACE_SAVE_SPORT_URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/saveOrUpdateYD";
 
 
 
@@ -922,7 +924,7 @@ public class HttpManager {
         }
     }
 
-    //完美围度
+    //保存完美围度
     public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer){
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -931,6 +933,19 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postPerfectInfo(WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    //保存运动表现
+    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer){
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postSportInfo(WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
             execute(observable, observer);
         }
     }

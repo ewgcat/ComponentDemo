@@ -87,6 +87,8 @@ public class ShareTestActivity extends MvcBaseActivity {
                     return user.getToken();
                 }else if(type == JavaScriptInterface.JS_returnTestWdId){ //获取结果Id
                     return recordId;
+                }else if(type == JavaScriptInterface.JS_returnTestMemberId){ //获取MemberId
+                    return ActivityUtils.workSpaceVipBean.getMemberId();
                 }
                 return "";
             }

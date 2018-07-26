@@ -23,6 +23,8 @@ public final class JavaScriptInterface {
 	public static final int JS_GoWorkspaceTest = 3;
 	/**触发其它测试按钮事件**/
 	public static final int JS_GoWorkspaceOtherTest = 4;
+	/**获取MemberId**/
+	public static final int JS_returnTestMemberId = 5;
 
 	@JavascriptInterface
 	public String getWorkSpaceToken(){
@@ -33,6 +35,11 @@ public final class JavaScriptInterface {
 	@JavascriptInterface
 	public String getWorkSpaceId(){
 		return (String)callBackListener.callBack("",JS_returnTestWdId);
+	}
+
+	@JavascriptInterface
+	public String getWorkSpaceMemberId(){
+		return (String)callBackListener.callBack("",JS_returnTestMemberId);
 	}
 
 	@JavascriptInterface

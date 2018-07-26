@@ -12,7 +12,7 @@ public class WorkSpaceRecordBean {
 
     private String day;
     private int grade;
-    private String id;
+    private String wdId;
     private String time;
 
     public String getDay() {
@@ -31,12 +31,12 @@ public class WorkSpaceRecordBean {
         this.grade = grade;
     }
 
-    public String getId() {
-        return id;
+    public String getWdId() {
+        return wdId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setWdId(String wdId) {
+        this.wdId = wdId;
     }
 
     public String getTime() {

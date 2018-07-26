@@ -81,10 +81,10 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void bind(WorkSpaceVipBean workSpaceVipBean) {
-            ActivityUtils.workSpaceVipBean = workSpaceVipBean;
             rel_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ActivityUtils.workSpaceVipBean = workSpaceVipBean;
                     ActivityUtils.name = workSpaceVipBean.getName();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("workSpaceVipBean", workSpaceVipBean);

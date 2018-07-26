@@ -70,7 +70,7 @@ public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("recordId",workSpaceRecordBean.getId());
+                    bundle.putString("recordId",workSpaceRecordBean.getWdId());
                     ActivityUtils.startActivity(mContext,ShareTestActivity.class,bundle);
                 }
             });

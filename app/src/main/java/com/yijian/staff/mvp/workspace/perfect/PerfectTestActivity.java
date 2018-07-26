@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
@@ -47,6 +48,7 @@ public class PerfectTestActivity extends MvcBaseActivity {
     @BindView(R.id.et_tuiwei)
     TextView et_tuiwei;
 
+    private EditActionObservable editActionObservable = new EditActionObservable();
     List<String> sexList = new ArrayList<>();
     List<String> manHeightList = new ArrayList<>(); //男的身高集合  150--190
     List<String> womenHeightList = new ArrayList<>(); //女的身高集合  150--180
@@ -96,13 +98,42 @@ public class PerfectTestActivity extends MvcBaseActivity {
                 PerfectRequestBody perfectRequestBody = new PerfectRequestBody();
 //                perfectRequestBody.setGender("男".equals(tv_sex.getText()) ? 1 : 0);
                 perfectRequestBody.setGender(1);
-                perfectRequestBody.setHeight(TextUtils.isEmpty(tv_height.getText().toString()) ? 0 : Integer.parseInt(tv_height.getText().toString()));
-                perfectRequestBody.setJw(TextUtils.isEmpty(et_jianwei.getText().toString()) ? 0 : Double.parseDouble(et_jianwei.getText().toString()));
-                perfectRequestBody.setXw(TextUtils.isEmpty(et_xiongwei.getText().toString()) ? 0 : Double.parseDouble(et_xiongwei.getText().toString()));
-                perfectRequestBody.setWaist(TextUtils.isEmpty(et_yaowei.getText().toString()) ? 0 : Double.parseDouble(et_yaowei.getText().toString()));
-                perfectRequestBody.setDtw(TextUtils.isEmpty(et_tuiwei.getText().toString()) ? 0 : Double.parseDouble(et_tuiwei.getText().toString()));
-                perfectRequestBody.setHipline(TextUtils.isEmpty(et_tunwei.getText().toString()) ? 0 : Double.parseDouble(et_tunwei.getText().toString()));
-                perfectRequestBody.setDtunw(TextUtils.isEmpty(et_biwei.getText().toString()) ? 0 : Double.parseDouble(et_biwei.getText().toString()));
+                if (TextUtils.isEmpty(tv_height.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "身高不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setHeight(Integer.parseInt(tv_height.getText().toString()));
+                }
+                if (TextUtils.isEmpty(et_jianwei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "肩围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setJw(Double.parseDouble(et_jianwei.getText().toString()));
+                }
+
+                if (TextUtils.isEmpty(et_xiongwei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "胸围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setXw(Double.parseDouble(et_xiongwei.getText().toString()));
+                }
+                if (TextUtils.isEmpty(et_yaowei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "腰围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setWaist(Double.parseDouble(et_yaowei.getText().toString()));
+                }
+                if (TextUtils.isEmpty(et_tuiwei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "腿围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setDtw(TextUtils.isEmpty(et_tuiwei.getText().toString()) ? 0 : Double.parseDouble(et_tuiwei.getText().toString()));
+                }
+                if (TextUtils.isEmpty(et_tunwei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "臀围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setHipline(TextUtils.isEmpty(et_tunwei.getText().toString()) ? 0 : Double.parseDouble(et_tunwei.getText().toString()));
+                }
+                if (TextUtils.isEmpty(et_biwei.getText().toString())) {
+                    Toast.makeText(PerfectTestActivity.this, "臂围不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    perfectRequestBody.setDtunw(TextUtils.isEmpty(et_biwei.getText().toString()) ? 0 : Double.parseDouble(et_biwei.getText().toString()));
+                }
                 perfectRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
                 perfectRequestBody.setUrl1(imgUrl);
                 HttpManager.postPerfectInfo(perfectRequestBody, new ResultStringObserver() {

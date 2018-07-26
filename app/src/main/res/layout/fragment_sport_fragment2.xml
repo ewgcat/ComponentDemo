@@ -1,276 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_background_color"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_height="match_parent"
+        android:background="@color/gray_background_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平衡性测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/SplitLineStyle"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="单脚闭眼站立"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_label_zhanli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="6dp"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="秒"/>
+
+                <EditText
+                    android:id="@+id/et_zhanli"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_15"
+                    android:hint="输入维持平衡的时长"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:layout_marginRight="5dp"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:layout_toLeftOf="@id/tv_label_zhanli"
+                    />
+
+            </RelativeLayout>
+            <View style="@style/SplitLineStyle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平衡性测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/SplitLineStyle"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="接球"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_label_jieqiu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="6dp"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="秒"/>
+
+                <EditText
+                    android:id="@+id/et_jieqiu"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_15"
+                    android:hint="输入接球的次数"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:layout_marginRight="5dp"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:layout_toLeftOf="@id/tv_label_jieqiu"
+                    />
+
+            </RelativeLayout>
+            <View style="@style/SplitLineStyle" />
+
+        </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="5dp"
-                android:background="#1996f8" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="平衡性测试"
-                    android:textColor="@color/text_black1"
-                    android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="协调能力测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
             </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            style="@style/SplitLineStyle"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="单脚闭眼站立"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15" />
-
-            <TextView
-                android:id="@+id/tv_label_zhanli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="6dp"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15"
-                android:text="秒"/>
-
-            <EditText
-                android:id="@+id/et_zhanli"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_15"
-                android:hint="输入维持平衡的时长"
-                android:gravity="right"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:layout_marginRight="5dp"
-                android:textCursorDrawable="@null"
-                android:singleLine="true"
-                android:inputType="number"
-                android:layout_toLeftOf="@id/tv_label_zhanli"
-                />
-
-        </RelativeLayout>
-        <View style="@style/SplitLineStyle" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
 
             <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="5dp"
-                android:background="#1996f8" />
+                style="@style/SplitLineStyle"
+                />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="平衡性测试"
+                    android:text="模仿动作"
                     android:textColor="@color/text_black1"
-                    android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            style="@style/SplitLineStyle"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="接球"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15" />
-
-            <TextView
-                android:id="@+id/tv_label_jieqiu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="6dp"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15"
-                android:text="秒"/>
-
-            <EditText
-                android:id="@+id/et_jieqiu"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_15"
-                android:hint="输入接球的次数"
-                android:gravity="right"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:layout_marginRight="5dp"
-                android:textCursorDrawable="@null"
-                android:singleLine="true"
-                android:inputType="number"
-                android:layout_toLeftOf="@id/tv_label_jieqiu"
-                />
-
-        </RelativeLayout>
-        <View style="@style/SplitLineStyle" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="5dp"
-                android:background="#1996f8" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                    android:textSize="@dimen/text_size_15" />
 
                 <TextView
+                    android:id="@+id/tv_label_mofan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="协调能力测试"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="6dp"
                     android:textColor="@color/text_black1"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:text="秒"/>
+
+                <EditText
+                    android:id="@+id/et_mofan"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_15"
+                    android:hint="学员第几次不出错的完成"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:layout_marginRight="5dp"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:layout_toLeftOf="@id/tv_label_mofan"
+                    />
+
+            </RelativeLayout>
+            <View style="@style/SplitLineStyle" />
 
         </LinearLayout>
 
-        <View
-            style="@style/SplitLineStyle"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingTop="18dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="模仿动作"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15" />
-
-            <TextView
-                android:id="@+id/tv_label_mofan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="6dp"
-                android:textColor="@color/text_black1"
-                android:textSize="@dimen/text_size_15"
-                android:text="秒"/>
-
-            <EditText
-                android:id="@+id/et_mofan"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_15"
-                android:hint="学员第几次不出错的完成"
-                android:gravity="right"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:layout_marginRight="5dp"
-                android:textCursorDrawable="@null"
-                android:singleLine="true"
-                android:inputType="number"
-                android:layout_toLeftOf="@id/tv_label_mofan"
-                />
-
-        </RelativeLayout>
-        <View style="@style/SplitLineStyle" />
-
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
+

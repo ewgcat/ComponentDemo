@@ -115,4 +115,5 @@ public class EditActionObservable implements Observable {
             return observerList.size();
         }
     }
+
 }

@@ -1,30 +1,19 @@
 package com.yijian.staff.mvp.workspace.commen;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.yijian.staff.R;
-import com.yijian.staff.bean.TypeOfCunKeBody;
-import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm;
-import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm;
-import com.yijian.staff.mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity_ycm;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
-import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.util.ImageLoader;
-
 import java.util.ArrayList;
 import java.util.List;
 

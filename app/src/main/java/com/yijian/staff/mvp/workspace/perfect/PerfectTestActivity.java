@@ -136,7 +136,7 @@ public class PerfectTestActivity extends MvcBaseActivity {
                 }
                 perfectRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
                 perfectRequestBody.setUrl1(imgUrl);
-                HttpManager.postPerfectInfo(perfectRequestBody, new ResultStringObserver() {
+                HttpManager.postPerfectInfo(perfectRequestBody, new ResultStringObserver(getLifecycle()) {
 
                     @Override
                     public void onSuccess(String result) {

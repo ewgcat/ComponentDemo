@@ -97,7 +97,7 @@ public class SearchFragment2 extends BaseSpaceFragment {
             map.put("name", memberName);
             empty_view.setVisibility(View.GONE);
 
-            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver() {
+            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
@@ -138,7 +138,7 @@ public class SearchFragment2 extends BaseSpaceFragment {
                 map.put("pageSize", pageSize + "");
                 map.put("name", memberName);
 
-                HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver() {
+                HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
                         pagesTotal = JsonUtil.getInt(result, "pages");

@@ -16,6 +16,8 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
@@ -32,6 +34,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -358,6 +361,19 @@ public class HttpManager {
 
     //地区列表
     public static String QUERY_ADDRESS_URL = HOST + "province";
+
+    /************* 工作室 ****************/
+    //首页会员名称模糊搜索会员信息列表
+    public static String WORKSPACE_QUERY_SEARCH__URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/query/list";
+    //保存完美围度添加
+    public static String WORKSPACE_ADD_PERFECT__URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/saveOrUpdateWD";
+    //查看结果列表
+    public static String WORKSPACE_QUERY_RESULT_LIST__URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/getTestList";
+    //上传单个或多个文件
+    public static String WORKSPACE_UPLOAD_FILE__URL = "http://bwebapp-dev-wr.ejoyst.com/file/newUploadFiles";
+    //保存运动表现
+    public static String WORKSPACE_SAVE_SPORT_URL = "http://bwebapp-dev-wr.ejoyst.com/coach/side/fuzzy/saveOrUpdateYD";
+
 
 
     //公用方法
@@ -892,6 +908,28 @@ public class HttpManager {
         }
     }
 
+    public static void upLoadImageHasParam(String url, String imageFilePath, Integer fileType, Observer<JSONObject> observer){
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            File file = new File(imageFilePath);
+            // 创建 RequestBody，用于封装构建RequestBody
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+            // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+            MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFiles", file.getName(), requestFile);
+
+            List<MultipartBody.Part> parts = new ArrayList<>();
+            parts.add(body);
+            Observable<JSONObject> observable = apiService.upLoadImageHasParam(url,headers, fileType, parts);
+            execute(observable, observer);
+        }
+    }
+
     //
     public static void getBusinessMessage(BusinessMessageRequestBody businessMessageRequestBody, Observer<JSONObject> observer) {
 
@@ -902,6 +940,32 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getBusinessMessage(GET_BUSINESS_MESSAGE_URL, headers, businessMessageRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    //保存完美围度
+    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer){
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postPerfectInfo(WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    //保存运动表现
+    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer){
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postSportInfo(WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
             execute(observable, observer);
         }
     }

@@ -127,7 +127,7 @@ public class PerfectActivity extends MvcBaseActivity {
                 byte[] datas = baos.toByteArray();
                 StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
 
-                HttpManager.upLoadImageHasParam(HttpManager.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver() {
+                HttpManager.upLoadImageHasParam(HttpManager.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
                         try {

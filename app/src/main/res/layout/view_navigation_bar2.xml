@@ -56,12 +56,12 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="20dp">
             <ImageView
                     android:id="@+id/iv_right"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"/>
             <TextView

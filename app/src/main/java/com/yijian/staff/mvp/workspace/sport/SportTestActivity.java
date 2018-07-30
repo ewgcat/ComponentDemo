@@ -170,7 +170,7 @@ public class SportTestActivity extends MvcBaseActivity {
                     break;
                 case 3:
                     showLoading();
-                    HttpManager.postSportInfo(sportStepRequedtBody, new ResultStringObserver() {
+                    HttpManager.postSportInfo(sportStepRequedtBody, new ResultStringObserver(getLifecycle()) {
 
                         @Override
                         public void onSuccess(String result) {

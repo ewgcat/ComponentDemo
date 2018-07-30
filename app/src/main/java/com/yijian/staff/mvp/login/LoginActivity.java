@@ -52,19 +52,18 @@ public class LoginActivity extends MvcBaseActivity {
     EditText etPassword;
     @BindView(R.id.ll_content)
     LinearLayout ll_content;
-    @BindView(R.id.tv_exchange_workspace)
-    TextView tv_exchange_workspace;
 
 
     private boolean hasStartAnimation = false;
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_login;
+        return R.layout.activity_login2;
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        SharePreferenceUtil.setWorkSpaceVersion(true);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         etAccount = findViewById(R.id.et_account);
         etPassword = findViewById(R.id.et_password);
@@ -72,7 +71,6 @@ public class LoginActivity extends MvcBaseActivity {
         etAccount.setText(SharePreferenceUtil.getUserName());
         etAccount.setHintTextColor(Color.parseColor("#7FC7FF"));
         etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
-        tv_exchange_workspace.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 
 
         AndroidKeyBoardAssit.assistActivity(this);

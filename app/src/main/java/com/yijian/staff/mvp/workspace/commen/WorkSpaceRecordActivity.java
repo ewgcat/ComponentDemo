@@ -119,7 +119,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
         map.put("types", type);
         map.put("memberId", ActivityUtils.workSpaceVipBean.getMemberId());
         empty_view.setVisibility(View.GONE);
-        HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -164,7 +164,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
             }
             map.put("types", type);
             map.put("memberId", ActivityUtils.workSpaceVipBean.getMemberId());
-            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver() {
+            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pagesTotal = JsonUtil.getInt(result, "pages");

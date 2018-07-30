@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.ApplicationHolder;
 
 
@@ -17,13 +18,14 @@ public class SharePreferenceUtil {
     public static final String KEY_JPUSH_ALIAS = "jpush_alias";
     public static final String KEY_HAS_JPUSH_ALIAS = "has_jpush_alias";
     private static final String KEY_USER_ID = "user_id";
-    private static final String KEY_SELLER_BUSINESS ="key_seller_business" ;
+    private static final String KEY_SELLER_BUSINESS = "key_seller_business";
     private static final String KEY_COURSE_BUSINESS = "key_course_business";
     private static final String KEY_HUIJI_HAS_TO_COACH = "huiji_has_to_coach";
-    private static final String KEY_HAS_NEW_JIEDAI_PUSH="has_new_jiedai_push";
-    private static final String KEY_HAS_NEW_YUE_KE_PUSH="has_new_yue_ke_push";
-    private static final String KEY_HAS_NEW_SELL_BUSINESS_PUSH="has_new_sell_business_push";
-    private static final String KEY_HAS_NEW_COURSE_BUSINESS_PUSH="has_new_course_business_push";
+    private static final String KEY_HAS_NEW_JIEDAI_PUSH = "has_new_jiedai_push";
+    private static final String KEY_HAS_NEW_YUE_KE_PUSH = "has_new_yue_ke_push";
+    private static final String KEY_HAS_NEW_SELL_BUSINESS_PUSH = "has_new_sell_business_push";
+    private static final String KEY_HAS_NEW_COURSE_BUSINESS_PUSH = "has_new_course_business_push";
+    private static final String KEY_IS_WORKSPACE_VERSION = "is_workspace_version";
 
 
     public static void setShowEditIcon(boolean b) {
@@ -325,12 +327,29 @@ public class SharePreferenceUtil {
 
     }
 
-    public static boolean getAppSellerBuiness(){
+    public static boolean getAppSellerBuiness() {
         return getBoolean(KEY_SELLER_BUSINESS, false);
 
     }
-    public static boolean getAppCourseBuiness(){
+
+    public static boolean getAppCourseBuiness() {
         return getBoolean(KEY_COURSE_BUSINESS, false);
 
+    }
+
+    public static void setWorkSpaceVersion(boolean b) {
+         setBoolean(KEY_IS_WORKSPACE_VERSION, b);
+    }
+
+    public static boolean isWorkSpaceVersion() {
+        return getBoolean(KEY_IS_WORKSPACE_VERSION, false);
+    }
+
+    public static String getHostUrl() {
+        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_HOST : BuildConfig.HOST;
+    }
+
+    public static String getImageUrl() {
+        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_FILE_HOST : BuildConfig.FILE_HOST;
     }
 }

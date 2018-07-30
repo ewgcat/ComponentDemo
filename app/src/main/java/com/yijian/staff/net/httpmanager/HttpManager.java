@@ -27,6 +27,7 @@ import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import org.json.JSONObject;
 
@@ -45,6 +46,7 @@ import okhttp3.RequestBody;
 
 public class HttpManager {
 
+    public static String HOST= SharePreferenceUtil.getHostUrl();
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
@@ -57,248 +59,248 @@ public class HttpManager {
 
 
     //会籍（客服） 获取全部会员列表
-    public static String GET_HUIJI_ALL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/list";
+    public static String GET_HUIJI_ALL_VIPER_LIST_URL = HOST + "customer-service/member/list";
 
     //会籍 会员信息 今日来访列表
-    public static String GET_HUIJI_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/today/visit/list";
+    public static String GET_HUIJI_TODAY_VIPER_LIST_URL = HOST + "customer-service/member/today/visit/list";
 
     //会籍  过期向会员列表
-    public static String GET_HUIJI_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/expire/list";
+    public static String GET_HUIJI_OUTDATE_VIPER_LIST_URL = HOST + "customer-service/member/expire/list";
 
     //会籍  意向会员列表
-    public static String GET_HUIJI_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/intention/list";
+    public static String GET_HUIJI_INTENT_VIPER_LIST_URL = HOST + "customer-service/member/intention/list";
 
     //会籍  潜在会员列表
-    public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "customer-service/member/potential/list";
+    public static String GET_HUIJI_POTENTIAL_VIPER_LIST_URL = HOST + "customer-service/member/potential/list";
 
     //所有会员的详情入口
-    public static String GET_VIPER_DETAIL_URL = BuildConfig.HOST + "member/detail";
+    public static String GET_VIPER_DETAIL_URL = HOST + "member/detail";
 
     //所有会员的字典入口
-    public static String GET_HUIJI_VIPER_DICT_URL = BuildConfig.HOST + "dict/member/dict";
+    public static String GET_HUIJI_VIPER_DICT_URL = HOST + "dict/member/dict";
 
     //所有会员的字典入口
-    public static String GET_HUIJI_VIPER_EDIT_URL = BuildConfig.HOST + "member/edit";
+    public static String GET_HUIJI_VIPER_EDIT_URL = HOST + "member/edit";
 
 
     //会籍卡产品查询
-    public static String HUI_JI_CARD_GOODS_LIST_URL = BuildConfig.HOST + "card/cards-info";
+    public static String HUI_JI_CARD_GOODS_LIST_URL = HOST + "card/cards-info";
 
     //首页搜索 会籍
-    public static String INDEX_HUI_JI_QUERY_URL = BuildConfig.HOST + "customer-service/member/fuzzy/query/list";
+    public static String INDEX_HUI_JI_QUERY_URL = HOST + "customer-service/member/fuzzy/query/list";
 
     //会籍保存邀约
-    public static String INDEX_HUI_JI_INVITATION_SAVE_URL = BuildConfig.HOST + "invitation/save";
+    public static String INDEX_HUI_JI_INVITATION_SAVE_URL = HOST + "invitation/save";
 
     //会籍邀约记录
-    public static String INDEX_HUI_JI_INVITATION_RECORD_URL = BuildConfig.HOST + "invitation/select";
+    public static String INDEX_HUI_JI_INVITATION_RECORD_URL = HOST + "invitation/select";
 
 
     //会籍邀约结果
-    public static String INDEX_HUI_JI_INVITATION_RESULT_URL = BuildConfig.HOST + "invitation/selectResult";
+    public static String INDEX_HUI_JI_INVITATION_RESULT_URL = HOST + "invitation/selectResult";
 
     //会籍会员回访
-    public static String HUIJI_HUIFANG_CALL_RECORD = BuildConfig.HOST + "customer-service/add-record/call-for-interview";
+    public static String HUIJI_HUIFANG_CALL_RECORD = HOST + "customer-service/add-record/call-for-interview";
 
 
     /*************************教练************************/
 
     //教练 获取全部会员列表
-    public static String GET_COACH_ALL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/list";
+    public static String GET_COACH_ALL_VIPER_LIST_URL = HOST + "coach/member/list";
 
     //教练 会员信息 今日来访列表
-    public static String GET_COACH_TODAY_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/today/visit/list";
+    public static String GET_COACH_TODAY_VIPER_LIST_URL = HOST + "coach/member/today/visit/list";
 
     //教练  过期向会员列表
-    public static String GET_COACH_OUTDATE_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/expire/list";
+    public static String GET_COACH_OUTDATE_VIPER_LIST_URL = HOST + "coach/member/expire/list";
 
     //教练  意向会员列表
-    public static String GET_COACH_INTENT_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/intention/list";
+    public static String GET_COACH_INTENT_VIPER_LIST_URL = HOST + "coach/member/intention/list";
 
     //教练  潜在学员列表
-    public static String GET_COACH_POTENTIAL_VIPER_LIST_URL = BuildConfig.HOST + "coach/member/potentialStudent/list";
+    public static String GET_COACH_POTENTIAL_VIPER_LIST_URL = HOST + "coach/member/potentialStudent/list";
 
     //首页搜索 教练
-    public static String INDEX_COACH_QUERY_URL = BuildConfig.HOST + "coach/member/fuzzy/query/list";
+    public static String INDEX_COACH_QUERY_URL = HOST + "coach/member/fuzzy/query/list";
 
     //查看教练备课列表
-    public static String INDEX_COACH_QUERY_PREPARE_LESSON_URL = BuildConfig.HOST + "privatecourse/getPrivateCoursePrepareList";
+    public static String INDEX_COACH_QUERY_PREPARE_LESSON_URL = HOST + "privatecourse/getPrivateCoursePrepareList";
 
 
     //私教课查询
-    public static String COACH_PRIVATE_COURSE_LIST_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseList";
+    public static String COACH_PRIVATE_COURSE_LIST_URL = HOST + "privatecourse/getPrivateCourseList";
 
     //私教课的存课列表
-    public static String COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL = BuildConfig.HOST + "privatecourse/stock-private/page-list";
+    public static String COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL = HOST + "privatecourse/stock-private/page-list";
 
     //私教课的上课记录基本信息
-    public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = BuildConfig.HOST + "privatecourse/getMemberCourseRecordInfo";
+    public static String COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL = HOST + "privatecourse/getMemberCourseRecordInfo";
 
     // 查询工作时间与间隔时间
-    public static String COACH_PRIVATE_COURSE_GET_TIME_URL = BuildConfig.HOST + "scheduleSetting/getTime";
+    public static String COACH_PRIVATE_COURSE_GET_TIME_URL = HOST + "scheduleSetting/getTime";
 
     //选择可选时间段
-    public static String COACH_PRIVATE_COURSE_SET_WORK_TIME_URL = BuildConfig.HOST + "scheduleSetting/setWorkTime";
+    public static String COACH_PRIVATE_COURSE_SET_WORK_TIME_URL = HOST + "scheduleSetting/setWorkTime";
 
     //选择可选时间段
-    public static String COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL = BuildConfig.HOST + "scheduleSetting/setInterval";
+    public static String COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL = HOST + "scheduleSetting/setInterval";
 
     //教练查询当月是否有课或者休息
-    public static String COACH_PRIVATE_COURSE_GETLIST_TIME_URL = BuildConfig.HOST + "scheduleSetting/getList";
+    public static String COACH_PRIVATE_COURSE_GETLIST_TIME_URL = HOST + "scheduleSetting/getList";
 
     //设置休息时间
-    public static String COACH_PRIVATE_COURSE_SETLEAVE_URL = BuildConfig.HOST + "scheduleSetting/setLeave";
+    public static String COACH_PRIVATE_COURSE_SETLEAVE_URL = HOST + "scheduleSetting/setLeave";
 
 
     //查看教练的约课日程表
-    public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseByDay";
+    public static String COACH_PRIVATE_COURSE_STOCK_ORDER_URL = HOST + "privatecourse/getPrivateCourseByDay";
 
     //  获取本教练该月份每天的课程状态
-    public static String COACH_PRIVATE_COURSE_DATES_ORDER_URL = BuildConfig.HOST + "privatecourse/getCourseDates";
+    public static String COACH_PRIVATE_COURSE_DATES_ORDER_URL = HOST + "privatecourse/getCourseDates";
 
     //  教练查看约课周视图
-    public static String COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL = BuildConfig.HOST + "privatecourse/getPrivateApplyByWeek";
+    public static String COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL = HOST + "privatecourse/getPrivateApplyByWeek";
 
     //上课打卡
-    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL = BuildConfig.HOST + "privatecourse/appoint/attendCoursePunchCard";
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL = HOST + "privatecourse/appoint/attendCoursePunchCard";
 
     //下课打卡
-    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL = BuildConfig.HOST + "privatecourse/appoint/finishCoursePunchCardAndSaveRecord";
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL = HOST + "privatecourse/appoint/finishCoursePunchCardAndSaveRecord";
 
 
     //获取私教课上课记录表详情
-    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = BuildConfig.HOST + "privatecourse/getPrivateCourseRecordDetail";
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL = HOST + "privatecourse/getPrivateCourseRecordDetail";
 
     //获取体验课上课记录详情
-    public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = BuildConfig.HOST + "experienceCourse/getExperienceRecord";
+    public static String COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL = HOST + "experienceCourse/getExperienceRecord";
 
     //根据教练ID获取私教课备课模板列表
-    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL = BuildConfig.HOST + "privatecourse/getPrepareTemplateList";
+    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL = HOST + "privatecourse/getPrepareTemplateList";
 
     //根据私教课备课模板ID获取详情内容
-    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_DETAIL_URL = BuildConfig.HOST + "privatecourse/getPriPreTemplateDetail";
+    public static String COACH_PRIVATE_COURSE_STOCK_TEMPLE_DETAIL_URL = HOST + "privatecourse/getPriPreTemplateDetail";
 
     // 保存私教课约课备课内容
-    public static String COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL = BuildConfig.HOST + "privatecourse/savePrivateApplyPrepareContext";
+    public static String COACH_PRIVATE_COURSE_STOCK_SAVE_PREPARE_URL = HOST + "privatecourse/savePrivateApplyPrepareContext";
 
 
     //训练部位字典
-    public static String COACH_PRIVATE_COURSE_STOCK_BODYPART_URL = BuildConfig.HOST + "dict/bodyPart";
+    public static String COACH_PRIVATE_COURSE_STOCK_BODYPART_URL = HOST + "dict/bodyPart";
 
     //根据训练部位获取动作内容列表
-    public static String COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL = BuildConfig.HOST + "motion/getMotionByBodyPartList";
+    public static String COACH_PRIVATE_COURSE_STOCK_ACTIONCONTENT_URL = HOST + "motion/getMotionByBodyPartList";
 
     //获取学员当天的课程详情
-    public static String COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL = BuildConfig.HOST + "privatecourse/getMemberCourseByDate";
+    public static String COACH_PRIVATE_COURSE_STOCK_MEMBERCOURSE_URL = HOST + "privatecourse/getMemberCourseByDate";
 
 
     //工作台 首页图标
-    public static String GET_WORK_INDEX_URL = BuildConfig.HOST + "homepage/data";
+    public static String GET_WORK_INDEX_URL = HOST + "homepage/data";
 
     //工作台 首页图标
-    public static String GET_WORK_NEW_MENU_URL = BuildConfig.HOST + "homepage/new/data";
+    public static String GET_WORK_NEW_MENU_URL = HOST + "homepage/new/data";
 
     //保存 图标位置
-    public static String SAVE_MENU_CHANGE_URL = BuildConfig.HOST + "menu/common/item/save";
+    public static String SAVE_MENU_CHANGE_URL = HOST + "menu/common/item/save";
 
     //登录
-    public static String LOGIN_URL = BuildConfig.HOST + "user/login";
+    public static String LOGIN_URL = HOST + "user/login";
 
     //获取验证码
-    public static String GET_CODE_URL = BuildConfig.HOST + "user/verificationCode/send";
+    public static String GET_CODE_URL = HOST + "user/verificationCode/send";
 
     //重置密码
-    public static String RESET_PASSWORD_URL = BuildConfig.HOST + "user/password/reset";
-    public static String EDIT_PASSWORD_URL = BuildConfig.HOST + "user/password/modify";
+    public static String RESET_PASSWORD_URL = HOST + "user/password/reset";
+    public static String EDIT_PASSWORD_URL = HOST + "user/password/modify";
 
     //添加潜在
-    public static String ADD_POTENTIAL_URL = BuildConfig.HOST + "member/potential/add";
+    public static String ADD_POTENTIAL_URL = HOST + "member/potential/add";
 
-    public static String GET_USER_INFO_URL = BuildConfig.HOST + "user/abstract-infomation";
+    public static String GET_USER_INFO_URL = HOST + "user/abstract-infomation";
 
 
     //查询业务消息
-    public static String GET_BUSINESS_MESSAGE_URL = BuildConfig.HOST + "message/businessMessageQuery";
+    public static String GET_BUSINESS_MESSAGE_URL = HOST + "message/businessMessageQuery";
 
     //获取体验课流程会员列表
-    public static String GET_EXPERICECE_CLASS_URL = BuildConfig.HOST + "experienceProcess/getList";
+    public static String GET_EXPERICECE_CLASS_URL = HOST + "experienceProcess/getList";
 
 
     //体验课 邀约节点
-    public static String GET_EXPERICECE_INVITE_HISTORY_URL = BuildConfig.HOST + "experienceProcess/toInvite";
+    public static String GET_EXPERICECE_INVITE_HISTORY_URL = HOST + "experienceProcess/toInvite";
 
     //体验课 回访节点
-    public static String GET_EXPERICECE_HUI_FANG_URL = BuildConfig.HOST + "experienceProcess/toVisit";
+    public static String GET_EXPERICECE_HUI_FANG_URL = HOST + "experienceProcess/toVisit";
 
     //体验课 回访节点_保存教练记录
-    public static String POST_EXPERICECE_HUI_FANG_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveCoachVisitRecord";
+    public static String POST_EXPERICECE_HUI_FANG_URL_SAVE = HOST + "experienceProcess/saveCoachVisitRecord";
 
 
     //体验课 会商方案
-    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL = BuildConfig.HOST + "experienceProcess/toConsultationProgramme";
+    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL = HOST + "experienceProcess/toConsultationProgramme";
 
     //体验课 会商方案_保存会商方案
-    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL_SAVE = BuildConfig.HOST + "experienceProcess/saveConsultationProgramme";
+    public static String GET_EXPERICECE_HUI_SHANG_FANG_AN_URL_SAVE = HOST + "experienceProcess/saveConsultationProgramme";
 
 
     //体验课 二次邀约
-    public static String GET_EXPERICECE_INVITE_AGAIN_URL = BuildConfig.HOST + "experienceProcess/toInviteAgain";
+    public static String GET_EXPERICECE_INVITE_AGAIN_URL = HOST + "experienceProcess/toInviteAgain";
 
     //体验课 会商结论
-    public static String GET_EXPERICECE_HUI_SHANG_RESULT_URL = BuildConfig.HOST + "experienceProcess/toConsultationConclusion";
+    public static String GET_EXPERICECE_HUI_SHANG_RESULT_URL = HOST + "experienceProcess/toConsultationConclusion";
 
 
     //发出邀约并保存邀约相关信息
-    public static String SEND_EXPERICECE_INVITE_HISTORY_URL = BuildConfig.HOST + "experienceProcess/saveInvite";
+    public static String SEND_EXPERICECE_INVITE_HISTORY_URL = HOST + "experienceProcess/saveInvite";
 
     //添加意见反馈
-    public static String ADD_FEEDBACK_URL = BuildConfig.HOST + "feedBack/addfeedBack";
+    public static String ADD_FEEDBACK_URL = HOST + "feedBack/addfeedBack";
 
     //type 1. 关于我们 2.俱乐部 3.教练信息url 后面?coach_id=coach_id 然后生成二维码
-    public static String ABOUT_US_AND_CLUB_AND_QR_URL = BuildConfig.HOST + "webPage/getWebPage";
+    public static String ABOUT_US_AND_CLUB_AND_QR_URL = HOST + "webPage/getWebPage";
 
     //POST
     //添加职业证书
-    public static String ADD_CERTIFICATE_URL = BuildConfig.HOST + "certificate/addUpdCer";
+    public static String ADD_CERTIFICATE_URL = HOST + "certificate/addUpdCer";
 
     //添加职业证书
-    public static String GET_CERTIFICATE_URL = BuildConfig.HOST + "certificate/getCertificate";
+    public static String GET_CERTIFICATE_URL = HOST + "certificate/getCertificate";
 
     //获取调查问卷列表
-    public static String GET_QUESTION_NIAR_LIST_URL = BuildConfig.HOST + "qs/getQsList";
+    public static String GET_QUESTION_NIAR_LIST_URL = HOST + "qs/getQsList";
 
     //教练回访类型
-    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "coach/interview/config";
+    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL = HOST + "coach/interview/config";
 
     //会籍回访类型
-    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL = BuildConfig.HOST + "customer-service/interview/config";
+    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL = HOST + "customer-service/interview/config";
 
 
     //教练回访任务列表
-    public static String GET_COACH_HUI_FANG_TASK_URL = BuildConfig.HOST + "coach/interview/task/list";
+    public static String GET_COACH_HUI_FANG_TASK_URL = HOST + "coach/interview/task/list";
 
     //会籍的回访任务列表
-    public static String GET_HUI_JI_HUI_FANG_TASK_URL = BuildConfig.HOST + "customer-service/interview/task/list";
+    public static String GET_HUI_JI_HUI_FANG_TASK_URL = HOST + "customer-service/interview/task/list";
 
     //会籍的回访记录列表
-    public static String GET_HUI_JI_HUI_FANG_RECORD_URL = BuildConfig.HOST + "customer-service/interview/record/list";
+    public static String GET_HUI_JI_HUI_FANG_RECORD_URL = HOST + "customer-service/interview/record/list";
 
     //教练的回访记录列表
-    public static String GET_COACH_HUI_FANG_RECORD_URL = BuildConfig.HOST + "coach/interview/record/list";
+    public static String GET_COACH_HUI_FANG_RECORD_URL = HOST + "coach/interview/record/list";
 
     //教练回访打电话通知后台
-    public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/call-for-interview";
+    public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = HOST + "coach/call-for-interview";
 
     //教练回访结果
-    public static String POST_COACH_HUI_FANG_RESULT_URL = BuildConfig.HOST + "coach/interview/filling";
+    public static String POST_COACH_HUI_FANG_RESULT_URL = HOST + "coach/interview/filling";
 
     //会籍回访结果
-    public static String POST_HUI_JI_HUI_FANG_RESULT_URL = BuildConfig.HOST + "customer-service/interview/filling";
+    public static String POST_HUI_JI_HUI_FANG_RESULT_URL = HOST + "customer-service/interview/filling";
 
-    public static String GET_COACH_HUI_FANG_REASON_LIST_URL = BuildConfig.HOST + "dict/review-reason/dict-items";
+    public static String GET_COACH_HUI_FANG_REASON_LIST_URL = HOST + "dict/review-reason/dict-items";
 
     //教练  会员管理界面：打电话回访,通知后台
-    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = BuildConfig.HOST + "coach/add-record/call-for-interview";
+    public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = HOST + "coach/add-record/call-for-interview";
 
     public static String POST_ACCESS_STATISTICS_URL = "http://192.168.2.136:8003" + "/syslog/addAccessLog";
 
@@ -306,56 +308,56 @@ public class HttpManager {
     /************** 分配资源*******************/
 
     //会籍资源
-    public static String GET_HUIJI_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/list";
+    public static String GET_HUIJI_RESOURCE_LIST_URL = HOST + "customer-service/distribution/list";
 
     //教练资源
-    public static String GET_COACH_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/list";
+    public static String GET_COACH_RESOURCE_LIST_URL = HOST + "coach/distribution/list";
 
 
     // 会籍总监 分配会籍
-    public static String HUIJIZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "customer-service/distribute/resource";
+    public static String HUIJIZONGJIAN_DISTRIBUTE_RESOURCE_URL = HOST + "customer-service/distribute/resource";
 
     // 可接受分配会籍列表
-    public static String GET_HUIJI_LIST_RECEIVE_URL = BuildConfig.HOST + "customer-service/distributable/seller/list";
+    public static String GET_HUIJI_LIST_RECEIVE_URL = HOST + "customer-service/distributable/seller/list";
 
 
     // 会籍总监 可分配资源（会员）列表
-    public static String GET_HUIJIZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distributable/list";
+    public static String GET_HUIJIZONGJIAN_RESOURCE_LIST_URL = HOST + "customer-service/distributable/list";
 
     // 会籍总监 历史分配（会员）列表
-    public static String GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "customer-service/distribution/history/list";
+    public static String GET_HUIJIZONGJIAN_HISTORY_RESOURCE_LIST_URL = HOST + "customer-service/distribution/history/list";
 
 
     // 教练总监 分配教练
-    public static String COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL = BuildConfig.HOST + "coach/distribute/resource";
+    public static String COACHZONGJIAN_DISTRIBUTE_RESOURCE_URL = HOST + "coach/distribute/resource";
 
 
     // 可接受分配教练列表
-    public static String GET_COACH_LIST_RECEIVE_URL = BuildConfig.HOST + "coach/distributable/coach/list";
+    public static String GET_COACH_LIST_RECEIVE_URL = HOST + "coach/distributable/coach/list";
 
 
     // 教练总监 可分配资源（会员）列表
-    public static String GET_COACHZONGJIAN_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distributable/list";
+    public static String GET_COACHZONGJIAN_RESOURCE_LIST_URL = HOST + "coach/distributable/list";
 
     // 教练总监 历史分配（会员）列表
-    public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = BuildConfig.HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
+    public static String GET_COACHZONGJIAN_HISTORY_RESOURCE_LIST_URL = HOST + "coach/distribution/history/list"; // 会籍可分配资源（会员）列表
 
     /*****人脸识别******/
 
     // 用户获取人脸登陆session
-    public static String GET_FACE_LOGIN_SESSION = BuildConfig.HOST + "member/faceLogin";
+    public static String GET_FACE_LOGIN_SESSION = HOST + "member/faceLogin";
 
     //获取所有id获取人员信息
-    public static String GET_FACE_MENBERSHOWINFO = BuildConfig.HOST + "member/menberShowInfo";
+    public static String GET_FACE_MENBERSHOWINFO = HOST + "member/menberShowInfo";
 
     //消除app模块小红点
-    public static String CLEAR_RED_POINT_URL = BuildConfig.HOST + "message/eliminateAppModuleFlag";
+    public static String CLEAR_RED_POINT_URL = HOST + "message/eliminateAppModuleFlag";
 
     //获取app模块小红点
-    public static String QUERY_RED_POINT_URL = BuildConfig.HOST + "message/findAppModuleFlagByAlias";
+    public static String QUERY_RED_POINT_URL = HOST + "message/findAppModuleFlagByAlias";
 
     //地区列表
-    public static String QUERY_ADDRESS_URL = BuildConfig.HOST + "province";
+    public static String QUERY_ADDRESS_URL = HOST + "province";
 
 
     //公用方法
@@ -906,93 +908,93 @@ public class HttpManager {
 
 
     //接待人的信息
-    public static final String RECEPTION_INFO = BuildConfig.HOST + "reception/person";
+    public static final String RECEPTION_INFO = HOST + "reception/person";
 
     //接待人节点信息
-    public static final String RECEPTION_STATUS = BuildConfig.HOST + "reception/status";
+    public static final String RECEPTION_STATUS = HOST + "reception/status";
 
     //接待人节点信息
-    public static final String RECEPTION_END = BuildConfig.HOST + "reception/break";
+    public static final String RECEPTION_END = HOST + "reception/break";
 
     //接待记录
-    public static final String RECEPTION_RECORD = BuildConfig.HOST + "reception/record";
+    public static final String RECEPTION_RECORD = HOST + "reception/record";
 
     //接待记录
-    public static final String RECEPTION_RECORD_TEMP = BuildConfig.HOST + "reception/record/temp";
+    public static final String RECEPTION_RECORD_TEMP = HOST + "reception/record/temp";
 
     ///qs/member/getBodyBuildTimesByMemberId 健身时间
 
 
     // //接待---问卷调查
-    public static final String RECEPTION_QUESTION = BuildConfig.HOST + "qs/template";
+    public static final String RECEPTION_QUESTION = HOST + "qs/template";
 
     //接待---问卷调查--保存
-    public static final String RECEPTION_QUESTION_SAVE = BuildConfig.HOST + "qs/save";
+    public static final String RECEPTION_QUESTION_SAVE = HOST + "qs/save";
 
     // //接待---问卷调查结果查看
-    public static final String RECEPTION_QUESTION_RESULT = BuildConfig.HOST + "qs/edit";
+    public static final String RECEPTION_QUESTION_RESULT = HOST + "qs/edit";
 
     // //接待---问卷调查结果查看_健身时间
-    public static final String RECEPTION_QUESTION_RESULT_FITNESSTIME = BuildConfig.HOST + "qs/member/getBodyBuildTimesByMemberId";
+    public static final String RECEPTION_QUESTION_RESULT_FITNESSTIME = HOST + "qs/member/getBodyBuildTimesByMemberId";
 
     //接待---问卷调查--健身时间保存
-    public static final String RECEPTION_QUESTION_FITNESSTIME = BuildConfig.HOST + "qs/member/saveBodyBuildTimes";
+    public static final String RECEPTION_QUESTION_FITNESSTIME = HOST + "qs/member/saveBodyBuildTimes";
 
 
     //接待 ---体测录入--保存
-    public static final String RECEPTION_TEST_SAVE = BuildConfig.HOST + "bodycheck/save";
+    public static final String RECEPTION_TEST_SAVE = HOST + "bodycheck/save";
 
     //接待--体测录入--查看
-    public static final String RECEPTION_TEST_VIEW = BuildConfig.HOST + "bodycheck/view";
+    public static final String RECEPTION_TEST_VIEW = HOST + "bodycheck/view";
 
 
     //接待--会籍--step2-跳过
-    public static final String RECEPTION_STEP2_JUMP = BuildConfig.HOST + "reception/sale-jump-body-check";
+    public static final String RECEPTION_STEP2_JUMP = HOST + "reception/sale-jump-body-check";
 
     //接待--会籍--step2-TO教练
-    public static final String RECEPTION_STEP2_TOCOACH = BuildConfig.HOST + "reception/sale-to-coach-body-check";
+    public static final String RECEPTION_STEP2_TOCOACH = HOST + "reception/sale-to-coach-body-check";
 
     //接待--教练--step2-拒绝体测录入
-    public static final String RECEPTION_STEP2_REJECT = BuildConfig.HOST + "reception/member-reject-body-check";
+    public static final String RECEPTION_STEP2_REJECT = HOST + "reception/member-reject-body-check";
 
 
     //接待--会籍--step3-场馆信息列表
-    public static final String RECEPTION_STEP3_VENUES = BuildConfig.HOST + "venue/listByShopId";
+    public static final String RECEPTION_STEP3_VENUES = HOST + "venue/listByShopId";
 
     //接待--会籍--step3-会员不愿意购买,会籍To给教练
-    public static final String RECEPTION_STEP3_TO_COACH = BuildConfig.HOST + "reception/sale-to-coach";
+    public static final String RECEPTION_STEP3_TO_COACH = HOST + "reception/sale-to-coach";
 
     //接待--会籍--step3-会员接待详细信息,用于会员不愿意购买,教练和领导接受TO界面数据
-    public static final String RECEPTION_STEP3_COACH_USERDATA = BuildConfig.HOST + "reception/person/detail";
+    public static final String RECEPTION_STEP3_COACH_USERDATA = HOST + "reception/person/detail";
 
     //接待--会籍--step3-产品详情
-    public static final String RECEPTION_STEP3_PRODUCT_DETAIL = BuildConfig.HOST + "card/product-detail";
+    public static final String RECEPTION_STEP3_PRODUCT_DETAIL = HOST + "card/product-detail";
 
     //接待--教练--step3-获取领导列表
-    public static final String RECEPTION_STEP3_GET_LEADERS = BuildConfig.HOST + "reception/leaders";
+    public static final String RECEPTION_STEP3_GET_LEADERS = HOST + "reception/leaders";
 
 
     //接待--教练--step3-TO到领导
-    public static final String RECEPTION_STEP3_TO_LEADERS = BuildConfig.HOST + "reception/coach-to-leader";
+    public static final String RECEPTION_STEP3_TO_LEADERS = HOST + "reception/coach-to-leader";
 
     //接待--领导--step3-领导点击发送
-    public static final String RECEPTION_STEP3_LEADERTOSALE = BuildConfig.HOST + "reception/leader-to-sales";
+    public static final String RECEPTION_STEP3_LEADERTOSALE = HOST + "reception/leader-to-sales";
 
     //接待--教练--step3-教练点击完成
-    public static final String RECEPTION_STEP3_COACHTOSALE = BuildConfig.HOST + "reception/coach-to-sale";
+    public static final String RECEPTION_STEP3_COACHTOSALE = HOST + "reception/coach-to-sale";
 
     //   接待--会籍--step3-产品报价到订单详情
-    public static final String RECEPTION_STEP3_CARD_TO_ORDER = BuildConfig.HOST + "reception/card-to-order";
+    public static final String RECEPTION_STEP3_CARD_TO_ORDER = HOST + "reception/card-to-order";
 
 
     //接待--会籍--step4-获取订单详情
-    public static final String RECEPTION_STEP4_GET_ORDER_DETAIL = BuildConfig.HOST + "card/order-detail";
+    public static final String RECEPTION_STEP4_GET_ORDER_DETAIL = HOST + "card/order-detail";
 
     //接待--会籍--step4-订单详情到完成
-    public static final String RECEPTION_STEP4_TOFINISH = BuildConfig.HOST + "reception/order-to-finish";
+    public static final String RECEPTION_STEP4_TOFINISH = HOST + "reception/order-to-finish";
 
     //接待--会籍--step5-完成整个流程
-    public static final String RECEPTION_STEP5_END = BuildConfig.HOST + "reception/finish-to-coach";
+    public static final String RECEPTION_STEP5_END = HOST + "reception/finish-to-coach";
 
 
 }

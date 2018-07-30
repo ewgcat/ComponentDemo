@@ -11,10 +11,7 @@ public abstract class ResultJSONIntegerObserver extends ResponseObserver<Integer
         super(lifecycle);
     }
 
-    @Override
-    protected void initResultType() {
-        dataClassType = JSONArray.class;
-    }
+
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {

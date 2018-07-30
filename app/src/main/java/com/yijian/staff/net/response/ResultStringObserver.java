@@ -21,10 +21,6 @@ public abstract class ResultStringObserver extends ResponseObserver<String> {
         super(lifecycle);
     }
 
-    @Override
-    protected void initResultType() {
-        dataClassType = String.class;
-    }
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {

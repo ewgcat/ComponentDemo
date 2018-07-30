@@ -54,7 +54,7 @@ public class LoginActivity extends MvcBaseActivity {
     LinearLayout ll_content;
 
 
-    private boolean hasStartAnimation = false;
+//    private boolean hasStartAnimation = false;
 
     @Override
     protected int getLayoutID() {
@@ -73,7 +73,7 @@ public class LoginActivity extends MvcBaseActivity {
         etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
 
 
-        AndroidKeyBoardAssit.assistActivity(this);
+       /* AndroidKeyBoardAssit.assistActivity(this);
         ll_content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -86,11 +86,11 @@ public class LoginActivity extends MvcBaseActivity {
                     endAnimation();
                 }
             }
-        });
+        });*/
 
     }
 
-    private void startAnimation() {
+   /* private void startAnimation() {
         if (!hasStartAnimation) {
             hasStartAnimation = true;
             int i = CommonUtil.dp2px(this, 200);
@@ -110,7 +110,7 @@ public class LoginActivity extends MvcBaseActivity {
             animator.start();
         }
 
-    }
+    }*/
 
 
     private void jumpToForgetPassword() {

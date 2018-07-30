@@ -22,6 +22,10 @@ public abstract class ResultJSONArrayObserver extends ResponseObserver<JSONArray
         super(lifecycle);
     }
 
+    @Override
+    protected void initResultType() {
+        dataClassType = JSONArray.class;
+    }
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {

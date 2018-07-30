@@ -11,6 +11,10 @@ public abstract class ResultJSONIntegerObserver extends ResponseObserver<Integer
         super(lifecycle);
     }
 
+    @Override
+    protected void initResultType() {
+        dataClassType = Integer.class;
+    }
 
 
     @Override

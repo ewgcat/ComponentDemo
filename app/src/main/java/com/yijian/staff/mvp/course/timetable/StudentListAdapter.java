@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.StudentBean;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.CircleProgressBar;
 
 import java.util.ArrayList;
@@ -23,11 +25,9 @@ public class StudentListAdapter extends RecyclerView.Adapter {
     private Context mContext;
 
     public StudentListAdapter(Context context, List<StudentBean> dataList) {
-        this.mContext=context;
-        this.dataList=dataList;
+        this.mContext = context;
+        this.dataList = dataList;
     }
-
-
 
 
     @Override
@@ -48,25 +48,26 @@ public class StudentListAdapter extends RecyclerView.Adapter {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView tv_courseName; //课程名称
-        private TextView tv_memberName; //姓名
-        private TextView tv_stockCourseCount; // 存课数量
-        private TextView tv_totalCourseCount; // 存课总数量
-        private Typeface typeFace; //字体类型
+        private TextView tvTime; //课程名称
+        private ImageView ivHead; // 头像
+        private TextView tvName; //姓名
+        private TextView tvCourseName; //课程名称
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_courseName = itemView.findViewById(R.id.tv_courseName);
-            tv_memberName = itemView.findViewById(R.id.tv_memberName);
-            tv_stockCourseCount = itemView.findViewById(R.id.tv_stockCourseCount);
-            tv_totalCourseCount = itemView.findViewById(R.id.tv_totalCourseCount);
+            tvTime = itemView.findViewById(R.id.tv_time);
+            ivHead = itemView.findViewById(R.id.iv_head);
+            tvName = itemView.findViewById(R.id.tv_name);
+            tvCourseName = itemView.findViewById(R.id.tv_course_name);
 
         }
 
         public void bindView(StudentBean studentBean) {
-
+            tvTime.setText(studentBean.getTime()+"");
+            tvName.setText(studentBean.getName());
+            tvCourseName.setText(studentBean.getCourse());
+            ImageLoader.setImageResource(studentBean.getHeadImg(),mContext,ivHead);
         }
 
     }

@@ -32,6 +32,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ import okhttp3.RequestBody;
 
 public class HttpManager {
 
-    public static String HOST= SharePreferenceUtil.getHostUrl();
+    public static String HOST = SharePreferenceUtil.getHostUrl();
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
@@ -382,8 +383,9 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-
-            Observable<JSONObject> loginObservable = apiService.postAccessStatistics(POST_ACCESS_STATISTICS_URL,headers, accessStatisticsRequestBody);
+            List<AccessStatisticsRequestBody> list = new ArrayList<>();
+            list.add(accessStatisticsRequestBody);
+            Observable<JSONObject> loginObservable = apiService.postAccessStatistics(POST_ACCESS_STATISTICS_URL, headers, list);
             execute(loginObservable, observer);
         }
     }

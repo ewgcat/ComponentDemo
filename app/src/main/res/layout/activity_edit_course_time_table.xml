@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/view_navigation_bar2" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
+
+
+        <LinearLayout
+            android:id="@+id/ll_week_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周日"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line7"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:visibility="invisible"
+                android:background="@color/blue" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周一"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line1"
+                android:visibility="invisible"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/blue" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周二"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/blue"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周三"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/blue"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周四"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/blue"
+
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周五"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="10dp"
+
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/blue"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_week_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_flexBasisPercent="14%">
+
+            <TextView
+                android:id="@+id/tv_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="周六"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/line6"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center_horizontal"
+
+                android:layout_marginTop="2dp"
+                android:background="@color/blue"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

@@ -8,6 +8,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.util.PermissionUtil;
 
 /**
  * Created by The_P on 2018/5/17.
@@ -135,7 +136,7 @@ public class ViewHolderCoachVipType_3 extends ViewHolderCoachVipper {
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", "app_formal_member");
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {

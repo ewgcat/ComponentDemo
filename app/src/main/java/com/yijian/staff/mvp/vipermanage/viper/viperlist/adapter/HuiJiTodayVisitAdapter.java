@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TodayVisitViperBean;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
@@ -100,6 +101,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 public void onClick(View v) {
                     //viperDetailBean
 //                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
+                    PermissionUtils.getInstance().setMenuKey("");
                     Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
                     intent.putExtra("memberId", huiJiViperBean.getMemberId());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());

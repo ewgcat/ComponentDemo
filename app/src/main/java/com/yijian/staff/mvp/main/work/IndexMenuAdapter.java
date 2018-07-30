@@ -18,9 +18,11 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.IndexDataInfo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.PermissionUtil;
 
 import org.json.JSONArray;
 
@@ -100,20 +102,9 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (TextUtils.isEmpty(path)) {
 
                     } else {
-//                        List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
-//                        boolean allEditable = false;
-//                        boolean allQueryable = false;
-//                        for (IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2 menuActionListBean2 : menuActionList) {
-//                            if ("edit".equals(menuActionListBean2.getTag())) {
-//                                allEditable = menuActionListBean2.isCheck();
-//                            }
-//                            if ("query".equals(menuActionListBean2.getTag())) {
-//                                allQueryable = menuActionListBean2.isCheck();
-//                            }
-//                        }
-//                        if (allQueryable) {
-                            ARouter.getInstance().build(path).navigation();
-//                        }
+                        List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
+                        PermissionUtils.getInstance().setMenuKey(menuModel.getMenuKey());
+                        ARouter.getInstance().build(path).navigation();
                     }
 
                 }

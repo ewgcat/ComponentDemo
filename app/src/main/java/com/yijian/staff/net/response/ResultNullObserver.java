@@ -13,6 +13,10 @@ public abstract class ResultNullObserver extends ResponseObserver<Object> {
         super(lifecycle);
     }
 
+    @Override
+    protected void initResultType() {
+        dataClassType = Object.class;
+    }
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {

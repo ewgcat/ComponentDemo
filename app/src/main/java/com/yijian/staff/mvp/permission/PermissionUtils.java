@@ -19,6 +19,7 @@ public class PermissionUtils {
     }
 
     private static PermissionUtils permissionUtils;
+    private String menukey;
 
     public static PermissionUtils getInstance() {
         if (permissionUtils == null) {
@@ -59,6 +60,14 @@ public class PermissionUtils {
             e.printStackTrace();
         }
         return listObject;
+    }
+
+    public void setMenuKey(String key){
+        menukey = key;
+    }
+
+    public String getmenuKey(){
+        return menukey;
     }
 
     public boolean isEdit(Context context, String menuKey, String subMenuKey) {

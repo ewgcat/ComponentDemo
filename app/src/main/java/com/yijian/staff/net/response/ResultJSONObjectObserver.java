@@ -15,6 +15,10 @@ public abstract class ResultJSONObjectObserver extends ResponseObserver<JSONObje
     }
 
 
+    @Override
+    protected void initResultType() {
+        dataClassType = JSONObject.class;
+    }
 
 
     @Override

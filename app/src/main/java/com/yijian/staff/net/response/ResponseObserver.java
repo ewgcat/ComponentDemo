@@ -35,7 +35,16 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     private Lifecycle lifecycle;
 
 
+    protected void initResultType() {
+        Type genericSuperclass = getClass().getGenericSuperclass();
+        ParameterizedType type = (ParameterizedType) genericSuperclass;
+        Type[] actualTypeArguments = type.getActualTypeArguments();
+        dataClassType = actualTypeArguments[0];
+    }
+
+
     public ResponseObserver(Lifecycle lifecycle) {
+        initResultType();
         this.lifecycle=lifecycle;
         this. lifecycle.addObserver(this);
     }

@@ -302,7 +302,7 @@ public class HttpManager {
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = HOST + "coach/add-record/call-for-interview";
 
-    public static String POST_ACCESS_STATISTICS_URL = "http://192.168.2.136:8003" + "/syslog/addAccessLog";
+    public static String POST_ACCESS_STATISTICS_URL = HOST + "syslog/addAccessLog";
 
 
     /************** 分配资源*******************/

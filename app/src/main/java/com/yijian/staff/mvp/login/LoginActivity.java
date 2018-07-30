@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.login;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
@@ -48,6 +50,8 @@ public class LoginActivity extends MvcBaseActivity {
     EditText etPassword;
     @BindView(R.id.ll_content)
     LinearLayout ll_content;
+    @BindView(R.id.tv_exchange_workspace)
+    TextView tv_exchange_workspace;
 
 
     private boolean hasStartAnimation = false;
@@ -66,6 +70,7 @@ public class LoginActivity extends MvcBaseActivity {
         etAccount.setText(SharePreferenceUtil.getUserName());
         etAccount.setHintTextColor(Color.parseColor("#7FC7FF"));
         etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
+        tv_exchange_workspace.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 
 
         AndroidKeyBoardAssit.assistActivity(this);

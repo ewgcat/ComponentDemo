@@ -25,6 +25,8 @@ public final class JavaScriptInterface {
 	public static final int JS_GoWorkspaceOtherTest = 4;
 	/**获取MemberId**/
 	public static final int JS_returnTestMemberId = 5;
+	/**获取分享链接**/
+	public static final int JS_ReturnShareUrl = 6;
 
 	@JavascriptInterface
 	public String getWorkSpaceToken(){
@@ -61,6 +63,18 @@ public final class JavaScriptInterface {
 			public void run() {
 				if(null != callBackListener){
 					callBackListener.callBack("",JS_GoWorkspaceOtherTest);
+				}
+			}
+		});
+	}
+
+	@JavascriptInterface
+	public void returnShareUrl(String shareUrl){
+		mHandler.post(new Runnable() {
+			@Override
+			public void run() {
+				if(null != callBackListener){
+					callBackListener.callBack(shareUrl,JS_ReturnShareUrl);
 				}
 			}
 		});

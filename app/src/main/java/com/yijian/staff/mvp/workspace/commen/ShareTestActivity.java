@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.workspace.commen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
@@ -18,8 +19,12 @@ import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 
@@ -33,6 +38,11 @@ public class ShareTestActivity extends MvcBaseActivity {
     EmptyView emptyView;
     Toast toast;
     String recordId;
+    String shareWorkSpaceUrl;
+    String shareWorkSpaceTitle;
+    String shareWorkSpaceImgUrl;
+    String shareWorkSpaceDescr;
+
 
     @Override
     protected int getLayoutID() {
@@ -44,6 +54,7 @@ public class ShareTestActivity extends MvcBaseActivity {
         super.initView(savedInstanceState);
         initTitle();
         showLoading();
+        initToast();
         initData();
     }
 
@@ -63,13 +74,13 @@ public class ShareTestActivity extends MvcBaseActivity {
 
     private void initData(){
         recordId = getIntent().getExtras().getString("recordId");
+        String url = String.format("http://192.168.2.32:8080/#/sport?memberId=%s&wdId=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId);
         emptyView.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                web_view.loadUrl("http://192.168.2.32:8080/#/sport");
+                web_view.loadUrl(url);
             }
         });
-//        showShareDialog();
         web_view.addAppJavaScript(new JavaScriptInterface.CallBackListener() {
             @Override
             public Object callBack(String msg, int type) {
@@ -89,6 +100,18 @@ public class ShareTestActivity extends MvcBaseActivity {
                     return recordId;
                 }else if(type == JavaScriptInterface.JS_returnTestMemberId){ //获取MemberId
                     return ActivityUtils.workSpaceVipBean.getMemberId();
+                }else if(type == JavaScriptInterface.JS_ReturnShareUrl){ //获取分享链接
+                    if(!TextUtils.isEmpty(msg)){
+                        try {
+                            JSONObject jsonObject = new JSONObject(msg);
+                            shareWorkSpaceUrl = jsonObject.getString("webpageShareUrl");
+                            shareWorkSpaceTitle = jsonObject.getString("title");
+                            shareWorkSpaceImgUrl = jsonObject.getString("imgUrl");
+                            shareWorkSpaceDescr = jsonObject.getString("descr");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
                 return "";
             }
@@ -118,7 +141,7 @@ public class ShareTestActivity extends MvcBaseActivity {
             }
         });
 //        web_view.loadAppUrl("http://192.168.2.69:8080/fs-vank/");
-        web_view.loadAppUrl("http://192.168.2.32:8080/#/sport");
+        web_view.loadAppUrl(url);
     }
 
 
@@ -126,7 +149,7 @@ public class ShareTestActivity extends MvcBaseActivity {
     private void showShareDialog() {
         if (sharePopupWindow == null) {
             sharePopupWindow = new SharePopupWindow(this);
-            sharePopupWindow.setData("https://developer.umeng.com/sdk/android", "测试记录", "", "测试记录");
+            sharePopupWindow.setData(shareWorkSpaceUrl, shareWorkSpaceTitle, shareWorkSpaceImgUrl, shareWorkSpaceDescr);
         }
         sharePopupWindow.show(getWindow().getDecorView());
     }

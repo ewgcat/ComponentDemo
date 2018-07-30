@@ -19,7 +19,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.bean.TodayVisitViperBean;
-import com.yijian.staff.mvp.huiji.viperlist.adapter.HuiJiTodayVisitAdapter;
+import com.yijian.staff.mvp.vipermanage.viper.viperlist.adapter.HuiJiTodayVisitAdapter;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -69,6 +69,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
     @Override
     public void initView() {
         initView(rootView);
+
 
     }
 
@@ -139,7 +140,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -224,7 +225,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
             }
 
         }
-        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiTodayViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

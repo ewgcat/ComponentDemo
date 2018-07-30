@@ -17,14 +17,14 @@
 #}
 
 #webview混淆
--keepclassmembers class fqcn.of.javascript.interface.for.webview {
-   public *;
-}
--keepclassmembers class * extends android.webkit.webViewClient {
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+-keepclassmembers class * extends android.webkit.WebViewClient {
     public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
     public boolean *(android.webkit.WebView, java.lang.String);
 }
--keepclassmembers class * extends android.webkit.webViewClient {
+-keepclassmembers class * extends android.webkit.WebViewClient {
     public void *(android.webkit.webView, java.lang.String);
 }
 
@@ -51,7 +51,6 @@ public static java.lang.String TABLENAME;
 #gson混淆
 -keep class com.google.gson.** {*;}
 -keep class com.google.**{*;}
--keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
 -keep class com.google.gson.examples.android.model.** { *; }
 -keep class com.google.** {
@@ -73,7 +72,7 @@ public static java.lang.String TABLENAME;
 -keep public class * extends android.app.Activity
 -keep public class * extends android.support.v4.app.Fragment
 -keep public class * extends com.yijian.staff.mvp.base.mvc.MvcBaseFragment
--keep public class * extends om.yijian.staff.mvp.base.mvc.MvcBaseActivity
+-keep public class * extends com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 -keep public class * extends android.support.v7.app.AppCompatActivity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -194,6 +193,10 @@ public static java.lang.String TABLENAME;
 -dontwarn com.squareup.okhttp3.**
 -keep class com.squareup.okhttp3.** { *;}
 -dontwarn okio.**
+#rxjava2
+-keep public class io.io.reactivex.**{*;}
+#rxandroid
+-keep public class io.io.reactivex.android.**{*;}
 
 
 #保持R文件不被混淆，否则，你的反射是获取不到资源id的

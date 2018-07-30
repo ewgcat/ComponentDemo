@@ -98,7 +98,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", "0");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -134,7 +134,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", "0");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

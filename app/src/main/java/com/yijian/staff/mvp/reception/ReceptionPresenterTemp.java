@@ -1,11 +1,13 @@
 package com.yijian.staff.mvp.reception;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.bean.ReceptionListBeanTemp;
 import com.yijian.staff.bean.ReceptionRecordBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 
@@ -24,8 +26,13 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter {
     private Context context;
     private ReceptionContract.View view;
 
-    public ReceptionPresenterTemp(Context context) {
+
+
+    private Lifecycle lifecycle;
+
+    public ReceptionPresenterTemp( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
 
     }
 
@@ -49,7 +56,7 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter {
         params.put("pageSize", 10);
 
 
-        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD_TEMP, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD_TEMP, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 //                Log.e(TAG, "onSuccess: "+result.toString() );

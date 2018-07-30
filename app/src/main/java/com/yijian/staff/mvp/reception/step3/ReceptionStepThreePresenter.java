@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -15,8 +16,10 @@ import java.util.Map;
 public class ReceptionStepThreePresenter implements ReceptionStepThreeContract.Presenter {
     private Context context;
     private ReceptionStepThreeContract.View view;
+    private Lifecycle lifecycle;
 
-    public ReceptionStepThreePresenter(Context context) {
+    public ReceptionStepThreePresenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -28,7 +31,7 @@ public class ReceptionStepThreePresenter implements ReceptionStepThreeContract.P
     public void leaderToSale(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_LEADERTOSALE, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_LEADERTOSALE, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.leaderToSaleSecceed();
@@ -45,7 +48,7 @@ public class ReceptionStepThreePresenter implements ReceptionStepThreeContract.P
     public void coachToSale(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACHTOSALE, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACHTOSALE, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.coachToSaleSecceed();

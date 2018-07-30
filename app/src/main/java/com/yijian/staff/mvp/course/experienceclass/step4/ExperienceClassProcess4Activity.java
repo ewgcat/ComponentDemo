@@ -96,7 +96,7 @@ public class ExperienceClassProcess4Activity extends AppCompatActivity {
     private void initData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_AGAIN_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 List<ExperienceClassProcess4Bean> process4BeanList = com.alibaba.fastjson.JSONObject.parseArray(result.toString(), ExperienceClassProcess4Bean.class);

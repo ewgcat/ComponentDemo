@@ -34,10 +34,7 @@ public class BlurTransformation extends BitmapTransformation {
         this(MAX_RADIUS, DEFAULT_DOWN_SAMPLING);
     }
 
-    @Override
-    public String key() {
-        return null;
-    }
+
 
     @Override
     protected Bitmap transform(@NonNull Context context, @NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {

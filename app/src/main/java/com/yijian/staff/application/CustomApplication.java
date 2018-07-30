@@ -86,9 +86,6 @@ public class CustomApplication extends TinkerApplication implements Application.
         //在子线程中完成其他初始化
         InitializeService.start(this);
         ContextUtil.init(getApplicationContext());
-//        if(!TabMenuHelper.hasEverInit()){
-////            TabMenuHelper.init();
-//        }
         registerActivityLifecycleCallbacks(this);
 
         UmengUtils.init(this);

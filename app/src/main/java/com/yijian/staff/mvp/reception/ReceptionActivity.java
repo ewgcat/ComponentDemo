@@ -59,7 +59,7 @@ public class ReceptionActivity extends AppCompatActivity implements View.OnClick
 
         setContentView(R.layout.activity_reception);
         initView();
-        presenter = new ReceptionPresenter(this);
+        presenter = new ReceptionPresenter(getLifecycle(),this);
 
         presenter.setView(this);
         presenter.getRecptionerInfo();

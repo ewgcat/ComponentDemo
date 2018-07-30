@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.leader;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -23,9 +24,11 @@ import java.util.Map;
 
 public class LeaderProductPresenter implements LeaderProductContract.Presenter {
     private Context context;
+    private Lifecycle lifecycle;
     private LeaderProductContract.View view;
 
-    public LeaderProductPresenter(Context context) {
+    public LeaderProductPresenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -38,7 +41,7 @@ public class LeaderProductPresenter implements LeaderProductContract.Presenter {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACH_USERDATA, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACH_USERDATA, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionUserInfo receptionUserInfo = null;
@@ -67,7 +70,7 @@ public class LeaderProductPresenter implements LeaderProductContract.Presenter {
     public void getProductDetail(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ProductDetail productDetail = GsonNullString.getGson().fromJson(result.toString(), ProductDetail.class);
@@ -87,7 +90,7 @@ public class LeaderProductPresenter implements LeaderProductContract.Presenter {
     public void leaderToSale(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_LEADERTOSALE, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_LEADERTOSALE, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.leaderToSaleSecceed();

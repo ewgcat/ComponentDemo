@@ -207,7 +207,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             viperBeanList.clear();
             showLoading();
             empty_view.setVisibility(View.GONE);
-            HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver() {
+            HttpManager.searchViperByHuiJi(params, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
@@ -275,7 +275,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             showLoading();
             empty_view.setVisibility(View.GONE);
 
-            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();

@@ -83,7 +83,6 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".mvp.reception.physical.PhysicalReportActivity"
             android:screenOrientation="portrait"
@@ -170,7 +169,6 @@
         <activity
             android:name=".mvp.vipermanage.viper.outdate.HuijiOutdateViperListActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.vipermanage.search.HuiJiSearchActivity"
             android:screenOrientation="portrait"
@@ -209,11 +207,9 @@
         <activity
             android:name=".mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.huifang.huiji.invitation.list.HuiJiInvitationListActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
@@ -293,21 +289,15 @@
         <activity
             android:name=".mvp.course.preparelessons.list.PrepareLessonsListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
-        <activity android:name="com.yijian.staff.mvp.course.preparelessons.TestActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.course.preparelessons.TestActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
-
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity
             android:name=".mvp.course.preparelessons.index.PrepareLessonsActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity
             android:name=".mvp.course.preparelessons.createlession.CreatePrivateLessionActivity"
             android:screenOrientation="portrait"
@@ -359,10 +349,6 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.course.setclass.ActivityOpenLesson"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.cunke.CunKeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -542,7 +528,6 @@
             android:name=".mvp.main.mine.aboutus.AboutUsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".mvp.course.recordchart.detail.ClassRecordDetailActivity"
             android:screenOrientation="portrait"
@@ -573,7 +558,6 @@
         <activity
             android:name=".mvp.main.mine.calendartable.CourseInterActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
@@ -583,7 +567,16 @@
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"></activity>
+        <activity
+            android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.taskcenter.TaskCenterActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".mvp.taskcenter.list.RankListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.workspace.commen.WorkSpaceSearchActivity"
             android:screenOrientation="portrait" />
@@ -602,6 +595,5 @@
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
-
 
 </manifest>

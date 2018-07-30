@@ -60,7 +60,7 @@ public class ExperienceClassStep5CoachFragment extends Fragment implements Exper
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_experience_step5_coach, container, false);
         unbinder = ButterKnife.bind(this, view);
-        ExperienceClassStep5CoachPresenter presenter = new ExperienceClassStep5CoachPresenter(getContext());
+        ExperienceClassStep5CoachPresenter presenter = new ExperienceClassStep5CoachPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         initRecyclerView();
         presenter.getConsultationConclusion(bean.getProcessId());

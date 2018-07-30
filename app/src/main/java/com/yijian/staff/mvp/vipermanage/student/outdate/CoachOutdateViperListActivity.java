@@ -16,10 +16,12 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
@@ -63,6 +65,19 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_expire_student",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
         navigationBar2.setTitle("过期学员");
         navigationBar2.hideLeftSecondIv();
@@ -71,7 +86,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         rv_outdate.setLayoutManager(layoutmanager);
-        coachOutdateViperListAdapter = new CoachOutdateViperListAdapter(this, coachViperBeanList);
+        coachOutdateViperListAdapter = new CoachOutdateViperListAdapter(getLifecycle(),this, coachViperBeanList);
         rv_outdate.setAdapter(coachOutdateViperListAdapter);
         initComponent();
         refresh();
@@ -94,7 +109,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -148,7 +163,7 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
         map.put("pageSize", pageSize + "");
 
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_COACH_OUTDATE_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

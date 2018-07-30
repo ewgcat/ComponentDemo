@@ -81,7 +81,7 @@ public class ExperienceClassStep1Fragment extends Fragment implements Experience
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_experience_step1, container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter = new ExperienceClassStep1Presenter(getContext());
+        presenter = new ExperienceClassStep1Presenter(getLifecycle(),getContext());
         presenter.setView(this);
 
         if (!TextUtils.isEmpty(bean.getProcessId())) {

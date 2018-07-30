@@ -43,7 +43,7 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_experience_class_process2);
         ButterKnife.bind(this);
-        presenter = new ExperienceClassProcess2Presenter(this);
+        presenter = new ExperienceClassProcess2Presenter(getLifecycle(),this);
         presenter.setView(this);
         initView();
 
@@ -110,7 +110,7 @@ public class ExperienceClassProcess2Activity extends AppCompatActivity implement
 //        processId = getIntent().getStringExtra("processId");
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("processId", processId);
-//        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
+//        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
 //            @Override
 //            public void onSuccess(JSONObject result) {
 //                String sellerVisitRecord = JsonUtil.getString(result, "sellerVisitRecord");

@@ -70,7 +70,7 @@ public class ExperienceClassStep1Activity_ycm extends AppCompatActivity implemen
 
         ButterKnife.bind(this);
 
-        presenter = new ExperienceClassStep1Presenter(this);
+        presenter = new ExperienceClassStep1Presenter(getLifecycle(),this);
         presenter.setView(this);
         initView();
 

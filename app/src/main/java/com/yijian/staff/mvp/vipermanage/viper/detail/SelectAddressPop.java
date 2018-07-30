@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vipermanage.viper.detail;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 public class SelectAddressPop extends PopupWindow {
 
     private Context context;
+    private Lifecycle lifecycle;
     private RelativeLayout rel_address;
 
     private ArrayList<JsonBean_Service> options1Items = new ArrayList<>();
@@ -54,8 +56,9 @@ public class SelectAddressPop extends PopupWindow {
     private TextView tv_address;
     private TextView tv_address_title;
 
-    public SelectAddressPop(Context context, String title, TextView tv_address) {
+    public SelectAddressPop(Lifecycle lifecycle,Context context, String title, TextView tv_address) {
         super(context);
+        this.lifecycle = lifecycle;
         this.context = context;
         this.tv_address = tv_address;
         LayoutInflater inflater = (LayoutInflater) context
@@ -99,7 +102,7 @@ public class SelectAddressPop extends PopupWindow {
     }
 
     private void downloadService() {
-        HttpManager.getHasHeaderNoParam(HttpManager.QUERY_ADDRESS_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.QUERY_ADDRESS_URL, new ResultJSONObjectObserver(lifecycle) {
 
             @Override
             public void onSuccess(JSONObject result) {

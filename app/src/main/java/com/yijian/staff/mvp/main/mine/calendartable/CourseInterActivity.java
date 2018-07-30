@@ -80,7 +80,7 @@ public class CourseInterActivity extends AppCompatActivity {
     private void postData() {
         Map<String, Object> map = new HashMap<>();
 //        map.put("intervalTime  ", Integer.valueOf(tv_internal.getText().toString()));
-        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL + "?intervalTime=" + Integer.valueOf(tv_internal.getText().toString()), map, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParamOfObject(HttpManager.COACH_PRIVATE_COURSE_SET_INTERVAL_TIME_URL + "?intervalTime=" + Integer.valueOf(tv_internal.getText().toString()), map, new ResultNullObserver(getLifecycle()) {
 
             @Override
             public void onSuccess(Object result) {

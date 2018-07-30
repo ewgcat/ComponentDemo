@@ -15,6 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.internal.operators.maybe.MaybeCallbackObserver;
 
 @Route(path = "/test/30")
 public class AdviceListActivity extends AppCompatActivity {
@@ -29,7 +30,6 @@ public class AdviceListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advice_list);
         ButterKnife.bind(this);
-
         initView();
     }
 

@@ -1,6 +1,8 @@
 package com.yijian.staff.mvp.price.cardprice.filter;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
+import android.arch.lifecycle.Lifecycle;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -37,7 +39,7 @@ import java.util.List;
 /**
  * Created by The_P on 2018/4/11.
  */
-
+@SuppressLint("ValidFragment")
 public class OptionDialog extends DialogFragment implements View.OnClickListener {
 
     private OptionAdapter optionAdapter;
@@ -52,11 +54,12 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     private TextView tvReset;
     private TextView tvConfirm;
     private static final String TAG = "OptionDialog";
+    private Lifecycle lifecycle;
 
     private CardRequestBody conditionBody = new CardRequestBody();
 
-    public OptionDialog() {
-
+    public OptionDialog(Lifecycle lifecycle) {
+        this.lifecycle = lifecycle;
     }
 
     @Override
@@ -108,7 +111,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
 
     private void initData() {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STEP3_VENUES, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_STEP3_VENUES, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 VenueWrapBean venueWrapBean = new Gson().fromJson(result.toString(), VenueWrapBean.class);

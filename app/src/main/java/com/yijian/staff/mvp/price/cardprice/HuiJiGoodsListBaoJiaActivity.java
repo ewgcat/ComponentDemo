@@ -23,12 +23,18 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.price.cardprice.adapter.CardsListAdapter;
 import com.yijian.staff.bean.CardInfo;
 import com.yijian.staff.bean.CardRequestBody;
 import com.yijian.staff.mvp.price.cardprice.filter.OptionDialog;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.widget.EmptyView;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +86,20 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         setContentView(R.layout.activity_goods_list);
         ButterKnife.bind(this);
 
-        presenter = new HuiJiProductPresenter(this);
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_production_list",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+        presenter = new HuiJiProductPresenter(getLifecycle(),this);
         presenter.setView(this);
         bodyCondition = new CardRequestBody();
 
@@ -219,7 +238,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         bundle.putString("venueId", bodyCondition.getVenueId());
         bundle.putString("cardName", bodyCondition.getCardName());
 
-        OptionDialog optionDialog = new OptionDialog();
+        OptionDialog optionDialog = new OptionDialog(getLifecycle());
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CardRequestBody body) {

@@ -104,7 +104,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.INDEX_COACH_QUERY_PREPARE_LESSON_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.INDEX_COACH_QUERY_PREPARE_LESSON_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -139,7 +139,7 @@ public class PrepareLessonsListActivity extends MvcBaseActivity {
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize + "");
             showLoading();
-            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver() {
+            HttpManager.searchViperByCoach(params, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pageNum = JsonUtil.getInt(result, "pageNum") + 1;

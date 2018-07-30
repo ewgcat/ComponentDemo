@@ -88,7 +88,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
 
         View view = inflater.inflate(R.layout.fragment_hui_ji_product_quotation, container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter = new HuiJiProductPresenter(getContext());
+        presenter = new HuiJiProductPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         bodyCondition = new ConditionBody();
         initView();
@@ -127,7 +127,7 @@ public class HuiJiProductQuotationFragment extends Fragment implements HuiJiProd
             }
         });
 
-        optionDialog = new OptionDialog();
+        optionDialog = new OptionDialog(getLifecycle());
 
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override

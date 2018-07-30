@@ -18,13 +18,19 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.ReceptionRecordBean;
 import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.bean.RecptionRecordListBean;
 import com.yijian.staff.bean.RecptionerInfoBean;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -48,7 +54,20 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         setContentView(R.layout.activity_reception_temp);
         initView();
 
-        presenterTemp = new ReceptionPresenterTemp(this);
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_reception",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+        presenterTemp = new ReceptionPresenterTemp(getLifecycle(),this);
         presenterTemp.setView(this);
         presenterTemp.getRecptionRecord(true);
     }

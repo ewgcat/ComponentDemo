@@ -35,9 +35,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.LoadingProgressDialog;
 import com.yijian.staff.util.system.ScreenUtil;
 
@@ -112,6 +115,20 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_face_recognition",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
 
         OrientationEventListener mOrientationListener = new OrientationEventListener(this,
                 SensorManager.SENSOR_DELAY_NORMAL) {
@@ -319,7 +336,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
      */
     private void loginData() {
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_FACE_LOGIN_SESSION, new ResultStringObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_FACE_LOGIN_SESSION, new ResultStringObserver(getLifecycle()) {
             @Override
             public void onSuccess(String result) {
                 LoadingProgressDialog.hideLoading(FaceDetectorActivity.this);
@@ -485,7 +502,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
 
         Map<String, String> param = new HashMap<>();
         param.put("memberIds", ids);
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_FACE_MENBERSHOWINFO, param, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 if (result.length() > 0) {

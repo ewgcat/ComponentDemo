@@ -301,7 +301,7 @@ public class DayFragment_ycm extends Fragment {
         Map<String, String> map = new HashMap<String, String>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         map.put("dateStr", simpleDateFormat.format(strDate));
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_ORDER_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray records = JsonUtil.getJsonArray(result, "list");
@@ -325,7 +325,7 @@ public class DayFragment_ycm extends Fragment {
         } else if (strDate instanceof String) {
             map.put("month", (String) strDate);
         }
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_DATES_ORDER_URL, map, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_DATES_ORDER_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
 
             @Override
             public void onSuccess(JSONArray result) {

@@ -103,7 +103,7 @@ public class Step3Fragment_Leader extends Fragment implements LeaderProductContr
 
         unbinder = ButterKnife.bind(this, view);
 
-        presenter = new LeaderProductPresenter(getContext());
+        presenter = new LeaderProductPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         presenter.getUserInfo(memberId);
         presenter.getProductDetail(memberId);

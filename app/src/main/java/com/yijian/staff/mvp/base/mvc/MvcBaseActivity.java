@@ -1,7 +1,9 @@
 package com.yijian.staff.mvp.base.mvc;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
 import com.yijian.staff.BuildConfig;
+import com.yijian.staff.R;
 import com.yijian.staff.widget.LoadingDialog;
 import com.yijian.staff.widget.WhiteLoadingDialog;
 
@@ -52,7 +55,30 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     }
 
     protected WhiteLoadingDialog whiteLoadingDialog;
+    protected String[] mMonths = new String[] {
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+    };
 
+    protected String[] mParties = new String[] {
+            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
+            "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
+            "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
+            "Party Y", "Party Z"
+    };
+
+    protected Typeface mTfRegular;
+    protected Typeface mTfLight;
+
+
+    protected float getRandom(float range, float startsfrom) {
+        return (float) (Math.random() * range) + startsfrom;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +86,8 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         setContentView(getLayoutID());
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
         mContext = this;
         initView(savedInstanceState);
         UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();

@@ -55,7 +55,7 @@ public class ExperienceClassListActivity extends MvcBaseActivity implements Expe
         experienceClassListAdatper = new ExperienceClassListAdatper(this, experienceClassBeanList);
         recyclerView.setAdapter(experienceClassListAdatper);
 
-        experienceClassPresenter = new ExperienceClassPresenter(this);
+        experienceClassPresenter = new ExperienceClassPresenter(getLifecycle(),this);
         experienceClassPresenter.setView(this);
 
         //设置 Header 为 BezierRadar 样式

@@ -137,7 +137,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
     }
 
     private void downloadService() {
-        HttpManager.getHasHeaderNoParam(HttpManager.QUERY_ADDRESS_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.QUERY_ADDRESS_URL, new ResultJSONObjectObserver(getLifecycle()) {
 
             @Override
             public void onSuccess(JSONObject result) {

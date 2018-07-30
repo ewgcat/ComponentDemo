@@ -1,8 +1,10 @@
 package com.yijian.staff.mvp.reception.step5;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 
 import com.yijian.staff.bean.ReceptionStastuBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultNullObserver;
@@ -21,6 +23,13 @@ public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Pre
     private Context context;
     private ReceptionStepFiveContract.View view;
 
+    private Lifecycle lifecycle;
+
+    public ReceptionStepFivePresenter( Lifecycle lifecycle,Context context) {
+        this.context = context;
+        this.lifecycle = lifecycle;
+    }
+
     public ReceptionStepFivePresenter(Context context) {
         this.context = context;
     }
@@ -33,7 +42,7 @@ public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Pre
     public void getStatus(boolean isFirst, String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
@@ -58,7 +67,7 @@ public class ReceptionStepFivePresenter implements ReceptionStepFiveContract.Pre
     public void endProcess(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP5_END, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.ShowEndProcess();

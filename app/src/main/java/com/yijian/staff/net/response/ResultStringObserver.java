@@ -1,6 +1,7 @@
 package com.yijian.staff.net.response;
 
 
+import android.arch.lifecycle.Lifecycle;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -16,14 +17,10 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class ResultStringObserver extends ResponseObserver<String> {
 
-    public ResultStringObserver() {
-        super();
+    public ResultStringObserver(Lifecycle lifecycle) {
+        super(lifecycle);
     }
 
-    @Override
-    protected void initResultType() {
-        dataClassType = String.class;
-    }
 
     @Override
     protected void responData(JSONObject jsonObject) throws Exception {

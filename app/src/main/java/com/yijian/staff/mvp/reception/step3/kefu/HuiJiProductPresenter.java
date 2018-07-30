@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.kefu;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -27,9 +28,11 @@ import java.util.Map;
 public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     private Context context;
     private HuiJiProductContract.View view;
+    private Lifecycle lifecycle;
 
 
-    public HuiJiProductPresenter(Context context) {
+    public HuiJiProductPresenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -40,7 +43,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     @Override
     public void getRecptionCards(ConditionBody bodyCondition, boolean isRefresh) {
 
-        HttpManager.getHuiJiCardGoodsList_ycm(bodyCondition, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiCardGoodsList_ycm(bodyCondition, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 RecptionCards recptionCards = new Gson().fromJson(result.toString(), RecptionCards.class);
@@ -68,7 +71,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
         params.put("cardId", cardId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_TO_COACH, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_TO_COACH, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.showToCoachSucceed();
@@ -86,7 +89,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
 
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STATUS, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionStastuBean receptionStastuBean = GsonNullString.getGson().fromJson(result.toString(), ReceptionStastuBean.class);
@@ -138,7 +141,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
         params.put("cardId", cardprodbaseId);
 
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_CARD_TO_ORDER, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_CARD_TO_ORDER, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.showCardToOrder();
@@ -156,7 +159,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
     public void getProductDetail(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ProductDetail productDetail = GsonNullString.getGson().fromJson(result.toString(), ProductDetail.class);

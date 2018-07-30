@@ -22,15 +22,17 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.huiji.viperlist.adapter.HuijiViperListAdapter;
+import com.yijian.staff.mvp.vipermanage.viper.viperlist.adapter.HuijiViperListAdapter;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 
@@ -75,6 +77,19 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
+        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_formal_member",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         initView(rootView);
         refresh(null);
     }
@@ -93,7 +108,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
         //设置RecyclerView 布局
         rv_vip_all.setLayoutManager(layoutmanager);
 
-        huijiViperListAdapter = new HuijiViperListAdapter(getActivity(), viperBeanList);
+        huijiViperListAdapter = new HuijiViperListAdapter(getLifecycle(),getActivity(), viperBeanList);
         rv_vip_all.setAdapter(huijiViperListAdapter);
 
 
@@ -150,7 +165,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -235,7 +250,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
         }
         showLoading();
-        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver() {
+        HttpManager.getHuiJiAllViperList(header, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

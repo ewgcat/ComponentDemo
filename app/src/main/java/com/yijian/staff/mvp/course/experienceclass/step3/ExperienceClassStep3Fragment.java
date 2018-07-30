@@ -62,7 +62,7 @@ public class ExperienceClassStep3Fragment extends Fragment implements Experience
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_experience_step3, container, false);
-        presenter = new ExperienceClassProcess3Presenter(getContext());
+        presenter = new ExperienceClassProcess3Presenter(getLifecycle(),getContext());
         presenter.setView(this);
         unbinder = ButterKnife.bind(this, view);
         return view;

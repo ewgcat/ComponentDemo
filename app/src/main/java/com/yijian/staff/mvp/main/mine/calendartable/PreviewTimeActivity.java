@@ -83,7 +83,7 @@ public class PreviewTimeActivity extends AppCompatActivity {
         /*map.put("startTime ", tv_startTime.getText().toString());
         map.put("endTime ", tv_endTime.getText().toString());*/
         String path = HttpManager.COACH_PRIVATE_COURSE_SET_WORK_TIME_URL + "?startTime=" + tv_startTime.getText().toString() + "&endTime=" + tv_endTime.getText().toString();
-        HttpManager.postHasHeaderHasParam(path, map, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(path, map, new ResultNullObserver(getLifecycle()) {
 
             @Override
             public void onSuccess(Object result) {

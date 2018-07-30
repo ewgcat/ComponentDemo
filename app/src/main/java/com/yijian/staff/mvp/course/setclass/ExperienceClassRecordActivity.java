@@ -112,7 +112,7 @@ public class ExperienceClassRecordActivity extends MvcBaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("privateApplyId", getIntent().getStringExtra("privateApplyId"));
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_EXPERIENCE_RECORD_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray noInstrumentJsonArray = JsonUtil.getJsonArray(result, "noInstrumentList");

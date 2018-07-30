@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach;
 
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -38,11 +39,13 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
     private List<CoachInfo> coachInfos = new ArrayList<>();
 
     private Activity context;
+    private Lifecycle lifecycle;
     private RecyclerView rcl;
     private SelectCoachAdapter adapter;
 
-    public SelectCoachPopupWindow(Activity context) {
+    public SelectCoachPopupWindow(Lifecycle lifecycle,Activity context) {
         super(context);
+        this.lifecycle = lifecycle;
         this.context = context;
         init();
     }
@@ -73,7 +76,7 @@ public class SelectCoachPopupWindow extends PopupWindow implements View.OnClickL
         rcl.setLayoutManager(new LinearLayoutManager(context));
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_LIST_RECEIVE_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_LIST_RECEIVE_URL, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

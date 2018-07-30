@@ -77,7 +77,7 @@ public class SettingActivity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         if (user != null) {
             map.put("userId", user.getUserId());
-            HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver() {
+            HttpManager.getHasHeaderHasParam(HttpManager.GET_USER_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     UserInfo userInfo = new UserInfo(result);

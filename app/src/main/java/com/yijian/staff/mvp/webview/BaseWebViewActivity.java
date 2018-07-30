@@ -49,7 +49,7 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
         webView.setWebChromeClient(new WebChromeClient());
         HashMap<String, String> params = new HashMap<>();
         params.put("type", "" + type);
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 webView.loadUrl(JsonUtil.getString(result, "url"));

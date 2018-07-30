@@ -16,10 +16,12 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
@@ -64,7 +66,19 @@ public class PotentialViperListActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_potential_member",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
@@ -117,7 +131,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
 
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -170,7 +184,7 @@ public class PotentialViperListActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUIJI_POTENTIAL_VIPER_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

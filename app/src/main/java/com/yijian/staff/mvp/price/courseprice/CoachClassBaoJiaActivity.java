@@ -22,6 +22,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.price.courseprice.adapter.ClassListAdapter;
 import com.yijian.staff.bean.ClassInfo;
@@ -30,6 +31,7 @@ import com.yijian.staff.mvp.price.courseprice.filter.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
@@ -90,7 +92,19 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
     }
 
     private void initView() {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_course_price",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         initComponent();
 
         selectZongHe();
@@ -226,7 +240,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
         }
 
         showLoading();
-        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -290,7 +304,7 @@ public class CoachClassBaoJiaActivity extends MvcBaseActivity {
             body.setRcourseNum(coachClassFilterBean.getRcourseNum());
         }
         showLoading();
-        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver() {
+        HttpManager.getCoachPrivateCourseList(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

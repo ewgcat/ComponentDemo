@@ -30,7 +30,7 @@ public class ClassRecordDetailActivity extends AppCompatActivity {
         String privateApplyId = getIntent().getStringExtra("id");
         Map<String, String> map = new HashMap<String, String>();
         map.put("recordId", privateApplyId);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

@@ -116,7 +116,7 @@ public class HuijiTianXieHuiFangResultActivity extends MvcBaseActivity {
 
     private void updateUi() {
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_REASON_LIST_URL, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_COACH_HUI_FANG_REASON_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 for (int i = 0; i < result.length(); i++) {
@@ -247,7 +247,7 @@ public class HuijiTianXieHuiFangResultActivity extends MvcBaseActivity {
         }
 
 
-        HttpManager.postAddHuiJiHuiFangResult(body, new ResultJSONObjectObserver() {
+        HttpManager.postAddHuiJiHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

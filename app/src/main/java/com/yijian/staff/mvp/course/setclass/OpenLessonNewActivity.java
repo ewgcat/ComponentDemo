@@ -88,7 +88,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         map.put("privateApplyId", privateApplyId);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -117,7 +117,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         String privateApplyId = getIntent().getStringExtra("privateApplyId");
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", privateApplyId);
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -163,7 +163,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
         }
         privateShangKeBean.setRecordContextList(recordContextList);
 
-        HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultJSONObjectObserver() {
+        HttpManager.postXiaKeRecord(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, privateShangKeBean, state, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

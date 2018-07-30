@@ -115,7 +115,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
         view = inflater.inflate(R.layout.fragment_coach_product_quotation, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-        presenter = new CoachProductPresenter(getContext());
+        presenter = new CoachProductPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         presenter.getUserInfo(memberId);
         presenter.getProductDetail(memberId);
@@ -156,7 +156,7 @@ public class Step3Fragment_Coach extends Fragment implements CoachProductContrac
                 break;
 
             case R.id.ll_to_leader:
-                toLeadersDialog = new TOLeadersDialog();
+                toLeadersDialog = new TOLeadersDialog(getLifecycle());
                 toLeadersDialog.setLisenter(this);
                 toLeadersDialog.show(getActivity().getFragmentManager(), "TOLeadersDialog");
                 break;

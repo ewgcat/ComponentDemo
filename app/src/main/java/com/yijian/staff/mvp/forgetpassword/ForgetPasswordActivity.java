@@ -69,7 +69,7 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                         CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(tvGetcode, 30000, 1000);
                         countDownTimerUtils.start();
                         showLoading();
-                        HttpManager.getCode(account, telephone, new ResultJSONObjectObserver() {
+                        HttpManager.getCode(account, telephone, new ResultJSONObjectObserver(getLifecycle()) {
                             @Override
                             public void onSuccess(JSONObject result) {
                                 showToast("验证码已发送!");
@@ -124,7 +124,7 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
                 }
                 if (CommonUtil.isPhoneFormat(telephone)) {
                     showLoading();
-                    HttpManager.resetPassword(account, telephone, verificationCode, newPwd, confirmPwd, new ResultJSONObjectObserver() {
+                    HttpManager.resetPassword(account, telephone, verificationCode, newPwd, confirmPwd, new ResultJSONObjectObserver(getLifecycle()) {
                         @Override
                         public void onSuccess(JSONObject result) {
                             hideLoading();

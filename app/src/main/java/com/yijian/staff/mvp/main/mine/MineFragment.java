@@ -16,6 +16,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
@@ -28,7 +29,12 @@ import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.main.mine.qualification.MyQualificationActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
+
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +67,19 @@ public class MineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_my",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         unbinder = ButterKnife.bind(this, view);
         user = DBManager.getInstance().queryUser();

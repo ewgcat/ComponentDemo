@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step2;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -23,11 +24,13 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class ExperienceClassProcess2Presenter implements ExperienceClassProcess2Contract.Presenter {
+    private Lifecycle lifecycle;
 
     private Context context;
     private ExperienceClassProcess2Contract.View view;
 
-    public ExperienceClassProcess2Presenter(Context context) {
+    public ExperienceClassProcess2Presenter( Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -39,7 +42,7 @@ public class ExperienceClassProcess2Presenter implements ExperienceClassProcess2
     public void getAccessRecord(String processId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_FANG_URL, map, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
 

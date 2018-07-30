@@ -71,7 +71,7 @@ public class ExperienceClassProcess5Activity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_HUI_SHANG_RESULT_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 ExperienceClassProcess5Bean experienceClassProcess5Bean = new ExperienceClassProcess5Bean(result);

@@ -79,7 +79,7 @@ public class LeaderProductFragment extends Fragment implements LeaderProductCont
 
         unbinder = ButterKnife.bind(this, view);
 
-        presenter = new LeaderProductPresenter(getContext());
+        presenter = new LeaderProductPresenter(getLifecycle(),getContext());
         presenter.setView(this);
         presenter.getUserInfo(memberId);
         presenter.getProductDetail(memberId);

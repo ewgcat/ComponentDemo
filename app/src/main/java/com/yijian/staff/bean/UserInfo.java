@@ -5,11 +5,16 @@ import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
+import javax.inject.Inject;
+
+import dagger.Component;
+
 /**
  * author：李帅华
  * email：850716183@qq.com
  * time: 2018/4/28 18:30:01
  */
+
 public class UserInfo {
 
     /**
@@ -47,7 +52,6 @@ public class UserInfo {
         this.department = JsonUtil.getString(jsonObject, "department");
         this.post = JsonUtil.getString(jsonObject, "post");
         this.age = JsonUtil.getInt(jsonObject, "age");
-
     }
 
 

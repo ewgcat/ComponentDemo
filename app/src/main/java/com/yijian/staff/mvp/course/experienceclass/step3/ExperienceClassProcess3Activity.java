@@ -46,7 +46,7 @@ public class ExperienceClassProcess3Activity extends AppCompatActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_experience_class_process3);
         ButterKnife.bind(this);
-        presenter = new ExperienceClassProcess3Presenter(this);
+        presenter = new ExperienceClassProcess3Presenter(getLifecycle(),this);
         presenter.setView(this);
         initView();
         initData();

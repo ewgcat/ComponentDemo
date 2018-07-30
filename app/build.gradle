@@ -56,7 +56,7 @@ android {
     buildTypes {
         debug {
             //混淆
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseKey
         }
@@ -71,19 +71,26 @@ android {
         dev {
             buildConfigField "String", "HOST", "\"$dev_host\""
             buildConfigField "String", "FILE_HOST", "\"$dev_file_host\""
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_dev_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_dev_file_host\""
         }
         prod {
             buildConfigField "String", "HOST", "\"$prod_host\""
             buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_prod_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_prod_file_host\""
         }
         train {
             buildConfigField "String", "HOST", "\"$train_host\""
             buildConfigField "String", "FILE_HOST", "\"$train_file_host\""
-
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_train_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_train_file_host\""
         }
         sittest {
             buildConfigField "String", "HOST", "\"$test_host\""
             buildConfigField "String", "FILE_HOST", "\"$test_file_host\""
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_test_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_test_file_host\""
 
         }
     }
@@ -116,26 +123,25 @@ greendao {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     //network
     api project(':retrofit2')
-    implementation project(':PhotoPicker')
-    implementation project(':photoview')
+    api project(':PhotoPicker')
+    api project(':photoview')
     api project(':calendar')
-
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
 
     //noinspection GradleCompatible
     implementation "com.android.support:support-core-utils:$supportLibVersion"
-    implementation "com.nineoldandroids:library:2.4.0"
-
+    implementation 'com.nineoldandroids:library:2.4.0'
     implementation "com.android.support:support-annotations:${rootProject.supportLibVersion}"
     implementation "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
     implementation "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
@@ -149,43 +155,53 @@ dependencies {
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'net.opacapp:multiline-collapsingtoolbar:1.3.1'
     implementation 'q.rorbin:badgeview:1.1.3'
-    implementation 'jp.wasabeef:glide-transformations:3.0.1'
-    implementation 'org.sufficientlysecure:html-textview:3.1'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+
+    //    implementation 'org.sufficientlysecure:html-textview:3.1'
     implementation 'com.google.android:flexbox:0.3.1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha1'
+
     //rx
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+
     //图片
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
-    implementation 'com.github.bumptech.glide:okhttp-integration:4.6.1'
-    implementation 'org.jsoup:jsoup:1.10.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.github.bumptech.glide:okhttp-integration:4.7.1'
+
     //di
-    implementation 'com.google.dagger:dagger:2.11'
-    annotationProcessor "com.google.dagger:dagger-compiler:2.11"
+    implementation 'com.google.dagger:dagger:2.16'
+    annotationProcessor "com.google.dagger:dagger-compiler:2.16"
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     implementation 'org.glassfish:javax.annotation:10.0-b28'
+
     //other
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.tencent.bugly:crashreport_upgrade:1.3.4'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.3.5'
+
+    // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
+    implementation 'com.tencent.tinker:tinker-android-lib:1.9.6'
 
     //操作数据库
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-generator:3.2.2'
     implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.2'
+
     //字体
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
+
     //选择时间，日期，多级联动
     implementation 'com.contrarywind:Android-PickerView:4.1.4'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
+
     //没有使用特殊Header，可以不加这行
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
@@ -202,6 +218,7 @@ dependencies {
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
     implementation 'org.jaaksi:pickerview:1.0.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //友盟 start
     implementation 'com.umeng.sdk:common:1.5.1'

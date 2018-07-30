@@ -67,7 +67,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initData() {
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUI_JI_HUI_FANG_TYPE_LIST_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUI_JI_HUI_FANG_TYPE_LIST_URL, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray configVOs = JsonUtil.getJsonArray(result, "configVOs");
@@ -116,7 +116,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
         params.put("pageNum", "1");
         params.put("pageSize", "1");
         params.put("type", "0");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 int pages = JsonUtil.getInt(result, "pages");

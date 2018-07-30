@@ -42,7 +42,7 @@ public class ReceptionStepThreeActivity extends AppCompatActivity implements Vie
             memberId = intent.getStringExtra("memberId");
         }
 
-        presenter = new ReceptionStepThreePresenter(this);
+        presenter = new ReceptionStepThreePresenter(getLifecycle(),this);
         presenter.setView(this);
 
         initView();

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.index.presenter;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -26,6 +27,7 @@ import java.util.List;
 public class ExperienceClassPresenter implements ExperienceClassContract.Presenter {
 
     private Context context;
+    private Lifecycle lifecycle;
     private final User user;
     private ExperienceClassContract.View view;
     private final HashMap<String, String> headerParam;
@@ -34,8 +36,9 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
     private int pages;
     List<ExperienceClassBean> experienceClassBeanList = new ArrayList<>();
 
-    public ExperienceClassPresenter(Context context) {
+    public ExperienceClassPresenter(Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
         user = DBManager.getInstance().queryUser();
         headerParam = new HashMap<>();
         headerParam.put("token", user.getToken());
@@ -57,7 +60,7 @@ public class ExperienceClassPresenter implements ExperienceClassContract.Present
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_CLASS_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_CLASS_URL, map, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

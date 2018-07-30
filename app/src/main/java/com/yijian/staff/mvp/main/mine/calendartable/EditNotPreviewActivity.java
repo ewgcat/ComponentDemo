@@ -152,7 +152,7 @@ public class EditNotPreviewActivity extends AppCompatActivity {
         if (selectDateList.size() > 0) {
             map.put("date", selectDateList.toString().substring(1, selectDateList.toString().length() - 1));
         }
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_SETLEAVE_URL, map, new ResultJSONIntegerObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_SETLEAVE_URL, map, new ResultJSONIntegerObserver(getLifecycle()) {
             @Override
             public void onSuccess(Integer result) {
                 Toast.makeText(EditNotPreviewActivity.this, "设置成功", Toast.LENGTH_SHORT).show();

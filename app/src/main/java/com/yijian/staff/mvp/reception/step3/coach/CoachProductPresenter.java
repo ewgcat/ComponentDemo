@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step3.coach;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,11 +28,14 @@ import java.util.Map;
 public class CoachProductPresenter implements CoachProductContract.Presenter {
     private static final String TAG = "CoachProductPresenter";
     private Context context;
-    private CoachProductContract.View view;
+    private Lifecycle lifecycle;
 
-    public CoachProductPresenter(Context context) {
+    public CoachProductPresenter( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
     }
+
+    private CoachProductContract.View view;
 
     public void setView(CoachProductContract.View view) {
         this.view = view;
@@ -42,7 +46,7 @@ public class CoachProductPresenter implements CoachProductContract.Presenter {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACH_USERDATA, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACH_USERDATA, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ReceptionUserInfo receptionUserInfo = null;
@@ -71,7 +75,7 @@ public class CoachProductPresenter implements CoachProductContract.Presenter {
     public void getProductDetail(String memberId) {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
-        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.RECEPTION_STEP3_PRODUCT_DETAIL, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 ProductDetail productDetail = GsonNullString.getGson().fromJson(result.toString(), ProductDetail.class);
@@ -94,7 +98,7 @@ public class CoachProductPresenter implements CoachProductContract.Presenter {
         params.put("reason", reason);
         params.put("postId", postId);
 
-        HttpManager.postHasHeaderHasParamOfObject(HttpManager.RECEPTION_STEP3_TO_LEADERS, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParamOfObject(HttpManager.RECEPTION_STEP3_TO_LEADERS, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 Toast.makeText(context, "T.O给领导成功", Toast.LENGTH_SHORT).show();
@@ -115,7 +119,7 @@ public class CoachProductPresenter implements CoachProductContract.Presenter {
         Map<String, String> params = new HashMap<>();
         params.put("memberId", memberId);
         params.put("cardId", cardId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACHTOSALE, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_STEP3_COACHTOSALE, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.coachToSaleSecceed();

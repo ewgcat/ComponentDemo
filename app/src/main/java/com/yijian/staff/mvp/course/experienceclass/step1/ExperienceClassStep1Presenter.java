@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.step1;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -20,9 +21,11 @@ import java.util.HashMap;
 public class ExperienceClassStep1Presenter implements ExperienceClassStep1Contract.Presenter {
 
     private Context context;
+    private Lifecycle lifecycle;
     private ExperienceClassStep1Contract.View view;
 
-    public ExperienceClassStep1Presenter(Context context) {
+    public ExperienceClassStep1Presenter(Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -35,7 +38,7 @@ public class ExperienceClassStep1Presenter implements ExperienceClassStep1Contra
         HashMap<String, String> map = new HashMap<>();
 //        processId="1";
         map.put("processId", processId);
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_EXPERICECE_INVITE_HISTORY_URL, map, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 Gson gson = GsonNullString.getGson();

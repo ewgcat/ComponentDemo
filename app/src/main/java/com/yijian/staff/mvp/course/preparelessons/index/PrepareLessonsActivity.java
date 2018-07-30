@@ -139,7 +139,7 @@ public class PrepareLessonsActivity extends MvcBaseActivity {
 
     private void loadData() {
         showLoading();
-        HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL, new ResultJSONArrayObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_TEMPLE_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 templateBeanList = JSONObject.parseArray(result.toString(), TemplateBean.class);

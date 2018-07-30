@@ -1,41 +1,34 @@
 package com.yijian.staff.mvp.main.mine.club;
 
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.jaeger.library.StatusBarUtil;
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.util.CommonUtil;
+import com.youth.banner.Banner;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ClubActivity extends BaseWebViewActivity {
-
     private static final String TAG = ClubActivity.class.getSimpleName();
-    @BindView(R.id.club_navigation_bar2)
-    NavigationBar2 navigationBar2;
-    @BindView(R.id.web_view)
-    WebView webView;
-
-
+    @BindView(R.id.banner)
+    Banner banner;
+    @BindView(R.id.iv_head)
+    ImageView ivHead;
+    @BindView(R.id.tv_club_name)
+    TextView tvClubName;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
     @Override
     protected int getLayoutID() {
         return R.layout.activity_club;
@@ -43,82 +36,27 @@ public class ClubActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar2.setTitle("俱乐部");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        initWebView(webView);
-    }
 
-    private void initWebView(WebView webView) {
-        WebSettings webviewSettings = webView.getSettings();
-        webviewSettings.setJavaScriptEnabled(true); // 开启Javascript支持
-        webviewSettings.setAllowContentAccess(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webviewSettings.setAllowFileAccess(true);// 可以读取文件缓存(manifest生效)
-        webviewSettings.setPluginState(WebSettings.PluginState.ON);
-        webviewSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webviewSettings.setRenderPriority(WebSettings.RenderPriority.HIGH); // 提高渲染的优先级
-        webviewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && BuildConfig.DEBUG) {
-            WebView.setWebContentsDebuggingEnabled(true);
-        }
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String, String> params = new HashMap<>();
-        params.put("type", "" + BaseWebViewActivity.CLUB_TYPE);
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver() {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_club",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-
-                webView.loadUrl(JsonUtil.getString(result, "url"));
-//                webView.loadUrl("http://192.168.2.136:8080/#/club");
-
-                String token = DBManager.getInstance().queryUser().getToken();
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("token", token);
-                    webView.setWebViewClient(new WebViewClient() {
-
-                        @Override
-                        public void onPageFinished(WebView view, String url) {
-                            //加载完成
-                            super.onPageFinished(view, url);
-                            view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
-                            hideLoading();
-                        }
-
-                        @Override
-                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                            //加载开始
-                            showLoading();
-
-
-
-                        }
-
-                        @Override
-                        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                            super.onReceivedError(view, errorCode, description, failingUrl);
-                            //加载失败
-                            hideLoading();
-                        }
-
-                    });
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
             }
 
             @Override
             public void onFail(String msg) {
-                showToast(msg);
+
             }
         });
-
-
     }
 
 
+
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

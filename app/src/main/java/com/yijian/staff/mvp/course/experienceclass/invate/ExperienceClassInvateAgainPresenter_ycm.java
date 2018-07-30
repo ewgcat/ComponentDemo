@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.experienceclass.invate;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -12,11 +13,13 @@ import com.yijian.staff.net.response.ResultNullObserver;
  */
 
 public class ExperienceClassInvateAgainPresenter_ycm implements ExperienceClassInvateAgainContract_ycm.Presenter {
+    private Lifecycle lifecycle;
 
     private Context context;
     private ExperienceClassInvateAgainContract_ycm.View view;
 
-    public ExperienceClassInvateAgainPresenter_ycm(Context context) {
+    public ExperienceClassInvateAgainPresenter_ycm( Lifecycle lifecycle,Context context) {
+        this.lifecycle = lifecycle;
         this.context = context;
     }
 
@@ -27,7 +30,7 @@ public class ExperienceClassInvateAgainPresenter_ycm implements ExperienceClassI
 
     @Override
     public void saveAndSendInvite(InvateBean bean) {
-        HttpManager.postInvateAgain(bean, new ResultNullObserver() {
+        HttpManager.postInvateAgain(bean, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.showSendSucceed();

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.CertificateBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -113,6 +114,20 @@ public class MyQualificationActivity extends MvcBaseActivity {
                 finish();
             }
         });
+
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_credentials",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
     private void initData() {
@@ -120,7 +135,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
         User user = DBManager.getInstance().queryUser();
         HashMap<String, String> param = new HashMap<>();
         param.put("coachId", user.getUserId());
-        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.GET_CERTIFICATE_URL, param, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 CertificateBean certificateBean = new Gson().fromJson(result.toString(), CertificateBean.class);

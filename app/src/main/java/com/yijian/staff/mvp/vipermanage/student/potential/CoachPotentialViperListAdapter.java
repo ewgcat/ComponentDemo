@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vipermanage.student.potential;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -38,9 +39,11 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
 
     private List<CoachViperBean> coachViperBeanList;
     private Context context;
+    private Lifecycle lifecycle;
 
-    public CoachPotentialViperListAdapter(Context context, List<CoachViperBean> viperBeanList) {
+    public CoachPotentialViperListAdapter(Lifecycle lifecycle,Context context, List<CoachViperBean> viperBeanList) {
         this.context = context;
+        this.lifecycle = lifecycle;
         this.coachViperBeanList = viperBeanList;
     }
 
@@ -125,7 +128,7 @@ public class CoachPotentialViperListAdapter extends RecyclerView.Adapter<CoachPo
                             HashMap<String, String> param = new HashMap<>();
                             param.put("interviewRecordId", "4");
                             param.put("memberId", coachViperBean.getMemberId());
-                            HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver() {
+                            HttpManager.getHasHeaderHasParam(HttpManager.GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL, param, new ResultJSONObjectObserver(lifecycle) {
                                 @Override
                                 public void onSuccess(JSONObject result) {
 

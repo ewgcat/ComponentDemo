@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.resourceallocation.huijileader.selecthuiji;
 
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,11 +34,13 @@ public class SelectHuiJiPopupWindow extends PopupWindow implements View.OnClickL
     private List<HuiJiInfo> coachInfos = new ArrayList<>();
 
     private Activity context;
+    private Lifecycle lifecycle;
     private RecyclerView rcl;
     private SelectHuiJiAdapter adapter;
 
-    public SelectHuiJiPopupWindow(Activity context) {
+    public SelectHuiJiPopupWindow(Lifecycle lifecycle,Activity context) {
         super(context);
+        this.lifecycle = lifecycle;
         this.context = context;
         init();
     }
@@ -68,7 +71,7 @@ public class SelectHuiJiPopupWindow extends PopupWindow implements View.OnClickL
         rcl.setLayoutManager(new LinearLayoutManager(context));
 
 
-        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_LIST_RECEIVE_URL, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.GET_HUIJI_LIST_RECEIVE_URL, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.reception.step1;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,8 +41,13 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
     private Context context;
     private ReceptionStep1Contract.View view;
 
-    public RecptionStep1Presenter(Context context) {
+
+    private Lifecycle lifecycle;
+
+    public RecptionStep1Presenter( Lifecycle lifecycle,Context context) {
         this.context = context;
+        this.lifecycle = lifecycle;
+
     }
 
     public void setView(ReceptionStep1Contract.View view) {
@@ -52,7 +58,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
     public void getQuestionAndAnswer(String memberId) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("memberId", memberId);
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT, hashMap, new ResultJSONObjectObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_RESULT, hashMap, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 TemplateBean templateBean = GsonNullString.getGson().fromJson(result.toString(), TemplateBean.class);
@@ -68,7 +74,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
 
     @Override
     public void getQuestion() {
-        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver() {
+        HttpManager.getHasHeaderNoParam(HttpManager.RECEPTION_QUESTION, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.e(TAG, "onSuccess: " + result);
@@ -266,7 +272,7 @@ public class RecptionStep1Presenter implements ReceptionStep1Contract.Presenter 
         String substring = builder.substring(1);
         params.put("bodyBuildTimes", "" + substring);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultNullObserver() {
+        HttpManager.postHasHeaderHasParam(HttpManager.RECEPTION_QUESTION_FITNESSTIME, params, new ResultNullObserver(lifecycle) {
             @Override
             public void onSuccess(Object result) {
                 view.saveSucceed();

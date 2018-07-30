@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.IndexDataInfo;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
@@ -21,6 +22,7 @@ import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
@@ -97,7 +99,19 @@ public class WorkFragment extends MvcBaseFragment {
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush();
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush();
         initData();
+        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_workbench",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
     }
 
     public void showJieDaiView(int i) {

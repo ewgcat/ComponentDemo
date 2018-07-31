@@ -114,7 +114,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
                     } else if (subclassName.equals("CoachInfoVO")) {
-                        //0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
+                        //0 正式学员 （有会籍信息）3、 过期学员;、1、意向学员  2、 潜在学员（无会籍信息）
                         Intent intent = new Intent(context, CoachViperDetailActivity.class);
                         if (subclassName.equals("CoachInfoVO")) {
                             PermissionUtils.getInstance().setMenuKey("app_formal_student");

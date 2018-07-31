@@ -10,8 +10,8 @@ import com.yijian.staff.bean.ViperDetailBean;
  * Created by The_P on 2018/5/15.
  */
 
-public abstract class ViewHolderHuijiVipper extends RecyclerView.ViewHolder {
-    public ViewHolderHuijiVipper(View itemView) {
+public abstract class BaseVipperViewHolder extends RecyclerView.ViewHolder {
+    public BaseVipperViewHolder(View itemView) {
         super(itemView);
     }
 

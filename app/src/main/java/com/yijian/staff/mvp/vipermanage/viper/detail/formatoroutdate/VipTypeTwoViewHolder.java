@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.intent;
+package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
 
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -6,16 +6,17 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperDetailBean;
-import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
+import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
 
 /**
- * Created by The_P on 2018/5/16.
+ * Created by The_P on 2018/5/15.
  */
 
-class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
+public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
+
     TextView tvSex;
     TextView tvPhone;
     TextView tvBirthday;
@@ -29,7 +30,7 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
     TextView tvRecentFitNessTime;
     TextView deadLine;
 
-    public ViewHolderHuijiIntentVipType_1(View itemView) {
+    public VipTypeTwoViewHolder(View itemView) {
         super(itemView);
         tvSex = itemView.findViewById(R.id.tv_sex);
         tvPhone = itemView.findViewById(R.id.tv_phone);
@@ -51,6 +52,8 @@ class ViewHolderHuijiIntentVipType_1 extends ViewHolderHuijiVipper {
     public void bindView(ViperDetailBean viperDetailBean) {
         tvSex.setText(judgeNull(viperDetailBean.getSex()));
         tvPhone.setText(judgeNull(viperDetailBean.getMobile()));
+
+
         long birthday = viperDetailBean.getBirthday();
         if (birthday != 0) {
             tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));

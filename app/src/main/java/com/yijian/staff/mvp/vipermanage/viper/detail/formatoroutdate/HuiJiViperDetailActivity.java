@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.intent;
+package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -27,68 +28,76 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- * Created by The_P on 2018/5/16.
+ * Created by The_P on 2018/5/15.
  */
 
-public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, AdapterHuijiIntentViper.AdapterInterface {
-    private static final String TAG = "HuijiIntentViperDetailA";
+public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ViperDetailAdapter.AdapterInterface {
+
+    private static final String TAG = "ViperDetailActivit";
     private LinearLayout llHead;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
+    private RelativeLayout rlItem2;
     private ImageView ivItem0;
     private ImageView ivItem1;
+    private ImageView ivItem2;
     private TextView tvItem0;
     private TextView tvItem1;
-    private AdapterHuijiIntentViper adapter;
+    private TextView tvItem2;
+    private ViperDetailAdapter adapter;
     private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
-    private String id;
+    private String memberId;
     //    private String memberName;
     private NavigationBar2 navigation2;
 
 //    @Override
 //    protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_huiji_intent_viper_ycm);
-//        id = getIntent().getStringExtra("id");
+//        setContentView(R.layout.activity_huiviper_ycm);
+//        memberId = getIntent().getStringExtra("memberId");
+////        memberName = getIntent().getStringExtra("memberName");
 //        initView();
 //        initData();
-//
+//        Log.e(TAG, "onCreate: ");
 //    }
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        id = getIntent().getStringExtra("id");
+        memberId = getIntent().getStringExtra("memberId");
+//        memberName = getIntent().getStringExtra("memberName");
         initview();
         initData();
+//        Log.e(TAG, "onCreate: ");
     }
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_huiji_intent_viper_ycm;
+        return R.layout.activity_huiviper_ycm;
     }
 
     private void initData() {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
-        map.put("id", id);
+        map.put("id", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
-//                updateUi(viperDetailBean);
                 if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
                 adapter.setData(viperDetailBean);
+//                updateUi(viperDetailBean);
             }
+
 
             @Override
             public void onFail(String msg) {
                 hideLoading();
-                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HuiJiViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -96,27 +105,33 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
     private void initview() {
         navigation2 = findViewById(R.id.navigation_bar2);
         navigation2.setTitle("会员详情");
-        navigation2.getmTitleView().setAlpha(0.0f);
-        navigation2.getmTitleView().setVisibility(View.GONE);
         navigation2.setSecondLeftIvVisiable(View.GONE);
         navigation2.setBackClickListener(this);
-
+        navigation2.getmTitleView().setVisibility(View.GONE);
+        navigation2.getmTitleView().setAlpha(0.0f);
 
         llHead = findViewById(R.id.ll_head);
         rlItem0 = findViewById(R.id.rl_item0);
         rlItem1 = findViewById(R.id.rl_item1);
+        rlItem2 = findViewById(R.id.rl_item2);
 
 
         ivItem0 = findViewById(R.id.iv_item0);
         ivItem1 = findViewById(R.id.iv_item1);
+        ivItem2 = findViewById(R.id.iv_item2);
 
 
         tvItem0 = findViewById(R.id.tv_item0);
         tvItem1 = findViewById(R.id.tv_item1);
+        tvItem2 = findViewById(R.id.tv_item2);
         llHead.setVisibility(View.GONE);
 
         rlItem0.setOnClickListener(this);
         rlItem1.setOnClickListener(this);
+        rlItem2.setOnClickListener(this);
+
+        findViewById(R.id.ll_chakan_hetong).setOnClickListener(this);
+        findViewById(R.id.ll_chakan_wenjuan).setOnClickListener(this);
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -125,7 +140,7 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new AdapterHuijiIntentViper(this);
+        adapter = new ViperDetailAdapter(this);
         recyclerView.setAdapter(adapter);
 
 
@@ -173,6 +188,10 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
                             if (viewByPosition.getBottom() - headHeight < 0) {
                                 if (!tvItem1.isSelected()) itemSelecte(1);
                             }
+                        } else if (firstVisibleItemPosition == 2 && headHeight != 0) {
+                            if (viewByPosition.getBottom() - headHeight < 0) {
+                                if (!tvItem2.isSelected()) itemSelecte(2);
+                            }
                         }
                     } else {//向下滚动
                         if (firstVisibleItemPosition == 0) {
@@ -181,6 +200,8 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
                             if (!tvItem0.isSelected()) itemSelecte(0);
                         } else if (firstVisibleItemPosition == 2) {
                             if (!tvItem1.isSelected()) itemSelecte(1);
+                        } else if (firstVisibleItemPosition == 3) {
+                            if (!tvItem2.isSelected()) itemSelecte(2);
                         }
                     }
                 }
@@ -188,17 +209,22 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
 
             }
         });
+
     }
+
 
     private void resetState() {
         tvItem0.setTextColor(getResources().getColor(R.color.text_black2));
         tvItem1.setTextColor(getResources().getColor(R.color.text_black2));
+        tvItem2.setTextColor(getResources().getColor(R.color.text_black2));
 
         ivItem0.setVisibility(View.INVISIBLE);
         ivItem1.setVisibility(View.INVISIBLE);
+        ivItem2.setVisibility(View.INVISIBLE);
 
         tvItem0.setSelected(false);
         tvItem1.setSelected(false);
+        tvItem2.setSelected(false);
     }
 
 
@@ -208,17 +234,32 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
             tvItem0.setSelected(true);
             tvItem0.setTextColor(getResources().getColor(R.color.blue));
             ivItem0.setVisibility(View.VISIBLE);
-        } else if (position == 1) {//详细信息
+        } else if (position == 1) {//会籍信息
             tvItem1.setSelected(true);
             tvItem1.setTextColor(getResources().getColor(R.color.blue));
             ivItem1.setVisibility(View.VISIBLE);
+        } else if (position == 2) {//详细信息
+            tvItem2.setSelected(true);
+            tvItem2.setTextColor(getResources().getColor(R.color.blue));
+            ivItem2.setVisibility(View.VISIBLE);
         }
     }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_chakan_hetong:
+//                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
+//                intent1.putExtra("memberId", viperDetailBean.getMemberId());
+//                intent1.putStringArrayListExtra("contractIds", viperDetailBean.getContractIds());
+//                startActivity(intent1);
+                break;
+            case R.id.ll_chakan_wenjuan:
+//                Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
+//                intent2.putExtra("memberId", viperDetailBean.getMemberId());
+//                startActivity(intent2);
+
+                break;
 
             case R.id.rl_item0:
                 moveToPosition(1);
@@ -228,7 +269,57 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
                 moveToPosition(2);
                 itemSelecte(1);
                 break;
+            case R.id.rl_item2:
+                moveToPosition(3);
+                itemSelecte(2);
+                break;
+        }
+    }
 
+
+    @Override
+    public void clickVisit() {
+        String mobile = viperDetailBean.getMobile();
+        if (!TextUtils.isEmpty(mobile)) {
+            CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
+
+        } else {
+            Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void clickEdit() {
+        Intent intent = new Intent(HuiJiViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
+        intent.putExtra("detail", viperDetailBean.getDetail());
+        intent.putExtra("memberId", viperDetailBean.getMemberId());
+        intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("name", viperDetailBean.getName());
+        startActivityForResult(intent, 0);
+    }
+
+//    private void callVisit(String mobile) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", viperDetailBean.getMemberId());
+//        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
+//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver(getLifecycle()) {
+//            @Override
+//            public void onSuccess(JSONObject result) {
+//                CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
+//            }
+//
+//            @Override
+//            public void onFail(String msg) {
+//                Toast.makeText(HuiJiViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == 1) {
+            initData();
         }
     }
 
@@ -255,48 +346,8 @@ public class HuijiIntentViperDetailActivity extends MvcBaseActivity implements V
     }
 
     @Override
-    public void clickVisit() {
-        String mobile = viperDetailBean.getMobile();
-        if (!TextUtils.isEmpty(mobile)) {
-//            callVisit(mobile);
-            CommonUtil.callPhone(HuijiIntentViperDetailActivity.this, mobile);
-        } else {
-            Toast.makeText(this, "未录入手机号,无法进行电话回访", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-//    private void callVisit(String mobile){
-//        Map<String,String> map = new HashMap<>();
-//        map.put("memberId",viperDetailBean.getMemberId());
-//        map.put("dictItemKey",getIntent().getIntExtra("dictItemKey",0)+"");
-//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver(getLifecycle()) {
-//            @Override
-//            public void onSuccess(JSONObject result) {
-//                CommonUtil.callPhone(HuijiIntentViperDetailActivity.this,mobile);
-//            }
-//
-//            @Override
-//            public void onFail(String msg) {
-//                Toast.makeText(HuijiIntentViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
-    @Override
-    public void clickEdit() {
-        Intent intent = new Intent(HuijiIntentViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
-        intent.putExtra("detail", viperDetailBean.getDetail());
-        intent.putExtra("memberId", viperDetailBean.getMemberId());
-        intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
-        intent.putExtra("name", viperDetailBean.getName());
-        startActivityForResult(intent, 0);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == 1) {
-            initData();
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+        PermissionUtils.getInstance().setMenuKey("");
     }
 }

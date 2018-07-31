@@ -16,10 +16,9 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
-import com.yijian.staff.mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity;
+import com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent.ProtentialOrIntentViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.util.PermissionUtil;
 
 import java.util.List;
 
@@ -83,9 +82,9 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-//                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+//                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                     PermissionUtils.getInstance().setMenuKey("app_potential_member");
-                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                     intent.putExtra("id", huiJiViperBean.getMemberId());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
                     context.startActivity(intent);

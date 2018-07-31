@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.intent;
+package com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,14 +7,14 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.ViperDetailBean;
-import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
+import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 
 /**
  * Created by The_P on 2018/5/16.
  */
 
-class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
+class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
     //详细信息
 //    @BindView(R.id.tv_wechat_num)
     TextView tvWechatNum;
@@ -73,7 +73,7 @@ class ViewHolderHuijiIntentVipType_2 extends ViewHolderHuijiVipper {
     TextView tvHuoquQudao;
     LinearLayout llEdit;
 
-    public ViewHolderHuijiIntentVipType_2(View itemView) {
+    public ProtentialOrIntentViperTypeThreeViewHolder(View itemView) {
         super(itemView);
         tvWechatNum = itemView.findViewById(R.id.tv_wechat_num);
         tvEmail = itemView.findViewById(R.id.tv_email);

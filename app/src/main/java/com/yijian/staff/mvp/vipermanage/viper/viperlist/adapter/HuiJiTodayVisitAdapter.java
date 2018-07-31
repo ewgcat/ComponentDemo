@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TodayVisitViperBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
-import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity;
+import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 

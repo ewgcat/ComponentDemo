@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.intent;
+package com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.HuijiVipInterface;
-import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
+import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
 
 /**
  * Created by The_P on 2018/5/15.
  */
 
-public class AdapterHuijiIntentViper extends RecyclerView.Adapter<ViewHolderHuijiVipper> implements HuijiVipInterface {
+public class ProtentialOrIntentViperDetailAdapter extends RecyclerView.Adapter<BaseVipperViewHolder> implements HuijiVipInterface {
 
     public static final int TYPE0 = 0;
     public static final int TYPE1 = 1;
@@ -25,7 +25,7 @@ public class AdapterHuijiIntentViper extends RecyclerView.Adapter<ViewHolderHuij
     private Context context;
     private ViperDetailBean mViperDetailBean;
 
-    public AdapterHuijiIntentViper(Context context) {
+    public ProtentialOrIntentViperDetailAdapter(Context context) {
         this.context = context;
 
     }
@@ -37,23 +37,23 @@ public class AdapterHuijiIntentViper extends RecyclerView.Adapter<ViewHolderHuij
 
     @NonNull
     @Override
-    public ViewHolderHuijiVipper onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseVipperViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        ViewHolderHuijiVipper holder;
+        BaseVipperViewHolder holder;
         switch (viewType) {
             default:
             case TYPE0:
                 view = LayoutInflater.from(context).inflate(R.layout.item_huijivip_intent_type0, parent, false);
-                holder = new ViewHolderHuijiIntentVipType_0(view);
+                holder = new ProtentialOrIntentViperTypeOneViewHolder(view);
                 holder.setHuijiVipInterface(this);
                 break;
             case TYPE1:
                 view = LayoutInflater.from(context).inflate(R.layout.item_huijivip_intent_type1, parent, false);
-                holder = new ViewHolderHuijiIntentVipType_1(view);
+                holder = new ProtentialOrIntentViperTypeTwoViewHolder(view);
                 break;
             case TYPE2:
                 view = LayoutInflater.from(context).inflate(R.layout.item_huijivip_intent_type2, parent, false);
-                holder = new ViewHolderHuijiIntentVipType_2(view);
+                holder = new ProtentialOrIntentViperTypeThreeViewHolder(view);
                 holder.setHuijiVipInterface(this);
                 break;
         }
@@ -62,7 +62,7 @@ public class AdapterHuijiIntentViper extends RecyclerView.Adapter<ViewHolderHuij
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderHuijiVipper holder, int position) {
+    public void onBindViewHolder(@NonNull BaseVipperViewHolder holder, int position) {
         if (mViperDetailBean != null) holder.bindView(mViperDetailBean);
     }
 

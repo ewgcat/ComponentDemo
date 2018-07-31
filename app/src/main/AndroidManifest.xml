@@ -160,7 +160,7 @@
             android:screenOrientation="portrait" />
         <!-- 会籍 意向会员详情 -->
         <activity
-            android:name=".mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity"
+            android:name=".mvp.vipermanage.viper.detail.protentialorintent.ProtentialOrIntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 会籍 过期会员 -->
         <activity
@@ -202,7 +202,7 @@
             android:name=".mvp.price.courseprice.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.HuiJiViperDetailActivity"
+            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.huiji.invitation.list.HuiJiInvitationListActivity"
@@ -559,7 +559,7 @@
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.SelectAddressActivity"
+            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"

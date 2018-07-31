@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.detail;
+package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
 
 import android.content.Intent;
 import android.os.Bundle;

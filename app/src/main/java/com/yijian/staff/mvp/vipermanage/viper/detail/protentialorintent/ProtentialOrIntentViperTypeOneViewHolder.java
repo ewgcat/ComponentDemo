@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.intent;
+package com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,14 +7,14 @@ import android.widget.TextView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperDetailBean;
-import com.yijian.staff.mvp.vipermanage.viper.detail.ViewHolderHuijiVipper;
+import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
 import com.yijian.staff.util.ImageLoader;
 
 /**
  * Created by The_P on 2018/5/16.
  */
 
-class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
+class ProtentialOrIntentViperTypeOneViewHolder extends BaseVipperViewHolder {
     //    @BindView(R.id.iv_head)
     ImageView ivHead;
     //    @BindView(R.id.tv_name)
@@ -23,7 +23,7 @@ class ViewHolderHuijiIntentVipType_0 extends ViewHolderHuijiVipper {
     TextView tv_card_tips;
     ImageView ivVisit;
 
-    public ViewHolderHuijiIntentVipType_0(View itemView) {
+    public ProtentialOrIntentViperTypeOneViewHolder(View itemView) {
         super(itemView);
         ivHead = itemView.findViewById(R.id.iv_head);
         tvName = itemView.findViewById(R.id.tv_name);

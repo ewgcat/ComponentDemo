@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
+import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -29,7 +30,7 @@ import java.util.HashMap;
  * Created by The_P on 2018/5/16.
  */
 
-public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements AdapterCoachViper.AdapterInterface, View.OnClickListener {
+public class CoachViperDetailActivity extends MvcBaseActivity implements AdapterCoachViper.AdapterInterface, View.OnClickListener {
     private static final String TAG = "CoachViperDetailycm";
     private LinearLayout llHead;
     private RelativeLayout rlItem0;
@@ -311,7 +312,7 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         String mobile = viperDetailBean.getMobile();
         if (!TextUtils.isEmpty(mobile)) {
             if (CommonUtil.isPhoneFormat(mobile)) {
-                CommonUtil.callPhone(CoachViperDetailActivity_ycm.this, mobile);
+                CommonUtil.callPhone(CoachViperDetailActivity.this, mobile);
             } else {
                 showToast("返回的手机号不正确！");
             }
@@ -322,13 +323,12 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
 
     @Override
     public void clickEdit() {
-        Intent intent = new Intent(CoachViperDetailActivity_ycm.this, HuiJiVipInfoEditActivity.class);
+        Intent intent = new Intent(CoachViperDetailActivity.this, HuiJiVipInfoEditActivity.class);
         intent.putExtra("detail", viperDetailBean.getDetail());
         intent.putExtra("memberId", viperDetailBean.getMemberId());
         intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
         intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
-
     }
 
 
@@ -340,5 +340,9 @@ public class CoachViperDetailActivity_ycm extends MvcBaseActivity implements Ada
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PermissionUtils.getInstance().setMenuKey("");
+    }
 }

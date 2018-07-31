@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TodayVisitStudentBean;
-import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm;
+import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -74,8 +75,8 @@ public class CoachTodayViperListAdapter extends RecyclerView.Adapter<CoachTodayV
         holder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
+                PermissionUtils.getInstance().setMenuKey("");
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
                 intent.putExtra("vipType", 0);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);

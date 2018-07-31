@@ -64,7 +64,7 @@ public class StudentListAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(StudentBean studentBean) {
-            tvTime.setText(studentBean.getTime()+"");
+//            tvTime.setText(studentBean.getTime()+"");
             tvName.setText(studentBean.getName());
             tvCourseName.setText(studentBean.getCourse());
             ImageLoader.setImageResource(studentBean.getHeadImg(),mContext,ivHead);

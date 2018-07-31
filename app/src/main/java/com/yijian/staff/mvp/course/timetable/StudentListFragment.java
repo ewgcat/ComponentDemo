@@ -1,9 +1,11 @@
 package com.yijian.staff.mvp.course.timetable;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import com.yijian.staff.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.cunke.CunKeNewAdapter;
 import com.yijian.staff.mvp.course.cunke.CunkeNewActivity;
+import com.yijian.staff.mvp.course.timetable.addstudent.AddStudentActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -66,19 +69,7 @@ public class StudentListFragment extends MvcBaseFragment {
     public void initView() {
         emptyView.setVisibility(View.GONE);
 
-        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_storage_course_num",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
 
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
 
         //测试数据
         for (int i = 0; i < 10; i++) {
@@ -91,6 +82,7 @@ public class StudentListFragment extends MvcBaseFragment {
 
 
         StudentListAdapter  studentListAdapter = new StudentListAdapter(getContext(),dataList);
+        rv.addItemDecoration(new MyDividerItemDecoration());
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setAdapter(studentListAdapter);
         initComponent();
@@ -181,5 +173,7 @@ public class StudentListFragment extends MvcBaseFragment {
 
     @OnClick(R.id.ll_add_student)
     public void onViewClicked() {
+
+        startActivity(new Intent(getContext(), AddStudentActivity.class));
     }
 }

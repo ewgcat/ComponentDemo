@@ -57,11 +57,8 @@
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".mvp.main.MainActivity"
@@ -572,11 +569,25 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.taskcenter.TaskCenterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.taskcenter.list.RankListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.course.timetable.EditCourseTimeTableActivity"></activity>
+        <activity
+            android:name=".mvp.course.timetable.EditCourseTimeTableActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".mvp.course.timetable.addstudent.AddStudentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

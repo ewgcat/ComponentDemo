@@ -63,6 +63,8 @@ public class EditCourseTimeTableActivity extends MvcBaseActivity {
         navigationBar2.setTitle( "编辑排课表");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+        changeFragment(0);
+        selectWeekDay(0);
     }
 
 
@@ -163,7 +165,6 @@ public class EditCourseTimeTableActivity extends MvcBaseActivity {
 
     @OnClick({R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
     public void onViewClicked(View view) {
-        resetAllWeekDay();
 
         switch (view.getId()) {
             case R.id.ll_week_sunday:
@@ -192,6 +193,8 @@ public class EditCourseTimeTableActivity extends MvcBaseActivity {
     }
 
     public void selectWeekDay(int index) {
+        resetAllWeekDay();
+
         switch (index) {
             case 0:
                 tvSeven.setTextColor(Color.parseColor("#1997f8"));

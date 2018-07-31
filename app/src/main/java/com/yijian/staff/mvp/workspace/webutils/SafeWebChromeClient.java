@@ -1,13 +1,21 @@
 package com.yijian.staff.mvp.workspace.webutils;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 public class SafeWebChromeClient extends WebChromeClient {
+
+    private CallWebChromeClientBackListener listener;
+
+    public SafeWebChromeClient(CallWebChromeClientBackListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
@@ -23,6 +31,9 @@ public class SafeWebChromeClient extends WebChromeClient {
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);
+        if(newProgress == 100){
+            listener.onProgressChanged(view.getTitle());
+        }
     }
 
     /**
@@ -88,6 +99,13 @@ public class SafeWebChromeClient extends WebChromeClient {
     @Override
     public void onReceivedTitle(WebView view, String title) {
         super.onReceivedTitle(view, title);
+//        listener.onReceivedTitle(view,title);
     }
+
+    public interface CallWebChromeClientBackListener {
+        void onReceivedTitle(WebView view, String title);
+        void onProgressChanged(String title);
+    }
+
 
 }

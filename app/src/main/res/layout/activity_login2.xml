@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -28,14 +30,23 @@
 
         </LinearLayout>
 
-        <LinearLayout
+
+        <com.yijian.staff.mvp.workspace.widget.TableView
+            android:id="@+id/tab_view"
             android:layout_width="match_parent"
-            android:layout_height="100dp"></LinearLayout>
+            android:layout_height="80dp"
+            app:textSelectColor="#333333"
+            app:textNormalColor="#999999"
+            app:paddingLeft="10"
+            app:paddingRight="10"
+            app:textSize="@dimen/text_size_14"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="20dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,14 +63,14 @@
                     android:id="@+id/et_account"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
                     android:hint="请输入账号"
+                    android:background="@null"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:inputType="textPassword"
+                    android:textColorHint="#cccccc"
+                    android:textCursorDrawable="@null"
                     android:maxLength="20"
                     android:maxLines="1"
-                    android:textColor="#FFFFFF"
                     android:textSize="14sp"/>
 
             </LinearLayout>
@@ -88,14 +99,15 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="@null"
                     android:hint="请输入账号密码"
                     android:paddingLeft="10dp"
+                    android:textColorHint="#cccccc"
+                    android:textCursorDrawable="@null"
                     android:paddingRight="10dp"
                     android:inputType="textPassword"
                     android:maxLength="20"
                     android:maxLines="1"
-                    android:textColor="#FFFFFF"
                     android:textSize="14sp"/>
 
             </LinearLayout>

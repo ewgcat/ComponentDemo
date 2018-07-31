@@ -42,11 +42,14 @@ public class BaseWebView extends WebView {
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
-        setWebChromeClient(new SafeWebChromeClient());
     }
 
     public void addLoadListener(SafeWebViewClient.CallLoadBackListener listener){
         setWebViewClient(new SafeWebViewClient(listener));
+    }
+
+    public void addWebChromeClientListener(SafeWebChromeClient.CallWebChromeClientBackListener listener){
+        setWebChromeClient(new SafeWebChromeClient(listener));
     }
 
     @SuppressLint("JavascriptInterface")

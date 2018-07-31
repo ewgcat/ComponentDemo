@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
@@ -17,6 +18,7 @@ import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.umeng.SharePopupWindow;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
+import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.util.JsonUtil;
@@ -42,6 +44,8 @@ public class ShareTestActivity extends MvcBaseActivity {
     String shareWorkSpaceTitle;
     String shareWorkSpaceImgUrl;
     String shareWorkSpaceDescr;
+    NavigationBar2 navigationBar2;
+    String webUrl;
 
 
     @Override
@@ -59,10 +63,11 @@ public class ShareTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(ActivityUtils.name+"的测试记录");
+        navigationBar2 = findViewById(R.id.navigation_bar);
+//        navigationBar2.setTitle(ActivityUtils.name+"的测试记录");
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.setmRightIv(R.mipmap.share);
+        navigationBar2.setBackLLVisiable(View.GONE);
+//        navigationBar2.setmRightIv(R.mipmap.share);
         navigationBar2.setBackClickListener(this);
         navigationBar2.setmRightIvClickListener(new View.OnClickListener() {
             @Override
@@ -72,36 +77,41 @@ public class ShareTestActivity extends MvcBaseActivity {
         });
     }
 
-    private void initData(){
+    private void initData() {
         recordId = getIntent().getExtras().getString("recordId");
-        String url = String.format("http://192.168.2.32:8080/#/sport?memberId=%s&wdId=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId);
+        if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.MODULE_PERFECT)){
+            webUrl = String.format("http://192.168.2.32:8080/#/sport?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+        }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.MODULE_SPORT)){
+            webUrl = String.format("http://192.168.2.32:8080/#/girth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+        }
+
         emptyView.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                web_view.loadUrl(url);
+                web_view.loadUrl(webUrl);
             }
         });
         web_view.addAppJavaScript(new JavaScriptInterface.CallBackListener() {
             @Override
             public Object callBack(String msg, int type) {
-                if(type == JavaScriptInterface.JS_GoWorkspaceTest){ //测试
+                if (type == JavaScriptInterface.JS_GoWorkspaceTest) { //测试
                     if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
                         mContext.startActivity(new Intent(mContext, SportTestActivity.class));
-                    }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
+                    } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)) {
                         mContext.startActivity(new Intent(mContext, PerfectActivity.class));
                     }
                     finish();
-                }else  if(type == JavaScriptInterface.JS_GoWorkspaceOtherTest){ //其它测试
+                } else if (type == JavaScriptInterface.JS_GoWorkspaceOtherTest) { //其它测试
                     popDialog();
-                }else if(type == JavaScriptInterface.JS_GetWorkspaceToaken){ //获取Toaken
+                } else if (type == JavaScriptInterface.JS_GetWorkspaceToaken) { //获取Toaken
                     User user = DBManager.getInstance().queryUser();
                     return user.getToken();
-                }else if(type == JavaScriptInterface.JS_returnTestWdId){ //获取结果Id
+                } else if (type == JavaScriptInterface.JS_returnTestWdId) { //获取结果Id
                     return recordId;
-                }else if(type == JavaScriptInterface.JS_returnTestMemberId){ //获取MemberId
+                } else if (type == JavaScriptInterface.JS_returnTestMemberId) { //获取MemberId
                     return ActivityUtils.workSpaceVipBean.getMemberId();
-                }else if(type == JavaScriptInterface.JS_ReturnShareUrl){ //获取分享链接
-                    if(!TextUtils.isEmpty(msg)){
+                } else if (type == JavaScriptInterface.JS_ReturnShareUrl) { //获取分享链接
+                    if (!TextUtils.isEmpty(msg)) {
                         try {
                             JSONObject jsonObject = new JSONObject(msg);
                             shareWorkSpaceUrl = jsonObject.getString("webpageShareUrl");
@@ -121,6 +131,8 @@ public class ShareTestActivity extends MvcBaseActivity {
             public void onLoadFinish() {
                 hideLoading();
                 emptyView.setVisibility(View.GONE);
+                navigationBar2.setBackLLVisiable(View.VISIBLE);
+                navigationBar2.setmRightIv(R.mipmap.share);
             }
 
             @Override
@@ -129,21 +141,19 @@ public class ShareTestActivity extends MvcBaseActivity {
                 hideLoading();
             }
         });
-        web_view.addLoadListener(new SafeWebViewClient.CallLoadBackListener() {
+        web_view.addWebChromeClientListener(new SafeWebChromeClient.CallWebChromeClientBackListener() {
             @Override
-            public void onLoadFinish() {
-                hideLoading();
+            public void onReceivedTitle(WebView view, String title) {
+//                navigationBar2.setTitle(title);
             }
 
             @Override
-            public void onLoadError() {
-                hideLoading();
+            public void onProgressChanged(String title) {
+                navigationBar2.setTitle(title);
             }
         });
-//        web_view.loadAppUrl("http://192.168.2.69:8080/fs-vank/");
-        web_view.loadAppUrl(url);
+        web_view.loadAppUrl(webUrl);
     }
-
 
 
     private void showShareDialog() {
@@ -154,14 +164,14 @@ public class ShareTestActivity extends MvcBaseActivity {
         sharePopupWindow.show(getWindow().getDecorView());
     }
 
-    public void popDialog(){
-        if(testPopupWindow == null){
+    public void popDialog() {
+        if (testPopupWindow == null) {
 
             testPopupWindow = new CommenPopupWindow(ShareTestActivity.this, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     testPopupWindow.dismiss();
-                    switch (v.getId()){
+                    switch (v.getId()) {
                         case R.id.lin_perfect: //完美围度
                             mContext.startActivity(new Intent(mContext, PerfectActivity.class));
                             finish();
@@ -176,20 +186,20 @@ public class ShareTestActivity extends MvcBaseActivity {
                         case R.id.lin_action: //动作评估
                             toast.show();
                             break;
-                            default:
+                        default:
                     }
                 }
-            },R.layout.pop_test_result,new int[]{R.id.lin_perfect,R.id.lin_sport,R.id.lin_static,R.id.lin_action});
+            }, R.layout.pop_test_result, new int[]{R.id.lin_perfect, R.id.lin_sport, R.id.lin_static, R.id.lin_action});
 
         }
         testPopupWindow.showAtBottom(getWindow().getDecorView());
     }
 
-    public void initToast(){
+    public void initToast() {
         toast = new Toast(ShareTestActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.toast_btranspant,null);
+        View view = getLayoutInflater().inflate(R.layout.toast_btranspant, null);
         toast.setView(view);
-        toast.setGravity(Gravity.CENTER , 0, 0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
     }
 

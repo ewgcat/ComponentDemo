@@ -3,6 +3,7 @@ package com.yijian.staff.prefs;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.ApplicationHolder;
@@ -338,6 +339,7 @@ public class SharePreferenceUtil {
     }
 
     public static String getHostUrl() {
+        Log.e("LOGIN_URL","getHostUrl()");
         return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_HOST : BuildConfig.HOST;
     }
 

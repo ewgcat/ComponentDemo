@@ -254,5 +254,5 @@ public interface ApiService {
 
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body AccessStatisticsRequestBody accessStatisticsRequestBody);
+    Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body List<AccessStatisticsRequestBody> accessStatisticsRequestBody);
 }

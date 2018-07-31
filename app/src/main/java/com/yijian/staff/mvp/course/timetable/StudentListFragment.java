@@ -81,6 +81,14 @@ public class StudentListFragment extends MvcBaseFragment {
         });
 
         //测试数据
+        for (int i = 0; i < 10; i++) {
+            StudentBean studentBean = new StudentBean();
+            studentBean.setCourse("增肌课");
+            studentBean.setName("学员"+i);
+            studentBean.setTime(Long.valueOf((11+i)));
+            dataList.add(studentBean);
+        }
+
 
         StudentListAdapter  studentListAdapter = new StudentListAdapter(getContext(),dataList);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));

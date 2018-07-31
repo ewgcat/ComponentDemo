@@ -19,7 +19,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
-import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm;
+import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -81,26 +82,12 @@ public class CoachIntentViperListAdapter extends RecyclerView.Adapter<CoachInten
 
         ImageLoader.setHeadImageResource(headImg, context, holder.iv_header);
 
-
         //详情
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
-                intent.putExtra("vipType", 1);
-                intent.putExtra("coachViperBean", coachViperBean);
-                context.startActivity(intent);
-            }
-        });
-
-
-        //详情
-        holder.lin_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                Intent intent = new Intent(context, CoachViperDetailActivity_ycm.class);
+                PermissionUtils.getInstance().setMenuKey("app_intention_student");
+                Intent intent = new Intent(context, CoachViperDetailActivity.class);
                 intent.putExtra("vipType", 1);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
 

@@ -31,7 +31,6 @@ public class TableView extends LinearLayout {
     private float scale;
     private int paddingLeft;
     private int paddingRight;
-    private int subTabWidth;
     private List<TextView> tvList = new ArrayList<>();
     private List<Integer> resList = new ArrayList<>();
     AnimatorSet animationSet = new AnimatorSet();
@@ -91,7 +90,6 @@ public class TableView extends LinearLayout {
             public void run() {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl_curssor_container.getLayoutParams();
                 lp.width = tvList.get(0).getWidth();
-                subTabWidth = lp.width;
                 fl_curssor_container.setLayoutParams(lp);
             }
         });
@@ -105,8 +103,13 @@ public class TableView extends LinearLayout {
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofPropertyValuesHolder(tvList.get(i), holder_large_x, holder_large_y);
                     objectAnimator1.start();
                     tvList.get(i).setTextColor(textSelectColor);
-
-                    ObjectAnimator.ofFloat(fl_curssor_container, "translationX",  i*subTabWidth).setDuration(200).start();
+                    int finalI = i;
+                    tvList.get(i).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ObjectAnimator.ofFloat(fl_curssor_container, "translationX",  finalI *tvList.get(0).getWidth()).setDuration(200).start();
+                        }
+                    });
                     currentId = id;
                     listener.callExchangeBack(i);
                     continue;

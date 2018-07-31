@@ -60,4 +60,7 @@ public class CommenPopupWindow extends PopupWindow {
         this.showAtLocation(v, Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
+    public View getmMenuView() {
+        return mMenuView;
+    }
 }

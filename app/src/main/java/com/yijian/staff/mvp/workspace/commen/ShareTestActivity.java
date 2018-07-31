@@ -79,10 +79,10 @@ public class ShareTestActivity extends MvcBaseActivity {
 
     private void initData() {
         recordId = getIntent().getExtras().getString("recordId");
-        if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.MODULE_PERFECT)){
-            webUrl = String.format("http://192.168.2.32:8080/#/sport?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
-        }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.MODULE_SPORT)){
-            webUrl = String.format("http://192.168.2.32:8080/#/girth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+        if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
+            webUrl = String.format("http://192.168.2.32:8080/#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+        }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)){
+            webUrl = String.format("http://192.168.2.32:8080/#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
         }
 
         emptyView.setButton(new View.OnClickListener() {
@@ -191,6 +191,11 @@ public class ShareTestActivity extends MvcBaseActivity {
                 }
             }, R.layout.pop_test_result, new int[]{R.id.lin_perfect, R.id.lin_sport, R.id.lin_static, R.id.lin_action});
 
+        }
+        if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
+            testPopupWindow.getmMenuView().findViewById(R.id.lin_perfect).setVisibility(View.GONE);
+        }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)){
+            testPopupWindow.getmMenuView().findViewById(R.id.lin_sport).setVisibility(View.GONE);
         }
         testPopupWindow.showAtBottom(getWindow().getDecorView());
     }

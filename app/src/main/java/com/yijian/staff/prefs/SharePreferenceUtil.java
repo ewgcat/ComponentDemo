@@ -346,4 +346,9 @@ public class SharePreferenceUtil {
     public static String getImageUrl() {
         return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_FILE_HOST : BuildConfig.FILE_HOST;
     }
+
+    public static String getH5Url(){
+        return BuildConfig.WORKSPACE_H5_HOST;
+    }
+
 }

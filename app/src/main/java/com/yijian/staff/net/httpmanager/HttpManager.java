@@ -66,6 +66,10 @@ public class HttpManager {
         FILE_HOST = SharePreferenceUtil.getImageUrl();
     }
 
+    public static String getH5Host(){
+        return SharePreferenceUtil.getH5Url();
+    }
+
     /*************************会籍************************/
 
 
@@ -381,6 +385,7 @@ public class HttpManager {
     public static String WORKSPACE_UPLOAD_FILE__URL = "file/newUploadFiles";
     //保存运动表现
     public static String WORKSPACE_SAVE_SPORT_URL = "coach/side/fuzzy/saveOrUpdateYD";
+
 
 
 

@@ -28,6 +28,7 @@ public class TableView extends LinearLayout {
     private int textSize;
     private int textSelectColor;
     private int textNormalColor;
+    private int curssorColor;
     private float scale;
     private int paddingLeft;
     private int paddingRight;
@@ -67,8 +68,10 @@ public class TableView extends LinearLayout {
         paddingRight = typedArray.getInt(R.styleable.StyleTabCommen_paddingRight,15);
         textSelectColor = typedArray.getColor(R.styleable.StyleTabCommen_textSelectColor, Color.parseColor("#000000"));
         textNormalColor = typedArray.getColor(R.styleable.StyleTabCommen_textNormalColor, Color.parseColor("#999999"));
+        curssorColor = typedArray.getColor(R.styleable.StyleTabCommen_curssorColor, Color.parseColor("#333333"));
         scale = typedArray.getFloat(R.styleable.StyleTabCommen_scale, 1f);
         typedArray.recycle();
+        view_curssor.setBackgroundColor(curssorColor);
     }
 
     public void createButton(String... title){

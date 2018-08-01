@@ -8,91 +8,96 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_bussiness_msg_header"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="fitXY"
-            android:src="@mipmap/people" />
+            <ImageView
+                android:id="@+id/iv_bussiness_msg_header"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/people"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_bussiness_msg_header"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_bussiness_msg_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:text="刘葛岩"
+                        android:textColor="#333333"
+                        android:textSize="16sp"/>
+
+                    <ImageView
+                        android:id="@+id/iv_gender"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/lg_man"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_business_msg_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:paddingTop="7dp"
+                    android:text="原力10周年健身卡"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_business_msg_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="5dp"
+                android:text="已成交"
+                android:textColor="#31a4fc"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_bussiness_msg_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_business_msg_time"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:paddingTop="4dp"
-            android:text="刘葛岩"
-            android:textColor="#333333"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/iv_gender"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:src="@mipmap/lg_man" />
-
-
-
-        <TextView
-            android:id="@+id/tv_money"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
             android:gravity="right"
-            android:layout_marginLeft="8dp"
-            android:paddingTop="5dp"
-            android:text="+2000.00"
-            android:textColor="#31a4fc"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:text=" 元"
-            android:textColor="#31a4fc"
-            android:textSize="14sp" />
-
+            android:text="2018-03-06 10:00"
+            android:textColor="#999999"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_business_msg_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:paddingTop="6dp"
-        android:text="原力10周年健身卡原力10周年健身卡原力10周年健身卡原力10周年健身卡原力10周年健身卡原力10周年健身卡"
-        android:textColor="#333333"
-        android:textSize="14sp" />
-
-
-    <TextView
-        android:id="@+id/tv_business_msg_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:padding="6dp"
-        android:text="2018-03-06 10:00"
-        android:textColor="#999999"
-        android:textSize="14sp" />
-
-
     <View
         android:id="@+id/ll_line"
+        android:background="@color/gray"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/gray" />
+        android:layout_height="0.5dp"/>
 </LinearLayout>

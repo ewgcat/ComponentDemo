@@ -75,7 +75,7 @@ public class AddStudentActivity extends MvcBaseActivity {
             @Override
             public void onClick(View v) {
                 if (selectGroupedStudentBean!=null){
-                    Intent intent = new Intent(AddStudentActivity.this, EditSudentCourseActivity.class);
+                    Intent intent = new Intent(AddStudentActivity.this, SetCourseTimeActivity.class);
                     Bundle bundle=new Bundle();
                     bundle.putSerializable("selectGroupedStudentBean",selectGroupedStudentBean);
                     int selectedChildIndex = groupedListAdapter.getSelectedChildIndex();

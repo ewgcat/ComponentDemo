@@ -74,8 +74,10 @@ public class StudentListFragment extends MvcBaseFragment {
         //测试数据
         for (int i = 0; i < 10; i++) {
             StudentBean studentBean = new StudentBean();
-            studentBean.setCourse("增肌课");
+            studentBean.setCourseName("增肌课");
+            studentBean.setCourseTime("30");
             studentBean.setName("学员"+i);
+            studentBean.setSex(i%2);
             studentBean.setTime(Long.valueOf((11+i)));
             dataList.add(studentBean);
         }

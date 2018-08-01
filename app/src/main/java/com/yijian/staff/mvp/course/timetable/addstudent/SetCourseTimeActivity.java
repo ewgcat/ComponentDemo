@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditSudentCourseActivity extends MvcBaseActivity {
+public class SetCourseTimeActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.iv_header)

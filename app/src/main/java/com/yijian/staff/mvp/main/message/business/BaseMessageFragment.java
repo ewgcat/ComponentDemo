@@ -127,7 +127,7 @@ public class BaseMessageFragment extends Fragment {
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
         businessMessageRequestBody.setBusinessType(businessType);
-        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 businessMessageBeans.clear();
@@ -162,7 +162,7 @@ public class BaseMessageFragment extends Fragment {
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
         businessMessageRequestBody.setBusinessType(businessType);
-        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver() {
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 

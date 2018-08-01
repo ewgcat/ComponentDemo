@@ -47,7 +47,7 @@ import okhttp3.RequestBody;
 
 public class HttpManager {
 
-    public static String HOST = SharePreferenceUtil.getHostUrl();
+    public static String HOST = BuildConfig.HOST;
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 

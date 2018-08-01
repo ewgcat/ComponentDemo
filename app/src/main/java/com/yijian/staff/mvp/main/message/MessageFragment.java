@@ -5,12 +5,18 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.main.message.business.BaseMessageFragment;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +111,19 @@ public class MessageFragment extends MvcBaseFragment {
         });
         updateRedPoint();
         setCurrentItem(0);
+        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_business_message",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
 
     }
 

@@ -174,6 +174,7 @@ public class StudentListFragment extends MvcBaseFragment {
     @OnClick(R.id.ll_add_student)
     public void onViewClicked() {
 
-        startActivity(new Intent(getContext(), AddStudentActivity.class));
+        Intent intent = new Intent(getContext(), AddStudentActivity.class);
+        startActivity(intent);
     }
 }

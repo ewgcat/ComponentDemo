@@ -1,5 +1,6 @@
 package com.yijian.staff.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/7/31 11:40:45
  */
-public class GroupedStudentBean {
+public class GroupedStudentBean implements Serializable{
 
     private String name;
     private String headImg;
@@ -46,7 +47,7 @@ public class GroupedStudentBean {
         this.courses = courses;
     }
 
-    public static class CourseBean{
+    public static class CourseBean  implements Serializable{
         private String courseTime;
         private String courseName;
         private Long id;

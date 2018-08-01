@@ -63,6 +63,9 @@ public class GroupedListAdapter extends BaseRecyclerViewAdapter<GroupedStudentBe
         boolean expand = datas.get(groupPos).getGroupItem().isExpand();
         int resId = expand ? R.mipmap.select : R.mipmap.circle_normal;
         ImageLoader.setImageResource(resId, context, holder.ivselect);
+        int resIdsex = groupData.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        ImageLoader.setImageResource(resIdsex,context,holder.ivSex);
+        ImageLoader.setImageResource(groupData.getHeadImg(),context,holder.ivHeader);
     }
 
     @Override
@@ -102,6 +105,10 @@ public class GroupedListAdapter extends BaseRecyclerViewAdapter<GroupedStudentBe
         this.selectChildPosition = 0;
 
         notifyRecyclerViewData();
+    }
+
+    public int getSelectedChildIndex(){
+        return selectChildPosition;
     }
 
 

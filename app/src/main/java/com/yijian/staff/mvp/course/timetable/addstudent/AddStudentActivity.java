@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.course.timetable.addstudent;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -53,6 +55,7 @@ public class AddStudentActivity extends MvcBaseActivity {
     private List<RecyclerViewData> datas = new ArrayList<>();
     private GroupedStudentBean selectGroupedStudentBean;
     private GroupedStudentBean.CourseBean course;
+    private GroupedListAdapter groupedListAdapter;
 
     @Override
     protected int getLayoutID() {
@@ -68,6 +71,23 @@ public class AddStudentActivity extends MvcBaseActivity {
         navigationBar2.setBackClickListener(this);
         navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
         navigationBar2.setmRightTvText("下一步");
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectGroupedStudentBean!=null){
+                    Intent intent = new Intent(AddStudentActivity.this, EditSudentCourseActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("selectGroupedStudentBean",selectGroupedStudentBean);
+                    int selectedChildIndex = groupedListAdapter.getSelectedChildIndex();
+                    course=selectGroupedStudentBean.getCourses().get(selectedChildIndex);
+                    bundle.putSerializable("course",course);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    showToast("请先选择学员!");
+                }
+            }
+        });
         List<GroupedStudentBean.CourseBean> courses = new ArrayList<>();
         GroupedStudentBean.CourseBean courseBean1 = new GroupedStudentBean.CourseBean();
         courseBean1.setCourseName("瑜伽课");
@@ -86,12 +106,18 @@ public class AddStudentActivity extends MvcBaseActivity {
             RecyclerViewData recyclerViewData = new RecyclerViewData(groupedStudentBean, courses, false);
             datas.add(recyclerViewData);
         }
-        GroupedListAdapter groupedListAdapter = new GroupedListAdapter(this, datas);
+        groupedListAdapter = new GroupedListAdapter(this, datas);
         groupedListAdapter.setOnItemClickListener(new OnRecyclerViewListener.OnItemClickListener() {
             @Override
             public void onGroupItemClick(int position, int groupPosition, View view) {
                 RecyclerViewData recyclerViewData = datas.get(groupPosition);
-                selectGroupedStudentBean = (GroupedStudentBean) recyclerViewData.getGroupData();
+                boolean expand = recyclerViewData.getGroupItem().isExpand();
+                if (!expand){
+                    selectGroupedStudentBean = (GroupedStudentBean) recyclerViewData.getGroupData();
+                }else {
+                    selectGroupedStudentBean=null;
+                    course=null;
+                }
                 groupedListAdapter.selectParent(groupPosition);
 
             }

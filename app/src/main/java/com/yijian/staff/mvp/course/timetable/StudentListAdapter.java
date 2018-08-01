@@ -2,11 +2,9 @@ package com.yijian.staff.mvp.course.timetable;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +13,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.StudentBean;
-import com.yijian.staff.mvp.course.timetable.addstudent.AddStudentActivity;
-import com.yijian.staff.mvp.course.timetable.addstudent.SetCourseTimeActivity;
+import com.yijian.staff.mvp.course.timetable.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.CircleProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;

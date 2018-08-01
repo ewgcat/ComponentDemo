@@ -160,21 +160,13 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
 
             String subclassName = huiJiViperBean.getSubclassName();
-            if (subclassName.equals("CustomerInfoVO"))
-
-            { //正式会员
+            if (subclassName.equals("CustomerInfoVO")) { //正式会员
                 tv_role.setText("正式会员");
-            } else if (subclassName.equals("PotentialVO"))
-
-            { // 潜在会员
+            } else if (subclassName.equals("PotentialVO")) { // 潜在会员
                 tv_role.setText("潜在会员");
-            } else if (subclassName.equals("CustomerIntentionVO"))
-
-            { // 意向会员
+            } else if (subclassName.equals("CustomerIntentionVO")) { // 意向会员
                 tv_role.setText("意向会员");
-            } else if (subclassName.equals("CustomerExpireVO"))
-
-            {  // 过期会员
+            } else if (subclassName.equals("CustomerExpireVO")) {  // 过期会员
                 tv_role.setText("过期会员");
             }
         }

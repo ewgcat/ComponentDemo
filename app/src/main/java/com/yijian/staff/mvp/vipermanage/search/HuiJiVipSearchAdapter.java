@@ -147,9 +147,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             Boolean isProtected = huiJiViperBean.isUnderProtected();
             tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);
             iv_visit.setVisibility(isProtected ? View.GONE : View.VISIBLE);
-            iv_visit.setOnClickListener(new View.OnClickListener()
-
-            {
+            iv_visit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String mobile = huiJiViperBean.getMobile();

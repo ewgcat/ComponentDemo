@@ -41,7 +41,7 @@ ext {
     buildToolsVersion = '27.0.3'
     applicationId = "com.yijian.staff"
     versionCode = 15
-    versionName = "1.3.0"
+    versionName = "1.2.0"
     supportLibVersion = "27.1.1"
     designVersion = "27.1.1"
     dbVersion = 3

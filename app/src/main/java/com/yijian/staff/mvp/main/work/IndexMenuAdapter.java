@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -100,7 +101,7 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     String path = menuModel.getPath();
                     if (TextUtils.isEmpty(path)) {
-
+                        Toast.makeText(context,"此版本不能提供该服务,请更新最新版本！",Toast.LENGTH_SHORT).show();
                     } else {
                         List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
                         PermissionUtils.getInstance().setMenuKey(menuModel.getMenuKey());

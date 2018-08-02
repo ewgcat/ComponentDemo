@@ -25,6 +25,7 @@ import java.util.List;
 
 public class AdapterLesson extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+
     private static final String TAG = "AdapterLesson";
     private Context context;
     private List<Object> actionList = new ArrayList<>();

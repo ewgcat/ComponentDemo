@@ -87,7 +87,7 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void bind(Context context, IndexDataInfo.MenuModelListBean.SubMeneModelListBean menuModel) {
-            ImageLoader.setImageResource(BuildConfig.FILE_HOST + menuModel.getIcon(), context, menu_icon);
+            ImageLoader.setImageResource(HttpManager.getFileHost() + menuModel.getIcon(), context, menu_icon);
             menu_title.setText(menuModel.getTitle());
             item_grid.setOnClickListener(new View.OnClickListener() {
                 @Override

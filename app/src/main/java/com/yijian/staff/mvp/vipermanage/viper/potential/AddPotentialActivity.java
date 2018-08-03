@@ -141,7 +141,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
     private void sendRequest() {
 
-        String name = etName.getText().toString();
+        String name = etName.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
         String healthStatus = tvBodyStatus.getText().toString().trim();
         String fitnessGoal = tvFitnessGoal.getText().toString().trim();

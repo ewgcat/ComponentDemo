@@ -146,7 +146,7 @@ public class CommonUtil {
     }
 
     public static boolean isMatchName(String s) {
-        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z]+$");
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA5a-zA-Z]+$");
         Matcher m = p.matcher(s);
         return m.matches();
     }

@@ -154,7 +154,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
         }else {
             boolean b = CommonUtil.isMatchName(name);
             if (!b){
-                Toast.makeText(AddPotentialActivity.this, "名字只能是数字,英文字母和中文!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddPotentialActivity.this, "名字只能是英文字母和中文!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

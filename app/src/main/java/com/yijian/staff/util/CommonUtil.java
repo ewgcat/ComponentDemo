@@ -145,6 +145,19 @@ public class CommonUtil {
         return m.matches();
     }
 
+     /**
+     * 校验Tag Alias 只能是数字,英文字母和中文
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isMatchName(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
+    }
+
+
 
     /**
      * 取得JPUSH_APPKEY

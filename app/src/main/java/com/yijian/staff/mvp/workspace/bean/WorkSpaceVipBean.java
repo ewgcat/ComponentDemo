@@ -7,25 +7,22 @@ public class WorkSpaceVipBean implements Serializable {
 
     /**
      * age : 0
-     * memberId : yuanli123456789
-     * name : 原力刷卡进场测试会员
-     * sex : 1
-     * mobile : 13318745112
-     * dictItemKey : 0
-     * underProtected : false
-     * headImg : /url
-     * subclassName : CoachPotentialStudentVO
+     * birthday : 2018-08-03T01:32:47.665Z
+     * firstCardTime : 2018-08-03T01:32:47.665Z
+     * headPath : string
+     * memberId : string
+     * name : string
+     * typeName : string
      */
 
     private int age;
+    private String birthday;
+    private String firstCardTime;
+    private String headPath;
     private String memberId;
     private String name;
-    private String sex;
-    private String mobile;
-    private int dictItemKey;
-    private boolean underProtected;
-    private String headImg;
-    private String subclassName;
+    private String gender;
+    private String typeName;
 
     public int getAge() {
         return age;
@@ -33,6 +30,30 @@ public class WorkSpaceVipBean implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getFirstCardTime() {
+        return firstCardTime;
+    }
+
+    public void setFirstCardTime(String firstCardTime) {
+        this.firstCardTime = firstCardTime;
+    }
+
+    public String getHeadPath() {
+        return headPath;
+    }
+
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
     }
 
     public String getMemberId() {
@@ -51,51 +72,19 @@ public class WorkSpaceVipBean implements Serializable {
         this.name = name;
     }
 
-    public String getSex() {
-        return sex;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getGender() {
+        return gender;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public int getDictItemKey() {
-        return dictItemKey;
-    }
-
-    public void setDictItemKey(int dictItemKey) {
-        this.dictItemKey = dictItemKey;
-    }
-
-    public boolean isUnderProtected() {
-        return underProtected;
-    }
-
-    public void setUnderProtected(boolean underProtected) {
-        this.underProtected = underProtected;
-    }
-
-    public String getHeadImg() {
-        return headImg;
-    }
-
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
-    }
-
-    public String getSubclassName() {
-        return subclassName;
-    }
-
-    public void setSubclassName(String subclassName) {
-        this.subclassName = subclassName;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

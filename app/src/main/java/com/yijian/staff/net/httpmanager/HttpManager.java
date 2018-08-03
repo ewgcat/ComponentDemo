@@ -54,7 +54,6 @@ public class HttpManager {
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
     private static String HOST;
-    private static String FILE_HOST;
 
     public static ApiService getApiService() {
         return apiService;
@@ -63,7 +62,6 @@ public class HttpManager {
     public static void setWorkSpaceHost(boolean isWorkspace){
         SharePreferenceUtil.setWorkSpaceVersion(isWorkspace);
         HOST = SharePreferenceUtil.getHostUrl();
-        FILE_HOST = SharePreferenceUtil.getImageUrl();
     }
 
     public static String getH5Host(){
@@ -921,7 +919,7 @@ public class HttpManager {
             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-            Observable<JSONObject> observable = apiService.upLoadImage(FILE_HOST + url, body);
+            Observable<JSONObject> observable = apiService.upLoadImage(HOST + url, body);
             execute(observable, observer);
         }
     }
@@ -943,7 +941,7 @@ public class HttpManager {
 
             List<MultipartBody.Part> parts = new ArrayList<>();
             parts.add(body);
-            Observable<JSONObject> observable = apiService.upLoadImageHasParam(FILE_HOST + url,headers, fileType, parts);
+            Observable<JSONObject> observable = apiService.upLoadImageHasParam(HOST + url,headers, fileType, parts);
             execute(observable, observer);
         }
     }

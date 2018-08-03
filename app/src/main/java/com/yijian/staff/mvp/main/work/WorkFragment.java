@@ -75,6 +75,7 @@ public class WorkFragment extends MvcBaseFragment {
     }
 
 
+    @Override
     public void initView() {
         lifecycle = this.getLifecycle();
         StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
@@ -231,8 +232,8 @@ public class WorkFragment extends MvcBaseFragment {
         switch (view.getId()) {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
-//                startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-                startActivity(new Intent(getContext(), WorkSpaceActivity.class));
+                startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
+//                startActivity(new Intent(getContext(), WorkSpaceActivity.class));
 
                 break;
             case R.id.ll_jiedai:

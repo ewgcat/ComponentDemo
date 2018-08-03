@@ -112,7 +112,8 @@ public class SportFragment1 extends BaseSpaceFragment {
     }
 
     private void initData() {
-        tv_sex.setText("1".equals(ActivityUtils.workSpaceVipBean.getSex()) ? "男" : "女");
+        tv_birth.setText(ActivityUtils.workSpaceVipBean.getBirthday());
+        tv_sex.setText("1".equals(ActivityUtils.workSpaceVipBean.getGender()) ? "男" : "女");
         for (int i = 150; i <= 190; i++) {
             manHeightList.add(String.valueOf(i));
         }
@@ -180,7 +181,7 @@ public class SportFragment1 extends BaseSpaceFragment {
         if (SportTestActivity.STEP1.equals(type)) {
             //            SportStepRequedtBody sportStepRequedtBody = new SportStepRequedtBody();
             sportTestActivity = (SportTestActivity) mContext;
-            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getSex()));
+            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
             if (TextUtils.isEmpty(tv_birth.getText().toString())) {
                 Toast.makeText(mContext,"生日不能为空",Toast.LENGTH_SHORT).show();
                 return;

@@ -86,16 +86,16 @@ public class ShareTestActivity extends MvcBaseActivity {
     private void initData() {
         recordId = getIntent().getExtras().getString("recordId");
         if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
-//            webUrl = String.format("http://192.168.2.32:8080/#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+//            webUrl = String.format("http://192.168.2.101:8080/#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
             webUrl = String.format( HttpManager.getH5Host() + "#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
         }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)){
-//            webUrl = String.format("http://192.168.2.32:8080/#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+//            webUrl = String.format("http://192.168.2.101:8080/#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
             webUrl = String.format( HttpManager.getH5Host() + "#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
         }
         emptyView.setButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                web_view.loadUrl(webUrl);
+                web_view.reload();
             }
         });
         web_view.addAppJavaScript(new JavaScriptInterface.CallBackListener() {
@@ -138,13 +138,16 @@ public class ShareTestActivity extends MvcBaseActivity {
             public void onLoadFinish() {
                 hideLoading();
                 emptyView.setVisibility(View.GONE);
+                web_view.setVisibility(View.VISIBLE);
                 navigationBar2.setBackLLVisiable(View.VISIBLE);
                 navigationBar2.setmRightIv(R.mipmap.share);
+
             }
 
             @Override
             public void onLoadError() {
                 emptyView.setVisibility(View.VISIBLE);
+                web_view.setVisibility(View.GONE);
                 hideLoading();
             }
         });
@@ -155,8 +158,10 @@ public class ShareTestActivity extends MvcBaseActivity {
             }
 
             @Override
-            public void onProgressChanged(String title) {
-                navigationBar2.setTitle(title);
+            public void onProgressChanged(String title, int newProgress) {
+                if(newProgress == 100){
+                    navigationBar2.setTitle(title);
+                }
             }
         });
 

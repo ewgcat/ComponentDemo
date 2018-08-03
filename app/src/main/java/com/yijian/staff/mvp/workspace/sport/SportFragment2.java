@@ -61,7 +61,7 @@ public class SportFragment2 extends BaseSpaceFragment {
         if (SportTestActivity.STEP2.equals(type)) {
 //            SportStepRequedtBody sportStepRequedtBody = new SportStepRequedtBody();
             sportTestActivity = (SportTestActivity) mContext;
-            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getSex()));
+            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
             if (TextUtils.isEmpty(et_zhanli.getText().toString())) {
                 Toast.makeText(mContext,"单脚闭眼站立时间不能为空",Toast.LENGTH_SHORT).show();
                 return;

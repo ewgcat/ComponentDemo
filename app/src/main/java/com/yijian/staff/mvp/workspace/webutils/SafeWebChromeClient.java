@@ -31,9 +31,7 @@ public class SafeWebChromeClient extends WebChromeClient {
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);
-        if(newProgress == 100){
-            listener.onProgressChanged(view.getTitle());
-        }
+        listener.onProgressChanged(view.getTitle(), newProgress);
     }
 
     /**
@@ -104,7 +102,7 @@ public class SafeWebChromeClient extends WebChromeClient {
 
     public interface CallWebChromeClientBackListener {
         void onReceivedTitle(WebView view, String title);
-        void onProgressChanged(String title);
+        void onProgressChanged(String title, int newProgress);
     }
 
 

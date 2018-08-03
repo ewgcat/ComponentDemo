@@ -5,11 +5,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.OrientationEventListener;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -57,6 +59,7 @@ public class PerfectActivity extends MvcBaseActivity {
     @BindView(R.id.space_view)
     Space space_view;
     byte[] imgData = null;
+    private int screenOritation = 0;
 
     @Override
     protected int getLayoutID() {
@@ -66,6 +69,38 @@ public class PerfectActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        OrientationEventListener mOrientationListener = new OrientationEventListener(this,
+                SensorManager.SENSOR_DELAY_NORMAL) {
+
+            @Override
+            public void onOrientationChanged(int orientation) {
+                if (orientation == OrientationEventListener.ORIENTATION_UNKNOWN) {
+                    return;
+                }
+                if (orientation > 350 || orientation < 10) { //0度
+                    orientation = 0;
+                    PerfectActivity.this.screenOritation = orientation + 90;
+                } else if (orientation > 80 && orientation < 100) { //90度
+                    orientation = 90;
+                    PerfectActivity.this.screenOritation = orientation + 90;
+                } else if (orientation > 170 && orientation < 190) { //180度
+                    orientation = 180;
+                    PerfectActivity.this.screenOritation = orientation + 90;
+                } else if (orientation > 260 && orientation < 280) { //270度
+                    orientation = 270;
+                    PerfectActivity.this.screenOritation = orientation + 90;
+                }
+                PerfectActivity.this.screenOritation = orientation + 90;
+//                Log.e("Test", "orientation====" + orientation);
+            }
+        };
+        if (mOrientationListener.canDetectOrientation()) {
+            Log.v("Test", "Can detect orientation");
+            mOrientationListener.enable();
+        } else {
+            Log.v("Test", "Cannot detect orientation");
+            mOrientationListener.disable();
+        }
         initTitle();
         initUi();
     }
@@ -121,9 +156,11 @@ public class PerfectActivity extends MvcBaseActivity {
                 space_view.setVisibility(View.GONE);
                 break;
             case R.id.iv_sure: //确定
+                showLoading();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
+                Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                roateBitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
                 byte[] datas = baos.toByteArray();
                 StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
 
@@ -131,6 +168,9 @@ public class PerfectActivity extends MvcBaseActivity {
                     @Override
                     public void onSuccess(JSONObject result) {
                         try {
+                            hideLoading();
+                            roateBitmap.recycle();
+                            bitmap.recycle();
                             JSONArray jsonArray = result.getJSONArray("dataList");
                             String imgUrl = jsonArray.getString(0);
                             Bundle bundle = new Bundle();
@@ -143,6 +183,7 @@ public class PerfectActivity extends MvcBaseActivity {
 
                     @Override
                     public void onFail(String msg) {
+                        hideLoading();
                         Toast.makeText(PerfectActivity.this,msg,Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -70,7 +70,7 @@ public class PerfectTestActivity extends MvcBaseActivity {
         if (getIntent().getExtras() != null) {
             imgUrl = getIntent().getExtras().getString("imgUrl");
         }
-        tv_sex.setText("1".equals(ActivityUtils.workSpaceVipBean.getSex()) ? "男" : "女");
+        tv_sex.setText("1".equals(ActivityUtils.workSpaceVipBean.getGender()) ? "男" : "女");
         //初始化性别集合
         sexList.add("男");
         sexList.add("女");
@@ -96,8 +96,8 @@ public class PerfectTestActivity extends MvcBaseActivity {
             case R.id.btn_finish: //完成
                 showLoading();
                 PerfectRequestBody perfectRequestBody = new PerfectRequestBody();
-//                perfectRequestBody.setGender("男".equals(tv_sex.getText()) ? 1 : 0);
-                perfectRequestBody.setGender(1);
+                perfectRequestBody.setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
+//                perfectRequestBody.setGender(1);
                 if (TextUtils.isEmpty(tv_height.getText().toString())) {
                     Toast.makeText(PerfectTestActivity.this, "身高不能为空", Toast.LENGTH_SHORT).show();
                 } else {

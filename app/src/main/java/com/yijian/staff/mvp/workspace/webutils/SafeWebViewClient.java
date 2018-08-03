@@ -2,6 +2,9 @@ package com.yijian.staff.mvp.workspace.webutils;
 
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -12,6 +15,7 @@ import android.webkit.WebViewClient;
 public class SafeWebViewClient extends WebViewClient {
 
     private CallLoadBackListener callBack;
+    private boolean isSuccess = true;
 
     public SafeWebViewClient(CallLoadBackListener callBack) {
         this.callBack = callBack;
@@ -48,6 +52,7 @@ public class SafeWebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
+        isSuccess = true;
     }
 
     /**
@@ -59,9 +64,10 @@ public class SafeWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        if (callBack != null)
-        {
-            callBack.onLoadFinish();
+        if (callBack != null) {
+            if (isSuccess) {
+                callBack.onLoadFinish();
+            }
         }
     }
 
@@ -95,11 +101,21 @@ public class SafeWebViewClient extends WebViewClient {
      * @param request
      * @param error
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
         super.onReceivedError(view, request, error);
+        Log.e("WebView", "error==" + error.getErrorCode() + "   " + error.getDescription());
         if (callBack != null) {
-            callBack.onLoadError();
+            if (request.isForMainFrame()) {
+                // 在这里显示自定义错误页
+                callBack.onLoadError();
+                isSuccess = false;
+            }
+            if ("net::ERR_INTERNET_DISCONNECTED".equals(error.getDescription())) {
+                callBack.onLoadError();
+                isSuccess = false;
+            }
         }
     }
 
@@ -118,6 +134,7 @@ public class SafeWebViewClient extends WebViewClient {
 
     public interface CallLoadBackListener {
         void onLoadFinish();
+
         void onLoadError();
     }
 

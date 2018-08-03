@@ -62,7 +62,7 @@ public class SportFragment3 extends BaseSpaceFragment {
         if (SportTestActivity.STEP3.equals(type)) {
 //            SportStepRequedtBody sportStepRequedtBody = new SportStepRequedtBody();
             sportTestActivity = (SportTestActivity) mContext;
-            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getSex()));
+            sportTestActivity.getSportStepRequedtBody().setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
             if (TextUtils.isEmpty(et_qianqu.getText().toString())) {
                 Toast.makeText(mContext,"坐位体前屈距离不能为空",Toast.LENGTH_SHORT).show();
                 return;

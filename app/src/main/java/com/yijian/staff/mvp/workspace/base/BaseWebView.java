@@ -35,11 +35,11 @@ public class BaseWebView extends WebView {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         // webSettings.setUseWideViewPort(true); //设置此属性，可任意比例缩放
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSettings.setDefaultTextEncodingName("utf-8");
-        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
     }

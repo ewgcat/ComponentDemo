@@ -58,11 +58,12 @@ public class SearchOprationActivity extends MvcBaseActivity {
     private void initData() {
         Bundle bundle = getIntent().getExtras();
         workSpaceVipBean = (WorkSpaceVipBean) bundle.getSerializable("workSpaceVipBean");
-        ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadImg(), mContext, iv_header);
-        iv_gender.setImageResource("1".equals(workSpaceVipBean.getSex()) ? R.mipmap.lg_man : R.mipmap.lg_women);
+        ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadPath(), mContext, iv_header);
+        iv_gender.setImageResource("1".equals(workSpaceVipBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         tv_name.setText(workSpaceVipBean.getName());
         tv_age.setText(String.valueOf(workSpaceVipBean.getAge()));
-        String subclassName = workSpaceVipBean.getSubclassName();
+        tv_role.setText(workSpaceVipBean.getTypeName());
+       /* String subclassName = workSpaceVipBean.getSubclassName();
         switch (subclassName) {
             case "CustomerInfoVO":
                 tv_role.setText("正式会员");
@@ -95,7 +96,7 @@ public class SearchOprationActivity extends MvcBaseActivity {
                 tv_role.setText("今日来访学员");
                 break;
             default:
-        }
+        }*/
     }
 
     @OnClick({R.id.btn_start, R.id.btn_record})

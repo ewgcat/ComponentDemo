@@ -151,6 +151,12 @@ public class AddPotentialActivity extends MvcBaseActivity {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(AddPotentialActivity.this, "名字不能为空!", Toast.LENGTH_SHORT).show();
             return;
+        }else {
+            boolean b = CommonUtil.isMatchName(name);
+            if (!b){
+                Toast.makeText(AddPotentialActivity.this, "名字只能是数字,英文字母和中文!", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         if (TextUtils.isEmpty(phone)) {
             Toast.makeText(AddPotentialActivity.this, "手机号不能为空!", Toast.LENGTH_SHORT).show();

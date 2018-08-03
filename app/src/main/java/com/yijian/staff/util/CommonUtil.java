@@ -145,6 +145,12 @@ public class CommonUtil {
         return m.matches();
     }
 
+    public static boolean isMatchName(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
+    }
+
 
     /**
      * 取得JPUSH_APPKEY
@@ -196,7 +202,7 @@ public class CommonUtil {
     public static String getAccessStatisticsVersionName(Context context) {
         try {
             PackageInfo manager = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return "Android_"+manager.versionName;
+            return "Android_" + manager.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             return "Unknown";
         }
@@ -257,8 +263,6 @@ public class CommonUtil {
 
         return uuid;
     }
-
-
 
 
     /**

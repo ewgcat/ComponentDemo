@@ -18,13 +18,21 @@ public class AccessStatisticsRequestBody {
 
     private String moduleCode;
     private String userId;
-    private String version;
+    private String version="1.3";
+    private String terminalVersion;
 
+    public String getTerminalVersion() {
+        return terminalVersion;
+    }
 
-    public AccessStatisticsRequestBody(String moduleCode, String version) {
+    public void setTerminalVersion(String terminalVersion) {
+        this.terminalVersion = terminalVersion;
+    }
+
+    public AccessStatisticsRequestBody(String moduleCode, String terminalVersion) {
         this.moduleCode = moduleCode;
         this.userId = SharePreferenceUtil.getUserId();
-        this.version = version;
+        this.terminalVersion = terminalVersion;
     }
 
     public String getModuleCode() {

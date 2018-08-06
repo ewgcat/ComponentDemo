@@ -85,53 +85,75 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity) context, iv_header);
             iv_gender.setImageResource(1 == huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
+
+            String subclassName = huiJiViperBean.getSubclassName();
+
+            if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                tv_role.setText("正式会员");
+            } else if (subclassName.equals("PotentialVO")) {//潜在会员
+                tv_role.setText("潜在会员");
+            } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+                tv_role.setText("意向会员");
+            } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+                tv_role.setText("过期会员");
+            } else if (subclassName.equals("CoachInfoVO")) {//正式学员
+                tv_role.setText("正式学员");
+            } else if (subclassName.equals("CoachIntentionVO")) {//意向学员
+                tv_role.setText("意向学员");
+            } else if (subclassName.equals("CoachExpireVO")) {//过期学员
+                tv_role.setText("过期学员");
+            } else if (subclassName.equals("CoachPotentialStudentVO")) {//潜在学员
+                tv_role.setText("潜在学员");
+            }
+
             rel_content.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
                     String subclassName = huiJiViperBean.getSubclassName();
+
                     if (subclassName.equals("CustomerInfoVO")) { //正式会员
                         PermissionUtils.getInstance().setMenuKey("app_formal_member");
                         Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         intent.putExtra("memberId", huiJiViperBean.getMemberId());
                         context.startActivity(intent);
-                    } else if (subclassName.equals("PotentialVO")) {
+                    } else if (subclassName.equals("PotentialVO")) {//潜在会员
                         PermissionUtils.getInstance().setMenuKey("app_potential_member");
                         Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                         intent.putExtra("id", huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
-                    } else if (subclassName.equals("CustomerIntentionVO")) {
+                    } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                         PermissionUtils.getInstance().setMenuKey("app_intention_member");
                         Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                         intent.putExtra("id", huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
-                    } else if (subclassName.equals("CustomerExpireVO")) {
+                    } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                         PermissionUtils.getInstance().setMenuKey("app_expire_member");
                         Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         intent.putExtra("id", huiJiViperBean.getMemberId());
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
-                    } else if (subclassName.equals("CoachInfoVO")) {
+                    } else {
                         //0 正式学员 （有会籍信息）3、 过期学员;、1、意向学员  2、 潜在学员（无会籍信息）
                         Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                        if (subclassName.equals("CoachInfoVO")) {
+                        if (subclassName.equals("CoachInfoVO")) {//正式学员
                             PermissionUtils.getInstance().setMenuKey("app_formal_student");
                             intent.putExtra("vipType", 0);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
-                        } else if (subclassName.equals("CoachIntentionVO")) {
+                        } else if (subclassName.equals("CoachIntentionVO")) {//意向学员
                             PermissionUtils.getInstance().setMenuKey("app_intention_student");
                             intent.putExtra("vipType", 1);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
-                        } else if (subclassName.equals("CoachExpireVO")) {
+                        } else if (subclassName.equals("CoachExpireVO")) {//过期学员
                             PermissionUtils.getInstance().setMenuKey("app_expire_student");
                             intent.putExtra("vipType", 3);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
-                        } else {
+                        } else if (subclassName.equals("CoachPotentialStudentVO")) {//潜在学员
                             PermissionUtils.getInstance().setMenuKey("app_potential_student");
                             intent.putExtra("vipType", 2);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
@@ -159,16 +181,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 }
             });
 
-            String subclassName = huiJiViperBean.getSubclassName();
-            if (subclassName.equals("CustomerInfoVO")) { //正式会员
-                tv_role.setText("正式会员");
-            } else if (subclassName.equals("PotentialVO")) { // 潜在会员
-                tv_role.setText("潜在会员");
-            } else if (subclassName.equals("CustomerIntentionVO")) { // 意向会员
-                tv_role.setText("意向会员");
-            } else if (subclassName.equals("CustomerExpireVO")) {  // 过期会员
-                tv_role.setText("过期会员");
-            }
+
         }
     }
 

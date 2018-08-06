@@ -393,18 +393,22 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay() < dayOfMonth) {
+
+                            String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
+                            String  s1=""+ year+month+dayOfMonth;
+                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                                if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
+                                    if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
+                                        tvStartTime.setText("");
+                                        tvEndTime.setText("");
+                                        Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }else {
                                 tvStartTime.setText("");
                                 Toast.makeText(getActivity(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
+                            }
 
-                            }
-                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
-                                if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
-                                    tvStartTime.setText("");
-                                    tvEndTime.setText("");
-                                    Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
-                                }
-                            }
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));
@@ -442,19 +446,20 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-                            if (DateUtil.getCurrentDay() < dayOfMonth) {
+                            String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
+                            String  s1=""+ year+month+dayOfMonth;
+                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                                if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
+                                    if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
+                                        tvStartTime.setText("");
+                                        tvEndTime.setText("");
+                                        Toast.makeText(getActivity(), "结束时间不得大于开始时间", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }else {
                                 tvEndTime.setText("");
                                 Toast.makeText(getActivity(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
-
                             }
-                            if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
-                                if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
-                                    tvStartTime.setText("");
-                                    tvEndTime.setText("");
-                                    Toast.makeText(getActivity(), "结束时间不得大于开始时间", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH));

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
 
 
 /**
@@ -39,7 +40,7 @@ public class LoadingDialog extends Dialog {
         if (!activity.isDestroyed()) {
             Glide.with(activity).load(R.drawable.loading).into(loading);
         }else {
-            Glide.with(getContext()).load(R.drawable.loading).into(loading);
+            Glide.with(CustomApplication.getInstance().getApplicationContext()).load(R.drawable.loading).into(loading);
         }
         Window dialogWindow = this.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);

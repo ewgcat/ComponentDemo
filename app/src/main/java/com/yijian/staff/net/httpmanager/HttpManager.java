@@ -320,6 +320,7 @@ public class HttpManager {
     //教练  会员管理界面：打电话回访,通知后台
     public static String GET_VIP_COACH_HUI_FANG_CALL_PHONE_URL = "coach/add-record/call-for-interview";
 
+    //统计
     public static String POST_ACCESS_STATISTICS_URL = "syslog/addAccessLog";
 
 
@@ -406,7 +407,7 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
-    //登陆
+    //统计
     public static void postAccessStatistics(AccessStatisticsRequestBody accessStatisticsRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();

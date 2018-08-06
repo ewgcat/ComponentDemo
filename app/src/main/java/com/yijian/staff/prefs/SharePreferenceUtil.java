@@ -346,7 +346,6 @@ public class SharePreferenceUtil {
     }
 
     public static String getHostUrl() {
-        Log.e("LOGIN_URL","getHostUrl()");
         return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_HOST : BuildConfig.HOST;
     }
 

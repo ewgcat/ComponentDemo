@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.setclass.orderclass.OrderClassDayFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity;
@@ -22,9 +23,14 @@ import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -86,6 +92,19 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     }
 
     private void initView() {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_course_appoint_info",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
         pushDate = getIntent().getStringExtra("date");
         Calendar calendar = Calendar.getInstance();
         currentDay = CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -103,7 +122,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.reception_activity_navigation_bar2);
-        navigationBar2.setTitle("约课");
+        navigationBar2.setTitle("排课信息");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
     }
@@ -205,6 +224,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
             Logger.i(TAG,"push_message");
+
     }
     
 }

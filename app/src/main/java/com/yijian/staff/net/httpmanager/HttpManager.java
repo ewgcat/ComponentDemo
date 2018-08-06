@@ -415,11 +415,13 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-
-            Observable<JSONObject> loginObservable = apiService.postAccessStatistics(HOST + POST_ACCESS_STATISTICS_URL,headers, accessStatisticsRequestBody);
+            List<AccessStatisticsRequestBody> list = new ArrayList<>();
+            list.add(accessStatisticsRequestBody);
+            Observable<JSONObject> loginObservable = apiService.postAccessStatistics(POST_ACCESS_STATISTICS_URL, headers, list);
             execute(loginObservable, observer);
         }
     }
+
 
     //保存教练回访结果
     public static void postAddCoachHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
@@ -495,11 +497,12 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> loginObservable = apiService.postAddPotential(HOST + ADD_POTENTIAL_URL, headers, addPotentialRequestBody);
+            Observable<JSONObject> loginObservable = apiService.postAddPotential(ADD_POTENTIAL_URL, headers, addPotentialRequestBody);
 
             execute(loginObservable, observer);
         }
     }
+
 
     //添加潜在
     public static void getHuiJiInviteRecord(HuiJiInviteListRequestBody body, Observer<JSONObject> observer) {

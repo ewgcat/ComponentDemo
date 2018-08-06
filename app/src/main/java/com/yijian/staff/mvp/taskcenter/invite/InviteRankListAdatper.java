@@ -35,7 +35,7 @@ public class InviteRankListAdatper extends RecyclerView.Adapter<InviteRankListAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank, parent, false);
-        InviteRankListAdatper.ViewHolder holder = new InviteRankListAdatper.ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 

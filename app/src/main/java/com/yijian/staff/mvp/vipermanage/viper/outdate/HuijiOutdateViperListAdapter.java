@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm;
+import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
@@ -82,8 +83,9 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-//                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                    Intent intent = new Intent(context, HuiJiViperDetailActivity_ycm.class);
+//                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
+                    PermissionUtils.getInstance().setMenuKey("app_expire_member");
+                    Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     intent.putExtra("memberId", huiJiViperBean.getMemberId());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
 //                    intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());

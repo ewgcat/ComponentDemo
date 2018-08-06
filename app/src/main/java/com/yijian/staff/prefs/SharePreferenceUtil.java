@@ -3,7 +3,6 @@ package com.yijian.staff.prefs;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.ApplicationHolder;
@@ -328,10 +327,18 @@ public class SharePreferenceUtil {
 
     }
 
+    public static boolean getAppSellerBuiness(){
+        return getBoolean(KEY_SELLER_BUSINESS, false);
 
+    }
 
     public static void setWorkSpaceVersion(boolean b) {
          setBoolean(KEY_IS_WORKSPACE_VERSION, b);
+    }
+
+    public static boolean getAppCourseBuiness(){
+        return getBoolean(KEY_COURSE_BUSINESS, false);
+
     }
 
     public static boolean isWorkSpaceVersion() {

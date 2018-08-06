@@ -15,16 +15,12 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent.ProtentialOrIntentViperDetailActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yangk on 2018/3/5.
@@ -88,8 +84,9 @@ public class HuijiIntentViperListAdapter extends RecyclerView.Adapter<HuijiInten
                 @Override
                 public void onClick(View v) {
                     //viperDetailBean
-//                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
-                    Intent intent = new Intent(context, HuijiIntentViperDetailActivity.class);
+//                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
+                    PermissionUtils.getInstance().setMenuKey("app_intention_member");
+                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                     intent.putExtra("id", huiJiViperBean.getMemberId());
                     intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());

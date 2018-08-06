@@ -57,7 +57,6 @@
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -163,7 +162,7 @@
             android:screenOrientation="portrait" />
         <!-- 会籍 意向会员详情 -->
         <activity
-            android:name=".mvp.vipermanage.viper.intent.HuijiIntentViperDetailActivity"
+            android:name=".mvp.vipermanage.viper.detail.protentialorintent.ProtentialOrIntentViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 会籍 过期会员 -->
         <activity
@@ -198,14 +197,14 @@
 
         <!-- 教练 会员详情 -->
         <activity
-            android:name=".mvp.vipermanage.student.detail.CoachViperDetailActivity_ycm"
+            android:name=".mvp.vipermanage.student.detail.CoachViperDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 教练 报价完成 -->
         <activity
             android:name=".mvp.price.courseprice.CoachClassBaoJiaCompleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.HuiJiViperDetailActivity_ycm"
+            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.huiji.invitation.list.HuiJiInvitationListActivity"
@@ -562,7 +561,7 @@
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.SelectAddressActivity"
+            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
@@ -572,9 +571,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.taskcenter.TaskCenterActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.taskcenter.list.RankListActivity"
             android:screenOrientation="portrait" />
@@ -597,7 +594,6 @@
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <activity android:name=".mvp.course.timetable.EditCourseTimeTableActivity"></activity>
     </application>
 
 </manifest>

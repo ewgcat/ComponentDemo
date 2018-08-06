@@ -72,7 +72,7 @@ public class CoachPotentialViperListActivity extends MvcBaseActivity {
     private void initView() {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_intention_student",version);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_potential_student",version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {

@@ -35,7 +35,7 @@ public class AddViperRankListAdatper extends RecyclerView.Adapter<AddViperRankLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank, parent, false);
-        AddViperRankListAdatper.ViewHolder holder = new AddViperRankListAdatper.ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 

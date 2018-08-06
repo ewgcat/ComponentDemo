@@ -35,7 +35,7 @@ public class VisitRankListAdatper extends RecyclerView.Adapter<VisitRankListAdat
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank, parent, false);
-        VisitRankListAdatper.ViewHolder holder = new VisitRankListAdatper.ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 

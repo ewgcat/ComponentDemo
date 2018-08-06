@@ -7,6 +7,7 @@
     android:background="@color/white">
 
 
+    <include layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
 
 
 </LinearLayout>

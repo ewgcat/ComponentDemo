@@ -30,7 +30,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp">
 
@@ -78,17 +77,43 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="280dp"
                     android:gravity="center">
 
                 <ImageView
                         android:id="@+id/iv"
-                        android:layout_width="280dp"
-                        android:layout_height="280dp"
+                        android:layout_width="240dp"
+                        android:layout_height="240dp"
                         android:scaleType="fitXY"/>
-            </LinearLayout>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:background="#80000000"
+                    android:id="@+id/refresh"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="240dp"
+                    android:layout_height="240dp">
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="二维码已失效,请刷新"
+                        android:layout_width="match_parent"
+                        android:textSize="18sp"
+                        android:layout_height="80dp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:background="@drawable/white_button_bg"
+                        android:textColor="@color/white"
+                        android:text="刷    新"
+                        android:layout_width="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

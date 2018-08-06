@@ -360,6 +360,9 @@ public class HttpManager {
     //地区列表
     public static String QUERY_ADDRESS_URL = HOST + "province";
 
+    //列表
+    public static String QUERY_ENTRANCE_QR = HOST + "user/getEntranceParam";
+
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {

@@ -1,43 +1,56 @@
 package com.yijian.staff.mvp.main.message;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
-import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.main.message.business.BaseMessageFragment;
+import com.yijian.staff.mvp.main.message.business.BusinessMessageListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.PagerSlidingTabStrip;
+import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 public class MessageFragment extends MvcBaseFragment {
 
 
     private static final String TAG = "MessageFragment";
-    @BindView(R.id.tabs)
-    PagerSlidingTabStrip tabs;
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
-    private List<String> mTitleList = new ArrayList<>();
-    private List<Fragment> fragmentList = new ArrayList<>();
+    @BindView(R.id.rv)
+    RecyclerView rv;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.empty_view)
+    EmptyView emptyView;
 
-    private int currentItem = 0;
-    private BaseMessageFragment fragment1;
-    private BaseMessageFragment fragment2;
+    private int pageSize = 10;
+    private int pageNum = 1;
+    private int businessType = 0;
+    private BusinessMessageListAdapter businessMessageListAdapter;
+    private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
+
+
 
     @Override
     public int getLayoutId() {
@@ -51,68 +64,9 @@ public class MessageFragment extends MvcBaseFragment {
 
 
     public void initComponent(View view) {
-        initIndicatorAndViewPager();
-    }
 
-    private void initIndicatorAndViewPager() {
-        boolean appSellerBuiness = SharePreferenceUtil.getAppSellerBuiness();
-        if (appSellerBuiness){
-            mTitleList.add("会籍消息");
-            fragment1 = new BaseMessageFragment(0);
-            fragmentList.add(fragment1);
-        }
-        boolean appCourseBuiness = SharePreferenceUtil.getAppCourseBuiness();
-        if (appCourseBuiness){
-            mTitleList.add("课程消息");
-            fragment2 = new BaseMessageFragment(1);
-            fragmentList.add(fragment2);
-        }
-
-        MessagePagerAdapter messagePagerAdapter = new MessagePagerAdapter(getFragmentManager(), fragmentList, mTitleList);
-        viewPager.setAdapter(messagePagerAdapter);
-        tabs.setViewPager(viewPager);
-        tabs.setOnPagerTitleItemClickListener(new PagerSlidingTabStrip.OnPagerTitleItemClickListener() {
-            @Override
-            public void onSingleClickItem(int position) {
-                currentItem = position;
-                if (currentItem == 0) {
-                    SharePreferenceUtil.setHasNewSellBusinessPush(false);
-                    tabs.updateBubblePoint(0, 0);
-                    ClearRedPointUtil.clearSellBusinessNotice(getLifecycle());
-                } else if (currentItem == 1) {
-                    SharePreferenceUtil.setHasNewCourseBusinessPush(false);
-                    tabs.updateBubblePoint(1, 0);
-                    ClearRedPointUtil.clearCourseBusinessNotice(getLifecycle());
-                }
-            }
-
-            @Override
-            public void onDoubleClickItem(int position) {
-
-            }
-        });
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                currentItem = position;
-                refresh();
-                Logger.i(TAG,"onPageSelected");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        updateRedPoint();
-        setCurrentItem(0);
         String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_business_message",version);
+        AccessStatisticsRequestBody body = new AccessStatisticsRequestBody("app_business_message", version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -124,52 +78,118 @@ public class MessageFragment extends MvcBaseFragment {
 
             }
         });
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
+        //设置RecyclerView 布局,,,
+        rv.setLayoutManager(layoutmanager);
+        businessMessageListAdapter = new BusinessMessageListAdapter(getContext(), businessMessageBeans);
+        rv.setAdapter(businessMessageListAdapter);
 
+
+        //设置 Header 为 BezierRadar 样式
+        BezierRadarHeader header = new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true);
+        header.setPrimaryColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshHeader(header);
+        //设置 Footer 为 球脉冲
+        BallPulseFooter footer = new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale);
+        footer.setAnimatingColor(Color.parseColor("#1997f8"));
+        refreshLayout.setRefreshFooter(footer);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refresh();
+            }
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                loadMore();
+            }
+        });
     }
 
-    private void updateRedPoint() {
-        boolean hasNewSellBusinessPush = SharePreferenceUtil.hasNewSellBusinessPush();
-        Boolean hasNewCourseBusinessPush = SharePreferenceUtil.hasNewCourseBusinessPush();
-        if (hasNewSellBusinessPush) {
-            tabs.updateBubblePoint(0, 1);
-        }else {
-            tabs.updateBubblePoint(0, 0);
-        }
-        if (hasNewCourseBusinessPush) {
-            tabs.updateBubblePoint(1, 1);
-        }else {
-            tabs.updateBubblePoint(1, 0);
-        }
-        ClearRedPointUtil.clearBusinessNotice(getLifecycle());
 
+
+    @OnClick(R.id.empty_view)
+    public void onViewClicked() {
+        refresh();
     }
 
-
-    public void setCurrentItem(int i) {
-        currentItem = i;
-        viewPager.setCurrentItem(i);
-        if (currentItem == 0) {
-            SharePreferenceUtil.setHasNewSellBusinessPush(false);
-            tabs.updateBubblePoint(0, 0);
-            ClearRedPointUtil.clearSellBusinessNotice(getLifecycle());
-        } else if (currentItem == 1) {
-            SharePreferenceUtil.setHasNewCourseBusinessPush(false);
-            tabs.updateBubblePoint(1, 0);
-            ClearRedPointUtil.clearCourseBusinessNotice(getLifecycle());
-        }
-        updateRedPoint();
-    }
 
     public void refresh() {
-        if (currentItem == 0) {
-            SharePreferenceUtil.setHasNewSellBusinessPush(false);
-            tabs.updateBubblePoint(0, 0);
-            ClearRedPointUtil.clearSellBusinessNotice(getLifecycle());
-        } else if (currentItem == 1) {
-            SharePreferenceUtil.setHasNewCourseBusinessPush(false);
-            tabs.updateBubblePoint(1, 0);
-            ClearRedPointUtil.clearCourseBusinessNotice(getLifecycle());
-        }
+        businessMessageBeans.clear();
+        pageNum = 1;
+        pageSize = 10;
+        emptyView.setVisibility(View.GONE);
+
+        BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
+        businessMessageRequestBody.setPageNum(pageNum);
+        businessMessageRequestBody.setPageSize(pageSize);
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+                businessMessageBeans.clear();
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
+                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
+                    businessMessageBeans.add(businessMessageBean);
+                }
+                businessMessageListAdapter.notifyDataSetChanged();
+
+                if (businessMessageBeans.size() == 0) {
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                emptyView.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+
+    private void loadMore() {
+        emptyView.setVisibility(View.GONE);
+        BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
+        businessMessageRequestBody.setPageNum(pageNum);
+        businessMessageRequestBody.setPageSize(pageSize);
+        businessMessageRequestBody.setBusinessType(businessType);
+        HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                JSONArray records = JsonUtil.getJsonArray(result, "records");
+                for (int i = 0; i < records.length(); i++) {
+                    JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
+                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
+                    businessMessageBeans.add(businessMessageBean);
+
+
+                }
+                businessMessageListAdapter.notifyDataSetChanged();
+
+
+                if (businessMessageBeans.size() == 0) {
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+                refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
+                if (businessMessageBeans.size() == 0) {
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
 

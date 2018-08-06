@@ -3,6 +3,8 @@ package com.yijian.staff.mvp.main.mine.qrcode;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,16 +20,18 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MyQRCodeActivity extends MvcBaseActivity {
 
@@ -44,8 +48,10 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     TextView tvRole;
     @BindView(R.id.rootView)
     LinearLayout rootView;
-    private int role;
+    @BindView(R.id.refresh)
+    LinearLayout refresh;
     private User user;
+    private MyCountDownTimer timer;
 
     @Override
     protected int getLayoutID() {
@@ -55,7 +61,7 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_qr_code",version);
+        AccessStatisticsRequestBody body = new AccessStatisticsRequestBody("app_qr_code", version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -106,21 +112,11 @@ public class MyQRCodeActivity extends MvcBaseActivity {
 
     private void initQRCode() {
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("type", "6");
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHasHeaderNoParam(HttpManager.QUERY_ENTRANCE_QR, new ResultStringObserver(getLifecycle()) {
             @Override
-            public void onSuccess(JSONObject result) {
-                String url = JsonUtil.getString(result, "url");
-                String id;
-                if (role == 2 || role == 4 || role == 7) {
-                    id = url + "?action=1&coachId=" + user.getUserId() + "&shopId=" + user.getShopId();
-                } else {
-                    id = url;
-                }
-                Bitmap qrCode = QRCodeManager.getInstance().createQRCode(id, 560, 560);
+            public void onSuccess(String result) {
+                showQR(result);
 
-                iv.setImageBitmap(qrCode);
             }
 
             @Override
@@ -130,5 +126,77 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         });
     }
 
+
+    public void showTimeOutView(boolean isShow) {
+        refresh.setVisibility(isShow ? View.VISIBLE : View.GONE);
+    }
+
+
+    private void showQR(String result) {
+        showTimeOutView(false);
+        Bitmap qrCode = QRCodeManager.getInstance().createQRCode(result, CommonUtil.dp2px(this,240), CommonUtil.dp2px(this,240));
+        iv.setImageBitmap(qrCode);
+        if (timer != null) {
+            timer.cancel();
+        }
+        timer = new MyCountDownTimer(1000 * 29, 1000);
+        timer.setActivity(this);
+        timer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        super.onDestroy();
+    }
+
+
+    @Override
+    public void overridePendingTransition(int enterAnim, int exitAnim) {
+        super.overridePendingTransition(enterAnim, 0);
+    }
+
+    @OnClick(R.id.refresh)
+    public void onViewClicked(View v) {
+        switch (v.getId()) {
+            case R.id.refresh:
+                initQRCode();
+                break;
+        }
+    }
+
+
+
+    public static class MyCountDownTimer extends CountDownTimer {
+        private WeakReference<MyQRCodeActivity> weakReference;
+
+        public void setActivity(MyQRCodeActivity activity) {
+            weakReference = new WeakReference<MyQRCodeActivity>(activity);
+        }
+
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            if (weakReference.get() != null) {
+                weakReference.get().showTimeOutView(true);
+            }
+        }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, android.R.anim.fade_out);
+    }
 
 }

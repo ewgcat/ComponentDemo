@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.main.message;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,13 +48,25 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         MessageBean messageBean = messageBeans.get(position);
-        holder.tv_member_name.setText(messageBean.getMemberName());
-        holder.tv_content.setText(messageBean.getContent());
-        holder.tv_create_time.setText(messageBean.getCreateTime());
+
 
 
         ImageLoader.setHeadImageResource(messageBean.getMemberHeadPortrait(), context, holder.iv_member_head);
+        holder.tv_member_name.setText(messageBean.getMemberName());
+        int resId = messageBean.getGender() == 2 ? R.mipmap.lg_women : R.mipmap.lg_man;
+        ImageLoader.setImageResource(resId,context,holder.iv_sex);
 
+        int costType = messageBean.getCostType();
+        if (costType==0){
+            holder.tv_cost.setTextColor(Color.parseColor("#1997f8"));
+            holder.tv_cost.setText("+ "+Double.parseDouble(messageBean.getCost()));
+        }else if (costType==1){
+            holder.tv_cost.setTextColor(Color.parseColor("#f15a5a"));
+            holder.tv_cost.setText("- "+Double.parseDouble(messageBean.getCost()));
+
+        }
+        holder.tv_content.setText(messageBean.getContent());
+        holder.tv_create_time.setText(messageBean.getCreateTime());
     }
 
     @Override

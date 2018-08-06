@@ -14,8 +14,8 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.main.message.business.BusinessMessageListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -47,8 +47,8 @@ public class MessageFragment extends MvcBaseFragment {
     private int pageSize = 10;
     private int pageNum = 1;
     private int businessType = 0;
-    private BusinessMessageListAdapter businessMessageListAdapter;
-    private List<BusinessMessageBean> businessMessageBeans = new ArrayList<>();
+    private MessageListAdapter messageListAdapter;
+    private List<MessageBean> messageBeanList = new ArrayList<>();
 
 
 
@@ -81,8 +81,8 @@ public class MessageFragment extends MvcBaseFragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局,,,
         rv.setLayoutManager(layoutmanager);
-        businessMessageListAdapter = new BusinessMessageListAdapter(getContext(), businessMessageBeans);
-        rv.setAdapter(businessMessageListAdapter);
+        messageListAdapter = new MessageListAdapter(getContext(), messageBeanList);
+        rv.setAdapter(messageListAdapter);
 
 
         //设置 Header 为 BezierRadar 样式
@@ -115,7 +115,7 @@ public class MessageFragment extends MvcBaseFragment {
 
 
     public void refresh() {
-        businessMessageBeans.clear();
+        messageBeanList.clear();
         pageNum = 1;
         pageSize = 10;
         emptyView.setVisibility(View.GONE);
@@ -126,17 +126,17 @@ public class MessageFragment extends MvcBaseFragment {
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                businessMessageBeans.clear();
+                messageBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
-                    businessMessageBeans.add(businessMessageBean);
+                    MessageBean businessMessageBean = new MessageBean(jsonObject);
+                    messageBeanList.add(businessMessageBean);
                 }
-                businessMessageListAdapter.notifyDataSetChanged();
+                messageListAdapter.notifyDataSetChanged();
 
-                if (businessMessageBeans.size() == 0) {
+                if (messageBeanList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 refreshLayout.finishRefresh(2000, true);//传入false表示刷新失败
@@ -157,7 +157,6 @@ public class MessageFragment extends MvcBaseFragment {
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
-        businessMessageRequestBody.setBusinessType(businessType);
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -166,15 +165,15 @@ public class MessageFragment extends MvcBaseFragment {
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 for (int i = 0; i < records.length(); i++) {
                     JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    BusinessMessageBean businessMessageBean = new BusinessMessageBean(jsonObject);
-                    businessMessageBeans.add(businessMessageBean);
+                    MessageBean businessMessageBean = new MessageBean(jsonObject);
+                    messageBeanList.add(businessMessageBean);
 
 
                 }
-                businessMessageListAdapter.notifyDataSetChanged();
+                messageListAdapter.notifyDataSetChanged();
 
 
-                if (businessMessageBeans.size() == 0) {
+                if (messageBeanList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
@@ -185,7 +184,7 @@ public class MessageFragment extends MvcBaseFragment {
             public void onFail(String msg) {
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                if (businessMessageBeans.size() == 0) {
+                if (messageBeanList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
                 }
             }

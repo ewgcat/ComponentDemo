@@ -2,6 +2,7 @@ package com.yijian.staff.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +36,14 @@ public class LoadingDialog extends Dialog {
         contentView.setLayoutParams(params);
         this.setContentView(contentView);
         loading = (ImageView) contentView.findViewById(R.id.iv_loading);
-        Glide.with(activity).load(R.drawable.loading).into(loading);
+        if (!activity.isDestroyed()) {
+            Glide.with(activity).load(R.drawable.loading).into(loading);
+        }else {
+            Glide.with(getContext()).load(R.drawable.loading).into(loading);
+        }
         Window dialogWindow = this.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
     }
-
 
     @Override
     public void show() {

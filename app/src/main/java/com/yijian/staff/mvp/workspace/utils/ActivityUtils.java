@@ -27,6 +27,8 @@ public class ActivityUtils {
     public static String MODULE_STATIC_EVALUATE = "静态评估";
     public static String MODULE_DYNAMIC_EVALUATE = "动态评估";
     public static String searchMemberName = ""; //搜索过滤的字段
+    public static boolean isShareJump = false; //是否是从分享页作为入口的标志位 false : 不是，true 是
+    public static String tempModule = ""; // 临时记录之前入口跳转模块
     public static WorkSpaceVipBean workSpaceVipBean = null;
 
 

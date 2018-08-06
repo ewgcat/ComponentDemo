@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.workspace.commen;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -194,11 +195,17 @@ public class ShareTestActivity extends MvcBaseActivity {
                     testPopupWindow.dismiss();
                     switch (v.getId()) {
                         case R.id.lin_perfect: //完美围度
-                            mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+                            ActivityUtils.isShareJump = true;
+                            ActivityUtils.tempModule = ActivityUtils.moduleType;
+                            ActivityUtils.moduleType = ActivityUtils.MODULE_PERFECT;
+                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, PerfectActivity.class));
                             finish();
                             break;
                         case R.id.lin_sport: // 运动表现
-                            mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+                            ActivityUtils.isShareJump = true;
+                            ActivityUtils.tempModule = ActivityUtils.moduleType;
+                            ActivityUtils.moduleType = ActivityUtils.MODULE_SPORT;
+                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, SportTestActivity.class));
                             finish();
                             break;
                         case R.id.lin_static: //静态评估

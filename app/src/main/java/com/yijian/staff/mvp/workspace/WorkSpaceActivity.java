@@ -41,10 +41,12 @@ public class WorkSpaceActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.fl_sport_behavior: //运动表现
+                ActivityUtils.isShareJump = false;
                 ActivityUtils.moduleType = ActivityUtils.MODULE_SPORT;
                 startActivity(new Intent(this, WorkSpaceSearchActivity.class));
                 break;
             case R.id.fl_perfect: //完美维度
+                ActivityUtils.isShareJump = false;
                 ActivityUtils.moduleType = ActivityUtils.MODULE_PERFECT;
                 startActivity(new Intent(this, WorkSpaceSearchActivity.class));
                 break;

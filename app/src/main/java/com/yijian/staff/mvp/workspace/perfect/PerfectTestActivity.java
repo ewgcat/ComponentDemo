@@ -97,7 +97,6 @@ public class PerfectTestActivity extends MvcBaseActivity {
                 showLoading();
                 PerfectRequestBody perfectRequestBody = new PerfectRequestBody();
                 perfectRequestBody.setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
-//                perfectRequestBody.setGender(1);
                 if (TextUtils.isEmpty(tv_height.getText().toString())) {
                     Toast.makeText(PerfectTestActivity.this, "身高不能为空", Toast.LENGTH_SHORT).show();
                 } else {

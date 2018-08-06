@@ -24,15 +24,10 @@ import butterknife.BindView;
 
 public class SportFragment3 extends BaseSpaceFragment {
 
-    @BindView(R.id.et_qianqu)
     EditText et_qianqu;
-    @BindView(R.id.et_jian_num)
     EditText et_jian_num;
-    @BindView(R.id.et_xiongtui_num)
     EditText et_xiongtui_num;
-    @BindView(R.id.et_tuijiqun_num)
     EditText et_tuijiqun_num;
-    @BindView(R.id.et_jiaohuai_num)
     EditText et_jiaohuai_num;
 
     private Context mContext;
@@ -42,6 +37,17 @@ public class SportFragment3 extends BaseSpaceFragment {
     public int getLayoutId() {
         return R.layout.fragment_sport_fragment3;
     }
+
+
+    @Override
+    public void initView() {
+        et_qianqu = findView(R.id.et_qianqu);
+        et_jian_num = findView(R.id.et_jian_num);
+        et_xiongtui_num = findView(R.id.et_xiongtui_num);
+        et_tuijiqun_num = findView(R.id.et_tuijiqun_num);
+        et_jiaohuai_num = findView(R.id.et_jiaohuai_num);
+    }
+
 
     @Override
     public void onAttach(Context context) {

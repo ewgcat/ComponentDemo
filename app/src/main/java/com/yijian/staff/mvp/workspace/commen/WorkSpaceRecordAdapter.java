@@ -69,6 +69,10 @@ public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             rel_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(ActivityUtils.isShareJump){
+                        ActivityUtils.moduleType = ActivityUtils.tempModule;
+                        ActivityUtils.isShareJump = false;
+                    }
                     Bundle bundle = new Bundle();
                     bundle.putString("recordId",workSpaceRecordBean.getWdId());
                     ActivityUtils.startActivity(mContext,ShareTestActivity.class,bundle);

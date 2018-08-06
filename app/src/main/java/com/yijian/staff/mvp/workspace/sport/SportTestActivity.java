@@ -11,11 +11,9 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.workspace.WorkSpaceActivity;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
-import com.yijian.staff.mvp.workspace.perfect.PerfectTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -28,7 +26,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SportTestActivity extends MvcBaseActivity {
+public class  SportTestActivity extends MvcBaseActivity {
 
     private final String tag1 = "com.yijian.staff.mvp.workspace.sport.SportFragment1";
     private final String tag2 = "com.yijian.staff.mvp.workspace.sport.SportFragment2";
@@ -73,23 +71,15 @@ public class SportTestActivity extends MvcBaseActivity {
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(ActivityUtils.moduleType + "测试");
+        navigationBar2.setTitle("运动表现测试");
         navigationBar2.hideLeftSecondIv();
         rightTv = navigationBar2.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        navigationBar2.setBackClickListener(this);
-    }
-
-    private void initData() {
-        ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, editActionObservable, new String[]{tag1, tag2, tag3});
-    }
-
-    @OnClick({R.id.right_tv, R.id.btn_next, R.id.ll_back})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_back:
+        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (popupWindow == null) {
 
                     popupWindow = new CommenPopupWindow(SportTestActivity.this, new View.OnClickListener() {
@@ -104,8 +94,17 @@ public class SportTestActivity extends MvcBaseActivity {
 
                 }
                 popupWindow.showAtBottom(getWindow().getDecorView());
+            }
+        });
+    }
 
-                break;
+    private void initData() {
+        ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, editActionObservable, new String[]{tag1, tag2, tag3});
+    }
+
+    @OnClick({R.id.right_tv, R.id.btn_next})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.btn_next: //下一步
                 switch (currentIndex) {
                     case 0:
@@ -176,6 +175,33 @@ public class SportTestActivity extends MvcBaseActivity {
                         public void onSuccess(String result) {
                             hideLoading();
                             Toast.makeText(SportTestActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+
+                            currentIndex = 0;
+                            if (editActionObservable != null) {
+
+                                BaseSpaceFragment showFragment1 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag1);
+                                BaseSpaceFragment showFragment2 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag2);
+                                BaseSpaceFragment showFragment3 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag3);
+                                if (showFragment1 != null) {
+                                    FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                                    showTransaction.remove(showFragment1);
+                                    showTransaction.commit();
+                                    editActionObservable.deleteObserver(showFragment1);
+                                }
+                                if (showFragment2 != null) {
+                                    FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                                    showTransaction.remove(showFragment1);
+                                    showTransaction.remove(showFragment2);
+                                    editActionObservable.deleteObserver(showFragment2);
+                                }
+                                if (showFragment3 != null) {
+                                    FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                                    showTransaction.remove(showFragment1);
+                                    showTransaction.remove(showFragment3);
+                                    editActionObservable.deleteObserver(showFragment3);
+                                }
+                            }
+
                             Bundle bundle = new Bundle();
                             bundle.putString("recordId", result);
                             ActivityUtils.startActivity(SportTestActivity.this, ShareTestActivity.class, bundle);
@@ -197,18 +223,28 @@ public class SportTestActivity extends MvcBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        currentIndex = 0;
         if (editActionObservable != null) {
-            FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+
             BaseSpaceFragment showFragment1 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag1);
             BaseSpaceFragment showFragment2 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag2);
             BaseSpaceFragment showFragment3 = (BaseSpaceFragment) getSupportFragmentManager().findFragmentByTag(tag3);
             if (showFragment1 != null) {
+                FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                showTransaction.remove(showFragment1);
+                showTransaction.commit();
                 editActionObservable.deleteObserver(showFragment1);
             }
             if (showFragment2 != null) {
+                FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                showTransaction.remove(showFragment1);
+                showTransaction.remove(showFragment2);
                 editActionObservable.deleteObserver(showFragment2);
             }
             if (showFragment3 != null) {
+                FragmentTransaction showTransaction = getSupportFragmentManager().beginTransaction();
+                showTransaction.remove(showFragment1);
+                showTransaction.remove(showFragment3);
                 editActionObservable.deleteObserver(showFragment3);
             }
         }

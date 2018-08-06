@@ -111,6 +111,10 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
         String type = "";
+        if(ActivityUtils.isShareJump){
+            ActivityUtils.moduleType = ActivityUtils.tempModule;
+            ActivityUtils.isShareJump = false;
+        }
         if(ActivityUtils.MODULE_PERFECT.equals(ActivityUtils.moduleType)){ //完美围度
             type = "1";
         }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.moduleType)){ //运动表现
@@ -157,6 +161,10 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
             map.put("pageNum", pageNum + "");
             map.put("pageSize", pageSize + "");
             String type = "";
+            if(ActivityUtils.isShareJump){
+                ActivityUtils.moduleType = ActivityUtils.tempModule;
+                ActivityUtils.isShareJump = false;
+            }
             if(ActivityUtils.MODULE_PERFECT.equals(ActivityUtils.moduleType)){ //完美围度
                 type = "1";
             }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.moduleType)){ //运动表现

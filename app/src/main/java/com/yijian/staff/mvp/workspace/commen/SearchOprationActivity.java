@@ -103,6 +103,10 @@ public class SearchOprationActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_start: //测试
+                if(ActivityUtils.isShareJump){
+                    ActivityUtils.moduleType = ActivityUtils.tempModule;
+                    ActivityUtils.isShareJump = false;
+                }
                 if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
                     mContext.startActivity(new Intent(mContext, SportTestActivity.class));
                 }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
@@ -110,6 +114,10 @@ public class SearchOprationActivity extends MvcBaseActivity {
                 }
                 break;
             case R.id.btn_record: //记录
+                if(ActivityUtils.isShareJump){
+                    ActivityUtils.moduleType = ActivityUtils.tempModule;
+                    ActivityUtils.isShareJump = false;
+                }
                 mContext.startActivity(new Intent(mContext, WorkSpaceRecordActivity.class));
                 break;
             default:

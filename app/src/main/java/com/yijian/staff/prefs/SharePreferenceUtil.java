@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.ApplicationHolder;
 
 
@@ -25,6 +26,7 @@ public class SharePreferenceUtil {
     private static final String KEY_HAS_NEW_SELL_BUSINESS_PUSH="has_new_sell_business_push";
     private static final String KEY_HAS_NEW_COURSE_BUSINESS_PUSH="has_new_course_business_push";
 
+    private static final String KEY_IS_WORKSPACE_VERSION = "is_workspace_version";
 
     public static void setShowEditIcon(boolean b) {
         setBoolean(ALL_FUNCTION_ACTIVITY_SHOW_EDIT_ICON, b);
@@ -329,8 +331,33 @@ public class SharePreferenceUtil {
         return getBoolean(KEY_SELLER_BUSINESS, false);
 
     }
+
+
+
+
+
+    public static void setWorkSpaceVersion(boolean b) {
+        setBoolean(KEY_IS_WORKSPACE_VERSION, b);
+    }
+
     public static boolean getAppCourseBuiness(){
         return getBoolean(KEY_COURSE_BUSINESS, false);
 
     }
+
+    public static boolean isWorkSpaceVersion() {
+        return getBoolean(KEY_IS_WORKSPACE_VERSION, false);
+    }
+
+    public static String getHostUrl() {
+        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_HOST : BuildConfig.HOST;
+    }
+
+    public static String getImageUrl() {
+        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_FILE_HOST : BuildConfig.FILE_HOST;
+    }
+
+
 }
+
+

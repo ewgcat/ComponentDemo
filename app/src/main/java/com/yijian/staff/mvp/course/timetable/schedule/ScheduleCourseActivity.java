@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.day.ScheduleDayFragment;
+import com.yijian.staff.mvp.course.timetable.schedule.week.ScheduleWeekFragment;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ScheduleCourseActivity extends MvcBaseActivity {

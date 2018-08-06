@@ -1,5 +1,7 @@
-package com.yijian.staff.mvp.course.timetable.schedule;
+package com.yijian.staff.mvp.course.timetable.schedule.day;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,13 +11,12 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 
 
-public class ScheduleWeekFragment extends Fragment {
+public class ScheduleDayFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_week, container, false);
+        return inflater.inflate(R.layout.fragment_schedule_day, container, false);
     }
-
 
 }

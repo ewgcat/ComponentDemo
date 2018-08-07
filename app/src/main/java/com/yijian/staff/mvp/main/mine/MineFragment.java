@@ -67,19 +67,7 @@ public class MineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_my",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
 
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         unbinder = ButterKnife.bind(this, view);
         user = DBManager.getInstance().queryUser();

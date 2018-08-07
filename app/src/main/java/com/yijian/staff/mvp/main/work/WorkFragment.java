@@ -99,19 +99,7 @@ public class WorkFragment extends MvcBaseFragment {
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush();
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush();
         initData();
-        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_workbench",version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
 
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
     }
 
     public void showJieDaiView(int i) {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
@@ -24,6 +25,7 @@ import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.CommonUtil;
@@ -240,6 +242,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
     @Override
     public void selectTab(int index) {
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
 
 
         selectedIndex = index;
@@ -256,7 +259,18 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     transaction.show(workFragment);
                 }
                 // 如果WorkFragment不为空，则直接将它显示出来
+                AccessStatisticsRequestBody body1=new AccessStatisticsRequestBody("app_workbench",version);
+                HttpManager.postAccessStatistics(body1, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
 
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+
+                    }
+                });
                 break;
             case 2:
                 if (!mesageFragment.isAdded()) {
@@ -266,7 +280,18 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 }
                 // 如果mesageFragment不为空，则直接将它显示出来
                 transaction.show(mesageFragment);
+                AccessStatisticsRequestBody body2 = new AccessStatisticsRequestBody("app_business_message", version);
+                HttpManager.postAccessStatistics(body2, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
 
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+
+                    }
+                });
                 break;
             case 3:
                 if (!mineFragment.isAdded()) {
@@ -278,6 +303,18 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     // 如果MimeFragment不为空，则直接将它显示出来
                     transaction.show(mineFragment);
                 }
+                AccessStatisticsRequestBody body3=new AccessStatisticsRequestBody("app_my",version);
+                HttpManager.postAccessStatistics(body3, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+
+                    }
+                });
                 break;
         }
         transaction.commit();

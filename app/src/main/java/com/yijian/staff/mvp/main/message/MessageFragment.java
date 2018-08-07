@@ -65,19 +65,7 @@ public class MessageFragment extends MvcBaseFragment {
 
     public void initComponent(View view) {
 
-        String version = CommonUtil.getAccessStatisticsVersionName(getContext()) + " " + CommonUtil.getVersionCode(getContext());
-        AccessStatisticsRequestBody body = new AccessStatisticsRequestBody("app_business_message", version);
-        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
 
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局,,,
         rv.setLayoutManager(layoutmanager);

@@ -34,8 +34,6 @@ public class ClubActivity extends BaseWebViewActivity {
     private static final String TAG = ClubActivity.class.getSimpleName();
     @BindView(R.id.club_navigation_bar2)
     NavigationBar2 navigationBar2;
-    @BindView(R.id.web_view)
-    WebView webView;
 
 
     @Override
@@ -61,79 +59,9 @@ public class ClubActivity extends BaseWebViewActivity {
 
             }
         });
-        initWebView(webView);
     }
 
-    private void initWebView(WebView webView) {
-        WebSettings webviewSettings = webView.getSettings();
-        webviewSettings.setJavaScriptEnabled(true); // 开启Javascript支持
-        webviewSettings.setAllowContentAccess(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webviewSettings.setAllowFileAccess(true);// 可以读取文件缓存(manifest生效)
-        webviewSettings.setPluginState(WebSettings.PluginState.ON);
-        webviewSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webviewSettings.setRenderPriority(WebSettings.RenderPriority.HIGH); // 提高渲染的优先级
-        webviewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && BuildConfig.DEBUG) {
-            WebView.setWebContentsDebuggingEnabled(true);
-        }
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String, String> params = new HashMap<>();
-        params.put("type", "" + BaseWebViewActivity.CLUB_TYPE);
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
 
-                webView.loadUrl(JsonUtil.getString(result, "url"));
-//                webView.loadUrl("http://192.168.2.136:8080/#/club");
-
-                String token = DBManager.getInstance().queryUser().getToken();
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("token", token);
-                    webView.setWebViewClient(new WebViewClient() {
-
-                        @Override
-                        public void onPageFinished(WebView view, String url) {
-                            //加载完成
-                            super.onPageFinished(view, url);
-                            view.loadUrl("javascript:GetUserInfo('" + jsonObject.toString() + "')");
-                            hideLoading();
-                        }
-
-                        @Override
-                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                            //加载开始
-                            showLoading();
-
-
-
-                        }
-
-                        @Override
-                        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                            super.onReceivedError(view, errorCode, description, failingUrl);
-                            //加载失败
-                            hideLoading();
-                        }
-
-                    });
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
-
-
-    }
 
 
 }

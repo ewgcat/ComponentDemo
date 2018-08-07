@@ -359,8 +359,12 @@ public class HttpManager {
     //地区列表
     public static String QUERY_ADDRESS_URL =   "province";
 
-    //列表
+    //进场
     public static String QUERY_ENTRANCE_QR =   "user/getEntranceParam";
+
+
+    //俱乐部
+    public static final String CLUB_DETAIL = "brand";
 
 
     //公用方法

@@ -56,23 +56,9 @@ public class HttpManager {
         return apiService;
     }
 
-    private static String HOST;
-
-    public static void setWorkSpaceHost(boolean isWorkspace){
-        SharePreferenceUtil.setWorkSpaceVersion(isWorkspace);
-        HOST = SharePreferenceUtil.getHostUrl();
-    }
-
-    public static String getH5Host(){
-        return SharePreferenceUtil.getH5Url();
-    }
-
     public static String getFileHost(){
         return SharePreferenceUtil.getImageUrl();
     }
-
-
-
 
     /*************************会籍************************/
 
@@ -377,18 +363,6 @@ public class HttpManager {
 
     //地区列表
     public static String QUERY_ADDRESS_URL =  "province";
-
-    /************* 工作室 ****************/
-    //首页会员名称模糊搜索会员信息列表
-    public static String WORKSPACE_QUERY_SEARCH__URL = "coach/side/fuzzy/query/list";
-    //保存完美围度添加
-    public static String WORKSPACE_ADD_PERFECT__URL = "coach/side/fuzzy/saveOrUpdateWD";
-    //查看结果列表
-    public static String WORKSPACE_QUERY_RESULT_LIST__URL = "coach/side/fuzzy/getTestList";
-    //上传单个或多个文件
-    public static String WORKSPACE_UPLOAD_FILE__URL = "file/newUploadFiles";
-    //保存运动表现
-    public static String WORKSPACE_SAVE_SPORT_URL = "coach/side/fuzzy/saveOrUpdateYD";
 
 
     //公用方法
@@ -703,7 +677,7 @@ public class HttpManager {
     //教练模糊搜索会员
     public static void searchViperByCoach(Map<String, String> params, Observer<JSONObject> observer) {
 
-        getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+INDEX_COACH_QUERY_URL, params, observer);
+        getHasHeaderHasParam(INDEX_COACH_QUERY_URL, params, observer);
 
     }
 
@@ -711,7 +685,7 @@ public class HttpManager {
     //会籍模糊搜索会员
     public static void searchViperByHuiJi(Map<String, String> params, Observer<JSONObject> observer) {
 
-        getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+INDEX_HUI_JI_QUERY_URL, params, observer);
+        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, params, observer);
 
     }
 
@@ -959,34 +933,6 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
-
-
-    //保存完美围度
-    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer){
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postPerfectInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
-            execute(observable, observer);
-        }
-    }
-
-    //保存运动表现
-    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer){
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
-            execute(observable, observer);
-        }
-    }
-
 
     //接待人的信息
     public static final String RECEPTION_INFO =  "reception/person";

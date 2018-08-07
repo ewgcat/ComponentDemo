@@ -42,6 +42,7 @@ import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.bean.PermissionBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.workspace.utils.AndroidAdjustResizeBugFix;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.widget.TableView;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
@@ -121,10 +122,11 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
             public void callExchangeBack(int index) {
                 switch (index) {
                     case 0: //俱乐部
-                        HttpManager.setWorkSpaceHost(false);
+                        HttpManagerWorkSpace.setWorkSpaceHost(false);
+
                         break;
                     case 1: //工作室
-                        HttpManager.setWorkSpaceHost(true);
+                        HttpManagerWorkSpace.setWorkSpaceHost(true);
                         break;
                     default:
                 }

@@ -96,6 +96,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 if (jsonObject1.has("type")){
                     int type = jsonObject1.getInt("type");
                     if (type == 0) {// //属于接待消息
+                        JPushInterface.clearAllNotifications(context);
                         ReceptionActivityTemp.toReceptionActivityTemp(context);
                     }else   if (type == 1||type == 2){//约课取消约课
                         String date= jsonObject1.getString("data");

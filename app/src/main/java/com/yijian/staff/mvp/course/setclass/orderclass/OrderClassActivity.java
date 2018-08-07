@@ -224,6 +224,7 @@ public class OrderClassActivity extends MvcBaseActivity implements OnChangeDateL
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
             Logger.i(TAG,"push_message");
+
     }
     
 }

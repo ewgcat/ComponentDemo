@@ -1,18 +1,36 @@
 package com.yijian.staff.mvp.login;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.animation.AnimationSet;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
+import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
@@ -23,12 +41,15 @@ import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.bean.PermissionBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.workspace.utils.AndroidAdjustResizeBugFix;
+import com.yijian.staff.mvp.workspace.widget.TableView;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.AndroidKeyBoardAssit;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 
@@ -40,7 +61,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 @Route(path = "/test/login")
-public class LoginActivity extends MvcBaseActivity {
+public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResizeBugFix.CallKeyBoardStatu{
 
 
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -50,64 +71,68 @@ public class LoginActivity extends MvcBaseActivity {
     EditText etPassword;
     @BindView(R.id.ll_content)
     LinearLayout ll_content;
-
-
-    private boolean hasStartAnimation = false;
+    @BindView(R.id.tab_view)
+    TableView tab_view;
+    @BindView(R.id.rel_container)
+    RelativeLayout rel_container;
+    private int containerHeight;
+    private int difference;
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_login;
+        return R.layout.activity_login2;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initView(Bundle savedInstanceState) {
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ViewTreeObserver vto =ll_content.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+
+            @Override
+            public void onGlobalLayout() {
+                ll_content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                containerHeight =ll_content.getMeasuredHeight();
+            }
+        });
+        AndroidAdjustResizeBugFix.assistActivity(this, this);
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        rel_container.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!(v instanceof EditText)) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+                }
+                return false;
+            }
+        });
         etAccount = findViewById(R.id.et_account);
         etPassword = findViewById(R.id.et_password);
         ll_content = findViewById(R.id.ll_content);
         etAccount.setText(SharePreferenceUtil.getUserName());
-        etAccount.setHintTextColor(Color.parseColor("#7FC7FF"));
-        etPassword.setHintTextColor(Color.parseColor("#7FC7FF"));
-
-
-        AndroidKeyBoardAssit.assistActivity(this);
-        ll_content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        tab_view.createButton("俱乐部", "工作室");
+        tab_view.setListener(new TableView.TabCallBack() {
             @Override
-            public void onGlobalLayout() {
-                int heightDiff = ll_content.getRootView().getHeight() - ll_content.getHeight();
-                if (heightDiff > CommonUtil.dp2px(LoginActivity.this, 1)) {
-                    // 显示软键盘
-                    startAnimation();
-                } else {
-                    //隐藏软键盘
-                    endAnimation();
+            public void callExchangeBack(int index) {
+                switch (index) {
+                    case 0: //俱乐部
+                        HttpManager.setWorkSpaceHost(false);
+                        break;
+                    case 1: //工作室
+                        HttpManager.setWorkSpaceHost(true);
+                        break;
+                    default:
                 }
             }
         });
-
+        tab_view.setCurrentPosition(SharePreferenceUtil.isWorkSpaceVersion()? 1 : 0);
     }
 
-    private void startAnimation() {
-        if (!hasStartAnimation) {
-            hasStartAnimation = true;
-            int i = CommonUtil.dp2px(this, 200);
-            ObjectAnimator animator = ObjectAnimator.ofFloat(ll_content, "translationY", 0, -i);
-            animator.setDuration(500);
-            animator.start();
-
-        }
-    }
-
-    private void endAnimation() {
-        if (hasStartAnimation) {
-            hasStartAnimation = false;
-            int i = CommonUtil.dp2px(this, 200);
-            ObjectAnimator animator = ObjectAnimator.ofFloat(ll_content, "translationY", -i, 0);
-            animator.setDuration(500);
-            animator.start();
-        }
-
-    }
 
 
     private void jumpToForgetPassword() {
@@ -142,13 +167,13 @@ public class LoginActivity extends MvcBaseActivity {
 
                         DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
 
-                       try{
-                           //存储菜单子选项
-                           List<PermissionBean> permissionBeanList = JSONArray.parseArray(homePageModelVO.getJSONArray("menuModelList").toString(),PermissionBean.class);
-                           PermissionUtils.getInstance().savePermissionMenu(LoginActivity.this, permissionBeanList);
-                       }catch (Exception e){
-                           Logger.i(TAG,e.getMessage());
-                       }
+                        try {
+                            //存储菜单子选项
+                            List<PermissionBean> permissionBeanList = JSONArray.parseArray(homePageModelVO.getJSONArray("menuModelList").toString(), PermissionBean.class);
+                            PermissionUtils.getInstance().savePermissionMenu(LoginActivity.this, permissionBeanList);
+                        } catch (Exception e) {
+                            Logger.i(TAG, e.getMessage());
+                        }
 
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);
@@ -158,7 +183,7 @@ public class LoginActivity extends MvcBaseActivity {
                     @Override
                     public void onFail(String msg) {
                         hideLoading();
-                        Logger.i(TAG,msg);
+                        Logger.i(TAG, msg);
                         showToast(msg);
                     }
                 });
@@ -169,6 +194,7 @@ public class LoginActivity extends MvcBaseActivity {
     }
 
 
+    @SuppressLint("ObjectAnimatorBinding")
     @OnClick({R.id.ll_login, R.id.forget_password})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -178,6 +204,19 @@ public class LoginActivity extends MvcBaseActivity {
             case R.id.forget_password:
                 jumpToForgetPassword();
                 break;
+            default:
+        }
+    }
+
+    @Override
+    public void callkeyboardstatu(boolean showFlag, int heightDifference) {
+        if(showFlag){
+            difference = heightDifference - (DensityUtil.getScreenHeight(this) - containerHeight);
+            ObjectAnimator.ofFloat(ll_content,"translationY",-difference).setDuration(300).start();
+        }else{
+            if(difference > 0){
+                ObjectAnimator.ofFloat(ll_content,"translationY", 0).setDuration(300).start();
+            }
         }
     }
 }

@@ -74,4 +74,14 @@
         <attr name="textBaseSize" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="StyleTabCommen">
+        <attr name="textTabSize" format="integer" />
+        <attr name="textSelectColor" format="color" />
+        <attr name="textNormalColor" format="color" />
+        <attr name="curssorColor" format="color" />
+        <attr name="scale" format="float" />
+        <attr name="paddingLeft" format="integer" />
+        <attr name="paddingRight" format="integer" />
+    </declare-styleable>
+
 </resources>

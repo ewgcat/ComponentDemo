@@ -11,6 +11,8 @@ import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -74,6 +76,15 @@ public interface ApiService {
             @Part() MultipartBody.Part file
     );
 
+    /*POST 请求 上传单个文件*/
+    @Multipart
+    @POST()
+    Observable<JSONObject> upLoadImageHasParam(
+            @Url String url,
+            @HeaderMap Map<String, String> headers,
+            @Query("fileType") Integer param,
+            @Part() List<MultipartBody.Part> parts
+    );
 
     /*POST 请求 上传文件*/
 
@@ -255,4 +266,18 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body List<AccessStatisticsRequestBody> accessStatisticsRequestBody);
+
+
+    /** 完美围度 **/
+    //添加潜在
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postPerfectInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body PerfectRequestBody perfectRequestBody);
+
+    /** 运动表现 **/
+    //添加潜在
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
+
 }

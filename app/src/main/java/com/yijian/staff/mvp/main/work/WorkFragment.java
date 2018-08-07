@@ -20,6 +20,8 @@ import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
+import com.yijian.staff.mvp.workspace.WorkSpaceActivity;
+import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -73,6 +75,7 @@ public class WorkFragment extends MvcBaseFragment {
     }
 
 
+    @Override
     public void initView() {
         lifecycle = this.getLifecycle();
         StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
@@ -218,6 +221,8 @@ public class WorkFragment extends MvcBaseFragment {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
                 startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
+//                startActivity(new Intent(getContext(), WorkSpaceActivity.class));
+
                 break;
             case R.id.ll_jiedai:
                 ClearRedPointUtil.clearJieDaiNotice(lifecycle);

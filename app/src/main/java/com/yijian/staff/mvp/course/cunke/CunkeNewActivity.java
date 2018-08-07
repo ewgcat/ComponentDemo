@@ -162,7 +162,7 @@ public class CunkeNewActivity extends AppCompatActivity {
             HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    pagesTotal = JsonUtil.getInt(result, "pageSize");
+                    pagesTotal = JsonUtil.getInt(result, "pages");
                     refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
 
                     JSONArray records = JsonUtil.getJsonArray(result, "records");

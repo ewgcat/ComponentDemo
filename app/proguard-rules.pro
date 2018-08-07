@@ -65,6 +65,8 @@ public static java.lang.String TABLENAME;
 -dontpreverify
 -verbose
 
+-keep public class com.yijian.staff.net.**{*;}
+-keep public class com.yijian.staff.mvp.workspace.**{*;}
 -keep public class com.yijian.staff.bean.**{*;}
 -keep public class com.yijian.staff.net.requestbody.*.**{*;}
 -keep public class * extends android.app.Activity
@@ -244,8 +246,6 @@ public static java.lang.String TABLENAME;
 #友盟
 -dontwarn com.umeng.**
 -keep class com.umeng*.** {*; }
-
-
 
 #greendao
 -keep class org.greenrobot.greendao.**{*;}

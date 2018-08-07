@@ -78,12 +78,14 @@ android {
             buildConfigField "String", "FILE_HOST", "\"$dev_file_host\""
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_dev_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_dev_file_host\""
+            buildConfigField "String", "WORKSPACE_H5_HOST", "\"$workspace_h5_dev_host\""
         }
         prod {
             buildConfigField "String", "HOST", "\"$prod_host\""
             buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_prod_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_prod_file_host\""
+            buildConfigField "String", "WORKSPACE_H5_HOST", "\"$workspace_h5_prod_host\""
         }
         train {
             buildConfigField "String", "HOST", "\"$train_host\""
@@ -96,6 +98,7 @@ android {
             buildConfigField "String", "FILE_HOST", "\"$test_file_host\""
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_test_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_test_file_host\""
+            buildConfigField "String", "WORKSPACE_H5_HOST", "\"$workspace_h5_test_host\""
 
         }
     }
@@ -203,7 +206,7 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
 
     //选择时间，日期，多级联动
-    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.contrarywind:Android-PickerView:4.1.4'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
 
@@ -223,4 +226,14 @@ dependencies {
     implementation 'org.jaaksi:pickerview:1.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.drawthink:expandable-recyclerview:0.0.3'
+
+    //友盟 start
+    implementation 'com.umeng.sdk:common:1.5.1'
+    implementation 'com.umeng.sdk:share-core:latest.integration'
+    implementation 'com.umeng.sdk:share-wechat:latest.integration'
+    implementation 'com.umeng.sdk:debug:latest.integration'
+    implementation 'com.umeng.sdk:share-sina:latest.integration'
+    //友盟 end
+
+
 }

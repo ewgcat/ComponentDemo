@@ -50,28 +50,12 @@ import okhttp3.RequestBody;
 public class HttpManager {
 
 
+    public static final String QUERY_ENTRANCE_QR = "user/getEntranceParam";
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
     public static ApiService getApiService() {
         return apiService;
     }
-
-    private static String HOST;
-
-    public static void setWorkSpaceHost(boolean isWorkspace){
-        SharePreferenceUtil.setWorkSpaceVersion(isWorkspace);
-        HOST = SharePreferenceUtil.getHostUrl();
-    }
-
-    public static String getH5Host(){
-        return SharePreferenceUtil.getH5Url();
-    }
-
-    public static String getFileHost(){
-        return SharePreferenceUtil.getImageUrl();
-    }
-
-
 
 
     /*************************会籍************************/
@@ -478,7 +462,7 @@ public class HttpManager {
             params.put("memberId", memberId);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize+  "");
-            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
 
             execute(loginObservable, observer);
         }
@@ -703,7 +687,7 @@ public class HttpManager {
     //教练模糊搜索会员
     public static void searchViperByCoach(Map<String, String> params, Observer<JSONObject> observer) {
 
-        getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+INDEX_COACH_QUERY_URL, params, observer);
+        getHasHeaderHasParam(INDEX_COACH_QUERY_URL, params, observer);
 
     }
 
@@ -711,7 +695,7 @@ public class HttpManager {
     //会籍模糊搜索会员
     public static void searchViperByHuiJi(Map<String, String> params, Observer<JSONObject> observer) {
 
-        getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+INDEX_HUI_JI_QUERY_URL, params, observer);
+        getHasHeaderHasParam(INDEX_HUI_JI_QUERY_URL, params, observer);
 
     }
 
@@ -724,7 +708,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
+            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(SharePreferenceUtil.getHostUrl()+url, headers, editHuiJiVipBody);
             execute(observable, observer);
         }
     }

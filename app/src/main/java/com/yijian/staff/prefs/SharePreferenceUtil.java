@@ -332,7 +332,7 @@ public class SharePreferenceUtil {
 
     }
 
-    public static void setWorkSpaceVersion(boolean b) {
+    public static void setWorkSpaceHost(boolean b) {
          setBoolean(KEY_IS_WORKSPACE_VERSION, b);
     }
 

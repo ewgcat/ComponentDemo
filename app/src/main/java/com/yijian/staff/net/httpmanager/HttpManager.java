@@ -56,9 +56,8 @@ public class HttpManager {
         return apiService;
     }
 
-    public static String getFileHost(){
-        return SharePreferenceUtil.getImageUrl();
-    }
+
+
 
     /*************************会籍************************/
 

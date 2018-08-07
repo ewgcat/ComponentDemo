@@ -38,7 +38,7 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar2.setTitle("关于我们");
+        navigationBar2.setTitle("关于易健");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
 

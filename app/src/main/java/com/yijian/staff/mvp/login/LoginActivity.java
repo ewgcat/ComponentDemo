@@ -121,10 +121,10 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
             public void callExchangeBack(int index) {
                 switch (index) {
                     case 0: //俱乐部
-                        HttpManager.setWorkSpaceHost(false);
+                        SharePreferenceUtil.setWorkSpaceHost(false);
                         break;
                     case 1: //工作室
-                        HttpManager.setWorkSpaceHost(true);
+                        SharePreferenceUtil.setWorkSpaceHost(true);
                         break;
                     default:
                 }

@@ -122,12 +122,16 @@ public static java.lang.String TABLENAME;
   public static final android.os.Parcelable$Creator *;
 }
 
-# Glide
+# glide 的混淆代码
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-    **[] $VALUES;
-    public *;
+  **[] $VALUES;
+  public *;
 }
+# banner 的混淆代码
+-keep class com.youth.banner.** {
+    *;
+ }
 # nineoldandroids
 -keep interface com.nineoldandroids.view.** { *; }
 -dontwarn com.nineoldandroids.**

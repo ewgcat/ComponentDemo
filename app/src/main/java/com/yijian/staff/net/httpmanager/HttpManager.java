@@ -375,6 +375,8 @@ public class HttpManager {
     public static String WORKSPACE_SAVE_SPORT_URL = "coach/side/fuzzy/saveOrUpdateYD";
 
 
+    public static String CLUB_DETAIL_URL="brand";
+
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

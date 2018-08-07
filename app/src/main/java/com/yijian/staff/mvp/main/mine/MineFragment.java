@@ -16,25 +16,20 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
-import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
-import com.yijian.staff.mvp.main.mine.club.ClubActivity;
+import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
+import com.yijian.staff.mvp.main.mine.club.ClubActivity;
 import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.main.mine.qualification.MyQualificationActivity;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
+import com.yijian.staff.mvp.main.mine.userinfo.UserInfoActivity;
 import com.yijian.staff.util.GlideCircleTransform;
-
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,49 +86,7 @@ public class MineFragment extends Fragment {
         Glide.with(this).load(path).apply(options).into(imageView);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
-    @OnClick({R.id.iv_user_head, R.id.ll_more, R.id.ll_club, R.id.ll_my_zhengshu, R.id.ll_my_date, R.id.ll_erweima, R.id.ll_edit_password, R.id.ll_suggestion})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_more:
-                if (user == null) {
-                    Intent intent = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intent);
-                } else {
-                    startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
-                }
-                break;
-            case R.id.ll_club:
-                startActivity(new Intent(getContext(), ClubActivity.class));
-                break;
-            case R.id.ll_my_zhengshu:
-                startActivity(new Intent(getContext(), MyQualificationActivity.class));
-                break;
-            case R.id.ll_my_date:
-                OthermodelVo othermodelVo = DBManager.getInstance().queryOthermodelVo();
-                if (othermodelVo.getCoachSchedule()) {
-                    startActivity(new Intent(getContext(), CalendarTableActivity.class));
-                } else {
-                    Toast.makeText(getContext(), "暂无权限", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.ll_erweima:
-                startActivity(new Intent(getContext(), MyQRCodeActivity.class));
-                break;
-            case R.id.ll_edit_password:
-                startActivityForResult(new Intent(getContext(), EditPasswordActivity.class), 1234);
-                break;
-            case R.id.ll_suggestion:
-                startActivity(new Intent(getContext(), AddAdviceActivity.class));
-                break;
-        }
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -143,6 +96,35 @@ public class MineFragment extends Fragment {
             startActivity(intent);
             getActivity().finish();
 
+        }
+    }
+
+    @OnClick({R.id.ll_more, R.id.ll_club, R.id.ll_erweima, R.id.ll_coach, R.id.ll_system_set, R.id.ll_suggestion})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_more:
+                if (user == null) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    startActivityForResult(new Intent(getContext(), UserInfoActivity.class), 1234);
+                }
+                break;
+            case R.id.ll_erweima:
+                startActivity(new Intent(getContext(), MyQRCodeActivity.class));
+                break;
+            case R.id.ll_club:
+                startActivity(new Intent(getContext(), ClubActivity.class));
+                break;
+            case R.id.ll_coach:
+                startActivity(new Intent(getContext(), MyQualificationActivity.class));
+                break;
+            case R.id.ll_system_set:
+                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+                break;
+            case R.id.ll_suggestion:
+                startActivity(new Intent(getContext(), AddAdviceActivity.class));
+                break;
         }
     }
 }

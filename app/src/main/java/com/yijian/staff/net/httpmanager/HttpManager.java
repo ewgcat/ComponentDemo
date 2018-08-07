@@ -50,7 +50,6 @@ import okhttp3.RequestBody;
 public class HttpManager {
 
 
-    public static final String QUERY_ENTRANCE_QR = "user/getEntranceParam";
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
     public static ApiService getApiService() {
@@ -364,18 +363,6 @@ public class HttpManager {
     //地区列表
     public static String QUERY_ADDRESS_URL =  "province";
 
-    /************* 工作室 ****************/
-    //首页会员名称模糊搜索会员信息列表
-    public static String WORKSPACE_QUERY_SEARCH__URL = "coach/side/fuzzy/query/list";
-    //保存完美围度添加
-    public static String WORKSPACE_ADD_PERFECT__URL = "coach/side/fuzzy/saveOrUpdateWD";
-    //查看结果列表
-    public static String WORKSPACE_QUERY_RESULT_LIST__URL = "coach/side/fuzzy/getTestList";
-    //上传单个或多个文件
-    public static String WORKSPACE_UPLOAD_FILE__URL = "file/newUploadFiles";
-    //保存运动表现
-    public static String WORKSPACE_SAVE_SPORT_URL = "coach/side/fuzzy/saveOrUpdateYD";
-
 
     //公用方法
     private static <T> void execute(Observable<T> observable, Observer<T> observer) {
@@ -464,7 +451,7 @@ public class HttpManager {
             params.put("memberId", memberId);
             params.put("pageNum", pageNum + "");
             params.put("pageSize", pageSize+  "");
-            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
+            Observable<JSONObject> loginObservable = apiService.getHasHeaderHasParam(SharePreferenceUtil.getHostUrl()+COACH_PRIVATE_COURSE_STOCK_BASE_INFO_URL, headers, params);
 
             execute(loginObservable, observer);
         }
@@ -710,7 +697,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(SharePreferenceUtil.getHostUrl()+url, headers, editHuiJiVipBody);
+            Observable<JSONObject> observable = apiService.editHuiJiVipDetail(url, headers, editHuiJiVipBody);
             execute(observable, observer);
         }
     }
@@ -945,34 +932,6 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
-
-
-    //保存完美围度
-    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer){
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postPerfectInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
-            execute(observable, observer);
-        }
-    }
-
-    //保存运动表现
-    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer){
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
-            execute(observable, observer);
-        }
-    }
-
 
     //接待人的信息
     public static final String RECEPTION_INFO =  "reception/person";

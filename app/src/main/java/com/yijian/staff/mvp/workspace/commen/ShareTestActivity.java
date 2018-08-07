@@ -20,12 +20,12 @@ import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.umeng.SharePopupWindow;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
@@ -89,10 +89,10 @@ public class ShareTestActivity extends MvcBaseActivity {
         recordId = getIntent().getExtras().getString("recordId");
         if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
 //            webUrl = String.format("http://192.168.2.101:8080/#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
-            webUrl = String.format( SharePreferenceUtil.getH5Url() + "#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+            webUrl = String.format( HttpManagerWorkSpace.getH5Host() + "#/perfectgirth?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
         }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)){
 //            webUrl = String.format("http://192.168.2.101:8080/#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
-            webUrl = String.format( SharePreferenceUtil.getH5Url() + "#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
+            webUrl = String.format( HttpManagerWorkSpace.getH5Host() + "#/sportperformance?memberId=%s&wdId=%s&title=%s", ActivityUtils.workSpaceVipBean.getMemberId(), recordId, ActivityUtils.workSpaceVipBean.getName() + "的测试记录");
         }
         emptyView.setButton(new View.OnClickListener() {
             @Override

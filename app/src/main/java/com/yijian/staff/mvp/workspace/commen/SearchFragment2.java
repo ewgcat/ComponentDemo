@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -97,7 +98,7 @@ public class SearchFragment2 extends BaseSpaceFragment {
             map.put("name", memberName);
             empty_view.setVisibility(View.GONE);
 
-            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            HttpManagerWorkSpace.getHasHeaderHasParam(HttpManagerWorkSpace.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
@@ -138,7 +139,7 @@ public class SearchFragment2 extends BaseSpaceFragment {
                 map.put("pageSize", pageSize + "");
                 map.put("name", memberName);
 
-                HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+                HttpManagerWorkSpace.getHasHeaderHasParam(HttpManagerWorkSpace.WORKSPACE_QUERY_SEARCH__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
                         pagesTotal = JsonUtil.getInt(result, "pages");

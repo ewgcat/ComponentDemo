@@ -21,6 +21,7 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.jpush.JpushMessageReceiver;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.mvp.workspace.umeng.UmengUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -81,7 +82,7 @@ public class CustomApplication extends TinkerApplication implements Application.
         getScreenSize();
 
         RetrofitClient.init(this);
-        SharePreferenceUtil.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion());
+        HttpManagerWorkSpace.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion());
         DBManager.init(this);
         //在子线程中完成其他初始化
         InitializeService.start(this);

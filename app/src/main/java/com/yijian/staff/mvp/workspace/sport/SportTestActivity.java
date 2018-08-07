@@ -15,6 +15,7 @@ import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultStringObserver;
@@ -169,7 +170,7 @@ public class  SportTestActivity extends MvcBaseActivity {
                     break;
                 case 3:
                     showLoading();
-                    HttpManager.postSportInfo(sportStepRequedtBody, new ResultStringObserver(getLifecycle()) {
+                    HttpManagerWorkSpace.postSportInfo(sportStepRequedtBody, new ResultStringObserver(getLifecycle()) {
 
                         @Override
                         public void onSuccess(String result) {

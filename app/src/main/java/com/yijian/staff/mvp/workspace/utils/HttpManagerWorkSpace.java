@@ -31,7 +31,7 @@ public class HttpManagerWorkSpace {
     private static String HOST;
 
     public static void setWorkSpaceHost(boolean isWorkspace){
-        SharePreferenceUtil.setWorkSpaceVersion(isWorkspace);
+        SharePreferenceUtil.setWorkSpaceHost(isWorkspace);
         HOST = SharePreferenceUtil.getHostUrl();
     }
 

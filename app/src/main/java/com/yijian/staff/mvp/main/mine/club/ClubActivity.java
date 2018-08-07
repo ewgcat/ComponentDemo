@@ -32,8 +32,7 @@ import butterknife.ButterKnife;
 public class ClubActivity extends BaseWebViewActivity {
 
     private static final String TAG = ClubActivity.class.getSimpleName();
-    @BindView(R.id.club_navigation_bar2)
-    NavigationBar2 navigationBar2;
+
 
 
     @Override
@@ -43,9 +42,7 @@ public class ClubActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar2.setTitle("俱乐部");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_club",version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {

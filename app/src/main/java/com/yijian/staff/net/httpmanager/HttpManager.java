@@ -56,13 +56,9 @@ public class HttpManager {
     public static ApiService getApiService() {
         return apiService;
     }
-    public static String getH5Host(){
-        return SharePreferenceUtil.getH5Url();
-    }
 
-    public static String getFileHost(){
-        return SharePreferenceUtil.getImageUrl();
-    }
+
+
 
     /*************************会籍************************/
 

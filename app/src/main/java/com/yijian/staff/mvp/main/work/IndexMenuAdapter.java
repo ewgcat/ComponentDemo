@@ -22,6 +22,7 @@ import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.PermissionUtil;
 
@@ -88,7 +89,8 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void bind(Context context, IndexDataInfo.MenuModelListBean.SubMeneModelListBean menuModel) {
-            ImageLoader.setImageResource(HttpManager.getFileHost() + menuModel.getIcon(), context, menu_icon);
+            ImageLoader.setImageResource(SharePreferenceUtil.getImageUrl()
+                    + menuModel.getIcon(), context, menu_icon);
             menu_title.setText(menuModel.getTitle());
             item_grid.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,7 +103,7 @@ public class IndexMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     String path = menuModel.getPath();
                     if (TextUtils.isEmpty(path)) {
-                        Toast.makeText(context,"此版本不能提供该服务,请更新最新版本！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "此版本不能提供该服务,请更新最新版本！", Toast.LENGTH_SHORT).show();
                     } else {
                         List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean.MenuActionListBean2> menuActionList = menuModel.getMenuActionList();
                         PermissionUtils.getInstance().setMenuKey(menuModel.getMenuKey());

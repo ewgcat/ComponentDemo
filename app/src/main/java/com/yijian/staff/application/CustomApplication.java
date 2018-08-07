@@ -81,7 +81,7 @@ public class CustomApplication extends TinkerApplication implements Application.
         getScreenSize();
 
         RetrofitClient.init(this);
-        HttpManager.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion());
+        SharePreferenceUtil.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion());
         DBManager.init(this);
         //在子线程中完成其他初始化
         InitializeService.start(this);

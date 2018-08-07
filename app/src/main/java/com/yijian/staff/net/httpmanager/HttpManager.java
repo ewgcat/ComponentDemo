@@ -50,6 +50,7 @@ import okhttp3.RequestBody;
 public class HttpManager {
 
 
+    public static final String QUERY_ENTRANCE_QR = "user/getEntranceParam";
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
 
     public static ApiService getApiService() {

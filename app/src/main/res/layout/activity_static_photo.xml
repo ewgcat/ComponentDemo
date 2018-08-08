@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/fl_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/transparent"
+        android:layout_marginBottom="30dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:src="@mipmap/left" />
+
+        <ImageView
+            android:id="@+id/iv_take"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/middle"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+
+        <Space
+            android:id="@+id/space_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/iv_sure"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/right"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_gyroscope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="44dp"
+        android:background="#f0f">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拍照时请保证头部与脚顶住框"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15"
+            />
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="13dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/iv_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_below"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_left"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/iv_below"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_above"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"/>
+
+            <com.yijian.staff.mvp.workspace.static_assessment.GyroscopeView
+                android:id="@+id/gyroscopeView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/iv_left"
+                android:layout_below="@id/iv_top"
+                android:layout_toLeftOf="@id/iv_right"
+                android:layout_above="@id/iv_below"/>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginTop="13dp"
+            />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/view_navigation_bar2"/>
+
+
+
+
+
+</FrameLayout>

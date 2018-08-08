@@ -90,14 +90,12 @@ public class WorkFragment extends MvcBaseFragment {
         recyclerView.setAdapter(indexMenuAdapter);
 
         OthermodelVo othermodelVo = DBManager.getInstance().queryOthermodelVo();
-        Logger.i(TAG, othermodelVo.toString());
         faceRecognition = othermodelVo.getFaceRecognition();
         if (faceRecognition) {
             ivFace.setVisibility(View.VISIBLE);
         } else {
             ivFace.setVisibility(View.GONE);
         }
-        reception = othermodelVo.getReception();
 
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush();
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush();
@@ -137,10 +135,8 @@ public class WorkFragment extends MvcBaseFragment {
 
 
     public void observe(PushInfoBean pushInfoBean) {
-
         hasNewJiedaiPush = pushInfoBean.getHasNewJiedaiPush();
         hasNewYueKePush = pushInfoBean.getHasNewYueKePush();
-
         setRedPoint();
 
     }
@@ -156,8 +152,6 @@ public class WorkFragment extends MvcBaseFragment {
             showJieDaiView(0);
         }
         if (hasNewYueKePush) {
-            Logger.i(TAG, "有排课信息推送");
-
             for (int i = 0; i < menuList.size(); i++) {
                 if (menuList.get(i).getMenuKey().equals("app_course_appoint_info")) {
                     menuList.get(i).setCount(1);
@@ -179,10 +173,13 @@ public class WorkFragment extends MvcBaseFragment {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("faceRecognition", othermodelVoBean.isFaceRecognition());
-                    jsonObject.put("schedule", othermodelVoBean.isReception());
+                    jsonObject.put("reception", othermodelVoBean.isReception());
                     jsonObject.put("coachSchedule", othermodelVoBean.isCoachSchedule());
                     jsonObject.put("sellerSchedule", othermodelVoBean.isSellerSchedule());
-                    DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(jsonObject));
+                    OthermodelVo othermodelVo = new OthermodelVo(jsonObject);
+                    DBManager.getInstance().insertOrReplaceOthermodelVo(othermodelVo);
+                    reception = othermodelVo.getReception();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

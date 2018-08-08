@@ -50,11 +50,11 @@ public class SettingActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.ll_password, R.id.ll_about, R.id.ll_version})
+    @OnClick({R.id.ll_password, R.id.ll_about, R.id.ll_version,R.id.tv_exit_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_password:
-                startActivityForResult(new Intent(SettingActivity.this, EditPasswordActivity.class), 4567);
+                startActivityForResult(new Intent(SettingActivity.this, EditPasswordActivity.class), 1124);
                 break;
             case R.id.ll_about:
                 startActivity(new Intent(SettingActivity.this, AboutUsActivity.class));
@@ -62,13 +62,29 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.ll_version:
                 Beta.checkUpgrade();
                 break;
+            case R.id.tv_exit_login:
+                exitLogin();
+                break;
         }
     }
+
+
+
+    private void exitLogin() {
+        //发送退出登录请求
+
+        DBManager.getInstance().clearUser();
+        DBManager.getInstance().clearRoleVoBean();
+        DBManager.getInstance().clearOthermodelVo();
+        setResult(1234);
+        finish();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 4567) {
-            setResult(RESULT_OK);
+            setResult(1234);
             finish();
 
         }

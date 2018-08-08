@@ -49,8 +49,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tvDepartment;
     @BindView(R.id.tv_position)
     TextView tvPosition;
-    @BindView(R.id.tv_version)
-    TextView tvVersion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,27 +96,8 @@ public class UserInfoActivity extends AppCompatActivity {
             });
         }
 
-        tvVersion.setText(CommonUtil.getVersionName(this) + " " + CommonUtil.getVersionCode(this));
     }
 
-    @OnClick({R.id.tv_exit_login})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_exit_login:
-                exitLogin();
-                break;
-        }
-    }
-
-    private void exitLogin() {
-        //发送退出登录请求
-
-        DBManager.getInstance().clearUser();
-        DBManager.getInstance().clearRoleVoBean();
-        DBManager.getInstance().clearOthermodelVo();
-        setResult(1234);
-        finish();
-    }
 
     private void setImageResource(String path, ImageView imageView) {
         RequestOptions options = new RequestOptions()

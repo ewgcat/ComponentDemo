@@ -90,7 +90,7 @@ public class EditPasswordActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(HttpManager.EDIT_PASSWORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                setResult(RESULT_OK);
+                setResult(4567);
                 finish();
             }
 

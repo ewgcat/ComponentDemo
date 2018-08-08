@@ -255,40 +255,8 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="16dp"
-                    android:gravity="center_vertical"
-                    android:text="版本"
-                    android:textColor="#666666"/>
-
-                <TextView
-                    android:id="@+id/tv_version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_gravity="center_vertical"/>
 
 
-            </LinearLayout>
-            <TextView
-                android:id="@+id/tv_exit_login"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:text="退出登录"
-                android:textColor="#e66e6e"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

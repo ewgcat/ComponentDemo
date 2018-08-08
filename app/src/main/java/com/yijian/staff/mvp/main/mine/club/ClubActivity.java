@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
@@ -18,6 +22,7 @@ import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
 import com.youth.banner.Banner;
@@ -89,7 +94,16 @@ public class ClubActivity extends BaseWebViewActivity {
     List<String> imageList=new ArrayList<>();
 
     private void updateUI(ClubDetailBean clubDetailBean) {
-        ImageLoader.setImageResource(SharePreferenceUtil.getImageUrl() + clubDetailBean.getLogoPath(), ClubActivity.this, ivLogo);
+        String s = SharePreferenceUtil.getImageUrl() + clubDetailBean.getLogoPath();
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.placeholder)
+                .error(R.mipmap.placeholder)
+                .transform(new GlideCircleTransform())
+                .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(ClubActivity.this).load(s).apply(options).into(ivLogo);
+
         if (!TextUtils.isEmpty(clubDetailBean.getName())) {
             name = clubDetailBean.getName();
             tvClubName.setText(name);

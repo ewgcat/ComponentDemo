@@ -167,10 +167,11 @@ public class WorkFragment extends MvcBaseFragment {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("faceRecognition", othermodelVoBean.isFaceRecognition());
-                    jsonObject.put("schedule", othermodelVoBean.isReception());
+                    jsonObject.put("reception", othermodelVoBean.isReception());
                     jsonObject.put("coachSchedule", othermodelVoBean.isCoachSchedule());
                     jsonObject.put("sellerSchedule", othermodelVoBean.isSellerSchedule());
                     DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(jsonObject));
+                    reception=othermodelVoBean.isReception();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

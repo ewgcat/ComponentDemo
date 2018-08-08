@@ -12,6 +12,7 @@ import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.ClubDetailBean;
 import com.yijian.staff.mvp.main.mine.qualification.GlideImageLoader;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
+import com.yijian.staff.mvp.workspace.umeng.SharePopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -43,6 +44,8 @@ public class ClubActivity extends BaseWebViewActivity {
     TextView tvClubName;
     @BindView(R.id.tv_des)
     TextView tvDes;
+    private SharePopupWindow sharePopupWindow;
+    private String name;
 
 
     @Override
@@ -89,7 +92,8 @@ public class ClubActivity extends BaseWebViewActivity {
     private void updateUI(ClubDetailBean clubDetailBean) {
         ImageLoader.setImageResource(SharePreferenceUtil.getImageUrl() + clubDetailBean.getLogoPath(), ClubActivity.this, ivLogo);
         if (!TextUtils.isEmpty(clubDetailBean.getName())) {
-            tvClubName.setText(clubDetailBean.getName());
+            name = clubDetailBean.getName();
+            tvClubName.setText(name);
         }
         List<ClubDetailBean.PicsBean> pics = clubDetailBean.getPics();
         if (pics!=null&&pics.size()>0){
@@ -128,7 +132,15 @@ public class ClubActivity extends BaseWebViewActivity {
                 finish();
                 break;
             case R.id.ll_share:
+                showShareDialog();
                 break;
         }
+    }
+    private void showShareDialog() {
+        if (sharePopupWindow == null) {
+            sharePopupWindow = new SharePopupWindow(this);
+            sharePopupWindow.setData("http://www.baidu.com", name, null, null);
+        }
+        sharePopupWindow.show(getWindow().getDecorView());
     }
 }

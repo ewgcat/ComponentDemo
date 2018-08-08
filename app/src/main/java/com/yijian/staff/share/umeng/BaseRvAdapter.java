@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.umeng;
+package com.yijian.staff.share.umeng;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.workspace.commen;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,23 +17,18 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.workspace.base.BaseWebView;
 import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
-import com.yijian.staff.mvp.workspace.umeng.SharePopupWindow;
+import com.yijian.staff.share.umeng.SharePopupWindow;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import butterknife.BindView;
 

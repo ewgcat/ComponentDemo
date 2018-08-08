@@ -12,7 +12,7 @@ import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.ClubDetailBean;
 import com.yijian.staff.mvp.main.mine.qualification.GlideImageLoader;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
-import com.yijian.staff.mvp.workspace.umeng.SharePopupWindow;
+import com.yijian.staff.share.umeng.SharePopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ClubActivity extends BaseWebViewActivity {

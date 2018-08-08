@@ -1,11 +1,9 @@
-package com.yijian.staff.mvp.workspace.umeng;
+package com.yijian.staff.share.umeng;
 
 import android.app.Application;
 
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.UMShareConfig;
 
 /**
  * Created by GZLX on 2018/5/7.

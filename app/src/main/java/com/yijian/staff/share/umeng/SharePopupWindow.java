@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.umeng;
+package com.yijian.staff.share.umeng;
 
 import android.app.Activity;
 import android.content.Intent;

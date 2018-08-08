@@ -1,6 +1,4 @@
-package com.yijian.staff.mvp.workspace.umeng;
-
-import com.umeng.socialize.bean.SHARE_MEDIA;
+package com.yijian.staff.share.umeng;
 
 /**
  * Created by GZLX on 2018/7/3.

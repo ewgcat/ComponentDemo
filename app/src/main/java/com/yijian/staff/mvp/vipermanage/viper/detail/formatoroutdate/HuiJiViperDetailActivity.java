@@ -35,7 +35,7 @@ import java.util.HashMap;
 
 public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ViperDetailAdapter.AdapterInterface {
 
-    private static final String TAG = "ViperDetailActivit";
+    private static final String TAG = "HuiJiViperDetailActivity";
     private LinearLayout llHead, ll_invite;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
@@ -273,6 +273,8 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
                 Intent intent3 = new Intent(HuiJiViperDetailActivity.this, InvateIndexActivity.class);
                 intent3.putExtra("memberId", memberId);
                 intent3.putExtra("memberType", memberType);
+                String mobile = viperDetailBean.getMobile();
+                intent3.putExtra("mobile", mobile);
                 startActivity(intent3);
 
 

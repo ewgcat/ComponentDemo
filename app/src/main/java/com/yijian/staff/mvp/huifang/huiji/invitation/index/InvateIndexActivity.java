@@ -73,8 +73,12 @@ public class InvateIndexActivity extends AppCompatActivity {
     private void initView() {
         String memberType = getIntent().getStringExtra("memberType");
         memberId = getIntent().getStringExtra("memberId");
+        String mobile = getIntent().getStringExtra("mobile");
         if (!TextUtils.isEmpty(memberType)){
             tvViperType.setText(memberType);
+        }
+         if (!TextUtils.isEmpty(mobile)){
+             tvTelephone.setText(mobile);
         }
         Calendar calendar = Calendar.getInstance();
         tvFuyueTime.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));

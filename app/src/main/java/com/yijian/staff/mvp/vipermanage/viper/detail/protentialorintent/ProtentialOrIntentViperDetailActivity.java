@@ -246,6 +246,8 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                 Intent intent3 = new Intent(ProtentialOrIntentViperDetailActivity.this, InvateIndexActivity.class);
                 intent3.putExtra("memberId", memberId);
                 intent3.putExtra("memberType", memberType);
+                String mobile = viperDetailBean.getMobile();
+                intent3.putExtra("mobile", mobile);
                 startActivity(intent3);
                 break;
 

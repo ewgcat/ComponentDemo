@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
+import com.yijian.staff.mvp.huifang.huiji.invitation.index.InvateIndexActivity;
 import com.yijian.staff.mvp.permission.PermissionUtils;
+import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -34,7 +36,7 @@ import java.util.HashMap;
 public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ViperDetailAdapter.AdapterInterface {
 
     private static final String TAG = "ViperDetailActivit";
-    private LinearLayout llHead;
+    private LinearLayout llHead, ll_invite;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
     private RelativeLayout rlItem2;
@@ -48,29 +50,33 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
     private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
     private String memberId;
-    //    private String memberName;
+    private String subclassName;
+    private String memberType;
     private NavigationBar2 navigation2;
-
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_huiviper_ycm);
-//        memberId = getIntent().getStringExtra("memberId");
-////        memberName = getIntent().getStringExtra("memberName");
-//        initView();
-//        initData();
-//        Log.e(TAG, "onCreate: ");
-//    }
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         memberId = getIntent().getStringExtra("memberId");
-//        memberName = getIntent().getStringExtra("memberName");
+        subclassName = getIntent().getStringExtra("subclassName");
         initview();
+
+
+        if (subclassName.equals("CustomerInfoVO")) { //正式会员
+            memberType = "正式会员";
+            ll_invite.setVisibility(View.GONE);
+        } else if (subclassName.equals("PotentialVO")) {//潜在会员
+            memberType = "潜在会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+            memberType = "意向会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+            memberType = "过期会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        }
         initData();
-//        Log.e(TAG, "onCreate: ");
     }
 
     @Override
@@ -88,9 +94,10 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
             public void onSuccess(JSONObject result) {
                 hideLoading();
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
-                if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
+                if (!TextUtils.isEmpty(viperDetailBean.getName())){
+                    navigation2.setTitle(viperDetailBean.getName());
+                }
                 adapter.setData(viperDetailBean);
-//                updateUi(viperDetailBean);
             }
 
 
@@ -109,6 +116,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         navigation2.setBackClickListener(this);
         navigation2.getmTitleView().setVisibility(View.GONE);
         navigation2.getmTitleView().setAlpha(0.0f);
+        ll_invite = findViewById(R.id.ll_invite);
 
         llHead = findViewById(R.id.ll_head);
         rlItem0 = findViewById(R.id.rl_item0);
@@ -129,6 +137,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         rlItem0.setOnClickListener(this);
         rlItem1.setOnClickListener(this);
         rlItem2.setOnClickListener(this);
+        ll_invite.setOnClickListener(this);
 
         findViewById(R.id.ll_chakan_hetong).setOnClickListener(this);
         findViewById(R.id.ll_chakan_wenjuan).setOnClickListener(this);
@@ -258,6 +267,14 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
 //                Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
 //                intent2.putExtra("memberId", viperDetailBean.getMemberId());
 //                startActivity(intent2);
+
+                break;
+            case R.id.ll_invite:
+                Intent intent3 = new Intent(HuiJiViperDetailActivity.this, InvateIndexActivity.class);
+                intent3.putExtra("memberId", memberId);
+                intent3.putExtra("memberType", memberType);
+                startActivity(intent3);
+
 
                 break;
 

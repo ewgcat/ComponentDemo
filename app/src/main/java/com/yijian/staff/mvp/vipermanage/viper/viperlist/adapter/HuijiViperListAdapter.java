@@ -92,6 +92,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
                     PermissionUtils.getInstance().setMenuKey("app_formal_member");
                     Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                    intent.putExtra("subclassName", huiJiViperBean.getSubclassName());
                     intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                     context.startActivity(intent);
                 }

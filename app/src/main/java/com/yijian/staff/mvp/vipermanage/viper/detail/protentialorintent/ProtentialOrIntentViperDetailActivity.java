@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
+import com.yijian.staff.mvp.huifang.huiji.invitation.index.InvateIndexActivity;
+import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -31,8 +33,8 @@ import java.util.HashMap;
  */
 
 public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ProtentialOrIntentViperDetailAdapter.AdapterInterface {
-    private static final String TAG = "HuijiIntentViperDetailA";
-    private LinearLayout llHead;
+    private static final String TAG = "ProtentialOrIntentViperDetailActivity";
+    private LinearLayout llHead, ll_invite;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
     private ImageView ivItem0;
@@ -42,26 +44,34 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
     private ProtentialOrIntentViperDetailAdapter adapter;
     private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
-    private String id;
-    //    private String memberName;
+    private String memberId;
+    private String subclassName;
+    private String memberType;
     private NavigationBar2 navigation2;
-
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_huiji_intent_viper_ycm);
-//        id = getIntent().getStringExtra("id");
-//        initView();
-//        initData();
-//
-//    }
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        id = getIntent().getStringExtra("id");
+
+        memberId = getIntent().getStringExtra("memberId");
+        subclassName = getIntent().getStringExtra("subclassName");
+
         initview();
+
+        if (subclassName.equals("CustomerInfoVO")) { //正式会员
+            memberType = "正式会员";
+            ll_invite.setVisibility(View.GONE);
+        } else if (subclassName.equals("PotentialVO")) {//潜在会员
+            memberType = "潜在会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+            memberType = "意向会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+            memberType = "过期会员";
+            ll_invite.setVisibility(View.VISIBLE);
+        }
         initData();
     }
 
@@ -73,7 +83,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
     private void initData() {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
-        map.put("id", id);
+        map.put("id", memberId);
 
         HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -81,7 +91,8 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                 hideLoading();
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
 //                updateUi(viperDetailBean);
-                if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
+                if (!TextUtils.isEmpty(viperDetailBean.getName()))
+                    navigation2.setTitle(viperDetailBean.getName());
                 adapter.setData(viperDetailBean);
             }
 
@@ -103,6 +114,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
 
 
         llHead = findViewById(R.id.ll_head);
+        ll_invite = findViewById(R.id.ll_invite);
         rlItem0 = findViewById(R.id.rl_item0);
         rlItem1 = findViewById(R.id.rl_item1);
 
@@ -118,6 +130,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
         rlItem0.setOnClickListener(this);
         rlItem1.setOnClickListener(this);
 
+        ll_invite.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -228,6 +241,14 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                 moveToPosition(2);
                 itemSelecte(1);
                 break;
+            case R.id.ll_invite:
+
+                Intent intent3 = new Intent(ProtentialOrIntentViperDetailActivity.this, InvateIndexActivity.class);
+                intent3.putExtra("memberId", memberId);
+                intent3.putExtra("memberType", memberType);
+                startActivity(intent3);
+                break;
+
 
         }
     }

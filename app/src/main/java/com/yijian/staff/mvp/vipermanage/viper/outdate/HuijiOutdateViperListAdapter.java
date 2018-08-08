@@ -87,6 +87,7 @@ public class HuijiOutdateViperListAdapter extends RecyclerView.Adapter<HuijiOutd
                     PermissionUtils.getInstance().setMenuKey("app_expire_member");
                     Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                    intent.putExtra("subclassName", huiJiViperBean.getSubclassName());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
 //                    intent.putExtra("dictItemKey",huiJiViperBean.getDictItemKey());
                     context.startActivity(intent);

@@ -116,23 +116,27 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         PermissionUtils.getInstance().setMenuKey("app_formal_member");
                         Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                        intent.putExtra("subclassName", subclassName);
                         context.startActivity(intent);
                     } else if (subclassName.equals("PotentialVO")) {//潜在会员
                         PermissionUtils.getInstance().setMenuKey("app_potential_member");
                         Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
-                        intent.putExtra("id", huiJiViperBean.getMemberId());
+                        intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                        intent.putExtra("subclassName", subclassName);
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
                     } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                         PermissionUtils.getInstance().setMenuKey("app_intention_member");
                         Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
-                        intent.putExtra("id", huiJiViperBean.getMemberId());
+                        intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                        intent.putExtra("subclassName", subclassName);
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
                     } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                         PermissionUtils.getInstance().setMenuKey("app_expire_member");
                         Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                         intent.putExtra("id", huiJiViperBean.getMemberId());
+                        intent.putExtra("subclassName", subclassName);
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
                     } else {

@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.huifang.huiji.invitation.index;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,6 +45,7 @@ public class InvateIndexActivity extends AppCompatActivity {
     @BindView(R.id.et_invate_content)
     EditText etInvateContent;
     TimePickerView timePickerView;
+    private String memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,11 @@ public class InvateIndexActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvViperType.setText((getIntent().getStringExtra("memberType")).equals("0") ? "潜在会员" : "意向会员");
+        String memberType = getIntent().getStringExtra("memberType");
+        memberId = getIntent().getStringExtra("memberId");
+        if (!TextUtils.isEmpty(memberType)){
+            tvViperType.setText(memberType);
+        }
         Calendar calendar = Calendar.getInstance();
         tvFuyueTime.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
         //提交结果
@@ -89,10 +95,30 @@ public class InvateIndexActivity extends AppCompatActivity {
 
     private void postData() {
         Map<String, String> map = new HashMap<>();
-        map.put("memberId", getIntent().getStringExtra("memberId"));
-        map.put("content", etInvateContent.getText().toString());
-        map.put("visitTime", tvFuyueTime.getText().toString());
-        map.put("memberType", getIntent().getStringExtra("memberType"));
+
+        map.put("memberId", memberId);
+        String content = etInvateContent.getText().toString().trim();
+        if (TextUtils.isEmpty(content)){
+            content="";
+        }
+        map.put("content", content);
+        String visitTime = tvFuyueTime.getText().toString().trim();
+        if (TextUtils.isEmpty(visitTime)){
+            Toast.makeText(this,"请选择来访日期",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        map.put("visitTime", visitTime);
+        String memberType = getIntent().getStringExtra("memberType");
+
+
+        if ("潜在会员".equals(memberType)) { //正式会员
+            memberType = "0";
+        } else if ("意向会员".equals(memberType)) {//意向会员
+            memberType = "1";
+        } else if ("过期会员".equals(memberType)) {//过期会员
+            memberType = "3";
+        }
+        map.put("memberType", memberType);
 
         HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override

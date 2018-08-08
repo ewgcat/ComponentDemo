@@ -85,7 +85,8 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
 //                    Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
                     PermissionUtils.getInstance().setMenuKey("app_potential_member");
                     Intent intent = new Intent(context, ProtentialOrIntentViperDetailActivity.class);
-                    intent.putExtra("id", huiJiViperBean.getMemberId());
+                    intent.putExtra("memberId", huiJiViperBean.getMemberId());
+                    intent.putExtra("subclassName", huiJiViperBean.getSubclassName());
 //                    intent.putExtra("memberName",huiJiViperBean.getName());
                     context.startActivity(intent);
                 }

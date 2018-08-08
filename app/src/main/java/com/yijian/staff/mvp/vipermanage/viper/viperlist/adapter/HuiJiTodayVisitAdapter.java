@@ -102,6 +102,7 @@ public class HuiJiTodayVisitAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     PermissionUtils.getInstance().setMenuKey("");
                     Intent intent = new Intent(context, HuiJiViperDetailActivity.class);
                     intent.putExtra("memberId", huiJiViperBean.getMemberId());
+
                     context.startActivity(intent);
                 }
             });

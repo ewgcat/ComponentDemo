@@ -1,33 +1,37 @@
 package com.yijian.staff.mvp.course.timetable.schedule.week;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.course.timetable.edit.EditCourseTableActivity;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 
 public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewListener {
 
+    Unbinder unbinder;
     private DragViewGroup group;
     private View stub;
     private TimeLayout timeLayout;
@@ -147,6 +151,13 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
         } else if (viewGroup == timeLayout) {
             group.scrollTo(x, y);
         }
+    }
+
+
+
+    @OnClick(R.id.ll_edit)
+    public void onViewClicked() {
+        startActivity(new Intent(getContext(),EditCourseTableActivity.class));
     }
 }
 

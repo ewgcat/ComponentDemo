@@ -16,7 +16,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class EditCourseTimeTableActivity extends MvcBaseActivity {
+public class EditCourseTableActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.tv_seven)

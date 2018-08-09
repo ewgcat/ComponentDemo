@@ -65,7 +65,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_huiji_intent_viper_ycm;
+        return R.layout.activity_huiji_intent_viper_detail;
     }
 
     private void toggleBottomButton(Boolean b){

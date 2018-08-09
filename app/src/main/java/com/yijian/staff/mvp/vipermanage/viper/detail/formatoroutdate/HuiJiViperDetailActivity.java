@@ -114,7 +114,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
     }
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_huiviper_ycm;
+        return R.layout.activity_huiviper_detail;
     }
 
     private void initData() {

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_background_color"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
+
+    <include
+            android:id="@+id/navigation_bar2"
+            layout="@layout/view_navigation_bar2"
+    />
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/navigation_bar2"
+            android:paddingTop="16dp"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+            android:layout_below="@+id/navigation_bar2"
+            android:id="@+id/ll_head"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+        <RelativeLayout
+                android:id="@+id/rl_item0"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            <ImageView
+                    android:id="@+id/iv_item0"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/location_blue"/>
+            <TextView
+                    android:id="@+id/tv_item0"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@id/iv_item0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="基本信息"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/text_black2"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/rl_item1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            <ImageView
+                    android:id="@+id/iv_item1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/location_blue"/>
+            <TextView
+                    android:id="@+id/tv_item1"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@id/iv_item1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更多信息"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/text_black2"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/ll_invite"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:id="@+id/ll_invite"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="邀约"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_invite_history"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="邀约内容"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

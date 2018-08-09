@@ -44,8 +44,6 @@ public class SettingActivity extends AppCompatActivity {
         navigationBar2.setTitle("系统设置");
         navigationBar2.setBackClickListener(this);
         navigationBar2.hideLeftSecondIv();
-        User user = DBManager.getInstance().queryUser();
-
 
         tvVersion.setText(CommonUtil.getVersionName(this) + " " + CommonUtil.getVersionCode(this));
     }

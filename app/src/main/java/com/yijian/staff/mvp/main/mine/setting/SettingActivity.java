@@ -21,6 +21,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -76,6 +77,7 @@ public class SettingActivity extends AppCompatActivity {
         DBManager.getInstance().clearUser();
         DBManager.getInstance().clearRoleVoBean();
         DBManager.getInstance().clearOthermodelVo();
+        JPushInterface.stopPush(this);
         setResult(1234);
         finish();
     }

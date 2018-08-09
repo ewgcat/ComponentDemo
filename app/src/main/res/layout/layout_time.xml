@@ -2,6 +2,7 @@
 <com.yijian.staff.mvp.course.timetable.schedule.week.TimeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+
     >
 
     <LinearLayout

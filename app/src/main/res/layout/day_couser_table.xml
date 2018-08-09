@@ -1,14 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:orientation="vertical">
+ >
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -17,14 +15,13 @@
             android:orientation="vertical">
 
             <View
-                android:id="@+id/stub"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
 
             <include
                 android:id="@+id/time_layout"
                 layout="@layout/layout_time" />
-
 
         </LinearLayout>
 
@@ -34,27 +31,31 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/week_layout"
-                layout="@layout/layout_week"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
-
-            <com.yijian.staff.mvp.course.timetable.helper.MyScollView
+            <ScrollView
                 android:id="@+id/scoll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView
-                    android:id="@+id/recyclerView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/board" />
-            </com.yijian.staff.mvp.course.timetable.helper.MyScollView>
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/board" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/ll_edit"
@@ -72,14 +73,14 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/edit_icon" />
+            android:src="@mipmap/yueke" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="4dp"
-            android:text="编辑排课表"
+            android:layout_marginRight="20dp"
+            android:text="生成约课表"
             android:textColor="@color/white" />
     </LinearLayout>
 </RelativeLayout>

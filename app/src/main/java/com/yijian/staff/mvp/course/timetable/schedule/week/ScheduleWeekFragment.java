@@ -3,6 +3,9 @@ package com.yijian.staff.mvp.course.timetable.schedule.week;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -19,6 +22,11 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.timetable.edit.EditCourseTableActivity;
+import com.yijian.staff.mvp.course.timetable.helper.MyScollView;
+import com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView;
+import com.yijian.staff.mvp.course.timetable.helper.OnStartDragListener;
+import com.yijian.staff.mvp.course.timetable.helper.RecyclerListAdapter;
+import com.yijian.staff.mvp.course.timetable.helper.SimpleItemTouchHelperCallback;
 import com.yijian.staff.util.CommonUtil;
 
 import java.util.ArrayList;
@@ -29,13 +37,14 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewListener {
+public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewListener,OnStartDragListener {
 
-    Unbinder unbinder;
-    private DragViewGroup group;
     private View stub;
+    private MyScollView scoll_view;
     private TimeLayout timeLayout;
     private WeekLayout week_layout;
+    private ItemTouchHelper mItemTouchHelper;
+    private NoScrollRecycleView recyclerView;
     private static String TAG = ScheduleWeekFragment.class.getSimpleName();
 
     private List<TextView> timeViews = new ArrayList<>();
@@ -49,36 +58,45 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
     public void initView() {
         getScreenSize();
 
+        scoll_view = rootView.findViewById(R.id.scoll_view);
         stub = rootView.findViewById(R.id.stub);
-        int i = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
+        int width = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
         timeLayout = rootView.findViewById(R.id.time_layout);
         week_layout = rootView.findViewById(R.id.week_layout);
-        week_layout.setTimeItemWidthAndHeight(i, i);
-        stub.setLayoutParams(new LinearLayout.LayoutParams((CommonUtil.dp2px(getContext(), 40)), i - CommonUtil.dp2px(getContext(), 10)));
-        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), SCREEN_HEIGHT / 9);
+        week_layout.setTimeItemWidthAndHeight(width, width);
+        stub.setLayoutParams(new LinearLayout.LayoutParams((CommonUtil.dp2px(getContext(), 40)), width - CommonUtil.dp2px(getContext(), 10)));
+        int height = SCREEN_HEIGHT / 9;
+        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), height);
 
 
-        group = (DragViewGroup) rootView.findViewById(R.id.mydragview);
-        group.initContext(getContext());
-        group.setAdapter(baseAdapter);
-        group.setOnScrollViewListener(this);
+         RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this,width,height);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+
+        final int spanCount = 7;
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), spanCount);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(recyclerView);
+
+        scoll_view.setOnScrollViewListener(this);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+        });
         timeLayout.setOnScrollViewListener(this);
-
-        group.setItemClickListener(new DragViewGroup.ItemClickListener() {
-            @Override
-            public void onItemClickListener(int pos, View view) {
-                Toast.makeText(getContext(), "第" + pos + "被点击", Toast.LENGTH_SHORT).show();
-            }
-        });
-        group.setChildPositionChangeListener(new DragViewGroup.ChildPositionChangeListener() {
-            @Override
-            public void onChildPositionChange(int pos1, View view1, int pos2, View view2) {
-                Toast.makeText(getContext(), "第" + pos1 + "个元素和第" + pos2 + "个元素交换了位置", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
+    }
 
     public static int SCREEN_WIDTH = -1;
     public static int SCREEN_HEIGHT = -1;
@@ -103,55 +121,18 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
         Log.i(TAG, "SCREEN_HEIGHT=" + SCREEN_HEIGHT);
     }
 
-    private BaseAdapter baseAdapter = new BaseAdapter() {
-
-        private int[] colors = new int[]{Color.BLUE, Color.CYAN, Color.DKGRAY, Color.GRAY, Color.GREEN, Color.LTGRAY, Color.MAGENTA, Color.RED, Color.YELLOW};
-        private Random random = new Random();
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView t = new TextView(parent.getContext());
-            if (position == 21) {
-                t.setBackground(getContext().getDrawable(R.drawable.green_board));
-
-            } else {
-
-                t.setBackground(getContext().getDrawable(R.drawable.board));
-            }
-
-            t.setText(position + "");
-            t.setGravity(Gravity.CENTER);
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7, SCREEN_HEIGHT / 9);
-            params.setMargins(0, 0, 0, 0);
-            t.setLayoutParams(params);
-            return t;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return 168;
-        }
-    };
-
-
     @Override
     public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
-        if (viewGroup == group) {
+        if (viewGroup == scoll_view) {
             timeLayout.scrollTo(x, y);
         } else if (viewGroup == timeLayout) {
-            group.scrollTo(x, y);
+            scoll_view.scrollTo(x, y);
+
         }
     }
+
+
+
 
 
 

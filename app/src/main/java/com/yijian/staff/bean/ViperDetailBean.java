@@ -47,6 +47,7 @@ public class ViperDetailBean implements Serializable {
     private String mobile;
     private int dictItemKey;
     private boolean underProtected;
+    private boolean invitationEnable;
     private String headImg;
     private boolean editEnable;
     private String memberType;
@@ -65,6 +66,14 @@ public class ViperDetailBean implements Serializable {
     private DetailBean detail;
     private List<String> contractIds;
     private List<CardprodsBean> cardprods;
+
+    public boolean isInvitationEnable() {
+        return invitationEnable;
+    }
+
+    public void setInvitationEnable(boolean invitationEnable) {
+        this.invitationEnable = invitationEnable;
+    }
 
     public int getAge() {
         return age;

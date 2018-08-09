@@ -38,7 +38,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="刘葛岩"
                     android:textColor="#333333"
                     android:textSize="16sp"/>
 
@@ -74,7 +73,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="意向会员"
                     android:textColor="#333333"
                     android:textSize="14sp"/>
 
@@ -119,7 +117,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="1234567890"
                     android:textColor="#333333"
                     android:textSize="14sp"/>
 
@@ -164,7 +161,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="2018-01-02"
                     android:textColor="#333333"
                     android:textSize="14sp"/>
 
@@ -200,7 +196,6 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:gravity="start"
-                    android:hint="请填写邀约内容"
                     android:textColor="#999999"
                     android:textSize="14sp"/>
 

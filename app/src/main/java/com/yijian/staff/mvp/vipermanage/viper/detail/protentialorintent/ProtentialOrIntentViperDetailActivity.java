@@ -15,8 +15,8 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
-import com.yijian.staff.mvp.huifang.huiji.invitation.index.InvateIndexActivity;
-import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity;
+import com.yijian.staff.mvp.invate.InvateActivity;
+import com.yijian.staff.mvp.invate.InvateDetailActivity;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -34,7 +34,7 @@ import java.util.HashMap;
 
 public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ProtentialOrIntentViperDetailAdapter.AdapterInterface {
     private static final String TAG = "ProtentialOrIntentViperDetailActivity";
-    private LinearLayout llHead, ll_invite;
+    private LinearLayout llHead, ll_invite,ll_invite_history;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
     private ImageView ivItem0;
@@ -59,19 +59,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
 
         initview();
 
-        if (subclassName.equals("CustomerInfoVO")) { //正式会员
-            memberType = "正式会员";
-            ll_invite.setVisibility(View.GONE);
-        } else if (subclassName.equals("PotentialVO")) {//潜在会员
-            memberType = "潜在会员";
-            ll_invite.setVisibility(View.VISIBLE);
-        } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
-            memberType = "意向会员";
-            ll_invite.setVisibility(View.VISIBLE);
-        } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
-            memberType = "过期会员";
-            ll_invite.setVisibility(View.VISIBLE);
-        }
+
         initData();
     }
 
@@ -79,6 +67,53 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
     protected int getLayoutID() {
         return R.layout.activity_huiji_intent_viper_ycm;
     }
+
+    private void toggleBottomButton(Boolean b){
+
+        if (b==null){
+            ll_invite.setVisibility(View.GONE);
+            ll_invite_history.setVisibility(View.GONE);
+        }else {
+            if (b){
+                if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                    memberType = "正式会员";
+                    ll_invite.setVisibility(View.GONE);
+                    ll_invite_history.setVisibility(View.GONE);
+                } else if (subclassName.equals("PotentialVO")) {//潜在会员
+                    memberType = "潜在会员";
+                    ll_invite.setVisibility(View.VISIBLE);
+                    ll_invite_history.setVisibility(View.GONE);
+                } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+                    memberType = "意向会员";
+                    ll_invite.setVisibility(View.VISIBLE);
+                    ll_invite_history.setVisibility(View.GONE);
+                } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+                    memberType = "过期会员";
+                    ll_invite.setVisibility(View.VISIBLE);
+                    ll_invite_history.setVisibility(View.GONE);
+                }
+            }else {
+                if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                    memberType = "正式会员";
+                    ll_invite.setVisibility(View.GONE);
+                    ll_invite_history.setVisibility(View.GONE);
+                } else if (subclassName.equals("PotentialVO")) {//潜在会员
+                    memberType = "潜在会员";
+
+
+                } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+                    memberType = "意向会员";
+                    ll_invite.setVisibility(View.GONE);
+                    ll_invite_history.setVisibility(View.VISIBLE);
+                } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+                    memberType = "过期会员";
+                    ll_invite.setVisibility(View.GONE);
+                    ll_invite_history.setVisibility(View.VISIBLE);                }
+            }
+        }
+
+    }
+
 
     private void initData() {
         showLoading();
@@ -90,6 +125,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
             public void onSuccess(JSONObject result) {
                 hideLoading();
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
+                toggleBottomButton(viperDetailBean.isInvitationEnable());
 //                updateUi(viperDetailBean);
                 if (!TextUtils.isEmpty(viperDetailBean.getName()))
                     navigation2.setTitle(viperDetailBean.getName());
@@ -115,6 +151,8 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
 
         llHead = findViewById(R.id.ll_head);
         ll_invite = findViewById(R.id.ll_invite);
+        ll_invite_history = findViewById(R.id.ll_invite_history);
+
         rlItem0 = findViewById(R.id.rl_item0);
         rlItem1 = findViewById(R.id.rl_item1);
 
@@ -131,6 +169,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
         rlItem1.setOnClickListener(this);
 
         ll_invite.setOnClickListener(this);
+        ll_invite_history.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -243,13 +282,27 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                 break;
             case R.id.ll_invite:
 
-                Intent intent3 = new Intent(ProtentialOrIntentViperDetailActivity.this, InvateIndexActivity.class);
+
+                Intent intent3 = new Intent(ProtentialOrIntentViperDetailActivity.this, InvateActivity.class);
                 intent3.putExtra("memberId", memberId);
                 intent3.putExtra("memberType", memberType);
+                intent3.putExtra("memberName", viperDetailBean.getName());
+                intent3.putExtra("headUrl", viperDetailBean.getHeadImg());
+                intent3.putExtra("sex", viperDetailBean.getSex());
                 String mobile = viperDetailBean.getMobile();
                 intent3.putExtra("mobile", mobile);
                 startActivity(intent3);
+
                 break;
+            case R.id.ll_invite_history:
+                Intent intent4 = new Intent(ProtentialOrIntentViperDetailActivity.this, InvateDetailActivity.class);
+                intent4.putExtra("memberId", memberId);
+                intent4.putExtra("memberType", memberType);
+                intent4.putExtra("memberName", viperDetailBean.getName());
+                intent4.putExtra("headUrl", viperDetailBean.getHeadImg());
+                intent4.putExtra("sex", viperDetailBean.getSex());
+                intent4.putExtra("mobile",  viperDetailBean.getMobile());
+                startActivity(intent4);
 
 
         }

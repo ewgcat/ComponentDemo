@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.huifang.huiji.invitation.detail.InvateDetailActivity;
+import com.yijian.staff.mvp.invate.InvateDetailActivity;
 import com.yijian.staff.mvp.huifang.huiji.invitation.list.bean.InvitationRecordBean;
 
 import java.util.List;

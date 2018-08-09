@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.huiji.invitation.index;
+package com.yijian.staff.mvp.invate;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
@@ -28,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class InvateIndexActivity extends AppCompatActivity {
+public class InvateActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -46,6 +47,9 @@ public class InvateIndexActivity extends AppCompatActivity {
     EditText etInvateContent;
     TimePickerView timePickerView;
     private String memberId;
+    private String memberName;
+    private String headUrl;
+    private String sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,13 @@ public class InvateIndexActivity extends AppCompatActivity {
     private void initView() {
         String memberType = getIntent().getStringExtra("memberType");
         memberId = getIntent().getStringExtra("memberId");
+        memberName = getIntent().getStringExtra("memberName");
+        headUrl = getIntent().getStringExtra("headUrl");
+        sex = getIntent().getStringExtra("sex");
+        ImageLoader.setHeadImageResource(headUrl,this,ivHeader);
+        int resId="男".equals(sex)?R.mipmap.lg_man:R.mipmap.lg_women;
+        ImageLoader.setImageResource(resId,this,ivGender);
+        tvName.setText(memberName);
         String mobile = getIntent().getStringExtra("mobile");
         if (!TextUtils.isEmpty(memberType)){
             tvViperType.setText(memberType);
@@ -127,13 +138,13 @@ public class InvateIndexActivity extends AppCompatActivity {
         HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                Toast.makeText(InvateIndexActivity.this, "邀约成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InvateActivity.this, "邀约成功", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(InvateIndexActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(InvateActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -94,6 +94,8 @@ public class HttpManager {
 
     //会籍保存邀约
     public static String INDEX_HUI_JI_INVITATION_SAVE_URL =  "invitation/save";
+    //单个邀约记录
+    public static String INDEX_HUI_JI_INVITATION_GET_URL =  "invitation/get";
 
     //会籍邀约记录
     public static String INDEX_HUI_JI_INVITATION_RECORD_URL =  "invitation/select";

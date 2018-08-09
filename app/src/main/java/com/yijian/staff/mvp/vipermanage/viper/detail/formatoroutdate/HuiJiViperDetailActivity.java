@@ -175,8 +175,6 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         ll_invite.setOnClickListener(this);
         ll_invite_history.setOnClickListener(this);
 
-        findViewById(R.id.ll_chakan_hetong).setOnClickListener(this);
-        findViewById(R.id.ll_chakan_wenjuan).setOnClickListener(this);
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -293,18 +291,6 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_chakan_hetong:
-//                Intent intent1 = new Intent(HuiJiViperDetailActivity.this, ContractActivity.class);
-//                intent1.putExtra("memberId", viperDetailBean.getMemberId());
-//                intent1.putStringArrayListExtra("contractIds", viperDetailBean.getContractIds());
-//                startActivity(intent1);
-                break;
-            case R.id.ll_chakan_wenjuan:
-//                Intent intent2 = new Intent(HuiJiViperDetailActivity.this, QuestionnaireResultActivity.class);
-//                intent2.putExtra("memberId", viperDetailBean.getMemberId());
-//                startActivity(intent2);
-
-                break;
             case R.id.ll_invite:
                 Intent intent3 = new Intent(HuiJiViperDetailActivity.this, InvateActivity.class);
                 intent3.putExtra("memberId", memberId);

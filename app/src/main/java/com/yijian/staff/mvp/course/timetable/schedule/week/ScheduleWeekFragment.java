@@ -46,12 +46,12 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
         getScreenSize();
 
         stub = rootView.findViewById(R.id.stub);
-        int i = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 8;
+        int i = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
         timeLayout = rootView.findViewById(R.id.time_layout);
         week_layout = rootView.findViewById(R.id.week_layout);
         week_layout.setTimeItemWidthAndHeight(i, i);
         stub.setLayoutParams(new LinearLayout.LayoutParams((CommonUtil.dp2px(getContext(), 40)), i - CommonUtil.dp2px(getContext(), 10)));
-        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), SCREEN_HEIGHT / 8);
+        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), SCREEN_HEIGHT / 9);
 
 
         group = (DragViewGroup) rootView.findViewById(R.id.mydragview);
@@ -117,7 +117,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
 
             t.setText(position + "");
             t.setGravity(Gravity.CENTER);
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 8, SCREEN_HEIGHT / 8);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7, SCREEN_HEIGHT / 9);
             params.setMargins(0, 0, 0, 0);
             t.setLayoutParams(params);
             return t;

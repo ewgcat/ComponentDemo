@@ -46,7 +46,7 @@
             <com.yijian.staff.mvp.course.timetable.schedule.week.DragViewGroup
                 android:id="@+id/mydragview"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/board" />
         </LinearLayout>
     </LinearLayout>

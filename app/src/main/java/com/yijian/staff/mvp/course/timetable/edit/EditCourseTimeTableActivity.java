@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable;
+package com.yijian.staff.mvp.course.timetable.edit;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.timetable.StudentListFragment;
 import com.yijian.staff.widget.NavigationBar2;
 
 import butterknife.BindView;

@@ -584,7 +584,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.EditCourseTimeTableActivity"
+            android:name=".mvp.course.timetable.edit.EditCourseTimeTableActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity

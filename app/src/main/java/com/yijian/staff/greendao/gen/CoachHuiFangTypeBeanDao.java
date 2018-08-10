@@ -24,12 +24,8 @@ public class CoachHuiFangTypeBeanDao extends AbstractDao<CoachHuiFangTypeBean, V
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, int.class, "id", false, "ID");
-        public final static Property ConfigType = new Property(1, int.class, "configType", false, "CONFIG_TYPE");
-        public final static Property PostId = new Property(2, int.class, "postId", false, "POST_ID");
-        public final static Property ConfigName = new Property(3, String.class, "configName", false, "CONFIG_NAME");
-        public final static Property TriggerDay = new Property(4, int.class, "triggerDay", false, "TRIGGER_DAY");
-        public final static Property Order = new Property(5, int.class, "order", false, "ORDER");
+        public final static Property Menu = new Property(0, int.class, "menu", false, "MENU");
+        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
     }
 
 
@@ -45,12 +41,8 @@ public class CoachHuiFangTypeBeanDao extends AbstractDao<CoachHuiFangTypeBean, V
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"COACH_HUI_FANG_TYPE_BEAN\" (" + //
-                "\"ID\" INTEGER NOT NULL ," + // 0: id
-                "\"CONFIG_TYPE\" INTEGER NOT NULL ," + // 1: configType
-                "\"POST_ID\" INTEGER NOT NULL ," + // 2: postId
-                "\"CONFIG_NAME\" TEXT," + // 3: configName
-                "\"TRIGGER_DAY\" INTEGER NOT NULL ," + // 4: triggerDay
-                "\"ORDER\" INTEGER NOT NULL );"); // 5: order
+                "\"MENU\" INTEGER NOT NULL ," + // 0: menu
+                "\"NAME\" TEXT);"); // 1: name
     }
 
     /** Drops the underlying database table. */
@@ -62,31 +54,23 @@ public class CoachHuiFangTypeBeanDao extends AbstractDao<CoachHuiFangTypeBean, V
     @Override
     protected final void bindValues(DatabaseStatement stmt, CoachHuiFangTypeBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getConfigType());
-        stmt.bindLong(3, entity.getPostId());
+        stmt.bindLong(1, entity.getMenu());
  
-        String configName = entity.getConfigName();
-        if (configName != null) {
-            stmt.bindString(4, configName);
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(2, name);
         }
-        stmt.bindLong(5, entity.getTriggerDay());
-        stmt.bindLong(6, entity.getOrder());
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, CoachHuiFangTypeBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getConfigType());
-        stmt.bindLong(3, entity.getPostId());
+        stmt.bindLong(1, entity.getMenu());
  
-        String configName = entity.getConfigName();
-        if (configName != null) {
-            stmt.bindString(4, configName);
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(2, name);
         }
-        stmt.bindLong(5, entity.getTriggerDay());
-        stmt.bindLong(6, entity.getOrder());
     }
 
     @Override
@@ -97,24 +81,16 @@ public class CoachHuiFangTypeBeanDao extends AbstractDao<CoachHuiFangTypeBean, V
     @Override
     public CoachHuiFangTypeBean readEntity(Cursor cursor, int offset) {
         CoachHuiFangTypeBean entity = new CoachHuiFangTypeBean( //
-            cursor.getInt(offset + 0), // id
-            cursor.getInt(offset + 1), // configType
-            cursor.getInt(offset + 2), // postId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // configName
-            cursor.getInt(offset + 4), // triggerDay
-            cursor.getInt(offset + 5) // order
+            cursor.getInt(offset + 0), // menu
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // name
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, CoachHuiFangTypeBean entity, int offset) {
-        entity.setId(cursor.getInt(offset + 0));
-        entity.setConfigType(cursor.getInt(offset + 1));
-        entity.setPostId(cursor.getInt(offset + 2));
-        entity.setConfigName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setTriggerDay(cursor.getInt(offset + 4));
-        entity.setOrder(cursor.getInt(offset + 5));
+        entity.setMenu(cursor.getInt(offset + 0));
+        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     @Override

@@ -17,6 +17,7 @@ import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
+import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
@@ -284,4 +285,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postInvateContent(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  SaveInviteBody saveInviteBody);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postHuiFangTask(@Url String url,@HeaderMap HashMap<String, String> headers, @Body HuifangTaskRequestBody huifangTaskRequestBody);
 }

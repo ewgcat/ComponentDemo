@@ -23,6 +23,7 @@ import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
+import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -279,14 +280,14 @@ public class HttpManager {
     public static String GET_COACH_HUI_FANG_TYPE_LIST_URL =  "coach/interview/config";
 
     //会籍回访类型
-    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL =  "customer-service/interview/config";
+    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL =  "interviewV2/bapp/getInterviewTypes";
 
 
     //教练回访任务列表
     public static String GET_COACH_HUI_FANG_TASK_URL =  "coach/interview/task/list";
 
     //会籍的回访任务列表
-    public static String GET_HUI_JI_HUI_FANG_TASK_URL =  "customer-service/interview/task/list";
+    public static String GET_HUI_JI_HUI_FANG_TASK_URL =  "interviewV2/bapp/interviewList";
 
     //会籍的回访记录列表
     public static String GET_HUI_JI_HUI_FANG_RECORD_URL =  "customer-service/interview/record/list";
@@ -987,6 +988,18 @@ public class HttpManager {
             execute(observable, observer);
         }
 
+    }
+
+    public static void postHuiFangTask(String getHuiJiHuiFangTaskUrl, HuifangTaskRequestBody huifangTaskRequestBody,  Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postHuiFangTask(SharePreferenceUtil.getHostUrl() + getHuiJiHuiFangTaskUrl, headers, huifangTaskRequestBody);
+            execute(observable, observer);
+        }
     }
     //接待人的信息
     public static final String RECEPTION_INFO =  "reception/person";

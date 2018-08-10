@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.yijian.staff.bean.HuiFangTypeBean;
 import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.SearchKey;
@@ -17,7 +18,6 @@ import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
-import com.yijian.staff.mvp.huifang.huiji.bean.HuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;
@@ -191,7 +191,7 @@ public class DBManager {
     public CoachHuiFangTypeBean queryCoachHuiFangTypeBean(String configType) {
         CoachHuiFangTypeBeanDao coachHuiFangTypeBeanDao = mDaoSession.getCoachHuiFangTypeBeanDao();
         CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanDao.queryBuilder()
-                .where(CoachHuiFangTypeBeanDao.Properties.ConfigType.eq(configType)).unique();
+                .where(CoachHuiFangTypeBeanDao.Properties.Menu.eq(configType)).unique();
         return coachHuiFangTypeBean;
     }
 
@@ -208,7 +208,7 @@ public class DBManager {
     public HuiFangTypeBean queryHuiFangTypeBean(String configType) {
         HuiFangTypeBeanDao huiFangTypeBeanDao = mDaoSession.getHuiFangTypeBeanDao();
         HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanDao.queryBuilder()
-                .where(HuiFangTypeBeanDao.Properties.ConfigType.eq(configType)).unique();
+                .where(HuiFangTypeBeanDao.Properties.Menu.eq(configType)).unique();
         return huiFangTypeBean;
     }
 

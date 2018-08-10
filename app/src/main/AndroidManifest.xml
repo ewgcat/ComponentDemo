@@ -127,13 +127,13 @@
             android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.huiji.tianxieresult.HuijiTianXieHuiFangResultActivity"
+            android:name=".mvp.huifang.tianxieresult.HuijiTianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.huiji.history.HuiFangHistoryActivity"
+            android:name=".mvp.huifang.history.HuiFangHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.huiji.task.HuiFangTaskActivity"
+            android:name=".mvp.huifang.task.HuiFangTaskActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.coach.task.CoachHuiFangTaskActivity"
@@ -207,7 +207,7 @@
             android:name=".mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.huiji.invitation.list.HuiJiInvitationListActivity"
+            android:name=".mvp.invate.InvateListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"

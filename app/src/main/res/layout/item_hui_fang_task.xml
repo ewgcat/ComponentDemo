@@ -357,42 +357,7 @@
             />
         </LinearLayout>
 
-        <!--过期原因-->
-        <LinearLayout
-                android:id="@+id/ll_outdate_reason"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="过期原因: "
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-            />
-
-
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-            <TextView
-                    android:id="@+id/tv_outdate_reason"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-            />
-        </LinearLayout>
 
         <!--合同到期日-->
         <LinearLayout

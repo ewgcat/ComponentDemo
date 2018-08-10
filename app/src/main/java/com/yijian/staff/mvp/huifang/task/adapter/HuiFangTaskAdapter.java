@@ -58,7 +58,9 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
-        holder.bindView(context, huiFangInfo,menu);
+        resetView(holder);
+
+        holder.bindView(context, huiFangInfo, menu);
     }
 
     @Override
@@ -77,7 +79,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
         LinearLayout llQuanyi;
         LinearLayout llOutdateTime;
-        LinearLayout llOutdateReason;
         LinearLayout llHetongYuEr;
         LinearLayout llHetongDaoQiRi;
         LinearLayout llKaiKaDate;
@@ -99,12 +100,9 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
         TextView tvQuanyi;
         TextView tvOutdateTime;
-        TextView tvOutdateReason;
         TextView tvHetongDaoQiRi;
         TextView tvCardName;
         TextView tvHetongYuEr;
-        TextView tvKaiKaDate;
-        TextView tvCardYuEr;
         TextView tvCardType;
         TextView tvZuijinJianshen;
         TextView tvChenMoTianShu;
@@ -149,8 +147,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             llOutdateTime = view.findViewById(R.id.ll_outdate_time);
             tvOutdateTime = view.findViewById(R.id.tv_outdate_time);
 
-            llOutdateReason = view.findViewById(R.id.ll_outdate_reason);
-            tvOutdateReason = view.findViewById(R.id.tv_outdate_reason);
 
             llHetongDaoQiRi = view.findViewById(R.id.ll_hetong_dao_qi_ri);
             tvHetongDaoQiRi = view.findViewById(R.id.tv_hetong_dao_qi_ri);
@@ -158,11 +154,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             tvHetongYuEr = view.findViewById(R.id.tv_hetong_yu_er);
             llHetongYuEr = view.findViewById(R.id.ll_hetong_yu_er);
 
-            tvKaiKaDate = view.findViewById(R.id.tv_kai_ka_date);
-            llKaiKaDate = view.findViewById(R.id.ll_kai_ka_date);
             tvCardName = view.findViewById(R.id.tv_card_name);
             llCardName = view.findViewById(R.id.ll_card_name);
-            tvCardYuEr = view.findViewById(R.id.tv_card_yu_er);
             llCardYuEr = view.findViewById(R.id.ll_card_yu_er);
             tvCardType = view.findViewById(R.id.tv_card_type);
             llCardType = view.findViewById(R.id.ll_card_type);
@@ -227,6 +220,66 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 }
             });
 
+            //会员生日回访
+            HuiFangInfo.MemberBirthdayInterviewBean memberBirthdayInterview = huiFangInfo.getMemberBirthdayInterview();
+            if (memberBirthdayInterview != null) {
+                llBirthday.setVisibility(View.VISIBLE);
+                llBirthdayType.setVisibility(View.VISIBLE);
+                tvBirthday.setText(memberBirthdayInterview.getBirthday());
+                tvBirthdayType.setText(memberBirthdayInterview.getBirthdayTypeName());
+            }
+
+            //会员过期回访
+            HuiFangInfo.MemberPastDueInterviewBean memberPastDueInterview = huiFangInfo.getMemberPastDueInterview();
+            if (memberPastDueInterview != null) {
+                llOutdateTime.setVisibility(View.VISIBLE);
+                tvOutdateTime.setText(memberPastDueInterview.getExpireDate());
+            }
+
+            //沉寂会员回访
+            HuiFangInfo.MemberQuietInterviewBean memberQuietInterview = huiFangInfo.getMemberQuietInterview();
+            if (memberQuietInterview != null) {
+                llChenMoTianShu.setVisibility(View.VISIBLE);
+                llZuijinJianshen.setVisibility(View.VISIBLE);
+                tvZuijinJianshen.setText(memberQuietInterview.getLastTime());
+                tvChenMoTianShu.setText(memberQuietInterview.getIntervalDay());
+            }
+            //快到期会员回访
+            HuiFangInfo.MemberWillExpireInterviewBean memberWillExpireInterview = huiFangInfo.getMemberWillExpireInterview();
+            if (memberWillExpireInterview != null) {
+                llHetongDaoQiRi.setVisibility(View.VISIBLE);
+                llHetongYuEr.setVisibility(View.VISIBLE);
+                tvHetongDaoQiRi.setText(memberWillExpireInterview.getEndTime());
+                tvHetongYuEr.setText(memberWillExpireInterview.getAmount());
+            }
+
+            //快到期会员回访
+            HuiFangInfo.MemberYesterdayBuyCardInterviewBean memberYesterdayBuyCardInterview = huiFangInfo.getMemberYesterdayBuyCardInterview();
+            if (memberYesterdayBuyCardInterview != null) {
+                llKaiKaDate.setVisibility(View.VISIBLE);
+                llCardName.setVisibility(View.VISIBLE);
+                llCardType.setVisibility(View.VISIBLE);
+                tvCardName.setText(memberYesterdayBuyCardInterview.getCardprodName());
+                tvCardType.setText(memberYesterdayBuyCardInterview.getCardTypeName());
+            }
+
+            //昨日到访回访
+            HuiFangInfo.MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview = huiFangInfo.getMemberYesterdayVisitInterview();
+            if (memberYesterdayVisitInterview != null) {
+                ll_dao_fang_date.setVisibility(View.VISIBLE);
+                tv_dao_fang_date.setText(memberYesterdayVisitInterview.getYesterdayVisitTime());
+            }
+
+            //学员生日来访
+            HuiFangInfo.StudentBirthdayInterviewBean studentBirthdayInterview = huiFangInfo.getStudentBirthdayInterview();
+            if (studentBirthdayInterview != null) {
+                llBirthday.setVisibility(View.VISIBLE);
+                llBirthdayType.setVisibility(View.VISIBLE);
+                tvBirthday.setText(studentBirthdayInterview.getBirthday());
+                tvBirthdayType.setText(studentBirthdayInterview.getBirthdayTypeName());
+            }
+
+
         }
 
     }
@@ -234,14 +287,11 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
     private void resetView(ViewHolder holder) {
         holder.llQuanyi.setVisibility(View.GONE);
         holder.llOutdateTime.setVisibility(View.GONE);
-        holder.llOutdateReason.setVisibility(View.GONE);
         holder.llHetongYuEr.setVisibility(View.GONE);
         holder.llHetongDaoQiRi.setVisibility(View.GONE);
-        holder.llKaiKaDate.setVisibility(View.GONE);
         holder.llPreVisitDate.setVisibility(View.GONE);
-        holder.llFuFangReason.setVisibility(View.GONE);
+        holder.llCardName.setVisibility(View.GONE);
         holder.llCardType.setVisibility(View.GONE);
-        holder.llCardYuEr.setVisibility(View.GONE);
         holder.llPreJianShenDate.setVisibility(View.GONE);
         holder.llZuijinJianshen.setVisibility(View.GONE);
         holder.llChenMoTianShu.setVisibility(View.GONE);

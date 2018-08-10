@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.InviteDetailBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -24,7 +25,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InvateDetailActivity extends AppCompatActivity {
+public class InvateDetailActivity extends MvcBaseActivity {
 
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -41,13 +42,15 @@ public class InvateDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_invate_content)
     TextView tvInvateContent;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invate_detail);
-        ButterKnife.bind(this);
 
-        ButterKnife.bind(this);
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_invate_detail;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initTitle();
         initView();
     }

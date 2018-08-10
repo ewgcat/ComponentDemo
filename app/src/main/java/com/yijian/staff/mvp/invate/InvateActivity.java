@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;
@@ -29,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class InvateActivity extends AppCompatActivity {
+public class InvateActivity extends MvcBaseActivity {
 
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -51,13 +52,18 @@ public class InvateActivity extends AppCompatActivity {
     private String headUrl;
     private String sex;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invate_index);
-        ButterKnife.bind(this);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initTitle();
         initView();
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_invate_index;
     }
 
     private void initTitle() {

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AdviceBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.ArrayList;
@@ -18,19 +19,25 @@ import butterknife.ButterKnife;
 import io.reactivex.internal.operators.maybe.MaybeCallbackObserver;
 
 @Route(path = "/test/30")
-public class AdviceListActivity extends AppCompatActivity {
+public class AdviceListActivity extends MvcBaseActivity {
 
     @BindView(R.id.rlv)
     RecyclerView rlv;
 
     private List<AdviceBean> adviceBeanList = new ArrayList<>();
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advice_list);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_advice_list;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
+
     }
 
     private void initView() {

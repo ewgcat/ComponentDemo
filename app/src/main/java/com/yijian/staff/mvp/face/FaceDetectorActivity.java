@@ -36,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -67,7 +68,7 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class FaceDetectorActivity extends AppCompatActivity implements Camera.PreviewCallback {
+public class FaceDetectorActivity extends MvcBaseActivity implements Camera.PreviewCallback {
 
     private static final String TAG = FaceDetectorActivity.class.getSimpleName();
     private static final int REQUEST_CAMERA_CODE = 0x100;
@@ -112,9 +113,33 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        initViews();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_CODE);
+                }
+                return;
+            }
+            loginData();
+            //openSurfaceView();
+        }
+    }
+
+
+
+    @Override
+    protected int getLayoutID() {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_face_recognition",version);
@@ -168,26 +193,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        setContentView(R.layout.activity_face2);
-        initViews();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_CODE);
-                }
-                return;
-            }
-            loginData();
-            //openSurfaceView();
-        }
+        return R.layout.activity_face2;
     }
 
     /**

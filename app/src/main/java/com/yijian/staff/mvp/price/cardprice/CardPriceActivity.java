@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.price.cardprice.adapter.CardsListAdapter;
 import com.yijian.staff.bean.CardInfo;
 import com.yijian.staff.bean.CardRequestBody;
@@ -49,7 +50,7 @@ import static com.yijian.staff.tab.tools.ContextUtil.getContext;
  * 会籍（客服）产品报价
  */
 @Route(path = "/test/9")
-public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements HuiJiProductContract.View {
+public class CardPriceActivity extends MvcBaseActivity implements HuiJiProductContract.View {
 
 
     @BindView(R.id.tv_zong_he)
@@ -78,14 +79,13 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 
     private CardRequestBody bodyCondition;
     private HuiJiProductPresenter presenter;
-    private static final String TAG = "HuiJiGoodsListBaoJiaAct";
+    private static final String TAG = "CardPriceActivity";
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goods_list);
-        ButterKnife.bind(this);
-
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_production_list",version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
@@ -104,7 +104,11 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
         bodyCondition = new CardRequestBody();
 
         initComponent();
+    }
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_goods_list;
     }
 
 
@@ -117,35 +121,12 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
             }
         });
 
-//        etSearch.setCursorVisible(false);
-//        setListenerToRootView();
-
-
-//        etSearch.setHintTextColor(Color.parseColor("#999999"));
-//        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                switch (actionId) {
-//                    case EditorInfo.IME_ACTION_SEARCH:
-//
-//                        String name = etSearch.getText().toString().trim();
-//                        if (TextUtils.isEmpty(name)) {
-//                            Toast.makeText(HuiJiGoodsListBaoJiaActivity.this, "请输入关键字", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            bodyCondition.setCardName(name);
-//                            presenter.getRecptionCards(bodyCondition, true);
-//                        }
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
 
 
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HuiJiGoodsListBaoJiaActivity.this, ActivityHuiijiBaoJiaSeach.class);
+                Intent intent = new Intent(CardPriceActivity.this, CardPriceActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -257,7 +238,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                         && TextUtils.isEmpty(cardName)) {//重置
                     Drawable drawable1 = getResources().getDrawable(R.mipmap.shaixuan_black);
                     drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this, 4));
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CardPriceActivity.this, 4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable1, null);
                     tvShaixuan.setTextColor(Color.parseColor("#666666"));
 
@@ -266,7 +247,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
                 } else {
                     Drawable drawable = getResources().getDrawable(R.mipmap.shaixuan_blue);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(HuiJiGoodsListBaoJiaActivity.this, 4));
+                    tvShaixuan.setCompoundDrawablePadding(DensityUtil.dip2px(CardPriceActivity.this, 4));
                     tvShaixuan.setCompoundDrawables(null, null, drawable, null);
                     tvShaixuan.setTextColor(Color.parseColor("#1997f8"));
                 }
@@ -401,7 +382,7 @@ public class HuiJiGoodsListBaoJiaActivity extends AppCompatActivity implements H
 //            @Override
 //            public void onGlobalLayout() {
 //                Rect r = new Rect();
-//                HuiJiGoodsListBaoJiaActivity.this.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+//                CardPriceActivity.this.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
 //                int heightDiff = view.getHeight() - r.bottom;
 //                if (heightDiff > 100) {//软键盘弹起
 //                    etSearch.setCursorVisible(true);

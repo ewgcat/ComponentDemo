@@ -13,6 +13,7 @@ import android.widget.Chronometer;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TypeOfActionItem;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.widget.MDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -24,15 +25,20 @@ import java.util.List;
  * 约课
  */
 //@Route(path = "/test/15")
-public class ActivityOpenLesson extends AppCompatActivity {
+public class ActivityOpenLesson extends MvcBaseActivity {
     private static final String TAG = "ActivityOpenLesson";
     private RecyclerView recyclerView;
     private AdapterLesson adapterLesson;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_openlesson);
+    protected int getLayoutID() {
+        return R.layout.activity_openlesson;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
     }
 

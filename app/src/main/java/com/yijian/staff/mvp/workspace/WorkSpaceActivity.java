@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
@@ -18,15 +19,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/workspace")
-public class WorkSpaceActivity extends AppCompatActivity {
+public class WorkSpaceActivity extends MvcBaseActivity {
 
     private CommenPopupWindow popupWindow;
 
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workspace);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_workspace;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initTitle();
     }
 

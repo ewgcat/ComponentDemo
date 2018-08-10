@@ -19,6 +19,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.TypeOfCunKeBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
@@ -38,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/test/16")
-public class CunkeNewActivity extends AppCompatActivity {
+public class CunkeNewActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv)
     RecyclerView rv;
@@ -53,11 +54,17 @@ public class CunkeNewActivity extends AppCompatActivity {
     private List<TypeOfCunKeBody> typeOfCunKeBodyList = new ArrayList<>();
     private CunKeNewAdapter cunKeNewAdapter;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cunke_new);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_cunke_new;
+    }
+
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initTitle();
         initView();
         refresh();

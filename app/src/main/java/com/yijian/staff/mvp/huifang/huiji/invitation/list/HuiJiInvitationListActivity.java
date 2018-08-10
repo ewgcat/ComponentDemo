@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.huifang.huiji.invitation.list.record.InvitationRecordFragment;
 import com.yijian.staff.mvp.huifang.huiji.invitation.list.result.InvitationResultFragment;
 import com.yijian.staff.widget.NavigationBar2;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/6")
-public class HuiJiInvitationListActivity extends AppCompatActivity {
+public class HuiJiInvitationListActivity extends MvcBaseActivity {
 
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
@@ -57,13 +58,18 @@ public class HuiJiInvitationListActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invitation);
-        ButterKnife.bind(this);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
         selectTab(0);
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_invitation;
     }
 
     private void initView() {

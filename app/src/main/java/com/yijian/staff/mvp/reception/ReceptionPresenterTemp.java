@@ -59,7 +59,6 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter {
         HttpManager.postHasHeaderHasParamOfInteger(HttpManager.RECEPTION_RECORD_TEMP, params, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
-//                Log.e(TAG, "onSuccess: "+result.toString() );
                 view.finishRefresh(isRefresh);
                 ReceptionListBeanTemp recptionRecordListBean = new Gson().fromJson(result.toString(), ReceptionListBeanTemp.class);
                 if (recptionRecordListBean == null) {
@@ -75,14 +74,12 @@ public class ReceptionPresenterTemp implements ReceptionContract.Presenter {
                     } else if (pageNum != 1) Toast.makeText(context, "已经是最后一页了", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                Log.e(TAG, "onSuccess: "+records.size() );
                 view.showRecptionRecordListTemp(records, isRefresh);
                 pageNum++;
             }
 
             @Override
             public void onFail(String msg) {
-//                Log.e(TAG, "msg: "+msg );
                 view.finishRefresh(isRefresh);
             }
         });

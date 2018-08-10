@@ -16,6 +16,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -31,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends MvcBaseActivity {
     private static final String TAG = UserInfoActivity.class.getSimpleName();
     @BindView(R.id.iv_head)
     ImageView ivHead;
@@ -52,14 +53,16 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
-
-        ButterKnife.bind(this);
-        initView();
+    protected int getLayoutID() {
+        return R.layout.activity_user_info;
     }
 
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        initView();
+    }
 
     protected void initView() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);

@@ -271,7 +271,7 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 会籍 产品报价 -->
         <activity
-            android:name=".mvp.price.cardprice.HuiJiGoodsListBaoJiaActivity"
+            android:name=".mvp.price.cardprice.CardPriceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

@@ -23,6 +23,7 @@ import com.yijian.staff.bean.ReceptionRecordBean;
 import com.yijian.staff.bean.ReceptionStastuBean;
 import com.yijian.staff.bean.RecptionRecordListBean;
 import com.yijian.staff.bean.RecptionerInfoBean;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -38,7 +39,7 @@ import java.util.List;
  * Created by The_P on 2018/5/14.
  */
 
-public class ReceptionActivityTemp extends AppCompatActivity implements ReceptionContract.View {
+public class ReceptionActivityTemp extends MvcBaseActivity implements ReceptionContract.View {
 
     private NavigationBar2 navigation2;
     private RecyclerView recyclerView;
@@ -46,12 +47,17 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
     private ReceptionPresenterTemp presenterTemp;
     private SmartRefreshLayout refreshLayout;
     private EmptyView emptyView;
-    //    private RelativeLayout rlNoData;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reception_temp);
+    protected int getLayoutID() {
+        return R.layout.activity_reception_temp;
+    }
+
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
@@ -91,7 +97,6 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
         navigation2.setBackClickListener(this);
         navigation2.setSecondLeftIvVisiable(View.GONE);
 
-//        rlNoData = findViewById(R.id.rl_nodata);
         emptyView = findViewById(R.id.empty_view);
         emptyView.getEmptyBt().setVisibility(View.GONE);
 
@@ -168,7 +173,6 @@ public class ReceptionActivityTemp extends AppCompatActivity implements Receptio
 
     @Override
     public void showNoData() {
-//        rlNoData.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.VISIBLE);
 
     }

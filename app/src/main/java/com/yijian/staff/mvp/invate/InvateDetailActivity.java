@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.InviteDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -76,6 +77,8 @@ public class InvateDetailActivity extends MvcBaseActivity {
 
         String memberName = getIntent().getStringExtra("memberName");
         String headUrl = getIntent().getStringExtra("headUrl");
+
+        headUrl= BuildConfig.FILE_HOST + headUrl;
         String sex = getIntent().getStringExtra("sex");
         ImageLoader.setHeadImageResource(headUrl,this,ivHeader);
         int resId="男".equals(sex)?R.mipmap.lg_man:R.mipmap.lg_women;

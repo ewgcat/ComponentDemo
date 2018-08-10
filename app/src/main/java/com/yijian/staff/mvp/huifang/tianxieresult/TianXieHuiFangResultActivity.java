@@ -21,6 +21,7 @@ import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.bean.HuiFangReasonBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -37,6 +38,7 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TianXieHuiFangResultActivity extends MvcBaseActivity {
@@ -75,9 +77,11 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
 
     HuiFangInfo huiFangInfo;
     boolean needReview = false;
-    String result;
+    String tvHuifanTimeResult, tvLaifanTimeResult;
     List<HuiFangReasonBean> huiFangReasonBeanList = new ArrayList<>();
     String dictItemId;
+    @BindView(R.id.tv_laifan_time)
+    TextView tvLaifanTime;
 
 
     @Override
@@ -96,7 +100,12 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         navigationBar2.hideLeftSecondIv();
         navigationBar2.getFirstLeftIv().setVisibility(View.GONE);
         navigationBar2.setTitle("填写回访结果");
-
+        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendResult();
+            }
+        });
         updateUi();
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -113,6 +122,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                 }
             }
         });
+
     }
 
     private void updateUi() {
@@ -143,34 +153,47 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         iv_sure_gender.setImageResource(resId);
 
 
-
-
         tv_huifan_type.setText(huiFangInfo.getInterviewName());
 
     }
 
-    @OnClick({R.id.tv_nav_sure, R.id.tv_sure_sure, R.id.tv_sure_sure_yaoyue})
+    @OnClick({R.id.rel_huifan_time, R.id.rel_huifan_reason, R.id.rel_laifan_time})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_nav_sure:
-                sendResult();
-                break;
-            case R.id.tv_sure_sure:
-                sendResult();
-                break;
-            case R.id.tv_sure_sure_yaoyue:
-                break;
+
             case R.id.rel_huifan_time:
-                //提交结果
-                TimePickerView pickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
+                new TimePickerBuilder(this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View view) {
-                        result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-                        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-                        tv_huifan_time.setText(time);
+                        Date date1 = new Date();
+                        if (date.before(date1)) {
+                            showToast("复访时间不得小于当前时间");
+                        } else {
+                            tvHuifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+                            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+                            tv_huifan_time.setText(time);
+                        }
+
                     }
-                }).build();
-                pickerView.show();
+                }).build().show();
+                break;
+            case R.id.rel_laifan_time:
+
+                new TimePickerBuilder(this, new OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View view) {
+
+                        Date date1 = new Date();
+                        if (date.before(date1)) {
+                            showToast("来访时间不得小于当前时间");
+                        } else {
+                            tvLaifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+                            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+                            tvLaifanTime.setText(time);
+                        }
+
+                    }
+                }).build().show();
                 break;
             case R.id.rel_huifan_reason:
                 showPickerReasonView();
@@ -182,8 +205,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     private void sendResult() {
 
         if (needReview) {
-            String reason = et_huifan_record.getText().toString();
-            if (TextUtils.isEmpty(result)) {
+            String reason = tv_huifan_reason.getText().toString();
+            if (TextUtils.isEmpty(tvHuifanTimeResult)) {
                 showToast("请选择复访时间");
                 return;
             }
@@ -191,10 +214,11 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                 showToast("请选择复访原因");
                 return;
             }
-
-            body.setReviewTime(result);
-            body.setDictItemId(dictItemId);
-
+            AddFuFangResultBody addFuFangResultBody = new AddFuFangResultBody();
+            addFuFangResultBody.setChief(true);
+            addFuFangResultBody.setId(huiFangInfo.getId());
+            addFuFangResultBody.setReviewReason(reason);
+            addFuFangResultBody.setReviewTime(tvHuifanTimeResult);
         } else {
             String result = et_huifan_record.getText().toString();
             if (TextUtils.isEmpty(result)) {
@@ -205,29 +229,22 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             body.setId(huiFangInfo.getId());
             body.setChief(true);
             body.setDesc(result);
-            body.setVisitTime();
+            body.setVisitTime(tvLaifanTimeResult);
+
+            HttpManager.postHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    finish();
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    showToast(msg);
+                }
+            });
         }
 
 
-
-
-
-
-
-
-
-
-        HttpManager.postHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                finish();
-            }
-
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
     }
 
     private void showPickerReasonView() {// 弹出选择器
@@ -241,10 +258,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                     tv_huifan_reason.setText(reason);
                     dictItemId = huiFangReasonBeanList.get(options1).getDictItemId();
                 }
-            })
-
-                    .setTitleText("城市选择")
-                    .setDividerColor(Color.BLACK)
+            }).setTitleText("回访原因").setDividerColor(Color.BLACK)
                     .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                     .setContentTextSize(20)
                     .build();
@@ -254,5 +268,6 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         }
 
     }
+
 
 }

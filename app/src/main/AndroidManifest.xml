@@ -134,7 +134,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.task.HuiFangTaskActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
@@ -589,6 +589,10 @@
         </activity>
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.yijian.staff.mvp.invate.InvateListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>

@@ -1,235 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/gray_background_color"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background_color"
+    android:orientation="vertical">
 
     <include
-            android:id="@+id/invate_index_navigation_bar"
-            layout="@layout/view_navigation_bar2"/>
+        android:id="@+id/invate_index_navigation_bar"
+        layout="@layout/view_navigation_bar2" />
 
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/white_bg"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/white_bg"
+        android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="18dp"
-                android:paddingTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="18dp"
+            android:paddingTop="15dp">
 
             <ImageView
-                    android:id="@+id/iv_header"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/people"/>
+                android:id="@+id/iv_header"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/people" />
 
             <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="刘葛岩"
-                    android:textColor="#333333"
-                    android:textSize="16sp"/>
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="刘葛岩"
+                android:textColor="#333333"
+                android:textSize="16sp" />
 
             <ImageView
-                    android:id="@+id/iv_gender"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginLeft="8dp"
-                    android:src="@mipmap/lg_man"/>
+                android:id="@+id/iv_gender"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/lg_man" />
 
 
         </LinearLayout>
 
         <RelativeLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="会员类型:"
+                android:textColor="#999999"
+                android:textSize="14sp" />
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="会员类型:"
-                    android:textColor="#999999"
-                    android:textSize="14sp"/>
-
-            <TextView
-                    android:id="@+id/tv_viper_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text=""
-                    android:textColor="#333333"
-                    android:textSize="14sp"/>
+                android:id="@+id/tv_viper_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
         </RelativeLayout>
+
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp"/>
-
-        </RelativeLayout>
-        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/gray"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="电话号码:"
-                    android:textColor="#999999"
-                    android:textSize="14sp"/>
-
-            <TextView
-                    android:id="@+id/tv_telephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text=""
-                    android:textColor="#333333"
-                    android:textSize="14sp"/>
+                android:paddingTop="15dp" />
 
         </RelativeLayout>
+
         <RelativeLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="电话号码:"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_telephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-                android:id="@+id/rl_fuyue_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/gray"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"
-                android:paddingTop="15dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical"
-                    android:text="赴约时间:"
-                    android:textColor="#999999"
-                    android:textSize="14sp"/>
-
-            <TextView
-                    android:id="@+id/tv_fuyue_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:text="2018-01-02"
-                    android:drawableRight="@mipmap/wt_jiantou"
-                    android:textColor="#333333"
-                    android:textSize="14sp"/>
+                android:paddingTop="15dp" />
 
         </RelativeLayout>
+
         <RelativeLayout
-                android:layout_width="match_parent"
+            android:id="@+id/rl_fuyue_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="赴约时间:"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_fuyue_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/wt_jiantou"
+                android:gravity="center_vertical"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp" />
 
         </RelativeLayout>
 
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
 
             <EditText
-                    android:id="@+id/et_invate_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:background="@null"
-                    android:gravity="start"
-                    android:hint="请填写邀约内容"
-                    android:textColor="#999999"
-                    android:textSize="14sp"/>
+                android:id="@+id/et_invate_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="@null"
+                android:gravity="start"
+                android:hint="请填写邀约内容"
+                android:maxLength="140"
+                android:textColor="#999999"
+                android:textSize="14sp" />
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_vertical"
-                    android:text="140字"
-                    android:textColor="#999999"
-                    android:textSize="14sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="140字"
+                android:textColor="#999999"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
-                    android:paddingTop="15dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:paddingTop="15dp" />
 
         </RelativeLayout>
 

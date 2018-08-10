@@ -11,11 +11,13 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -85,7 +87,7 @@ public class InvateActivity extends MvcBaseActivity {
         String memberType = getIntent().getStringExtra("memberType");
         memberId = getIntent().getStringExtra("memberId");
         memberName = getIntent().getStringExtra("memberName");
-        headUrl = getIntent().getStringExtra("headUrl");
+        headUrl = BuildConfig.FILE_HOST + getIntent().getStringExtra("headUrl");
         sex = getIntent().getStringExtra("sex");
         ImageLoader.setHeadImageResource(headUrl,this,ivHeader);
         int resId="男".equals(sex)?R.mipmap.lg_man:R.mipmap.lg_women;
@@ -104,8 +106,14 @@ public class InvateActivity extends MvcBaseActivity {
         timePickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View view) {
-                String result = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                tvFuyueTime.setText(result);
+
+                Date date1 = new Date();
+                if (date.before(date1)){
+                    showToast("赴约时间不得小于当前时间");
+                }else {
+                    String result = new SimpleDateFormat("yyyy-MM-dd").format(date);
+                    tvFuyueTime.setText(result);
+                }
             }
         }).setType(new boolean[]{true, true, true, false, false, false}).build();
     }

@@ -103,8 +103,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
         List<String> mTitleList = new ArrayList<>();
         List<Fragment> fragmentList = new ArrayList<>();
-        mTitleList.add("全部");
-        fragmentList.add(new BaseHuiFangTaskFragment(this, 0));
         for (int i = 0; i < huiFangTypeBeanArrayList.size(); i++) {
             HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanArrayList.get(i);
             mTitleList.add(huiFangTypeBean.getName());
@@ -121,7 +119,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
         HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
         huifangTaskRequestBody.setChief(true);
-        huifangTaskRequestBody.setMenu(0);
+        huifangTaskRequestBody.setMenu(huiFangTypeBeanArrayList.get(0).getMenu());
         huifangTaskRequestBody.setPageNum(1);
         huifangTaskRequestBody.setPageSize(1);
         HttpManager.postHuiFangTask(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {

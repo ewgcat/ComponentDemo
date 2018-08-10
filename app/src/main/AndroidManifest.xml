@@ -56,11 +56,7 @@
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.main.MainActivity"
@@ -134,16 +130,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.task.HuiFangTaskActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.huifang.coach.task.CoachHuiFangTaskActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.huifang.coach.history.CoachHuiFangHistoryActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.huifang.coach.tianxieresult.CoachTianXieHuiFangResultActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity"
             android:screenOrientation="portrait" />
@@ -272,7 +265,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.price.cardprice.ActivityHuiijiBaoJiaSeach"
+            android:name=".mvp.price.cardprice.SearchCardPriceActivity"
             android:screenOrientation="portrait" />
 
         <!-- 教练 课程报价 -->
@@ -587,7 +580,7 @@
         <activity
             android:name=".mvp.course.timetable.edit.EditCourseTableActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.course.timetable.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
@@ -597,7 +590,7 @@
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

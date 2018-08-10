@@ -122,7 +122,6 @@ public class InviteTaskCenterFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_task_status:
-                startActivity(new Intent(getContext(),InvateListActivity.class));
                 break;
             case R.id.tv_today_rank:
                 Logger.i("TEST", "点击了日排名");

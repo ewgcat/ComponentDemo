@@ -122,7 +122,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
         huifangTaskRequestBody.setMenu(huiFangTypeBeanArrayList.get(0).getMenu());
         huifangTaskRequestBody.setPageNum(1);
         huifangTaskRequestBody.setPageSize(1);
-        HttpManager.postHuiFangTask(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 int pages = JsonUtil.getInt(result, "pages");

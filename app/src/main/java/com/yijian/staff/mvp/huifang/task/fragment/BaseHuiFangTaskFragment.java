@@ -119,7 +119,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         huifangTaskRequestBody.setMenu(menu);
         huifangTaskRequestBody.setPageNum(pageNum);
         huifangTaskRequestBody.setPageSize(pageSize);
-        HttpManager.postHuiFangTask(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -155,7 +155,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         huifangTaskRequestBody.setMenu(menu);
         huifangTaskRequestBody.setPageNum(pageNum);
         huifangTaskRequestBody.setPageSize(pageSize);
-        HttpManager.postHuiFangTask(HttpManager.GET_HUI_JI_HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

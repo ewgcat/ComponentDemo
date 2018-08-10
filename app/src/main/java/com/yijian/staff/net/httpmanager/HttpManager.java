@@ -283,11 +283,9 @@ public class HttpManager {
     public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL =  "interviewV2/bapp/getInterviewTypes";
 
 
-    //教练回访任务列表
-    public static String GET_COACH_HUI_FANG_TASK_URL =  "coach/interview/task/list";
 
-    //会籍的回访任务列表
-    public static String GET_HUI_JI_HUI_FANG_TASK_URL =  "interviewV2/bapp/interviewList";
+    //回访任务列表
+    public static String HUI_FANG_TASK_URL =  "interviewV2/bapp/interviewList";
 
     //会籍的回访记录列表
     public static String GET_HUI_JI_HUI_FANG_RECORD_URL =  "customer-service/interview/record/list";

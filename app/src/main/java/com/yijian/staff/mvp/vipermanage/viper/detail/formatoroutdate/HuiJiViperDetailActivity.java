@@ -63,7 +63,10 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         subclassName = getIntent().getStringExtra("subclassName");
         initview();
 
-
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
         initData();
     }
 

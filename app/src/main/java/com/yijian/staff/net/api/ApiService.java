@@ -17,6 +17,7 @@ import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
+import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
@@ -280,4 +281,7 @@ public interface ApiService {
     @POST
     Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
 
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postInvateContent(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  SaveInviteBody saveInviteBody);
 }

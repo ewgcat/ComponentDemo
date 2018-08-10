@@ -23,6 +23,7 @@ import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
+import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
@@ -975,7 +976,18 @@ public class HttpManager {
         }
     }
 
+    public static void postInvateContent(String indexHuiJiInvitationSaveUrl, SaveInviteBody saveInviteBody,  Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postInvateContent(SharePreferenceUtil.getHostUrl() + indexHuiJiInvitationSaveUrl, headers, saveInviteBody);
+            execute(observable, observer);
+        }
 
+    }
     //接待人的信息
     public static final String RECEPTION_INFO =  "reception/person";
 
@@ -1064,6 +1076,7 @@ public class HttpManager {
 
     //接待--会籍--step5-完成整个流程
     public static final String RECEPTION_STEP5_END =  "reception/finish-to-coach";
+
 
 
 }

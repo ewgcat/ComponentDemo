@@ -62,12 +62,18 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
         initview();
 
 
-        initData();
+
     }
 
     @Override
     protected int getLayoutID() {
         return R.layout.activity_huiji_intent_viper_detail;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void toggleBottomButton(ViperDetailBean viperDetailBean) {
@@ -106,8 +112,8 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("PotentialVO")) {//潜在会员
                             memberType = "潜在会员";
-
-
+                            ll_invite.setVisibility(View.GONE);
+                            ll_invite_history.setVisibility(View.VISIBLE);
                         } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                             memberType = "意向会员";
                             ll_invite.setVisibility(View.GONE);
@@ -119,7 +125,6 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                         }
                     }
                 }
-
             } else {
                 ll_invite.setVisibility(View.GONE);
                 ll_invite_history.setVisibility(View.GONE);

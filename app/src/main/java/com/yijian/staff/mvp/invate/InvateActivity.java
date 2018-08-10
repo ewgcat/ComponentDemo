@@ -14,6 +14,7 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
@@ -117,18 +118,15 @@ public class InvateActivity extends MvcBaseActivity {
     private void postData() {
         Map<String, String> map = new HashMap<>();
 
-        map.put("memberId", memberId);
         String content = etInvateContent.getText().toString().trim();
         if (TextUtils.isEmpty(content)){
             content="";
         }
-        map.put("content", content);
         String visitTime = tvFuyueTime.getText().toString().trim();
         if (TextUtils.isEmpty(visitTime)){
             Toast.makeText(this,"请选择来访日期",Toast.LENGTH_SHORT).show();
             return;
         }
-        map.put("visitTime", visitTime);
         String memberType = getIntent().getStringExtra("memberType");
 
 
@@ -139,9 +137,14 @@ public class InvateActivity extends MvcBaseActivity {
         } else if ("过期会员".equals(memberType)) {//过期会员
             memberType = "3";
         }
-        map.put("memberType", memberType);
+        SaveInviteBody saveInviteBody = new SaveInviteBody();
+        saveInviteBody.setChief(true);
+        saveInviteBody.setContent(content);
+        saveInviteBody.setMemberId(memberId);
+        saveInviteBody.setVisitTime(visitTime);
+        saveInviteBody.setMemberType(memberType);
 
-        HttpManager.getHasHeaderHasParam(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postInvateContent(HttpManager.INDEX_HUI_JI_INVITATION_SAVE_URL, saveInviteBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 Toast.makeText(InvateActivity.this, "邀约成功", Toast.LENGTH_SHORT).show();

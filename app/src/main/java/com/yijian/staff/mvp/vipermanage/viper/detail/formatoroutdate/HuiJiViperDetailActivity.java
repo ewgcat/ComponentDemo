@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.invate.InvateActivity;
@@ -63,55 +64,68 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         initview();
 
 
-
         initData();
     }
 
-    private void toggleBottomButton(Boolean b){
+    private void toggleBottomButton(ViperDetailBean viperDetailBean) {
+        Boolean b = viperDetailBean.isInvitationEnable();
 
-        if (b==null){
-            ll_invite.setVisibility(View.GONE);
-            ll_invite_history.setVisibility(View.GONE);
-        }else {
-            if (b){
-                if (subclassName.equals("CustomerInfoVO")) { //正式会员
-                    memberType = "正式会员";
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        if (allEditable) {
+            boolean editEnable = viperDetailBean.isEditEnable();
+            if (editEnable) {
+                if (b == null) {
                     ll_invite.setVisibility(View.GONE);
                     ll_invite_history.setVisibility(View.GONE);
-                } else if (subclassName.equals("PotentialVO")) {//潜在会员
-                    memberType = "潜在会员";
-                    ll_invite.setVisibility(View.VISIBLE);
-                    ll_invite_history.setVisibility(View.GONE);
-                } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
-                    memberType = "意向会员";
-                    ll_invite.setVisibility(View.VISIBLE);
-                    ll_invite_history.setVisibility(View.GONE);
-                } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
-                    memberType = "过期会员";
-                    ll_invite.setVisibility(View.VISIBLE);
-                    ll_invite_history.setVisibility(View.GONE);
+                } else {
+                    if (b) {
+                        if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                            memberType = "正式会员";
+                            ll_invite.setVisibility(View.GONE);
+                            ll_invite_history.setVisibility(View.GONE);
+                        } else if (subclassName.equals("PotentialVO")) {//潜在会员
+                            memberType = "潜在会员";
+                            ll_invite.setVisibility(View.VISIBLE);
+                            ll_invite_history.setVisibility(View.GONE);
+                        } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+                            memberType = "意向会员";
+                            ll_invite.setVisibility(View.VISIBLE);
+                            ll_invite_history.setVisibility(View.GONE);
+                        } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+                            memberType = "过期会员";
+                            ll_invite.setVisibility(View.VISIBLE);
+                            ll_invite_history.setVisibility(View.GONE);
+                        }
+                    } else {
+                        if (subclassName.equals("CustomerInfoVO")) { //正式会员
+                            memberType = "正式会员";
+                            ll_invite.setVisibility(View.GONE);
+                            ll_invite_history.setVisibility(View.GONE);
+                        } else if (subclassName.equals("PotentialVO")) {//潜在会员
+                            memberType = "潜在会员";
+
+
+                        } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
+                            memberType = "意向会员";
+                            ll_invite.setVisibility(View.GONE);
+                            ll_invite_history.setVisibility(View.VISIBLE);
+                        } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
+                            memberType = "过期会员";
+                            ll_invite.setVisibility(View.GONE);
+                            ll_invite_history.setVisibility(View.VISIBLE);
+                        }
+                    }
                 }
-            }else {
-                if (subclassName.equals("CustomerInfoVO")) { //正式会员
-                    memberType = "正式会员";
-                    ll_invite.setVisibility(View.GONE);
-                    ll_invite_history.setVisibility(View.GONE);
-                } else if (subclassName.equals("PotentialVO")) {//潜在会员
-                    memberType = "潜在会员";
 
-
-                } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
-                    memberType = "意向会员";
-                    ll_invite.setVisibility(View.GONE);
-                    ll_invite_history.setVisibility(View.VISIBLE);
-                } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
-                    memberType = "过期会员";
-                    ll_invite.setVisibility(View.GONE);
-                    ll_invite_history.setVisibility(View.VISIBLE);                }
+            } else {
+                ll_invite.setVisibility(View.GONE);
+                ll_invite_history.setVisibility(View.GONE);
             }
+
         }
 
     }
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_huiviper_detail;
@@ -127,7 +141,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
             public void onSuccess(JSONObject result) {
                 hideLoading();
                 viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
-                toggleBottomButton(viperDetailBean.isInvitationEnable());
+                toggleBottomButton(viperDetailBean);
                 if (!TextUtils.isEmpty(viperDetailBean.getName())) {
                     navigation2.setTitle(viperDetailBean.getName());
                 }
@@ -174,7 +188,6 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         rlItem2.setOnClickListener(this);
         ll_invite.setOnClickListener(this);
         ll_invite_history.setOnClickListener(this);
-
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -311,7 +324,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
                 intent4.putExtra("memberName", viperDetailBean.getName());
                 intent4.putExtra("headUrl", viperDetailBean.getHeadImg());
                 intent4.putExtra("sex", viperDetailBean.getSex());
-                intent4.putExtra("mobile",  viperDetailBean.getMobile());
+                intent4.putExtra("mobile", viperDetailBean.getMobile());
                 startActivity(intent4);
 
 

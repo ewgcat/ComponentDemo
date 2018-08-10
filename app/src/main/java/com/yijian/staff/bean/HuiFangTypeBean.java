@@ -11,7 +11,6 @@ import org.greenrobot.greendao.annotation.Generated;
  * email：850716183@qq.com
  * time: 2018/4/19 15:53:35
  */
-@Entity
 public class HuiFangTypeBean {
 
 
@@ -28,15 +27,7 @@ public class HuiFangTypeBean {
         this.name = JsonUtil.getString(jsonObject, "name");
     }
 
-    @Generated(hash = 421963944)
-    public HuiFangTypeBean(int menu, String name) {
-        this.menu = menu;
-        this.name = name;
-    }
 
-    @Generated(hash = 1337111592)
-    public HuiFangTypeBean() {
-    }
 
     public int getMenu() {
         return menu;

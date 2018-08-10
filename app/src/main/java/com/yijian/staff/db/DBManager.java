@@ -17,7 +17,6 @@ import com.yijian.staff.greendao.gen.OthermodelVoDao;
 import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
-import com.yijian.staff.db.bean.CoachHuiFangTypeBean;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import java.util.List;
@@ -178,38 +177,8 @@ public class DBManager {
         searchKeyDao.deleteAll();
     }
 
-    public void insertCoachHuiFangTypeBeanList(List<CoachHuiFangTypeBean> coachHuiFangTypeBeanList) {
-        mDaoSession.getCoachHuiFangTypeBeanDao().deleteAll();
-        if (coachHuiFangTypeBeanList != null) {
-            for (int i = 0; i < coachHuiFangTypeBeanList.size(); i++) {
-                CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanList.get(i);
-                mDaoSession.getCoachHuiFangTypeBeanDao().insert(coachHuiFangTypeBean);
-            }
-        }
-    }
 
-    public CoachHuiFangTypeBean queryCoachHuiFangTypeBean(String configType) {
-        CoachHuiFangTypeBeanDao coachHuiFangTypeBeanDao = mDaoSession.getCoachHuiFangTypeBeanDao();
-        CoachHuiFangTypeBean coachHuiFangTypeBean = coachHuiFangTypeBeanDao.queryBuilder()
-                .where(CoachHuiFangTypeBeanDao.Properties.Menu.eq(configType)).unique();
-        return coachHuiFangTypeBean;
-    }
 
-    public void insertHuiFangTypeBeanList(List<HuiFangTypeBean> huiFangTypeBeanList) {
-        mDaoSession.getHuiFangTypeBeanDao().deleteAll();
-        if (huiFangTypeBeanList != null) {
-            for (int i = 0; i < huiFangTypeBeanList.size(); i++) {
-                HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanList.get(i);
-                mDaoSession.getHuiFangTypeBeanDao().insert(huiFangTypeBean);
-            }
-        }
-    }
 
-    public HuiFangTypeBean queryHuiFangTypeBean(String configType) {
-        HuiFangTypeBeanDao huiFangTypeBeanDao = mDaoSession.getHuiFangTypeBeanDao();
-        HuiFangTypeBean huiFangTypeBean = huiFangTypeBeanDao.queryBuilder()
-                .where(HuiFangTypeBeanDao.Properties.Menu.eq(configType)).unique();
-        return huiFangTypeBean;
-    }
 
 }

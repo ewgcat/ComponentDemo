@@ -82,7 +82,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
                             HuiFangTypeBean huiFangTypeBean = new HuiFangTypeBean(jsonObject);
                             huiFangTypeBeanArrayList.add(huiFangTypeBean);
                         }
-                        DBManager.getInstance().insertHuiFangTypeBeanList(huiFangTypeBeanArrayList);
                         initIndicatorAndViewPager();
                     }
                 } catch (JSONException e) {

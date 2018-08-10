@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
 import com.yijian.staff.bean.HuiFangInfo;
+import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 
@@ -51,24 +53,18 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
         resetView(holder);
 
-//
-//        HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
-//
-//        String headImg = huiFangInfo.getHeadImg();
-//        ImageLoader.setHeadImageResource(headImg, context, holder.ivHead);
-//
-//        holder.tvViperName.setText(huiFangInfo.getName());
-//        String sex = huiFangInfo.getSex();
-//        if ("男".equals(sex)) {
-//            Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
-//
-//        } else {
-//            Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
-//
-//        }
-//
-//        String carBrand = huiFangInfo.getCarBrand();
-//        holder.tvCarName.setText(carBrand);
+
+        HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
+
+        String headImg = huiFangInfo.getHeadUrl();
+        ImageLoader.setHeadImageResource(headImg, context, holder.ivHead);
+
+        holder.tvViperName.setText(huiFangInfo.getName());
+        int sex = huiFangInfo.getGender();
+        int resId = sex == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        Glide.with(context).load(resId).into(holder.ivSex);
+
+
 //
 //        String healthStatus = huiFangInfo.getHealthStatus();
 //        holder.tvShentiZhuangtai.setText(healthStatus);
@@ -252,7 +248,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         holder.llKaiKaDate.setVisibility(View.GONE);
         holder.llPreVisitDate.setVisibility(View.GONE);
         holder.llFuFangReason.setVisibility(View.GONE);
-        holder.llCardName.setVisibility(View.GONE);
         holder.llCardType.setVisibility(View.GONE);
         holder.llCardYuEr.setVisibility(View.GONE);
         holder.llPreJianShenDate.setVisibility(View.GONE);
@@ -275,7 +270,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         TextView tvShentiZhuangtai;
         TextView tvJianshenAihao;
         TextView tvXingquAihao;
-        TextView tvCarName;
 
         LinearLayout llQuanyi;
         LinearLayout llOutdateTime;
@@ -336,7 +330,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             tvShentiZhuangtai = view.findViewById(R.id.tv_shenti_zhuangtai);
             tvJianshenAihao = view.findViewById(R.id.tv_jianshen_aihao);
             tvXingquAihao = view.findViewById(R.id.tv_xingqu_aihao);
-            tvCarName = view.findViewById(R.id.tv_car_name);
             llCardName = view.findViewById(R.id.ll_card_name);
 
 

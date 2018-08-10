@@ -13,32 +13,37 @@ public class HuiFangInfo implements Serializable {
     /**
      * fitnessHobby : string
      * gender : 0
+     * headUrl : string
      * healthStatus : string
      * hobby : string
      * id : string
-     * memberBirthdayInterview : {"birthday":"2018-08-10T02:22:32.424Z","birthdayTypeName":"string"}
+     * interviewName : string
+     * memberBirthdayInterview : {"birthday":"2018-08-10T06:07:15.987Z","birthdayTypeName":"string"}
      * memberId : string
-     * memberPastDueInterview : {"expireDate":"2018-08-10T02:22:32.424Z"}
+     * memberPastDueInterview : {"expireDate":"2018-08-10T06:07:15.987Z"}
      * memberPotentialInterview : {}
-     * memberQuietInterview : {"intervalDay":0,"lastTime":"2018-08-10T02:22:32.424Z"}
-     * memberWillExpireInterview : {"amount":0,"cardType":0,"cardTypeName":"string","cardprodName":"string","endTime":"2018-08-10T02:22:32.424Z","surplusValidTime":0}
+     * memberQuietInterview : {"intervalDay":0,"lastTime":"2018-08-10T06:07:15.988Z"}
+     * memberWillExpireInterview : {"amount":0,"cardType":0,"cardTypeName":"string","cardprodName":"string","endTime":"2018-08-10T06:07:15.988Z","surplusValidTime":0}
      * memberYesterdayBuyCardInterview : {"cardTypeName":"string","cardprodName":"string"}
-     * memberYesterdayVisitInterview : {"yesterdayVisitTime":"2018-08-10T02:22:32.424Z"}
+     * memberYesterdayVisitInterview : {"yesterdayVisitTime":"2018-08-10T06:07:15.988Z"}
      * mobile : string
+     * name : string
      * reviewReason : string
      * status : 0
-     * studentBirthdayInterview : {"birthday":"2018-08-10T02:22:32.424Z","birthdayType":0,"birthdayTypeName":"string"}
-     * studentPrivateCoursePastDueInterview : {"endTime":"2018-08-10T02:22:32.424Z"}
-     * studentPrivateCourseWillExpireInterview : {"endTime":"2018-08-10T02:22:32.424Z"}
-     * studentYesterdayBuyCourseInterview : {"buyCourseTime":"2018-08-10T02:22:32.424Z"}
-     * studentYesterdayInCourseInterview : {"inviteTime":"2018-08-10T02:22:32.424Z"}
+     * studentBirthdayInterview : {"birthday":"2018-08-10T06:07:15.988Z","birthdayType":0,"birthdayTypeName":"string"}
+     * studentPrivateCoursePastDueInterview : {"endTime":"2018-08-10T06:07:15.988Z"}
+     * studentPrivateCourseWillExpireInterview : {"endTime":"2018-08-10T06:07:15.988Z"}
+     * studentYesterdayBuyCourseInterview : {"buyCourseTime":"2018-08-10T06:07:15.988Z"}
+     * studentYesterdayInCourseInterview : {"inviteTime":"2018-08-10T06:07:15.988Z"}
      */
 
     private String fitnessHobby;
     private int gender;
+    private String headUrl;
     private String healthStatus;
     private String hobby;
     private String id;
+    private String interviewName;
     private MemberBirthdayInterviewBean memberBirthdayInterview;
     private String memberId;
     private MemberPastDueInterviewBean memberPastDueInterview;
@@ -48,6 +53,7 @@ public class HuiFangInfo implements Serializable {
     private MemberYesterdayBuyCardInterviewBean memberYesterdayBuyCardInterview;
     private MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview;
     private String mobile;
+    private String name;
     private String reviewReason;
     private int status;
     private StudentBirthdayInterviewBean studentBirthdayInterview;
@@ -72,6 +78,14 @@ public class HuiFangInfo implements Serializable {
         this.gender = gender;
     }
 
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
+    }
+
     public String getHealthStatus() {
         return healthStatus;
     }
@@ -94,6 +108,14 @@ public class HuiFangInfo implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getInterviewName() {
+        return interviewName;
+    }
+
+    public void setInterviewName(String interviewName) {
+        this.interviewName = interviewName;
     }
 
     public MemberBirthdayInterviewBean getMemberBirthdayInterview() {
@@ -168,6 +190,14 @@ public class HuiFangInfo implements Serializable {
         this.mobile = mobile;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getReviewReason() {
         return reviewReason;
     }
@@ -226,7 +256,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class MemberBirthdayInterviewBean {
         /**
-         * birthday : 2018-08-10T02:22:32.424Z
+         * birthday : 2018-08-10T06:07:15.987Z
          * birthdayTypeName : string
          */
 
@@ -259,7 +289,7 @@ public class HuiFangInfo implements Serializable {
     public static class MemberQuietInterviewBean {
         /**
          * intervalDay : 0
-         * lastTime : 2018-08-10T02:22:32.424Z
+         * lastTime : 2018-08-10T06:07:15.988Z
          */
 
         private int intervalDay;
@@ -288,7 +318,7 @@ public class HuiFangInfo implements Serializable {
          * cardType : 0
          * cardTypeName : string
          * cardprodName : string
-         * endTime : 2018-08-10T02:22:32.424Z
+         * endTime : 2018-08-10T06:07:15.988Z
          * surplusValidTime : 0
          */
 
@@ -376,7 +406,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class MemberYesterdayVisitInterviewBean {
         /**
-         * yesterdayVisitTime : 2018-08-10T02:22:32.424Z
+         * yesterdayVisitTime : 2018-08-10T06:07:15.988Z
          */
 
         private String yesterdayVisitTime;
@@ -392,7 +422,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class StudentBirthdayInterviewBean {
         /**
-         * birthday : 2018-08-10T02:22:32.424Z
+         * birthday : 2018-08-10T06:07:15.988Z
          * birthdayType : 0
          * birthdayTypeName : string
          */
@@ -428,7 +458,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class StudentPrivateCoursePastDueInterviewBean {
         /**
-         * endTime : 2018-08-10T02:22:32.424Z
+         * endTime : 2018-08-10T06:07:15.988Z
          */
 
         private String endTime;
@@ -444,7 +474,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class StudentPrivateCourseWillExpireInterviewBean {
         /**
-         * endTime : 2018-08-10T02:22:32.424Z
+         * endTime : 2018-08-10T06:07:15.988Z
          */
 
         private String endTime;
@@ -460,7 +490,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class StudentYesterdayBuyCourseInterviewBean {
         /**
-         * buyCourseTime : 2018-08-10T02:22:32.424Z
+         * buyCourseTime : 2018-08-10T06:07:15.988Z
          */
 
         private String buyCourseTime;
@@ -476,7 +506,7 @@ public class HuiFangInfo implements Serializable {
 
     public static class StudentYesterdayInCourseInterviewBean {
         /**
-         * inviteTime : 2018-08-10T02:22:32.424Z
+         * inviteTime : 2018-08-10T06:07:15.988Z
          */
 
         private String inviteTime;

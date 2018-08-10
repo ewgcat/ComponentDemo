@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiFilterViperDialog;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.fragment.HuijiAllViperFragment;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/1")
-public class HuijiViperListActivity extends AppCompatActivity implements View.OnClickListener {
+public class HuijiViperListActivity extends MvcBaseActivity implements View.OnClickListener {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -47,13 +48,17 @@ public class HuijiViperListActivity extends AppCompatActivity implements View.On
     private HuijiAllViperFragment huijiAllViperFragment;
     private HuijiFilterViperDialog filterDialog;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vip_huiji_info);
-        ButterKnife.bind(this);
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_vip_huiji_info;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initView();
+
     }
 
     private void initView() {

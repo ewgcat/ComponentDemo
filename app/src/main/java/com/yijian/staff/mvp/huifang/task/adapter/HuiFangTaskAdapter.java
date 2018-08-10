@@ -1,18 +1,25 @@
 package com.yijian.staff.mvp.huifang.task.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 
 import com.yijian.staff.bean.HuiFangInfo;
+import com.yijian.staff.bean.HuiFangTypeBean;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
@@ -26,12 +33,12 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
     private List<HuiFangInfo> mHuiFangInfoList;
     private Context context;
-    private int type;
+    private int menu;
 
-    public HuiFangTaskAdapter(Context context, List<HuiFangInfo> mHuiFangInfoList, int type) {
+    public HuiFangTaskAdapter(Context context, List<HuiFangInfo> mHuiFangInfoList, int menu) {
         this.mHuiFangInfoList = mHuiFangInfoList;
         this.context = context;
-        this.type = type;
+        this.menu = menu;
     }
 
     public void update(List<HuiFangInfo> mHuiFangInfoList) {
@@ -50,223 +57,20 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
-        resetView(holder);
-
-
         HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
-
-        String headImg = huiFangInfo.getHeadUrl();
-        ImageLoader.setHeadImageResource(headImg, context, holder.ivHead);
-
-        holder.tvViperName.setText(huiFangInfo.getName());
-        int sex = huiFangInfo.getGender();
-        int resId = sex == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
-        Glide.with(context).load(resId).into(holder.ivSex);
-
-
-//
-//        String healthStatus = huiFangInfo.getHealthStatus();
-//        holder.tvShentiZhuangtai.setText(healthStatus);
-//
-//        String fitnessHobby = huiFangInfo.getFitnessHobby();
-//        holder.tvJianshenAihao.setText(fitnessHobby);
-//
-//        String hobby = huiFangInfo.getHobby();
-//        holder.tvXingquAihao.setText(hobby);
-//
-//
-//        String interviewType = huiFangInfo.getInterviewType();
-//        holder.tvHuifangType.setText(interviewType);
-//
-//
-//        /**
-//         *  mTitleList.add("全部");0
-//         mTitleList.add("生日");1
-//         mTitleList.add("昨日到访");2
-//         mTitleList.add("昨日开卡");3
-//         mTitleList.add("潜在会员");4
-//         mTitleList.add("沉寂会员");5
-//         mTitleList.add("恢复健身");6
-//         mTitleList.add("复访");7
-//         mTitleList.add("过期");8
-//         mTitleList.add("快到期");9
-//         mTitleList.add("易健平台");10
-//         mTitleList.add("体验课");11
-//         mTitleList.add("意向会员");16
-//         */
-//        String subclassName = huiFangInfo.getSubclassName();
-//        switch (subclassName) {
-//
-//            case "BirthdayVO"://生日回访
-//                holder.llBirthday.setVisibility(View.VISIBLE);
-//                holder.llBirthdayType.setVisibility(View.VISIBLE);
-//                Long birthday = huiFangInfo.getBirthday();
-//                if (birthday != null && birthday != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(birthday);
-//                    holder.tvBirthday.setText(s);
-//                }
-//                String birthdayType = huiFangInfo.getBirthdayType();
-//                if (!TextUtils.isEmpty(birthdayType)) {
-//                    holder.tvBirthdayType.setText(birthdayType);
-//                }
-//                break;
-//            case "ExpireVO"://过期回访
-//                holder.llOutdateTime.setVisibility(View.VISIBLE);
-//                holder.llOutdateReason.setVisibility(View.VISIBLE);
-//                String expiryReason = huiFangInfo.getExpiryReason();
-//                if (!TextUtils.isEmpty(expiryReason)) {
-//                    holder.tvOutdateReason.setText(expiryReason);
-//                }
-//                Long deadline = huiFangInfo.getDeadline();
-//                if (deadline != null && deadline != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(deadline);
-//                    holder.tvOutdateTime.setText(s);
-//                }
-//                break;
-//            case "ReVO"://复访
-//                holder.llPreVisitDate.setVisibility(View.VISIBLE);
-//                holder.llFuFangReason.setVisibility(View.VISIBLE);
-//                Long lastVisitTime = huiFangInfo.getLastVisitTime();
-//                if (lastVisitTime != null && lastVisitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(lastVisitTime);
-//                    holder.tvPreVisitDate.setText(s);
-//                }
-//                String reinterviewReason = huiFangInfo.getReinterviewReason();
-//                holder.tvFuFangReason.setText(reinterviewReason);
-//                break;
-//            case "NearExpireVO"://快到期回访
-//                holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
-//                holder.llHetongYuEr.setVisibility(View.VISIBLE);
-//
-//                holder.tvHetongYuEr.setText(huiFangInfo.getContractBalance());
-//                Long time = huiFangInfo.getDeadline();
-//                if (time != null && time != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(time);
-//                    holder.tvHetongDaoQiRi.setText(s);
-//                }
-//                break;
-//
-//            case "YesterdayVisitVO"://昨日到访
-//                holder.ll_dao_fang_date.setVisibility(View.VISIBLE);
-//                Long visitTime = huiFangInfo.getVisitTime();
-//                if (visitTime != null && visitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(visitTime);
-//                    holder.tv_dao_fang_date.setText(s);
-//                }
-//                break;
-//            case "ReFitVO":
-//                holder.llPreJianShenDate.setVisibility(View.VISIBLE);
-//                holder.llWeiJianShenTime.setVisibility(View.VISIBLE);
-//                String lastFitTime = huiFangInfo.getLastFitTime();
-//                holder.tvPreJianShenDate.setText(lastFitTime);
-//                Long breakDay = huiFangInfo.getBreakDay();
-//                if (breakDay != null && breakDay != -1) {
-//                    holder.tvWeiJianShenTime.setText(breakDay + "");
-//                }
-//                break;
-//            case "PotentialVO"://潜在会员
-//                break;
-//            case "EjoyVO"://易健平台
-//                holder.llChenMoTianShu.setVisibility(View.VISIBLE);
-//                Long sinkDay = huiFangInfo.getSinkDay();
-//                if (sinkDay != null && sinkDay != -1) {
-//                    holder.tvChenMoTianShu.setText(sinkDay + "");
-//                }
-//                break;
-//
-//            case "YesterdayOpenVO":
-////                holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
-//                holder.llCardName.setVisibility(View.VISIBLE);
-//                holder.llCardType.setVisibility(View.VISIBLE);
-//                holder.tvCardName.setText(huiFangInfo.getCardName());
-//                holder.tvCardType.setText(huiFangInfo.getCardType());
-//                break;
-//            case "QuietVO":
-//                holder.llKaiKaDate.setVisibility(View.VISIBLE);
-//                holder.llCardName.setVisibility(View.VISIBLE);
-//                holder.llCardType.setVisibility(View.VISIBLE);
-//                holder.llZuijinJianshen.setVisibility(View.VISIBLE);
-//                holder.llChenMoTianShu.setVisibility(View.VISIBLE);
-//                holder.tvCardName.setText(huiFangInfo.getCardName());
-//                holder.tvCardType.setText(huiFangInfo.getCardType());
-//                Long openCardTime = huiFangInfo.getOpenCardTime();
-//                if (openCardTime != null && openCardTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(openCardTime);
-//                    holder.tvKaiKaDate.setText(s);
-//                }
-//
-//                Long recentlyFitTime = huiFangInfo.getRecentlyFitTime();
-//                if (recentlyFitTime != null && recentlyFitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(recentlyFitTime);
-//                    holder.tvZuijinJianshen.setText(s);
-//                }
-//
-//                Long sinkDay1 = huiFangInfo.getSinkDay();
-//                if (sinkDay1 != null && sinkDay1 != -1) {
-//                    holder.tvChenMoTianShu.setText(sinkDay1 + "");
-//                }
-//                break;
-//        }
-//
-//
-//        holder.llBt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                String mobile = huiFangInfo.getMobile();
-//                if (!TextUtils.isEmpty(mobile)) {
-//                    if (CommonUtil.isPhoneFormat(mobile)) {
-//                        HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean("15");
-//                        Intent i = new Intent(context, TianXieHuiFangResultActivity.class);
-//                        i.putExtra("huiFangInfo", huiFangInfo);
-//                        context.startActivity(i);
-//                        CommonUtil.callPhone(context, mobile);
-//
-//                    } else {
-//                        Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        holder.bindView(context, huiFangInfo,menu);
     }
 
     @Override
     public int getItemCount() {
-        return mHuiFangInfoList.size();
+        return mHuiFangInfoList == null ? 0 : mHuiFangInfoList.size();
     }
 
-    private void resetView(ViewHolder holder) {
-        holder.llQuanyi.setVisibility(View.GONE);
-        holder.llOutdateTime.setVisibility(View.GONE);
-        holder.llOutdateReason.setVisibility(View.GONE);
-        holder.llHetongYuEr.setVisibility(View.GONE);
-        holder.llHetongDaoQiRi.setVisibility(View.GONE);
-        holder.llKaiKaDate.setVisibility(View.GONE);
-        holder.llPreVisitDate.setVisibility(View.GONE);
-        holder.llFuFangReason.setVisibility(View.GONE);
-        holder.llCardType.setVisibility(View.GONE);
-        holder.llCardYuEr.setVisibility(View.GONE);
-        holder.llPreJianShenDate.setVisibility(View.GONE);
-        holder.llZuijinJianshen.setVisibility(View.GONE);
-        holder.llChenMoTianShu.setVisibility(View.GONE);
-        holder.llWeiJianShenTime.setVisibility(View.GONE);
-        holder.llBirthday.setVisibility(View.GONE);
-        holder.llBirthdayType.setVisibility(View.GONE);
-        holder.ll_ti_yan_ke_ci_shu.setVisibility(View.GONE);
-        holder.ll_dao_fang_date.setVisibility(View.GONE);
-        holder.ll_income.setVisibility(View.GONE);
-        holder.ll_jianshen_mudi.setVisibility(View.GONE);
-
-    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivHead;
-        TextView tvViperName;
         ImageView ivSex;
+        TextView tvViperName;
         TextView tvShentiZhuangtai;
         TextView tvJianshenAihao;
         TextView tvXingquAihao;
@@ -391,5 +195,62 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             iv = view.findViewById(R.id.iv);
             tv = view.findViewById(R.id.tv);
         }
+
+        public void bindView(Context context, HuiFangInfo huiFangInfo, int menu) {
+            //公共部分
+            ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), context, ivHead);
+            tvViperName.setText(huiFangInfo.getName());
+            int resId = huiFangInfo.getGender() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            Glide.with(context).load(resId).into(ivSex);
+            tvShentiZhuangtai.setText(huiFangInfo.getHealthStatus());
+            tvJianshenAihao.setText(huiFangInfo.getFitnessHobby());
+            tvXingquAihao.setText(huiFangInfo.getHobby());
+            tvHuifangType.setText(huiFangInfo.getInterviewName());
+
+            llBt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String mobile = huiFangInfo.getMobile();
+                    if (!TextUtils.isEmpty(mobile)) {
+                        if (CommonUtil.isPhoneFormat(mobile)) {
+                            HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean(menu);
+                            Intent i = new Intent(context, TianXieHuiFangResultActivity.class);
+                            i.putExtra("huiFangInfo", huiFangInfo);
+                            context.startActivity(i);
+                            CommonUtil.callPhone(context, mobile);
+                        } else {
+                            Toast.makeText(context, "返回的手机号不正确！", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(context, "未录入手机号！", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+
+    }
+
+    private void resetView(ViewHolder holder) {
+        holder.llQuanyi.setVisibility(View.GONE);
+        holder.llOutdateTime.setVisibility(View.GONE);
+        holder.llOutdateReason.setVisibility(View.GONE);
+        holder.llHetongYuEr.setVisibility(View.GONE);
+        holder.llHetongDaoQiRi.setVisibility(View.GONE);
+        holder.llKaiKaDate.setVisibility(View.GONE);
+        holder.llPreVisitDate.setVisibility(View.GONE);
+        holder.llFuFangReason.setVisibility(View.GONE);
+        holder.llCardType.setVisibility(View.GONE);
+        holder.llCardYuEr.setVisibility(View.GONE);
+        holder.llPreJianShenDate.setVisibility(View.GONE);
+        holder.llZuijinJianshen.setVisibility(View.GONE);
+        holder.llChenMoTianShu.setVisibility(View.GONE);
+        holder.llWeiJianShenTime.setVisibility(View.GONE);
+        holder.llBirthday.setVisibility(View.GONE);
+        holder.llBirthdayType.setVisibility(View.GONE);
+        holder.ll_ti_yan_ke_ci_shu.setVisibility(View.GONE);
+        holder.ll_dao_fang_date.setVisibility(View.GONE);
+        holder.ll_income.setVisibility(View.GONE);
+        holder.ll_jianshen_mudi.setVisibility(View.GONE);
     }
 }

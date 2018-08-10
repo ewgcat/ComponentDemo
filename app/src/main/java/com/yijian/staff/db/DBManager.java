@@ -4,12 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.yijian.staff.bean.HuiFangTypeBean;
 import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.greendao.gen.DaoMaster;
 import com.yijian.staff.greendao.gen.DaoSession;
+import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.OthermodelVoDao;
 import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
@@ -174,8 +176,22 @@ public class DBManager {
         searchKeyDao.deleteAll();
     }
 
+    public void insertOrReplaceHuiFangTypeBeans(List<HuiFangTypeBean> huiFangTypeBeans) {
 
+        HuiFangTypeBeanDao huiFangTypeBeanDao = mDaoSession.getHuiFangTypeBeanDao();
+        huiFangTypeBeanDao.deleteAll();
+        huiFangTypeBeanDao.insertInTx(huiFangTypeBeans);
+    }
 
-
-
+    public HuiFangTypeBean queryHuiFangTypeBean(int menu) {
+        HuiFangTypeBean huiFangTypeBean=null;
+        HuiFangTypeBeanDao huiFangTypeBeanDao = mDaoSession.getHuiFangTypeBeanDao();
+        List<HuiFangTypeBean> list = huiFangTypeBeanDao.queryBuilder()
+                .where(HuiFangTypeBeanDao.Properties.Menu.eq(menu))
+                .list();
+        if (list!=null&&list.size()>0){
+            huiFangTypeBean = list.get(0);
+        }
+        return huiFangTypeBean;
+    }
 }

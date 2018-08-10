@@ -9,7 +9,6 @@ import java.io.Serializable;
  */
 public class HuiFangInfo implements Serializable {
 
-
     /**
      * fitnessHobby : string
      * gender : 0
@@ -36,12 +35,12 @@ public class HuiFangInfo implements Serializable {
      * studentYesterdayBuyCourseInterview : {"buyCourseTime":"2018-08-10T06:07:15.988Z"}
      * studentYesterdayInCourseInterview : {"inviteTime":"2018-08-10T06:07:15.988Z"}
      */
-
-    private String fitnessHobby;
-    private int gender;
+    private String name;
     private String headUrl;
+    private int gender;
     private String healthStatus;
     private String hobby;
+    private String fitnessHobby;
     private String id;
     private String interviewName;
     private MemberBirthdayInterviewBean memberBirthdayInterview;
@@ -53,7 +52,6 @@ public class HuiFangInfo implements Serializable {
     private MemberYesterdayBuyCardInterviewBean memberYesterdayBuyCardInterview;
     private MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview;
     private String mobile;
-    private String name;
     private String reviewReason;
     private int status;
     private StudentBirthdayInterviewBean studentBirthdayInterview;

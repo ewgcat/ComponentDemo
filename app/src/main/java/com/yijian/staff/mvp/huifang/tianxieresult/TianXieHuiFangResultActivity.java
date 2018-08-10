@@ -24,6 +24,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -132,53 +133,19 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             }
         });
 
-//        huiFangInfo = (HuiFangInfo) getIntent().getSerializableExtra("huiFangInfo");
-//        ImageLoader.setHeadImageResource(huiFangInfo.getHeadImg(), this, iv_nav_header);
-//        ImageLoader.setHeadImageResource(huiFangInfo.getHeadImg(), this, iv_sure_header);
-//        tv_nav_name.setText(huiFangInfo.getName());
-//        tv_sure_name.setText(huiFangInfo.getName());
-//        iv_nav_gender.setImageResource(huiFangInfo.getGenderImg());
-//        iv_sure_gender.setImageResource(huiFangInfo.getGenderImg());
-//
-//
-//        String subclassName = huiFangInfo.getSubclassName();
-//        String huifanType = "";
-//        switch (subclassName) {
-//
-//            case "BirthdayVO"://生日回访
-//                huifanType = "生日回访";
-//                break;
-//            case "ExpireVO"://过期回访
-//                huifanType = "过期回访";
-//                break;
-//            case "ReVO"://复访
-//                huifanType = "复访";
-//                break;
-//            case "NearExpireVO"://快到期回访
-//                huifanType = "快到期回访";
-//                break;
-//
-//            case "YesterdayVisitVO"://昨日到访
-//                huifanType = "昨日到访";
-//                break;
-//            case "ReFitVO": //恢复健身
-//                huifanType = "恢复健身";
-//                break;
-//            case "PotentialVO"://潜在会员
-//                huifanType = "潜在会员";
-//                break;
-//            case "EjoyVO"://易健平台
-//                huifanType = "易健平台";
-//                break;
-//            case "YesterdayOpenVO": //昨日到访
-//                huifanType = "昨日到访";
-//                break;
-//            case "QuietVO": //沉寂会员
-//                huifanType = "沉寂会员";
-//                break;
-//        }
+        huiFangInfo = (HuiFangInfo) getIntent().getSerializableExtra("huiFangInfo");
+        ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), this, iv_nav_header);
+        ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), this, iv_sure_header);
+        tv_nav_name.setText(huiFangInfo.getName());
+        tv_sure_name.setText(huiFangInfo.getName());
+        int resId = huiFangInfo.getGender() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        iv_nav_gender.setImageResource(resId);
+        iv_sure_gender.setImageResource(resId);
 
-//        tv_huifan_type.setText(huifanType);
+
+
+
+        tv_huifan_type.setText(huiFangInfo.getInterviewName());
 
     }
 
@@ -213,44 +180,46 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     }
 
     private void sendResult() {
-        AddHuiFangResultBody body = new AddHuiFangResultBody();
-//        body.setInterviewRecordId(huiFangInfo.getInterviewRecordId());
-        body.setMemberId(huiFangInfo.getId());
 
-
-        body.setNeedReview(needReview);
-
-
-        String reason = et_huifan_record.getText().toString();
         if (needReview) {
+            String reason = et_huifan_record.getText().toString();
             if (TextUtils.isEmpty(result)) {
                 showToast("请选择复访时间");
                 return;
             }
-
             if (TextUtils.isEmpty(reason)) {
                 showToast("请选择复访原因");
                 return;
             }
+
             body.setReviewTime(result);
             body.setDictItemId(dictItemId);
 
         } else {
-
             String result = et_huifan_record.getText().toString();
             if (TextUtils.isEmpty(result)) {
                 showToast("请填写回访结果");
                 return;
             }
-            body.setInterviewResult(result);
-
+            AddHuiFangResultBody body = new AddHuiFangResultBody();
+            body.setId(huiFangInfo.getId());
+            body.setChief(true);
+            body.setDesc(result);
+            body.setVisitTime();
         }
 
 
-        HttpManager.postAddHuiJiHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
+
+
+
+
+
+
+
+
+        HttpManager.postHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-
                 finish();
             }
 

@@ -13,6 +13,7 @@ import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -289,4 +290,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postHuiFangTask(@Url String url,@HeaderMap HashMap<String, String> headers, @Body HuifangTaskRequestBody huifangTaskRequestBody);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postFuHuiFangResult(@Url String url,@HeaderMap HashMap<String, String> headers, @Body AddFuFangResultBody body);
 }

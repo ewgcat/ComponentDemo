@@ -9,70 +9,46 @@ public class AddHuiFangResultBody {
 
 
     /**
-     * dictItemId : 0
-     * interviewRecordId : string
-     * interviewResult : string
-     * memberId : string
-     * needReview : false
-     * reviewTime : 2018-04-20T02:05:07.909Z
+     * chief : true
+     * desc : string
+     * id : string
+     * visitTime : 2018-08-10T06:07:15.986Z
      */
 
-    private String dictItemId;
-    private String interviewRecordId;
-    private String interviewResult;
-    private String memberId;
-    private boolean needReview;
-    private String reviewTime;
+    private boolean chief;
+    private String desc;
+    private String id;
+    private String visitTime;
 
-
-    public AddHuiFangResultBody() {
+    public boolean isChief() {
+        return chief;
     }
 
-    public String getDictItemId() {
-        return dictItemId;
+    public void setChief(boolean chief) {
+        this.chief = chief;
     }
 
-    public void setDictItemId(String dictItemId) {
-        this.dictItemId = dictItemId;
+    public String getDesc() {
+        return desc;
     }
 
-    public String getInterviewRecordId() {
-        return interviewRecordId;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public void setInterviewRecordId(String interviewRecordId) {
-        this.interviewRecordId = interviewRecordId;
+    public String getId() {
+        return id;
     }
 
-    public String getInterviewResult() {
-        return interviewResult;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setInterviewResult(String interviewResult) {
-        this.interviewResult = interviewResult;
+    public String getVisitTime() {
+        return visitTime;
     }
 
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public boolean isNeedReview() {
-        return needReview;
-    }
-
-    public void setNeedReview(boolean needReview) {
-        this.needReview = needReview;
-    }
-
-    public String getReviewTime() {
-        return reviewTime;
-    }
-
-    public void setReviewTime(String reviewTime) {
-        this.reviewTime = reviewTime;
+    public void setVisitTime(String visitTime) {
+        this.visitTime = visitTime;
     }
 }

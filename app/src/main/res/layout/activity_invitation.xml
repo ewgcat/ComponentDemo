@@ -6,71 +6,20 @@
                 android:background="@color/gray_background_color">
 
     <include
-            android:id="@+id/vip_over_navigation_bar2"
+            android:id="@+id/navigation_bar2"
             layout="@layout/view_navigation_bar2"/>
 
-    <LinearLayout
-            android:id="@+id/lin_intation"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_invitation"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-    >
+            android:layout_height="wrap_content"/>
 
-        <LinearLayout
-                android:id="@+id/lin_invitation_record"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-            <ImageView
-                    android:id="@+id/iv_invitaion_record"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/wt_jilu"/>
-            <TextView
-                    android:id="@+id/tv_invitaion_record"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="邀约记录"
-                    android:gravity="center"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="5dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/lin_invitation_result"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-            <ImageView
-                    android:id="@+id/iv_invitaion_result"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/wt_jieguo"/>
-            <TextView
-                    android:id="@+id/tv_invitaion_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="邀约结果"
-                    android:gravity="center"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="5dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <FrameLayout
-            android:id="@+id/fl_invitation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/vip_over_navigation_bar2"
-            android:layout_above="@id/lin_intation"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </RelativeLayout>

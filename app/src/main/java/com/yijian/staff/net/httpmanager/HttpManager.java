@@ -3,7 +3,6 @@ package com.yijian.staff.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -19,6 +18,7 @@ import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
+import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -292,17 +292,19 @@ public class HttpManager {
     //会籍的回访记录列表
     public static String GET_HUI_JI_HUI_FANG_RECORD_URL =  "customer-service/interview/record/list";
 
-    //教练的回访记录列表
-    public static String GET_COACH_HUI_FANG_RECORD_URL =  "coach/interview/record/list";
+
 
     //教练回访打电话通知后台
     public static String GET_COACH_HUI_FANG_CALL_PHONE_URL =  "coach/call-for-interview";
 
-    //教练回访结果
-    public static String POST_COACH_HUI_FANG_RESULT_URL =  "coach/interview/filling";
 
-    //会籍回访结果
-    public static String POST_HUI_JI_HUI_FANG_RESULT_URL =  "customer-service/interview/filling";
+
+    //发送回访结果
+    public static String POST_HUI_FANG_RESULT_URL =  "interviewV2/bapp/interviewDone";
+
+    //发送复访请求
+    public static String POST_FU_FANG_RESULT_URL =  "interviewV2/bapp/interviewDone";
+
 
     public static String GET_COACH_HUI_FANG_REASON_LIST_URL =  "dict/review-reason/dict-items";
 
@@ -411,7 +413,7 @@ public class HttpManager {
     }
 
     //保存教练回访结果
-    public static void postAddCoachHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+    public static void postFuFangResult(AddFuFangResultBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -419,14 +421,14 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl()+POST_COACH_HUI_FANG_RESULT_URL, headers, body);
+            Observable<JSONObject> observable = apiService.postFuHuiFangResult(SharePreferenceUtil.getHostUrl()+POST_FU_FANG_RESULT_URL, headers, body);
             execute(observable, observer);
         }
 
     }
 
     //保存会籍回访结果
-    public static void postAddHuiJiHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
+    public static void postHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -434,7 +436,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl()+POST_HUI_JI_HUI_FANG_RESULT_URL, headers, body);
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl()+POST_HUI_FANG_RESULT_URL, headers, body);
             execute(observable, observer);
         }
 

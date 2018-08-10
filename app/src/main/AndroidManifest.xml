@@ -56,7 +56,11 @@
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.main.MainActivity"
@@ -131,11 +135,7 @@
         <activity
             android:name=".mvp.huifang.task.HuiFangTaskActivity"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity"

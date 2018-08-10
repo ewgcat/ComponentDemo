@@ -207,9 +207,6 @@
             android:name=".mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.invate.InvateListActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.resourceallocation.coach.CoachResourceAllocationActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.invate.InvateListActivity;
 import com.yijian.staff.mvp.taskcenter.invite.rankfragment.InviteMonthRankFragment;
 import com.yijian.staff.mvp.taskcenter.invite.rankfragment.InviteTodayRankFragment;
 import com.yijian.staff.util.Logger;

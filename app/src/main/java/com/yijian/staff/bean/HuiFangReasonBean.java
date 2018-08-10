@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.tianxieresult;
+package com.yijian.staff.bean;
 
 import com.contrarywind.interfaces.IPickerViewData;
 import com.yijian.staff.util.JsonUtil;

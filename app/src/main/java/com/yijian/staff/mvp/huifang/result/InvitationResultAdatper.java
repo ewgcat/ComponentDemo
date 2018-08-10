@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.invitation.list.result;
+package com.yijian.staff.mvp.huifang.result;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

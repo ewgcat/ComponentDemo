@@ -18,12 +18,12 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
+import com.yijian.staff.bean.HuiFangReasonBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -38,7 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HuijiTianXieHuiFangResultActivity extends MvcBaseActivity {
+public class TianXieHuiFangResultActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.rg)

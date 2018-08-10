@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.invitation.list.result;
+package com.yijian.staff.mvp.huifang.result;
 
 import android.graphics.Color;
 import android.os.Bundle;

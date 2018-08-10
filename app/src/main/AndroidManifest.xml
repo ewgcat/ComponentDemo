@@ -127,7 +127,7 @@
             android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.tianxieresult.HuijiTianXieHuiFangResultActivity"
+            android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.history.HuiFangHistoryActivity"

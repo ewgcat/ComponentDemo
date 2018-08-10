@@ -173,7 +173,6 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
                             tv_huifan_time.setText(time);
                         }
-
                     }
                 }).build().show();
                 break;
@@ -191,7 +190,6 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
                             tvLaifanTime.setText(time);
                         }
-
                     }
                 }).build().show();
                 break;

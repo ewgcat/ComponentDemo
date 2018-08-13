@@ -14,6 +14,8 @@ import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.ClubDetailBean;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.main.mine.qualification.GlideImageLoader;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 import com.yijian.staff.share.umeng.SharePopupWindow;
@@ -152,7 +154,8 @@ public class ClubActivity extends BaseWebViewActivity {
     private void showShareDialog() {
         if (sharePopupWindow == null) {
             sharePopupWindow = new SharePopupWindow(this);
-            sharePopupWindow.setData("http://www.baidu.com", name, null, null);
+            User user = DBManager.getInstance().queryUser();
+            sharePopupWindow.setData("http://192.168.2.165:8080/#/bappclub?mc="+user.getMerchantId(), name, null, null);
         }
         sharePopupWindow.show(getWindow().getDecorView());
     }

@@ -47,27 +47,16 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
         }
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        HashMap<String, String> params = new HashMap<>();
-        params.put("type", "" + type);
-        HttpManager.postHasHeaderHasParam(HttpManager.ABOUT_US_AND_CLUB_AND_QR_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                webView.loadUrl(JsonUtil.getString(result, "url"));
-            }
 
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
         JSONObject jsonObject = new JSONObject();
-        webView.loadUrl("http://192.168.2.209:8080/#/contract");
+        webView.loadUrl("http://192.168.2.165:8080/#/bappclub");
         String token = DBManager.getInstance().queryUser().getToken();
         try {
             jsonObject.put("token", token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
         webView.setWebViewClient(new WebViewClient() {
             @Override

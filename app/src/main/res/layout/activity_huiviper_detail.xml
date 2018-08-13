@@ -125,7 +125,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="邀约"
-                android:textColor="@color/blue"
+                android:drawableLeft="@mipmap/member_invite"
+                android:textColor="#333333"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -141,8 +142,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="邀约内容"
-                android:textColor="@color/blue"
+                android:text="查看邀约"
+                android:textColor="#333333"
                 android:textSize="16sp" />
         </LinearLayout>
 

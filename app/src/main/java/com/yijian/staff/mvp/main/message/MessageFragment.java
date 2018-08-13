@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.main.message;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.course.timetable.MyDividerItemDecoration;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -69,6 +71,7 @@ public class MessageFragment extends MvcBaseFragment {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
         //设置RecyclerView 布局,,,
         rv.setLayoutManager(layoutmanager);
+        rv.addItemDecoration(new MyDividerItemDecoration());
         messageListAdapter = new MessageListAdapter(getContext(), messageBeanList);
         rv.setAdapter(messageListAdapter);
 
@@ -92,6 +95,7 @@ public class MessageFragment extends MvcBaseFragment {
                 loadMore();
             }
         });
+        refresh();
     }
 
 

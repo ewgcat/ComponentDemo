@@ -56,186 +56,53 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         resetView(holder);
 
 
-//        HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
-//
-//        String headImg = huiFangInfo.getHeadImg();
-//
-//        holder.tvViperName.setText(huiFangInfo.getName());
-//        String sex = huiFangInfo.getSex();
-//        if ("男".equals(sex)) {
-//            Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
-//            if (TextUtils.isEmpty(headImg)) {
-//                Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
-//            } else {
-//                RequestOptions options = new RequestOptions()
-//                        .centerCrop()
-//                        .placeholder(R.mipmap.wt_boysmall)
-//                        .error(R.mipmap.wt_boysmall)
-//                        .transform(new GlideCircleTransform())
-//                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-//                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
-//            }
-//        } else {
-//            Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
-//            if (TextUtils.isEmpty(headImg)) {
-//                Glide.with(context).load(R.mipmap.wt_girlsmall).into(holder.ivHead);
-//            } else {
-//                RequestOptions options = new RequestOptions()
-//                        .centerCrop()
-//                        .placeholder(R.mipmap.wt_girlsmall)
-//                        .error(R.mipmap.wt_girlsmall)
-//                        .transform(new GlideCircleTransform())
-//                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-//                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
-//            }
-//        }
-//
-//        String carBrand = huiFangInfo.getCarBrand();
-//        holder.tvCarName.setText(carBrand);
-//
-//        String healthStatus = huiFangInfo.getHealthStatus();
-//        holder.tvShentiZhuangtai.setText(healthStatus);
-//
-//        String fitnessHobby = huiFangInfo.getFitnessHobby();
-//        holder.tvJianshenAihao.setText(fitnessHobby);
-//
-//        String hobby = huiFangInfo.getHobby();
-//        holder.tvXingquAihao.setText(hobby);
-//
-//
-//        String interviewType = huiFangInfo.getInterviewType();
-//        holder.tvHuifangType.setText(interviewType);
-//        String interviewResult = huiFangInfo.getInterviewResult();
-//        holder.tv_huifang_result.setText(interviewResult);
-//
-//        /**
-//         *  mTitleList.add("全部");0
-//         mTitleList.add("生日");1
-//         mTitleList.add("昨日到访");2
-//         mTitleList.add("昨日开卡");3
-//         mTitleList.add("潜在会员");4
-//         mTitleList.add("沉寂会员");5
-//         mTitleList.add("恢复健身");6
-//         mTitleList.add("复访");7
-//         mTitleList.add("过期");8
-//         mTitleList.add("快到期");9
-//         mTitleList.add("易健平台");10
-//         mTitleList.add("体验课");11
-//         mTitleList.add("意向会员");16
-//         */
-//        String subclassName = huiFangInfo.getSubclassName();
-//        switch (subclassName) {
-//
-//            case "BirthdayVO"://生日回访
-//                holder.llBirthday.setVisibility(View.VISIBLE);
-//                holder.llBirthdayType.setVisibility(View.VISIBLE);
-//                Long birthday = huiFangInfo.getBirthday();
-//                if (birthday != null && birthday != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(birthday);
-//                    holder.tvBirthday.setText(s);
-//                }
-//                String birthdayType = huiFangInfo.getBirthdayType();
-//                if (!TextUtils.isEmpty(birthdayType)) {
-//                    holder.tvBirthdayType.setText(birthdayType);
-//                }
-//                break;
-//            case "ExpireVO"://过期回访
-//                holder.llOutdateTime.setVisibility(View.VISIBLE);
-//                holder.llOutdateReason.setVisibility(View.VISIBLE);
-//                String expiryReason = huiFangInfo.getExpiryReason();
-//                if (!TextUtils.isEmpty(expiryReason)) {
-//                    holder.tvOutdateReason.setText(expiryReason);
-//                }
-//                Long deadline = huiFangInfo.getDeadline();
-//                if (deadline != null && deadline != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(deadline);
-//                    holder.tvOutdateTime.setText(s);
-//                }
-//                break;
-//            case "ReVO"://复访
-//                holder.llPreVisitDate.setVisibility(View.VISIBLE);
-//                holder.llFuFangReason.setVisibility(View.VISIBLE);
-//                Long lastVisitTime = huiFangInfo.getLastVisitTime();
-//                if (lastVisitTime != null && lastVisitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(lastVisitTime);
-//                    holder.tvPreVisitDate.setText(s);
-//                }
-//                String reinterviewReason = huiFangInfo.getReinterviewReason();
-//                holder.tvFuFangReason.setText(reinterviewReason);
-//                break;
-//            case "NearExpireVO"://快到期回访
-//                holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
-//                holder.llHetongYuEr.setVisibility(View.VISIBLE);
-//
-//                holder.tvHetongYuEr.setText(huiFangInfo.getContractBalance());
-//                Long time = huiFangInfo.getDeadline();
-//                if (time != null && time != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(time);
-//                    holder.tvHetongDaoQiRi.setText(s);
-//                }
-//                break;
-//
-//            case "YesterdayVisitVO"://昨日到访
-//                holder.ll_dao_fang_date.setVisibility(View.VISIBLE);
-//                Long visitTime = huiFangInfo.getVisitTime();
-//                if (visitTime != null && visitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(visitTime);
-//                    holder.tv_dao_fang_date.setText(s);
-//                }
-//                break;
-//            case "ReFitVO":
-//                holder.llPreJianShenDate.setVisibility(View.VISIBLE);
-//                holder.llWeiJianShenTime.setVisibility(View.VISIBLE);
-//                String lastFitTime = huiFangInfo.getLastFitTime();
-//                holder.tvPreJianShenDate.setText(lastFitTime);
-//                Long breakDay = huiFangInfo.getBreakDay();
-//                if (breakDay != null && breakDay != -1) {
-//                    holder.tvWeiJianShenTime.setText(breakDay + "");
-//                }
-//                break;
-//            case "PotentialVO"://潜在会员
-//                break;
-//            case "EjoyVO":
-//                holder.llChenMoTianShu.setVisibility(View.VISIBLE);
-//                Long sinkDay = huiFangInfo.getSinkDay();
-//                if (sinkDay != null && sinkDay != -1) {
-//                    holder.tvChenMoTianShu.setText(sinkDay + "");
-//                }
-//                break;
-//
-//            case "YesterdayOpenVO":
-////                holder.llHetongDaoQiRi.setVisibility(View.VISIBLE);
-//                holder.llCardName.setVisibility(View.VISIBLE);
-//                holder.llCardType.setVisibility(View.VISIBLE);
-//                holder.tvCardName.setText(huiFangInfo.getCardName());
-//                holder.tvCardType.setText(huiFangInfo.getCardType());
-//                break;
-//            case "QuietVO":
-//                holder.llKaiKaDate.setVisibility(View.VISIBLE);
-//                holder.llCardName.setVisibility(View.VISIBLE);
-//                holder.llCardType.setVisibility(View.VISIBLE);
-//                holder.llZuijinJianshen.setVisibility(View.VISIBLE);
-//                holder.llChenMoTianShu.setVisibility(View.VISIBLE);
-//                holder.tvCardName.setText(huiFangInfo.getCardName());
-//                holder.tvCardType.setText(huiFangInfo.getCardType());
-//                Long openCardTime = huiFangInfo.getOpenCardTime();
-//                if (openCardTime != null && openCardTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(openCardTime);
-//                    holder.tvKaiKaDate.setText(s);
-//                }
-//
-//                Long recentlyFitTime = huiFangInfo.getRecentlyFitTime();
-//                if (recentlyFitTime != null && recentlyFitTime != -1) {
-//                    String s = DateUtil.parseLongDateToDateString(recentlyFitTime);
-//                    holder.tvZuijinJianshen.setText(s);
-//                }
-//
-//                Long sinkDay1 = huiFangInfo.getSinkDay();
-//                if (sinkDay1 != null && sinkDay1 != -1) {
-//                    holder.tvChenMoTianShu.setText(sinkDay1 + "");
-//                }
-//                break;
-//        }
+        HuiFangInfo huiFangInfo = mHuiFangInfoList.get(position);
+
+        String headImg = huiFangInfo.getHeadUrl();
+
+        holder.tvViperName.setText(huiFangInfo.getName());
+        int sex = huiFangInfo.getGender();
+        if (0==sex) {
+            Glide.with(context).load(R.mipmap.lg_man).into(holder.ivSex);
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_boysmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_boysmall)
+                        .error(R.mipmap.wt_boysmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
+        } else {
+            Glide.with(context).load(R.mipmap.lg_women).into(holder.ivSex);
+            if (TextUtils.isEmpty(headImg)) {
+                Glide.with(context).load(R.mipmap.wt_girlsmall).into(holder.ivHead);
+            } else {
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.wt_girlsmall)
+                        .error(R.mipmap.wt_girlsmall)
+                        .transform(new GlideCircleTransform())
+                        .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(context).load(headImg).apply(options).into(holder.ivHead);
+            }
+        }
+
+
+
+        String healthStatus = huiFangInfo.getHealthStatus();
+        holder.tvShentiZhuangtai.setText(healthStatus);
+        String fitnessHobby = huiFangInfo.getFitnessHobby();
+        holder.tvJianshenAihao.setText(fitnessHobby);
+        String hobby = huiFangInfo.getHobby();
+        holder.tvXingquAihao.setText(hobby);
+        String interviewType = huiFangInfo.getInterviewName();
+        holder.tvHuifangType.setText(interviewType);
+        String interviewResult = huiFangInfo.getResult();
+        holder.tv_huifang_result.setText(interviewResult);
+
 
 
     }

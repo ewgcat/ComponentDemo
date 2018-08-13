@@ -2,6 +2,7 @@ package com.yijian.staff.net.api;
 
 
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
@@ -294,4 +295,9 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postFuHuiFangResult(@Url String url,@HeaderMap HashMap<String, String> headers, @Body AddFuFangResultBody body);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postHuiFangRecord(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  HuifangRecordRequestBody huifangRecordRequestBody);
+
 }

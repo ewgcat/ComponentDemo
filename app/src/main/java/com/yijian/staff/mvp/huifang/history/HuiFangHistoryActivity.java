@@ -13,6 +13,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
+import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -98,7 +99,11 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         params.put("pageNum", pageNum + "");
         params.put("pageSize", pageSize + "");
         params.put("type", "0");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
+        HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
+        huifangRecordRequestBody.setChief(true);
+        huifangRecordRequestBody.setPageNum(pageNum);
+        huifangRecordRequestBody.setPageSize(pageSize);
+        HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -123,11 +128,11 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
 
     public void loadMore() {
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNum", pageNum + "");
-        params.put("pageSize", pageSize + "");
-        params.put("type", "0");
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_HUI_JI_HUI_FANG_RECORD_URL, params, new ResultJSONObjectObserver(getLifecycle()) {
+        HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
+        huifangRecordRequestBody.setChief(true);
+        huifangRecordRequestBody.setPageNum(pageNum);
+        huifangRecordRequestBody.setPageSize(pageSize);
+        HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;

@@ -4,6 +4,7 @@ package com.yijian.staff.net.httpmanager;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
@@ -287,8 +288,8 @@ public class HttpManager {
     //回访任务列表
     public static String HUI_FANG_TASK_URL =  "interviewV2/bapp/interviewList";
 
-    //会籍的回访记录列表
-    public static String GET_HUI_JI_HUI_FANG_RECORD_URL =  "customer-service/interview/record/list";
+    //回访记录列表
+    public static String HUI_FANG_RECORD_URL =  "interviewV2/bapp/interviewRecordList";
 
 
 
@@ -1001,6 +1002,20 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
+
+    public static void postHuiFangRecord(HuifangRecordRequestBody huifangRecordRequestBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postHuiFangRecord(SharePreferenceUtil.getHostUrl() + HUI_FANG_RECORD_URL, headers, huifangRecordRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+
     //接待人的信息
     public static final String RECEPTION_INFO =  "reception/person";
 

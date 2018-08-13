@@ -15,6 +15,7 @@
             android:layout_below="@+id/navigation_bar2"
             android:paddingTop="16dp"
             android:id="@+id/recycler_view"
+        android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

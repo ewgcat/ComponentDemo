@@ -11,6 +11,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.jaeger.library.StatusBarUtil;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.ClubDetailBean;
@@ -155,7 +156,7 @@ public class ClubActivity extends BaseWebViewActivity {
         if (sharePopupWindow == null) {
             sharePopupWindow = new SharePopupWindow(this);
             User user = DBManager.getInstance().queryUser();
-            sharePopupWindow.setData("http://192.168.2.165:8080/#/bappclub?mc="+user.getMerchantId(), name, null, null);
+            sharePopupWindow.setData(BuildConfig.WORKSPACE_H5_HOST+"#/bappclub?mc="+user.getMerchantId(), name, null, null);
         }
         sharePopupWindow.show(getWindow().getDecorView());
     }

@@ -88,6 +88,14 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         ImageLoader.setHeadImageResource(headImg, context, holder.iv_header);
 
+        int medalType = coachViperBean.getMedalType();
+        if (medalType==0){
+
+        }else if (medalType==1){
+            ImageLoader.setImageResource(R.mipmap.member_gray, context, holder.iv_rank);
+        }else if (medalType==2){
+            ImageLoader.setImageResource(R.mipmap.member_gold, context, holder.iv_rank);
+        }
 
         //详情
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +162,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_rank;
         ImageView iv_call;
         ImageView iv_suo;
 
@@ -164,6 +173,8 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
 
         public ViewHolder(View view) {
             super(view);
+            iv_rank = view.findViewById(R.id.iv_rank);
+
             lin_content = view.findViewById(R.id.lin_content);
             iv_header = view.findViewById(R.id.iv_header);
             iv_call = view.findViewById(R.id.iv_call);

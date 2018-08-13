@@ -47,6 +47,7 @@ public class CoachViperBean implements Serializable {
     private String headImg;
     private String viperRole;
     private boolean underProtected;
+    private int medalType;
 
 
     public CoachViperBean(JSONObject jsonObject) {
@@ -54,6 +55,8 @@ public class CoachViperBean implements Serializable {
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
+        this.medalType = JsonUtil.getInt(jsonObject, "medalType");
+
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
         this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
@@ -64,6 +67,9 @@ public class CoachViperBean implements Serializable {
 
     public String getMobile() {
         return mobile;
+    }
+    public int getMedalType() {
+        return medalType;
     }
 
     public String getSubclassName() {

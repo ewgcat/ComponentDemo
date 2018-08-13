@@ -66,6 +66,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
         private ImageView iv_header;
         private ImageView iv_gender;
+        private ImageView iv_rank;
         private TextView tv_name;
         private TextView tv_protect_seven;
         private ImageView iv_visit;
@@ -76,6 +77,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
             super(view);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
+            iv_rank = view.findViewById(R.id.iv_rank);
             tv_name = view.findViewById(R.id.tv_name);
             tv_protect_seven = view.findViewById(R.id.tv_protect_seven);
             iv_visit = view.findViewById(R.id.iv_visit);
@@ -84,6 +86,14 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean) {
             ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
+            int medalType = huiJiViperBean.getMedalType();
+            if (medalType==0){
+
+            }else if (medalType==1){
+                ImageLoader.setImageResource(R.mipmap.member_gray, context, iv_rank);
+            }else if (medalType==2){
+                ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
+            }
             iv_gender.setImageResource(1 == huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
             rel_content.setOnClickListener(new View.OnClickListener() {

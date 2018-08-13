@@ -8,36 +8,46 @@ public class InvitationRecordBean {
 
 
     /**
-     * birthday : 2018-04-26T07:16:47.092Z
+     * birthday : 2018-08-13T01:54:42.680Z
+     * birthdayType : 0
+     * birthdayTypeName : string
      * content : string
-     * emali : string
+     * exercisePart : string
+     * exercisePartName : string
+     * gender : string
+     * headPath : string
+     * healthStatus : string
+     * healthStatusName : string
      * memberId : string
      * memberName : string
      * memberType : 0
      * memberTypeName : string
-     * mobile : string
-     * visitResult : 0
-     * visitResultName : string
-     * visitTime : 2018-04-26T07:16:47.092Z
-     * wechatCccount : string
+     * sportHobby : string
+     * sportHobbyName : string
+     * status : 0
+     * statusName : string
+     * visitTime : 2018-08-13T01:54:42.680Z
      */
-
 
     private String birthday;
+    private int birthdayType;
+    private String birthdayTypeName;
     private String content;
-    private String email;
+    private String exercisePart;
+    private String exercisePartName;
+    private String gender;
+    private String headPath;
+    private String healthStatus;
+    private String healthStatusName;
     private String memberId;
     private String memberName;
-    /**
-     * 0：潜在会员 1：意向会员 2：正式会员 3：过期会员 4：潜在会员
-     */
     private int memberType;
     private String memberTypeName;
-    private String mobile;
-    private String visitResult;
-    private String visitResultName;
-    private Long visitTime;
-    private String wechatCccount;
+    private String sportHobby;
+    private String sportHobbyName;
+    private int status;
+    private String statusName;
+    private String visitTime;
 
     public String getBirthday() {
         return birthday;
@@ -45,6 +55,22 @@ public class InvitationRecordBean {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getBirthdayType() {
+        return birthdayType;
+    }
+
+    public void setBirthdayType(int birthdayType) {
+        this.birthdayType = birthdayType;
+    }
+
+    public String getBirthdayTypeName() {
+        return birthdayTypeName;
+    }
+
+    public void setBirthdayTypeName(String birthdayTypeName) {
+        this.birthdayTypeName = birthdayTypeName;
     }
 
     public String getContent() {
@@ -55,12 +81,52 @@ public class InvitationRecordBean {
         this.content = content;
     }
 
-    public String getEmail() {
-        return email;
+    public String getExercisePart() {
+        return exercisePart;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setExercisePart(String exercisePart) {
+        this.exercisePart = exercisePart;
+    }
+
+    public String getExercisePartName() {
+        return exercisePartName;
+    }
+
+    public void setExercisePartName(String exercisePartName) {
+        this.exercisePartName = exercisePartName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHeadPath() {
+        return headPath;
+    }
+
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
+    }
+
+    public String getHealthStatus() {
+        return healthStatus;
+    }
+
+    public void setHealthStatus(String healthStatus) {
+        this.healthStatus = healthStatus;
+    }
+
+    public String getHealthStatusName() {
+        return healthStatusName;
+    }
+
+    public void setHealthStatusName(String healthStatusName) {
+        this.healthStatusName = healthStatusName;
     }
 
     public String getMemberId() {
@@ -95,43 +161,43 @@ public class InvitationRecordBean {
         this.memberTypeName = memberTypeName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getSportHobby() {
+        return sportHobby;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setSportHobby(String sportHobby) {
+        this.sportHobby = sportHobby;
     }
 
-    public String getVisitResult() {
-        return visitResult;
+    public String getSportHobbyName() {
+        return sportHobbyName;
     }
 
-    public void setVisitResult(String visitResult) {
-        this.visitResult = visitResult;
+    public void setSportHobbyName(String sportHobbyName) {
+        this.sportHobbyName = sportHobbyName;
     }
 
-    public String getVisitResultName() {
-        return visitResultName;
+    public int getStatus() {
+        return status;
     }
 
-    public void setVisitResultName(String visitResultName) {
-        this.visitResultName = visitResultName;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public Long getVisitTime() {
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getVisitTime() {
         return visitTime;
     }
 
-    public void setVisitTime(Long visitTime) {
+    public void setVisitTime(String visitTime) {
         this.visitTime = visitTime;
-    }
-
-    public String getWechatCccount() {
-        return wechatCccount;
-    }
-
-    public void setWechatCccount(String wechatCccount) {
-        this.wechatCccount = wechatCccount;
     }
 }

@@ -55,6 +55,14 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.tv_invitation_time.setText(invitationRecordBean.getVisitTime());
 
         holder.tv_member_type.setText(invitationRecordBean.getMemberTypeName());
+        int status = invitationRecordBean.getStatus();
+        if (status == 0) {
+            ImageLoader.setImageResource(R.mipmap.invite_blue, context, holder.iv_status);
+        } else if (status == 1) {
+            ImageLoader.setImageResource(R.mipmap.invite_green, context, holder.iv_status);
+        } else if (status == 2) {
+            ImageLoader.setImageResource(R.mipmap.invite_red, context, holder.iv_status);
+        }
 
     }
 

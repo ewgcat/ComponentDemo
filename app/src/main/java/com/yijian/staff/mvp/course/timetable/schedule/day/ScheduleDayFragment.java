@@ -1,6 +1,8 @@
 package com.yijian.staff.mvp.course.timetable.schedule.day;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ScrollView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.course.timetable.schedule.week.ScheduleWeekFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,4 +56,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 break;
         }
     }
+
+
 }

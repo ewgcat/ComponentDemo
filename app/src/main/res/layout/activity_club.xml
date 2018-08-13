@@ -69,7 +69,6 @@
         android:layout_below="@id/iv_logo"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="原力俱乐部"
         android:textColor="#333333"
         android:textSize="24sp" />
 

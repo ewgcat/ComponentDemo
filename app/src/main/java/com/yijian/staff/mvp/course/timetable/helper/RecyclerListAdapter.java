@@ -27,7 +27,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     public RecyclerListAdapter(Context context, OnStartDragListener dragStartListener, int width, int height) {
         mDragStartListener = dragStartListener;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 168; i++) {
             mItems.add(i + "");
         }
         this.width=width;

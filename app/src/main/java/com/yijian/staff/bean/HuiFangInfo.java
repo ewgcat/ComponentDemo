@@ -45,6 +45,7 @@ public class HuiFangInfo implements Serializable {
     private int gender;
     private String headUrl;
     private String healthStatus;
+    private String lastInterviewTime;
     private String hobby;
     private String id;
     private String interviewName;
@@ -194,6 +195,14 @@ public class HuiFangInfo implements Serializable {
         return memberWillExpireInterview;
     }
 
+    public String getLastInterviewTime() {
+        return lastInterviewTime;
+    }
+
+    public void setLastInterviewTime(String lastInterviewTime) {
+        this.lastInterviewTime = lastInterviewTime;
+    }
+
     public void setMemberWillExpireInterview(MemberWillExpireInterviewBean memberWillExpireInterview) {
         this.memberWillExpireInterview = memberWillExpireInterview;
     }
@@ -322,6 +331,33 @@ public class HuiFangInfo implements Serializable {
 
     public static class MemberPastDueInterviewBean {
         private String expireDate;
+        private String cardprodName;
+        private String cardType;
+        private String cardTypeName;
+
+        public String getCardprodName() {
+            return cardprodName;
+        }
+
+        public void setCardprodName(String cardprodName) {
+            this.cardprodName = cardprodName;
+        }
+
+        public String getCardType() {
+            return cardType;
+        }
+
+        public void setCardType(String cardType) {
+            this.cardType = cardType;
+        }
+
+        public String getCardTypeName() {
+            return cardTypeName;
+        }
+
+        public void setCardTypeName(String cardTypeName) {
+            this.cardTypeName = cardTypeName;
+        }
 
         public String getExpireDate() {
             return expireDate;
@@ -511,6 +547,15 @@ public class HuiFangInfo implements Serializable {
          */
 
         private String endTime;
+        private String courseName;
+
+        public String getCourseName() {
+            return courseName;
+        }
+
+        public void setCourseName(String courseName) {
+            this.courseName = courseName;
+        }
 
         public String getEndTime() {
             return endTime;
@@ -527,7 +572,15 @@ public class HuiFangInfo implements Serializable {
          */
 
         private String endTime;
+        private String courseName;
 
+        public String getCourseName() {
+            return courseName;
+        }
+
+        public void setCourseName(String courseName) {
+            this.courseName = courseName;
+        }
         public String getEndTime() {
             return endTime;
         }
@@ -543,6 +596,15 @@ public class HuiFangInfo implements Serializable {
          */
 
         private String buyCourseTime;
+        private String courseName;
+
+        public String getCourseName() {
+            return courseName;
+        }
+
+        public void setCourseName(String courseName) {
+            this.courseName = courseName;
+        }
 
         public String getBuyCourseTime() {
             return buyCourseTime;
@@ -551,6 +613,8 @@ public class HuiFangInfo implements Serializable {
         public void setBuyCourseTime(String buyCourseTime) {
             this.buyCourseTime = buyCourseTime;
         }
+
+
     }
 
     public static class StudentYesterdayInCourseInterviewBean {

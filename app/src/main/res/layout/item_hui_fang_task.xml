@@ -413,40 +413,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--开卡日期-->
-        <LinearLayout
-            android:id="@+id/ll_kai_ka_date"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="开卡日期: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_kai_ka_date"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
 
         <!--卡名称-->
         <LinearLayout
@@ -764,7 +731,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--约课时间-->
+        <!--上课时间-->
         <LinearLayout
             android:id="@+id/ll_yue_ke_time"
             android:layout_width="match_parent"
@@ -778,7 +745,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="约课时间: "
+                android:text="上课时间: "
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -790,6 +757,41 @@
 
             <TextView
                 android:id="@+id/tv_yue_ke_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--课程名称-->
+        <LinearLayout
+            android:id="@+id/ll_course_name"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="课程名称: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_course_name"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"

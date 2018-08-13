@@ -51,9 +51,10 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.tv_shenti_zhuangtai.setText(invitationRecordBean.getHealthStatusName());
         holder.tv_jianshen_aihao.setText(invitationRecordBean.getSportHobbyName());
         holder.tv_jianshen_mudi.setText(invitationRecordBean.getExercisePartName());
-        holder.tv_invitation_result.setText(invitationRecordBean.getStatusName());
+        holder.tv_invitation_content.setText(invitationRecordBean.getContent());
+        holder.tv_invitation_time.setText(invitationRecordBean.getVisitTime());
 
-        holder.tv_invitation_type.setText(invitationRecordBean.getMemberTypeName());
+        holder.tv_member_type.setText(invitationRecordBean.getMemberTypeName());
 
     }
 
@@ -71,28 +72,32 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
 
         ImageView iv_header;
         ImageView iv_gender;
+        ImageView iv_status;
         TextView tv_name;
         TextView tv_birthday;
         TextView tv_birthday_type;
         TextView tv_shenti_zhuangtai;
         TextView tv_jianshen_aihao;
         TextView tv_jianshen_mudi;
-        TextView tv_invitation_type;
-        TextView tv_invitation_result;
+        TextView tv_member_type;
+        TextView tv_invitation_content;
+        TextView tv_invitation_time;
 
 
         public ViewHolder(View view) {
             super(view);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
+            iv_status = view.findViewById(R.id.iv_status);
             tv_name = view.findViewById(R.id.tv_name);
             tv_birthday = view.findViewById(R.id.tv_birthday);
             tv_birthday_type = view.findViewById(R.id.tv_birthday_type);
             tv_shenti_zhuangtai = view.findViewById(R.id.tv_shenti_zhuangtai);
             tv_jianshen_aihao = view.findViewById(R.id.tv_jianshen_aihao);
             tv_jianshen_mudi = view.findViewById(R.id.tv_jianshen_mudi);
-            tv_invitation_type = view.findViewById(R.id.tv_invitation_type);
-            tv_invitation_result = view.findViewById(R.id.tv_invitation_result);
+            tv_member_type = view.findViewById(R.id.tv_member_type);
+            tv_invitation_time = view.findViewById(R.id.tv_invitation_time);
+            tv_invitation_content = view.findViewById(R.id.tv_invitation_content);
         }
     }
 

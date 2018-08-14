@@ -170,10 +170,13 @@ public class HttpManager {
     public static String COACH_PRIVATE_COURSE_PRIVATEAPPLYBYWEEK_URL =  "privatecourse/getPrivateApplyByWeek";
 
     //上课打卡
-    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL =  "privatecourse/appoint/attendCoursePunchCard";
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL =  "privatecourse/classBeginPunchCard";
 
     //下课打卡
-    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL =  "privatecourse/appoint/finishCoursePunchCardAndSaveRecord";
+    public static String COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL =  "privatecourse/classOverPunchCard";
+
+    //课程实时信息
+    public static String PRIVATE_COURSE_INFO_URL =  "privatecourse/courseInfo";
 
 
     //获取私教课上课记录表详情
@@ -720,18 +723,7 @@ public class HttpManager {
         }
     }
 
-    //提交下课打卡数据
-    public static void postXiaKeRecord(String url, PrivateShangKeBean privateShangKeBean, String state, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.saveXiaKeRecord(SharePreferenceUtil.getHostUrl()+url, headers, privateShangKeBean, state);
-            execute(observable, observer);
-        }
-    }
+
 
     //提交下课打卡数据
     public static void postAddAdvice(String url, AddAdviceBody addAdviceBody, Observer<JSONObject> observer) {

@@ -78,12 +78,8 @@ public class WorkFragment extends MvcBaseFragment {
     @Override
     public void initView() {
         lifecycle = this.getLifecycle();
-        StatusBarUtil.setTranslucentForImageView(getActivity(), 0, null);
 
-        int statusBarHeight = CommonUtil.getStatusBarHeight(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, statusBarHeight, 0, 0);
-        topView.setLayoutParams(params);
+
 
         indexMenuAdapter = new IndexMenuAdapter(lifecycle, getContext(), menuList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));

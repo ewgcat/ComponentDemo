@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.DayCanlendarInfo;
-import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.course.shangke.DaKaActivity;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -166,7 +166,7 @@ public class DayCanlendarAdapter extends RecyclerView.Adapter<DayCanlendarAdapte
                     } else if (status == 4) {
                         Toast.makeText(fragment.getActivity(), "该课已爽约", Toast.LENGTH_SHORT).show();
                     } else {
-                        Intent intent = new Intent(fragment.getActivity(), OpenLessonNewActivity.class);
+                        Intent intent = new Intent(fragment.getActivity(), DaKaActivity.class);
                         intent.putExtra("startDate", dayCanlendarInfo.getStartDate());
                         intent.putExtra("startTimeActual", dayCanlendarInfo.getStartTimeActual());
                         intent.putExtra("endTimeActual", dayCanlendarInfo.getEndTimeActual());

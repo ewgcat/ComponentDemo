@@ -12,14 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.setclass.OpenLessonNewActivity;
+import com.yijian.staff.mvp.course.shangke.DaKaActivity;
 import com.yijian.staff.util.DensityUtil;
 
 public class SaveDataDialog extends PopupWindow {
 
-    private OpenLessonNewActivity activity;
+    private DaKaActivity activity;
 
-    public SaveDataDialog(OpenLessonNewActivity context) {
+    public SaveDataDialog(DaKaActivity context) {
         super(context);
         this.activity = context;
         LayoutInflater inflater = (LayoutInflater) context

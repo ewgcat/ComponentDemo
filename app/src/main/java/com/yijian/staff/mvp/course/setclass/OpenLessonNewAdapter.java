@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.course.shangke.DaKaActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<>();
-    OpenLessonNewActivity openLessonNewActivity;
+    DaKaActivity daKaActivity;
     EditActionObservable editActionObservable;
 
     public void resetData(List<PrivateLessonRecordBean> privateLessonRecordBeans) {
@@ -27,9 +28,9 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyDataSetChanged();
     }
 
-    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans, OpenLessonNewActivity openLessonNewActivity, EditActionObservable editActionObservable) {
+    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans, DaKaActivity daKaActivity, EditActionObservable editActionObservable) {
         this.privateLessonRecordBeans = privateLessonRecordBeans;
-        this.openLessonNewActivity = openLessonNewActivity;
+        this.daKaActivity = daKaActivity;
         this.editActionObservable = editActionObservable;
     }
 
@@ -44,7 +45,7 @@ public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         PrivateLessonRecordBean openLessonNewBean = privateLessonRecordBeans.get(position);
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.view_openlesson.initActionRecord(openLessonNewBean, position, openLessonNewActivity);
+        viewHolder.view_openlesson.initActionRecord(openLessonNewBean, position, daKaActivity);
         editActionObservable.addObserver(viewHolder.view_openlesson);
     }
 

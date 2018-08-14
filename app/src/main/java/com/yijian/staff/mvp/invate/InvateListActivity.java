@@ -56,8 +56,9 @@ public class InvateListActivity extends MvcBaseActivity {
     private int pages;
     private InvitationRecordAdatper invitationRecordAdatper;
     private NavigationBar2 navigationBar2;
+    private int total;
 
-    
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
@@ -80,7 +81,7 @@ public class InvateListActivity extends MvcBaseActivity {
 
 
         pageNum = 1;
-        pageSize = 4;
+        pageSize = 10;
         String curDate = DateUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 
         HuiJiInviteListRequestBody huiJiInviteListRequestBody = new HuiJiInviteListRequestBody(curDate, pageNum, pageSize);
@@ -89,6 +90,7 @@ public class InvateListActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
+                total = JsonUtil.getInt(result, "total");
 
                 invitationRecordBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
@@ -115,10 +117,15 @@ public class InvateListActivity extends MvcBaseActivity {
         HttpManager.getHuiJiInviteRecord(huiJiInviteListRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                refreshLayout.finishRefresh(2000, true);
+                if (total<=(pageNum*pageSize)){
+                    refreshLayout.finishLoadMore(2000, true, true);//传入false表示刷新失败
+                }else {
+                    refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
+                }
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
+
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
                 List<InvitationRecordBean> invitationRecordBeans = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), InvitationRecordBean.class);
                 invitationRecordBeanList.addAll(invitationRecordBeans);
@@ -127,7 +134,11 @@ public class InvateListActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
+                if (total<=(pageNum*pageSize)){
+                    refreshLayout.finishLoadMore(2000, false, true);//传入false表示刷新失败
+                }else {
+                    refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
+                }
                 Toast.makeText(InvateListActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }

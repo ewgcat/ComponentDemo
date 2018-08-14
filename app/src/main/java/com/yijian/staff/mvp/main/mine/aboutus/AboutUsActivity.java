@@ -67,7 +67,6 @@ public class AboutUsActivity extends BaseWebViewActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
 
-        JSONObject jsonObject = new JSONObject();
         webView.loadUrl(BuildConfig.WORKSPACE_H5_HOST+"#/bappabout");
 
 

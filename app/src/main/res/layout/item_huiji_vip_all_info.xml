@@ -22,8 +22,9 @@
             android:id="@+id/iv_rank"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/member_gold"
            />
 
         <TextView

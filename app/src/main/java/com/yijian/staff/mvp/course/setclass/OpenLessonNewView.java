@@ -18,6 +18,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.preparelessons.createlession.Observer;
 import com.yijian.staff.bean.PrivateLessonRecordBean;
+import com.yijian.staff.mvp.course.shangke.DaKaActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.Map;
 public class OpenLessonNewView extends LinearLayout implements Observer {
 
     private Context mContext;
-    private OpenLessonNewActivity openLessonNewActivity;
+    private DaKaActivity daKaActivity;
     private PrivateLessonRecordBean privateLessonRecordBean;
     private int itemPosition;
 
@@ -76,11 +77,11 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
         this.mContext = context;
     }
 
-    public void initActionRecord(PrivateLessonRecordBean privateLessonRecordBean, int itemPosition, OpenLessonNewActivity openLessonNewActivity) {
+    public void initActionRecord(PrivateLessonRecordBean privateLessonRecordBean, int itemPosition, DaKaActivity daKaActivity) {
         this.itemPosition = itemPosition;
-        this.openLessonNewActivity = openLessonNewActivity;
+        this.daKaActivity = daKaActivity;
         this.privateLessonRecordBean = privateLessonRecordBean;
-        this.fragmentManager = openLessonNewActivity.getSupportFragmentManager();
+        this.fragmentManager = daKaActivity.getSupportFragmentManager();
 
         actionFormList.add("标准");
         actionFormList.add("非标准");
@@ -123,7 +124,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
         rel_action_header.setOnClickListener(new OnClickListener() {  //头部点击
             @Override
             public void onClick(View v) {
-                openLessonNewActivity.notifyClickHeader(itemPosition);
+                daKaActivity.notifyClickHeader(itemPosition);
             }
         });
         lin_body_header.setOnClickListener(new OnClickListener() { //计时头部点击
@@ -136,9 +137,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
             @Override
             public void onClick(View v) {
 
-                int punchStatus = openLessonNewActivity.getPunchStatus();
+                int punchStatus = daKaActivity.getPunchStatus();
                 if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
                 } else if (punchStatus == 1) {
 
                     if (itemPosition == 0) {
@@ -153,7 +154,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
 
 
                 } else if (punchStatus == 2) {
-                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -161,9 +162,9 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
         tv_actionStrength.setOnClickListener(new OnClickListener() { //动作强度点击
             @Override
             public void onClick(View v) {
-                int punchStatus = openLessonNewActivity.getPunchStatus();
+                int punchStatus = daKaActivity.getPunchStatus();
                 if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
                 } else if (punchStatus == 1) {
 
                     if (itemPosition == 0) {
@@ -178,7 +179,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
 
 
                 } else if (punchStatus == 2) {
-                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 //                manualPickedView(actionStrengthList, "中", tv_actionStrength, ACTION_STRENGTH_KEY);
             }
@@ -187,11 +188,11 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
             @Override
             public void onClick(View v) {
 
-                int punchStatus = openLessonNewActivity.getPunchStatus();
+                int punchStatus = daKaActivity.getPunchStatus();
                 if (punchStatus == 0) { //0:未打卡 1:正在上课 2:下课已打卡
-                    Toast.makeText(openLessonNewActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "未打卡不能操作", Toast.LENGTH_SHORT).show();
                 } else if (punchStatus == 1) {
-//                    Toast.makeText(openLessonNewActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(daKaActivity,"未打卡不能操作",Toast.LENGTH_SHORT).show();
 
                     if (itemPosition == 0) {
                         showClockView(tv_time);
@@ -204,7 +205,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                     }
 
                 } else if (punchStatus == 2) {
-                    Toast.makeText(openLessonNewActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(daKaActivity, "已完成不能操作", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -262,7 +263,7 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                 } else if (key.equals(ACTION_STRENGTH_KEY)) {
                     privateLessonRecordBean.setActionStrength(options1 + 1);
                 }
-                openLessonNewActivity.setOpenLessonList(itemPosition, privateLessonRecordBean);
+                daKaActivity.setOpenLessonList(itemPosition, privateLessonRecordBean);
             }
         }).build();
 
@@ -287,8 +288,8 @@ public class OpenLessonNewView extends LinearLayout implements Observer {
                 setTimeVisible(true);
                 privateLessonRecordBean.setStartClock(true);
                 privateLessonRecordBean.setTime(secondTime + "");
-                openLessonNewActivity.notifyAllLesson(itemPosition);
-                openLessonNewActivity.setOpenLessonList(itemPosition, privateLessonRecordBean);
+                daKaActivity.notifyAllLesson(itemPosition);
+                daKaActivity.setOpenLessonList(itemPosition, privateLessonRecordBean);
             }
         });
     }

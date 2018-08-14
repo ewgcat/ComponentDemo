@@ -343,7 +343,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.setclass.OpenLessonNewActivity"
+            android:name=".mvp.course.shangke.DaKaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.experienceclass.step1.ExperienceClassStep1Activity_ycm"

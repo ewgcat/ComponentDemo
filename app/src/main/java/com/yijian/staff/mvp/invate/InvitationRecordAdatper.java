@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.invate;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.InvitationRecordBean;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
@@ -43,16 +45,25 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
     public void onBindViewHolder(InvitationRecordAdatper.ViewHolder holder, int position) {
         InvitationRecordBean invitationRecordBean = invitationRecordBeanList.get(position);
         ImageLoader.setHeadImageResource(invitationRecordBean.getHeadPath(), context, holder.iv_header);
-        int resId = "男".equals(invitationRecordBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women;
+        int resId = "1".equals(invitationRecordBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);
         holder.tv_name.setText(invitationRecordBean.getMemberName());
-        holder.tv_birthday.setText(invitationRecordBean.getBirthday());
+        String birthday = invitationRecordBean.getBirthday();
+        if (!TextUtils.isEmpty(birthday)){
+            String s = DateUtil.formatDate2String(birthday);
+            holder.tv_birthday.setText(s);
+        }
         holder.tv_birthday_type.setText(invitationRecordBean.getBirthdayTypeName());
         holder.tv_shenti_zhuangtai.setText(invitationRecordBean.getHealthStatusName());
         holder.tv_jianshen_aihao.setText(invitationRecordBean.getSportHobbyName());
         holder.tv_jianshen_mudi.setText(invitationRecordBean.getExercisePartName());
         holder.tv_invitation_content.setText(invitationRecordBean.getContent());
-        holder.tv_invitation_time.setText(invitationRecordBean.getVisitTime());
+        String visitTime = invitationRecordBean.getVisitTime();
+        if (!TextUtils.isEmpty(visitTime)){
+            String s = DateUtil.formatDate2String(visitTime);
+            holder.tv_invitation_time.setText(s);
+
+        }
 
         holder.tv_member_type.setText(invitationRecordBean.getMemberTypeName());
         int status = invitationRecordBean.getStatus();

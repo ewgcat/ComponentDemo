@@ -71,7 +71,6 @@ public class ImageLoader {
             path = "";
         }
         RequestOptions options = new RequestOptions()
-                .centerCrop()
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);
@@ -81,7 +80,6 @@ public class ImageLoader {
     public static void setImageResource(int resId, Context context, ImageView imageView) {
 
         RequestOptions options = new RequestOptions()
-                .centerCrop()
                 .placeholder(R.mipmap.placeholder)
                 .error(R.mipmap.placeholder)
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE);

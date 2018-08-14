@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.setclass;
+package com.yijian.staff.mvp.course.shangke;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,11 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.staff.bean.PrivateLessonRecordBean;
 import com.yijian.staff.bean.PrivateShangKeBean;
+import com.yijian.staff.mvp.course.setclass.OpenLessonNewAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,7 +37,7 @@ import butterknife.OnClick;
 
 import static com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity.ORDER_REFRESH_REQUESTCODE;
 
-public class OpenLessonNewActivity extends MvcBaseActivity {
+public class DaKaActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv_open_lesson)
     RecyclerView rv_open_lesson;
@@ -78,36 +77,9 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         initView();
-//        loadData();
     }
 
-    /**
-     * 加载上课记录详情数据
-     */
-    public void loadData() {
-        String privateApplyId = getIntent().getStringExtra("privateApplyId");
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("privateApplyId", privateApplyId);
-        HttpManager.getHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                try {
-                    recordId = result.getString("recordId");
-                    JSONArray records = JsonUtil.getJsonArray(result, "recordContextList");
-                    privateLessonRecordBeans = com.alibaba.fastjson.JSONObject.parseArray(records.toString(), PrivateLessonRecordBean.class);
-                    openLessonNewAdapter.resetData(privateLessonRecordBeans);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            @Override
-            public void onFail(String msg) {
-                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 
     /**
      * 提交上课打卡数据
@@ -121,7 +93,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
-                    Toast.makeText(OpenLessonNewActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaKaActivity.this, "上课打卡成功", Toast.LENGTH_SHORT).show();
                     punchStatus = 1;
                     tv_shangke_statu.setText("下课打卡");
                     tv_shangke.setText(CommonUtil.emptyIfNull(startDate) + " " + CommonUtil.emptyIfNull(result.getString("clockTime")));
@@ -132,7 +104,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -168,7 +140,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
             public void onSuccess(JSONObject result) {
 
                 try {
-                    Toast.makeText(OpenLessonNewActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaKaActivity.this, "下课打卡成功", Toast.LENGTH_SHORT).show();
                     punchStatus = 2;
                     tv_shangke_statu.setText("已完成");
                     rel_punch_card.setEnabled(false);
@@ -182,7 +154,7 @@ public class OpenLessonNewActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(OpenLessonNewActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });

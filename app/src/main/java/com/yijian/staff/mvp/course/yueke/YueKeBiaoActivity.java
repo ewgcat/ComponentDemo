@@ -39,6 +39,7 @@ public class YueKeBiaoActivity extends MvcBaseActivity {
         navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("约课表");
+        changeFragment(0);
 
     }
 
@@ -46,18 +47,31 @@ public class YueKeBiaoActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll1:
+                changeFragment(0);
                 break;
             case R.id.ll2:
+                changeFragment(1);
+
                 break;
             case R.id.ll3:
+                changeFragment(2);
+
                 break;
             case R.id.ll4:
+                changeFragment(3);
+
                 break;
             case R.id.ll5:
+                changeFragment(4);
+
                 break;
             case R.id.ll6:
+                changeFragment(5);
+
                 break;
             case R.id.ll7:
+                changeFragment(6);
+
                 break;
         }
     }

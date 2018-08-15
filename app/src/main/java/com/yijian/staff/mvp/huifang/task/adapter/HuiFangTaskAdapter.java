@@ -71,6 +71,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivHead;
+        ImageView iv_rank;
         ImageView ivSex;
         TextView tvViperName;
         TextView tvShentiZhuangtai;
@@ -130,6 +131,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         public ViewHolder(View view) {
             super(view);
             ivHead = view.findViewById(R.id.iv_head);
+            iv_rank = view.findViewById(R.id.iv_rank);
             tvViperName = view.findViewById(R.id.tv_viper_name);
             ivSex = view.findViewById(R.id.iv_sex);
             tvShentiZhuangtai = view.findViewById(R.id.tv_shenti_zhuangtai);
@@ -204,8 +206,17 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             //公共部分
             ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), context, ivHead);
             tvViperName.setText(huiFangInfo.getName());
-            int resId = huiFangInfo.getGender() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            int resId = huiFangInfo.getGender() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             Glide.with(context).load(resId).into(ivSex);
+
+            int medalType = huiFangInfo.getMemberMedalType();
+            if (medalType==0){
+
+            }else if (medalType==1){
+                ImageLoader.setImageResource(R.mipmap.member_gray, context, iv_rank);
+            }else if (medalType==2){
+                ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
+            }
             tvShentiZhuangtai.setText(huiFangInfo.getHealthStatus());
             tvJianshenAihao.setText(huiFangInfo.getFitnessHobby());
             tvXingquAihao.setText(huiFangInfo.getHobby());
@@ -222,7 +233,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 }
             }
 
-            tvHuifangType.setText(huiFangInfo.getInterviewName());
 
             llBt.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -230,7 +240,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                     String mobile = huiFangInfo.getMobile();
                     if (!TextUtils.isEmpty(mobile)) {
                         if (CommonUtil.isPhoneFormat(mobile)) {
-                            HuiFangTypeBean huiFangTypeBean = DBManager.getInstance().queryHuiFangTypeBean(menu);
                             Intent i = new Intent(context, TianXieHuiFangResultActivity.class);
                             i.putExtra("huiFangInfo", huiFangInfo);
                             context.startActivity(i);
@@ -267,8 +276,10 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             if (memberQuietInterview != null) {
                 llChenMoTianShu.setVisibility(View.VISIBLE);
                 llZuijinJianshen.setVisibility(View.VISIBLE);
-                tvZuijinJianshen.setText(memberQuietInterview.getLastTime());
-                tvChenMoTianShu.setText(memberQuietInterview.getIntervalDay());
+                String lastTime = memberQuietInterview.getLastTime();
+                tvZuijinJianshen.setText(lastTime);
+                int intervalDay = memberQuietInterview.getIntervalDay();
+                tvChenMoTianShu.setText(""+intervalDay);
             }
             //快到期会员回访
             HuiFangInfo.MemberWillExpireInterviewBean memberWillExpireInterview = huiFangInfo.getMemberWillExpireInterview();
@@ -277,8 +288,10 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
                 llHetongYuEr.setVisibility(View.VISIBLE);
                 llCardName.setVisibility(View.VISIBLE);
                 tvCardName.setText(memberWillExpireInterview.getCardprodName());
-                tvHetongDaoQiRi.setText(memberWillExpireInterview.getEndTime());
-                tvHetongYuEr.setText(memberWillExpireInterview.getAmount());
+                String endTime = memberWillExpireInterview.getEndTime();
+                tvHetongDaoQiRi.setText(endTime);
+                int amount = memberWillExpireInterview.getAmount();
+                tvHetongYuEr.setText(""+amount);
             }
 
             //昨日开卡回访
@@ -347,6 +360,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
     }
 
     private void resetView(ViewHolder holder) {
+        holder.llFuFangReason.setVisibility(View.GONE);
+        holder.llCardYuEr.setVisibility(View.GONE);
         holder.llCourseName.setVisibility(View.GONE);
         holder.llQuanyi.setVisibility(View.GONE);
         holder.llOutdateTime.setVisibility(View.GONE);

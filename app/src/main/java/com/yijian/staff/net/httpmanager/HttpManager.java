@@ -178,6 +178,11 @@ public class HttpManager {
     //课程实时信息
     public static String PRIVATE_COURSE_INFO_URL =  "privatecourse/courseInfo";
 
+    //课程评价
+    public static String PRIVATE_COURSE_PINGJIA_URL =  "privatecourse/addCourseSummary";
+
+
+
 
     //获取私教课上课记录表详情
     public static String COACH_PRIVATE_COURSE_STOCK_RECORD_URL =  "privatecourse/getPrivateCourseRecordDetail";
@@ -399,7 +404,7 @@ public class HttpManager {
         execute(loginObservable, observer);
     }
 
-    //登陆
+    //访问
     public static void postAccessStatistics(AccessStatisticsRequestBody accessStatisticsRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -410,6 +415,20 @@ public class HttpManager {
             List<AccessStatisticsRequestBody> list = new ArrayList<>();
             list.add(accessStatisticsRequestBody);
             Observable<JSONObject> loginObservable = apiService.postAccessStatistics(SharePreferenceUtil.getHostUrl()+POST_ACCESS_STATISTICS_URL, headers, list);
+            execute(loginObservable, observer);
+        }
+    }
+
+    //私课评价
+    public static void postPrivateCoursePingJia(PrivateCoursePingJiaRequestBody body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+
+            Observable<JSONObject> loginObservable = apiService.postPrivateCoursePingJia(SharePreferenceUtil.getHostUrl()+PRIVATE_COURSE_PINGJIA_URL, headers, body);
             execute(loginObservable, observer);
         }
     }

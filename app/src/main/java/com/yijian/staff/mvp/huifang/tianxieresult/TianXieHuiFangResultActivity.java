@@ -60,7 +60,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     @BindView(R.id.tv_huifan_time)
     TextView tv_huifan_time;
     @BindView(R.id.tv_huifan_reason)
-    EditText tv_huifan_reason;
+    TextView tv_huifan_reason;
 
 
     @BindView(R.id.iv_nav_header)
@@ -166,7 +166,12 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                     @Override
                     public void onTimeSelect(Date date, View view) {
                         Date date1 = new Date();
-                        if (date.before(date1)) {
+                        String now = new SimpleDateFormat("yyyyMMddHHmm").format(date1);
+                        String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
+                        int i = Integer.parseInt(now);
+                        int i1 = Integer.parseInt(selectTime);
+                        if (i>i1) {
+                            tvHuifanTimeResult = "";
                             showToast("复访时间不得小于当前时间");
                         } else {
                             tvHuifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
@@ -174,7 +179,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                             tv_huifan_time.setText(time);
                         }
                     }
-                }).build().show();
+                }).setType(new boolean[]{true, true, true, true, true, false}).build().show();
                 break;
             case R.id.rel_laifan_time:
 
@@ -183,7 +188,12 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                     public void onTimeSelect(Date date, View view) {
 
                         Date date1 = new Date();
-                        if (date.before(date1)) {
+                        String now = new SimpleDateFormat("yyyyMMddHHmm").format(date1);
+                        String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
+                        int i = Integer.parseInt(now);
+                        int i1 = Integer.parseInt(selectTime);
+                        if (i>i1) {
+                            tvLaifanTimeResult = "";
                             showToast("来访时间不得小于当前时间");
                         } else {
                             tvLaifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
@@ -191,7 +201,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                             tvLaifanTime.setText(time);
                         }
                     }
-                }).build().show();
+                }).setType(new boolean[]{true, true, true, true, true, false}).build().show();
                 break;
             case R.id.rel_huifan_reason:
                 showPickerReasonView();

@@ -50,6 +50,7 @@ public class HuiFangInfo implements Serializable {
     private String id;
     private String interviewName;
     private int invite;
+    private int memberMedalType;
     private String inviteContent;
     private String inviteVisitTime;
     private MemberBirthdayInterviewBean memberBirthdayInterview;
@@ -73,6 +74,10 @@ public class HuiFangInfo implements Serializable {
 
     public String getFitnessHobby() {
         return fitnessHobby;
+    }
+
+    public int getMemberMedalType() {
+        return memberMedalType;
     }
 
     public void setFitnessHobby(String fitnessHobby) {
@@ -303,7 +308,7 @@ public class HuiFangInfo implements Serializable {
         this.studentYesterdayInCourseInterview = studentYesterdayInCourseInterview;
     }
 
-    public static class MemberBirthdayInterviewBean {
+    public static class MemberBirthdayInterviewBean implements Serializable {
         /**
          * birthday : 2018-08-13T01:54:42.665Z
          * birthdayTypeName : string
@@ -329,7 +334,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class MemberPastDueInterviewBean {
+    public static class MemberPastDueInterviewBean implements Serializable {
         private String expireDate;
         private String cardprodName;
         private String cardType;
@@ -368,10 +373,10 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class MemberPotentialInterviewBean {
+    public static class MemberPotentialInterviewBean implements Serializable {
     }
 
-    public static class MemberQuietInterviewBean {
+    public static class MemberQuietInterviewBean implements Serializable {
         /**
          * intervalDay : 0
          * lastTime : 2018-08-13T01:54:42.665Z
@@ -397,7 +402,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class MemberWillExpireInterviewBean {
+    public static class MemberWillExpireInterviewBean implements Serializable {
         /**
          * amount : 0
          * cardType : 0
@@ -463,7 +468,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class MemberYesterdayBuyCardInterviewBean {
+    public static class MemberYesterdayBuyCardInterviewBean implements Serializable {
         /**
          * cardTypeName : string
          * cardprodName : string
@@ -489,7 +494,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class MemberYesterdayVisitInterviewBean {
+    public static class MemberYesterdayVisitInterviewBean implements Serializable {
         /**
          * yesterdayVisitTime : 2018-08-13T01:54:42.665Z
          */
@@ -505,7 +510,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class StudentBirthdayInterviewBean {
+    public static class StudentBirthdayInterviewBean implements Serializable {
         /**
          * birthday : 2018-08-13T01:54:42.665Z
          * birthdayType : 0
@@ -541,7 +546,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class StudentPrivateCoursePastDueInterviewBean {
+    public static class StudentPrivateCoursePastDueInterviewBean implements Serializable {
         /**
          * endTime : 2018-08-13T01:54:42.665Z
          */
@@ -566,7 +571,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class StudentPrivateCourseWillExpireInterviewBean {
+    public static class StudentPrivateCourseWillExpireInterviewBean implements Serializable {
         /**
          * endTime : 2018-08-13T01:54:42.665Z
          */
@@ -590,7 +595,7 @@ public class HuiFangInfo implements Serializable {
         }
     }
 
-    public static class StudentYesterdayBuyCourseInterviewBean {
+    public static class StudentYesterdayBuyCourseInterviewBean implements Serializable {
         /**
          * buyCourseTime : 2018-08-13T01:54:42.665Z
          */
@@ -617,7 +622,7 @@ public class HuiFangInfo implements Serializable {
 
     }
 
-    public static class StudentYesterdayInCourseInterviewBean {
+    public static class StudentYesterdayInCourseInterviewBean implements Serializable {
         /**
          * inviteTime : 2018-08-13T01:54:42.665Z
          */

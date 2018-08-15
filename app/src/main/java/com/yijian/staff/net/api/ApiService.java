@@ -14,6 +14,7 @@ import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
@@ -300,4 +301,7 @@ public interface ApiService {
     @POST
     Observable<JSONObject> postHuiFangRecord(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  HuifangRecordRequestBody huifangRecordRequestBody);
 
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postPrivateCoursePingJia(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  PrivateCoursePingJiaRequestBody body);
 }

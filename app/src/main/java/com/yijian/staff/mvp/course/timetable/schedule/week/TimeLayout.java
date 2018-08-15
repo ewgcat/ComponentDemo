@@ -47,7 +47,6 @@ public class TimeLayout  extends ScrollView {
         for (int i = 0; i < childCount; i++) {
             View childAt = llContent.getChildAt(i);
             childAt.setLayoutParams(new LinearLayout.LayoutParams(width,height));
-
         }
         requestLayout();
     }

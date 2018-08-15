@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.InvitationRecordBean;
 import com.yijian.staff.util.DateUtil;
@@ -44,13 +45,13 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
     @Override
     public void onBindViewHolder(InvitationRecordAdatper.ViewHolder holder, int position) {
         InvitationRecordBean invitationRecordBean = invitationRecordBeanList.get(position);
-        ImageLoader.setHeadImageResource(invitationRecordBean.getHeadPath(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+invitationRecordBean.getHeadPath(), context, holder.iv_header);
         int resId = "1".equals(invitationRecordBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);
         holder.tv_name.setText(invitationRecordBean.getMemberName());
         String birthday = invitationRecordBean.getBirthday();
         if (!TextUtils.isEmpty(birthday)){
-            String s = DateUtil.formatDate2String(birthday);
+            String s = DateUtil.parseLongDateToDateString(Long.parseLong(birthday));
             holder.tv_birthday.setText(s);
         }
         holder.tv_birthday_type.setText(invitationRecordBean.getBirthdayTypeName());
@@ -60,10 +61,11 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.tv_invitation_content.setText(invitationRecordBean.getContent());
         String visitTime = invitationRecordBean.getVisitTime();
         if (!TextUtils.isEmpty(visitTime)){
-            String s = DateUtil.formatDate2String(visitTime);
+            String s = DateUtil.parseLongDateToDateString(Long.parseLong(visitTime));
             holder.tv_invitation_time.setText(s);
 
         }
+
 
         holder.tv_member_type.setText(invitationRecordBean.getMemberTypeName());
         int status = invitationRecordBean.getStatus();

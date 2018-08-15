@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:background="@mipmap/bg_lesson"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_finish"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="3dp"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="21dp"
+                    android:paddingTop="4dp"
+                    android:src="@mipmap/white_arrow_back" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <Chronometer
+                            android:id="@+id/chronometer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_today"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2018-01-23"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rel_punch_card"
+                            android:layout_width="118dp"
+                            android:layout_height="118dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@mipmap/lesson_button"
+                            android:clickable="true">
+
+                            <TextView
+                                android:id="@+id/tv_shangke_statu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerInParent="true"
+                                android:text="上课打卡"
+                                android:textColor="@color/blue1997f8"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:id="@+id/tv_shangke_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="上课时间 :"
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_shangke_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tv_shangke_label"
+                    android:text=""
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/division" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:id="@+id/tv_xiake_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="下课时间 :"
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_xiake_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tv_xiake_label"
+                    android:text=""
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pingjia"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/division" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="教练评价"
+                            android:textColor="@color/text_black1"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_pingjia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="16dp"
+                            android:background="@drawable/blue_button_bg2"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="10dp"
+                            android:text="确定"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/division" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="动作完成度"
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+                <com.warkiz.widget.IndicatorStayLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/seek_bar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        app:isb_indicator_color="@color/blue"
+                        app:isb_max="100"
+                        app:isb_min="0"
+                        app:isb_show_indicator="rectangle"
+                        app:isb_thumb_color="@color/blue"
+                        app:isb_track_progress_color="@color/blue" />
+                </com.warkiz.widget.IndicatorStayLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="动作评估"
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+                <com.warkiz.widget.IndicatorSeekBar
+                    android:id="@+id/seek_bar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="10dp"
+                    app:isb_progress_value_float="true"
+                    app:isb_seek_smoothly="true"
+                    app:isb_show_thumb_text="false"
+                    app:isb_show_tick_marks_type="divider"
+                    app:isb_show_tick_texts="true"
+                    app:isb_thumb_color="@color/blue"
+                    app:isb_thumb_drawable="@drawable/selector_thumb_ripple_drawable"
+                    app:isb_thumb_text_color="@color/blue"
+                    app:isb_tick_marks_color="#FFFFFFFF"
+                    app:isb_tick_texts_array="@array/string_array"
+                    app:isb_tick_texts_color="@color/selector_tick_texts_2_color"
+                    app:isb_ticks_count="5"
+                    app:isb_track_progress_color="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="适应强度"
+                    android:textColor="@color/text_black1"
+                    android:textSize="14sp" />
+
+                <com.warkiz.widget.IndicatorSeekBar
+                    android:id="@+id/seek_bar3"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="10dp"
+                    app:isb_progress_value_float="true"
+                    app:isb_seek_smoothly="true"
+                    app:isb_show_thumb_text="false"
+                    app:isb_show_tick_marks_type="divider"
+                    app:isb_show_tick_texts="true"
+                    app:isb_thumb_color="@color/blue"
+                    app:isb_thumb_drawable="@drawable/selector_thumb_ripple_drawable"
+                    app:isb_thumb_text_color="@color/blue"
+                    app:isb_tick_marks_color="#FFFFFFFF"
+                    app:isb_tick_texts_array="@array/string_array2"
+                    app:isb_tick_texts_color="@color/selector_tick_texts_2_color"
+                    app:isb_ticks_count="3"
+                    app:isb_track_progress_color="@color/blue" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

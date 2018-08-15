@@ -23,8 +23,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/tv_viper_name"
@@ -45,10 +44,7 @@
             android:layout_height="16dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/tv_viper_name"
-    />
-
-
+            android:layout_toRightOf="@id/tv_viper_name" />
 
 
     </RelativeLayout>
@@ -162,40 +158,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="22dp"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:text="使用车辆: "-->
-        <!--android:textColor="#333333"-->
-        <!--android:textSize="14sp"-->
-        <!--/>-->
-
-
-        <!--<View-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"/>-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/tv_car_name"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="20dp"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:gravity="center"-->
-        <!--android:padding="2dp"-->
-        <!--android:textColor="#333333"-->
-        <!--android:textSize="14sp"-->
-        <!--/>-->
-        <!--</LinearLayout>-->
 
     </LinearLayout>
 
@@ -206,74 +168,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--权益-->
-        <LinearLayout
-            android:id="@+id/ll_quanyi"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="权益: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_quanyi"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--过期时间-->
-        <LinearLayout
-            android:id="@+id/ll_outdate_time"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="过期时间: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_outdate_time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
 
         <!--生日-->
         <LinearLayout
@@ -381,42 +275,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--合同余额-->
-        <LinearLayout
-            android:id="@+id/ll_hetong_yu_er"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="合同余额: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_hetong_yu_er"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
 
         <!--卡名称-->
         <LinearLayout
@@ -444,6 +302,42 @@
 
             <TextView
                 android:id="@+id/tv_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <!--合同余额-->
+        <LinearLayout
+            android:id="@+id/ll_hetong_yu_er"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="合同余额: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_hetong_yu_er"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
@@ -523,7 +417,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--最近健身-->
+        <!--最近健身时间-->
         <LinearLayout
             android:id="@+id/ll_zuijin_jianshen"
             android:layout_width="match_parent"
@@ -594,7 +488,149 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--上次访问日期-->
+
+        <!--上课时间-->
+        <LinearLayout
+            android:id="@+id/ll_shang_ke_time"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="上课时间: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_shang_ke_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--课程名称-->
+        <LinearLayout
+            android:id="@+id/ll_course_name"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="课程名称: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <!--过期时间-->
+        <LinearLayout
+            android:id="@+id/ll_outdate_time"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="过期时间: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_outdate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--到访日期-->
+        <LinearLayout
+            android:id="@+id/ll_dao_fang_date"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="到访日期: "
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_dao_fang_date"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--上次回访日期-->
         <LinearLayout
             android:id="@+id/ll_pre_visit_date"
             android:layout_width="match_parent"
@@ -608,7 +644,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="上次访问日期: "
+                android:text="上次回访日期: "
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -664,286 +700,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--上次健身日期-->
-        <LinearLayout
-            android:id="@+id/ll_pre_jian_shen_date"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="上次健身日期: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_pre_jian_shen_date"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--未健身时间-->
-        <LinearLayout
-            android:id="@+id/ll_wei_jian_shen_time"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="未健身时间: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_wei_jian_shen_time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--上课时间-->
-        <LinearLayout
-            android:id="@+id/ll_yue_ke_time"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="上课时间: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_yue_ke_time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--课程名称-->
-        <LinearLayout
-            android:id="@+id/ll_course_name"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="课程名称: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_course_name"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--体验课次数-->
-        <LinearLayout
-            android:id="@+id/ll_ti_yan_ke_ci_shu"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="体验课次数: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_ti_yan_ke_ci_shu"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--到访日期-->
-        <LinearLayout
-            android:id="@+id/ll_dao_fang_date"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="到访日期: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_dao_fang_date"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--健身目的-->
-        <LinearLayout
-            android:id="@+id/ll_jianshen_mudi"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="健身目的: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_jianshen_mudi"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!--收入情况-->
-        <LinearLayout
-            android:id="@+id/ll_income"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="收入情况: "
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_income"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-        </LinearLayout>
-
 
     </LinearLayout>
 
@@ -985,6 +741,8 @@
             android:textColor="#333333"
             android:textSize="14sp" />
     </LinearLayout>
+
+
 
     <View
         android:layout_width="match_parent"

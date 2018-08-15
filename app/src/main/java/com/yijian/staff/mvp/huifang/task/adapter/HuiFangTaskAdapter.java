@@ -78,7 +78,6 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         TextView tvJianshenAihao;
         TextView tvXingquAihao;
 
-        LinearLayout llQuanyi;
         LinearLayout llOutdateTime;
         LinearLayout llHetongYuEr;
         LinearLayout llHetongDaoQiRi;
@@ -87,21 +86,15 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         LinearLayout llCardName;
         LinearLayout llCardType;
         LinearLayout llCardYuEr;
-        LinearLayout llPreJianShenDate;
         LinearLayout llZuijinJianshen;
         LinearLayout llChenMoTianShu;
-        LinearLayout llWeiJianShenTime;
         LinearLayout llBirthdayType;
         LinearLayout llBirthday;
-        LinearLayout ll_ti_yan_ke_ci_shu;
-        LinearLayout ll_dao_fang_date;
-        LinearLayout ll_jianshen_mudi;
-        LinearLayout ll_income;
-        LinearLayout ll_yue_ke_time;
+        LinearLayout llDaoFangDate;
+        LinearLayout llShangKeTime;
         LinearLayout llCourseName;
 
         TextView tvCourseName;
-        TextView tvQuanyi;
         TextView tvOutdateTime;
         TextView tvHetongDaoQiRi;
         TextView tvCardName;
@@ -111,15 +104,12 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
         TextView tvChenMoTianShu;
         TextView tvPreVisitDate;
         TextView tvFuFangReason;
-        TextView tvPreJianShenDate;
-        TextView tvWeiJianShenTime;
         TextView tvBirthdayType;
         TextView tvBirthday;
-        TextView tv_ti_yan_ke_ci_shu;
-        TextView tv_dao_fang_date;
-        TextView tv_jianshen_mudi;
-        TextView tv_income;
-        TextView tv_yue_ke_time;
+        TextView tvDaoFangDate;
+        TextView tvShangKeTime;
+        TextView tvHuifangJilu;
+        TextView tvYaoyueJilu;
 
 
         TextView tvHuifangType;
@@ -140,14 +130,13 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             llCardName = view.findViewById(R.id.ll_card_name);
 
 
-            llQuanyi = view.findViewById(R.id.ll_quanyi);
-            tvQuanyi = view.findViewById(R.id.tv_quanyi);
+            llBirthday = view.findViewById(R.id.ll_birthday);
+            tvBirthday = view.findViewById(R.id.tv_birthday);
 
             llCourseName = view.findViewById(R.id.ll_course_name);
             tvCourseName = view.findViewById(R.id.tv_course_name);
 
-            llBirthday = view.findViewById(R.id.ll_birthday);
-            tvBirthday = view.findViewById(R.id.tv_birthday);
+
 
             llBirthdayType = view.findViewById(R.id.ll_birthday_type);
             tvBirthdayType = view.findViewById(R.id.tv_birthday_type);
@@ -177,24 +166,15 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             llPreVisitDate = view.findViewById(R.id.ll_pre_visit_date);
             tvFuFangReason = view.findViewById(R.id.tv_fu_fang_reason);
             llFuFangReason = view.findViewById(R.id.ll_fu_fang_reason);
-            tvPreJianShenDate = view.findViewById(R.id.tv_pre_jian_shen_date);
-            llPreJianShenDate = view.findViewById(R.id.ll_pre_jian_shen_date);
-            tvWeiJianShenTime = view.findViewById(R.id.tv_wei_jian_shen_time);
-            llWeiJianShenTime = view.findViewById(R.id.ll_wei_jian_shen_time);
 
-            tv_ti_yan_ke_ci_shu = view.findViewById(R.id.tv_ti_yan_ke_ci_shu);
-            ll_ti_yan_ke_ci_shu = view.findViewById(R.id.ll_ti_yan_ke_ci_shu);
 
-            tv_dao_fang_date = view.findViewById(R.id.tv_dao_fang_date);
-            ll_dao_fang_date = view.findViewById(R.id.ll_dao_fang_date);
+            tvDaoFangDate = view.findViewById(R.id.tv_dao_fang_date);
+            llDaoFangDate = view.findViewById(R.id.ll_dao_fang_date);
 
-            tv_jianshen_mudi = view.findViewById(R.id.tv_jianshen_mudi);
-            ll_jianshen_mudi = view.findViewById(R.id.ll_jianshen_mudi);
-            tv_income = view.findViewById(R.id.tv_income);
-            ll_income = view.findViewById(R.id.ll_income);
 
-            tv_yue_ke_time = view.findViewById(R.id.tv_yue_ke_time);
-            ll_yue_ke_time = view.findViewById(R.id.ll_yue_ke_time);
+            tvShangKeTime = view.findViewById(R.id.tv_shang_ke_time);
+            llShangKeTime = view.findViewById(R.id.ll_shang_ke_time);
+
 
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);
             llBt = view.findViewById(R.id.ll_bt);
@@ -306,8 +286,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             //昨日到访回访
             HuiFangInfo.MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview = huiFangInfo.getMemberYesterdayVisitInterview();
             if (memberYesterdayVisitInterview != null) {
-                ll_dao_fang_date.setVisibility(View.VISIBLE);
-                tv_dao_fang_date.setText(memberYesterdayVisitInterview.getYesterdayVisitTime());
+                llDaoFangDate.setVisibility(View.VISIBLE);
+                tvDaoFangDate.setText(memberYesterdayVisitInterview.getYesterdayVisitTime());
             }
 
 
@@ -324,8 +304,8 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
             //昨日上课
             HuiFangInfo.StudentYesterdayInCourseInterviewBean studentYesterdayInCourseInterview = huiFangInfo.getStudentYesterdayInCourseInterview();
             if (studentYesterdayInCourseInterview != null) {
-                ll_yue_ke_time.setVisibility(View.VISIBLE);
-                tv_yue_ke_time.setText(studentYesterdayInCourseInterview.getInviteTime());
+                llShangKeTime.setVisibility(View.VISIBLE);
+                tvShangKeTime.setText(studentYesterdayInCourseInterview.getInviteTime());
             }
 
             //学员到期回访
@@ -360,26 +340,23 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
     }
 
     private void resetView(ViewHolder holder) {
-        holder.llFuFangReason.setVisibility(View.GONE);
-        holder.llCardYuEr.setVisibility(View.GONE);
-        holder.llCourseName.setVisibility(View.GONE);
-        holder.llQuanyi.setVisibility(View.GONE);
-        holder.llOutdateTime.setVisibility(View.GONE);
-        holder.llHetongYuEr.setVisibility(View.GONE);
-        holder.llHetongDaoQiRi.setVisibility(View.GONE);
-        holder.llPreVisitDate.setVisibility(View.GONE);
-        holder.llCardName.setVisibility(View.GONE);
-        holder.llCardType.setVisibility(View.GONE);
-        holder.llPreJianShenDate.setVisibility(View.GONE);
-        holder.llZuijinJianshen.setVisibility(View.GONE);
-        holder.llChenMoTianShu.setVisibility(View.GONE);
-        holder.llWeiJianShenTime.setVisibility(View.GONE);
         holder.llBirthday.setVisibility(View.GONE);
         holder.llBirthdayType.setVisibility(View.GONE);
-        holder.ll_ti_yan_ke_ci_shu.setVisibility(View.GONE);
-        holder.ll_dao_fang_date.setVisibility(View.GONE);
-        holder.ll_income.setVisibility(View.GONE);
-        holder.ll_jianshen_mudi.setVisibility(View.GONE);
-        holder.ll_yue_ke_time.setVisibility(View.GONE);
+        holder.llHetongDaoQiRi.setVisibility(View.GONE);
+        holder.llCardName.setVisibility(View.GONE);
+        holder.llCardType.setVisibility(View.GONE);
+        holder.llCardYuEr.setVisibility(View.GONE);
+        holder.llHetongYuEr.setVisibility(View.GONE);
+        holder.llZuijinJianshen.setVisibility(View.GONE);
+        holder.llChenMoTianShu.setVisibility(View.GONE);
+
+
+        holder.llFuFangReason.setVisibility(View.GONE);
+        holder.llCourseName.setVisibility(View.GONE);
+        holder.llOutdateTime.setVisibility(View.GONE);
+        holder.llPreVisitDate.setVisibility(View.GONE);
+
+        holder.llDaoFangDate.setVisibility(View.GONE);
+        holder.llShangKeTime.setVisibility(View.GONE);
     }
 }

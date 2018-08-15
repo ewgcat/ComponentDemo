@@ -70,7 +70,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initData() {
-        HttpManager.postHasHeaderNoParam(HttpManager.GET_HUI_JI_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
+        HttpManager.postHasHeaderNoParam(HttpManager.GET_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
 

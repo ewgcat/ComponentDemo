@@ -285,11 +285,9 @@ public class HttpManager {
     //获取调查问卷列表
     public static String GET_QUESTION_NIAR_LIST_URL =  "qs/getQsList";
 
-    //教练回访类型
-    public static String GET_COACH_HUI_FANG_TYPE_LIST_URL =  "coach/interview/config";
 
-    //会籍回访类型
-    public static String GET_HUI_JI_HUI_FANG_TYPE_LIST_URL =  "interviewV2/bapp/getInterviewTypes";
+    //回访类型
+    public static String GET_HUI_FANG_TYPE_LIST_URL =  "interviewV2/bapp/getInterviewMenus";
 
 
 

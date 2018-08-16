@@ -1,13 +1,14 @@
-package com.yijian.staff.mvp.course.timetable;
+package com.yijian.staff.mvp.course.cunke;
 
-
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -15,15 +16,18 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.StudentBean;
-import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.addstudent.AddStudentActivity;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.bean.TypeOfCunKeBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,62 +35,75 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class StudentListFragment extends MvcBaseFragment {
+@Route(path = "/test/16")
+public class CunkeActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv)
     RecyclerView rv;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.empty_view)
-    EmptyView emptyView;
+    EmptyView empty_view;
+
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
     private int pagesTotal; //总共多少页
-    private List<StudentBean> dataList = new ArrayList<>();
+    private List<TypeOfCunKeBody> typeOfCunKeBodyList = new ArrayList<>();
+    private CunKeAdapter cunKeAdapter;
+
+
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_student_list;
+    protected int getLayoutID() {
+        return R.layout.activity_cunke_new;
     }
 
+
     @Override
-    public void initView() {
-        emptyView.setVisibility(View.GONE);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        initTitle();
+        initView();
+        refresh();
+    }
+
+    private void initTitle() {
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        navigationBar2.setTitle( "存课信息");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
+    }
+
+    private void initView(){
 
 
+        String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
+        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_storage_course_num",version);
+        HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
 
-        //测试数据
-        for (int i = 0; i < 10; i++) {
-            StudentBean studentBean = new StudentBean();
-            studentBean.setCourseName("增肌课");
-            studentBean.setCourseTime("30");
-            studentBean.setName("学员"+i);
-            studentBean.setSex(i%2);
-            studentBean.setTime(Long.valueOf((11+i)));
-            dataList.add(studentBean);
-        }
+            }
 
+            @Override
+            public void onFail(String msg) {
 
-        StudentListAdapter  studentListAdapter = new StudentListAdapter(getContext(),dataList);
-        rv.addItemDecoration(new MyDividerItemDecoration());
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(studentListAdapter);
+            }
+        });
+        cunKeAdapter = new CunKeAdapter();
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(cunKeAdapter);
         initComponent();
     }
 
-
-
-
-
     public void initComponent() {
         //设置 Header 为 BezierRadar 样式
-        BezierRadarHeader header = new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true);
+        BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
         header.setPrimaryColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshHeader(header);
         //设置 Footer 为 球脉冲
-        BallPulseFooter footer = new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale);
+        BallPulseFooter footer = new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale);
         footer.setAnimatingColor(Color.parseColor("#1997f8"));
         refreshLayout.setRefreshFooter(footer);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -103,11 +120,13 @@ public class StudentListFragment extends MvcBaseFragment {
     }
 
     private void refresh() {
+        typeOfCunKeBodyList.clear();
         pageNum = 1;//页码
         pageSize = 10;
         HashMap<String, String> map = new HashMap<>();
         map.put("pageNum", pageNum + "");
         map.put("pageSize", pageSize + "");
+        empty_view.setVisibility(View.GONE);
 
         HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -115,13 +134,23 @@ public class StudentListFragment extends MvcBaseFragment {
                 refreshLayout.finishRefresh(2000, true);
                 pagesTotal = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-
+                for (int i = 0; i < records.length(); i++) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) records.get(i);
+                        TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(), TypeOfCunKeBody.class);
+                        typeOfCunKeBodyList.add(typeOfCunKeBody);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                empty_view.setVisibility(typeOfCunKeBodyList.size()>0?View.GONE:View.VISIBLE);
+                cunKeAdapter.resetDataList(typeOfCunKeBodyList);
             }
 
             @Override
             public void onFail(String msg) {
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
-                showToast(msg);
+                Toast.makeText(CunkeActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -138,17 +167,26 @@ public class StudentListFragment extends MvcBaseFragment {
             HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_PRIVATE_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    pagesTotal = JsonUtil.getInt(result, "pageSize");
+                    pagesTotal = JsonUtil.getInt(result, "pages");
                     refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
 
                     JSONArray records = JsonUtil.getJsonArray(result, "records");
+                    for (int i = 0; i < records.length(); i++) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) records.get(i);
+                            TypeOfCunKeBody typeOfCunKeBody = com.alibaba.fastjson.JSONObject.parseObject(jsonObject.toString(), TypeOfCunKeBody.class);
+                            typeOfCunKeBodyList.add(typeOfCunKeBody);
+                        } catch (JSONException e) {
+                        }
+                    }
+                    cunKeAdapter.resetDataList(typeOfCunKeBodyList);
                 }
 
                 @Override
                 public void onFail(String msg) {
 
                     refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
-                    showToast(msg);
+                    Toast.makeText(CunkeActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             });
         }else{
@@ -157,12 +195,4 @@ public class StudentListFragment extends MvcBaseFragment {
 
     }
 
-
-
-    @OnClick(R.id.ll_add_student)
-    public void onViewClicked() {
-
-        Intent intent = new Intent(getContext(), AddStudentActivity.class);
-        startActivity(intent);
-    }
 }

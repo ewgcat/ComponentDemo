@@ -343,7 +343,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.shangke.DaKaActivity"
+            android:name=".mvp.course.punch.PunchCourseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.experienceclass.step1.ExperienceClassStep1Activity_ycm"
@@ -552,7 +552,7 @@
             android:name=".mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.course.cunke.CunkeNewActivity"
+            android:name=".mvp.course.cunke.CunkeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"
@@ -591,7 +591,7 @@
             android:name=".mvp.invate.InvateListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.course.yueke.YueKeBiaoActivity"></activity>
+        <activity android:name=".mvp.course.curriculum.CurriculumActivity"></activity>
     </application>
 
 </manifest>

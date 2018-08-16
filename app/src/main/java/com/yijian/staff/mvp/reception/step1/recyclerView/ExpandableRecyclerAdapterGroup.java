@@ -79,7 +79,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Implementation of Adapter.onCreateViewHolder(ViewGroup, int)
-     * that determines if the list item is a parent or a child and calls through
+     * that determines if the list item_curriculum is a parent or a child and calls through
      * to the appropriate implementation of either {@link #onCreateParentViewHolder(ViewGroup, int)}
      * or {@link #onCreateChildViewHolder(ViewGroup, int)}.
      *
@@ -106,7 +106,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Implementation of Adapter.onBindViewHolder(RecyclerView.ViewHolder, int)
-     * that determines if the list item is a parent or a child and calls through
+     * that determines if the list item_curriculum is a parent or a child and calls through
      * to the appropriate implementation of either
      * {@link #onBindParentViewHolder(ParentViewHolderGroup, int, ParentImp)} or
      * {@link #onBindChildViewHolder(ChildViewHolderGroup, int, int, Object, int)}.
@@ -119,7 +119,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     @UiThread
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int flatPosition) {
         if (flatPosition > mFlatItemList.size()) {
-            throw new IllegalStateException("Trying to bind item out of bounds, size " + mFlatItemList.size()
+            throw new IllegalStateException("Trying to bind item_curriculum out of bounds, size " + mFlatItemList.size()
                     + " flatPosition " + flatPosition + ". Was the data changed without a call to notify...()?");
         }
 
@@ -138,7 +138,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Callback called from {@link #onCreateViewHolder(ViewGroup, int)} when
-     * the list item created is a parent.
+     * the list item_curriculum created is a parent.
      *
      * @param parentViewGroup The {@link ViewGroup} in the list for which a {@link PVH} is being
      *                        created
@@ -150,7 +150,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Callback called from {@link #onCreateViewHolder(ViewGroup, int)} when
-     * the list item created is a child.
+     * the list item_curriculum created is a child.
      *
      * @param childViewGroup The {@link ViewGroup} in the list for which a {@link CVH}
      *                       is being created
@@ -162,7 +162,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Callback called from onBindViewHolder(RecyclerView.ViewHolder, int)
-     * when the list item bound to is a parent.
+     * when the list item_curriculum bound to is a parent.
      * <p>
      * Bind data to the {@link PVH} here.
      *
@@ -175,7 +175,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
 
     /**
      * Callback called from onBindViewHolder(RecyclerView.ViewHolder, int)
-     * when the list item bound to is a child.
+     * when the list item_curriculum bound to is a child.
      * <p>
      * Bind data to the {@link CVH} here.
      *
@@ -205,7 +205,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * of this method.
      *
      * @param flatPosition The index in the merged list of children and parents to get the view type of
-     * @return Gets the view type of the item at the given flatPosition.
+     * @return Gets the view type of the item_curriculum at the given flatPosition.
      */
     @Override
     @UiThread
@@ -224,7 +224,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * <p>
      * The default implementation of this method returns {@link #TYPE_PARENT}, making the assumption of
      * a single view type for the parents in this adapter. Unlike ListView adapters, types need not
-     * be contiguous. Consider using id resources to uniquely identify item view types.
+     * be contiguous. Consider using id resources to uniquely identify item_curriculum view types.
      * <p>
      * If you are overriding this method make sure to override {@link #isParentViewType(int)} as well.
      * <p>
@@ -245,7 +245,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
      * <p>
      * The default implementation of this method returns {@link #TYPE_CHILD}, making the assumption of
      * a single view type for the children in this adapter. Unlike ListView adapters, types need not
-     * be contiguous. Consider using id resources to uniquely identify item view types.
+     * be contiguous. Consider using id resources to uniquely identify item_curriculum view types.
      * <p>
      * Start your defined viewtypes at {@link #TYPE_FIRST_USER}
      *
@@ -343,7 +343,7 @@ public abstract class ExpandableRecyclerAdapterGroup<P extends ParentImp<C>, C, 
     }
 
     /**
-     * Given the index relative to the entire RecyclerView for a child item,
+     * Given the index relative to the entire RecyclerView for a child item_curriculum,
      * returns the child position within the child list of the parent.
      */
     @UiThread

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.addstudent;
+package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +12,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -21,25 +20,15 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
-import com.yijian.staff.bean.StudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.MyDividerItemDecoration;
-import com.yijian.staff.mvp.course.timetable.StudentListAdapter;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.util.SystemUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import drawthink.expandablerecyclerview.bean.RecyclerViewData;
 import drawthink.expandablerecyclerview.listener.OnRecyclerViewListener;
 

@@ -1,10 +1,9 @@
-package com.yijian.staff.mvp.course.shangke;
+package com.yijian.staff.mvp.course.punch;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,16 +17,16 @@ import com.yijian.staff.util.CommonUtil;
  * email：850716183@qq.com
  * time: 2018/8/15 09:42:18
  */
-public class QRCodeDialog extends Dialog {
+public class CoursePunchQRDialog extends Dialog {
 
     private Context context;
     private ImageView iv;
 
-    public QRCodeDialog(@NonNull Context context) {
+    public CoursePunchQRDialog(@NonNull Context context) {
         this(context, 0);
     }
 
-    public QRCodeDialog(@NonNull Context context, int themeResId) {
+    public CoursePunchQRDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
         this.context = context;
         init();

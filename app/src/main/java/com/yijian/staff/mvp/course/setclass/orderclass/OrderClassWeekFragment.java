@@ -19,7 +19,7 @@ import com.jeek.calendar.widget.calendar.week.WeekCalendarView;
 import com.jeek.calendar.widget.calendar.week.WeekView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.mvp.main.mine.calendartable.AdapterWeekFragment;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.bean.DayTask;
@@ -92,7 +92,7 @@ public class OrderClassWeekFragment extends Fragment {
                 }else if(status == 4){
                     Toast.makeText(getActivity(),"该课已爽约",Toast.LENGTH_SHORT).show();
                 }else{
-                        Intent intent = new Intent(getActivity(), DaKaActivity.class);
+                        Intent intent = new Intent(getActivity(), CoursePunchActivity.class);
                         intent.putExtra("startDate", courseInfo.getStartDate());
                         intent.putExtra("startTimeActual", courseInfo.getStartTimeActual());
                         intent.putExtra("endTimeActual", courseInfo.getEndTimeActual());

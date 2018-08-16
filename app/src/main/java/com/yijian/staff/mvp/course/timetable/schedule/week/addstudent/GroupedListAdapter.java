@@ -1,16 +1,13 @@
-package com.yijian.staff.mvp.course.timetable.addstudent;
+package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
-import com.yijian.staff.bean.StudentBean;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
@@ -18,8 +15,6 @@ import java.util.List;
 
 import drawthink.expandablerecyclerview.adapter.BaseRecyclerViewAdapter;
 import drawthink.expandablerecyclerview.bean.RecyclerViewData;
-import drawthink.expandablerecyclerview.holder.BaseViewHolder;
-import drawthink.expandablerecyclerview.listener.OnRecyclerViewListener;
 
 /**
  * author：李帅华

@@ -1,37 +1,25 @@
 package com.yijian.staff.mvp.course.yueke;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.timetable.helper.MyScollView;
 import com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView;
-import com.yijian.staff.mvp.course.timetable.helper.RecyclerListAdapter;
-import com.yijian.staff.mvp.course.timetable.helper.SimpleItemTouchHelperCallback;
-import com.yijian.staff.mvp.course.timetable.schedule.week.ScrollViewListener;
-import com.yijian.staff.mvp.course.timetable.schedule.week.TimeLayout;
+import com.yijian.staff.widget.ScrollViewListener;
+import com.yijian.staff.widget.TimeLayout;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DateUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 public class YueKeBiaoFragment extends MvcBaseFragment implements ScrollViewListener {

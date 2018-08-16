@@ -12,14 +12,14 @@
 //import android.widget.PopupWindow;
 //
 //import com.yijian.staff.R;
-//import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+//import com.yijian.staff.mvp.course.shangke.CoursePunchActivity;
 //import com.yijian.staff.util.DensityUtil;
 //
 //public class SaveDataDialog extends PopupWindow {
 //
-//    private DaKaActivity activity;
+//    private CoursePunchActivity activity;
 //
-//    public SaveDataDialog(DaKaActivity context) {
+//    public SaveDataDialog(CoursePunchActivity context) {
 //        super(context);
 //        this.activity = context;
 //        LayoutInflater inflater = (LayoutInflater) context

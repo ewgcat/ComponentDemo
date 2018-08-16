@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week;
+package com.yijian.staff.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

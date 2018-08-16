@@ -2,39 +2,35 @@ package com.yijian.staff.mvp.course.timetable.schedule.week;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.edit.EditCourseTableActivity;
 import com.yijian.staff.mvp.course.timetable.helper.MyScollView;
 import com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView;
 import com.yijian.staff.mvp.course.timetable.helper.OnStartDragListener;
 import com.yijian.staff.mvp.course.timetable.helper.RecyclerListAdapter;
 import com.yijian.staff.mvp.course.timetable.helper.SimpleItemTouchHelperCallback;
+import com.yijian.staff.mvp.course.timetable.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.util.CommonUtil;
+import com.yijian.staff.widget.ScrollViewListener;
+import com.yijian.staff.widget.TimeLayout;
+import com.yijian.staff.widget.WeekLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewListener,OnStartDragListener {

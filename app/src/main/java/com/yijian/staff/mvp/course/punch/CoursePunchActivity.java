@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.shangke;
+package com.yijian.staff.mvp.course.punch;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,10 +16,8 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
@@ -30,10 +28,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DaKaActivity extends MvcBaseActivity {
+public class CoursePunchActivity extends MvcBaseActivity {
 
 
     @BindView(R.id.chronometer)
@@ -67,7 +64,7 @@ public class DaKaActivity extends MvcBaseActivity {
     private String endDatetime;
     private String appointId;
     private MyCountDownTimer timer;
-    private QRCodeDialog qrCodeDialog;
+    private CoursePunchQRDialog coursePunchQrDialog;
 
 
     @Override
@@ -77,7 +74,7 @@ public class DaKaActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        qrCodeDialog = new QRCodeDialog(DaKaActivity.this);
+        coursePunchQrDialog = new CoursePunchQRDialog(CoursePunchActivity.this);
         appointId = getIntent().getStringExtra("appointId");
         Calendar mCalendar = Calendar.getInstance();
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -101,7 +98,7 @@ public class DaKaActivity extends MvcBaseActivity {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", appointId);
-        HttpManager.postHasHeaderHasParam(HttpManager.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.getHasHeaderHasParam(HttpManager.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -127,7 +124,7 @@ public class DaKaActivity extends MvcBaseActivity {
                     tv_shangke_time.setText(startDatetime);
                 } else if (punchStatus == 2) {
                     tv_shangke_statu.setText("已完成");
-                    qrCodeDialog.dismiss();
+                    coursePunchQrDialog.dismiss();
                     tv_shangke_time.setText(startDatetime);
                     tv_xiake_time.setText(endDatetime);
                     llPingjia.setVisibility(View.VISIBLE);
@@ -147,7 +144,7 @@ public class DaKaActivity extends MvcBaseActivity {
                 llPingjia.setVisibility(View.GONE);
                 hideLoading();
 
-                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -176,7 +173,7 @@ public class DaKaActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 hideLoading();
 
             }
@@ -199,7 +196,7 @@ public class DaKaActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 hideLoading();
             }
         });
@@ -224,7 +221,7 @@ public class DaKaActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(DaKaActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 hideLoading();
             }
         });
@@ -232,13 +229,13 @@ public class DaKaActivity extends MvcBaseActivity {
 
     private void showQRDialog(String classOverQRCode) {
 
-        qrCodeDialog.setQR(classOverQRCode);
-        qrCodeDialog.show();
+        coursePunchQrDialog.setQR(classOverQRCode);
+        coursePunchQrDialog.show();
         if (timer != null) {
             timer.cancel();
         }
         timer = new MyCountDownTimer(1000 * 2, 1000);
-        timer.setActivity(DaKaActivity.this);
+        timer.setActivity(CoursePunchActivity.this);
         timer.start();
     }
 
@@ -274,10 +271,10 @@ public class DaKaActivity extends MvcBaseActivity {
 
 
     public static class MyCountDownTimer extends CountDownTimer {
-        private WeakReference<DaKaActivity> weakReference;
+        private WeakReference<CoursePunchActivity> weakReference;
 
-        public void setActivity(DaKaActivity activity) {
-            weakReference = new WeakReference<DaKaActivity>(activity);
+        public void setActivity(CoursePunchActivity activity) {
+            weakReference = new WeakReference<CoursePunchActivity>(activity);
         }
 
         public MyCountDownTimer(long millisInFuture, long countDownInterval) {

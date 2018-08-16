@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-import com.yijian.staff.mvp.course.timetable.schedule.week.ScrollViewListener;
+import com.yijian.staff.widget.ScrollViewListener;
 
 /**
  * author：李帅华

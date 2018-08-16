@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable;
+package com.yijian.staff.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

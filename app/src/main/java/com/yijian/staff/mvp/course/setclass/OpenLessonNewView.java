@@ -18,7 +18,7 @@
 //import com.yijian.staff.R;
 //import com.yijian.staff.mvp.course.preparelessons.createlession.Observer;
 //import com.yijian.staff.bean.PrivateLessonRecordBean;
-//import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+//import com.yijian.staff.mvp.course.shangke.CoursePunchActivity;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -31,7 +31,7 @@
 //public class OpenLessonNewView extends LinearLayout implements Observer {
 //
 //    private Context mContext;
-//    private DaKaActivity daKaActivity;
+//    private CoursePunchActivity daKaActivity;
 //    private PrivateLessonRecordBean privateLessonRecordBean;
 //    private int itemPosition;
 //
@@ -77,7 +77,7 @@
 //        this.mContext = context;
 //    }
 //
-//    public void initActionRecord(PrivateLessonRecordBean privateLessonRecordBean, int itemPosition, DaKaActivity daKaActivity) {
+//    public void initActionRecord(PrivateLessonRecordBean privateLessonRecordBean, int itemPosition, CoursePunchActivity daKaActivity) {
 //        this.itemPosition = itemPosition;
 //        this.daKaActivity = daKaActivity;
 //        this.privateLessonRecordBean = privateLessonRecordBean;

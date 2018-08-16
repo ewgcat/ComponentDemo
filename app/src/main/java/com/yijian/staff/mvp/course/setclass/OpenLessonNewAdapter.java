@@ -8,7 +8,7 @@
 //import com.yijian.staff.R;
 //import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 //import com.yijian.staff.bean.PrivateLessonRecordBean;
-//import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+//import com.yijian.staff.mvp.course.shangke.CoursePunchActivity;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -20,7 +20,7 @@
 //public class OpenLessonNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //
 //    List<PrivateLessonRecordBean> privateLessonRecordBeans = new ArrayList<>();
-//    DaKaActivity daKaActivity;
+//    CoursePunchActivity daKaActivity;
 //    EditActionObservable editActionObservable;
 //
 //    public void resetData(List<PrivateLessonRecordBean> privateLessonRecordBeans) {
@@ -28,7 +28,7 @@
 //        notifyDataSetChanged();
 //    }
 //
-//    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans, DaKaActivity daKaActivity, EditActionObservable editActionObservable) {
+//    public OpenLessonNewAdapter(List<PrivateLessonRecordBean> privateLessonRecordBeans, CoursePunchActivity daKaActivity, EditActionObservable editActionObservable) {
 //        this.privateLessonRecordBeans = privateLessonRecordBeans;
 //        this.daKaActivity = daKaActivity;
 //        this.editActionObservable = editActionObservable;

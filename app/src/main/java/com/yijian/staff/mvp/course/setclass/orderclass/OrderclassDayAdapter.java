@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.bean.OrderClassDayBean;
 
 import java.text.ParseException;
@@ -143,7 +143,7 @@ public class OrderclassDayAdapter extends RecyclerView.Adapter<OrderclassDayAdap
                     }else if(status == 4){
                         Toast.makeText(fragment.getActivity(),"该课已爽约",Toast.LENGTH_SHORT).show();
                     }else{
-                            Intent intent = new Intent(fragment.getActivity(), DaKaActivity.class);
+                            Intent intent = new Intent(fragment.getActivity(), CoursePunchActivity.class);
                             intent.putExtra("startDate", orderClassDayBean.getStartDate());
                             intent.putExtra("startTimeActual", orderClassDayBean.getStartTimeActual());
                             intent.putExtra("endTimeActual", orderClassDayBean.getEndTimeActual());

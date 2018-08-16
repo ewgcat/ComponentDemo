@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.course.yueke;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.mvp.course.timetable.helper.ItemTouchHelperAdapter;
 import com.yijian.staff.mvp.course.timetable.helper.ItemTouchHelperViewHolder;
 import com.yijian.staff.mvp.course.timetable.helper.OnStartDragListener;
@@ -27,9 +29,10 @@ public class YueKeAdapter extends RecyclerView.Adapter<YueKeAdapter.ItemViewHold
 
     private int width;
     private int height;
+    private Context context;
 
     public YueKeAdapter(Context context, int width, int height) {
-
+        this.context=context;
         this.width = width;
         this.height = height;
         for (int i = 0; i < 24; i++) {
@@ -47,7 +50,7 @@ public class YueKeAdapter extends RecyclerView.Adapter<YueKeAdapter.ItemViewHold
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
-        holder.bindView(mItems.get(position));
+        holder.bindView(mItems.get(position),context);
     }
 
 
@@ -79,20 +82,27 @@ public class YueKeAdapter extends RecyclerView.Adapter<YueKeAdapter.ItemViewHold
         }
 
 
-        public void bindView(String s) {
+        public void bindView(String s,Context context) {
             if (s.equals("10")){
                 tv_course_name.setText(s);
                 ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
                 line2.setVisibility(View.GONE);
                 tv_course_status.setVisibility(View.VISIBLE);
+                tv_course_status.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, CoursePunchActivity.class);
+                        intent.putExtra("appointId",s);
+                        context.startActivity(intent);
+                    }
+                });
             }else {
                 tv_course_name.setText("");
                 ll_content.setBackgroundColor(Color.WHITE);
                 line2.setVisibility(View.VISIBLE);
                 tv_course_status.setVisibility(View.GONE);
-
-
             }
+
         }
     }
 }

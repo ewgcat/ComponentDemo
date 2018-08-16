@@ -20,18 +20,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
                 android:background="@mipmap/bg_lesson"
+                android:paddingTop="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
-                <ImageView
+
+                <LinearLayout
                     android:id="@+id/iv_finish"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="3dp"
-                    android:paddingBottom="8dp"
-                    android:paddingRight="21dp"
-                    android:paddingTop="4dp"
-                    android:src="@mipmap/white_arrow_back" />
+                    android:layout_width="44dp"
+                    android:layout_height="44dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/white_arrow_back"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

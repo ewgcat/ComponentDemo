@@ -20,7 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
                 android:background="@mipmap/bg_lesson"
-                android:paddingTop="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 

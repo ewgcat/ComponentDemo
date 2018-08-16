@@ -528,7 +528,7 @@ public class WheelView extends View {
     /**
      * reset the size of the text Let it can fully display
      *
-     * @param contentText item text content.
+     * @param contentText schedule_week_timetable_item text content.
      */
     private void reMeasureTextSize(String contentText) {
         Rect rect = new Rect();

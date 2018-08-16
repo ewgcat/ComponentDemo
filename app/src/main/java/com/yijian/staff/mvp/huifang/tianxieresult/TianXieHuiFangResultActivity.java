@@ -15,7 +15,6 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.bean.HuiFangReasonBean;
@@ -82,6 +81,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     String dictItemId;
     @BindView(R.id.tv_laifan_time)
     TextView tvLaifanTime;
+    @BindView(R.id.tv_vip_type)
+    TextView tvVipType;
 
 
     @Override
@@ -170,7 +171,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                         String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
                         int i = Integer.parseInt(now);
                         int i1 = Integer.parseInt(selectTime);
-                        if (i>i1) {
+                        if (i > i1) {
                             tvHuifanTimeResult = "";
                             showToast("复访时间不得小于当前时间");
                         } else {
@@ -192,7 +193,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                         String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
                         int i = Integer.parseInt(now);
                         int i1 = Integer.parseInt(selectTime);
-                        if (i>i1) {
+                        if (i > i1) {
                             tvLaifanTimeResult = "";
                             showToast("来访时间不得小于当前时间");
                         } else {
@@ -278,4 +279,10 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

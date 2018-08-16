@@ -15,6 +15,7 @@ import com.yijian.staff.bean.CourseInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
+import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 
@@ -98,7 +99,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", appointId);
-        HttpManager.getHasHeaderHasParam(HttpManager.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -187,7 +188,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", appointId);
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHasHeaderHasParam(CourseUrls.COACH_PRIVATE_COURSE_STOCK_RECORD_SHANGKE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -211,7 +212,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("appointId", appointId);
 
-        HttpManager.postHasHeaderHasParam(HttpManager.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHasHeaderHasParam(CourseUrls.COACH_PRIVATE_COURSE_STOCK_RECORD_XIAKE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();

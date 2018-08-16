@@ -59,7 +59,7 @@ public class TabMenuHelper {
         for (int i = 0; i < dataJsonArray.size(); i++) {
             JSONObject o = (JSONObject) dataJsonArray.get(i);
             String title = o.getString("title");
-            JSONArray items = o.getJSONArray("item");
+            JSONArray items = o.getJSONArray("schedule_week_timetable_item");
 
             switch (title) {
                 case GROUP_FREQUENTLY:
@@ -113,7 +113,7 @@ public class TabMenuHelper {
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject o = (JSONObject) jsonArray.get(i);
             String title = o.getString("title");
-            JSONArray items = o.getJSONArray("item");
+            JSONArray items = o.getJSONArray("schedule_week_timetable_item");
 
             switch (title) {
                 case GROUP_FREQUENTLY:

@@ -43,7 +43,6 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
     private NoScrollRecycleView recyclerView;
     private static String TAG = ScheduleWeekFragment.class.getSimpleName();
 
-    private List<TextView> timeViews = new ArrayList<>();
 
     @Override
     public int getLayoutId() {

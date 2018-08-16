@@ -120,7 +120,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Implementation of Adapter.onCreateViewHolder(ViewGroup, int)
-     * that determines if the list item is a parent or a child and calls through
+     * that determines if the list schedule_week_timetable_item is a parent or a child and calls through
      * to the appropriate implementation of either {@link #onCreateParentViewHolder(ViewGroup, int)}
      * or {@link #onCreateChildViewHolder(ViewGroup, int)}.
      *
@@ -148,7 +148,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Implementation of Adapter.onBindViewHolder(RecyclerView.ViewHolder, int)
-     * that determines if the list item is a parent or a child and calls through
+     * that determines if the list schedule_week_timetable_item is a parent or a child and calls through
      * to the appropriate implementation of either
      * {@link #onBindParentViewHolder(ParentViewHolder, int, Parent)} or
      * {@link #onBindChildViewHolder(ChildViewHolder, int, int, Object)}.
@@ -161,7 +161,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     @UiThread
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int flatPosition) {
         if (flatPosition > mFlatItemList.size()) {
-            throw new IllegalStateException("Trying to bind item out of bounds, size " + mFlatItemList.size()
+            throw new IllegalStateException("Trying to bind schedule_week_timetable_item out of bounds, size " + mFlatItemList.size()
                     + " flatPosition " + flatPosition + ". Was the data changed without a call to notify...()?");
         }
 
@@ -185,7 +185,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Callback called from {@link #onCreateViewHolder(ViewGroup, int)} when
-     * the list item created is a parent.
+     * the list schedule_week_timetable_item created is a parent.
      *
      * @param parentViewGroup The {@link ViewGroup} in the list for which a {@link PVH} is being
      *                        created
@@ -197,7 +197,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Callback called from {@link #onCreateViewHolder(ViewGroup, int)} when
-     * the list item created is a child.
+     * the list schedule_week_timetable_item created is a child.
      *
      * @param childViewGroup The {@link ViewGroup} in the list for which a {@link CVH}
      *                       is being created
@@ -209,7 +209,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Callback called from onBindViewHolder(RecyclerView.ViewHolder, int)
-     * when the list item bound to is a parent.
+     * when the list schedule_week_timetable_item bound to is a parent.
      * <p>
      * Bind data to the {@link PVH} here.
      *
@@ -222,7 +222,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Callback called from onBindViewHolder(RecyclerView.ViewHolder, int)
-     * when the list item bound to is a child.
+     * when the list schedule_week_timetable_item bound to is a child.
      * <p>
      * Bind data to the {@link CVH} here.
      *
@@ -251,7 +251,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * of this method.
      *
      * @param flatPosition The index in the merged list of children and parents to get the view type of
-     * @return Gets the view type of the item at the given flatPosition.
+     * @return Gets the view type of the schedule_week_timetable_item at the given flatPosition.
      */
     @Override
     @UiThread
@@ -269,7 +269,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * <p>
      * The default implementation of this method returns {@link #TYPE_PARENT}, making the assumption of
      * a single view type for the parents in this adapter. Unlike ListView adapters, types need not
-     * be contiguous. Consider using id resources to uniquely identify item view types.
+     * be contiguous. Consider using id resources to uniquely identify schedule_week_timetable_item view types.
      * <p>
      * If you are overriding this method make sure to override {@link #isParentViewType(int)} as well.
      * <p>
@@ -290,7 +290,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * <p>
      * The default implementation of this method returns {@link #TYPE_CHILD}, making the assumption of
      * a single view type for the children in this adapter. Unlike ListView adapters, types need not
-     * be contiguous. Consider using id resources to uniquely identify item view types.
+     * be contiguous. Consider using id resources to uniquely identify schedule_week_timetable_item view types.
      * <p>
      * Start your defined viewtypes at {@link #TYPE_FIRST_USER}
      *
@@ -431,7 +431,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
          * <p>
          * Called when a {@link P} is triggered to expand.
          *
-         * @param flatParentPosition The index of the item in the list being expanded, relative to the flattened list
+         * @param flatParentPosition The index of the schedule_week_timetable_item in the list being expanded, relative to the flattened list
          */
         @Override
         @UiThread
@@ -444,7 +444,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
          * <p>
          * Called when a {@link P} is triggered to collapse.
          *
-         * @param flatParentPosition The index of the item in the list being collapsed, relative to the flattened list
+         * @param flatParentPosition The index of the schedule_week_timetable_item in the list being collapsed, relative to the flattened list
          */
         @Override
         @UiThread
@@ -709,7 +709,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     }
 
     /**
-     * Collapses a specified parent item. Calls through to the
+     * Collapses a specified parent schedule_week_timetable_item. Calls through to the
      * ExpandCollapseListener and removes children of the specified parent from the
      * flat list of items.
      *
@@ -766,7 +766,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     }
 
     /**
-     * Given the index relative to the entire RecyclerView for a child item,
+     * Given the index relative to the entire RecyclerView for a child schedule_week_timetable_item,
      * returns the child position within the child list of the parent.
      */
     @UiThread
@@ -966,14 +966,14 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Notify any registered observers that the parent at {@code parentPosition} has changed.
-     * This will also trigger an item changed for children of the parent list specified.
+     * This will also trigger an schedule_week_timetable_item changed for children of the parent list specified.
      * <p>
-     * This is an item change event, not a structural change event. It indicates that any
+     * This is an schedule_week_timetable_item change event, not a structural change event. It indicates that any
      * reflection of the data at {@code parentPosition} is out of date and should be updated.
      * The parent at {@code parentPosition} retains the same identity. This means
      * the number of children must stay the same.
      *
-     * @param parentPosition Position of the item that has changed
+     * @param parentPosition Position of the schedule_week_timetable_item that has changed
      */
     @UiThread
     public void notifyParentChanged(int parentPosition) {
@@ -986,15 +986,15 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Notify any registered observers that the {@code itemCount} parents starting
-     * at {@code parentPositionStart} have changed. This will also trigger an item changed
+     * at {@code parentPositionStart} have changed. This will also trigger an schedule_week_timetable_item changed
      * for children of the parent list specified.
      * <p>
-     * This is an item change event, not a structural change event. It indicates that any
+     * This is an schedule_week_timetable_item change event, not a structural change event. It indicates that any
      * reflection of the data in the given position range is out of date and should be updated.
      * The parents in the given range retain the same identity. This means that the number of
      * children must stay the same.
      *
-     * @param parentPositionStart Position of the item that has changed
+     * @param parentPositionStart Position of the schedule_week_timetable_item that has changed
      * @param itemCount           Number of parents changed in the data set
      */
     @UiThread
@@ -1099,8 +1099,8 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
 
     /**
      * Notify any registered observers that the parent reflected at {@code parentPosition}
-     * has a child list item that has been newly inserted at {@code childPosition}.
-     * The child list item previously at {@code childPosition} is now at
+     * has a child list schedule_week_timetable_item that has been newly inserted at {@code childPosition}.
+     * The child list schedule_week_timetable_item previously at {@code childPosition} is now at
      * position {@code childPosition + 1}.
      * <p>
      * This is a structural change event. Representations of other existing items in the
@@ -1128,7 +1128,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     /**
      * Notify any registered observers that the parent reflected at {@code parentPosition}
      * has {@code itemCount} child list items that have been newly inserted at {@code childPositionStart}.
-     * The child list item previously at {@code childPositionStart} and beyond are now at
+     * The child list schedule_week_timetable_item previously at {@code childPositionStart} and beyond are now at
      * position {@code childPositionStart + itemCount}.
      * <p>
      * This is a structural change event. Representations of other existing items in the
@@ -1161,7 +1161,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     /**
      * Notify any registered observers that the parent located at {@code parentPosition}
      * has a child that has been removed from the data set, previously located at {@code childPosition}.
-     * The child list item previously located at and after {@code childPosition} may
+     * The child list schedule_week_timetable_item previously located at and after {@code childPosition} may
      * now be found at {@code childPosition - 1}.
      * <p>
      * This is a structural change event. Representations of other existing items in the
@@ -1219,7 +1219,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * Notify any registered observers that the parent at {@code parentPosition} has
      * a child located at {@code childPosition} that has changed.
      * <p>
-     * This is an item change event, not a structural change event. It indicates that any
+     * This is an schedule_week_timetable_item change event, not a structural change event. It indicates that any
      * reflection of the data at {@code childPosition} is out of date and should be updated.
      * The parent at {@code childPosition} retains the same identity.
      *
@@ -1244,7 +1244,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
      * Notify any registered observers that the parent at {@code parentPosition} has
      * {@code itemCount} children starting at {@code childPositionStart} that have changed.
      * <p>
-     * This is an item change event, not a structural change event. It indicates that any
+     * This is an schedule_week_timetable_item change event, not a structural change event. It indicates that any
      * The parent at {@code childPositionStart} retains the same identity.
      * reflection of the set of {@code itemCount} children starting at {@code childPositionStart}
      * are out of date and should be updated.
@@ -1271,7 +1271,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     }
 
     /**
-     * Notify any registered observers that the child list item contained within the parent
+     * Notify any registered observers that the child list schedule_week_timetable_item contained within the parent
      * at {@code parentPosition} has moved from {@code fromChildPosition} to {@code toChildPosition}.
      * <p>
      * <p>This is a structural change event. Representations of other existing items in the
@@ -1388,7 +1388,7 @@ public abstract class ExpandableRecyclerAdapter<P extends Parent<C>, C, PVH exte
     }
 
     /**
-     * Gets the index of a ExpandableWrapper within the helper item list based on
+     * Gets the index of a ExpandableWrapper within the helper schedule_week_timetable_item list based on
      * the index of the ExpandableWrapper.
      *
      * @param parentPosition The index of the parent in the list of parents

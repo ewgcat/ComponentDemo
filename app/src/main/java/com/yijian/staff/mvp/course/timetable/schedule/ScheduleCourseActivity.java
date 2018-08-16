@@ -36,7 +36,7 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
         return R.layout.activity_schedule_course;
     }
 
-    private int index = 1;
+    private int index = 0;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -54,19 +54,19 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
         hideAllIndex(fragmentTransaction);
         switch (index) {
             case 0:
-                if (scheduleDayFragment == null) {
-                    scheduleDayFragment = new ScheduleDayFragment();
-                    fragmentTransaction.add(R.id.fl_content, scheduleDayFragment);
-                } else {
-                    fragmentTransaction.show(scheduleDayFragment);
-                }
-                break;
-            case 1:
                 if (scheduleWeekFragment == null) {
                     scheduleWeekFragment = new ScheduleWeekFragment();
                     fragmentTransaction.add(R.id.fl_content, scheduleWeekFragment);
                 } else {
                     fragmentTransaction.show(scheduleWeekFragment);
+                }
+                break;
+            case 1:
+                if (scheduleDayFragment == null) {
+                    scheduleDayFragment = new ScheduleDayFragment();
+                    fragmentTransaction.add(R.id.fl_content, scheduleDayFragment);
+                } else {
+                    fragmentTransaction.show(scheduleDayFragment);
                 }
                 break;
         }

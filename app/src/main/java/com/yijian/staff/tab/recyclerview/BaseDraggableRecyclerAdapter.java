@@ -71,9 +71,9 @@ public abstract class BaseDraggableRecyclerAdapter<VH extends RecyclerView.ViewH
     /**
      * 重写该方法来设置可以Drag的Item的范围，默认是所有的都可以drag
      *
-     * @param holder   The ViewHolder which is associated to item_curriculum user is attempt to start dragging.
-     * @param position The position of the item_curriculum within the adapter's data set.
-     * @return null: no constraints (= new ItemDraggableRange(0, getItemCount() - 1)), otherwise: the range specified item_curriculum can be drag-sortable.
+     * @param holder   The ViewHolder which is associated to item user is attempt to start dragging.
+     * @param position The position of the item within the adapter's data set.
+     * @return null: no constraints (= new ItemDraggableRange(0, getItemCount() - 1)), otherwise: the range specified item can be drag-sortable.
      */
     @Override
     public ItemDraggableRange onGetItemDraggableRange(VH holder, int position) {

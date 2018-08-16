@@ -217,7 +217,7 @@ public class HttpManager {
     public static String GET_WORK_NEW_MENU_URL =  "homepage/new/data";
 
     //保存 图标位置
-    public static String SAVE_MENU_CHANGE_URL =  "menu/common/item_curriculum/save";
+    public static String SAVE_MENU_CHANGE_URL =  "menu/common/item/save";
 
     //登录
     public static String LOGIN_URL =  "user/login";

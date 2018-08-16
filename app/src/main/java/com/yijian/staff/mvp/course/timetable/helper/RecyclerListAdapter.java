@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.course.timetable.helper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_curriculum, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         ItemViewHolder itemViewHolder = new ItemViewHolder(view,width,height);
         return itemViewHolder;
     }

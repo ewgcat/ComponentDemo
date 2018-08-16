@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -16,11 +17,17 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.course.punch.PunchCourseActivity;
+import com.yijian.staff.mvp.course.shangke.DaKaActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.ScheduleCourseActivity;
+import com.yijian.staff.mvp.course.yueke.YueKeBiaoActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
+import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
 import com.yijian.staff.mvp.main.mine.club.ClubActivity;
+import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.main.mine.qualification.MyQualificationActivity;
 import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
@@ -119,7 +126,7 @@ public class MineFragment extends Fragment {
                 startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
                 break;
             case R.id.ll_suggestion:
-                startActivity(new Intent(getContext(), PunchCourseActivity.class));
+                startActivity(new Intent(getContext(), DaKaActivity.class));
 //                startActivity(new Intent(getContext(), AddAdviceActivity.class));
                 break;
         }

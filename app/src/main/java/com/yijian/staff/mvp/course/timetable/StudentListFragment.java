@@ -3,10 +3,15 @@ package com.yijian.staff.mvp.course.timetable;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -15,15 +20,22 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.StudentBean;
+import com.yijian.staff.bean.TypeOfCunKeBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.course.cunke.CunKeNewAdapter;
+import com.yijian.staff.mvp.course.cunke.CunkeNewActivity;
 import com.yijian.staff.mvp.course.timetable.addstudent.AddStudentActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,7 +43,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class StudentListFragment extends MvcBaseFragment {
 

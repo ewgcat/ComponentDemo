@@ -209,6 +209,21 @@ public class DateUtil {
     }
 
     /**
+     * 根据输入的日期 获得当前日期为周几
+     * @param dt
+     * @return
+     */
+    public static String getWeekOfDate(Date dt) {
+        String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dt);
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+        return weekDays[w];
+    }
+
+    /**
      * 时间戳转换成字符窜
      *
      * @param milSecond

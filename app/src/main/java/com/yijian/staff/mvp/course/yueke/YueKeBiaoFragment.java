@@ -12,12 +12,18 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.timetable.helper.MyScollView;
 import com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.TimeLayout;
 import com.yijian.staff.util.CommonUtil;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.BindView;
 
@@ -65,12 +71,32 @@ public class YueKeBiaoFragment extends MvcBaseFragment implements ScrollViewList
 
     }
 
+    public void initData(){
+
+        HashMap<String,String> map=new HashMap<>();
+        map.put("mmddmmdd","");
+        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+    }
+
+
+
+
+
     private void scoll(int i){
         scollView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 scollView.smoothScrollTo(0,i);
-
             }
         },100);
     }

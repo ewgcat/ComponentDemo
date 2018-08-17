@@ -133,15 +133,13 @@ public class FaceInfoPanel extends PopupWindow {
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
         }
-
-        tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
+        try{
+            tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
+        }catch (Exception e){
+            tv_detail_has_child.setText("暂无录入");
+        }
         tv_detail_build_num.setText(emptyNull(faceDetail.getBuildCount()+"","次"));
         tv_detail_expe_num.setText(emptyNull(faceDetail.getExperienceCourseCount()+"","次"));
-//        rel_coach.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
-//        rel_course_progress.setVisibility(faceDetail.getCoachName() == null ? View.GONE : View.VISIBLE);
-//        rel_record_build_time.setVisibility(faceDetail.getBEntranceRecord()==null?View.GONE:View.VISIBLE);
-
-
     }
 
     private String emptyNull(String str,String appendStr){
@@ -199,8 +197,8 @@ public class FaceInfoPanel extends PopupWindow {
 
             public void bind(FaceDetail faceDetail, Context context) {
                 ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_header);
-                tv_memberName.setText(faceDetail.getMemberName());
-                tv_cardName.setText(faceDetail.getCardName());
+                tv_memberName.setText(TextUtils.isEmpty(faceDetail.getMemberName())?"暂未录入":faceDetail.getMemberName());
+                tv_cardName.setText(TextUtils.isEmpty(faceDetail.getCardName())?"暂未录入" : faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     tv_expirationDate.setText(faceDetail.getExpirationDate()==null?"未知":simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));

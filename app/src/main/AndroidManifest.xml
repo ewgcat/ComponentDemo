@@ -564,11 +564,11 @@
             android:name=".mvp.taskcenter.list.RankListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.addstudent.AddStudentActivity"
+            android:name=".mvp.course.timetable.schedule.week.addstudent.step1.AddStudentCourseStepOneActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.addstudent.SetCourseTimeActivity"
+            android:name=".mvp.course.timetable.schedule.week.addstudent.step2.AddStudentCourseStepTwoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

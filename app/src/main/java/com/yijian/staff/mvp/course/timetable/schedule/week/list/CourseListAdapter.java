@@ -12,19 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.StudentBean;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentListAdapter extends RecyclerView.Adapter {
+public class CourseListAdapter extends RecyclerView.Adapter {
 
-    private List<StudentBean> dataList = new ArrayList<>();
+    private List<CourseStudentBean> dataList = new ArrayList<>();
     private Context mContext;
 
-    public StudentListAdapter(Context context, List<StudentBean> dataList) {
+    public CourseListAdapter(Context context, List<CourseStudentBean> dataList) {
         this.mContext = context;
         this.dataList = dataList;
     }
@@ -69,20 +69,20 @@ public class StudentListAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void bindView(StudentBean studentBean) {
-//            tvTime.setText(studentBean.getTime()+"");
-            tvName.setText(studentBean.getName());
-            int resId = studentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        public void bindView(CourseStudentBean courseStudentBean) {
+//            tvTime.setText(courseStudentBean.getTime()+"");
+            tvName.setText(courseStudentBean.getName());
+            int resId = courseStudentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId,mContext,ivSex);
-            tvCourseName.setText(studentBean.getCourseName());
-            tvCourseTime.setText(" ("+studentBean.getCourseTime()+"分钟）");
-            ImageLoader.setImageResource(studentBean.getHeadImg(),mContext,ivHead);
+            tvCourseName.setText(courseStudentBean.getCourseName());
+            tvCourseTime.setText(" ("+ courseStudentBean.getCourseTime()+"分钟）");
+            ImageLoader.setImageResource(courseStudentBean.getHeadImg(),mContext,ivHead);
             ivEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, EditCourseTimeActivity.class);
                     Bundle bundle=new Bundle();
-                    bundle.putSerializable("StudentBean",studentBean);
+                    bundle.putSerializable("CourseStudentBean", courseStudentBean);
                     intent.putExtras(bundle);
                     mContext. startActivity(intent);
                 }

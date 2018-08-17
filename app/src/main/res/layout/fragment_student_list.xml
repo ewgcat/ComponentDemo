@@ -5,15 +5,10 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
-
-        <include layout="@layout/layout_base_smart_refresh_layout_recyclerview" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
 
     <View
         android:layout_width="match_parent"

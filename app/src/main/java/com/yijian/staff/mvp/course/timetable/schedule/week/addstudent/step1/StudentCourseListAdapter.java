@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent;
+package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step1;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.util.ImageLoader;
@@ -21,14 +22,14 @@ import drawthink.expandablerecyclerview.bean.RecyclerViewData;
  * email：850716183@qq.com
  * time: 2018/7/31 11:37:17
  */
-public class GroupedListAdapter extends BaseRecyclerViewAdapter<GroupedStudentBean, GroupedStudentBean.CourseBean, GroupedViewHolder> {
+public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStudentBean, GroupedStudentBean.PrivateCoachCourseVOSBean, StudentCourseViewHolder> {
 
     private Context context;
     private List<RecyclerViewData> datas = new ArrayList<>();
     private LayoutInflater mInflater;
 
 
-    public GroupedListAdapter(Context context, List<RecyclerViewData> datas) {
+    public StudentCourseListAdapter(Context context, List<RecyclerViewData> datas) {
         super(context, datas);
         this.context = context;
         this.datas = datas;
@@ -47,26 +48,26 @@ public class GroupedListAdapter extends BaseRecyclerViewAdapter<GroupedStudentBe
     }
 
     @Override
-    public GroupedViewHolder createRealViewHolder(Context ctx, View view, int viewType) {
-        return new GroupedViewHolder(ctx, view, viewType);
+    public StudentCourseViewHolder createRealViewHolder(Context ctx, View view, int viewType) {
+        return new StudentCourseViewHolder(ctx, view, viewType);
 
     }
 
     @Override
-    public void onBindGroupHolder(GroupedViewHolder holder, int groupPos, int position, GroupedStudentBean groupData) {
-        holder.tvName.setText(groupData.getName());
+    public void onBindGroupHolder(StudentCourseViewHolder holder, int groupPos, int position, GroupedStudentBean groupData) {
+        holder.tvName.setText(groupData.getMemberName());
         boolean expand = datas.get(groupPos).getGroupItem().isExpand();
         int resId = expand ? R.mipmap.select : R.mipmap.circle_normal;
         ImageLoader.setImageResource(resId, context, holder.ivselect);
-        int resIdsex = groupData.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        int resIdsex = groupData.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
         ImageLoader.setImageResource(resIdsex,context,holder.ivSex);
-        ImageLoader.setImageResource(groupData.getHeadImg(),context,holder.ivHeader);
+        ImageLoader.setImageResource(BuildConfig.FILE_HOST+groupData.getHeadPath(),context,holder.ivHeader);
     }
 
     @Override
-    public void onBindChildpHolder(GroupedViewHolder holder, int groupPos, int childPos, int position, GroupedStudentBean.CourseBean childData) {
-        holder.tvCourseName.setText(childData.getCourseName());
-        holder.tvCourseTime.setText(childData.getCourseTime());
+    public void onBindChildpHolder(StudentCourseViewHolder holder, int groupPos, int childPos, int position, GroupedStudentBean.PrivateCoachCourseVOSBean childData) {
+        holder.tvCourseName.setText(childData.getMemberCourseName());
+        holder.tvCourseTime.setText(childData.getConsumingMinute());
         if (childPos == selectChildPosition) {
             holder.rlCourse.setBackground(context.getDrawable(R.drawable.blue_stroke_bg));
         } else {

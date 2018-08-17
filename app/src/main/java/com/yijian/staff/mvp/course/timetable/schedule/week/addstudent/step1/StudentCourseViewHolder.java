@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent;
+package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step1;
 
 import android.content.Context;
 import android.view.View;
@@ -15,7 +15,7 @@ import drawthink.expandablerecyclerview.holder.BaseViewHolder;
  * email：850716183@qq.com
  * time: 2018/7/31 15:30:53
  */
-public class GroupedViewHolder extends BaseViewHolder {
+public class StudentCourseViewHolder extends BaseViewHolder {
 
     public final ImageView ivHeader;
     public final ImageView ivSex;
@@ -25,7 +25,7 @@ public class GroupedViewHolder extends BaseViewHolder {
     public final TextView tvCourseName;
     public final TextView tvCourseTime;
 
-    public GroupedViewHolder(Context ctx, View itemView, int viewType) {
+    public StudentCourseViewHolder(Context ctx, View itemView, int viewType) {
         super(ctx, itemView, viewType);
         ivHeader = itemView.findViewById(R.id.iv_header);
         ivSex = itemView.findViewById(R.id.iv_sex);

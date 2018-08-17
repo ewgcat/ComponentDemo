@@ -10,7 +10,7 @@ import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.StudentBean;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
@@ -67,7 +67,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_edit_course_time;
+        return R.layout.activity_edit_student_course_step_two;
     }
 
     @Override
@@ -90,13 +90,13 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
         initSetTime();
 
-        StudentBean studentBean = (StudentBean) getIntent().getSerializableExtra("StudentBean");
+        CourseStudentBean courseStudentBean = (CourseStudentBean) getIntent().getSerializableExtra("CourseStudentBean");
 
-        ImageLoader.setImageResource(studentBean.getHeadImg(), this, ivHeader);
-        int resId = studentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        ImageLoader.setImageResource(courseStudentBean.getHeadImg(), this, ivHeader);
+        int resId = courseStudentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
         ImageLoader.setImageResource(resId, this, ivSex);
-        tvName.setText(studentBean.getName());
-        tvCourse.setText(studentBean.getCourseName() + "（" + studentBean.getCourseTime() + "分钟)");
+        tvName.setText(courseStudentBean.getName());
+        tvCourse.setText(courseStudentBean.getCourseName() + "（" + courseStudentBean.getCourseTime() + "分钟)");
     }
 
     private void initSetTime() {

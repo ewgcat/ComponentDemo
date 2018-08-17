@@ -4,14 +4,27 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.schedule.week.list.StudentListFragment;
+import com.yijian.staff.mvp.course.timetable.schedule.week.list.CourseListAdapter;
+import com.yijian.staff.mvp.course.timetable.schedule.week.list.CourseListFragment;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.widget.NavigationBar2;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,8 +62,9 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     View line6;
     @BindView(R.id.fl_content)
     FrameLayout flContent;
-    private StudentListFragment fragment0, fragment1, fragment2, fragment3, fragment4, fragment5, fragment6;
+    private CourseListFragment fragment0, fragment1, fragment2, fragment3, fragment4, fragment5, fragment6;
 
+    private List<CourseStudentBean> dataList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {
@@ -68,6 +82,24 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         selectWeekDay(0);
     }
 
+    private void initData() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("version", "1.3.0");
+
+        HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONArray result) {
+
+                List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+                showToast(msg);
+            }
+        });
+    }
 
     private void changeFragment(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -76,7 +108,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         switch (index) {
             case 0:
                 if (fragment0 == null) {
-                    fragment0 = new StudentListFragment();
+                    fragment0 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment0);
                 } else {
                     fragmentTransaction.show(fragment0);
@@ -84,7 +116,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 1:
                 if (fragment1 == null) {
-                    fragment1 = new StudentListFragment();
+                    fragment1 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment1);
                 } else {
                     fragmentTransaction.show(fragment1);
@@ -92,7 +124,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 2:
                 if (fragment2 == null) {
-                    fragment2 = new StudentListFragment();
+                    fragment2 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment2);
                 } else {
                     fragmentTransaction.show(fragment2);
@@ -100,7 +132,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 3:
                 if (fragment3 == null) {
-                    fragment3 = new StudentListFragment();
+                    fragment3 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment3);
                 } else {
                     fragmentTransaction.show(fragment3);
@@ -108,7 +140,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 4:
                 if (fragment4 == null) {
-                    fragment4 = new StudentListFragment();
+                    fragment4 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment4);
                 } else {
                     fragmentTransaction.show(fragment4);
@@ -116,7 +148,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 5:
                 if (fragment5 == null) {
-                    fragment5 = new StudentListFragment();
+                    fragment5 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment5);
                 } else {
                     fragmentTransaction.show(fragment5);
@@ -124,7 +156,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 break;
             case 6:
                 if (fragment6 == null) {
-                    fragment6 = new StudentListFragment();
+                    fragment6 = new CourseListFragment();
                     fragmentTransaction.add(R.id.fl_content, fragment6);
                 } else {
                     fragmentTransaction.show(fragment6);

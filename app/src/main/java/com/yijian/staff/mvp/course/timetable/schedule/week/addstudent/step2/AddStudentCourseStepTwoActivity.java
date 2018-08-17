@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent;
+package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -21,8 +22,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SetCourseTimeActivity extends MvcBaseActivity {
-
+/**
+ * author：李帅华
+ * email：850716183@qq.com
+ * time: 2018/8/17 09:57:56
+ */
+public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -67,7 +72,7 @@ public class SetCourseTimeActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_edit_sudent_course;
+        return R.layout.activity_add_sudent_course_step_two;
     }
 
     @Override
@@ -91,13 +96,13 @@ public class SetCourseTimeActivity extends MvcBaseActivity {
         initSetTime();
 
         GroupedStudentBean selectGroupedStudentBean = (GroupedStudentBean) getIntent().getSerializableExtra("selectGroupedStudentBean");
-        GroupedStudentBean.CourseBean course = (GroupedStudentBean.CourseBean) getIntent().getSerializableExtra("course");
+        GroupedStudentBean.PrivateCoachCourseVOSBean course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
 
-        ImageLoader.setImageResource(selectGroupedStudentBean.getHeadImg(), this, ivHeader);
-        int resId = selectGroupedStudentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+        ImageLoader.setImageResource(BuildConfig.FILE_HOST+selectGroupedStudentBean.getHeadPath(), this, ivHeader);
+        int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
         ImageLoader.setImageResource(resId,this,ivSex);
-        tvName.setText(selectGroupedStudentBean.getName());
-        tvCourse.setText(course.getCourseName() + "（" + course.getCourseTime() + ")");
+        tvName.setText(selectGroupedStudentBean.getMemberName());
+        tvCourse.setText(course.getMemberCourseName() + "（" + course.getConsumingMinute() + ")");
     }
 
     private void initSetTime() {

@@ -10,70 +10,93 @@ import java.util.List;
  */
 public class GroupedStudentBean implements Serializable{
 
-    private String name;
-    private String headImg;
-    private int sex;
-    private List<CourseBean> courses;
+    /**
+     * headPath : string
+     * memberId : string
+     * memberName : string
+     * memberSex : 0
+     * privateCoachCourseVOS : [{"consumingMinute":0,"memberCourseId":"string","memberCourseName":"string"}]
+     */
 
-    public int getSex() {
-        return sex;
+    private String headPath;
+    private String memberId;
+    private String memberName;
+    private int memberSex;
+    private List<PrivateCoachCourseVOSBean> privateCoachCourseVOS;
+
+    public String getHeadPath() {
+        return headPath;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
     }
 
-    public String getName() {
-        return name;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
-    public String getHeadImg() {
-        return headImg;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public List<CourseBean> getCourses() {
-        return courses;
+    public int getMemberSex() {
+        return memberSex;
     }
 
-    public void setCourses(List<CourseBean> courses) {
-        this.courses = courses;
+    public void setMemberSex(int memberSex) {
+        this.memberSex = memberSex;
     }
 
-    public static class CourseBean  implements Serializable{
-        private String courseTime;
-        private String courseName;
-        private Long id;
+    public List<PrivateCoachCourseVOSBean> getPrivateCoachCourseVOS() {
+        return privateCoachCourseVOS;
+    }
 
-        public String getCourseTime() {
-            return courseTime;
+    public void setPrivateCoachCourseVOS(List<PrivateCoachCourseVOSBean> privateCoachCourseVOS) {
+        this.privateCoachCourseVOS = privateCoachCourseVOS;
+    }
+
+    public static class PrivateCoachCourseVOSBean implements Serializable{
+        /**
+         * consumingMinute : 0
+         * memberCourseId : string
+         * memberCourseName : string
+         */
+
+        private int consumingMinute;
+        private String memberCourseId;
+        private String memberCourseName;
+
+        public int getConsumingMinute() {
+            return consumingMinute;
         }
 
-        public void setCourseTime(String courseTime) {
-            this.courseTime = courseTime;
+        public void setConsumingMinute(int consumingMinute) {
+            this.consumingMinute = consumingMinute;
         }
 
-        public String getCourseName() {
-            return courseName;
+        public String getMemberCourseId() {
+            return memberCourseId;
         }
 
-        public void setCourseName(String courseName) {
-            this.courseName = courseName;
+        public void setMemberCourseId(String memberCourseId) {
+            this.memberCourseId = memberCourseId;
         }
 
-        public Long getId() {
-            return id;
+        public String getMemberCourseName() {
+            return memberCourseName;
         }
 
-        public void setId(Long id) {
-            this.id = id;
+        public void setMemberCourseName(String memberCourseName) {
+            this.memberCourseName = memberCourseName;
         }
     }
 }

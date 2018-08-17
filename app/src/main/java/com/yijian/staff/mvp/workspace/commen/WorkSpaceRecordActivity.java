@@ -120,6 +120,8 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
             type = "1";
         }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.moduleType)){ //运动表现
             type = "2";
+        }else if(ActivityUtils.MODULE_STATIC_EVALUATE.equals(ActivityUtils.moduleType)){ //静态评估
+            type = "3";
         }
         map.put("types", type);
         map.put("memberId", ActivityUtils.workSpaceVipBean.getMemberId());

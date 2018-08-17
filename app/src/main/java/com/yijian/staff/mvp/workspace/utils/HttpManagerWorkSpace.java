@@ -6,9 +6,11 @@ import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+
 import org.json.JSONObject;
 
 import java.io.File;
@@ -30,16 +32,16 @@ public class HttpManagerWorkSpace {
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
     private static String HOST;
 
-    public static void setWorkSpaceHost(boolean isWorkspace){
+    public static void setWorkSpaceHost(boolean isWorkspace) {
         SharePreferenceUtil.setWorkSpaceHost(isWorkspace);
         HOST = SharePreferenceUtil.getHostUrl();
     }
 
-    public static String getH5Host(){
+    public static String getH5Host() {
         return SharePreferenceUtil.getH5Url();
     }
 
-    public static String getFileHost(){
+    public static String getFileHost() {
         return SharePreferenceUtil.getImageUrl();
     }
 
@@ -62,11 +64,13 @@ public class HttpManagerWorkSpace {
     public static String WORKSPACE_UPLOAD_FILE__URL = "file/newUploadFiles";
     //保存运动表现
     public static String WORKSPACE_SAVE_SPORT_URL = "coach/side/fuzzy/saveOrUpdateYD";
+    //保存静态评估
+    public static String WORKSPACE_SAVE_STATIC_URL = "coach/side/fuzzy/saveOrUpdateTy";
 
 
     // get无头有参
     public static void getNoHeaderHasParam(String url, Map<String, String> param, Observer<JSONObject> observer) {
-        Observable<JSONObject> observable = apiService.getNoHeaderHasParam(SharePreferenceUtil.getHostUrl()+url, param);
+        Observable<JSONObject> observable = apiService.getNoHeaderHasParam(SharePreferenceUtil.getHostUrl() + url, param);
         execute(observable, observer);
     }
 
@@ -85,7 +89,7 @@ public class HttpManagerWorkSpace {
     }
 
     //保存完美围度
-    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer){
+    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
@@ -98,7 +102,7 @@ public class HttpManagerWorkSpace {
     }
 
     //保存运动表现
-    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer){
+    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
@@ -110,7 +114,27 @@ public class HttpManagerWorkSpace {
         }
     }
 
-    public static void upLoadImageHasParam(String url, String imageFilePath, Integer fileType, Observer<JSONObject> observer){
+    //保存静态评估表现
+    public static void postStaticInfo(StaticRequestBody staticRequestBody, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            Observable<JSONObject> observable = apiService.postStaticInfo(HOST + WORKSPACE_SAVE_STATIC_URL, headers, staticRequestBody);
+            execute(observable, observer);
+        }
+    }
+
+    /**
+     * 单文件上传
+     * @param url
+     * @param imageFilePath
+     * @param fileType
+     * @param observer
+     */
+    public static void upLoadImageHasParam(String url, String imageFilePath, Integer fileType, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
@@ -127,7 +151,35 @@ public class HttpManagerWorkSpace {
 
             List<MultipartBody.Part> parts = new ArrayList<>();
             parts.add(body);
-            Observable<JSONObject> observable = apiService.upLoadImageHasParam(SharePreferenceUtil.getHostUrl() + url,headers, fileType, parts);
+            Observable<JSONObject> observable = apiService.upLoadImageHasParam(SharePreferenceUtil.getHostUrl() + url, headers, fileType, parts);
+            execute(observable, observer);
+        }
+    }
+
+    /**
+     * 多文件上传
+     * @param url
+     * @param paths
+     * @param fileType
+     * @param observer
+     */
+    public static void upLoadImageListHasParam(String url, Integer fileType, Observer<JSONObject> observer, String... paths) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            List<MultipartBody.Part> parts = new ArrayList<>();
+            for (String imageFilePath : paths) {
+                File file = new File(imageFilePath);
+                // 创建 RequestBody，用于封装构建RequestBody
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFiles", file.getName(), requestFile);
+                parts.add(body);
+            }
+            Observable<JSONObject> observable = apiService.upLoadImageHasParam(SharePreferenceUtil.getHostUrl() + url, headers, fileType, parts);
             execute(observable, observer);
         }
     }

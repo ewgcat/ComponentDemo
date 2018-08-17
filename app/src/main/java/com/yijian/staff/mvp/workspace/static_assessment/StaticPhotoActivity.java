@@ -36,12 +36,17 @@ import com.yijian.staff.mvp.workspace.utils.StreamUtils;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.widget.NavigationBar2;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -52,6 +57,8 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     private SurfaceHolder mHolder;
     private static final int REQUEST_CAMERA_CODE = 0x100;
 
+    @BindView(R.id.fl_surfaceView)
+    FrameLayout fl_surfaceView;
     @BindView(R.id.iv_take)
     ImageView iv_take;
     @BindView(R.id.iv_cancel)
@@ -70,7 +77,8 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     private int screenOritation = 0;
     private int gyrosOrientation;
     private OrientationEventListener mOrientationListener;
-    private boolean initJugeFlag = true;
+    private int type = 0; //0 正面， 1 侧面
+    private int surfaceWidth,surfaceHeight,fl_surfaceViewWidth, fl_surfaceViewHeight,screenWidth,screenHeight;
 
     @Override
     protected int getLayoutID() {
@@ -81,6 +89,25 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
+        /*****************  *********************/
+        ViewTreeObserver viewTreeObserver = fl_start.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                fl_start.getViewTreeObserver()
+                        .removeGlobalOnLayoutListener(this);
+                    surfaceWidth = surfaceView.getWidth();
+                    surfaceHeight = surfaceView.getHeight();
+                fl_surfaceViewWidth = fl_surfaceView.getWidth();
+                fl_surfaceViewHeight = fl_surfaceView.getHeight();
+                screenWidth = DensityUtil.getScreenWidth(StaticPhotoActivity.this);
+                screenHeight = DensityUtil.getScreenHeight(StaticPhotoActivity.this);
+            }
+        });
+        /**************************************/
+
+        Bundle bundle = getIntent().getExtras();
+        type = bundle.getInt("type");
         mOrientationListener = new OrientationEventListener(this,
                 SensorManager.SENSOR_DELAY_NORMAL) {
 
@@ -121,11 +148,8 @@ public class StaticPhotoActivity extends MvcBaseActivity {
 
     private void initTitle() {
         NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("静态评估拍照");
+        navigationBar2.setTitle(type == 0 ? "正面照" : "侧身照");
         navigationBar2.hideLeftSecondIv();
-        TextView rightTv = navigationBar2.getmRightTv();
-        rightTv.setText("跳过");
-        rightTv.setTextColor(getResources().getColor(R.color.blue));
         navigationBar2.setBackClickListener(this);
     }
 
@@ -146,14 +170,14 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.right_tv: //跳过
-                ActivityUtils.startActivity(this,PerfectTestActivity.class);
+                ActivityUtils.startActivity(this, PerfectTestActivity.class);
                 break;
             case R.id.iv_take: //拍照
-                mCamera.takePicture(null, null, new Camera.PictureCallback(){
+                mCamera.takePicture(null, null, new Camera.PictureCallback() {
                     @Override
                     public void onPictureTaken(byte[] data, Camera camera) {
 
-                        if(gyrosOrientation > 356 || gyrosOrientation < 5){
+                        if (gyrosOrientation > 356 || gyrosOrientation < 5) {
                             mOrientationListener.disable();
                             iv_take.setVisibility(View.GONE);
                             iv_cancel.setVisibility(View.VISIBLE);
@@ -161,12 +185,12 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                             space_view.setVisibility(View.VISIBLE);
                             mCamera.stopPreview();
                             imgData = data;
-                        }else {
+                        } else {
                             Toast.makeText(StaticPhotoActivity.this, "请保持手机竖屏", Toast.LENGTH_SHORT).show();
                         }
 
                     }
-                } );
+                });
                 break;
             case R.id.iv_cancel: //取消
                 mCamera.startPreview();
@@ -177,38 +201,32 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 mOrientationListener.enable();
                 break;
             case R.id.iv_sure: //确定
-                showLoading();
+//                showLoading();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
                 Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
+
+                double scaleHeight = fl_surfaceViewHeight;
+                double scaleWidth = fl_surfaceViewWidth;
+                double surfaceScale = scaleWidth/scaleHeight;
+                double bWidth = roateBitmap.getWidth();
+                double bHeight = roateBitmap.getHeight();
+                double bitmapScale = bWidth/bHeight;
+                Bitmap sizeBitmap = null;
+                if(bitmapScale < surfaceScale){
+                    int bitmapHeight = (int) (bWidth/surfaceScale);
+                    sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bWidth, bitmapHeight);
+                } else{
+                    int bitmapWidth = (int) (bHeight*surfaceScale);
+                    sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bitmapWidth, (int) bHeight);
+                }
+
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                roateBitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                sizeBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
                 byte[] datas = baos.toByteArray();
-                StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
-
-                HttpManagerWorkSpace.upLoadImageHasParam(HttpManagerWorkSpace.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
-                    @Override
-                    public void onSuccess(JSONObject result) {
-                        try {
-                            hideLoading();
-                            roateBitmap.recycle();
-                            bitmap.recycle();
-                            JSONArray jsonArray = result.getJSONArray("dataList");
-                            String imgUrl = jsonArray.getString(0);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("imgUrl",imgUrl);
-                            ActivityUtils.startActivity(StaticPhotoActivity.this,PerfectTestActivity.class,bundle);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-                        hideLoading();
-                        Toast.makeText(StaticPhotoActivity.this,msg,Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+                StreamUtils.createFileWithByte(datas, getCacheDir() + (type == 0 ? "/img_positive.jpg" : "/img_side.jpg"));
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", type);
+                ActivityUtils.startActivity(StaticPhotoActivity.this, DragPointViewActivity.class, bundle);
                 break;
             default:
         }
@@ -222,7 +240,6 @@ public class StaticPhotoActivity extends MvcBaseActivity {
         mHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                Log.e("Test2", "surfaceCreated()....");
                 if (mCamera != null) {
                     mCamera.stopPreview();
                     mCamera.setPreviewCallback(null);
@@ -231,9 +248,9 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 mCamera = Camera.open(0);
                 try {
                     mCamera.setPreviewDisplay(mHolder);
-                    int measuredWidth = surfaceView.getMeasuredWidth();
-                    int measuredHeight = surfaceView.getMeasuredHeight();
-                    setCameraParms(mCamera, measuredWidth, measuredHeight);
+                    /*int measuredWidth = DensityUtil.getScreenWidth(StaticPhotoActivity.this);
+                    int measuredHeight = DensityUtil.getScreenHeight(StaticPhotoActivity.this);*/
+                    setCameraParms(mCamera, surfaceWidth, surfaceHeight);
                     mCamera.startPreview();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -247,7 +264,6 @@ public class StaticPhotoActivity extends MvcBaseActivity {
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 // mCamera.setPreviewCallback(null);// 防止 Method called after release()
-                Log.e("Test2", "surfaceDestroyed()....");
                 if (mCamera != null) {
                     mCamera.stopPreview();
                     mCamera.setPreviewCallback(null);
@@ -259,6 +275,64 @@ public class StaticPhotoActivity extends MvcBaseActivity {
         });
     }
 
+    //获取与指定宽高相等或最接近的尺寸
+    private Camera.Size getBestSize(int targetWidth, int targetHeight, List<Camera.Size> sizeList){
+        Camera.Size bestSize = null;
+        double targetRatio = (Double.valueOf(targetHeight+"") / targetWidth);  //目标大小的宽高比
+        double minDiff = targetRatio;
+
+        for (Camera.Size size : sizeList) {
+            double supportedRatio = (Double.valueOf(size.width+"") / size.height);
+//            log.e("系统支持的尺寸 : {size.width} * ${size.height} ,    比例$supportedRatio");
+        }
+
+        for (Camera.Size size : sizeList) {
+            if (size.width == targetHeight && size.height == targetWidth) {
+                bestSize = size;
+                break;
+            }
+            double supportedRatio = (Double.valueOf(size.width+"") / size.height);
+            if (Math.abs(supportedRatio - targetRatio) < minDiff) {
+                minDiff = Math.abs(supportedRatio - targetRatio);
+                bestSize = size;
+            }
+        }
+        /*log("目标尺寸 ：$targetWidth * $targetHeight ，   比例  $targetRatio")
+        log("最优尺寸 ：${bestSize?.height} * ${bestSize?.width}")*/
+        return bestSize;
+    }
+
+
+    private Camera.Size getCmeraPreSize(List<Camera.Size> preSizeList){
+        Camera.Size retSize = null;
+        for (Camera.Size size : preSizeList) {
+            if(size.height >= surfaceWidth && size.width >= surfaceHeight){
+                retSize = size;
+                break;
+            }
+        }
+        return retSize;
+    }
+
+    protected Camera.Size getCloselyPreSize(int surfaceWidth, int surfaceHeight, List<Camera.Size> preSizeList) {
+        // 得到与传入的宽高比最接近的size
+        float reqRatio = ((float) surfaceHeight) / surfaceWidth;
+        float curRatio, deltaRatio;
+        float deltaRatioMin = Float.MAX_VALUE;
+        Camera.Size retSize = null;
+        for (Camera.Size size : preSizeList) {
+            curRatio = ((float) size.width) / size.height;
+            deltaRatio = Math.abs(reqRatio - curRatio);
+            if (size.height > surfaceWidth && deltaRatio < deltaRatioMin) {
+                deltaRatioMin = deltaRatio;
+                retSize = size;
+            }
+        }
+
+        return retSize;
+    }
+
+
     /**
      * 在摄像头启动前设置参数
      *
@@ -268,69 +342,44 @@ public class StaticPhotoActivity extends MvcBaseActivity {
      */
     private void setCameraParms(Camera camera, int width, int height) {
         Camera.Parameters parameters = camera.getParameters();
-        List<Camera.Size> pictureSizeList = parameters.getSupportedPictureSizes();
-        Camera.Size pictureSize = getProperSize(pictureSizeList, (float) height / width);
-        if (null == pictureSize) {
-            pictureSize = parameters.getPictureSize();
-        }
-        float w = pictureSize.width;
-        float h = pictureSize.height;
-        parameters.setPictureSize(pictureSize.width, pictureSize.height);
-        surfaceView.setLayoutParams(new FrameLayout.LayoutParams((int) (height * (h / w)), height));
-
-        /*****************  *********************/
-        fl_start.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(initJugeFlag){
-                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) fl_start.getLayoutParams();
-                    int marginBottom = params.bottomMargin;
-                    int fl_start_height = fl_start.getMeasuredHeight();
-                    FrameLayout.LayoutParams line_gyroscope_params = (FrameLayout.LayoutParams) line_gyroscope.getLayoutParams();
-                    line_gyroscope_params.height = height - (fl_start_height + marginBottom + DensityUtil.dip2px(StaticPhotoActivity.this, 44));
-                    line_gyroscope.setLayoutParams(line_gyroscope_params);
-                    initJugeFlag = false;
-                }
-            }
-        });
-        /**************************************/
-
         List<Camera.Size> previewSizeList = parameters.getSupportedPreviewSizes();
-        Camera.Size preSize = getProperSize(previewSizeList, (float) height / width);
+//        Camera.Size preSize = getCloselyPreSize(width, height, previewSizeList);
+        Camera.Size preSize = getCmeraPreSize(previewSizeList);
+//        Camera.Size preSize = getBestSize(surfaceWidth,surfaceHeight,previewSizeList);
         if (null != preSize) {
             parameters.setPreviewSize(preSize.width, preSize.height);
         }
+        double preWidth = preSize.width;
+        double preHeight = preSize.height;
+        double preScale = preHeight/preWidth;
+        double sWidth = surfaceWidth;
+        double sHeight = surfaceHeight;
+        double surfaceScale = sWidth/sHeight;
+        if(surfaceScale > preScale){
+            int surfaceViewHeight = (int) (sWidth / preScale);
+            surfaceView.setLayoutParams(new FrameLayout.LayoutParams(surfaceWidth, surfaceViewHeight));
+        }else{
+            int surfaceViewWidth = (int) (sHeight * preScale);
+            surfaceView.setLayoutParams(new FrameLayout.LayoutParams(surfaceViewWidth, surfaceHeight));
+        }
+//        surfaceView.setLayoutParams(new FrameLayout.LayoutParams(preSize.height, preSize.width));
+
+        List<Camera.Size> pictureSizeList = parameters.getSupportedPictureSizes();
+//        Camera.Size pictureSize = getCloselyPreSize(width, height, pictureSizeList);
+        Camera.Size pictureSize = getCmeraPreSize(pictureSizeList);
+//        Camera.Size pictureSize = getBestSize(surfaceWidth,surfaceHeight,pictureSizeList);
+        if (null == pictureSize) {
+            pictureSize = parameters.getPictureSize();
+        }
+        parameters.setPictureSize(pictureSize.width, pictureSize.height);
         parameters.setJpegQuality(100);
         if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-            // 连续对焦
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         }
-//        parameters.setPictureSize(width,height);
         parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
         camera.cancelAutoFocus();
         camera.setDisplayOrientation(90);
         camera.setParameters(parameters);
-    }
-
-    private Camera.Size getProperSize(List<Camera.Size> pictureSizes, float screenRatio) {
-        Camera.Size result = null;
-        for (Camera.Size size : pictureSizes) {
-            float currenRatio = ((float) size.width) / size.height;
-            if (currenRatio - screenRatio == 0) {
-                result = size;
-                break;
-            }
-        }
-        if (null == result) {
-            for (Camera.Size size : pictureSizes) {
-                float curRatio = ((float) size.width) / size.height;
-                if (curRatio == 4f / 3) {
-                    result = size;
-                    break;
-                }
-            }
-        }
-        return result;
     }
 
 
@@ -340,7 +389,7 @@ public class StaticPhotoActivity extends MvcBaseActivity {
         if (requestCode == REQUEST_CAMERA_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 recreate();
-            }else{
+            } else {
                 openSurfaceView();
             }
         }
@@ -349,7 +398,6 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e("Test2", "onStop()....");
         if (mCamera != null) {
             mCamera.setPreviewCallback(null);
             mCamera.stopPreview();
@@ -361,7 +409,11 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.e("Test2", "onRestart()....");
+        if (mOrientationListener.canDetectOrientation()) {
+            mOrientationListener.enable();
+        } else {
+            mOrientationListener.disable();
+        }
         restartCamera();
     }
 
@@ -374,16 +426,13 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 iv_sure.setVisibility(View.GONE);
                 space_view.setVisibility(View.GONE);
                 mCamera.setPreviewDisplay(mHolder);
-                int measuredWidth = surfaceView.getMeasuredWidth();
-                int measuredHeight = surfaceView.getMeasuredHeight();
-                setCameraParms(mCamera, measuredWidth, measuredHeight);
+                setCameraParms(mCamera, surfaceWidth, surfaceHeight);
                 mCamera.startPreview();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }   
-
+    }
 
 
 }

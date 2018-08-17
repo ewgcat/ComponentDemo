@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
 import com.yijian.staff.mvp.workspace.static_assessment.StaticPhotoActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
@@ -50,7 +51,9 @@ public class WorkSpaceActivity extends AppCompatActivity {
                 break;
             case R.id.fl_static: //静态评估
 //                popDialog();
-                ActivityUtils.startActivity(this, StaticPhotoActivity.class);
+                ActivityUtils.isShareJump = false;
+                ActivityUtils.moduleType = ActivityUtils.MODULE_STATIC_EVALUATE;
+                ActivityUtils.startActivity(this, WorkSpaceSearchActivity.class);
                 break;
             case R.id.fl_sport: //动态评估
                 popDialog();

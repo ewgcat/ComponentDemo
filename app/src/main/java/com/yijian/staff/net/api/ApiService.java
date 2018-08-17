@@ -13,6 +13,7 @@ import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -269,15 +270,19 @@ public interface ApiService {
 
 
     /** 完美围度 **/
-    //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postPerfectInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body PerfectRequestBody perfectRequestBody);
 
     /** 运动表现 **/
-    //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
+
+    /** 静态评估 **/
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postStaticInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body StaticRequestBody staticRequestBody);
+
 
 }

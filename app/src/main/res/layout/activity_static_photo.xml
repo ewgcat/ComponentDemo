@@ -1,23 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
+    android:id="@+id/rel_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SurfaceView
-        android:id="@+id/surfaceView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/view_navigation_bar2"/>
 
+    <FrameLayout
+        android:id="@+id/fl_surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navigation_bar"
+        android:layout_above="@id/fl_start">
+
+        <SurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/line_gyroscope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="44dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拍照时请保证头部与脚顶住框"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"
+                />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shangbiao"
+                android:layout_marginTop="13dp"/>
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="60dp">
+
+                <ImageView
+                    android:id="@+id/iv_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/iv_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_below"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_left"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/iv_below"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_above"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <com.yijian.staff.mvp.workspace.static_assessment.GyroscopeView
+                    android:id="@+id/gyroscopeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/iv_left"
+                    android:layout_below="@id/iv_top"
+                    android:layout_toLeftOf="@id/iv_right"
+                    android:layout_above="@id/iv_below"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/xiabiao"
+                android:layout_marginTop="60dp"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
     <LinearLayout
         android:id="@+id/fl_start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/transparent"
-        android:layout_marginBottom="30dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
         android:gravity="center">
 
         <ImageView
@@ -52,90 +143,4 @@
             android:visibility="gone"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/line_gyroscope"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="44dp"
-        android:background="#f0f">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="拍照时请保证头部与脚顶住框"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_15"
-            />
-
-        <View
-            style="@style/SplitLineStyle"
-            android:layout_marginTop="13dp"
-            />
-
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/iv_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/arrow_right"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
-
-            <ImageView
-                android:id="@+id/iv_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/arrow_below"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
-
-            <ImageView
-                android:id="@+id/iv_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/arrow_left"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-
-            <ImageView
-                android:id="@+id/iv_below"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/arrow_above"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"/>
-
-            <com.yijian.staff.mvp.workspace.static_assessment.GyroscopeView
-                android:id="@+id/gyroscopeView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/iv_left"
-                android:layout_below="@id/iv_top"
-                android:layout_toLeftOf="@id/iv_right"
-                android:layout_above="@id/iv_below"/>
-
-        </RelativeLayout>
-
-        <View
-            style="@style/SplitLineStyle"
-            android:layout_marginTop="13dp"
-            />
-
-    </LinearLayout>
-
-    <include
-        android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2"/>
-
-
-
-
-
-</FrameLayout>
+</RelativeLayout>

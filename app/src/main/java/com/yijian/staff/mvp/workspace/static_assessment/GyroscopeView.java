@@ -21,7 +21,7 @@ public class GyroscopeView extends View {
     private Paint mPaint;
     private int mWidth;
     private int mHeight;
-    private Bitmap rotationArrow_top;
+    private Bitmap blueRotationArrow_top, redRotaionArrow_top;
     private int rotation;
     private PorterDuffXfermode xfermode;
     private int outStrokeWidth = 5;
@@ -34,7 +34,8 @@ public class GyroscopeView extends View {
 
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        rotationArrow_top = BitmapFactory.decodeResource(getResources(), R.mipmap.arrow_above);
+        blueRotationArrow_top = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_triangle_copy);
+        redRotaionArrow_top = BitmapFactory.decodeResource(getResources(), R.mipmap.red_triangle);
         xfermode=new PorterDuffXfermode(PorterDuff.Mode.DST_OVER);
     }
 
@@ -58,15 +59,17 @@ public class GyroscopeView extends View {
 
         if(rotation > 356 || rotation < 5){
             mPaint.setColor(Color.BLUE);
+            canvas.drawBitmap(blueRotationArrow_top, mWidth/2 - blueRotationArrow_top.getWidth()/2, outStrokeWidth, null);
         }else{
             mPaint.setColor(Color.RED);
+            canvas.drawBitmap(redRotaionArrow_top, mWidth/2 - redRotaionArrow_top.getWidth()/2, outStrokeWidth, null);
         }
         mPaint.setStrokeWidth(lineStrokeWidth);
         Path pathLine = new Path();
         pathLine.moveTo(0,mHeight/2);
         pathLine.lineTo(mWidth, mHeight/2);
         canvas.drawPath(pathLine, mPaint);
-        canvas.drawBitmap(rotationArrow_top, mWidth/2 - rotationArrow_top.getWidth()/2, outStrokeWidth, null);
+
 
         mPaint.setXfermode(null);
         canvas.restoreToCount(sc);

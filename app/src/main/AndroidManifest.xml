@@ -594,7 +594,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".mvp.workspace.static_assessment.StaticPhotoActivity"></activity>
+        <activity android:name=".mvp.workspace.static_assessment.StaticPhotoActivity" />
+        <activity android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
+            android:launchMode="singleTask"
+            />
+        <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity"></activity>
     </application>
 
 </manifest>

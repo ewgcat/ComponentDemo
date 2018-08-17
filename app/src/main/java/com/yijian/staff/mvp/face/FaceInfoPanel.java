@@ -197,8 +197,8 @@ public class FaceInfoPanel extends PopupWindow {
 
             public void bind(FaceDetail faceDetail, Context context) {
                 ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + faceDetail.getHeadPath(), context, iv_header);
-                tv_memberName.setText(faceDetail.getMemberName());
-                tv_cardName.setText(faceDetail.getCardName());
+                tv_memberName.setText(TextUtils.isEmpty(faceDetail.getMemberName())?"暂未录入":faceDetail.getMemberName());
+                tv_cardName.setText(TextUtils.isEmpty(faceDetail.getCardName())?"暂未录入" : faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     tv_expirationDate.setText(faceDetail.getExpirationDate()==null?"未知":simpleDateFormat.format(simpleDateFormat.parse(faceDetail.getExpirationDate())));

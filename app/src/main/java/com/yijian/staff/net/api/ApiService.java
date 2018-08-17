@@ -19,6 +19,7 @@ import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
@@ -304,4 +305,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postPrivateCoursePingJia(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  PrivateCoursePingJiaRequestBody body);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postSaveCourse(@Url String url,@HeaderMap HashMap<String, String> headers, @Body SaveCourseRequestBody body);
 }

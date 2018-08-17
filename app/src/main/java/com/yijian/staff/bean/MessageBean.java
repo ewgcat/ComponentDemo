@@ -24,8 +24,8 @@ public class MessageBean {
      gender (integer, optional): 性别(0:未知 1:男 2:女) ,
      id (string, optional): id ,
      memberHeadPortrait (string, optional): 头像url ,
-     memberId (string, optional): 会员id ,
-     memberName (string, optional): 会员名称 ,
+     userId (string, optional): 会员id ,
+     userName (string, optional): 会员名称 ,
      title (string, optional): 消息标题
      *
      */
@@ -36,9 +36,9 @@ public class MessageBean {
     private String createTime;
     private int gender;
     private String id;
-    private String memberHeadPortrait;
-    private String memberId;
-    private String memberName;
+    private String headPortrait;
+    private String userId;
+    private String userName;
     private String title;
 
 
@@ -49,9 +49,9 @@ public class MessageBean {
         this.costType = JsonUtil.getInt(jsonObject, "costType");
         this.gender = JsonUtil.getInt(jsonObject, "gender");
         this.id = JsonUtil.getString(jsonObject, "id");
-        this.memberHeadPortrait = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "memberHeadPortrait");
-        this.memberId = JsonUtil.getString(jsonObject, "memberId");
-        this.memberName = JsonUtil.getString(jsonObject, "memberName");
+        this.headPortrait = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headPortrait");
+        this.userId = JsonUtil.getString(jsonObject, "userId");
+        this.userName = JsonUtil.getString(jsonObject, "userName");
         Long createTimeValue = JsonUtil.getLong(jsonObject, "createTime");
         if (createTimeValue != null && createTimeValue != -1) {
             this.createTime = DateUtil.parseLongDateToTimeString(createTimeValue);
@@ -108,27 +108,27 @@ public class MessageBean {
     }
 
     public String getMemberHeadPortrait() {
-        return memberHeadPortrait;
+        return headPortrait;
     }
 
     public void setMemberHeadPortrait(String memberHeadPortrait) {
-        this.memberHeadPortrait = memberHeadPortrait;
+        this.headPortrait = memberHeadPortrait;
     }
 
     public String getMemberId() {
-        return memberId;
+        return userId;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setMemberId(String userId) {
+        this.userId = userId;
     }
 
     public String getMemberName() {
-        return memberName;
+        return userName;
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
+    public void setMemberName(String userName) {
+        this.userName = userName;
     }
 
     public String getTitle() {

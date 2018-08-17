@@ -24,6 +24,7 @@ import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
+import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
@@ -416,7 +417,7 @@ public class HttpManager {
     }
 
     //保存教练回访结果
-    public static void postFuFangResult(AddFuFangResultBody body, Observer<JSONObject> observer) {
+    public static void postSaveCourse(SaveCourseRequestBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -424,7 +425,8 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postFuHuiFangResult(SharePreferenceUtil.getHostUrl() + POST_FU_FANG_RESULT_URL, headers, body);
+            headers.put("version","1.3.0");
+            Observable<JSONObject> observable = apiService.postSaveCourse(SharePreferenceUtil.getHostUrl() + CourseUrls.SAVE_PRIVATE_COURSE_PLAN_URL, headers, body);
             execute(observable, observer);
         }
 

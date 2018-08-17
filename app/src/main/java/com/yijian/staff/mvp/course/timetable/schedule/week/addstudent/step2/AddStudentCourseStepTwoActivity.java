@@ -16,6 +16,7 @@ import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
@@ -104,7 +105,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                post();
+                postSaveCourse();
             }
         });
         selectWeekDay(weekday);
@@ -122,7 +123,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             tvName.setText(selectGroupedStudentBean.getMemberName());
         }
         if (course != null) {
-            consumingMinute = course.getConsumingMinute()+"";
+            consumingMinute = course.getConsumingMinute() + "";
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + ")");
         }
         initSetTime();
@@ -200,17 +201,29 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         }
     }
 
-    public void post() {
+    public void postSaveCourse() {
+        SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
 
+        HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
 
     }
 
     public void checkoutScheduleTime() {
-        HashMap<String,String> map=new HashMap<>();
-        map.put("version","1.3.0");
-        map.put("schooltime",hours+":"+minutes);
-        map.put("week",weekday+"");
-        map.put("classHour",consumingMinute);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("version", "1.3.0");
+        map.put("schooltime", hours + ":" + minutes);
+        map.put("week", weekday + "");
+        map.put("classHour", consumingMinute);
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {

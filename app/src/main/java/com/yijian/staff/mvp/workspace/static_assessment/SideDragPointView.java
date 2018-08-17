@@ -160,6 +160,16 @@ public class SideDragPointView extends View {
     }
 
     /**
+     * 清除所有选中点
+     */
+    public void clearSelCircle(){
+        for(DragPointBean dBean : pointFList){
+            dBean.setCheck(false);
+        }
+        invalidate();
+    }
+
+    /**
      * 根据触摸获取响应对象
      *
      * @param x

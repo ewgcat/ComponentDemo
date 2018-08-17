@@ -105,6 +105,11 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
+                if(type == 0){
+                    pointView_positive.clearSelCircle();
+                }else{
+                    pointView_side.clearSelCircle();
+                }
                 rel_container.setDrawingCacheEnabled(true);
                 Bitmap bitmap = rel_container.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();

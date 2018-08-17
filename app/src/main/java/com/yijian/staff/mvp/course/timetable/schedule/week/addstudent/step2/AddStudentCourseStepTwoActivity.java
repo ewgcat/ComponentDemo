@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,13 +14,20 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -37,6 +45,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     ImageView ivSex;
     @BindView(R.id.tv_course)
     TextView tvCourse;
+    @BindView(R.id.tv_course_time_status)
+    TextView tvCourseTimeStatus;
     @BindView(R.id.tv_seven)
     TextView tvSeven;
     @BindView(R.id.line7)
@@ -69,6 +79,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     WheelView wheelView1;
     @BindView(R.id.wheelview2)
     WheelView wheelView2;
+    @BindView(R.id.rv)
+    RecyclerView rv;
+
+    private int weekday = 0;
+    private String hours = "00";
+    private String minutes = "00";
+    private String consumingMinute;
 
     @Override
     protected int getLayoutID() {
@@ -87,22 +104,28 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                post();
             }
         });
-        selectWeekDay(0);
+        selectWeekDay(weekday);
 
+        init();
+    }
 
-        initSetTime();
-
+    private void init() {
         GroupedStudentBean selectGroupedStudentBean = (GroupedStudentBean) getIntent().getSerializableExtra("selectGroupedStudentBean");
         GroupedStudentBean.PrivateCoachCourseVOSBean course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
-
-        ImageLoader.setImageResource(BuildConfig.FILE_HOST+selectGroupedStudentBean.getHeadPath(), this, ivHeader);
-        int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
-        ImageLoader.setImageResource(resId,this,ivSex);
-        tvName.setText(selectGroupedStudentBean.getMemberName());
-        tvCourse.setText(course.getMemberCourseName() + "（" + course.getConsumingMinute() + ")");
+        if (selectGroupedStudentBean != null) {
+            ImageLoader.setImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
+            int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            ImageLoader.setImageResource(resId, this, ivSex);
+            tvName.setText(selectGroupedStudentBean.getMemberName());
+        }
+        if (course != null) {
+            consumingMinute = course.getConsumingMinute()+"";
+            tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + ")");
+        }
+        initSetTime();
     }
 
     private void initSetTime() {
@@ -121,6 +144,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         wheelView1.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
+                hours = mOptionsItems1.get(index);
+                checkoutScheduleTime();
             }
         });
 
@@ -135,6 +160,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         wheelView2.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
+                minutes = mOptionsItems2.get(index);
+                checkoutScheduleTime();
             }
         });
     }
@@ -166,12 +193,42 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             case R.id.ll_week_six:
                 selectWeekDay(6);
                 break;
+            case R.id.cancel:
+                break;
+            case R.id.add_time:
+                break;
         }
+    }
+
+    public void post() {
+
+
+    }
+
+    public void checkoutScheduleTime() {
+        HashMap<String,String> map=new HashMap<>();
+        map.put("version","1.3.0");
+        map.put("schooltime",hours+":"+minutes);
+        map.put("week",weekday+"");
+        map.put("classHour",consumingMinute);
+        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+                tvCourseTimeStatus.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                tvCourseTimeStatus.setVisibility(View.VISIBLE);
+                tvCourseTimeStatus.setText("(选中时间段已有安排)");
+            }
+        });
+
     }
 
     public void selectWeekDay(int index) {
         resetAllWeekDay();
-
+        weekday = index;
         switch (index) {
             case 0:
                 tvSeven.setTextSize(16);

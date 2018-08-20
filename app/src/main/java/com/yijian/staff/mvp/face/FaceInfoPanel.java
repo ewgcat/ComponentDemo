@@ -139,7 +139,7 @@ public class FaceInfoPanel extends PopupWindow {
             tv_detail_has_child.setText("暂无录入");
         }
         tv_detail_build_num.setText(emptyNull(faceDetail.getBuildCount()+"","次"));
-        tv_detail_expe_num.setText(emptyNull(faceDetail.getExperienceCourseCount()+"","次"));
+        tv_detail_expe_num.setText(emptyNull(faceDetail.getExperienceCourseCount()+"","节"));
     }
 
     private String emptyNull(String str,String appendStr){

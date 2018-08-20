@@ -584,7 +584,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
-                                android:text="体验课次数："
+                                android:text="体验课节数："
                                 android:layout_marginLeft="5dp"/>
 
                         </LinearLayout>

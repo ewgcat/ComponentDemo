@@ -133,11 +133,12 @@ public class FaceInfoPanel extends PopupWindow {
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
         }
-        try{
+        /*try{
             tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
         }catch (Exception e){
             tv_detail_has_child.setText("暂无录入");
-        }
+        }*/
+        tv_detail_has_child.setText(TextUtils.isEmpty(faceDetail.getHasChildren()) ? "暂无数据" : faceDetail.getHasChildren());
         tv_detail_build_num.setText(emptyNull(faceDetail.getBuildCount()+"","次"));
         tv_detail_expe_num.setText(emptyNull(faceDetail.getExperienceCourseCount()+"","节"));
     }

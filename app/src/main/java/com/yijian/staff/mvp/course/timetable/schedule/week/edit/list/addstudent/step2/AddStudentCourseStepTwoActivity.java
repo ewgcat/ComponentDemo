@@ -396,48 +396,54 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     public void postSaveCourse() {
 
         if (selectGroupedStudentBean != null && course != null) {
-            for (int i = 0; i < list.size(); i++) {
-                SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-                privateCoachCAPDTOsBean.setDataType(1);
-                privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
-                privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
-                String weekDay = list.get(i).getWeekDay();
-                int week = 0;
-                if (weekDay.equals("周日")) {
-                    week = 0;
-                } else if (weekDay.equals("周一")) {
-                    week = 1;
-                } else if (weekDay.equals("周二")) {
-                    week = 2;
-                } else if (weekDay.equals("周三")) {
-                    week = 3;
-                } else if (weekDay.equals("周四")) {
-                    week = 4;
-                } else if (weekDay.equals("周五")) {
-                    week = 5;
-                } else if (weekDay.equals("周六")) {
-                    week = 6;
-                }
-                privateCoachCAPDTOsBean.setWeek(week);
-                privateCoachCAPDTOsBean.setSTime(list.get(i).getCourseTimeBean().getStartTime());
-                privateCoachCAPDTOsBean.setETime(list.get(i).getCourseTimeBean().getEndTime());
-                privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
-            }
-            SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
-            saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
-            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    showToast("新增成功！");
-                    setResult(4567);
-                    finish();
-                }
+            if (list.size() > 0) {
 
-                @Override
-                public void onFail(String msg) {
-                    showToast(msg);
+                for (int i = 0; i < list.size(); i++) {
+                    SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+                    privateCoachCAPDTOsBean.setDataType(1);
+                    privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
+                    privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
+                    String weekDay = list.get(i).getWeekDay();
+                    int week = 0;
+                    if (weekDay.equals("周日")) {
+                        week = 0;
+                    } else if (weekDay.equals("周一")) {
+                        week = 1;
+                    } else if (weekDay.equals("周二")) {
+                        week = 2;
+                    } else if (weekDay.equals("周三")) {
+                        week = 3;
+                    } else if (weekDay.equals("周四")) {
+                        week = 4;
+                    } else if (weekDay.equals("周五")) {
+                        week = 5;
+                    } else if (weekDay.equals("周六")) {
+                        week = 6;
+                    }
+                    privateCoachCAPDTOsBean.setWeek(week);
+                    privateCoachCAPDTOsBean.setSTime(list.get(i).getCourseTimeBean().getStartTime());
+                    privateCoachCAPDTOsBean.setETime(list.get(i).getCourseTimeBean().getEndTime());
+                    privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
                 }
-            });
+                SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+                saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        showToast("新增成功！");
+                        setResult(4567);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        showToast(msg);
+                    }
+                });
+            }else {
+                showToast("请先添加时间！");
+            }
+
         } else {
             showToast("课程信息有误,请返回重新选择");
         }

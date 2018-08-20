@@ -172,7 +172,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName",name);
+        map.put("memberName", name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_STUDENT_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -209,7 +209,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3.0");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName",name);
+        map.put("memberName", name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override

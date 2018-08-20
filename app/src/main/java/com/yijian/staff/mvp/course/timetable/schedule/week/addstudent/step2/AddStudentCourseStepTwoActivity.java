@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -84,9 +86,18 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     RecyclerView rv;
 
     private int weekday = 0;
+    private ArrayList<String> weekdays = new ArrayList<>();
     private String hours = "00";
     private String minutes = "00";
-    private String consumingMinute;
+    private String consumingMinute = "60";
+    private List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+    private GroupedStudentBean selectGroupedStudentBean;
+    private GroupedStudentBean.PrivateCoachCourseVOSBean course;
+
+    private List<CoursePlanBean> coursePlanBeanList = new ArrayList<>();
+    private List<CourseRecordBean> list = new ArrayList<>();
+    private CoursePlanTimeAdapter adapter;
+
 
     @Override
     protected int getLayoutID() {
@@ -109,13 +120,19 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             }
         });
         selectWeekDay(weekday);
-
+        weekdays.add("周日");
+        weekdays.add("周一");
+        weekdays.add("周二");
+        weekdays.add("周三");
+        weekdays.add("周四");
+        weekdays.add("周五");
+        weekdays.add("周六");
         init();
     }
 
     private void init() {
-        GroupedStudentBean selectGroupedStudentBean = (GroupedStudentBean) getIntent().getSerializableExtra("selectGroupedStudentBean");
-        GroupedStudentBean.PrivateCoachCourseVOSBean course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
+        selectGroupedStudentBean = (GroupedStudentBean) getIntent().getSerializableExtra("selectGroupedStudentBean");
+        course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
         if (selectGroupedStudentBean != null) {
             ImageLoader.setImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
             int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
@@ -127,6 +144,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + ")");
         }
         initSetTime();
+
+        adapter = new CoursePlanTimeAdapter(this, coursePlanBeanList);
+
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutManager);
+        rv.setAdapter(adapter);
+
     }
 
     private void initSetTime() {
@@ -168,7 +192,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
+    @OnClick({R.id.cancel, R.id.add_time, R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
@@ -186,7 +210,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 break;
             case R.id.ll_week_four:
                 selectWeekDay(4);
-
                 break;
             case R.id.ll_week_five:
                 selectWeekDay(5);
@@ -195,15 +218,186 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 selectWeekDay(6);
                 break;
             case R.id.cancel:
+                cancel();
                 break;
             case R.id.add_time:
+                addTime();
                 break;
         }
     }
 
-    public void postSaveCourse() {
-        SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+    private void cancel() {
+        if (list.size() > 0) {
+            int index1 = 0, index2 = 0;
+            CourseRecordBean courseRecordBean = list.get(list.size() - 1);
+            String weekDay = courseRecordBean.getWeekDay();
+            CourseTimeBean courseTimeBean = courseRecordBean.getCourseTimeBean();
+            for (int i = 0; i < coursePlanBeanList.size(); i++) {
+                CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
+                String weekDay1 = coursePlanBean.getWeekDay();
+                if (weekDay.equals(weekDay1)) {
+                    index1 = i;
+                    List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
+                    if (courseTimeBeanList != null) {
+                        for (int j = 0; j < courseTimeBeanList.size(); j++) {
+                            CourseTimeBean courseTimeBean1 = courseTimeBeanList.get(j);
+                            if (courseTimeBean1.compareTo(courseTimeBean) == 0) {
+                                index2 = j;
+                                break;
+                            }
+                        }
+                    }
 
+                }
+
+            }
+            if (coursePlanBeanList.size()>index1){
+                List<CourseTimeBean> courseTimeBeanList = coursePlanBeanList.get(index1).getCourseTimeBeanList();
+                if (courseTimeBeanList!=null&&courseTimeBeanList.size()>index2){
+                    coursePlanBeanList.get(index1).getCourseTimeBeanList().remove(index2);
+                }
+                List<CourseTimeBean> courseTimeBeanList1 = coursePlanBeanList.get(index1).getCourseTimeBeanList();
+                if (courseTimeBeanList1==null||courseTimeBeanList1.size()==0){
+                    coursePlanBeanList.remove(index1);
+                }
+            }
+
+
+            adapter.notifyDataSetChanged();
+            list.remove(list.size()-1);
+        }
+    }
+
+    private void addTime() {
+
+        int visibility = tvCourseTimeStatus.getVisibility();
+        if (visibility == View.VISIBLE) {
+            showToast("选中时间段已有安排,请选择其他时间！");
+        } else {
+            String day = weekdays.get(weekday);
+            String startTime = hours + ":" + minutes;
+            int i1 = Integer.parseInt(minutes);
+            int i2 = Integer.parseInt(consumingMinute);
+            int i3 = i1 + i2;
+            int i4 = i3 / 60;
+            int i5 = i3 % 60;
+
+            int h1 = Integer.parseInt(hours);
+            int h2 = h1 + i4;
+            String endTime = "";
+            if (h2 < 10) {
+                endTime = "0" + h2 + ":";
+            } else {
+                endTime = h2 + ":";
+            }
+            if (i5 < 10) {
+                endTime =endTime+ "0"+i5;
+            } else {
+                endTime = endTime +i5;
+            }
+
+            CourseTimeBean courseTimeBean = new CourseTimeBean();
+            courseTimeBean.setStartTime(startTime);
+
+            courseTimeBean.setEndTime(endTime);
+
+            if (list.size() == 0) {
+                CoursePlanBean coursePlanBean = new CoursePlanBean();
+                coursePlanBean.setWeekDay(day);
+                ArrayList<CourseTimeBean> courseTimeBeans = new ArrayList<>();
+                courseTimeBeans.add(courseTimeBean);
+                coursePlanBean.setCourseTimeBeanList(courseTimeBeans);
+                coursePlanBeanList.add(coursePlanBean);
+                adapter.notifyDataSetChanged();
+                CourseRecordBean courseRecordBean = new CourseRecordBean();
+                courseRecordBean.setWeekDay(day);
+                courseRecordBean.setCourseTimeBean(courseTimeBean);
+                list.add(courseRecordBean);
+            } else {
+                List<CourseRecordBean> repeatList = new ArrayList<>();
+                for (int i = 0; i < list.size(); i++) {
+                    CourseRecordBean courseRecordBean = list.get(i);
+                    String weekDay = courseRecordBean.getWeekDay();
+                    if (weekDay.equals(day)) {
+                        repeatList.add(courseRecordBean);
+                    }
+                }
+
+                for (int i = 0; i < repeatList.size(); i++) {
+                    CourseRecordBean courseRecordBean = repeatList.get(i);
+                    CourseTimeBean courseTimeBean1 = courseRecordBean.getCourseTimeBean();
+                    boolean b = timeIsRepeated(courseTimeBean1, startTime, endTime);
+                    if (b) {
+                        showToast("添加失败,添加时间不得重复！");
+                        return;
+                    }
+                }
+
+                CourseRecordBean courseRecordBean = new CourseRecordBean();
+                courseRecordBean.setWeekDay(day);
+                courseRecordBean.setCourseTimeBean(courseTimeBean);
+                list.add(courseRecordBean);
+
+                if (repeatList.size() > 0) {
+                    for (int i = 0; i < coursePlanBeanList.size(); i++) {
+                        CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
+                        if (coursePlanBean.getWeekDay().equals(day)) {
+                            List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
+                            if (courseTimeBeanList != null) {
+                                courseTimeBeanList.add(courseTimeBean);
+                                Collections.sort(courseTimeBeanList);
+                                coursePlanBean.setCourseTimeBeanList(courseTimeBeanList);
+                            }
+                        }
+                    }
+                } else {
+                    CoursePlanBean coursePlanBean = new CoursePlanBean();
+                    coursePlanBean.setWeekDay(day);
+                    ArrayList<CourseTimeBean> courseTimeBeans = new ArrayList<>();
+                    courseTimeBeans.add(courseTimeBean);
+                    coursePlanBean.setCourseTimeBeanList(courseTimeBeans);
+                    coursePlanBeanList.add(coursePlanBean);
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+
+        }
+
+    }
+
+    private boolean timeIsRepeated(CourseTimeBean courseTimeBean1, String startTime, String endTime) {
+        boolean b = false;
+        String startTime1 = courseTimeBean1.getStartTime();
+        String endTime1 = courseTimeBean1.getEndTime();
+        String s11 = startTime1.replaceAll(":", "");
+        String s12 = endTime1.replaceAll(":", "");
+        String s21 = startTime.replaceAll(":", "");
+        String s22 = endTime.replaceAll(":", "");
+        int i11 = Integer.parseInt(s11);
+        int i12 = Integer.parseInt(s12);
+        int i21 = Integer.parseInt(s21);
+        int i22 = Integer.parseInt(s22);
+        if (i11 > i22 || i12 < i21) {
+            b = false;
+        } else {
+            b = true;
+        }
+        return b;
+
+    }
+
+    public void postSaveCourse() {
+
+        for (int i = 0; i < 10; i++) {
+            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+            privateCoachCAPDTOsBean.setDataType(1);
+            privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
+            privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
+        }
+        SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+        saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
         HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -232,8 +426,9 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-                tvCourseTimeStatus.setVisibility(View.VISIBLE);
-                tvCourseTimeStatus.setText("(选中时间段已有安排)");
+//                tvCourseTimeStatus.setVisibility(View.VISIBLE);
+//                tvCourseTimeStatus.setText("(选中时间段已有安排)");
+                showToast(msg);
             }
         });
 
@@ -305,6 +500,14 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         line5.setVisibility(View.INVISIBLE);
         line6.setVisibility(View.INVISIBLE);
         line7.setVisibility(View.INVISIBLE);
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 
 

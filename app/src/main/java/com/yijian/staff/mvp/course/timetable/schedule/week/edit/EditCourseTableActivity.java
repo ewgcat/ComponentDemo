@@ -17,6 +17,7 @@ import com.yijian.staff.mvp.course.timetable.schedule.week.list.CourseListFragme
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -75,7 +76,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle( "编辑排课表");
+        navigationBar2.setTitle("编辑排课表");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         changeFragment(0);
@@ -84,14 +85,16 @@ public class EditCourseTableActivity extends MvcBaseActivity {
 
     private void initData() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("version", "1.3.0");
+        map.put("version", "1.3");
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
 
                 List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
-
+                if (list!=null){
+                    updateUi(list);
+                }
             }
 
             @Override
@@ -99,6 +102,23 @@ public class EditCourseTableActivity extends MvcBaseActivity {
                 showToast(msg);
             }
         });
+    }
+
+    private void updateUi(List<CourseStudentBean> list) {
+        for (int i = 0; i <list.size() ; i++) {
+            CourseStudentBean courseStudentBean = list.get(i);
+            String weekName = courseStudentBean.getWeekName();
+            if ("周日".equals(weekName)){
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment0.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void changeFragment(int index) {

@@ -21,7 +21,6 @@ public class CourseListFragment extends MvcBaseFragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
-    private List<CourseStudentBean> dataList = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -34,7 +33,7 @@ public class CourseListFragment extends MvcBaseFragment {
     }
 
 
-    private void updateUI(List<CourseStudentBean> dataList){
+    public void updateUI(     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList){
         CourseListAdapter courseListAdapter = new CourseListAdapter(getContext(), dataList);
         rv.addItemDecoration(new MyDividerItemDecoration());
         rv.setLayoutManager(new LinearLayoutManager(getContext()));

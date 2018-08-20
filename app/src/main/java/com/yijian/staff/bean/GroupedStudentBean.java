@@ -10,27 +10,20 @@ import java.util.List;
  */
 public class GroupedStudentBean implements Serializable{
 
+
     /**
-     * headPath : string
-     * memberId : string
-     * memberName : string
-     * memberSex : 0
-     * privateCoachCourseVOS : [{"consumingMinute":0,"memberCourseId":"string","memberCourseName":"string"}]
+     * memberId : 784acf55dbfa43f392f27f5294fe5703
+     * memberName : 舒会员
+     * memberSex : 1
+     * headPath :
+     * privateCoachCourseVOS : [{"memberCourseId":"sko20180809200840ccd9fe","memberCourseName":"私课yb0530","consumingMinute":40},{"memberCourseId":"sko20180814162120a3a534","memberCourseName":"私课yb2","consumingMinute":60}]
      */
 
-    private String headPath;
     private String memberId;
     private String memberName;
     private int memberSex;
+    private String headPath;
     private List<PrivateCoachCourseVOSBean> privateCoachCourseVOS;
-
-    public String getHeadPath() {
-        return headPath;
-    }
-
-    public void setHeadPath(String headPath) {
-        this.headPath = headPath;
-    }
 
     public String getMemberId() {
         return memberId;
@@ -56,6 +49,14 @@ public class GroupedStudentBean implements Serializable{
         this.memberSex = memberSex;
     }
 
+    public String getHeadPath() {
+        return headPath;
+    }
+
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
+    }
+
     public List<PrivateCoachCourseVOSBean> getPrivateCoachCourseVOS() {
         return privateCoachCourseVOS;
     }
@@ -64,24 +65,16 @@ public class GroupedStudentBean implements Serializable{
         this.privateCoachCourseVOS = privateCoachCourseVOS;
     }
 
-    public static class PrivateCoachCourseVOSBean implements Serializable{
+    public static class PrivateCoachCourseVOSBean implements Serializable {
         /**
-         * consumingMinute : 0
-         * memberCourseId : string
-         * memberCourseName : string
+         * memberCourseId : sko20180809200840ccd9fe
+         * memberCourseName : 私课yb0530
+         * consumingMinute : 40
          */
 
-        private int consumingMinute;
         private String memberCourseId;
         private String memberCourseName;
-
-        public int getConsumingMinute() {
-            return consumingMinute;
-        }
-
-        public void setConsumingMinute(int consumingMinute) {
-            this.consumingMinute = consumingMinute;
-        }
+        private int consumingMinute;
 
         public String getMemberCourseId() {
             return memberCourseId;
@@ -97,6 +90,14 @@ public class GroupedStudentBean implements Serializable{
 
         public void setMemberCourseName(String memberCourseName) {
             this.memberCourseName = memberCourseName;
+        }
+
+        public int getConsumingMinute() {
+            return consumingMinute;
+        }
+
+        public void setConsumingMinute(int consumingMinute) {
+            this.consumingMinute = consumingMinute;
         }
     }
 }

@@ -144,7 +144,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         }
         if (course != null) {
             consumingMinute = course.getConsumingMinute() + "";
-            tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + ")");
+            tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
         }
         initSetTime();
 

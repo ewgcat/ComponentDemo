@@ -37,6 +37,11 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
         mInflater = LayoutInflater.from(context);
     }
 
+    public void update(List<RecyclerViewData> datas) {
+        this.datas = datas;
+        notifyRecyclerViewData();
+    }
+
 
     @Override
     public View getGroupView(ViewGroup parent) {
@@ -61,14 +66,14 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
         int resId = expand ? R.mipmap.select : R.mipmap.circle_normal;
         ImageLoader.setImageResource(resId, context, holder.ivselect);
         int resIdsex = groupData.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
-        ImageLoader.setImageResource(resIdsex,context,holder.ivSex);
-        ImageLoader.setImageResource(BuildConfig.FILE_HOST+groupData.getHeadPath(),context,holder.ivHeader);
+        ImageLoader.setImageResource(resIdsex, context, holder.ivSex);
+        ImageLoader.setImageResource(BuildConfig.FILE_HOST + groupData.getHeadPath(), context, holder.ivHeader);
     }
 
     @Override
     public void onBindChildpHolder(StudentCourseViewHolder holder, int groupPos, int childPos, int position, GroupedStudentBean.PrivateCoachCourseVOSBean childData) {
         holder.tvCourseName.setText(childData.getMemberCourseName());
-        holder.tvCourseTime.setText(childData.getConsumingMinute());
+        holder.tvCourseTime.setText(childData.getConsumingMinute()+"分钟");
         if (childPos == selectChildPosition) {
             holder.rlCourse.setBackground(context.getDrawable(R.drawable.blue_stroke_bg));
         } else {
@@ -87,7 +92,7 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
     }
 
 
-    private int selectGroupPosition=-1;
+    private int selectGroupPosition = -1;
     private int selectChildPosition = 0;
 
     public void selectChild(int selectGroupPosition, int selectChildPosition) {
@@ -104,7 +109,7 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
         notifyRecyclerViewData();
     }
 
-    public int getSelectedChildIndex(){
+    public int getSelectedChildIndex() {
         return selectChildPosition;
     }
 

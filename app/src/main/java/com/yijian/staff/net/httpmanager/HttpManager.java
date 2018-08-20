@@ -425,7 +425,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version","1.3.0");
+            headers.put("version","1.3");
             Observable<JSONObject> observable = apiService.postSaveCourse(SharePreferenceUtil.getHostUrl() + CourseUrls.SAVE_PRIVATE_COURSE_PLAN_URL, headers, body);
             execute(observable, observer);
         }
@@ -776,7 +776,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.postHasHeaderNoParam(SharePreferenceUtil.getHostUrl() + url, headers);
             execute(observable, observer);
         }
@@ -797,7 +797,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.postHasHeaderHasParam(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
@@ -813,7 +813,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.postHasHeaderHasParamOfObject(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
@@ -829,7 +829,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.postHasHeaderHasParamOfInteger(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
@@ -850,7 +850,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.getHasHeaderNoParam(SharePreferenceUtil.getHostUrl() + url, headers);
             execute(observable, observer);
         }
@@ -871,7 +871,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.getHasHeaderHasParam(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
@@ -887,7 +887,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.getHasHeaderHasObjectParam(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
@@ -901,7 +901,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             File file = new File(imageFilePath);
             // 创建 RequestBody，用于封装构建RequestBody
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -922,7 +922,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
 
             File file = new File(imageFilePath);
             // 创建 RequestBody，用于封装构建RequestBody
@@ -974,7 +974,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
 
             Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
             execute(observable, observer);
@@ -988,7 +988,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
             Observable<JSONObject> observable = apiService.postInvateContent(SharePreferenceUtil.getHostUrl() + indexHuiJiInvitationSaveUrl, headers, saveInviteBody);
             execute(observable, observer);
         }
@@ -1002,7 +1002,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
 
             Observable<JSONObject> observable = apiService.postHuiFangTask(SharePreferenceUtil.getHostUrl() + getHuiJiHuiFangTaskUrl, headers, huifangTaskRequestBody);
             execute(observable, observer);
@@ -1016,7 +1016,7 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            headers.put("version", "1.3.0");
+            headers.put("version", "1.3");
 
             Observable<JSONObject> observable = apiService.postHuiFangRecord(SharePreferenceUtil.getHostUrl() + HUI_FANG_RECORD_URL, headers, huifangRecordRequestBody);
             execute(observable, observer);

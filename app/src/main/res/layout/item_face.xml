@@ -60,6 +60,7 @@
                 android:layout_height="30dp">
 
                 <TextView
+                    android:id="@+id/tv_cardName_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -70,11 +71,13 @@
 
                 <TextView
                     android:id="@+id/tv_cardName"
-                    android:layout_width="180dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_cardName_label"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:ellipsize="end"
+                    android:ellipsize="middle"
                     android:gravity="right"
                     android:singleLine="true"
                     android:text="健身储值卡"
@@ -115,9 +118,10 @@
                 android:id="@+id/rel_course_progress"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-            >
+                >
 
                 <TextView
+                    android:id="@+id/tv_courseNameNum_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -128,11 +132,13 @@
 
                 <TextView
                     android:id="@+id/tv_courseNameNum"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_courseNameNum_label"
+                    android:layout_marginLeft="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:ellipsize="end"
+                    android:ellipsize="middle"
                     android:gravity="right"
                     android:singleLine="true"
                     android:text="增肌课第5节"

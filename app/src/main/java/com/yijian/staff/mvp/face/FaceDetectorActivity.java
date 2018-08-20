@@ -30,12 +30,14 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -67,7 +69,7 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class FaceDetectorActivity extends AppCompatActivity implements Camera.PreviewCallback {
+public class FaceDetectorActivity extends MvcBaseActivity implements Camera.PreviewCallback {
 
     private static final String TAG = FaceDetectorActivity.class.getSimpleName();
     private static final int REQUEST_CAMERA_CODE = 0x100;
@@ -77,6 +79,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private DrawFacesView facesView;
     private ImageView iv_test;
     private ImageView btn_start_face;
+    private RelativeLayout rel_close;
     private String face_session;
     private Camera.Face[] faces;
     private int screenOritation = 0;
@@ -87,12 +90,14 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
      * 测试弹出框
      */
     private void showPanel(List<FaceDetail> faceDetails) {
+        rel_close.setVisibility(View.GONE);
         faceInfoPanel = new FaceInfoPanel(this, faceDetails);
         faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP, 0, 0);
         btn_start_face.setVisibility(View.GONE);
         faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                rel_close.setVisibility(View.VISIBLE);
                 iv_test.setImageBitmap(null);
                 btn_start_face.setVisibility(View.VISIBLE);
                 facesView.removeRect();
@@ -112,9 +117,33 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        initViews();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_CODE);
+                }
+                return;
+            }
+            loginData();
+            //openSurfaceView();
+        }
+    }
+
+
+
+    @Override
+    protected int getLayoutID() {
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_face_recognition",version);
@@ -168,26 +197,7 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
             getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        setContentView(R.layout.activity_face2);
-        initViews();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_CODE);
-                }
-                return;
-            }
-            loginData();
-            //openSurfaceView();
-        }
+        return R.layout.activity_face2;
     }
 
     /**
@@ -248,10 +258,11 @@ public class FaceDetectorActivity extends AppCompatActivity implements Camera.Pr
     private Bitmap bitmap2;
 
     private void initViews() {
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        facesView = (DrawFacesView) findViewById(R.id.drawFacesView);
-        iv_test = (ImageView) findViewById(R.id.iv_test);
-        findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+        surfaceView = findViewById(R.id.surfaceView);
+        facesView = findViewById(R.id.drawFacesView);
+        iv_test = findViewById(R.id.iv_test);
+        rel_close = findViewById(R.id.rel_close);
+        rel_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mCamera != null) {

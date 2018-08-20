@@ -133,9 +133,9 @@
                             android:id="@+id/tv_detail_cardname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:gravity="right|center_vertical"
                             android:singleLine="true"
-                            android:ellipsize="end"
+                            android:ellipsize="middle"
                             android:textColor="@color/white"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
@@ -427,10 +427,10 @@
                             android:layout_alignParentRight="true"
                             android:layout_toRightOf="@id/tv_detail_progress_label"
                             android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
                             android:textSize="14sp"
                             android:singleLine="true"
-                            android:ellipsize="end"/>
+                            android:gravity="right|center_vertical"
+                            android:ellipsize="middle"/>
 
 
                     </RelativeLayout>

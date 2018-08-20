@@ -39,6 +39,7 @@ public class FaceDetail {
     private String memberId;
     private String memberName;
     private String sellerName;
+    private String hasChildren;
 
     public int getAge() {
         return age;
@@ -182,5 +183,13 @@ public class FaceDetail {
 
     public void setExperienceCourseCount(int experienceCourseCount) {
         this.experienceCourseCount = experienceCourseCount;
+    }
+
+    public String getHasChildren() {
+        return hasChildren;
+    }
+
+    public void setHasChildren(String hasChildren) {
+        this.hasChildren = hasChildren;
     }
 }

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step2;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step2;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CoursePlanBean;
+import com.yijian.staff.bean.CourseRecordBean;
+import com.yijian.staff.bean.CourseTimeBean;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;

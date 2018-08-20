@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step1;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1;
 
 import android.content.Context;
 import android.view.View;

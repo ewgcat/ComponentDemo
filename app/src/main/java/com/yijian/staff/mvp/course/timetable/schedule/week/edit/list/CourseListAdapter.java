@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.mvp.course.timetable.schedule.week.list.edit.EditCourseTimeActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;

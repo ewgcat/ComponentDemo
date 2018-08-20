@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step2;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step2;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CoursePlanBean;
+import com.yijian.staff.bean.CourseTimeBean;
+
 import java.util.ArrayList;
 import java.util.List;
 

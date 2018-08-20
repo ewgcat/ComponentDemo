@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list.edit;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.edit;
 
 import android.graphics.Color;
 import android.os.Bundle;

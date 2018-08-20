@@ -465,8 +465,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
-//                tvCourseTimeStatus.setVisibility(View.VISIBLE);
-//                tvCourseTimeStatus.setText("(选中时间段已有安排)");
+                tvCourseTimeStatus.setVisibility(View.VISIBLE);
+                tvCourseTimeStatus.setText("(选中时间段已有安排)");
                 showToast(msg);
             }
         });

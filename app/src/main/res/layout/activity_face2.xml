@@ -40,7 +40,7 @@
             android:layout_gravity="top">
 
         <RelativeLayout
-                android:id="@+id/iv_close"
+                android:id="@+id/rel_close"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"

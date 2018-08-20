@@ -30,6 +30,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -78,6 +79,7 @@ public class FaceDetectorActivity extends MvcBaseActivity implements Camera.Prev
     private DrawFacesView facesView;
     private ImageView iv_test;
     private ImageView btn_start_face;
+    private RelativeLayout rel_close;
     private String face_session;
     private Camera.Face[] faces;
     private int screenOritation = 0;
@@ -88,12 +90,14 @@ public class FaceDetectorActivity extends MvcBaseActivity implements Camera.Prev
      * 测试弹出框
      */
     private void showPanel(List<FaceDetail> faceDetails) {
+        rel_close.setVisibility(View.GONE);
         faceInfoPanel = new FaceInfoPanel(this, faceDetails);
         faceInfoPanel.showAtLocation(getWindow().getDecorView(), Gravity.TOP, 0, 0);
         btn_start_face.setVisibility(View.GONE);
         faceInfoPanel.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                rel_close.setVisibility(View.VISIBLE);
                 iv_test.setImageBitmap(null);
                 btn_start_face.setVisibility(View.VISIBLE);
                 facesView.removeRect();
@@ -254,10 +258,11 @@ public class FaceDetectorActivity extends MvcBaseActivity implements Camera.Prev
     private Bitmap bitmap2;
 
     private void initViews() {
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        facesView = (DrawFacesView) findViewById(R.id.drawFacesView);
-        iv_test = (ImageView) findViewById(R.id.iv_test);
-        findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+        surfaceView = findViewById(R.id.surfaceView);
+        facesView = findViewById(R.id.drawFacesView);
+        iv_test = findViewById(R.id.iv_test);
+        rel_close = findViewById(R.id.rel_close);
+        rel_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mCamera != null) {

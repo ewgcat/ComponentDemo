@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@mipmap/recall"
                 android:gravity="center"
-                android:text="取消"
+                android:text="撤消"
                 android:textColor="#999999"
                 android:textSize="14sp" />
         </LinearLayout>

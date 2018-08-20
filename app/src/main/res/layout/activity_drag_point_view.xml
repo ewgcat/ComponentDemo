@@ -24,13 +24,13 @@
             android:id="@+id/iv_finish"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/middle"
+            android:src="@mipmap/gou"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"/>
 
     </LinearLayout>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/navigation_bar"
@@ -60,34 +60,21 @@
                 android:visibility="gone"/>
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_instruction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_14"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:text="请将每个节点拖到示意位置"/>
         
         <ImageView
             android:id="@+id/iv_sample"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/tv_instruction"
+            android:layout_gravity="top|left"
             />
 
         <ImageView
             android:id="@+id/iv_crop"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_instruction"
+            android:layout_gravity="top|right"
             />
 
-    </RelativeLayout>
+    </FrameLayout>
 
 </RelativeLayout>

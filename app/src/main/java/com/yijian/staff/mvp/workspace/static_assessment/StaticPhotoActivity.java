@@ -71,8 +71,6 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     GyroscopeView gyroscopeView;
     @BindView(R.id.fl_start)
     LinearLayout fl_start;
-    @BindView(R.id.line_gyroscope)
-    LinearLayout line_gyroscope;
     byte[] imgData = null;
     private int screenOritation = 0;
     private int gyrosOrientation;
@@ -132,7 +130,7 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 }
                 StaticPhotoActivity.this.screenOritation = orientation + 90;
                 gyroscopeView.setOritationRotation(gyrosOrientation);
-//                Log.e("Test", "orientation====" + orientation);
+                Log.e("Test", "gyrosOrientation====" + gyrosOrientation);
             }
         };
         if (mOrientationListener.canDetectOrientation()) {
@@ -275,63 +273,24 @@ public class StaticPhotoActivity extends MvcBaseActivity {
         });
     }
 
-    //获取与指定宽高相等或最接近的尺寸
-    private Camera.Size getBestSize(int targetWidth, int targetHeight, List<Camera.Size> sizeList){
-        Camera.Size bestSize = null;
-        double targetRatio = (Double.valueOf(targetHeight+"") / targetWidth);  //目标大小的宽高比
-        double minDiff = targetRatio;
-
-        for (Camera.Size size : sizeList) {
-            double supportedRatio = (Double.valueOf(size.width+"") / size.height);
-//            log.e("系统支持的尺寸 : {size.width} * ${size.height} ,    比例$supportedRatio");
-        }
-
-        for (Camera.Size size : sizeList) {
-            if (size.width == targetHeight && size.height == targetWidth) {
-                bestSize = size;
-                break;
-            }
-            double supportedRatio = (Double.valueOf(size.width+"") / size.height);
-            if (Math.abs(supportedRatio - targetRatio) < minDiff) {
-                minDiff = Math.abs(supportedRatio - targetRatio);
-                bestSize = size;
-            }
-        }
-        /*log("目标尺寸 ：$targetWidth * $targetHeight ，   比例  $targetRatio")
-        log("最优尺寸 ：${bestSize?.height} * ${bestSize?.width}")*/
-        return bestSize;
-    }
-
-
     private Camera.Size getCmeraPreSize(List<Camera.Size> preSizeList){
         Camera.Size retSize = null;
         for (Camera.Size size : preSizeList) {
-            if(size.height >= surfaceWidth && size.width >= surfaceHeight){
+            if(size.height > surfaceWidth && size.width > surfaceHeight){
                 retSize = size;
                 break;
             }
         }
-        return retSize;
-    }
-
-    protected Camera.Size getCloselyPreSize(int surfaceWidth, int surfaceHeight, List<Camera.Size> preSizeList) {
-        // 得到与传入的宽高比最接近的size
-        float reqRatio = ((float) surfaceHeight) / surfaceWidth;
-        float curRatio, deltaRatio;
-        float deltaRatioMin = Float.MAX_VALUE;
-        Camera.Size retSize = null;
-        for (Camera.Size size : preSizeList) {
-            curRatio = ((float) size.width) / size.height;
-            deltaRatio = Math.abs(reqRatio - curRatio);
-            if (size.height > surfaceWidth && deltaRatio < deltaRatioMin) {
-                deltaRatioMin = deltaRatio;
-                retSize = size;
+        if(retSize == null){
+            for (Camera.Size size : preSizeList) {
+                if(size.height >= surfaceWidth && size.width >= surfaceHeight){
+                    retSize = size;
+                    break;
+                }
             }
         }
-
         return retSize;
     }
-
 
     /**
      * 在摄像头启动前设置参数
@@ -343,9 +302,7 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     private void setCameraParms(Camera camera, int width, int height) {
         Camera.Parameters parameters = camera.getParameters();
         List<Camera.Size> previewSizeList = parameters.getSupportedPreviewSizes();
-//        Camera.Size preSize = getCloselyPreSize(width, height, previewSizeList);
         Camera.Size preSize = getCmeraPreSize(previewSizeList);
-//        Camera.Size preSize = getBestSize(surfaceWidth,surfaceHeight,previewSizeList);
         if (null != preSize) {
             parameters.setPreviewSize(preSize.width, preSize.height);
         }
@@ -362,12 +319,8 @@ public class StaticPhotoActivity extends MvcBaseActivity {
             int surfaceViewWidth = (int) (sHeight * preScale);
             surfaceView.setLayoutParams(new FrameLayout.LayoutParams(surfaceViewWidth, surfaceHeight));
         }
-//        surfaceView.setLayoutParams(new FrameLayout.LayoutParams(preSize.height, preSize.width));
-
         List<Camera.Size> pictureSizeList = parameters.getSupportedPictureSizes();
-//        Camera.Size pictureSize = getCloselyPreSize(width, height, pictureSizeList);
         Camera.Size pictureSize = getCmeraPreSize(pictureSizeList);
-//        Camera.Size pictureSize = getBestSize(surfaceWidth,surfaceHeight,pictureSizeList);
         if (null == pictureSize) {
             pictureSize = parameters.getPictureSize();
         }

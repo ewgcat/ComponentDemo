@@ -22,8 +22,8 @@ public class SideDragPointView extends View {
     private float centerX, centerY;
     private Paint mPaint, linePaint;
     private List<DragPointBean> pointFList = new ArrayList<>();
-    private float allowRange = 20; //允许触摸响应超过点本身大小的多少像素
-    private int radius = 20;
+    private float allowRange = 36; //允许触摸响应超过点本身大小的多少像素
+    private int radius = 10;
     private int position = 0;
     private DragPointBean moveDragPointBean = null;
     private IphotoCrop listener;
@@ -31,7 +31,7 @@ public class SideDragPointView extends View {
     private int circleSelColor = 0;
     private int lineColor = 0;
     private int circleStrokeWidth = 5;
-    private int lineStrokeWidth = 5;
+    private int lineStrokeWidth = 3;
 
     public void setListener(IphotoCrop listener) {
         this.listener = listener;
@@ -88,6 +88,7 @@ public class SideDragPointView extends View {
                     moveDragPointBean.setFirstY(moveDragPointBean.getPointF().y);
                     listener.onClickCircle(moveDragPointBean.getValue());
                     setSelCircle(moveDragPointBean);
+                    listener.onTouchCrop(moveX, moveY);
                     invalidate();
                 }
                 break;
@@ -224,9 +225,12 @@ public class SideDragPointView extends View {
                 point_gonggu.getPointF().x, point_gonggu.getPointF().y);
 
         //肱骨头
-        double orientation2 = 180 - DragPointUtil.return3Range(point_jian.getPointF().x, point_jian.getPointF().y,
+        double orientation2 = DragPointUtil.return3Range(point_jian.getPointF().x, point_jian.getPointF().y,
                 point_gonggu.getPointF().x + 50, point_gonggu.getPointF().y,
                 point_gonggu.getPointF().x, point_gonggu.getPointF().y);
+
+
+        orientation2 = (orientation2 > 90 ? (180-90) : orientation2);
 
         //大转子
         double orientation3 = DragPointUtil.return3Range(point_gonggu.getPointF().x, point_gonggu.getPointF().y,

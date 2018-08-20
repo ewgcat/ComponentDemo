@@ -23,33 +23,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/line_gyroscope"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="44dp">
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
             <TextView
+                android:id="@+id/tv_photo_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拍照时请保证头部与脚顶住框"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_15"
-                />
-
+                android:layout_centerHorizontal="true" />
 
             <ImageView
+                android:id="@+id/iv_photo_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/shangbiao"
-                android:layout_marginTop="13dp"/>
+                android:layout_marginTop="13dp"
+                android:layout_below="@id/tv_photo_top"
+                android:layout_centerHorizontal="true"
+                />
 
             <RelativeLayout
+                android:id="@+id/rel_photo_center"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="60dp">
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/iv_photo_header">
 
                 <ImageView
                     android:id="@+id/iv_left"
@@ -86,11 +93,12 @@
                 <com.yijian.staff.mvp.workspace.static_assessment.GyroscopeView
                     android:id="@+id/gyroscopeView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/iv_left"
+                    android:layout_height="188dp"
+                    android:layout_above="@id/iv_below"
                     android:layout_below="@id/iv_top"
+                    android:layout_marginTop="-4dp"
                     android:layout_toLeftOf="@id/iv_right"
-                    android:layout_above="@id/iv_below"/>
+                    android:layout_toRightOf="@id/iv_left" />
 
             </RelativeLayout>
 
@@ -98,9 +106,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/xiabiao"
-                android:layout_marginTop="60dp"/>
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </FrameLayout>
     <LinearLayout

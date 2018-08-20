@@ -24,8 +24,8 @@ public class DragPointView extends View {
             point_navel, point_hipbone_left, point_hipbone_right, point_knee_left, point_knee_right,
             point_ankle_left, point_ankle_right, point_tiptoe_left, point_tiptoe_right;
     private List<DragPointBean> pointFList = new ArrayList<>();
-    private float allowRange = 20; //允许触摸响应超过点本身大小的多少像素
-    private int radius = 20;
+    private float allowRange = 36; //允许触摸响应超过点本身大小的多少像素
+    private int radius = 10;
     private int position = 0;
     private DragPointBean moveDragPointBean = null;
     private IphotoCrop listener;
@@ -33,7 +33,7 @@ public class DragPointView extends View {
     private int circleSelColor = 0;
     private int lineColor = 0;
     private int circleStrokeWidth = 5;
-    private int lineStrokeWidth = 5;
+    private int lineStrokeWidth = 3;
 
     public void setListener(IphotoCrop listener) {
         this.listener = listener;
@@ -115,11 +115,11 @@ public class DragPointView extends View {
                     moveDragPointBean.setFirstY(moveDragPointBean.getPointF().y);
                     listener.onClickCircle(moveDragPointBean.getValue());
                     setSelCircle(moveDragPointBean);
+                    listener.onTouchCrop(moveX, moveY);
                     invalidate();
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 if(moveX > 0 && moveX < mWidth && moveY < mHeight && moveY > 0){
                     if (moveDragPointBean != null) {
                         moveDragPointBean.getPointF().x = moveX;
@@ -129,7 +129,6 @@ public class DragPointView extends View {
                     }
                     listener.onTouchCrop(moveX, moveY);
                 }
-
                 break;
             case MotionEvent.ACTION_UP:
                 if (moveDragPointBean != null) {
@@ -163,7 +162,7 @@ public class DragPointView extends View {
      */
     private void initBodyPoint() {
         //耳朵
-        point_ear_left = new DragPointBean((float) ((3.0 / 4.0) * centerX), (float) ((1.0 / 5.0) * centerY), PointEnum.POINT_EAR_LEFT.getValue());
+        point_ear_left = new DragPointBean((float) ((4.0 / 5.0) * centerX), (float) ((1.0 / 5.0) * centerY), PointEnum.POINT_EAR_LEFT.getValue());
         point_ear_right = new DragPointBean((centerX) + (centerX - point_ear_left.getPointF().x), point_ear_left.getPointF().y, PointEnum.POINT_EAR_RIGHT.getValue());
 
         //肩

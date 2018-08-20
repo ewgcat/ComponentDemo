@@ -204,34 +204,38 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
 
     @Override
     public void onClickCircle(int value) {
-        if(value == PointEnum.POINT_EAR_LEFT.getValue() || value == PointEnum.POINT_EAR_RIGHT.getValue()){ //左右耳朵
-            iv_sample.setImageResource(R.mipmap.left_right_ear);
+        if(value == PointEnum.POINT_EAR_LEFT.getValue()){ //左耳朵
+            iv_sample.setImageResource(R.mipmap.positive_left_ear);
+        }else if(value == PointEnum.POINT_EAR_RIGHT.getValue()){ //右耳
+            iv_sample.setImageResource(R.mipmap.positive_right_ear);
         }else if(value == PointEnum.POINT_JIAN_LEFT.getValue()){ //左肩
-            iv_sample.setImageResource(R.mipmap.left_jian);
+            iv_sample.setImageResource(R.mipmap.positive_left_jian);
         }else if(value == PointEnum.POINT_JIAN_RIGHT.getValue()){ //右肩
-            iv_sample.setImageResource(R.mipmap.right_jian);
+            iv_sample.setImageResource(R.mipmap.positive_right_gonggu);
         }if(value == PointEnum.POINT_NAVEL.getValue()){ //肚脐眼
-            iv_sample.setImageResource(R.mipmap.navel);
+            iv_sample.setImageResource(R.mipmap.positive_navel);
         }else if(value == PointEnum.POINT_HIPBONE_LEFT.getValue()){ //左胯骨
-            iv_sample.setImageResource(R.mipmap.left_hipbone);
+            iv_sample.setImageResource(R.mipmap.positive_left_kuagu);
         }else if(value == PointEnum.POINT_HIPBONE_RIGHT.getValue()){ //右胯骨
-            iv_sample.setImageResource(R.mipmap.right_hipbone);
+            iv_sample.setImageResource(R.mipmap.positive_right_kuagu);
         }else if(value == PointEnum.POINT_KNEE_LEFT.getValue()){ //左膝盖
-            iv_sample.setImageResource(R.mipmap.left_knee);
+            iv_sample.setImageResource(R.mipmap.positive_left_knee);
         }else if(value == PointEnum.POINT_KNEE_RIGHT.getValue()){ //右膝盖
-            iv_sample.setImageResource(R.mipmap.right_knee);
+            iv_sample.setImageResource(R.mipmap.positive_right_knee);
         }else if(value == PointEnum.POINT_ANKLE_LEFT.getValue() || value == PointEnum.POINT_TIPTOE_LEFT.getValue()){ //左脚踝 脚尖
-            iv_sample.setImageResource(R.mipmap.left_ankle);
+            iv_sample.setImageResource(R.mipmap.positive_left_jiaohuai);
         }else if(value == PointEnum.POINT_ANKLE_RIGHT.getValue() || value == PointEnum.POINT_TIPTOE_RIGHT.getValue()){ //右脚踝 脚尖
-            iv_sample.setImageResource(R.mipmap.right_ankle);
+            iv_sample.setImageResource(R.mipmap.positive_right_jiaohuai);
         }else if(value == PointEnum.POINT_EAR.getValue()){ //耳朵
-            iv_sample.setImageResource(R.mipmap.ear);
-        }else if(value == PointEnum.POINT_GONGGU.getValue() || value == PointEnum.POINT_JIAN.getValue()){ //肱骨头  肩胛骨
-            iv_sample.setImageResource(R.mipmap.jian);
+            iv_sample.setImageResource(R.mipmap.side_ear);
+        }else if(value == PointEnum.POINT_GONGGU.getValue()){ //肱骨头
+            iv_sample.setImageResource(R.mipmap.side_gonggu);
+        }else if(value == PointEnum.POINT_JIAN.getValue()){ //肩胛骨
+            iv_sample.setImageResource(R.mipmap.side_jian);
         }else if(value == PointEnum.POINT_HIPBONE.getValue()){ //胯骨
-            iv_sample.setImageResource(R.mipmap.hipbone);
+            iv_sample.setImageResource(R.mipmap.side_kuagu);
         }else if(value == PointEnum.POINT_KNEE.getValue()){ //膝盖
-            iv_sample.setImageResource(R.mipmap.knee);
+            iv_sample.setImageResource(R.mipmap.side_knee);
         }
     }
 

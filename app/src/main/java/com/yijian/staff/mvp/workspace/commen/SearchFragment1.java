@@ -37,9 +37,7 @@ import butterknife.BindView;
 
 public class SearchFragment1 extends BaseSpaceFragment {
 
-    @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.empty_view)
     EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
@@ -54,6 +52,8 @@ public class SearchFragment1 extends BaseSpaceFragment {
 
     @Override
     public void initView() {
+        empty_view = findView(R.id.empty_view);
+        refreshLayout = findView(R.id.refreshLayout);
         RecyclerView rv_search_all = rootView.findViewById(R.id.rv);
         rv_search_all.setLayoutManager(new LinearLayoutManager(getActivity()));
         //添加Android自带的分割线

@@ -11,14 +11,14 @@ public class HuifangTaskRequestBody {
     /**
      * chief : true
      * menu : 0
-     * pageNum : 0
-     * pageSize : 0
+     * offset : 0
+     * size : 0
      */
 
     private boolean chief;
     private int menu;
-    private int pageNum;
-    private int pageSize;
+    private int offset;
+    private int size;
 
     public boolean isChief() {
         return chief;
@@ -36,19 +36,19 @@ public class HuifangTaskRequestBody {
         this.menu = menu;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public int getSize() {
+        return size;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setSize(int size) {
+        this.size = size;
     }
 }

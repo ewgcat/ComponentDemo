@@ -279,7 +279,7 @@ public class HttpManager {
 
 
     //回访任务列表
-    public static String HUI_FANG_TASK_URL = "interviewV2/bapp/interviewList";
+    public static String HUI_FANG_TASK_URL = "interviewV2/bapp/interviewTaskListLimit";
 
     //回访记录列表
     public static String HUI_FANG_RECORD_URL = "interviewV2/bapp/interviewRecordList";

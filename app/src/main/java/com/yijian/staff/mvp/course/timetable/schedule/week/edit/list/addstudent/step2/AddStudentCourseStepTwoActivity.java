@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
+package com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step2;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,7 +25,6 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

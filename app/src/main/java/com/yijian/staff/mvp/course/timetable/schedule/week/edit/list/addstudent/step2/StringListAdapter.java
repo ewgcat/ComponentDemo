@@ -1,6 +1,5 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
+package com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step2;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

@@ -1,6 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
-
-import java.util.List;
+package com.yijian.staff.bean;
 
 /**
  * author：李帅华

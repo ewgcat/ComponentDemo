@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step2;
+package com.yijian.staff.bean;
 
 import android.support.annotation.NonNull;
 

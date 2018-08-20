@@ -92,7 +92,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
             public void onSuccess(JSONArray result) {
 
                 List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
-                if (list!=null){
+                if (list != null) {
                     updateUi(list);
                 }
             }
@@ -105,13 +105,38 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     }
 
     private void updateUi(List<CourseStudentBean> list) {
-        for (int i = 0; i <list.size() ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             CourseStudentBean courseStudentBean = list.get(i);
             String weekName = courseStudentBean.getWeekName();
-            if ("周日".equals(weekName)){
+            if ("周日".equals(weekName)) {
                 List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
                 fragment0.updateUI(privateCoachCurriculumArrangementPlanVOS);
             }
+            if ("周一".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment1.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+            if ("周二".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment2.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+            if ("周三".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment3.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+            if ("周四".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment4.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+            if ("周五".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment5.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+            if ("周六".equals(weekName)) {
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                fragment6.updateUI(privateCoachCurriculumArrangementPlanVOS);
+            }
+
         }
     }
 

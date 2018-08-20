@@ -8,10 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step1.AddStudentCourseStepOneActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.week.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

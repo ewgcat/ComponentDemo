@@ -78,7 +78,24 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         navigationBar2.setTitle("编辑排课表");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
+        fragment0 = new CourseListFragment();
+        fragment1 = new CourseListFragment();
+        fragment2 = new CourseListFragment();
+        fragment3 = new CourseListFragment();
+        fragment4 = new CourseListFragment();
+        fragment5 = new CourseListFragment();
+        fragment6 = new CourseListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment0).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment3).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment4).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment5).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment6).commit();
+
+
         changeFragment(0);
+
         selectWeekDay(0);
     }
 

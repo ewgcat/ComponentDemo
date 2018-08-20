@@ -12,6 +12,7 @@ import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseListA
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,6 +22,8 @@ public class CourseListFragment extends MvcBaseFragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
+    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList=new ArrayList<>();
+    private CourseListAdapter courseListAdapter;
 
     @Override
     public int getLayoutId() {
@@ -29,15 +32,16 @@ public class CourseListFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-
-    }
-
-
-    public void updateUI(     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList){
-        CourseListAdapter courseListAdapter = new CourseListAdapter(getContext(), dataList);
+        courseListAdapter = new CourseListAdapter(getContext(), dataList);
         rv.addItemDecoration(new MyDividerItemDecoration());
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setAdapter(courseListAdapter);
+    }
+
+
+    public void updateUI(  List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList){
+        this.dataList=dataList;
+        courseListAdapter.notifyDataSetChanged();
     }
 
 

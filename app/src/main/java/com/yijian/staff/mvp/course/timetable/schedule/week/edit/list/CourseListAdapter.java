@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.EditCourseTimeActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter {
 
-    private List<CourseStudentBean> dataList = new ArrayList<>();
+    private List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList = new ArrayList<>();
     private Context mContext;
 
-    public CourseListAdapter(Context context, List<CourseStudentBean> dataList) {
+    public CourseListAdapter(Context context, List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList) {
         this.mContext = context;
         this.dataList = dataList;
     }
@@ -69,22 +70,26 @@ public class CourseListAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void bindView(CourseStudentBean courseStudentBean) {
-//            tvTime.setText(courseStudentBean.getTime()+"");
-            tvName.setText(courseStudentBean.getName());
-            int resId = courseStudentBean.getSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
-            ImageLoader.setImageResource(resId,mContext,ivSex);
-            tvCourseName.setText(courseStudentBean.getCourseName());
-            tvCourseTime.setText(" ("+ courseStudentBean.getCourseTime()+"分钟）");
-            ImageLoader.setImageResource(courseStudentBean.getHeadImg(),mContext,ivHead);
+        public void bindView(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean bean) {
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = bean.getPrivateCourseMemberVO();
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = bean.getPrivateCoachCourseVO();
+
+            tvName.setText(privateCourseMemberVO.getMemberName());
+            int resId = privateCourseMemberVO.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            ImageLoader.setImageResource(resId, mContext, ivSex);
+            ImageLoader.setImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), mContext, ivHead);
+            tvTime.setText(bean.getSTime());
+
+            tvCourseName.setText(privateCoachCourseVO.getMemberCourseName());
+            tvCourseTime.setText(" (" + privateCoachCourseVO.getConsumingMinute() + "分钟）");
             ivEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, EditCourseTimeActivity.class);
-                    Bundle bundle=new Bundle();
-                    bundle.putSerializable("CourseStudentBean", courseStudentBean);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("PrivateCoachCurriculumArrangementPlanVOSBean", bean);
                     intent.putExtras(bundle);
-                    mContext. startActivity(intent);
+                    mContext.startActivity(intent);
                 }
             });
         }

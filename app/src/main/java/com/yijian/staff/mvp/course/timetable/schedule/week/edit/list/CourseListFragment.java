@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.list;
+package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
 
 
 import android.content.Intent;
@@ -8,10 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.schedule.week.addstudent.step1.AddStudentCourseStepOneActivity;
+import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseListAdapter;
+import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,7 +21,6 @@ public class CourseListFragment extends MvcBaseFragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
-    private List<CourseStudentBean> dataList = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -34,7 +33,7 @@ public class CourseListFragment extends MvcBaseFragment {
     }
 
 
-    private void updateUI(List<CourseStudentBean> dataList){
+    public void updateUI(     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList){
         CourseListAdapter courseListAdapter = new CourseListAdapter(getContext(), dataList);
         rv.addItemDecoration(new MyDividerItemDecoration());
         rv.setLayoutManager(new LinearLayoutManager(getContext()));

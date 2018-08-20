@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@mipmap/recall"
                 android:gravity="center"
-                android:text="取消"
+                android:text="撤消"
                 android:textColor="#999999"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -405,8 +405,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="(选中时间段已有安排)"
                         android:textColor="#f76666"
+                        android:visibility="gone"
                         android:textSize="14sp" />
 
 

@@ -36,7 +36,10 @@ public class SaveCourseRequestBody {
         private String capId;//私教排课计划id
         private String coachId;//教练id
         private String colour;//颜色,标记颜色（当dataType==1时，需要传）
+
+
         private int dataType;// 数据类型（0锁时间，1排课程） ,
+
         private String memberCourseId;//会员课程id（当dataType==1时，需要传）
 
         private String memberId;// 会员id（当dataType==1时，需要传）

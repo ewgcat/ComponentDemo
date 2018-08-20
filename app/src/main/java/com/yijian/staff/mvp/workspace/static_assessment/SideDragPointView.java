@@ -22,7 +22,7 @@ public class SideDragPointView extends View {
     private float centerX, centerY;
     private Paint mPaint, linePaint;
     private List<DragPointBean> pointFList = new ArrayList<>();
-    private float allowRange = 10; //允许触摸响应超过点本身大小的多少像素
+    private float allowRange = 20; //允许触摸响应超过点本身大小的多少像素
     private int radius = 20;
     private int position = 0;
     private DragPointBean moveDragPointBean = null;

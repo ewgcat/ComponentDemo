@@ -24,7 +24,7 @@ public class DragPointView extends View {
             point_navel, point_hipbone_left, point_hipbone_right, point_knee_left, point_knee_right,
             point_ankle_left, point_ankle_right, point_tiptoe_left, point_tiptoe_right;
     private List<DragPointBean> pointFList = new ArrayList<>();
-    private float allowRange = 10; //允许触摸响应超过点本身大小的多少像素
+    private float allowRange = 20; //允许触摸响应超过点本身大小的多少像素
     private int radius = 20;
     private int position = 0;
     private DragPointBean moveDragPointBean = null;

@@ -441,7 +441,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                     }
                 });
             }else {
-                showToast("请先添加时间！");
+                showToast("请先添加上课时间！");
             }
 
         } else {

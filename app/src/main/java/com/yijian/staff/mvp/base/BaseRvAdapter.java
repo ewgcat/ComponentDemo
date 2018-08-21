@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
+package com.yijian.staff.mvp.base;
 
 
 import android.content.Context;
@@ -15,31 +15,31 @@ import java.util.List;
  * 封装adapter（注意：仅供参考，根据需要选择使用demo中提供的封装adapter）
  * @param <T>
  */
-public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewHolder> {
+public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
     protected Context mContext;
     private LayoutInflater mInflater;
 
     protected List<T> mDataList = new ArrayList<>();
 
-    public ListBaseAdapter(Context context) {
+    public BaseRvAdapter(Context context) {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public SuperViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(getLayoutId(), parent, false);
-        return new SuperViewHolder(itemView);
+        return new BaseViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(SuperViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
         onBindItemHolder(holder, position);
     }
 
     //局部刷新关键：带payload的这个onBindViewHolder方法必须实现
     @Override
-    public void onBindViewHolder(SuperViewHolder holder, int position, List<Object> payloads) {
+    public void onBindViewHolder(BaseViewHolder holder, int position, List<Object> payloads) {
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position);
         } else {
@@ -50,9 +50,9 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
 
     public abstract int getLayoutId();
 
-    public abstract void onBindItemHolder(SuperViewHolder holder, int position);
+    public abstract void onBindItemHolder(BaseViewHolder holder, int position);
 
-    public void onBindItemHolder(SuperViewHolder holder, int position, List<Object> payloads){
+    public void onBindItemHolder(BaseViewHolder holder, int position, List<Object> payloads){
 
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.SwipeMenuView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:clickable="true">
@@ -119,4 +119,4 @@
         android:text="删除"
         android:textColor="@android:color/white" />
 
-</com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.SwipeMenuView>
+</com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseItemView>

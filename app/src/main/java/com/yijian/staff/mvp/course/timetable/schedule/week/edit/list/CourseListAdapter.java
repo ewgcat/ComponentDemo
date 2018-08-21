@@ -3,13 +3,8 @@ package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,14 +12,12 @@ import android.widget.TextView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
+import com.yijian.staff.mvp.base.BaseRvAdapter;
+import com.yijian.staff.mvp.base.BaseViewHolder;
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-public class CourseListAdapter extends ListBaseAdapter<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> {
+public class CourseListAdapter extends BaseRvAdapter<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> {
 
     public CourseListAdapter(Context context) {
         super(context);
@@ -32,11 +25,11 @@ public class CourseListAdapter extends ListBaseAdapter<CourseStudentBean.Private
 
     @Override
     public int getLayoutId() {
-        return R.layout.list_item_swipe;
+        return R.layout.item_course;
     }
 
     @Override
-    public void onBindItemHolder(SuperViewHolder holder, final int position) {
+    public void onBindItemHolder(BaseViewHolder holder, final int position) {
         Button btnDelete = holder.getView(R.id.btnDelete);
         TextView tvTime = holder.getView(R.id.tv_time);
         ImageView ivHead = holder.getView(R.id.iv_head);

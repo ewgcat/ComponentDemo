@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView

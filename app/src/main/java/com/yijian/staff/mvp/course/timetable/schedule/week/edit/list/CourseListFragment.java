@@ -4,13 +4,11 @@ package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
-import com.yanzhenjie.recyclerview.swipe.touch.OnItemMoveListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseListAdapter;
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
@@ -23,9 +21,9 @@ import butterknife.OnClick;
 public class CourseListFragment extends MvcBaseFragment {
 
     @BindView(R.id.rv)
-    SwipeMenuRecyclerView rv;
+    RecyclerView rv;
     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList = new ArrayList<>();
-    private CourseListAdapter courseListAdapter;
+    private CourseListAdapter mDataAdapter;
 
     @Override
     public int getLayoutId() {
@@ -34,35 +32,43 @@ public class CourseListFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        courseListAdapter = new CourseListAdapter(getContext(), dataList);
-        rv.addItemDecoration(new MyDividerItemDecoration());
+
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(courseListAdapter);
-        rv.setItemViewSwipeEnabled(true);
-        rv.setOnItemMoveListener(new OnItemMoveListener() {
+        rv.addItemDecoration(new MyDividerItemDecoration());
+
+        mDataAdapter = new CourseListAdapter(getContext());
+        mDataAdapter.setDataList(dataList);
+        mDataAdapter.setOnDelListener(new CourseListAdapter.onSwipeListener() {
             @Override
-            public boolean onItemMove(RecyclerView.ViewHolder srcHolder, RecyclerView.ViewHolder targetHolder) {
-                return false;
+            public void onDel(int pos) {
+                Toast.makeText(getContext(), "删除:" + pos, Toast.LENGTH_SHORT).show();
+
+                //RecyclerView关于notifyItemRemoved的那点小事 参考：http://blog.csdn.net/jdsjlzx/article/details/52131528
+                mDataAdapter.getDataList().remove(pos);
+                mDataAdapter.notifyItemRemoved(pos);//推荐用这个
+
+                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
+                    mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
+                }
+                //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
             }
 
-            @Override
-            public void onItemDismiss(RecyclerView.ViewHolder srcHolder) {
-                int position = srcHolder.getAdapterPosition();
-                //删除本地数据
-                // Item被侧滑删除时，删除数据，并更新adapter。
-                dataList.remove(position);
-                courseListAdapter.notifyItemRemoved(position);
-                //TODO 向后台发送请求
-
-            }
         });
+
+        rv.setAdapter(mDataAdapter);
+
+
+
 
     }
 
 
-    public void updateUI(List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList) {
-        this.dataList = dataList;
-        courseListAdapter.notifyDataSetChanged();
+    public void updateUI(List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list) {
+        this.dataList = list;
+        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
+        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
+        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
+        mDataAdapter.setDataList(dataList);
     }
 
 

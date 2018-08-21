@@ -235,5 +235,5 @@ dependencies {
     implementation 'com.umeng.sdk:share-sina:latest.integration'
     //友盟 end
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
-    implementation  'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    implementation   'com.github.jdsjlzx:LRecyclerView:1.5.0'
 }

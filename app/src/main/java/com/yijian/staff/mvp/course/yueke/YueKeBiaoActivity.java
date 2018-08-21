@@ -58,8 +58,6 @@ public class YueKeBiaoActivity extends MvcBaseActivity implements ScrollViewList
 
     private List<DateBean> dateBeanList = new ArrayList<>();
 
-    private ArrayList<String> dateList = new ArrayList<>();
-    private ArrayList<String> weekList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {

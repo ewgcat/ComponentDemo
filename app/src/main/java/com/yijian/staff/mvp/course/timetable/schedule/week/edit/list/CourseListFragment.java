@@ -41,16 +41,15 @@ public class CourseListFragment extends MvcBaseFragment {
         mDataAdapter.setOnDelListener(new CourseListAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
-                Toast.makeText(getContext(), "删除:" + pos, Toast.LENGTH_SHORT).show();
 
-                //RecyclerView关于notifyItemRemoved的那点小事 参考：http://blog.csdn.net/jdsjlzx/article/details/52131528
                 mDataAdapter.getDataList().remove(pos);
                 mDataAdapter.notifyItemRemoved(pos);//推荐用这个
 
                 if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
                     mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
                 }
-                //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
+
+                //TODO 发送删除请求
             }
 
         });

@@ -196,9 +196,9 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
         }
         Log.e("Test", "sumX===" + sumX + " diffY==" + diffY + "  startX ===" + startX + " startY===" +
                 startY + "  cWidth===" + cWidth + "cHeight===" + cHeight + "  maxWidth===" + maxWidth + "  maxHeight===" + maxHeight);
-        Matrix matrix = iv_crop.getImageMatrix();
-        matrix.postScale(6, 6);
-        iv_crop.setImageBitmap(Bitmap.createBitmap(bitmap, startX, startY, cWidth - 1, cHeight - 1, matrix, true));
+        Matrix matrix = new Matrix();
+        matrix.preScale(2, 2);
+        iv_crop.setImageBitmap(Bitmap.createBitmap(bitmap, startX, startY, cWidth - 1, cHeight - 1, matrix, false));
 
     }
 

@@ -64,7 +64,8 @@ public class CourseListFragment extends MvcBaseFragment {
 
 
     public void updateUI(List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list) {
-        this.dataList = list;
+        this.dataList.clear();
+        this.dataList .addAll(list) ;
         this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
         this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
         this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());

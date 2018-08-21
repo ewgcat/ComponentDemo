@@ -20,6 +20,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
         mPaint=new Paint();
         mPaint.setColor(Color.parseColor("#eaeaea"));
         mPaint.setAntiAlias(true);
+        mPaint.setStrokeWidth(1.0f);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
             final View childView = parent.getChildAt(i);
             final int bottom = childView.getTop();
             final int top = bottom - mHeight;
-            c.drawRect(left, top, right, bottom, mPaint);
+            c.drawLine(left, top, right, top, mPaint);
         }
 
 

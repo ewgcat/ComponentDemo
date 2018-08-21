@@ -94,7 +94,6 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment6).commit();
 
 
-        changeFragment(0);
 
         selectWeekDay(0);
     }
@@ -168,60 +167,25 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         hideAllIndex(fragmentTransaction);
         switch (index) {
             case 0:
-                if (fragment0 == null) {
-                    fragment0 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment0);
-                } else {
-                    fragmentTransaction.show(fragment0);
-                }
+                fragmentTransaction.show(fragment0);
                 break;
             case 1:
-                if (fragment1 == null) {
-                    fragment1 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment1);
-                } else {
-                    fragmentTransaction.show(fragment1);
-                }
+                fragmentTransaction.show(fragment1);
                 break;
             case 2:
-                if (fragment2 == null) {
-                    fragment2 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment2);
-                } else {
-                    fragmentTransaction.show(fragment2);
-                }
+                fragmentTransaction.show(fragment2);
                 break;
             case 3:
-                if (fragment3 == null) {
-                    fragment3 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment3);
-                } else {
-                    fragmentTransaction.show(fragment3);
-                }
+                fragmentTransaction.show(fragment3);
                 break;
             case 4:
-                if (fragment4 == null) {
-                    fragment4 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment4);
-                } else {
-                    fragmentTransaction.show(fragment4);
-                }
+                fragmentTransaction.show(fragment4);
                 break;
             case 5:
-                if (fragment5 == null) {
-                    fragment5 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment5);
-                } else {
-                    fragmentTransaction.show(fragment5);
-                }
+                fragmentTransaction.show(fragment5);
                 break;
             case 6:
-                if (fragment6 == null) {
-                    fragment6 = new CourseListFragment();
-                    fragmentTransaction.add(R.id.fl_content, fragment6);
-                } else {
-                    fragmentTransaction.show(fragment6);
-                }
+                fragmentTransaction.show(fragment6);
                 break;
         }
 
@@ -288,7 +252,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
 
     public void selectWeekDay(int index) {
         resetAllWeekDay();
-
+        changeFragment(index);
         switch (index) {
             case 0:
                 tvSeven.setTextColor(Color.parseColor("#1997f8"));

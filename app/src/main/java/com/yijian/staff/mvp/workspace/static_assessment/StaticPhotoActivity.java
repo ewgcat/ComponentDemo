@@ -75,6 +75,7 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     private int screenOritation = 0;
     private int gyrosOrientation;
     private OrientationEventListener mOrientationListener;
+    private boolean isStopOrientation = false;
     private int type = 0; //0 正面， 1 侧面
     private int surfaceWidth,surfaceHeight,fl_surfaceViewWidth, fl_surfaceViewHeight,screenWidth,screenHeight;
 
@@ -111,26 +112,30 @@ public class StaticPhotoActivity extends MvcBaseActivity {
 
             @Override
             public void onOrientationChanged(int orientation) {
-                gyrosOrientation = orientation;
-                if (orientation == OrientationEventListener.ORIENTATION_UNKNOWN) {
-                    return;
+                if(!isStopOrientation){
+
+                    gyrosOrientation = orientation;
+                    if (orientation == OrientationEventListener.ORIENTATION_UNKNOWN) {
+                        return;
+                    }
+                    if (orientation > 350 || orientation < 10) { //0度
+                        orientation = 0;
+                        StaticPhotoActivity.this.screenOritation = orientation + 90;
+                    } else if (orientation > 80 && orientation < 100) { //90度
+                        orientation = 90;
+                        StaticPhotoActivity.this.screenOritation = orientation + 90;
+                    } else if (orientation > 170 && orientation < 190) { //180度
+                        orientation = 180;
+                        StaticPhotoActivity.this.screenOritation = orientation + 90;
+                    } else if (orientation > 260 && orientation < 280) { //270度
+                        orientation = 270;
+                        StaticPhotoActivity.this.screenOritation = orientation + 90;
+                    }
+                    StaticPhotoActivity.this.screenOritation = orientation + 90;
+                    gyroscopeView.setOritationRotation(gyrosOrientation);
+                    Log.e("Test", "gyrosOrientation====" + gyrosOrientation);
+
                 }
-                if (orientation > 350 || orientation < 10) { //0度
-                    orientation = 0;
-                    StaticPhotoActivity.this.screenOritation = orientation + 90;
-                } else if (orientation > 80 && orientation < 100) { //90度
-                    orientation = 90;
-                    StaticPhotoActivity.this.screenOritation = orientation + 90;
-                } else if (orientation > 170 && orientation < 190) { //180度
-                    orientation = 180;
-                    StaticPhotoActivity.this.screenOritation = orientation + 90;
-                } else if (orientation > 260 && orientation < 280) { //270度
-                    orientation = 270;
-                    StaticPhotoActivity.this.screenOritation = orientation + 90;
-                }
-                StaticPhotoActivity.this.screenOritation = orientation + 90;
-                gyroscopeView.setOritationRotation(gyrosOrientation);
-                Log.e("Test", "gyrosOrientation====" + gyrosOrientation);
             }
         };
         if (mOrientationListener.canDetectOrientation()) {
@@ -171,12 +176,13 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 ActivityUtils.startActivity(this, PerfectTestActivity.class);
                 break;
             case R.id.iv_take: //拍照
+                isStopOrientation = true;
+                mOrientationListener.disable();
                 mCamera.takePicture(null, null, new Camera.PictureCallback() {
                     @Override
                     public void onPictureTaken(byte[] data, Camera camera) {
 
                         if (gyrosOrientation > 356 || gyrosOrientation < 5) {
-                            mOrientationListener.disable();
                             iv_take.setVisibility(View.GONE);
                             iv_cancel.setVisibility(View.VISIBLE);
                             iv_sure.setVisibility(View.VISIBLE);
@@ -185,6 +191,8 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                             imgData = data;
                         } else {
                             Toast.makeText(StaticPhotoActivity.this, "请保持手机竖屏", Toast.LENGTH_SHORT).show();
+                            mOrientationListener.enable();
+                            isStopOrientation = false;
                         }
 
                     }
@@ -197,6 +205,7 @@ public class StaticPhotoActivity extends MvcBaseActivity {
                 iv_sure.setVisibility(View.GONE);
                 space_view.setVisibility(View.GONE);
                 mOrientationListener.enable();
+                isStopOrientation = false;
                 break;
             case R.id.iv_sure: //确定
 //                showLoading();
@@ -363,8 +372,10 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     protected void onRestart() {
         super.onRestart();
         if (mOrientationListener.canDetectOrientation()) {
+            isStopOrientation = false;
             mOrientationListener.enable();
         } else {
+            isStopOrientation = true;
             mOrientationListener.disable();
         }
         restartCamera();

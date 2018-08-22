@@ -22,6 +22,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity;
+import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -103,7 +104,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
                     course = selectGroupedStudentBean.getPrivateCoachCourseVOS().get(selectedChildIndex);
                     bundle.putSerializable("course", course);
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivityForResult(intent,1234);
                 } else {
                     showToast("请先选择学员!");
                 }
@@ -172,7 +173,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName", name);
+        map.put("memberName",name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_STUDENT_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -209,7 +210,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3.0");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName", name);
+        map.put("memberName",name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -227,8 +228,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
                         datas.add(recyclerViewData);
                     }
                 }
-                studentCourseListAdapter.update(datas);
-
+                studentCourseListAdapter.notifyDataSetChanged();
 
             }
 
@@ -248,4 +248,12 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         SystemUtil.hideKeyBoard(etSearch, this);
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 4567) {
+            finish();
+        }
+    }
 }

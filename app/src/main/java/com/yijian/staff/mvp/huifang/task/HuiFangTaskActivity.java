@@ -43,6 +43,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
     ViewPager viewPager;
 
     private ArrayList<HuiFangTypeBean> huiFangTypeBeanArrayList = new ArrayList<>();
+    private int totalNum;
 
 
     @Override
@@ -79,6 +80,11 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
                         for (int i = 0; i < result.length(); i++) {
 
                             JSONObject jsonObject = result.getJSONObject(i);
+                            if (jsonObject.has("totalNum")){
+                                totalNum = JsonUtil.getInt(jsonObject,"totalNum");
+                            }
+
+
                             HuiFangTypeBean huiFangTypeBean = new HuiFangTypeBean(jsonObject);
                             huiFangTypeBeanArrayList.add(huiFangTypeBean);
                         }
@@ -111,31 +117,9 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
         HuiFangPagerAdapter huiFangPagerAdapter = new HuiFangPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         viewPager.setAdapter(huiFangPagerAdapter);
         tabs.setViewPager(viewPager);
-        updateAllNoticeNum();
-    }
-
-    public void updateAllNoticeNum() {
-
-
-        HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
-        huifangTaskRequestBody.setChief(true);
-        huifangTaskRequestBody.setMenu(huiFangTypeBeanArrayList.get(0).getMenu());
-        huifangTaskRequestBody.setPageNum(1);
-        huifangTaskRequestBody.setPageSize(1);
-        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                int pages = JsonUtil.getInt(result, "pages");
-                tabs.updateBubbleNum(0, pages);
-                //初始化显示第一页
-                viewPager.setCurrentItem(0);
-            }
-
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
+        tabs.updateBubbleNum(0, totalNum);
+        //初始化显示第一页
+        viewPager.setCurrentItem(0);
     }
 
 

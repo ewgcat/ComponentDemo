@@ -48,7 +48,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
     protected int viewId;
     private int menu;
     private int defaultViewId = R.layout.common_hui_fang_task;
-    private int pageNum = 1;//页码
+    private int offset = 1;//页码
     private int pageSize = 10;//每页数量
     private int pages;
 
@@ -109,7 +109,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
     }
 
     public void refresh() {
-        pageNum = 1;
+        offset = 0;
         pageSize = 10;
         huiFangInfoList.clear();
         showLoading();
@@ -117,20 +117,20 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
         huifangTaskRequestBody.setChief(true);
         huifangTaskRequestBody.setMenu(menu);
-        huifangTaskRequestBody.setPageNum(pageNum);
-        huifangTaskRequestBody.setPageSize(pageSize);
+        huifangTaskRequestBody.setOffset(offset);
+        huifangTaskRequestBody.setSize(pageSize);
         HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 refreshLayout.finishRefresh(2000, true);
 
 
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
                 List<HuiFangInfo> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo.class);
                 huiFangInfoList.addAll(list);
+
 
                 huiFangTaskAdapter.update(huiFangInfoList);
                 hideLoading();
@@ -148,17 +148,16 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
     public void loadMore() {
 
         showLoading();
-    
-
+        offset=huiFangInfoList.size();
         HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
         huifangTaskRequestBody.setChief(true);
         huifangTaskRequestBody.setMenu(menu);
-        huifangTaskRequestBody.setPageNum(pageNum);
-        huifangTaskRequestBody.setPageSize(pageSize);
+        huifangTaskRequestBody.setOffset(offset);
+        huifangTaskRequestBody.setSize(pageSize);
         HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                pageNum = JsonUtil.getInt(result, "pageNum") + 1;
+                offset = JsonUtil.getInt(result, "offset") + 1;
                 pages = JsonUtil.getInt(result, "pages");
 
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
@@ -167,6 +166,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
                 List<HuiFangInfo> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo.class);
                 huiFangInfoList.addAll(list);
                 huiFangTaskAdapter.update(huiFangInfoList);
+
                 hideLoading();
             }
 

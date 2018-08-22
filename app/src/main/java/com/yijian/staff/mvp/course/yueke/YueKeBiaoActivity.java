@@ -2,10 +2,7 @@ package com.yijian.staff.mvp.course.yueke;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -14,8 +11,6 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.DateBean;
@@ -27,6 +22,7 @@ import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.TimeLayout;
@@ -41,25 +37,21 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class YueKeBiaoActivity extends MvcBaseActivity implements ScrollViewListener {
+public class YueKeBiaoActivity extends MvcBaseActivity {
 
 
-    private static String TAG = YueKeBiaoFragment.class.getSimpleName();
-    @BindView(R.id.recyclerView)
-    NoScrollRecycleView recyclerView;
+    private static String TAG = YueKeBiaoActivity.class.getSimpleName();
+
     @BindView(R.id.rv)
     RecyclerView rv;
-    @BindView(R.id.scoll_view)
-    MyScollView scollView;
-    @BindView(R.id.time_layout)
-    TimeLayout timeLayout;
+
+
+    @BindView(R.id.course_view)
+    AppointCourseView courseView;
 
     private List<DateBean> dateBeanList = new ArrayList<>();
 
-    private ArrayList<String> dateList = new ArrayList<>();
-    private ArrayList<String> weekList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {
@@ -79,22 +71,22 @@ public class YueKeBiaoActivity extends MvcBaseActivity implements ScrollViewList
         getScreenSize();
         int width = ((SCREEN_WIDTH - CommonUtil.dp2px(this, 160)));
         int height = SCREEN_HEIGHT / 9;
-        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(this, 60), height);
-        YueKeAdapter yueKeAdapter = new YueKeAdapter(this, width, height);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(yueKeAdapter);
-        scollView.setOnScrollViewListener(this);
-        timeLayout.setOnScrollViewListener(this);
+
+
+        Logger.i("TEST", "height=" + height);
+        courseView.setWidthAndHeight(CommonUtil.dp2px(this, 35), 24);
+        for (int i = 0; i < 24; i++) {
+            if (i % 2 == 0) {
+
+                courseView.addItem("" + i, i);
+            }
+        }
+
 
         SimpleDateFormat df = new SimpleDateFormat("HH");//设置日期格式
         String format = df.format(new Date());
         int i = Integer.parseInt(format);
 
-        if (i > 8) {
-            int i1 = (i - 4) * height;
-            scoll(i1);
-        }
 
     }
 
@@ -170,24 +162,6 @@ public class YueKeBiaoActivity extends MvcBaseActivity implements ScrollViewList
         }
         Log.i(TAG, "SCREEN_WIDTH=" + SCREEN_WIDTH);
         Log.i(TAG, "SCREEN_HEIGHT=" + SCREEN_HEIGHT);
-    }
-
-    @Override
-    public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
-        if (viewGroup == scollView) {
-            timeLayout.scrollTo(x, y);
-        } else if (viewGroup == timeLayout) {
-            scollView.scrollTo(x, y);
-        }
-    }
-
-    private void scoll(int i) {
-        scollView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                scollView.smoothScrollTo(0, i);
-            }
-        }, 100);
     }
 
 

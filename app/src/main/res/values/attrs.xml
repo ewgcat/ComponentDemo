@@ -84,4 +84,10 @@
         <attr name="paddingRight" format="integer" />
     </declare-styleable>
 
+        <declare-styleable name="CourseItemView">
+            <attr name="swipeEnable" format="boolean"/>
+            <attr name="ios" format="boolean"/>
+            <attr name="leftSwipe" format="boolean"/>
+        </declare-styleable>
+
 </resources>

@@ -114,7 +114,6 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         pageSize = 10;
         huiFangInfoList.clear();
         showLoading();
-
         HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
         huifangTaskRequestBody.setChief(true);
         huifangTaskRequestBody.setMenu(menu);
@@ -124,13 +123,8 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONArray result) {
                 refreshLayout.finishRefresh(2000, true);
-
-
-
                 List<HuiFangInfo> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), HuiFangInfo.class);
                 huiFangInfoList.addAll(list);
-
-
                 huiFangTaskAdapter.update(huiFangInfoList);
                 hideLoading();
             }
@@ -141,11 +135,9 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
                 hideLoading();
             }
         });
-   
     }
 
     public void loadMore() {
-
         showLoading();
         offset=huiFangInfoList.size();
         HuifangTaskRequestBody huifangTaskRequestBody = new HuifangTaskRequestBody();
@@ -156,14 +148,10 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
-
-
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
-
                 List<HuiFangInfo> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), HuiFangInfo.class);
                 huiFangInfoList.addAll(list);
                 huiFangTaskAdapter.update(huiFangInfoList);
-
                 hideLoading();
             }
 
@@ -174,7 +162,6 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
                 hideLoading();
             }
         });
-
     }
 
 

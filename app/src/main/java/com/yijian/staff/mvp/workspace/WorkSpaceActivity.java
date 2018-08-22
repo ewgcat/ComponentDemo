@@ -1,16 +1,14 @@
 package com.yijian.staff.mvp.workspace;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticPhotoActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
@@ -19,20 +17,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/workspace")
-public class WorkSpaceActivity extends MvcBaseActivity {
+public class WorkSpaceActivity extends AppCompatActivity {
 
     private CommenPopupWindow popupWindow;
 
-
-
     @Override
-    protected int getLayoutID() {
-        return R.layout.activity_workspace;
-    }
-
-    @Override
-    protected void initView(Bundle savedInstanceState) {
-        super.initView(savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_workspace);
+        ButterKnife.bind(this);
         initTitle();
     }
 
@@ -57,7 +50,10 @@ public class WorkSpaceActivity extends MvcBaseActivity {
                 startActivity(new Intent(this, WorkSpaceSearchActivity.class));
                 break;
             case R.id.fl_static: //静态评估
-                popDialog();
+//                popDialog();
+                ActivityUtils.isShareJump = false;
+                ActivityUtils.moduleType = ActivityUtils.MODULE_STATIC_EVALUATE;
+                ActivityUtils.startActivity(this, WorkSpaceSearchActivity.class);
                 break;
             case R.id.fl_sport: //动态评估
                 popDialog();

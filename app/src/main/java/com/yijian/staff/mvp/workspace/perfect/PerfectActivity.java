@@ -27,6 +27,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.face.BitmapFaceUtils;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.utils.StreamUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -164,7 +165,7 @@ public class PerfectActivity extends MvcBaseActivity {
                 byte[] datas = baos.toByteArray();
                 StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
 
-                HttpManager.upLoadImageHasParam(HttpManager.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
+                HttpManagerWorkSpace.upLoadImageHasParam(HttpManagerWorkSpace.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
                         try {

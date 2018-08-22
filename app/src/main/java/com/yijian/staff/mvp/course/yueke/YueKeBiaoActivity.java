@@ -73,8 +73,9 @@ public class YueKeBiaoActivity extends MvcBaseActivity {
         int height = SCREEN_HEIGHT / 9;
 
 
-        Logger.i("TEST", "height=" + height);
-        courseView.setWidthAndHeight(CommonUtil.dp2px(this, 35), 24);
+
+
+        courseView.setWidthAndHeight(CommonUtil.dp2px(this, 35), 48);
         for (int i = 0; i < 24; i++) {
             if (i % 2 == 0) {
 

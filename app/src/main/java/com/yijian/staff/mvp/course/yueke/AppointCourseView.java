@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
+import com.yijian.staff.util.DateUtil;
 
 import java.util.zip.Inflater;
 
@@ -32,6 +33,9 @@ public class AppointCourseView extends FrameLayout {
     private Context mContext;
     private Paint mPaint; //分割线高度
     private TextPaint mTextPaint;
+
+    private Paint mRedPaint; //分割线高度
+    private TextPaint mRedTextPaint;
 
     public  AppointCourseView(@NonNull Context context) {
         this(context, null);
@@ -71,19 +75,49 @@ public class AppointCourseView extends FrameLayout {
         mTextPaint.setColor(Color.parseColor("#999999"));
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(30);
+        mRedPaint = new Paint();
+        mRedPaint.setColor(Color.parseColor("#ff0000"));
+        mRedPaint.setAntiAlias(true);
+        mRedPaint.setStrokeWidth(1.0f);
+        mRedTextPaint = new TextPaint();
+        mRedTextPaint.setColor(Color.parseColor("#ff0000"));
+        mRedTextPaint.setAntiAlias(true);
+        mRedTextPaint.setTextSize(30);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawLineAndTime(canvas);
+
+    }
+
+    private void drawLineAndTime(Canvas canvas) {
         canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), mPaint);
         canvas.drawText("00:00", (getPaddingLeft() - mTextPaint.measureText("00:00")) / 2, getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
-        for (int i = 1; i <= itemSize*2; i++) {
+        for (int i = 1; i <= itemSize; i++) {
             canvas.drawLine(getPaddingLeft(), i * itemHeight + getPaddingTop(), getWidth() - getPaddingRight(), i * itemHeight + getPaddingTop(), mPaint);
             if (i % 2 == 0) {
                 canvas.drawText(i/2 + ":00", (getPaddingLeft() - mTextPaint.measureText(i/2 + ":00")) / 2, i * itemHeight + getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
             }
         }
+
+        drawCurrentTime(canvas);
+
+
+    }
+
+    private void drawCurrentTime(Canvas canvas) {
+        long l = System.currentTimeMillis();
+        String dateToString = DateUtil.getDateToString(l, "HH:mm");
+
+        long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
+
+        long l1 = 86400000;
+        long l2 = l - currentDate;
+        long top = itemHeight * itemSize * l2 / l1 + getPaddingTop();
+        canvas.drawLine(getPaddingLeft(), top, getWidth() - getPaddingRight(), top, mRedPaint);
+        canvas.drawText(dateToString, (getPaddingLeft() - mTextPaint.measureText(dateToString)) / 2, top + mTextPaint.getTextSize() / 2, mRedTextPaint);
     }
 
 
@@ -96,7 +130,7 @@ public class AppointCourseView extends FrameLayout {
         TextView  tv_course_status =  view.findViewById(R.id.tv_course_status);
         LinearLayout    ll_content =  view.findViewById(R.id.ll_content);
 
-        if (s.equals("10")){
+        if (s.equals("8")){
             tv_course_name.setText(s);
             ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
             tv_course_status.setVisibility(View.VISIBLE);

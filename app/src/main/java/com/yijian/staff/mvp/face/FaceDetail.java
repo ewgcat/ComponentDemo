@@ -40,6 +40,7 @@ public class FaceDetail {
     private String memberName;
     private String sellerName;
     private String hasChildren;
+    private String courseValue;
 
     public int getAge() {
         return age;
@@ -191,5 +192,13 @@ public class FaceDetail {
 
     public void setHasChildren(String hasChildren) {
         this.hasChildren = hasChildren;
+    }
+
+    public String getCourseValue() {
+        return courseValue;
+    }
+
+    public void setCourseValue(String courseValue) {
+        this.courseValue = courseValue;
     }
 }

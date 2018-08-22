@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
 
@@ -35,21 +36,21 @@ public class AppointCourseView extends FrameLayout {
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
 
-    public  AppointCourseView(@NonNull Context context) {
+    public AppointCourseView(@NonNull Context context) {
         this(context, null);
     }
 
-    public  AppointCourseView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public AppointCourseView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public  AppointCourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AppointCourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
 
     }
 
-    public void setWidthAndHeight(int height, int size) {
+    public void setHeightAndSize(int height, int size) {
         this.itemHeight = height;
         this.itemSize = size;
         requestLayout();
@@ -87,7 +88,6 @@ public class AppointCourseView extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawLineAndTime(canvas);
-
     }
 
     private void drawLineAndTime(Canvas canvas) {
@@ -96,13 +96,10 @@ public class AppointCourseView extends FrameLayout {
         for (int i = 1; i <= itemSize; i++) {
             canvas.drawLine(getPaddingLeft(), i * itemHeight + getPaddingTop(), getWidth() - getPaddingRight(), i * itemHeight + getPaddingTop(), mPaint);
             if (i % 2 == 0) {
-                canvas.drawText(i/2 + ":00", (getPaddingLeft() - mTextPaint.measureText(i/2 + ":00")) / 2, i * itemHeight + getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
+                canvas.drawText(i / 2 + ":00", (getPaddingLeft() - mTextPaint.measureText(i / 2 + ":00")) / 2, i * itemHeight + getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
             }
         }
-
         drawCurrentTime(canvas);
-
-
     }
 
     private void drawCurrentTime(Canvas canvas) {
@@ -116,19 +113,20 @@ public class AppointCourseView extends FrameLayout {
         long top = itemHeight * itemSize * l2 / l1 + getPaddingTop();
         canvas.drawLine(getPaddingLeft(), top, getWidth() - getPaddingRight(), top, mRedPaint);
         canvas.drawText(dateToString, (getPaddingLeft() - mTextPaint.measureText(dateToString)) / 2, top + mTextPaint.getTextSize() / 2, mRedTextPaint);
+
     }
 
 
-    public void addItem(String s,int position) {
+    public void addItem(String s, int position) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
         ImageView iv_header = view.findViewById(R.id.iv_header);
-        TextView  tv_name =  view.findViewById(R.id.tv_name);
-        TextView  tv_course_name =  view.findViewById(R.id.tv_course_name);
-        TextView  tv_course_status =  view.findViewById(R.id.tv_course_status);
-        LinearLayout    ll_content =  view.findViewById(R.id.ll_content);
+        TextView tv_name = view.findViewById(R.id.tv_name);
+        TextView tv_course_name = view.findViewById(R.id.tv_course_name);
+        TextView tv_course_status = view.findViewById(R.id.tv_course_status);
+        LinearLayout ll_content = view.findViewById(R.id.ll_content);
 
-        if (s.equals("8")){
+        if (s.equals("8")) {
             tv_course_name.setText(s);
             ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
             tv_course_status.setVisibility(View.VISIBLE);
@@ -136,17 +134,17 @@ public class AppointCourseView extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                    intent.putExtra("appointId",s);
+                    intent.putExtra("appointId", s);
                     mContext.startActivity(intent);
                 }
             });
             addView(view);
             LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
             layoutParams.width = LayoutParams.MATCH_PARENT;
-            layoutParams.height =itemHeight*2 ;
-            layoutParams.topMargin=itemHeight*2*position;
+            layoutParams.height = itemHeight * 2;
+            layoutParams.topMargin = itemHeight * 2 * position;
             view.setLayoutParams(layoutParams);
-        }else {
+        } else {
             tv_course_name.setText("");
             ll_content.setBackgroundColor(Color.WHITE);
             tv_course_status.setVisibility(View.GONE);

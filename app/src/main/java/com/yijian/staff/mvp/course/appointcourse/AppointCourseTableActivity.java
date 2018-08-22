@@ -1,17 +1,15 @@
 package com.yijian.staff.mvp.course.appointcourse;
 
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.ViewTreeObserver;
 
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.DateBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -38,17 +36,18 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
     @BindView(R.id.rv)
     RecyclerView rv;
-
-
     @BindView(R.id.course_view)
     AppointCourseView courseView;
+    @BindView(R.id.scoll_view)
+    NestedScrollView scollView;
 
     private List<DateBean> dateBeanList = new ArrayList<>();
+    private int height, size;
 
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_yue_ke_biao;
+        return R.layout.activity_appoint_course_table;
     }
 
     @Override
@@ -61,29 +60,37 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
         initLeftDate();
 
-        getScreenSize();
-        int width = ((SCREEN_WIDTH - CommonUtil.dp2px(this, 160)));
-        int height = SCREEN_HEIGHT / 9;
-
-
-
-
-        courseView.setWidthAndHeight(CommonUtil.dp2px(this, 35), 48);
+        height = CommonUtil.dp2px(this, 35);
+        size=48;
+        courseView.setHeightAndSize(height, size);
         for (int i = 0; i < 24; i++) {
             if (i % 2 == 0) {
-
                 courseView.addItem("" + i, i);
             }
         }
-
-
-        SimpleDateFormat df = new SimpleDateFormat("HH");//设置日期格式
-        String format = df.format(new Date());
-        int i = Integer.parseInt(format);
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                scollToCurrentTime();
+            }
+        });
 
 
     }
 
+
+    public void scollToCurrentTime() {
+        long l = System.currentTimeMillis();
+        long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
+        long l1 = 86400000;
+        long l2 = l - currentDate;
+        long top = height * size * l2 / l1 + courseView.getPaddingTop();
+        int screenHeight = CustomApplication.SCREEN_HEIGHT;
+        if (top > screenHeight) {
+            long l3 = top - screenHeight / 2;
+            scollView.scrollTo(0, (int) l3);
+        }
+    }
 
     private void initLeftDate() {
 
@@ -132,30 +139,6 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
             }
         });
-    }
-
-
-    public static int SCREEN_WIDTH = -1;
-    public static int SCREEN_HEIGHT = -1;
-    public static float DIMEN_RATE = -1.0F;
-    public static int DIMEN_DPI = -1;
-
-    public void getScreenSize() {
-        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        Display display = windowManager.getDefaultDisplay();
-        display.getMetrics(dm);
-        DIMEN_RATE = dm.density / 1.0F;
-        DIMEN_DPI = dm.densityDpi;
-        SCREEN_WIDTH = dm.widthPixels;
-        SCREEN_HEIGHT = dm.heightPixels;
-        if (SCREEN_WIDTH > SCREEN_HEIGHT) {
-            int t = SCREEN_HEIGHT;
-            SCREEN_HEIGHT = SCREEN_WIDTH;
-            SCREEN_WIDTH = t;
-        }
-        Log.i(TAG, "SCREEN_WIDTH=" + SCREEN_WIDTH);
-        Log.i(TAG, "SCREEN_HEIGHT=" + SCREEN_HEIGHT);
     }
 
 

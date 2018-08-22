@@ -126,7 +126,7 @@ public class AppointCourseView extends FrameLayout {
         TextView tv_course_status = view.findViewById(R.id.tv_course_status);
         LinearLayout ll_content = view.findViewById(R.id.ll_content);
 
-        if (s.equals("8")) {
+        if (s.equals("16")) {
             tv_course_name.setText(s);
             ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
             tv_course_status.setVisibility(View.VISIBLE);

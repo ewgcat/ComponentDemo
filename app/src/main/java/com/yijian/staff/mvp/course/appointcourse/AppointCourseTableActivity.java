@@ -1,6 +1,10 @@
 package com.yijian.staff.mvp.course.appointcourse;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,7 +65,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         initLeftDate();
 
         height = CommonUtil.dp2px(this, 35);
-        size=48;
+        size = 48;
         courseView.setHeightAndSize(height, size);
         for (int i = 0; i < 24; i++) {
             if (i % 2 == 0) {
@@ -74,9 +78,29 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
                 scollToCurrentTime();
             }
         });
-
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_TIME_TICK);
+        filter.addAction(Intent.ACTION_TIME_CHANGED);
+        registerReceiver(broadcastReceiver, filter);
+        //广播的注册，其中Intent.ACTION_TIME_CHANGED代表时间设置变化的时候会发出该广播
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.ACTION_TIME_TICK.equals(intent.getAction())) {
+                courseView.invalidate();
+            }
+        }
+    };
 
 
     public void scollToCurrentTime() {

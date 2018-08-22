@@ -60,11 +60,7 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     TextView tvSix;
     @BindView(R.id.line6)
     View line6;
-    @BindView(R.id.fl_content)
-    FrameLayout flContent;
-    private CourseListFragment fragment0, fragment1, fragment2, fragment3, fragment4, fragment5, fragment6;
 
-    private List<CourseStudentBean> dataList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {
@@ -78,146 +74,48 @@ public class EditCourseTableActivity extends MvcBaseActivity {
         navigationBar2.setTitle("编辑排课表");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        fragment0 = new CourseListFragment();
-        fragment1 = new CourseListFragment();
-        fragment2 = new CourseListFragment();
-        fragment3 = new CourseListFragment();
-        fragment4 = new CourseListFragment();
-        fragment5 = new CourseListFragment();
-        fragment6 = new CourseListFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment0).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment1).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment2).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment3).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment4).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment5).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, fragment6).commit();
-
-
-
         selectWeekDay(0);
     }
 
-    private void initData() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("version", "1.3");
-
-        HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONArray result) {
-
-                List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
-                if (list != null) {
-                    updateUi(list);
-                }
-            }
-
-            @Override
-            public void onFail(String msg) {
-                showToast(msg);
-            }
-        });
-    }
-
-    private void updateUi(List<CourseStudentBean> list) {
-        for (int i = 0; i < list.size(); i++) {
-            CourseStudentBean courseStudentBean = list.get(i);
-            String weekName = courseStudentBean.getWeekName();
-            if ("周日".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment0.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周一".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment1.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周二".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment2.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周三".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment3.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周四".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment4.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周五".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment5.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-            if ("周六".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment6.updateUI(privateCoachCurriculumArrangementPlanVOS);
-            }
-
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initData();
-    }
 
     private void changeFragment(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        hideAllIndex(fragmentTransaction);
         switch (index) {
             case 0:
-                fragmentTransaction.show(fragment0);
+                CourseListFragment fragment0 = new CourseListFragment(0);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment0).commit();
+
                 break;
             case 1:
-                fragmentTransaction.show(fragment1);
+                CourseListFragment fragment1 = new CourseListFragment(1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment1).commit();
+
                 break;
             case 2:
-                fragmentTransaction.show(fragment2);
+                CourseListFragment fragment2 = new CourseListFragment(2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment2).commit();
                 break;
             case 3:
-                fragmentTransaction.show(fragment3);
+                CourseListFragment fragment3 = new CourseListFragment(3);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment3).commit();
                 break;
             case 4:
-                fragmentTransaction.show(fragment4);
+                CourseListFragment fragment4 = new CourseListFragment(4);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment4).commit();
                 break;
             case 5:
-                fragmentTransaction.show(fragment5);
+                CourseListFragment fragment5 = new CourseListFragment(5);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment5).commit();
+
                 break;
             case 6:
-                fragmentTransaction.show(fragment6);
+                CourseListFragment fragment6 = new CourseListFragment(6);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, fragment6).commit();
                 break;
         }
 
         fragmentTransaction.commit();
-    }
-
-    //隐藏所有的Fragment
-    public void hideAllIndex(FragmentTransaction fragmentTransaction) {
-
-        if (fragment0 != null && fragment0.isAdded()) {
-            fragmentTransaction.hide(fragment0);
-        }
-        if (fragment1 != null && fragment1.isAdded()) {
-            fragmentTransaction.hide(fragment1);
-        }
-        if (fragment2 != null && fragment2.isAdded()) {
-            fragmentTransaction.hide(fragment2);
-        }
-        if (fragment3 != null && fragment3.isAdded()) {
-            fragmentTransaction.hide(fragment3);
-        }
-        if (fragment4 != null && fragment4.isAdded()) {
-            fragmentTransaction.hide(fragment4);
-        }
-        if (fragment5 != null && fragment5.isAdded()) {
-            fragmentTransaction.hide(fragment5);
-        }
-        if (fragment6 != null && fragment6.isAdded()) {
-            fragmentTransaction.hide(fragment6);
-        }
-
-
     }
 
 

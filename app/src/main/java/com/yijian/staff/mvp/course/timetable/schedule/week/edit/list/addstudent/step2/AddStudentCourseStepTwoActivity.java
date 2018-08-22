@@ -22,6 +22,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -93,7 +94,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     private String hours = "00";
     private String minutes = "00";
     private String consumingMinute = "60";
-    private List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
     private GroupedStudentBean selectGroupedStudentBean;
     private GroupedStudentBean.PrivateCoachCourseVOSBean course;
 
@@ -394,6 +394,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
     public void postSaveCourse() {
+         List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
 
         if (selectGroupedStudentBean != null && course != null) {
             if (list.size() > 0) {
@@ -403,6 +404,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                     privateCoachCAPDTOsBean.setDataType(1);
                     privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
                     privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
+                    privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+
                     String weekDay = list.get(i).getWeekDay();
                     int week = 0;
                     if (weekDay.equals("周日")) {

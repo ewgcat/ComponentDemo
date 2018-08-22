@@ -319,7 +319,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
             //快到期学员回访
             HuiFangInfo.StudentPrivateCourseWillExpireInterviewBean studentPrivateCourseWillExpireInterview = huiFangInfo.getStudentPrivateCourseWillExpireInterview();
-            if (memberWillExpireInterview != null) {
+            if (studentPrivateCourseWillExpireInterview != null) {
                 llCourseName.setVisibility(View.VISIBLE);
                 llHetongDaoQiRi.setVisibility(View.VISIBLE);
                 tvCourseName.setText(studentPrivateCourseWillExpireInterview.getCourseName());

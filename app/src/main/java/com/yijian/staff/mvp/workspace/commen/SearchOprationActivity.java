@@ -13,6 +13,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
 import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
@@ -111,6 +112,8 @@ public class SearchOprationActivity extends MvcBaseActivity {
                     mContext.startActivity(new Intent(mContext, SportTestActivity.class));
                 }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
                     mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+                }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_STATIC_EVALUATE)){
+                    mContext.startActivity(new Intent(mContext, StaticAssessmentActivity.class));
                 }
                 break;
             case R.id.btn_record: //记录

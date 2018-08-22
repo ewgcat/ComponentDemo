@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 }
             });
-            ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + workSpaceVipBean.getHeadPath(), mContext, iv_header);
+            ImageLoader.setHeadImageResource(HttpManagerWorkSpace.getFileHost() + workSpaceVipBean.getHeadPath(), mContext, iv_header);
             iv_gender.setImageResource("1".equals(workSpaceVipBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(workSpaceVipBean.getName());
             tv_age.setText(String.valueOf(workSpaceVipBean.getAge()));

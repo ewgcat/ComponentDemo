@@ -22,6 +22,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceRecordBean;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
@@ -119,11 +120,13 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
             type = "1";
         }else if(ActivityUtils.MODULE_SPORT.equals(ActivityUtils.moduleType)){ //运动表现
             type = "2";
+        }else if(ActivityUtils.MODULE_STATIC_EVALUATE.equals(ActivityUtils.moduleType)){ //静态评估
+            type = "3";
         }
         map.put("types", type);
         map.put("memberId", ActivityUtils.workSpaceVipBean.getMemberId());
         empty_view.setVisibility(View.GONE);
-        HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManagerWorkSpace.getHasHeaderHasParam(HttpManagerWorkSpace.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
@@ -172,7 +175,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
             }
             map.put("types", type);
             map.put("memberId", ActivityUtils.workSpaceVipBean.getMemberId());
-            HttpManager.getHasHeaderHasParam(HttpManager.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            HttpManagerWorkSpace.getHasHeaderHasParam(HttpManagerWorkSpace.WORKSPACE_QUERY_RESULT_LIST__URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject result) {
                     pagesTotal = JsonUtil.getInt(result, "pages");

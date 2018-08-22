@@ -16,6 +16,7 @@ import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObserv
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
@@ -135,7 +136,7 @@ public class PerfectTestActivity extends MvcBaseActivity {
                 }
                 perfectRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
                 perfectRequestBody.setUrl1(imgUrl);
-                HttpManager.postPerfectInfo(perfectRequestBody, new ResultStringObserver(getLifecycle()) {
+                HttpManagerWorkSpace.postPerfectInfo(perfectRequestBody, new ResultStringObserver(getLifecycle()) {
 
                     @Override
                     public void onSuccess(String result) {

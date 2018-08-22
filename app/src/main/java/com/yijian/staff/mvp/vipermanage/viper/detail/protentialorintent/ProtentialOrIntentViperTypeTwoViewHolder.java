@@ -87,8 +87,13 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
             rlSijiaoClass.setVisibility(View.VISIBLE);
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < privateCourses.size(); i++) {
-                String s = privateCourses.get(i) + " ";
-                sb.append(s);
+                if (i< privateCourses.size()-1){
+                    String s = privateCourses.get(i) + "\n";
+                    sb.append(s);
+                }else {
+                    String s = privateCourses.get(i) ;
+                    sb.append(s);
+                }
             }
             tvSijiaoClass.setText(sb.toString());
         } else {

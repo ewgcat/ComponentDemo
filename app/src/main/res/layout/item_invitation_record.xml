@@ -276,6 +276,7 @@
             android:paddingTop="15dp">
 
             <TextView
+                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -287,10 +288,10 @@
             <TextView
                 android:id="@+id/tv_invitation_content"
                 android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/tv"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:text="正常"
+                android:gravity="center_vertical|right"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 

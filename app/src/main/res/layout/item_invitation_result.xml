@@ -162,31 +162,34 @@
 
         </RelativeLayout>
 
+
+
         <RelativeLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
-                android:paddingTop="15dp">
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="邀约内容:"
+                android:textColor="#999999"
+                android:textSize="14sp" />
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="邀约内容: "
-                    android:textColor="#999999"
-                    android:textSize="14sp"
-                    android:layout_alignParentLeft="true"/>
-
-            <TextView
-                    android:id="@+id/tv_invitation_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="打篮球、游泳"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    android:layout_alignParentRight="true"/>
+                android:id="@+id/tv_invitation_content"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/tv"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical|right"
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
         </RelativeLayout>
 

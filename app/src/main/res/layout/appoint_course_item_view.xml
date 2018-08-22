@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijian.staff.mvp.course.yueke.AppointCourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yijian.staff.mvp.course.appointcourse.AppointCourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -61,5 +61,5 @@
         android:textColor="@color/white"
         android:textSize="14sp" />
 
-</com.yijian.staff.mvp.course.yueke.AppointCourseItemView>
+</com.yijian.staff.mvp.course.appointcourse.AppointCourseItemView>
 

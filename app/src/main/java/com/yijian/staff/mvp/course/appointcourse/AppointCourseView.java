@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.yueke;
+package com.yijian.staff.mvp.course.appointcourse;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +19,6 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
-
-import java.util.zip.Inflater;
 
 /**
  * author：李帅华

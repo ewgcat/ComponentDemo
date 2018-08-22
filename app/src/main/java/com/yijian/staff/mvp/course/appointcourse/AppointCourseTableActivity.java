@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.yueke;
+package com.yijian.staff.mvp.course.appointcourse;
 
 
 import android.content.Context;
@@ -9,23 +9,17 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.DateBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.helper.MyScollView;
-import com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar2;
-import com.yijian.staff.widget.ScrollViewListener;
-import com.yijian.staff.widget.TimeLayout;
 
 import org.json.JSONObject;
 
@@ -36,12 +30,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class YueKeBiaoActivity extends MvcBaseActivity {
+public class AppointCourseTableActivity extends MvcBaseActivity {
 
 
-    private static String TAG = YueKeBiaoActivity.class.getSimpleName();
+    private static String TAG = AppointCourseTableActivity.class.getSimpleName();
 
     @BindView(R.id.rv)
     RecyclerView rv;

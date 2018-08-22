@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.yueke;
+package com.yijian.staff.mvp.course.appointcourse;
 
 import android.content.Context;
 import android.graphics.Color;

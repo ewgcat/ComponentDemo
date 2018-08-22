@@ -50,7 +50,6 @@ public class MessageFragment extends MvcBaseFragment {
     private List<MessageBean> messageBeanList = new ArrayList<>();
 
 
-
     @Override
     public int getLayoutId() {
         return R.layout.fragment_message;
@@ -92,10 +91,13 @@ public class MessageFragment extends MvcBaseFragment {
                 loadMore();
             }
         });
-        refresh();
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
+    }
 
     @OnClick(R.id.empty_view)
     public void onViewClicked() {
@@ -108,13 +110,14 @@ public class MessageFragment extends MvcBaseFragment {
         pageNum = 1;
         pageSize = 10;
         emptyView.setVisibility(View.GONE);
-
+        showLoading();
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(pageNum);
         businessMessageRequestBody.setPageSize(pageSize);
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
+                hideLoading();
                 messageBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
@@ -134,6 +137,7 @@ public class MessageFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
+                hideLoading();
                 refreshLayout.finishRefresh(2000, false);//传入false表示刷新失败
                 emptyView.setVisibility(View.VISIBLE);
             }
@@ -142,6 +146,7 @@ public class MessageFragment extends MvcBaseFragment {
 
 
     private void loadMore() {
+        showLoading();
         emptyView.setVisibility(View.GONE);
         BusinessMessageRequestBody businessMessageRequestBody = new BusinessMessageRequestBody();
         businessMessageRequestBody.setPageNum(pageNum);
@@ -149,6 +154,7 @@ public class MessageFragment extends MvcBaseFragment {
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
+                hideLoading();
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
@@ -171,6 +177,7 @@ public class MessageFragment extends MvcBaseFragment {
 
             @Override
             public void onFail(String msg) {
+                hideLoading();
 
                 refreshLayout.finishLoadMore(2000, false, false);//传入false表示刷新失败
                 if (messageBeanList.size() == 0) {

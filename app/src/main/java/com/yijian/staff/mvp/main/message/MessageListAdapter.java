@@ -59,10 +59,10 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         int costType = messageBean.getCostType();
         if (costType==0){
             holder.tv_cost.setTextColor(Color.parseColor("#1997f8"));
-            holder.tv_cost.setText("+ "+Double.parseDouble(messageBean.getCost())+"元");
+            holder.tv_cost.setText("+ "+messageBean.getCost()+"元");
         }else if (costType==1){
             holder.tv_cost.setTextColor(Color.parseColor("#f15a5a"));
-            holder.tv_cost.setText("- "+Double.parseDouble(messageBean.getCost())+"元");
+            holder.tv_cost.setText("- "+messageBean.getCost()+"元");
 
         }
         holder.tv_content.setText(messageBean.getContent());

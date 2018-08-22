@@ -149,6 +149,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     mBottombar.showRedPointNotice(View.INVISIBLE);
                 }
                 if (mesageFragment!=null&&mesageFragment.isVisible()) {
+                    mesageFragment.refresh();
                     mBottombar.showRedPointNotice(View.INVISIBLE);
 
                 }

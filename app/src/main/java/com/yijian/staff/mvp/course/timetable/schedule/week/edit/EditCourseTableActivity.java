@@ -64,7 +64,6 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     FrameLayout flContent;
     private CourseListFragment fragment0, fragment1, fragment2, fragment3, fragment4, fragment5, fragment6;
 
-    private List<CourseStudentBean> dataList = new ArrayList<>();
 
     @Override
     protected int getLayoutID() {
@@ -124,32 +123,25 @@ public class EditCourseTableActivity extends MvcBaseActivity {
             CourseStudentBean courseStudentBean = list.get(i);
             String weekName = courseStudentBean.getWeekName();
             if ("周日".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment0.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment0.updateUI(courseStudentBean);
             }
             if ("周一".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment1.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment1.updateUI(courseStudentBean);
             }
             if ("周二".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment2.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment2.updateUI(courseStudentBean);
             }
             if ("周三".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment3.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment3.updateUI(courseStudentBean);
             }
             if ("周四".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment4.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment4.updateUI(courseStudentBean);
             }
             if ("周五".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment5.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment5.updateUI(courseStudentBean);
             }
             if ("周六".equals(weekName)) {
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                fragment6.updateUI(privateCoachCurriculumArrangementPlanVOS);
+                fragment6.updateUI(courseStudentBean);
             }
 
         }

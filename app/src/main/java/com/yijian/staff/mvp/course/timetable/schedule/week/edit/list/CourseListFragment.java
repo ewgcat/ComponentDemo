@@ -10,6 +10,8 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
+import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
+import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class CourseListFragment extends MvcBaseFragment {
 
@@ -57,17 +61,23 @@ public class CourseListFragment extends MvcBaseFragment {
         rv.setAdapter(mDataAdapter);
 
 
+        Disposable disposable = RxBus.getDefault().toDefaultFlowable(CourseStudentBean.class, new Consumer<CourseStudentBean>() {
+            @Override
+            public void accept(CourseStudentBean courseStudentBean) throws Exception {
+
+                updateUI(courseStudentBean);
+            }
+        });
 
 
     }
 
 
-    public void updateUI(List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list) {
+    public void updateUI( CourseStudentBean courseStudentBean) {
+        List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+
         this.dataList.clear();
         this.dataList .addAll(list) ;
-        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
-        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
-        this.dataList.add(new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean());
         mDataAdapter.setDataList(dataList);
     }
 

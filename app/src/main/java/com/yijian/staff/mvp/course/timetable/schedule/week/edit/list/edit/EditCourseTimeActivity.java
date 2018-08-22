@@ -19,6 +19,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import org.json.JSONObject;
@@ -96,8 +97,8 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     private String hours = "00";
     private String minutes = "00";
     private String consumingMinute = "60";
-    private List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
     private CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseStudentBean;
+    private String id;
 
     @Override
     protected int getLayoutID() {
@@ -128,6 +129,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             tvCourse.setText(privateCoachCourseVO.getMemberCourseName() + "（" + privateCoachCourseVO.getConsumingMinute() + "分钟)");
             int week = courseStudentBean.getWeek();
             weekday = week;
+            id = courseStudentBean.getId();
             selectWeekDay(weekday);
             initSetTime();
         }
@@ -197,6 +199,8 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         if (visibility == View.VISIBLE) {
             showToast("选中时间段已有安排,请选择其他时间！");
         } else {
+             List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+
             if (courseStudentBean != null) {
 
                 CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseStudentBean.getPrivateCoachCourseVO();
@@ -206,6 +210,8 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 privateCoachCAPDTOsBean.setDataType(1);
                 privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
                 privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
+                privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+                privateCoachCAPDTOsBean.setCapId(id);
 
 
                 privateCoachCAPDTOsBean.setWeek(weekday);
@@ -234,7 +240,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
                 privateCoachCAPDTOsBean.setSTime(startTime);
                 privateCoachCAPDTOsBean.setETime(endTime);
-
+                privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
                 HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {

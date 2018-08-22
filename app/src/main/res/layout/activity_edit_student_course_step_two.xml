@@ -122,7 +122,6 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="4dp"
                     android:ellipsize="end"
-                    android:maxWidth="120dp"
                     android:singleLine="true"
                     android:text="增肌课(60分钟)"
                     android:textColor="#333333"

@@ -344,15 +344,21 @@ public class DragPointView extends View {
             }
         }
 
-            //脚踝
+            //脚踝 左
             double orientation4 = DragPointUtil.return3Range(point_tiptoe_left.getPointF().x, point_tiptoe_left.getPointF().y,
                     point_ankle_left.getPointF().x, point_tiptoe_left.getPointF().y,
                     point_ankle_left.getPointF().x, point_ankle_left.getPointF().y);
+
+        //脚踝 右
+        double orientation5 = DragPointUtil.return3Range(point_tiptoe_right.getPointF().x, point_tiptoe_right.getPointF().y,
+                point_ankle_right.getPointF().x, point_tiptoe_right.getPointF().y,
+                point_ankle_right.getPointF().x, point_ankle_right.getPointF().y);
 
             orientationList.add(orientation1);
             orientationList.add(orientation2);
             orientationList.add(orientation3);
             orientationList.add(orientation4);
+            orientationList.add(orientation5);
             for (Double orientation : orientationList) {
                 Log.e("Test", "orientation====" + orientation);
             }

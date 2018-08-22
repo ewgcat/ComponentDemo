@@ -128,11 +128,12 @@ public class FaceInfoPanel extends PopupWindow {
         tv_detail_coach.setText(emptyNull(faceDetail.getCoachName(),""));
         String courseName = faceDetail.getCourseName();
         int courseNum = faceDetail.getCourseNum();
-        if (TextUtils.isEmpty(courseName)||courseNum==0){
+       /* if (TextUtils.isEmpty(courseName)||courseNum==0){
             tv_detail_progress.setText("无");
         }else {
             tv_detail_progress.setText(courseName + "第" + courseNum + "节");
-        }
+        }*/
+        tv_detail_progress.setText(faceDetail.getCourseValue());
         /*try{
             tv_detail_has_child.setText(Integer.valueOf(faceDetail.getChildrenNum()) > 0 ? "有" : "无");
         }catch (Exception e){

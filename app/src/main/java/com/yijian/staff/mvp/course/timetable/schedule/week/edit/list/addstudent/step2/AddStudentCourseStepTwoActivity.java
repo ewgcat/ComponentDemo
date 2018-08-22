@@ -453,7 +453,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
     public void checkoutScheduleTime() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("version", "1.3.0");
         map.put("schooltime", hours + ":" + minutes);
         map.put("week", weekday + "");
         map.put("classHour", consumingMinute);

@@ -24,8 +24,8 @@ public class DaoMaster extends AbstractDaoMaster {
         HuiFangTypeBeanDao.createTable(db, ifNotExists);
         OthermodelVoDao.createTable(db, ifNotExists);
         RoleVoBeanDao.createTable(db, ifNotExists);
-        UserDao.createTable(db, ifNotExists);
         SearchKeyDao.createTable(db, ifNotExists);
+        UserDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -33,8 +33,8 @@ public class DaoMaster extends AbstractDaoMaster {
         HuiFangTypeBeanDao.dropTable(db, ifExists);
         OthermodelVoDao.dropTable(db, ifExists);
         RoleVoBeanDao.dropTable(db, ifExists);
-        UserDao.dropTable(db, ifExists);
         SearchKeyDao.dropTable(db, ifExists);
+        UserDao.dropTable(db, ifExists);
     }
 
     /**
@@ -56,8 +56,8 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(HuiFangTypeBeanDao.class);
         registerDaoClass(OthermodelVoDao.class);
         registerDaoClass(RoleVoBeanDao.class);
-        registerDaoClass(UserDao.class);
         registerDaoClass(SearchKeyDao.class);
+        registerDaoClass(UserDao.class);
     }
 
     public DaoSession newSession() {

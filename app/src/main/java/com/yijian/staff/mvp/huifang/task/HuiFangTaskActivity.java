@@ -72,20 +72,18 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initData() {
+        showLoading();
         HttpManager.postHasHeaderNoParam(HuiFangUrls.GET_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
-
+                hideLoading();
                 try {
                     if (result != null) {
                         for (int i = 0; i < result.length(); i++) {
-
                             JSONObject jsonObject = result.getJSONObject(i);
-                            if (jsonObject.has("totalNum")){
-                                totalNum = JsonUtil.getInt(jsonObject,"totalNum");
+                            if (jsonObject.has("totalNum")) {
+                                totalNum = JsonUtil.getInt(jsonObject, "totalNum");
                             }
-
-
                             HuiFangTypeBean huiFangTypeBean = new HuiFangTypeBean(jsonObject);
                             huiFangTypeBeanArrayList.add(huiFangTypeBean);
                         }
@@ -95,19 +93,17 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
             public void onFail(String msg) {
+                hideLoading();
                 showToast(msg);
             }
         });
     }
 
     private void initIndicatorAndViewPager() {
-
-
         List<String> mTitleList = new ArrayList<>();
         List<Fragment> fragmentList = new ArrayList<>();
         for (int i = 0; i < huiFangTypeBeanArrayList.size(); i++) {
@@ -127,7 +123,6 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
     @OnClick({R.id.ll_hui_fang_ji_lu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.ll_hui_fang_ji_lu:
                 startActivity(new Intent(HuiFangTaskActivity.this, HuiFangHistoryActivity.class));
                 break;

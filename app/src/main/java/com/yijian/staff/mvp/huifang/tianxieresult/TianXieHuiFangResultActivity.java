@@ -108,7 +108,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         NavigationBar2 navigationBar2 = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("填写回访结果");
+        navigationBar2.setTitle("填写记录");
         navigationBar2.setmRightTvText("确定");
         navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
@@ -195,7 +195,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                                 String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
                                 String s1 = "" + year + month + dayOfMonth;
                                 if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
-                                    fufangTime = s1;
+                                    fufangTime = time;
                                     tv_fufan_time.setText(time);
                                 } else {
                                     fufangTime = "";
@@ -231,7 +231,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                                 String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
                                 String s1 = "" + year + month + dayOfMonth;
                                 if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
-                                    laifangTime = s1;
+                                    laifangTime = time;
                                     tvLaifanTime.setText(time);
                                 } else {
                                     laifangTime = "";
@@ -285,10 +285,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             });
 
         } else {
-            if (TextUtils.isEmpty(laifangTime)) {
-                showToast("请选择来访时间");
-                return;
-            }
+
             String result = et_huifan_record.getText().toString();
             if (TextUtils.isEmpty(result)) {
                 showToast("请填写回访结果");

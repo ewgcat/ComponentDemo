@@ -49,7 +49,7 @@ public class HuiFangInfo implements Serializable {
     private String hobby;
     private String id;
     private String interviewName;
-    private int invite;
+    private int invite;// 是否邀约, 0未邀约, 1已邀约 ,
     private int memberMedalType;
     private String inviteContent;
     private String inviteVisitTime;

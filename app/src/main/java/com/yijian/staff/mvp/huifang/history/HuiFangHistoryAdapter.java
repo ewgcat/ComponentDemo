@@ -25,6 +25,7 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.Logger;
 
 import java.util.List;
 
@@ -204,7 +205,6 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             }else if (medalType==2){
                 ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
             }
-            int invite = huiFangInfo.getInvite();
 
 
             tvShentiZhuangtai.setText(huiFangInfo.getHealthStatus());
@@ -222,15 +222,20 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                     tvHuifangType.setText(huiFangInfo.getInterviewName() + " ( 复访 ）");
                 }
             }
+            int invite = huiFangInfo.getInvite();// 是否邀约, 0未邀约, 1已邀约 ,
 
             if (invite == 0) {
                 llHuifangJilu.setVisibility(View.VISIBLE);
-                tvHuifangJilu.setText(huiFangInfo.getResult());
+                String result = huiFangInfo.getResult();
+                Logger.i("HuiFangHistoryAdapter","result="+result);
+                tvHuifangJilu.setText(result);
             } else if (invite == 1) {
                 llYaoyueJilu.setVisibility(View.VISIBLE);
                 llNextVisitTime.setVisibility(View.VISIBLE);
-                tvYaoyueJilu.setText(huiFangInfo.getInviteContent());
-                tvNextVisitTime.setText(huiFangInfo.getInviteVisitTime());
+                String inviteContent = huiFangInfo.getInviteContent();
+                tvYaoyueJilu.setText(inviteContent);
+                String inviteVisitTime = huiFangInfo.getInviteVisitTime();
+                tvNextVisitTime.setText(inviteVisitTime);
             }
 
 
@@ -358,6 +363,7 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         holder.llDaoFangDate.setVisibility(View.GONE);
         holder.llHuifangJilu.setVisibility(View.GONE);
         holder.llYaoyueJilu.setVisibility(View.GONE);
+        holder.llNextVisitTime.setVisibility(View.GONE);
         holder.llShangKeTime.setVisibility(View.GONE);
     }
 }

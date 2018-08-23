@@ -66,7 +66,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -81,25 +81,25 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                
 
                 <TextView
                     android:id="@+id/tv_shenti_zhuangtai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -114,25 +114,24 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_jianshen_aihao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -147,19 +146,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_xingqu_aihao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -178,7 +176,7 @@
             <LinearLayout
                 android:id="@+id/ll_birthday"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -193,19 +191,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -213,7 +210,7 @@
             <LinearLayout
                 android:id="@+id/ll_birthday_type"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -228,19 +225,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_birthday_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -249,7 +246,7 @@
             <LinearLayout
                 android:id="@+id/ll_hetong_dao_qi_ri"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -264,19 +261,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_hetong_dao_qi_ri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -285,7 +281,7 @@
             <LinearLayout
                 android:id="@+id/ll_card_name"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -300,19 +296,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_card_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -321,7 +317,7 @@
             <LinearLayout
                 android:id="@+id/ll_hetong_yu_er"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -336,19 +332,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_hetong_yu_er"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -356,7 +351,7 @@
             <LinearLayout
                 android:id="@+id/ll_card_yu_er"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -371,19 +366,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_card_yu_er"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -391,7 +386,7 @@
             <LinearLayout
                 android:id="@+id/ll_card_type"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -406,19 +401,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_card_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -426,7 +421,7 @@
             <LinearLayout
                 android:id="@+id/ll_zuijin_jianshen"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -441,19 +436,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_zuijin_jianshen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -462,7 +456,7 @@
             <LinearLayout
                 android:id="@+id/ll_chen_mo_tian_shu"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -477,19 +471,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_chen_mo_tian_shu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -498,7 +491,7 @@
             <LinearLayout
                 android:id="@+id/ll_shang_ke_time"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -513,19 +506,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_shang_ke_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -533,7 +526,7 @@
             <LinearLayout
                 android:id="@+id/ll_course_name"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -548,19 +541,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_course_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -569,7 +562,7 @@
             <LinearLayout
                 android:id="@+id/ll_outdate_time"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -584,19 +577,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_outdate_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -604,7 +597,7 @@
             <LinearLayout
                 android:id="@+id/ll_dao_fang_date"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -619,19 +612,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_dao_fang_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -639,7 +631,7 @@
             <LinearLayout
                 android:id="@+id/ll_pre_visit_date"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -654,19 +646,19 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
 
                 <TextView
                     android:id="@+id/tv_pre_visit_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -674,7 +666,7 @@
             <LinearLayout
                 android:id="@+id/ll_fu_fang_reason"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -689,19 +681,18 @@
                     android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_fu_fang_reason"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:textColor="#333333"
+                    android:gravity="right"
+                    android:text=""
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -729,21 +720,19 @@
                 android:textSize="14sp" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1" />
+
 
             <TextView
                 android:id="@+id/tv_huifang_type"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:text=""
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -751,10 +740,11 @@
         <LinearLayout
             android:id="@+id/ll_huifang_jilu"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
+            android:paddingBottom="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -765,21 +755,19 @@
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1" />
+
 
             <TextView
                 android:id="@+id/tv_huifang_jilu"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:text=""
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
 
 
@@ -803,21 +791,18 @@
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1" />
+
 
             <TextView
                 android:id="@+id/tv_next_visit_time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -842,19 +827,18 @@
                 android:textSize="14sp" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+
 
             <TextView
                 android:id="@+id/tv_yaoyue_jilu"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
 
         </LinearLayout>

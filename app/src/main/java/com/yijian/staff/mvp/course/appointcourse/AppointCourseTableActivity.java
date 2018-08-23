@@ -70,7 +70,23 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         height = CommonUtil.dp2px(this, 35);
         size = 48;
         courseView.setHeightAndSize(height, size);
+        AppointCourseBean appointCourseBean =new AppointCourseBean();
+        appointCourseBean.setStartDate("2018-08-23");
+        appointCourseBean.setStartTime("18:00");
+        appointCourseBean.setEndTime("18:30");
+        appointCourseBean.setHeadPath("");
+        appointCourseBean.setMemberCourseName("测试课");
+        appointCourseBean.setMemberName("测试");
+        courseView.addItem(appointCourseBean);
 
+        AppointCourseBean appointCourseBean1 =new AppointCourseBean();
+        appointCourseBean1.setStartDate("2018-08-23");
+        appointCourseBean1.setStartTime("18:30");
+        appointCourseBean1.setEndTime("19:30");
+        appointCourseBean1.setHeadPath("");
+        appointCourseBean1.setMemberCourseName("测试课");
+        appointCourseBean1.setMemberName("测试");
+        courseView.addItem(appointCourseBean1);
         String date = DateUtil.getCurrentDate();
         request(date);
 
@@ -157,13 +173,13 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
-                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), AppointCourseBean.class);
+//                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), AppointCourseBean.class);
+//                for (int i = 0; i < list.size(); i++) {
+//                    AppointCourseBean appointCourseBean = list.get(i);
+//                    courseView.addItem(appointCourseBean);
+//                }
 
-                for (int i = 0; i < list.size(); i++) {
 
-                    AppointCourseBean appointCourseBean = list.get(i);
-                    courseView.addItem(appointCourseBean);
-                }
             }
 
             @Override

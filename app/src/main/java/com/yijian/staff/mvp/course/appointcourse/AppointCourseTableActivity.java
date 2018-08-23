@@ -14,15 +14,18 @@ import android.view.ViewTreeObserver;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.DateBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -151,13 +154,15 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("mmddmmdd", date);
-        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
-            public void onSuccess(JSONObject result) {
-                for (int i = 0; i < 24; i++) {
-                    if (i % 2 == 0) {
-                        courseView.addItem("" + i, i);
-                    }
+            public void onSuccess(JSONArray result) {
+                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), AppointCourseBean.class);
+
+                for (int i = 0; i < list.size(); i++) {
+
+                    AppointCourseBean appointCourseBean = list.get(i);
+                    courseView.addItem(appointCourseBean);
                 }
             }
 

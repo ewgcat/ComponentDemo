@@ -117,7 +117,7 @@ public class AppointCourseView extends FrameLayout {
     }
 
 
-    public void addItem(String s, int position) {
+    public void addItem(AppointCourseBean appointCourseBean) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
         ImageView iv_header = view.findViewById(R.id.iv_header);
@@ -125,37 +125,41 @@ public class AppointCourseView extends FrameLayout {
         TextView tv_course_name = view.findViewById(R.id.tv_course_name);
         TextView tv_course_status = view.findViewById(R.id.tv_course_status);
         LinearLayout ll_content = view.findViewById(R.id.ll_content);
+        String memberCourseName = appointCourseBean.getMemberCourseName();
+        tv_course_name.setText(memberCourseName);
+        ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
+        tv_course_status.setVisibility(View.VISIBLE);
+        tv_course_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CoursePunchActivity.class);
+                intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                mContext.startActivity(intent);
+            }
+        });
+        addView(view);
+        String startTime = appointCourseBean.getStartDate() + " " + appointCourseBean.getStartTime();
+        String endTime = appointCourseBean.getStartDate() + " " + appointCourseBean.getEndTime();
+        long startTimestringToDate = DateUtil.getStringToDate(startTime, "yyyy-MM-dd HH:mm:ss");
+        long endTimestringToDate = DateUtil.getStringToDate(endTime, "yyyy-MM-dd HH:mm:ss");
+        long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
 
-        if (s.equals("16")) {
-            tv_course_name.setText(s);
-            ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
-            tv_course_status.setVisibility(View.VISIBLE);
-            tv_course_status.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                    intent.putExtra("appointId", s);
-                    mContext.startActivity(intent);
-                }
-            });
-            addView(view);
-            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-            layoutParams.width = LayoutParams.MATCH_PARENT;
-            layoutParams.height = itemHeight * 2;
-            layoutParams.topMargin = itemHeight * 2 * position;
-            view.setLayoutParams(layoutParams);
-        } else {
-            tv_course_name.setText("");
-            ll_content.setBackgroundColor(Color.WHITE);
-            tv_course_status.setVisibility(View.GONE);
-        }
+        int height = itemHeight * itemSize;
+        long l1 = 86400000;
+        long l2 = startTimestringToDate - currentDate;
+        long l3 = endTimestringToDate - currentDate;
+        long top = height * l2 / l1 + getPaddingTop();
+        long bottom =height * l3 / l1 + getPaddingTop();
+
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        layoutParams.width = LayoutParams.MATCH_PARENT;
+        layoutParams.height = (int)(bottom-top);
+        layoutParams.topMargin =(int) top;
+        view.setLayoutParams(layoutParams);
 
 
     }
 
-    private void removeItem(View view) {
-        removeView(view);
-    }
 
 
 }

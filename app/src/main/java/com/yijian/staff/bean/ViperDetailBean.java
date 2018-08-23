@@ -39,7 +39,37 @@ public class ViperDetailBean implements Serializable {
      */
 
     private int age;
+    private int medalType;
     private long birthday;
+
+    public int getMedalType() {
+        return medalType;
+    }
+
+    public void setMedalType(int medalType) {
+        this.medalType = medalType;
+    }
+
+    public Boolean getUnderProtected() {
+        return underProtected;
+    }
+
+    public void setUnderProtected(Boolean underProtected) {
+        this.underProtected = underProtected;
+    }
+
+    public Boolean getInvitationEnable() {
+        return invitationEnable;
+    }
+
+    public Boolean getEditEnable() {
+        return editEnable;
+    }
+
+    public void setEditEnable(Boolean editEnable) {
+        this.editEnable = editEnable;
+    }
+
     private String memberId;
     private String name;
     private String sex;

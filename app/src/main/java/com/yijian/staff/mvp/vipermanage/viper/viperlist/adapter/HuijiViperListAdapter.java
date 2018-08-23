@@ -86,7 +86,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean) {
-            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiJiViperBean.getHeadImg(), context, iv_header);
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             int medalType = huiJiViperBean.getMedalType();
             if (medalType==0){
 

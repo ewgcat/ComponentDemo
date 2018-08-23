@@ -48,6 +48,7 @@ public class InvitationRecordBean {
     private int status;
     private String statusName;
     private String visitTime;
+    private int medalType;
 
     public String getBirthday() {
         return birthday;
@@ -199,5 +200,13 @@ public class InvitationRecordBean {
 
     public void setVisitTime(String visitTime) {
         this.visitTime = visitTime;
+    }
+
+    public int getMedalType() {
+        return medalType;
+    }
+
+    public void setMedalType(int medalType) {
+        this.medalType = medalType;
     }
 }

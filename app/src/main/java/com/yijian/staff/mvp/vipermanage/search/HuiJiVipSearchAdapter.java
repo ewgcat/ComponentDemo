@@ -62,6 +62,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView iv_header;
+        private ImageView iv_rank;
         private ImageView iv_gender;
         private TextView tv_name;
         private TextView tv_protect_seven;
@@ -73,6 +74,7 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public ViewHolder(View view) {
             super(view);
             iv_header = view.findViewById(R.id.iv_header);
+            iv_rank = view.findViewById(R.id.iv_rank);
             iv_gender = view.findViewById(R.id.iv_gender);
             tv_name = view.findViewById(R.id.tv_name);
             tv_protect_seven = view.findViewById(R.id.tv_protect_seven);
@@ -82,10 +84,18 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean) {
-            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), (Activity) context, iv_header);
+            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
             iv_gender.setImageResource(1 == huiJiViperBean.getSex() ? R.mipmap.lg_man : R.mipmap.lg_women);
             tv_name.setText(huiJiViperBean.getName());
 
+            int medalType = huiJiViperBean.getMedalType();
+            if (medalType==0){
+
+            }else if (medalType==1){
+                ImageLoader.setImageResource(R.mipmap.member_gray, context, iv_rank);
+            }else if (medalType==2){
+                ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
+            }
             String subclassName = huiJiViperBean.getSubclassName();
 
             if (subclassName.equals("CustomerInfoVO")) { //正式会员

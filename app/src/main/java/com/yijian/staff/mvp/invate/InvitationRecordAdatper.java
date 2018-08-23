@@ -46,6 +46,14 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
     public void onBindViewHolder(InvitationRecordAdatper.ViewHolder holder, int position) {
         InvitationRecordBean invitationRecordBean = invitationRecordBeanList.get(position);
         ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+invitationRecordBean.getHeadPath(), context, holder.iv_header);
+        int medalType = invitationRecordBean.getMedalType();
+        if (medalType==0){
+
+        }else if (medalType==1){
+            ImageLoader.setImageResource(R.mipmap.member_gray, context, holder.iv_rank);
+        }else if (medalType==2){
+            ImageLoader.setImageResource(R.mipmap.member_gold, context, holder.iv_rank);
+        }
         int resId = "1".equals(invitationRecordBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women;
         Glide.with(context).load(resId).into(holder.iv_gender);
         holder.tv_name.setText(invitationRecordBean.getMemberName());
@@ -94,6 +102,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         ImageView iv_header;
         ImageView iv_gender;
         ImageView iv_status;
+        ImageView iv_rank;
         TextView tv_name;
         TextView tv_birthday;
         TextView tv_birthday_type;
@@ -110,6 +119,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             iv_status = view.findViewById(R.id.iv_status);
+            iv_rank = view.findViewById(R.id.iv_rank);
             tv_name = view.findViewById(R.id.tv_name);
             tv_birthday = view.findViewById(R.id.tv_birthday);
             tv_birthday_type = view.findViewById(R.id.tv_birthday_type);

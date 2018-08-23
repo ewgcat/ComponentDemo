@@ -16,6 +16,7 @@ import com.yijian.staff.mvp.huifang.history.HuiFangHistoryActivity;
 import com.yijian.staff.mvp.huifang.task.fragment.BaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -71,7 +72,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initData() {
-        HttpManager.postHasHeaderNoParam(HttpManager.GET_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
+        HttpManager.postHasHeaderNoParam(HuiFangUrls.GET_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
 

@@ -21,6 +21,7 @@ import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
@@ -275,26 +276,7 @@ public class HttpManager {
     public static String GET_QUESTION_NIAR_LIST_URL = "qs/getQsList";
 
 
-    //回访类型
-    public static String GET_HUI_FANG_TYPE_LIST_URL = "interviewV2/bapp/getInterviewMenus";
 
-
-    //回访任务列表
-    public static String HUI_FANG_TASK_URL = "interviewV2/bapp/interviewTaskListLimit";
-
-    //回访记录列表
-    public static String HUI_FANG_RECORD_URL = "interviewV2/bapp/interviewRecordList";
-
-
-    //教练回访打电话通知后台
-    public static String GET_COACH_HUI_FANG_CALL_PHONE_URL = "coach/call-for-interview";
-
-
-    //发送回访结果
-    public static String POST_HUI_FANG_RESULT_URL = "interviewV2/bapp/interviewDone";
-
-    //发送复访请求
-    public static String POST_ABORT_FU_FANG_URL = "interviewV2/bapp/reInterview";
 
 
     public static String GET_COACH_HUI_FANG_REASON_LIST_URL = "dict/review-reason/dict-items";
@@ -444,7 +426,7 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             headers.put("version","1.3");
-            Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl() + POST_HUI_FANG_RESULT_URL, headers, body);
+            Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl() + HuiFangUrls.POST_HUI_FANG_RESULT_URL, headers, body);
             execute(observable, observer);
         }
 
@@ -462,7 +444,7 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             headers.put("version","1.3");
-            Observable<JSONObject> observable = apiService.postAbortFuFang(SharePreferenceUtil.getHostUrl() + POST_ABORT_FU_FANG_URL, headers, body);
+            Observable<JSONObject> observable = apiService.postAbortFuFang(SharePreferenceUtil.getHostUrl() + HuiFangUrls.POST_ABORT_FU_FANG_URL, headers, body);
             execute(observable, observer);
         }
 
@@ -1013,7 +995,6 @@ public class HttpManager {
             Observable<JSONObject> observable = apiService.postInvateContent(SharePreferenceUtil.getHostUrl() + indexHuiJiInvitationSaveUrl, headers, saveInviteBody);
             execute(observable, observer);
         }
-
     }
 
     public static void postHuiFangTask(String getHuiJiHuiFangTaskUrl, HuifangTaskRequestBody huifangTaskRequestBody, Observer<JSONObject> observer) {
@@ -1024,7 +1005,6 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             headers.put("version", "1.3");
-
             Observable<JSONObject> observable = apiService.postHuiFangTask(SharePreferenceUtil.getHostUrl() + getHuiJiHuiFangTaskUrl, headers, huifangTaskRequestBody);
             execute(observable, observer);
         }
@@ -1038,8 +1018,7 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             headers.put("version", "1.3");
-
-            Observable<JSONObject> observable = apiService.postHuiFangRecord(SharePreferenceUtil.getHostUrl() + HUI_FANG_RECORD_URL, headers, huifangRecordRequestBody);
+            Observable<JSONObject> observable = apiService.postHuiFangRecord(SharePreferenceUtil.getHostUrl() + HuiFangUrls.HUI_FANG_RECORD_URL, headers, huifangRecordRequestBody);
             execute(observable, observer);
         }
     }

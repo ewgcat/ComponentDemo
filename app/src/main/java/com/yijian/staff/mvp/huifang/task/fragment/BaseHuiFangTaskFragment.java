@@ -19,6 +19,7 @@ import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -119,7 +120,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         huifangTaskRequestBody.setMenu(menu);
         huifangTaskRequestBody.setOffset(offset);
         huifangTaskRequestBody.setSize(pageSize);
-        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+        HttpManager.postHuiFangTask(HuiFangUrls.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 refreshLayout.finishRefresh(2000, true);
@@ -145,7 +146,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
         huifangTaskRequestBody.setMenu(menu);
         huifangTaskRequestBody.setOffset(offset);
         huifangTaskRequestBody.setSize(pageSize);
-        HttpManager.postHuiFangTask(HttpManager.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+        HttpManager.postHuiFangTask(HuiFangUrls.HUI_FANG_TASK_URL, huifangTaskRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败

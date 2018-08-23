@@ -63,6 +63,7 @@ public class HuiFangInfo implements Serializable {
     private MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview;
     private String mobile;
     private String name;
+    private String memberTypeName;
     private String result;
     private String reviewReason;
     private int status;
@@ -74,6 +75,18 @@ public class HuiFangInfo implements Serializable {
 
     public String getFitnessHobby() {
         return fitnessHobby;
+    }
+
+    public void setMemberMedalType(int memberMedalType) {
+        this.memberMedalType = memberMedalType;
+    }
+
+    public String getMemberTypeName() {
+        return memberTypeName;
+    }
+
+    public void setMemberTypeName(String memberTypeName) {
+        this.memberTypeName = memberTypeName;
     }
 
     public int getMemberMedalType() {

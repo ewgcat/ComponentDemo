@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
@@ -188,20 +189,21 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
 
         public void bindView(Context context, HuiFangInfo huiFangInfo) {
             //公共部分
-            ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), context, ivHead);
+
+
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), context, ivHead);
             tvViperName.setText(huiFangInfo.getName());
             int resId = huiFangInfo.getGender() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             Glide.with(context).load(resId).into(ivSex);
 
             int medalType = huiFangInfo.getMemberMedalType();
-            if (medalType == 0) {
+            if (medalType==0){
 
-            } else if (medalType == 1) {
+            }else if (medalType==1){
                 ImageLoader.setImageResource(R.mipmap.member_gray, context, iv_rank);
-            } else if (medalType == 2) {
+            }else if (medalType==2){
                 ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
             }
-
             int invite = huiFangInfo.getInvite();
 
 

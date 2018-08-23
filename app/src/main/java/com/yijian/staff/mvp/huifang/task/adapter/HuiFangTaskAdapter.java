@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 
 import com.yijian.staff.bean.HuiFangInfo;
@@ -184,7 +185,7 @@ public class HuiFangTaskAdapter extends RecyclerView.Adapter<HuiFangTaskAdapter.
 
         public void bindView(Context context, HuiFangInfo huiFangInfo, int menu) {
             //公共部分
-            ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), context, ivHead);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), context, ivHead);
             tvViperName.setText(huiFangInfo.getName());
             int resId = huiFangInfo.getGender() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             Glide.with(context).load(resId).into(ivSex);

@@ -1,14 +1,17 @@
 package com.yijian.staff.mvp.huifang.tianxieresult;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -16,14 +19,17 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.AbortFuFangBody;
 import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.bean.HuiFangReasonBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
+import com.yijian.staff.net.response.ResultBooleanObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
@@ -31,8 +37,10 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -56,10 +64,10 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     TextView tv_sure_name;
     @BindView(R.id.iv_sure_gender)
     ImageView iv_sure_gender;
-    @BindView(R.id.tv_huifan_time)
-    TextView tv_huifan_time;
-    @BindView(R.id.tv_huifan_reason)
-    TextView tv_huifan_reason;
+    @BindView(R.id.tv_fufan_time)
+    TextView tv_fufan_time;
+    @BindView(R.id.tv_fufan_reason)
+    TextView tv_fufan_reason;
 
 
     @BindView(R.id.iv_nav_header)
@@ -76,7 +84,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
 
     HuiFangInfo huiFangInfo;
     boolean needReview = false;
-    String tvHuifanTimeResult, tvLaifanTimeResult;
+    private String fufangTime, laifangTime;
     List<HuiFangReasonBean> huiFangReasonBeanList = new ArrayList<>();
     String dictItemId;
     @BindView(R.id.tv_laifan_time)
@@ -99,8 +107,10 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     private void initView() {
         NavigationBar2 navigationBar2 = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
         navigationBar2.hideLeftSecondIv();
-        navigationBar2.getFirstLeftIv().setVisibility(View.GONE);
+        navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("填写回访结果");
+        navigationBar2.setmRightTvText("确定");
+        navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +165,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
 
 
         tv_huifan_type.setText(huiFangInfo.getInterviewName());
-
+        tvVipType.setText(huiFangInfo.getMemberTypeName());
     }
 
     @OnClick({R.id.rel_huifan_time, R.id.rel_huifan_reason, R.id.rel_laifan_time})
@@ -163,46 +173,74 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         switch (view.getId()) {
 
             case R.id.rel_huifan_time:
-                new TimePickerBuilder(this, new OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View view) {
-                        Date date1 = new Date();
-                        String now = new SimpleDateFormat("yyyyMMddHHmm").format(date1);
-                        String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
-                        int i = Integer.parseInt(now);
-                        int i1 = Integer.parseInt(selectTime);
-                        if (i > i1) {
-                            tvHuifanTimeResult = "";
-                            showToast("复访时间不得小于当前时间");
-                        } else {
-                            tvHuifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-                            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-                            tv_huifan_time.setText(time);
-                        }
-                    }
-                }).setType(new boolean[]{true, true, true, true, true, false}).build().show();
+
+                Calendar c = Calendar.getInstance();
+                DatePickerDialog dialog = new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
+                                String time = "";
+                                if (month < 9 && dayOfMonth < 10) {
+                                    time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                                } else if (month > 9 && dayOfMonth > 10) {
+                                    time += year + "-" + (month + 1) + "-" + dayOfMonth;
+                                } else if (month < 9 && dayOfMonth > 10) {
+                                    time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+                                } else if (month > 9 && dayOfMonth < 10) {
+                                    time += year + "-" + (month + 1) + "-0" + dayOfMonth;
+                                }
+
+
+                                String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
+                                String s1 = "" + year + month + dayOfMonth;
+                                if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
+                                    fufangTime = s1;
+                                    tv_fufan_time.setText(time);
+                                } else {
+                                    fufangTime = "";
+                                    tv_fufan_time.setText("");
+                                    showToast("复访时间不得小于当前时间");
+                                }
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH));
+                dialog.show();
                 break;
             case R.id.rel_laifan_time:
 
-                new TimePickerBuilder(this, new OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View view) {
 
-                        Date date1 = new Date();
-                        String now = new SimpleDateFormat("yyyyMMddHHmm").format(date1);
-                        String selectTime = new SimpleDateFormat("yyyyMMddHHmm").format(date);
-                        int i = Integer.parseInt(now);
-                        int i1 = Integer.parseInt(selectTime);
-                        if (i > i1) {
-                            tvLaifanTimeResult = "";
-                            showToast("来访时间不得小于当前时间");
-                        } else {
-                            tvLaifanTimeResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-                            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-                            tvLaifanTime.setText(time);
-                        }
-                    }
-                }).setType(new boolean[]{true, true, true, true, true, false}).build().show();
+                Calendar c1 = Calendar.getInstance();
+                new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
+                                String time = "";
+                                if (month < 9 && dayOfMonth < 10) {
+                                    time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                                } else if (month > 9 && dayOfMonth > 10) {
+                                    time += year + "-" + (month + 1) + "-" + dayOfMonth;
+                                } else if (month < 9 && dayOfMonth > 10) {
+                                    time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+                                } else if (month > 9 && dayOfMonth < 10) {
+                                    time += year + "-" + (month + 1) + "-0" + dayOfMonth;
+                                }
+
+
+                                String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
+                                String s1 = "" + year + month + dayOfMonth;
+                                if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
+                                    laifangTime = s1;
+                                    tvLaifanTime.setText(time);
+                                } else {
+                                    laifangTime = "";
+                                    showToast("来访时间不得小于当前时间");
+                                }
+
+                            }
+                        }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH),
+                        c1.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.rel_huifan_reason:
                 showPickerReasonView();
@@ -214,8 +252,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     private void sendResult() {
 
         if (needReview) {
-            String reason = tv_huifan_reason.getText().toString();
-            if (TextUtils.isEmpty(tvHuifanTimeResult)) {
+            String reason = tv_fufan_reason.getText().toString();
+            if (TextUtils.isEmpty(fufangTime)) {
                 showToast("请选择复访时间");
                 return;
             }
@@ -223,12 +261,34 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                 showToast("请选择复访原因");
                 return;
             }
-            AddFuFangResultBody addFuFangResultBody = new AddFuFangResultBody();
-            addFuFangResultBody.setChief(true);
-            addFuFangResultBody.setId(huiFangInfo.getId());
-            addFuFangResultBody.setReviewReason(reason);
-            addFuFangResultBody.setReviewTime(tvHuifanTimeResult);
+            AbortFuFangBody body = new AbortFuFangBody();
+            body.setChief(true);
+            body.setId(huiFangInfo.getId());
+            body.setReviewReason(reason);
+            body.setReviewTime(fufangTime);
+            HttpManager.postAbortFuFang(body, new ResultBooleanObserver(getLifecycle()) {
+                @Override
+                public void onSuccess(Boolean result) {
+                    if (result){
+                        hideKeyBoard(et_huifan_record);
+                        finish();
+                    }else {
+                        showToast("保存失败");
+                    }
+
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    showToast(msg);
+                }
+            });
+
         } else {
+            if (TextUtils.isEmpty(laifangTime)) {
+                showToast("请选择来访时间");
+                return;
+            }
             String result = et_huifan_record.getText().toString();
             if (TextUtils.isEmpty(result)) {
                 showToast("请填写回访结果");
@@ -238,12 +298,17 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             body.setId(huiFangInfo.getId());
             body.setChief(true);
             body.setDesc(result);
-            body.setVisitTime(tvLaifanTimeResult);
+            body.setVisitTime(laifangTime);
 
-            HttpManager.postHuiFangResult(body, new ResultJSONObjectObserver(getLifecycle()) {
+            HttpManager.postHuiFangResult(body, new ResultBooleanObserver(getLifecycle()) {
                 @Override
-                public void onSuccess(JSONObject result) {
-                    finish();
+                public void onSuccess(Boolean result) {
+                    if (result){
+                        hideKeyBoard(et_huifan_record);
+                        finish();
+                    }else {
+                        showToast("保存失败");
+                    }
                 }
 
                 @Override
@@ -264,7 +329,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
                     //返回的分别是三个级别的选中位置
                     String reason = huiFangReasonBeanList.get(options1).getDictItemName();
-                    tv_huifan_reason.setText(reason);
+                    tv_fufan_reason.setText(reason);
                     dictItemId = huiFangReasonBeanList.get(options1).getDictItemId();
                 }
             }).setTitleText("回访原因").setDividerColor(Color.BLACK)
@@ -279,10 +344,4 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

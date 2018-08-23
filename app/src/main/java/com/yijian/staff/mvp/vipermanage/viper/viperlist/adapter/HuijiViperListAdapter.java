@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
@@ -85,7 +86,7 @@ public class HuijiViperListAdapter extends RecyclerView.Adapter<HuijiViperListAd
         }
 
         public void bind(Context context, HuiJiViperBean huiJiViperBean) {
-            ImageLoader.setHeadImageResource(huiJiViperBean.getHeadImg(), context, iv_header);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiJiViperBean.getHeadImg(), context, iv_header);
             int medalType = huiJiViperBean.getMedalType();
             if (medalType==0){
 

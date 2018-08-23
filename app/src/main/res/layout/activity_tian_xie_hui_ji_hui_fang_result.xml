@@ -88,7 +88,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="刘葛岩"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -125,7 +124,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="会员类型:"
                     android:textColor="@color/text_black3"
                     android:textSize="14sp" />
 
@@ -153,14 +151,13 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="回访类型"
                     android:textColor="@color/text_black3"
                     android:textSize="14sp" />
 
             </RelativeLayout>
             <View
                 style="@style/SplitLineStyle"
-                android:layout_marginTop="10dp"/>
+                />
 
             <RelativeLayout
                 android:id="@+id/rel_laifan_time"
@@ -281,12 +278,12 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_huifan_time"
+                    android:id="@+id/tv_fufan_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/text_black3"
                     android:drawableRight="@mipmap/lg_arrow"
                     android:textSize="14sp"
@@ -312,12 +309,12 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_huifan_reason"
+                    android:id="@+id/tv_fufan_reason"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/text_black3"
                     android:drawableRight="@mipmap/lg_arrow"
                     android:textSize="14sp"

@@ -3,6 +3,7 @@ package com.yijian.staff.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.yijian.staff.bean.AbortFuFangBody;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.db.DBManager;
@@ -293,7 +294,7 @@ public class HttpManager {
     public static String POST_HUI_FANG_RESULT_URL = "interviewV2/bapp/interviewDone";
 
     //发送复访请求
-    public static String POST_FU_FANG_RESULT_URL = "interviewV2/bapp/interviewDone";
+    public static String POST_ABORT_FU_FANG_URL = "interviewV2/bapp/reInterview";
 
 
     public static String GET_COACH_HUI_FANG_REASON_LIST_URL = "dict/review-reason/dict-items";
@@ -432,6 +433,7 @@ public class HttpManager {
 
     }
 
+
     //保存会籍回访结果
     public static void postHuiFangResult(AddHuiFangResultBody body, Observer<JSONObject> observer) {
 
@@ -441,7 +443,26 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
+            headers.put("version","1.3");
             Observable<JSONObject> observable = apiService.postAddHuiFangResult(SharePreferenceUtil.getHostUrl() + POST_HUI_FANG_RESULT_URL, headers, body);
+            execute(observable, observer);
+        }
+
+    }
+
+
+
+    //生成复访
+    public static void postAbortFuFang(AbortFuFangBody body, Observer<JSONObject> observer) {
+
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            headers.put("version","1.3");
+            Observable<JSONObject> observable = apiService.postAbortFuFang(SharePreferenceUtil.getHostUrl() + POST_ABORT_FU_FANG_URL, headers, body);
             execute(observable, observer);
         }
 

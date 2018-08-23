@@ -1,6 +1,7 @@
 package com.yijian.staff.net.api;
 
 
+import com.yijian.staff.bean.AbortFuFangBody;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
@@ -313,4 +314,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postSaveCourse(@Url String url,@HeaderMap HashMap<String, String> headers, @Body SaveCourseRequestBody body);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postAbortFuFang(@Url String url,@HeaderMap HashMap<String, String> headers, @Body AbortFuFangBody body);
 }

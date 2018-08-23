@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
@@ -78,7 +79,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         }
         holder.iv_gender.setImageResource(resId);
 
-        String headImg = coachViperBean.getHeadImg();
+        String headImg = BuildConfig.FILE_HOST+ coachViperBean.getHeadImg();
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)

@@ -67,11 +67,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         height = CommonUtil.dp2px(this, 35);
         size = 48;
         courseView.setHeightAndSize(height, size);
-        for (int i = 0; i < 24; i++) {
-            if (i % 2 == 0) {
-                courseView.addItem("" + i, i);
-            }
-        }
+
+        String date = DateUtil.getCurrentDate();
+        request(date);
+
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -155,12 +154,16 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-
+                for (int i = 0; i < 24; i++) {
+                    if (i % 2 == 0) {
+                        courseView.addItem("" + i, i);
+                    }
+                }
             }
 
             @Override
             public void onFail(String msg) {
-
+                showToast(msg);
             }
         });
     }

@@ -148,15 +148,7 @@ public class CourseView extends FrameLayout {
                 }
             }
         });
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean showing = popuwindow.isShowing();
-                if (showing) {
-                    popuwindow.dismiss();
-                }
-            }
-        });
+
         String startTime = courseBean.getSTime();
         String endTime = courseBean.getETime();
         long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");

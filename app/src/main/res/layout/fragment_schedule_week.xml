@@ -41,17 +41,12 @@
                 android:layout_height="wrap_content" />
 
 
-            <com.yijian.staff.mvp.course.timetable.helper.MyScollView
+            <com.yijian.staff.widget.MyScollView
                 android:id="@+id/scoll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.yijian.staff.mvp.course.timetable.helper.NoScrollRecycleView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/board" />
-            </com.yijian.staff.mvp.course.timetable.helper.MyScollView>
+            </com.yijian.staff.widget.MyScollView>
         </LinearLayout>
     </LinearLayout>
 

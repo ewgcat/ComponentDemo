@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
     TextView tvFuwuHuiji;
     TextView tvFuwuJiaolian;
     TextView tvSijiaoClass;
-    RelativeLayout rlSijiaoClass;
+    LinearLayout llSijiaoClass;
     TextView tvRecentFitNessTime;
     TextView deadLine;
 
@@ -42,7 +43,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
         tvFuwuHuiji = itemView.findViewById(R.id.tv_fuwu_huiji);
         tvFuwuJiaolian = itemView.findViewById(R.id.tv_fuwu_jiaolian);
         tvSijiaoClass = itemView.findViewById(R.id.tv_sijiao_class);
-        rlSijiaoClass = itemView.findViewById(R.id.rl_sijiao_class);
+        llSijiaoClass = itemView.findViewById(R.id.ll_sijiao_class);
         tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
     }
@@ -84,7 +85,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
         if (privateCourses != null && privateCourses.size() > 0) {
-            rlSijiaoClass.setVisibility(View.VISIBLE);
+            llSijiaoClass.setVisibility(View.VISIBLE);
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < privateCourses.size(); i++) {
                 if (i< privateCourses.size()-1){
@@ -97,7 +98,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
             }
             tvSijiaoClass.setText(sb.toString());
         } else {
-            rlSijiaoClass.setVisibility(View.GONE);
+            llSijiaoClass.setVisibility(View.GONE);
         }
 
 

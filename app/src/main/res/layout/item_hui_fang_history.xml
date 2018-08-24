@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <LinearLayout
@@ -765,9 +766,7 @@
                 android:layout_marginLeft="16dp"
                 android:textColor="#333333"
                 android:gravity="right"
-                android:text=""
-                android:ellipsize="end"
-                android:singleLine="true"
+                tools:text="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
                 android:textSize="14sp" />
 
 
@@ -837,8 +836,7 @@
                 android:layout_marginLeft="16dp"
                 android:textColor="#333333"
                 android:gravity="right"
-                android:ellipsize="end"
-                android:singleLine="true"
+                tools:text="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
                 android:textSize="14sp" />
 
         </LinearLayout>

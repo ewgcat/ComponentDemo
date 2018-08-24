@@ -12,8 +12,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
-import com.yijian.staff.bean.UserInfo;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.jpush.bean.PushInfoBean;
@@ -35,10 +34,6 @@ import com.yijian.staff.widget.Bottombar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import javax.inject.Inject;
 
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.disposables.Disposable;

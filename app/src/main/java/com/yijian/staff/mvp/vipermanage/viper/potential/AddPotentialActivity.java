@@ -14,7 +14,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;

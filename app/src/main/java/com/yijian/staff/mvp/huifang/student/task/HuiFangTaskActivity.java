@@ -15,7 +15,7 @@ import com.yijian.staff.mvp.huifang.student.history.HuiFangHistoryActivity;
 import com.yijian.staff.mvp.huifang.student.task.fragment.BaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.student.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.bean.HuiFangTypeRequestBody;
+import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;

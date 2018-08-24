@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.jaeger.library.StatusBarUtil;
 import com.jwsd.libzxing.QRCodeManager;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
@@ -30,7 +30,6 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyQRCodeActivity extends MvcBaseActivity {

@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,12 +12,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.setclass.orderclass.OrderClassDayFragment;
-import com.yijian.staff.mvp.main.mine.calendartable.CalendarSettingActivity;
-import com.yijian.staff.mvp.main.mine.calendartable.CalendarTableActivity;
-import com.yijian.staff.mvp.main.mine.calendartable.DayFragment_ycm;
 import com.yijian.staff.mvp.main.mine.calendartable.OnChangeDateListener;
 import com.yijian.staff.mvp.main.mine.calendartable.TitleChanger;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -36,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/test/15")

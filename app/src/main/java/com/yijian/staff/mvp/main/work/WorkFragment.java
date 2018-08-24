@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
 import com.yijian.staff.bean.IndexDataInfo;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.OthermodelVo;
@@ -20,13 +18,9 @@ import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
-import com.yijian.staff.mvp.workspace.WorkSpaceActivity;
-import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.Logger;
 
 import org.json.JSONException;

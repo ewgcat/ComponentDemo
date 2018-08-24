@@ -1,4 +1,4 @@
-package com.yijian.staff.bean;
+package com.yijian.staff.net.requestbody;
 
 import com.yijian.staff.prefs.SharePreferenceUtil;
 

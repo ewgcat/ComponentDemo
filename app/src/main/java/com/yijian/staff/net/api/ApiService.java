@@ -1,14 +1,14 @@
 package com.yijian.staff.net.api;
 
 
-import com.yijian.staff.bean.AbortFuFangBody;
-import com.yijian.staff.bean.AccessStatisticsRequestBody;
-import com.yijian.staff.bean.HuifangRecordRequestBody;
+import com.yijian.staff.net.requestbody.AbortFuFangBody;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
+import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
 import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
 import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
-import com.yijian.staff.bean.CardRequestBody;
+import com.yijian.staff.net.requestbody.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
@@ -16,7 +16,7 @@ import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
-import com.yijian.staff.bean.HuiFangTypeRequestBody;
+import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;

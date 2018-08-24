@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CardRequestBody;
+import com.yijian.staff.net.requestbody.CardRequestBody;
 
 import com.yijian.staff.bean.VenueBean;
 import com.yijian.staff.bean.VenueWrapBean;

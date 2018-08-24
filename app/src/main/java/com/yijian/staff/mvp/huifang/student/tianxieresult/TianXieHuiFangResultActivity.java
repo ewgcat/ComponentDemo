@@ -17,7 +17,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AbortFuFangBody;
+import com.yijian.staff.net.requestbody.AbortFuFangBody;
 import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.bean.HuiFangReasonBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;

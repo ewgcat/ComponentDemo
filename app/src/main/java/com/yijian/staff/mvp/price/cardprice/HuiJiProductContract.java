@@ -2,7 +2,7 @@ package com.yijian.staff.mvp.price.cardprice;
 
 
 import com.yijian.staff.bean.CardInfo;
-import com.yijian.staff.bean.CardRequestBody;
+import com.yijian.staff.net.requestbody.CardRequestBody;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.task.pageadapter;
+package com.yijian.staff.mvp.huifang.student.task.pageadapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

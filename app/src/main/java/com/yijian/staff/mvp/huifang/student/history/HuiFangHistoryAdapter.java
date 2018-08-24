@@ -1,7 +1,6 @@
-package com.yijian.staff.mvp.huifang.history;
+package com.yijian.staff.mvp.huifang.student.history;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,20 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
-import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
-import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
-import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
 

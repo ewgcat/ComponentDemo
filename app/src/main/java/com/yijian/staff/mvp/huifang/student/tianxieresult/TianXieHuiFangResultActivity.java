@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.tianxieresult;
+package com.yijian.staff.mvp.huifang.student.tianxieresult;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -11,12 +11,9 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AbortFuFangBody;
@@ -24,11 +21,9 @@ import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.bean.HuiFangReasonBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.staff.net.response.ResultBooleanObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
@@ -37,15 +32,11 @@ import com.yijian.staff.widget.NavigationBar2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TianXieHuiFangResultActivity extends MvcBaseActivity {

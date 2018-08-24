@@ -127,13 +127,13 @@
             android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.tianxieresult.TianXieHuiFangResultActivity"
+            android:name=".mvp.huifang.student.tianxieresult.TianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.history.HuiFangHistoryActivity"
+            android:name=".mvp.huifang.student.history.HuiFangHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.huifang.task.HuiFangTaskActivity"
+            android:name=".mvp.huifang.student.task.HuiFangTaskActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity"

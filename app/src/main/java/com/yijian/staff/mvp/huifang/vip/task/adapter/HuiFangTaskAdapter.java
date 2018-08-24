@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.task.adapter;
+package com.yijian.staff.mvp.huifang.vip.task.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +15,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-
 import com.yijian.staff.bean.HuiFangInfo;
-import com.yijian.staff.bean.HuiFangTypeBean;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.mvp.huifang.tianxieresult.TianXieHuiFangResultActivity;
+import com.yijian.staff.mvp.huifang.vip.tianxieresult.TianXieHuiFangResultActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.history;
+package com.yijian.staff.mvp.huifang.vip.history;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
     private int pages;
     private RecyclerView recyclerView;
     private RefreshLayout refreshLayout;
-    private com.yijian.staff.mvp.huifang.history.HuiFangHistoryAdapter huiFangHistoryAdapter;
+    private HuiFangHistoryAdapter huiFangHistoryAdapter;
 
 
     @Override

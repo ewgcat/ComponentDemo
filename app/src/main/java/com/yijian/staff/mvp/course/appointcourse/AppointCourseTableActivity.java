@@ -69,7 +69,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         initLeftDate();
         height = CommonUtil.dp2px(this, 35);
         size = 48;
-
+        courseView.setHeightAndSize(height,size);
         request(DateUtil.getCurrentDate());
 
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

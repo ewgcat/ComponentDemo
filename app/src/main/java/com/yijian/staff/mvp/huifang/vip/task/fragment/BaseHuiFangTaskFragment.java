@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.task.fragment;
+package com.yijian.staff.mvp.huifang.vip.task.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,20 +17,15 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.huifang.task.adapter.HuiFangTaskAdapter;
+import com.yijian.staff.mvp.huifang.vip.task.adapter.HuiFangTaskAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**

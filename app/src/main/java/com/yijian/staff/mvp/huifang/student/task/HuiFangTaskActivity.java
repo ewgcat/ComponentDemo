@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.task;
+package com.yijian.staff.mvp.huifang.student.task;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,19 +7,16 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangTypeBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.huifang.history.HuiFangHistoryActivity;
-import com.yijian.staff.mvp.huifang.task.fragment.BaseHuiFangTaskFragment;
-import com.yijian.staff.mvp.huifang.task.pageadapter.HuiFangPagerAdapter;
+import com.yijian.staff.mvp.huifang.student.history.HuiFangHistoryActivity;
+import com.yijian.staff.mvp.huifang.student.task.fragment.BaseHuiFangTaskFragment;
+import com.yijian.staff.mvp.huifang.student.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
-import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
@@ -29,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -65,7 +61,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
     private void initNavigation() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_task_navigation_bar);
-        navigationBar2.setTitle("回访任务");
+        navigationBar2.setTitle("会员回访");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
     }

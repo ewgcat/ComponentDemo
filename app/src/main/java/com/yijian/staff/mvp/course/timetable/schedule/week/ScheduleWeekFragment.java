@@ -48,9 +48,6 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
         timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), height);
 
 
-
-
-
         timeLayout.setOnScrollViewListener(this);
     }
 

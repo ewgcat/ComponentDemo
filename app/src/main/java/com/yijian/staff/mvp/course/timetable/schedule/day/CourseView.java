@@ -24,6 +24,11 @@ import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
+import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.BLUE_FLAG;
+import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.GREEN_FLAG;
+import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.RED_FLAG;
+import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.WHITE_FLAG;
+
 /**
  * author：李帅华
  * email：850716183@qq.com
@@ -133,10 +138,44 @@ public class CourseView extends FrameLayout {
         TextView tv_name = view.findViewById(R.id.tv_name);
         TextView tv_course_name = view.findViewById(R.id.tv_course_name);
         ImageView iv_flag = view.findViewById(R.id.iv_flag);
+        String colour = courseBean.getColour();
+        switch (colour) {
+            case "#5cd6b5":
+
+                break;
+
+        }
+        ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
         ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
         tv_name.setText(privateCourseMemberVO.getMemberName());
         tv_course_name.setText(memberCourseName);
         view.setBackgroundColor(Color.parseColor("#f5f5f5"));
+        popuwindow.setOnSelectFlagListener(new FlagPopuwindow.OnSelectFlagListener() {
+            @Override
+            public void OnSelectFlag(int position) {
+                String color = "";
+                switch (position) {
+                    case GREEN_FLAG:
+                        ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
+                        color = "";
+                        break;
+                    case RED_FLAG:
+                        ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
+                        color = "";
+                    case BLUE_FLAG:
+                        ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
+                        color = "";
+                        break;
+                    case WHITE_FLAG:
+                        ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
+                        color = "";
+                        break;
+                }
+                if (onSelectFlagListener != null) {
+                    onSelectFlagListener.OnSelectFlag(color);
+                }
+            }
+        });
         iv_flag.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,5 +219,15 @@ public class CourseView extends FrameLayout {
         if (showing) {
             popuwindow.dismiss();
         }
+    }
+
+    private OnSelectFlagListener onSelectFlagListener;
+
+    public interface OnSelectFlagListener {
+        void OnSelectFlag(String color);
+    }
+
+    public void setOnSelectFlagListener(OnSelectFlagListener onSelectFlagListener) {
+        this.onSelectFlagListener = onSelectFlagListener;
     }
 }

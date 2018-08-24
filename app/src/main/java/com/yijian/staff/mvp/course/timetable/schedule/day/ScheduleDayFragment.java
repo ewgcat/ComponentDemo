@@ -71,6 +71,12 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         height = CommonUtil.dp2px(getContext(), 35);
         size = 48;
         courseView.setHeightAndSize(height,size);
+        courseView.setOnSelectFlagListener(new CourseView.OnSelectFlagListener() {
+            @Override
+            public void OnSelectFlag(String color) {
+
+            }
+        });
         request();
 
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

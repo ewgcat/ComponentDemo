@@ -15,7 +15,7 @@ import com.yijian.staff.R;
  * email：850716183@qq.com
  * time: 2018/8/24 19:11:04
  */
-public class FlagPopuwindow extends PopupWindow {
+public class FlagPopuwindow extends PopupWindow implements View.OnClickListener {
     private Context mContext;
 
     public FlagPopuwindow(Context context) {
@@ -40,6 +40,51 @@ public class FlagPopuwindow extends PopupWindow {
         ImageView ivBlue = view.findViewById(R.id.iv_blue);
         ImageView ivWhite = view.findViewById(R.id.iv_white);
 
+        ivGreen.setOnClickListener(this);
+        ivRed.setOnClickListener(this);
+        ivBlue.setOnClickListener(this);
+        ivWhite.setOnClickListener(this);
+    }
+
+    public final static int GREEN_FLAG = 0;
+    public final static int RED_FLAG = 1;
+    public final static int BLUE_FLAG = 2;
+    public final static int WHITE_FLAG = 3;
+    private OnSelectFlagListener onSelectFlagListener;
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_green:
+                if (onSelectFlagListener != null) {
+                    onSelectFlagListener.OnSelectFlag(GREEN_FLAG);
+                }
+                break;
+            case R.id.iv_red:
+                if (onSelectFlagListener != null) {
+                    onSelectFlagListener.OnSelectFlag(RED_FLAG);
+                }
+                break;
+            case R.id.iv_blue:
+                if (onSelectFlagListener != null) {
+                    onSelectFlagListener.OnSelectFlag(BLUE_FLAG);
+                }
+                break;
+            case R.id.iv_white:
+                if (onSelectFlagListener != null) {
+                    onSelectFlagListener.OnSelectFlag(WHITE_FLAG);
+                }
+                break;
+
+        }
+    }
+
+    public interface OnSelectFlagListener {
+        void OnSelectFlag(int position);
+    }
+
+    public void setOnSelectFlagListener(OnSelectFlagListener onSelectFlagListener) {
+        this.onSelectFlagListener = onSelectFlagListener;
     }
 
     public void show(View view) {

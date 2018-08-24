@@ -125,7 +125,11 @@ class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
         tvJianshenMudi.setText(judgeNull(detailBean.getFitnessGoal()));
 
         tvXingquAihao.setText(judgeNull(detailBean.getHobby()));
-        tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
+        Boolean onceJoinedClub = detailBean.isOnceJoinedClub();
+        if (onceJoinedClub!=null) {
+            String text = onceJoinedClub ? "是" : "否";
+            tvShifouCanjiaClub.setText(text);
+        }
         tvCanjiaClubName.setText(judgeNull(detailBean.getClubBrand()));
         tvYearIncome.setText(judgeNull(detailBean.getYearIncome()));
         tvCarValue.setText(judgeNull(detailBean.getCarPrice()));

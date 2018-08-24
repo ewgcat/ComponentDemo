@@ -120,7 +120,11 @@ public class ViewHolderCoachVipType_3 extends ViewHolderCoachVipper {
         tvJianshenAihao.setText(judgeNull(detailBean.getFitnessHobby()));
         tvJianshenMudi.setText(judgeNull(detailBean.getFitnessGoal()));
         tvXingquAihao.setText(judgeNull(detailBean.getHobby()));
-        tvShifouCanjiaClub.setText((detailBean.isOnceJoinedClub()) ? "是" : "否");
+        Boolean onceJoinedClub = detailBean.isOnceJoinedClub();
+        if (onceJoinedClub!=null) {
+            String text = onceJoinedClub ? "是" : "否";
+            tvShifouCanjiaClub.setText(text);
+        }
         tvCanjiaClubName.setText(judgeNull(detailBean.getClubBrand()));
         tvYearIncome.setText(judgeNull(detailBean.getYearIncome()));
         tvCarValue.setText(judgeNull(detailBean.getCarPrice()));

@@ -44,4 +44,8 @@ public class CourseUrls {
     //Bapp端教练查看约课表（新接口）
     public static String PRIVATE_COURSE_DAY_TABLE_URL = "privatecourse/py/findPrivateapply2memberToBapp";
 
+    //生成约课表（新接口）
+    public static String ABORT_APPOINT_COURSE_TABLE_URL = "privatecourse/py/createPrivateapply2member";
+
+
 }

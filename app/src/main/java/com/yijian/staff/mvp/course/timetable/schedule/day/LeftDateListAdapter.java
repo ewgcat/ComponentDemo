@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.appointcourse;
+package com.yijian.staff.mvp.course.timetable.schedule.day;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,19 +20,16 @@ import java.util.List;
 /**
  * author：李帅华
  * email：850716183@qq.com
- * time: 2018/8/17 15:37:25
+ * time: 2018/8/24 11:02:44
  */
-public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemViewHolder> {
+public class LeftDateListAdapter extends RecyclerView.Adapter<LeftDateListAdapter.ItemViewHolder> {
     private Context context;
     private int height=-1;
     private List<DateBean> dateBeanList = new ArrayList<>();
 
-    public DateListAdapter(Context context, List<DateBean> dateBeanList) {
-        this.context = context;
-        this.dateBeanList = dateBeanList;
-    }
+   
 
-    public DateListAdapter(Context context,int height, List<DateBean> dateBeanList) {
+    public LeftDateListAdapter(Context context,int height, List<DateBean> dateBeanList) {
         this.context = context;
         this.height = height;
         this.dateBeanList = dateBeanList;
@@ -41,15 +39,15 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemVi
 
     @NonNull
     @Override
-    public DateListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LeftDateListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_yue_ke_date, parent, false);
-        DateListAdapter.ItemViewHolder itemViewHolder = new DateListAdapter.ItemViewHolder(view);
+        LeftDateListAdapter.ItemViewHolder itemViewHolder = new LeftDateListAdapter.ItemViewHolder(view, height);
         return itemViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DateListAdapter.ItemViewHolder holder, int position) {
-        holder.bind(dateBeanList, position, i);
+    public void onBindViewHolder(@NonNull LeftDateListAdapter.ItemViewHolder holder, int position) {
+        holder.bind(dateBeanList, position,i);
     }
 
     @Override
@@ -63,11 +61,13 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemVi
         private TextView tv;
         private TextView tvWeekday;
 
-        public ItemViewHolder(View itemView) {
+        public ItemViewHolder(View itemView,int height) {
             super(itemView);
             ll = itemView.findViewById(R.id.ll);
             tv = itemView.findViewById(R.id.tv);
             tvWeekday = itemView.findViewById(R.id.tv_weekday);
+
+            itemView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,height));
         }
 
         public void bind(List<DateBean> dateBeanList, int position, int i) {
@@ -82,13 +82,10 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemVi
                 tv.setTextColor(Color.parseColor("#1997f8"));
                 tvWeekday.setTextColor(Color.parseColor("#1997f8"));
             }
-            if (position == 82) {
-                tv.setText("昨天");
-                tvWeekday.setText(dateBean.getWeekDay());
-            } else if (position == 83) {
+            if (position == 0) {
                 tv.setText("今天");
                 tvWeekday.setText(dateBean.getWeekDay());
-            } else if (position == 84) {
+            } else if (position == 1) {
                 tv.setText("明天");
                 tvWeekday.setText(dateBean.getWeekDay());
             } else {
@@ -118,10 +115,11 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemVi
         void onItemClick(int position);
     }
 
-    private OnItemClickListener mItemClickListener;
+    private LeftDateListAdapter.OnItemClickListener mItemClickListener;
 
-    public void setItemClickListener(OnItemClickListener itemClickListener) {
+    public void setItemClickListener(LeftDateListAdapter.OnItemClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
     }
 
 }
+

@@ -136,6 +136,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
 
     public void request(String date) {
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("mmddmmdd", date);
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
@@ -148,10 +149,12 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
                     AppointCourseBean appointCourseBean = list.get(i);
                     courseView.addItem(appointCourseBean);
                 }
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
+                hideLoading();
                 showToast(msg);
             }
         });

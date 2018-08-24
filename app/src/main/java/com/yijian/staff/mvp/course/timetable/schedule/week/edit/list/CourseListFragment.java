@@ -96,6 +96,7 @@ public class CourseListFragment extends MvcBaseFragment {
     }
 
     private void initData() {
+        showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("version", "1.3");
 
@@ -107,10 +108,12 @@ public class CourseListFragment extends MvcBaseFragment {
                 if (list != null) {
                     updateUi(list);
                 }
+                hideLoading();
             }
 
             @Override
             public void onFail(String msg) {
+                hideLoading();
                 showToast(msg);
             }
         });

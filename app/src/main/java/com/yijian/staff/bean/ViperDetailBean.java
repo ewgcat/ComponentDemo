@@ -506,7 +506,7 @@ public class ViperDetailBean implements Serializable {
         private String fitnessHobby;
         private String fitnessGoal;
         private String hobby;
-        private boolean onceJoinedClub;
+        private Boolean onceJoinedClub;
         private String clubBrand;
         private String yearIncome;
         private String carPrice;
@@ -609,11 +609,11 @@ public class ViperDetailBean implements Serializable {
             this.hobby = hobby;
         }
 
-        public boolean isOnceJoinedClub() {
+        public Boolean isOnceJoinedClub() {
             return onceJoinedClub;
         }
 
-        public void setOnceJoinedClub(boolean onceJoinedClub) {
+        public void setOnceJoinedClub(Boolean onceJoinedClub) {
             this.onceJoinedClub = onceJoinedClub;
         }
 

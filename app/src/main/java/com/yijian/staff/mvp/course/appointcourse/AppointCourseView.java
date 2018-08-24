@@ -120,49 +120,89 @@ public class AppointCourseView extends FrameLayout {
 
 
     public void addItem(AppointCourseBean appointCourseBean) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
-        addView(view);
+        int status = appointCourseBean.getStatus();
+        if (status == 1 || status == 3 || status == 4 || status == 5) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
+            addView(view);
 
-        ImageView iv_header = view.findViewById(R.id.iv_header);
-        TextView tv_name = view.findViewById(R.id.tv_name);
-        TextView tv_course_name = view.findViewById(R.id.tv_course_name);
-        TextView tv_course_status = view.findViewById(R.id.tv_course_status);
-        LinearLayout ll_content = view.findViewById(R.id.ll_content);
-        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+appointCourseBean.getHeadPath(), view.getContext(), iv_header);
-        tv_name.setText(appointCourseBean.getMemberName());
-        String memberCourseName = appointCourseBean.getMemberCourseName();
-        tv_course_name.setText(memberCourseName);
-        ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
-        tv_course_status.setVisibility(View.VISIBLE);
-        tv_course_status.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
-                mContext.startActivity(intent);
+            ImageView iv_header = view.findViewById(R.id.iv_header);
+            TextView tv_name = view.findViewById(R.id.tv_name);
+            TextView tv_course_name = view.findViewById(R.id.tv_course_name);
+            TextView tv_course_status = view.findViewById(R.id.tv_course_status);
+            LinearLayout ll_content = view.findViewById(R.id.ll_content);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + appointCourseBean.getHeadPath(), view.getContext(), iv_header);
+            tv_name.setText(appointCourseBean.getMemberName());
+            String memberCourseName = appointCourseBean.getMemberCourseName();
+            tv_course_name.setText(memberCourseName);
+            ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
+            tv_course_status.setVisibility(View.VISIBLE);
+            switch (status) {//约课状态（1已约课，2取消约课，3：会员已上课，4：会员爽约（此状态为系统定时服务更新用），5：已评价，6：不可约）
+                case 1:
+                    tv_course_status.setText("上课");
+                    tv_course_status.setBackgroundColor(Color.parseColor("#fca354"));
+                    tv_course_status.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext, CoursePunchActivity.class);
+                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            mContext.startActivity(intent);
+                        }
+                    });
+                    break;
+                case 3:
+                    tv_course_status.setText("评价");
+                    tv_course_status.setBackgroundColor(Color.parseColor("#fca354"));
+                    tv_course_status.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext, CoursePunchActivity.class);
+                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            mContext.startActivity(intent);
+                        }
+                    });
+                    break;
+                case 5:
+                    tv_course_status.setText("查看");
+                    tv_course_status.setBackgroundColor(Color.parseColor("#5cd6b5"));
+                    tv_course_status.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext, CoursePunchActivity.class);
+                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            mContext.startActivity(intent);
+                        }
+                    });
+                    break;
+                case 4:
+                    tv_course_status.setText("会员爽约");
+                    tv_course_status.setBackgroundColor(Color.parseColor("#cdcdcd"));
+                    break;
             }
-        });
-        String startTime =  appointCourseBean.getStartTime();
-        String endTime =  appointCourseBean.getEndTime();
-        long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
-        long endTimestringToDate = DateUtil.getStringToDate(endTime, "HH:mm");
-        long currentDate =DateUtil.getStringToDate("00:00", "HH:mm");
 
-        int height = itemHeight * itemSize;
-        long l1 = 86400000;
-        long l2 = startTimestringToDate - currentDate;
-        long l3 = endTimestringToDate - currentDate;
-        long top = height * l2 / l1 ;
-        long bottom =height * l3 / l1 ;
+            String startTime = appointCourseBean.getStartTime();
+            String endTime = appointCourseBean.getEndTime();
+            long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
+            long endTimestringToDate = DateUtil.getStringToDate(endTime, "HH:mm");
+            long currentDate = DateUtil.getStringToDate("00:00", "HH:mm");
 
-        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-        layoutParams.width = LayoutParams.MATCH_PARENT;
-        layoutParams.height = (int)(bottom-top);
-        layoutParams.topMargin =(int) top;
-        view.setLayoutParams(layoutParams);
+            int height = itemHeight * itemSize;
+            long l1 = 86400000;
+            long l2 = startTimestringToDate - currentDate;
+            long l3 = endTimestringToDate - currentDate;
+            long top = height * l2 / l1;
+            long bottom = height * l3 / l1;
+
+            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+            layoutParams.width = LayoutParams.MATCH_PARENT;
+            layoutParams.height = (int) (bottom - top);
+            layoutParams.topMargin = (int) top;
+            view.setLayoutParams(layoutParams);
+        }
+
+
     }
 
-    public void clearView(){
+    public void clearView() {
         removeAllViewsInLayout();
     }
 

@@ -71,7 +71,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         size = 48;
         courseView.setHeightAndSize(height, size);
         AppointCourseBean appointCourseBean =new AppointCourseBean();
-        appointCourseBean.setStartDate("2018-08-23");
+        appointCourseBean.setStartDate("2018-08-24");
         appointCourseBean.setStartTime("18:00");
         appointCourseBean.setEndTime("18:30");
         appointCourseBean.setHeadPath("");
@@ -80,7 +80,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         courseView.addItem(appointCourseBean);
 
         AppointCourseBean appointCourseBean1 =new AppointCourseBean();
-        appointCourseBean1.setStartDate("2018-08-23");
+        appointCourseBean1.setStartDate("2018-08-24");
         appointCourseBean1.setStartTime("18:30");
         appointCourseBean1.setEndTime("19:30");
         appointCourseBean1.setHeadPath("");
@@ -136,8 +136,8 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
     private void initLeftDate() {
 
-        for (int i = -82; i < 7; i++) {
-            Date date = new Date(System.currentTimeMillis() + i * 86400000);
+        for (int i = 0; i < 90; i++) {
+            Date date = new Date(System.currentTimeMillis() + (i-83) * 86400000);
             String s = transferDate(date);
             String weekOfDate = DateUtil.getWeekOfDate(date);
             DateBean dateBean = new DateBean();
@@ -159,6 +159,8 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
                 request(date);
             }
         });
+        rv.scrollToPosition(83);
+        dateListAdapter.selectDate(83);
     }
 
     public String transferDate(Date date) {

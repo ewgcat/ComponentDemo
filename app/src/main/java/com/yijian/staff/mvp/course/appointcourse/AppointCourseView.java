@@ -139,11 +139,11 @@ public class AppointCourseView extends FrameLayout {
                 mContext.startActivity(intent);
             }
         });
-        String startTime = appointCourseBean.getStartDate() + " " + appointCourseBean.getStartTime();
-        String endTime = appointCourseBean.getStartDate() + " " + appointCourseBean.getEndTime();
-        long startTimestringToDate = DateUtil.getStringToDate(startTime, "yyyy-MM-dd HH:mm");
-        long endTimestringToDate = DateUtil.getStringToDate(endTime, "yyyy-MM-dd HH:mm");
-        long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
+        String startTime =  appointCourseBean.getStartTime();
+        String endTime =  appointCourseBean.getEndTime();
+        long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
+        long endTimestringToDate = DateUtil.getStringToDate(endTime, "HH:mm");
+        long currentDate =DateUtil.getStringToDate("00:00", "HH:mm");
 
         int height = itemHeight * itemSize;
         long l1 = 86400000;

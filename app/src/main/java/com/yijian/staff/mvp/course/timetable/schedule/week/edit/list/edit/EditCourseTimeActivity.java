@@ -269,6 +269,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         map.put("schooltime", hours + ":" + minutes);
         map.put("week", weekday + "");
         map.put("classHour", consumingMinute);
+        map.put("capId", id);
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {

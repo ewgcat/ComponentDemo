@@ -45,20 +45,16 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="30dp"
             android:layout_marginRight="16dp"
-            android:background="@drawable/blue_button_bg2"
+            android:background="@mipmap/send_invite"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/send_invite" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginRight="20dp"
                 android:text="生成约课表"
                 android:textColor="@color/white" />

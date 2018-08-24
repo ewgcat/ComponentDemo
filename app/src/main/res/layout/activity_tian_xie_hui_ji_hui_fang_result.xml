@@ -195,6 +195,7 @@
                 android:background="@color/white"
                 android:gravity="top|left"
                 android:hint="请填写你的回访记录"
+                android:maxLength="140"
                 android:padding="3dp"
                 android:textSize="14sp" />
 
@@ -202,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="140字"
+                android:text="最多140字"
                 android:textColor="@color/textColor999999"
                 android:textSize="12sp" />
 

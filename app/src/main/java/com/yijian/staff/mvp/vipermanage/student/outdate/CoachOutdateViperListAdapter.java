@@ -83,6 +83,15 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
 
         ImageLoader.setHeadImageResource(headImg, context, holder.iv_header);
 
+        int medalType = coachViperBean.getMedalType();
+        if (medalType==0){
+
+        }else if (medalType==1){
+            ImageLoader.setImageResource(R.mipmap.member_gray, context, holder.iv_rank);
+        }else if (medalType==2){
+            ImageLoader.setImageResource(R.mipmap.member_gold, context, holder.iv_rank);
+        }
+
         //详情
         holder.lin_content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +158,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_header;
+        ImageView iv_rank;
         ImageView iv_gender;
         ImageView iv_call;
         ImageView iv_suo;
@@ -160,6 +170,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
         public ViewHolder(View view) {
             super(view);
             lin_content = view.findViewById(R.id.lin_content);
+            iv_rank = view.findViewById(R.id.iv_rank);
             iv_header = view.findViewById(R.id.iv_header);
             iv_gender = view.findViewById(R.id.iv_gender);
             iv_call = view.findViewById(R.id.iv_call);

@@ -29,11 +29,26 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                <ImageView
+                <RelativeLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
                         android:id="@+id/iv_header"
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"/>
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/people" />
+
+                    <ImageView
+                        android:id="@+id/iv_rank"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@mipmap/member_gold"
+                        />
+                </RelativeLayout>
 
                 <TextView
                         android:id="@+id/tv_name"

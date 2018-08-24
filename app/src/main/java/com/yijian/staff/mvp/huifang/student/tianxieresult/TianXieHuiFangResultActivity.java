@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.AbortFuFangBody;
 import com.yijian.staff.bean.HuiFangInfo;
@@ -146,8 +147,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         });
 
         huiFangInfo = (HuiFangInfo) getIntent().getSerializableExtra("huiFangInfo");
-        ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), this, iv_nav_header);
-        ImageLoader.setHeadImageResource(huiFangInfo.getHeadUrl(), this, iv_sure_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), this, iv_nav_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), this, iv_sure_header);
         tv_nav_name.setText(huiFangInfo.getName());
         tv_sure_name.setText(huiFangInfo.getName());
         int resId = huiFangInfo.getGender() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;

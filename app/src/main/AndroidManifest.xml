@@ -134,7 +134,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.huifang.student.task.HuiFangTaskActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.vip.tianxieresult.TianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.vip.history.HuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.huifang.vip.task.HuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity"
             android:screenOrientation="portrait" />
@@ -582,7 +592,7 @@
         <activity
             android:name=".mvp.course.timetable.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
             android:screenOrientation="portrait"
@@ -590,8 +600,9 @@
         <activity
             android:name=".mvp.invate.InvateListActivity"
             android:screenOrientation="portrait"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".mvp.course.appointcourse.AppointCourseTableActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mvp.course.appointcourse.AppointCourseTableActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -614,9 +625,9 @@
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".mvp.workspace.static_assessment.StaticPhotoActivity" />
-        <activity android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
-            android:launchMode="singleTask"
-            />
+        <activity
+            android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity"></activity>
     </application>
 

@@ -38,6 +38,9 @@ public class CourseUrls {
     //保存排课计划（新接口)
     public static String SAVE_PRIVATE_COURSE_PLAN_URL = "privatecourse/py/savePrivateCoachCAP";
 
+    //Bapp端删除排课计划（新接口）
+    public static String DELETE_PRIVATE_COURSE_PLAN_URL = "privatecourse/py/delPrivateCoachCAP";
+
     //Bapp端教练查看约课表（新接口）
     public static String PRIVATE_COURSE_DAY_TABLE_URL = "privatecourse/py/findPrivateapply2memberToBapp";
 

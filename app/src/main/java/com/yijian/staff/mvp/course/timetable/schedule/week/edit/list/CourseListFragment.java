@@ -15,10 +15,12 @@ import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterB
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.MyDividerItemDecoration;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,15 +61,7 @@ public class CourseListFragment extends MvcBaseFragment {
         mDataAdapter.setOnDelListener(new CourseListAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
-
-                mDataAdapter.getDataList().remove(pos);
-                mDataAdapter.notifyItemRemoved(pos);//推荐用这个
-
-                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
-                    mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
-                }
-
-                //TODO 发送删除请求
+                delete(pos);
             }
 
         });
@@ -76,6 +70,30 @@ public class CourseListFragment extends MvcBaseFragment {
 
     }
 
+    private void delete(int pos) {
+        showLoading();
+        CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = mDataAdapter.getDataList().get(pos);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("capId", privateCoachCurriculumArrangementPlanVOSBean.getId());
+        HttpManager.postHasHeaderHasParam(CourseUrls.DELETE_PRIVATE_COURSE_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+                mDataAdapter.getDataList().remove(pos);
+                mDataAdapter.notifyItemRemoved(pos);//推荐用这个
+
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
+                    mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
+                }
+                hideLoading();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                hideLoading();
+                showToast(msg);
+            }
+        });
+    }
 
     private void initData() {
         HashMap<String, String> map = new HashMap<>();
@@ -112,14 +130,11 @@ public class CourseListFragment extends MvcBaseFragment {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
         initData();
     }
-
-
 
 
     @OnClick(R.id.ll_add_student)

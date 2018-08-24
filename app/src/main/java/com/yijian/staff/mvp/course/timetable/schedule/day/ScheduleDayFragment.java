@@ -29,6 +29,8 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.MyScollView;
+import com.yijian.staff.widget.ScrollViewListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,7 +55,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     @BindView(R.id.course_view)
     CourseView courseView;
     @BindView(R.id.scoll_view)
-    NestedScrollView scollView;
+    MyScollView scollView;
 
     private List<DateBean> dateBeanList = new ArrayList<>();
     private int index = 0;
@@ -81,7 +83,12 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         getActivity().  registerReceiver(broadcastReceiver, filter);
-
+        scollView.setOnScrollViewListener(new ScrollViewListener() {
+            @Override
+            public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
+                courseView.onScrolled( );
+            }
+        });
     }
 
     public void scollToCurrentTime() {

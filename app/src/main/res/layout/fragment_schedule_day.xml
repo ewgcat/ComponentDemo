@@ -21,7 +21,7 @@
         android:layout_height="match_parent">
 
 
-        <android.support.v4.widget.NestedScrollView
+        <com.yijian.staff.widget.MyScollView
             android:id="@+id/scoll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -35,7 +35,7 @@
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </android.support.v4.widget.NestedScrollView>
+        </com.yijian.staff.widget.MyScollView>
 
         <RelativeLayout
             android:id="@+id/ll_edit"

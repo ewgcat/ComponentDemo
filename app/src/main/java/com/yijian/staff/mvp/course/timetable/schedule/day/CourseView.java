@@ -38,6 +38,7 @@ public class CourseView extends FrameLayout {
 
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
+    private FlagPopuwindow popuwindow;
 
     public CourseView(@NonNull Context context) {
         this(context, null);
@@ -69,6 +70,7 @@ public class CourseView extends FrameLayout {
     private void init(Context context) {
         setWillNotDraw(false);
         mContext = context;
+        popuwindow = new FlagPopuwindow(mContext);
         mPaint = new Paint();
         mPaint.setColor(Color.parseColor("#eaeaea"));
         mPaint.setAntiAlias(true);
@@ -130,12 +132,31 @@ public class CourseView extends FrameLayout {
         ImageView iv_header = view.findViewById(R.id.iv_header);
         TextView tv_name = view.findViewById(R.id.tv_name);
         TextView tv_course_name = view.findViewById(R.id.tv_course_name);
-        ImageView iv_color = view.findViewById(R.id.iv_color);
+        ImageView iv_flag = view.findViewById(R.id.iv_flag);
         ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
         tv_name.setText(privateCourseMemberVO.getMemberName());
         tv_course_name.setText(memberCourseName);
         view.setBackgroundColor(Color.parseColor("#f5f5f5"));
-
+        iv_flag.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean showing = popuwindow.isShowing();
+                if (showing) {
+                    popuwindow.dismiss();
+                } else {
+                    popuwindow.showAsDropDown(v);
+                }
+            }
+        });
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean showing = popuwindow.isShowing();
+                if (showing) {
+                    popuwindow.dismiss();
+                }
+            }
+        });
         String startTime = courseBean.getSTime();
         String endTime = courseBean.getETime();
         long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
@@ -162,4 +183,10 @@ public class CourseView extends FrameLayout {
         removeAllViewsInLayout();
     }
 
+    public void onScrolled() {
+        boolean showing = popuwindow.isShowing();
+        if (showing) {
+            popuwindow.dismiss();
+        }
+    }
 }

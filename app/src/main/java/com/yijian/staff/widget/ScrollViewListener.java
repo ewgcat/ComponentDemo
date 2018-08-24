@@ -8,6 +8,5 @@ import android.view.ViewGroup;
  * time: 2018/8/4 09:48:51
  */
 public interface ScrollViewListener {
-    void onScrollChanged(ViewGroup viewGroup, int x, int y,
-                         int oldx, int oldy);
+    void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy);
 }

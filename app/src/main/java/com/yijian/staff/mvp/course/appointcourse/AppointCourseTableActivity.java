@@ -23,6 +23,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -66,29 +67,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         navigationBar2.setTitle("约课表");
 
         initLeftDate();
-
         height = CommonUtil.dp2px(this, 35);
         size = 48;
-        courseView.setHeightAndSize(height, size);
-        AppointCourseBean appointCourseBean =new AppointCourseBean();
-        appointCourseBean.setStartDate("2018-08-24");
-        appointCourseBean.setStartTime("18:00");
-        appointCourseBean.setEndTime("18:30");
-        appointCourseBean.setHeadPath("");
-        appointCourseBean.setMemberCourseName("测试课");
-        appointCourseBean.setMemberName("测试");
-        courseView.addItem(appointCourseBean);
 
-        AppointCourseBean appointCourseBean1 =new AppointCourseBean();
-        appointCourseBean1.setStartDate("2018-08-24");
-        appointCourseBean1.setStartTime("18:30");
-        appointCourseBean1.setEndTime("19:30");
-        appointCourseBean1.setHeadPath("");
-        appointCourseBean1.setMemberCourseName("测试课");
-        appointCourseBean1.setMemberName("测试");
-        courseView.addItem(appointCourseBean1);
-        String date = DateUtil.getCurrentDate();
-        request(date);
+        request(DateUtil.getCurrentDate());
 
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -100,25 +82,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         registerReceiver(broadcastReceiver, filter);
-        //广播的注册，其中Intent.ACTION_TIME_CHANGED代表时间设置变化的时候会发出该广播
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(broadcastReceiver);
-    }
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.ACTION_TIME_TICK.equals(intent.getAction())) {
-                courseView.invalidate();
-            }
-        }
-    };
 
 
     public void scollToCurrentTime() {
@@ -135,7 +102,6 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
     }
 
     private void initLeftDate() {
-
         for (int i = 0; i < 90; i++) {
             Date date = new Date(System.currentTimeMillis() + (i-83) * 86400000);
             String s = transferDate(date);
@@ -168,20 +134,20 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         return df.format(date);
     }
 
-    public void request(String date) {
 
+    public void request(String date) {
         HashMap<String, String> map = new HashMap<>();
         map.put("mmddmmdd", date);
-        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
+        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
-            public void onSuccess(JSONArray result) {
-//                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), AppointCourseBean.class);
-//                for (int i = 0; i < list.size(); i++) {
-//                    AppointCourseBean appointCourseBean = list.get(i);
-//                    courseView.addItem(appointCourseBean);
-//                }
-
-
+            public void onSuccess(JSONObject result) {
+                courseView.clearView();
+                JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBappVOs");
+                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.class);
+                for (int i = 0; i < list.size(); i++) {
+                    AppointCourseBean appointCourseBean = list.get(i);
+                    courseView.addItem(appointCourseBean);
+                }
             }
 
             @Override
@@ -190,6 +156,20 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             }
         });
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+    }
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.ACTION_TIME_TICK.equals(intent.getAction())) {
+                courseView.invalidate();
+            }
+        }
+    };
 
 }

@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.ImageLoader;
 
 /**
  * author：李帅华
@@ -118,7 +120,6 @@ public class AppointCourseView extends FrameLayout {
 
 
     public void addItem(AppointCourseBean appointCourseBean) {
-
         View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
         addView(view);
 
@@ -127,6 +128,8 @@ public class AppointCourseView extends FrameLayout {
         TextView tv_course_name = view.findViewById(R.id.tv_course_name);
         TextView tv_course_status = view.findViewById(R.id.tv_course_status);
         LinearLayout ll_content = view.findViewById(R.id.ll_content);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+appointCourseBean.getHeadPath(), view.getContext(), iv_header);
+        tv_name.setText(appointCourseBean.getMemberName());
         String memberCourseName = appointCourseBean.getMemberCourseName();
         tv_course_name.setText(memberCourseName);
         ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
@@ -157,11 +160,10 @@ public class AppointCourseView extends FrameLayout {
         layoutParams.height = (int)(bottom-top);
         layoutParams.topMargin =(int) top;
         view.setLayoutParams(layoutParams);
-
-
-
     }
 
-
+    public void clearView(){
+        removeAllViewsInLayout();
+    }
 
 }

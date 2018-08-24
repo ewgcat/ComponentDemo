@@ -30,7 +30,7 @@ public class AppointCourseBean {
     private String privateapply2memberId;
     private String startDate;
     private String startTime;
-    private int status;
+    private int status;//约课状态（1已约课，2取消约课，3：会员已上课，4：会员爽约（此状态为系统定时服务更新用），5：已评价，6：不可约）
 
     public String getEndTime() {
         return endTime;

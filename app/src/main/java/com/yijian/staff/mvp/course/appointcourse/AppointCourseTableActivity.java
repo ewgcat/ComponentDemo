@@ -136,13 +136,13 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
 
     public void request(String date) {
+        courseView.clearView();
         showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("mmddmmdd", date);
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                courseView.clearView();
                 JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBappVOs");
                 List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.class);
                 for (int i = 0; i < list.size(); i++) {

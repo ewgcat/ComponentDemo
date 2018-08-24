@@ -15,7 +15,7 @@ import com.yijian.staff.mvp.huifang.student.history.HuiFangHistoryActivity;
 import com.yijian.staff.mvp.huifang.student.task.fragment.BaseHuiFangTaskFragment;
 import com.yijian.staff.mvp.huifang.student.task.pageadapter.HuiFangPagerAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
+import com.yijian.staff.bean.HuiFangTypeRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar2;
@@ -66,10 +66,12 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
         navigationBar2.setBackClickListener(this);
     }
 
-
     private void initData() {
         showLoading();
-        HttpManager.postHasHeaderNoParam(HuiFangUrls.GET_HUI_FANG_TYPE_LIST_URL, new ResultJSONArrayObserver(getLifecycle()) {
+        HuiFangTypeRequestBody body=new HuiFangTypeRequestBody();
+        body.setChief(true);
+        body.setType(1);
+        HttpManager.postHuiFangType(body, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
                 hideLoading();
@@ -98,6 +100,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
             }
         });
     }
+
 
     private void initIndicatorAndViewPager() {
         List<String> mTitleList = new ArrayList<>();

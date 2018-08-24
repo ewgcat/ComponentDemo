@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.staff.bean.AbortFuFangBody;
 import com.yijian.staff.bean.AccessStatisticsRequestBody;
+import com.yijian.staff.bean.HuiFangTypeRequestBody;
 import com.yijian.staff.bean.HuifangRecordRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -16,13 +17,11 @@ import com.yijian.staff.bean.CardRequestBody;
 import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
 import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
 import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
-import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
-import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -35,6 +34,7 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
@@ -997,6 +997,19 @@ public class HttpManager {
         }
     }
 
+
+    public static void postHuiFangType(HuiFangTypeRequestBody huifangTaskRequestBody, ResultJSONArrayObserver observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            headers.put("version", "1.3");
+            Observable<JSONObject> observable = apiService.postHuiFangType(SharePreferenceUtil.getHostUrl() +     HuiFangUrls.HUI_FANG_TASK_URL, headers, huifangTaskRequestBody);
+            execute(observable, observer);
+        }
+    }
     public static void postHuiFangTask(String getHuiJiHuiFangTaskUrl, HuifangTaskRequestBody huifangTaskRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
@@ -1009,6 +1022,7 @@ public class HttpManager {
             execute(observable, observer);
         }
     }
+
 
     public static void postHuiFangRecord(HuifangRecordRequestBody huifangRecordRequestBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
@@ -1112,6 +1126,7 @@ public class HttpManager {
 
     //接待--会籍--step5-完成整个流程
     public static final String RECEPTION_STEP5_END = "reception/finish-to-coach";
+
 
 
 }

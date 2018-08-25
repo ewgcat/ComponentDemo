@@ -24,8 +24,10 @@ import com.yijian.staff.mvp.course.appointcourse.AppointCourseView;
 import com.yijian.staff.mvp.course.appointcourse.DateListAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
@@ -60,6 +62,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     private List<DateBean> dateBeanList = new ArrayList<>();
     private int index = 0;
     private int height, size;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_schedule_day;
@@ -70,11 +73,11 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         initLeftDate();
         height = CommonUtil.dp2px(getContext(), 35);
         size = 48;
-        courseView.setHeightAndSize(height,size);
+        courseView.setHeightAndSize(height, size);
         courseView.setOnSelectFlagListener(new CourseView.OnSelectFlagListener() {
             @Override
-            public void OnSelectFlag(String color) {
-
+            public void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
+                postSaveCourse(courseBean, color);
             }
         });
         request();
@@ -88,11 +91,11 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
-        getActivity().  registerReceiver(broadcastReceiver, filter);
+        getActivity().registerReceiver(broadcastReceiver, filter);
         scollView.setOnScrollViewListener(new ScrollViewListener() {
             @Override
             public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
-                courseView.onScrolled( );
+                courseView.dismiss();
             }
         });
     }
@@ -136,7 +139,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         });
         rv.scrollToPosition(0);
         adapter.selectDate(0);
-        request();
     }
 
     public String transferDate(Date date) {
@@ -149,11 +151,11 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             for (int i = 0; i < list.size(); i++) {
                 CourseStudentBean courseStudentBean = list.get(i);
                 int weekCode = courseStudentBean.getWeekCode();
-                if (weekCode==getWeek()){
+                if (weekCode == getWeek()) {
                     //TODO 更新界面
                     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> courseBeanList = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                    if (courseBeanList!=null&&courseBeanList.size()>0){
-                        for (int j = 0; j <courseBeanList.size() ; j++) {
+                    if (courseBeanList != null && courseBeanList.size() > 0) {
+                        for (int j = 0; j < courseBeanList.size(); j++) {
                             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = courseBeanList.get(j);
                             courseView.addItem(privateCoachCurriculumArrangementPlanVOSBean);
                         }
@@ -264,14 +266,62 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         });
     }
 
+    public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
+
+        List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+
+        if (courseBean != null) {
+
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
+
+            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+
+            privateCoachCAPDTOsBean.setDataType(1);
+            privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
+            privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
+            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+            privateCoachCAPDTOsBean.setCapId(courseBean.getId());
+            privateCoachCAPDTOsBean.setWeek(getWeek());
+            privateCoachCAPDTOsBean.setColour(color);
+            privateCoachCAPDTOsBean.setSTime(courseBean.getSTime());
+            privateCoachCAPDTOsBean.setETime(courseBean.getETime());
+
+            privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+
+            SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+            saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+            showLoading();
+            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    hideLoading();
+                    showToast("修改成功！");
+                    courseView.dismiss();
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    hideLoading();
+                    courseView.dismiss();
+                    showToast(msg);
+                }
+            });
+
+        }
+
+
+    }
+
     @OnClick({R.id.ll_edit})
     public void onViewClicked(View view) {
         post();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-       getActivity(). unregisterReceiver(broadcastReceiver);
+        getActivity().unregisterReceiver(broadcastReceiver);
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

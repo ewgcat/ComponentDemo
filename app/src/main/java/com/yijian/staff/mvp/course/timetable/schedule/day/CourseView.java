@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -139,13 +140,27 @@ public class CourseView extends FrameLayout {
         TextView tv_course_name = view.findViewById(R.id.tv_course_name);
         ImageView iv_flag = view.findViewById(R.id.iv_flag);
         String colour = courseBean.getColour();
+        if (TextUtils.isEmpty(colour)) {
+            colour = "#ffffff";
+        }
         switch (colour) {
             case "#5cd6b5":
-
+                ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
+                popuwindow.setFlagColor(GREEN_FLAG);
                 break;
-
+            case "#FF4081":
+                ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
+                popuwindow.setFlagColor(RED_FLAG);
+                break;
+            case "#1997f8":
+                ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
+                popuwindow.setFlagColor(BLUE_FLAG);
+                break;
+            case "#ffffff":
+                ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
+                popuwindow.setFlagColor(WHITE_FLAG);
+                break;
         }
-        ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
         ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
         tv_name.setText(privateCourseMemberVO.getMemberName());
         tv_course_name.setText(memberCourseName);
@@ -157,22 +172,24 @@ public class CourseView extends FrameLayout {
                 switch (position) {
                     case GREEN_FLAG:
                         ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
-                        color = "";
+                        color = "#5cd6b5";
                         break;
                     case RED_FLAG:
                         ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
-                        color = "";
+                        color = "#FF4081";
+                        break;
                     case BLUE_FLAG:
                         ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
-                        color = "";
+                        color = "#1997f8";
                         break;
                     case WHITE_FLAG:
                         ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
-                        color = "";
+                        color = "#ffffff";
                         break;
                 }
+                courseBean.setColour(color);
                 if (onSelectFlagListener != null) {
-                    onSelectFlagListener.OnSelectFlag(color);
+                    onSelectFlagListener.OnSelectFlag(courseBean, color);
                 }
             }
         });
@@ -183,6 +200,24 @@ public class CourseView extends FrameLayout {
                 if (showing) {
                     popuwindow.dismiss();
                 } else {
+                    String colour = courseBean.getColour();
+                    if (TextUtils.isEmpty(colour)) {
+                        colour = "#ffffff";
+                    }
+                    switch (colour) {
+                        case "#5cd6b5":
+                            popuwindow.setFlagColor(GREEN_FLAG);
+                            break;
+                        case "#FF4081":
+                            popuwindow.setFlagColor(RED_FLAG);
+                            break;
+                        case "#1997f8":
+                            popuwindow.setFlagColor(BLUE_FLAG);
+                            break;
+                        case "#ffffff":
+                            popuwindow.setFlagColor(WHITE_FLAG);
+                            break;
+                    }
                     popuwindow.showAsDropDown(v);
                 }
             }
@@ -214,7 +249,7 @@ public class CourseView extends FrameLayout {
         removeAllViewsInLayout();
     }
 
-    public void onScrolled() {
+    public void dismiss() {
         boolean showing = popuwindow.isShowing();
         if (showing) {
             popuwindow.dismiss();
@@ -224,7 +259,7 @@ public class CourseView extends FrameLayout {
     private OnSelectFlagListener onSelectFlagListener;
 
     public interface OnSelectFlagListener {
-        void OnSelectFlag(String color);
+        void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color);
     }
 
     public void setOnSelectFlagListener(OnSelectFlagListener onSelectFlagListener) {

@@ -4,10 +4,14 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.yijian.staff.R;
+import com.yijian.staff.mvp.reception.ReceptionContract;
+import com.yijian.staff.util.ImageLoader;
 
 
 /**
@@ -17,6 +21,12 @@ import com.yijian.staff.R;
  */
 public class FlagPopuwindow extends PopupWindow implements View.OnClickListener {
     private Context mContext;
+    private LinearLayout llFlag;
+    private ImageView ivGreen;
+    private ImageView ivRed;
+    private ImageView ivBlue;
+    private ImageView ivWhite;
+    private View line;
 
     public FlagPopuwindow(Context context) {
         this(context, null);
@@ -35,16 +45,54 @@ public class FlagPopuwindow extends PopupWindow implements View.OnClickListener 
     private void init() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.flag_view, null, false);
         setContentView(view);
-        ImageView ivGreen = view.findViewById(R.id.iv_green);
-        ImageView ivRed = view.findViewById(R.id.iv_red);
-        ImageView ivBlue = view.findViewById(R.id.iv_blue);
-        ImageView ivWhite = view.findViewById(R.id.iv_white);
+
+        llFlag = view.findViewById(R.id.ll_flag);
+        ivGreen = view.findViewById(R.id.iv_green);
+        ivRed = view.findViewById(R.id.iv_red);
+        ivBlue = view.findViewById(R.id.iv_blue);
+        line = view.findViewById(R.id.line);
+        ivWhite = view.findViewById(R.id.iv_white);
 
         ivGreen.setOnClickListener(this);
         ivRed.setOnClickListener(this);
         ivBlue.setOnClickListener(this);
         ivWhite.setOnClickListener(this);
     }
+
+    public void setFlagColor(int position) {
+        llFlag.removeAllViews();
+        switch (position) {
+            case GREEN_FLAG:
+                llFlag.addView(ivRed, 0);
+                llFlag.addView(ivBlue, 1);
+                llFlag.addView(ivWhite, 2);
+                llFlag.addView(line, 3);
+                llFlag.addView(ivGreen, 4);
+                break;
+            case RED_FLAG:
+                llFlag.addView(ivGreen, 0);
+                llFlag.addView(ivBlue, 1);
+                llFlag.addView(ivWhite, 2);
+                llFlag.addView(line, 3);
+                llFlag.addView(ivRed, 4);
+                break;
+            case BLUE_FLAG:
+                llFlag.addView(ivGreen, 0);
+                llFlag.addView(ivRed, 1);
+                llFlag.addView(ivWhite, 2);
+                llFlag.addView(line, 3);
+                llFlag.addView(ivBlue, 4);
+                break;
+            case WHITE_FLAG:
+                llFlag.addView(ivGreen, 0);
+                llFlag.addView(ivRed, 1);
+                llFlag.addView(ivBlue, 2);
+                llFlag.addView(line, 3);
+                llFlag.addView(ivWhite, 4);
+                break;
+        }
+    }
+
 
     public final static int GREEN_FLAG = 0;
     public final static int RED_FLAG = 1;

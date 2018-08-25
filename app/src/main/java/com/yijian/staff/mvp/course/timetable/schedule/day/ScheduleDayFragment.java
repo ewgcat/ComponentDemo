@@ -256,7 +256,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                showToast("成功生成 "+dateBean.getWeekDay()+"（"+dateBean.getDate()+"）  的约课表！");
+                showToast("成功生成 "+dateBean.getWeekDay()+"（"+dateBean.getDate()+"）的约课表！");
             }
 
             @Override

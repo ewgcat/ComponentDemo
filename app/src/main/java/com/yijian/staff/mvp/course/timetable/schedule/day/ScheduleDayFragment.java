@@ -80,6 +80,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 postSaveCourse(courseBean, color);
             }
         });
+        courseView.setActivity(getActivity());
         request();
 
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

@@ -1,20 +1,26 @@
 package com.yijian.staff.mvp.course.timetable.schedule.day;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
@@ -24,6 +30,9 @@ import com.yijian.staff.mvp.course.appointcourse.AppointCourseBean;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.Logger;
+
+import java.util.Date;
 
 import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.BLUE_FLAG;
 import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.GREEN_FLAG;
@@ -35,7 +44,9 @@ import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.
  * email：850716183@qq.com
  * time: 2018/8/21 15:15:00
  */
-public class CourseView extends FrameLayout {
+public class CourseView extends FrameLayout implements View.OnLongClickListener {
+    private static String TAG = CourseView.class.getSimpleName();
+
     private int itemHeight = 200;
     private int itemSize = 24;
     private Context mContext;
@@ -45,6 +56,50 @@ public class CourseView extends FrameLayout {
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
     private FlagPopuwindow popuwindow;
+
+    private int mLastMotionX, mLastMotionY;
+    //是否移动了
+    private boolean isMoved;
+    //是否释放了
+    private boolean isReleased;
+    //长按的runnable
+    private Runnable mLongPressRunnable;
+    //移动的阈值
+    private static final int TOUCH_SLOP = 20;
+    private int maxHeight;
+    private LockTimePopuwindow lockTimePopuwindow;
+
+
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mLastMotionX = x;
+                mLastMotionY = y;
+
+                isReleased = false;
+                isMoved = false;
+                postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (isMoved) break;
+                if (Math.abs(mLastMotionX - x) > TOUCH_SLOP
+                        || Math.abs(mLastMotionY - y) > TOUCH_SLOP) {
+                    //移动超过阈值，则表示移动了
+                    isMoved = true;
+                    removeCallbacks(mLongPressRunnable);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                //释放了
+                isReleased = true;
+                removeCallbacks(mLongPressRunnable);
+                break;
+        }
+        return true;
+    }
+
 
     public CourseView(@NonNull Context context) {
         this(context, null);
@@ -56,8 +111,45 @@ public class CourseView extends FrameLayout {
 
     public CourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mLongPressRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                if (isReleased || isMoved) return;
+                performLongClick();
+            }
+        };
         init(context);
 
+
+    }
+
+    private Activity activity;
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        maxHeight = itemHeight * itemSize;
+        int i = 1440 * mLastMotionY / maxHeight;
+        int hour = i / 60;
+        int minute = i % 60;
+        lockTimePopuwindow = new LockTimePopuwindow(mContext);
+        lockTimePopuwindow.setStartTime(hour, minute);
+        lockTimePopuwindow.setBackgroundAlpha(activity,0.3f);
+        lockTimePopuwindow.setAnimationStyle(R.style.locktime_popwin_anim_style);
+        lockTimePopuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        lockTimePopuwindow.setOutsideTouchable(true);
+        lockTimePopuwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                lockTimePopuwindow.setBackgroundAlpha(activity,1f);
+            }
+        });
+        lockTimePopuwindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+        return false;
     }
 
     public void setHeightAndSize(int height, int size) {
@@ -93,6 +185,7 @@ public class CourseView extends FrameLayout {
         mRedTextPaint.setColor(Color.parseColor("#ff0000"));
         mRedTextPaint.setAntiAlias(true);
         mRedTextPaint.setTextSize(30);
+        setOnLongClickListener(this);
     }
 
     @Override
@@ -257,6 +350,7 @@ public class CourseView extends FrameLayout {
     }
 
     private OnSelectFlagListener onSelectFlagListener;
+
 
     public interface OnSelectFlagListener {
         void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color);

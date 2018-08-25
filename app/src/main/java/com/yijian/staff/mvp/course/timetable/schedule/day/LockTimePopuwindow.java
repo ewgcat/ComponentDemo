@@ -133,7 +133,7 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
                 break;
             case R.id.confirm:
                 if (onSelectLockTimeListener!=null){
-                    onSelectLockTimeListener.onSelectLockTime(selectedStartHours+selectedStartMinutes,selectedEndHours+selectedEndMinutes);
+                    onSelectLockTimeListener.onSelectLockTime(selectedStartHours+":"+selectedStartMinutes,selectedEndHours+":"+selectedEndMinutes);
                 }
                 dismiss();
                 break;
@@ -147,7 +147,7 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
     }
     private OnSelectLockTimeListener onSelectLockTimeListener;
 
-    public void setOnSelectLockTime(OnSelectLockTimeListener onSelectLockTimeListener) {
+    public void setOnSelectLockTimeListener(OnSelectLockTimeListener onSelectLockTimeListener) {
         this.onSelectLockTimeListener = onSelectLockTimeListener;
     }
 

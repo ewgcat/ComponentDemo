@@ -323,4 +323,8 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postHuiFangType(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  HuiFangTypeRequestBody huifangTaskRequestBody);
+
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postLockTime(@Url String url,@HeaderMap HashMap<String, String> headers, @Body SaveCourseRequestBody.PrivateCoachCAPDTOsBean body);
 }

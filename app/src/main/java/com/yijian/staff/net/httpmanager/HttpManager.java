@@ -399,7 +399,7 @@ public class HttpManager {
         }
     }
 
-    //保存教练回访结果
+    //保存排课计划
     public static void postSaveCourse(SaveCourseRequestBody body, Observer<JSONObject> observer) {
 
         HashMap<String, String> headers = new HashMap<>();
@@ -413,6 +413,18 @@ public class HttpManager {
             execute(observable, observer);
         }
 
+    }
+    public static void postLockTime(SaveCourseRequestBody.PrivateCoachCAPDTOsBean body, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            headers.put("version","1.3");
+            Observable<JSONObject> observable = apiService.postLockTime(SharePreferenceUtil.getHostUrl() + CourseUrls.PRIVATE_COURSE_PLAN_LOCK_URL, headers, body);
+            execute(observable, observer);
+        }
     }
 
 

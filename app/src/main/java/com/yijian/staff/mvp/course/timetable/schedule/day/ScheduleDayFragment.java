@@ -22,9 +22,11 @@ import com.yijian.staff.mvp.course.appointcourse.AppointCourseBean;
 import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
 import com.yijian.staff.mvp.course.appointcourse.AppointCourseView;
 import com.yijian.staff.mvp.course.appointcourse.DateListAdapter;
+import com.yijian.staff.mvp.reception.ReceptionContract;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -81,6 +83,17 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             }
         });
         courseView.setActivity(getActivity());
+        courseView.setOnSelectLockTimeListener(new CourseView.OnSelectLockTimeListener() {
+            @Override
+            public void onSelectLockTime(String startTime, String endTime) {
+                postLockTime(startTime,  endTime);
+            }
+
+            @Override
+            public void onUnSelectLockTime(View view, String id) {
+                deleteLockTime(view,id);
+            }
+        });
         request();
 
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -97,9 +110,30 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             @Override
             public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
                 courseView.dismiss();
+                courseView.onScollYPosition( y);
             }
         });
     }
+
+    private void deleteLockTime(View view, String id) {
+        showLoading();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("capId", id);
+        HttpManager.postHasHeaderHasParam(CourseUrls.DELETE_PRIVATE_COURSE_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(JSONObject result) {
+                courseView.removeLockView(view);
+                hideLoading();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                hideLoading();
+                showToast(msg);
+            }
+        });
+    }
+
 
     public void scollToCurrentTime() {
         long l = System.currentTimeMillis();
@@ -311,9 +345,34 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             });
 
         }
-
-
     }
+    private void postLockTime(String startTime, String endTime) {
+
+            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+            privateCoachCAPDTOsBean.setDataType(0);
+            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+            privateCoachCAPDTOsBean.setWeek(getWeek());
+            privateCoachCAPDTOsBean.setSTime(startTime);
+            privateCoachCAPDTOsBean.setETime(endTime);
+
+            showLoading();
+            HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<SaveCourseRequestBody.PrivateCoachCAPDTOsBean >(getLifecycle()) {
+                @Override
+                public void onSuccess(SaveCourseRequestBody.PrivateCoachCAPDTOsBean  bean) {
+                    hideLoading();
+                    courseView.addLockView(startTime,  endTime,bean.getCapId());
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    hideLoading();
+                    courseView.dismiss();
+                    showToast(msg);
+                }
+            });
+
+        }
+
 
     @OnClick({R.id.ll_edit})
     public void onViewClicked(View view) {

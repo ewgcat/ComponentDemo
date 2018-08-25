@@ -84,7 +84,6 @@ public class MineFragment extends Fragment {
     }
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,7 +116,8 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), MyQualificationActivity.class));
                 break;
             case R.id.ll_system_set:
-                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+//                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+                startActivity(new Intent(getContext(), AppointCourseTableActivity.class));
                 break;
             case R.id.ll_suggestion:
                 startActivity(new Intent(getContext(), ScheduleCourseActivity.class));

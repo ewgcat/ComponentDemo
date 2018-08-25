@@ -91,7 +91,7 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
 
                 isReleased = false;
                 isMoved = false;
-                postDelayed(mLongPressRunnable, 2000);
+                postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -103,7 +103,6 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
                     isMoved = true;
                     removeCallbacks(mLongPressRunnable);
                 }
-                Logger.i(TAG, "isMoved=" + isMoved);
 
                 break;
             case MotionEvent.ACTION_UP:
@@ -191,11 +190,16 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
 
     @Override
     public boolean onLongClick(View v) {
-        boolean isShowLockTimePopuwindow = false;
+        boolean isShowLockTimePopuwindow = true;
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             RectF rectF = calcViewScreenLocation(childAt);
+            Logger.i(TAG, "rectF.top=" + rectF.top);
+            Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
+            Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
+
+
             if (rectF.contains(mLastMotionX, mLastMotionY)) {
                 isReleased = true;
                 removeCallbacks(mLongPressRunnable);
@@ -255,20 +259,26 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
             @Override
             public void onClick(View v) {
                 dismiss();
-                AlertDialog dialog = new AlertDialog.Builder(mContext).setMessage("取消锁住时间 " + startTime + " - " + endTime).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                postDelayed(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void run() {
+                        AlertDialog dialog = new AlertDialog.Builder(mContext).setMessage("取消锁住时间 " + startTime + " - " + endTime).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                            }
+                        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (onSelectLockTimeListener != null) {
+                                    onSelectLockTimeListener.onUnSelectLockTime(view, id);
+                                }
+                            }
+                        }).create();
+                        dialog.show();
                     }
-                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onSelectLockTimeListener != null) {
-                            onSelectLockTimeListener.onUnSelectLockTime(view, id);
-                        }
-                    }
-                }).create();
-                dialog.show();
+                },1000);
+
 
             }
         });

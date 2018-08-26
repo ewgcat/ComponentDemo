@@ -33,6 +33,7 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.MyScollView;
 import com.yijian.staff.widget.ScrollViewListener;
 
@@ -359,11 +360,14 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             privateCoachCAPDTOsBean.setETime(endTime);
 
             showLoading();
-            HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<SaveCourseRequestBody.PrivateCoachCAPDTOsBean >(getLifecycle()) {
+            HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean >(getLifecycle()) {
                 @Override
-                public void onSuccess(SaveCourseRequestBody.PrivateCoachCAPDTOsBean  bean) {
+                public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean  bean) {
                     hideLoading();
-                    courseView.addLockView(startTime,  endTime,bean.getCapId());
+
+                    String id = bean.getId();
+                    Logger.i("TEST","id="+id);
+                    courseView.addLockView(startTime,  endTime, id);
                 }
 
                 @Override

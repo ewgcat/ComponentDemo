@@ -51,6 +51,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
 
     private List<DateBean> dateBeanList = new ArrayList<>();
     private int height, size;
+    private ViewTreeObserver.OnGlobalLayoutListener listener;
 
 
     @Override
@@ -69,22 +70,22 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         initLeftDate();
         height = CommonUtil.dp2px(this, 35);
         size = 48;
-        courseView.setHeightAndSize(height,size);
+        courseView.setHeightAndSize(height, size);
         request(DateUtil.getCurrentDate());
 
-        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        listener = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                scollToCurrentTime();
+                    scollToCurrentTime();
             }
-        });
+        };
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         registerReceiver(broadcastReceiver, filter);
 
     }
-
 
 
 
@@ -99,11 +100,13 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);
         }
+       getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(listener);
+
     }
 
     private void initLeftDate() {
         for (int i = 0; i < 90; i++) {
-            Date date = new Date(System.currentTimeMillis() + (i-83) * 86400000);
+            Date date = new Date(System.currentTimeMillis() + (i - 83) * 86400000);
             String s = transferDate(date);
             String weekOfDate = DateUtil.getWeekOfDate(date);
             DateBean dateBean = new DateBean();
@@ -159,6 +162,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             }
         });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -64,6 +64,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     private List<DateBean> dateBeanList = new ArrayList<>();
     private int index = 0;
     private int height, size;
+    private ViewTreeObserver.OnGlobalLayoutListener listener;
 
     @Override
     public int getLayoutId() {
@@ -108,7 +109,14 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 courseView.onScollYPosition( y);
             }
         });
-        scollToCurrentTime();
+        listener = new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                    scollToCurrentTime();
+            }
+        };
+        getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
+
     }
 
     private void deleteLockTime(View view, String id) {
@@ -142,6 +150,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);
         }
+        getActivity().getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(listener);
     }
 
     private void initLeftDate() {
@@ -183,7 +192,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 CourseStudentBean courseStudentBean = list.get(i);
                 int weekCode = courseStudentBean.getWeekCode();
                 if (weekCode == getWeek()) {
-                    //TODO 更新界面
                     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> courseBeanList = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
                     if (courseBeanList != null && courseBeanList.size() > 0) {
                         for (int j = 0; j < courseBeanList.size(); j++) {
@@ -328,7 +336,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
-                    showToast("修改成功！");
                     courseView.dismiss();
                 }
 

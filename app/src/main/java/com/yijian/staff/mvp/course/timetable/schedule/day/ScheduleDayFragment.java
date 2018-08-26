@@ -96,12 +96,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         });
         request();
 
-        getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                scollToCurrentTime();
-            }
-        });
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -113,6 +108,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 courseView.onScollYPosition( y);
             }
         });
+        scollToCurrentTime();
     }
 
     private void deleteLockTime(View view, String id) {

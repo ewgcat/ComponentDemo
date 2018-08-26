@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
@@ -76,6 +77,7 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
     private static final int TOUCH_SLOP = 20;
     private int maxHeight;
     private LockTimePopuwindow lockTimePopuwindow;
+    private AlertDialog dialog;
 
 
     @Override
@@ -86,6 +88,8 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Logger.i(TAG, "ACTION_DOWN");
+
                 mLastMotionX = x;
                 mLastMotionY = y;
 
@@ -95,6 +99,7 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
                 break;
             case MotionEvent.ACTION_MOVE:
 
+                Logger.i(TAG, "ACTION_MOVE");
 
                 int x1 = (int) event.getX();
                 int y1 = (int) event.getY();
@@ -109,29 +114,36 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
                 //释放了
                 isReleased = true;
 
-
+                Logger.i(TAG, "ACTION_UP");
                 removeCallbacks(mLongPressRunnable);
                 break;
         }
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
-            RectF rectF = calcViewScreenLocation(childAt);
+//            RectF rectF = calcViewScreenLocation(childAt);
+            RectF rectF = new RectF(childAt.getLeft() + getLeft(), childAt.getTop() + getTop(), childAt.getLeft() + getLeft() + childAt.getWidth(), childAt.getTop() + getTop() + childAt.getHeight());
+            mLastMotionY = mLastMotionY;
+
             if (rectF.contains(mLastMotionX, mLastMotionY)) {
+                Logger.i(TAG, "rectF.top=" + rectF.top);
+                Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
+                Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
                 isReleased = true;
                 removeCallbacks(mLongPressRunnable);
                 View view = views.get(i);
                 String tag = (String) view.getTag();
                 if (tag.equals("锁住")) {
-                    view.findViewById(R.id.lock_tv).performClick();
-                    if (lockTimePopuwindow != null) {
-                        lockTimePopuwindow.dismiss();
+                    View lock_tv = view.findViewById(R.id.lock_tv);
+                    RectF rectF1 = new RectF(lock_tv.getLeft() + childAt.getLeft() + getLeft(), lock_tv.getTop() + childAt.getTop() + getTop(), lock_tv.getLeft() + childAt.getLeft() + getLeft() + lock_tv.getWidth(), lock_tv.getTop() + childAt.getTop() + getTop() + lock_tv.getHeight());
+                    if (rectF1.contains(mLastMotionX, mLastMotionY)) {
+                        lock_tv.performClick();
                     }
-                    Logger.i(TAG, "释放了=" + isReleased);
                 } else if (tag.equals("课程")) {
-                    view.findViewById(R.id.iv_flag).performClick();
-                    if (lockTimePopuwindow != null) {
-                        lockTimePopuwindow.dismiss();
+                    View iv_flag = view.findViewById(R.id.iv_flag);
+                    RectF rectF2 = new RectF(iv_flag.getLeft() + childAt.getLeft() + getLeft(), iv_flag.getTop() + childAt.getTop() + getTop(), iv_flag.getLeft() + childAt.getLeft() + getLeft() + iv_flag.getWidth(), iv_flag.getTop() + childAt.getTop() + getTop() + iv_flag.getHeight());
+                    if (rectF2.contains(mLastMotionX, mLastMotionY)) {
+                        iv_flag.performClick();
                     }
                 }
                 return false;
@@ -194,24 +206,31 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
-            RectF rectF = calcViewScreenLocation(childAt);
-            Logger.i(TAG, "rectF.top=" + rectF.top);
-            Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
-            Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
+            RectF rectF = new RectF(childAt.getLeft() + getLeft(), childAt.getTop() + getTop(), childAt.getLeft() + getLeft() + childAt.getWidth(), childAt.getTop() + getTop() + childAt.getHeight());
 
 
             if (rectF.contains(mLastMotionX, mLastMotionY)) {
+                Logger.i(TAG, "rectF.top=" + rectF.top);
+                Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
+                Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
                 isReleased = true;
                 removeCallbacks(mLongPressRunnable);
                 View view = views.get(i);
                 String tag = (String) view.getTag();
                 if (tag.equals("锁住")) {
-                    view.findViewById(R.id.lock_tv).performClick();
-                    isShowLockTimePopuwindow = false;
-                    Logger.i(TAG, "释放了=" + isReleased);
+                    View lock_tv = view.findViewById(R.id.lock_tv);
+                    RectF rectF1 = new RectF(lock_tv.getLeft() + childAt.getLeft() + getLeft(), lock_tv.getTop() + childAt.getTop() + getTop(), lock_tv.getLeft() + childAt.getLeft() + getLeft() + lock_tv.getWidth(), lock_tv.getTop() + childAt.getTop() + getTop() + lock_tv.getHeight());
+                    if (rectF1.contains(mLastMotionX, mLastMotionY)) {
+                        lock_tv.performClick();
+                        isShowLockTimePopuwindow = false;
+                    }
                 } else if (tag.equals("课程")) {
-                    view.findViewById(R.id.iv_flag).performClick();
-                    isShowLockTimePopuwindow = false;
+                    View iv_flag = view.findViewById(R.id.iv_flag);
+                    RectF rectF2 = new RectF(iv_flag.getLeft() + childAt.getLeft() + getLeft(), iv_flag.getTop() + childAt.getTop() + getTop(), iv_flag.getLeft() + childAt.getLeft() + getLeft() + iv_flag.getWidth(), iv_flag.getTop() + childAt.getTop() + getTop() + iv_flag.getHeight());
+                    if (rectF2.contains(mLastMotionX, mLastMotionY)) {
+                        iv_flag.performClick();
+                        isShowLockTimePopuwindow = false;
+                    }
                 }
                 return isShowLockTimePopuwindow;
             }
@@ -259,25 +278,21 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
             @Override
             public void onClick(View v) {
                 dismiss();
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        AlertDialog dialog = new AlertDialog.Builder(mContext).setMessage("取消锁住时间 " + startTime + " - " + endTime).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (onSelectLockTimeListener != null) {
-                                    onSelectLockTimeListener.onUnSelectLockTime(view, id);
-                                }
-                            }
-                        }).create();
-                        dialog.show();
+                dialog = new AlertDialog.Builder(mContext).setMessage("取消锁住时间 " + startTime + " - " + endTime).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
-                },1000);
+                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (onSelectLockTimeListener != null) {
+                            onSelectLockTimeListener.onUnSelectLockTime(view, id);
+                        }
+                    }
+                }).create();
+                dialog.show();
 
 
             }
@@ -528,6 +543,9 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
             popuwindow.dismiss();
         }
         removeCallbacks(mLongPressRunnable);
+        if (dialog != null) {
+            dialog.dismiss();
+        }
     }
 
     private OnSelectFlagListener onSelectFlagListener;

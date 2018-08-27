@@ -1018,7 +1018,7 @@ public class HttpManager {
         } else {
             headers.put("token", user.getToken());
             headers.put("version", "1.3");
-            Observable<JSONObject> observable = apiService.postHuiFangType(SharePreferenceUtil.getHostUrl() +     HuiFangUrls.HUI_FANG_TASK_URL, headers, huifangTaskRequestBody);
+            Observable<JSONObject> observable = apiService.postHuiFangType(SharePreferenceUtil.getHostUrl() +     HuiFangUrls.GET_HUI_FANG_TYPE_LIST_URL, headers, huifangTaskRequestBody);
             execute(observable, observer);
         }
     }

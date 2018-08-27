@@ -4,6 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <View
+        android:id="@+id/stub"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
 
     <TextView
         android:layout_width="wrap_content"

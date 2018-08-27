@@ -6,53 +6,27 @@
     android:orientation="vertical">
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/stub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <include
-                android:id="@+id/time_layout"
-                layout="@layout/layout_time" />
+        <include
+            android:id="@+id/week_layout"
+            layout="@layout/layout_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
-        </LinearLayout>
+        <com.yijian.staff.widget.MyScollView
+            android:id="@+id/scoll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/week_layout"
-                layout="@layout/layout_week"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-            <com.yijian.staff.widget.MyScollView
-                android:id="@+id/scoll_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </com.yijian.staff.widget.MyScollView>
-        </LinearLayout>
+        </com.yijian.staff.widget.MyScollView>
     </LinearLayout>
 
 
     <RelativeLayout
-        android:id="@+id/ll_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -62,17 +36,18 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_alignParentRight="true"
+            android:id="@+id/ll_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:background="@mipmap/icon_edit" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
             android:text="编辑排课表"
             android:textColor="@color/white" />
     </RelativeLayout>

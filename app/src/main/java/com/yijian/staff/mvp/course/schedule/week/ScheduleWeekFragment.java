@@ -20,11 +20,10 @@ import static com.yijian.staff.application.CustomApplication.SCREEN_HEIGHT;
 import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 
 
-public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewListener {
+public class ScheduleWeekFragment extends MvcBaseFragment  {
 
     private View stub;
     private MyScollView scoll_view;
-    private TimeLayout timeLayout;
     private WeekLayout week_layout;
     private static String TAG = ScheduleWeekFragment.class.getSimpleName();
 
@@ -40,28 +39,15 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements ScrollViewL
         scoll_view = rootView.findViewById(R.id.scoll_view);
         stub = rootView.findViewById(R.id.stub);
         int width = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
-        timeLayout = rootView.findViewById(R.id.time_layout);
         week_layout = rootView.findViewById(R.id.week_layout);
         week_layout.setTimeItemWidthAndHeight(width, width);
         stub.setLayoutParams(new LinearLayout.LayoutParams((CommonUtil.dp2px(getContext(), 40)), width - CommonUtil.dp2px(getContext(), 10)));
-        int height = SCREEN_HEIGHT / 9;
-        timeLayout.setTimeItemWidthAndHeight(CommonUtil.dp2px(getContext(), 40), height);
 
 
-        timeLayout.setOnScrollViewListener(this);
     }
 
 
 
-    @Override
-    public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
-        if (viewGroup == scoll_view) {
-            timeLayout.scrollTo(x, y);
-        } else if (viewGroup == timeLayout) {
-            scoll_view.scrollTo(x, y);
-
-        }
-    }
 
 
 

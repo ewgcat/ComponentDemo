@@ -574,25 +574,31 @@
             android:name=".mvp.taskcenter.list.RankListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity"
+            android:name=".mvp.course.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity"
+            android:name=".mvp.course.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.edit.list.edit.EditCourseTimeActivity"
+            android:name=".mvp.course.schedule.week.edit.list.edit.EditCourseTimeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.schedule.week.edit.EditCourseTableActivity"
+            android:name=".mvp.course.schedule.week.edit.EditCourseTableActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.timetable.schedule.ScheduleCourseActivity"
+            android:name=".mvp.course.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
             android:screenOrientation="portrait"

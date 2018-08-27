@@ -4,11 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -18,11 +15,6 @@ import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.DateBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.appointcourse.AppointCourseBean;
-import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
-import com.yijian.staff.mvp.course.appointcourse.AppointCourseView;
-import com.yijian.staff.mvp.course.appointcourse.DateListAdapter;
-import com.yijian.staff.mvp.reception.ReceptionContract;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
@@ -32,7 +24,6 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.MyScollView;
 import com.yijian.staff.widget.ScrollViewListener;
@@ -47,9 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 public class ScheduleDayFragment extends MvcBaseFragment {
@@ -58,7 +47,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
     @BindView(R.id.course_view)
-    CourseView courseView;
+    DayCourseView dayCourseView;
     @BindView(R.id.scoll_view)
     MyScollView scollView;
 
@@ -77,15 +66,15 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         initLeftDate();
         height = CommonUtil.dp2px(getContext(), 35);
         size = 48;
-        courseView.setHeightAndSize(height, size);
-        courseView.setOnSelectFlagListener(new CourseView.OnSelectFlagListener() {
+        dayCourseView.setHeightAndSize(height, size);
+        dayCourseView.setOnSelectFlagListener(new DayCourseView.OnSelectFlagListener() {
             @Override
             public void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
                 postSaveCourse(courseBean, color);
             }
         });
-        courseView.setActivity(getActivity());
-        courseView.setOnSelectLockTimeListener(new CourseView.OnSelectLockTimeListener() {
+        dayCourseView.setActivity(getActivity());
+        dayCourseView.setOnSelectLockTimeListener(new DayCourseView.OnSelectLockTimeListener() {
             @Override
             public void onSelectLockTime(String startTime, String endTime) {
                 postLockTime(startTime,  endTime);
@@ -106,8 +95,8 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         scollView.setOnScrollViewListener(new ScrollViewListener() {
             @Override
             public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
-                courseView.dismiss();
-                courseView.onScollYPosition( y);
+                dayCourseView.dismiss();
+                dayCourseView.onScollYPosition( y);
             }
         });
         listener = new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -127,7 +116,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         HttpManager.postHasHeaderHasParam(CourseUrls.DELETE_PRIVATE_COURSE_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                courseView.removeLockView(view);
+                dayCourseView.removeLockView(view);
                 hideLoading();
             }
 
@@ -145,7 +134,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
         long l1 = 86400000;
         long l2 = l - currentDate;
-        long top = height * size * l2 / l1 + courseView.getPaddingTop();
+        long top = height * size * l2 / l1 + dayCourseView.getPaddingTop();
         int screenHeight = CustomApplication.SCREEN_HEIGHT;
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
@@ -197,7 +186,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                     if (courseBeanList != null && courseBeanList.size() > 0) {
                         for (int j = 0; j < courseBeanList.size(); j++) {
                             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = courseBeanList.get(j);
-                            courseView.addItem(privateCoachCurriculumArrangementPlanVOSBean);
+                            dayCourseView.addItem(privateCoachCurriculumArrangementPlanVOSBean);
                         }
                     }
 
@@ -208,7 +197,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     }
 
     private void request() {
-        courseView.clearView();
+        dayCourseView.clearView();
         showLoading();
         int week = getWeek();
         HashMap<String, String> map = new HashMap<>();
@@ -337,13 +326,13 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 @Override
                 public void onSuccess(JSONObject result) {
                     hideLoading();
-                    courseView.dismiss();
+                    dayCourseView.dismiss();
                 }
 
                 @Override
                 public void onFail(String msg) {
                     hideLoading();
-                    courseView.dismiss();
+                    dayCourseView.dismiss();
                     showToast(msg);
                 }
             });
@@ -367,13 +356,13 @@ public class ScheduleDayFragment extends MvcBaseFragment {
 
                     String id = bean.getId();
                     Logger.i("TEST","id="+id);
-                    courseView.addLockView(startTime,  endTime, id);
+                    dayCourseView.addLockView(startTime,  endTime, id);
                 }
 
                 @Override
                 public void onFail(String msg) {
                     hideLoading();
-                    courseView.dismiss();
+                    dayCourseView.dismiss();
                     showToast(msg);
                 }
             });
@@ -397,7 +386,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.ACTION_TIME_TICK.equals(intent.getAction())) {
-                courseView.invalidate();
+                dayCourseView.invalidate();
             }
         }
     };

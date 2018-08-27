@@ -1,11 +1,9 @@
-package com.yijian.staff.mvp.course.schedule.day;
+package com.yijian.staff.mvp.course.schedule.week;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,25 +21,20 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.mvp.course.appointcourse.AppointCourseBean;
-import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
-import com.yijian.staff.mvp.reception.ReceptionContract;
+import com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow;
+import com.yijian.staff.mvp.course.schedule.day.LockTimePopuwindow;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.BLUE_FLAG;
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.GREEN_FLAG;
@@ -53,8 +46,8 @@ import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.WHITE_FLAG
  * email：850716183@qq.com
  * time: 2018/8/21 15:15:00
  */
-public class CourseView extends FrameLayout implements View.OnLongClickListener {
-    private static String TAG = CourseView.class.getSimpleName();
+public class WeekCourseView extends FrameLayout implements View.OnLongClickListener {
+    private static String TAG = WeekCourseView.class.getSimpleName();
 
     private int itemHeight = 200;
     private int itemSize = 24;
@@ -169,16 +162,16 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
                 location[1] + scollY - navgationBarHeight + view.getHeight());
     }
 
-    public CourseView(@NonNull Context context) {
+    public WeekCourseView(@NonNull Context context) {
         this(context, null);
     }
 
-    public CourseView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public WeekCourseView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
 
     }
 
-    public CourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public WeekCourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         mLongPressRunnable = new Runnable() {

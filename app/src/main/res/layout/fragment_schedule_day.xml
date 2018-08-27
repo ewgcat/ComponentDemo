@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.yijian.staff.mvp.course.timetable.schedule.day.CourseView
+            <com.yijian.staff.mvp.course.schedule.day.CourseView
                 android:id="@+id/course_view"
                 android:paddingLeft="50dp"
                 android:paddingRight="16dp"

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
+package com.yijian.staff.mvp.course.schedule.week.edit.list;
 
 
 import android.annotation.SuppressLint;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week;
+package com.yijian.staff.mvp.course.schedule.week;
 
 import android.content.Intent;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.widget.MyScollView;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.EditCourseTableActivity;
+import com.yijian.staff.mvp.course.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.TimeLayout;

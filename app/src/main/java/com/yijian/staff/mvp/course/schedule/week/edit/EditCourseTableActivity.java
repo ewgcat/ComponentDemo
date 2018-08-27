@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit;
+package com.yijian.staff.mvp.course.schedule.week.edit;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.CourseListFragment;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.CourseListFragment;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;

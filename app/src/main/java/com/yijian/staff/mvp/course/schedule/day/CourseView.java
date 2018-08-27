@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.day;
+package com.yijian.staff.mvp.course.schedule.day;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,10 +43,10 @@ import com.yijian.staff.util.Logger;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.BLUE_FLAG;
-import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.GREEN_FLAG;
-import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.RED_FLAG;
-import static com.yijian.staff.mvp.course.timetable.schedule.day.FlagPopuwindow.WHITE_FLAG;
+import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.BLUE_FLAG;
+import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.GREEN_FLAG;
+import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.RED_FLAG;
+import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.WHITE_FLAG;
 
 /**
  * author：李帅华

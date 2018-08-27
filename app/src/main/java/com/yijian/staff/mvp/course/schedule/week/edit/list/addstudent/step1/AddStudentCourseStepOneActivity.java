@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1;
+package com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step1;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +21,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;

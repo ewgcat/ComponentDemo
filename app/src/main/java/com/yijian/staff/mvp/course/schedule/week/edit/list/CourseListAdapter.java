@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
+package com.yijian.staff.mvp.course.schedule.week.edit.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.BaseRvAdapter;
 import com.yijian.staff.mvp.base.BaseViewHolder;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.edit.EditCourseTimeActivity;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.util.ImageLoader;
 
 public class CourseListAdapter extends BaseRvAdapter<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> {

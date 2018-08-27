@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.day;
+package com.yijian.staff.mvp.course.schedule.day;
 
 import android.content.Context;
 import android.util.AttributeSet;

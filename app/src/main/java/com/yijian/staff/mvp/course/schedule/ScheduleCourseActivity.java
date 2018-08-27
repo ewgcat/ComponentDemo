@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule;
+package com.yijian.staff.mvp.course.schedule;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.timetable.schedule.day.ScheduleDayFragment;
-import com.yijian.staff.mvp.course.timetable.schedule.week.ScheduleWeekFragment;
+import com.yijian.staff.mvp.course.schedule.day.ScheduleDayFragment;
+import com.yijian.staff.mvp.course.schedule.week.ScheduleWeekFragment;
 import com.yijian.staff.util.ImageLoader;
 
 import butterknife.BindView;

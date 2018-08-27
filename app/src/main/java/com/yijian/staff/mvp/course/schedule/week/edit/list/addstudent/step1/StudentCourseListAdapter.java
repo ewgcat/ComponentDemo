@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1;
+package com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step1;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
-import com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step1.StudentCourseViewHolder;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step1.StudentCourseViewHolder;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.ArrayList;

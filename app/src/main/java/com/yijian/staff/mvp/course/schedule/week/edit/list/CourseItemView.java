@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list;
+package com.yijian.staff.mvp.course.schedule.week.edit.list;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

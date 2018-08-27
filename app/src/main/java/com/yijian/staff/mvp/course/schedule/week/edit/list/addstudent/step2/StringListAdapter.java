@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.course.timetable.schedule.week.edit.list.addstudent.step2;
+package com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step2;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

@@ -21,6 +21,7 @@ import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
 import com.yijian.staff.mvp.course.schedule.ScheduleCourseActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
+import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.main.mine.club.ClubActivity;
 import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.mvp.main.mine.qualification.MyQualificationActivity;
@@ -116,13 +117,10 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), MyQualificationActivity.class));
                 break;
             case R.id.ll_system_set:
-//                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
-                startActivity(new Intent(getContext(), AppointCourseTableActivity.class));
+                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
                 break;
             case R.id.ll_suggestion:
-                startActivity(new Intent(getContext(), ScheduleCourseActivity.class));
-//                startActivity(new Intent(getContext(), AppointCourseTableActivity.class));
-//                startActivity(new Intent(getContext(), AddAdviceActivity.class));
+                startActivity(new Intent(getContext(), AddAdviceActivity.class));
                 break;
         }
     }

@@ -381,7 +381,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         }
 
 
-    @OnClick({R.id.ll_edit})
+    @OnClick({R.id.iv_edit})
     public void onViewClicked(View view) {
         post();
     }

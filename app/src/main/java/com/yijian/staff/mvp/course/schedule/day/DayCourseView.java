@@ -347,6 +347,8 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     private void init() {
         setWillNotDraw(false);
         popuwindow = new FlagPopuwindow(mContext);
+        popuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popuwindow.setOutsideTouchable(true);
         mPaint = new Paint();
         mPaint.setColor(Color.parseColor("#eaeaea"));
         mPaint.setAntiAlias(true);
@@ -416,22 +418,22 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             ImageView iv_flag = view.findViewById(R.id.iv_flag);
             String colour = courseBean.getColour();
             if (TextUtils.isEmpty(colour)) {
-                colour = "#dddddd";
+                colour = "#f3f3f3";
             }
             switch (colour) {
-                case "#5cd6b5":
+                case "#3ad0a7":
                     ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(GREEN_FLAG);
                     break;
-                case "#FF4081":
+                case "#ef6666":
                     ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(RED_FLAG);
                     break;
-                case "#1997f8":
+                case "#43a2fb":
                     ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(BLUE_FLAG);
                     break;
-                case "#dddddd":
+                case "#f3f3f3":
                     ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(WHITE_FLAG);
                     break;
@@ -477,19 +479,19 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                     } else {
                         String colour = courseBean.getColour();
                         if (TextUtils.isEmpty(colour)) {
-                            colour = "#ffffff";
+                            colour = "#f3f3f3";
                         }
                         switch (colour) {
-                            case "#5cd6b5":
+                            case "#3ad0a7":
                                 popuwindow.setFlagColor(GREEN_FLAG);
                                 break;
-                            case "#FF4081":
+                            case "#ef6666":
                                 popuwindow.setFlagColor(RED_FLAG);
                                 break;
-                            case "#1997f8":
+                            case "#43a2fb":
                                 popuwindow.setFlagColor(BLUE_FLAG);
                                 break;
-                            case "#ffffff":
+                            case "#f3f3f3":
                                 popuwindow.setFlagColor(WHITE_FLAG);
                                 break;
                         }

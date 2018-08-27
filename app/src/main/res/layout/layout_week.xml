@@ -9,49 +9,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周日" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周一" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周二" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/bottom_line_board"
         android:gravity="center"
         android:text="周三" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周四" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周五" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/board"
+        android:background="@drawable/left_board"
         android:gravity="center"
         android:text="周六" />
 

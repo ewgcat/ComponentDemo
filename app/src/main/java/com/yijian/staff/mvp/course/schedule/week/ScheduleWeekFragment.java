@@ -68,8 +68,15 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         };
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initData();
     }
+
     public void scollToCurrentTime() {
         long l = System.currentTimeMillis();
         long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");

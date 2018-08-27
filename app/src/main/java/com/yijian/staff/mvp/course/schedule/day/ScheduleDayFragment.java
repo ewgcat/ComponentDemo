@@ -85,7 +85,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 deleteLockTime(view,id);
             }
         });
-        request();
 
 
         IntentFilter filter = new IntentFilter();
@@ -109,6 +108,11 @@ public class ScheduleDayFragment extends MvcBaseFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        request();
+    }
     private void deleteLockTime(View view, String id) {
         showLoading();
         HashMap<String, String> map = new HashMap<>();

@@ -184,13 +184,13 @@ public class WeekCourseView extends FrameLayout  {
     }
 
     private void drawHorizontalLineAndTime(Canvas canvas) {
-        int left = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
 
-        canvas.drawLine(left, getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), mPaint);
-        canvas.drawText("00:00", (left - mTextPaint.measureText("00:00")) / 2, getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
+
+        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), mPaint);
+        canvas.drawText("00:00", (getPaddingLeft() - mTextPaint.measureText("00:00")) / 2, getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
         for (int i = 1; i <= itemSize; i++) {
             if (i % 2 == 0) {
-                canvas.drawLine(left, i * itemHeight + getPaddingTop(), getWidth() - getPaddingRight(), i * itemHeight + getPaddingTop(), mPaint);
+                canvas.drawLine(getPaddingLeft(), i * itemHeight + getPaddingTop(), getWidth() - getPaddingRight(), i * itemHeight + getPaddingTop(), mPaint);
                 canvas.drawText(i / 2 + ":00", (getPaddingLeft() - mTextPaint.measureText(i / 2 + ":00")) / 2, i * itemHeight + getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
             }
         }
@@ -198,9 +198,9 @@ public class WeekCourseView extends FrameLayout  {
     }
 
     private void drawVerticalLine(Canvas canvas) {
-        int left = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
+
         for (int i = 0; i < 7; i++) {
-                canvas.drawLine(left+itemWidth*i,  getPaddingTop(), left+itemWidth*i, itemHeight*itemSize + getPaddingTop(), mPaint);
+                canvas.drawLine(getPaddingLeft()+itemWidth*i,  getPaddingTop(), getPaddingLeft()+itemWidth*i, itemHeight*itemSize + getPaddingTop(), mPaint);
         }
     }
 
@@ -218,7 +218,7 @@ public class WeekCourseView extends FrameLayout  {
     }
 
 
-    public void addItem(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean) {
+    public void addItem(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean,int weekCode) {
         String startTime = courseBean.getSTime();
         String endTime = courseBean.getETime();
         View view = LayoutInflater.from(mContext).inflate(R.layout.week_course_view, null, false);
@@ -237,20 +237,18 @@ public class WeekCourseView extends FrameLayout  {
         long bottom = height * l3 / l1;
 
         LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-        layoutParams.width = LayoutParams.WRAP_CONTENT;
+        layoutParams.width = itemWidth;
         layoutParams.height = (int) (bottom - top);
         layoutParams.topMargin = (int) top;
+        layoutParams.leftMargin = itemWidth*weekCode;
         view.setLayoutParams(layoutParams);
         if (courseBean.getDataType() == 1) {
             view.setTag("课程");
             views.add(view);
-            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
-            String memberCourseName = privateCoachCourseVO.getMemberCourseName();
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
-
             String colour = courseBean.getColour();
             if (TextUtils.isEmpty(colour)) {
-                colour = "#f5f5f5";
+                colour = "#f3f3f3";
             }
             tv_member_name.setText(privateCourseMemberVO.getMemberName());
             ll_week_course.setBackgroundColor(Color.parseColor(colour));

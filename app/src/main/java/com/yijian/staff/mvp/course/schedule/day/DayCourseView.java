@@ -416,7 +416,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             ImageView iv_flag = view.findViewById(R.id.iv_flag);
             String colour = courseBean.getColour();
             if (TextUtils.isEmpty(colour)) {
-                colour = "#ffffff";
+                colour = "#dddddd";
             }
             switch (colour) {
                 case "#5cd6b5":
@@ -431,7 +431,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                     ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(BLUE_FLAG);
                     break;
-                case "#ffffff":
+                case "#dddddd":
                     ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
                     popuwindow.setFlagColor(WHITE_FLAG);
                     break;
@@ -447,19 +447,19 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                     switch (position) {
                         case GREEN_FLAG:
                             ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
-                            color = "#5cd6b5";
+                            color = "#3ad0a7";
                             break;
                         case RED_FLAG:
                             ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
-                            color = "#FF4081";
+                            color = "#ef6666";
                             break;
                         case BLUE_FLAG:
                             ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
-                            color = "#1997f8";
+                            color = "#43a2fb";
                             break;
                         case WHITE_FLAG:
                             ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
-                            color = "#ffffff";
+                            color = "#f3f3f3";
                             break;
                     }
                     courseBean.setColour(color);

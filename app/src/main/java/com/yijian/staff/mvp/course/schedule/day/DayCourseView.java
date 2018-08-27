@@ -403,7 +403,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
         String endTime = courseBean.getETime();
         if (courseBean.getDataType() == 1) {
 
-            View view = LayoutInflater.from(mContext).inflate(R.layout.course_view, null, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.day_course_view, null, false);
             addView(view);
             view.setTag("课程");
             views.add(view);

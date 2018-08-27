@@ -94,14 +94,12 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         pageNum = 1;
         pageSize = 10;
         huiFangInfoList.clear();
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNum", pageNum + "");
-        params.put("pageSize", pageSize + "");
-        params.put("type", "0");
+
         HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
         huifangRecordRequestBody.setPageSize(pageSize);
+        huifangRecordRequestBody.setType(0);
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -131,6 +129,8 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
         huifangRecordRequestBody.setPageSize(pageSize);
+        huifangRecordRequestBody.setType(0);
+
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {

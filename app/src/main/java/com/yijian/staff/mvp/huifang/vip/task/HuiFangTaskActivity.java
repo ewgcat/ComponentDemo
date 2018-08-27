@@ -31,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-@Route(path = "/test/13")
+@Route(path = "/test/33")
 public class HuiFangTaskActivity extends MvcBaseActivity {
 
     @BindView(R.id.tabs)
@@ -61,7 +61,7 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
     private void initNavigation() {
         NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_task_navigation_bar);
-        navigationBar2.setTitle("学员回访");
+        navigationBar2.setTitle("会员回访");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
     }

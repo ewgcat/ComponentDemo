@@ -11,6 +11,15 @@ public class HuifangRecordRequestBody {
     private boolean chief;
     private int pageNum;
     private int pageSize;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public boolean isChief() {
         return chief;

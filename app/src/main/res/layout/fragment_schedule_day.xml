@@ -30,7 +30,7 @@
                 android:id="@+id/course_view"
                 android:paddingLeft="50dp"
                 android:paddingRight="16dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="100dp"
                 android:paddingTop="20dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"

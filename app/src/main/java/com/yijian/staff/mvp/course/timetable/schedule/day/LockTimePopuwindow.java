@@ -75,7 +75,7 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
         start_hours.setText(hourString);
         selectedStartHours = hourString;
         final List<String> mOptionsItems1 = new ArrayList<>();
-        for (int i = hour + 1; i < 24; i++) {
+        for (int i = hour + 1; i <= 24; i++) {
             if (i < 10) {
                 mOptionsItems1.add("0" + i);
             } else {

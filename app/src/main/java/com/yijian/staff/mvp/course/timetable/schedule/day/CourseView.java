@@ -241,27 +241,33 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
             int hour = i / 60;
             int minute = i % 60;
             lockTimePopuwindow = new LockTimePopuwindow(mContext);
-            lockTimePopuwindow.setStartTime(hour, minute);
-            lockTimePopuwindow.setBackgroundAlpha(activity, 0.3f);
-            lockTimePopuwindow.setAnimationStyle(R.style.locktime_popwin_anim_style);
-            lockTimePopuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            lockTimePopuwindow.setOutsideTouchable(true);
-            lockTimePopuwindow.setOnSelectLockTimeListener(new LockTimePopuwindow.OnSelectLockTimeListener() {
-                @Override
-                public void onSelectLockTime(String startTime, String endTime) {
-                    if (onSelectLockTimeListener != null) {
-                        onSelectLockTimeListener.onSelectLockTime(startTime, endTime);
+            if (hour>23){
+                return false;
+            }else {
+                lockTimePopuwindow.setStartTime(hour, minute);
+                lockTimePopuwindow.setBackgroundAlpha(activity, 0.3f);
+                lockTimePopuwindow.setAnimationStyle(R.style.locktime_popwin_anim_style);
+                lockTimePopuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                lockTimePopuwindow.setOutsideTouchable(true);
+                lockTimePopuwindow.setOnSelectLockTimeListener(new LockTimePopuwindow.OnSelectLockTimeListener() {
+                    @Override
+                    public void onSelectLockTime(String startTime, String endTime) {
+                        if (onSelectLockTimeListener != null) {
+                            onSelectLockTimeListener.onSelectLockTime(startTime, endTime);
+                        }
                     }
-                }
-            });
+                });
+                lockTimePopuwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        lockTimePopuwindow.setBackgroundAlpha(activity, 1f);
+                    }
+                });
+                lockTimePopuwindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+            }
 
-            lockTimePopuwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                @Override
-                public void onDismiss() {
-                    lockTimePopuwindow.setBackgroundAlpha(activity, 1f);
-                }
-            });
-            lockTimePopuwindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+
+
 
         }
         return isShowLockTimePopuwindow;
@@ -496,7 +502,11 @@ public class CourseView extends FrameLayout implements View.OnLongClickListener 
                                 popuwindow.setFlagColor(WHITE_FLAG);
                                 break;
                         }
+
+
                         popuwindow.showAsDropDown(v);
+
+
                     }
                 }
             });

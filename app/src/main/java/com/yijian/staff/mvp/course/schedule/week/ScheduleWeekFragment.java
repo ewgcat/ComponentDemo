@@ -1,12 +1,14 @@
 package com.yijian.staff.mvp.course.schedule.week;
 
 import android.content.Intent;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
@@ -19,6 +21,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.widget.MyScollView;
+import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.WeekLayout;
 
 import org.json.JSONArray;
@@ -36,6 +39,8 @@ import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 
 public class ScheduleWeekFragment extends MvcBaseFragment {
 
+    @BindView(R.id.content)
+    RelativeLayout content;
     @BindView(R.id.week_layout)
     WeekLayout weekLayout;
     @BindView(R.id.week_course_view)
@@ -45,7 +50,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     private static String TAG = ScheduleWeekFragment.class.getSimpleName();
     private ViewTreeObserver.OnGlobalLayoutListener listener;
     private int width;
-    private int size=48;
+    private int size = 48;
 
 
     @Override
@@ -59,16 +64,30 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         width = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
         weekLayout.setTimeItemWidthAndHeight(width, width);
 
-        weekCourseView.setItemParams(width, width,48);
+
+        //下边界 屏幕底部
+        weekCourseView.setItemParams(width, width, 48);
         listener = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
+                RectF contentRectF = CommonUtil.calcViewScreenLocation(content);
+                RectF rectF = CommonUtil.calcViewScreenLocation(weekLayout);
+
+                //上边界 在屏幕中的
+                float topLimitAbsY = rectF.bottom;
+                float bottomLimitAbsY = contentRectF.bottom;
+                weekCourseView.setLimit(topLimitAbsY, bottomLimitAbsY);
                 scollToCurrentTime();
             }
         };
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
 
-
+        scollView.setOnScrollViewListener(new ScrollViewListener() {
+            @Override
+            public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
+                weekCourseView.onScollYPosition(y);
+            }
+        });
     }
 
     @Override
@@ -99,7 +118,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONArrayObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONArray result) {
-
+                weekCourseView.clearView();
                 List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
                 if (courseStudentBeanList != null) {
                     for (int i = 0; i < courseStudentBeanList.size(); i++) {
@@ -107,7 +126,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                         List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
                         int weekCode = courseStudentBean.getWeekCode();
                         for (int j = 0; j < list.size(); j++) {
-                            weekCourseView.addItem(list.get(j),weekCode);
+                            weekCourseView.addItem(list.get(j), weekCode);
                         }
                     }
                 }

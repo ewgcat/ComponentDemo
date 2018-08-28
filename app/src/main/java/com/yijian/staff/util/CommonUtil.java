@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.RectF;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.PopupWindow;
 
 
@@ -52,6 +54,16 @@ public class CommonUtil {
         return statusBarHeight;
     }
 
+    /**
+     * 计算指定的 View 在屏幕中的坐标。
+     */
+    public static RectF calcViewScreenLocation(View view) {
+        int[] location = new int[2];
+        // 获取控件在屏幕中的位置，返回的数组分别为控件左顶点的 x、y 的值
+        view.getLocationOnScreen(location);
+        return new RectF(location[0], location[1], location[0] + view.getWidth(),
+                location[1] + view.getHeight());
+    }
 
     /**
      * 判断字符串是否为整数

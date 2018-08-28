@@ -146,19 +146,8 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     }
 
 
-    /**
-     * 计算指定的 View 在屏幕中的坐标。
-     */
-    public RectF calcViewScreenLocation(View view) {
-        int navgationBarHeight = CommonUtil.dp2px(mContext, 44);
 
-        int[] location = new int[2];
-        // 获取控件在屏幕中的位置，返回的数组分别为控件左顶点的 x、y 的值
-        view.getLocationOnScreen(location);
 
-        return new RectF(location[0], location[1] + scollY - navgationBarHeight, location[0] + view.getWidth(),
-                location[1] + scollY - navgationBarHeight + view.getHeight());
-    }
 
     public DayCourseView(@NonNull Context context) {
         this(context, null);

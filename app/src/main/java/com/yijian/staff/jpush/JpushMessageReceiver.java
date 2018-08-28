@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.yijian.staff.jpush.bean.PushInfoBean;
+import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
 import com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
@@ -99,7 +100,7 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                         ReceptionActivityTemp.toReceptionActivityTemp(context);
                     }else   if (type == 1||type == 2){//约课取消约课
                         String date= jsonObject1.getString("data");
-                        Intent intent1 = new Intent(context, OrderClassActivity.class);
+                        Intent intent1 = new Intent(context, AppointCourseTableActivity.class);
                         intent1.putExtra("date",date);
                         context.startActivity(intent1);
                     }else   if (type>2&&type<18){//业务消息

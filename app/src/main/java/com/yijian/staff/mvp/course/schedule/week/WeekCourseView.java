@@ -1,5 +1,9 @@
 package com.yijian.staff.mvp.course.schedule.week;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,8 +13,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.ViewDragHelper;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -26,13 +34,16 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
+import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow;
 import com.yijian.staff.mvp.course.schedule.day.LockTimePopuwindow;
+import com.yijian.staff.mvp.reception.ReceptionContract;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.widget.MyScollView;
 
 import java.util.ArrayList;
 
@@ -47,12 +58,14 @@ import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.WHITE_FLAG
  * email：850716183@qq.com
  * time: 2018/8/21 15:15:00
  */
-public class WeekCourseView extends FrameLayout  {
+public class WeekCourseView extends FrameLayout {
     private static String TAG = WeekCourseView.class.getSimpleName();
 
     private int itemHeight = 200;
     private int itemWidth = 100;
     private int itemSize = 48;
+    private float topLimitAbsY;
+    private float bottomLimitAbsY;
     private Context mContext;
     private Paint mPaint; //分割线高度
     private TextPaint mTextPaint;
@@ -61,50 +74,15 @@ public class WeekCourseView extends FrameLayout  {
     private TextPaint mRedTextPaint;
     private FlagPopuwindow popuwindow;
 
-    private int mLastMotionX, mLastMotionY,scollY;
+    private float mLastMotionX, mLastMotionY, scollY;
     //是否移动了
-    private boolean isMoved;
-    //是否释放了
-    private boolean isReleased;
-    //长按的runnable
-    private Runnable mLongPressRunnable;
-    //移动的阈值
-    private static final int TOUCH_SLOP = 20;
-    private int maxHeight;
+    private View dragView;
 
+
+    private ViewDragHelper viewDragHelper;
     private ArrayList<View> views = new ArrayList<>();
-
-
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-
-
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                Logger.i(TAG, "ACTION_DOWN");
-
-              break;
-            case MotionEvent.ACTION_MOVE:
-
-                Logger.i(TAG, "ACTION_MOVE");
-
-                break;
-            case MotionEvent.ACTION_UP:
-                //释放了
-                isReleased = true;
-
-                Logger.i(TAG, "ACTION_UP");
-                break;
-        }
-
-
-
-        return true;
-    }
-
+    private boolean mIsUnableToDrag;
+    private boolean isMove;
 
 
     public WeekCourseView(@NonNull Context context) {
@@ -132,20 +110,22 @@ public class WeekCourseView extends FrameLayout  {
     }
 
 
-
-
     public void onScollYPosition(int y) {
         this.scollY = y;
     }
 
 
-
-
-    public void setItemParams(int width,int height, int size) {
+    public void setItemParams(int width, int height, int size) {
         this.itemWidth = width;
         this.itemHeight = height;
         this.itemSize = size;
         requestLayout();
+    }
+
+    public void setLimit(float topLimitAbsY, float bottomLimitAbsY) {
+
+        this.topLimitAbsY = topLimitAbsY;
+        this.bottomLimitAbsY = bottomLimitAbsY;
     }
 
 
@@ -174,7 +154,150 @@ public class WeekCourseView extends FrameLayout  {
         mRedTextPaint.setColor(Color.parseColor("#ff0000"));
         mRedTextPaint.setAntiAlias(true);
         mRedTextPaint.setTextSize(30);
+        viewDragHelper = ViewDragHelper.create(this, 1.0f, new DragHelperCall());
     }
+
+    private class DragHelperCall extends ViewDragHelper.Callback {
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            boolean contains = views.contains(child);
+            if (contains) {
+                dragView = child;
+            }
+            return contains;
+        }
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+
+            super.onViewPositionChanged(changedView, left, top, dx, dy);
+
+        }
+
+        @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+
+            if (left > getWidth() - child.getMeasuredWidth()) {
+                left = getWidth() - child.getMeasuredWidth();
+            } else if (left < getPaddingLeft()) {
+                left = getPaddingLeft();
+            }
+            return left;
+        }
+
+        //计算child垂直方向的位置，top表示y轴坐标（相对于ViewGroup），默认返回0（如果不复写该方法）。这里，你可以控制垂直方向可移动的范围。
+        @Override
+        public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
+
+            if (child.getTop() >= getPaddingTop() && child.getBottom() <= getBottom() - getPaddingBottom()) {
+                top = top;
+            } else if (child.getBottom() > getBottom() - getPaddingBottom()) {
+                top = getBottom() - getPaddingBottom() - child.getMeasuredHeight();
+            } else if (top < getPaddingTop()) {
+                top = getPaddingTop();
+            }
+            return top;
+        }
+
+
+        @Override
+        public void onViewReleased(View child, float xvel, float yvel) {
+
+
+
+        }
+    }
+
+    @Override
+    public void computeScroll() {
+        if (viewDragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        final int action = MotionEventCompat.getActionMasked(ev);
+        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+            viewDragHelper.cancel();
+            return false;
+        }
+        if (!isEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
+            viewDragHelper.cancel();
+            return super.onInterceptTouchEvent(ev);
+        }
+
+        return viewDragHelper.shouldInterceptTouchEvent(ev);
+    }
+
+
+    boolean isUp;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        final int action = MotionEventCompat.getActionMasked(event);
+
+        if (!isEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
+            viewDragHelper.cancel();
+            return super.onTouchEvent(event);
+        }
+        int index = MotionEventCompat.getActionIndex(event);
+        switch (action) {
+            case MotionEvent.ACTION_DOWN: {
+                isUp = false;
+                final float x = event.getX();
+                final float y = event.getY();
+                mLastMotionX = x;
+                mLastMotionY = y;
+                mIsUnableToDrag = false;
+
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                final float x = event.getX();
+                final float currentY = event.getY();
+                final float ady = Math.abs(currentY - mLastMotionY);
+                int slop = viewDragHelper.getTouchSlop();
+
+                float offsetY = mLastMotionY - currentY;
+                mLastMotionY = currentY;
+
+
+                if (Math.abs(ady - slop) > 0) {
+                    //TODO 1.在边界内 上下拖拽请求消费该事件，防止被ScrollView嵌套的手势冲突
+                    //TODO 2.在边界上下滑动交给ScrollView
+
+
+                    if (dragView != null) {
+                        RectF rectF = CommonUtil.calcViewScreenLocation(dragView);
+                        Logger.i(TAG, "rectF.top: " + rectF.top);
+                        Logger.i(TAG, "topLimitAbsY: " + topLimitAbsY);
+                        Logger.i(TAG, "bottomLimitAbsY: " + bottomLimitAbsY);
+                        Logger.i(TAG, "rectF.bottom: " + rectF.bottom);
+                        if (rectF.top > topLimitAbsY && rectF.bottom < bottomLimitAbsY) {
+                            requestDisallowInterceptTouchEvent(true);
+                        }
+
+                    }
+                }
+
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                isUp = true;
+
+                break;
+            }
+        }
+        viewDragHelper.processTouchEvent(event);
+        return true;
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -200,7 +323,7 @@ public class WeekCourseView extends FrameLayout  {
     private void drawVerticalLine(Canvas canvas) {
 
         for (int i = 0; i < 7; i++) {
-                canvas.drawLine(getPaddingLeft()+itemWidth*i,  getPaddingTop(), getPaddingLeft()+itemWidth*i, itemHeight*itemSize + getPaddingTop(), mPaint);
+            canvas.drawLine(getPaddingLeft() + itemWidth * i, getPaddingTop(), getPaddingLeft() + itemWidth * i, itemHeight * itemSize + getPaddingTop(), mPaint);
         }
     }
 
@@ -218,7 +341,7 @@ public class WeekCourseView extends FrameLayout  {
     }
 
 
-    public void addItem(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean,int weekCode) {
+    public void addItem(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, int weekCode) {
         String startTime = courseBean.getSTime();
         String endTime = courseBean.getETime();
         View view = LayoutInflater.from(mContext).inflate(R.layout.week_course_view, null, false);
@@ -240,7 +363,7 @@ public class WeekCourseView extends FrameLayout  {
         layoutParams.width = itemWidth;
         layoutParams.height = (int) (bottom - top);
         layoutParams.topMargin = (int) top;
-        layoutParams.leftMargin = itemWidth*weekCode;
+        layoutParams.leftMargin = itemWidth * weekCode;
         view.setLayoutParams(layoutParams);
         if (courseBean.getDataType() == 1) {
             view.setTag("课程");
@@ -249,12 +372,18 @@ public class WeekCourseView extends FrameLayout  {
             String colour = courseBean.getColour();
             if (TextUtils.isEmpty(colour)) {
                 colour = "#f3f3f3";
+                tv_member_name.setTextColor(Color.parseColor("#333333"));
+            } else if (colour.equals("#f3f3f3")) {
+                tv_member_name.setTextColor(Color.parseColor("#333333"));
+            } else {
+                tv_member_name.setTextColor(Color.parseColor("#ffffff"));
             }
             tv_member_name.setText(privateCourseMemberVO.getMemberName());
             ll_week_course.setBackgroundColor(Color.parseColor(colour));
 
         } else {
-            ll_week_course.setBackgroundColor(Color.parseColor("#808080"));
+            views.add(view);
+            ll_week_course.setBackgroundColor(Color.parseColor("#efefef"));
         }
 
     }
@@ -264,13 +393,21 @@ public class WeekCourseView extends FrameLayout  {
         views.clear();
     }
 
-    public void removeLockView(View view) {
-        removeView(view);
-        views.remove(view);
+    //让可以拖动的View显示在最上面
+    @Override
+    protected int getChildDrawingOrder(int childCount, int i) {
+        if (dragView != null) {
+            int mPosition = indexOfChild(dragView);
+            if (i == childCount - 1) {
+                return mPosition;
+            }
+            if (i == mPosition) {
+                return childCount - 1;
+            }
+        }
+
+        return super.getChildDrawingOrder(childCount, i);
     }
-
-
-
 
 
 }

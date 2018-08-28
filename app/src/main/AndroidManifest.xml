@@ -56,7 +56,11 @@
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.main.MainActivity"
@@ -140,7 +144,6 @@
         <activity
             android:name=".mvp.huifang.vip.task.HuiFangTaskActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity"
             android:screenOrientation="portrait" />
@@ -589,11 +592,7 @@
             android:name=".mvp.course.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
@@ -630,7 +629,10 @@
         <activity
             android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity"></activity>
+        <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity" />
+        <activity android:name=".mvp.course.schedule.week.TestActivity">
+
+        </activity>
     </application>
 
 </manifest>

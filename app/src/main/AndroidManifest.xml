@@ -630,9 +630,6 @@
             android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
             android:launchMode="singleTask" />
         <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity" />
-        <activity android:name=".mvp.course.schedule.week.TestActivity">
-
-        </activity>
     </application>
 
 </manifest>

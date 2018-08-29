@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -63,6 +64,20 @@ public class CommonUtil {
         view.getLocationOnScreen(location);
         return new RectF(location[0], location[1], location[0] + view.getWidth(),
                 location[1] + view.getHeight());
+    }
+
+    public static boolean intersects(Rect a, Rect b) {
+        boolean f=false;
+        if (a.left==b.left){
+            if (a.top>b.top&&a.top<b.bottom){
+                f=true;
+            }else if (a.top<b.top&&a.bottom>b.top){
+                f=true;
+            }
+        }else {
+            f=a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+        }
+        return f;
     }
 
     /**

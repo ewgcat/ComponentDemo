@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -47,6 +48,7 @@ import com.yijian.staff.widget.MyScollView;
 
 import java.util.ArrayList;
 
+import static android.support.v4.widget.ViewDragHelper.STATE_DRAGGING;
 import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.BLUE_FLAG;
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.GREEN_FLAG;
@@ -83,6 +85,7 @@ public class WeekCourseView extends FrameLayout {
     private ArrayList<View> views = new ArrayList<>();
     private boolean mIsUnableToDrag;
     private boolean isMove;
+    private Rect dragViewOriginRect;
 
 
     public WeekCourseView(@NonNull Context context) {
@@ -163,6 +166,7 @@ public class WeekCourseView extends FrameLayout {
             boolean contains = views.contains(child);
             if (contains) {
                 dragView = child;
+
             }
             return contains;
         }
@@ -172,6 +176,25 @@ public class WeekCourseView extends FrameLayout {
 
             super.onViewPositionChanged(changedView, left, top, dx, dy);
 
+        }
+
+        @Override
+        public void onViewDragStateChanged(int state) {
+            super.onViewDragStateChanged(state);
+            if (state == STATE_DRAGGING) {
+                if (dragView != null) {
+                    int top = dragView.getTop();
+                    int left = dragView.getLeft();
+                    int i = (top - getPaddingTop()) / itemHeight;
+                    int finalTop = itemHeight * i + getPaddingTop();
+                    int m = (left - getPaddingLeft()) / itemWidth;
+                    int finalLeft = itemWidth * m + getPaddingLeft();
+                    int finalRigth = itemWidth + finalLeft;
+                    int finalBottom = finalTop + dragView.getHeight();
+                    dragViewOriginRect = new Rect(finalLeft, finalTop, finalRigth, finalBottom);
+
+                }
+            }
         }
 
         @Override
@@ -202,7 +225,73 @@ public class WeekCourseView extends FrameLayout {
 
         @Override
         public void onViewReleased(View child, float xvel, float yvel) {
+            int top = child.getTop();
+            int left = child.getLeft();
+            int i = (top - getPaddingTop()) / itemHeight;
+            int m = (left - getPaddingLeft()) / itemWidth;
 
+
+            child.setVisibility(INVISIBLE);
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) child.getTag();
+            String startTime = "";
+            String endTime = "";
+
+            int duration = courseBean.getDuration();
+            if (i == 0) {
+                startTime += "00:00";
+
+
+                if (duration / 60 < 10) {
+                    endTime += "0" + duration / 60;
+                } else {
+                    endTime += duration / 60;
+                }
+
+                if (duration % 60 < 10) {
+                    endTime += ":0" + (duration % 60);
+                } else {
+                    endTime += ":" + (duration % 60);
+                }
+
+            } else {
+                int hour = i / 2;
+                int minut = 0;
+                if (i / 2 < 10) {
+                    startTime += "0" + i / 2;
+
+                } else {
+                    startTime += i / 2;
+                }
+                if (i % 2 == 0) {
+                    startTime += ":00";
+                    minut = 0;
+                } else {
+                    startTime += ":30";
+                    minut = 30;
+                }
+                int i1 = minut + duration;
+                hour+=i1/60;
+                if (hour < 10) {
+                    endTime += "0" + hour;
+                } else {
+                    endTime +=hour;
+                }
+                if (i1%60 < 10) {
+                    endTime += ":0" + (i1%60);
+                } else {
+                    endTime +=":"+ (i1%60);
+                }
+
+
+            }
+
+
+            courseBean.setWeek(m);
+            courseBean.setSTime(startTime);
+            courseBean.setETime(endTime);
+            if (onDragEndListener != null) {
+                onDragEndListener.onDragEnd(courseBean);
+            }
 
 
         }
@@ -365,8 +454,9 @@ public class WeekCourseView extends FrameLayout {
         layoutParams.topMargin = (int) top;
         layoutParams.leftMargin = itemWidth * weekCode;
         view.setLayoutParams(layoutParams);
+        view.setTag(courseBean);
         if (courseBean.getDataType() == 1) {
-            view.setTag("课程");
+
             views.add(view);
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
             String colour = courseBean.getColour();
@@ -407,6 +497,16 @@ public class WeekCourseView extends FrameLayout {
         }
 
         return super.getChildDrawingOrder(childCount, i);
+    }
+
+    private OnDragEndListener onDragEndListener;
+
+    public void setOnDragEndListener(OnDragEndListener onDragEndListener) {
+        this.onDragEndListener = onDragEndListener;
+    }
+
+    public interface OnDragEndListener {
+        void onDragEnd(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean);
     }
 
 

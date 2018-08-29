@@ -21,6 +21,7 @@ import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONObject;
 
@@ -181,13 +182,19 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 if (split.length == 2) {
                     int i = Integer.parseInt(split[0]);
                     wheelView1.setCurrentItem(i);
+                    hours = mOptionsItems1.get(i);
+
                     int m = Integer.parseInt(split[1]);
                     if (m <= 30 && m > 0) {
                         wheelView2.setCurrentItem(1);
+                        minutes = mOptionsItems2.get(1);
                     }
                     if (m < 60 && m > 30) {
                         wheelView2.setCurrentItem(0);
+                        minutes = mOptionsItems2.get(0);
+
                         wheelView1.setCurrentItem(i + 1);
+                        hours = mOptionsItems1.get(i + 1);
                     }
                 }
             }
@@ -199,7 +206,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         if (visibility == View.VISIBLE) {
             showToast("选中时间段已有安排,请选择其他时间！");
         } else {
-             List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+            List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
 
             if (courseStudentBean != null) {
 
@@ -266,7 +273,9 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     public void checkoutScheduleTime() {
         HashMap<String, String> map = new HashMap<>();
         map.put("version", "1.3");
-        map.put("schooltime", hours + ":" + minutes);
+        String value = hours + ":" + minutes;
+        Logger.i("TEST","value="+value);
+        map.put("schooltime", value);
         map.put("week", weekday + "");
         map.put("classHour", consumingMinute);
         map.put("capId", id);
@@ -286,7 +295,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
     }
 
-    @OnClick({R.id.left_tv, R.id.right_tv,R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
+    @OnClick({R.id.left_tv, R.id.right_tv, R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
@@ -389,8 +398,6 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         line6.setVisibility(View.INVISIBLE);
         line7.setVisibility(View.INVISIBLE);
     }
-
-
 
 
 }

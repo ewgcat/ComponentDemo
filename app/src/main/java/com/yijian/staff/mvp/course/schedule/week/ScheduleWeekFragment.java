@@ -17,7 +17,10 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.widget.MyScollView;
@@ -25,7 +28,9 @@ import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.WeekLayout;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,6 +93,64 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                 weekCourseView.onScollYPosition(y);
             }
         });
+        weekCourseView.setOnDragEndListener(new WeekCourseView.OnDragEndListener() {
+            @Override
+            public void onDragEnd(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean) {
+                postSaveCourse(courseBean);
+            }
+        });
+    }
+
+    public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean) {
+        showLoading();
+        List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+
+        if (courseBean != null) {
+
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
+            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
+
+            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+            privateCoachCAPDTOsBean.setDataType(1);
+            privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
+            privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
+            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+            privateCoachCAPDTOsBean.setCapId(courseBean.getId());
+
+
+            privateCoachCAPDTOsBean.setWeek(courseBean.getWeek());
+            privateCoachCAPDTOsBean.setSTime(courseBean.getSTime());
+            privateCoachCAPDTOsBean.setETime(courseBean.getETime());
+            privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+            SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+            saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+                public void onSuccess(JSONArray result) {
+                    weekCourseView.clearView();
+                    List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                    if (courseStudentBeanList != null) {
+                        for (int i = 0; i < courseStudentBeanList.size(); i++) {
+                            CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
+                            List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                            int weekCode = courseStudentBean.getWeekCode();
+                            for (int j = 0; j < list.size(); j++) {
+                                weekCourseView.addItem(list.get(j), weekCode);
+                            }
+                        }
+                    }
+                    hideLoading();
+                }
+                @Override
+                public void onFail(String msg) {
+                    hideLoading();
+                    initData();
+                    showToast(msg);
+                }
+            });
+
+        }
+
+
     }
 
     @Override

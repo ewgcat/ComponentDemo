@@ -239,8 +239,6 @@ public class WeekCourseView extends FrameLayout {
             int duration = courseBean.getDuration();
             if (i == 0) {
                 startTime += "00:00";
-
-
                 if (duration / 60 < 10) {
                     endTime += "0" + duration / 60;
                 } else {
@@ -252,7 +250,6 @@ public class WeekCourseView extends FrameLayout {
                 } else {
                     endTime += ":" + (duration % 60);
                 }
-
             } else {
                 int hour = i / 2;
                 int minut = 0;
@@ -281,19 +278,13 @@ public class WeekCourseView extends FrameLayout {
                 } else {
                     endTime +=":"+ (i1%60);
                 }
-
-
             }
-
-
             courseBean.setWeek(m);
             courseBean.setSTime(startTime);
             courseBean.setETime(endTime);
             if (onDragEndListener != null) {
                 onDragEndListener.onDragEnd(courseBean);
             }
-
-
         }
     }
 

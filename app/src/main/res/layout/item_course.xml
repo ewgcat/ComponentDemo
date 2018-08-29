@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.yijian.staff.mvp.course.schedule.week.edit.list.CourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:clickable="true">
@@ -16,9 +17,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:padding="16dp"
-            android:text="10:00"
             android:textColor="#333333"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:text="10:00" />
 
         <View
             android:layout_width="1px"
@@ -46,7 +47,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="4dp"
-                    android:src="@mipmap/people" />
+                    tools:src="@mipmap/people" />
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -54,9 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="4dp"
-                    android:text="张三"
                     android:textColor="#333333"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="张三" />
 
                 <ImageView
                     android:id="@+id/iv_sex"
@@ -64,7 +65,7 @@
                     android:layout_height="16dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="4dp"
-                    android:src="@mipmap/lg_man" />
+                    tools:src="@mipmap/lg_man" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,18 +87,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="增肌课"
                     android:textColor="#333333"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:text="增肌课" />
 
                 <TextView
                     android:id="@+id/tv_course_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="增肌课"
                     android:textColor="#333333"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:text="增肌课" />
             </LinearLayout>
         </LinearLayout>
 

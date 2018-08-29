@@ -3,6 +3,7 @@ package com.yijian.staff.application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -19,7 +20,8 @@ import com.yijian.staff.dagger.component.DaggerAppComponent;
 import com.yijian.staff.dagger.module.AppModule;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.jpush.JpushMessageReceiver;
-import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
+import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.share.umeng.UmengUtils;
 import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -132,25 +134,8 @@ public class CustomApplication extends TinkerApplication implements Application.
 
     @Override
     public void onActivityResumed(Activity activity) {
-//        Log.e(TAG, "onActivityResumed: " );
-//        Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
-        try {
-            if (JpushMessageReceiver.shouldToReception && JpushMessageReceiver.type == 0) {//应该跳转到接待流程
-//                Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.shouldToReception);
-                if (!TextUtils.isEmpty(JpushMessageReceiver.bundleString)) {
-//                   Log.e(TAG, "onActivityResumed: " +JpushMessageReceiver.bundleString);
-//                   JpushMessageReceiver.toReception(activity,JpushMessageReceiver.bundleString);
-                    ReceptionActivityTemp.toReceptionActivityTemp(activity);
-                    JPushInterface.clearNotificationById(activity, JpushMessageReceiver.notifactionId);
-                }
-                JpushMessageReceiver.shouldToReception = false;
-                JpushMessageReceiver.type = -1;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
 
-        }
+
     }
 
     @Override

@@ -82,50 +82,14 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".mvp.reception.physical.PhysicalReportActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <!-- 接待 -->
-        <activity
-            android:name=".mvp.reception.reception_step_ycm.ReceptionStepActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
+
         <activity
             android:name=".mvp.reception.ReceptionActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.ReceptionActivityTemp"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step1.ReceptionStepOneActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.reception.step2.KeFuReceptionStepTwoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step2.CoachReceptionStepTwoActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.reception.step3.ReceptionStepThreeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step3.coach.ProductDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step3.coach.RightsAcitity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step4.ReceptionStepFourActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.reception.step5.ReceptionStepFiveActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.huifang.student.tianxieresult.TianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
@@ -239,15 +203,7 @@
         <activity
             android:name=".mvp.vipermanage.viper.potential.AddPotentialActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.main.mine.calendartable.CalendarTableActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.main.mine.calendartable.CalendarSettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.main.mine.calendartable.PreviewTimeActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.main.mine.editpassword.EditPasswordActivity"
             android:screenOrientation="portrait" />
@@ -287,10 +243,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".mvp.course.preparelessons.TestActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
             android:name=".mvp.course.preparelessons.index.PrepareLessonsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -299,69 +251,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <!-- 体验课 -->
-        <activity
-            android:name=".mvp.course.experienceclass.invate_ycm.ExperienceClass_ycm"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.course.experienceclass.index.ExperienceClassListActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step1.ExperienceClassProcess1Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step2.ExperienceClassProcess2Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step3.ExperienceClassProcess3Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step4.ExperienceClassProcess4Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step5.coach.ExperienceClassProcess5Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.step5.leader.LeaderExperienceClassProcess5Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.invate.ExperienceClassInvateActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.template.Template1ClassActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.experienceclass.template.Template2ClassActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.setclass.ActivityOpenLesson"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name=".mvp.course.preparelessons.all.PrepareAllLessonActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.course.punch.CoursePunchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.course.experienceclass.step1.ExperienceClassStep1Activity_ycm"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.course.experienceclass.template.template_system.Template1ClassActivity_ycm"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.course.experienceclass.invate.ExperienceClassInvateActivity_ycm"
             android:screenOrientation="portrait" />
 
         <!-- arouter 路由过滤 -->
@@ -507,19 +403,7 @@
             android:authorities="${applicationId}.DownloadProvider"
             android:exported="true" />
 
-        <activity
-            android:name=".mvp.course.setclass.orderclass.OrderClassActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.setclass.ExperienceClassRecordActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.course.setclass.ExperienceClassRecord2Activity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name=".mvp.main.mine.aboutus.AboutUsActivity"
             android:screenOrientation="portrait"
@@ -548,12 +432,7 @@
             android:name=".mvp.vipermanage.student.detail.edit.CoachVipInfoEditActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.main.mine.calendartable.EditNotPreviewActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.main.mine.calendartable.CourseInterActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />

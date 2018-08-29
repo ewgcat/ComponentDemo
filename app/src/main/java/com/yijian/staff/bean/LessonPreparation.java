@@ -3,7 +3,6 @@ package com.yijian.staff.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.yijian.staff.mvp.course.experienceclass.template.template_system.bean.TemplateListBean;
 
 /**
  * Created by The_P on 2018/4/25.

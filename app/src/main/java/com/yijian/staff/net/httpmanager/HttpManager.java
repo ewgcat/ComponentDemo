@@ -9,14 +9,9 @@ import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
-import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
-import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
-import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
@@ -608,53 +603,7 @@ public class HttpManager {
         }
     }
 
-    //体测录入
-    public static void postRecptionTest(String memberId, PhysicalExaminationBean physicalExaminationBeanBody, Observer<JSONObject> observer) {
 
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-
-
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> receptionTestObservable = apiService.saveReceptionTest(SharePreferenceUtil.getHostUrl() + RECEPTION_TEST_SAVE, headers, memberId, physicalExaminationBeanBody);
-            execute(receptionTestObservable, observer);
-        }
-
-
-    }
-
-    //问卷调查_保存
-    public static void postRecptionRequstion(String memberId,
-                                             List<QuestionnaireAnswer> requestBody, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> receptionTestObservable = apiService.postObj(SharePreferenceUtil.getHostUrl() + RECEPTION_QUESTION_SAVE, headers, memberId, requestBody);
-            execute(receptionTestObservable, observer);
-        }
-    }
-
-    //    postInvate
-    //体验课流程——发出二次邀约
-    public static void postInvateAgain(InvateBean invateBean, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> receptionTestObservable = apiService.postInvate(SharePreferenceUtil.getHostUrl() + SEND_EXPERICECE_INVITE_HISTORY_URL, headers, invateBean);
-            execute(receptionTestObservable, observer);
-        }
-    }
 
     //保存menu编辑状态
     public static void saveMenuChange(MenuRequestBody menuRequestBody, Observer<JSONObject> observer) {
@@ -683,19 +632,6 @@ public class HttpManager {
     }
 
 
-    //会籍卡产品查询列表_ycm
-    public static void getHuiJiCardGoodsList_ycm(ConditionBody body, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-
-            Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList_ycm(SharePreferenceUtil.getHostUrl() + HUI_JI_CARD_GOODS_LIST_URL, headers, body);
-            execute(observable, observer);
-        }
-    }
 
     //会籍卡产品查询列表
     public static void getHuiJiCardGoodsList(CardRequestBody body, Observer<JSONObject> observer) {
@@ -765,15 +701,6 @@ public class HttpManager {
     }
 
 
-    // //体验课_回访——教练提交回访记录
-    public static void postExperienceAccessRecord(String url, AccessRecordBean recordBean, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-
-        headers.put("token", user.getToken());
-        Observable<JSONObject> observable = apiService.postExperienceAccessRecord(SharePreferenceUtil.getHostUrl() + url, headers, recordBean);
-        execute(observable, observer);
-    }
 
     //公共
     // post没请求头没有参数
@@ -1050,94 +977,24 @@ public class HttpManager {
     }
 
 
-    //接待人的信息
-    public static final String RECEPTION_INFO = "reception/person";
 
-    //接待人节点信息
-    public static final String RECEPTION_STATUS = "reception/status";
-
-    //接待人节点信息
-    public static final String RECEPTION_END = "reception/break";
-
-    //接待记录
-    public static final String RECEPTION_RECORD = "reception/record";
 
     //接待记录
     public static final String RECEPTION_RECORD_TEMP = "reception/record/temp";
 
-    ///qs/member/getBodyBuildTimesByMemberId 健身时间
 
 
-    // //接待---问卷调查
-    public static final String RECEPTION_QUESTION = "qs/template";
-
-    //接待---问卷调查--保存
-    public static final String RECEPTION_QUESTION_SAVE = "qs/save";
-
-    // //接待---问卷调查结果查看
-    public static final String RECEPTION_QUESTION_RESULT = "qs/edit";
-
-    // //接待---问卷调查结果查看_健身时间
-    public static final String RECEPTION_QUESTION_RESULT_FITNESSTIME = "qs/member/getBodyBuildTimesByMemberId";
-
-    //接待---问卷调查--健身时间保存
-    public static final String RECEPTION_QUESTION_FITNESSTIME = "qs/member/saveBodyBuildTimes";
 
 
-    //接待 ---体测录入--保存
-    public static final String RECEPTION_TEST_SAVE = "bodycheck/save";
-
-    //接待--体测录入--查看
-    public static final String RECEPTION_TEST_VIEW = "bodycheck/view";
 
 
-    //接待--会籍--step2-跳过
-    public static final String RECEPTION_STEP2_JUMP = "reception/sale-jump-body-check";
 
-    //接待--会籍--step2-TO教练
-    public static final String RECEPTION_STEP2_TOCOACH = "reception/sale-to-coach-body-check";
-
-    //接待--教练--step2-拒绝体测录入
-    public static final String RECEPTION_STEP2_REJECT = "reception/member-reject-body-check";
 
 
     //接待--会籍--step3-场馆信息列表
     public static final String RECEPTION_STEP3_VENUES = "venue/listByShopId";
 
-    //接待--会籍--step3-会员不愿意购买,会籍To给教练
-    public static final String RECEPTION_STEP3_TO_COACH = "reception/sale-to-coach";
 
-    //接待--会籍--step3-会员接待详细信息,用于会员不愿意购买,教练和领导接受TO界面数据
-    public static final String RECEPTION_STEP3_COACH_USERDATA = "reception/person/detail";
-
-    //接待--会籍--step3-产品详情
-    public static final String RECEPTION_STEP3_PRODUCT_DETAIL = "card/product-detail";
-
-    //接待--教练--step3-获取领导列表
-    public static final String RECEPTION_STEP3_GET_LEADERS = "reception/leaders";
-
-
-    //接待--教练--step3-TO到领导
-    public static final String RECEPTION_STEP3_TO_LEADERS = "reception/coach-to-leader";
-
-    //接待--领导--step3-领导点击发送
-    public static final String RECEPTION_STEP3_LEADERTOSALE = "reception/leader-to-sales";
-
-    //接待--教练--step3-教练点击完成
-    public static final String RECEPTION_STEP3_COACHTOSALE = "reception/coach-to-sale";
-
-    //   接待--会籍--step3-产品报价到订单详情
-    public static final String RECEPTION_STEP3_CARD_TO_ORDER = "reception/card-to-order";
-
-
-    //接待--会籍--step4-获取订单详情
-    public static final String RECEPTION_STEP4_GET_ORDER_DETAIL = "card/order-detail";
-
-    //接待--会籍--step4-订单详情到完成
-    public static final String RECEPTION_STEP4_TOFINISH = "reception/order-to-finish";
-
-    //接待--会籍--step5-完成整个流程
-    public static final String RECEPTION_STEP5_END = "reception/finish-to-coach";
 
 
 

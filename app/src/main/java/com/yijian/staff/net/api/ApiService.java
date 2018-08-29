@@ -4,14 +4,10 @@ package com.yijian.staff.net.api;
 import com.yijian.staff.net.requestbody.AbortFuFangBody;
 import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
-import com.yijian.staff.mvp.course.experienceclass.invate.bean.InvateBean;
-import com.yijian.staff.mvp.course.experienceclass.step2.bean.AccessRecordBean;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
-import com.yijian.staff.mvp.reception.step1.bean.QuestionnaireAnswer;
-import com.yijian.staff.mvp.reception.step2.step2Bean.PhysicalExaminationBean;
-import com.yijian.staff.mvp.reception.step3.bean.ConditionBody;
+
 import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
@@ -106,11 +102,8 @@ public interface ApiService {
     @POST
     Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
-    //体验课_回访——教练提交回访记录
-    @POST
-    Observable<JSONObject> postExperienceAccessRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body AccessRecordBean body);
 
-    //体验课_回访——教练提交回访记录
+    //提交回访记录
     @POST
     Observable<JSONObject> postAddHuiFangResult(@Url String url, @HeaderMap Map<String, String> headers, @Body AddHuiFangResultBody body);
 
@@ -120,17 +113,6 @@ public interface ApiService {
     Observable<JSONObject> getQuestionnaireList(@Url String url, @HeaderMap Map<String, String> headers, @Body QuestionnaireRequestBody body);
 
 
-    //体测录入
-    @POST
-    Observable<JSONObject> saveReceptionTest(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body PhysicalExaminationBean physicalExaminationBean);
-
-    //问卷调查_保存
-    @POST
-    Observable<JSONObject> postObj(@Url String url, @HeaderMap Map<String, String> headers, @Query("memberId") String memberId, @Body List<QuestionnaireAnswer> requestBody);
-
-    //体验课流程——发送邀约信息
-    @POST
-    Observable<JSONObject> postInvate(@Url String url, @HeaderMap Map<String, String> headers, @Body InvateBean invateBean);
 
     //添加潜在
     @Headers({"Content-type: application/json", "Accept: */*"})
@@ -152,17 +134,6 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body CardRequestBody body);
-
-    //会籍卡产品
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> getHuiJiCardGoodsList_ycm(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
-
-    //会籍卡产品
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> getHuiJiCardGoodsList(@Url String url, @HeaderMap Map<String, String> headers, @Body ConditionBody body);
-
 
     /**
      * 表单请求

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by The_P on 2018/5/14.
  */
 
-public class ReceptionListBeanTemp {
+public class ReceptionListBean {
     private int pageSize;
     private int pages;
     private int total;

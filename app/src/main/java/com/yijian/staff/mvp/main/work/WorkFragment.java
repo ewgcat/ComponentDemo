@@ -16,6 +16,7 @@ import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
 import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -212,15 +213,12 @@ public class WorkFragment extends MvcBaseFragment {
             case R.id.et_search:
                 // 此处为得到焦点时的处理内容
                 startActivity(new Intent(getContext(), HuiJiSearchActivity.class));
-//                startActivity(new Intent(getContext(), WorkSpaceActivity.class));
-
                 break;
             case R.id.ll_jiedai:
                 ClearRedPointUtil.clearJieDaiNotice(lifecycle);
                 showJieDaiView(1);
                 SharePreferenceUtil.setHasNewJiedaiPush(false);
-                //TODO 隐藏接待小红点
-                if (receptionActivityLisenter != null) receptionActivityLisenter.startAct();
+                startActivity(new Intent(getActivity(), ReceptionActivity.class));
                 break;
             case R.id.iv_face:
                 startActivity(new Intent(getActivity(), FaceDetectorActivity.class));
@@ -229,15 +227,7 @@ public class WorkFragment extends MvcBaseFragment {
     }
 
 
-    public interface ReceptionActivityLisenter {
-        void startAct();
-    }
 
-    private ReceptionActivityLisenter receptionActivityLisenter;
-
-    public void setReceptionActivityLisenter(ReceptionActivityLisenter receptionActivityLisenter) {
-        this.receptionActivityLisenter = receptionActivityLisenter;
-    }
 
 
 }

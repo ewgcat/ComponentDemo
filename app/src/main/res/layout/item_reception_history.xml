@@ -1,280 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="16dp"
-              android:layout_marginRight="16dp"
-              android:layout_marginBottom="20dp"
-              android:background="@drawable/white_bg"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="15dp"
 
+    android:background="@drawable/shape_fillet_white_8"
+    android:orientation="vertical">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
         <TextView
-                android:id="@+id/tv_viper_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="程先生"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+            android:id="@+id/tv_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="程先生"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_16"
+            android:layout_centerVertical="true"/>
 
         <ImageView
-                android:id="@+id/iv_sex"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="4dp"
-                android:layout_gravity="center_vertical"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/lg_man"/>
-
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="完成"
-                android:textColor="#2cc8a1"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
+            android:layout_marginLeft="6dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_member_name"
+            android:id="@+id/iv_member_sex"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/wt_man"/>
+    </RelativeLayout>
 
     <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#f2f2f2"/>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/division"/>
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号码"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_black1"
+            />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="手机号码: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+            android:id="@+id/tv_member_phone"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="13247133441"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_14"
+            />
 
+    </RelativeLayout>
 
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接待时间"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_black1"
+            />
 
         <TextView
-                android:id="@+id/tv_viper_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="99999999"
-                android:textColor="#333333"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
+            android:id="@+id/tv_reception_time"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2018-12-1 09:56"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_14"
+            />
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务会籍"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_black1"
+            />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="调查问卷: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+            android:id="@+id/tv_reception_sale"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="陶娇娇"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_14"
+            />
 
+    </RelativeLayout>
 
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务教练"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_black1"
+            />
 
         <TextView
-                android:id="@+id/tv_wenjuan"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="点击查看"
-                android:textColor="#1997f8"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:id="@+id/tv_reception_coach"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="曹查理"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_14"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_referee"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="推荐人"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_black1"
+            />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="体测报告: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+            android:id="@+id/tv_reception_referee"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="JM"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_14"
+            />
 
-
-        <View
-                android:layout_width="0dp"
-
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        <TextView
-                android:id="@+id/tv_ticebaogao"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="点击查看"
-                android:textColor="#1997f8"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="接待会籍: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-
-
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1"/>
-
-        <TextView
-                android:id="@+id/tv_jiedai_name"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="李先生"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="接待教练: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-
-
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1"/>
-
-        <TextView
-                android:id="@+id/tv_coach_name"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="黄小姐"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="选择产品: "
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-
-
-        <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:layout_weight="1"/>
-
-        <TextView
-                android:id="@+id/tv_product"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="十周年健身卡"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

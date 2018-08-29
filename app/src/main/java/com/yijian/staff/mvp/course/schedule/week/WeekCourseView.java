@@ -1,20 +1,12 @@
 package com.yijian.staff.mvp.course.schedule.week;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MotionEventCompat;
@@ -23,37 +15,22 @@ import android.support.v4.widget.ViewDragHelper;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow;
-import com.yijian.staff.mvp.course.schedule.day.LockTimePopuwindow;
-import com.yijian.staff.mvp.reception.ReceptionContract;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.MyScollView;
 
 import java.util.ArrayList;
 
 import static android.support.v4.widget.ViewDragHelper.STATE_DRAGGING;
-import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
-import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.BLUE_FLAG;
-import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.GREEN_FLAG;
-import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.RED_FLAG;
-import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.WHITE_FLAG;
 
 /**
  * author：李帅华

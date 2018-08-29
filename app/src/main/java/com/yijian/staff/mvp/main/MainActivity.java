@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
@@ -20,8 +21,6 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.main.mine.MineFragment;
 import com.yijian.staff.mvp.main.work.WorkFragment;
-import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
-import com.yijian.staff.mvp.reception.RecetionCompleteDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -77,12 +76,8 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     }
 
 
-
-
-
     @Override
     protected void initView(Bundle savedInstanceState) {
-
 
 
         initJPush();
@@ -116,34 +111,23 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
 
 
         }
-        if (workFragment != null) {
-            workFragment.setReceptionActivityLisenter(new WorkFragment.ReceptionActivityLisenter() {
-                @Override
-                public void startAct() {
-//                Intent intent = new Intent(FaceActivity.this, ReceptionActivity.class);
-//                startActivityForResult(intent, RESULT_OK_RECEPTION);
-                    Intent intent = new Intent(MainActivity.this, ReceptionActivityTemp.class);
-                    startActivity(intent);
-                }
-            });
-        }
 
         hasNotice();
         Disposable disposable = RxBus.getDefault().toDefaultFlowable(PushInfoBean.class, new Consumer<PushInfoBean>() {
             @Override
             public void accept(PushInfoBean pushInfoBean) throws Exception {
-                if (workFragment != null&&workFragment.isAdded()) {
+                if (workFragment != null && workFragment.isAdded()) {
                     workFragment.observe(pushInfoBean);
                 }
 
                 boolean hasNewSellBusinessPush = pushInfoBean.getHasNewSellBusinessPush();
                 Boolean hasNewCourseBusinessPush = pushInfoBean.getHasNewCourseBusinessPush();
-                if (hasNewSellBusinessPush||hasNewCourseBusinessPush) {
+                if (hasNewSellBusinessPush || hasNewCourseBusinessPush) {
                     mBottombar.showRedPointNotice(View.VISIBLE);
                 } else {
                     mBottombar.showRedPointNotice(View.INVISIBLE);
                 }
-                if (mesageFragment!=null&&mesageFragment.isVisible()) {
+                if (mesageFragment != null && mesageFragment.isVisible()) {
                     mesageFragment.refresh();
                     mBottombar.showRedPointNotice(View.INVISIBLE);
 
@@ -152,7 +136,6 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         });
 
     }
-
 
 
     public void hasNotice() {
@@ -255,7 +238,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     transaction.show(workFragment);
                 }
                 // 如果WorkFragment不为空，则直接将它显示出来
-                AccessStatisticsRequestBody body1=new AccessStatisticsRequestBody("app_workbench",version);
+                AccessStatisticsRequestBody body1 = new AccessStatisticsRequestBody("app_workbench", version);
                 HttpManager.postAccessStatistics(body1, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
@@ -299,7 +282,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     // 如果MimeFragment不为空，则直接将它显示出来
                     transaction.show(mineFragment);
                 }
-                AccessStatisticsRequestBody body3=new AccessStatisticsRequestBody("app_my",version);
+                AccessStatisticsRequestBody body3 = new AccessStatisticsRequestBody("app_my", version);
                 HttpManager.postAccessStatistics(body3, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
                     public void onSuccess(JSONObject result) {
@@ -336,14 +319,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         if (resultCode == 1234 && mineFragment != null) {
             mineFragment.onActivityResult(requestCode, resultCode, data);
         } else {
-            switch (resultCode) {
-                case RESULT_OK_RECEPTION:
-                    RecetionCompleteDialog recetionCompleteDialog = new RecetionCompleteDialog();
-                    recetionCompleteDialog.show(getFragmentManager(), "RecetionCompleteDialog");
-                    break;
-                default:
-                    break;
-            }
+
         }
 
     }
@@ -353,7 +329,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         super.onNewIntent(intent);
         int push_message = intent.getIntExtra("push_message", 0);
         if (push_message == 2) {
-            Logger.i(TAG,"push_message");
+            Logger.i(TAG, "push_message");
             selectTab(push_message);
             mBottombar.showRedPointNotice(View.INVISIBLE);
             ClearRedPointUtil.clearBusinessNotice(getLifecycle());

@@ -60,7 +60,7 @@ public class CourseListAdapter extends BaseRvAdapter<CourseStudentBean.PrivateCo
             tvName.setText(privateCourseMemberVO.getMemberName());
             int resId = privateCourseMemberVO.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, mContext, ivSex);
-            ImageLoader.setImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), mContext, ivHead);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), mContext, ivHead);
         }
         if (!TextUtils.isEmpty(bean.getSTime())) {
             tvTime.setText(bean.getSTime());

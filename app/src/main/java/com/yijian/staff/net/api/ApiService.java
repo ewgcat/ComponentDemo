@@ -8,7 +8,6 @@ import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.bean.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
 
-import com.yijian.staff.bean.PrivateShangKeBean;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
@@ -176,13 +175,6 @@ public interface ApiService {
     @POST
     Observable<JSONObject> editHuiJiVipDetail(@Url String url, @HeaderMap Map<String, String> headers, @Body EditHuiJiVipBody editHuiJiVipBody);
 
-
-    /**
-     * 提交下课数据
-     */
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> saveXiaKeRecord(@Url String url, @HeaderMap Map<String, String> headers, @Body PrivateShangKeBean privateShangKeBean, @Query("state") String state);
 
     /**
      * 保存私教课备课内容

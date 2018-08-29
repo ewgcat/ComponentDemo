@@ -99,6 +99,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                 postSaveCourse(courseBean);
             }
         });
+        initData();
     }
 
     public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean) {
@@ -151,12 +152,16 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         }
 
 
+
     }
 
+
     @Override
-    public void onResume() {
-        super.onResume();
-        initData();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            initData();
+        }
     }
 
     public void scollToCurrentTime() {

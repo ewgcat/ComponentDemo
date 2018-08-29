@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
@@ -37,6 +38,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+@Route(path = "/test/31")
 public class AppointCourseTableActivity extends MvcBaseActivity {
 
 

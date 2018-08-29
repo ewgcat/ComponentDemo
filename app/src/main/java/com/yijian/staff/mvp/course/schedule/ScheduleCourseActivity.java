@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.schedule.day.ScheduleDayFragment;
@@ -16,7 +17,7 @@ import com.yijian.staff.util.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+@Route(path = "/test/32")
 public class ScheduleCourseActivity extends MvcBaseActivity {
 
 

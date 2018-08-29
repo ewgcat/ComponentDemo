@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
-import com.yijian.staff.mvp.course.setclass.orderclass.OrderClassActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivityTemp;
 import com.yijian.staff.prefs.SharePreferenceUtil;

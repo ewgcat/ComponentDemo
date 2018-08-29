@@ -18,6 +18,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.MyDividerItemDecoration;
+import com.yijian.staff.widget.NoScrollRecycleView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ import io.reactivex.functions.Consumer;
 public class CourseListFragment extends MvcBaseFragment {
 
     @BindView(R.id.rv)
-    RecyclerView rv;
+    NoScrollRecycleView rv;
     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> dataList = new ArrayList<>();
     private CourseListAdapter mDataAdapter;
 

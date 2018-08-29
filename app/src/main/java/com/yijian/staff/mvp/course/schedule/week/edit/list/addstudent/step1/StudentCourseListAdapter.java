@@ -67,7 +67,7 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
         ImageLoader.setImageResource(resId, context, holder.ivselect);
         int resIdsex = groupData.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
         ImageLoader.setImageResource(resIdsex, context, holder.ivSex);
-        ImageLoader.setImageResource(BuildConfig.FILE_HOST + groupData.getHeadPath(), context, holder.ivHeader);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + groupData.getHeadPath(), context, holder.ivHeader);
     }
 
     @Override

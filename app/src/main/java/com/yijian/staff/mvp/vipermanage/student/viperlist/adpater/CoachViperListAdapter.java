@@ -79,7 +79,7 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
         }
         holder.iv_gender.setImageResource(resId);
 
-        String headImg = BuildConfig.FILE_HOST+ coachViperBean.getHeadImg();
+        String headImg = coachViperBean.getHeadImg();
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.mipmap.placeholder)

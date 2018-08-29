@@ -137,7 +137,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         selectGroupedStudentBean = (GroupedStudentBean) getIntent().getSerializableExtra("selectGroupedStudentBean");
         course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
         if (selectGroupedStudentBean != null) {
-            ImageLoader.setImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
             int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(selectGroupedStudentBean.getMemberName());

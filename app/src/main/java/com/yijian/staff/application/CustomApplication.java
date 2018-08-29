@@ -25,7 +25,6 @@ import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.tab.tools.ContextUtil;
 import com.yijian.staff.util.ApplicationHolder;
-import com.yijian.staff.util.InitializeService;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,7 +82,6 @@ public class CustomApplication extends TinkerApplication implements Application.
         SharePreferenceUtil.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion());
         DBManager.init(this);
         //在子线程中完成其他初始化
-        InitializeService.start(this);
         ContextUtil.init(getApplicationContext());
         registerActivityLifecycleCallbacks(this);
 

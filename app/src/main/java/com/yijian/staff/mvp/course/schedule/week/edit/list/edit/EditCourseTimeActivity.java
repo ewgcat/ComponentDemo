@@ -14,15 +14,18 @@ import com.contrarywind.view.WheelView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -30,7 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EditCourseTimeActivity extends MvcBaseActivity {
@@ -250,10 +252,14 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
-                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
+                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
                     @Override
-                    public void onSuccess(JSONObject result) {
+                    public void onSuccess(JSONArray result) {
                         showToast("修改成功！");
+
+                        List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+
+                        DBManager.getInstance().insertCourseStudentBeans(list);
                         finish();
                     }
 

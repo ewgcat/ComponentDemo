@@ -27,6 +27,18 @@ public class CourseStudentBean implements Serializable{
     private String weekName;
     private List<PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS;
 
+    @Override
+    public String toString() {
+        return "CourseStudentBean{" +
+                "day='" + day + '\'' +
+                ", dayAlias='" + dayAlias + '\'' +
+                ", localDate='" + localDate + '\'' +
+                ", weekCode=" + weekCode +
+                ", weekName='" + weekName + '\'' +
+                ", privateCoachCurriculumArrangementPlanVOS=" + privateCoachCurriculumArrangementPlanVOS +
+                '}';
+    }
+
     public String getDay() {
         return day;
     }
@@ -93,12 +105,28 @@ public class CourseStudentBean implements Serializable{
         private String colour;
         private int dataType;
         private int duration;
-        private String eTime;
         private String id;
         private PrivateCoachCourseVOBean privateCoachCourseVO;
         private PrivateCourseMemberVOBean privateCourseMemberVO;
         private String sTime;
+        private String eTime;
         private int week;
+
+        @Override
+        public String toString() {
+            return "PrivateCoachCurriculumArrangementPlanVOSBean{" +
+                    "coachId='" + coachId + '\'' +
+                    ", colour='" + colour + '\'' +
+                    ", dataType=" + dataType +
+                    ", duration=" + duration +
+                    ", id='" + id + '\'' +
+                    ", privateCoachCourseVO=" + privateCoachCourseVO +
+                    ", privateCourseMemberVO=" + privateCourseMemberVO +
+                    ", sTime='" + sTime + '\'' +
+                    ", eTime='" + eTime + '\'' +
+                    ", week=" + week +
+                    '}';
+        }
 
         public String getCoachId() {
             return coachId;
@@ -214,6 +242,15 @@ public class CourseStudentBean implements Serializable{
             public void setMemberCourseName(String memberCourseName) {
                 this.memberCourseName = memberCourseName;
             }
+
+            @Override
+            public String toString() {
+                return "PrivateCoachCourseVOBean{" +
+                        "consumingMinute=" + consumingMinute +
+                        ", memberCourseId='" + memberCourseId + '\'' +
+                        ", memberCourseName='" + memberCourseName + '\'' +
+                        '}';
+            }
         }
 
         public static class PrivateCourseMemberVOBean implements Serializable{
@@ -258,6 +295,16 @@ public class CourseStudentBean implements Serializable{
 
             public void setMemberSex(int memberSex) {
                 this.memberSex = memberSex;
+            }
+
+            @Override
+            public String toString() {
+                return "PrivateCourseMemberVOBean{" +
+                        "headPath='" + headPath + '\'' +
+                        ", memberId='" + memberId + '\'' +
+                        ", memberName='" + memberName + '\'' +
+                        ", memberSex=" + memberSex +
+                        '}';
             }
         }
     }

@@ -43,7 +43,6 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         titleTv.setText("排课表");
-        ImageLoader.setImageResource(R.mipmap.weekview, this, ivRight);
 
         changeFragment(index);
     }
@@ -61,6 +60,8 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
                 } else {
                     fragmentTransaction.show(scheduleWeekFragment);
                 }
+                ImageLoader.setImageResource(R.mipmap.weekview, this, ivRight);
+
                 break;
             case 1:
                 if (scheduleDayFragment == null) {
@@ -69,6 +70,8 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
                 } else {
                     fragmentTransaction.show(scheduleDayFragment);
                 }
+                ImageLoader.setImageResource(R.mipmap.dayview, this, ivRight);
+
                 break;
         }
 
@@ -97,11 +100,9 @@ public class ScheduleCourseActivity extends MvcBaseActivity {
             case R.id.ll_right:
                 if (index == 0) {
                     index = 1;
-                    ImageLoader.setImageResource(R.mipmap.weekview, this, ivRight);
                     changeFragment(1);
                 } else {
                     index = 0;
-                    ImageLoader.setImageResource(R.mipmap.dayview, this, ivRight);
                     changeFragment(0);
                 }
                 break;

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -156,11 +157,22 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     }
 
 
+
+
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden){
-            initData();
+    public void onResume() {
+        super.onResume();
+        List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
+        if (courseStudentBeanList != null) {
+            weekCourseView.clearView();
+            for (int i = 0; i < courseStudentBeanList.size(); i++) {
+                CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                int weekCode = courseStudentBean.getWeekCode();
+                for (int j = 0; j < list.size(); j++) {
+                    weekCourseView.addItem(list.get(j), weekCode);
+                }
+            }
         }
     }
 
@@ -188,7 +200,10 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
             public void onSuccess(JSONArray result) {
                 weekCourseView.clearView();
                 List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+
                 if (courseStudentBeanList != null) {
+                    DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+
                     for (int i = 0; i < courseStudentBeanList.size(); i++) {
                         CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
                         List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();

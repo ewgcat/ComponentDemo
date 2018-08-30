@@ -15,17 +15,21 @@ import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoursePlanBean;
 import com.yijian.staff.bean.CourseRecordBean;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.CourseTimeBean;
 import com.yijian.staff.bean.GroupedStudentBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -430,19 +434,27 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 }
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
-                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
-                    @Override
-                    public void onSuccess(JSONObject result) {
-                        showToast("新增成功！");
-                        setResult(4567);
-                        finish();
-                    }
+                HttpManager.postSaveCourse(saveCourseRequestBody,
 
-                    @Override
-                    public void onFail(String msg) {
-                        showToast(msg);
-                    }
-                });
+                        new ResultJSONArrayObserver(getLifecycle()) {
+                            @Override
+                            public void onSuccess(JSONArray result) {
+                                showToast("新增成功！");
+
+                                List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+
+                                DBManager.getInstance().insertCourseStudentBeans(list);
+
+                                setResult(4567);
+                                finish();
+                            }
+
+                            @Override
+                            public void onFail(String msg) {
+                                showToast(msg);
+                            }
+                        });
+
             }else {
                 showToast("请先添加上课时间！");
             }
@@ -455,23 +467,88 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
     public void checkoutScheduleTime() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("schooltime", hours + ":" + minutes);
-        map.put("week", weekday + "");
-        map.put("classHour", consumingMinute);
-        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                tvCourseTimeStatus.setVisibility(View.GONE);
-            }
+        boolean hasCouser=false;
+        String startTime = hours + "" + minutes;
+        int i1 = Integer.parseInt(minutes);
+        int i2 = Integer.parseInt(consumingMinute);
+        int i3 = i1 + i2;
+        int i4 = i3 / 60;
+        int i5 = i3 % 60;
 
-            @Override
-            public void onFail(String msg) {
+        int h1 = Integer.parseInt(hours);
+        int h2 = h1 + i4;
+        String endTime = "";
+        if (h2 < 10) {
+            endTime = "0" + h2 ;
+        } else {
+            endTime+= h2 ;
+        }
+        if (i5 < 10) {
+            endTime = endTime + "0" + i5;
+        } else {
+            endTime = endTime + i5;
+        }
+        int istartTime = Integer.parseInt(startTime.replace(":", ""));
+        int iendTime = Integer.parseInt(endTime.replace(":", ""));
+
+
+
+        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        if (courseStudentBeans!=null&&courseStudentBeans.size()>0){
+            for (int i = 0; i < courseStudentBeans.size(); i++) {
+                CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
+                if (courseStudentBean.getWeekCode()==weekday){
+                    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                    if(privateCoachCurriculumArrangementPlanVOS!=null&&privateCoachCurriculumArrangementPlanVOS.size()>0){
+                        for (int j = 0; j < privateCoachCurriculumArrangementPlanVOS.size(); j++) {
+                            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(j);
+                            String sTime = privateCoachCurriculumArrangementPlanVOSBean.getSTime();
+                            String eTime = privateCoachCurriculumArrangementPlanVOSBean.getETime();
+                            int isTime = Integer.parseInt(sTime.replace(":", ""));
+                            int ieTime = Integer.parseInt(eTime.replace(":", ""));
+
+                            if (istartTime<=isTime&&iendTime>=ieTime){
+                                hasCouser=true;
+                            }else if (istartTime<ieTime&&iendTime>=ieTime){
+                                hasCouser=true;
+                            }else if (istartTime>=isTime&&iendTime<isTime){
+                                hasCouser=true;
+                            }else if (istartTime<isTime&iendTime>ieTime){
+                                hasCouser=true;
+                            }
+                        }
+                    }
+
+                }
+            }
+            if (hasCouser){
                 tvCourseTimeStatus.setVisibility(View.VISIBLE);
                 tvCourseTimeStatus.setText("(选中时间段已有安排)");
-                showToast(msg);
+            }else {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("schooltime", hours + ":" + minutes);
+                map.put("week", weekday + "");
+                map.put("classHour", consumingMinute);
+                showLoading();
+                HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        hideLoading();
+                        tvCourseTimeStatus.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        hideLoading();
+                        tvCourseTimeStatus.setVisibility(View.VISIBLE);
+                        tvCourseTimeStatus.setText("(选中时间段已有安排)");
+                        showToast(msg);
+                    }
+                });
             }
-        });
+        }
+
+
 
     }
 
@@ -544,12 +621,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
 
 }

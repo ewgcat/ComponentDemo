@@ -50,7 +50,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="16dp"
-                    android:src="@mipmap/dayview"
+                    android:src="@mipmap/weekview"
                    />
             </LinearLayout>
 

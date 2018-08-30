@@ -641,7 +641,6 @@ public class HttpManager {
             ARouter.getInstance().build("/test/login").navigation();
         } else {
             headers.put("token", user.getToken());
-
             Observable<JSONObject> observable = apiService.getHuiJiCardGoodsList(SharePreferenceUtil.getHostUrl() + HUI_JI_CARD_GOODS_LIST_URL, headers, body);
             execute(observable, observer);
         }

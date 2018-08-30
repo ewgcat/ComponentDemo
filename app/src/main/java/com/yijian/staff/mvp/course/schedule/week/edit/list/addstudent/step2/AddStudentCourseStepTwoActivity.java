@@ -467,7 +467,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
     public void checkoutScheduleTime() {
-        boolean hasCouser=false;
+        boolean hasCourse=false;
         String startTime = hours + "" + minutes;
         int i1 = Integer.parseInt(minutes);
         int i2 = Integer.parseInt(consumingMinute);
@@ -508,20 +508,20 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                             int ieTime = Integer.parseInt(eTime.replace(":", ""));
 
                             if (istartTime<=isTime&&iendTime>=ieTime){
-                                hasCouser=true;
+                                hasCourse=true;
                             }else if (istartTime<ieTime&&iendTime>=ieTime){
-                                hasCouser=true;
+                                hasCourse=true;
                             }else if (istartTime>=isTime&&iendTime<isTime){
-                                hasCouser=true;
+                                hasCourse=true;
                             }else if (istartTime<isTime&iendTime>ieTime){
-                                hasCouser=true;
+                                hasCourse=true;
                             }
                         }
                     }
 
                 }
             }
-            if (hasCouser){
+            if (hasCourse){
                 tvCourseTimeStatus.setVisibility(View.VISIBLE);
                 tvCourseTimeStatus.setText("(选中时间段已有安排)");
             }else {

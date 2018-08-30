@@ -277,29 +277,101 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     }
 
     public void checkoutScheduleTime() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("version", "1.3");
-        String value = hours + ":" + minutes;
-        Logger.i("TEST","value="+value);
-        map.put("schooltime", value);
-        map.put("week", weekday + "");
-        map.put("classHour", consumingMinute);
-        map.put("capId", id);
-        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
-            @Override
-            public void onSuccess(JSONObject result) {
-                tvCourseTimeStatus.setVisibility(View.GONE);
+        boolean hasCourse=false;
+
+        String startTime = hours + "" + minutes;
+        int i1 = Integer.parseInt(minutes);
+        int i2 = Integer.parseInt(consumingMinute);
+        int i3 = i1 + i2;
+        int i4 = i3 / 60;
+        int i5 = i3 % 60;
+
+        int h1 = Integer.parseInt(hours);
+        int h2 = h1 + i4;
+        String endTime = "";
+        if (h2 < 10) {
+            endTime = "0" + h2 ;
+        } else {
+            endTime+= h2 ;
+        }
+        if (i5 < 10) {
+            endTime = endTime + "0" + i5;
+        } else {
+            endTime = endTime + i5;
+        }
+        int istartTime = Integer.parseInt(startTime.replace(":", ""));
+        int iendTime = Integer.parseInt(endTime.replace(":", ""));
+
+
+
+        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        if (courseStudentBeans!=null&&courseStudentBeans.size()>0){
+            for (int i = 0; i < courseStudentBeans.size(); i++) {
+                CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
+                if (courseStudentBean.getWeekCode()==weekday){
+                    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                    if(privateCoachCurriculumArrangementPlanVOS!=null&&privateCoachCurriculumArrangementPlanVOS.size()>0){
+                        for (int j = 0; j < privateCoachCurriculumArrangementPlanVOS.size(); j++) {
+                            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(j);
+
+                            if (!privateCoachCurriculumArrangementPlanVOSBean.getId().equals(id)){
+                                String sTime = privateCoachCurriculumArrangementPlanVOSBean.getSTime();
+                                String eTime = privateCoachCurriculumArrangementPlanVOSBean.getETime();
+                                int isTime = Integer.parseInt(sTime.replace(":", ""));
+                                int ieTime = Integer.parseInt(eTime.replace(":", ""));
+
+                                if (istartTime<=isTime&&iendTime>=ieTime){
+                                    hasCourse=true;
+                                }else if (istartTime<ieTime&&iendTime>=ieTime){
+                                    hasCourse=true;
+                                }else if (istartTime>=isTime&&iendTime<isTime){
+                                    hasCourse=true;
+                                }else if (istartTime<isTime&iendTime>ieTime){
+                                    hasCourse=true;
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
 
-            @Override
-            public void onFail(String msg) {
+            if (hasCourse){
                 tvCourseTimeStatus.setVisibility(View.VISIBLE);
                 tvCourseTimeStatus.setText("(选中时间段已有安排)");
-                showToast(msg);
+            }else {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("version", "1.3");
+                String value = hours + ":" + minutes;
+                Logger.i("TEST","value="+value);
+                map.put("schooltime", value);
+                map.put("week", weekday + "");
+                map.put("classHour", consumingMinute);
+                map.put("capId", id);
+                showLoading();
+                HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        hideLoading();
+                        tvCourseTimeStatus.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        hideLoading();
+                        tvCourseTimeStatus.setVisibility(View.VISIBLE);
+                        tvCourseTimeStatus.setText("(选中时间段已有安排)");
+                        showToast(msg);
+                    }
+                });
+
             }
-        });
+        }
+
+
 
     }
+
 
     @OnClick({R.id.left_tv, R.id.right_tv, R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
     public void onViewClicked(View view) {

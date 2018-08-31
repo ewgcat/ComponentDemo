@@ -107,10 +107,26 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             }
         };
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
-        request();
 
     }
 
+    /**
+     *
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        request();
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            request();
+        }
+    }
 
     private void deleteLockTime(View view, String id) {
         showLoading();

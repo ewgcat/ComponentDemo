@@ -238,6 +238,9 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
 
     }
 
+    /**
+     * 从日视图切换回来刷新数据
+     */
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -257,7 +260,25 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         }
     }
 
-
+    /**
+     * 从编辑排课表功能返回刷新数据
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
+        if (courseStudentBeanList != null) {
+            weekCourseView.clearView();
+            for (int i = 0; i < courseStudentBeanList.size(); i++) {
+                CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
+                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                int weekCode = courseStudentBean.getWeekCode();
+                for (int j = 0; j < list.size(); j++) {
+                    weekCourseView.addItem(list.get(j), weekCode);
+                }
+            }
+        }
+    }
 
     public void scollToCurrentTime() {
         long l = System.currentTimeMillis();

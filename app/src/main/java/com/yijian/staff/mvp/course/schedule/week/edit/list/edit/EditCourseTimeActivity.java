@@ -125,7 +125,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         if (courseStudentBean != null) {
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseStudentBean.getPrivateCourseMemberVO();
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseStudentBean.getPrivateCoachCourseVO();
-            ImageLoader.setImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), this, ivHeader);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), this, ivHeader);
             int resId = privateCourseMemberVO.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(privateCourseMemberVO.getMemberName());

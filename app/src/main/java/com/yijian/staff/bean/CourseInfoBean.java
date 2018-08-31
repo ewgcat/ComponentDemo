@@ -9,42 +9,18 @@ public class CourseInfoBean {
 
 
     /**
-     * endDatetime : 11:00:00
-     * privateCourseCoachSummaryDTO : {"actionComplete":0,"actionEvaluate":0,"adaptStrength":0,"privateApplyId":"string"}
-     * punchStatus : 0
-     * startDate : 2018-01-01
-     * startDatetime : 09:00:00
+     * startDate : 2018-08-31
+     * startDatetime : 10:33:52
+     * endDatetime : 18:20:42
+     * punchStatus : 2
+     * privateCourseCoachSummaryDTO : {"privateApplyId":"9f4fe28a489d49d3913aa25f47fd912e","actionComplete":0.43,"actionEvaluate":0.5,"adaptStrength":1}
      */
 
-    private String endDatetime;
-    private PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO;
-    private int punchStatus;
     private String startDate;
     private String startDatetime;
-
-    public String getEndDatetime() {
-        return endDatetime;
-    }
-
-    public void setEndDatetime(String endDatetime) {
-        this.endDatetime = endDatetime;
-    }
-
-    public PrivateCourseCoachSummaryDTOBean getPrivateCourseCoachSummaryDTO() {
-        return privateCourseCoachSummaryDTO;
-    }
-
-    public void setPrivateCourseCoachSummaryDTO(PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO) {
-        this.privateCourseCoachSummaryDTO = privateCourseCoachSummaryDTO;
-    }
-
-    public int getPunchStatus() {
-        return punchStatus;
-    }
-
-    public void setPunchStatus(int punchStatus) {
-        this.punchStatus = punchStatus;
-    }
+    private String endDatetime;
+    private int punchStatus;
+    private PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO;
 
     public String getStartDate() {
         return startDate;
@@ -62,42 +38,42 @@ public class CourseInfoBean {
         this.startDatetime = startDatetime;
     }
 
+    public String getEndDatetime() {
+        return endDatetime;
+    }
+
+    public void setEndDatetime(String endDatetime) {
+        this.endDatetime = endDatetime;
+    }
+
+    public int getPunchStatus() {
+        return punchStatus;
+    }
+
+    public void setPunchStatus(int punchStatus) {
+        this.punchStatus = punchStatus;
+    }
+
+    public PrivateCourseCoachSummaryDTOBean getPrivateCourseCoachSummaryDTO() {
+        return privateCourseCoachSummaryDTO;
+    }
+
+    public void setPrivateCourseCoachSummaryDTO(PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO) {
+        this.privateCourseCoachSummaryDTO = privateCourseCoachSummaryDTO;
+    }
+
     public static class PrivateCourseCoachSummaryDTOBean {
         /**
-         * actionComplete : 0
-         * actionEvaluate : 0
-         * adaptStrength : 0
-         * privateApplyId : string
+         * privateApplyId : 9f4fe28a489d49d3913aa25f47fd912e
+         * actionComplete : 0.43
+         * actionEvaluate : 0.5
+         * adaptStrength : 1.0
          */
 
-        private int actionComplete;
-        private int actionEvaluate;
-        private int adaptStrength;
         private String privateApplyId;
-
-        public int getActionComplete() {
-            return actionComplete;
-        }
-
-        public void setActionComplete(int actionComplete) {
-            this.actionComplete = actionComplete;
-        }
-
-        public int getActionEvaluate() {
-            return actionEvaluate;
-        }
-
-        public void setActionEvaluate(int actionEvaluate) {
-            this.actionEvaluate = actionEvaluate;
-        }
-
-        public int getAdaptStrength() {
-            return adaptStrength;
-        }
-
-        public void setAdaptStrength(int adaptStrength) {
-            this.adaptStrength = adaptStrength;
-        }
+        private float actionComplete;
+        private float actionEvaluate;
+        private float adaptStrength;
 
         public String getPrivateApplyId() {
             return privateApplyId;
@@ -105,6 +81,30 @@ public class CourseInfoBean {
 
         public void setPrivateApplyId(String privateApplyId) {
             this.privateApplyId = privateApplyId;
+        }
+
+        public float getActionComplete() {
+            return actionComplete;
+        }
+
+        public void setActionComplete(float actionComplete) {
+            this.actionComplete = actionComplete;
+        }
+
+        public float getActionEvaluate() {
+            return actionEvaluate;
+        }
+
+        public void setActionEvaluate(float actionEvaluate) {
+            this.actionEvaluate = actionEvaluate;
+        }
+
+        public float getAdaptStrength() {
+            return adaptStrength;
+        }
+
+        public void setAdaptStrength(float adaptStrength) {
+            this.adaptStrength = adaptStrength;
         }
     }
 }

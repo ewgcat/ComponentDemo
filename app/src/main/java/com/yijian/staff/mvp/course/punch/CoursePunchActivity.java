@@ -9,10 +9,12 @@ import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.warkiz.widget.IndicatorSeekBar;
+import com.xw.repo.BubbleSeekBar;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -51,7 +53,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
     @BindView(R.id.rel_punch_card)
     RelativeLayout rel_punch_card;
     @BindView(R.id.seek_bar1)
-    IndicatorSeekBar seekBar1;
+    BubbleSeekBar seekBar1;
     @BindView(R.id.seek_bar2)
     IndicatorSeekBar seekBar2;
     @BindView(R.id.seek_bar3)
@@ -138,12 +140,18 @@ public class CoursePunchActivity extends MvcBaseActivity {
                     coursePunchQRPopupWindow.dismiss();
                     tv_shangke_time.setText(startDate+" "+startDatetime);
                     tv_xiake_time.setText(startDate+" "+endDatetime);
-                    llPingjia.setVisibility(View.VISIBLE);
-                    seekBar1.setIndicatorTextFormat("${PROGRESS}%");
-                    if (privateCourseCoachSummaryDTO != null) {
-                        tvPingjia.setVisibility(View.GONE);
-                    } else {
-                        tvPingjia.setVisibility(View.VISIBLE);
+                    if (privateCourseCoachSummaryDTO!=null){
+
+                        llPingjia.setVisibility(View.VISIBLE);
+                        int v = (int) (privateCourseCoachSummaryDTO.getActionComplete() * 100);
+                        seekBar1.setProgress(v);
+                        seekBar2.setProgress(privateCourseCoachSummaryDTO.getActionEvaluate()*100);
+                        seekBar3.setProgress(privateCourseCoachSummaryDTO.getAdaptStrength()*100);
+                        if (privateCourseCoachSummaryDTO != null) {
+                            tvPingjia.setVisibility(View.GONE);
+                        } else {
+                            tvPingjia.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
 
@@ -171,22 +179,20 @@ public class CoursePunchActivity extends MvcBaseActivity {
         float progress1 = (float) seekBar1.getProgress();
         float progress2 = (float) seekBar2.getProgress();
         float progress3 = (float) seekBar3.getProgress();
-        body.setActionComplete(progress1 / 100);
-        body.setActionEvaluate(progress2 / 100);
-        body.setAdaptStrength(progress3 / 100);
+        body.setActionComplete(progress1 / 100.0F);
+        body.setActionEvaluate(progress2 / 100.0F);
+        body.setAdaptStrength(progress3 / 100.0F);
 
         HttpManager.postPrivateCoursePingJia(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-
             }
 
             @Override
             public void onFail(String msg) {
-                Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
                 hideLoading();
-
+                showToast(msg);
             }
         });
     }
@@ -239,7 +245,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
     }
 
     private void showQRDialog(String classOverQRCode) {
-
         coursePunchQRPopupWindow.setQR(classOverQRCode);
         coursePunchQRPopupWindow.setBackgroundAlpha(this, 0.3f);
         coursePunchQRPopupWindow.showAtLocation(tv_shangke_statu, Gravity.CENTER,0,0);
@@ -263,6 +268,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
                 } else if (punchStatus == 1) { // 打下课卡
                     submitXiake();
                 }
+                postPingJia();
                 break;
             case R.id.iv_finish:
                 finish();

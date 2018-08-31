@@ -174,55 +174,110 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
      */
     private void submitData() {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("address", et_address.getText().toString());
+        String address = et_address.getText().toString();
+        if ("暂未录入".equals(address)){
+            paramMap.put("address", "");
+        }else {
+            paramMap.put("address", address);
+        }
+
         String o = tv_carPrice.getText().toString();
-        if (!TextUtils.isEmpty(o)) {
+        if ("暂未录入".equals(o)){
+            paramMap.put("carPrice", "");
+        }else {
             paramMap.put("carPrice", o);
         }
-        paramMap.put("clubBrand", et_clubBrand.getText().toString());
-        paramMap.put("fitnessGoal", tv_fitnessGoal.getText().toString());
+
+        String clubBrand = et_clubBrand.getText().toString();
+        if ("暂未录入".equals(clubBrand)){
+            paramMap.put("clubBrand", "");
+        }else {
+            paramMap.put("clubBrand", clubBrand);
+        }
+
+
+        String fitnessGoal = tv_fitnessGoal.getText().toString();
+        paramMap.put("fitnessGoal", fitnessGoal);
+        if ("暂未录入".equals(address)){
+            paramMap.put("fitnessGoal", "");
+        }else {
+            paramMap.put("fitnessGoal", fitnessGoal);
+        }
+
+
         String anObject = tv_hasChildren.getText().toString();
-        if (!TextUtils.isEmpty(anObject)) {
+        if ("暂未录入".equals(anObject)){
+            paramMap.put("hasChildren", "");
+        }else {
             paramMap.put("hasChildren", ("有".equals(anObject)));
         }
+
+
         String o6 = tv_hobby.getText().toString();
-        if (!TextUtils.isEmpty(o6)) {
+        if ("暂未录入".equals(o6)){
+            paramMap.put("hobby", "");
+        }else {
             paramMap.put("hobby", o6);
         }
+
+
         String anObject1 = tv_marriageStatus.getText().toString();
         if (!TextUtils.isEmpty(anObject1)) {
+        }
+        if ("暂未录入".equals(anObject1)){
+            paramMap.put("marriageStatus", "");
+        }else {
             paramMap.put("marriageStatus", ("未婚".equals(anObject1)) ? 0 : 1);
         }
+
+
+
         paramMap.put("memberId", memberId);
 
-        String o1 = tv_nation.getText().toString();
-        if (!TextUtils.isEmpty(o1)) {
-            paramMap.put("nation", o1);
+
+        String nation = tv_nation.getText().toString();
+        if ("暂未录入".equals(nation)){
+            paramMap.put("nation", "");
+        }else {
+            paramMap.put("nation", nation);
         }
-        String o2 = tv_nationality.getText().toString();
-        if (!TextUtils.isEmpty(o2)) {
-            paramMap.put("nationality", o2);
+
+        String nationality = tv_nationality.getText().toString();
+        if ("暂未录入".equals(nationality)){
+            paramMap.put("nationality", "");
+        }else {
+            paramMap.put("nationality", nationality);
         }
+
+
         String o3 = tv_position.getText().toString();
-        if (!TextUtils.isEmpty(o3)) {
+        if ("暂未录入".equals(o3)){
+            paramMap.put("position", "");
+        }else {
             paramMap.put("position", o3);
         }
 
-
         String anObject2 = tv_onceJoinedClub.getText().toString();
-        if (!TextUtils.isEmpty(anObject2)) {
+        if ("暂未录入".equals(anObject2)){
+            paramMap.put("onceJoinedClub","");
+        }else {
             paramMap.put("onceJoinedClub", ("是".equals(anObject2)));
         }
+
+
         String o4 = tv_source.getText().toString();
-        if (!TextUtils.isEmpty(o4)) {
+        if ("暂未录入".equals(o4)){
+            paramMap.put("source", "");
+        }else {
             paramMap.put("source", o4);
         }
 
         String o5 = tv_yearIncome.getText().toString();
-        if (!TextUtils.isEmpty(o5)) {
+        if ("暂未录入".equals(o5)){
+            paramMap.put("yearIncome", "");
+        }else {
             paramMap.put("yearIncome", o5);
         }
-
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
         showLoading();
@@ -278,7 +333,14 @@ public class CoachVipInfoEditActivity extends MvcBaseActivity {
     }
 
     private String strEmpty(String str) {
-        return TextUtils.isEmpty(str) ? "暂未录入" : str;
+        if (TextUtils.isEmpty(str)){
+            return "";
+        }else if ("暂未录入".equals(str)){
+            return "";
+        }else {
+            return  str;
+
+        }
     }
 
     /**

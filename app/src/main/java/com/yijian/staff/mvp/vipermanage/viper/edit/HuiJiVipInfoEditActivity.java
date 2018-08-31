@@ -331,7 +331,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     }
 
     private String strEmpty(String str) {
-        return TextUtils.isEmpty(str) ? "暂未录入" : str;
+        if (TextUtils.isEmpty(str)){
+            return "";
+        }else if ("暂未录入".equals(str)){
+            return "";
+        }else {
+            return  str;
+
+        }
     }
 
     /**

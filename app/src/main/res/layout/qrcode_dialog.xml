@@ -3,23 +3,30 @@
     android:layout_width="280dp"
     android:layout_height="280dp"
     android:background="@drawable/white_bg"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:textColor="#333333"
-        android:textSize="14sp"
-        android:text="需会员扫码完成之后,进行消课!"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="需会员扫码完成之后,进行消课!"
+            android:textColor="#333333"
+            android:textSize="14sp" />
 
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
 </LinearLayout>

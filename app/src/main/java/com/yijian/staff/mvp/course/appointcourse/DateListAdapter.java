@@ -92,7 +92,7 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.ItemVi
                 tv.setText("明天");
                 tvWeekday.setText(dateBean.getWeekDay());
             } else {
-                tv.setText(dateBean.getDate().substring(8, 10) + "日");
+                tv.setText(dateBean.getDate().substring(5, 10));
                 tvWeekday.setText(dateBean.getWeekDay());
             }
             ll.setOnClickListener(new View.OnClickListener() {

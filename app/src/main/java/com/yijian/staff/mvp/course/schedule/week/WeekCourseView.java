@@ -117,7 +117,6 @@ public class WeekCourseView extends FrameLayout {
 
     private void init() {
         setWillNotDraw(false);
-        popuwindow = new FlagPopuwindow(mContext);
         mPaint = new Paint();
         mPaint.setColor(Color.parseColor("#eaeaea"));
         mPaint.setAntiAlias(true);

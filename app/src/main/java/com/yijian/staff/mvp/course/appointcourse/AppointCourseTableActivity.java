@@ -148,10 +148,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBappVOs");
-                List<AppointCourseBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.class);
+                JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBCappVOS");
+                List<AppointCourseBean.P2mToBCappVOSBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.P2mToBCappVOSBean.class);
                 for (int i = 0; i < list.size(); i++) {
-                    AppointCourseBean appointCourseBean = list.get(i);
+                    AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
                     courseView.addItem(appointCourseBean);
                 }
                 hideLoading();

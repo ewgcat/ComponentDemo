@@ -119,7 +119,7 @@ public class AppointCourseView extends FrameLayout {
     }
 
 
-    public void addItem(AppointCourseBean appointCourseBean) {
+    public void addItem(AppointCourseBean.P2mToBCappVOSBean appointCourseBean) {
         int status = appointCourseBean.getStatus();
         if (status == 1 || status == 3 || status == 4 || status == 5) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);
@@ -144,7 +144,7 @@ public class AppointCourseView extends FrameLayout {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            intent.putExtra("appointId", appointCourseBean.getPrivateapply2memberId());
                             mContext.startActivity(intent);
                         }
                     });
@@ -156,7 +156,7 @@ public class AppointCourseView extends FrameLayout {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            intent.putExtra("appointId", appointCourseBean.getPrivateapply2memberId());
                             mContext.startActivity(intent);
                         }
                     });
@@ -168,7 +168,7 @@ public class AppointCourseView extends FrameLayout {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, CoursePunchActivity.class);
-                            intent.putExtra("appointId", appointCourseBean.getMemberCourseId());
+                            intent.putExtra("appointId", appointCourseBean.getPrivateapply2memberId());
                             mContext.startActivity(intent);
                         }
                     });

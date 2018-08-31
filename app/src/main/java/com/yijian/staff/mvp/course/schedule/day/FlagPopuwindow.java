@@ -132,10 +132,5 @@ public class FlagPopuwindow extends PopupWindow implements View.OnClickListener 
         this.onSelectFlagListener = onSelectFlagListener;
     }
 
-    public void show(View view) {
-        this.showAsDropDown(view);
-    }
-    public void showUp(View view) {
 
-    }
 }

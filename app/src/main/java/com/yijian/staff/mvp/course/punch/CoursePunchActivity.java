@@ -2,9 +2,12 @@ package com.yijian.staff.mvp.course.punch;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +68,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
     private String endDatetime;
     private String appointId;
     private MyCountDownTimer timer;
-    private CoursePunchQRDialog coursePunchQrDialog;
+    private CoursePunchQRPopupWindow coursePunchQRPopupWindow;
 
 
     @Override
@@ -75,7 +78,13 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        coursePunchQrDialog = new CoursePunchQRDialog(CoursePunchActivity.this);
+        coursePunchQRPopupWindow = new CoursePunchQRPopupWindow(CoursePunchActivity.this);
+        coursePunchQRPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                coursePunchQRPopupWindow.setBackgroundAlpha(CoursePunchActivity.this, 1.0f);
+            }
+        });
         appointId = getIntent().getStringExtra("appointId");
         Calendar mCalendar = Calendar.getInstance();
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -122,12 +131,12 @@ public class CoursePunchActivity extends MvcBaseActivity {
                     tv_shangke_statu.setText("上课打卡");
                 } else if (punchStatus == 1) {
                     tv_shangke_statu.setText("下课打卡");
-                    tv_shangke_time.setText(startDatetime);
+                    tv_shangke_time.setText(startDate+" "+startDatetime);
                 } else if (punchStatus == 2) {
                     tv_shangke_statu.setText("已完成");
-                    coursePunchQrDialog.dismiss();
-                    tv_shangke_time.setText(startDatetime);
-                    tv_xiake_time.setText(endDatetime);
+                    coursePunchQRPopupWindow.dismiss();
+                    tv_shangke_time.setText(startDate+" "+startDatetime);
+                    tv_xiake_time.setText(startDate+" "+endDatetime);
                     llPingjia.setVisibility(View.VISIBLE);
                     seekBar1.setIndicatorTextFormat("${PROGRESS}%");
                     if (privateCourseCoachSummaryDTO != null) {
@@ -230,8 +239,10 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
     private void showQRDialog(String classOverQRCode) {
 
-        coursePunchQrDialog.setQR(classOverQRCode);
-        coursePunchQrDialog.show();
+        coursePunchQRPopupWindow.setQR(classOverQRCode);
+        coursePunchQRPopupWindow.setBackgroundAlpha(this, 0.3f);
+        coursePunchQRPopupWindow.showAtLocation(tv_shangke_statu, Gravity.CENTER,0,0);
+
         if (timer != null) {
             timer.cancel();
         }

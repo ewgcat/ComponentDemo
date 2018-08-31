@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -246,7 +247,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         if (timer != null) {
             timer.cancel();
         }
-        timer = new MyCountDownTimer(1000 * 2, 1000);
+        timer = new MyCountDownTimer(1000 * 60*60*24, 1000);
         timer.setActivity(CoursePunchActivity.this);
         timer.start();
     }

@@ -435,7 +435,9 @@ public class WeekCourseView extends FrameLayout {
             } else {
                 tv_member_name.setTextColor(Color.parseColor("#ffffff"));
             }
-            tv_member_name.setText(privateCourseMemberVO.getMemberName());
+            if (privateCourseMemberVO!=null){
+                tv_member_name.setText(privateCourseMemberVO.getMemberName());
+            }
             ll_week_course.setBackgroundColor(Color.parseColor(colour));
 
         } else {

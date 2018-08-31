@@ -194,7 +194,9 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                             public void onSuccess(JSONArray result) {
                                 weekCourseView.clearView();
                                 List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+
                                 if (courseStudentBeanList != null) {
+                                    DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
                                     for (int i = 0; i < courseStudentBeanList.size(); i++) {
                                         CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
                                         List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
@@ -237,21 +239,25 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
-        if (courseStudentBeanList != null) {
-            weekCourseView.clearView();
-            for (int i = 0; i < courseStudentBeanList.size(); i++) {
-                CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
-                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                int weekCode = courseStudentBean.getWeekCode();
-                for (int j = 0; j < list.size(); j++) {
-                    weekCourseView.addItem(list.get(j), weekCode);
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
+            if (courseStudentBeanList != null) {
+                weekCourseView.clearView();
+                for (int i = 0; i < courseStudentBeanList.size(); i++) {
+                    CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
+                    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                    int weekCode = courseStudentBean.getWeekCode();
+                    for (int j = 0; j < list.size(); j++) {
+                        weekCourseView.addItem(list.get(j), weekCode);
+                    }
                 }
             }
         }
     }
+
+
 
     public void scollToCurrentTime() {
         long l = System.currentTimeMillis();

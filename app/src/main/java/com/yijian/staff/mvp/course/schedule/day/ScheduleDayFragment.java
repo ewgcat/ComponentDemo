@@ -14,6 +14,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.DateBean;
+import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
@@ -77,12 +78,13 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         dayCourseView.setOnSelectLockTimeListener(new DayCourseView.OnSelectLockTimeListener() {
             @Override
             public void onSelectLockTime(String startTime, String endTime) {
-                postLockTime(startTime,  endTime);
+                postLockTime(startTime, endTime);
             }
 
             @Override
             public void onUnSelectLockTime(View view, String id) {
-                deleteLockTime(view,id);
+                DBManager.getInstance().deletePrivateCoachCurriculumArrangementPlanVOSBeanById(id);
+                deleteLockTime(view, id);
             }
         });
 
@@ -95,24 +97,21 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             @Override
             public void onScrollChanged(ViewGroup viewGroup, int x, int y, int oldx, int oldy) {
                 dayCourseView.dismiss();
-                dayCourseView.onScollYPosition( y);
+                dayCourseView.onScollYPosition(y);
             }
         });
         listener = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                    scollToCurrentTime();
+                scollToCurrentTime();
             }
         };
         getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(listener);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         request();
+
     }
+
+
     private void deleteLockTime(View view, String id) {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
@@ -289,7 +288,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                showToast("成功生成 "+dateBean.getWeekDay()+"（"+dateBean.getDate()+"）的约课表！");
+                showToast("成功生成 " + dateBean.getWeekDay() + "（" + dateBean.getDate() + "）的约课表！");
             }
 
             @Override
@@ -300,17 +299,13 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         });
     }
 
+
     public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
-
         List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
-
         if (courseBean != null) {
-
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
-
             SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-
             privateCoachCAPDTOsBean.setDataType(1);
             privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
             privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
@@ -320,17 +315,20 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             privateCoachCAPDTOsBean.setColour(color);
             privateCoachCAPDTOsBean.setSTime(courseBean.getSTime());
             privateCoachCAPDTOsBean.setETime(courseBean.getETime());
-
             privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
 
             SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
             saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
             showLoading();
-            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    hideLoading();
+
+            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+                public void onSuccess(JSONArray result) {
                     dayCourseView.dismiss();
+                    List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                    if (courseStudentBeanList != null) {
+                        DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+                    }
+                    hideLoading();
                 }
 
                 @Override
@@ -342,36 +340,37 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             });
 
         }
+
     }
+
     private void postLockTime(String startTime, String endTime) {
 
-            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-            privateCoachCAPDTOsBean.setDataType(0);
-            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
-            privateCoachCAPDTOsBean.setWeek(getWeek());
-            privateCoachCAPDTOsBean.setSTime(startTime);
-            privateCoachCAPDTOsBean.setETime(endTime);
+        SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+        privateCoachCAPDTOsBean.setDataType(0);
+        privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+        privateCoachCAPDTOsBean.setWeek(getWeek());
+        privateCoachCAPDTOsBean.setSTime(startTime);
+        privateCoachCAPDTOsBean.setETime(endTime);
 
-            showLoading();
-            HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean >(getLifecycle()) {
-                @Override
-                public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean  bean) {
-                    hideLoading();
+        showLoading();
+        HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean>(getLifecycle()) {
+            @Override
+            public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean bean) {
+                hideLoading();
+                String id = bean.getId();
+                DBManager.getInstance().insertPrivateCoachCurriculumArrangementPlanVOSBean(bean);
+                dayCourseView.addLockView(startTime, endTime, id);
+            }
 
-                    String id = bean.getId();
-                    Logger.i("TEST","id="+id);
-                    dayCourseView.addLockView(startTime,  endTime, id);
-                }
+            @Override
+            public void onFail(String msg) {
+                hideLoading();
+                dayCourseView.dismiss();
+                showToast(msg);
+            }
+        });
 
-                @Override
-                public void onFail(String msg) {
-                    hideLoading();
-                    dayCourseView.dismiss();
-                    showToast(msg);
-                }
-            });
-
-        }
+    }
 
 
     @OnClick({R.id.iv_edit})

@@ -236,8 +236,6 @@ public class DBManager {
             courseStudentBean.setWeekCode(courseStudentModel.getWeekCode());
             courseStudentBean.setWeekName(courseStudentModel.getWeekName());
             courseStudentBean.setLocalDate(courseStudentModel.getLocalDate());
-
-            Logger.i(TAG, "queryCourseStudentBean " + courseStudentBean.toString());
             return courseStudentBean;
         }
         return null;
@@ -269,7 +267,6 @@ public class DBManager {
             privateCoachCurriculumArrangementPlanVOSBean.setDataType(privateCoachCurriculumArrangementPlanModel.getDataType());
             privateCoachCurriculumArrangementPlanVOSBeans.add(privateCoachCurriculumArrangementPlanVOSBean);
         }
-        Logger.i(TAG, "queryPrivateCoachCurriculumArrangementPlanVOSBeansByWeek week=" + week + "\n " + privateCoachCurriculumArrangementPlanVOSBeans.toString());
         return privateCoachCurriculumArrangementPlanVOSBeans;
     }
 
@@ -281,12 +278,8 @@ public class DBManager {
             privateCoachCourseVOBean.setConsumingMinute(privateCoachCourseModel.getConsumingMinute());
             privateCoachCourseVOBean.setMemberCourseId(privateCoachCourseModel.getMemberCourseId());
             privateCoachCourseVOBean.setMemberCourseName(privateCoachCourseModel.getMemberCourseName());
-            Logger.i(TAG, "queryPrivateCoachCourseVOBean " + privateCoachCourseVOBean.toString());
-
             return privateCoachCourseVOBean;
-
         }
-
         return null;
 
     }
@@ -301,10 +294,7 @@ public class DBManager {
             privateCourseMemberVOBean.setMemberId(privateCourseMemberModel.getMemberId());
             privateCourseMemberVOBean.setMemberName(privateCourseMemberModel.getMemberName());
             privateCourseMemberVOBean.setMemberSex(privateCourseMemberModel.getMemberSex());
-            Logger.i(TAG, "queryPrivateCourseMemberVOBean " + privateCourseMemberVOBean.toString());
-
             return privateCourseMemberVOBean;
-
         }
         return null;
 
@@ -312,76 +302,75 @@ public class DBManager {
 
     //插入排课
     public Long insertPrivateCourseMemberVOBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVOBean, String id) {
+        long l = 0;
         PrivateCourseMemberModelDao privateCourseMemberModelDao = mDaoSession.getPrivateCourseMemberModelDao();
         PrivateCourseMemberModel privateCourseMemberModel = new PrivateCourseMemberModel();
         privateCourseMemberModel.setId(id);
-        privateCourseMemberModel.setHeadPath(privateCourseMemberVOBean.getHeadPath());
-        privateCourseMemberModel.setMemberId(privateCourseMemberVOBean.getMemberId());
-        privateCourseMemberModel.setMemberName(privateCourseMemberVOBean.getMemberName());
-        privateCourseMemberModel.setMemberSex(privateCourseMemberVOBean.getMemberSex());
-        Logger.i(TAG, "insertPrivateCourseMemberVOBean:" + privateCourseMemberModel.toString());
-        long l = privateCourseMemberModelDao.insertOrReplace(privateCourseMemberModel);
-        Logger.i(TAG, "insertPrivateCourseMemberVOBean count:" + l);
-
+        if (privateCourseMemberVOBean != null) {
+            privateCourseMemberModel.setHeadPath(privateCourseMemberVOBean.getHeadPath());
+            privateCourseMemberModel.setMemberId(privateCourseMemberVOBean.getMemberId());
+            privateCourseMemberModel.setMemberName(privateCourseMemberVOBean.getMemberName());
+            privateCourseMemberModel.setMemberSex(privateCourseMemberVOBean.getMemberSex());
+            l = privateCourseMemberModelDao.insertOrReplace(privateCourseMemberModel);
+        }
         return l;
     }
 
     public Long insertPrivateCoachCourseVOBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVOBean, String id) {
+        long l = 0;
         PrivateCoachCourseModelDao privateCoachCourseModelDao = mDaoSession.getPrivateCoachCourseModelDao();
 
         PrivateCoachCourseModel privateCoachCourseModel = new PrivateCoachCourseModel();
         privateCoachCourseModel.setId(id);
-        privateCoachCourseModel.setConsumingMinute(privateCoachCourseVOBean.getConsumingMinute());
-        privateCoachCourseModel.setMemberCourseId(privateCoachCourseVOBean.getMemberCourseId());
-        privateCoachCourseModel.setMemberCourseName(privateCoachCourseVOBean.getMemberCourseName());
-        Logger.i(TAG, "insertPrivateCoachCourseVOBean:" + privateCoachCourseModel.toString());
-
-        long l = privateCoachCourseModelDao.insertOrReplace(privateCoachCourseModel);
-        Logger.i(TAG, "insertPrivateCoachCourseVOBean count:" + l);
+        if (privateCoachCourseVOBean != null) {
+            privateCoachCourseModel.setConsumingMinute(privateCoachCourseVOBean.getConsumingMinute());
+            privateCoachCourseModel.setMemberCourseId(privateCoachCourseVOBean.getMemberCourseId());
+            privateCoachCourseModel.setMemberCourseName(privateCoachCourseVOBean.getMemberCourseName());
+            l = privateCoachCourseModelDao.insertOrReplace(privateCoachCourseModel);
+        }
 
         return l;
     }
 
 
     public Long insertPrivateCoachCurriculumArrangementPlanVOSBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean) {
-        insertPrivateCourseMemberVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCourseMemberVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
-        insertPrivateCoachCourseVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCoachCourseVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
-        PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao = mDaoSession.getPrivateCoachCurriculumArrangementPlanModelDao();
-        PrivateCoachCurriculumArrangementPlanModel privateCoachCurriculumArrangementPlanModel = new PrivateCoachCurriculumArrangementPlanModel();
-        privateCoachCurriculumArrangementPlanModel.setId(privateCoachCurriculumArrangementPlanVOSBean.getId());
-        privateCoachCurriculumArrangementPlanModel.setWeek(privateCoachCurriculumArrangementPlanVOSBean.getWeek());
-        privateCoachCurriculumArrangementPlanModel.setSTime(privateCoachCurriculumArrangementPlanVOSBean.getSTime());
-        privateCoachCurriculumArrangementPlanModel.setETime(privateCoachCurriculumArrangementPlanVOSBean.getETime());
-        privateCoachCurriculumArrangementPlanModel.setColour(privateCoachCurriculumArrangementPlanVOSBean.getColour());
-        privateCoachCurriculumArrangementPlanModel.setCoachId(privateCoachCurriculumArrangementPlanVOSBean.getCoachId());
-        privateCoachCurriculumArrangementPlanModel.setDuration(privateCoachCurriculumArrangementPlanVOSBean.getDuration());
-        privateCoachCurriculumArrangementPlanModel.setDataType(privateCoachCurriculumArrangementPlanVOSBean.getDataType());
-        Logger.i(TAG, "insertPrivateCoachCurriculumArrangementPlanVOSBean:" + privateCoachCurriculumArrangementPlanModel.toString());
-
-        long l = privateCoachCurriculumArrangementPlanModelDao.insertOrReplace(privateCoachCurriculumArrangementPlanModel);
-        Logger.i(TAG, "insertPrivateCoachCurriculumArrangementPlanVOSBean count:" + l);
+        long l = 0;
+        if (privateCoachCurriculumArrangementPlanVOSBean != null) {
+            insertPrivateCourseMemberVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCourseMemberVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
+            insertPrivateCoachCourseVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCoachCourseVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
+            PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao = mDaoSession.getPrivateCoachCurriculumArrangementPlanModelDao();
+            PrivateCoachCurriculumArrangementPlanModel privateCoachCurriculumArrangementPlanModel = new PrivateCoachCurriculumArrangementPlanModel();
+            privateCoachCurriculumArrangementPlanModel.setId(privateCoachCurriculumArrangementPlanVOSBean.getId());
+            privateCoachCurriculumArrangementPlanModel.setWeek(privateCoachCurriculumArrangementPlanVOSBean.getWeek());
+            privateCoachCurriculumArrangementPlanModel.setSTime(privateCoachCurriculumArrangementPlanVOSBean.getSTime());
+            privateCoachCurriculumArrangementPlanModel.setETime(privateCoachCurriculumArrangementPlanVOSBean.getETime());
+            privateCoachCurriculumArrangementPlanModel.setColour(privateCoachCurriculumArrangementPlanVOSBean.getColour());
+            privateCoachCurriculumArrangementPlanModel.setCoachId(privateCoachCurriculumArrangementPlanVOSBean.getCoachId());
+            privateCoachCurriculumArrangementPlanModel.setDuration(privateCoachCurriculumArrangementPlanVOSBean.getDuration());
+            privateCoachCurriculumArrangementPlanModel.setDataType(privateCoachCurriculumArrangementPlanVOSBean.getDataType());
+            l = privateCoachCurriculumArrangementPlanModelDao.insertOrReplace(privateCoachCurriculumArrangementPlanModel);
+        }
 
         return l;
     }
 
     public Long insertCourseStudentBean(CourseStudentBean courseStudentBean) {
-        List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-        for (int i = 0; i < privateCoachCurriculumArrangementPlanVOS.size(); i++) {
-            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(i);
-            insertPrivateCoachCurriculumArrangementPlanVOSBean(privateCoachCurriculumArrangementPlanVOSBean);
+        long l = 0;
+        if (courseStudentBean != null) {
+            List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+            for (int i = 0; i < privateCoachCurriculumArrangementPlanVOS.size(); i++) {
+                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(i);
+                insertPrivateCoachCurriculumArrangementPlanVOSBean(privateCoachCurriculumArrangementPlanVOSBean);
+            }
+            CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
+            CourseStudentModel courseStudentModel = new CourseStudentModel();
+            courseStudentModel.setDay(courseStudentBean.getDay());
+            courseStudentModel.setDayAlias(courseStudentBean.getDayAlias());
+            courseStudentModel.setWeekCode(courseStudentBean.getWeekCode());
+            courseStudentModel.setWeekName(courseStudentBean.getWeekName());
+            courseStudentModel.setLocalDate(courseStudentBean.getLocalDate());
+            l = courseStudentModelDao.insertOrReplace(courseStudentModel);
         }
-
-        CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
-        CourseStudentModel courseStudentModel = new CourseStudentModel();
-        courseStudentModel.setDay(courseStudentBean.getDay());
-        courseStudentModel.setDayAlias(courseStudentBean.getDayAlias());
-        courseStudentModel.setWeekCode(courseStudentBean.getWeekCode());
-        courseStudentModel.setWeekName(courseStudentBean.getWeekName());
-        courseStudentModel.setLocalDate(courseStudentBean.getLocalDate());
-        Logger.i(TAG, "insertCourseStudentBean:" + courseStudentModel.toString());
-
-        long l = courseStudentModelDao.insertOrReplace(courseStudentModel);
-        Logger.i(TAG, "insertCourseStudentBean count:" + l);
 
         return l;
     }
@@ -405,8 +394,6 @@ public class DBManager {
         PrivateCourseMemberModelDao privateCourseMemberModelDao = mDaoSession.getPrivateCourseMemberModelDao();
         PrivateCourseMemberModel privateCourseMemberModel = privateCourseMemberModelDao.queryBuilder().where(PrivateCourseMemberModelDao.Properties.Id.eq(id)).unique();
         if (privateCourseMemberModel != null) {
-            Logger.i(TAG, "deletePrivateCourseMemberVOBeanById :" + privateCourseMemberModel.toString());
-
             privateCourseMemberModelDao.delete(privateCourseMemberModel);
         }
     }
@@ -415,11 +402,7 @@ public class DBManager {
         PrivateCoachCourseModelDao privateCoachCourseModelDao = mDaoSession.getPrivateCoachCourseModelDao();
         PrivateCoachCourseModel privateCoachCourseModel = privateCoachCourseModelDao.queryBuilder().where(PrivateCoachCourseModelDao.Properties.Id.eq(id)).unique();
         if (privateCoachCourseModel != null) {
-            Logger.i(TAG, "deletePrivateCoachCourseVOBeanById :" + privateCoachCourseModel.toString());
-
             privateCoachCourseModelDao.deleteByKey(privateCoachCourseModel.getIdx());
-
-
         }
     }
 
@@ -429,8 +412,6 @@ public class DBManager {
         PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao = mDaoSession.getPrivateCoachCurriculumArrangementPlanModelDao();
         PrivateCoachCurriculumArrangementPlanModel privateCoachCurriculumArrangementPlanModel = privateCoachCurriculumArrangementPlanModelDao.queryBuilder().where(PrivateCoachCurriculumArrangementPlanModelDao.Properties.Id.eq(id)).unique();
         if (privateCoachCurriculumArrangementPlanModel != null) {
-            Logger.i(TAG, "deletePrivateCoachCurriculumArrangementPlanVOSBeanById :" + privateCoachCurriculumArrangementPlanModel.toString());
-
             privateCoachCurriculumArrangementPlanModelDao.deleteByKey(privateCoachCurriculumArrangementPlanModel.getIdx());
         }
     }

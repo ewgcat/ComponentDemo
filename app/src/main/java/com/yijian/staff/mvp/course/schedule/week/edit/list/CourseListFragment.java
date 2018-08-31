@@ -99,7 +99,6 @@ public class CourseListFragment extends MvcBaseFragment {
     }
 
 
-
     private void updateUi(List<CourseStudentBean> courseStudentBeanList) {
         for (int i = 0; i < courseStudentBeanList.size(); i++) {
             CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
@@ -107,7 +106,13 @@ public class CourseListFragment extends MvcBaseFragment {
             int weekCode = courseStudentBean.getWeekCode();
             if (weekCode == type) {
                 this.dataList.clear();
-                this.dataList.addAll(list);
+                for (int j = 0; j < list.size(); j++) {
+                    CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = list.get(j);
+                    if (privateCoachCurriculumArrangementPlanVOSBean.getDataType()==1) {
+                        this.dataList.add(privateCoachCurriculumArrangementPlanVOSBean);
+                    }
+                }
+
                 mDataAdapter.setDataList(dataList);
             }
         }

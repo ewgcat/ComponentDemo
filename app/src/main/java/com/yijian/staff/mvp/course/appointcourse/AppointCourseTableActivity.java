@@ -54,6 +54,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
     private List<DateBean> dateBeanList = new ArrayList<>();
     private int height, size;
     private ViewTreeObserver.OnGlobalLayoutListener listener;
+    private String date;
 
 
     @Override
@@ -73,7 +74,6 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         height = CommonUtil.dp2px(this, 35);
         size = 48;
         courseView.setHeightAndSize(height, size);
-        request(DateUtil.getCurrentDate());
 
         listener = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -86,8 +86,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         registerReceiver(broadcastReceiver, filter);
-
+        date=DateUtil.getCurrentDate();
+        request();
     }
+
 
 
 
@@ -126,8 +128,8 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             @Override
             public void onItemClick(int position) {
                 dateListAdapter.selectDate(position);
-                String date = dateBeanList.get(position).getDate();
-                request(date);
+                date = dateBeanList.get(position).getDate();
+                request();
             }
         });
         rv.scrollToPosition(83);
@@ -140,7 +142,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
     }
 
 
-    public void request(String date) {
+    public void request() {
         courseView.clearView();
         showLoading();
         HashMap<String, String> map = new HashMap<>();

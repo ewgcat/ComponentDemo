@@ -31,12 +31,6 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
         this.list = list;
     }
 
-    public void update(List<ReceptionRecordBean> list) {
-        list.clear();
-        list.addAll(list);
-        notifyDataSetChanged();
-    }
-
 
 
     @Override

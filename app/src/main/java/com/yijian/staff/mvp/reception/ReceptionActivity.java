@@ -88,7 +88,6 @@ public class ReceptionActivity extends MvcBaseActivity {
         });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayoutManager);
         adapter = new ReceptionHistoryAdapter(this, list);
         rv.setAdapter(adapter);
@@ -116,7 +115,6 @@ public class ReceptionActivity extends MvcBaseActivity {
 
 
     private void refresh() {
-        list.clear();
         pageNum = 1;
         Map<String, Integer> params = new HashMap<>();
         params.put("pageNum", pageNum);
@@ -136,9 +134,10 @@ public class ReceptionActivity extends MvcBaseActivity {
                     emptyView.setVisibility(View.VISIBLE);
                     emptyView.getEmptyBt().setVisibility(View.GONE);
                 } else {
+                    list.clear();
                     list.addAll(records);
                     emptyView.setVisibility(View.GONE);
-                    adapter.update(list);
+                    adapter.notifyDataSetChanged();
                 }
                 ++pageNum;
                 refreshLayout.finishRefresh(2000, true);
@@ -178,7 +177,7 @@ public class ReceptionActivity extends MvcBaseActivity {
                     refreshLayout.finishLoadMore(2000, true, true);//传入false表示刷新失败
                 } else {
                     list.addAll(records);
-                    adapter.update(list);
+                    adapter.notifyDataSetChanged();
                     refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                 }
                 ++pageNum;

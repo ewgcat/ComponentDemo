@@ -31,19 +31,19 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
         MigrationHelper.migrate(db, new MigrationHelper.ReCreateAllTableListener() {
-            @Override
-            public void onCreateAllTables(Database db, boolean ifNotExists) {
-                DaoMaster.createAllTables(db, ifNotExists);
-            }
+                    @Override
+                    public void onCreateAllTables(Database db, boolean ifNotExists) {
+                        DaoMaster.createAllTables(db, ifNotExists);
+                    }
 
-            @Override
-            public void onDropAllTables(Database db, boolean ifExists) {
-                DaoMaster.dropAllTables(db, ifExists);
-            }
-        }, SearchKeyDao.class, UserDao.class,
+                    @Override
+                    public void onDropAllTables(Database db, boolean ifExists) {
+                        DaoMaster.dropAllTables(db, ifExists);
+                    }
+                }, SearchKeyDao.class, UserDao.class,
                 OthermodelVoDao.class, RoleVoBeanDao.class,
-                CourseStudentModelDao.class,PrivateCoachCourseModelDao.class,
-                PrivateCoachCurriculumArrangementPlanModelDao.class,PrivateCourseMemberModelDao.class
+                CourseStudentModelDao.class, PrivateCoachCourseModelDao.class,
+                PrivateCoachCurriculumArrangementPlanModelDao.class, PrivateCourseMemberModelDao.class
         );
     }
 

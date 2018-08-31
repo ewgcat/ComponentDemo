@@ -97,7 +97,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     private ArrayList<String> weekdays = new ArrayList<>();
     private String hours = "00";
     private String minutes = "00";
-    private String consumingMinute = "60";
+    private int consumingMinute = 0;
     private GroupedStudentBean selectGroupedStudentBean;
     private GroupedStudentBean.PrivateCoachCourseVOSBean course;
 
@@ -147,7 +147,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             tvName.setText(selectGroupedStudentBean.getMemberName());
         }
         if (course != null) {
-            consumingMinute = course.getConsumingMinute() + "";
+            consumingMinute = course.getConsumingMinute() ;
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
         }
         initSetTime();
@@ -285,7 +285,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             String day = weekdays.get(weekday);
             String startTime = hours + ":" + minutes;
             int i1 = Integer.parseInt(minutes);
-            int i2 = Integer.parseInt(consumingMinute);
+            int i2 = consumingMinute;
             int i3 = i1 + i2;
             int i4 = i3 / 60;
             int i5 = i3 % 60;
@@ -470,7 +470,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         boolean hasCourse=false;
         String startTime = hours + "" + minutes;
         int i1 = Integer.parseInt(minutes);
-        int i2 = Integer.parseInt(consumingMinute);
+        int i2 = consumingMinute;
         int i3 = i1 + i2;
         int i4 = i3 / 60;
         int i5 = i3 % 60;
@@ -528,7 +528,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("schooltime", hours + ":" + minutes);
                 map.put("week", weekday + "");
-                map.put("classHour", consumingMinute);
+                map.put("classHour", consumingMinute+"");
                 showLoading();
                 HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override

@@ -99,7 +99,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     private ArrayList<String> weekdays = new ArrayList<>();
     private String hours = "00";
     private String minutes = "00";
-    private String consumingMinute = "60";
+    private int consumingMinute = 0;
     private CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseStudentBean;
     private String id;
 
@@ -135,6 +135,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             id = courseStudentBean.getId();
             selectWeekDay(weekday);
             initSetTime();
+             consumingMinute = privateCoachCourseVO.getConsumingMinute();
         }
 
 
@@ -227,7 +228,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
                 String startTime = hours + ":" + minutes;
                 int i1 = Integer.parseInt(minutes);
-                int i2 = Integer.parseInt(consumingMinute);
+                int i2 = consumingMinute;
                 int i3 = i1 + i2;
                 int i4 = i3 / 60;
                 int i5 = i3 % 60;
@@ -281,7 +282,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
         String startTime = hours + "" + minutes;
         int i1 = Integer.parseInt(minutes);
-        int i2 = Integer.parseInt(consumingMinute);
+        int i2 = consumingMinute;
         int i3 = i1 + i2;
         int i4 = i3 / 60;
         int i5 = i3 % 60;
@@ -346,7 +347,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 Logger.i("TEST","value="+value);
                 map.put("schooltime", value);
                 map.put("week", weekday + "");
-                map.put("classHour", consumingMinute);
+                map.put("classHour", consumingMinute+"");
                 map.put("capId", id);
                 showLoading();
                 HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {

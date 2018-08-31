@@ -226,8 +226,6 @@ public class DBManager {
         CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
         CourseStudentModel courseStudentModel = courseStudentModelDao.queryBuilder().where(CourseStudentModelDao.Properties.WeekCode.eq(week)).unique();
         if (courseStudentModel != null) {
-
-
             List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOSBeans = queryPrivateCoachCurriculumArrangementPlanVOSBeansByWeek(week);
             CourseStudentBean courseStudentBean = new CourseStudentBean();
             courseStudentBean.setPrivateCoachCurriculumArrangementPlanVOS(privateCoachCurriculumArrangementPlanVOSBeans);
@@ -251,7 +249,6 @@ public class DBManager {
         for (int i = 0; i < list.size(); i++) {
             PrivateCoachCurriculumArrangementPlanModel privateCoachCurriculumArrangementPlanModel = list.get(i);
             String id = privateCoachCurriculumArrangementPlanModel.getId();
-
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVOBean = queryPrivateCoachCourseVOBean(id);
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVOBean = queryPrivateCourseMemberVOBean(id);
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = new CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean();
@@ -304,6 +301,10 @@ public class DBManager {
     public Long insertPrivateCourseMemberVOBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVOBean, String id) {
         long l = 0;
         PrivateCourseMemberModelDao privateCourseMemberModelDao = mDaoSession.getPrivateCourseMemberModelDao();
+        PrivateCourseMemberModel model = privateCourseMemberModelDao.queryBuilder().where(PrivateCourseMemberModelDao.Properties.Id.eq(id)).unique();
+        if (model != null) {
+            privateCourseMemberModelDao.deleteByKey(model.getIdx());
+        }
         PrivateCourseMemberModel privateCourseMemberModel = new PrivateCourseMemberModel();
         privateCourseMemberModel.setId(id);
         if (privateCourseMemberVOBean != null) {
@@ -319,7 +320,10 @@ public class DBManager {
     public Long insertPrivateCoachCourseVOBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVOBean, String id) {
         long l = 0;
         PrivateCoachCourseModelDao privateCoachCourseModelDao = mDaoSession.getPrivateCoachCourseModelDao();
-
+        PrivateCoachCourseModel model = privateCoachCourseModelDao.queryBuilder().where(PrivateCoachCourseModelDao.Properties.Id.eq(id)).unique();
+        if (model != null) {
+            privateCoachCourseModelDao.deleteByKey(model.getIdx());
+        }
         PrivateCoachCourseModel privateCoachCourseModel = new PrivateCoachCourseModel();
         privateCoachCourseModel.setId(id);
         if (privateCoachCourseVOBean != null) {
@@ -336,9 +340,14 @@ public class DBManager {
     public Long insertPrivateCoachCurriculumArrangementPlanVOSBean(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean) {
         long l = 0;
         if (privateCoachCurriculumArrangementPlanVOSBean != null) {
+            PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao = mDaoSession.getPrivateCoachCurriculumArrangementPlanModelDao();
+            PrivateCoachCurriculumArrangementPlanModel model = privateCoachCurriculumArrangementPlanModelDao.queryBuilder().where(PrivateCoachCurriculumArrangementPlanModelDao.Properties.Id.eq(privateCoachCurriculumArrangementPlanVOSBean.getId())).unique();
+            if (model != null) {
+                privateCoachCurriculumArrangementPlanModelDao.deleteByKey(model.getIdx());
+            }
             insertPrivateCourseMemberVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCourseMemberVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
             insertPrivateCoachCourseVOBean(privateCoachCurriculumArrangementPlanVOSBean.getPrivateCoachCourseVO(), privateCoachCurriculumArrangementPlanVOSBean.getId());
-            PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao = mDaoSession.getPrivateCoachCurriculumArrangementPlanModelDao();
+
             PrivateCoachCurriculumArrangementPlanModel privateCoachCurriculumArrangementPlanModel = new PrivateCoachCurriculumArrangementPlanModel();
             privateCoachCurriculumArrangementPlanModel.setId(privateCoachCurriculumArrangementPlanVOSBean.getId());
             privateCoachCurriculumArrangementPlanModel.setWeek(privateCoachCurriculumArrangementPlanVOSBean.getWeek());
@@ -357,12 +366,12 @@ public class DBManager {
     public Long insertCourseStudentBean(CourseStudentBean courseStudentBean) {
         long l = 0;
         if (courseStudentBean != null) {
+            CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
             List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
             for (int i = 0; i < privateCoachCurriculumArrangementPlanVOS.size(); i++) {
                 CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(i);
                 insertPrivateCoachCurriculumArrangementPlanVOSBean(privateCoachCurriculumArrangementPlanVOSBean);
             }
-            CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
             CourseStudentModel courseStudentModel = new CourseStudentModel();
             courseStudentModel.setDay(courseStudentBean.getDay());
             courseStudentModel.setDayAlias(courseStudentBean.getDayAlias());
@@ -390,7 +399,6 @@ public class DBManager {
 
     //删除
     public void deletePrivateCourseMemberVOBeanById(String id) {
-
         PrivateCourseMemberModelDao privateCourseMemberModelDao = mDaoSession.getPrivateCourseMemberModelDao();
         PrivateCourseMemberModel privateCourseMemberModel = privateCourseMemberModelDao.queryBuilder().where(PrivateCourseMemberModelDao.Properties.Id.eq(id)).unique();
         if (privateCourseMemberModel != null) {
@@ -416,20 +424,6 @@ public class DBManager {
         }
     }
 
-    public void deleteCourseStudentBean(CourseStudentBean courseStudentBean) {
-        List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-        if (privateCoachCurriculumArrangementPlanVOS == null) {
-            return;
-        }
-        for (int i = 0; i < privateCoachCurriculumArrangementPlanVOS.size(); i++) {
-            deletePrivateCoachCurriculumArrangementPlanVOSBeanById(privateCoachCurriculumArrangementPlanVOS.get(i).getId());
-        }
-        CourseStudentModelDao courseStudentModelDao = mDaoSession.getCourseStudentModelDao();
-        CourseStudentModel courseStudentModel = courseStudentModelDao.queryBuilder().where(CourseStudentModelDao.Properties.WeekCode.eq(courseStudentBean.getWeekCode())).unique();
-        if (courseStudentModel != null) {
-            courseStudentModelDao.deleteByKey(courseStudentModel.getIdx());
-        }
-    }
 
     public void clearCourseStudentData() {
         PrivateCourseMemberModelDao privateCourseMemberModelDao = mDaoSession.getPrivateCourseMemberModelDao();

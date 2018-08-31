@@ -29,8 +29,7 @@ public class CourseTimeBean implements Comparable<CourseTimeBean> {
 
     @Override
     public int compareTo(@NonNull CourseTimeBean o) {
-        return
-                Integer.parseInt(this.getStartTime().replaceAll(":", "")) - Integer.parseInt(o.getStartTime().replaceAll(":", ""));
+        return Integer.parseInt(this.getStartTime().replaceAll(":", "")) - Integer.parseInt(o.getStartTime().replaceAll(":", ""));
 
 
     }

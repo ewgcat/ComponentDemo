@@ -244,7 +244,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     private void sendResult() {
 
         if (needReview) {
-            String reason = tv_fufan_reason.getText().toString();
+            String reason = tv_fufan_reason.getText().toString().trim();
             if (TextUtils.isEmpty(fufangTime)) {
                 showToast("请选择复访时间");
                 return;
@@ -278,7 +278,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
 
         } else {
 
-            String result = et_huifan_record.getText().toString();
+            String result = et_huifan_record.getText().toString().trim();
             if (TextUtils.isEmpty(result)) {
                 showToast("请填写回访结果");
                 return;

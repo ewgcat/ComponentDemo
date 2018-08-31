@@ -18,7 +18,6 @@ import drawthink.expandablerecyclerview.holder.BaseViewHolder;
 public class StudentCourseViewHolder extends BaseViewHolder {
 
     public final ImageView ivHeader;
-    public final ImageView ivSex;
     public final ImageView ivselect;
     public final TextView tvName;
     public final RelativeLayout rlCourse;
@@ -28,7 +27,6 @@ public class StudentCourseViewHolder extends BaseViewHolder {
     public StudentCourseViewHolder(Context ctx, View itemView, int viewType) {
         super(ctx, itemView, viewType);
         ivHeader = itemView.findViewById(R.id.iv_header);
-        ivSex = itemView.findViewById(R.id.iv_sex);
         ivselect = itemView.findViewById(R.id.iv_select);
         tvName = itemView.findViewById(R.id.tv_name);
         rlCourse = itemView.findViewById(R.id.rl_course);

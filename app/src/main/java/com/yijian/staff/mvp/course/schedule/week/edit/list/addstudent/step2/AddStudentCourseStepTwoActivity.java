@@ -142,7 +142,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
         if (selectGroupedStudentBean != null) {
             ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
-            int resId = selectGroupedStudentBean.getMemberSex() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
+            int resId = selectGroupedStudentBean.getMemberSex() == 1? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(selectGroupedStudentBean.getMemberName());
         }

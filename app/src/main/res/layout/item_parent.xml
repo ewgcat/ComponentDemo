@@ -34,14 +34,7 @@
             android:textColor="#333333"
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/iv_sex"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/tv_name"
-            android:src="@mipmap/lg_man" />
+
 
 
         <ImageView

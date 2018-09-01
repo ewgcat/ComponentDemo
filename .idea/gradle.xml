@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/calendar" />
             <option value="$PROJECT_DIR$/common_calendar" />
+            <option value="$PROJECT_DIR$/indicatorseekbar" />
             <option value="$PROJECT_DIR$/photoview" />
             <option value="$PROJECT_DIR$/retrofit2" />
           </set>

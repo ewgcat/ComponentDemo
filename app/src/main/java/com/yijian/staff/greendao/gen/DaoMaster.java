@@ -22,26 +22,26 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         HuiFangTypeBeanDao.createTable(db, ifNotExists);
+        PrivateCourseMemberModelDao.createTable(db, ifNotExists);
         OthermodelVoDao.createTable(db, ifNotExists);
         RoleVoBeanDao.createTable(db, ifNotExists);
         UserDao.createTable(db, ifNotExists);
-        SearchKeyDao.createTable(db, ifNotExists);
-        PrivateCourseMemberModelDao.createTable(db, ifNotExists);
         PrivateCoachCourseModelDao.createTable(db, ifNotExists);
         PrivateCoachCurriculumArrangementPlanModelDao.createTable(db, ifNotExists);
+        SearchKeyDao.createTable(db, ifNotExists);
         CourseStudentModelDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         HuiFangTypeBeanDao.dropTable(db, ifExists);
+        PrivateCourseMemberModelDao.dropTable(db, ifExists);
         OthermodelVoDao.dropTable(db, ifExists);
         RoleVoBeanDao.dropTable(db, ifExists);
         UserDao.dropTable(db, ifExists);
-        SearchKeyDao.dropTable(db, ifExists);
-        PrivateCourseMemberModelDao.dropTable(db, ifExists);
         PrivateCoachCourseModelDao.dropTable(db, ifExists);
         PrivateCoachCurriculumArrangementPlanModelDao.dropTable(db, ifExists);
+        SearchKeyDao.dropTable(db, ifExists);
         CourseStudentModelDao.dropTable(db, ifExists);
     }
 
@@ -62,13 +62,13 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(HuiFangTypeBeanDao.class);
+        registerDaoClass(PrivateCourseMemberModelDao.class);
         registerDaoClass(OthermodelVoDao.class);
         registerDaoClass(RoleVoBeanDao.class);
         registerDaoClass(UserDao.class);
-        registerDaoClass(SearchKeyDao.class);
-        registerDaoClass(PrivateCourseMemberModelDao.class);
         registerDaoClass(PrivateCoachCourseModelDao.class);
         registerDaoClass(PrivateCoachCurriculumArrangementPlanModelDao.class);
+        registerDaoClass(SearchKeyDao.class);
         registerDaoClass(CourseStudentModelDao.class);
     }
 

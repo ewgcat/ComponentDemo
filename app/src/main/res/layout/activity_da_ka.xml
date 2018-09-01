@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -170,6 +171,7 @@
                 android:id="@+id/ll_pingjia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
                 android:orientation="vertical">
 
                 <View
@@ -239,89 +241,337 @@
                     android:textSize="14sp" />
 
 
-
-                <com.xw.repo.BubbleSeekBar
+                <com.warkiz.widget.IndicatorSeekBar
                     android:id="@+id/seek_bar1"
-                    style="@style/StyleProgressBarMini"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    app:bsb_max="100"
-                    app:bsb_min="0"
-                    app:bsb_progress="5"
-
-                    app:bsb_second_track_color="@color/blue"
-                    app:bsb_track_color="@color/gray"
-                    app:bsb_track_size="4dp"/>
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="@style/StyleProgressBarMini"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="20dp"
-                    android:max="100"
-                    android:progress="40" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:isb_max="100"
+                    app:isb_min="0"
+                    app:isb_show_indicator="none"
+                    app:isb_show_thumb_text="true"
+                    app:isb_show_tick_texts="true"
+                    app:isb_thumb_color="@color/blue"
+                    app:isb_thumb_text_color="@color/blue"
+                    app:isb_tick_texts_color="@color/gray"
+                    app:isb_ticks_count="2"
+                    app:isb_track_background_size="20dp"
+                    app:isb_track_progress_color="@color/blue"
+                    app:isb_track_progress_size="10dp"
+                    app:isb_track_rounded_corners="true"
+                    app:isb_user_seekable="true" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="动作评估"
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/ll_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_jiao_cha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_jiao_cha"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/blue_rect_bg"
+                            android:gravity="center"
+                            android:text="较差"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_he_ge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_he_ge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="合格"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_jiao_hao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_jiao_hao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="较好"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_hen_hao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_hen_hao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="很好"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_you_xiu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_you_xiu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="优秀"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+
                 <com.warkiz.widget.IndicatorSeekBar
                     android:id="@+id/seek_bar2"
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:isb_progress_value_float="true"
-                    app:isb_seek_smoothly="true"
-                    app:isb_show_thumb_text="false"
-                    app:isb_show_tick_marks_type="divider"
-                    app:isb_show_tick_texts="true"
+                    app:isb_max="100"
+                    app:isb_min="0"
+
+                    app:isb_show_indicator="none"
                     app:isb_thumb_color="@color/blue"
-                    app:isb_thumb_drawable="@drawable/selector_thumb_ripple_drawable"
-                    app:isb_thumb_text_color="@color/blue"
-                    app:isb_tick_marks_color="#FFFFFFFF"
-                    app:isb_tick_texts_array="@array/string_array"
-                    app:isb_tick_texts_color="@color/selector_tick_texts_2_color"
-                    app:isb_ticks_count="5"
-                    app:isb_track_progress_color="@color/blue" />
+                    app:isb_track_background_size="20dp"
+                    app:isb_track_progress_color="@color/blue"
+                    app:isb_track_progress_size="10dp"
+                    app:isb_track_rounded_corners="true"
+                    app:isb_user_seekable="true" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="适应强度"
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="10%">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_di"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_di"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/blue_rect_bg"
+                            android:gravity="center"
+                            android:text="低"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="10%">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_zhong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_zhong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="中"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="10%">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_gao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="20%">
+
+
+                        <TextView
+                            android:id="@+id/tv_gao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="高"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_flexBasisPercent="10%">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="#999999"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+
                 <com.warkiz.widget.IndicatorSeekBar
                     android:id="@+id/seek_bar3"
+
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:isb_progress_value_float="true"
-                    app:isb_seek_smoothly="true"
-                    app:isb_show_thumb_text="false"
-                    app:isb_show_tick_marks_type="divider"
-                    app:isb_show_tick_texts="true"
+                    app:isb_max="100"
+                    app:isb_min="0"
+                    app:isb_show_indicator="none"
                     app:isb_thumb_color="@color/blue"
-                    app:isb_thumb_drawable="@drawable/selector_thumb_ripple_drawable"
-                    app:isb_thumb_text_color="@color/blue"
-                    app:isb_tick_marks_color="#FFFFFFFF"
-                    app:isb_tick_texts_array="@array/string_array2"
-                    app:isb_tick_texts_color="@color/selector_tick_texts_2_color"
-                    app:isb_ticks_count="3"
-                    app:isb_track_progress_color="@color/blue" />
+                    app:isb_track_background_size="20dp"
+                    app:isb_track_progress_color="@color/blue"
+                    app:isb_track_progress_size="10dp"
+                    app:isb_track_rounded_corners="true"
+                    app:isb_user_seekable="true" />
+
+
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

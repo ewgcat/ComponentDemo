@@ -137,6 +137,7 @@ dependencies {
     api project(':PhotoPicker')
     api project(':photoview')
     api project(':calendar')
+    api project(':indicatorseekbar')
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
@@ -234,7 +235,6 @@ dependencies {
     implementation 'com.umeng.sdk:debug:latest.integration'
     implementation 'com.umeng.sdk:share-sina:latest.integration'
     //友盟 end
-    implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
     implementation  'com.xw.repo:bubbleseekbar:3.16'
 
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.0'

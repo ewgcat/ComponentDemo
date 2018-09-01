@@ -1,20 +1,20 @@
 package com.yijian.staff.mvp.course.punch;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.warkiz.widget.IndicatorSeekBar;
-import com.xw.repo.BubbleSeekBar;
+import com.warkiz.widget.OnSeekChangeListener;
+import com.warkiz.widget.SeekParams;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
@@ -32,9 +32,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoursePunchActivity extends MvcBaseActivity {
@@ -53,7 +53,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
     @BindView(R.id.rel_punch_card)
     RelativeLayout rel_punch_card;
     @BindView(R.id.seek_bar1)
-    BubbleSeekBar seekBar1;
+    IndicatorSeekBar seekBar1;
     @BindView(R.id.seek_bar2)
     IndicatorSeekBar seekBar2;
     @BindView(R.id.seek_bar3)
@@ -64,6 +64,22 @@ public class CoursePunchActivity extends MvcBaseActivity {
     TextView tvXiakeLabel;
     @BindView(R.id.tv_pingjia)
     TextView tvPingjia;
+    @BindView(R.id.tv_jiao_cha)
+    TextView tvJiaoCha;
+    @BindView(R.id.tv_he_ge)
+    TextView tvHeGe;
+    @BindView(R.id.tv_jiao_hao)
+    TextView tvJiaoHao;
+    @BindView(R.id.tv_hen_hao)
+    TextView tvHenHao;
+    @BindView(R.id.tv_you_xiu)
+    TextView tvYouXiu;
+    @BindView(R.id.tv_di)
+    TextView tvDi;
+    @BindView(R.id.tv_zhong)
+    TextView tvZhong;
+    @BindView(R.id.tv_gao)
+    TextView tvGao;
 
     private int punchStatus = 0;
     private String startDate;
@@ -81,6 +97,40 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+        seekBar2.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+                showSeekBar2(seekParams.progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+        });
+        seekBar3.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+                showSeekBar3(seekParams.progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+        });
+
         coursePunchQRPopupWindow = new CoursePunchQRPopupWindow(CoursePunchActivity.this);
         coursePunchQRPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -134,19 +184,26 @@ public class CoursePunchActivity extends MvcBaseActivity {
                     tv_shangke_statu.setText("上课打卡");
                 } else if (punchStatus == 1) {
                     tv_shangke_statu.setText("下课打卡");
-                    tv_shangke_time.setText(startDate+" "+startDatetime);
+                    tv_shangke_time.setText(startDate + " " + startDatetime);
                 } else if (punchStatus == 2) {
                     tv_shangke_statu.setText("已完成");
                     coursePunchQRPopupWindow.dismiss();
-                    tv_shangke_time.setText(startDate+" "+startDatetime);
-                    tv_xiake_time.setText(startDate+" "+endDatetime);
-                    if (privateCourseCoachSummaryDTO!=null){
+                    tv_shangke_time.setText(startDate + " " + startDatetime);
+                    tv_xiake_time.setText(startDate + " " + endDatetime);
+                    llPingjia.setVisibility(View.VISIBLE);
 
-                        llPingjia.setVisibility(View.VISIBLE);
-                        int v = (int) (privateCourseCoachSummaryDTO.getActionComplete() * 100);
-                        seekBar1.setProgress(v);
-                        seekBar2.setProgress(privateCourseCoachSummaryDTO.getActionEvaluate()*100);
-                        seekBar3.setProgress(privateCourseCoachSummaryDTO.getAdaptStrength()*100);
+                    if (privateCourseCoachSummaryDTO != null) {
+                        seekBar1.setUserSeekAble(false);
+                        seekBar2.setUserSeekAble(false);
+                        seekBar3.setUserSeekAble(false);
+                        float progress1 = privateCourseCoachSummaryDTO.getActionComplete() * 100;
+                        int progress2 = (int) (privateCourseCoachSummaryDTO.getActionEvaluate() * 100);
+                        int progress3 = (int) (privateCourseCoachSummaryDTO.getAdaptStrength() * 100);
+                        seekBar1.setProgress(progress1);
+                        seekBar2.setProgress(progress2);
+                        seekBar3.setProgress(progress3);
+                        showSeekBar2(progress2);
+                        showSeekBar3(progress3);
                         if (privateCourseCoachSummaryDTO != null) {
                             tvPingjia.setVisibility(View.GONE);
                         } else {
@@ -247,12 +304,12 @@ public class CoursePunchActivity extends MvcBaseActivity {
     private void showQRDialog(String classOverQRCode) {
         coursePunchQRPopupWindow.setQR(classOverQRCode);
         coursePunchQRPopupWindow.setBackgroundAlpha(this, 0.3f);
-        coursePunchQRPopupWindow.showAtLocation(tv_shangke_statu, Gravity.CENTER,0,0);
+        coursePunchQRPopupWindow.showAtLocation(tv_shangke_statu, Gravity.CENTER, 0, 0);
 
         if (timer != null) {
             timer.cancel();
         }
-        timer = new MyCountDownTimer(1000 * 60*60*24, 1000);
+        timer = new MyCountDownTimer(1000 * 60 * 60 * 24, 1000);
         timer.setActivity(CoursePunchActivity.this);
         timer.start();
     }
@@ -317,6 +374,84 @@ public class CoursePunchActivity extends MvcBaseActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(0, android.R.anim.fade_out);
+    }
+
+    private void showSeekBar2(int progress) {
+        if (progress < 20) {
+            selectSeekBar2(0);
+        } else if (progress >= 20 && progress < 40) {
+            selectSeekBar2(1);
+        } else if (progress >= 40 && progress < 60) {
+            selectSeekBar2(2);
+        } else if (progress >= 60 && progress < 80) {
+            selectSeekBar2(3);
+        } else if (progress >= 80 && progress <= 100) {
+            selectSeekBar2(4);
+        }
+    }
+
+    private void selectSeekBar2(int position) {
+        unSelectStyle(tvJiaoCha);
+        unSelectStyle(tvHeGe);
+        unSelectStyle(tvJiaoHao);
+        unSelectStyle(tvHenHao);
+        unSelectStyle(tvYouXiu);
+
+        switch (position) {
+            case 0:
+                selectStyle(tvJiaoCha);
+                break;
+            case 1:
+                selectStyle(tvHeGe);
+                break;
+            case 2:
+                selectStyle(tvJiaoHao);
+                break;
+            case 3:
+                selectStyle(tvHenHao);
+                break;
+            case 4:
+                selectStyle(tvYouXiu);
+                break;
+        }
+    }
+
+
+    private void showSeekBar3(int progress) {
+        if (progress < 33) {
+            selectSeekBar3(0);
+        } else if (progress >= 33 && progress < 66) {
+            selectSeekBar3(1);
+        } else if (progress >= 66 && progress <= 100) {
+            selectSeekBar3(2);
+        }
+    }
+
+    private void selectSeekBar3(int position) {
+        unSelectStyle(tvDi);
+        unSelectStyle(tvZhong);
+        unSelectStyle(tvGao);
+        switch (position) {
+            case 0:
+                selectStyle(tvDi);
+                break;
+            case 1:
+                selectStyle(tvZhong);
+                break;
+            case 2:
+                selectStyle(tvGao);
+                break;
+        }
+    }
+
+    private void selectStyle(TextView textView) {
+        textView.setTextColor(Color.parseColor("#ffffff"));
+        textView.setBackground(getDrawable(R.drawable.blue_rect_bg));
+    }
+
+    private void unSelectStyle(TextView textView) {
+        textView.setTextColor(Color.parseColor("#666666"));
+        textView.setBackground(null);
     }
 
 

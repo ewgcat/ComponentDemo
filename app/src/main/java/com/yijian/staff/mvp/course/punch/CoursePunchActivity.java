@@ -3,6 +3,9 @@ package com.yijian.staff.mvp.course.punch;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Chronometer;
@@ -32,6 +35,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -86,9 +92,22 @@ public class CoursePunchActivity extends MvcBaseActivity {
     private String startDatetime;
     private String endDatetime;
     private String appointId;
-    private MyCountDownTimer timer;
     private CoursePunchQRPopupWindow coursePunchQRPopupWindow;
+    private Timer timer;
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    initCourseInfo(1);
+                    break;
+                default:
+                    super.handleMessage(msg);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected int getLayoutID() {
@@ -152,19 +171,19 @@ public class CoursePunchActivity extends MvcBaseActivity {
         chronometer.start();
 
         tv_today.setText(mCalendar.get(Calendar.YEAR) + "-" + (mCalendar.get(Calendar.MONTH) + 1) + "-" + mCalendar.get(Calendar.DATE));
-        initCourseInfo();
+        initCourseInfo(0);
 
 
     }
 
-    private void initCourseInfo() {
+    private void initCourseInfo(int requestType) {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", appointId);
+        map.put("requestType", requestType+"");
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-
                 hideLoading();
                 /**
                  * endDatetime (string, optional): 教练下课打卡时间_分秒 ,
@@ -188,30 +207,34 @@ public class CoursePunchActivity extends MvcBaseActivity {
                 } else if (punchStatus == 2) {
                     tv_shangke_statu.setText("已完成");
                     coursePunchQRPopupWindow.dismiss();
+                   if (timer!=null){
+                       timer.cancel();
+                   }
                     tv_shangke_time.setText(startDate + " " + startDatetime);
                     tv_xiake_time.setText(startDate + " " + endDatetime);
-                    llPingjia.setVisibility(View.VISIBLE);
-
-                    if (privateCourseCoachSummaryDTO != null) {
+                    int status = courseInfoBean.getStatus();
+                    if (status==3){
+                        llPingjia.setVisibility(View.VISIBLE);
+                        tvPingjia.setVisibility(View.VISIBLE);
+                    }else if (status==5){
+                        llPingjia.setVisibility(View.VISIBLE);
+                        tvPingjia.setVisibility(View.GONE);
                         seekBar1.setUserSeekAble(false);
                         seekBar2.setUserSeekAble(false);
                         seekBar3.setUserSeekAble(false);
-                        float progress1 = privateCourseCoachSummaryDTO.getActionComplete() * 100;
-                        int progress2 = (int) (privateCourseCoachSummaryDTO.getActionEvaluate() * 100);
-                        int progress3 = (int) (privateCourseCoachSummaryDTO.getAdaptStrength() * 100);
-                        seekBar1.setProgress(progress1);
-                        seekBar2.setProgress(progress2);
-                        seekBar3.setProgress(progress3);
-                        showSeekBar2(progress2);
-                        showSeekBar3(progress3);
+
                         if (privateCourseCoachSummaryDTO != null) {
-                            tvPingjia.setVisibility(View.GONE);
-                        } else {
-                            tvPingjia.setVisibility(View.VISIBLE);
+                            float progress1 = privateCourseCoachSummaryDTO.getActionComplete() * 100;
+                            int progress2 = (int) (privateCourseCoachSummaryDTO.getActionEvaluate() * 100);
+                            int progress3 = (int) (privateCourseCoachSummaryDTO.getAdaptStrength() * 100);
+                            seekBar1.setProgress(progress1);
+                            seekBar2.setProgress(progress2);
+                            seekBar3.setProgress(progress3);
+                            showSeekBar2(progress2);
+                            showSeekBar3(progress3);
                         }
                     }
                 }
-
             }
 
 
@@ -219,7 +242,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
             public void onFail(String msg) {
                 llPingjia.setVisibility(View.GONE);
                 hideLoading();
-
                 Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
@@ -243,6 +265,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         HttpManager.postPrivateCoursePingJia(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
+                tvPingjia.setVisibility(View.GONE);
                 hideLoading();
             }
 
@@ -265,7 +288,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 hideLoading();
-                initCourseInfo();
+                initCourseInfo(0);
             }
 
             @Override
@@ -305,13 +328,18 @@ public class CoursePunchActivity extends MvcBaseActivity {
         coursePunchQRPopupWindow.setQR(classOverQRCode);
         coursePunchQRPopupWindow.setBackgroundAlpha(this, 0.3f);
         coursePunchQRPopupWindow.showAtLocation(tv_shangke_statu, Gravity.CENTER, 0, 0);
+        timer = new Timer();
 
-        if (timer != null) {
-            timer.cancel();
-        }
-        timer = new MyCountDownTimer(1000 * 60 * 60 * 24, 1000);
-        timer.setActivity(CoursePunchActivity.this);
-        timer.start();
+        //前一次执行程序结束后 2000ms 后开始执行下一次程序
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Message message = Message.obtain();
+                message.what=1;
+                handler.sendMessage(message);
+            }
+        }, 0, 1000);
+
     }
 
 
@@ -325,7 +353,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
                 } else if (punchStatus == 1) { // 打下课卡
                     submitXiake();
                 }
-                postPingJia();
                 break;
             case R.id.iv_finish:
                 finish();
@@ -337,6 +364,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
         }
     }
 
+
     @Override
     protected void onDestroy() {
         if (timer != null) {
@@ -345,30 +373,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
         super.onDestroy();
     }
 
-
-    public static class MyCountDownTimer extends CountDownTimer {
-        private WeakReference<CoursePunchActivity> weakReference;
-
-        public void setActivity(CoursePunchActivity activity) {
-            weakReference = new WeakReference<CoursePunchActivity>(activity);
-        }
-
-        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-
-        }
-
-        @Override
-        public void onFinish() {
-            if (weakReference.get() != null) {
-                weakReference.get().initCourseInfo();
-            }
-        }
-    }
 
     @Override
     public void finish() {

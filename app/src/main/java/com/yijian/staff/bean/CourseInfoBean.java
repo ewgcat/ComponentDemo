@@ -13,6 +13,7 @@ public class CourseInfoBean {
      * startDatetime : 10:33:52
      * endDatetime : 18:20:42
      * punchStatus : 2
+     * status : 2
      * privateCourseCoachSummaryDTO : {"privateApplyId":"9f4fe28a489d49d3913aa25f47fd912e","actionComplete":0.43,"actionEvaluate":0.5,"adaptStrength":1}
      */
 
@@ -20,7 +21,16 @@ public class CourseInfoBean {
     private String startDatetime;
     private String endDatetime;
     private int punchStatus;
+    private int status;//约课状态（1已约课，2取消约课，3：会员已上课，4：会员爽约（此状态为系统定时服务更新用），5：已评价，6：不可约）
     private PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getStartDate() {
         return startDate;

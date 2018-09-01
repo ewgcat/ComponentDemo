@@ -87,7 +87,6 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         registerReceiver(broadcastReceiver, filter);
         date=DateUtil.getCurrentDate();
-        request();
     }
 
 
@@ -165,6 +164,12 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
                 showToast(msg);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        request();
     }
 
     @Override

@@ -212,7 +212,7 @@ public class DBManager {
     //查询排课
     public List<CourseStudentBean> queryCourseStudentBeans() {
         List<CourseStudentBean> courseStudentBeans = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             CourseStudentBean courseStudentBean = queryCourseStudentBean(i);
             if (courseStudentBean != null) {
                 courseStudentBeans.add(courseStudentBean);

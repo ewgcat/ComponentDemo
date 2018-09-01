@@ -22,13 +22,13 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity;
-import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.util.SystemUtil;
+import com.yijian.staff.widget.EmptyView;
+import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import drawthink.expandablerecyclerview.bean.RecyclerViewData;
 import drawthink.expandablerecyclerview.listener.OnRecyclerViewListener;
 
@@ -51,6 +52,8 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
     RecyclerView rv;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.empty_view)
+    EmptyView emptyView;
     private List<RecyclerViewData> datas = new ArrayList<>();
     private GroupedStudentBean selectGroupedStudentBean;
     private GroupedStudentBean.PrivateCoachCourseVOSBean course;
@@ -104,7 +107,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
                     course = selectGroupedStudentBean.getPrivateCoachCourseVOS().get(selectedChildIndex);
                     bundle.putSerializable("course", course);
                     intent.putExtras(bundle);
-                    startActivityForResult(intent,1234);
+                    startActivityForResult(intent, 1234);
                 } else {
                     showToast("请先选择学员!");
                 }
@@ -173,7 +176,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName",name);
+        map.put("memberName", name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_STUDENT_LIST_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -182,6 +185,12 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
                 refreshLayout.finishRefresh(2000, true);
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
+                if (records.length()==0){
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.getEmptyBt().setVisibility(View.GONE);
+                }else {
+                    emptyView.setVisibility(View.GONE);
+                }
                 List<GroupedStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), GroupedStudentBean.class);
                 if (list != null && list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {
@@ -196,6 +205,8 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
 
             @Override
             public void onFail(String msg) {
+                emptyView.setVisibility(View.VISIBLE);
+                emptyView.getEmptyBt().setVisibility(View.VISIBLE);
                 refreshLayout.finishRefresh(2000, false);
                 showToast(msg);
                 hideLoading();
@@ -210,7 +221,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         map.put("version", "1.3.0");
         map.put("pageNum", "" + pageNum);
         map.put("pageSize", "" + pageSize);
-        map.put("memberName",name);
+        map.put("memberName", name);
 
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_WEEK_PLAN_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -256,4 +267,6 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
             finish();
         }
     }
+
+
 }

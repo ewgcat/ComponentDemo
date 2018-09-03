@@ -33,6 +33,7 @@ import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.BLUE_FLAG;
 import static com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow.GREEN_FLAG;
@@ -55,7 +56,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
 
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
-    private FlagPopuwindow popuwindow;
+    private List<FlagPopuwindow> popuwindowList=new ArrayList<>();
 
     private int mLastMotionX, mLastMotionY;
     //是否移动了
@@ -335,9 +336,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
 
     private void init() {
         setWillNotDraw(false);
-        popuwindow = new FlagPopuwindow(mContext);
-        popuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popuwindow.setOutsideTouchable(true);
+
         mPaint = new Paint();
         mPaint.setColor(Color.parseColor("#eaeaea"));
         mPaint.setAntiAlias(true);
@@ -406,6 +405,9 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             TextView tv_course_name = view.findViewById(R.id.tv_course_name);
             ImageView iv_flag = view.findViewById(R.id.iv_flag);
             String colour = courseBean.getColour();
+            FlagPopuwindow     popuwindow = new FlagPopuwindow(mContext);
+            popuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            popuwindow.setOutsideTouchable(true);
             if (TextUtils.isEmpty(colour)) {
                 colour = "#f3f3f3";
             }
@@ -493,7 +495,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                 }
             });
 
-
+            popuwindowList.add(popuwindow);
             long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
             long endTimestringToDate = DateUtil.getStringToDate(endTime, "HH:mm");
             long currentDate = DateUtil.getStringToDate("00:00", "HH:mm");
@@ -522,6 +524,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     public void clearView() {
         removeAllViewsInLayout();
         views.clear();
+        popuwindowList.clear();
     }
 
     public void removeLockView(View view) {
@@ -530,10 +533,16 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     }
 
     public void dismiss() {
-        boolean showing = popuwindow.isShowing();
-        if (showing) {
-            popuwindow.dismiss();
+        if (popuwindowList!=null&&popuwindowList.size()>0){
+            for (int i = 0; i < popuwindowList.size(); i++) {
+                FlagPopuwindow flagPopuwindow = popuwindowList.get(i);
+                boolean showing = flagPopuwindow.isShowing();
+                if (showing) {
+                    flagPopuwindow.dismiss();
+                }
+            }
         }
+
         removeCallbacks(mLongPressRunnable);
         if (dialog != null) {
             dialog.dismiss();

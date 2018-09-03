@@ -266,6 +266,9 @@ public class CoursePunchActivity extends MvcBaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 tvPingjia.setVisibility(View.GONE);
+                seekBar1.setUserSeekAble(false);
+                seekBar2.setUserSeekAble(false);
+                seekBar3.setUserSeekAble(false);
                 hideLoading();
             }
 

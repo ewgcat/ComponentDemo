@@ -207,6 +207,9 @@ public class HttpManager {
     //登录
     public static String LOGIN_URL = "user/login";
 
+    //获取新Token
+    public static String GET_NEW_TOKEN_URL = "user/getToken_n";
+
     //获取验证码
     public static String GET_CODE_URL = "user/verificationCode/send";
 

@@ -16,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.rx.RxUtil;
 import com.yijian.staff.util.NotificationsUtil;
 
@@ -29,6 +32,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
+
+import static com.yijian.staff.net.httpmanager.HttpManager.GET_NEW_TOKEN_URL;
 
 
 public class SplashActivity extends MvcBaseActivity {
@@ -80,11 +85,7 @@ public class SplashActivity extends MvcBaseActivity {
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 } else {
 
-                    Intent intent = new Intent();
-                    intent.setClass(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    getNewToken();
                 }
             } else {
                 Intent intent = new Intent();
@@ -98,6 +99,30 @@ public class SplashActivity extends MvcBaseActivity {
 
     }
 
+    public void getNewToken() {
+        HttpManager.getHasHeaderNoParam(GET_NEW_TOKEN_URL, new ResultStringObserver(getLifecycle()) {
+            @Override
+            public void onSuccess(String result) {
+                User user = DBManager.getInstance().queryUser();
+                user.setToken(result);
+                DBManager.getInstance().insertOrReplaceUser(user);
+                Intent intent = new Intent();
+                intent.setClass(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                Intent intent = new Intent();
+                intent.setClass(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+    }
 
     /**
      * 运行时请求权限

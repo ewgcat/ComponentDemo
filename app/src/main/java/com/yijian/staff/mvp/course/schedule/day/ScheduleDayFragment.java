@@ -123,7 +123,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             request();
         }
     }
@@ -361,31 +361,73 @@ public class ScheduleDayFragment extends MvcBaseFragment {
 
     private void postLockTime(String startTime, String endTime) {
 
-        SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-        privateCoachCAPDTOsBean.setDataType(0);
-        privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
-        privateCoachCAPDTOsBean.setWeek(getWeek());
-        privateCoachCAPDTOsBean.setSTime(startTime);
-        privateCoachCAPDTOsBean.setETime(endTime);
 
-        showLoading();
-        HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean>(getLifecycle()) {
-            @Override
-            public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean bean) {
-                hideLoading();
-                String id = bean.getId();
-                DBManager.getInstance().insertPrivateCoachCurriculumArrangementPlanVOSBean(bean);
-                dayCourseView.addLockView(startTime, endTime, id);
+        List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+
+        Boolean hasCourse = false;
+        int istartTime = Integer.parseInt(startTime.replace(":", ""));
+        int iendTime = Integer.parseInt(endTime.replace(":", ""));
+
+
+        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
+            for (int i = 0; i < courseStudentBeans.size(); i++) {
+                CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
+                if (courseStudentBean.getWeekCode() == getWeek()) {
+                    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                    if (privateCoachCurriculumArrangementPlanVOS != null && privateCoachCurriculumArrangementPlanVOS.size() > 0) {
+                        for (int j = 0; j < privateCoachCurriculumArrangementPlanVOS.size(); j++) {
+                            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(j);
+                            String sTime = privateCoachCurriculumArrangementPlanVOSBean.getSTime();
+                            String eTime = privateCoachCurriculumArrangementPlanVOSBean.getETime();
+                            int isTime = Integer.parseInt(sTime.replace(":", ""));
+                            int ieTime = Integer.parseInt(eTime.replace(":", ""));
+
+                            if (istartTime <= isTime && iendTime >= ieTime) {
+                                hasCourse = true;
+                            } else if (istartTime < ieTime && iendTime >= ieTime) {
+                                hasCourse = true;
+                            } else if (istartTime >= isTime && iendTime < isTime) {
+                                hasCourse = true;
+                            } else if (istartTime < isTime & iendTime > ieTime) {
+                                hasCourse = true;
+                            }
+                        }
+                    }
+
+                }
+
             }
-
-            @Override
-            public void onFail(String msg) {
-                hideLoading();
-                dayCourseView.dismiss();
-                showToast(msg);
+        }
+        if (hasCourse) {
+            if (courseStudentBeans != null) {
+                showToast("该时间段已有课程安排！");
             }
-        });
+        } else {
+            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+            privateCoachCAPDTOsBean.setDataType(0);
+            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+            privateCoachCAPDTOsBean.setWeek(getWeek());
+            privateCoachCAPDTOsBean.setSTime(startTime);
+            privateCoachCAPDTOsBean.setETime(endTime);
+            showLoading();
+            HttpManager.postLockTime(privateCoachCAPDTOsBean, new ResponseObserver<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean>(getLifecycle()) {
+                @Override
+                public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean bean) {
+                    hideLoading();
+                    String id = bean.getId();
+                    DBManager.getInstance().insertPrivateCoachCurriculumArrangementPlanVOSBean(bean);
+                    dayCourseView.addLockView(startTime, endTime, id);
+                }
 
+                @Override
+                public void onFail(String msg) {
+                    hideLoading();
+                    dayCourseView.dismiss();
+                    showToast(msg);
+                }
+            });
+        }
     }
 
 

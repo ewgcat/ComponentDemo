@@ -32,7 +32,7 @@
                     android:gravity="center_vertical"
                     android:text="张三"
                     android:textColor="#333333"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -42,8 +42,8 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:text="教练"
-                    android:textColor="#666666"
-                    android:textSize="16sp" />
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
@@ -85,46 +85,28 @@
         android:id="@+id/ll_erweima"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="30dp"
-        android:background="@mipmap/qrcode_icon"
+        android:background="@mipmap/code_out"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
             android:text="二维码出入场"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
 
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/icon_white_right_arrow" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/icon_white_right_arrow" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/icon_white_right_arrow" />
+
     </LinearLayout>
 
 

@@ -154,6 +154,9 @@ public class CoursePunchActivity extends MvcBaseActivity {
         coursePunchQRPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                if (timer!=null){
+                    timer.cancel();
+                }
                 coursePunchQRPopupWindow.setBackgroundAlpha(CoursePunchActivity.this, 1.0f);
             }
         });
@@ -177,14 +180,12 @@ public class CoursePunchActivity extends MvcBaseActivity {
     }
 
     private void initCourseInfo(int requestType) {
-        showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("appointId", appointId);
         map.put("requestType", requestType+"");
         HttpManager.getHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_INFO_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
-                hideLoading();
                 /**
                  * endDatetime (string, optional): 教练下课打卡时间_分秒 ,
                  punchStatus (integer, optional): 教练打卡状态(0:未打卡 1:已打上课卡 2:已打下课卡) ,
@@ -241,7 +242,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
             @Override
             public void onFail(String msg) {
                 llPingjia.setVisibility(View.GONE);
-                hideLoading();
                 Toast.makeText(CoursePunchActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

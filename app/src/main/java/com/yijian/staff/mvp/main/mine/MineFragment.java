@@ -117,12 +117,12 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getContext(), MyQualificationActivity.class));
                 break;
             case R.id.ll_system_set:
-                startActivity(new Intent(getContext(), AppointCourseTableActivity.class));
-//                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
+//                startActivity(new Intent(getContext(), AppointCourseTableActivity.class));
+                startActivityForResult(new Intent(getContext(), SettingActivity.class), 1234);
                 break;
             case R.id.ll_suggestion:
-                startActivity(new Intent(getContext(), ScheduleCourseActivity.class));
-//                startActivity(new Intent(getContext(), AddAdviceActivity.class));
+//                startActivity(new Intent(getContext(), ScheduleCourseActivity.class));
+                startActivity(new Intent(getContext(), AddAdviceActivity.class));
                 break;
         }
     }

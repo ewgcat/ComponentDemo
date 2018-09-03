@@ -2,6 +2,7 @@ package com.yijian.staff.widget;
 
 import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -145,17 +146,17 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     }
 
     public void resetAllButtonState() {
-//        mWorkTv.setTextColor(Color.parseColor("#757575"));
+        mWorkTv.setTextColor(Color.parseColor("#757575"));
         mWorkIv.setImageResource(R.mipmap.home_normal);
 
 //        mReportingIv.setHeadImageResource(R.mipmap.icon_report_unselected);
 //        mReportingTv.setTextColor(Color.parseColor("#757575"));
 
         mMessageIv.setImageResource(R.mipmap.message_norml);
-//        mMessageTv.setTextColor(Color.parseColor("#757575"));
+        mMessageTv.setTextColor(Color.parseColor("#757575"));
 
         mMimeIv.setImageResource(R.mipmap.my_normal);
-//        mMimeTv.setTextColor(Color.parseColor("#757575"));
+        mMimeTv.setTextColor(Color.parseColor("#757575"));
     }
 
     public void selectreporting() {
@@ -167,19 +168,19 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     public void selectWork() {
         resetAllButtonState();
         mWorkIv.setImageResource(R.mipmap.home_select);
-//        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
+        mWorkTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMessage() {
         resetAllButtonState();
         mMessageIv.setImageResource(R.mipmap.message_select);
-//        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
+        mMessageTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
     public void selectMine() {
         resetAllButtonState();
         mMimeIv.setImageResource(R.mipmap.my_select);
-//        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
+        mMimeTv.setTextColor(Color.parseColor("#1997f8"));
     }
 
 

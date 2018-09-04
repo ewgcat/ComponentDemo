@@ -28,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -49,7 +48,7 @@
                     android:singleLine="true"
                     android:text="贞贞"
                     android:textColor="#333333"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -59,10 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="6dp"
                 android:text="瑜伽课"
                 android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
 
         </LinearLayout>

@@ -133,7 +133,7 @@ public class AppointCourseView extends FrameLayout {
             ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + appointCourseBean.getHeadPath(), view.getContext(), iv_header);
             tv_name.setText(appointCourseBean.getMemberName());
             String memberCourseName = appointCourseBean.getMemberCourseName();
-            tv_course_name.setText(memberCourseName);
+            tv_course_name.setText("私教课: "+memberCourseName);
             ll_content.setBackgroundColor(Color.parseColor("#f5f5f5"));
             tv_course_status.setVisibility(View.VISIBLE);
             switch (status) {//约课状态（1已约课，2取消约课，3：会员已上课，4：会员爽约（此状态为系统定时服务更新用），5：已评价，6：不可约）

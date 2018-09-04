@@ -288,45 +288,87 @@ public class OptionDialog extends DialogFragment {
     //性别
     private void selectSex(int index) {
         if (index == 0) {
-            sex = 0;
-            tvSexMan.setTextColor(Color.parseColor("#1997f8"));
-            tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexMan.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
+            if (sex == 1) {
+                sex = -1;
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
 
-            tvSexWoman.setTextColor(Color.parseColor("#666666"));
-            tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            tvSexWoman.setCompoundDrawables(null, null, null, null);
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            } else {
+                sex = 1;
+                tvSexMan.setTextColor(Color.parseColor("#1997f8"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
+                tvSexMan.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+                Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
+                jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+                tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
+
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            }
+
         } else {
-            sex = 1;
-            tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
-            tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
+            if (sex == 2) {
+                sex = -1;
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
 
-            tvSexMan.setTextColor(Color.parseColor("#666666"));
-            tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            tvSexMan.setCompoundDrawables(null, null, null, null);
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            } else {
+                sex = 2;
+                tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
+                tvSexWoman.setBackground(getActivity().getDrawable(R.drawable.blue_stroke_select_bg));
+                Drawable jd_choose = getActivity().getResources().getDrawable(R.mipmap.jd_choose);
+                jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+                tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
+
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
+            }
+
         }
     }
 
     //课程类型
     private void selectClassType(int index) {
         if (index == 1) {
-            classType = "1";
-            setSelectStyle(tvSijiaoClass);
-            setUnSelectStyle(tvTiyanClass);
+            if ("1".equals(classType)) {
+                classType = null;
+                setUnSelectStyle(tvSijiaoClass);
+                setUnSelectStyle(tvTiyanClass);
+            } else {
+                classType = "1";
+                setSelectStyle(tvSijiaoClass);
+                setUnSelectStyle(tvTiyanClass);
+            }
+
 
         } else if (index == 2) {
-            classType = "2";
-            setSelectStyle(tvTiyanClass);
-            setUnSelectStyle(tvSijiaoClass);
+            if ("2".equals(classType)) {
+                classType = null;
+                setUnSelectStyle(tvSijiaoClass);
+                setUnSelectStyle(tvTiyanClass);
+            } else {
+                classType = "2";
+                setSelectStyle(tvTiyanClass);
+                setUnSelectStyle(tvSijiaoClass);
+            }
+
         }
 
     }
@@ -334,37 +376,69 @@ public class OptionDialog extends DialogFragment {
     //入籍时间
     private void selectRuJiTime(int index) {
         if (index == 1) {
-            joinTimeType = 0;
-            setSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime2);
-            setUnSelectStyle(tvTime3);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
 
+            if (joinTimeType == 0) {
+                joinTimeType = -1;
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 0;
+                setSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
         } else if (index == 2) {
-            joinTimeType = 7;
-            setSelectStyle(tvTime2);
-            setUnSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime3);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
+            if (joinTimeType == 7) {
+                joinTimeType = -1;
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 7;
+                setSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
+
         } else if (index == 3) {
-            joinTimeType = 30;
-            setSelectStyle(tvTime3);
-            setUnSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime2);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
+            if (joinTimeType == 30) {
+                joinTimeType = 30;
+                setUnSelectStyle(tvTime3);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 30;
+                setSelectStyle(tvTime3);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
+
         } else if (index == 4) {
+
             joinTimeType = -1;
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
+
             Calendar c = Calendar.getInstance();
             DatePickerDialog dialog = new DatePickerDialog(getActivity(),
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
                             String time = "";
                             if (month < 9 && dayOfMonth < 10) {
                                 time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
@@ -393,10 +467,9 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
-
                             String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
-                            String  s1=""+ year+month+dayOfMonth;
-                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                            String s1 = "" + year + month + dayOfMonth;
+                            if (Integer.parseInt(s) >= Integer.parseInt(s1)) {
                                 if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
                                     if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
                                         tvStartTime.setText("");
@@ -404,7 +477,7 @@ public class OptionDialog extends DialogFragment {
                                         Toast.makeText(getActivity(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }else {
+                            } else {
                                 tvStartTime.setText("");
                                 Toast.makeText(getActivity(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
                             }
@@ -423,6 +496,7 @@ public class OptionDialog extends DialogFragment {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
                             String time = "";
 
                             if (month < 9 && dayOfMonth < 10) {
@@ -446,9 +520,10 @@ public class OptionDialog extends DialogFragment {
                             if (!TextUtils.isEmpty(time)) {
                                 time = time.replace("-", "");
                             }
+
                             String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
-                            String  s1=""+ year+month+dayOfMonth;
-                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                            String s1 = "" + year + month + dayOfMonth;
+                            if (Integer.parseInt(s) >= Integer.parseInt(s1)) {
                                 if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
                                     if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
                                         tvStartTime.setText("");
@@ -456,7 +531,7 @@ public class OptionDialog extends DialogFragment {
                                         Toast.makeText(getActivity(), "结束时间不得大于开始时间", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }else {
+                            } else {
                                 tvEndTime.setText("");
                                 Toast.makeText(getActivity(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
                             }
@@ -471,20 +546,44 @@ public class OptionDialog extends DialogFragment {
     private void selectBuyClassTime(int index) {
 
         if (index == 1) {
-            buyClassTime = 7;
-            setSelectStyle(tvBuyTime1);
-            setUnSelectStyle(tvBuyTime2);
-            setUnSelectStyle(tvBuyTime3);
+            if (buyClassTime==7){
+                buyClassTime = -1;
+                setUnSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime2);
+                setUnSelectStyle(tvBuyTime3);
+            }else {
+                buyClassTime = 7;
+                setSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime2);
+                setUnSelectStyle(tvBuyTime3);
+            }
+
         } else if (index == 2) {
-            buyClassTime = 15;
-            setSelectStyle(tvBuyTime2);
-            setUnSelectStyle(tvBuyTime1);
-            setUnSelectStyle(tvBuyTime3);
+            if (buyClassTime==15){
+                buyClassTime = -1;
+                setUnSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime2);
+                setUnSelectStyle(tvBuyTime3);
+            }else {
+                buyClassTime = 15;
+                setSelectStyle(tvBuyTime2);
+                setUnSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime3);
+            }
+
         } else if (index == 3) {
-            buyClassTime = 30;
-            setSelectStyle(tvBuyTime3);
-            setUnSelectStyle(tvBuyTime1);
-            setUnSelectStyle(tvBuyTime2);
+            if (buyClassTime==30){
+                buyClassTime = -1;
+                setUnSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime2);
+                setUnSelectStyle(tvBuyTime3);
+            }else {
+                buyClassTime = 30;
+                setSelectStyle(tvBuyTime3);
+                setUnSelectStyle(tvBuyTime1);
+                setUnSelectStyle(tvBuyTime2);
+            }
+
         }
 
 
@@ -495,20 +594,45 @@ public class OptionDialog extends DialogFragment {
     private void selectExpiringDay(int index) {
 
         if (index == 1) {
-            expiringDay = 7;
-            setSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay2);
-            setUnSelectStyle(tvDay3);
+
+            if (expiringDay == 7) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 7;
+                setSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            }
         } else if (index == 2) {
-            expiringDay = 15;
-            setSelectStyle(tvDay2);
-            setUnSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay3);
+            if (expiringDay == 15) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 15;
+                setSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay3);
+            }
+
         } else if (index == 3) {
-            expiringDay = 30;
-            setSelectStyle(tvDay3);
-            setUnSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay2);
+
+
+            if (expiringDay == 30) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 30;
+                setSelectStyle(tvDay3);
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+            }
         }
     }
 
@@ -632,9 +756,9 @@ public class OptionDialog extends DialogFragment {
         void onDismiss(CoachViperFilterBean coachViperFilterBean);
     }
 
-    private CoachFilterViperDialog.OnDismissListener onDismissListener;
+    private OnDismissListener onDismissListener;
 
-    public void setOnDismissListener(CoachFilterViperDialog.OnDismissListener onDismissListener) {
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
 

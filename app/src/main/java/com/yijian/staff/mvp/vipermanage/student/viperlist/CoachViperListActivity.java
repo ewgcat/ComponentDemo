@@ -13,7 +13,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.vipermanage.student.viperlist.filter.CoachFilterViperDialog;
 import com.yijian.staff.mvp.vipermanage.student.viperlist.filter.CoachViperFilterBean;
 import com.yijian.staff.mvp.vipermanage.student.viperlist.filter.OptionDialog;
 import com.yijian.staff.mvp.vipermanage.student.viperlist.fragment.CoachAllViperFragment;
@@ -63,7 +62,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
         navigationBar2.setmRightTvText("筛选");
         changeFragment(0);
         optionDialog = new OptionDialog();
-        optionDialog.setOnDismissListener(new CoachFilterViperDialog.OnDismissListener() {
+        optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
             @Override
             public void onDismiss(CoachViperFilterBean viperFilterBean) {
                 RxBus.getDefault().post(viperFilterBean);

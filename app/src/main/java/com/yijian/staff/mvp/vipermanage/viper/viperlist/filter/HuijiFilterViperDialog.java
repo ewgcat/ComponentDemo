@@ -225,61 +225,125 @@ public class HuijiFilterViperDialog extends Dialog {
     //性别
     private void selectSex(int index) {
         if (index == 0) {
-            sex = 1;
-            tvSexMan.setTextColor(Color.parseColor("#1997f8"));
-            tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
+            if (sex==1){
+                sex=-1;
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
 
-            tvSexWoman.setTextColor(Color.parseColor("#666666"));
-            tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            tvSexWoman.setCompoundDrawables(null, null, null, null);
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            }else {
+                sex = 1;
+                tvSexMan.setTextColor(Color.parseColor("#1997f8"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#ffffff"));
+                tvSexMan.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+                Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+                jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+                tvSexMan.setCompoundDrawables(jd_choose, null, null, null);
+
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            }
+
         } else {
-            sex = 2;
-            tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
-            tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
-            tvSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
-            Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
-            jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
-            tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
+            if (sex==2){
+                sex=-1;
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
 
-            tvSexMan.setTextColor(Color.parseColor("#666666"));
-            tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
-            tvSexMan.setCompoundDrawables(null, null, null, null);
+                tvSexWoman.setTextColor(Color.parseColor("#666666"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexWoman.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexWoman.setCompoundDrawables(null, null, null, null);
+            }else {
+                sex = 2;
+                tvSexWoman.setTextColor(Color.parseColor("#1997f8"));
+                tvSexWoman.setBackgroundColor(Color.parseColor("#ffffff"));
+                tvSexWoman.setBackground(getContext().getDrawable(R.drawable.blue_stroke_select_bg));
+                Drawable jd_choose = getContext().getResources().getDrawable(R.mipmap.jd_choose);
+                jd_choose.setBounds(0, 0, jd_choose.getMinimumWidth(), jd_choose.getMinimumHeight());
+                tvSexWoman.setCompoundDrawables(jd_choose, null, null, null);
+
+                tvSexMan.setTextColor(Color.parseColor("#666666"));
+                tvSexMan.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                tvSexMan.setBackground(getContext().getDrawable(R.drawable.gray_stroke_unselect_bg));
+                tvSexMan.setCompoundDrawables(null, null, null, null);
+            }
+
         }
     }
 
     //卡类型
     private void selectCardType(int index) {
         if (index == 0) {
-            cardType = 0;
-            setSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
+            if (cardType == 0) {
+                cardType = -1;
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else {
+                cardType = 0;
+                setSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            }
+
 
         } else if (index == 1) {
-            cardType = 1;
-            setSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvHuiyuanCard);
+            if (cardType == 1) {
+                cardType = -1;
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else {
+                cardType = 1;
+                setSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            }
+
         } else if (index == 2) {
-            cardType = 2;
-            setSelectStyle(tvChuzhiCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvHuiyuanCard);
+            if (cardType == 2) {
+                cardType = -1;
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else {
+                cardType = 2;
+                setSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            }
+
         } else if (index == 3) {
-            cardType = 3;
-            setSelectStyle(tvHuiyuanCard);
-            setUnSelectStyle(tvTimeCard);
-            setUnSelectStyle(tvCishuCard);
-            setUnSelectStyle(tvChuzhiCard);
+            if (cardType == 3) {
+                cardType = -1;
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+                setUnSelectStyle(tvHuiyuanCard);
+            } else {
+                cardType = 3;
+                setSelectStyle(tvHuiyuanCard);
+                setUnSelectStyle(tvTimeCard);
+                setUnSelectStyle(tvCishuCard);
+                setUnSelectStyle(tvChuzhiCard);
+            }
+
 
         }
     }
@@ -287,31 +351,63 @@ public class HuijiFilterViperDialog extends Dialog {
     //入籍时间
     private void selectRuJiTime(int index) {
         if (index == 1) {
-            joinTimeType = 0;
-            setSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime2);
-            setUnSelectStyle(tvTime3);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
+
+            if (joinTimeType == 0) {
+                joinTimeType = -1;
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 0;
+                setSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
         } else if (index == 2) {
-            joinTimeType = 7;
-            setSelectStyle(tvTime2);
-            setUnSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime3);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
+            if (joinTimeType == 7) {
+                joinTimeType = -1;
+                setUnSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 7;
+                setSelectStyle(tvTime2);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime3);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
+
         } else if (index == 3) {
-            joinTimeType = 30;
-            setSelectStyle(tvTime3);
-            setUnSelectStyle(tvTime1);
-            setUnSelectStyle(tvTime2);
-            tvStartTime.setText("");
-            tvEndTime.setText("");
+            if (joinTimeType == 30) {
+                joinTimeType = 30;
+                setUnSelectStyle(tvTime3);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            } else {
+                joinTimeType = 30;
+                setSelectStyle(tvTime3);
+                setUnSelectStyle(tvTime1);
+                setUnSelectStyle(tvTime2);
+                tvStartTime.setText("");
+                tvEndTime.setText("");
+            }
+
         } else if (index == 4) {
+
             joinTimeType = -1;
             setUnSelectStyle(tvTime1);
             setUnSelectStyle(tvTime2);
             setUnSelectStyle(tvTime3);
+
             Calendar c = Calendar.getInstance();
             DatePickerDialog dialog = new DatePickerDialog(getContext(),
                     new DatePickerDialog.OnDateSetListener() {
@@ -347,8 +443,8 @@ public class HuijiFilterViperDialog extends Dialog {
                                 time = time.replace("-", "");
                             }
                             String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
-                            String  s1=""+ year+month+dayOfMonth;
-                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                            String s1 = "" + year + month + dayOfMonth;
+                            if (Integer.parseInt(s) >= Integer.parseInt(s1)) {
                                 if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(endTime)) {
                                     if (Integer.parseInt(time) > Integer.parseInt(endTime)) {
                                         tvStartTime.setText("");
@@ -356,7 +452,7 @@ public class HuijiFilterViperDialog extends Dialog {
                                         Toast.makeText(getContext(), "结束时间不得小于开始时间", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }else {
+                            } else {
                                 tvStartTime.setText("");
                                 Toast.makeText(getContext(), "开始日期不得大于当前日期", Toast.LENGTH_SHORT).show();
                             }
@@ -401,8 +497,8 @@ public class HuijiFilterViperDialog extends Dialog {
                             }
 
                             String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
-                            String  s1=""+ year+month+dayOfMonth;
-                            if (Integer.parseInt(s)>=Integer.parseInt(s1)) {
+                            String s1 = "" + year + month + dayOfMonth;
+                            if (Integer.parseInt(s) >= Integer.parseInt(s1)) {
                                 if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(startTime)) {
                                     if (Integer.parseInt(time) < Integer.parseInt(startTime)) {
                                         tvStartTime.setText("");
@@ -410,7 +506,7 @@ public class HuijiFilterViperDialog extends Dialog {
                                         Toast.makeText(getContext(), "结束时间不得大于开始时间", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }else {
+                            } else {
                                 tvEndTime.setText("");
                                 Toast.makeText(getContext(), "结束日期不得大于当前日期", Toast.LENGTH_SHORT).show();
                             }
@@ -425,20 +521,44 @@ public class HuijiFilterViperDialog extends Dialog {
     private void selectPrivateCourseState(int index) {
 
         if (index == 1) {
-            privateCourseState = 1;
-            setSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvTiyanke);
+            if (privateCourseState == 1) {
+                privateCourseState = -1;
+                setUnSelectStyle(tvUnBuy);
+                setUnSelectStyle(tvBuy);
+                setUnSelectStyle(tvTiyanke);
+            } else {
+                privateCourseState = 1;
+                setSelectStyle(tvUnBuy);
+                setUnSelectStyle(tvBuy);
+                setUnSelectStyle(tvTiyanke);
+            }
+
         } else if (index == 2) {
-            privateCourseState = 2;
-            setSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
-            setUnSelectStyle(tvTiyanke);
+            if (privateCourseState == 2) {
+                privateCourseState = -1;
+                setUnSelectStyle(tvBuy);
+                setUnSelectStyle(tvUnBuy);
+                setUnSelectStyle(tvTiyanke);
+            } else {
+                privateCourseState = 2;
+                setSelectStyle(tvBuy);
+                setUnSelectStyle(tvUnBuy);
+                setUnSelectStyle(tvTiyanke);
+            }
+
         } else if (index == 3) {
-            privateCourseState = 3;
-            setSelectStyle(tvTiyanke);
-            setUnSelectStyle(tvBuy);
-            setUnSelectStyle(tvUnBuy);
+            if (privateCourseState == 3) {
+                privateCourseState = -1;
+                setUnSelectStyle(tvBuy);
+                setUnSelectStyle(tvUnBuy);
+                setUnSelectStyle(tvTiyanke);
+            } else {
+                privateCourseState = 3;
+                setSelectStyle(tvTiyanke);
+                setUnSelectStyle(tvBuy);
+                setUnSelectStyle(tvUnBuy);
+            }
+
         }
 
 
@@ -449,20 +569,45 @@ public class HuijiFilterViperDialog extends Dialog {
     private void selectExpiringDay(int index) {
 
         if (index == 1) {
-            expiringDay = 7;
-            setSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay2);
-            setUnSelectStyle(tvDay3);
+
+            if (expiringDay == 7) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 7;
+                setSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            }
         } else if (index == 2) {
-            expiringDay = 15;
-            setSelectStyle(tvDay2);
-            setUnSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay3);
+            if (expiringDay == 15) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 15;
+                setSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay3);
+            }
+
         } else if (index == 3) {
-            expiringDay = 30;
-            setSelectStyle(tvDay3);
-            setUnSelectStyle(tvDay1);
-            setUnSelectStyle(tvDay2);
+
+
+            if (expiringDay == 30) {
+                expiringDay = -1;
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+                setUnSelectStyle(tvDay3);
+            } else {
+                expiringDay = 30;
+                setSelectStyle(tvDay3);
+                setUnSelectStyle(tvDay1);
+                setUnSelectStyle(tvDay2);
+            }
         }
     }
 

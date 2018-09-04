@@ -204,15 +204,15 @@ public class CoursePunchActivity extends MvcBaseActivity {
                     tv_shangke_statu.setText("上课打卡");
                 } else if (punchStatus == 1) {
                     tv_shangke_statu.setText("下课打卡");
-                    tv_shangke_time.setText(startDate + " " + startDatetime);
+                    tv_shangke_time.setText( startDatetime);
                 } else if (punchStatus == 2) {
                     tv_shangke_statu.setText("已完成");
                     coursePunchQRPopupWindow.dismiss();
                    if (timer!=null){
                        timer.cancel();
                    }
-                    tv_shangke_time.setText(startDate + " " + startDatetime);
-                    tv_xiake_time.setText(startDate + " " + endDatetime);
+                    tv_shangke_time.setText( startDatetime);
+                    tv_xiake_time.setText( endDatetime);
                     int status = courseInfoBean.getStatus();
                     if (status==3){
                         llPingjia.setVisibility(View.VISIBLE);

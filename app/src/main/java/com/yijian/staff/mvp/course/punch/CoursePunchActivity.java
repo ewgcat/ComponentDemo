@@ -88,7 +88,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
     TextView tvGao;
 
     private int punchStatus = 0;
-    private String startDate;
     private String startDatetime;
     private String endDatetime;
     private String appointId;
@@ -196,7 +195,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
                 CourseInfoBean courseInfoBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), CourseInfoBean.class);
 
                 punchStatus = courseInfoBean.getPunchStatus();
-                startDate = courseInfoBean.getStartDate();
                 startDatetime = courseInfoBean.getStartDatetime();
                 endDatetime = courseInfoBean.getEndDatetime();
                 CourseInfoBean.PrivateCourseCoachSummaryDTOBean privateCourseCoachSummaryDTO = courseInfoBean.getPrivateCourseCoachSummaryDTO();

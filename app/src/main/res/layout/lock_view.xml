@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="锁住时间"
-        android:textColor="#ffffff"
+        android:textColor="#999999"
         android:textSize="14sp"
         android:layout_height="wrap_content"/>
     <ImageView

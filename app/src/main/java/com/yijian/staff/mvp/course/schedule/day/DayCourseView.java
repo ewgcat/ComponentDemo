@@ -266,7 +266,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             public void onClick(View v) {
                 dismiss();
 
-                dialog = new AlertDialog.Builder(mContext).setMessage("取消锁住时间 " + startTime + " - " + endTime).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                dialog = new AlertDialog.Builder(mContext).setMessage("释放的锁住时间为 " + startTime + " - " + endTime+", 是否确定？").setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

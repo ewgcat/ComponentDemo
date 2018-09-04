@@ -78,51 +78,101 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
         for (int i = hour + 1; i <= 24; i++) {
             if (i < 10) {
                 mOptionsItems1.add("0" + i);
-            } else {
+            } else if (10 <= i && i < 24) {
                 mOptionsItems1.add("" + i);
             }
         }
-        wheelView1.setCyclic(false);
-        wheelView1.setAdapter(new ArrayWheelAdapter(mOptionsItems1));
-        wheelView1.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int index) {
-                selectedEndHours = mOptionsItems1.get(index);
-            }
-        });
-        wheelView1.setCurrentItem(0);
-        selectedEndHours = mOptionsItems1.get(0);
 
+        if (mOptionsItems1.size() > 0) {
+            selectedEndHours = mOptionsItems1.get(0);
 
-        final List<String> mOptionsItems2 = new ArrayList<>();
-        mOptionsItems2.add("00");
-        mOptionsItems2.add("30");
-        wheelView2.setCyclic(false);
-        wheelView2.setAdapter(new ArrayWheelAdapter(mOptionsItems2));
-        wheelView2.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int index) {
-                selectedEndMinutes = mOptionsItems2.get(index);
-            }
-        });
-        wheelView2.setCurrentItem(0);
-        selectedEndMinutes = mOptionsItems2.get(0);
+            final List<String> mOptionsItems2 = new ArrayList<>();
+            mOptionsItems2.add("00");
+            mOptionsItems2.add("30");
+            wheelView2.setCyclic(false);
+            wheelView2.setAdapter(new ArrayWheelAdapter(mOptionsItems2));
+            wheelView2.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedEndMinutes = mOptionsItems2.get(index);
+                }
+            });
+            wheelView2.setCurrentItem(0);
+            selectedEndMinutes = mOptionsItems2.get(0);
 
-        start_minutes.setCyclic(false);
-        start_minutes.setAdapter(new ArrayWheelAdapter(mOptionsItems2));
-        start_minutes.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int index) {
-                selectedStartMinutes = mOptionsItems2.get(index);
+            start_minutes.setCyclic(false);
+            start_minutes.setAdapter(new ArrayWheelAdapter(mOptionsItems2));
+            start_minutes.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedStartMinutes = mOptionsItems2.get(index);
+                }
+            });
+            if (minute < 30) {
+                start_minutes.setCurrentItem(0);
+                selectedStartMinutes = mOptionsItems2.get(0);
+            } else {
+                start_minutes.setCurrentItem(1);
+                selectedStartMinutes = mOptionsItems2.get(1);
             }
-        });
-        if (minute < 30) {
-            start_minutes.setCurrentItem(0);
-            selectedStartMinutes= mOptionsItems2.get(0);
+
+            wheelView1.setCyclic(false);
+            wheelView1.setAdapter(new ArrayWheelAdapter(mOptionsItems1));
+            wheelView1.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedEndHours = mOptionsItems1.get(index);
+                }
+            });
+            wheelView1.setCurrentItem(0);
+
         } else {
-            start_minutes.setCurrentItem(1);
-            selectedStartMinutes= mOptionsItems2.get(1);
+            mOptionsItems1.add("23");
+            selectedEndHours = mOptionsItems1.get(0);
+
+
+            final List<String> mOptionsItems21 = new ArrayList<>();
+            mOptionsItems21.add("30");
+            wheelView2.setCyclic(false);
+            wheelView2.setAdapter(new ArrayWheelAdapter(mOptionsItems21));
+            wheelView2.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedEndMinutes = mOptionsItems21.get(index);
+                }
+            });
+            wheelView2.setCurrentItem(0);
+            selectedEndMinutes = mOptionsItems21.get(0);
+
+            final List<String> mOptionsItems20 = new ArrayList<>();
+            mOptionsItems20.add("00");
+
+
+            start_minutes.setCyclic(false);
+            start_minutes.setAdapter(new ArrayWheelAdapter(mOptionsItems20));
+            start_minutes.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedStartMinutes = mOptionsItems20.get(index);
+                }
+            });
+            start_minutes.setCurrentItem(0);
+            selectedStartMinutes = mOptionsItems20.get(0);
+
+            wheelView1.setCyclic(false);
+            wheelView1.setAdapter(new ArrayWheelAdapter(mOptionsItems1));
+            wheelView1.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(int index) {
+                    selectedEndHours = mOptionsItems1.get(index);
+                }
+            });
+            wheelView1.setCurrentItem(0);
+
+
         }
+
+
     }
 
     @Override
@@ -132,8 +182,8 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
                 dismiss();
                 break;
             case R.id.confirm:
-                if (onSelectLockTimeListener!=null){
-                    onSelectLockTimeListener.onSelectLockTime(selectedStartHours+":"+selectedStartMinutes,selectedEndHours+":"+selectedEndMinutes);
+                if (onSelectLockTimeListener != null) {
+                    onSelectLockTimeListener.onSelectLockTime(selectedStartHours + ":" + selectedStartMinutes, selectedEndHours + ":" + selectedEndMinutes);
                 }
                 dismiss();
                 break;
@@ -141,17 +191,17 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
     }
 
 
-
-    public interface OnSelectLockTimeListener{
-        void onSelectLockTime(String startTime,String endTime);
+    public interface OnSelectLockTimeListener {
+        void onSelectLockTime(String startTime, String endTime);
     }
+
     private OnSelectLockTimeListener onSelectLockTimeListener;
 
     public void setOnSelectLockTimeListener(OnSelectLockTimeListener onSelectLockTimeListener) {
         this.onSelectLockTimeListener = onSelectLockTimeListener;
     }
 
-    public void setBackgroundAlpha(Activity activity,float bgAlpha){
+    public void setBackgroundAlpha(Activity activity, float bgAlpha) {
         this.activity = activity;
 
         WindowManager.LayoutParams layoutParams = activity.getWindow().getAttributes();

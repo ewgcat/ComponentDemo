@@ -314,11 +314,12 @@
             </LinearLayout>
 
 
-            <!--合同余额-->
+
+            <!--权益余额-->
             <LinearLayout
-                android:id="@+id/ll_hetong_yu_er"
+                android:id="@+id/ll_quanyi_yu_er"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
@@ -328,24 +329,63 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="合同余额: "
+                    android:text="权益余额: "
                     android:textColor="#333333"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/tv_hetong_yu_er"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_quanyi_yu_er"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:padding="2dp"
                     android:textColor="#333333"
-                    android:gravity="right"
-                    android:text=""
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <!--储值余额-->
+            <LinearLayout
+                android:id="@+id/ll_chuzhi_yu_er"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="储值余额: "
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_chuzhi_yu_er"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!--卡余额-->

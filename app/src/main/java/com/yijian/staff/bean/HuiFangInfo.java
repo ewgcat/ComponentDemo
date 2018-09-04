@@ -416,6 +416,14 @@ public class HuiFangInfo implements Serializable {
     }
 
     public static class MemberWillExpireInterviewBean implements Serializable {
+        public int getSurplusDay() {
+            return surplusDay;
+        }
+
+        public void setSurplusDay(int surplusDay) {
+            this.surplusDay = surplusDay;
+        }
+
         /**
          * amount : 0
          * cardType : 0
@@ -425,12 +433,15 @@ public class HuiFangInfo implements Serializable {
          * surplusValidTime : 0
          */
 
+
         private int amount;
-        private int cardType;
+        private int cardType;//卡类型 (0:期限卡 1:次卡 2:储值卡 3:会员制卡 4:员工卡)
         private String cardTypeName;
         private String cardprodName;
-        private String endTime;
-        private int surplusValidTime;
+        private String endTime;//合同即将到期时间
+        private int surplusValidTime;//如果是次卡
+        private int surplusDay;//合同到期天数
+
 
         public int getAmount() {
             return amount;

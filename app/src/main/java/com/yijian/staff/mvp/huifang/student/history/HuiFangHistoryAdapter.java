@@ -72,7 +72,6 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         TextView tvXingquAihao;
 
         LinearLayout llOutdateTime;
-        LinearLayout llHetongYuEr;
         LinearLayout llHetongDaoQiRi;
         LinearLayout llPreVisitDate;
         LinearLayout llFuFangReason;
@@ -90,11 +89,15 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         LinearLayout llYaoyueJilu;
         LinearLayout llNextVisitTime;
 
+        LinearLayout llQuanYiYuEr;
+        LinearLayout llChuzhiYuEr;
+        TextView tvChuzhiYuEr;
+        TextView tvQuanYiYuEr;
+
         TextView tvCourseName;
         TextView tvOutdateTime;
         TextView tvHetongDaoQiRi;
         TextView tvCardName;
-        TextView tvHetongYuEr;
         TextView tvCardType;
         TextView tvZuijinJianshen;
         TextView tvChenMoTianShu;
@@ -142,8 +145,10 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             tvHetongDaoQiRi = view.findViewById(R.id.tv_hetong_dao_qi_ri);
 
 
-            tvHetongYuEr = view.findViewById(R.id.tv_hetong_yu_er);
-            llHetongYuEr = view.findViewById(R.id.ll_hetong_yu_er);
+            tvQuanYiYuEr = view.findViewById(R.id.tv_quanyi_yu_er);
+            tvChuzhiYuEr = view.findViewById(R.id.tv_chuzhi_yu_er);
+            llChuzhiYuEr = view.findViewById(R.id.ll_chuzhi_yu_er);
+            llQuanYiYuEr = view.findViewById(R.id.ll_quanyi_yu_er);
 
             tvCardName = view.findViewById(R.id.tv_card_name);
             llCardName = view.findViewById(R.id.ll_card_name);
@@ -171,7 +176,7 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             llHuifangJilu = view.findViewById(R.id.ll_huifang_jilu);
             tvYaoyueJilu = view.findViewById(R.id.tv_yaoyue_jilu);
             llYaoyueJilu = view.findViewById(R.id.ll_yaoyue_jilu);
-            tvNextVisitTime= view.findViewById(R.id.tv_next_visit_time);
+            tvNextVisitTime = view.findViewById(R.id.tv_next_visit_time);
             llNextVisitTime = view.findViewById(R.id.ll_next_visit_time);
 
             tvHuifangType = view.findViewById(R.id.tv_huifang_type);
@@ -182,17 +187,17 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             //公共部分
 
 
-            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), context, ivHead);
+            ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + huiFangInfo.getHeadUrl(), context, ivHead);
             tvViperName.setText(huiFangInfo.getName());
             int resId = huiFangInfo.getGender() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             Glide.with(context).load(resId).into(ivSex);
 
             int medalType = huiFangInfo.getMemberMedalType();
-            if (medalType==0){
+            if (medalType == 0) {
 
-            }else if (medalType==1){
+            } else if (medalType == 1) {
                 ImageLoader.setImageResource(R.mipmap.member_gray, context, iv_rank);
-            }else if (medalType==2){
+            } else if (medalType == 2) {
                 ImageLoader.setImageResource(R.mipmap.member_gold, context, iv_rank);
             }
 
@@ -217,7 +222,7 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (invite == 0) {
                 llHuifangJilu.setVisibility(View.VISIBLE);
                 String result = huiFangInfo.getResult();
-                Logger.i("HuiFangHistoryAdapter","result="+result);
+                Logger.i("HuiFangHistoryAdapter", "result=" + result);
                 tvHuifangJilu.setText(result);
             } else if (invite == 1) {
                 llYaoyueJilu.setVisibility(View.VISIBLE);
@@ -261,13 +266,19 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             HuiFangInfo.MemberWillExpireInterviewBean memberWillExpireInterview = huiFangInfo.getMemberWillExpireInterview();
             if (memberWillExpireInterview != null) {
                 llHetongDaoQiRi.setVisibility(View.VISIBLE);
-                llHetongYuEr.setVisibility(View.VISIBLE);
+                llQuanYiYuEr.setVisibility(View.VISIBLE);
+                llChuzhiYuEr.setVisibility(View.VISIBLE);
                 llCardName.setVisibility(View.VISIBLE);
                 tvCardName.setText(memberWillExpireInterview.getCardprodName());
                 String endTime = memberWillExpireInterview.getEndTime();
                 tvHetongDaoQiRi.setText(endTime);
                 int amount = memberWillExpireInterview.getAmount();
-                tvHetongYuEr.setText("" + amount);
+                tvChuzhiYuEr.setText(amount + "元");
+                if (memberWillExpireInterview.getCardType() == 1) {
+                    tvQuanYiYuEr.setText(memberWillExpireInterview.getSurplusValidTime() + "次");
+                } else {
+                    tvQuanYiYuEr.setText(memberWillExpireInterview.getSurplusDay() + "天");
+                }
             }
 
             //昨日开卡回访
@@ -340,7 +351,9 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         holder.llCardName.setVisibility(View.GONE);
         holder.llCardType.setVisibility(View.GONE);
         holder.llCardYuEr.setVisibility(View.GONE);
-        holder.llHetongYuEr.setVisibility(View.GONE);
+
+        holder.llQuanYiYuEr.setVisibility(View.GONE);
+        holder.llChuzhiYuEr.setVisibility(View.GONE);
         holder.llZuijinJianshen.setVisibility(View.GONE);
         holder.llChenMoTianShu.setVisibility(View.GONE);
 

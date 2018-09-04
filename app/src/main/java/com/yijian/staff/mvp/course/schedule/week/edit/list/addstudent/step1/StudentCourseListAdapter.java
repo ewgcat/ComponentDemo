@@ -62,6 +62,8 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
     @Override
     public void onBindGroupHolder(StudentCourseViewHolder holder, int groupPos, int position, GroupedStudentBean groupData) {
         holder.tvName.setText(groupData.getMemberName());
+        int sex = groupData.getMemberSex() == 1? R.mipmap.lg_man : R.mipmap.lg_women;
+        ImageLoader.setImageResource(sex, context, holder.ivSex);
         boolean expand = datas.get(groupPos).getGroupItem().isExpand();
         int resId = expand ? R.mipmap.select : R.mipmap.circle_normal;
         ImageLoader.setImageResource(resId, context, holder.ivselect);

@@ -19,6 +19,7 @@ public class StudentCourseViewHolder extends BaseViewHolder {
 
     public final ImageView ivHeader;
     public final ImageView ivselect;
+    public final ImageView ivSex;
     public final TextView tvName;
     public final RelativeLayout rlCourse;
     public final TextView tvCourseName;
@@ -28,6 +29,7 @@ public class StudentCourseViewHolder extends BaseViewHolder {
         super(ctx, itemView, viewType);
         ivHeader = itemView.findViewById(R.id.iv_header);
         ivselect = itemView.findViewById(R.id.iv_select);
+        ivSex = itemView.findViewById(R.id.iv_sex);
         tvName = itemView.findViewById(R.id.tv_name);
         rlCourse = itemView.findViewById(R.id.rl_course);
         tvCourseName = itemView.findViewById(R.id.tv_course_name);

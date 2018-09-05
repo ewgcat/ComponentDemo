@@ -3,7 +3,9 @@ package com.yijian.staff.mvp.huifang.vip.tianxieresult;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -83,6 +85,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     TextView tvLaifanTime;
     @BindView(R.id.tv_vip_type)
     TextView tvVipType;
+    @BindView(R.id.tv_can_input_number)
+    TextView tvCanInputNumber;
 
 
     @Override
@@ -125,6 +129,29 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                 }
             }
         });
+        et_huifan_record.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String s1 = s.toString();
+
+                if (!TextUtils.isEmpty(s1)) {
+                    int num = 140 - s1.length();
+                    tvCanInputNumber.setText(num + "字");
+                }else {
+                    tvCanInputNumber.setText( "140字");
+                }
+            }
+        });
 
     }
 
@@ -147,8 +174,8 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         });
 
         huiFangInfo = (HuiFangInfo) getIntent().getSerializableExtra("huiFangInfo");
-        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), this, iv_nav_header);
-        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+huiFangInfo.getHeadUrl(), this, iv_sure_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + huiFangInfo.getHeadUrl(), this, iv_nav_header);
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + huiFangInfo.getHeadUrl(), this, iv_sure_header);
         tv_nav_name.setText(huiFangInfo.getName());
         tv_sure_name.setText(huiFangInfo.getName());
         int resId = huiFangInfo.getGender() == 0 ? R.mipmap.lg_man : R.mipmap.lg_women;
@@ -261,10 +288,10 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             HttpManager.postAbortFuFang(body, new ResultBooleanObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(Boolean result) {
-                    if (result){
+                    if (result) {
                         hideKeyBoard(et_huifan_record);
                         finish();
-                    }else {
+                    } else {
                         showToast("保存失败");
                     }
 
@@ -292,10 +319,10 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
             HttpManager.postHuiFangResult(body, new ResultBooleanObserver(getLifecycle()) {
                 @Override
                 public void onSuccess(Boolean result) {
-                    if (result){
+                    if (result) {
                         hideKeyBoard(et_huifan_record);
                         finish();
-                    }else {
+                    } else {
                         showToast("保存失败");
                     }
                 }

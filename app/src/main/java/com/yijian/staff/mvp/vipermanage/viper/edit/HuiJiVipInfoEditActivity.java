@@ -379,12 +379,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     }
 
-    private void putParamToMap(TextView tv, String key, Map<String, Object> paramMap) {
-        String obj = tv.getText().toString();
-        if (!TextUtils.isEmpty(obj)) {
-            paramMap.put(key, obj);
-        }
-    }
+
 
     /**
      * 更新数据

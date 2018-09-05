@@ -56,7 +56,7 @@ public class CunkeNewActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_cunke_new;
+        return R.layout.activity_cunke;
     }
 
 

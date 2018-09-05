@@ -119,11 +119,11 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 city = addressArray[1];
                 area = addressArray[2];
                 tv_address.setText(province + split + city + split + area);
+                if (length>3){
+                    detail = addressArray[3];
+                    et_detail.setText(detail);
+                }
 
-
-            }else if (length>3){
-                detail = addressArray[3];
-                et_detail.setText(detail);
             }
         }
         File addressFile = new File(fileName);
@@ -315,7 +315,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 try {
                     addressIds.put("provinceId",options1Items.get(options1).getId());
                     addressIds.put("cityId",options1Items.get(options1).getCitys().get(option2).getId());
-                    addressIds.put("districtId",options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3));
+                    addressIds.put("districtId",options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

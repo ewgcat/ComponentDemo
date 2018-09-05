@@ -2,9 +2,7 @@ package com.yijian.staff.mvp.course.punch;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
@@ -29,7 +27,6 @@ import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,7 +37,6 @@ import java.util.TimerTask;
 
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoursePunchActivity extends MvcBaseActivity {
@@ -110,7 +106,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_da_ka;
+        return R.layout.activity_course_punch;
     }
 
     @Override

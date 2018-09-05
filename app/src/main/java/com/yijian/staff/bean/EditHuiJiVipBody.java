@@ -1,5 +1,7 @@
 package com.yijian.staff.bean;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -49,6 +51,8 @@ public class EditHuiJiVipBody {
     private String wechatNo;
     private String weight;
     private String yearIncome;
+    private JSONObject home_ereaIds;
+    private JSONObject com_ereaIds;
 
 
     public EditHuiJiVipBody(Map<String, Object> map) {
@@ -75,7 +79,8 @@ public class EditHuiJiVipBody {
         this.wechatNo = (String) map.get("wechatNo");
         this.weight = (String) map.get("weight");
         this.yearIncome = (String) map.get("yearIncome");
-
+        this.home_ereaIds = (JSONObject) map.get("home_ereaIds");
+        this.com_ereaIds = (JSONObject) map.get("com_ereaIds");
     }
 
     public String getAddress() {
@@ -260,5 +265,21 @@ public class EditHuiJiVipBody {
 
     public void setWeight(String weight) {
         this.weight = weight;
+    }
+
+    public JSONObject getHome_ereaIds() {
+        return home_ereaIds;
+    }
+
+    public void setHome_ereaIds(JSONObject home_ereaIds) {
+        this.home_ereaIds = home_ereaIds;
+    }
+
+    public JSONObject getCom_ereaIds() {
+        return com_ereaIds;
+    }
+
+    public void setCom_ereaIds(JSONObject com_ereaIds) {
+        this.com_ereaIds = com_ereaIds;
     }
 }

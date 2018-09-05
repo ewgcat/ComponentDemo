@@ -104,6 +104,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> positionList = new ArrayList<String>();  //职务
     List<String> heightList = new ArrayList<String>();  //职务
     List<String> weightList = new ArrayList<String>();  //职务
+    JSONObject home_ereaIds = new JSONObject(); //家庭地址ID
+    JSONObject com_ereaIds = new JSONObject(); //工作地址ID
+    String home_detail = ""; //家庭地址 详细
+    String com_detail = ""; //工作地址 详细
     final int REQUEST_ADDRESS_HOME_CODE = 100; //修改地址请求码
     final int REQUEST_ADDRESS_COMPANY_CODE = 101; //修改地址请求码
 
@@ -258,7 +262,9 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         putParamToMap(et_email,"email",paramMap);
         putParamToMap(tv_height,"height",paramMap);
         putParamToMap(tv_weight,"weight",paramMap);
-
+        paramMap.put("companyAddressIds", com_ereaIds);
+        paramMap.put("homeAddressIds", home_ereaIds);
+        Log.e("Test","sdfsdfsdfsdfsdfs");
 
         EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver(getLifecycle()) {
@@ -513,11 +519,23 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_ADDRESS_COMPANY_CODE && resultCode == RESULT_OK){ //工作地址
-            detailBean.setCompanyAddress(data.getStringExtra("resultAddress"));
-            tv_workdress.setText(detailBean.getCompanyAddress());
+            try {
+                com_ereaIds = new JSONObject(data.getStringExtra("ereaIds"));
+                detailBean.setCompanyAddress(data.getStringExtra("resultAddress"));
+                tv_workdress.setText(detailBean.getCompanyAddress());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }else if(requestCode == REQUEST_ADDRESS_HOME_CODE && resultCode == RESULT_OK){ //家庭地址
-            detailBean.setAddress(data.getStringExtra("resultAddress"));
-            tv_homeaddress.setText(detailBean.getAddress());
+            try {
+                home_detail = data.getStringExtra("detail");
+                home_ereaIds = new JSONObject(data.getStringExtra("ereaIds"));
+                detailBean.setAddress(data.getStringExtra("resultAddress"));
+                tv_homeaddress.setText(detailBean.getAddress());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

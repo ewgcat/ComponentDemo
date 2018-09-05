@@ -1,6 +1,7 @@
 package com.yijian.staff.mvp.permission;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.yijian.staff.bean.PermissionBean;
 
@@ -79,14 +80,17 @@ public class PermissionUtils {
                 List<PermissionBean.SubMeneModelListBean> subMeneModelListBeanList = permissionBean.getSubMeneModelList();
                 for (PermissionBean.SubMeneModelListBean subMeneModelListBean : subMeneModelListBeanList) {
                     String subMenuKey1 = subMeneModelListBean.getMenuKey();
-                    if (subMenuKey.equals(subMenuKey1)) {
-                        List<PermissionBean.SubMeneModelListBean.MenuActionListBean> menuActionListBeanList = subMeneModelListBean.getMenuActionList();
-                        for(PermissionBean.SubMeneModelListBean.MenuActionListBean menuActionListBean : menuActionListBeanList){
-                            if("edit".equals(menuActionListBean.getTag())){
-                                isEdit = menuActionListBean.isCheck();
+                    if ((!TextUtils.isEmpty(subMenuKey))&&(!TextUtils.isEmpty(subMenuKey1))){
+                        if (subMenuKey.equals(subMenuKey1)) {
+                            List<PermissionBean.SubMeneModelListBean.MenuActionListBean> menuActionListBeanList = subMeneModelListBean.getMenuActionList();
+                            for(PermissionBean.SubMeneModelListBean.MenuActionListBean menuActionListBean : menuActionListBeanList){
+                                if("edit".equals(menuActionListBean.getTag())){
+                                    isEdit = menuActionListBean.isCheck();
+                                }
                             }
                         }
                     }
+
                 }
             }
         }

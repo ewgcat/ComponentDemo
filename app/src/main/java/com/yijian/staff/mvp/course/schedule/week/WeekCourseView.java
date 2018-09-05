@@ -141,7 +141,13 @@ public class WeekCourseView extends FrameLayout {
         public boolean tryCaptureView(View child, int pointerId) {
             boolean contains = views.contains(child);
             if (contains) {
-                dragView = child;
+                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) child.getTag();
+
+                if (courseBean!=null){
+                    dragView = child;
+                }else {
+                    contains=false;
+                }
 
             }
             return contains;
@@ -402,6 +408,7 @@ public class WeekCourseView extends FrameLayout {
         String endTime = courseBean.getETime();
         View view = LayoutInflater.from(mContext).inflate(R.layout.week_course_view, null, false);
         View ll_week_course = view.findViewById(R.id.ll_week_course);
+        View iv_lock = view.findViewById(R.id.iv_lock);
         TextView tv_member_name = view.findViewById(R.id.tv_member_name);
         addView(view);
         long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
@@ -421,8 +428,10 @@ public class WeekCourseView extends FrameLayout {
         layoutParams.topMargin = (int) top;
         layoutParams.leftMargin = itemWidth * weekCode;
         view.setLayoutParams(layoutParams);
-        view.setTag(courseBean);
         if (courseBean.getDataType() == 1) {
+            iv_lock.setVisibility(GONE);
+            tv_member_name.setVisibility(VISIBLE);
+            view.setTag(courseBean);
 
             views.add(view);
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
@@ -441,6 +450,8 @@ public class WeekCourseView extends FrameLayout {
             ll_week_course.setBackgroundColor(Color.parseColor(colour));
 
         } else {
+            tv_member_name.setVisibility(GONE);
+            iv_lock.setVisibility(VISIBLE);
             views.add(view);
             ll_week_course.setBackgroundColor(Color.parseColor("#efefef"));
         }

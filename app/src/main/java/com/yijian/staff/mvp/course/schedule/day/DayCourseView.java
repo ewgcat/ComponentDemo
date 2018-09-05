@@ -431,7 +431,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             }
             ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
             tv_name.setText(privateCourseMemberVO.getMemberName());
-            tv_course_name.setText(memberCourseName);
+            tv_course_name.setText("私教课："+memberCourseName);
             view.setBackgroundColor(Color.parseColor("#f5f5f5"));
             popuwindow.setOnSelectFlagListener(new FlagPopuwindow.OnSelectFlagListener() {
                 @Override

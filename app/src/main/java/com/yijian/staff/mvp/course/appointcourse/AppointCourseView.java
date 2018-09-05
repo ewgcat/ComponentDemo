@@ -197,6 +197,28 @@ public class AppointCourseView extends FrameLayout {
             layoutParams.height = (int) (bottom - top);
             layoutParams.topMargin = (int) top;
             view.setLayoutParams(layoutParams);
+        }else if (status==6){
+            View view = LayoutInflater.from(mContext).inflate(R.layout.lock_view, null, false);
+            addView(view);
+
+            String startTime = appointCourseBean.getStartTime();
+            String endTime = appointCourseBean.getEndTime();
+            long startTimestringToDate = DateUtil.getStringToDate(startTime, "HH:mm");
+            long endTimestringToDate = DateUtil.getStringToDate(endTime, "HH:mm");
+            long currentDate = DateUtil.getStringToDate("00:00", "HH:mm");
+
+            int height = itemHeight * itemSize;
+            long l1 = 86400000;
+            long l2 = startTimestringToDate - currentDate;
+            long l3 = endTimestringToDate - currentDate;
+            long top = height * l2 / l1;
+            long bottom = height * l3 / l1;
+
+            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+            layoutParams.width = LayoutParams.MATCH_PARENT;
+            layoutParams.height = (int) (bottom - top);
+            layoutParams.topMargin = (int) top;
+            view.setLayoutParams(layoutParams);
         }
 
 

@@ -321,24 +321,21 @@
                 android:text="权益余额: "
                 android:textColor="#333333"
                 android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                />
 
             <TextView
                 android:id="@+id/tv_quanyi_yu_er"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:gravity="right"
+                android:text=""
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="14sp" />
+
         </LinearLayout>
         <!--储值余额-->
         <LinearLayout
@@ -360,21 +357,19 @@
                 android:textStyle="bold" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_chuzhi_yu_er"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:padding="2dp"
                 android:textColor="#333333"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:gravity="right"
+                android:text=""
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--卡余额-->

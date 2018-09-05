@@ -247,6 +247,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingLeft="10dp"
+                    app:isb_ticks_count="2"
                     android:paddingBottom="10dp"
                     android:paddingRight="26dp"
                     android:layout_marginLeft="16dp"

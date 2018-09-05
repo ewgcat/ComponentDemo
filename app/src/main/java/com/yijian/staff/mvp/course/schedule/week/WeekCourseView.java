@@ -155,7 +155,6 @@ public class WeekCourseView extends FrameLayout {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-
             super.onViewPositionChanged(changedView, left, top, dx, dy);
 
         }

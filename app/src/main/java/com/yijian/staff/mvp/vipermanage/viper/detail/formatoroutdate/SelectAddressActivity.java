@@ -25,6 +25,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -64,6 +65,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
     String detail;
     StringBuffer resultAddress = new StringBuffer(); //省市区详细地址数据
     char split;
+    JSONObject addressIds=new JSONObject();
 
     @Override
     protected int getLayoutID() {
@@ -98,6 +100,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 resultAddress.append(detail);
                 Intent intent = getIntent();
                 intent.putExtra("resultAddress", resultAddress.toString());
+                intent.putExtra("addressIds", addressIds.toString());
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -110,13 +113,17 @@ public class SelectAddressActivity extends MvcBaseActivity {
         char split = (char) 1;
         if (!TextUtils.isEmpty(address)) {
             String[] addressArray = address.split(split + "");
-            if (addressArray.length > 1) {
+            int length = addressArray.length;
+            if (length > 2) {
                 province = addressArray[0];
                 city = addressArray[1];
                 area = addressArray[2];
+                tv_address.setText(province + split + city + split + area);
+
+
+            }else if (length>3){
                 detail = addressArray[3];
                 et_detail.setText(detail);
-                tv_address.setText(province + split + city + split + area);
             }
         }
         File addressFile = new File(fileName);
@@ -304,6 +311,15 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 address.append(split);
                 address.append(area);
                 tv_address.setText(address.toString());
+
+                try {
+                    addressIds.put("provinceId",options1Items.get(options1).getId());
+                    addressIds.put("cityId",options1Items.get(options1).getCitys().get(option2).getId());
+                    addressIds.put("districtId",options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         })
                 .setSelectOptions(selectOption1, selectOption2, selectOption3)  //设置默认选中项

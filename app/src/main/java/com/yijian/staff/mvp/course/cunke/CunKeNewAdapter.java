@@ -76,9 +76,18 @@ public class CunKeNewAdapter extends RecyclerView.Adapter {
             tv_totalCourseCount.setText(typeOfCunKeBody.getTotalCourseCount());
             float stockCourseCount = Integer.valueOf(typeOfCunKeBody.getStockCourseCount());
             float totalCourseCount = Integer.valueOf(typeOfCunKeBody.getTotalCourseCount());
-            cunkeProgress.setProgress((int)((totalCourseCount-stockCourseCount)/totalCourseCount*100));
-            Log.e("Test",typeOfCunKeBody.getMemberName()+"====="+(int)((totalCourseCount-stockCourseCount)/totalCourseCount*100));
-            cunkeProgress.setCunkeViewTextColor(tv_stockCourseCount);
+            float v =( totalCourseCount - stockCourseCount)/ totalCourseCount * 100;
+            if (v>=1.0&&v<100){
+                cunkeProgress.setProgress((int)v);
+            }else if (v>0&&v<1){
+                cunkeProgress.setProgress(1);
+            }else if (v==0){
+                cunkeProgress.setProgress(0);
+            }else if (v==100){
+                cunkeProgress.setProgress(100);
+            }
+
+            cunkeProgress.setCunkeProgressTextView(tv_stockCourseCount);
         }
 
     }

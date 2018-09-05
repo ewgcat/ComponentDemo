@@ -65,7 +65,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
     String detail;
     StringBuffer resultAddress = new StringBuffer(); //省市区详细地址数据
     char split;
-    JSONObject addressIds=new JSONObject();
+    JSONObject addressIds = new JSONObject();
 
     @Override
     protected int getLayoutID() {
@@ -114,17 +114,29 @@ public class SelectAddressActivity extends MvcBaseActivity {
         if (!TextUtils.isEmpty(address)) {
             String[] addressArray = address.split(split + "");
             int length = addressArray.length;
-            if (length > 2) {
+
+            if (length == 1) {
+                province = addressArray[0];
+                tv_address.setText(province);
+
+            } else if (length > 1) {
                 province = addressArray[0];
                 city = addressArray[1];
-                area = addressArray[2];
-                tv_address.setText(province + split + city + split + area);
-                if (length>3){
-                    detail = addressArray[3];
-                    et_detail.setText(detail);
-                }
+                tv_address.setText(province + split + city);
+                if (length > 2) {
+                    province = addressArray[0];
+                    city = addressArray[1];
+                    area = addressArray[2];
+                    tv_address.setText(province + split + city + split + area);
+                    if (length > 3) {
+                        detail = addressArray[3];
+                        et_detail.setText(detail);
+                    }
 
+                }
             }
+
+
         }
         File addressFile = new File(fileName);
         if (!addressFile.exists()) {
@@ -313,9 +325,9 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 tv_address.setText(address.toString());
 
                 try {
-                    addressIds.put("provinceId",options1Items.get(options1).getId());
-                    addressIds.put("cityId",options1Items.get(options1).getCitys().get(option2).getId());
-                    addressIds.put("districtId",options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId());
+                    addressIds.put("provinceId", options1Items.get(options1).getId());
+                    addressIds.put("cityId", options1Items.get(options1).getCitys().get(option2).getId());
+                    addressIds.put("districtId", options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

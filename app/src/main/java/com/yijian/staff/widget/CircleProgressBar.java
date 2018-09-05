@@ -124,7 +124,7 @@ public class CircleProgressBar extends View {
         this.totalProgress = totalProgress;
     }
 
-    public void setCunkeViewTextColor(TextView cunkeProgress){
+    public void setCunkeProgressTextView(TextView cunkeProgress){
         this.cunkeProgress = cunkeProgress;
     }
 

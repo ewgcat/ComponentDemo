@@ -104,12 +104,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> positionList = new ArrayList<String>();  //职务
     List<String> heightList = new ArrayList<String>();  //职务
     List<String> weightList = new ArrayList<String>();  //职务
-    JSONObject home_ereaIds = new JSONObject(); //家庭地址ID
-    JSONObject com_ereaIds = new JSONObject(); //工作地址ID
-    String home_detail = ""; //家庭地址 详细
-    String com_detail = ""; //工作地址 详细
     final int REQUEST_ADDRESS_HOME_CODE = 100; //修改地址请求码
     final int REQUEST_ADDRESS_COMPANY_CODE = 101; //修改地址请求码
+    private JSONObject companyAddressIds;
+    private JSONObject homeAddressIds;
 
 
     @Override
@@ -147,7 +145,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,
             R.id.rl_yearIncome, R.id.rl_nationality, R.id.rl_nation, R.id.rl_marriageStatus,
             R.id.rl_hasChildren, R.id.rl_occupation, R.id.rl_hobby, R.id.rl_fitnessGoal,
-            R.id.rl_healthStatus,R.id.rl_position,R.id.rl_height,R.id.rl_weight,R.id.rl_workdress,
+            R.id.rl_healthStatus, R.id.rl_position, R.id.rl_height, R.id.rl_weight, R.id.rl_workdress,
             R.id.rl_homeaddress})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -190,36 +188,36 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             case R.id.rl_fitnessGoal:  //健身目的
                 manualPickedView(bodybuildingList, "", tv_fitnessGoal);
                 break;
-                case R.id.rl_healthStatus: //身体状态
-                    manualPickedView(healthstatusList, "", tv_healthStatus);
-                    break;
-                case R.id.rl_position: //职务
-                    manualPickedView(positionList, "", tv_position);
-                    break;
-                case R.id.rl_height: //身高
-                    manualPickedView(heightList, "", tv_height);
-                    break;
-                case R.id.rl_weight: //体重
-                    manualPickedView(weightList, "", tv_weight);
-                    break;
-                case R.id.rl_workdress: //工作地址
+            case R.id.rl_healthStatus: //身体状态
+                manualPickedView(healthstatusList, "", tv_healthStatus);
+                break;
+            case R.id.rl_position: //职务
+                manualPickedView(positionList, "", tv_position);
+                break;
+            case R.id.rl_height: //身高
+                manualPickedView(heightList, "", tv_height);
+                break;
+            case R.id.rl_weight: //体重
+                manualPickedView(weightList, "", tv_weight);
+                break;
+            case R.id.rl_workdress: //工作地址
                    /* SelectAddressPop workAddressPop = new SelectAddressPop(this, "工作地址", tv_workdress);
                     workAddressPop.showAsDropDown(getWindow().getDecorView());*/
 
-                    Intent intent = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
-                    intent.putExtra("title","工作地址");
-                    intent.putExtra("address",detailBean.getCompanyAddress());
-                    startActivityForResult(intent,REQUEST_ADDRESS_COMPANY_CODE);
+                Intent intent = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
+                intent.putExtra("title", "工作地址");
+                intent.putExtra("address", detailBean.getCompanyAddress());
+                startActivityForResult(intent, REQUEST_ADDRESS_COMPANY_CODE);
 
-                    break;
-                case R.id.rl_homeaddress: //家庭地址
+                break;
+            case R.id.rl_homeaddress: //家庭地址
                     /*SelectAddressPop homeAddressPop = new SelectAddressPop(this, "家庭地址", tv_homeaddress);
                     homeAddressPop.showAsDropDown(getWindow().getDecorView());*/
-                    Intent intent2 = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
-                    intent2.putExtra("title","家庭地址");
-                    intent2.putExtra("address",detailBean.getAddress());
-                    startActivityForResult(intent2,REQUEST_ADDRESS_HOME_CODE);
-                    break;
+                Intent intent2 = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
+                intent2.putExtra("title", "家庭地址");
+                intent2.putExtra("address", detailBean.getAddress());
+                startActivityForResult(intent2, REQUEST_ADDRESS_HOME_CODE);
+                break;
         }
     }
 
@@ -228,45 +226,141 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
      * 提交数据
      */
     private void submitData() {
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        putParamToMap(tv_carPrice,"carPrice",paramMap);
-        putParamToMap(tv_fitnessGoal,"fitnessGoal",paramMap);
+        EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody();
+        if (!TextUtils.isEmpty(tv_carPrice.getText().toString())) {
+            editHuiJiVipBody.setCarPrice(tv_carPrice.getText().toString());
+        }
+        if (!TextUtils.isEmpty(tv_fitnessGoal.getText().toString())) {
+            editHuiJiVipBody.setFitnessGoal(tv_fitnessGoal.getText().toString());
+        }
+
         String anObject = tv_hasChildren.getText().toString();
         if (!TextUtils.isEmpty(anObject)) {
-            paramMap.put("hasChildren", ("有".equals(anObject)));
+            editHuiJiVipBody.setHasChildren(("有".equals(anObject)));
         }
-        putParamToMap(tv_yearIncome,"yearIncome",paramMap);
-        putParamToMap(et_clubBrand,"clubBrand",paramMap);
-        putParamToMap(tv_healthStatus,"healthStatus",paramMap);
-        putParamToMap(tv_hobby,"hobby",paramMap);
+        if (!TextUtils.isEmpty(tv_yearIncome.getText().toString())) {
+            editHuiJiVipBody.setYearIncome(tv_yearIncome.getText().toString());
+        }
+        if (!TextUtils.isEmpty(et_clubBrand.getText().toString())) {
+            editHuiJiVipBody.setClubBrand(et_clubBrand.getText().toString());
+        }
+
+        if (!TextUtils.isEmpty(tv_healthStatus.getText().toString())) {
+            editHuiJiVipBody.setHealthStatus(tv_healthStatus.getText().toString());
+        }
+        if (!TextUtils.isEmpty(tv_hobby.getText().toString())) {
+            editHuiJiVipBody.setHobby(tv_hobby.getText().toString());
+        }
+
+
         String anObject1 = tv_marriageStatus.getText().toString();
         if (!TextUtils.isEmpty(anObject1)) {
-            paramMap.put("marriageStatus", ("未婚".equals(anObject1)) ? 0 : 1);
+            editHuiJiVipBody.setMarriageStatus( ("未婚".equals(anObject1)) ? 0 : 1);
         }
-        paramMap.put("memberId", memberId);
-        putParamToMap(tv_nation,"nation",paramMap);
-        putParamToMap(tv_nationality,"nationality",paramMap);
-        putParamToMap(tv_position,"position",paramMap);
-        putParamToMap(tv_occupation,"occupation",paramMap);
+
+        editHuiJiVipBody.setMemberId( memberId);
+
+
+        if (!TextUtils.isEmpty(tv_nation.getText().toString())) {
+            editHuiJiVipBody.setNation(tv_nation.getText().toString());
+        }
+
+
+        if (!TextUtils.isEmpty(tv_nationality.getText().toString())) {
+            editHuiJiVipBody.setNationality(tv_nationality.getText().toString());
+        }
+
+
+        if (!TextUtils.isEmpty(tv_position.getText().toString())) {
+            editHuiJiVipBody.setPosition(tv_position.getText().toString());
+        }
+
+
+        if (!TextUtils.isEmpty(tv_occupation.getText().toString())) {
+            editHuiJiVipBody.setOccupation(tv_occupation.getText().toString());
+        }
+
         String anObject2 = tv_onceJoinedClub.getText().toString();
         if (!TextUtils.isEmpty(anObject2)) {
-            paramMap.put("onceJoinedClub", ("是".equals(anObject2)));
+            editHuiJiVipBody.setOnceJoinedClub(("是".equals(anObject2)));
         }
-        putParamToMap(tv_source,"source",paramMap);
-        putParamToMap(tv_yearIncome,"yearIncome",paramMap);
-        putParamToMap(tv_homeaddress,"address",paramMap);
-        putParamToMap(tv_workdress,"companyAddress",paramMap);
-        putParamToMap(et_relationname,"urgentContact",paramMap);
-        putParamToMap(et_relationmobile,"contactPhone",paramMap);
-        putParamToMap(et_wx,"wechatNo",paramMap);
-        putParamToMap(et_email,"email",paramMap);
-        putParamToMap(tv_height,"height",paramMap);
-        putParamToMap(tv_weight,"weight",paramMap);
-        paramMap.put("companyAddressIds", com_ereaIds);
-        paramMap.put("homeAddressIds", home_ereaIds);
-        Log.e("Test","sdfsdfsdfsdfsdfs");
 
-        EditHuiJiVipBody editHuiJiVipBody = new EditHuiJiVipBody(paramMap);
+        if (!TextUtils.isEmpty(tv_source.getText().toString())) {
+            editHuiJiVipBody.setSource(tv_source.getText().toString());
+        }
+
+        if (homeAddressIds!=null){
+            EditHuiJiVipBody.HomeAddressIdsBean homeAddressIdsBean = new EditHuiJiVipBody.HomeAddressIdsBean();
+            try {
+                homeAddressIdsBean.setProvinceId(homeAddressIds.getInt("provinceId"));
+                homeAddressIdsBean.setCityId(homeAddressIds.getInt("cityId"));
+                homeAddressIdsBean.setDistrictId(homeAddressIds.getInt("districtId"));
+                editHuiJiVipBody.setHomeAddressIds(homeAddressIdsBean);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        if (companyAddressIds!=null){
+            EditHuiJiVipBody.CompanyAddressIdsBean companyAddressIdsBean = new EditHuiJiVipBody.CompanyAddressIdsBean();
+            try {
+                companyAddressIdsBean.setProvinceId(companyAddressIds.getInt("provinceId"));
+                companyAddressIdsBean.setCityId(companyAddressIds.getInt("cityId"));
+                companyAddressIdsBean.setDistrictId(companyAddressIds.getInt("districtId"));
+                editHuiJiVipBody.setCompanyAddressIds(companyAddressIdsBean);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+        String s = tv_workdress.getText().toString();
+        if (!TextUtils.isEmpty(s)) {
+            char split = (char) 1;
+            String[] addressArray = s.split(split + "");
+            if (addressArray.length > 3) {
+                String companyAddress = addressArray[addressArray.length - 1];
+                editHuiJiVipBody.setCompanyAddress(companyAddress);
+            } else {
+                editHuiJiVipBody.setCompanyAddress(s);
+            }
+        }
+        String s1 = tv_homeaddress.getText().toString();
+        if (!TextUtils.isEmpty(s)) {
+            char split = (char) 1;
+            String[] addressArray = s1.split(split + "");
+            if (addressArray.length > 3) {
+                String address = addressArray[addressArray.length - 1];
+                editHuiJiVipBody.setAddress(address);
+            } else {
+                editHuiJiVipBody.setAddress(s);
+            }
+        }
+
+        if (!TextUtils.isEmpty(et_relationname.getText().toString())) {
+            editHuiJiVipBody.setUrgentContact(et_relationname.getText().toString());
+        }
+        if (!TextUtils.isEmpty(et_relationmobile.getText().toString())) {
+            editHuiJiVipBody.setContactPhone(et_relationmobile.getText().toString());
+        }
+        if (!TextUtils.isEmpty(et_wx.getText().toString())) {
+            editHuiJiVipBody.setWechatNo(et_wx.getText().toString());
+        }
+        if (!TextUtils.isEmpty(et_email.getText().toString())) {
+            editHuiJiVipBody.setEmail(et_email.getText().toString());
+        }
+        if (!TextUtils.isEmpty(tv_height.getText().toString())) {
+            editHuiJiVipBody.setHeight(tv_height.getText().toString());
+        }
+        if (!TextUtils.isEmpty(tv_weight.getText().toString())) {
+            editHuiJiVipBody.setWeight(tv_weight.getText().toString());
+        }
+
+
+
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -285,7 +379,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     }
 
-    private void putParamToMap(TextView tv, String key, Map<String, Object> paramMap){
+    private void putParamToMap(TextView tv, String key, Map<String, Object> paramMap) {
         String obj = tv.getText().toString();
         if (!TextUtils.isEmpty(obj)) {
             paramMap.put(key, obj);
@@ -337,12 +431,12 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     }
 
     private String strEmpty(String str) {
-        if (TextUtils.isEmpty(str)){
+        if (TextUtils.isEmpty(str)) {
             return "";
-        }else if ("暂未录入".equals(str)){
+        } else if ("暂未录入".equals(str)) {
             return "";
-        }else {
-            return  str;
+        } else {
+            return str;
 
         }
     }
@@ -409,12 +503,12 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         marriageStatusList.add("未婚");
         marriageStatusList.add("已婚");
 
-        for(int i = 150; i < 200; i++){
-            heightList.add(i+"");
+        for (int i = 150; i < 200; i++) {
+            heightList.add(i + "");
         }
 
-        for(int i = 35; i < 100; i++){
-            weightList.add(i+"");
+        for (int i = 35; i < 100; i++) {
+            weightList.add(i + "");
         }
 
 
@@ -518,24 +612,25 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_ADDRESS_COMPANY_CODE && resultCode == RESULT_OK){ //工作地址
+        if (requestCode == REQUEST_ADDRESS_COMPANY_CODE && resultCode == RESULT_OK) { //工作地址
             try {
-                com_ereaIds = new JSONObject(data.getStringExtra("ereaIds"));
-                detailBean.setCompanyAddress(data.getStringExtra("resultAddress"));
-                tv_workdress.setText(detailBean.getCompanyAddress());
+                String resultAddress = data.getStringExtra("resultAddress");
+                tv_workdress.setText(resultAddress);
 
+                companyAddressIds = new JSONObject(data.getStringExtra("addressIds"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else if(requestCode == REQUEST_ADDRESS_HOME_CODE && resultCode == RESULT_OK){ //家庭地址
+        } else if (requestCode == REQUEST_ADDRESS_HOME_CODE && resultCode == RESULT_OK) { //家庭地址
             try {
-                home_detail = data.getStringExtra("detail");
-                home_ereaIds = new JSONObject(data.getStringExtra("ereaIds"));
-                detailBean.setAddress(data.getStringExtra("resultAddress"));
-                tv_homeaddress.setText(detailBean.getAddress());
+                String resultAddress = data.getStringExtra("resultAddress");
+                tv_homeaddress.setText(resultAddress);
+                homeAddressIds = new JSONObject(data.getStringExtra("addressIds"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         }
     }
+
 }

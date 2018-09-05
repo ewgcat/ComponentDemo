@@ -16,7 +16,6 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.GetJsonDataUtil;
@@ -66,7 +65,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
     String detail;
     StringBuffer resultAddress = new StringBuffer(); //省市区详细地址数据
     char split;
-    private int selectPosition1, selectPosition2, selectPosition3;
+    JSONObject addressIds=new JSONObject();
 
     @Override
     protected int getLayoutID() {
@@ -91,29 +90,19 @@ public class SelectAddressActivity extends MvcBaseActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    detail = et_detail.getText().toString();
-                    resultAddress.append(province);
-                    resultAddress.append((char) 1);
-                    resultAddress.append(city);
-                    resultAddress.append((char) 1);
-                    resultAddress.append(area);
-                    resultAddress.append((char) 1);
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("cityId", options1Items.get(selectOption1).getId());
-                    jsonObject.put("districtId", options1Items.get(selectOption1).getCitys().get(selectOption2).getId());
-                    jsonObject.put("provinceId", options1Items.get(selectOption1).getCitys().get(selectOption2).getDistricts().get(selectOption3).getCityId());
-                    Intent intent = getIntent();
-                    intent.putExtra("detail",detail);
-                    intent.putExtra("strErea",resultAddress.toString());
-                    intent.putExtra("ereaIds", jsonObject.toString());
-                    setResult(RESULT_OK, intent);
-                    finish();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+                detail = et_detail.getText().toString();
+                resultAddress.append(province);
+                resultAddress.append((char) 1);
+                resultAddress.append(city);
+                resultAddress.append((char) 1);
+                resultAddress.append(area);
+                resultAddress.append((char) 1);
+                resultAddress.append(detail);
+                Intent intent = getIntent();
+                intent.putExtra("resultAddress", resultAddress.toString());
+                intent.putExtra("addressIds", addressIds.toString());
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }
@@ -124,13 +113,17 @@ public class SelectAddressActivity extends MvcBaseActivity {
         char split = (char) 1;
         if (!TextUtils.isEmpty(address)) {
             String[] addressArray = address.split(split + "");
-            if (addressArray.length > 1) {
+            int length = addressArray.length;
+            if (length > 2) {
                 province = addressArray[0];
                 city = addressArray[1];
                 area = addressArray[2];
-                detail = addressArray[3];
-                et_detail.setText(detail);
                 tv_address.setText(province + split + city + split + area);
+                if (length>3){
+                    detail = addressArray[3];
+                    et_detail.setText(detail);
+                }
+
             }
         }
         File addressFile = new File(fileName);
@@ -306,9 +299,6 @@ public class SelectAddressActivity extends MvcBaseActivity {
         pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                selectPosition1 = options1;
-                selectPosition1 = option2;
-                selectPosition1 = options3;
                 //返回的分别是三个级别的选中位置
                 province = options1Items.get(options1).getPickerViewText();
                 city = options2Items.get(options1).get(option2);
@@ -321,6 +311,15 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 address.append(split);
                 address.append(area);
                 tv_address.setText(address.toString());
+
+                try {
+                    addressIds.put("provinceId",options1Items.get(options1).getId());
+                    addressIds.put("cityId",options1Items.get(options1).getCitys().get(option2).getId());
+                    addressIds.put("districtId",options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         })
                 .setSelectOptions(selectOption1, selectOption2, selectOption3)  //设置默认选中项

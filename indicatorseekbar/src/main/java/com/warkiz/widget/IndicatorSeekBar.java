@@ -43,6 +43,7 @@ import java.math.BigDecimal;
 
 public class IndicatorSeekBar extends View {
     private static final int THUMB_MAX_WIDTH = 30;
+    private static final int THUMB_MAX_HEIGHT = 180;
     private static final String FORMAT_PROGRESS = "${PROGRESS}";
     private static final String FORMAT_TICK_TEXT = "${TICK_TEXT}";
     private Context mContext;
@@ -61,6 +62,7 @@ public class IndicatorSeekBar extends View {
     private int mPaddingRight;
     private int mMeasuredWidth;
     private int mPaddingTop;
+    private int mType;
     private float mSeekLength;//the total length of seek bar
     private float mSeekBlockLength;//the length for each section part to seek
     private boolean mIsTouching;//user is touching the seek bar
@@ -179,6 +181,7 @@ public class IndicatorSeekBar extends View {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.IndicatorSeekBar);
         //seekBar
         mMax = ta.getFloat(R.styleable.IndicatorSeekBar_isb_max, builder.max);
+        mType = ta.getInt(R.styleable.IndicatorSeekBar_isb_type, 0);
         mMin = ta.getFloat(R.styleable.IndicatorSeekBar_isb_min, builder.min);
         mProgress = ta.getFloat(R.styleable.IndicatorSeekBar_isb_progress, builder.progress);
         mIsFloatProgress = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_progress_value_float, builder.progressValueFloat);
@@ -243,7 +246,11 @@ public class IndicatorSeekBar extends View {
             mThumbTouchRadius = mThumbRadius * 1.2f;
         } else {
             mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
-            mThumbTouchRadius = mThumbRadius;
+            if (mType==1){
+                mThumbTouchRadius = mThumbRadius*4f;
+            }else {
+                mThumbTouchRadius = mThumbRadius*2f;
+            }
         }
         if (mTickMarksDrawable == null) {
             mTickRadius = mTickMarksSize / 2.0f;

@@ -245,12 +245,9 @@
                     android:id="@+id/seek_bar1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    app:isb_ticks_count="2"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="26dp"
                     android:layout_marginLeft="16dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="26dp"
                     app:isb_max="100"
                     app:isb_min="0"
                     app:isb_show_indicator="none"
@@ -260,6 +257,8 @@
                     app:isb_thumb_drawable="@mipmap/seek_bar_icon"
                     app:isb_thumb_text_color="@color/blue"
                     app:isb_tick_texts_color="@color/gray"
+                    app:isb_ticks_count="2"
+                    app:isb_type="0"
                     app:isb_track_background_size="10dp"
                     app:isb_track_progress_color="@color/blue"
                     app:isb_track_progress_size="6dp"
@@ -276,140 +275,149 @@
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/ll_layout"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"
-                    app:flexDirection="row"
-                    app:flexWrap="wrap">
+                    android:layout_height="wrap_content">
 
-
-                    <LinearLayout
-                        android:id="@+id/ll_jiao_cha"
-                        android:layout_width="wrap_content"
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/ll_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:alignContent="stretch"
+                        app:alignItems="stretch"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap">
 
 
-                        <TextView
-                            android:id="@+id/tv_jiao_cha"
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/blue_rect_bg"
-                            android:gravity="center"
-                            android:text="较差"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_he_ge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
-
-
-                        <TextView
-                            android:id="@+id/tv_he_ge"
+                        <LinearLayout
+                            android:id="@+id/ll_jiao_cha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="合格"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_jiao_cha"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/blue_rect_bg"
+                                android:gravity="center"
+                                android:text="较差"
+                                android:textColor="#ffffff"
+                                android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_jiao_hao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
 
+                        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/tv_jiao_hao"
+                        <LinearLayout
+                            android:id="@+id/ll_he_ge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="较好"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_hen_hao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                        <TextView
-                            android:id="@+id/tv_hen_hao"
+                            <TextView
+                                android:id="@+id/tv_he_ge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="合格"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_jiao_hao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="很好"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_you_xiu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                        <TextView
-                            android:id="@+id/tv_you_xiu"
+                            <TextView
+                                android:id="@+id/tv_jiao_hao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="较好"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_hen_hao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="优秀"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </com.google.android.flexbox.FlexboxLayout>
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                <com.warkiz.widget.IndicatorSeekBar
-                    android:id="@+id/seek_bar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    app:isb_max="100"
-                    app:isb_min="0"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    app:isb_show_indicator="none"
-                    app:isb_thumb_color="@color/blue"
-                    app:isb_thumb_drawable="@mipmap/seek_bar_icon"
-                    app:isb_track_background_size="10dp"
-                    app:isb_track_progress_color="@color/blue"
-                    app:isb_track_progress_size="6dp"
-                    app:isb_track_rounded_corners="true"
-                    app:isb_user_seekable="true" />
+                            <TextView
+                                android:id="@+id/tv_hen_hao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="很好"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_you_xiu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
+
+
+                            <TextView
+                                android:id="@+id/tv_you_xiu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="优秀"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/seek_bar2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        app:isb_show_tick_marks_type="divider"
+                        app:isb_tick_marks_color="@color/white"
+                        app:isb_ticks_count="6"
+                        app:isb_max="100"
+                        app:isb_min="0"
+                        app:isb_show_indicator="none"
+                        app:isb_thumb_color="@color/blue"
+                        app:isb_thumb_drawable="@mipmap/arrows"
+                        app:isb_track_background_size="10dp"
+                        app:isb_track_progress_color="@color/blue"
+                        app:isb_track_progress_size="6dp"
+                        app:isb_track_rounded_corners="true"
+                        app:isb_type="1"
+                        app:isb_user_seekable="true" />
+                </RelativeLayout>
 
 
                 <TextView
@@ -421,165 +429,176 @@
                     android:textColor="@color/text_black1"
                     android:textSize="14sp" />
 
-                <com.google.android.flexbox.FlexboxLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
 
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"
-                    app:flexDirection="row"
-                    app:flexWrap="wrap">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="10%">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
 
+                        app:alignContent="stretch"
+                        app:alignItems="stretch"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_di"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="10%">
 
 
-                        <TextView
-                            android:id="@+id/tv_di"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/blue_rect_bg"
-                            android:gravity="center"
-                            android:text="低"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
 
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="10%">
-
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/ll_di"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_zhong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                        <TextView
-                            android:id="@+id/tv_zhong"
+                            <TextView
+                                android:id="@+id/tv_di"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/blue_rect_bg"
+                                android:gravity="center"
+                                android:text="低"
+                                android:textColor="#ffffff"
+                                android:textSize="12sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="中"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="10%">
 
 
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="10%">
-
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/ll_zhong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_gao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="20%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                        <TextView
-                            android:id="@+id/tv_gao"
+                            <TextView
+                                android:id="@+id/tv_zhong"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="中"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="高"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="10%">
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="10%">
 
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_gao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="20%">
 
 
-                </com.google.android.flexbox.FlexboxLayout>
+                            <TextView
+                                android:id="@+id/tv_gao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="高"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_flexBasisPercent="10%">
 
 
-                <com.warkiz.widget.IndicatorSeekBar
-                    android:id="@+id/seek_bar3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    app:isb_max="100"
-                    app:isb_min="0"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    app:isb_show_indicator="none"
-                    app:isb_thumb_color="@color/blue"
-                    app:isb_thumb_drawable="@mipmap/seek_bar_icon"
-                    app:isb_track_background_size="10dp"
-                    app:isb_track_progress_color="@color/blue"
-                    app:isb_track_progress_size="6dp"
-                    app:isb_track_rounded_corners="true"
-                    app:isb_user_seekable="true" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
 
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/seek_bar3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        app:isb_show_tick_marks_type="divider"
+                        app:isb_tick_marks_color="@color/white"
+                        app:isb_ticks_count="4"
+                        app:isb_max="100"
+                        app:isb_min="0"
+                        app:isb_show_indicator="none"
+                        app:isb_thumb_color="@color/blue"
+                        app:isb_thumb_drawable="@mipmap/arrows"
+                        app:isb_track_background_size="10dp"
+                        app:isb_track_progress_color="@color/blue"
+                        app:isb_track_progress_size="6dp"
+                        app:isb_track_rounded_corners="true"
+                        app:isb_type="1"
+                        app:isb_user_seekable="true" />
+                </RelativeLayout>
 
             </LinearLayout>
         </LinearLayout>

@@ -82,14 +82,10 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
-
         <activity
             android:name=".mvp.reception.ReceptionActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.huifang.student.tianxieresult.TianXieHuiFangResultActivity"
             android:screenOrientation="portrait" />
@@ -203,7 +199,6 @@
         <activity
             android:name=".mvp.vipermanage.viper.potential.AddPotentialActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mvp.main.mine.editpassword.EditPasswordActivity"
             android:screenOrientation="portrait" />
@@ -250,8 +245,6 @@
             android:name=".mvp.course.preparelessons.createlession.CreatePrivateLessionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
         <activity
             android:name=".mvp.course.preparelessons.all.PrepareAllLessonActivity"
             android:screenOrientation="portrait"
@@ -403,7 +396,6 @@
             android:authorities="${applicationId}.DownloadProvider"
             android:exported="true" />
 
-
         <activity
             android:name=".mvp.main.mine.aboutus.AboutUsActivity"
             android:screenOrientation="portrait"
@@ -428,8 +420,6 @@
             android:name=".mvp.contract.ContractActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
         <activity
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
@@ -467,9 +457,7 @@
         <activity
             android:name=".mvp.course.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
             android:screenOrientation="portrait"

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/white_bg"
         android:orientation="vertical">
 
@@ -20,7 +21,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="18dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <ImageView
                 android:id="@+id/iv_header"
@@ -51,7 +52,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="@color/gray" />
 
         <LinearLayout
@@ -60,7 +61,7 @@
             android:orientation="vertical"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <RelativeLayout
                 android:id="@+id/rel_expand"
@@ -86,30 +87,38 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            >
+
+           
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
+                android:id="@+id/tv1"
                 android:text="私教课程:"
                 android:textColor="#999999"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_private_lesson"
-                android:layout_width="140dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv1"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:ellipsize="end"
                 android:gravity="center_vertical|right"
                 android:textColor="#333333"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="静安嘉啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
+                />
 
         </RelativeLayout>
 
@@ -119,7 +128,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -147,7 +156,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -175,7 +184,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -203,7 +212,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -231,7 +240,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -257,10 +266,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="15dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"

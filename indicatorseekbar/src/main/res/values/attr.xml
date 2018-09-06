@@ -3,6 +3,7 @@
     <declare-styleable name="IndicatorSeekBar">
         //seekBar
         <attr name="isb_max" format="float" /><!-- the max value of seekBar to seek, default 100-->
+        <attr name="isb_type" format="integer" /><!-- the max value of seekBar to seek, default 100-->
         <attr name="isb_min" format="float" /><!-- the min value of seekBar to seek, default 0 -->
         <attr name="isb_progress" format="float" /><!-- the current progress value of seekBar, default 0-->
         <attr name="isb_progress_value_float" format="boolean" /><!--set the value of seekBar to float type, default false-->

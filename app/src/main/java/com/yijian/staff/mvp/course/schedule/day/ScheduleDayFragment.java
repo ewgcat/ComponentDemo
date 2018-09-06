@@ -65,7 +65,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     @Override
     public void initView() {
         initLeftDate();
-        height = CommonUtil.dp2px(getContext(), 35);
+        height = CommonUtil.dp2px(getContext(), 50);
         size = 48;
         dayCourseView.setHeightAndSize(height, size);
         dayCourseView.setOnSelectFlagListener(new DayCourseView.OnSelectFlagListener() {

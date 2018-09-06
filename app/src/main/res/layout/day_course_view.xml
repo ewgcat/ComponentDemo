@@ -34,8 +34,8 @@
 
                 <ImageView
                     android:id="@+id/iv_header"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@mipmap/wt_boy" />
 
 
@@ -49,11 +49,12 @@
                     android:singleLine="true"
                     android:text="贞贞"
                     android:textColor="#333333"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <TextView
+                android:layout_marginTop="4dp"
                 android:id="@+id/tv_course_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

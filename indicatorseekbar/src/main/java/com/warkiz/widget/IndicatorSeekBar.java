@@ -43,6 +43,7 @@ import java.math.BigDecimal;
 
 public class IndicatorSeekBar extends View {
     private static final int THUMB_MAX_WIDTH = 30;
+    private static final int THUMB_MAX_HEIGHT = 180;
     private static final String FORMAT_PROGRESS = "${PROGRESS}";
     private static final String FORMAT_TICK_TEXT = "${TICK_TEXT}";
     private Context mContext;
@@ -61,6 +62,7 @@ public class IndicatorSeekBar extends View {
     private int mPaddingRight;
     private int mMeasuredWidth;
     private int mPaddingTop;
+    private int mType;
     private float mSeekLength;//the total length of seek bar
     private float mSeekBlockLength;//the length for each section part to seek
     private boolean mIsTouching;//user is touching the seek bar
@@ -179,6 +181,7 @@ public class IndicatorSeekBar extends View {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.IndicatorSeekBar);
         //seekBar
         mMax = ta.getFloat(R.styleable.IndicatorSeekBar_isb_max, builder.max);
+        mType = ta.getInt(R.styleable.IndicatorSeekBar_isb_type, 0);
         mMin = ta.getFloat(R.styleable.IndicatorSeekBar_isb_min, builder.min);
         mProgress = ta.getFloat(R.styleable.IndicatorSeekBar_isb_progress, builder.progress);
         mIsFloatProgress = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_progress_value_float, builder.progressValueFloat);
@@ -243,7 +246,11 @@ public class IndicatorSeekBar extends View {
             mThumbTouchRadius = mThumbRadius * 1.2f;
         } else {
             mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
-            mThumbTouchRadius = mThumbRadius;
+            if (mType == 1) {
+                mThumbTouchRadius = mThumbRadius * 4f;
+            } else {
+                mThumbTouchRadius = mThumbRadius * 2f;
+            }
         }
         if (mTickMarksDrawable == null) {
             mTickRadius = mTickMarksSize / 2.0f;
@@ -452,50 +459,35 @@ public class IndicatorSeekBar extends View {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         drawTrack(canvas);
-        drawTickMarks(canvas);
         drawTickTexts(canvas);
         drawThumb(canvas);
         drawThumbText(canvas);
     }
 
     private void drawTrack(Canvas canvas) {
-        if (mCustomTrackSectionColorResult) {//the track has custom the section track color
-            int sectionSize = mTicksCount - 1 > 0 ? mTicksCount - 1 : 1;
-            for (int i = 0; i < sectionSize; i++) {
-                if (mR2L) {
-                    mStockPaint.setColor(mSectionTrackColorArray[sectionSize - i - 1]);
-                } else {
-                    mStockPaint.setColor(mSectionTrackColorArray[i]);
-                }
-                float thumbPosFloat = getThumbPosOnTickFloat();
-                if (i < thumbPosFloat && thumbPosFloat < (i + 1)) {
-                    //the section track include the thumb,
-                    // set the ProgressTrackSize for thumb's left side track ,
-                    // BGTrackSize for the right's.
-                    float thumbCenterX = getThumbCenterX();
-                    mStockPaint.setStrokeWidth(getLeftSideTrackSize());
-                    canvas.drawLine(mTickMarksX[i], mProgressTrack.top, thumbCenterX, mProgressTrack.bottom, mStockPaint);
-                    mStockPaint.setStrokeWidth(getRightSideTrackSize());
-                    canvas.drawLine(thumbCenterX, mProgressTrack.top, mTickMarksX[i + 1], mProgressTrack.bottom, mStockPaint);
-                } else {
-                    if (i < thumbPosFloat) {
-                        mStockPaint.setStrokeWidth(getLeftSideTrackSize());
-                    } else {
-                        mStockPaint.setStrokeWidth(getRightSideTrackSize());
-                    }
-                    canvas.drawLine(mTickMarksX[i], mProgressTrack.top, mTickMarksX[i + 1], mProgressTrack.bottom, mStockPaint);
-                }
-            }
-        } else {
+        //draw BG track
+
+        if (mShowTickMarksType == TickMarkType.DIVIDER) {
+            mStockPaint.setColor(mBackgroundTrackColor);
+            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
+            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+            //draw progress track
+            mStockPaint.setStrokeWidth(mProgressTrackSize);
+            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
+            drawTickMarks(canvas);
+            //draw progress track
+        }else {
+            mStockPaint.setColor(mBackgroundTrackColor);
+            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
+            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+            drawTickMarks(canvas);
             //draw progress track
             mStockPaint.setColor(mProgressTrackColor);
             mStockPaint.setStrokeWidth(mProgressTrackSize);
             canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
-            //draw BG track
-            mStockPaint.setColor(mBackgroundTrackColor);
-            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
-            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+
         }
+
     }
 
     private void drawTickMarks(Canvas canvas) {
@@ -510,10 +502,9 @@ public class IndicatorSeekBar extends View {
                     continue;
                 }
             }
-            if (mTickMarksEndsHide) {
-                if (i == 0 || i == mTickMarksX.length - 1) {
-                    continue;
-                }
+
+            if (i == 0 || i == mTickMarksX.length - 1) {
+                continue;
             }
             if (i == getThumbPosOnTick() && mTicksCount > 2 && !mSeekSmoothly) {
                 continue;
@@ -523,24 +514,10 @@ public class IndicatorSeekBar extends View {
             } else {
                 mStockPaint.setColor(getRightSideTickColor());
             }
-            if (mTickMarksDrawable != null) {
-                if (mSelectTickMarksBitmap == null || mUnselectTickMarksBitmap == null) {
-                    initTickMarksBitmap();
-                }
-                if (mSelectTickMarksBitmap == null || mUnselectTickMarksBitmap == null) {
-                    //please check your selector drawable's format and correct.
-                    throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
-                }
-                if (i <= thumbPosFloat) {
-                    canvas.drawBitmap(mSelectTickMarksBitmap, mTickMarksX[i] - mUnselectTickMarksBitmap.getWidth() / 2.0f, mProgressTrack.top - mUnselectTickMarksBitmap.getHeight() / 2.0f, mStockPaint);
-                } else {
-                    canvas.drawBitmap(mUnselectTickMarksBitmap, mTickMarksX[i] - mUnselectTickMarksBitmap.getWidth() / 2.0f, mProgressTrack.top - mUnselectTickMarksBitmap.getHeight() / 2.0f, mStockPaint);
-                }
-                continue;
-            }
-            if (mShowTickMarksType == TickMarkType.OVAL) {
-                canvas.drawCircle(mTickMarksX[i], mProgressTrack.top, mTickRadius, mStockPaint);
-            } else if (mShowTickMarksType == TickMarkType.DIVIDER) {
+
+        }
+        if (mShowTickMarksType == TickMarkType.DIVIDER) {
+            for (int i = 1; i < mTicksCount - 1; i++) {
                 int rectWidth = SizeUtils.dp2px(mContext, 1);
                 float dividerTickHeight;
                 if (thumbCenterX >= mTickMarksX[i]) {
@@ -548,9 +525,8 @@ public class IndicatorSeekBar extends View {
                 } else {
                     dividerTickHeight = getRightSideTrackSize();
                 }
-                canvas.drawRect(mTickMarksX[i] - rectWidth, mProgressTrack.top - dividerTickHeight / 2.0f, mTickMarksX[i] + rectWidth, mProgressTrack.top + dividerTickHeight / 2.0f, mStockPaint);
-            } else if (mShowTickMarksType == TickMarkType.SQUARE) {
-                canvas.drawRect(mTickMarksX[i] - mTickMarksSize / 2.0f, mProgressTrack.top - mTickMarksSize / 2.0f, mTickMarksX[i] + mTickMarksSize / 2.0f, mProgressTrack.top + mTickMarksSize / 2.0f, mStockPaint);
+                canvas.drawRect(mSeekBlockLength * i + mPaddingLeft - rectWidth, mProgressTrack.top - dividerTickHeight / 2.0f, mSeekBlockLength * i + mPaddingLeft + rectWidth, mProgressTrack.top + dividerTickHeight / 2.0f, mStockPaint);
+
             }
         }
     }
@@ -1264,12 +1240,6 @@ public class IndicatorSeekBar extends View {
 
     private float calculateTouchX(float touchX) {
         float touchXTemp = touchX;
-        //make sure the seek bar to seek smoothly always
-        // while the tick's count is less than 3(tick's count is 1 or 2.).
-        if (mTicksCount > 2 && !mSeekSmoothly) {
-            int touchBlockSize = Math.round((touchX - mPaddingLeft) / mSeekBlockLength);
-            touchXTemp = mSeekBlockLength * touchBlockSize + mPaddingLeft;
-        }
         if (mR2L) {
             return mSeekLength - touchXTemp + 2 * mPaddingLeft;
         }
@@ -1405,7 +1375,7 @@ public class IndicatorSeekBar extends View {
         } else {
             progressString = String.valueOf(Math.round(progress));
         }
-        return progressString+"%";
+        return progressString + "%";
     }
 
     private int getClosestIndex() {

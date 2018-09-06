@@ -1,6 +1,9 @@
 package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,8 +28,8 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
     TextView tvXiaoFeiTotal;
     TextView tvFuwuHuiji;
     TextView tvFuwuJiaolian;
-    TextView tvSijiaoClass;
-    RelativeLayout rlSijiaoClass;
+    RecyclerView rv_sijiao_class;
+    LinearLayout rlSijiaoClass;
     TextView tvRecentFitNessTime;
     TextView deadLine;
 
@@ -42,7 +45,7 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
         tvXiaoFeiTotal = itemView.findViewById(R.id.tv_xiao_fei_total);
         tvFuwuHuiji = itemView.findViewById(R.id.tv_fuwu_huiji);
         tvFuwuJiaolian = itemView.findViewById(R.id.tv_fuwu_jiaolian);
-        tvSijiaoClass = itemView.findViewById(R.id.tv_sijiao_class);
+        rv_sijiao_class = itemView.findViewById(R.id.rv_sijiao_class);
         rlSijiaoClass = itemView.findViewById(R.id.rl_sijiao_class);
         tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
@@ -86,19 +89,24 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
         tvFuwuJiaolian.setText(judgeNull(customerServiceInfoBean.getServiceCoach()));
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
+
         if (privateCourses != null && privateCourses.size() > 0) {
             rlSijiaoClass.setVisibility(View.VISIBLE);
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < privateCourses.size(); i++) {
-                if (i< privateCourses.size()-1){
-                    String s = privateCourses.get(i) + "\n";
-                    sb.append(s);
-                }else {
-                    String s = privateCourses.get(i) ;
-                    sb.append(s);
-                }
-            }
-            tvSijiaoClass.setText(sb.toString());
+            StringListAdapter stringListAdapter = new StringListAdapter(privateCourses);
+
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(rv_sijiao_class.getContext());
+            rv_sijiao_class.setLayoutManager(layoutManager);
+            rv_sijiao_class.setAdapter(stringListAdapter);
+//            StringBuffer sb = new StringBuffer();
+//            for (int i = 0; i < privateCourses.size(); i++) {
+//                if (i< privateCourses.size()-1){
+//                    String s = privateCourses.get(i) + "\n";
+//                    sb.append(s);
+//                }else {
+//                    String s = privateCourses.get(i) ;
+//                    sb.append(s);
+//                }
+//            }
         } else {
             rlSijiaoClass.setVisibility(View.GONE);
         }

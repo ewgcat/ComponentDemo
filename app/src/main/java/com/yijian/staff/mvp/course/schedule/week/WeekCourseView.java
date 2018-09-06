@@ -155,7 +155,6 @@ public class WeekCourseView extends FrameLayout {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-
             super.onViewPositionChanged(changedView, left, top, dx, dy);
 
         }
@@ -237,7 +236,6 @@ public class WeekCourseView extends FrameLayout {
                 int minut = 0;
                 if (i / 2 < 10) {
                     startTime += "0" + i / 2;
-
                 } else {
                     startTime += i / 2;
                 }

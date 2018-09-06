@@ -217,6 +217,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                 intent2.putExtra("title", "家庭地址");
                 intent2.putExtra("area", detailBean.getHomeRegion());
                 intent2.putExtra("detail", detailBean.getNewestAddress());
+                intent2.putExtra("type", 1);
                 startActivityForResult(intent2, REQUEST_ADDRESS_HOME_CODE);
                 break;
         }

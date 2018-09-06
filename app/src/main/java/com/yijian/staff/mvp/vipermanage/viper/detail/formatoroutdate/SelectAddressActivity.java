@@ -139,18 +139,18 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 if (!TextUtils.isEmpty(homeRegion.getProvinceName())) {
                     hAddress.append(homeRegion.getProvinceName());
                     hAddress.append((char) 1);
-                    province = companyRegion.getProvinceName();
+                    province = homeRegion.getProvinceName();
                 }
 
                 if (!TextUtils.isEmpty(homeRegion.getCityName())) {
                     hAddress.append(homeRegion.getCityName());
                     hAddress.append((char) 1);
-                    city = companyRegion.getCityName();
+                    city = homeRegion.getCityName();
                 }
                 if (!TextUtils.isEmpty(homeRegion.getDistrictName())) {
                     hAddress.append(homeRegion.getDistrictName());
                     hAddress.append((char) 1);
-                    companyRegion.getDistrictName();
+                    homeRegion.getDistrictName();
                 }
 
             } else {

@@ -19,16 +19,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-          >
-
+            android:orientation="horizontal">
 
 
             <RelativeLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp">
 
                 <ImageView
                     android:id="@+id/iv_header"
@@ -49,8 +47,8 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
 
                 android:text="刘葛岩"
                 android:textColor="#333333"
@@ -73,8 +71,7 @@
             <ImageView
                 android:id="@+id/iv_status"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
-             />
+                android:layout_height="40dp" />
 
         </LinearLayout>
 
@@ -171,59 +168,72 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="健身爱好:"
+                android:text="健身爱好: "
                 android:textColor="#999999"
                 android:textSize="14sp" />
+
+
 
             <TextView
                 android:id="@+id/tv_jianshen_aihao"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:text="已请求群群群群1已请求群群群群1"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
+        </LinearLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="健身目的:"
+                android:text="健身目的: "
                 android:textColor="#999999"
                 android:textSize="14sp" />
 
+
+
             <TextView
                 android:id="@+id/tv_jianshen_mudi"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
                 android:textColor="#333333"
+                android:gravity="right"
+                android:text="已请求群群群群1已请求群群群群1"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="14sp" />
+        </LinearLayout>
 
-        </RelativeLayout>
 
 
         <RelativeLayout
@@ -302,11 +312,12 @@
             <TextView
                 android:id="@+id/tv_invitation_content"
                 android:layout_width="wrap_content"
-                android:layout_toRightOf="@id/tv"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/tv"
                 android:gravity="center_vertical|right"
                 android:textColor="#333333"
+
                 android:textSize="14sp" />
 
         </RelativeLayout>

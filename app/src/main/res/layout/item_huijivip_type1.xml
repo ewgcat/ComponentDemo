@@ -259,9 +259,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingTop="15dp">
+        android:paddingRight="22dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -287,39 +287,41 @@
         android:id="@+id/rl_sijiao_class"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:layout_marginTop="10dp"
         android:paddingLeft="22dp"
         android:paddingRight="22dp">
 
         <TextView
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:text="私教课程:"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_sijiao_class"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv1"
             android:ellipsize="end"
-            android:gravity="center_vertical|right"
+            android:gravity="right"
             android:textColor="@color/text_black1"
             android:textSize="14sp"
-            tools:text="静安嘉啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
-             />
+            tools:text="静安嘉啊啊啊啊啊啊啊啊啊啊啊啊啊啊" />
+
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:layout_marginTop="10dp"
+
         android:paddingLeft="22dp"
         android:paddingRight="22dp">
 

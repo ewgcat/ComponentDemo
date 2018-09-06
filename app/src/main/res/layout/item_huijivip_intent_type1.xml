@@ -337,27 +337,33 @@
         android:paddingRight="22dp"
         android:paddingTop="15dp">
 
+
+
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="私教课程: "
-            android:textColor="#333333"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv1"
+            android:text="私教课程:"
+            android:textColor="@color/text_black1"
             android:textSize="14sp" />
-
 
         <TextView
             android:id="@+id/tv_sijiao_class"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:ellipsize="end"
-            android:gravity="right"
-            android:singleLine="true"
-            android:textColor="#333333"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text_black1"
             android:textSize="14sp"
-            tools:text="已请求群群群群1已请求群群群群1" />
+            tools:text="静安嘉啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
+            />
+
     </LinearLayout>
 
 

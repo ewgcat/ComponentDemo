@@ -124,7 +124,7 @@ public class CardPriceActivity extends MvcBaseActivity implements HuiJiProductCo
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CardPriceActivity.this, CardPriceActivity.class);
+                Intent intent = new Intent(CardPriceActivity.this, SearchCardPriceActivity.class);
                 startActivityForResult(intent, 0);
             }
         });

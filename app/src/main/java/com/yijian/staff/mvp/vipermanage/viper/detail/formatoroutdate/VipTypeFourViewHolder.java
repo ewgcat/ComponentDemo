@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -132,12 +133,69 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
         tvZhiwu.setText(judgeNull(detailBean.getPosition()));
         tvCompanyName.setText(judgeNull(detailBean.getCompany()));
         tvCompanyPhone.setText(judgeNull(detailBean.getCompanyPhone()));
-        tvCompanyLocation.setText(judgeNull(detailBean.getCompanyAddress()));
         tvJinJiLianxiren.setText(judgeNull(detailBean.getUrgentContact()));
-        tvHomeLocation.setText(judgeNull(detailBean.getAddress()));
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
+
+        ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
+        String homeAddress = detailBean.getNewestAddress();
+        if (TextUtils.isEmpty(homeAddress) && homeRegion == null) {
+            tvHomeLocation.setText("暂未录入");
+        } else {
+            StringBuffer hAddress = new StringBuffer();
+            if (homeRegion != null) {
+
+                if (!TextUtils.isEmpty(homeRegion.getProvinceName())) {
+                    hAddress.append(homeRegion.getProvinceName());
+                    hAddress.append((char) 1);
+                }
+
+                if (!TextUtils.isEmpty(homeRegion.getCityName())) {
+                    hAddress.append(homeRegion.getCityName());
+                    hAddress.append((char) 1);
+                }
+                if (!TextUtils.isEmpty(homeRegion.getDistrictName())) {
+                    hAddress.append(homeRegion.getDistrictName());
+                    hAddress.append((char) 1);
+                }
+
+            }
+            if (!TextUtils.isEmpty(homeAddress)) {
+                hAddress.append((char) 1);
+                hAddress.append(homeAddress);
+            }
+            tvHomeLocation.setText(hAddress.toString());
+        }
+
+        ViperDetailBean.DetailBean.CompanyRegion comRegion = detailBean.getCompanyRegion();
+        String comAddress = detailBean.getNewestCompanyAddress();
+        if (TextUtils.isEmpty(comAddress) && comRegion == null) {
+            tvCompanyLocation.setText("暂未录入");
+        } else {
+            StringBuffer cAddress = new StringBuffer();
+            if (comRegion != null) {
+                if (!TextUtils.isEmpty(comRegion.getProvinceName())) {
+                    cAddress.append(comRegion.getProvinceName());
+                    cAddress.append((char) 1);
+                }
+
+                if (!TextUtils.isEmpty(comRegion.getCityName())) {
+                    cAddress.append(comRegion.getCityName());
+                    cAddress.append((char) 1);
+                }
+                if (!TextUtils.isEmpty(comRegion.getDistrictName())) {
+                    cAddress.append(comRegion.getDistrictName());
+                    cAddress.append((char) 1);
+                }
+            }
+            if (!TextUtils.isEmpty(comAddress)) {
+                cAddress.append((char) 1);
+                cAddress.append(comAddress);
+            }
+            tvCompanyLocation.setText(cAddress.toString());
+        }
+
         boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);

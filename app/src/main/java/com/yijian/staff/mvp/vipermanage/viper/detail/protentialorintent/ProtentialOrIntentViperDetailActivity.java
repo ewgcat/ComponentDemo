@@ -36,7 +36,7 @@ import java.util.HashMap;
 
 public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ProtentialOrIntentViperDetailAdapter.AdapterInterface {
     private static final String TAG = "ProtentialOrIntentViperDetailActivity";
-    private LinearLayout llHead, ll_invite,ll_invite_history;
+    private LinearLayout llHead, ll_invite,ll_bottom,ll_invite_history;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
     private ImageView ivItem0;
@@ -84,24 +84,29 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
             boolean editEnable = viperDetailBean.isEditEnable();
             if (editEnable) {
                 if (b == null) {
+                    ll_bottom.setVisibility(View.GONE);
                     ll_invite.setVisibility(View.GONE);
                     ll_invite_history.setVisibility(View.GONE);
                 } else {
                     if (b) {
                         if (subclassName.equals("CustomerInfoVO")) { //正式会员
                             memberType = "正式会员";
+                            ll_bottom.setVisibility(View.GONE);
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("PotentialVO")) {//潜在会员
                             memberType = "潜在会员";
                             ll_invite.setVisibility(View.VISIBLE);
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                             memberType = "意向会员";
                             ll_invite.setVisibility(View.VISIBLE);
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                             memberType = "过期会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         }
@@ -110,23 +115,28 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
                             memberType = "正式会员";
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.GONE);
+                            ll_bottom.setVisibility(View.GONE);
                         } else if (subclassName.equals("PotentialVO")) {//潜在会员
                             memberType = "潜在会员";
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.VISIBLE);
+                            ll_bottom.setVisibility(View.VISIBLE);
                         } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                             memberType = "意向会员";
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.VISIBLE);
+                            ll_bottom.setVisibility(View.VISIBLE);
                         } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                             memberType = "过期会员";
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.VISIBLE);
+                            ll_bottom.setVisibility(View.VISIBLE);
                         }
                     }
                 }
             } else {
                 ll_invite.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.GONE);
                 ll_invite_history.setVisibility(View.GONE);
             }
 
@@ -171,6 +181,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
 
         llHead = findViewById(R.id.ll_head);
         ll_invite = findViewById(R.id.ll_invite);
+        ll_bottom = findViewById(R.id.ll_bottom);
         ll_invite_history = findViewById(R.id.ll_invite_history);
 
         rlItem0 = findViewById(R.id.rl_item0);

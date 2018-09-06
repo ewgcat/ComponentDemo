@@ -10,15 +10,55 @@
         android:id="@+id/navigation_bar2"
         layout="@layout/view_navigation_bar2" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navigation_bar2"
-        android:layout_marginBottom="50dp"
-        android:paddingTop="16dp">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:id="@+id/ll_invite"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/member_invite"
+                android:text="邀约"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_invite_history"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看邀约"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_head"
@@ -100,56 +140,20 @@
                 android:textSize="@dimen/text_size_12" />
         </RelativeLayout>
     </LinearLayout>
-
-
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/gray" />
-
-        <LinearLayout
-            android:id="@+id/ll_invite"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/member_invite"
-                android:text="邀约"
-                android:textColor="#333333"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_invite_history"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="查看邀约"
-                android:textColor="#333333"
-                android:textSize="16sp" />
-        </LinearLayout>
+        android:layout_above="@id/ll_bottom"
+        android:layout_below="@id/ll_head"
+        android:paddingTop="16dp"/>
 
 
-    </LinearLayout>
+
+
+
+
+
 
 
 </RelativeLayout>

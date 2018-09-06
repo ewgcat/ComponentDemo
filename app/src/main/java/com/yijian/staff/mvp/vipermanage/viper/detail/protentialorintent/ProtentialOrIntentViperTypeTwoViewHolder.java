@@ -1,5 +1,7 @@
 package com.yijian.staff.mvp.vipermanage.viper.detail.protentialorintent;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
+import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.StringListAdapter;
 import com.yijian.staff.util.DateUtil;
 
 import java.util.List;
@@ -25,7 +28,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
     TextView tvXiaoFeiTotal;
     TextView tvFuwuHuiji;
     TextView tvFuwuJiaolian;
-    TextView tvSijiaoClass;
+    RecyclerView rv_sijiao_class;
     LinearLayout llSijiaoClass;
     TextView tvRecentFitNessTime;
     TextView deadLine;
@@ -42,7 +45,7 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
         tvXiaoFeiTotal = itemView.findViewById(R.id.tv_xiao_fei_total);
         tvFuwuHuiji = itemView.findViewById(R.id.tv_fuwu_huiji);
         tvFuwuJiaolian = itemView.findViewById(R.id.tv_fuwu_jiaolian);
-        tvSijiaoClass = itemView.findViewById(R.id.tv_sijiao_class);
+        rv_sijiao_class = itemView.findViewById(R.id.rv_sijiao_class);
         llSijiaoClass = itemView.findViewById(R.id.ll_sijiao_class);
         tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
@@ -86,21 +89,12 @@ class ProtentialOrIntentViperTypeTwoViewHolder extends BaseVipperViewHolder {
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
         if (privateCourses != null && privateCourses.size() > 0) {
             llSijiaoClass.setVisibility(View.VISIBLE);
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < privateCourses.size(); i++) {
-                if (i< privateCourses.size()-1){
-                    String s = privateCourses.get(i) + "\n";
-                    sb.append(s);
-                }else {
-                    String s = privateCourses.get(i) ;
-                    sb.append(s);
-                }
-            }
-            tvSijiaoClass.setText(sb.toString());
+            StringListAdapter stringListAdapter = new StringListAdapter(privateCourses);
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(rv_sijiao_class.getContext());
+            rv_sijiao_class.setLayoutManager(layoutManager);
+            rv_sijiao_class.setAdapter(stringListAdapter);
         } else {
             llSijiaoClass.setVisibility(View.GONE);
         }
-
-
     }
 }

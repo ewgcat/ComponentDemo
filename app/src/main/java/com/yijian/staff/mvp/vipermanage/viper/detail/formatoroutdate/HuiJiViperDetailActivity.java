@@ -37,7 +37,7 @@ import java.util.HashMap;
 public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.OnClickListener, ViperDetailAdapter.AdapterInterface {
 
     private static final String TAG = "HuiJiViperDetailActivity";
-    private LinearLayout llHead, ll_invite, ll_invite_history;
+    private LinearLayout llHead, ll_invite, ll_bottom,ll_invite_history;
     private RelativeLayout rlItem0;
     private RelativeLayout rlItem1;
     private RelativeLayout rlItem2;
@@ -78,30 +78,36 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
             boolean editEnable = viperDetailBean.isEditEnable();
             if (editEnable) {
                 if (b == null) {
+                    ll_bottom.setVisibility(View.GONE);
                     ll_invite.setVisibility(View.GONE);
                     ll_invite_history.setVisibility(View.GONE);
                 } else {
                     if (b) {
                         if (subclassName.equals("CustomerInfoVO")) { //正式会员
                             memberType = "正式会员";
+                            ll_bottom.setVisibility(View.GONE);
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("PotentialVO")) {//潜在会员
                             memberType = "潜在会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                             memberType = "意向会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                             memberType = "过期会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.VISIBLE);
                             ll_invite_history.setVisibility(View.GONE);
                         }
                     } else {
                         if (subclassName.equals("CustomerInfoVO")) { //正式会员
                             memberType = "正式会员";
+                            ll_bottom.setVisibility(View.GONE);
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.GONE);
                         } else if (subclassName.equals("PotentialVO")) {//潜在会员
@@ -110,10 +116,12 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
 
                         } else if (subclassName.equals("CustomerIntentionVO")) {//意向会员
                             memberType = "意向会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.VISIBLE);
                         } else if (subclassName.equals("CustomerExpireVO")) {//过期会员
                             memberType = "过期会员";
+                            ll_bottom.setVisibility(View.VISIBLE);
                             ll_invite.setVisibility(View.GONE);
                             ll_invite_history.setVisibility(View.VISIBLE);
                         }
@@ -121,6 +129,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
                 }
 
             } else {
+                ll_bottom.setVisibility(View.GONE);
                 ll_invite.setVisibility(View.GONE);
                 ll_invite_history.setVisibility(View.GONE);
             }
@@ -167,6 +176,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         navigation2.setBackClickListener(this);
         navigation2.getmTitleView().setVisibility(View.GONE);
         navigation2.getmTitleView().setAlpha(0.0f);
+        ll_bottom = findViewById(R.id.ll_bottom);
         ll_invite = findViewById(R.id.ll_invite);
         ll_invite_history = findViewById(R.id.ll_invite_history);
 

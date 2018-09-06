@@ -236,7 +236,6 @@ public class WeekCourseView extends FrameLayout {
                 int minut = 0;
                 if (i / 2 < 10) {
                     startTime += "0" + i / 2;
-
                 } else {
                     startTime += i / 2;
                 }

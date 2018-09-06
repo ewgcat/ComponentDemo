@@ -45,6 +45,7 @@ import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 
 public class ScheduleWeekFragment extends MvcBaseFragment {
 
+    private static final boolean REPLACE = false;//不交换 false 交换 true
     @BindView(R.id.content)
     RelativeLayout content;
     @BindView(R.id.week_layout)
@@ -102,9 +103,13 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         initData();
     }
 
+    private List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> repeatedCourses = new ArrayList<>();
+    private CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean orignCourse;
+
     public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean) {
 
-
+        repeatedCourses.clear();
+        orignCourse = null;
         List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
 
         if (courseBean != null) {
@@ -112,7 +117,6 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
             Boolean isSelf = false;
             int istartTime = Integer.parseInt(courseBean.getSTime().replace(":", ""));
             int iendTime = Integer.parseInt(courseBean.getETime().replace(":", ""));
-
 
             List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
             if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
@@ -131,15 +135,20 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
 
                                     if (istartTime <= isTime && iendTime >= ieTime) {
                                         hasCourse = true;
+                                        repeatedCourses.add(privateCoachCurriculumArrangementPlanVOSBean);
                                     } else if (istartTime < ieTime && iendTime >= ieTime) {
                                         hasCourse = true;
+                                        repeatedCourses.add(privateCoachCurriculumArrangementPlanVOSBean);
                                     } else if (istartTime >= isTime && iendTime < isTime) {
                                         hasCourse = true;
+                                        repeatedCourses.add(privateCoachCurriculumArrangementPlanVOSBean);
                                     } else if (istartTime < isTime & iendTime > ieTime) {
                                         hasCourse = true;
+                                        repeatedCourses.add(privateCoachCurriculumArrangementPlanVOSBean);
                                     }
                                 } else {
                                     isSelf = true;
+                                    orignCourse = privateCoachCurriculumArrangementPlanVOSBean;
                                 }
 
                             }
@@ -160,29 +169,110 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                     }
                 } else {
                     if (hasCourse) {
-                        if (courseStudentBeans != null) {
-                            showToast("该时间段已有课程安排！");
-                            weekCourseView.clearView();
-                            for (int i = 0; i < courseStudentBeans.size(); i++) {
-                                CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
-                                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                                int weekCode = courseStudentBean.getWeekCode();
-                                for (int j = 0; j < list.size(); j++) {
-                                    weekCourseView.addItem(list.get(j), weekCode);
+                        if (REPLACE) {
+                            if (courseStudentBeans != null) {
+                                showToast("该时间段已有课程安排！");
+                                weekCourseView.clearView();
+                                for (int i = 0; i < courseStudentBeans.size(); i++) {
+                                    CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
+                                    List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                                    int weekCode = courseStudentBean.getWeekCode();
+                                    for (int j = 0; j < list.size(); j++) {
+                                        weekCourseView.addItem(list.get(j), weekCode);
+                                    }
                                 }
+                            } else {
+
+                                //重复的课交换
+                                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = repeatedCourses.get(0);
+
+                                //目的地课拖到原来的课位置
+                                if (orignCourse != null) {
+                                    CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = privateCoachCurriculumArrangementPlanVOSBean.getPrivateCoachCourseVO();
+                                    CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = privateCoachCurriculumArrangementPlanVOSBean.getPrivateCourseMemberVO();
+
+                                    SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+                                    privateCoachCAPDTOsBean.setDataType(1);
+                                    privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
+                                    privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
+                                    privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+                                    privateCoachCAPDTOsBean.setCapId(privateCoachCurriculumArrangementPlanVOSBean.getId());
+
+                                    privateCoachCAPDTOsBean.setWeek(orignCourse.getWeek());
+                                    privateCoachCAPDTOsBean.setSTime(orignCourse.getSTime());
+                                    privateCoachCAPDTOsBean.setETime(orignCourse.getETime());
+                                    privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+                                }
+
+                                //原来的课位置拖到目的地课位置
+                                if (orignCourse != null) {
+                                    CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = orignCourse.getPrivateCoachCourseVO();
+                                    CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = orignCourse.getPrivateCourseMemberVO();
+                                    SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+                                    privateCoachCAPDTOsBean.setDataType(1);
+                                    privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
+                                    privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
+                                    privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+                                    privateCoachCAPDTOsBean.setCapId(orignCourse.getId());
+                                    privateCoachCAPDTOsBean.setWeek(privateCoachCurriculumArrangementPlanVOSBean.getWeek());
+                                    privateCoachCAPDTOsBean.setSTime(privateCoachCurriculumArrangementPlanVOSBean.getSTime());
+                                    privateCoachCAPDTOsBean.setETime(privateCoachCurriculumArrangementPlanVOSBean.getETime());
+                                    privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+                                }
+
+                                SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
+                                saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+                                showLoading();
+                                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+                                    public void onSuccess(JSONArray result) {
+                                        weekCourseView.clearView();
+                                        List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                                        if (courseStudentBeanList != null) {
+                                            DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+                                            for (int i = 0; i < courseStudentBeanList.size(); i++) {
+                                                CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
+                                                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                                                int weekCode = courseStudentBean.getWeekCode();
+                                                for (int j = 0; j < list.size(); j++) {
+                                                    weekCourseView.addItem(list.get(j), weekCode);
+                                                }
+                                            }
+                                        }
+                                        hideLoading();
+                                    }
+
+                                    @Override
+                                    public void onFail(String msg) {
+                                        hideLoading();
+                                        showToast(msg);
+                                        if (courseStudentBeans != null) {
+                                            weekCourseView.clearView();
+                                            for (int i = 0; i < courseStudentBeans.size(); i++) {
+                                                CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
+                                                List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
+                                                int weekCode = courseStudentBean.getWeekCode();
+                                                for (int j = 0; j < list.size(); j++) {
+                                                    weekCourseView.addItem(list.get(j), weekCode);
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
                             }
+
                         }
+
+
                     } else {
+                        //空白位置
                         CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
                         CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
-
                         SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
                         privateCoachCAPDTOsBean.setDataType(1);
                         privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
                         privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
                         privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
                         privateCoachCAPDTOsBean.setCapId(courseBean.getId());
-
                         privateCoachCAPDTOsBean.setWeek(courseBean.getWeek());
                         privateCoachCAPDTOsBean.setSTime(courseBean.getSTime());
                         privateCoachCAPDTOsBean.setETime(courseBean.getETime());
@@ -244,7 +334,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
             if (courseStudentBeanList != null) {
                 weekCourseView.clearView();
@@ -307,7 +397,6 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
 
                 if (courseStudentBeanList != null) {
                     DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
-
                     for (int i = 0; i < courseStudentBeanList.size(); i++) {
                         CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
                         List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();

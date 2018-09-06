@@ -380,22 +380,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         startActivityForResult(intent, 0);
     }
 
-//    private void callVisit(String mobile) {
-//        Map<String, String> map = new HashMap<>();
-//        map.put("memberId", viperDetailBean.getMemberId());
-//        map.put("dictItemKey", getIntent().getIntExtra("dictItemKey", 0) + "");
-//        HttpManager.getHasHeaderHasParam(HttpManager.HUIJI_HUIFANG_CALL_RECORD, map, new ResultJSONObjectObserver(getLifecycle()) {
-//            @Override
-//            public void onSuccess(JSONObject result) {
-//                CommonUtil.callPhone(HuiJiViperDetailActivity.this, mobile);
-//            }
-//
-//            @Override
-//            public void onFail(String msg) {
-//                Toast.makeText(HuiJiViperDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -418,7 +403,6 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
 
         if (n < firstItem) {
             layoutManager.scrollToPositionWithOffset(n, headHeight);
-
         } else if (n == firstItem || n <= lastItem) {
             View viewByPosition = layoutManager.findViewByPosition(n);
             recyclerView.scrollBy(0, viewByPosition.getTop() - (headHeight + DensityUtil.dip2px(this, 16)));

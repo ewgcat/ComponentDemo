@@ -65,7 +65,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
         holder.tv_birthday_type.setText(invitationRecordBean.getBirthdayTypeName());
         holder.tv_shenti_zhuangtai.setText(invitationRecordBean.getHealthStatusName());
         holder.tv_jianshen_aihao.setText(invitationRecordBean.getSportHobbyName());
-        holder.tv_jianshen_mudi.setText(invitationRecordBean.getExercisePartName());
+        holder.tv_jianshen_mudi.setText(invitationRecordBean.getFitnessGoalName());
         holder.tv_invitation_content.setText(invitationRecordBean.getContent());
         String visitTime = invitationRecordBean.getVisitTime();
         if (!TextUtils.isEmpty(visitTime)){

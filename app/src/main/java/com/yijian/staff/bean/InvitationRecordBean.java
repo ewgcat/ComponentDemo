@@ -33,8 +33,8 @@ public class InvitationRecordBean {
     private int birthdayType;
     private String birthdayTypeName;
     private String content;
-    private String exercisePart;
-    private String exercisePartName;
+    private String fitnessGoal;
+    private String fitnessGoalName;
     private String gender;
     private String headPath;
     private String healthStatus;
@@ -82,20 +82,20 @@ public class InvitationRecordBean {
         this.content = content;
     }
 
-    public String getExercisePart() {
-        return exercisePart;
+    public String getFitnessGoal() {
+        return fitnessGoal;
     }
 
-    public void setExercisePart(String exercisePart) {
-        this.exercisePart = exercisePart;
+    public void setFitnessGoal(String fitnessGoal) {
+        this.fitnessGoal = fitnessGoal;
     }
 
-    public String getExercisePartName() {
-        return exercisePartName;
+    public String getFitnessGoalName() {
+        return fitnessGoalName;
     }
 
-    public void setExercisePartName(String exercisePartName) {
-        this.exercisePartName = exercisePartName;
+    public void setFitnessGoalName(String fitnessGoalName) {
+        this.fitnessGoalName = fitnessGoalName;
     }
 
     public String getGender() {

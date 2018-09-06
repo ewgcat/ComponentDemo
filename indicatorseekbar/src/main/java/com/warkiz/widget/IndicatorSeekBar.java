@@ -466,14 +466,27 @@ public class IndicatorSeekBar extends View {
 
     private void drawTrack(Canvas canvas) {
         //draw BG track
-        mStockPaint.setColor(mBackgroundTrackColor);
-        mStockPaint.setStrokeWidth(mBackgroundTrackSize);
-        canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
-        drawTickMarks(canvas);
-        //draw progress track
-        mStockPaint.setColor(mProgressTrackColor);
-        mStockPaint.setStrokeWidth(mProgressTrackSize);
-        canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
+
+        if (mShowTickMarksType == TickMarkType.DIVIDER) {
+            mStockPaint.setColor(mBackgroundTrackColor);
+            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
+            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+            //draw progress track
+            mStockPaint.setStrokeWidth(mProgressTrackSize);
+            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
+            drawTickMarks(canvas);
+            //draw progress track
+        }else {
+            mStockPaint.setColor(mBackgroundTrackColor);
+            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
+            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+            drawTickMarks(canvas);
+            //draw progress track
+            mStockPaint.setColor(mProgressTrackColor);
+            mStockPaint.setStrokeWidth(mProgressTrackSize);
+            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
+
+        }
 
     }
 

@@ -17,6 +17,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.GetJsonDataUtil;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.JsonBean_Service;
@@ -45,7 +46,6 @@ public class SelectAddressActivity extends MvcBaseActivity {
     LinearLayout lin_container;
 
     String title;
-    String address;
     private OptionsPickerView pvNoLinkOptions;
     private ArrayList<JsonBean_Service> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
@@ -62,10 +62,9 @@ public class SelectAddressActivity extends MvcBaseActivity {
     String province;
     String city;
     String area;
-    String detail;
-    StringBuffer resultAddress = new StringBuffer(); //省市区详细地址数据
-    char split;
-    JSONObject addressIds = new JSONObject();
+    private int type; // 0 工作地址， 1  家庭地址
+    private ViperDetailBean.DetailBean.CompanyRegion companyRegion;
+    private ViperDetailBean.DetailBean.HomeRegion homeRegion;
 
     @Override
     protected int getLayoutID() {
@@ -76,7 +75,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         showLoading();
         title = getIntent().getStringExtra("title");
-        address = getIntent().getStringExtra("address");
+        type = getIntent().getIntExtra("type", 0);
         initTitle();
         initData();
     }
@@ -90,17 +89,15 @@ public class SelectAddressActivity extends MvcBaseActivity {
         navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detail = et_detail.getText().toString();
-                resultAddress.append(province);
-                resultAddress.append((char) 1);
-                resultAddress.append(city);
-                resultAddress.append((char) 1);
-                resultAddress.append(area);
-                resultAddress.append((char) 1);
-                resultAddress.append(detail);
+                String detail = et_detail.getText().toString();
                 Intent intent = getIntent();
-                intent.putExtra("resultAddress", resultAddress.toString());
-                intent.putExtra("addressIds", addressIds.toString());
+                intent.putExtra("detail", detail);
+                intent.putExtra("allAddress", tv_address.getText().toString() + " " + detail);
+                if (type == 0) { // 0 工作地址
+                    intent.putExtra("area", companyRegion);
+                } else { // 家庭地址
+                    intent.putExtra("area", homeRegion);
+                }
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -108,36 +105,60 @@ public class SelectAddressActivity extends MvcBaseActivity {
     }
 
     private void initData() {
-        split = (char) 1;
-        fileName = getCacheDir() + "/service_province.json";
-        char split = (char) 1;
-        if (!TextUtils.isEmpty(address)) {
-            String[] addressArray = address.split(split + "");
-            int length = addressArray.length;
+        et_detail.setText(getIntent().getStringExtra("detail").toString());
+        if (type == 0) { // 工作地址
+            companyRegion = (ViperDetailBean.DetailBean.CompanyRegion) getIntent().getSerializableExtra("area");
+            StringBuffer cAddress = new StringBuffer();
+            if (companyRegion != null) {
+                if (!TextUtils.isEmpty(companyRegion.getProvinceName())) {
+                    cAddress.append(companyRegion.getProvinceName());
+                    cAddress.append((char) 1);
+                    province = companyRegion.getProvinceName();
+                }
 
-            if (length == 1) {
-                province = addressArray[0];
-                tv_address.setText(province);
-
-            } else if (length > 1) {
-                province = addressArray[0];
-                city = addressArray[1];
-                tv_address.setText(province + split + city);
-                if (length > 2) {
-                    province = addressArray[0];
-                    city = addressArray[1];
-                    area = addressArray[2];
-                    tv_address.setText(province + split + city + split + area);
-                    if (length > 3) {
-                        detail = addressArray[3];
-                        et_detail.setText(detail);
-                    }
+                if (!TextUtils.isEmpty(companyRegion.getCityName())) {
+                    cAddress.append(companyRegion.getCityName());
+                    cAddress.append((char) 1);
+                    city = companyRegion.getCityName();
+                }
+                if (!TextUtils.isEmpty(companyRegion.getDistrictName())) {
+                    cAddress.append(companyRegion.getDistrictName());
+                    cAddress.append((char) 1);
+                    area = companyRegion.getDistrictName();
 
                 }
+            } else {
+                companyRegion = new ViperDetailBean.DetailBean.CompanyRegion();
             }
+            tv_address.setText(TextUtils.isEmpty(cAddress) ? "暂未录入" : cAddress.toString());
+        } else { //家庭地址
+            homeRegion = (ViperDetailBean.DetailBean.HomeRegion) getIntent().getSerializableExtra("area");
+            StringBuffer hAddress = new StringBuffer();
+            if (homeRegion != null) {
 
+                if (!TextUtils.isEmpty(homeRegion.getProvinceName())) {
+                    hAddress.append(homeRegion.getProvinceName());
+                    hAddress.append((char) 1);
+                    province = companyRegion.getProvinceName();
+                }
 
+                if (!TextUtils.isEmpty(homeRegion.getCityName())) {
+                    hAddress.append(homeRegion.getCityName());
+                    hAddress.append((char) 1);
+                    city = companyRegion.getCityName();
+                }
+                if (!TextUtils.isEmpty(homeRegion.getDistrictName())) {
+                    hAddress.append(homeRegion.getDistrictName());
+                    hAddress.append((char) 1);
+                    companyRegion.getDistrictName();
+                }
+
+            } else {
+                homeRegion = new ViperDetailBean.DetailBean.HomeRegion();
+            }
+            tv_address.setText(TextUtils.isEmpty(hAddress) ? "暂未录入" : hAddress.toString());
         }
+        fileName = getCacheDir() + "/service_province.json";
         File addressFile = new File(fileName);
         if (!addressFile.exists()) {
             downloadService();
@@ -317,21 +338,30 @@ public class SelectAddressActivity extends MvcBaseActivity {
                 area = options3Items.get(options1).get(option2).get(options3);
                 StringBuffer address = new StringBuffer(province);
                 if (!province.equals(city)) {
-                    address.append(split);
+                    address.append((char) 1);
                     address.append(city);
                 }
-                address.append(split);
+                address.append((char) 1);
                 address.append(area);
                 tv_address.setText(address.toString());
-
-                try {
-                    addressIds.put("provinceId", options1Items.get(options1).getId());
-                    addressIds.put("cityId", options1Items.get(options1).getCitys().get(option2).getId());
-                    addressIds.put("districtId", options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId());
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                int provinceId = options1Items.get(options1).getId();
+                int cityId = options1Items.get(options1).getCitys().get(option2).getId();
+                int districtId = options1Items.get(options1).getCitys().get(option2).getDistricts().get(options3).getId();
+                if (type == 0) { // 0 工作地址
+                    companyRegion.setProvinceId(provinceId);
+                    companyRegion.setCityId(cityId);
+                    companyRegion.setDistrictId(districtId);
+                    companyRegion.setProvinceName(province);
+                    companyRegion.setCityName(province);
+                    companyRegion.setDistrictName(province);
+                } else { // 家庭地址
+                    homeRegion.setProvinceId(provinceId);
+                    homeRegion.setCityId(cityId);
+                    homeRegion.setDistrictId(districtId);
+                    homeRegion.setProvinceName(province);
+                    homeRegion.setCityName(province);
+                    homeRegion.setDistrictName(province);
                 }
-
             }
         })
                 .setSelectOptions(selectOption1, selectOption2, selectOption3)  //设置默认选中项

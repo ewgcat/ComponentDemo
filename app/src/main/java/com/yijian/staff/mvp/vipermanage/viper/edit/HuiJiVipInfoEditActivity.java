@@ -106,8 +106,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     List<String> weightList = new ArrayList<String>();  //职务
     final int REQUEST_ADDRESS_HOME_CODE = 100; //修改地址请求码
     final int REQUEST_ADDRESS_COMPANY_CODE = 101; //修改地址请求码
-    private JSONObject companyAddressIds;
-    private JSONObject homeAddressIds;
 
 
     @Override
@@ -206,7 +204,9 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
                 intent.putExtra("title", "工作地址");
-                intent.putExtra("address", detailBean.getCompanyAddress());
+                intent.putExtra("area", detailBean.getCompanyRegion());
+                intent.putExtra("detail", detailBean.getNewestCompanyAddress());
+                intent.putExtra("type", 0);
                 startActivityForResult(intent, REQUEST_ADDRESS_COMPANY_CODE);
 
                 break;
@@ -215,7 +215,8 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
                     homeAddressPop.showAsDropDown(getWindow().getDecorView());*/
                 Intent intent2 = new Intent(HuiJiVipInfoEditActivity.this, SelectAddressActivity.class);
                 intent2.putExtra("title", "家庭地址");
-                intent2.putExtra("address", detailBean.getAddress());
+                intent2.putExtra("area", detailBean.getHomeRegion());
+                intent2.putExtra("detail", detailBean.getNewestAddress());
                 startActivityForResult(intent2, REQUEST_ADDRESS_HOME_CODE);
                 break;
         }
@@ -255,10 +256,10 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
         String anObject1 = tv_marriageStatus.getText().toString();
         if (!TextUtils.isEmpty(anObject1)) {
-            editHuiJiVipBody.setMarriageStatus( ("未婚".equals(anObject1)) ? 0 : 1);
+            editHuiJiVipBody.setMarriageStatus(("未婚".equals(anObject1)) ? 0 : 1);
         }
 
-        editHuiJiVipBody.setMemberId( memberId);
+        editHuiJiVipBody.setMemberId(memberId);
 
 
         if (!TextUtils.isEmpty(tv_nation.getText().toString())) {
@@ -289,56 +290,26 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
             editHuiJiVipBody.setSource(tv_source.getText().toString());
         }
 
-        if (homeAddressIds!=null){
-            EditHuiJiVipBody.HomeAddressIdsBean homeAddressIdsBean = new EditHuiJiVipBody.HomeAddressIdsBean();
-            try {
-                homeAddressIdsBean.setProvinceId(homeAddressIds.getInt("provinceId"));
-                homeAddressIdsBean.setCityId(homeAddressIds.getInt("cityId"));
-                homeAddressIdsBean.setDistrictId(homeAddressIds.getInt("districtId"));
-                editHuiJiVipBody.setHomeAddressIds(homeAddressIdsBean);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        if (companyAddressIds!=null){
+        ViperDetailBean.DetailBean.CompanyRegion companyRegion = detailBean.getCompanyRegion();
+        if (companyRegion != null) {
             EditHuiJiVipBody.CompanyAddressIdsBean companyAddressIdsBean = new EditHuiJiVipBody.CompanyAddressIdsBean();
-            try {
-                companyAddressIdsBean.setProvinceId(companyAddressIds.getInt("provinceId"));
-                companyAddressIdsBean.setCityId(companyAddressIds.getInt("cityId"));
-                companyAddressIdsBean.setDistrictId(companyAddressIds.getInt("districtId"));
-                editHuiJiVipBody.setCompanyAddressIds(companyAddressIdsBean);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            companyAddressIdsBean.setProvinceId(companyRegion.getProvinceId());
+            companyAddressIdsBean.setCityId(companyRegion.getCityId());
+            companyAddressIdsBean.setDistrictId(companyRegion.getDistrictId());
+            editHuiJiVipBody.setCompanyAddressIds(companyAddressIdsBean);
         }
 
-
-
-        String s = tv_workdress.getText().toString();
-        if (!TextUtils.isEmpty(s)) {
-            char split = (char) 1;
-            String[] addressArray = s.split(split + "");
-            if (addressArray.length > 3) {
-                String companyAddress = addressArray[addressArray.length - 1];
-                editHuiJiVipBody.setCompanyAddress(companyAddress);
-            } else {
-                editHuiJiVipBody.setCompanyAddress(s);
-            }
+        ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
+        if (companyRegion != null) {
+            EditHuiJiVipBody.HomeAddressIdsBean homeAddressIdsBean = new EditHuiJiVipBody.HomeAddressIdsBean();
+            homeAddressIdsBean.setProvinceId(homeRegion.getProvinceId());
+            homeAddressIdsBean.setCityId(homeRegion.getCityId());
+            homeAddressIdsBean.setDistrictId(homeRegion.getDistrictId());
+            editHuiJiVipBody.setHomeAddressIds(homeAddressIdsBean);
         }
-        String s1 = tv_homeaddress.getText().toString();
-        if (!TextUtils.isEmpty(s)) {
-            char split = (char) 1;
-            String[] addressArray = s1.split(split + "");
-            if (addressArray.length > 3) {
-                String address = addressArray[addressArray.length - 1];
-                editHuiJiVipBody.setAddress(address);
-            } else {
-                editHuiJiVipBody.setAddress(s);
-            }
-        }
+
+        editHuiJiVipBody.setAddress(detailBean.getNewestAddress());
+        editHuiJiVipBody.setCompanyAddress(detailBean.getNewestCompanyAddress());
 
         if (!TextUtils.isEmpty(et_relationname.getText().toString())) {
             editHuiJiVipBody.setUrgentContact(et_relationname.getText().toString());
@@ -360,7 +331,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         }
 
 
-
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -378,7 +348,6 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
 
     }
-
 
 
     /**
@@ -417,10 +386,67 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_weight.setText(strEmpty(detailBean.getWeight()));
         tv_healthStatus.setText(strEmpty(detailBean.getHealthStatus()));
         tv_position.setText(strEmpty(detailBean.getPosition()));
-        tv_workdress.setText(strEmpty(detailBean.getCompanyAddress()));
-        tv_homeaddress.setText(strEmpty(detailBean.getAddress()));
         et_relationname.setText(strEmpty(detailBean.getUrgentContact()));
         et_relationmobile.setText(strEmpty(detailBean.getContactPhone()));
+
+
+        ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
+        String homeAddress = detailBean.getNewestAddress();
+        if (TextUtils.isEmpty(homeAddress) && homeRegion == null) {
+            tv_homeaddress.setText("暂未录入");
+        } else {
+            StringBuffer hAddress = new StringBuffer();
+            if (homeRegion != null) {
+
+                if (!TextUtils.isEmpty(homeRegion.getProvinceName())) {
+                    hAddress.append(homeRegion.getProvinceName());
+                    hAddress.append((char) 1);
+                }
+
+                if (!TextUtils.isEmpty(homeRegion.getCityName())) {
+                    hAddress.append(homeRegion.getCityName());
+                    hAddress.append((char) 1);
+                }
+                if (!TextUtils.isEmpty(homeRegion.getDistrictName())) {
+                    hAddress.append(homeRegion.getDistrictName());
+                    hAddress.append((char) 1);
+                }
+
+            }
+            if (!TextUtils.isEmpty(homeAddress)) {
+                hAddress.append((char) 1);
+                hAddress.append(homeAddress);
+            }
+            tv_homeaddress.setText(hAddress.toString());
+        }
+
+        ViperDetailBean.DetailBean.CompanyRegion comRegion = detailBean.getCompanyRegion();
+        String comAddress = detailBean.getNewestCompanyAddress();
+        if (TextUtils.isEmpty(comAddress) && comRegion == null) {
+            tv_workdress.setText("暂未录入");
+        } else {
+            StringBuffer cAddress = new StringBuffer();
+            if (comRegion != null) {
+                if (!TextUtils.isEmpty(comRegion.getProvinceName())) {
+                    cAddress.append(comRegion.getProvinceName());
+                    cAddress.append((char) 1);
+                }
+
+                if (!TextUtils.isEmpty(comRegion.getCityName())) {
+                    cAddress.append(comRegion.getCityName());
+                    cAddress.append((char) 1);
+                }
+                if (!TextUtils.isEmpty(comRegion.getDistrictName())) {
+                    cAddress.append(comRegion.getDistrictName());
+                    cAddress.append((char) 1);
+                }
+            }
+            if (!TextUtils.isEmpty(comAddress)) {
+                cAddress.append((char) 1);
+                cAddress.append(comAddress);
+            }
+            tv_workdress.setText(cAddress.toString());
+        }
 
         downSourceFromService();
     }
@@ -608,22 +634,19 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ADDRESS_COMPANY_CODE && resultCode == RESULT_OK) { //工作地址
-            try {
-                String resultAddress = data.getStringExtra("resultAddress");
-                tv_workdress.setText(resultAddress);
-
-                companyAddressIds = new JSONObject(data.getStringExtra("addressIds"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            String allAddress = data.getStringExtra("allAddress");
+            String detail = data.getStringExtra("detail");
+            tv_workdress.setText(allAddress);
+            ViperDetailBean.DetailBean.CompanyRegion companyRegion = (ViperDetailBean.DetailBean.CompanyRegion) data.getSerializableExtra("area");
+            detailBean.setCompanyRegion(companyRegion);
+            detailBean.setNewestCompanyAddress(detail);
         } else if (requestCode == REQUEST_ADDRESS_HOME_CODE && resultCode == RESULT_OK) { //家庭地址
-            try {
-                String resultAddress = data.getStringExtra("resultAddress");
-                tv_homeaddress.setText(resultAddress);
-                homeAddressIds = new JSONObject(data.getStringExtra("addressIds"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            String allAddress = data.getStringExtra("allAddress");
+            String detail = data.getStringExtra("detail");
+            ViperDetailBean.DetailBean.HomeRegion homeRegion = (ViperDetailBean.DetailBean.HomeRegion) data.getSerializableExtra("area");
+            detailBean.setHomeRegion(homeRegion);
+            detailBean.setNewestAddress(detail);
+            tv_homeaddress.setText(allAddress);
 
         }
     }

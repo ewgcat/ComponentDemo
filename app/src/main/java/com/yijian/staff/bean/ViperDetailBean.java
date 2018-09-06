@@ -467,33 +467,6 @@ public class ViperDetailBean implements Serializable {
     }
 
     public static class DetailBean implements Serializable {
-        /**
-         * wechatNo :
-         * email : aaaa@asdf.com
-         * height :
-         * weight :
-         * nationality :
-         * nativePlace :
-         * nation :
-         * healthStatus :
-         * fitnessHobby :
-         * fitnessGoal :
-         * hobby :
-         * onceJoinedClub : false
-         * clubBrand :
-         * yearIncome :
-         * carPrice :
-         * marriageStatus : 未婚
-         * childrenStatus : 无
-         * occupation :
-         * position :
-         * company :
-         * companyPhone :
-         * companyAddress :
-         * address :
-         * urgentContact : 4324
-         * contactPhone : 15965334376
-         */
 
         private String wechatNo;
         private String email;
@@ -520,6 +493,124 @@ public class ViperDetailBean implements Serializable {
         private String address;
         private String urgentContact;
         private String contactPhone;
+        private HomeRegion homeRegion;
+        private String newestAddress ;
+        private CompanyRegion companyRegion;
+        private String newestCompanyAddress ;
+
+        public static class HomeRegion implements Serializable {
+            private int provinceId;
+            private String provinceName;
+            private int cityId;
+            private String cityName;
+            private int districtId;
+            private String districtName;
+
+            public int getProvinceId() {
+                return provinceId;
+            }
+
+            public void setProvinceId(int provinceId) {
+                this.provinceId = provinceId;
+            }
+
+            public String getProvinceName() {
+                return provinceName;
+            }
+
+            public void setProvinceName(String provinceName) {
+                this.provinceName = provinceName;
+            }
+
+            public int getCityId() {
+                return cityId;
+            }
+
+            public void setCityId(int cityId) {
+                this.cityId = cityId;
+            }
+
+            public String getCityName() {
+                return cityName;
+            }
+
+            public void setCityName(String cityName) {
+                this.cityName = cityName;
+            }
+
+            public int getDistrictId() {
+                return districtId;
+            }
+
+            public void setDistrictId(int districtId) {
+                this.districtId = districtId;
+            }
+
+            public String getDistrictName() {
+                return districtName;
+            }
+
+            public void setDistrictName(String districtName) {
+                this.districtName = districtName;
+            }
+        }
+
+        public static class CompanyRegion implements Serializable {
+            private int provinceId;
+            private String provinceName;
+            private int cityId;
+            private String cityName;
+            private int districtId;
+            private String districtName;
+
+            public int getProvinceId() {
+                return provinceId;
+            }
+
+            public void setProvinceId(int provinceId) {
+                this.provinceId = provinceId;
+            }
+
+            public String getProvinceName() {
+                return provinceName;
+            }
+
+            public void setProvinceName(String provinceName) {
+                this.provinceName = provinceName;
+            }
+
+            public int getCityId() {
+                return cityId;
+            }
+
+            public void setCityId(int cityId) {
+                this.cityId = cityId;
+            }
+
+            public String getCityName() {
+                return cityName;
+            }
+
+            public void setCityName(String cityName) {
+                this.cityName = cityName;
+            }
+
+            public int getDistrictId() {
+                return districtId;
+            }
+
+            public void setDistrictId(int districtId) {
+                this.districtId = districtId;
+            }
+
+            public String getDistrictName() {
+                return districtName;
+            }
+
+            public void setDistrictName(String districtName) {
+                this.districtName = districtName;
+            }
+        }
 
         public String getWechatNo() {
             return wechatNo;
@@ -719,6 +810,44 @@ public class ViperDetailBean implements Serializable {
 
         public void setContactPhone(String contactPhone) {
             this.contactPhone = contactPhone;
+        }
+
+        public Boolean getOnceJoinedClub() {
+            return onceJoinedClub;
+        }
+
+
+
+        public String getNewestAddress() {
+            return newestAddress;
+        }
+
+        public void setNewestAddress(String newestAddress) {
+            this.newestAddress = newestAddress;
+        }
+
+        public HomeRegion getHomeRegion() {
+            return homeRegion;
+        }
+
+        public void setHomeRegion(HomeRegion homeRegion) {
+            this.homeRegion = homeRegion;
+        }
+
+        public CompanyRegion getCompanyRegion() {
+            return companyRegion;
+        }
+
+        public void setCompanyRegion(CompanyRegion companyRegion) {
+            this.companyRegion = companyRegion;
+        }
+
+        public String getNewestCompanyAddress() {
+            return newestCompanyAddress;
+        }
+
+        public void setNewestCompanyAddress(String newestCompanyAddress) {
+            this.newestCompanyAddress = newestCompanyAddress;
         }
     }
 

@@ -23,6 +23,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.util.VibratorUtil;
 import com.yijian.staff.widget.HorizontalWheelView;
 
 import org.json.JSONArray;
@@ -87,6 +88,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         dateSelectWheelView.setOnSelectListener(new HorizontalWheelView.OnSelectListener() {
             @Override
             public void onSelected(String text,int position) {
+                VibratorUtil.Vibrate(EditCourseTimeActivity.this,200);
                 weekday=position;
             }
         });

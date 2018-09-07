@@ -20,6 +20,7 @@ import com.yijian.staff.bean.CourseTimeBean;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
@@ -27,6 +28,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.VibratorUtil;
 import com.yijian.staff.widget.HorizontalWheelView;
 import com.yijian.staff.widget.NavigationBar2;
 
@@ -114,6 +116,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         dateSelectWheelView.setOnSelectListener(new HorizontalWheelView.OnSelectListener() {
             @Override
             public void onSelected(String text,int position) {
+                VibratorUtil.Vibrate(AddStudentCourseStepTwoActivity.this,200);
+
                 weekday=position;
             }
         });

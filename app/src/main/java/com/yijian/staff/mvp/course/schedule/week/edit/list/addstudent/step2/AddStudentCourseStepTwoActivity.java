@@ -119,6 +119,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 VibratorUtil.Vibrate(AddStudentCourseStepTwoActivity.this, 200);
 
                 weekday = position;
+                checkoutScheduleTime();
             }
         });
         init();
@@ -148,10 +149,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         newCourseListAdapter.setOnDelListener(new NewCourseListAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
-                CoursePlanBean coursePlanBean = coursePlanBeanList.get(pos);
                 coursePlanBeanList.remove(pos);
                 newCourseListAdapter.setDataList(coursePlanBeanList);
-
+//                newCourseListAdapter.getDataList().remove(pos);
+//                newCourseListAdapter.notifyItemRemoved(pos);//推荐用这个
+//                if (pos != (newCourseListAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的newCourseListAdapter.getDataList()不需要-1，因为上面已经-1了
+//                    newCourseListAdapter.notifyItemRangeChanged(pos, newCourseListAdapter.getDataList().size() - pos);
+//                }
             }
         });
         rv.setAdapter(newCourseListAdapter);

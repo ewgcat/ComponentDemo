@@ -151,10 +151,16 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             public void onSuccess(JSONObject result) {
                 JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBCappVOS");
                 List<AppointCourseBean.P2mToBCappVOSBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.P2mToBCappVOSBean.class);
-                for (int i = 0; i < list.size(); i++) {
-                    AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
-                    courseView.addItem(appointCourseBean);
+                if (list!=null&&list.size()>0){
+                    for (int i = 0; i < list.size(); i++) {
+                        AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
+                        courseView.addItem(appointCourseBean);
+                    }
+                }else {
+                    showToast(date+" 未生成约课表！");
                 }
+
+
                 hideLoading();
             }
 

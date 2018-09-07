@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.course.schedule.week.edit.list.edit;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +23,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.widget.HorizontalWheelView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EditCourseTimeActivity extends MvcBaseActivity {
@@ -47,54 +48,17 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     ImageView ivSex;
     @BindView(R.id.tv_course)
     TextView tvCourse;
-    @BindView(R.id.tv_seven)
-    TextView tvSeven;
-    @BindView(R.id.line7)
-    View line7;
-    @BindView(R.id.tv_one)
-    TextView tvOne;
-    @BindView(R.id.line1)
-    View line1;
-    @BindView(R.id.tv_two)
-    TextView tvTwo;
-    @BindView(R.id.line2)
-    View line2;
-    @BindView(R.id.tv_three)
-    TextView tvThree;
-    @BindView(R.id.line3)
-    View line3;
-    @BindView(R.id.tv_four)
-    TextView tvFour;
-    @BindView(R.id.line4)
-    View line4;
-    @BindView(R.id.tv_five)
-    TextView tvFive;
-    @BindView(R.id.line5)
-    View line5;
-    @BindView(R.id.tv_six)
-    TextView tvSix;
-    @BindView(R.id.line6)
-    View line6;
+
+
     @BindView(R.id.wheelview1)
     WheelView wheelView1;
     @BindView(R.id.wheelview2)
     WheelView wheelView2;
-    @BindView(R.id.ll_week_sunday)
-    LinearLayout llWeekSunday;
-    @BindView(R.id.ll_week_one)
-    LinearLayout llWeekOne;
-    @BindView(R.id.ll_week_two)
-    LinearLayout llWeekTwo;
-    @BindView(R.id.ll_week_three)
-    LinearLayout llWeekThree;
-    @BindView(R.id.ll_week_four)
-    LinearLayout llWeekFour;
-    @BindView(R.id.ll_week_five)
-    LinearLayout llWeekFive;
-    @BindView(R.id.ll_week_six)
-    LinearLayout llWeekSix;
+
     @BindView(R.id.ll_content)
     LinearLayout llContent;
+    @BindView(R.id.date_select_wheel_view)
+    HorizontalWheelView dateSelectWheelView;
     private int weekday = 0;
     private ArrayList<String> weekdays = new ArrayList<>();
     private String hours = "00";
@@ -119,7 +83,13 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         weekdays.add("周四");
         weekdays.add("周五");
         weekdays.add("周六");
-
+        dateSelectWheelView.setData(weekdays);
+        dateSelectWheelView.setOnSelectListener(new HorizontalWheelView.OnSelectListener() {
+            @Override
+            public void onSelected(String text,int position) {
+                weekday=position;
+            }
+        });
 
         courseStudentBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) getIntent().getSerializableExtra("PrivateCoachCurriculumArrangementPlanVOSBean");
         if (courseStudentBean != null) {
@@ -132,10 +102,10 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             tvCourse.setText(privateCoachCourseVO.getMemberCourseName() + "（" + privateCoachCourseVO.getConsumingMinute() + "分钟)");
             int week = courseStudentBean.getWeek();
             weekday = week;
+            dateSelectWheelView.setSelectedPosition(weekday);
             id = courseStudentBean.getId();
-            selectWeekDay(weekday);
             initSetTime();
-             consumingMinute = privateCoachCourseVO.getConsumingMinute();
+            consumingMinute = privateCoachCourseVO.getConsumingMinute();
         }
 
 
@@ -278,7 +248,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     }
 
     public void checkoutScheduleTime() {
-        boolean hasCourse=false;
+        boolean hasCourse = false;
 
         String startTime = hours + "" + minutes;
         int i1 = Integer.parseInt(minutes);
@@ -291,9 +261,9 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         int h2 = h1 + i4;
         String endTime = "";
         if (h2 < 10) {
-            endTime = "0" + h2 ;
+            endTime = "0" + h2;
         } else {
-            endTime+= h2 ;
+            endTime += h2;
         }
         if (i5 < 10) {
             endTime = endTime + "0" + i5;
@@ -304,31 +274,30 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         int iendTime = Integer.parseInt(endTime.replace(":", ""));
 
 
-
         List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
-        if (courseStudentBeans!=null&&courseStudentBeans.size()>0){
+        if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
             for (int i = 0; i < courseStudentBeans.size(); i++) {
                 CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
-                if (courseStudentBean.getWeekCode()==weekday){
+                if (courseStudentBean.getWeekCode() == weekday) {
                     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                    if(privateCoachCurriculumArrangementPlanVOS!=null&&privateCoachCurriculumArrangementPlanVOS.size()>0){
+                    if (privateCoachCurriculumArrangementPlanVOS != null && privateCoachCurriculumArrangementPlanVOS.size() > 0) {
                         for (int j = 0; j < privateCoachCurriculumArrangementPlanVOS.size(); j++) {
                             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(j);
 
-                            if (!privateCoachCurriculumArrangementPlanVOSBean.getId().equals(id)){
+                            if (!privateCoachCurriculumArrangementPlanVOSBean.getId().equals(id)) {
                                 String sTime = privateCoachCurriculumArrangementPlanVOSBean.getSTime();
                                 String eTime = privateCoachCurriculumArrangementPlanVOSBean.getETime();
                                 int isTime = Integer.parseInt(sTime.replace(":", ""));
                                 int ieTime = Integer.parseInt(eTime.replace(":", ""));
 
-                                if (istartTime<=isTime&&iendTime>=ieTime){
-                                    hasCourse=true;
-                                }else if (istartTime<ieTime&&iendTime>=ieTime){
-                                    hasCourse=true;
-                                }else if (istartTime>=isTime&&iendTime<isTime){
-                                    hasCourse=true;
-                                }else if (istartTime<isTime&iendTime>ieTime){
-                                    hasCourse=true;
+                                if (istartTime <= isTime && iendTime >= ieTime) {
+                                    hasCourse = true;
+                                } else if (istartTime < ieTime && iendTime >= ieTime) {
+                                    hasCourse = true;
+                                } else if (istartTime >= isTime && iendTime < isTime) {
+                                    hasCourse = true;
+                                } else if (istartTime < isTime & iendTime > ieTime) {
+                                    hasCourse = true;
                                 }
                             }
                         }
@@ -337,17 +306,17 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 }
             }
 
-            if (hasCourse){
+            if (hasCourse) {
                 tvCourseTimeStatus.setVisibility(View.VISIBLE);
                 tvCourseTimeStatus.setText("(选中时间段已有安排)");
-            }else {
+            } else {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("version", "1.3");
                 String value = hours + ":" + minutes;
-                Logger.i("TEST","value="+value);
+                Logger.i("TEST", "value=" + value);
                 map.put("schooltime", value);
                 map.put("week", weekday + "");
-                map.put("classHour", consumingMinute+"");
+                map.put("classHour", consumingMinute + "");
                 map.put("capId", id);
                 showLoading();
                 HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
@@ -370,11 +339,10 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         }
 
 
-
     }
 
 
-    @OnClick({R.id.left_tv, R.id.right_tv, R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
+    @OnClick({R.id.left_tv, R.id.right_tv})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
@@ -384,99 +352,10 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             case R.id.right_tv:
                 postSaveCourse();
                 break;
-            case R.id.ll_week_sunday:
-                selectWeekDay(0);
-                break;
-            case R.id.ll_week_one:
-                selectWeekDay(1);
-                break;
-            case R.id.ll_week_two:
-                selectWeekDay(2);
-                break;
-            case R.id.ll_week_three:
-                selectWeekDay(3);
-                break;
-            case R.id.ll_week_four:
-                selectWeekDay(4);
 
-                break;
-            case R.id.ll_week_five:
-                selectWeekDay(5);
-                break;
-            case R.id.ll_week_six:
-                selectWeekDay(6);
-                break;
         }
     }
 
-    public void selectWeekDay(int index) {
-        resetAllWeekDay();
-        weekday = index;
-        checkoutScheduleTime();
-        switch (index) {
-            case 0:
-                tvSeven.setTextSize(16);
-                tvSeven.setTextColor(Color.parseColor("#1997f8"));
-                line7.setVisibility(View.VISIBLE);
-                break;
-            case 1:
-                tvOne.setTextSize(16);
-
-                tvOne.setTextColor(Color.parseColor("#1997f8"));
-                line1.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                tvTwo.setTextSize(16);
-                tvTwo.setTextColor(Color.parseColor("#1997f8"));
-                line2.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                tvThree.setTextSize(16);
-                tvThree.setTextColor(Color.parseColor("#1997f8"));
-                line3.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                tvFour.setTextSize(16);
-                tvFour.setTextColor(Color.parseColor("#1997f8"));
-                line4.setVisibility(View.VISIBLE);
-                break;
-            case 5:
-                tvFive.setTextSize(16);
-                tvFive.setTextColor(Color.parseColor("#1997f8"));
-                line5.setVisibility(View.VISIBLE);
-                break;
-            case 6:
-                tvSix.setTextSize(16);
-                tvSix.setTextColor(Color.parseColor("#1997f8"));
-                line6.setVisibility(View.VISIBLE);
-                break;
-        }
-    }
-
-    public void resetAllWeekDay() {
-        tvSeven.setTextColor(Color.parseColor("#333333"));
-        tvOne.setTextColor(Color.parseColor("#333333"));
-        tvTwo.setTextColor(Color.parseColor("#333333"));
-        tvThree.setTextColor(Color.parseColor("#333333"));
-        tvFour.setTextColor(Color.parseColor("#333333"));
-        tvFive.setTextColor(Color.parseColor("#333333"));
-        tvSix.setTextColor(Color.parseColor("#333333"));
-
-        tvSeven.setTextSize(12);
-        tvOne.setTextSize(12);
-        tvTwo.setTextSize(12);
-        tvThree.setTextSize(12);
-        tvFour.setTextSize(12);
-        tvFive.setTextSize(12);
-        tvSix.setTextSize(12);
-        line1.setVisibility(View.INVISIBLE);
-        line2.setVisibility(View.INVISIBLE);
-        line3.setVisibility(View.INVISIBLE);
-        line4.setVisibility(View.INVISIBLE);
-        line5.setVisibility(View.INVISIBLE);
-        line6.setVisibility(View.INVISIBLE);
-        line7.setVisibility(View.INVISIBLE);
-    }
 
 
 }

@@ -163,222 +163,39 @@
                     android:textColor="#333333"
                     android:textSize="18sp" />
 
-                <com.google.android.flexbox.FlexboxLayout
+                <com.yijian.staff.widget.HorizontalWheelView
+                    android:id="@+id/date_select_wheel_view"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"
-                    app:flexDirection="row"
-                    app:flexWrap="wrap">
+                    app:HorizontalWheelViewSeesize="7"
+                    app:HorizontalWheelViewSelectedTextColor="#1997f8"
+                    app:HorizontalWheelViewSelectedTextSize="18"
+                    app:HorizontalWheelViewTextColor="#999999"
+                    app:HorizontalWheelViewTextSize="12" />
 
 
-                    <LinearLayout
-                        android:id="@+id/ll_week_sunday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tv_seven"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周日"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="13dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/blue" />
 
-                        <View
-                            android:id="@+id/line7"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_one"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_one"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周一"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line1"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_two"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_two"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周二"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line2"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_three"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_three"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周三"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line3"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_four"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_four"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周四"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line4"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_five"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_five"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周五"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line5"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_week_six"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_flexBasisPercent="14%">
-
-                        <TextView
-                            android:id="@+id/tv_six"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="周六"
-                            android:textColor="#999999"
-                            android:textSize="12sp" />
-
-                        <View
-                            android:id="@+id/line6"
-                            android:layout_width="1dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:background="@color/blue" />
-
-
-                    </LinearLayout>
-
-                </com.google.android.flexbox.FlexboxLayout>
+                    <View
+                        style="@style/SplitLineStyle"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp" />
+                </LinearLayout>
 
                 <View
                     style="@style/SplitLineStyle"

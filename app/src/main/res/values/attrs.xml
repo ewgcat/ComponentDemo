@@ -89,5 +89,18 @@
             <attr name="ios" format="boolean"/>
             <attr name="leftSwipe" format="boolean"/>
         </declare-styleable>
+    <declare-styleable name="HorizontalWheelView">
+        <!--可见数目-->
+        <attr name="HorizontalWheelViewSeesize" format="integer"></attr>
+        <!--被选择文字的大小和颜色-->
+        <attr name="HorizontalWheelViewSelectedTextSize" format="float"></attr>
+        <attr name="HorizontalWheelViewSelectedTextColor" format="color|reference"></attr>
+
+
+        <!--未被被选择文字的大小和颜色-->
+        <attr name="HorizontalWheelViewTextSize" format="float"></attr>
+        <attr name="HorizontalWheelViewTextColor" format="color|reference"></attr>
+
+    </declare-styleable>
 
 </resources>

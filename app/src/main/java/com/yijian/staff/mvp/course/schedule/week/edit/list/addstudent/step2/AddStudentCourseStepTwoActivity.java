@@ -27,6 +27,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.widget.HorizontalWheelView;
 import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
@@ -58,40 +59,16 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     TextView tvCourse;
     @BindView(R.id.tv_course_time_status)
     TextView tvCourseTimeStatus;
-    @BindView(R.id.tv_seven)
-    TextView tvSeven;
-    @BindView(R.id.line7)
-    View line7;
-    @BindView(R.id.tv_one)
-    TextView tvOne;
-    @BindView(R.id.line1)
-    View line1;
-    @BindView(R.id.tv_two)
-    TextView tvTwo;
-    @BindView(R.id.line2)
-    View line2;
-    @BindView(R.id.tv_three)
-    TextView tvThree;
-    @BindView(R.id.line3)
-    View line3;
-    @BindView(R.id.tv_four)
-    TextView tvFour;
-    @BindView(R.id.line4)
-    View line4;
-    @BindView(R.id.tv_five)
-    TextView tvFive;
-    @BindView(R.id.line5)
-    View line5;
-    @BindView(R.id.tv_six)
-    TextView tvSix;
-    @BindView(R.id.line6)
-    View line6;
+
     @BindView(R.id.wheelview1)
     WheelView wheelView1;
     @BindView(R.id.wheelview2)
     WheelView wheelView2;
     @BindView(R.id.rv)
     RecyclerView rv;
+    @BindView(R.id.date_select_wheel_view)
+    HorizontalWheelView dateSelectWheelView;
+
 
     private int weekday = 0;
     private ArrayList<String> weekdays = new ArrayList<>();
@@ -126,7 +103,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 postSaveCourse();
             }
         });
-        selectWeekDay(weekday);
         weekdays.add("周日");
         weekdays.add("周一");
         weekdays.add("周二");
@@ -134,6 +110,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         weekdays.add("周四");
         weekdays.add("周五");
         weekdays.add("周六");
+        dateSelectWheelView.setData(weekdays);
+        dateSelectWheelView.setOnSelectListener(new HorizontalWheelView.OnSelectListener() {
+            @Override
+            public void onSelected(String text,int position) {
+                weekday=position;
+            }
+        });
         init();
     }
 
@@ -149,6 +132,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         if (course != null) {
             consumingMinute = course.getConsumingMinute() ;
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
+            dateSelectWheelView.setSelectedPosition(weekday);
+
         }
         initSetTime();
 
@@ -199,31 +184,10 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.cancel, R.id.add_time, R.id.ll_week_sunday, R.id.ll_week_one, R.id.ll_week_two, R.id.ll_week_three, R.id.ll_week_four, R.id.ll_week_five, R.id.ll_week_six})
+    @OnClick({R.id.cancel, R.id.add_time})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
-            case R.id.ll_week_sunday:
-                selectWeekDay(0);
-                break;
-            case R.id.ll_week_one:
-                selectWeekDay(1);
-                break;
-            case R.id.ll_week_two:
-                selectWeekDay(2);
-                break;
-            case R.id.ll_week_three:
-                selectWeekDay(3);
-                break;
-            case R.id.ll_week_four:
-                selectWeekDay(4);
-                break;
-            case R.id.ll_week_five:
-                selectWeekDay(5);
-                break;
-            case R.id.ll_week_six:
-                selectWeekDay(6);
-                break;
             case R.id.cancel:
                 cancel();
                 break;
@@ -550,74 +514,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
 
 
-    }
-
-    public void selectWeekDay(int index) {
-        resetAllWeekDay();
-        weekday = index;
-        switch (index) {
-            case 0:
-                tvSeven.setTextSize(16);
-                tvSeven.setTextColor(Color.parseColor("#1997f8"));
-                line7.setVisibility(View.VISIBLE);
-                break;
-            case 1:
-                tvOne.setTextSize(16);
-
-                tvOne.setTextColor(Color.parseColor("#1997f8"));
-                line1.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                tvTwo.setTextSize(16);
-                tvTwo.setTextColor(Color.parseColor("#1997f8"));
-                line2.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                tvThree.setTextSize(16);
-                tvThree.setTextColor(Color.parseColor("#1997f8"));
-                line3.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                tvFour.setTextSize(16);
-                tvFour.setTextColor(Color.parseColor("#1997f8"));
-                line4.setVisibility(View.VISIBLE);
-                break;
-            case 5:
-                tvFive.setTextSize(16);
-                tvFive.setTextColor(Color.parseColor("#1997f8"));
-                line5.setVisibility(View.VISIBLE);
-                break;
-            case 6:
-                tvSix.setTextSize(16);
-                tvSix.setTextColor(Color.parseColor("#1997f8"));
-                line6.setVisibility(View.VISIBLE);
-                break;
-        }
-    }
-
-    public void resetAllWeekDay() {
-        tvSeven.setTextColor(Color.parseColor("#333333"));
-        tvOne.setTextColor(Color.parseColor("#333333"));
-        tvTwo.setTextColor(Color.parseColor("#333333"));
-        tvThree.setTextColor(Color.parseColor("#333333"));
-        tvFour.setTextColor(Color.parseColor("#333333"));
-        tvFive.setTextColor(Color.parseColor("#333333"));
-        tvSix.setTextColor(Color.parseColor("#333333"));
-
-        tvSeven.setTextSize(12);
-        tvOne.setTextSize(12);
-        tvTwo.setTextSize(12);
-        tvThree.setTextSize(12);
-        tvFour.setTextSize(12);
-        tvFive.setTextSize(12);
-        tvSix.setTextSize(12);
-        line1.setVisibility(View.INVISIBLE);
-        line2.setVisibility(View.INVISIBLE);
-        line3.setVisibility(View.INVISIBLE);
-        line4.setVisibility(View.INVISIBLE);
-        line5.setVisibility(View.INVISIBLE);
-        line6.setVisibility(View.INVISIBLE);
-        line7.setVisibility(View.INVISIBLE);
     }
 
 

@@ -90,6 +90,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             public void onSelected(String text,int position) {
                 VibratorUtil.Vibrate(EditCourseTimeActivity.this,200);
                 weekday=position;
+                checkoutScheduleTime();
             }
         });
 

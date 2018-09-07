@@ -61,6 +61,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
 
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
+    private int weekday;
 
     @Override
     protected int getLayoutID() {
@@ -71,8 +72,9 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         initNavigationBar();
-
         initComponent();
+        weekday = getIntent().getIntExtra("weekday",0);
+
         etSearch.setHintTextColor(Color.parseColor("#cccccc"));
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -106,6 +108,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
                     int selectedChildIndex = studentCourseListAdapter.getSelectedChildIndex();
                     course = selectGroupedStudentBean.getPrivateCoachCourseVOS().get(selectedChildIndex);
                     bundle.putSerializable("course", course);
+                    intent.putExtra("weekday",weekday);
                     intent.putExtras(bundle);
                     startActivityForResult(intent, 1234);
                 } else {

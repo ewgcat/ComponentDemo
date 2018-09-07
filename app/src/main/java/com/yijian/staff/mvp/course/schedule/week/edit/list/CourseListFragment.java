@@ -123,6 +123,7 @@ public class CourseListFragment extends MvcBaseFragment {
     public void onViewClicked() {
 
         Intent intent = new Intent(getContext(), AddStudentCourseStepOneActivity.class);
+        intent.putExtra("weekday",type);
         startActivity(intent);
     }
 

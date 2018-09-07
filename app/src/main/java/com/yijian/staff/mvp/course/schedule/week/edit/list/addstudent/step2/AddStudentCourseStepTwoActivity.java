@@ -117,11 +117,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             @Override
             public void onSelected(String text, int position) {
                 VibratorUtil.Vibrate(AddStudentCourseStepTwoActivity.this, 200);
-
                 weekday = position;
                 checkoutScheduleTime();
             }
         });
+        weekday = getIntent().getIntExtra("weekday",0);
+        dateSelectWheelView.setSelectedPosition(weekday);
+
         init();
     }
 
@@ -137,7 +139,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         if (course != null) {
             consumingMinute = course.getConsumingMinute();
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
-            dateSelectWheelView.setSelectedPosition(weekday);
 
         }
         initSetTime();

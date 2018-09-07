@@ -31,6 +31,7 @@ import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.VibratorUtil;
 import com.yijian.staff.widget.HorizontalWheelView;
 import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NoScrollRecycleView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -67,7 +68,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     @BindView(R.id.wheelview2)
     WheelView wheelView2;
     @BindView(R.id.rv)
-    RecyclerView rv;
+    NoScrollRecycleView rv;
     @BindView(R.id.date_select_wheel_view)
     HorizontalWheelView dateSelectWheelView;
 
@@ -81,8 +82,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     private GroupedStudentBean.PrivateCoachCourseVOSBean course;
 
     private List<CoursePlanBean> coursePlanBeanList = new ArrayList<>();
-    private List<CourseRecordBean> list = new ArrayList<>();
-    private CoursePlanTimeAdapter adapter;
+    private NewCourseListAdapter newCourseListAdapter;
 
 
     @Override
@@ -115,10 +115,10 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         dateSelectWheelView.setData(weekdays);
         dateSelectWheelView.setOnSelectListener(new HorizontalWheelView.OnSelectListener() {
             @Override
-            public void onSelected(String text,int position) {
-                VibratorUtil.Vibrate(AddStudentCourseStepTwoActivity.this,200);
+            public void onSelected(String text, int position) {
+                VibratorUtil.Vibrate(AddStudentCourseStepTwoActivity.this, 200);
 
-                weekday=position;
+                weekday = position;
             }
         });
         init();
@@ -129,23 +129,32 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         course = (GroupedStudentBean.PrivateCoachCourseVOSBean) getIntent().getSerializableExtra("course");
         if (selectGroupedStudentBean != null) {
             ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST + selectGroupedStudentBean.getHeadPath(), this, ivHeader);
-            int resId = selectGroupedStudentBean.getMemberSex() == 1? R.mipmap.lg_man : R.mipmap.lg_women;
+            int resId = selectGroupedStudentBean.getMemberSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(selectGroupedStudentBean.getMemberName());
         }
         if (course != null) {
-            consumingMinute = course.getConsumingMinute() ;
+            consumingMinute = course.getConsumingMinute();
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
             dateSelectWheelView.setSelectedPosition(weekday);
 
         }
         initSetTime();
 
-        adapter = new CoursePlanTimeAdapter(this, coursePlanBeanList);
-
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
-        rv.setAdapter(adapter);
+        newCourseListAdapter = new NewCourseListAdapter(this);
+        newCourseListAdapter.setDataList(coursePlanBeanList);
+        newCourseListAdapter.setOnDelListener(new NewCourseListAdapter.onSwipeListener() {
+            @Override
+            public void onDel(int pos) {
+                CoursePlanBean coursePlanBean = coursePlanBeanList.get(pos);
+                coursePlanBeanList.remove(pos);
+                newCourseListAdapter.setDataList(coursePlanBeanList);
+
+            }
+        });
+        rv.setAdapter(newCourseListAdapter);
 
     }
 
@@ -188,61 +197,17 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
 
-    @OnClick({R.id.cancel, R.id.add_time})
+    @OnClick({R.id.add_time})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
-            case R.id.cancel:
-                cancel();
-                break;
+
             case R.id.add_time:
                 addTime();
                 break;
         }
     }
 
-    private void cancel() {
-        if (list.size() > 0) {
-            int index1 = 0, index2 = 0;
-            CourseRecordBean courseRecordBean = list.get(list.size() - 1);
-            String weekDay = courseRecordBean.getWeekDay();
-            CourseTimeBean courseTimeBean = courseRecordBean.getCourseTimeBean();
-            for (int i = 0; i < coursePlanBeanList.size(); i++) {
-                CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
-                String weekDay1 = coursePlanBean.getWeekDay();
-                if (weekDay.equals(weekDay1)) {
-                    index1 = i;
-                    List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
-                    if (courseTimeBeanList != null) {
-                        for (int j = 0; j < courseTimeBeanList.size(); j++) {
-                            CourseTimeBean courseTimeBean1 = courseTimeBeanList.get(j);
-                            if (courseTimeBean1.compareTo(courseTimeBean) == 0) {
-                                index2 = j;
-                                break;
-                            }
-                        }
-                    }
-
-                }
-
-            }
-            if (coursePlanBeanList.size() > index1) {
-                List<CourseTimeBean> courseTimeBeanList = coursePlanBeanList.get(index1).getCourseTimeBeanList();
-                if (courseTimeBeanList != null && courseTimeBeanList.size() > index2) {
-                    coursePlanBeanList.get(index1).getCourseTimeBeanList().remove(index2);
-                }
-                List<CourseTimeBean> courseTimeBeanList1 = coursePlanBeanList.get(index1).getCourseTimeBeanList();
-                if (courseTimeBeanList1 == null || courseTimeBeanList1.size() == 0) {
-                    coursePlanBeanList.remove(index1);
-                }
-            }
-
-
-            Collections.sort(coursePlanBeanList);
-            adapter.notifyDataSetChanged();
-            list.remove(list.size() - 1);
-        }
-    }
 
     private void addTime() {
 
@@ -277,7 +242,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
             courseTimeBean.setEndTime(endTime);
 
-            if (list.size() == 0) {
+            if (coursePlanBeanList.size() == 0) {
                 CoursePlanBean coursePlanBean = new CoursePlanBean();
                 coursePlanBean.setWeekDay(day);
                 ArrayList<CourseTimeBean> courseTimeBeans = new ArrayList<>();
@@ -285,20 +250,27 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 coursePlanBean.setCourseTimeBeanList(courseTimeBeans);
                 coursePlanBeanList.add(coursePlanBean);
                 Collections.sort(coursePlanBeanList);
-                adapter.notifyDataSetChanged();
-                CourseRecordBean courseRecordBean = new CourseRecordBean();
-                courseRecordBean.setWeekDay(day);
-                courseRecordBean.setCourseTimeBean(courseTimeBean);
-                list.add(courseRecordBean);
+                newCourseListAdapter.setDataList(coursePlanBeanList);
+
             } else {
+
                 List<CourseRecordBean> repeatList = new ArrayList<>();
-                for (int i = 0; i < list.size(); i++) {
-                    CourseRecordBean courseRecordBean = list.get(i);
-                    String weekDay = courseRecordBean.getWeekDay();
-                    if (weekDay.equals(day)) {
-                        repeatList.add(courseRecordBean);
+                for (int i = 0; i < coursePlanBeanList.size(); i++) {
+                    CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
+                    List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
+                    for (int j = 0; j < courseTimeBeanList.size(); j++) {
+                        CourseTimeBean mcourseTimeBean = courseTimeBeanList.get(j);
+                        String weekDay = coursePlanBean.getWeekDay();
+                        if (weekDay.equals(day)) {
+                            CourseRecordBean courseRecordBean = new CourseRecordBean();
+                            courseRecordBean.setWeekDay(weekDay);
+                            courseRecordBean.setCourseTimeBean(mcourseTimeBean);
+                            repeatList.add(courseRecordBean);
+                        }
                     }
+
                 }
+
 
                 for (int i = 0; i < repeatList.size(); i++) {
                     CourseRecordBean courseRecordBean = repeatList.get(i);
@@ -310,10 +282,6 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                     }
                 }
 
-                CourseRecordBean courseRecordBean = new CourseRecordBean();
-                courseRecordBean.setWeekDay(day);
-                courseRecordBean.setCourseTimeBean(courseTimeBean);
-                list.add(courseRecordBean);
 
                 if (repeatList.size() > 0) {
                     for (int i = 0; i < coursePlanBeanList.size(); i++) {
@@ -336,13 +304,14 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                     coursePlanBeanList.add(coursePlanBean);
                 }
                 Collections.sort(coursePlanBeanList);
-                adapter.notifyDataSetChanged();
+                newCourseListAdapter.setDataList(coursePlanBeanList);
             }
 
 
         }
 
     }
+
 
     private boolean timeIsRepeated(CourseTimeBean courseTimeBean1, String startTime, String endTime) {
         boolean b = false;
@@ -366,19 +335,14 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
     public void postSaveCourse() {
-         List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
+        List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
 
         if (selectGroupedStudentBean != null && course != null) {
-            if (list.size() > 0) {
+            if (coursePlanBeanList.size() > 0) {
 
-                for (int i = 0; i < list.size(); i++) {
-                    SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-                    privateCoachCAPDTOsBean.setDataType(1);
-                    privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
-                    privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
-                    privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
-
-                    String weekDay = list.get(i).getWeekDay();
+                for (int i = 0; i < coursePlanBeanList.size(); i++) {
+                    CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
+                    String weekDay = coursePlanBean.getWeekDay();
                     int week = 0;
                     if (weekDay.equals("周日")) {
                         week = 0;
@@ -395,10 +359,24 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                     } else if (weekDay.equals("周六")) {
                         week = 6;
                     }
-                    privateCoachCAPDTOsBean.setWeek(week);
-                    privateCoachCAPDTOsBean.setSTime(list.get(i).getCourseTimeBean().getStartTime());
-                    privateCoachCAPDTOsBean.setETime(list.get(i).getCourseTimeBean().getEndTime());
-                    privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+
+                    List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
+
+                    for (int j = 0; j < courseTimeBeanList.size(); j++) {
+                        CourseTimeBean courseTimeBean = courseTimeBeanList.get(j);
+                        SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
+                        privateCoachCAPDTOsBean.setDataType(1);
+                        privateCoachCAPDTOsBean.setMemberId(selectGroupedStudentBean.getMemberId());
+                        privateCoachCAPDTOsBean.setMemberCourseId(course.getMemberCourseId());
+                        privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
+
+
+                        privateCoachCAPDTOsBean.setWeek(week);
+                        privateCoachCAPDTOsBean.setSTime(courseTimeBean.getStartTime());
+                        privateCoachCAPDTOsBean.setETime(courseTimeBean.getEndTime());
+                        privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
+                    }
+
                 }
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
@@ -423,7 +401,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                             }
                         });
 
-            }else {
+            } else {
                 showToast("请先添加上课时间！");
             }
 
@@ -435,7 +413,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     }
 
     public void checkoutScheduleTime() {
-        boolean hasCourse=false;
+        boolean hasCourse = false;
         String startTime = hours + "" + minutes;
         int i1 = Integer.parseInt(minutes);
         int i2 = consumingMinute;
@@ -447,9 +425,9 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         int h2 = h1 + i4;
         String endTime = "";
         if (h2 < 10) {
-            endTime = "0" + h2 ;
+            endTime = "0" + h2;
         } else {
-            endTime+= h2 ;
+            endTime += h2;
         }
         if (i5 < 10) {
             endTime = endTime + "0" + i5;
@@ -460,14 +438,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         int iendTime = Integer.parseInt(endTime.replace(":", ""));
 
 
-
         List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
-        if (courseStudentBeans!=null&&courseStudentBeans.size()>0){
+        if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
             for (int i = 0; i < courseStudentBeans.size(); i++) {
                 CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
-                if (courseStudentBean.getWeekCode()==weekday){
+                if (courseStudentBean.getWeekCode() == weekday) {
                     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> privateCoachCurriculumArrangementPlanVOS = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
-                    if(privateCoachCurriculumArrangementPlanVOS!=null&&privateCoachCurriculumArrangementPlanVOS.size()>0){
+                    if (privateCoachCurriculumArrangementPlanVOS != null && privateCoachCurriculumArrangementPlanVOS.size() > 0) {
                         for (int j = 0; j < privateCoachCurriculumArrangementPlanVOS.size(); j++) {
                             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean privateCoachCurriculumArrangementPlanVOSBean = privateCoachCurriculumArrangementPlanVOS.get(j);
                             String sTime = privateCoachCurriculumArrangementPlanVOSBean.getSTime();
@@ -475,28 +452,28 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                             int isTime = Integer.parseInt(sTime.replace(":", ""));
                             int ieTime = Integer.parseInt(eTime.replace(":", ""));
 
-                            if (istartTime<=isTime&&iendTime>=ieTime){
-                                hasCourse=true;
-                            }else if (istartTime<ieTime&&iendTime>=ieTime){
-                                hasCourse=true;
-                            }else if (istartTime>=isTime&&iendTime<isTime){
-                                hasCourse=true;
-                            }else if (istartTime<isTime&iendTime>ieTime){
-                                hasCourse=true;
+                            if (istartTime <= isTime && iendTime >= ieTime) {
+                                hasCourse = true;
+                            } else if (istartTime < ieTime && iendTime >= ieTime) {
+                                hasCourse = true;
+                            } else if (istartTime >= isTime && iendTime < isTime) {
+                                hasCourse = true;
+                            } else if (istartTime < isTime & iendTime > ieTime) {
+                                hasCourse = true;
                             }
                         }
                     }
 
                 }
             }
-            if (hasCourse){
+            if (hasCourse) {
                 tvCourseTimeStatus.setVisibility(View.VISIBLE);
                 tvCourseTimeStatus.setText("(选中时间段已有安排)");
-            }else {
+            } else {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("schooltime", hours + ":" + minutes);
                 map.put("week", weekday + "");
-                map.put("classHour", consumingMinute+"");
+                map.put("classHour", consumingMinute + "");
                 showLoading();
                 HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
@@ -517,10 +494,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         }
 
 
-
     }
-
-
 
 
 }

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="20dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tv_start_time"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textColor="#666666"
         android:gravity="center"
-        android:layout_alignParentRight="true"
         android:textSize="14sp" />
     <TextView
-        android:id="@+id/tv"
-        android:layout_toLeftOf="@id/tv2"
         android:text=" - "
         android:gravity="center"
         android:layout_width="wrap_content"
@@ -22,8 +22,7 @@
         android:textColor="#666666"
         android:textSize="14sp" />
     <TextView
-        android:id="@+id/tv1"
-        android:layout_toLeftOf="@id/tv"
+        android:id="@+id/tv_end_time"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
@@ -32,4 +31,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

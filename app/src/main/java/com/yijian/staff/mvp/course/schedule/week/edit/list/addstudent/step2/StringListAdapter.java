@@ -45,18 +45,18 @@ public class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.It
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv1;
-        private TextView tv2;
+        private TextView tvStartTime;
+        private TextView tvEndTime;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            tv1 = itemView.findViewById(R.id.tv1);
-            tv2 = itemView.findViewById(R.id.tv2);
+            tvStartTime = itemView.findViewById(R.id.tv_start_time);
+            tvEndTime = itemView.findViewById(R.id.tv_end_time);
         }
 
         public void bind(CourseTimeBean courseTimeBean) {
-            tv1.setText(courseTimeBean.getStartTime());
-            tv2.setText(courseTimeBean.getEndTime());
+            tvStartTime.setText(courseTimeBean.getStartTime());
+            tvEndTime.setText(courseTimeBean.getEndTime());
         }
     }
 }

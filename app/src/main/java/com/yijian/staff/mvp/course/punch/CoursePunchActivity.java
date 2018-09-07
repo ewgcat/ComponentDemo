@@ -20,7 +20,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
+import com.yijian.staff.net.requestbody.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;

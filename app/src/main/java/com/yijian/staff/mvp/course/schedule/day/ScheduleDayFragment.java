@@ -25,6 +25,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.MyScollView;
 import com.yijian.staff.widget.ScrollViewListener;
@@ -300,11 +301,12 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         }
         HashMap<String, String> map = new HashMap<>();
         map.put("week", week + "");
-        HttpManager.postHasHeaderHasParam(CourseUrls.ABORT_APPOINT_COURSE_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postAbortAppointCourseTable(CourseUrls.ABORT_APPOINT_COURSE_TABLE_URL, map, new ResponseObserver<JSONObject>(getLifecycle()) {
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(JSONObject jsonObject) {
                 hideLoading();
-                showToast("成功生成 " + dateBean.getWeekDay() + "（" + dateBean.getDate() + "）的约课表！");
+                String msg = JsonUtil.getString(jsonObject, "msg");
+                showToast(msg);
             }
 
             @Override

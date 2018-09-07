@@ -12,7 +12,7 @@ import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
-import com.yijian.staff.net.httpmanager.PrivateCoursePingJiaRequestBody;
+import com.yijian.staff.net.requestbody.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;

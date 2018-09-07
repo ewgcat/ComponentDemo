@@ -18,6 +18,7 @@ import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
+import com.yijian.staff.net.requestbody.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.requestbody.addpotential.AddPotentialRequestBody;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
@@ -997,7 +998,17 @@ public class HttpManager {
     public static final String RECEPTION_STEP3_VENUES = "venue/listByShopId";
 
 
+    public static void postAbortAppointCourseTable(String url, HashMap<String, String> param, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
 
-
-
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/test/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            headers.put("version", "1.3");
+            Observable<JSONObject> observable = apiService.postHasHeaderHasParam(SharePreferenceUtil.getHostUrl() + url, headers, param);
+            execute(observable, observer);
+        }
+    }
 }

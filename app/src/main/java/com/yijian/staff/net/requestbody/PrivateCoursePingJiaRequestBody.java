@@ -1,4 +1,4 @@
-package com.yijian.staff.net.httpmanager;
+package com.yijian.staff.net.requestbody;
 
 /**
  * author：李帅华

@@ -65,10 +65,6 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     }
 
 
-
-
-
-
     @Override
     public void onSubscribe(Disposable d) {
         disposable = d;
@@ -84,6 +80,7 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     @Override
     public void onNext(JSONObject jsonObject) {
         try {
+
             ResponseBean responseBean = new ResponseBean();
             responseBean.setCode(JsonUtil.getInt(jsonObject,"code"));
             responseBean.setMsg(JsonUtil.getString(jsonObject,"msg"));

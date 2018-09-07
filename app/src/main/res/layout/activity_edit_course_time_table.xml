@@ -43,7 +43,7 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:visibility="invisible"
                 android:background="@color/blue" />
 
@@ -73,7 +73,7 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/blue" />
 
 
@@ -101,7 +101,7 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/blue"
                 android:visibility="invisible" />
 
@@ -129,7 +129,7 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/blue"
                 android:visibility="invisible" />
 
@@ -158,7 +158,7 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/blue"
 
                 android:visibility="invisible" />
@@ -189,7 +189,7 @@
 
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/blue"
                 android:visibility="invisible" />
 
@@ -218,8 +218,8 @@
                 android:layout_width="10dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
 
-                android:layout_marginTop="2dp"
                 android:background="@color/blue"
                 android:visibility="invisible" />
 
@@ -228,7 +228,6 @@
 
     </com.google.android.flexbox.FlexboxLayout>
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/gray" />

@@ -73,7 +73,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         initNavigationBar();
 
         initComponent();
-        etSearch.setHintTextColor(Color.parseColor("#666666"));
+        etSearch.setHintTextColor(Color.parseColor("#cccccc"));
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

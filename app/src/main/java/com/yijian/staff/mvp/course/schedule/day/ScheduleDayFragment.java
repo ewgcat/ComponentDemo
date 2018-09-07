@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -306,7 +307,11 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             public void onSuccess(JSONObject jsonObject) {
                 hideLoading();
                 String msg = JsonUtil.getString(jsonObject, "msg");
-                showToast(msg);
+                if (TextUtils.isEmpty(msg)){
+                    showToast("排课计划生成约课表成功！");
+                }else {
+                    showToast(msg);
+                }
             }
 
             @Override

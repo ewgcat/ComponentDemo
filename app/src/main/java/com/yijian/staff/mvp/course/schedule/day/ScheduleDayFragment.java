@@ -364,7 +364,6 @@ public class ScheduleDayFragment extends MvcBaseFragment {
     private void postLockTime(String startTime, String endTime) {
 
 
-        List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
 
         Boolean hasCourse = false;
         int istartTime = Integer.parseInt(startTime.replace(":", ""));

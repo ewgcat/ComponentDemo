@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijian.staff.widget.NavigationBar2 xmlns:android="http://schemas.android.com/apk/res/android"
-                                        android:id="@+id/navigationbar2"
+<com.yijian.staff.widget.NavigationBar xmlns:android="http://schemas.android.com/apk/res/android"
+                                        android:id="@+id/NavigationBar"
                                         android:background="@color/white"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -81,4 +81,4 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#f2f2f2"/>
-</com.yijian.staff.widget.NavigationBar2>
+</com.yijian.staff.widget.NavigationBar>

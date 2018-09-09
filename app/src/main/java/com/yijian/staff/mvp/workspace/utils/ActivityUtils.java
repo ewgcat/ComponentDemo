@@ -7,9 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.observe.EditActionObservable;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 
 /**

@@ -21,6 +21,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:background="@drawable/add_student_search_bg"
             android:orientation="horizontal">
 

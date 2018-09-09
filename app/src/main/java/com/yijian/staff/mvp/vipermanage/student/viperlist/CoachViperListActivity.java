@@ -19,7 +19,7 @@ import com.yijian.staff.mvp.vipermanage.student.viperlist.fragment.CoachAllViper
 import com.yijian.staff.mvp.vipermanage.student.viperlist.fragment.CoachVipTodayVisitFragment;
 
 import com.yijian.staff.rx.RxBus;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,14 +52,14 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightTvClickListener(this);
-        ImageView rightIv = navigationBar2.getmRightIv();
+        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setmRightTvClickListener(this);
+        ImageView rightIv = NavigationBar.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
-        navigationBar2.setTitle("正式学员");
-        navigationBar2.setmRightTvText("筛选");
+        NavigationBar.setTitle("正式学员");
+        NavigationBar.setmRightTvText("筛选");
         changeFragment(0);
         optionDialog = new OptionDialog();
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {

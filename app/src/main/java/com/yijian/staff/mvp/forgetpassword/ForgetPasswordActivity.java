@@ -12,7 +12,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.CountDownTimerUtils;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -43,10 +43,10 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.forget_password_activity_navigation_bar2);
-        navigationBar2.setTitle("忘记密码");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.forget_password_activity_navigation_bar2);
+        NavigationBar.setTitle("忘记密码");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     @OnClick({R.id.tv_getcode, R.id.btn_send})

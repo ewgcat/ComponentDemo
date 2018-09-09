@@ -25,7 +25,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -65,10 +65,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("约课表");
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.getSecondLeftIv().setVisibility(View.GONE);
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("约课表");
 
         initLeftDate();
         height = CommonUtil.dp2px(this, 50);

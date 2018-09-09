@@ -43,7 +43,6 @@
                 android:textColor="#666666" />
 
             <RadioButton
-                android:id="@+id/rb_sure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -221,7 +220,6 @@
 
 
         <LinearLayout
-            android:id="@+id/lin_sure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"

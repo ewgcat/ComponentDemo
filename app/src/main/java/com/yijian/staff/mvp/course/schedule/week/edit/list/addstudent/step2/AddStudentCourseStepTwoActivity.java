@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,13 +25,16 @@ import com.yijian.staff.mvp.course.schedule.week.edit.list.edit.EditCourseTimeAc
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.Response2Observer;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.VibratorUtil;
 import com.yijian.staff.widget.HorizontalWheelView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.NoScrollRecycleView;
 
 import org.json.JSONArray;
@@ -83,6 +87,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
     private List<CoursePlanBean> coursePlanBeanList = new ArrayList<>();
     private NewCourseListAdapter newCourseListAdapter;
+    private String memberId;
 
 
     @Override
@@ -93,13 +98,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("选择时间");
-        navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
-        navigationBar2.setmRightTvText("确定");
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("选择时间");
+        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        NavigationBar.setmRightTvText("确定");
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postSaveCourse();
@@ -135,6 +140,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
             int resId = selectGroupedStudentBean.getMemberSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(selectGroupedStudentBean.getMemberName());
+            memberId = selectGroupedStudentBean.getMemberId();
         }
         if (course != null) {
             consumingMinute = course.getConsumingMinute();
@@ -385,15 +391,21 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 }
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+                showLoading();
                 HttpManager.postSaveCourse(saveCourseRequestBody,
 
-                        new ResultJSONArrayObserver(getLifecycle()) {
+                        new Response2Observer(getLifecycle()) {
                             @Override
-                            public void onSuccess(JSONArray result) {
-                                showToast("新增成功！");
-
-                                List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
-
+                            public void onSuccess(JSONObject jsonObject) {
+                                hideLoading();
+                                String msg = JsonUtil.getString(jsonObject, "msg");
+                                if (TextUtils.isEmpty(msg)){
+                                    showToast("新增成功！");
+                                }else {
+                                    showToast(msg);
+                                }
+                                JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");
+                                List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
                                 DBManager.getInstance().insertCourseStudentBeans(list);
 
                                 setResult(4567);
@@ -402,6 +414,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
 
                             @Override
                             public void onFail(String msg) {
+                                hideLoading();
                                 showToast(msg);
                             }
                         });
@@ -479,6 +492,9 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 map.put("schooltime", hours + ":" + minutes);
                 map.put("week", weekday + "");
                 map.put("classHour", consumingMinute + "");
+                map.put("memberId", memberId);
+
+
                 showLoading();
                 HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_PLAN_IS_ABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override

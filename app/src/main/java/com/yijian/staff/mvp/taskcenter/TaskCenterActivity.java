@@ -9,7 +9,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.taskcenter.add.AddViperTaskCenterFragment;
 import com.yijian.staff.mvp.taskcenter.invite.InviteTaskCenterFragment;
 import com.yijian.staff.mvp.taskcenter.visit.VisitTaskCenterFragment;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
@@ -36,10 +36,10 @@ public class TaskCenterActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        NavigationBar2 navigationBar2 = findViewById(R.id.task_center_navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("任务中心");
+        NavigationBar NavigationBar = findViewById(R.id.task_center_navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("任务中心");
         initIndicatorAndViewPager();
     }
 

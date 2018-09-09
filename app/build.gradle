@@ -30,9 +30,9 @@ android {
         renderscriptSupportModeEnabled true
 
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-//        ndk {
-//            abiFilters "armeabi"//, "x86"
-//        }
+        ndk {
+            abiFilters "armeabi","arm64-v8a", "armeabi-v7a";
+        }
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -68,6 +68,9 @@ android {
         release {
             //混淆
             minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseKey
         }
@@ -136,7 +139,6 @@ dependencies {
     api project(':retrofit2')
     api project(':PhotoPicker')
     api project(':photoview')
-    api project(':calendar')
     api project(':indicatorseekbar')
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'

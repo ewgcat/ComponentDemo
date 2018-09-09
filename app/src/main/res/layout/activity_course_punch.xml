@@ -279,7 +279,6 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.flexbox.FlexboxLayout
-                        android:id="@+id/ll_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -292,7 +291,6 @@
 
 
                         <LinearLayout
-                            android:id="@+id/ll_jiao_cha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -314,7 +312,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_he_ge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -335,7 +332,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_jiao_hao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -354,7 +350,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_hen_hao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -373,7 +368,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_you_xiu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -461,7 +455,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_di"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -499,7 +492,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_zhong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -536,7 +528,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_gao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"

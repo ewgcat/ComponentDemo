@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.contract.ContractActivity;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,10 +53,10 @@ public class CoachClassBaoJiaCompleteActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = findViewById(R.id.no_search_bar_complete_navigationbar);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("订单详情");
+        NavigationBar NavigationBar = findViewById(R.id.no_search_bar_complete_navigationbar);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("订单详情");
         memberId = getIntent().getStringExtra("memberId");
         memberName = getIntent().getStringExtra("memberName");
     }

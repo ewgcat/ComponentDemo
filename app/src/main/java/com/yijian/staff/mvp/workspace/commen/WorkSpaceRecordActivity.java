@@ -27,7 +27,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,10 +72,10 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initData() {

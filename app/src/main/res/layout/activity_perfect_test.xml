@@ -30,7 +30,6 @@
                 android:focusableInTouchMode="true">
 
                 <RelativeLayout
-                    android:id="@+id/rel_sex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"

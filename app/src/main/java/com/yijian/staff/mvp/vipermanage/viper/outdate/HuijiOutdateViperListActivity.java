@@ -24,7 +24,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,10 +81,10 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
-        navigationBar2.setTitle("过期会员");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
+        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        NavigationBar.setTitle("过期会员");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
         //设置RecyclerView 布局
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

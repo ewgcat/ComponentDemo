@@ -18,7 +18,7 @@ import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.widget.MyDividerItemDecoration;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 
@@ -70,10 +70,10 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("编辑排课表");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("编辑排课表");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
         selectWeekDay(0);
     }
 

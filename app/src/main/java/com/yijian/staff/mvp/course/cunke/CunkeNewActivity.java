@@ -24,7 +24,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,10 +69,10 @@ public class CunkeNewActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle( "存课信息");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle( "存课信息");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initView(){

@@ -19,7 +19,7 @@ import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -70,12 +70,12 @@ public class InvateActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.invate_index_navigation_bar);
-        navigationBar2.setTitle("邀约");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setmRightTvText("完成");
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = findViewById(R.id.invate_index_navigation_bar);
+        NavigationBar.setTitle("邀约");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setmRightTvText("完成");
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

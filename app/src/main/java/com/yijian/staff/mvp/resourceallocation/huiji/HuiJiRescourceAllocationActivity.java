@@ -24,7 +24,7 @@ import com.yijian.staff.mvp.resourceallocation.huiji.bean.HuiJiResourceAllocatio
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,10 +57,10 @@ public class HuiJiRescourceAllocationActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar2);
-        navigationBar2.setTitle("资源分配");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar2);
+        NavigationBar.setTitle("资源分配");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initView() {

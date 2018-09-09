@@ -34,7 +34,6 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/rl_wx"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="22dp"
@@ -78,7 +77,6 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/rl_email"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="22dp"

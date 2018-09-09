@@ -35,7 +35,7 @@ import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.utils.StreamUtils;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -150,10 +150,10 @@ public class StaticPhotoActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(type == 0 ? "正面照" : "侧身照");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle(type == 0 ? "正面照" : "侧身照");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initUi() {

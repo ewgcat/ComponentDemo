@@ -30,7 +30,7 @@ import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -101,13 +101,13 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("填写记录");
-        navigationBar2.setmRightTvText("确定");
-        navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("填写记录");
+        NavigationBar.setmRightTvText("确定");
+        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendResult();

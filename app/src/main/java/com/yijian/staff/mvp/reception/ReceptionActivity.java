@@ -23,7 +23,7 @@ import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 public class ReceptionActivity extends MvcBaseActivity {
 
     @BindView(R.id.navigation_bar)
-    NavigationBar2 navigationBar;
+    NavigationBar navigationBar;
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;

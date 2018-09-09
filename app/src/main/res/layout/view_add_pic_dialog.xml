@@ -5,8 +5,7 @@
                 android:background="@drawable/view_retangle_dialog_backgroud">
 
     <LinearLayout
-            android:id="@+id/ll_popup"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:orientation="vertical">

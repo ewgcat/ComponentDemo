@@ -18,7 +18,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,10 +48,10 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
 
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_history_navigation_bar);
-        navigationBar2.setTitle("回访记录");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.hui_fang_history_navigation_bar);
+        NavigationBar.setTitle("回访记录");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
         initComponent();
 
     }

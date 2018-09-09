@@ -49,8 +49,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"/>
             <TextView
-                    android:id="@+id/tv_hui_fang_ren_wu"
-                    android:text="回访任务"
+                android:text="回访任务"
                     android:textColor="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -64,13 +63,11 @@
                 android:gravity="center"
                 android:layout_height="match_parent">
             <ImageView
-                    android:id="@+id/iv_hui_fang_ji_lu"
-                    android:src="@mipmap/wt_jilu"
+                android:src="@mipmap/wt_jilu"
                     android:layout_width="18dp"
                     android:layout_height="18dp"/>
             <TextView
-                    android:id="@+id/tv_hui_fang_ji_lu"
-                    android:text="回访记录"
+                android:text="回访记录"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

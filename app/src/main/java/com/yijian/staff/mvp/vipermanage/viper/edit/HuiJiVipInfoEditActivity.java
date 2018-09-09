@@ -19,7 +19,7 @@ import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -131,13 +131,13 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_edit_navigation_bar);
-        navigationBar2.setTitle(name + "详细信息");
-        navigationBar2.hideLeftSecondIv();
-        TextView rightTv = navigationBar2.getmRightTv();
+        NavigationBar NavigationBar = findViewById(R.id.vip_edit_navigation_bar);
+        NavigationBar.setTitle(name + "详细信息");
+        NavigationBar.hideLeftSecondIv();
+        TextView rightTv = NavigationBar.getmRightTv();
         rightTv.setText("保存");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.setBackClickListener(this);
+        NavigationBar.setBackClickListener(this);
     }
 
     @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,

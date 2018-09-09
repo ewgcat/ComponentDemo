@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.observe.EditActionObservable;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WorkSpaceSearchActivity extends MvcBaseActivity {

@@ -21,7 +21,7 @@ import com.yijian.staff.mvp.vipermanage.viper.viperlist.filter.HuijiViperFilterB
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.fragment.HuijiAllViperFragment;
 import com.yijian.staff.mvp.vipermanage.viper.viperlist.fragment.HuijiTodayVisitFragment;
 import com.yijian.staff.rx.RxBus;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,14 +64,14 @@ public class HuijiViperListActivity extends MvcBaseActivity implements View.OnCl
     private void initView() {
 
 
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_over_navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setmRightTvClickListener(this);
-        navigationBar2.setBackClickListener(this);
-        ImageView rightIv = navigationBar2.getmRightIv();
+        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setmRightTvClickListener(this);
+        NavigationBar.setBackClickListener(this);
+        ImageView rightIv = NavigationBar.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
-        navigationBar2.setTitle("会员信息");
-        navigationBar2.setmRightTvText("筛选");
+        NavigationBar.setTitle("会员信息");
+        NavigationBar.setmRightTvText("筛选");
         changeFragment(0);
         filterDialog = new HuijiFilterViperDialog(this);
         filterDialog.setOnDismissListener(new HuijiFilterViperDialog.OnDismissListener() {

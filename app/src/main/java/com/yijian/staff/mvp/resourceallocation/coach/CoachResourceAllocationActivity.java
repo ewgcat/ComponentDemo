@@ -22,7 +22,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 @Route(path = "/test/10.2")
 public class CoachResourceAllocationActivity extends AppCompatActivity {
 
-    private NavigationBar2 navigationBar2;
+    private NavigationBar NavigationBar;
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
     private List<CoachResourceAllocationInfo> resourceAllocationInfoList = new ArrayList<>();
@@ -60,10 +60,10 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
 
 
     private void initView() {
-        navigationBar2 = findViewById(R.id.coach_navigation_bar2);
-        navigationBar2.setTitle("资源分配");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar = findViewById(R.id.coach_navigation_bar2);
+        NavigationBar.setTitle("资源分配");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
 
         initComponent();
     }

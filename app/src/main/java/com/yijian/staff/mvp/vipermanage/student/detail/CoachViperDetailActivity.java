@@ -20,7 +20,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -49,7 +49,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
     private int vipType = 0;//0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
     //    private String memberName;
     private String memberId;
-    private NavigationBar2 navigation2;
+    private NavigationBar navigation2;
 
 
     @Override

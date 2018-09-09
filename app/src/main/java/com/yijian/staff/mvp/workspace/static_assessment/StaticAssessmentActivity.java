@@ -19,7 +19,7 @@ import com.yijian.staff.mvp.workspace.utils.GlideApp;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,10 +65,10 @@ public class StaticAssessmentActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("静态评估");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("静态评估");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     @OnClick({R.id.tv_positive, R.id.tv_side, R.id.tv_finish})

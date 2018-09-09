@@ -20,6 +20,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.Response2Observer;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -344,10 +345,18 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
             showLoading();
 
-            HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
-                public void onSuccess(JSONArray result) {
+
+            HttpManager.postSaveCourse(saveCourseRequestBody, new Response2Observer(getLifecycle()) {
+                @Override
+                public void onSuccess(JSONObject jsonObject) {
+                    String msg = JsonUtil.getString(jsonObject, "msg");
+                    if (TextUtils.isEmpty(msg)){
+                    }else {
+                        showToast(msg);
+                    }
+                    JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");;
                     dayCourseView.dismiss();
-                    List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                    List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
                     if (courseStudentBeanList != null) {
                         DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
                     }

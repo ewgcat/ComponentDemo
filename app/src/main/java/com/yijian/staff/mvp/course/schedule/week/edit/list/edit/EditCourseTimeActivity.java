@@ -18,10 +18,13 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.Response2Observer;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.util.VibratorUtil;
 import com.yijian.staff.widget.HorizontalWheelView;
@@ -67,6 +70,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
     private int consumingMinute = 0;
     private CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseStudentBean;
     private String id;
+    private String memberId;
 
     @Override
     protected int getLayoutID() {
@@ -102,6 +106,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
             int resId = privateCourseMemberVO.getMemberSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(privateCourseMemberVO.getMemberName());
+            memberId = privateCourseMemberVO.getMemberId();
             tvCourse.setText(privateCoachCourseVO.getMemberCourseName() + "（" + privateCoachCourseVO.getConsumingMinute() + "分钟)");
             int week = courseStudentBean.getWeek();
             weekday = week;
@@ -226,12 +231,18 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
                 SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                 saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
-                HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
+                HttpManager.postSaveCourse(saveCourseRequestBody, new Response2Observer(getLifecycle()) {
                     @Override
-                    public void onSuccess(JSONArray result) {
-                        showToast("修改成功！");
+                    public void onSuccess(JSONObject jsonObject) {
+                   String msg = JsonUtil.getString(jsonObject, "msg");
+                        if (TextUtils.isEmpty(msg)){
+                            showToast("修改成功！");
+                        }else {
+                            showToast(msg);
+                        }
+                        JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");;
 
-                        List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                        List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
 
                         DBManager.getInstance().insertCourseStudentBeans(list);
                         finish();
@@ -318,6 +329,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
                 String value = hours + ":" + minutes;
                 Logger.i("TEST", "value=" + value);
                 map.put("schooltime", value);
+                map.put("memberId", memberId);
                 map.put("week", weekday + "");
                 map.put("classHour", consumingMinute + "");
                 map.put("capId", id);

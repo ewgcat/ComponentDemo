@@ -3,6 +3,7 @@ package com.yijian.staff.mvp.course.schedule.week;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,14 @@ import com.yijian.staff.mvp.course.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
+import com.yijian.staff.net.response.Response2Observer;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
+import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.MyScollView;
 import com.yijian.staff.widget.ScrollViewListener;
 import com.yijian.staff.widget.WeekLayout;
@@ -199,10 +203,19 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                     SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
                     saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
                     showLoading();
-                    HttpManager.postSaveCourse(saveCourseRequestBody, new ResultJSONArrayObserver(getLifecycle()) {
-                        public void onSuccess(JSONArray result) {
+
+                    HttpManager.postSaveCourse(saveCourseRequestBody, new Response2Observer(getLifecycle()) {
+                        @Override
+                        public void onSuccess(JSONObject jsonObject) {
+                            String msg = JsonUtil.getString(jsonObject, "msg");
+                            if (TextUtils.isEmpty(msg)){
+                            }else {
+                                showToast(msg);
+                            }
+                            JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");;
+
                             weekCourseView.clearView();
-                            List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
+                            List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
 
                             if (courseStudentBeanList != null) {
                                 DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);

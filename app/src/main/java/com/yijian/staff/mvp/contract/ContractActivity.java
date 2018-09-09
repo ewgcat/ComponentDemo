@@ -14,7 +14,7 @@ import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 
 import org.json.JSONException;
@@ -40,10 +40,10 @@ public class ContractActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.contract_navigation_bar2);
-        navigationBar2.setTitle("合同");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.contract_navigation_bar2);
+        NavigationBar.setTitle("合同");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
         contractIds = getIntent().getStringArrayListExtra("contractIds");
         memberId = getIntent().getStringExtra("memberId");
         initWebView(webView);

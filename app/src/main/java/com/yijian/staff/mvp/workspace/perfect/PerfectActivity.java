@@ -31,7 +31,7 @@ import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.utils.StreamUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,13 +107,13 @@ public class PerfectActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("完美围度拍照");
-        navigationBar2.hideLeftSecondIv();
-        TextView rightTv = navigationBar2.getmRightTv();
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("完美围度拍照");
+        NavigationBar.hideLeftSecondIv();
+        TextView rightTv = NavigationBar.getmRightTv();
         rightTv.setText("跳过");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.setBackClickListener(this);
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initUi() {

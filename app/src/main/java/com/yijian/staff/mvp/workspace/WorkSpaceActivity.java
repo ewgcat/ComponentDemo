@@ -12,7 +12,7 @@ import com.yijian.staff.mvp.workspace.static_assessment.StaticPhotoActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,10 +30,10 @@ public class WorkSpaceActivity extends AppCompatActivity {
     }
 
     private void initTitle(){
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("私教P.O.S工具");
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("私教P.O.S工具");
     }
 
     @OnClick({R.id.fl_sport_behavior, R.id.fl_perfect, R.id.fl_static, R.id.fl_sport})

@@ -20,7 +20,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,10 +53,10 @@ public class RecordChartActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = findViewById(R.id.record_chart_navigation_bar);
-        navigationBar2.getSecondLeftIv().setVisibility(View.GONE);
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("上课记录表");
+        NavigationBar NavigationBar = findViewById(R.id.record_chart_navigation_bar);
+        NavigationBar.getSecondLeftIv().setVisibility(View.GONE);
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("上课记录表");
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

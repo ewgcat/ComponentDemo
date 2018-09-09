@@ -23,7 +23,7 @@ import com.yijian.staff.mvp.vipermanage.viper.detail.picker.GetJsonDataUtil;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.JsonBean_Service;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,12 +81,12 @@ public class SelectAddressActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setmRightTvText("确定");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle(title);
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setmRightTvText("确定");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle(title);
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String detail = et_detail.getText().toString();

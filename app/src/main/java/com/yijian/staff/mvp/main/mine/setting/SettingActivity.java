@@ -16,7 +16,7 @@ import com.yijian.staff.mvp.main.mine.aboutus.AboutUsActivity;
 import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
 import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.util.CommonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,10 +40,10 @@ public class SettingActivity extends AppCompatActivity {
 
 
     protected void initView() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
-        navigationBar2.setTitle("系统设置");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
+        NavigationBar.setTitle("系统设置");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
 
         tvVersion.setText(CommonUtil.getVersionName(this) + " " + CommonUtil.getVersionCode(this));
     }

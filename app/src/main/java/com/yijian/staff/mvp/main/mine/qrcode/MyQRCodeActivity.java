@@ -23,7 +23,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -78,14 +78,14 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         rootView.setLayoutParams(params);
         StatusBarUtil.setTranslucentForImageView(this, 0, null);
 
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.navigation_bar2);
-        navigationBar2.setTitle("二维码");
-        navigationBar2.setNavigationBarBackgroudColor(android.R.color.transparent);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.hideBottomLine();
-        navigationBar2.getmTitleView().setTextColor(Color.parseColor("#ffffff"));
-        navigationBar2.setBackClickListener(this);
-        ImageView firstLeftIv = navigationBar2.getFirstLeftIv();
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
+        NavigationBar.setTitle("二维码");
+        NavigationBar.setNavigationBarBackgroudColor(android.R.color.transparent);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.hideBottomLine();
+        NavigationBar.getmTitleView().setTextColor(Color.parseColor("#ffffff"));
+        NavigationBar.setBackClickListener(this);
+        ImageView firstLeftIv = NavigationBar.getFirstLeftIv();
         Glide.with(this).load(R.mipmap.white_arrow_back).into(firstLeftIv);
         user = DBManager.getInstance().queryUser();
 

@@ -1,7 +1,7 @@
 package com.yijian.staff.mvp.workspace.base;
 
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
-import com.yijian.staff.mvp.course.preparelessons.createlession.Observer;
+import com.yijian.staff.mvp.workspace.observe.Observer;
 
 public class BaseSpaceFragment extends MvcBaseFragment implements Observer {
     @Override

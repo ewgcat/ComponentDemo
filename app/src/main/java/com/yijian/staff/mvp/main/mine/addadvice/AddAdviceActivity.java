@@ -15,7 +15,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.advice.Advice;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,20 +38,20 @@ public class AddAdviceActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.advice_view_navigation_bar2);
-        navigationBar2.setTitle("系统意见");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.advice_view_navigation_bar2);
+        NavigationBar.setTitle("系统意见");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideKeyBoard(etAdvice);
                 finish();
             }
         });
-        navigationBar2.setmRightTvText("发送");
-        TextView textView = navigationBar2.getmRightTv();
+        NavigationBar.setmRightTvText("发送");
+        TextView textView = NavigationBar.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

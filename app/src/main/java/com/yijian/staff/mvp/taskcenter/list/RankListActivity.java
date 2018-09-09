@@ -17,7 +17,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.RankBean;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +52,14 @@ public class RankListActivity extends MvcBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        NavigationBar2 navigationBar2 = findViewById(R.id.rank_list_navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.rank_list_navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
         type = getIntent().getIntExtra("RANK_TYPE", 0);
         if (type == TODAY_RANK_TYPE) {
-            navigationBar2.setTitle("今日排名");
+            NavigationBar.setTitle("今日排名");
         } else {
-            navigationBar2.setTitle("本月排名");
+            NavigationBar.setTitle("本月排名");
         }
         initView();
     }

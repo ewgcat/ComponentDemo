@@ -10,16 +10,15 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.observe.EditActionObservable;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,14 +70,14 @@ public class  SportTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("运动表现测试");
-        navigationBar2.hideLeftSecondIv();
-        rightTv = navigationBar2.getmRightTv();
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("运动表现测试");
+        NavigationBar.hideLeftSecondIv();
+        rightTv = NavigationBar.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
+        NavigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popupWindow == null) {

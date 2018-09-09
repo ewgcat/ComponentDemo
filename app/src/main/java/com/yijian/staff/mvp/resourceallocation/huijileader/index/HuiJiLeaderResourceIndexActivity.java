@@ -13,7 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.resourceallocation.huijileader.index.distribution.ResourceAllocationFragment;
 import com.yijian.staff.mvp.resourceallocation.huijileader.index.history.HistoryAllocationFragment;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +28,7 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     private static final String[] FRAGMENT_TAG = {"CoachResourceAllocationFragment", "CoachHistoryAllocationFragment"};
     private ResourceAllocationFragment resourceAllocationFragment;
     private HistoryAllocationFragment historyAllocationFragment;
-    private NavigationBar2 navigationBar2;
+    private NavigationBar NavigationBar;
 
     @BindView(R.id.lin_resource_allowcation)
     LinearLayout lin_resource_allowcation;
@@ -56,11 +56,11 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
 
 
     private void initView() {
-        navigationBar2 = findViewById(R.id.coach_leader_navigation_bar2);
+        NavigationBar = findViewById(R.id.coach_leader_navigation_bar2);
 
-        navigationBar2.setTitle("资源分配");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar.setTitle("资源分配");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
         resourceAllocationFragment = ResourceAllocationFragment.getInstance();
         historyAllocationFragment = HistoryAllocationFragment.getInstance();
         selectTab(0);
@@ -136,7 +136,7 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     }
 
     public void setBotoomStyle(int index) {
-        navigationBar2.setTitle(index == 0 ? "资源分配" : "历史分配");
+        NavigationBar.setTitle(index == 0 ? "资源分配" : "历史分配");
         tv_resource_allowcation.setTextColor(index == 0 ? Color.parseColor("#1997f8") : Color.parseColor("#666666"));
         tv_history_allowcation.setTextColor(index == 0 ? Color.parseColor("#666666") : Color.parseColor("#1997f8"));
 

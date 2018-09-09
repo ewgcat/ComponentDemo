@@ -24,7 +24,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,10 +82,10 @@ public class CoachIntentViperListActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar2 navigationBar2 = findViewById(R.id.vip_intent_navigation_bar);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setTitle("意向学员");
+        NavigationBar NavigationBar = findViewById(R.id.vip_intent_navigation_bar);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setTitle("意向学员");
 
         initComponent();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(CoachIntentViperListActivity.this);

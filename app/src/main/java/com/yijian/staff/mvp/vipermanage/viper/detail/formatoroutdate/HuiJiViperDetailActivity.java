@@ -24,7 +24,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -53,7 +53,7 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
     private String memberId;
     private String subclassName;
     private String memberType;
-    private NavigationBar2 navigation2;
+    private NavigationBar navigation2;
 
 
     @Override

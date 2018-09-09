@@ -29,7 +29,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.share.umeng.SharePopupWindow;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +53,7 @@ public class ShareTestActivity extends MvcBaseActivity {
     String shareWorkSpaceTitle;
     String shareWorkSpaceImgUrl;
     String shareWorkSpaceDescr;
-    NavigationBar2 navigationBar2;
+    NavigationBar NavigationBar;
     String webUrl;
 
 
@@ -72,13 +72,13 @@ public class ShareTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        navigationBar2 = findViewById(R.id.navigation_bar);
-//        navigationBar2.setTitle(ActivityUtils.name+"的测试记录");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackLLVisiable(View.GONE);
-//        navigationBar2.setmRightIv(R.mipmap.share);
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightIvClickListener(new View.OnClickListener() {
+        NavigationBar = findViewById(R.id.navigation_bar);
+//        NavigationBar.setTitle(ActivityUtils.name+"的测试记录");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackLLVisiable(View.GONE);
+//        NavigationBar.setmRightIv(R.mipmap.share);
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setmRightIvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShareDialog();
@@ -146,8 +146,8 @@ public class ShareTestActivity extends MvcBaseActivity {
                 hideLoading();
                 emptyView.setVisibility(View.GONE);
                 web_view.setVisibility(View.VISIBLE);
-                navigationBar2.setBackLLVisiable(View.VISIBLE);
-                navigationBar2.setmRightIv(R.mipmap.share);
+                NavigationBar.setBackLLVisiable(View.VISIBLE);
+                NavigationBar.setmRightIv(R.mipmap.share);
 
             }
 
@@ -161,13 +161,13 @@ public class ShareTestActivity extends MvcBaseActivity {
         web_view.addWebChromeClientListener(new SafeWebChromeClient.CallWebChromeClientBackListener() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
-//                navigationBar2.setTitle(title);
+//                NavigationBar.setTitle(title);
             }
 
             @Override
             public void onProgressChanged(String title, int newProgress) {
                 if(newProgress == 100){
-                    navigationBar2.setTitle(title);
+                    NavigationBar.setTitle(title);
                 }
             }
         });

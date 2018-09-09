@@ -18,7 +18,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 import com.yijian.staff.widget.PagerSlidingTabStrip;
 
 import org.json.JSONArray;
@@ -60,10 +60,10 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initNavigation() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.hui_fang_task_navigation_bar);
-        navigationBar2.setTitle("会员回访");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
+        NavigationBar.setTitle("会员回访");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
 

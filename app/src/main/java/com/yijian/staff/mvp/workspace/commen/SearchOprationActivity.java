@@ -16,7 +16,7 @@ import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
 import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,10 +50,10 @@ public class SearchOprationActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("学员测评");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("学员测评");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     private void initData() {

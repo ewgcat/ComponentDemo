@@ -28,7 +28,7 @@ import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,17 +55,17 @@ public class InvateListActivity extends MvcBaseActivity {
 
     private int pages;
     private InvitationRecordAdatper invitationRecordAdatper;
-    private NavigationBar2 navigationBar2;
+    private NavigationBar NavigationBar;
     private int total;
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        navigationBar2 = findViewById(R.id.navigation_bar2);
-        navigationBar2.setTitle("邀约记录");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
+        NavigationBar = findViewById(R.id.navigation_bar2);
+        NavigationBar.setTitle("邀约记录");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
         rv_invitation = findViewById(R.id.rv_invitation);
         refreshLayout = findViewById(R.id.refreshLayout);
         initComponent();

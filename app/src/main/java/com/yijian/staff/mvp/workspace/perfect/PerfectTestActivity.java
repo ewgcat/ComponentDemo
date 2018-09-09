@@ -1,6 +1,5 @@
 package com.yijian.staff.mvp.workspace.perfect;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,17 +11,13 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.observe.EditActionObservable;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONObject;
+import com.yijian.staff.widget.NavigationBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,10 +80,10 @@ public class PerfectTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("完美围度测试");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("完美围度测试");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
     }
 
     @OnClick({R.id.btn_finish, R.id.rel_height})

@@ -14,7 +14,7 @@ import com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach.SelectCoa
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.Logger;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -41,9 +41,9 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar2 navigationBar2 = findView(R.id.resource_detail_navigation_bar2);
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar NavigationBar = findView(R.id.resource_detail_navigation_bar2);
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
 
         root_view = findView(R.id.root_view);
         ll_zhengsi_vip = findView(R.id.ll_zhengsi_vip);

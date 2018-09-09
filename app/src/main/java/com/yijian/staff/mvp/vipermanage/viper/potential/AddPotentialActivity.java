@@ -22,7 +22,7 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.LastInputEditText;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,22 +92,22 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.add_potential_activity_navigation_bar);
-        navigationBar2.setTitle("添加潜在");
-        navigationBar2.setmRightTvText("确认");
-        textView = navigationBar2.getmRightTv();
-        TextView textView = navigationBar2.getmRightTv();
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.add_potential_activity_navigation_bar);
+        NavigationBar.setTitle("添加潜在");
+        NavigationBar.setmRightTvText("确认");
+        textView = NavigationBar.getmRightTv();
+        TextView textView = NavigationBar.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
+        NavigationBar.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideKeyBoard(v);
                 finish();
             }
         });
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

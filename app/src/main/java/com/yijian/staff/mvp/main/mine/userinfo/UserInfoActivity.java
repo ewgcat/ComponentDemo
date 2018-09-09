@@ -22,7 +22,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -65,10 +65,10 @@ public class UserInfoActivity extends MvcBaseActivity {
     }
 
     protected void initView() {
-        NavigationBar2 navigationBar2 = (NavigationBar2) findViewById(R.id.setting_activity_navigation_bar2);
-        navigationBar2.setTitle("");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
+        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
+        NavigationBar.setTitle("");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
         User user = DBManager.getInstance().queryUser();
 
         HashMap<String, String> map = new HashMap<>();

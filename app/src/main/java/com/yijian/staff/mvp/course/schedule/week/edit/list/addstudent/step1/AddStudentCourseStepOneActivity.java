@@ -29,7 +29,7 @@ import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.SystemUtil;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.MyDividerItemDecoration;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -92,13 +92,13 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
     }
 
     private void initNavigationBar() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("添加学员");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightTvColor(Color.parseColor("#1997f8"));
-        navigationBar2.setmRightTvText("下一步");
-        navigationBar2.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
+        NavigationBar.setTitle("添加学员");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        NavigationBar.setmRightTvText("下一步");
+        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectGroupedStudentBean != null) {

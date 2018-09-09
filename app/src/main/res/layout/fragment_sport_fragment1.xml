@@ -61,7 +61,6 @@
             <View style="@style/SplitLineStyle" />
 
             <RelativeLayout
-                android:id="@+id/rel_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -163,7 +162,6 @@
             <View style="@style/SplitLineStyle" />
 
             <RelativeLayout
-                android:id="@+id/rel_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -239,7 +237,6 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/rel_juanfu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

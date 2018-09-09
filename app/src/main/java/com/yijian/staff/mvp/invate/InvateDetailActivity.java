@@ -16,7 +16,7 @@ import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONObject;
 
@@ -57,10 +57,10 @@ public class InvateDetailActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.invate_detail_navigation_bar);
-        navigationBar2.setTitle("邀约内容");
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.hideLeftSecondIv();
+        NavigationBar NavigationBar = findViewById(R.id.invate_detail_navigation_bar);
+        NavigationBar.setTitle("邀约内容");
+        NavigationBar.setBackClickListener(this);
+        NavigationBar.hideLeftSecondIv();
 
     }
 

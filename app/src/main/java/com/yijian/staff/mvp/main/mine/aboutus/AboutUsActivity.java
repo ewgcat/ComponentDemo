@@ -15,7 +15,7 @@ import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +29,7 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
 
     @BindView(R.id.about_us_navigation_bar2)
-    NavigationBar2 navigationBar2;
+    NavigationBar NavigationBar;
     @BindView(R.id.web_view)
     WebView webView;
 
@@ -40,9 +40,9 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar2.setTitle("关于易健");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar.setTitle("关于易健");
+        NavigationBar.hideLeftSecondIv();
+        NavigationBar.setBackClickListener(this);
 
 
         initWebView(webView);

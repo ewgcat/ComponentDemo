@@ -3,12 +3,9 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <include
-            android:id="@+id/class_record_detail_navigationbar2"
-            layout="@layout/view_navigation_bar2"/>
+    <include layout="@layout/view_navigation_bar2"/>
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_open_lesson"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_fillet_white_8"/>
 </LinearLayout>

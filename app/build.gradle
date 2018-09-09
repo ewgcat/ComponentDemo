@@ -109,7 +109,7 @@ android {
         if (variant.buildType.name.equals('release')) {
             variant.flavors.each { flavor ->
                 if (!flavor.name.equals("prod")) {
-                    variant.setIgnore(true);
+//                    variant.setIgnore(true);
                 }
             }
         }

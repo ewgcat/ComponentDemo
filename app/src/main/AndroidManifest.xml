@@ -161,9 +161,6 @@
             android:screenOrientation="portrait" />
         <!-- 教练 报价完成 -->
         <activity
-            android:name=".mvp.price.courseprice.CoachClassBaoJiaCompleteActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
         <activity

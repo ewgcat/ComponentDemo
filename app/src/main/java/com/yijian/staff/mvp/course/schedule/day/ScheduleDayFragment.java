@@ -361,6 +361,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                         DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
                     }
                     hideLoading();
+                    request();
                 }
 
                 @Override

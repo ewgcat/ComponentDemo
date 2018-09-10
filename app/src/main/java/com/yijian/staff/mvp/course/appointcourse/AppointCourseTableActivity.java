@@ -71,7 +71,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         NavigationBar.setTitle("约课表");
 
         initLeftDate();
-        height = CommonUtil.dp2px(this, 50);
+        height = CommonUtil.dp2px(this, 44);
         size = 48;
         courseView.setHeightAndSize(height, size);
 

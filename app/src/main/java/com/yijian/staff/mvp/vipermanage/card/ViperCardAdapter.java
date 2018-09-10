@@ -66,4 +66,5 @@ public class ViperCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     }
 
+
 }

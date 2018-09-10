@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.vipermanage.student.detail;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,9 +57,9 @@ public class ViewHolderCoachVipType_1 extends ViewHolderCoachVipper {
         tvSex.setText(judgeNull(viperDetailBean.getSex()));
         tvPhone.setText(judgeNull(viperDetailBean.getMobile()));
 
-        long birthday = viperDetailBean.getBirthday();
-        if (birthday != 0) {
-            tvBirthday.setText(DateUtil.parseLongDateToDateString(birthday));
+        String birthday = viperDetailBean.getBirthday();
+        if (!TextUtils.isEmpty(birthday)) {
+            tvBirthday.setText(birthday);
         } else {
             tvBirthday.setText("暂未录入");
         }
@@ -67,16 +68,16 @@ public class ViewHolderCoachVipType_1 extends ViewHolderCoachVipper {
         tvBirthdayType.setText(judgeNull(viperDetailBean.getBirthdayType()));
         tvAge.setText(judgeNull(viperDetailBean.getAge() + ""));
 
-        long deadline = viperDetailBean.getDeadline();
-        if (deadline != 0) {
-            deadLine.setText(DateUtil.parseLongDateToDateString(deadline));
+        String deadline = viperDetailBean.getDeadline();
+        if (!TextUtils.isEmpty(deadline)) {
+            deadLine.setText(deadline);
         } else {
             deadLine.setText("暂未录入");
         }
 
-        long recentlyFitTime = viperDetailBean.getRecentlyFitTime();
-        if (recentlyFitTime != 0) {
-            tvRecentFitNessTime.setText(DateUtil.parseLongDateToDateString(recentlyFitTime));
+        String recentlyFitTime = viperDetailBean.getRecentlyFitTime();
+        if (!TextUtils.isEmpty(recentlyFitTime)) {
+            tvRecentFitNessTime.setText(recentlyFitTime);
         } else {
             tvRecentFitNessTime.setText("暂未录入");
         }

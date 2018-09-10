@@ -227,8 +227,6 @@
             android:name=".mvp.price.courseprice.CoachClassBaoJiaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
         <activity
             android:name=".mvp.course.punch.CoursePunchActivity"
             android:screenOrientation="portrait" />
@@ -405,9 +403,7 @@
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.course.preparelessons.createtemplate.CreateTemplateStepOneActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.taskcenter.TaskCenterActivity"
             android:screenOrientation="portrait" />
@@ -433,7 +429,7 @@
         <activity
             android:name=".mvp.course.schedule.ScheduleCourseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".mvp.main.mine.userinfo.UserInfoActivity"
             android:screenOrientation="portrait"
@@ -470,6 +466,13 @@
             android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
             android:launchMode="singleTask" />
         <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity" />
+        <activity android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

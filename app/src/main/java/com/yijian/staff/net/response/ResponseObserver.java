@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.util.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -132,6 +133,7 @@ public abstract class ResponseObserver<T> implements Observer<JSONObject>, Resul
     }
 
     private String getErrorMsg(Throwable e) {
+        e.printStackTrace();
         if (e instanceof SocketTimeoutException) {
             return "连接超时";
         } else if (e instanceof ConnectException || e instanceof UnknownHostException) {

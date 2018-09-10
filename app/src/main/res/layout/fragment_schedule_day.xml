@@ -1,68 +1,60 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_background_color"
-    android:orientation="horizontal">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="100dp"
-        android:layout_height="match_parent" />
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/gray" />
-
-
-    <RelativeLayout
-        android:background="@color/white"
+    android:background="@color/gray_background_color">
+    <LinearLayout
+        android:id="@+id/iv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/send_button_bg"
+        android:orientation="vertical" />
+    <LinearLayout
+        android:layout_above="@id/iv_edit"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
 
-
-        <com.yijian.staff.widget.MyScollView
-            android:id="@+id/scoll_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.yijian.staff.mvp.course.schedule.day.DayCourseView
-                android:id="@+id/course_view"
-                android:paddingLeft="50dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="100dp"
-                android:paddingTop="20dp"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.yijian.staff.widget.MyScollView>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="16dp"
-            android:gravity="center_vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-            <ImageView
-                android:id="@+id/iv_edit"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/send_invite" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:text="生成约课表"
-                android:textColor="@color/white" />
+            <com.yijian.staff.widget.MyScollView
+                android:id="@+id/scoll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.yijian.staff.mvp.course.schedule.day.DayCourseView
+                    android:id="@+id/course_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:paddingBottom="100dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="20dp" />
+            </com.yijian.staff.widget.MyScollView>
+
+
+
+
+
         </RelativeLayout>
-    </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
 
 

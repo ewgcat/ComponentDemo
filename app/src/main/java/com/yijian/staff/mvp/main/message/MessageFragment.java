@@ -13,6 +13,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
+import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.widget.MyDividerItemDecoration;
@@ -117,16 +118,16 @@ public class MessageFragment extends MvcBaseFragment {
         HttpManager.getBusinessMessage(businessMessageRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
+
                 hideLoading();
                 messageBeanList.clear();
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    MessageBean businessMessageBean = new MessageBean(jsonObject);
-                    messageBeanList.add(businessMessageBean);
+                List<MessageBean> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), MessageBean.class);
+                if (list!=null&&list.size()>0){
+                    messageBeanList.addAll(list);
+                    messageListAdapter.notifyDataSetChanged();
                 }
-                messageListAdapter.notifyDataSetChanged();
 
                 if (messageBeanList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
@@ -158,14 +159,12 @@ public class MessageFragment extends MvcBaseFragment {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
-                for (int i = 0; i < records.length(); i++) {
-                    JSONObject jsonObject = JsonUtil.getJsonObject(records, i);
-                    MessageBean businessMessageBean = new MessageBean(jsonObject);
-                    messageBeanList.add(businessMessageBean);
+                List<MessageBean> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), MessageBean.class);
 
-
+                if (list!=null&&list.size()>0){
+                    messageBeanList.addAll(list);
+                    messageListAdapter.notifyDataSetChanged();
                 }
-                messageListAdapter.notifyDataSetChanged();
 
 
                 if (messageBeanList.size() == 0) {

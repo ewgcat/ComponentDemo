@@ -31,9 +31,9 @@ public class MessageBean {
      */
 
     private String content;
-    private String cost;
-    private int costType;
-    private String createTime;
+    private Double cost;
+    private Integer costType;
+    private Long createTime;
     private int gender;
     private String id;
     private String headPortrait;
@@ -41,23 +41,6 @@ public class MessageBean {
     private String userName;
     private String title;
 
-
-    public MessageBean(JSONObject jsonObject) {
-
-        this.content = JsonUtil.getString(jsonObject, "content");
-        this.cost = JsonUtil.getString(jsonObject, "cost");
-        this.costType = JsonUtil.getInt(jsonObject, "costType");
-        this.gender = JsonUtil.getInt(jsonObject, "gender");
-        this.id = JsonUtil.getString(jsonObject, "id");
-        this.headPortrait = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headPortrait");
-        this.userId = JsonUtil.getString(jsonObject, "userId");
-        this.userName = JsonUtil.getString(jsonObject, "userName");
-        Long createTimeValue = JsonUtil.getLong(jsonObject, "createTime");
-        if (createTimeValue != null && createTimeValue != -1) {
-            this.createTime = DateUtil.parseLongDateToTimeString(createTimeValue);
-        }
-
-    }
 
     public String getContent() {
         return content;
@@ -67,27 +50,27 @@ public class MessageBean {
         this.content = content;
     }
 
-    public String getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
-    public int getCostType() {
+    public Integer getCostType() {
         return costType;
     }
 
-    public void setCostType(int costType) {
+    public void setCostType(Integer costType) {
         this.costType = costType;
     }
 
-    public String getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 

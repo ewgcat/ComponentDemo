@@ -31,7 +31,7 @@ android {
 
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
         ndk {
-            abiFilters "armeabi","arm64-v8a", "armeabi-v7a";
+            abiFilters "arm64-v8a", "armeabi-v7a";
         }
 
         javaCompileOptions {
@@ -170,7 +170,7 @@ dependencies {
 
     //    implementation 'org.sufficientlysecure:html-textview:3.1'
     implementation 'com.google.android:flexbox:0.3.1'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
 
     //rx
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'

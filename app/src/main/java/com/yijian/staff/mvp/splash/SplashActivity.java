@@ -56,8 +56,6 @@ public class SplashActivity extends MvcBaseActivity {
     private int index = 0;
 
 
-    @BindView(R.id.iv_splash_bg)
-    ImageView ivSplashBg;
 
 
     @Override

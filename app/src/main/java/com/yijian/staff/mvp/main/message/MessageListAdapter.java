@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.MessageBean;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
@@ -56,17 +57,22 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         int resId = messageBean.getGender() == 2 ? R.mipmap.lg_women : R.mipmap.lg_man;
         ImageLoader.setImageResource(resId,context,holder.iv_sex);
 
-        int costType = messageBean.getCostType();
-        if (costType==0){
-            holder.tv_cost.setTextColor(Color.parseColor("#1997f8"));
-            holder.tv_cost.setText("+ "+messageBean.getCost()+"元");
-        }else if (costType==1){
-            holder.tv_cost.setTextColor(Color.parseColor("#f15a5a"));
-            holder.tv_cost.setText("- "+messageBean.getCost()+"元");
-
+        Integer costType = messageBean.getCostType();
+        if (costType!=null){
+            Double cost = messageBean.getCost();
+            String s1 = String.format("%.2f", cost);
+            if (costType==0){
+                holder.tv_cost.setTextColor(Color.parseColor("#1997f8"));
+                holder.tv_cost.setText("+ "+ s1 +"元");
+            }else if (costType==1){
+                holder.tv_cost.setTextColor(Color.parseColor("#f15a5a"));
+                holder.tv_cost.setText("- "+ s1 +"元");
+            }
         }
+
         holder.tv_content.setText(messageBean.getContent());
-        holder.tv_create_time.setText(messageBean.getCreateTime());
+        String s = DateUtil.parseLongDateToTimeString(messageBean.getCreateTime());
+        holder.tv_create_time.setText(s);
     }
 
     @Override

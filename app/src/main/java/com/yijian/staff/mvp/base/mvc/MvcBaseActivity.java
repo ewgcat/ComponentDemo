@@ -54,14 +54,10 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         }
     }
 
-    protected WhiteLoadingDialog whiteLoadingDialog;
 
 
 
 
-    protected float getRandom(float range, float startsfrom) {
-        return (float) (Math.random() * range) + startsfrom;
-    }
 
     @Override
     public void onBackPressed() {

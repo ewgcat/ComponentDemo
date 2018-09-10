@@ -17,6 +17,7 @@ import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.vipermanage.viper.edit.HuiJiVipInfoEditActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
@@ -207,10 +208,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
         HashMap<String, String> map = new HashMap<>();
         map.put("id", memberId);
         showLoading();
-        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.getHasHeaderHasParam(HttpManager.GET_VIPER_DETAIL_URL, map, new ResponseObserver<ViperDetailBean>(getLifecycle()) {
             @Override
-            public void onSuccess(JSONObject result) {
-                viperDetailBean = com.alibaba.fastjson.JSONObject.parseObject(result.toString(), ViperDetailBean.class);
+            public void onSuccess(ViperDetailBean bean) {
+                viperDetailBean = bean;
                 if (!TextUtils.isEmpty(viperDetailBean.getName())) navigation2.setTitle(viperDetailBean.getName());
                 adapter.setData(viperDetailBean);
                 hideLoading();

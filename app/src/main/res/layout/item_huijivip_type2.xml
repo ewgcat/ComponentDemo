@@ -100,7 +100,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="2000元"
             android:textColor="@color/blue"
             android:textSize="14sp" />
 
@@ -128,7 +127,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="10节"
             android:textColor="@color/blue"
             android:textSize="14sp" />
 
@@ -156,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="800元"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
@@ -185,7 +182,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="5节"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
@@ -213,7 +209,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="15节"
             android:textColor="@color/blue"
             android:textSize="14sp" />
 
@@ -241,7 +236,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="15节"
             android:textColor="@color/blue"
             android:textSize="14sp" />
 

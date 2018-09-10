@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TestActivity">
-        <com.yijian.staff.DragViewGroup
+        <com.yijian.staff.mvp.course.schedule.week.WeekCourseView
             android:id="@+id/mydragview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

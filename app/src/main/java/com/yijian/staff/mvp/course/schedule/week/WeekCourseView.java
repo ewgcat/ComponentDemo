@@ -1,99 +1,87 @@
 package com.yijian.staff.mvp.course.schedule.week;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.mvp.course.schedule.day.FlagPopuwindow;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 
-import static android.support.v4.widget.ViewDragHelper.STATE_DRAGGING;
-
 /**
  * author：李帅华
  * email：850716183@qq.com
- * time: 2018/8/21 15:15:00
+ * time: 2018/9/10 13:58:06
  */
 public class WeekCourseView extends FrameLayout {
+
+
+
+
+
+
+    private View mDragView;  //被拖动的子元素
+
+    private static final long DRAGDURATION = 300;   //长按的时间
     private static String TAG = WeekCourseView.class.getSimpleName();
 
     private int itemHeight = 200;
     private int itemWidth = 100;
     private int itemSize = 48;
-    private float topLimitAbsY;
-    private float bottomLimitAbsY;
     private Context mContext;
     private Paint mPaint; //分割线高度
     private TextPaint mTextPaint;
-
+    private float topLimitAbsY;
+    private float bottomLimitAbsY;
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
-    private FlagPopuwindow popuwindow;
-
-    private float mLastMotionX, mLastMotionY, scollY;
-    //是否移动了
-    private View dragView;
-
-
-    private ViewDragHelper viewDragHelper;
+    private float scollY, mLastMotionY;
     private ArrayList<View> views = new ArrayList<>();
-    private boolean mIsUnableToDrag;
     private boolean isMove;
-    private Rect dragViewOriginRect;
+    private int maxHeight;
 
 
-    public WeekCourseView(@NonNull Context context) {
+    public WeekCourseView(Context context) {
         this(context, null);
     }
 
-    public WeekCourseView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public WeekCourseView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-
     }
 
-    public WeekCourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public WeekCourseView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
         this.mContext = context;
         prepare();
         init();
-
-
+        prepare();
     }
+
     @TargetApi(Build.VERSION_CODES.ECLAIR_MR1)
-    private void prepare(){
+    private void prepare() {
         setChildrenDrawingOrderEnabled(true);
     }
-    private Activity activity;
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
 
     public void onScollYPosition(int y) {
         this.scollY = y;
@@ -107,18 +95,6 @@ public class WeekCourseView extends FrameLayout {
         requestLayout();
     }
 
-    public void setLimit(float topLimitAbsY, float bottomLimitAbsY) {
-
-        this.topLimitAbsY = topLimitAbsY;
-        this.bottomLimitAbsY = bottomLimitAbsY;
-    }
-
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(resolveSizeAndState(getSuggestedMinimumWidth(), widthMeasureSpec, 0), itemHeight * itemSize + getPaddingTop() + getPaddingBottom());
-    }
 
     private void init() {
         setWillNotDraw(false);
@@ -138,230 +114,12 @@ public class WeekCourseView extends FrameLayout {
         mRedTextPaint.setColor(Color.parseColor("#ff0000"));
         mRedTextPaint.setAntiAlias(true);
         mRedTextPaint.setTextSize(30);
-        viewDragHelper = ViewDragHelper.create(this, 1.0f, new DragHelperCall());
     }
 
-    private class DragHelperCall extends ViewDragHelper.Callback {
-        @Override
-        public boolean tryCaptureView(View child, int pointerId) {
-            boolean contains = views.contains(child);
-            if (contains) {
-                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) child.getTag();
-
-                if (courseBean!=null){
-                    dragView = child;
-                }else {
-                    contains=false;
-                }
-
-            }
-            return contains;
-        }
-
-        @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            super.onViewPositionChanged(changedView, left, top, dx, dy);
-
-        }
-
-        @Override
-        public void onViewDragStateChanged(int state) {
-            super.onViewDragStateChanged(state);
-            if (state == STATE_DRAGGING) {
-                if (dragView != null) {
-                    int top = dragView.getTop();
-                    int left = dragView.getLeft();
-                    int i = (top - getPaddingTop()) / itemHeight;
-                    int finalTop = itemHeight * i + getPaddingTop();
-                    int m = (left - getPaddingLeft()) / itemWidth;
-                    int finalLeft = itemWidth * m + getPaddingLeft();
-                    int finalRigth = itemWidth + finalLeft;
-                    int finalBottom = finalTop + dragView.getHeight();
-                    dragViewOriginRect = new Rect(finalLeft, finalTop, finalRigth, finalBottom);
-
-                }
-            }
-        }
-
-        @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {
-
-            if (left > getWidth() - child.getMeasuredWidth()) {
-                left = getWidth() - child.getMeasuredWidth();
-            } else if (left < getPaddingLeft()) {
-                left = getPaddingLeft();
-            }
-            return left;
-        }
-
-        //计算child垂直方向的位置，top表示y轴坐标（相对于ViewGroup），默认返回0（如果不复写该方法）。这里，你可以控制垂直方向可移动的范围。
-        @Override
-        public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
-
-            if (child.getTop() >= getPaddingTop() && child.getBottom() <= getBottom() - getPaddingBottom()) {
-                top = top;
-            } else if (child.getBottom() > getBottom() - getPaddingBottom()) {
-                top = getBottom() - getPaddingBottom() - child.getMeasuredHeight();
-            } else if (top < getPaddingTop()) {
-                top = getPaddingTop();
-            }
-            return top;
-        }
-
-
-        @Override
-        public void onViewReleased(View child, float xvel, float yvel) {
-            int top = child.getTop();
-            int left = child.getLeft();
-            int i = (top - getPaddingTop()) / itemHeight;
-            int m = (left - getPaddingLeft()) / itemWidth;
-
-
-            child.setVisibility(INVISIBLE);
-            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) child.getTag();
-            String startTime = "";
-            String endTime = "";
-
-            int duration = courseBean.getDuration();
-            if (i == 0) {
-                startTime += "00:00";
-                if (duration / 60 < 10) {
-                    endTime += "0" + duration / 60;
-                } else {
-                    endTime += duration / 60;
-                }
-
-                if (duration % 60 < 10) {
-                    endTime += ":0" + (duration % 60);
-                } else {
-                    endTime += ":" + (duration % 60);
-                }
-            } else {
-                int hour = i / 2;
-                int minut = 0;
-                if (i / 2 < 10) {
-                    startTime += "0" + i / 2;
-                } else {
-                    startTime += i / 2;
-                }
-                if (i % 2 == 0) {
-                    startTime += ":00";
-                    minut = 0;
-                } else {
-                    startTime += ":30";
-                    minut = 30;
-                }
-                int i1 = minut + duration;
-                hour+=i1/60;
-                if (hour < 10) {
-                    endTime += "0" + hour;
-                } else {
-                    endTime +=hour;
-                }
-                if (i1%60 < 10) {
-                    endTime += ":0" + (i1%60);
-                } else {
-                    endTime +=":"+ (i1%60);
-                }
-            }
-            courseBean.setWeek(m);
-            courseBean.setSTime(startTime);
-            courseBean.setETime(endTime);
-            if (onDragEndListener != null) {
-                onDragEndListener.onDragEnd(courseBean);
-            }
-            dragView=null;
-        }
-    }
-
-    @Override
-    public void computeScroll() {
-        if (viewDragHelper.continueSettling(true)) {
-            ViewCompat.postInvalidateOnAnimation(this);
-        }
-    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
-        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            viewDragHelper.cancel();
-            return false;
-        }
-        if (!isEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
-            viewDragHelper.cancel();
-            return super.onInterceptTouchEvent(ev);
-        }
-
-        return viewDragHelper.shouldInterceptTouchEvent(ev);
-    }
-
-
-    boolean isUp;
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        final int action = MotionEventCompat.getActionMasked(event);
-
-        if (!isEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
-            viewDragHelper.cancel();
-            return super.onTouchEvent(event);
-        }
-        int index = MotionEventCompat.getActionIndex(event);
-        switch (action) {
-            case MotionEvent.ACTION_DOWN: {
-                isUp = false;
-                final float x = event.getX();
-                final float y = event.getY();
-                mLastMotionX = x;
-                mLastMotionY = y;
-                mIsUnableToDrag = false;
-
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: {
-                final float x = event.getX();
-                final float currentY = event.getY();
-                final float ady = Math.abs(currentY - mLastMotionY);
-                int slop = viewDragHelper.getTouchSlop();
-
-                float offsetY = mLastMotionY - currentY;
-                mLastMotionY = currentY;
-
-
-                if (Math.abs(ady - slop) > 0) {
-                    //TODO 1.在边界内 上下拖拽请求消费该事件，防止被ScrollView嵌套的手势冲突
-                    //TODO 2.在边界上下滑动交给ScrollView
-
-
-                    if (dragView != null) {
-                        RectF rectF = CommonUtil.calcViewScreenLocation(dragView);
-                        Logger.i(TAG, "rectF.top: " + rectF.top);
-                        Logger.i(TAG, "topLimitAbsY: " + topLimitAbsY);
-                        Logger.i(TAG, "bottomLimitAbsY: " + bottomLimitAbsY);
-                        Logger.i(TAG, "rectF.bottom: " + rectF.bottom);
-                        if (rectF.top > topLimitAbsY && rectF.bottom < bottomLimitAbsY) {
-                            requestDisallowInterceptTouchEvent(true);
-                        }
-
-                    }
-                }
-
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                isUp = true;
-
-                break;
-            }
-        }
-        viewDragHelper.processTouchEvent(event);
-        return true;
     }
 
 
@@ -373,8 +131,6 @@ public class WeekCourseView extends FrameLayout {
     }
 
     private void drawHorizontalLineAndTime(Canvas canvas) {
-
-
         canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), mPaint);
         canvas.drawText("00:00", (getPaddingLeft() - mTextPaint.measureText("00:00")) / 2, getPaddingTop() + mTextPaint.getTextSize() / 2, mTextPaint);
         for (int i = 1; i <= itemSize; i++) {
@@ -387,7 +143,6 @@ public class WeekCourseView extends FrameLayout {
     }
 
     private void drawVerticalLine(Canvas canvas) {
-
         for (int i = 0; i < 7; i++) {
             canvas.drawLine(getPaddingLeft() + itemWidth * i, getPaddingTop(), getPaddingLeft() + itemWidth * i, itemHeight * itemSize + getPaddingTop(), mPaint);
         }
@@ -396,9 +151,7 @@ public class WeekCourseView extends FrameLayout {
     private void drawCurrentTime(Canvas canvas) {
         long l = System.currentTimeMillis();
         String dateToString = DateUtil.getDateToString(l, "HH:mm");
-
         long currentDate = DateUtil.getStringToDate(DateUtil.getCurrentDate(), "yyyy-MM-dd");
-
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = itemHeight * itemSize * l2 / l1 + getPaddingTop();
@@ -426,7 +179,7 @@ public class WeekCourseView extends FrameLayout {
         long top = height * l2 / l1;
         long bottom = height * l3 / l1;
 
-        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
         layoutParams.width = itemWidth;
         layoutParams.height = (int) (bottom - top);
         layoutParams.topMargin = (int) top;
@@ -448,7 +201,7 @@ public class WeekCourseView extends FrameLayout {
             } else {
                 tv_member_name.setTextColor(Color.parseColor("#ffffff"));
             }
-            if (privateCourseMemberVO!=null){
+            if (privateCourseMemberVO != null) {
                 tv_member_name.setText(privateCourseMemberVO.getMemberName());
             }
             ll_week_course.setBackgroundColor(Color.parseColor(colour));
@@ -459,6 +212,7 @@ public class WeekCourseView extends FrameLayout {
             views.add(view);
             ll_week_course.setBackgroundColor(Color.parseColor("#efefef"));
         }
+        requestLayout();
 
     }
 
@@ -467,11 +221,26 @@ public class WeekCourseView extends FrameLayout {
         views.clear();
     }
 
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(resolveSizeAndState(getSuggestedMinimumWidth(), widthMeasureSpec, 0), itemHeight * itemSize + getPaddingTop() + getPaddingBottom());
+        maxHeight = itemHeight * itemSize + getPaddingTop() + getPaddingBottom();
+    }
+
+    public void setLimit(float topLimitAbsY, float bottomLimitAbsY) {
+
+        this.topLimitAbsY = topLimitAbsY;
+        this.bottomLimitAbsY = bottomLimitAbsY;
+    }
+
+
     //让可以拖动的View显示在最上面
     @Override
     protected int getChildDrawingOrder(int childCount, int i) {
-        if (dragView != null) {
-            int mPosition = indexOfChild(dragView);
+        if (mDragView != null) {
+            int mPosition = indexOfChild(mDragView);
             if (i == childCount - 1) {
                 return mPosition;
             }
@@ -481,6 +250,328 @@ public class WeekCourseView extends FrameLayout {
         }
 
         return super.getChildDrawingOrder(childCount, i);
+    }
+
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(getContext(), attrs);
+    }
+
+    @Override
+    protected LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    }
+
+
+    private float downX;
+    private float downY;
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mDragView == null) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    final float x = event.getX();
+                    final float y = event.getY();
+                    downX = event.getX();
+                    downY = event.getY();
+                    isMove = false;
+                    postDelayed(mDragRun, DRAGDURATION);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    isMove = true;
+                    removeCallbacks(mDragRun);
+                    float currentY = event.getY();
+                    float offsetY = downY - currentY;
+                    downY = currentY;
+                    if (getScrollY() + offsetY < 0) {    //控制上边界
+                        offsetY = 0 - getScrollY();
+                    } else if (getScrollY() + offsetY > maxHeight) {    //控制下边界
+                        offsetY = maxHeight - getScrollY();
+                    }
+
+                    scrollBy(0, (int) offsetY);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    removeCallbacks(mDragRun);
+                    break;
+            }
+
+            return super.onTouchEvent(event);
+        } else {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    final float x = event.getX();
+                    final float y = event.getY();
+                    mLastMotionY = y;
+                    downX = event.getX();
+                    downY = event.getY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    float currentX = event.getX();
+                    float currentY = event.getY();
+                    float offsetX = currentX - downX;
+                    float offsetY = currentY - downY;
+                    downX = currentX;
+                    downY = currentY;
+
+
+                    final float ady = Math.abs(currentY - mLastMotionY);
+
+                    mLastMotionY = currentY;
+                    int TouchSlop = ViewConfiguration.get(mContext).getScaledTouchSlop();
+                    if (Math.abs(ady - TouchSlop) > 0) {
+                        //TODO 1.在边界内 上下拖拽请求消费该事件，防止被ScrollView嵌套的手势冲突
+                        //TODO 2.在边界上下滑动交给ScrollView
+
+                        if (mDragView != null) {
+                            RectF rectF = CommonUtil.calcViewScreenLocation(mDragView);
+                            Logger.i(TAG, "rectF.top: " + rectF.top);
+                            Logger.i(TAG, "topLimitAbsY: " + topLimitAbsY);
+                            Logger.i(TAG, "bottomLimitAbsY: " + bottomLimitAbsY);
+                            Logger.i(TAG, "rectF.bottom: " + rectF.bottom);
+                            if (rectF.top > topLimitAbsY && rectF.bottom < bottomLimitAbsY) {
+                                requestDisallowInterceptTouchEvent(true);
+                            } else {
+                                requestDisallowInterceptTouchEvent(false);
+                            }
+                        }
+                    }
+                    ViewCompat.offsetLeftAndRight(mDragView, (int) offsetX);
+                    ViewCompat.offsetTopAndBottom(mDragView, (int) offsetY);
+                    removeCallbacks(mDragScrollRun);
+                    post(mDragScrollRun);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    removeCallbacks(mDragScrollRun);
+                    View changeView = findPositionView((mDragView.getLeft() + mDragView.getRight()) / 2, (mDragView.getTop() + mDragView.getBottom()) / 2);
+                    if (changeView != null) {
+                        requestLayout();
+                    } else {
+                        int top = mDragView.getTop();
+                        int left = mDragView.getLeft();
+                        int i = (top - getPaddingTop()) / itemHeight;
+                        int m = (left - getPaddingLeft()) / itemWidth;
+
+
+                        mDragView.setVisibility(INVISIBLE);
+                        CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) mDragView.getTag();
+                        if (courseBean != null) {
+
+
+                            String startTime = "";
+                            String endTime = "";
+
+                            int duration = courseBean.getDuration();
+                            if (i == 0) {
+                                startTime += "00:00";
+                                if (duration / 60 < 10) {
+                                    endTime += "0" + duration / 60;
+                                } else {
+                                    endTime += duration / 60;
+                                }
+
+                                if (duration % 60 < 10) {
+                                    endTime += ":0" + (duration % 60);
+                                } else {
+                                    endTime += ":" + (duration % 60);
+                                }
+                            } else {
+                                int hour = i / 2;
+                                int minut = 0;
+                                if (i / 2 < 10) {
+                                    startTime += "0" + i / 2;
+                                } else {
+                                    startTime += i / 2;
+                                }
+                                if (i % 2 == 0) {
+                                    startTime += ":00";
+                                    minut = 0;
+                                } else {
+                                    startTime += ":30";
+                                    minut = 30;
+                                }
+                                int i1 = minut + duration;
+                                hour += i1 / 60;
+                                if (hour < 10) {
+                                    endTime += "0" + hour;
+                                } else {
+                                    endTime += hour;
+                                }
+                                if (i1 % 60 < 10) {
+                                    endTime += ":0" + (i1 % 60);
+                                } else {
+                                    endTime += ":" + (i1 % 60);
+                                }
+                            }
+                            courseBean.setWeek(m);
+                            courseBean.setSTime(startTime);
+                            courseBean.setETime(endTime);
+                            if (onDragEndListener != null) {
+                                onDragEndListener.onDragEnd(courseBean);
+                            }
+                        }
+                    }
+
+                    playCancelAnimation(mDragView);
+
+                    mDragView = null;
+                    break;
+            }
+            return true;
+        }
+    }
+
+
+    private View findPositionView(int x, int y) {
+
+        int childCount = getChildCount();
+
+        for (int i = childCount - 1; i >= 0; --i) {
+            View child = getChildAt(i);
+            if (x >= child.getLeft() && x < child.getRight() && y >= child.getTop() && y < child.getBottom()) {
+                if (child != mDragView) {
+                    return child;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private Runnable mDragRun = new Runnable() {
+        @Override
+        public void run() {
+            mDragView = findPositionView((int) downX + getScrollX(), (int) downY + getScrollY());
+
+            if (mDragView != null) {
+                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) mDragView.getTag();
+
+                if (courseBean!=null){
+                    playStartAnimation(mDragView);
+                    invalidate();
+                }else {
+                    mDragView=null;
+                }
+
+            }
+        }
+    };
+
+    private int vDragScroll = 5;
+    private Runnable mDragScrollRun = new Runnable() {
+        @Override
+        public void run() {
+
+            if (mDragView != null) {
+                CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) mDragView.getTag();
+                    if (courseBean!=null){
+                        if (getHeight() + getScrollY() < mDragView.getBottom() && getScrollY() < maxHeight) {
+                            scrollBy(0, vDragScroll);
+                            ViewCompat.offsetTopAndBottom(mDragView, vDragScroll);
+                            post(mDragScrollRun);
+                        } else if (mDragView.getTop() < getScrollY() && getScrollY() > 0) {
+                            scrollBy(0, -vDragScroll);
+                            ViewCompat.offsetTopAndBottom(mDragView, -vDragScroll);
+                            post(mDragScrollRun);
+                        }
+                    }else {
+                        mDragView=null;
+                    }
+
+
+            }
+        }
+    };
+
+    public interface AnimationCallBack {
+        long getDuration();
+
+        Animator getStartAnimator(View view);
+
+        Animator getCancelAnimator(View view);
+    }
+
+    //定义自己想要的动画效果
+    public void setAnimationCallBack(AnimationCallBack callBack) {
+        this.mAnimationCallBack = callBack;
+    }
+
+    private AnimationCallBack mAnimationCallBack = new AnimationCallBack() {
+        @Override
+        public long getDuration() {
+            return 200;
+        }
+
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public Animator getStartAnimator(View view) {
+            AnimatorSet set = new AnimatorSet();
+            set.playTogether(ObjectAnimator.ofFloat(view, "rotationX", 0, 0),
+                    ObjectAnimator.ofFloat(view, "rotationY", 0, 0),
+                    ObjectAnimator.ofFloat(view, "translationX", 0, 0),
+                    ObjectAnimator.ofFloat(view, "translationY", 0, 0),
+                    ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.2f),
+                    ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.2f),
+                    ObjectAnimator.ofFloat(view, "alpha", 1, 0.7f));
+            return set;
+        }
+
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public Animator getCancelAnimator(View view) {
+            AnimatorSet set = new AnimatorSet();
+            set.playTogether(ObjectAnimator.ofFloat(view, "rotationX", 0, 0),
+                    ObjectAnimator.ofFloat(view, "rotationY", 0, 0),
+                    ObjectAnimator.ofFloat(view, "translationX", 0, 0),
+                    ObjectAnimator.ofFloat(view, "translationY", 0, 0),
+                    ObjectAnimator.ofFloat(view, "scaleX", 1.2f, 1.0f),
+                    ObjectAnimator.ofFloat(view, "scaleY", 1.2f, 1.0f),
+                    ObjectAnimator.ofFloat(view, "alpha", 0.7f, 1));
+            return set;
+        }
+    };
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void playStartAnimation(View view) {
+        if (mAnimationCallBack != null) {
+            Animator animator = mAnimationCallBack.getStartAnimator(view);
+            if (animator != null) {
+                animator.setDuration(mAnimationCallBack.getDuration()).start();
+            }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void playCancelAnimation(View view) {
+        if (mAnimationCallBack != null) {
+            Animator animator = mAnimationCallBack.getCancelAnimator(view);
+            if (animator != null) {
+                animator.setDuration(mAnimationCallBack.getDuration()).start();
+            }
+        }
+    }
+
+    public interface ChildPositionChangeListener {
+        //第pos1位置的view1和第pos2位置的view2互换了位置
+        void onChildPositionChange(int pos1, View view1, int pos2, View view2);
+    }
+
+    public interface ItemClickListener {
+        void onItemClickListener(int pos, View view);
+    }
+
+    private ChildPositionChangeListener mChildPositionChangeListener;
+    private ItemClickListener mItemClickListener;
+
+    public void setChildPositionChangeListener(ChildPositionChangeListener listener) {
+        this.mChildPositionChangeListener = listener;
+    }
+
+    public void setItemClickListener(ItemClickListener listener) {
+        this.mItemClickListener = listener;
     }
 
     private OnDragEndListener onDragEndListener;
@@ -495,3 +586,4 @@ public class WeekCourseView extends FrameLayout {
 
 
 }
+

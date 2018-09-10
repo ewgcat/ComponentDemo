@@ -2,13 +2,9 @@ package com.yijian.staff.mvp.course.schedule.week;
 
 import android.content.Intent;
 import android.graphics.RectF;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.yijian.staff.R;
@@ -21,9 +17,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.Response2Observer;
-import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
@@ -40,9 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 
@@ -85,7 +77,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                 //上边界 在屏幕中的
                 float topLimitAbsY = rectF.bottom;
                 float bottomLimitAbsY = contentRectF.bottom;
-                weekCourseView.setLimit(topLimitAbsY, bottomLimitAbsY);
+                weekCourseView.setLimit(topLimitAbsY,bottomLimitAbsY);
                 scollToCurrentTime();
             }
         };

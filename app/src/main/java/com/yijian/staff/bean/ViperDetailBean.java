@@ -978,58 +978,58 @@ public class ViperDetailBean implements Serializable {
          * courseSurplusNum : 0
          */
 
-        private Integer cardSurplusAmount;
-        private Integer consumeAmount;
-        private Integer courseAmount;
-        private Integer courseConsumeNum;
-        private Integer courseNum;
-        private Integer courseSurplusNum;
+        private String cardSurplusAmount;
+        private String consumeAmount;
+        private String courseAmount;
+        private String courseConsumeNum;
+        private String courseNum;
+        private String courseSurplusNum;
 
-        public Integer getCardSurplusAmount() {
+        public String getCardSurplusAmount() {
             return cardSurplusAmount;
         }
 
-        public void setCardSurplusAmount(Integer cardSurplusAmount) {
+        public void setCardSurplusAmount(String cardSurplusAmount) {
             this.cardSurplusAmount = cardSurplusAmount;
         }
 
-        public Integer getConsumeAmount() {
+        public String getConsumeAmount() {
             return consumeAmount;
         }
 
-        public void setConsumeAmount(Integer consumeAmount) {
+        public void setConsumeAmount(String consumeAmount) {
             this.consumeAmount = consumeAmount;
         }
 
-        public Integer getCourseAmount() {
+        public String getCourseAmount() {
             return courseAmount;
         }
 
-        public void setCourseAmount(Integer courseAmount) {
+        public void setCourseAmount(String courseAmount) {
             this.courseAmount = courseAmount;
         }
 
-        public Integer getCourseConsumeNum() {
+        public String getCourseConsumeNum() {
             return courseConsumeNum;
         }
 
-        public void setCourseConsumeNum(Integer courseConsumeNum) {
+        public void setCourseConsumeNum(String courseConsumeNum) {
             this.courseConsumeNum = courseConsumeNum;
         }
 
-        public Integer getCourseNum() {
+        public String getCourseNum() {
             return courseNum;
         }
 
-        public void setCourseNum(Integer courseNum) {
+        public void setCourseNum(String courseNum) {
             this.courseNum = courseNum;
         }
 
-        public Integer getCourseSurplusNum() {
+        public String getCourseSurplusNum() {
             return courseSurplusNum;
         }
 
-        public void setCourseSurplusNum(Integer courseSurplusNum) {
+        public void setCourseSurplusNum(String courseSurplusNum) {
             this.courseSurplusNum = courseSurplusNum;
         }
     }
@@ -1045,9 +1045,9 @@ public class ViperDetailBean implements Serializable {
 
         private String cardprodId;
         private String cardName;
-        private long activateTime;
+        private Long activateTime;
         private String cardType;
-        private Integer cardTypeId;
+        private Long cardTypeId;
 
         public String getCardprodId() {
             return cardprodId;
@@ -1065,11 +1065,11 @@ public class ViperDetailBean implements Serializable {
             this.cardName = cardName;
         }
 
-        public long getActivateTime() {
+        public Long getActivateTime() {
             return activateTime;
         }
 
-        public void setActivateTime(long activateTime) {
+        public void setActivateTime(Long activateTime) {
             this.activateTime = activateTime;
         }
 
@@ -1081,11 +1081,11 @@ public class ViperDetailBean implements Serializable {
             this.cardType = cardType;
         }
 
-        public Integer getCardTypeId() {
+        public Long getCardTypeId() {
             return cardTypeId;
         }
 
-        public void setCardTypeId(Integer cardTypeId) {
+        public void setCardTypeId(Long cardTypeId) {
             this.cardTypeId = cardTypeId;
         }
     }

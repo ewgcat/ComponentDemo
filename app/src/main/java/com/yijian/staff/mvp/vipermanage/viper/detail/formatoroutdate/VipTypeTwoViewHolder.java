@@ -71,14 +71,16 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
 
         String deadline = viperDetailBean.getDeadline();
         if (!TextUtils.isEmpty(deadline)) {
-            deadLine.setText(deadline);
+            String s = DateUtil.parseLongDateToDateString(Long.parseLong(deadline));
+            deadLine.setText(s);
         } else {
             deadLine.setText("暂未录入");
         }
 
         String recentlyFitTime = viperDetailBean.getRecentlyFitTime();
         if (!TextUtils.isEmpty(recentlyFitTime)) {
-            tvRecentFitNessTime.setText(recentlyFitTime);
+            String s = DateUtil.parseLongDateToDateString(Long.parseLong(recentlyFitTime));
+            tvRecentFitNessTime.setText(s);
         } else {
             tvRecentFitNessTime.setText("暂未录入");
         }

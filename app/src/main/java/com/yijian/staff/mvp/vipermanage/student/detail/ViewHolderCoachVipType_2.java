@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.vipermanage.student.detail;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,12 +58,43 @@ public class ViewHolderCoachVipType_2 extends ViewHolderCoachVipper {
         tvTianjiaRenName.setText(judgeNull(customerServiceInfoBean.getReceptionSale()));*/
 
         ViperDetailBean.PrivateCourseAndConsumeInfoBean privateCourseInfoBean = viperDetailBean.getPrivateCourseAndConsumeInfo();
-        tv_card_classamount.setText(judgeNull(privateCourseInfoBean.getCourseAmount()+"元"));
-        tv_card_classnum.setText(judgeNull(privateCourseInfoBean.getCourseNum()+"节"));
-        tv_card_totalcost.setText(judgeNull(privateCourseInfoBean.getConsumeAmount()+"元"));
-        tv_card_consumenum.setText(judgeNull(privateCourseInfoBean.getCourseConsumeNum()+"节"));
-        tv_card_remaindermoney.setText(judgeNull(privateCourseInfoBean.getCardSurplusAmount()+"元"));
-        tv_card_remaindernum.setText(judgeNull(privateCourseInfoBean.getCourseSurplusNum()+"节"));
+        String courseAmount = privateCourseInfoBean.getCourseAmount();
+        if (!TextUtils.isEmpty(courseAmount)){
+            tv_card_classamount.setText(courseAmount+"元");
+        }else {
+            tv_card_classamount.setText("暂无录入");
+        }
+        String courseNum =privateCourseInfoBean.getCourseNum();
+        if (!TextUtils.isEmpty(courseNum)){
+            tv_card_classnum.setText(courseNum+"节");
+        }else {
+            tv_card_classnum.setText("暂无录入");
+        }
+        String consumeAmount = privateCourseInfoBean.getConsumeAmount();
+        if (!TextUtils.isEmpty(consumeAmount)){
+            tv_card_totalcost.setText(consumeAmount+"元");
+        }else {
+            tv_card_totalcost.setText("暂无录入");
+        }
+        String courseConsumeNum = privateCourseInfoBean.getCourseConsumeNum();
+        if (!TextUtils.isEmpty(courseConsumeNum)){
+            tv_card_consumenum.setText(courseConsumeNum+"元");
+        }else {
+            tv_card_consumenum.setText("暂无录入");
+        }
+        String cardSurplusAmount = privateCourseInfoBean.getCardSurplusAmount();
+        if (!TextUtils.isEmpty(cardSurplusAmount)){
+            tv_card_remaindermoney.setText(cardSurplusAmount+"元");
+        }else {
+            tv_card_remaindermoney.setText("暂无录入");
+        }
+        String courseSurplusNum = privateCourseInfoBean.getCourseSurplusNum();
+        if (!TextUtils.isEmpty(courseSurplusNum)){
+            tv_card_remaindernum.setText(courseSurplusNum+"元");
+        }else {
+            tv_card_remaindernum.setText("暂无录入");
+        }
+
 
     }
 

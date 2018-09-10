@@ -426,9 +426,7 @@ public class WeekCourseView extends FrameLayout {
 
 
     private View findPositionView(int x, int y) {
-
         int childCount = getChildCount();
-
         for (int i = childCount - 1; i >= 0; --i) {
             View child = getChildAt(i);
             if (x >= child.getLeft() && x < child.getRight() && y >= child.getTop() && y < child.getBottom()) {
@@ -437,7 +435,6 @@ public class WeekCourseView extends FrameLayout {
                 }
             }
         }
-
         return null;
     }
 

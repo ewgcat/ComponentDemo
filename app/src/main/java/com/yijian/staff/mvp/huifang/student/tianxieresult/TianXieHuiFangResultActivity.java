@@ -200,9 +200,9 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                                 String time = "";
                                 if (month < 9 && dayOfMonth < 10) {
                                     time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
-                                } else if (month > 9 && dayOfMonth > 10) {
+                                } else if (month > 9 && dayOfMonth >= 10) {
                                     time += year + "-" + (month + 1) + "-" + dayOfMonth;
-                                } else if (month < 9 && dayOfMonth > 10) {
+                                } else if (month < 9 && dayOfMonth >= 10) {
                                     time += year + "-0" + (month + 1) + "-" + dayOfMonth;
                                 } else if (month > 9 && dayOfMonth < 10) {
                                     time += year + "-" + (month + 1) + "-0" + dayOfMonth;
@@ -236,9 +236,9 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
                                 String time = "";
                                 if (month < 9 && dayOfMonth < 10) {
                                     time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
-                                } else if (month > 9 && dayOfMonth > 10) {
+                                } else if (month > 9 && dayOfMonth >= 10) {
                                     time += year + "-" + (month + 1) + "-" + dayOfMonth;
-                                } else if (month < 9 && dayOfMonth > 10) {
+                                } else if (month < 9 && dayOfMonth >= 10) {
                                     time += year + "-0" + (month + 1) + "-" + dayOfMonth;
                                 } else if (month > 9 && dayOfMonth < 10) {
                                     time += year + "-" + (month + 1) + "-0" + dayOfMonth;

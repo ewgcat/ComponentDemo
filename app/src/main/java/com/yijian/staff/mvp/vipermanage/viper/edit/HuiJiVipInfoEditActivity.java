@@ -358,16 +358,22 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         tv_source.setText(strEmpty(resource));
         tv_fitnessGoal.setText(strEmpty(detailBean.getFitnessGoal()));
 
-        boolean onceJoinedClub = detailBean.isOnceJoinedClub();
+        Boolean onceJoinedClub = detailBean.isOnceJoinedClub();
 
-        tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
-        if (!onceJoinedClub) {
+        if (onceJoinedClub==null){
+            tv_onceJoinedClub.setText("");
             et_clubBrand.setEnabled(false);
-            et_clubBrand.setText("暂未录入");
+            et_clubBrand.setText("");
+        }else {
+            tv_onceJoinedClub.setText(onceJoinedClub ? "是" : "否");
+            if (!onceJoinedClub) {
+                et_clubBrand.setEnabled(false);
+                et_clubBrand.setText("");
+            } else {
+                et_clubBrand.setEnabled(true);
+                et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
+            }
 
-        } else {
-            et_clubBrand.setEnabled(true);
-            et_clubBrand.setText(strEmpty(detailBean.getClubBrand()));
         }
 
 
@@ -394,7 +400,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
         String homeAddress = detailBean.getNewestAddress();
         if (TextUtils.isEmpty(homeAddress) && homeRegion == null) {
-            tv_homeaddress.setText("暂未录入");
+            tv_homeaddress.setText("");
         } else {
             StringBuffer hAddress = new StringBuffer();
             if (homeRegion != null) {
@@ -424,7 +430,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
         ViperDetailBean.DetailBean.CompanyRegion comRegion = detailBean.getCompanyRegion();
         String comAddress = detailBean.getNewestCompanyAddress();
         if (TextUtils.isEmpty(comAddress) && comRegion == null) {
-            tv_workdress.setText("暂未录入");
+            tv_workdress.setText("");
         } else {
             StringBuffer cAddress = new StringBuffer();
             if (comRegion != null) {

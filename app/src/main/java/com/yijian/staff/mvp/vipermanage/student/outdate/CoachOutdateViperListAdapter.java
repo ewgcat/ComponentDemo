@@ -109,6 +109,7 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             holder.iv_call.setVisibility(View.GONE);
             holder.tv_call.setVisibility(View.VISIBLE);
             holder.iv_suo.setVisibility(View.VISIBLE);
+            holder.tv_call.setText("保护"+coachViperBean.getProtectedDay()+"天");
 
         } else {
             Glide.with(context).load(R.mipmap.dianhua).apply(options).into(holder.iv_call);

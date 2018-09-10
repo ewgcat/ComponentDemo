@@ -56,6 +56,7 @@ public class VipTypeOneViewHolder extends BaseVipperViewHolder {
         //回访
         Boolean isProtected = viperDetailBean.isUnderProtected();
         tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);
+        tv_protect_seven.setText("保护"+viperDetailBean.getProtectedDay()+"天");
         ivVisit.setVisibility(isProtected ? View.GONE : View.VISIBLE);
 
         ivVisit.setOnClickListener(new View.OnClickListener() {

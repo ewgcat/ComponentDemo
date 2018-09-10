@@ -41,6 +41,11 @@ public class ViperDetailBean implements Serializable {
     private int age;
     private int medalType;
     private long birthday;
+    private int protectedDay;
+
+    public int getProtectedDay() {
+        return protectedDay;
+    }
 
     public int getMedalType() {
         return medalType;

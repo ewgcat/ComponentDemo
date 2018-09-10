@@ -94,6 +94,7 @@ public class PotentialViperListAdapter extends RecyclerView.Adapter<PotentialVip
             //回访
             Boolean isProtected = huiJiViperBean.isUnderProtected();
             tv_protect_seven.setVisibility(isProtected ? View.VISIBLE : View.GONE);
+            tv_protect_seven.setText("保护"+huiJiViperBean.getProtectedDay()+"天");
             iv_visit.setVisibility(isProtected ? View.GONE : View.VISIBLE);
             iv_visit.setOnClickListener(new View.OnClickListener() {
                 @Override

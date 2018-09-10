@@ -49,11 +49,16 @@ public class CoachViperBean implements Serializable {
     private boolean underProtected;
     private int medalType;
 
+    private int protectedDay;
 
+    public int getProtectedDay() {
+        return protectedDay;
+    }
     public CoachViperBean(JSONObject jsonObject) {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
+        this.protectedDay = JsonUtil.getInt(jsonObject, "protectedDay");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.medalType = JsonUtil.getInt(jsonObject, "medalType");
 

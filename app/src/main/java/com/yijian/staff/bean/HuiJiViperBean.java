@@ -43,6 +43,7 @@ public class HuiJiViperBean implements Serializable {
     private String mobile;
     private String name;
     private int sex;
+    private int protectedDay;
     private int medalType;
     private int dictItemKey;
     private String headImg;
@@ -54,6 +55,7 @@ public class HuiJiViperBean implements Serializable {
         this.viperRole = JsonUtil.getString(jsonObject, "viperRole");
         this.sex = JsonUtil.getInt(jsonObject, "sex");
         this.medalType = JsonUtil.getInt(jsonObject, "medalType");
+        this.protectedDay = JsonUtil.getInt(jsonObject, "protectedDay");
         this.dictItemKey = JsonUtil.getInt(jsonObject, "dictItemKey");
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
         this.headImg = BuildConfig.FILE_HOST + JsonUtil.getString(jsonObject, "headImg");
@@ -62,6 +64,12 @@ public class HuiJiViperBean implements Serializable {
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
 
     }
+
+    public int getProtectedDay() {
+        return protectedDay;
+    }
+
+
 
     public int getMedalType() {
         return medalType;

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.system.KeyBroadUtil;
 
 import butterknife.BindView;
@@ -39,7 +40,7 @@ public class SearchCardPriceActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-
+        CommonUtil.showSoftInputFromWindow(this,etSearch);
         TextView tvComplete = findViewById(R.id.tv_complete);
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -73,7 +74,6 @@ public class SearchCardPriceActivity extends MvcBaseActivity {
             }
         });
 
-        showKeyBoard(etSearch);
 
     }
 

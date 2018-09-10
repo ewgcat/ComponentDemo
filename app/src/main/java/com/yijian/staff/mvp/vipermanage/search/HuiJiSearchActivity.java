@@ -83,6 +83,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        showKeyBoard(etSearch);
         rcl_search.setLayoutManager(new LinearLayoutManager(this));
         searchKeyAdapter = new SearchKeyAdapter(this, searchList);
         searchKeyAdapter.setClickKeyListener(new SearchKeyAdapter.ClickKeyListener() {
@@ -153,6 +154,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             }
         });
         initComponent();
+
     }
 
     public void initComponent() {

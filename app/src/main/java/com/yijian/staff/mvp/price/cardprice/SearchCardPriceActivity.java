@@ -14,14 +14,18 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.util.system.KeyBroadUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by The_P on 2018/5/18.
  */
 
 public class SearchCardPriceActivity extends MvcBaseActivity {
     private static final String TAG = "SearchCardPriceActivity";
+    @BindView(R.id.et_search)
+    EditText etSearch;
 
- 
 
     @Override
     protected int getLayoutID() {
@@ -35,7 +39,7 @@ public class SearchCardPriceActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-        EditText etSearch = findViewById(R.id.et_search);
+
         TextView tvComplete = findViewById(R.id.tv_complete);
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -69,6 +73,8 @@ public class SearchCardPriceActivity extends MvcBaseActivity {
             }
         });
 
+        showKeyBoard(etSearch);
 
     }
+
 }

@@ -97,7 +97,12 @@ public class WorkFragment extends MvcBaseFragment {
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush();
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush();
         initData();
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+            }
+        });
 
     }
 
@@ -154,11 +159,12 @@ public class WorkFragment extends MvcBaseFragment {
 
 
     private void initData() {
-
+        showLoading();
 
         HttpManager.getNewIndexMenuList(new ResponseObserver<IndexDataInfo>(getLifecycle()) {
             @Override
             public void onSuccess(IndexDataInfo result) {
+                hideLoading();
                 IndexDataInfo.OthermodelVoBean othermodelVoBean = result.getOthermodelVo();
                 JSONObject jsonObject = new JSONObject();
                 try {
@@ -198,12 +204,14 @@ public class WorkFragment extends MvcBaseFragment {
                     }
                 }
                 setRedPoint();
-
+                swipeRefreshLayout.setRefreshing(false);
 
             }
 
             @Override
             public void onFail(String msg) {
+                swipeRefreshLayout.setRefreshing(false);
+                hideLoading();
                 showToast(msg);
             }
         });

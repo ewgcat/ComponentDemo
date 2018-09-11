@@ -79,12 +79,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
+                >
 
                 <ImageView
                     android:id="@+id/iv_item0"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+
                     android:src="@mipmap/location_blue" />
 
                 <TextView
@@ -94,6 +96,8 @@
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item0"
                     android:text="基本信息"
+                    android:layout_centerVertical="true"
+
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
@@ -103,12 +107,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
+     >
 
                 <ImageView
                     android:id="@+id/iv_item1"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+
                     android:src="@mipmap/location_blue" />
 
                 <TextView
@@ -118,6 +124,8 @@
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item1"
                     android:text="会籍信息"
+                    android:layout_centerVertical="true"
+
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
@@ -126,13 +134,13 @@
                 android:id="@+id/rl_item2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv_item2"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
                     android:src="@mipmap/location_blue" />
 
                 <TextView
@@ -142,6 +150,7 @@
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item2"
                     android:text="更多信息"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>

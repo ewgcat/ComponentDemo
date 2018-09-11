@@ -14,9 +14,9 @@
 
     <LinearLayout
         android:id="@+id/ll_head"
-        android:layout_below="@id/navigation_bar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/navigation_bar2"
         android:orientation="vertical">
 
         <LinearLayout
@@ -29,22 +29,25 @@
                 android:id="@+id/rl_item0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv_item0"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+
                     android:src="@mipmap/location_blue" />
 
                 <TextView
                     android:id="@+id/tv_item0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item0"
                     android:text="基本信息"
+
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
@@ -53,22 +56,25 @@
                 android:id="@+id/rl_item1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv_item1"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+
                     android:src="@mipmap/location_blue" />
 
                 <TextView
                     android:id="@+id/tv_item1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item1"
                     android:text="会籍信息"
+
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
@@ -77,22 +83,25 @@
                 android:id="@+id/rl_item2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv_item2"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+
                     android:src="@mipmap/location_blue" />
 
                 <TextView
                     android:id="@+id/tv_item2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item2"
                     android:text="更多信息"
+
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
@@ -101,7 +110,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/gray"/>
+            android:background="@color/gray" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

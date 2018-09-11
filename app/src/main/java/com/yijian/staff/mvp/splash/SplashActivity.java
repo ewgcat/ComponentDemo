@@ -11,12 +11,9 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -30,7 +27,6 @@ import com.yijian.staff.util.NotificationsUtil;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import io.reactivex.Observable;
 
 import static com.yijian.staff.net.httpmanager.HttpManager.GET_NEW_TOKEN_URL;

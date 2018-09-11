@@ -17,15 +17,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.taskcenter.add.rankfragment.AddViperMonthRankFragment;
 import com.yijian.staff.mvp.taskcenter.add.rankfragment.AddViperTodayRankFragment;
 import com.yijian.staff.mvp.vipermanage.viper.potential.AddPotentialActivity;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.TaskCircleProgressBar;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * author：李帅华

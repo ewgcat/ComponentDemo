@@ -16,7 +16,6 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.system.KeyBroadUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by The_P on 2018/5/18.

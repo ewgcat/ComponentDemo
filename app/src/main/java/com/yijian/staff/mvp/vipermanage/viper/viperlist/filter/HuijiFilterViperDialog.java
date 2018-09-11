@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.vipermanage.viper.viperlist.filter;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;

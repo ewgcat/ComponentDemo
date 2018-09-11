@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yijian.staff.widget.LoadingDialog;
-import com.yijian.staff.widget.WhiteLoadingDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

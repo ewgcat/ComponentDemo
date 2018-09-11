@@ -18,8 +18,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
-import com.yijian.staff.mvp.course.schedule.ScheduleCourseActivity;
 import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.mine.addadvice.AddAdviceActivity;
 import com.yijian.staff.mvp.main.mine.club.ClubActivity;

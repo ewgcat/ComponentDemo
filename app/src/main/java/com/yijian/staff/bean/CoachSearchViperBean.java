@@ -1,7 +1,6 @@
 package com.yijian.staff.bean;
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONException;

@@ -10,7 +10,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.bean.RankBean;
 import com.yijian.staff.mvp.taskcenter.list.RankListActivity;
-import com.yijian.staff.mvp.taskcenter.list.RankListAdatper;
 import com.yijian.staff.mvp.taskcenter.visit.VisitRankListAdatper;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class VisitTodayRankFragment extends MvcBaseFragment {
     @BindView(R.id.visit_iv_header)

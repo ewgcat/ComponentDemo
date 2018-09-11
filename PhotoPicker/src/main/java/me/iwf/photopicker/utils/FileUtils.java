@@ -1,7 +1,5 @@
 package me.iwf.photopicker.utils;
 
-import android.util.Log;
-
 import java.io.File;
 
 /**

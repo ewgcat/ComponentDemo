@@ -1,14 +1,11 @@
 package com.yijian.staff.bean;
 
-import com.alibaba.fastjson.JSONArray;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * author：李帅华

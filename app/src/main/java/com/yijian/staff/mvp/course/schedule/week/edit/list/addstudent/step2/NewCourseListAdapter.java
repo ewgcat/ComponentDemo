@@ -1,25 +1,16 @@
 package com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step2;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CoursePlanBean;
-import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.CourseTimeBean;
 import com.yijian.staff.mvp.base.BaseRvAdapter;
 import com.yijian.staff.mvp.base.BaseViewHolder;
-import com.yijian.staff.mvp.course.schedule.week.edit.list.edit.EditCourseTimeActivity;
-import com.yijian.staff.util.ImageLoader;
 
 import java.util.List;
 

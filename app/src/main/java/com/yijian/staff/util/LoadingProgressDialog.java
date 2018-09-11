@@ -1,9 +1,7 @@
 package com.yijian.staff.util;
 
 import android.app.Activity;
-import android.content.Context;
 
-import com.yijian.staff.widget.LoadingDialog;
 import com.yijian.staff.widget.WhiteLoadingDialog;
 
 public class LoadingProgressDialog {

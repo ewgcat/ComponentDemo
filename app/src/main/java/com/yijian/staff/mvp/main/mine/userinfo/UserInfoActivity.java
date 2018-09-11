@@ -1,10 +1,6 @@
 package com.yijian.staff.mvp.main.mine.userinfo;
 
-import android.app.Dialog;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,10 +13,8 @@ import com.yijian.staff.bean.UserInfo;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.main.mine.setting.SettingActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.widget.NavigationBar;
 
@@ -29,8 +23,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class UserInfoActivity extends MvcBaseActivity {
     private static final String TAG = UserInfoActivity.class.getSimpleName();

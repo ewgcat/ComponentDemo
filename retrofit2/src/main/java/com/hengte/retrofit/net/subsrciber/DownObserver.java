@@ -5,7 +5,6 @@ import android.content.Context;
 import com.hengte.retrofit.net.download.CallBack;
 import com.hengte.retrofit.net.download.DownLoadManager;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;

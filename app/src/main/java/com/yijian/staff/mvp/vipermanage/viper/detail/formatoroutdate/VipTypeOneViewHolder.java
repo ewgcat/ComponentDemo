@@ -5,13 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.BaseVipperViewHolder;
-import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.ImageLoader;
 
 /**

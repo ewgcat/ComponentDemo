@@ -2,7 +2,6 @@ package com.yijian.staff.bean;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yangk on 2018/3/21.

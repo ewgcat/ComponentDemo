@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.main.mine.addadvice;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
@@ -18,13 +16,9 @@ import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AddAdviceActivity extends MvcBaseActivity {
 

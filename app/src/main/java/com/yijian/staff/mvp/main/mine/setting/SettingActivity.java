@@ -10,11 +10,8 @@ import android.widget.TextView;
 import com.tencent.bugly.beta.Beta;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
-import com.yijian.staff.mvp.login.LoginActivity;
 import com.yijian.staff.mvp.main.mine.aboutus.AboutUsActivity;
 import com.yijian.staff.mvp.main.mine.editpassword.EditPasswordActivity;
-import com.yijian.staff.mvp.main.mine.qrcode.MyQRCodeActivity;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar;
 

@@ -28,7 +28,6 @@ import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.MyScollView;
 import com.yijian.staff.widget.ScrollViewListener;
 

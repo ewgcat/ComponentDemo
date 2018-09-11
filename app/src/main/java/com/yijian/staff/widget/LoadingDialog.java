@@ -2,7 +2,6 @@ package com.yijian.staff.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

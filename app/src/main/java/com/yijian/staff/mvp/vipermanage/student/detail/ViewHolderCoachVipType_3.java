@@ -9,7 +9,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
-import com.yijian.staff.util.PermissionUtil;
 
 /**
  * Created by The_P on 2018/5/17.

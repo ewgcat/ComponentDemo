@@ -5,7 +5,6 @@ import com.yijian.staff.util.JsonUtil;
 import org.greenrobot.greendao.annotation.Entity;
 import org.json.JSONObject;
 
-import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**

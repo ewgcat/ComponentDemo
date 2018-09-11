@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.tab.adapter.holder.MenuEditRecyclerListHolder;

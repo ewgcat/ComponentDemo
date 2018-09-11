@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.util.CommonUtil;

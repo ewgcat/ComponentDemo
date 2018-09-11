@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ResourceDetailActivity extends MvcBaseActivity {

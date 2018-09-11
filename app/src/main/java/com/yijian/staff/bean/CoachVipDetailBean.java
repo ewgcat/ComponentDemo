@@ -1,7 +1,5 @@
 package com.yijian.staff.bean;
 
-import android.widget.ScrollView;
-
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.JsonUtil;
 

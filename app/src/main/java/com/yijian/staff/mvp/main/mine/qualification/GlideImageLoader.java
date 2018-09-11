@@ -9,9 +9,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
-import com.yijian.staff.util.GlideCircleTransform;
 import com.youth.banner.loader.ImageLoader;
-import com.youth.banner.loader.ImageLoaderInterface;
 
 /**
  * author：李帅华

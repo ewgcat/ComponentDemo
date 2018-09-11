@@ -18,9 +18,6 @@ import com.yijian.staff.tab.adapter.holder.MenuHeaderRecyclerGridHolder;
 import com.yijian.staff.tab.entity.MenuItem;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseDraggableRecyclerAdapter;
-import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.Logger;
 
 import java.util.List;
 

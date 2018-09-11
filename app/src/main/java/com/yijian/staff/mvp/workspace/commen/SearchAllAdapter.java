@@ -14,7 +14,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.util.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
-import com.google.gson.JsonObject;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -17,8 +16,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.resourceallocation.coach.adapter.CoachResourceAllocationAdatper;
-import com.yijian.staff.mvp.resourceallocation.coach.bean.CoachResourceAllocationInfo;
 import com.yijian.staff.mvp.resourceallocation.huiji.adapter.HuiJiResourceAllocationAdatper;
 import com.yijian.staff.mvp.resourceallocation.huiji.bean.HuiJiResourceAllocationInfo;
 import com.yijian.staff.net.httpmanager.HttpManager;

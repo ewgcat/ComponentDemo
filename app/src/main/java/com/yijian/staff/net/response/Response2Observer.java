@@ -5,18 +5,13 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
-import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;

@@ -1,11 +1,9 @@
 package com.yijian.staff.tab.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
@@ -22,8 +20,6 @@ import com.yijian.staff.tab.listener.OnAddListener;
 import com.yijian.staff.tab.listener.OnDeleteListener;
 import com.yijian.staff.tab.recyclerview.BaseSimpleRecyclerAdapter;
 import com.yijian.staff.tab.recyclerview.OnRecyclerItemLongClickListener;
-import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.Logger;
 
 import java.util.List;
 

@@ -2,10 +2,8 @@ package com.yijian.staff.mvp.workspace.utils;
 
 import android.content.Context;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.module.AppGlideModule;
 import com.yijian.staff.util.FileUtil;

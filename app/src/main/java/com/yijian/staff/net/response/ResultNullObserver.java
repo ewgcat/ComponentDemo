@@ -3,7 +3,6 @@ package com.yijian.staff.net.response;
 
 import android.arch.lifecycle.Lifecycle;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 

@@ -1,15 +1,11 @@
 package com.yijian.staff.bean;
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.R;
 import com.yijian.staff.util.JsonUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yangk on 2018/3/29.

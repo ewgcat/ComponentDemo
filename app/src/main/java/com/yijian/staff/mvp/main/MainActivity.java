@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.main;
 
 import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;

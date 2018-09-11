@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.resourceallocation.huiji.bean;
 
 import com.yijian.staff.R;
-import com.yijian.staff.util.JsonUtil;
 
 /**
  * Created by yangk on 2018/3/12.

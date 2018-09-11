@@ -2,10 +2,8 @@ package com.yijian.staff.mvp.base.mvc;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,7 +17,6 @@ import com.tencent.bugly.beta.UpgradeInfo;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.widget.LoadingDialog;
-import com.yijian.staff.widget.WhiteLoadingDialog;
 
 import butterknife.ButterKnife;
 

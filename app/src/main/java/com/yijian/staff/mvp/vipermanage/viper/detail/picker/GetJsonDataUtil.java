@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.vipermanage.viper.detail.picker;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.Environment;
 
 import java.io.BufferedReader;
 import java.io.File;

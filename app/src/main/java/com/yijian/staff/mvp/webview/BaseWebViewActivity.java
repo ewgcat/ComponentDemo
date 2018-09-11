@@ -1,28 +1,17 @@
 package com.yijian.staff.mvp.webview;
 
 import android.os.Build;
-import android.os.Bundle;
-import android.transition.Scene;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import butterknife.BindView;
 
 public abstract class BaseWebViewActivity extends MvcBaseActivity {
 

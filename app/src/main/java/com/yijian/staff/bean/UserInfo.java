@@ -5,10 +5,6 @@ import com.yijian.staff.util.JsonUtil;
 
 import org.json.JSONObject;
 
-import javax.inject.Inject;
-
-import dagger.Component;
-
 /**
  * author：李帅华
  * email：850716183@qq.com

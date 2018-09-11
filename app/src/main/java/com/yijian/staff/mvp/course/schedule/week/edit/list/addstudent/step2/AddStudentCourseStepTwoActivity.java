@@ -3,7 +3,6 @@ package com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step2;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,13 +20,10 @@ import com.yijian.staff.bean.CourseTimeBean;
 import com.yijian.staff.bean.GroupedStudentBean;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.schedule.week.edit.list.edit.EditCourseTimeActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.staff.net.response.Response2Observer;
-import com.yijian.staff.net.response.ResponseObserver;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.ImageLoader;
@@ -46,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

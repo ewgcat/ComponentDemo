@@ -20,10 +20,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.vipermanage.search.SearchKeyAdapter;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
@@ -38,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchHuiFangHistoryActivity extends MvcBaseActivity {

@@ -4,7 +4,6 @@ import android.arch.lifecycle.Lifecycle;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
 
 import org.json.JSONArray;
 

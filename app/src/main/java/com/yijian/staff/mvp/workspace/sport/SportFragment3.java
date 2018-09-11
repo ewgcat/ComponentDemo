@@ -1,26 +1,15 @@
 package com.yijian.staff.mvp.workspace.sport;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultStringObserver;
 
 import java.util.Map;
-
-import butterknife.BindView;
 
 public class SportFragment3 extends BaseSpaceFragment {
 

@@ -2,12 +2,7 @@ package com.yijian.staff.tab.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
-
-import com.h6ah4i.android.widget.advrecyclerview.headerfooter.AbstractHeaderFooterWrapperAdapter;
-import com.yijian.staff.R;
-import com.yijian.staff.tab.entity.MenuItem;
 
 import java.util.List;
 

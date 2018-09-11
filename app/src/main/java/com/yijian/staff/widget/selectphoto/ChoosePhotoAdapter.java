@@ -20,8 +20,6 @@ import com.yijian.staff.R;
 import com.yijian.staff.constant.Constant;
 import com.yijian.staff.mvp.base.seepic.SeePicActivity;
 import com.yijian.staff.util.FileUtil;
-import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.GlideRoundTransform;
 
 import java.util.ArrayList;
 import java.util.List;

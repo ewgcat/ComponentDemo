@@ -2,7 +2,6 @@ package com.yijian.staff.prefs;
 
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.util.ApplicationHolder;

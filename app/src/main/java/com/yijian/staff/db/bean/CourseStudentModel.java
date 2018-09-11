@@ -1,11 +1,6 @@
 package com.yijian.staff.db.bean;
 
-import com.yijian.staff.bean.CourseStudentBean;
-
 import org.greenrobot.greendao.annotation.Entity;
-
-import java.io.Serializable;
-import java.util.List;
 
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;

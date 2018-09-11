@@ -11,7 +11,6 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.bean.RankBean;
 import com.yijian.staff.mvp.taskcenter.add.AddViperRankListAdatper;
 import com.yijian.staff.mvp.taskcenter.list.RankListActivity;
-import com.yijian.staff.mvp.taskcenter.list.RankListAdatper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,6 @@ package com.yijian.staff.mvp.resourceallocation.coachleader.selectcoach;
 
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;

@@ -43,6 +43,7 @@ tinkerSupport {
     // 是否开启反射Application模式
     enableProxyApplication = false
 
+
 }
 
 /**

@@ -3,8 +3,6 @@ package com.yijian.staff.net.response;
 
 import android.arch.lifecycle.Lifecycle;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 

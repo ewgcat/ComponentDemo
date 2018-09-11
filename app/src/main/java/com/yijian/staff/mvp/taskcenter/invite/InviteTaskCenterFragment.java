@@ -1,7 +1,6 @@
 package com.yijian.staff.mvp.taskcenter.invite;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

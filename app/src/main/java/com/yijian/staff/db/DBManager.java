@@ -26,7 +26,6 @@ import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
 import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.prefs.SharePreferenceUtil;
-import com.yijian.staff.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,27 +4,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.yijian.staff.R;
-import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.schedule.week.edit.list.CourseListFragment;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.httpmanager.url.CourseUrls;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.rx.RxBus;
-import com.yijian.staff.widget.MyDividerItemDecoration;
 import com.yijian.staff.widget.NavigationBar;
-
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;

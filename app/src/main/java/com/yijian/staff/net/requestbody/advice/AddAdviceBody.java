@@ -1,11 +1,5 @@
 package com.yijian.staff.net.requestbody.advice;
 
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * author：李帅华
  * email：850716183@qq.com

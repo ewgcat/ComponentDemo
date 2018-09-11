@@ -1,10 +1,5 @@
 package com.yijian.staff.bean;
 
-import com.google.gson.JsonObject;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class PrivateLessonRecordBean {
 
 

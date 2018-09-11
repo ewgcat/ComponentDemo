@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.MessageBean;
 import com.yijian.staff.util.DateUtil;
@@ -52,8 +53,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
 
 
-        ImageLoader.setHeadImageResource(messageBean.getMemberHeadPortrait(), context, holder.iv_member_head);
-        holder.tv_member_name.setText(messageBean.getMemberName());
+        ImageLoader.setHeadImageResource(BuildConfig.FILE_HOST+messageBean.getHeadPortrait(), context, holder.iv_member_head);
+        holder.tv_member_name.setText(messageBean.getUserName());
         int resId = messageBean.getGender() == 2 ? R.mipmap.lg_women : R.mipmap.lg_man;
         ImageLoader.setImageResource(resId,context,holder.iv_sex);
 
@@ -68,6 +69,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 holder.tv_cost.setTextColor(Color.parseColor("#f15a5a"));
                 holder.tv_cost.setText("- "+ s1 +"元");
             }
+        }else {
+            Double cost = messageBean.getCost();
+            String s1 = String.format("%.2f", cost);
+            holder.tv_cost.setTextColor(Color.parseColor("#1997f8"));
+            holder.tv_cost.setText("+ "+ s1 +"元");
         }
 
         holder.tv_content.setText(messageBean.getContent());

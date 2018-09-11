@@ -1,11 +1,5 @@
 package com.yijian.staff.bean;
 
-import com.yijian.staff.BuildConfig;
-import com.yijian.staff.util.DateUtil;
-import com.yijian.staff.util.JsonUtil;
-
-import org.json.JSONObject;
-
 /**
  * author：李帅华
  * email：850716183@qq.com
@@ -17,17 +11,16 @@ public class MessageBean {
 
 
     /**
-     content (integer, optional): 消息内容 ,
-     cost (number, optional): 费用 ,
-     costType (integer, optional): 费用类型（0：收款，1：退款） ,
-     createTime (string, optional): 创建时间 ,
-     gender (integer, optional): 性别(0:未知 1:男 2:女) ,
-     id (string, optional): id ,
-     memberHeadPortrait (string, optional): 头像url ,
-     userId (string, optional): 会员id ,
-     userName (string, optional): 会员名称 ,
-     title (string, optional): 消息标题
-     *
+     * content : string
+     * cost : 0
+     * costType : 0
+     * createTime : 2018-09-10T06:36:05.730Z
+     * gender : 0
+     * headPortrait : string
+     * id : string
+     * title : string
+     * userId : string
+     * userName : string
      */
 
     private String content;
@@ -35,12 +28,11 @@ public class MessageBean {
     private Integer costType;
     private Long createTime;
     private int gender;
-    private String id;
     private String headPortrait;
+    private String id;
+    private String title;
     private String userId;
     private String userName;
-    private String title;
-
 
     public String getContent() {
         return content;
@@ -82,6 +74,14 @@ public class MessageBean {
         this.gender = gender;
     }
 
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
     public String getId() {
         return id;
     }
@@ -90,35 +90,27 @@ public class MessageBean {
         this.id = id;
     }
 
-    public String getMemberHeadPortrait() {
-        return headPortrait;
-    }
-
-    public void setMemberHeadPortrait(String memberHeadPortrait) {
-        this.headPortrait = memberHeadPortrait;
-    }
-
-    public String getMemberId() {
-        return userId;
-    }
-
-    public void setMemberId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getMemberName() {
-        return userName;
-    }
-
-    public void setMemberName(String userName) {
-        this.userName = userName;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

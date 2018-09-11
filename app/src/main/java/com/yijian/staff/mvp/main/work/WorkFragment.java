@@ -3,9 +3,13 @@ package com.yijian.staff.mvp.main.work;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -16,9 +20,9 @@ import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
 import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity;
-import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
@@ -31,21 +35,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
 @SuppressLint("ValidFragment")
 public class WorkFragment extends MvcBaseFragment {
-
+    private static final String TAG = WorkFragment.class.getSimpleName();
 
     public static WorkFragment mWorkFragment = null;
     @BindView(R.id.top_view)
     LinearLayout topView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    Unbinder unbinder;
-    private static final String TAG = WorkFragment.class.getSimpleName();
     boolean hasNewJiedaiPush;
     boolean hasNewYueKePush;
     @BindView(R.id.iv_face)
@@ -56,6 +59,8 @@ public class WorkFragment extends MvcBaseFragment {
     LinearLayout llJiedai;
     @BindView(R.id.ll_jie_dai_container)
     LinearLayout llJieDaiContainer;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private IndexMenuAdapter indexMenuAdapter;
     private List<IndexDataInfo.MenuModelListBean.SubMeneModelListBean> menuList = new ArrayList<>();
@@ -75,7 +80,6 @@ public class WorkFragment extends MvcBaseFragment {
         lifecycle = this.getLifecycle();
 
 
-
         indexMenuAdapter = new IndexMenuAdapter(lifecycle, getContext(), menuList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(indexMenuAdapter);
@@ -93,6 +97,7 @@ public class WorkFragment extends MvcBaseFragment {
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush();
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush();
         initData();
+
 
     }
 
@@ -162,7 +167,7 @@ public class WorkFragment extends MvcBaseFragment {
                     jsonObject.put("coachSchedule", othermodelVoBean.isCoachSchedule());
                     jsonObject.put("sellerSchedule", othermodelVoBean.isSellerSchedule());
                     DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(jsonObject));
-                    reception=othermodelVoBean.isReception();
+                    reception = othermodelVoBean.isReception();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -226,18 +231,6 @@ public class WorkFragment extends MvcBaseFragment {
         }
     }
 
-
-
-
-
 }
-
-
-
-
-
-
-
-
 
 

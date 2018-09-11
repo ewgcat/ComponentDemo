@@ -62,9 +62,9 @@
 
     <LinearLayout
         android:id="@+id/ll_head"
-        android:layout_below="@id/navigation_bar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/navigation_bar2"
         android:orientation="vertical">
 
         <LinearLayout
@@ -78,7 +78,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-               >
+                android:gravity="center"
+
+                >
 
                 <ImageView
                     android:id="@+id/iv_item0"
@@ -92,10 +94,10 @@
                     android:id="@+id/tv_item0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item0"
                     android:text="基本信息"
-                    android:layout_centerVertical="true"
 
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
@@ -106,7 +108,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-               >
+                android:gravity="center"
+
+                >
 
                 <ImageView
                     android:id="@+id/iv_item1"
@@ -120,10 +124,10 @@
                     android:id="@+id/tv_item1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item1"
                     android:text="会籍信息"
-                    android:layout_centerVertical="true"
 
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
@@ -134,7 +138,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-               >
+                android:gravity="center"
+
+                >
 
                 <ImageView
                     android:id="@+id/iv_item2"
@@ -148,10 +154,10 @@
                     android:id="@+id/tv_item2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@id/iv_item2"
                     android:text="更多信息"
-                    android:layout_centerVertical="true"
 
                     android:textColor="@color/text_black2"
                     android:textSize="@dimen/text_size_12" />
@@ -161,7 +167,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/gray"/>
+            android:background="@color/gray" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

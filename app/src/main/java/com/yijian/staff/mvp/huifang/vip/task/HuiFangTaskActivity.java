@@ -77,14 +77,15 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
             public void onSuccess(JSONArray result) {
                 hideLoading();
                 try {
-                    if (result != null) {
+                    if (result != null&&result.length()>0) {
                         for (int i = 0; i < result.length(); i++) {
                             JSONObject jsonObject = result.getJSONObject(i);
-                            if (jsonObject.has("totalNum")) {
-                                totalNum = JsonUtil.getInt(jsonObject, "totalNum");
-                            }
                             HuiFangTypeBean huiFangTypeBean = new HuiFangTypeBean(jsonObject);
                             huiFangTypeBeanArrayList.add(huiFangTypeBean);
+                        }
+                        JSONObject jsonObject = result.getJSONObject(0);
+                        if (jsonObject.has("totalNum")) {
+                            totalNum = JsonUtil.getInt(jsonObject, "totalNum");
                         }
                         DBManager.getInstance().insertOrReplaceHuiFangTypeBeans(huiFangTypeBeanArrayList);
                         initIndicatorAndViewPager();

@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.application.CustomApplication;
+import com.yijian.staff.bean.AppointCourseBean;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;

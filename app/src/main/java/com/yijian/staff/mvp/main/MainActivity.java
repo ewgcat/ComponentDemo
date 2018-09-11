@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.main;
 
 import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;

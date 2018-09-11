@@ -65,7 +65,7 @@ public class SplashActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setImmersionBar();
         initRxPermissions(index, permissions);
     }
 

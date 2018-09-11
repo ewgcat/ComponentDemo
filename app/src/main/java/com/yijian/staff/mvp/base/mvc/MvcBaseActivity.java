@@ -1,11 +1,15 @@
 package com.yijian.staff.mvp.base.mvc;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -28,6 +32,9 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     public Context mContext;
 
     protected LoadingDialog loadingDialog;
+
+    private int DEFAULT_STATUS_BAR_COLOR=Color.WHITE;
+
 
 
     public void showLoading() {
@@ -68,6 +75,7 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarColor(DEFAULT_STATUS_BAR_COLOR);
         setContentView(getLayoutID());
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
@@ -140,6 +148,43 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
     public <T extends View> T findView(View view, int viewId) {
         return (T) view.findViewById(viewId);
     }
+
+
+    /**
+     * 设置沉浸状态栏
+     */
+    protected void setImmersionBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    protected int getStatusBarHeight() {
+        int height = 0;
+        //获取status_bar_height资源的ID
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            //根据资源ID获取响应的尺寸值
+            height = getResources().getDimensionPixelSize(resourceId);
+        }
+        return height;
+    }
+
+    protected void setStatusBarColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ColorUtils.calculateLuminance(color) >= 0.5) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } else {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+            getWindow().setStatusBarColor(color);
+        }
+    }
+
 
 
 }

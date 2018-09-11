@@ -231,7 +231,6 @@ dependencies {
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
     implementation 'org.jaaksi:pickerview:1.0.1'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.drawthink:expandable-recyclerview:0.0.3'
 
     //友盟 start

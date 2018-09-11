@@ -202,19 +202,19 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             }
 
 
-            tvShentiZhuangtai.setText(huiFangInfo.getHealthStatus());
-            tvJianshenAihao.setText(huiFangInfo.getFitnessHobby());
-            tvXingquAihao.setText(huiFangInfo.getHobby());
-            tvHuifangType.setText(huiFangInfo.getInterviewName());
+            tvShentiZhuangtai.setText(nullCovertToPlaceHolder(huiFangInfo.getHealthStatus()));
+            tvJianshenAihao.setText(nullCovertToPlaceHolder(huiFangInfo.getFitnessHobby()));
+            tvXingquAihao.setText(nullCovertToPlaceHolder(huiFangInfo.getHobby()));
+            tvHuifangType.setText(nullCovertToPlaceHolder(huiFangInfo.getInterviewName()));
             String reviewReason = huiFangInfo.getReviewReason();
             int status = huiFangInfo.getStatus();
             if (status == 3) {
                 if (!TextUtils.isEmpty(reviewReason)) {
                     llPreVisitDate.setVisibility(View.VISIBLE);
                     llFuFangReason.setVisibility(View.VISIBLE);
-                    tvPreVisitDate.setText(huiFangInfo.getLastInterviewTime());
-                    tvFuFangReason.setText(reviewReason);
-                    tvHuifangType.setText(huiFangInfo.getInterviewName() + " ( 复访 ）");
+                    tvPreVisitDate.setText(nullCovertToPlaceHolder(huiFangInfo.getLastInterviewTime()));
+                    tvFuFangReason.setText(nullCovertToPlaceHolder(reviewReason));
+                    tvHuifangType.setText(nullCovertToPlaceHolder(huiFangInfo.getInterviewName()) + " ( 复访 ）");
                 }
             }
             int invite = huiFangInfo.getInvite();// 是否邀约, 0未邀约, 1已邀约 ,
@@ -223,14 +223,14 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                 llHuifangJilu.setVisibility(View.VISIBLE);
                 String result = huiFangInfo.getResult();
                 Logger.i("HuiFangHistoryAdapter", "result=" + result);
-                tvHuifangJilu.setText(result);
+                tvHuifangJilu.setText(nullCovertToPlaceHolder(result));
             } else if (invite == 1) {
                 llYaoyueJilu.setVisibility(View.VISIBLE);
                 llNextVisitTime.setVisibility(View.VISIBLE);
                 String inviteContent = huiFangInfo.getInviteContent();
-                tvYaoyueJilu.setText(inviteContent);
+                tvYaoyueJilu.setText(nullCovertToPlaceHolder(inviteContent));
                 String inviteVisitTime = huiFangInfo.getInviteVisitTime();
-                tvNextVisitTime.setText(inviteVisitTime);
+                tvNextVisitTime.setText(nullCovertToPlaceHolder(inviteVisitTime));
             }
 
 
@@ -239,8 +239,8 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (memberBirthdayInterview != null) {
                 llBirthday.setVisibility(View.VISIBLE);
                 llBirthdayType.setVisibility(View.VISIBLE);
-                tvBirthday.setText(memberBirthdayInterview.getBirthday());
-                tvBirthdayType.setText(memberBirthdayInterview.getBirthdayTypeName());
+                tvBirthday.setText(nullCovertToPlaceHolder(memberBirthdayInterview.getBirthday()));
+                tvBirthdayType.setText(nullCovertToPlaceHolder(memberBirthdayInterview.getBirthdayTypeName()));
             }
 
             //会员过期回访
@@ -248,8 +248,8 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (memberPastDueInterview != null) {
                 llCardName.setVisibility(View.VISIBLE);
                 llOutdateTime.setVisibility(View.VISIBLE);
-                tvCardName.setText(memberPastDueInterview.getCardprodName());
-                tvOutdateTime.setText(memberPastDueInterview.getExpireDate());
+                tvCardName.setText(nullCovertToPlaceHolder(memberPastDueInterview.getCardprodName()));
+                tvOutdateTime.setText(nullCovertToPlaceHolder(memberPastDueInterview.getExpireDate()));
             }
 
             //沉寂会员回访
@@ -258,9 +258,9 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                 llChenMoTianShu.setVisibility(View.VISIBLE);
                 llZuijinJianshen.setVisibility(View.VISIBLE);
                 String lastTime = memberQuietInterview.getLastTime();
-                tvZuijinJianshen.setText(lastTime);
+                tvZuijinJianshen.setText(nullCovertToPlaceHolder(lastTime));
                 int intervalDay = memberQuietInterview.getIntervalDay();
-                tvChenMoTianShu.setText("" + intervalDay);
+                tvChenMoTianShu.setText(nullCovertToPlaceHolder("" + intervalDay));
             }
             //快到期会员回访
             HuiFangInfo.MemberWillExpireInterviewBean memberWillExpireInterview = huiFangInfo.getMemberWillExpireInterview();
@@ -269,9 +269,9 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
                 llQuanYiYuEr.setVisibility(View.VISIBLE);
                 llChuzhiYuEr.setVisibility(View.VISIBLE);
                 llCardName.setVisibility(View.VISIBLE);
-                tvCardName.setText(memberWillExpireInterview.getCardprodName());
+                tvCardName.setText(nullCovertToPlaceHolder(memberWillExpireInterview.getCardprodName()));
                 String endTime = memberWillExpireInterview.getEndTime();
-                tvHetongDaoQiRi.setText(endTime);
+                tvHetongDaoQiRi.setText(nullCovertToPlaceHolder(endTime));
                 int amount = memberWillExpireInterview.getAmount();
                 tvChuzhiYuEr.setText(amount + "元");
                 if (memberWillExpireInterview.getCardType() == 1) {
@@ -286,15 +286,15 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (memberYesterdayBuyCardInterview != null) {
                 llCardName.setVisibility(View.VISIBLE);
                 llCardType.setVisibility(View.VISIBLE);
-                tvCardName.setText(memberYesterdayBuyCardInterview.getCardprodName());
-                tvCardType.setText(memberYesterdayBuyCardInterview.getCardTypeName());
+                tvCardName.setText(nullCovertToPlaceHolder(memberYesterdayBuyCardInterview.getCardprodName()));
+                tvCardType.setText(nullCovertToPlaceHolder(memberYesterdayBuyCardInterview.getCardTypeName()));
             }
 
             //昨日到访回访
             HuiFangInfo.MemberYesterdayVisitInterviewBean memberYesterdayVisitInterview = huiFangInfo.getMemberYesterdayVisitInterview();
             if (memberYesterdayVisitInterview != null) {
                 llDaoFangDate.setVisibility(View.VISIBLE);
-                tvDaoFangDate.setText(memberYesterdayVisitInterview.getYesterdayVisitTime());
+                tvDaoFangDate.setText(nullCovertToPlaceHolder(memberYesterdayVisitInterview.getYesterdayVisitTime()));
             }
 
 
@@ -303,15 +303,15 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (studentBirthdayInterview != null) {
                 llBirthday.setVisibility(View.VISIBLE);
                 llBirthdayType.setVisibility(View.VISIBLE);
-                tvBirthday.setText(studentBirthdayInterview.getBirthday());
-                tvBirthdayType.setText(studentBirthdayInterview.getBirthdayTypeName());
+                tvBirthday.setText(nullCovertToPlaceHolder(studentBirthdayInterview.getBirthday()));
+                tvBirthdayType.setText(nullCovertToPlaceHolder(studentBirthdayInterview.getBirthdayTypeName()));
             }
 
             //昨日上课
             HuiFangInfo.StudentYesterdayInCourseInterviewBean studentYesterdayInCourseInterview = huiFangInfo.getStudentYesterdayInCourseInterview();
             if (studentYesterdayInCourseInterview != null) {
                 llShangKeTime.setVisibility(View.VISIBLE);
-                tvShangKeTime.setText(studentYesterdayInCourseInterview.getInviteTime());
+                tvShangKeTime.setText(nullCovertToPlaceHolder(studentYesterdayInCourseInterview.getInviteTime()));
             }
 
             //学员到期回访
@@ -319,8 +319,8 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (studentPrivateCoursePastDueInterview != null) {
                 llCourseName.setVisibility(View.VISIBLE);
                 llOutdateTime.setVisibility(View.VISIBLE);
-                tvCourseName.setText(studentPrivateCoursePastDueInterview.getCourseName());
-                tvOutdateTime.setText(studentPrivateCoursePastDueInterview.getEndTime());
+                tvCourseName.setText(nullCovertToPlaceHolder(studentPrivateCoursePastDueInterview.getCourseName()));
+                tvOutdateTime.setText(nullCovertToPlaceHolder(nullCovertToPlaceHolder(studentPrivateCoursePastDueInterview.getEndTime())));
             }
 
             //快到期学员回访
@@ -328,15 +328,15 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (studentPrivateCourseWillExpireInterview != null) {
                 llCourseName.setVisibility(View.VISIBLE);
                 llHetongDaoQiRi.setVisibility(View.VISIBLE);
-                tvCourseName.setText(studentPrivateCourseWillExpireInterview.getCourseName());
-                tvHetongDaoQiRi.setText(studentPrivateCourseWillExpireInterview.getEndTime());
+                tvCourseName.setText(nullCovertToPlaceHolder(studentPrivateCourseWillExpireInterview.getCourseName()));
+                tvHetongDaoQiRi.setText(nullCovertToPlaceHolder(studentPrivateCourseWillExpireInterview.getEndTime()));
             }
 
             //昨日买课回访
             HuiFangInfo.StudentYesterdayBuyCourseInterviewBean studentYesterdayBuyCourseInterview = huiFangInfo.getStudentYesterdayBuyCourseInterview();
             if (studentYesterdayBuyCourseInterview != null) {
                 llCourseName.setVisibility(View.VISIBLE);
-                tvCourseName.setText(studentYesterdayBuyCourseInterview.getCourseName());
+                tvCourseName.setText(nullCovertToPlaceHolder(studentYesterdayBuyCourseInterview.getCourseName()));
             }
 
 
@@ -368,5 +368,12 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
         holder.llYaoyueJilu.setVisibility(View.GONE);
         holder.llNextVisitTime.setVisibility(View.GONE);
         holder.llShangKeTime.setVisibility(View.GONE);
+    }
+    public static String nullCovertToPlaceHolder(String text) {
+        if (TextUtils.isEmpty(text)) {
+            return "暂无录入";
+        }else {
+            return  text;
+        }
     }
 }

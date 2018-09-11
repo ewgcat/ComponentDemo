@@ -102,6 +102,9 @@
             android:name=".mvp.huifang.vip.history.HuiFangHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mvp.huifang.search.SearchHuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".mvp.huifang.vip.task.HuiFangTaskActivity"
             android:screenOrientation="portrait" />
         <activity

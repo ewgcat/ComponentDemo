@@ -20,6 +20,7 @@ public class HuifangTaskRequestBody {
     private int offset;
     private int size;
 
+
     public boolean isChief() {
         return chief;
     }

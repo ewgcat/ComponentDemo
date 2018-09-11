@@ -72,19 +72,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/top_view" />
 
-    <LinearLayout
-        android:id="@+id/lin_search_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/top_view"
-        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/gray_background_color" />
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -222,7 +222,7 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
             if (invite == 0) {
                 llHuifangJilu.setVisibility(View.VISIBLE);
                 String result = huiFangInfo.getResult();
-                Logger.i("HuiFangHistoryAdapter", "result=" + result);
+                Logger.i("SearchHuiFangHistoryAdapter", "result=" + result);
                 tvHuifangJilu.setText(nullCovertToPlaceHolder(result));
             } else if (invite == 1) {
                 llYaoyueJilu.setVisibility(View.VISIBLE);

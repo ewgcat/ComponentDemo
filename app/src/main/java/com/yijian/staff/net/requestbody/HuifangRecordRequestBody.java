@@ -12,7 +12,15 @@ public class HuifangRecordRequestBody {
     private int pageNum;
     private int pageSize;
     private int type;
+    private String keyWord;
 
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
+    }
     public int getType() {
         return type;
     }

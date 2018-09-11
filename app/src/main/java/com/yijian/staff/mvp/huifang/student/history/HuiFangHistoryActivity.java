@@ -1,10 +1,12 @@
 package com.yijian.staff.mvp.huifang.student.history;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -13,10 +15,13 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.HuiFangInfo;
+import com.yijian.staff.mvp.huifang.search.SearchHuiFangHistoryActivity;
+import com.yijian.staff.mvp.huifang.vip.history.HuiFangHistoryAdapter;
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar;
 
@@ -34,10 +39,10 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
 
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
-    private int pages;
+    private int type=1;
     private RecyclerView recyclerView;
     private RefreshLayout refreshLayout;
-    private com.yijian.staff.mvp.huifang.student.history.HuiFangHistoryAdapter huiFangHistoryAdapter;
+    private com.yijian.staff.mvp.huifang.vip.history.HuiFangHistoryAdapter huiFangHistoryAdapter;
 
 
     @Override
@@ -48,12 +53,21 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
 
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.hui_fang_history_navigation_bar);
-        NavigationBar.setTitle("回访记录");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.hui_fang_history_navigation_bar);
+        navigationBar.setTitle("回访记录");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
+        navigationBar.getmRightTv().setText("搜索");
+        ImageLoader.setImageResource(R.mipmap.home_search, this, navigationBar.getmRightIv());
+        navigationBar.getmRightIv().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HuiFangHistoryActivity.this, SearchHuiFangHistoryActivity.class);
+                intent.putExtra("type",type);
+                startActivity(intent);
+            }
+        });
         initComponent();
-
     }
 
 
@@ -99,8 +113,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
         huifangRecordRequestBody.setPageSize(pageSize);
-        huifangRecordRequestBody.setType(1);
-
+        huifangRecordRequestBody.setType(type);
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -108,7 +121,6 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
 
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
                 JSONArray records = JsonUtil.getJsonArray(result, "records");
 
                 List<HuiFangInfo> list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo.class);
@@ -130,13 +142,12 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
         huifangRecordRequestBody.setPageSize(pageSize);
-        huifangRecordRequestBody.setType(1);
+        huifangRecordRequestBody.setType(type);
 
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1;
-                pages = JsonUtil.getInt(result, "pages");
 
                 refreshLayout.finishLoadMore(2000, true, false);//传入false表示刷新失败
                 JSONArray records = JsonUtil.getJsonArray(result, "records");

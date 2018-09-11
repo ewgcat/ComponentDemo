@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.huifang.vip.history;
+package com.yijian.staff.mvp.huifang.search;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -24,11 +24,11 @@ import java.util.List;
  * email：850716183@qq.com
  * time: 2018/2/28 17:08:17
  */
-public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAdapter.ViewHolder> {
+public class SearchHuiFangHistoryAdapter extends RecyclerView.Adapter<SearchHuiFangHistoryAdapter.ViewHolder> {
     private List<HuiFangInfo> mHuiFangInfoList;
     private Context context;
 
-    public HuiFangHistoryAdapter(Context context, List<HuiFangInfo> mHuiFangInfoList) {
+    public SearchHuiFangHistoryAdapter(Context context, List<HuiFangInfo> mHuiFangInfoList) {
         this.mHuiFangInfoList = mHuiFangInfoList;
         this.context = context;
     }
@@ -40,10 +40,10 @@ public class HuiFangHistoryAdapter extends RecyclerView.Adapter<HuiFangHistoryAd
     }
 
     @Override
-    public HuiFangHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchHuiFangHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hui_fang_history, parent, false);
-        HuiFangHistoryAdapter.ViewHolder holder = new HuiFangHistoryAdapter.ViewHolder(view);
+        SearchHuiFangHistoryAdapter.ViewHolder holder = new SearchHuiFangHistoryAdapter.ViewHolder(view);
         return holder;
     }
 

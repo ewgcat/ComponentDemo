@@ -40,7 +40,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/home_serch"/>
+                    android:src="@mipmap/home_search"/>
 
             <EditText
                     android:id="@+id/et_search"

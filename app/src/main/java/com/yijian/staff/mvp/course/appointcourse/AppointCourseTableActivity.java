@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -148,18 +149,19 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
+                String p2mParentId = JsonUtil.getString(result, "p2mParentId");
                 JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBCappVOS");
-                List<AppointCourseBean.P2mToBCappVOSBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.P2mToBCappVOSBean.class);
-                if (list!=null&&list.size()>0){
-                    for (int i = 0; i < list.size(); i++) {
-                        AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
-                        courseView.addItem(appointCourseBean);
-                    }
-                }else {
-                    showToast(date+" 未生成约课表！");
-                }
-
-
+               if(TextUtils.isEmpty(p2mParentId)){
+                   showToast(date+" 未生成约课表！");
+               }else {
+                   List<AppointCourseBean.P2mToBCappVOSBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.P2mToBCappVOSBean.class);
+                   if (list!=null&&list.size()>0){
+                       for (int i = 0; i < list.size(); i++) {
+                           AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
+                           courseView.addItem(appointCourseBean);
+                       }
+                   }
+               }
                 hideLoading();
             }
 

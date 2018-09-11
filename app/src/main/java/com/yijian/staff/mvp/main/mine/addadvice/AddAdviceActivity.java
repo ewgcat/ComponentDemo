@@ -15,6 +15,7 @@ import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.advice.AddAdviceBody;
 import com.yijian.staff.net.requestbody.advice.Advice;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONException;
@@ -57,6 +58,8 @@ public class AddAdviceActivity extends MvcBaseActivity {
                 postData();
             }
         });
+        CommonUtil.showSoftInputFromWindow(this,etAdvice);
+
     }
 
 

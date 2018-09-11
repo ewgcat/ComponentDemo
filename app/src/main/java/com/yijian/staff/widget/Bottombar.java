@@ -21,9 +21,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
     protected LinearLayout mWorkLL;
     protected ImageView mWorkIv;
     protected TextView mWorkTv;
-    //    protected LinearLayout mReportingLl;
-//    protected ImageView mReportingIv;
-//    protected TextView mReportingTv;
+
     protected LinearLayout mMessageLl;
     protected ImageView mMessageIv;
     protected TextView mMessageTv;
@@ -60,9 +58,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         mWorkLL = (LinearLayout) this.findViewById(R.id.ll_main_work);
         mWorkIv = (ImageView) this.findViewById(R.id.iv_main_work);
         mWorkTv = (TextView) this.findViewById(R.id.tv_main_work);
-//        mReportingLl = (LinearLayout) this.findViewById(R.id.ll_main_reporting);
-//        mReportingIv = (ImageView) this.findViewById(R.id.iv_main_reporting);
-//        mReportingTv = (TextView) this.findViewById(R.id.tv_main_reporting);
+
         mMessageLl = (LinearLayout) this.findViewById(R.id.ll_main_message);
         mMessageIv = (ImageView) this.findViewById(R.id.iv_main_message);
         mMessageTv = (TextView) this.findViewById(R.id.tv_main_message);
@@ -72,7 +68,6 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         view_notice = this.findViewById(R.id.view_notice);
 
         mWorkLL.setOnClickListener(this);
-//        mReportingLl.setOnClickListener(this);
         mMessageLl.setOnClickListener(this);
         mMimeLl.setOnClickListener(this);
     }
@@ -99,11 +94,9 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
             case R.id.ll_main_work:
                 mListener.selectTab(0);
                 break;
-//            case R.id.ll_main_reporting:
-//                mListener.selectTab(1);
-//                break;
+
             case R.id.ll_main_message:
-                mListener.selectTab(2);
+                mListener.selectTab(1);
                 if (  lifecycle!=null){
                     ClearRedPointUtil.clearBusinessNotice(lifecycle);
                 }
@@ -111,7 +104,7 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
                 showRedPointNotice(View.INVISIBLE);
                 break;
             case R.id.ll_main_mime:
-                mListener.selectTab(3);
+                mListener.selectTab(2);
                 break;
             default:
                 break;
@@ -132,14 +125,11 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
             case 0:
                 selectWork();
                 break;
-//            case 1:
-//                selectreporting();
-//
-//                break;
-            case 2:
+
+            case 1:
                 selectMessage();
                 break;
-            case 3:
+            case 2:
                 selectMine();
                 break;
         }
@@ -149,8 +139,6 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         mWorkTv.setTextColor(Color.parseColor("#757575"));
         mWorkIv.setImageResource(R.mipmap.home_normal);
 
-//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_unselected);
-//        mReportingTv.setTextColor(Color.parseColor("#757575"));
 
         mMessageIv.setImageResource(R.mipmap.message_norml);
         mMessageTv.setTextColor(Color.parseColor("#757575"));
@@ -159,11 +147,6 @@ public class Bottombar extends LinearLayout implements View.OnClickListener {
         mMimeTv.setTextColor(Color.parseColor("#757575"));
     }
 
-    public void selectreporting() {
-        resetAllButtonState();
-//        mReportingIv.setHeadImageResource(R.mipmap.icon_report_selected);
-//        mReportingTv.setTextColor(Color.parseColor("#1997f8"));
-    }
 
     public void selectWork() {
         resetAllButtonState();

@@ -49,34 +49,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:clickable="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="20dp"
-                android:background="@color/white"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_report_unselected" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="报表"
-
-                android:textColor="@color/gray"
-                android:textSize="10sp" />
-
-
-        </LinearLayout>
 
 
         <LinearLayout

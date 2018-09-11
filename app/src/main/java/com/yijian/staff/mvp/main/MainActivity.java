@@ -251,7 +251,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     }
                 });
                 break;
-            case 2:
+            case 1:
                 if (!mesageFragment.isAdded()) {
                     // 如果mesageFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, mesageFragment, FRAGMENT_TAG[index]);
@@ -272,7 +272,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                     }
                 });
                 break;
-            case 3:
+            case 2:
                 if (!mineFragment.isAdded()) {
                     // 如果MimeFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, mineFragment, FRAGMENT_TAG[index]);

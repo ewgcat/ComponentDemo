@@ -78,7 +78,7 @@ public class ShareTestActivity extends MvcBaseActivity {
         NavigationBar.setBackLLVisiable(View.GONE);
 //        NavigationBar.setmRightIv(R.mipmap.share);
         NavigationBar.setBackClickListener(this);
-        NavigationBar.setmRightIvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShareDialog();

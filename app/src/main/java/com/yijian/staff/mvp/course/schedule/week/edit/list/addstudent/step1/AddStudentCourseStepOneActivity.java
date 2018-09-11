@@ -98,7 +98,7 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
         NavigationBar.setBackClickListener(this);
         NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
         NavigationBar.setmRightTvText("下一步");
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectGroupedStudentBean != null) {

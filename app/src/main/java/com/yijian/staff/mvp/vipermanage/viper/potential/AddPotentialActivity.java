@@ -107,7 +107,7 @@ public class AddPotentialActivity extends MvcBaseActivity {
                 finish();
             }
         });
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

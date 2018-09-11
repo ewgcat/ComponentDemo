@@ -75,7 +75,7 @@ public class InvateActivity extends MvcBaseActivity {
         NavigationBar.setBackClickListener(this);
         NavigationBar.hideLeftSecondIv();
         NavigationBar.setmRightTvText("完成");
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

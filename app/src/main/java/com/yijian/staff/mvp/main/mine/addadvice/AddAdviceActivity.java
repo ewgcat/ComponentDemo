@@ -52,7 +52,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
         NavigationBar.setmRightTvText("发送");
         TextView textView = NavigationBar.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

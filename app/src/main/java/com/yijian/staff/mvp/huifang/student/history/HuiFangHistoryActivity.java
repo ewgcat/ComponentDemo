@@ -59,7 +59,7 @@ public class HuiFangHistoryActivity extends MvcBaseActivity {
         navigationBar.setBackClickListener(this);
         navigationBar.getmRightTv().setText("搜索");
         ImageLoader.setImageResource(R.mipmap.home_search, this, navigationBar.getmRightIv());
-        navigationBar.getmRightIv().setOnClickListener(new View.OnClickListener() {
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HuiFangHistoryActivity.this, SearchHuiFangHistoryActivity.class);

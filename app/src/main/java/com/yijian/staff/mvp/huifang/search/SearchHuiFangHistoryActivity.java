@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -122,14 +123,17 @@ public class SearchHuiFangHistoryActivity extends MvcBaseActivity {
         rv.setLayoutManager(layoutmanager);
         searchHuiFangHistoryAdapter = new SearchHuiFangHistoryAdapter(this, huiFangInfoList);
         rv.setAdapter(searchHuiFangHistoryAdapter);
-        refresh();
     }
 
     public void refresh() {
+        String keyWord = etSearch.getText().toString().trim();
+        if (TextUtils.isEmpty(keyWord)){
+            showToast("请输入关键字！");
+            return;
+        }
         pageNum = 1;
         pageSize = 10;
         huiFangInfoList.clear();
-        String keyWord = etSearch.getText().toString().trim();
         HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
@@ -163,9 +167,12 @@ public class SearchHuiFangHistoryActivity extends MvcBaseActivity {
     }
 
     public void loadMore() {
-
-        HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
         String keyWord = etSearch.getText().toString().trim();
+        if (TextUtils.isEmpty(keyWord)){
+            showToast("请输入关键字！");
+            return;
+        }
+        HuifangRecordRequestBody huifangRecordRequestBody = new HuifangRecordRequestBody();
         huifangRecordRequestBody.setChief(true);
         huifangRecordRequestBody.setPageNum(pageNum);
         huifangRecordRequestBody.setPageSize(pageSize);

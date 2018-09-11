@@ -104,7 +104,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
         NavigationBar.setTitle("选择时间");
         NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
         NavigationBar.setmRightTvText("确定");
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postSaveCourse();

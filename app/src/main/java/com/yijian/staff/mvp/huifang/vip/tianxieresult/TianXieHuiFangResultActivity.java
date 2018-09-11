@@ -107,7 +107,7 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
         NavigationBar.setTitle("填写记录");
         NavigationBar.setmRightTvText("确定");
         NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendResult();

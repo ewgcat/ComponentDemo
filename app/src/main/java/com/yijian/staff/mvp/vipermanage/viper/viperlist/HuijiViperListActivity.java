@@ -66,7 +66,7 @@ public class HuijiViperListActivity extends MvcBaseActivity implements View.OnCl
 
         NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
         NavigationBar.hideLeftSecondIv();
-        NavigationBar.setmRightTvClickListener(this);
+        NavigationBar.setRightClickListener(this);
         NavigationBar.setBackClickListener(this);
         ImageView rightIv = NavigationBar.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);

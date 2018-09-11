@@ -26,7 +26,7 @@ public class SeePicActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         String path = getIntent().getStringExtra(Constant.KEY_SEE_PIC_PATH);
 
-        mNavigationBar = (NavigationBar) findViewById(R.id.NavigationBar);
+        mNavigationBar = (NavigationBar) findViewById(R.id.navigationBar);
         mNavigationBar.setTitle("查看图片");
         mNavigationBar.hideLeftSecondIv();
         mNavigationBar.setBackClickListener(this);

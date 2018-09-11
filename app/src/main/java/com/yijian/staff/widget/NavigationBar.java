@@ -26,7 +26,8 @@ public class NavigationBar extends LinearLayout {
     private ImageView mRightIv;
     private TextView mTitleView;
     private TextView mRightTv;
-    private LinearLayout NavigationBar;
+    private LinearLayout navigationBar;
+    private LinearLayout llRightClickArea;
     private LinearLayout backLL;
     private View bottomLine;
 
@@ -46,7 +47,8 @@ public class NavigationBar extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        NavigationBar = (LinearLayout) findViewById(R.id.NavigationBar);
+        navigationBar = (LinearLayout) findViewById(R.id.navigationBar);
+        llRightClickArea = (LinearLayout) findViewById(R.id.ll_right_click_area);
         backLL = (LinearLayout) findViewById(R.id.ll_back);
 
         firstLeftIv = (ImageView) findViewById(R.id.iv_first_left);
@@ -58,7 +60,7 @@ public class NavigationBar extends LinearLayout {
     }
 
     public void setNavigationBarBackgroudColor(int id) {
-        NavigationBar.setBackgroundColor(id);
+        navigationBar.setBackgroundColor(id);
     }
 
     /*
@@ -135,12 +137,10 @@ public class NavigationBar extends LinearLayout {
         });
     }
 
-    public void setmRightTvClickListener(View.OnClickListener listener) {
-        mRightTv.setOnClickListener(listener);
-    }
 
-    public void setmRightIvClickListener(OnClickListener listener){
-        mRightIv.setOnClickListener(listener);
+
+    public void setRightClickListener(OnClickListener listener){
+        llRightClickArea.setOnClickListener(listener);
     }
 
     public LinearLayout getBackLL() {

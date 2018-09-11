@@ -86,7 +86,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
         NavigationBar.setmRightTvText("确定");
         NavigationBar.setBackClickListener(this);
         NavigationBar.setTitle(title);
-        NavigationBar.setmRightTvClickListener(new View.OnClickListener() {
+        NavigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String detail = et_detail.getText().toString();

@@ -55,7 +55,7 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
         NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
         NavigationBar.hideLeftSecondIv();
         NavigationBar.setBackClickListener(this);
-        NavigationBar.setmRightTvClickListener(this);
+        NavigationBar.setRightClickListener(this);
         ImageView rightIv = NavigationBar.getmRightIv();
         Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
         NavigationBar.setTitle("正式学员");

@@ -111,7 +111,7 @@ abstract class MvcBaseActivity : AppCompatActivity() {
      */
     open fun hideKeyBoard(v: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm?.hideSoftInputFromWindow(v.windowToken, 0)
+        imm.hideSoftInputFromWindow(v.windowToken, 0)
     }
 
     /**
@@ -119,7 +119,7 @@ abstract class MvcBaseActivity : AppCompatActivity() {
      */
     open fun showKeyBoard(v: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm?.showSoftInput(v, 0)
+        imm.showSoftInput(v, 0)
     }
 
 

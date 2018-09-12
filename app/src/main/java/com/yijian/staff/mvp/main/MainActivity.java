@@ -91,24 +91,15 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
             mesageFragment = new MessageFragment();
             mineFragment = new MineFragment();
             // 默认选中0
-
-            //
             selectTab(0);
-
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
             mesageFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
             mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
-
-
-            //读取上一次界面Save的时候tab选中的状态
             int lastSelectedIndex = savedInstanceState.getInt(PRESELECTEDINDEX, selectedIndex);
-
             // 选择上一次保存的Fragment界面
             selectTab(lastSelectedIndex);
-
-
         }
 
         hasNotice();

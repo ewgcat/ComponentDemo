@@ -26,7 +26,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/1.1")
-public class CoachViperListActivity extends MvcBaseActivity implements View.OnClickListener {
+public class CoachViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -52,14 +52,12 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setRightClickListener(this);
-        ImageView rightIv = NavigationBar.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
-        NavigationBar.setTitle("正式学员");
-        NavigationBar.setmRightTvText("筛选");
+        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
+        Glide.with(this).load(R.mipmap.shaixuan_black).into(navigationBar.getmRightIv());
+        navigationBar.setTitle("正式学员");
+        navigationBar.setmRightTvText("筛选");
         changeFragment(0);
         optionDialog = new OptionDialog();
         optionDialog.setOnDismissListener(new OptionDialog.OnDismissListener() {
@@ -69,6 +67,16 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
                 coachViperFilterBean = viperFilterBean;
             }
         });
+        navigationBar.setRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("coachViperFilterBean", coachViperFilterBean);
+                optionDialog.setArguments(bundle);
+                optionDialog.show(getFragmentManager(), "OptionDialog");
+            }
+        });
+
     }
 
 
@@ -131,23 +139,4 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
     }
 
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-        switch (id) {
-            case R.id.iv_first_left:
-                finish();
-                break;
-
-            case R.id.right_tv:
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("coachViperFilterBean", coachViperFilterBean);
-                optionDialog.setArguments(bundle);
-                optionDialog.show(getFragmentManager(), "OptionDialog");
-
-                break;
-
-        }
-    }
 }

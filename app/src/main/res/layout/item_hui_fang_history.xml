@@ -20,15 +20,16 @@
 
             <ImageView
                 android:id="@+id/iv_head"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@mipmap/people" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:src="@mipmap/people" />
 
             <ImageView
                 android:id="@+id/iv_rank"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="30dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                tools:src="@mipmap/member_gray"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp" />
 
             <TextView
@@ -36,9 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="18dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/iv_head"
                 android:ellipsize="end"
+                tools:text="123"
                 android:maxWidth="120dp"
                 android:singleLine="true"
                 android:textColor="#333333"
@@ -46,10 +48,10 @@
 
             <ImageView
                 android:id="@+id/iv_sex"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="6dp"
                 android:layout_toRightOf="@id/tv_viper_name" />
 
 
@@ -90,7 +92,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -122,7 +124,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -154,7 +156,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -199,7 +201,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -234,7 +236,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -269,7 +271,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -305,7 +307,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -340,7 +342,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -375,7 +377,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -408,7 +410,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -443,7 +445,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -477,7 +479,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -512,7 +514,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -548,7 +550,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -583,7 +585,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -619,7 +621,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -653,7 +655,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -688,7 +690,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -722,7 +724,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:textColor="#333333"
+                    android:textColor="#999999"
                     android:gravity="right"
                     android:text=""
                     android:ellipsize="end"
@@ -762,7 +764,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:textColor="#333333"
+                android:textColor="#999999"
                 android:gravity="right"
                 android:text=""
                 android:ellipsize="end"
@@ -779,11 +781,11 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
             android:paddingBottom="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="回访记录: "
                 android:textColor="#333333"
                 android:textSize="14sp" />
@@ -792,12 +794,10 @@
 
             <TextView
                 android:id="@+id/tv_huifang_jilu"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:textColor="#333333"
-                android:gravity="right"
+                android:textColor="#999999"
                 tools:text="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
                 android:textSize="14sp" />
 
@@ -830,7 +830,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:textColor="#333333"
+                android:textColor="#999999"
                 android:gravity="right"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -847,11 +847,11 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
             android:paddingBottom="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="邀约内容: "
                 android:textColor="#333333"
                 android:textSize="14sp" />
@@ -861,12 +861,10 @@
 
             <TextView
                 android:id="@+id/tv_yaoyue_jilu"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:textColor="#333333"
-                android:gravity="right"
+                android:textColor="#999999"
                 tools:text="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
                 android:textSize="14sp" />
 

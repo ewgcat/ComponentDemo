@@ -25,7 +25,7 @@ import butterknife.OnClick;
 
 
 @Route(path = "/test/1")
-public class HuijiViperListActivity extends MvcBaseActivity implements View.OnClickListener {
+public class HuijiViperListActivity extends MvcBaseActivity {
 
     @BindView(R.id.lin_all_vip)
     RelativeLayout lin_all_vip;
@@ -60,14 +60,12 @@ public class HuijiViperListActivity extends MvcBaseActivity implements View.OnCl
     private void initView() {
 
 
-        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setRightClickListener(this);
-        NavigationBar.setBackClickListener(this);
-        ImageView rightIv = NavigationBar.getmRightIv();
-        Glide.with(this).load(R.mipmap.shaixuan_black).into(rightIv);
-        NavigationBar.setTitle("会员信息");
-        NavigationBar.setmRightTvText("筛选");
+        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
+        Glide.with(this).load(R.mipmap.shaixuan_black).into(navigationBar.getmRightIv());
+        navigationBar.setTitle("会员信息");
+        navigationBar.setmRightTvText("筛选");
         changeFragment(0);
         filterDialog = new HuijiFilterViperDialog(this);
         filterDialog.setOnDismissListener(new HuijiFilterViperDialog.OnDismissListener() {
@@ -76,6 +74,13 @@ public class HuijiViperListActivity extends MvcBaseActivity implements View.OnCl
                 RxBus.getDefault().post(huijiViperFilterBean);
             }
         });
+        navigationBar.setRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialog.showFilterDialog();
+            }
+        });
+
 
     }
 
@@ -139,20 +144,5 @@ public class HuijiViperListActivity extends MvcBaseActivity implements View.OnCl
     }
 
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
 
-        switch (id) {
-            case R.id.iv_first_left:
-                finish();
-                break;
-
-            case R.id.right_tv:
-                filterDialog.showFilterDialog();
-
-                break;
-
-        }
-    }
 }

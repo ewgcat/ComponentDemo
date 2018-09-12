@@ -35,7 +35,7 @@ public class ReceptionHistoryAdapter extends RecyclerView.Adapter<ReceptionHisto
 
     @Override
     public ReceptionHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_reception_temp, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_reception, parent, false);
 
         return new ReceptionHistoryAdapter.ViewHolder(view);
     }

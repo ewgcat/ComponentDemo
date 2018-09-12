@@ -102,9 +102,9 @@ class HuiFangTaskActivity : MvcBaseActivity() {
         for (i in huiFangTypeBeanArrayList.indices) {
             val huiFangTypeBean = huiFangTypeBeanArrayList[i]
             mTitleList.add(huiFangTypeBean.name)
-            fragmentList.add(com.yijian.staff.mvp.huifang.vip.task.fragment.BaseHuiFangTaskFragment(huiFangTypeBean.menu))
+            fragmentList.add(BaseHuiFangTaskFragment(huiFangTypeBean.menu))
         }
-        val huiFangPagerAdapter = com.yijian.staff.mvp.huifang.vip.task.pageadapter.HuiFangPagerAdapter(supportFragmentManager, fragmentList, mTitleList)
+        val huiFangPagerAdapter =HuiFangPagerAdapter(supportFragmentManager, fragmentList, mTitleList)
         viewPager.adapter = huiFangPagerAdapter
         tabs.setViewPager(viewPager)
         tabs.updateBubbleNum(0, totalNum)

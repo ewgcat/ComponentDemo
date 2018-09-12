@@ -225,7 +225,7 @@ public class AppointCourseView extends FrameLayout {
     }
 
     public void clearView() {
-        removeAllViewsInLayout();
+        removeAllViews();
     }
 
 }

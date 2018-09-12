@@ -57,7 +57,6 @@ public class WeekCourseView extends FrameLayout {
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
     private float scollY, mLastMotionY;
-    private ArrayList<View> views = new ArrayList<>();
     private boolean isMove;
     private int maxHeight;
 
@@ -190,7 +189,6 @@ public class WeekCourseView extends FrameLayout {
             tv_member_name.setVisibility(VISIBLE);
             view.setTag(courseBean);
 
-            views.add(view);
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
             String colour = courseBean.getColour();
             if (TextUtils.isEmpty(colour)) {
@@ -209,7 +207,6 @@ public class WeekCourseView extends FrameLayout {
         } else {
             tv_member_name.setVisibility(GONE);
             iv_lock.setVisibility(VISIBLE);
-            views.add(view);
             ll_week_course.setBackgroundColor(Color.parseColor("#efefef"));
         }
         requestLayout();
@@ -217,8 +214,8 @@ public class WeekCourseView extends FrameLayout {
     }
 
     public void clearView() {
-        removeAllViewsInLayout();
-        views.clear();
+        removeAllViews();
+
     }
 
 

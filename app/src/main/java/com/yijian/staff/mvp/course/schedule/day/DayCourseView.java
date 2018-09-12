@@ -184,37 +184,40 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     public boolean onLongClick(View v) {
         boolean isShowLockTimePopuwindow = true;
         int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
-            RectF rectF = new RectF(childAt.getLeft() + getLeft(), childAt.getTop() + getTop(), childAt.getLeft() + getLeft() + childAt.getWidth(), childAt.getTop() + getTop() + childAt.getHeight());
+        synchronized (views){
+            for (int i = 0; i < childCount; i++) {
+                View childAt = getChildAt(i);
+                RectF rectF = new RectF(childAt.getLeft() + getLeft(), childAt.getTop() + getTop(), childAt.getLeft() + getLeft() + childAt.getWidth(), childAt.getTop() + getTop() + childAt.getHeight());
 
 
-            if (rectF.contains(mLastMotionX, mLastMotionY)) {
-                Logger.i(TAG, "rectF.top=" + rectF.top);
-                Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
-                Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
-                isReleased = true;
-                removeCallbacks(mLongPressRunnable);
-                View view = views.get(i);
-                String tag = (String) view.getTag();
-                if (tag.equals("锁住")) {
-                    View lock_tv = view.findViewById(R.id.lock_tv);
-                    RectF rectF1 = new RectF(lock_tv.getLeft() + childAt.getLeft() + getLeft(), lock_tv.getTop() + childAt.getTop() + getTop(), lock_tv.getLeft() + childAt.getLeft() + getLeft() + lock_tv.getWidth(), lock_tv.getTop() + childAt.getTop() + getTop() + lock_tv.getHeight());
-                    if (rectF1.contains(mLastMotionX, mLastMotionY)) {
-                        lock_tv.performClick();
-                        isShowLockTimePopuwindow = false;
+                if (rectF.contains(mLastMotionX, mLastMotionY)) {
+                    Logger.i(TAG, "rectF.top=" + rectF.top);
+                    Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
+                    Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
+                    isReleased = true;
+                    removeCallbacks(mLongPressRunnable);
+                    View view = views.get(i);
+                    String tag = (String) view.getTag();
+                    if (tag.equals("锁住")) {
+                        View lock_tv = view.findViewById(R.id.lock_tv);
+                        RectF rectF1 = new RectF(lock_tv.getLeft() + childAt.getLeft() + getLeft(), lock_tv.getTop() + childAt.getTop() + getTop(), lock_tv.getLeft() + childAt.getLeft() + getLeft() + lock_tv.getWidth(), lock_tv.getTop() + childAt.getTop() + getTop() + lock_tv.getHeight());
+                        if (rectF1.contains(mLastMotionX, mLastMotionY)) {
+                            lock_tv.performClick();
+                            isShowLockTimePopuwindow = false;
+                        }
+                    } else if (tag.equals("课程")) {
+                        View iv_flag = view.findViewById(R.id.iv_flag);
+                        RectF rectF2 = new RectF(iv_flag.getLeft() + childAt.getLeft() + getLeft(), iv_flag.getTop() + childAt.getTop() + getTop(), iv_flag.getLeft() + childAt.getLeft() + getLeft() + iv_flag.getWidth(), iv_flag.getTop() + childAt.getTop() + getTop() + iv_flag.getHeight());
+                        if (rectF2.contains(mLastMotionX, mLastMotionY)) {
+                            iv_flag.performClick();
+                            isShowLockTimePopuwindow = false;
+                        }
                     }
-                } else if (tag.equals("课程")) {
-                    View iv_flag = view.findViewById(R.id.iv_flag);
-                    RectF rectF2 = new RectF(iv_flag.getLeft() + childAt.getLeft() + getLeft(), iv_flag.getTop() + childAt.getTop() + getTop(), iv_flag.getLeft() + childAt.getLeft() + getLeft() + iv_flag.getWidth(), iv_flag.getTop() + childAt.getTop() + getTop() + iv_flag.getHeight());
-                    if (rectF2.contains(mLastMotionX, mLastMotionY)) {
-                        iv_flag.performClick();
-                        isShowLockTimePopuwindow = false;
-                    }
+                    return isShowLockTimePopuwindow;
                 }
-                return isShowLockTimePopuwindow;
             }
         }
+
         if (isShowLockTimePopuwindow) {
             maxHeight = itemHeight * itemSize;
             int i = 1440 * mLastMotionY / maxHeight;
@@ -521,14 +524,18 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     private ArrayList<View> views = new ArrayList<>();
 
     public void clearView() {
-        removeAllViewsInLayout();
-        views.clear();
+        removeAllViews();
         popuwindowList.clear();
+        synchronized (views){
+            views.clear();
+        }
     }
 
     public void removeLockView(View view) {
         removeView(view);
-        views.remove(view);
+        synchronized (views){
+            views.remove(view);
+        }
     }
 
     public void dismiss() {

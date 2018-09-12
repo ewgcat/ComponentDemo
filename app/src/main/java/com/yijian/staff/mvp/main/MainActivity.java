@@ -44,7 +44,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final String[] FRAGMENT_TAG = {"WorkFragment",  "MessageFragment", "MimeFragment"};
+    private static final String[] FRAGMENT_TAG = {"WorkFragment", "MessageFragment", "MimeFragment"};
     /**
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
@@ -229,11 +229,14 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         hideAllIndex(transaction);
         switch (index) {
             case 0:
-                if (!workFragment.isAdded()) {
+
+                if (workFragment == null ) {
+                    workFragment = new WorkFragment();
+                }
+                if ( !workFragment.isAdded()) {
                     // 如果WorkFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, workFragment, FRAGMENT_TAG[index]);
                 } else {
-
                     transaction.show(workFragment);
                 }
                 // 如果WorkFragment不为空，则直接将它显示出来
@@ -251,13 +254,17 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 });
                 break;
             case 1:
-                if (!mesageFragment.isAdded()) {
+                if (mesageFragment == null  ) {
+                    mesageFragment = new MessageFragment();
+                }
+                if ( !mesageFragment.isAdded()) {
                     // 如果mesageFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, mesageFragment, FRAGMENT_TAG[index]);
                     transaction.show(mesageFragment);
+                } else {
+                    transaction.show(mesageFragment);
                 }
                 // 如果mesageFragment不为空，则直接将它显示出来
-                transaction.show(mesageFragment);
                 AccessStatisticsRequestBody body2 = new AccessStatisticsRequestBody("app_business_message", version);
                 HttpManager.postAccessStatistics(body2, new ResultJSONObjectObserver(getLifecycle()) {
                     @Override
@@ -272,12 +279,14 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 });
                 break;
             case 2:
-                if (!mineFragment.isAdded()) {
+                if (mineFragment == null  ) {
+                    mineFragment = new MineFragment();
+                }
+                if (!mineFragment.isAdded()){
                     // 如果MimeFragment为空，则创建一个并添加到界面上
                     transaction.add(R.id.fl_home, mineFragment, FRAGMENT_TAG[index]);
                     transaction.show(mineFragment);
-
-                } else {
+                }else {
                     // 如果MimeFragment不为空，则直接将它显示出来
                     transaction.show(mineFragment);
                 }

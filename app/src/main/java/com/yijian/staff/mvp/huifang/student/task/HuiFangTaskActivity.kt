@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.View
+import butterknife.OnClick
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yijian.staff.R
@@ -27,8 +28,6 @@ import org.json.JSONObject
 
 import java.util.ArrayList
 
-import butterknife.BindView
-import butterknife.OnClick
 import kotlinx.android.synthetic.main.activity_hui_fang_task.*
 
 @Route(path = "/test/13")
@@ -56,10 +55,11 @@ class HuiFangTaskActivity : MvcBaseActivity() {
 
     private fun initNavigation() {
         val navigationBar = findViewById<View>(R.id.hui_fang_task_navigation_bar) as NavigationBar
-        navigationBar.setTitle("学员回访")
+        navigationBar.setTitle("会员回访")
         navigationBar.hideLeftSecondIv()
         navigationBar.setBackClickListener(this)
     }
+
 
     private fun initData() {
         showLoading()
@@ -70,10 +70,9 @@ class HuiFangTaskActivity : MvcBaseActivity() {
             override fun onSuccess(result: JSONArray?) {
                 hideLoading()
                 try {
-                    if (result != null) {
+                    if (result != null && result.length() > 0) {
                         for (i in 0 until result.length()) {
                             val jsonObject = result.getJSONObject(i)
-
                             val huiFangTypeBean = HuiFangTypeBean(jsonObject)
                             huiFangTypeBeanArrayList.add(huiFangTypeBean)
                         }
@@ -97,16 +96,15 @@ class HuiFangTaskActivity : MvcBaseActivity() {
         })
     }
 
-
     private fun initIndicatorAndViewPager() {
         val mTitleList = ArrayList<String>()
         val fragmentList = ArrayList<Fragment>()
         for (i in huiFangTypeBeanArrayList.indices) {
             val huiFangTypeBean = huiFangTypeBeanArrayList[i]
             mTitleList.add(huiFangTypeBean.name)
-            fragmentList.add(BaseHuiFangTaskFragment( huiFangTypeBean.menu))
+            fragmentList.add(com.yijian.staff.mvp.huifang.vip.task.fragment.BaseHuiFangTaskFragment(huiFangTypeBean.menu))
         }
-        val huiFangPagerAdapter = HuiFangPagerAdapter(supportFragmentManager, fragmentList, mTitleList)
+        val huiFangPagerAdapter = com.yijian.staff.mvp.huifang.vip.task.pageadapter.HuiFangPagerAdapter(supportFragmentManager, fragmentList, mTitleList)
         viewPager.adapter = huiFangPagerAdapter
         tabs.setViewPager(viewPager)
         tabs.updateBubbleNum(0, totalNum)

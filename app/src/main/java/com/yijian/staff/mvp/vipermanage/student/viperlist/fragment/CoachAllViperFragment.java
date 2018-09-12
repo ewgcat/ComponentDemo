@@ -73,7 +73,7 @@ public class CoachAllViperFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        initView(rootView);
+        initView(getRootView());
         refresh(null);
     }
 

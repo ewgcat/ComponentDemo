@@ -68,7 +68,7 @@ public class HuijiTodayVisitFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        initView(rootView);
+        initView(getRootView());
 
 
     }

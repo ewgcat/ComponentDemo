@@ -68,7 +68,7 @@ public class BaseHuiFangTaskFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        initComponent(rootView);
+        initComponent(getRootView());
     }
 
     @Override

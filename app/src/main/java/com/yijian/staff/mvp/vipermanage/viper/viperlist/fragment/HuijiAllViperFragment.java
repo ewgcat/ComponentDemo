@@ -83,7 +83,7 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
             }
         });
-        initView(rootView);
+        initView(getRootView());
         refresh(null);
     }
 

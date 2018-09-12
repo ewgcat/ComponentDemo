@@ -57,7 +57,7 @@ public class MessageFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        initComponent(rootView);
+        initComponent(getRootView());
     }
 
 

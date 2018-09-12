@@ -49,7 +49,7 @@ public class SearchFragment1 extends BaseSpaceFragment {
     public void initView() {
         empty_view = findView(R.id.empty_view);
         refreshLayout = findView(R.id.refreshLayout);
-        RecyclerView rv_search_all = rootView.findViewById(R.id.rv);
+        RecyclerView rv_search_all = getRootView().findViewById(R.id.rv);
         rv_search_all.setLayoutManager(new LinearLayoutManager(getActivity()));
         //添加Android自带的分割线
         rv_search_all.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));

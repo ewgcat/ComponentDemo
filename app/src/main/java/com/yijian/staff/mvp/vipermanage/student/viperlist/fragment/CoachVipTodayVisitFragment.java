@@ -71,7 +71,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        initView(rootView);
+        initView(getRootView());
     }
 
     private void initView(View view) {

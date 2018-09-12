@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
 apply from: 'tinker-support.gradle'
+//apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-android-extensions'
+
 
 repositories {
     maven { url "http://dl.bintray.com/fotoapparat/fotoapparat" }
@@ -37,6 +40,11 @@ android {
             abiFilters "arm64-v8a";
         }
 
+//        kapt {
+//            arguments {
+//                arg("moduleName", project.getName())
+//            }
+//        }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]

@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main.mine.qualification;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -79,7 +80,6 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        initToolbarHeight();
         setAppbarCorlor();
         choosePhotoView.setMode(ChoosePhotoView.MODE_ONLY_SHOW);
 
@@ -222,8 +222,10 @@ public class MyQualificationActivity extends MvcBaseActivity {
                 int visibility;
                 if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     visibility = View.VISIBLE;
+                    setStatusBarColor(Color.WHITE);
                 } else {
                     visibility = View.GONE;
+                    setImmersionBar();
                 }
                 if (headTitle.getVisibility() != visibility) {
                     headTitle.setVisibility(visibility);
@@ -233,14 +235,6 @@ public class MyQualificationActivity extends MvcBaseActivity {
         });
     }
 
-    private void initToolbarHeight() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) toolbar.getLayoutParams();
-            int height = CommonUtil.getStatusBarHeight(getApplicationContext());
-            params.setMargins(0, height <= 0 ? 75 : height, 0, 0);
-            toolbar.setLayoutParams(params);
-        }
-    }
 
 
 }

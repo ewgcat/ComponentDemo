@@ -1,8 +1,12 @@
 package com.yijian.staff.mvp.invate;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.invite.SaveInviteBody;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar;
 
@@ -46,12 +51,13 @@ public class InvateActivity extends MvcBaseActivity {
     TextView tvFuyueTime;
     @BindView(R.id.et_invate_content)
     EditText etInvateContent;
-    TimePickerView timePickerView;
+    @BindView(R.id.tv_can_input_number)
+    TextView tvCanInputNumber;
     private String memberId;
     private String memberName;
     private String headUrl;
     private String sex;
-
+    private DatePickerDialog dialog;
 
 
     @Override
@@ -78,6 +84,29 @@ public class InvateActivity extends MvcBaseActivity {
                 postData();
             }
         });
+        etInvateContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String s1 = s.toString();
+
+                if (!TextUtils.isEmpty(s1)) {
+                    int num = 140 - s1.length();
+                    tvCanInputNumber.setText(num + "字");
+                }else {
+                    tvCanInputNumber.setText( "140字");
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -99,29 +128,44 @@ public class InvateActivity extends MvcBaseActivity {
         }
         Calendar calendar = Calendar.getInstance();
         tvFuyueTime.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
-        //提交结果
-        timePickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View view) {
 
-                Date date1 = new Date();
-                if (date.before(date1)){
-                    showToast("赴约时间不得小于当前时间");
-                }else {
-                    String result = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                    tvFuyueTime.setText(result);
-                }
-            }
-        }).setType(new boolean[]{true, true, true, false, false, false}).build();
+        dialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+
+                        String time = "";
+                        if (month < 9 && dayOfMonth < 10) {
+                            time += year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                        } else if (month > 9 && dayOfMonth >= 10) {
+                            time += year + "-" + (month + 1) + "-" + dayOfMonth;
+                        } else if (month < 9 && dayOfMonth >= 10) {
+                            time += year + "-0" + (month + 1) + "-" + dayOfMonth;
+                        } else if (month > 9 && dayOfMonth < 10) {
+                            time += year + "-" + (month + 1) + "-0" + dayOfMonth;
+                        }
+
+
+                        String s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay();
+                        String s1 = "" + year + month + dayOfMonth;
+                        if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
+                            tvFuyueTime.setText(time);
+                        } else {
+                            tvFuyueTime.setText("");
+                            showToast("赴约时间不得小于当前时间");
+                        }
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+
     }
 
     @OnClick(R.id.rl_fuyue_time)
     public void onViewClicked() {
-        timePickerView.show();
+        dialog.show();
     }
 
     private void postData() {
-        Map<String, String> map = new HashMap<>();
 
         String content = etInvateContent.getText().toString().trim();
         if (TextUtils.isEmpty(content)){

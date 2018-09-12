@@ -9,6 +9,8 @@
         layout="@layout/view_navigation_bar2" />
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="15dp"

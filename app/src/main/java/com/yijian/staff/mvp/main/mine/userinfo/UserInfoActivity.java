@@ -57,10 +57,10 @@ public class UserInfoActivity extends MvcBaseActivity {
     }
 
     protected void initView() {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
-        NavigationBar.setTitle("");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
+        navigationBar.setTitle("");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
         User user = DBManager.getInstance().queryUser();
 
         HashMap<String, String> map = new HashMap<>();

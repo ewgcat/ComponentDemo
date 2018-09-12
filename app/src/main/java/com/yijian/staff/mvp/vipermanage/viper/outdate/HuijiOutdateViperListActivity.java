@@ -81,10 +81,10 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
-        NavigationBar.setTitle("过期会员");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar.setTitle("过期会员");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
         //设置RecyclerView 布局
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

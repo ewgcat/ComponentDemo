@@ -36,10 +36,10 @@ public class TaskCenterActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        NavigationBar NavigationBar = findViewById(R.id.task_center_navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("任务中心");
+        NavigationBar navigationBar = findViewById(R.id.task_center_navigation_bar2);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("任务中心");
         initIndicatorAndViewPager();
     }
 

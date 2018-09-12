@@ -33,20 +33,20 @@ public class AddAdviceActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.advice_view_navigation_bar2);
-        NavigationBar.setTitle("系统意见");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.advice_view_navigation_bar2);
+        navigationBar.setTitle("系统意见");
+        navigationBar .hideLeftSecondIv();
+        navigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideKeyBoard(etAdvice);
                 finish();
             }
         });
-        NavigationBar.setmRightTvText("发送");
-        TextView textView = NavigationBar.getmRightTv();
+        navigationBar.setmRightTvText("发送");
+        TextView textView =  navigationBar.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

@@ -40,10 +40,10 @@ public class ContractActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.contract_navigation_bar2);
-        NavigationBar.setTitle("合同");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.contract_navigation_bar2);
+        navigationBar.setTitle("合同");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
         contractIds = getIntent().getStringArrayListExtra("contractIds");
         memberId = getIntent().getStringExtra("memberId");
         initWebView(webView);

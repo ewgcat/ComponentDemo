@@ -39,10 +39,10 @@ public class EditPasswordActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.edit_password_activity_navigation_bar2);
-        NavigationBar.setTitle("修改密码");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.edit_password_activity_navigation_bar2);
+        navigationBar.setTitle("修改密码");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
         String name = SharePreferenceUtil.getUserName();
         if (!TextUtils.isEmpty(name)) {

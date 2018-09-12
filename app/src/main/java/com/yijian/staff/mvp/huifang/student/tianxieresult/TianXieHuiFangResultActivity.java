@@ -100,13 +100,13 @@ public class TianXieHuiFangResultActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-        NavigationBar NavigationBar = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("填写记录");
-        NavigationBar.setmRightTvText("确定");
-        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = findViewById(R.id.tian_xie_hui_fang_result_navigation_bar);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("填写记录");
+        navigationBar.setmRightTvText("确定");
+        navigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendResult();

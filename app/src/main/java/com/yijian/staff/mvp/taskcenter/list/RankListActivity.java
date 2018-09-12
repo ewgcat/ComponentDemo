@@ -52,14 +52,14 @@ public class RankListActivity extends MvcBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        NavigationBar NavigationBar = findViewById(R.id.rank_list_navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.rank_list_navigation_bar2);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
         type = getIntent().getIntExtra("RANK_TYPE", 0);
         if (type == TODAY_RANK_TYPE) {
-            NavigationBar.setTitle("今日排名");
+            navigationBar.setTitle("今日排名");
         } else {
-            NavigationBar.setTitle("本月排名");
+            navigationBar.setTitle("本月排名");
         }
         initView();
     }

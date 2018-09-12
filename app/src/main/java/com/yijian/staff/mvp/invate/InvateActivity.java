@@ -73,12 +73,12 @@ public class InvateActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.invate_index_navigation_bar);
-        NavigationBar.setTitle("邀约");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setmRightTvText("完成");
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = findViewById(R.id.invate_index_navigation_bar);
+        navigationBar.setTitle("邀约");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
+        navigationBar.setmRightTvText("完成");
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postData();

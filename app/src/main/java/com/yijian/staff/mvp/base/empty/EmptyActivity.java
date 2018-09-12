@@ -17,8 +17,8 @@ public class EmptyActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = findViewById(R.id.empty_navigation_bar2);
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        NavigationBar navigationBar = findViewById(R.id.empty_navigation_bar2);
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
     }
 }

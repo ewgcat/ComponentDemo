@@ -65,10 +65,10 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.getSecondLeftIv().setVisibility(View.GONE);
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("约课表");
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("约课表");
 
         initLeftDate();
         height = CommonUtil.dp2px(this, 44);

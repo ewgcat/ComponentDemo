@@ -106,6 +106,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
+        setImmersionBar();
         return R.layout.activity_course_punch;
     }
 
@@ -371,11 +372,6 @@ public class CoursePunchActivity extends MvcBaseActivity {
     }
 
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, android.R.anim.fade_out);
-    }
 
     private void showSeekBar2(int progress) {
         if (progress < 20) {

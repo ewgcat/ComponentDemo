@@ -78,14 +78,14 @@ public class MyQRCodeActivity extends MvcBaseActivity {
         rootView.setLayoutParams(params);
         StatusBarUtil.setTranslucentForImageView(this, 0, null);
 
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
-        NavigationBar.setTitle("二维码");
-        NavigationBar.setNavigationBarBackgroudColor(android.R.color.transparent);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.hideBottomLine();
-        NavigationBar.getmTitleView().setTextColor(Color.parseColor("#ffffff"));
-        NavigationBar.setBackClickListener(this);
-        ImageView firstLeftIv = NavigationBar.getFirstLeftIv();
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
+        navigationBar.setTitle("二维码");
+        navigationBar.setNavigationBarBackgroudColor(android.R.color.transparent);
+        navigationBar .hideLeftSecondIv();
+        navigationBar.hideBottomLine();
+        navigationBar.getmTitleView().setTextColor(Color.parseColor("#ffffff"));
+        navigationBar .setBackClickListener(this);
+        ImageView firstLeftIv = navigationBar.getFirstLeftIv();
         Glide.with(this).load(R.mipmap.white_arrow_back).into(firstLeftIv);
         user = DBManager.getInstance().queryUser();
 

@@ -28,7 +28,7 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     private static final String[] FRAGMENT_TAG = {"CoachResourceAllocationFragment", "CoachHistoryAllocationFragment"};
     private ResourceAllocationFragment resourceAllocationFragment;
     private HistoryAllocationFragment historyAllocationFragment;
-    private NavigationBar NavigationBar;
+    private NavigationBar  navigationBar;
 
     @BindView(R.id.lin_resource_allowcation)
     LinearLayout lin_resource_allowcation;
@@ -56,11 +56,11 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
 
 
     private void initView() {
-        NavigationBar = findViewById(R.id.coach_leader_navigation_bar2);
+        navigationBar = findViewById(R.id.coach_leader_navigation_bar2);
 
-        NavigationBar.setTitle("资源分配");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        navigationBar.setTitle("资源分配");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
         resourceAllocationFragment = ResourceAllocationFragment.getInstance();
         historyAllocationFragment = HistoryAllocationFragment.getInstance();
         selectTab(0);
@@ -136,7 +136,7 @@ public class HuiJiLeaderResourceIndexActivity extends AppCompatActivity {
     }
 
     public void setBotoomStyle(int index) {
-        NavigationBar.setTitle(index == 0 ? "资源分配" : "历史分配");
+        navigationBar.setTitle(index == 0 ? "资源分配" : "历史分配");
         tv_resource_allowcation.setTextColor(index == 0 ? Color.parseColor("#1997f8") : Color.parseColor("#666666"));
         tv_history_allowcation.setTextColor(index == 0 ? Color.parseColor("#666666") : Color.parseColor("#1997f8"));
 

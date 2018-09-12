@@ -80,10 +80,10 @@ public class PerfectTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("完美围度测试");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("完美围度测试");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     @OnClick({R.id.btn_finish, R.id.rel_height})

@@ -69,10 +69,10 @@ public class CunkeNewActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle( "存课信息");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle( "存课信息");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     private void initView(){

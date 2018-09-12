@@ -58,16 +58,12 @@ public abstract class MvcBaseActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
-
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void finish() {
+        super.finish();
         overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

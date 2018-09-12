@@ -129,13 +129,13 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity {
 
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
-        NavigationBar NavigationBar = findViewById(R.id.vip_edit_navigation_bar);
-        NavigationBar.setTitle(name + "详细信息");
-        NavigationBar.hideLeftSecondIv();
-        TextView rightTv = NavigationBar.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.vip_edit_navigation_bar);
+        navigationBar.setTitle(name + "详细信息");
+        navigationBar .hideLeftSecondIv();
+        TextView rightTv =  navigationBar.getmRightTv();
         rightTv.setText("保存");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.setBackClickListener(this);
+        navigationBar .setBackClickListener(this);
     }
 
     @OnClick({R.id.right_tv, R.id.rl_source, R.id.rl_onceJoinedClub, R.id.rl_carPrice,

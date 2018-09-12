@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 @Route(path = "/test/10.2")
 public class CoachResourceAllocationActivity extends AppCompatActivity {
 
-    private NavigationBar NavigationBar;
+    private NavigationBar  navigationBar;
     SmartRefreshLayout refreshLayout;
     RecyclerView rv_resource_allocation;
     private List<CoachResourceAllocationInfo> resourceAllocationInfoList = new ArrayList<>();
@@ -59,10 +59,10 @@ public class CoachResourceAllocationActivity extends AppCompatActivity {
 
 
     private void initView() {
-        NavigationBar = findViewById(R.id.coach_navigation_bar2);
-        NavigationBar.setTitle("资源分配");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        navigationBar = findViewById(R.id.coach_navigation_bar2);
+        navigationBar.setTitle("资源分配");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
         initComponent();
     }

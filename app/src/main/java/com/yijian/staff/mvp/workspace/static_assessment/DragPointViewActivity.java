@@ -76,10 +76,10 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle(type == 0 ? "正面照" : "侧身照");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle(type == 0 ? "正面照" : "侧身照");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
 

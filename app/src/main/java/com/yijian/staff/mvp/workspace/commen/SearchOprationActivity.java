@@ -48,10 +48,10 @@ public class SearchOprationActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("学员测评");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("学员测评");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     private void initData() {

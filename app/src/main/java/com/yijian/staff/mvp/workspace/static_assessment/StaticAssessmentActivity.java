@@ -62,10 +62,10 @@ public class StaticAssessmentActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("静态评估");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("静态评估");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     @OnClick({R.id.tv_positive, R.id.tv_side, R.id.tv_finish})

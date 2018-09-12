@@ -47,7 +47,7 @@ public class ShareTestActivity extends MvcBaseActivity {
     String shareWorkSpaceTitle;
     String shareWorkSpaceImgUrl;
     String shareWorkSpaceDescr;
-    NavigationBar NavigationBar;
+    NavigationBar  navigationBar;
     String webUrl;
 
 
@@ -66,13 +66,13 @@ public class ShareTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar = findViewById(R.id.navigation_bar);
-//        NavigationBar.setTitle(ActivityUtils.name+"的测试记录");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackLLVisiable(View.GONE);
+        navigationBar = findViewById(R.id.navigation_bar);
+//        navigationBar.setTitle(ActivityUtils.name+"的测试记录");
+        navigationBar .hideLeftSecondIv();
+        navigationBar.setBackLLVisiable(View.GONE);
 //        NavigationBar.setmRightIv(R.mipmap.share);
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        navigationBar .setBackClickListener(this);
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShareDialog();
@@ -140,8 +140,8 @@ public class ShareTestActivity extends MvcBaseActivity {
                 hideLoading();
                 emptyView.setVisibility(View.GONE);
                 web_view.setVisibility(View.VISIBLE);
-                NavigationBar.setBackLLVisiable(View.VISIBLE);
-                NavigationBar.setmRightIv(R.mipmap.share);
+                navigationBar.setBackLLVisiable(View.VISIBLE);
+                navigationBar.setmRightIv(R.mipmap.share);
 
             }
 
@@ -155,13 +155,13 @@ public class ShareTestActivity extends MvcBaseActivity {
         web_view.addWebChromeClientListener(new SafeWebChromeClient.CallWebChromeClientBackListener() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
-//                NavigationBar.setTitle(title);
+//                navigationBar.setTitle(title);
             }
 
             @Override
             public void onProgressChanged(String title, int newProgress) {
                 if(newProgress == 100){
-                    NavigationBar.setTitle(title);
+                    navigationBar.setTitle(title);
                 }
             }
         });

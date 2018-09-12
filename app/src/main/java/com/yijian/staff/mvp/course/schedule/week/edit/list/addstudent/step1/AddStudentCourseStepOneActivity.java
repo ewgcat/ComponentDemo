@@ -91,13 +91,13 @@ public class AddStudentCourseStepOneActivity extends MvcBaseActivity {
     }
 
     private void initNavigationBar() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("添加学员");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
-        NavigationBar.setmRightTvText("下一步");
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("添加学员");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        navigationBar.setmRightTvText("下一步");
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectGroupedStudentBean != null) {

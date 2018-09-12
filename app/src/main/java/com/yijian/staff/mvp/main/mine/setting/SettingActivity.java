@@ -37,10 +37,10 @@ public class SettingActivity extends AppCompatActivity {
 
 
     protected void initView() {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
-        NavigationBar.setTitle("系统设置");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.setting_activity_navigation_bar2);
+        navigationBar.setTitle("系统设置");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
 
         tvVersion.setText(CommonUtil.getVersionName(this) + " " + CommonUtil.getVersionCode(this));
     }

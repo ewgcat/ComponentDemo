@@ -28,10 +28,10 @@ public class WorkSpaceActivity extends AppCompatActivity {
     }
 
     private void initTitle(){
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("私教P.O.S工具");
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("私教P.O.S工具");
     }
 
     @OnClick({R.id.fl_sport_behavior, R.id.fl_perfect, R.id.fl_static, R.id.fl_sport})

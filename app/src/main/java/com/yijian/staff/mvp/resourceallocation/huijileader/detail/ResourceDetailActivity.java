@@ -81,9 +81,9 @@ public class ResourceDetailActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = findView(R.id.resource_detail_navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findView(R.id.resource_detail_navigation_bar2);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
         root_view = findView(R.id.root_view);
         ll_zhengsi_vip = findView(R.id.ll_zhengsi_vip);

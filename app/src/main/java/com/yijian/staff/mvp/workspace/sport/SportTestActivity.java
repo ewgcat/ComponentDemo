@@ -70,14 +70,14 @@ public class  SportTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("运动表现测试");
-        NavigationBar.hideLeftSecondIv();
-        rightTv = NavigationBar.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("运动表现测试");
+        navigationBar .hideLeftSecondIv();
+        rightTv =  navigationBar.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        NavigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
+        navigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popupWindow == null) {

@@ -15,7 +15,7 @@ import com.yijian.staff.widget.NavigationBar;
 
 public class SeePicActivity extends MvcBaseActivity {
 
-    protected NavigationBar mNavigationBar;
+    protected NavigationBar navigationBar;
 
     @Override
     protected int getLayoutID() {
@@ -26,10 +26,10 @@ public class SeePicActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         String path = getIntent().getStringExtra(Constant.KEY_SEE_PIC_PATH);
 
-        mNavigationBar = (NavigationBar) findViewById(R.id.navigationBar);
-        mNavigationBar.setTitle("查看图片");
-        mNavigationBar.hideLeftSecondIv();
-        mNavigationBar.setBackClickListener(this);
+        navigationBar = (NavigationBar) findViewById(R.id.navigationBar);
+        navigationBar.setTitle("查看图片");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
         PhotoView photoView = findViewById(R.id.photo_view);
         RequestOptions options = new RequestOptions()

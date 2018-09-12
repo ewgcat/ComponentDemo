@@ -52,10 +52,10 @@ public class InvateDetailActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.invate_detail_navigation_bar);
-        NavigationBar.setTitle("邀约内容");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        NavigationBar navigationBar = findViewById(R.id.invate_detail_navigation_bar);
+        navigationBar.setTitle("邀约内容");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
 
     }
 

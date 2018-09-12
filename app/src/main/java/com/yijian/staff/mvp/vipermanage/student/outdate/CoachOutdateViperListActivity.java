@@ -78,10 +78,10 @@ public class CoachOutdateViperListActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar NavigationBar = findViewById(R.id.vip_over_navigation_bar2);
-        NavigationBar.setTitle("过期学员");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar2);
+        navigationBar.setTitle("过期学员");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

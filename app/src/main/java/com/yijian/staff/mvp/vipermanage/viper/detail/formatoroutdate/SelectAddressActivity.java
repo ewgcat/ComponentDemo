@@ -80,12 +80,12 @@ public class SelectAddressActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setmRightTvText("确定");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle(title);
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.navigation_bar2);
+        navigationBar .hideLeftSecondIv();
+        navigationBar.setmRightTvText("确定");
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle(title);
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String detail = et_detail.getText().toString();

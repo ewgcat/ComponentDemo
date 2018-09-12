@@ -54,10 +54,10 @@ public class HuiJiRescourceAllocationActivity extends AppCompatActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar2);
-        NavigationBar.setTitle("资源分配");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar2);
+        navigationBar.setTitle("资源分配");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     private void initView() {

@@ -53,10 +53,10 @@ public class RecordChartActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = findViewById(R.id.record_chart_navigation_bar);
-        NavigationBar.getSecondLeftIv().setVisibility(View.GONE);
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("上课记录表");
+        NavigationBar navigationBar = findViewById(R.id.record_chart_navigation_bar);
+        navigationBar.getSecondLeftIv().setVisibility(View.GONE);
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("上课记录表");
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

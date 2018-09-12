@@ -78,10 +78,10 @@ public class HuijiIntentViperListActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar NavigationBar = findViewById(R.id.vip_intent_navigation_bar);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("意向会员");
+        NavigationBar navigationBar = findViewById(R.id.vip_intent_navigation_bar);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("意向会员");
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

@@ -93,13 +93,13 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.setTitle("选择时间");
-        NavigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
-        NavigationBar.setmRightTvText("确定");
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
+        navigationBar.setTitle("选择时间");
+        navigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
+        navigationBar.setmRightTvText("确定");
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postSaveCourse();

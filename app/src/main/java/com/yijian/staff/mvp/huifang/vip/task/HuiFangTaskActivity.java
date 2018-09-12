@@ -60,10 +60,10 @@ public class HuiFangTaskActivity extends MvcBaseActivity {
 
 
     private void initNavigation() {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
-        NavigationBar.setTitle("会员回访");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.hui_fang_task_navigation_bar);
+        navigationBar.setTitle("会员回访");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
 

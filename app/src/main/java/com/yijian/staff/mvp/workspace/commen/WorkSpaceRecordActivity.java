@@ -66,10 +66,10 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     private void initData() {

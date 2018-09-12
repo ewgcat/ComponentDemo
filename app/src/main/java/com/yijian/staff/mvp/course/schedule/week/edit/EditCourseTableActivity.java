@@ -56,10 +56,10 @@ public class EditCourseTableActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("编辑排课表");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("编辑排课表");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
         selectWeekDay(0);
     }
 

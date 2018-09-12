@@ -46,17 +46,17 @@ public class InvateListActivity extends MvcBaseActivity {
 
     private int pages;
     private InvitationRecordAdatper invitationRecordAdatper;
-    private NavigationBar NavigationBar;
+    private NavigationBar  navigationBar;
     private int total;
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        NavigationBar = findViewById(R.id.navigation_bar2);
-        NavigationBar.setTitle("邀约记录");
-        NavigationBar.setBackClickListener(this);
-        NavigationBar.hideLeftSecondIv();
+        navigationBar = findViewById(R.id.navigation_bar2);
+        navigationBar.setTitle("邀约记录");
+        navigationBar .setBackClickListener(this);
+        navigationBar .hideLeftSecondIv();
         rv_invitation = findViewById(R.id.rv_invitation);
         refreshLayout = findViewById(R.id.refreshLayout);
         initComponent();

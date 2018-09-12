@@ -43,10 +43,10 @@ public class ForgetPasswordActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.forget_password_activity_navigation_bar2);
-        NavigationBar.setTitle("忘记密码");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.forget_password_activity_navigation_bar2);
+        navigationBar.setTitle("忘记密码");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
     }
 
     @OnClick({R.id.tv_getcode, R.id.btn_send})

@@ -18,7 +18,7 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
 
     @BindView(R.id.about_us_navigation_bar2)
-    NavigationBar NavigationBar;
+    NavigationBar  navigationBar;
     @BindView(R.id.web_view)
     WebView webView;
 
@@ -29,9 +29,9 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationBar.setTitle("关于易健");
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.setBackClickListener(this);
+        navigationBar.setTitle("关于易健");
+        navigationBar .hideLeftSecondIv();
+        navigationBar .setBackClickListener(this);
 
 
         initWebView(webView);

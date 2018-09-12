@@ -92,22 +92,22 @@ public class AddPotentialActivity extends MvcBaseActivity {
 
             }
         });
-        NavigationBar NavigationBar = (NavigationBar) findViewById(R.id.add_potential_activity_navigation_bar);
-        NavigationBar.setTitle("添加潜在");
-        NavigationBar.setmRightTvText("确认");
-        textView = NavigationBar.getmRightTv();
-        TextView textView = NavigationBar.getmRightTv();
+        NavigationBar navigationBar = (NavigationBar) findViewById(R.id.add_potential_activity_navigation_bar);
+        navigationBar.setTitle("添加潜在");
+        navigationBar.setmRightTvText("确认");
+        textView =  navigationBar.getmRightTv();
+        TextView textView =  navigationBar.getmRightTv();
         textView.setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.hideLeftSecondIv();
-        NavigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
+         navigationBar.getmRightTv().setTextColor(getResources().getColor(R.color.blue));
+        navigationBar .hideLeftSecondIv();
+        navigationBar.getFirstLeftIv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideKeyBoard(v);
                 finish();
             }
         });
-        NavigationBar.setRightClickListener(new View.OnClickListener() {
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

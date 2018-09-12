@@ -104,13 +104,13 @@ public class PerfectActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar NavigationBar = findViewById(R.id.navigation_bar);
-        NavigationBar.setTitle("完美围度拍照");
-        NavigationBar.hideLeftSecondIv();
-        TextView rightTv = NavigationBar.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("完美围度拍照");
+        navigationBar .hideLeftSecondIv();
+        TextView rightTv =  navigationBar.getmRightTv();
         rightTv.setText("跳过");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        NavigationBar.setBackClickListener(this);
+        navigationBar .setBackClickListener(this);
     }
 
     private void initUi() {

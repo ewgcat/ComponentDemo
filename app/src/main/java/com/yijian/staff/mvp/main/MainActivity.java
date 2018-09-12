@@ -44,7 +44,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final String[] FRAGMENT_TAG = {"WorkFragment", "ReportingFragment", "MessageFragment", "MimeFragment"};
+    private static final String[] FRAGMENT_TAG = {"WorkFragment",  "MessageFragment", "MimeFragment"};
     /**
      * 上一次界面 onSaveInstanceState 之前的tab被选中的状态 key 和 value
      */
@@ -98,8 +98,8 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             workFragment = (WorkFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
-            mesageFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
-            mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
+            mesageFragment = (MessageFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
+            mineFragment = (MineFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
 
 
             //读取上一次界面Save的时候tab选中的状态

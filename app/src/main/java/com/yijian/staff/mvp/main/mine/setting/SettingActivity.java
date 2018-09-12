@@ -1,8 +1,11 @@
 package com.yijian.staff.mvp.main.mine.setting;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarColor(Color.WHITE);
         setContentView(R.layout.activity_setting);
 
         ButterKnife.bind(this);
@@ -44,7 +48,16 @@ public class SettingActivity extends AppCompatActivity {
 
         tvVersion.setText(CommonUtil.getVersionName(this) + " " + CommonUtil.getVersionCode(this));
     }
-
+    protected void setStatusBarColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ColorUtils.calculateLuminance(color) >= 0.5) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } else {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+            getWindow().setStatusBarColor(color);
+        }
+    }
 
     @OnClick({R.id.ll_password, R.id.ll_about, R.id.ll_version,R.id.tv_exit_login})
     public void onViewClicked(View view) {

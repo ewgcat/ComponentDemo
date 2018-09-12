@@ -73,9 +73,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     @Override
     protected int getLayoutID() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        setImmersionBar();
         return R.layout.activity_qualification;
     }
 

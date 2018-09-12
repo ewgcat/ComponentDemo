@@ -29,7 +29,7 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.activity_hui_fang_history.*
+import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
 
 class HuiFangHistoryActivity : MvcBaseActivity() {
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
@@ -81,12 +81,11 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
 
 
-
         val layoutmanager = LinearLayoutManager(this)
         //设置RecyclerView 布局
-        rlv.layoutManager = layoutmanager
+        rv.layoutManager = layoutmanager
         huiFangHistoryAdapter = HuiFangHistoryAdapter(this, huiFangInfoList)
-        rlv.adapter = huiFangHistoryAdapter
+        rv.adapter = huiFangHistoryAdapter
         refresh()
     }
 
@@ -107,7 +106,11 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1
                 val records = JsonUtil.getJsonArray(result, "records")
-
+                if (records == null || records.length() == 0) {
+                    empty_view.visibility = View.VISIBLE
+                }else{
+                    empty_view.visibility = View.GONE
+                }
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
                 huiFangHistoryAdapter!!.update(huiFangInfoList)

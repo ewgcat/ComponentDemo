@@ -55,7 +55,7 @@ class HuiFangTaskActivity : MvcBaseActivity() {
 
     private fun initNavigation() {
         val navigationBar = findViewById<View>(R.id.hui_fang_task_navigation_bar) as NavigationBar
-        navigationBar.setTitle("会员回访")
+        navigationBar.setTitle("学员回访")
         navigationBar.hideLeftSecondIv()
         navigationBar.setBackClickListener(this)
     }

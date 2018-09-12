@@ -30,17 +30,17 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.activity_hui_fang_history.*
+import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
+
 
 class HuiFangHistoryActivity : MvcBaseActivity() {
-
-
-    lateinit var huiFangHistoryAdapter:HuiFangHistoryAdapter
-
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
+
     private var pageNum = 1//页码
     private var pageSize = 10//每页数量
     private val type = 1
+    private var huiFangHistoryAdapter: HuiFangHistoryAdapter? = null
+
 
     override fun getLayoutID(): Int {
         return R.layout.activity_hui_fang_history
@@ -83,12 +83,11 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
 
 
-
         val layoutmanager = LinearLayoutManager(this)
         //设置RecyclerView 布局
-        rlv.layoutManager = layoutmanager
+        rv.layoutManager = layoutmanager
         huiFangHistoryAdapter = HuiFangHistoryAdapter(this, huiFangInfoList)
-        rlv.adapter = huiFangHistoryAdapter
+        rv.adapter = huiFangHistoryAdapter
         refresh()
     }
 
@@ -109,10 +108,14 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1
                 val records = JsonUtil.getJsonArray(result, "records")
-
+                if (records == null || records.length() == 0) {
+                    empty_view.visibility = View.VISIBLE
+                }else{
+                    empty_view.visibility = View.GONE
+                }
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangHistoryAdapter.update(huiFangInfoList)
+                huiFangHistoryAdapter!!.update(huiFangInfoList)
             }
 
             override fun onFail(msg: String) {
@@ -139,7 +142,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangHistoryAdapter.update(huiFangInfoList)
+                huiFangHistoryAdapter!!.update(huiFangInfoList)
             }
 
             override fun onFail(msg: String) {

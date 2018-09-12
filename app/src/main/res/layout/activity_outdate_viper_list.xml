@@ -8,7 +8,7 @@
 
     <include
             android:id="@+id/vip_over_navigation_bar2"
-            layout="@layout/view_navigation_bar2"/>
+            layout="@layout/view_navigation_bar"/>
     <TextView
         android:id="@+id/tv_total_num"
         android:layout_marginLeft="16dp"

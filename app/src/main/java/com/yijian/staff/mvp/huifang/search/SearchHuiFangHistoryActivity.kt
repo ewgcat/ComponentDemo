@@ -61,7 +61,7 @@ class SearchHuiFangHistoryActivity : MvcBaseActivity() {
 
         et_search.setHintTextColor(Color.parseColor("#666666"))
 
-        et_search.setOnEditorActionListener { v, actionId, event ->
+        et_search.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     SystemUtil.hideKeyBoard(et_search, this@SearchHuiFangHistoryActivity)

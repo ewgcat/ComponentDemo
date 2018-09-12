@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar"/>
 
    <include layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
 

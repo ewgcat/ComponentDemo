@@ -8,7 +8,7 @@
 
     <include
             android:id="@+id/about_us_navigation_bar2"
-            layout="@layout/view_navigation_bar2"/>
+            layout="@layout/view_navigation_bar"/>
 
     <WebView
             android:id="@+id/web_view"

@@ -3,8 +3,7 @@ package com.yijian.staff.mvp.forgetpassword
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+
 
 import com.yijian.staff.R
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
@@ -16,24 +15,10 @@ import com.yijian.staff.widget.NavigationBar
 
 import org.json.JSONObject
 
-import butterknife.BindView
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_forget_password.*
 
 class ForgetPasswordActivity : MvcBaseActivity() {
-
-    @BindView(R.id.et_account)
-    lateinit var etAccount: EditText
-    @BindView(R.id.et_phonenum)
-    lateinit var etPhonenum: EditText
-
-    @BindView(R.id.et_code)
-    lateinit var etCode: EditText
-    @BindView(R.id.tv_getcode)
-    lateinit  var tvGetcode: TextView
-    @BindView(R.id.et_passwd)
-    lateinit  var etPasswd: EditText
-    @BindView(R.id.et_re_passwd)
-    lateinit  var etRePasswd: EditText
 
 
     override fun getLayoutID(): Int {
@@ -50,11 +35,11 @@ class ForgetPasswordActivity : MvcBaseActivity() {
     @OnClick(R.id.tv_getcode, R.id.btn_send)
     fun onViewClicked(view: View) {
 
-        val account = etAccount.text.toString()
-        val telephone = etPhonenum.text.toString().trim { it <= ' ' }
-        val verificationCode = etCode.text.toString().trim { it <= ' ' }
-        val newPwd = etPasswd.text.toString().trim { it <= ' ' }
-        val confirmPwd = etRePasswd.text.toString().trim { it <= ' ' }
+        val account = et_account.text.toString()
+        val telephone = et_phonenum.text.toString().trim { it <= ' ' }
+        val verificationCode = et_code.text.toString().trim { it <= ' ' }
+        val newPwd = et_passwd.text.toString().trim { it <= ' ' }
+        val confirmPwd = et_re_passwd.text.toString().trim { it <= ' ' }
         when (view.id) {
             R.id.tv_getcode ->
 
@@ -63,8 +48,8 @@ class ForgetPasswordActivity : MvcBaseActivity() {
                     return
                 } else {
                     if (CommonUtil.isPhoneFormat(telephone)) {
-                        tvGetcode.isEnabled = false
-                        val countDownTimerUtils = CountDownTimerUtils(tvGetcode, 30000, 1000)
+                        tv_getcode.isEnabled = false
+                        val countDownTimerUtils = CountDownTimerUtils(tv_getcode, 30000, 1000)
                         countDownTimerUtils.start()
                         showLoading()
                         HttpManager.getCode(account, telephone, object : ResultJSONObjectObserver(lifecycle) {
@@ -74,7 +59,7 @@ class ForgetPasswordActivity : MvcBaseActivity() {
                             }
 
                             override fun onFail(msg: String) {
-                                tvGetcode.isEnabled = true
+                                tv_getcode.isEnabled = true
                                 countDownTimerUtils.cancel()
                                 countDownTimerUtils.onFinish()
                                 showToast(msg)

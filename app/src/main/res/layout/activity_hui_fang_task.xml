@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/hui_fang_task_navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+        layout="@layout/view_navigation_bar" />
 
     <com.yijian.staff.widget.PagerSlidingTabStrip
         android:id="@+id/tabs"

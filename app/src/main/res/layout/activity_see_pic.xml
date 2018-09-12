@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
 >
 
-    <include layout="@layout/view_navigation_bar2"></include>
+    <include layout="@layout/view_navigation_bar"></include>
 
     <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/photo_view"

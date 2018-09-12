@@ -7,7 +7,7 @@
 
     <include
             android:id="@+id/resource_detail_navigation_bar2"
-            layout="@layout/view_navigation_bar2"/>
+            layout="@layout/view_navigation_bar"/>
 
     <ScrollView
             android:layout_width="match_parent"

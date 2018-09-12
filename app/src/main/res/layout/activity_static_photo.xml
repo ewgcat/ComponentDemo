@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar"/>
 
     <FrameLayout
         android:id="@+id/fl_surfaceView"

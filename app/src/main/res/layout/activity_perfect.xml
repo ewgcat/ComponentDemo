@@ -55,7 +55,7 @@
 
     <include
         android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2"
+        layout="@layout/view_navigation_bar"
         android:layout_gravity="top"/>
 
 </FrameLayout>

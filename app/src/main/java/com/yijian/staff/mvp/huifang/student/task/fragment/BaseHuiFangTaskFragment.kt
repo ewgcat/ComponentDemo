@@ -54,7 +54,7 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
     constructor() : super() {}
 
     override fun initView() {
-        initComponent(rootView)
+        initComponent()
     }
 
     override fun onResume() {
@@ -62,7 +62,7 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
         refresh()
     }
 
-    fun initComponent(view: View?) {
+    fun initComponent() {
         //设置 Header 为 BezierRadar 样式
         val header = BezierRadarHeader(getContext()!!).setEnableHorizontalDrag(true)
         header.setPrimaryColor(Color.parseColor("#1997f8"))

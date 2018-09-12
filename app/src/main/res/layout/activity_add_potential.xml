@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/add_potential_activity_navigation_bar"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar"/>
 
     <ScrollView
         android:id="@+id/sv"

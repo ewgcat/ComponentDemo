@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/navigation_bar2"
-        layout="@layout/view_navigation_bar2"/>
+        layout="@layout/view_navigation_bar"/>
 
     <LinearLayout
         android:id="@+id/lin_container"

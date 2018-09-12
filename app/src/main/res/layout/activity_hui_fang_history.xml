@@ -6,7 +6,7 @@
               android:orientation="vertical">
     <include
             android:id="@+id/hui_fang_history_navigation_bar"
-            layout="@layout/view_navigation_bar2"/>
+            layout="@layout/view_navigation_bar"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refreshLayout"

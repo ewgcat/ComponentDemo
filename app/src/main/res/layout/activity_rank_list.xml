@@ -5,7 +5,7 @@
     android:orientation="vertical">
     <include
         android:id="@+id/rank_list_navigation_bar2"
-        layout="@layout/view_navigation_bar2" />
+        layout="@layout/view_navigation_bar" />
 
     <include layout="@layout/layout_base_smart_refresh_layout_recyclerview"/>
 

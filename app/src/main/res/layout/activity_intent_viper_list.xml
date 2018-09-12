@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/vip_intent_navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+        layout="@layout/view_navigation_bar" />
 
 
     <TextView

@@ -6,7 +6,7 @@
 
     <include
             android:id="@+id/empty_navigation_bar2"
-            layout="@layout/view_navigation_bar2"/>
+            layout="@layout/view_navigation_bar"/>
     <TextView
             android:text="您未开通此功能~"
             android:textSize="18sp"

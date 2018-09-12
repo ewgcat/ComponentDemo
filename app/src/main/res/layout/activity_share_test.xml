@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/navigation_bar"
-        layout="@layout/view_navigation_bar2" />
+        layout="@layout/view_navigation_bar" />
 
     <com.yijian.staff.mvp.workspace.base.BaseWebView
         android:id="@+id/web_view"

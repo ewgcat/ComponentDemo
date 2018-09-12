@@ -57,7 +57,7 @@ public class SearchOprationActivity extends MvcBaseActivity {
     private void initData() {
         Bundle bundle = getIntent().getExtras();
         workSpaceVipBean = (WorkSpaceVipBean) bundle.getSerializable("workSpaceVipBean");
-        ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadPath(), mContext, iv_header);
+        ImageLoader.setHeadImageResource(workSpaceVipBean.getHeadPath(), getMContext(), iv_header);
         iv_gender.setImageResource("1".equals(workSpaceVipBean.getGender()) ? R.mipmap.lg_man : R.mipmap.lg_women);
         tv_name.setText(workSpaceVipBean.getName());
         tv_age.setText(String.valueOf(workSpaceVipBean.getAge()));
@@ -107,11 +107,11 @@ public class SearchOprationActivity extends MvcBaseActivity {
                     ActivityUtils.isShareJump = false;
                 }
                 if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
-                    mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+                    getMContext().startActivity(new Intent(getMContext(), SportTestActivity.class));
                 }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
-                    mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+                    getMContext().startActivity(new Intent(getMContext(), PerfectActivity.class));
                 }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_STATIC_EVALUATE)){
-                    mContext.startActivity(new Intent(mContext, StaticAssessmentActivity.class));
+                    getMContext().startActivity(new Intent(getMContext(), StaticAssessmentActivity.class));
                 }
                 break;
             case R.id.btn_record: //记录
@@ -119,7 +119,7 @@ public class SearchOprationActivity extends MvcBaseActivity {
                     ActivityUtils.moduleType = ActivityUtils.tempModule;
                     ActivityUtils.isShareJump = false;
                 }
-                mContext.startActivity(new Intent(mContext, WorkSpaceRecordActivity.class));
+                getMContext().startActivity(new Intent(getMContext(), WorkSpaceRecordActivity.class));
                 break;
             default:
         }

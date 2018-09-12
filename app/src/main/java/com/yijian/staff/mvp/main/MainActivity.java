@@ -211,7 +211,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 mExitTime = secondTime;
                 return true;
             } else {
-                CustomApplication.getInstance().exitApp();
+                CustomApplication.instance.exitApp();
             }
         }
         return true;

@@ -39,7 +39,7 @@ public class LoadingDialog extends Dialog {
         if (!activity.isDestroyed()) {
             Glide.with(activity).load(R.drawable.loading).into(loading);
         }else {
-            Glide.with(CustomApplication.getInstance().getApplicationContext()).load(R.drawable.loading).into(loading);
+            Glide.with(CustomApplication.instance.getApplicationContext()).load(R.drawable.loading).into(loading);
         }
         Window dialogWindow = this.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);

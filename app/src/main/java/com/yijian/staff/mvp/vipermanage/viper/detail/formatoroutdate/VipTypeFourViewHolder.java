@@ -196,7 +196,7 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
             tvCompanyLocation.setText(cAddress.toString());
         }
 
-        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.instance, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {

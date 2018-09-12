@@ -147,7 +147,7 @@ class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.instance, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {

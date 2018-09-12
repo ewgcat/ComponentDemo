@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
 apply from: 'tinker-support.gradle'
 
 repositories {
     maven { url "http://dl.bintray.com/fotoapparat/fotoapparat" }
+    mavenCentral()
 }
 
 android {
@@ -185,9 +187,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     implementation 'com.github.bumptech.glide:okhttp-integration:4.7.1'
 
-    //di
-    implementation 'com.google.dagger:dagger:2.16'
-    annotationProcessor "com.google.dagger:dagger-compiler:2.16"
+
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     implementation 'org.glassfish:javax.annotation:10.0-b28'
@@ -242,4 +242,5 @@ dependencies {
     //友盟 end
 
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -36,7 +36,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.yijian.staff.application.CustomApplication.SCREEN_WIDTH;
 
 
 public class ScheduleWeekFragment extends MvcBaseFragment {
@@ -63,7 +62,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     @Override
     public void initView() {
 
-        width = ((SCREEN_WIDTH - CommonUtil.dp2px(getContext(), 40))) / 7;
+        width = ((CustomApplication.Companion.getSCREEN_WIDTH() - CommonUtil.dp2px(getContext(), 40))) / 7;
         weekLayout.setTimeItemWidthAndHeight(width, width);
 
         //下边界 屏幕底部
@@ -298,7 +297,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = width * size * l2 / l1 + weekCourseView.getPaddingTop();
-        int screenHeight = CustomApplication.SCREEN_HEIGHT;
+        int screenHeight = CustomApplication.Companion.getSCREEN_HEIGHT();
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);

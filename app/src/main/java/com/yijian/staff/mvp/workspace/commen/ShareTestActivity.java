@@ -102,11 +102,11 @@ public class ShareTestActivity extends MvcBaseActivity {
             public Object callBack(String msg, int type) {
                 if (type == JavaScriptInterface.JS_GoWorkspaceTest) { //测试
                     if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
-                        mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+                        getMContext().startActivity(new Intent(getMContext(), SportTestActivity.class));
                     } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)) {
-                        mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+                        getMContext().startActivity(new Intent(getMContext(), PerfectActivity.class));
                     } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_STATIC_EVALUATE)) {
-                        mContext.startActivity(new Intent(mContext, StaticAssessmentActivity.class));
+                        getMContext().startActivity(new Intent(getMContext(), StaticAssessmentActivity.class));
                     }
                     finish();
                 } else if (type == JavaScriptInterface.JS_GoWorkspaceOtherTest) { //其它测试

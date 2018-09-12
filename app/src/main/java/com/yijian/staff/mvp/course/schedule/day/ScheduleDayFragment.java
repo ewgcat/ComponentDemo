@@ -156,7 +156,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = height * size * l2 / l1 + dayCourseView.getPaddingTop();
-        int screenHeight = CustomApplication.SCREEN_HEIGHT;
+        int screenHeight = CustomApplication.Companion.getSCREEN_HEIGHT();
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);
@@ -174,7 +174,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             dateBean.setWeekDay(weekOfDate);
             dateBeanList.add(dateBean);
         }
-        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(), CustomApplication.SCREEN_HEIGHT / 9, dateBeanList);
+        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(), CustomApplication.Companion.getSCREEN_HEIGHT() / 9, dateBeanList);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);

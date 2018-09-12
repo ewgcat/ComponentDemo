@@ -98,7 +98,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = height * size * l2 / l1 + courseView.getPaddingTop();
-        int screenHeight = CustomApplication.SCREEN_HEIGHT;
+        int screenHeight = CustomApplication.Companion.getSCREEN_HEIGHT();
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);

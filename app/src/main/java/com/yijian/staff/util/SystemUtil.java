@@ -24,7 +24,7 @@ public class SystemUtil {
      * 检查WIFI是否连接
      */
     public static boolean isWifiConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.getInstance().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.instance.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return wifiInfo != null;
@@ -34,7 +34,7 @@ public class SystemUtil {
      * 检查手机网络(4G/3G/2G)是否连接
      */
     public static boolean isMobileNetworkConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.getInstance().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.instance.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobileNetworkInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return mobileNetworkInfo != null;
@@ -44,7 +44,7 @@ public class SystemUtil {
      * 检查是否有可用网络
      */
     public static boolean isNetworkConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.getInstance().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) CustomApplication.instance.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null;
     }
 
@@ -70,7 +70,7 @@ public class SystemUtil {
     }
 
     public static int dp2px(float dpValue) {
-        final float scale = CustomApplication.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = CustomApplication.instance.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -83,7 +83,7 @@ public class SystemUtil {
     }
 
     public static int px2dp(float pxValue) {
-        final float scale = CustomApplication.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = CustomApplication.instance.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 

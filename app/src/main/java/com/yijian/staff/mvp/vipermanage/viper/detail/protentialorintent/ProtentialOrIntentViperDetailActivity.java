@@ -79,7 +79,7 @@ public class ProtentialOrIntentViperDetailActivity extends MvcBaseActivity imple
     private void toggleBottomButton(ViperDetailBean viperDetailBean) {
         Boolean b = viperDetailBean.isInvitationEnable();
 
-        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.getInstance(), "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        boolean allEditable = PermissionUtils.getInstance().isEdit(CustomApplication.instance, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             boolean editEnable = viperDetailBean.isEditEnable();
             if (editEnable) {

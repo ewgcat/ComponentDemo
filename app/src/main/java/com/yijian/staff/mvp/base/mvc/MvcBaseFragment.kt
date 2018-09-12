@@ -31,12 +31,15 @@ abstract class MvcBaseFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (rootView == null) {
             rootView = inflater.inflate(layoutId, null)
+            mContext = activity
+            mUnBinder = ButterKnife.bind(this, rootView!!)
+            initView()
+        }else{
+            val parent = rootView?.parent as ViewGroup?
+            parent?.removeView(rootView)
         }
-        val parent = rootView?.parent as ViewGroup?
-        parent?.removeView(rootView)
-        mContext = activity
-        mUnBinder = ButterKnife.bind(this, rootView!!)
-        initView()
+
+
 
         return rootView
     }

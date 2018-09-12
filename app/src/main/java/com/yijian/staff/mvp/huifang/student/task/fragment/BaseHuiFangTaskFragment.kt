@@ -21,6 +21,7 @@ import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody
 import com.yijian.staff.net.response.ResultJSONArrayObserver
+import kotlinx.android.synthetic.main.common_hui_fang_task.*
 
 import org.json.JSONArray
 
@@ -35,9 +36,7 @@ import java.util.ArrayList
 class BaseHuiFangTaskFragment : MvcBaseFragment {
 
 
-    private var refreshLayout: RefreshLayout? = null
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
-    private var recyclerView: RecyclerView? = null
     private var huiFangTaskAdapter: HuiFangTaskAdapter? = null
     protected var viewId: Int = 0
     private var menu: Int=0
@@ -64,16 +63,15 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
     }
 
     fun initComponent(view: View?) {
-        refreshLayout = view!!.findViewById<View>(R.id.refreshLayout) as RefreshLayout
         //设置 Header 为 BezierRadar 样式
         val header = BezierRadarHeader(getContext()!!).setEnableHorizontalDrag(true)
         header.setPrimaryColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshHeader(header)
+        refreshLayout.setRefreshHeader(header)
         //设置 Footer 为 球脉冲
         val footer = BallPulseFooter(getContext()!!).setSpinnerStyle(SpinnerStyle.Scale)
         footer.setAnimatingColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshFooter(footer)
-        refreshLayout!!.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+        refreshLayout.setRefreshFooter(footer)
+        refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 refresh()
             }
@@ -83,10 +81,9 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
             }
         })
 
-        recyclerView = view.findViewById(R.id.rlv)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        rlv.layoutManager = LinearLayoutManager(context)
         huiFangTaskAdapter = HuiFangTaskAdapter(context!!, huiFangInfoList, menu)
-        recyclerView!!.adapter = huiFangTaskAdapter
+        rlv.adapter = huiFangTaskAdapter
     }
 
     fun refresh() {

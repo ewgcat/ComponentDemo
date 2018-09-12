@@ -29,6 +29,7 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_hui_fang_history.*
 
 class HuiFangHistoryActivity : MvcBaseActivity() {
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
@@ -36,8 +37,6 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
     private var pageNum = 1//页码
     private var pageSize = 10//每页数量
     private val type = 0
-    private var recyclerView: RecyclerView? = null
-    private var refreshLayout: RefreshLayout? = null
     private var huiFangHistoryAdapter: HuiFangHistoryAdapter? = null
 
 
@@ -63,16 +62,15 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
 
     fun initComponent() {
-        refreshLayout = findViewById<View>(R.id.refreshLayout) as RefreshLayout
         //设置 Header 为 BezierRadar 样式
         val header = BezierRadarHeader(this).setEnableHorizontalDrag(true)
         header.setPrimaryColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshHeader(header)
+        refreshLayout.setRefreshHeader(header)
         //设置 Footer 为 球脉冲
         val footer = BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale)
         footer.setAnimatingColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshFooter(footer)
-        refreshLayout!!.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+        refreshLayout.setRefreshFooter(footer)
+        refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 refresh()
             }
@@ -83,13 +81,12 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
 
 
-        recyclerView = findViewById(R.id.rlv)
 
         val layoutmanager = LinearLayoutManager(this)
         //设置RecyclerView 布局
-        recyclerView!!.layoutManager = layoutmanager
+        rlv.layoutManager = layoutmanager
         huiFangHistoryAdapter = HuiFangHistoryAdapter(this, huiFangInfoList)
-        recyclerView!!.adapter = huiFangHistoryAdapter
+        rlv.adapter = huiFangHistoryAdapter
         refresh()
     }
 
@@ -105,7 +102,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         huifangRecordRequestBody.type = type
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, object : ResultJSONObjectObserver(lifecycle) {
             override fun onSuccess(result: JSONObject) {
-                refreshLayout!!.finishRefresh(2000, true)
+                refreshLayout.finishRefresh(2000, true)
 
 
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1
@@ -117,7 +114,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
             }
 
             override fun onFail(msg: String) {
-                refreshLayout!!.finishRefresh(2000, false)
+                refreshLayout.finishRefresh(2000, false)
                 showToast(msg)
             }
         })
@@ -135,7 +132,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
             override fun onSuccess(result: JSONObject) {
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1
 
-                refreshLayout!!.finishLoadMore(2000, true, false)//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, false)//传入false表示刷新失败
                 val records = JsonUtil.getJsonArray(result, "records")
 
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
@@ -145,7 +142,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
             override fun onFail(msg: String) {
 
-                refreshLayout!!.finishLoadMore(2000, false, false)//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, false, false)//传入false表示刷新失败
                 showToast(msg)
             }
         })

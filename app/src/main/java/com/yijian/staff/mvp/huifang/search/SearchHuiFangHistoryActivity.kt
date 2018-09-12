@@ -1,12 +1,17 @@
-package com.yijian.staff.mvp.huifang.student.history
+package com.yijian.staff.mvp.huifang.search
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import android.widget.TextView
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter
@@ -14,54 +19,59 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.yijian.staff.R
 import com.yijian.staff.bean.HuiFangInfo
-import com.yijian.staff.mvp.huifang.search.SearchHuiFangHistoryActivity
-import com.yijian.staff.mvp.huifang.vip.history.HuiFangHistoryAdapter
-import com.yijian.staff.net.requestbody.HuifangRecordRequestBody
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.net.httpmanager.HttpManager
+import com.yijian.staff.net.requestbody.HuifangRecordRequestBody
 import com.yijian.staff.net.response.ResultJSONObjectObserver
-import com.yijian.staff.util.ImageLoader
 import com.yijian.staff.util.JsonUtil
-import com.yijian.staff.widget.NavigationBar
+import com.yijian.staff.util.SystemUtil
 
-import org.json.JSONArray
 import org.json.JSONObject
 
 import java.util.ArrayList
 
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.activity_hui_fang_history.*
+import kotlinx.android.synthetic.main.fragment_work.*
+import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
 
-class HuiFangHistoryActivity : MvcBaseActivity() {
+class SearchHuiFangHistoryActivity : MvcBaseActivity() {
 
-
-    lateinit var huiFangHistoryAdapter:HuiFangHistoryAdapter
 
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
     private var pageNum = 1//页码
     private var pageSize = 10//每页数量
-    private val type = 1
+    private var type: Int = 0
+
+    lateinit var searchHuiFangHistoryAdapter: SearchHuiFangHistoryAdapter
+
 
     override fun getLayoutID(): Int {
-        return R.layout.activity_hui_fang_history
+        return R.layout.activity_search_hui_fang_history
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+      
 
-        val navigationBar = findViewById<View>(R.id.hui_fang_history_navigation_bar) as NavigationBar
-        navigationBar.setTitle("回访记录")
-        navigationBar.hideLeftSecondIv()
-        navigationBar.setBackClickListener(this)
-        navigationBar.getmRightTv().text = "搜索"
-        ImageLoader.setImageResource(R.mipmap.search, this, navigationBar.getmRightIv())
-        navigationBar.setRightClickListener {
-            val intent = Intent(this@HuiFangHistoryActivity, SearchHuiFangHistoryActivity::class.java)
-            intent.putExtra("type", type)
-            startActivity(intent)
+        showKeyBoard(et_search)
+
+        type = intent.getIntExtra("type", 0)
+
+        empty_view.setButton { refresh() }
+
+
+        et_search.setHintTextColor(Color.parseColor("#666666"))
+
+        et_search.setOnEditorActionListener { v, actionId, event ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    SystemUtil.hideKeyBoard(et_search, this@SearchHuiFangHistoryActivity)
+                    refresh()
+                }
+            }
+            true
         }
         initComponent()
     }
-
 
     fun initComponent() {
         //设置 Header 为 BezierRadar 样式
@@ -83,27 +93,32 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
 
 
-
         val layoutmanager = LinearLayoutManager(this)
         //设置RecyclerView 布局
-        rlv.layoutManager = layoutmanager
-        huiFangHistoryAdapter = HuiFangHistoryAdapter(this, huiFangInfoList)
-        rlv.adapter = huiFangHistoryAdapter
-        refresh()
+        rv.layoutManager = layoutmanager
+        searchHuiFangHistoryAdapter = SearchHuiFangHistoryAdapter(this, huiFangInfoList)
+        rv.adapter = searchHuiFangHistoryAdapter
     }
 
     fun refresh() {
+        val keyWord = et_search.text.toString().trim { it <= ' ' }
+        if (TextUtils.isEmpty(keyWord)) {
+            showToast("请输入关键字！")
+            return
+        }
         pageNum = 1
         pageSize = 10
         huiFangInfoList.clear()
-
         val huifangRecordRequestBody = HuifangRecordRequestBody()
         huifangRecordRequestBody.isChief = true
         huifangRecordRequestBody.pageNum = pageNum
         huifangRecordRequestBody.pageSize = pageSize
         huifangRecordRequestBody.type = type
+        huifangRecordRequestBody.keyWord = keyWord
+        showLoading()
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, object : ResultJSONObjectObserver(lifecycle) {
             override fun onSuccess(result: JSONObject) {
+                hideLoading()
                 refreshLayout.finishRefresh(2000, true)
 
 
@@ -112,10 +127,12 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangHistoryAdapter.update(huiFangInfoList)
+                searchHuiFangHistoryAdapter.update(huiFangInfoList)
             }
 
             override fun onFail(msg: String) {
+                hideLoading()
+
                 refreshLayout.finishRefresh(2000, false)
                 showToast(msg)
             }
@@ -123,15 +140,23 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
     }
 
     fun loadMore() {
-
+        val keyWord = et_search.text.toString().trim { it <= ' ' }
+        if (TextUtils.isEmpty(keyWord)) {
+            showToast("请输入关键字！")
+            return
+        }
         val huifangRecordRequestBody = HuifangRecordRequestBody()
         huifangRecordRequestBody.isChief = true
         huifangRecordRequestBody.pageNum = pageNum
         huifangRecordRequestBody.pageSize = pageSize
         huifangRecordRequestBody.type = type
-
+        huifangRecordRequestBody.keyWord = keyWord
+        showLoading()
+        showLoading()
         HttpManager.postHuiFangRecord(huifangRecordRequestBody, object : ResultJSONObjectObserver(lifecycle) {
             override fun onSuccess(result: JSONObject) {
+                hideLoading()
+
                 pageNum = JsonUtil.getInt(result, "pageNum") + 1
 
                 refreshLayout.finishLoadMore(2000, true, false)//传入false表示刷新失败
@@ -139,10 +164,11 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
 
                 val list = com.alibaba.fastjson.JSONArray.parseArray(records.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangHistoryAdapter.update(huiFangInfoList)
+                searchHuiFangHistoryAdapter.update(huiFangInfoList)
             }
 
             override fun onFail(msg: String) {
+                hideLoading()
 
                 refreshLayout.finishLoadMore(2000, false, false)//传入false表示刷新失败
                 showToast(msg)
@@ -150,8 +176,15 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
     }
 
-    @OnClick(R.id.ll_hui_fang_ren_wu)
-    fun onViewClicked() {
-        finish()
+    @OnClick(R.id.tv_cancel)
+    fun onViewClicked(view: View) {
+        when (view.id) {
+            R.id.tv_cancel -> {
+                SystemUtil.hideKeyBoard(et_search, this)
+                finish()
+            }
+        }
     }
+
+
 }

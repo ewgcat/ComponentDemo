@@ -29,14 +29,12 @@ import java.util.ArrayList
 
 import butterknife.BindView
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_hui_fang_task.*
 
 @Route(path = "/test/33")
 class HuiFangTaskActivity : MvcBaseActivity() {
 
-    @BindView(R.id.tabs)
-    lateinit var tabs: PagerSlidingTabStrip
-    @BindView(R.id.viewPager)
-    lateinit var viewPager: ViewPager
+
 
     private val huiFangTypeBeanArrayList = ArrayList<HuiFangTypeBean>()
     private var totalNum: Int = 0

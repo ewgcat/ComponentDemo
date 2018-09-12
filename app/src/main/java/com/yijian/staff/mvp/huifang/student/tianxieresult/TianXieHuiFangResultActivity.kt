@@ -40,45 +40,9 @@ import java.util.Calendar
 
 import butterknife.BindView
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_tian_xie_hui_ji_hui_fang_result.*
 
 class TianXieHuiFangResultActivity : MvcBaseActivity() {
-
-
-    @BindView(R.id.rg)
-    lateinit var rg: RadioGroup
-    @BindView(R.id.rel_nav)
-    lateinit var rel_nav: RelativeLayout
-    @BindView(R.id.rel_sure)
-    lateinit var rel_sure: RelativeLayout
-
-    @BindView(R.id.iv_sure_header)
-    lateinit var iv_sure_header: ImageView
-    @BindView(R.id.tv_sure_name)
-    lateinit var tv_sure_name: TextView
-    @BindView(R.id.iv_sure_gender)
-    lateinit var iv_sure_gender: ImageView
-    @BindView(R.id.tv_fufan_time)
-    lateinit var tv_fufan_time: TextView
-    @BindView(R.id.tv_fufan_reason)
-    lateinit var tv_fufan_reason: TextView
-
-
-    @BindView(R.id.iv_nav_header)
-    lateinit var iv_nav_header: ImageView
-    @BindView(R.id.tv_nav_name)
-    lateinit var tv_nav_name: TextView
-    @BindView(R.id.iv_nav_gender)
-    lateinit var iv_nav_gender: ImageView
-    @BindView(R.id.tv_huifan_type)
-    lateinit var tv_huifan_type: TextView
-    @BindView(R.id.et_huifan_record)
-    lateinit var et_huifan_record: EditText
-    @BindView(R.id.tv_laifan_time)
-    lateinit var tvLaifanTime: TextView
-    @BindView(R.id.tv_vip_type)
-    lateinit var tvVipType: TextView
-    @BindView(R.id.tv_can_input_number)
-    lateinit var tvCanInputNumber: TextView
 
     private var huiFangReasonBeanList: MutableList<HuiFangReasonBean> = ArrayList()
     private var needReview = false
@@ -132,9 +96,9 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
 
                 if (!TextUtils.isEmpty(s1)) {
                     val num = 140 - s1.length
-                    tvCanInputNumber.text = num.toString() + "字"
+                    tv_can_input_number.text = num.toString() + "字"
                 } else {
-                    tvCanInputNumber.text = "140字"
+                    tv_can_input_number.text = "140字"
                 }
             }
         })
@@ -167,7 +131,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
 
 
         tv_huifan_type.text = huiFangInfo.interviewName
-        tvVipType.text = huiFangInfo.memberTypeName
+        tv_vip_type.text = huiFangInfo.memberTypeName
     }
 
     @OnClick(R.id.rel_huifan_time, R.id.rel_huifan_reason, R.id.rel_laifan_time)
@@ -227,7 +191,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                             val s1 = "" + year + month + dayOfMonth
                             if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
                                 laifangTime = time
-                                tvLaifanTime.text = time
+                                tv_laifan_time.text = time
                             } else {
                                 laifangTime = ""
                                 showToast("来访时间不得小于当前时间")

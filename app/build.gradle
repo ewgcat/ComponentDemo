@@ -45,11 +45,6 @@ android {
                 arg("moduleName", project.getName())
             }
         }
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [moduleName: project.getName()]
-//            }
-//        }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "$jpush_appkey", //JPush上注册的包名对应的appkey.

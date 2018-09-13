@@ -108,6 +108,7 @@ android {
             buildConfigField "String", "FILE_HOST", "\"$train_file_host\""
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_train_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_train_file_host\""
+            buildConfigField "String", "WORKSPACE_H5_HOST", "\"$workspace_h5_test_host\""
         }
         sittest {
             buildConfigField "String", "HOST", "\"$test_host\""
@@ -115,7 +116,6 @@ android {
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_test_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_test_file_host\""
             buildConfigField "String", "WORKSPACE_H5_HOST", "\"$workspace_h5_test_host\""
-
         }
     }
     variantFilter { variant ->

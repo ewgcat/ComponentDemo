@@ -28,7 +28,6 @@
             android:textColor="#666666" />
 
         <RadioGroup
-            android:id="@+id/rg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -58,7 +57,6 @@
 
 
     <RelativeLayout
-        android:id="@+id/rel_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -78,14 +76,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/iv_nav_header"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/people" />
 
                 <TextView
-                    android:id="@+id/tv_nav_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -93,7 +89,6 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/iv_nav_gender"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginLeft="8dp"
@@ -120,7 +115,6 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_vip_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -147,7 +141,6 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_huifan_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -175,7 +168,6 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_laifan_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -190,7 +182,6 @@
             <View style="@style/SplitLineStyle" />
 
             <EditText
-                android:id="@+id/et_huifan_record"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/white"
@@ -215,7 +206,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rel_sure"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -236,14 +226,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/iv_sure_header"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/people"/>
 
                 <TextView
-                    android:id="@+id/tv_sure_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -252,7 +240,6 @@
                     android:textSize="16sp"/>
 
                 <ImageView
-                    android:id="@+id/iv_sure_gender"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginLeft="8dp"
@@ -280,7 +267,6 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_fufan_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -311,7 +297,6 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_fufan_reason"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

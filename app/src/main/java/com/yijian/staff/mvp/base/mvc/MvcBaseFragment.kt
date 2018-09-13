@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.base.mvc
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,17 +24,17 @@ abstract class MvcBaseFragment : Fragment() {
     protected var mContext: Activity? = null
     protected var rootView: View? = null
 
-    abstract val layoutId: Int
+
 
     protected var loadingDialog: LoadingDialog? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (rootView == null) {
-            rootView = inflater.inflate(layoutId, null)
+            rootView = inflater.inflate(getLayoutId(), null)
             mContext = activity
             mUnBinder = ButterKnife.bind(this, rootView!!)
-            initView()
+
         }else{
             val parent = rootView?.parent as ViewGroup?
             parent?.removeView(rootView)
@@ -44,6 +45,20 @@ abstract class MvcBaseFragment : Fragment() {
         return rootView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    /**
+     * 加载布局
+     */
+    @LayoutRes
+    abstract fun getLayoutId():Int
+
+    /**
+     * 初始化 ViewI
+     */
     abstract fun initView()
 
 

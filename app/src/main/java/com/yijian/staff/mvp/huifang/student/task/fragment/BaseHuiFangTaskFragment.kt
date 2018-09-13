@@ -34,17 +34,16 @@ import java.util.ArrayList
  */
 @SuppressLint("ValidFragment")
 class BaseHuiFangTaskFragment : MvcBaseFragment {
+    override fun getLayoutId(): Int {
+       return R.layout.common_hui_fang_task
+    }
 
 
-    private var refreshLayout: RefreshLayout? = null
     private val huiFangInfoList = ArrayList<HuiFangInfo>()
-    private var recyclerView: RecyclerView? = null
-    private var huiFangTaskAdapter: HuiFangTaskAdapter? = null
+    lateinit var huiFangTaskAdapter: HuiFangTaskAdapter
     private var menu: Int =0
-    override val layoutId = R.layout.common_hui_fang_task
     private var offset = 1//页码
     private var pageSize = 10//每页数量
-    private val pages: Int = 0
 
 
     constructor( menu: Int) {
@@ -54,7 +53,7 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
     constructor() : super() {}
 
     override fun initView() {
-        initComponent(rootView)
+        initComponent()
     }
 
     override fun onResume() {
@@ -62,17 +61,16 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
         refresh()
     }
 
-    fun initComponent(view: View?) {
-        refreshLayout = view!!.findViewById<View>(R.id.refreshLayout) as RefreshLayout
+    fun initComponent() {
         //设置 Header 为 BezierRadar 样式
-        val header = BezierRadarHeader(getContext()!!).setEnableHorizontalDrag(true)
+        val header = BezierRadarHeader(getContext()).setEnableHorizontalDrag(true)
         header.setPrimaryColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshHeader(header)
+        refreshLayout.setRefreshHeader(header)
         //设置 Footer 为 球脉冲
         val footer = BallPulseFooter(getContext()!!).setSpinnerStyle(SpinnerStyle.Scale)
         footer.setAnimatingColor(Color.parseColor("#1997f8"))
-        refreshLayout!!.setRefreshFooter(footer)
-        refreshLayout!!.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+        refreshLayout.setRefreshFooter(footer)
+        refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 refresh()
             }
@@ -82,10 +80,9 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
             }
         })
 
-        recyclerView = view.findViewById(R.id.rlv)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        rlv.layoutManager = LinearLayoutManager(context)
         huiFangTaskAdapter = HuiFangTaskAdapter(context!!, huiFangInfoList, menu)
-        recyclerView!!.adapter = huiFangTaskAdapter
+        rlv.adapter = huiFangTaskAdapter
     }
 
     fun refresh() {
@@ -105,15 +102,15 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
                 }else{
                     empty_view.visibility = View.GONE
                 }
-                refreshLayout!!.finishRefresh(2000, true)
+                refreshLayout.finishRefresh(2000, true)
                 val list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangTaskAdapter!!.update(huiFangInfoList)
+                huiFangTaskAdapter.update(huiFangInfoList)
                 hideLoading()
             }
 
             override fun onFail(msg: String) {
-                refreshLayout!!.finishRefresh(2000, false)
+                refreshLayout.finishRefresh(2000, false)
                 hideLoading()
             }
         })
@@ -129,15 +126,15 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
         huifangTaskRequestBody.size = pageSize
         HttpManager.postHuiFangTask(HuiFangUrls.HUI_FANG_TASK_URL, huifangTaskRequestBody, object : ResultJSONArrayObserver(lifecycle) {
             override fun onSuccess(result: JSONArray) {
-                refreshLayout!!.finishLoadMore(2000, true, false)//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, true, false)//传入false表示刷新失败
                 val list = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), HuiFangInfo::class.java)
                 huiFangInfoList.addAll(list)
-                huiFangTaskAdapter!!.update(huiFangInfoList)
+                huiFangTaskAdapter.update(huiFangInfoList)
                 hideLoading()
             }
 
             override fun onFail(msg: String) {
-                refreshLayout!!.finishLoadMore(2000, false, false)//传入false表示刷新失败
+                refreshLayout.finishLoadMore(2000, false, false)//传入false表示刷新失败
                 Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show()
                 hideLoading()
             }

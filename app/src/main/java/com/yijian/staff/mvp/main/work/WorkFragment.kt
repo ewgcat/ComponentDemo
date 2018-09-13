@@ -35,8 +35,9 @@ import butterknife.OnClick
 
 @SuppressLint("ValidFragment")
 class WorkFragment : MvcBaseFragment() {
-
-
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_work
+    }
 
 
     @BindView(R.id.recyclerView)
@@ -60,11 +61,8 @@ class WorkFragment : MvcBaseFragment() {
     var hasNewYueKePush: Boolean = false
 
 
-    override val layoutId: Int
-        get() = R.layout.fragment_work
-
-
-    override fun initView() {
+    override
+    fun initView() {
 
 
         indexMenuAdapter = IndexMenuAdapter(this.getLifecycle(), context, menuList)
@@ -91,15 +89,15 @@ class WorkFragment : MvcBaseFragment() {
     fun showJieDaiView(i: Int) {
         if (isAdded) {
             if (i == 0) {//没有接待权限
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_jd,null)
+                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_jd, null)
                 llJiedaiContainer.visibility = View.GONE
                 llJiedai.visibility = View.GONE
             } else if (i == 1) {//有接待权限，没有新消息
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_new_jd,null)
+                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_new_jd, null)
                 llJiedaiContainer.visibility = View.VISIBLE
                 llJiedai.visibility = View.VISIBLE
             } else if (i == 2) {//有接待权限，有新消息
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_new_jd,null)
+                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_new_jd, null)
                 llJiedaiContainer.visibility = View.VISIBLE
                 llJiedai.visibility = View.VISIBLE
             }

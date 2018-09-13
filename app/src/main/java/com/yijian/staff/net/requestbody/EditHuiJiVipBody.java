@@ -1,4 +1,4 @@
-package com.yijian.staff.bean;
+package com.yijian.staff.net.requestbody;
 
 /**
  * Created by yangk on 2018/4/3.

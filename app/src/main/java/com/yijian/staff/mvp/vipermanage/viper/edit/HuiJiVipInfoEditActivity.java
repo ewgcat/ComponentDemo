@@ -14,7 +14,7 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.EditHuiJiVipBody;
+import com.yijian.staff.net.requestbody.EditHuiJiVipBody;
 import com.yijian.staff.bean.ViperDetailBean;
 import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;

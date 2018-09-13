@@ -10,7 +10,7 @@ import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
-import com.yijian.staff.bean.EditHuiJiVipBody;
+import com.yijian.staff.net.requestbody.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;

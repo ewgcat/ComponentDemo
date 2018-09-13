@@ -27,8 +27,6 @@ import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.Logger;
 
-import java.util.ArrayList;
-
 /**
  * author：李帅华
  * email：850716183@qq.com

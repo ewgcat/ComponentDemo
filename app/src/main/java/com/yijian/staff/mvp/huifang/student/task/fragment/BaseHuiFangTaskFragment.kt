@@ -21,7 +21,7 @@ import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody
 import com.yijian.staff.net.response.ResultJSONArrayObserver
-import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
+import kotlinx.android.synthetic.main.common_hui_fang_task.*
 
 import org.json.JSONArray
 
@@ -100,7 +100,7 @@ class BaseHuiFangTaskFragment : MvcBaseFragment {
         huifangTaskRequestBody.size = pageSize
         HttpManager.postHuiFangTask(HuiFangUrls.HUI_FANG_TASK_URL, huifangTaskRequestBody, object : ResultJSONArrayObserver(lifecycle) {
             override fun onSuccess(result: JSONArray) {
-                if (result == null || result.length() == 0) {
+                if ( result.length() == 0) {
                     empty_view.visibility = View.VISIBLE
                 }else{
                     empty_view.visibility = View.GONE

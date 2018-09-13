@@ -1,5 +1,6 @@
 package com.yijian.staff.mvp.main.mine.qualification;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,7 +82,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setAppbarCorlor();
+
         choosePhotoView.setMode(ChoosePhotoView.MODE_ONLY_SHOW);
 
         rv1.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +116,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
         });
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
-        AccessStatisticsRequestBody body=new AccessStatisticsRequestBody("app_credentials",version);
+        AccessStatisticsRequestBody body = new AccessStatisticsRequestBody("app_credentials", version);
         HttpManager.postAccessStatistics(body, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
             public void onSuccess(JSONObject result) {
@@ -126,6 +128,11 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
             }
         });
+        initToolbarHeight();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 
     private void initData() {
@@ -172,7 +179,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
                 if (certList != null && certList.size() > 0) {
                     ll_my_zhenshu_img.setVisibility(View.VISIBLE);
                     setImageList(certList);
-                }else {
+                } else {
                     ll_my_zhenshu_img.setVisibility(View.GONE);
                 }
 
@@ -234,6 +241,16 @@ public class MyQualificationActivity extends MvcBaseActivity {
             }
         });
     }
+    private void initToolbarHeight() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) toolbar.getLayoutParams();
+            int height = CommonUtil.getStatusBarHeight(getApplicationContext());
+            params.setMargins(0, height <= 0 ? 75 : height, 0, 0);
+            toolbar.setLayoutParams(params);
+        }
+    }
+
+
 
 
 

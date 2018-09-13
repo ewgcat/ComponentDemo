@@ -21,7 +21,7 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="exitUntilCollapsed|snap|scroll"
-                app:navigationIcon="@mipmap/my_back_black">
+           >
 
                 <com.youth.banner.Banner
                     android:id="@+id/banner"
@@ -56,7 +56,7 @@
                         android:text="我的资历"
                         android:textColor="#333333"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        />
 
                 </android.support.v7.widget.Toolbar>
 

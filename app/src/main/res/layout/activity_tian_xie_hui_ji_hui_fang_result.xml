@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/tian_xie_hui_fang_result_navigation_bar"
         layout="@layout/view_navigation_bar" />
 
     <LinearLayout

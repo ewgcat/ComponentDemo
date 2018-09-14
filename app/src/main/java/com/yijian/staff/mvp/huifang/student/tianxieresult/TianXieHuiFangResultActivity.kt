@@ -41,6 +41,7 @@ import java.util.Calendar
 import butterknife.BindView
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.activity_tian_xie_hui_ji_hui_fang_result.*
+import kotlinx.android.synthetic.main.view_navigation_bar.*
 
 class TianXieHuiFangResultActivity : MvcBaseActivity() {
 
@@ -50,7 +51,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
     lateinit var fufangTime: String
     lateinit var laifangTime: String
     lateinit var dictItemId: String
-   
+
 
     override fun getLayoutID(): Int {
         return R.layout.activity_tian_xie_hui_ji_hui_fang_result
@@ -62,7 +63,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
     }
 
     private fun initView() {
-        val navigationBar = findViewById<NavigationBar>(R.id.tian_xie_hui_fang_result_navigation_bar)
+
         navigationBar.hideLeftSecondIv()
         navigationBar.setBackClickListener(this)
         navigationBar.setTitle("填写记录")
@@ -102,6 +103,65 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                 }
             }
         })
+
+        rel_huifan_time.setOnClickListener { v ->      val c = Calendar.getInstance()
+            val dialog = DatePickerDialog(this,
+                    DatePickerDialog.OnDateSetListener {_, year, month, dayOfMonth ->
+                        var time = ""
+                        if (month < 9 && dayOfMonth < 10) {
+                            time += year.toString() + "-0" + (month + 1) + "-0" + dayOfMonth
+                        } else if (month > 9 && dayOfMonth >= 10) {
+                            time += year.toString() + "-" + (month + 1) + "-" + dayOfMonth
+                        } else if (month < 9 && dayOfMonth >= 10) {
+                            time += year.toString() + "-0" + (month + 1) + "-" + dayOfMonth
+                        } else if (month > 9 && dayOfMonth < 10) {
+                            time += year.toString() + "-" + (month + 1) + "-0" + dayOfMonth
+                        }
+
+
+                        val s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay()
+                        val s1 = "" + year + month + dayOfMonth
+                        if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
+                            fufangTime = time
+                            tv_fufan_time.text = time
+                        } else {
+                            fufangTime = ""
+                            tv_fufan_time.text = ""
+                            showToast("复访时间不得小于当前时间")
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH))
+            dialog.show()
+        }
+        rel_laifan_time.setOnClickListener { v ->         val c1 = Calendar.getInstance()
+            DatePickerDialog(this,
+                    DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                        var time = ""
+                        if (month < 9 && dayOfMonth < 10) {
+                            time += year.toString() + "-0" + (month + 1) + "-0" + dayOfMonth
+                        } else if (month > 9 && dayOfMonth >= 10) {
+                            time += year.toString() + "-" + (month + 1) + "-" + dayOfMonth
+                        } else if (month < 9 && dayOfMonth >= 10) {
+                            time += year.toString() + "-0" + (month + 1) + "-" + dayOfMonth
+                        } else if (month > 9 && dayOfMonth < 10) {
+                            time += year.toString() + "-" + (month + 1) + "-0" + dayOfMonth
+                        }
+
+
+                        val s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay()
+                        val s1 = "" + year + month + dayOfMonth
+                        if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
+                            laifangTime = time
+                            tv_laifan_time.text = time
+                        } else {
+                            laifangTime = ""
+                            showToast("来访时间不得小于当前时间")
+                        }
+                    }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH),
+                    c1.get(Calendar.DAY_OF_MONTH)).show() }
+        rel_huifan_reason.setOnClickListener { v ->      showPickerReasonView() }
+
+
     }
 
     private fun updateUi() {
@@ -134,74 +194,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
         tv_vip_type.text = huiFangInfo.memberTypeName
     }
 
-    @OnClick(R.id.rel_huifan_time, R.id.rel_huifan_reason, R.id.rel_laifan_time)
-    fun onViewClicked(view: View) {
-        when (view.id) {
 
-            R.id.rel_huifan_time -> {
-
-                val c = Calendar.getInstance()
-                val dialog = DatePickerDialog(this,
-                        DatePickerDialog.OnDateSetListener {_, year, month, dayOfMonth ->
-                            var time = ""
-                            if (month < 9 && dayOfMonth < 10) {
-                                time += year.toString() + "-0" + (month + 1) + "-0" + dayOfMonth
-                            } else if (month > 9 && dayOfMonth >= 10) {
-                                time += year.toString() + "-" + (month + 1) + "-" + dayOfMonth
-                            } else if (month < 9 && dayOfMonth >= 10) {
-                                time += year.toString() + "-0" + (month + 1) + "-" + dayOfMonth
-                            } else if (month > 9 && dayOfMonth < 10) {
-                                time += year.toString() + "-" + (month + 1) + "-0" + dayOfMonth
-                            }
-
-
-                            val s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay()
-                            val s1 = "" + year + month + dayOfMonth
-                            if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
-                                fufangTime = time
-                                tv_fufan_time.text = time
-                            } else {
-                                fufangTime = ""
-                                tv_fufan_time.text = ""
-                                showToast("复访时间不得小于当前时间")
-                            }
-                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-                        c.get(Calendar.DAY_OF_MONTH))
-                dialog.show()
-            }
-            R.id.rel_laifan_time -> {
-
-
-                val c1 = Calendar.getInstance()
-                DatePickerDialog(this,
-                        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                            var time = ""
-                            if (month < 9 && dayOfMonth < 10) {
-                                time += year.toString() + "-0" + (month + 1) + "-0" + dayOfMonth
-                            } else if (month > 9 && dayOfMonth >= 10) {
-                                time += year.toString() + "-" + (month + 1) + "-" + dayOfMonth
-                            } else if (month < 9 && dayOfMonth >= 10) {
-                                time += year.toString() + "-0" + (month + 1) + "-" + dayOfMonth
-                            } else if (month > 9 && dayOfMonth < 10) {
-                                time += year.toString() + "-" + (month + 1) + "-0" + dayOfMonth
-                            }
-
-
-                            val s = "" + DateUtil.getCurrentYear() + DateUtil.getCurrentMonth() + DateUtil.getCurrentDay()
-                            val s1 = "" + year + month + dayOfMonth
-                            if (Integer.parseInt(s1) >= Integer.parseInt(s)) {
-                                laifangTime = time
-                                tv_laifan_time.text = time
-                            } else {
-                                laifangTime = ""
-                                showToast("来访时间不得小于当前时间")
-                            }
-                        }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH),
-                        c1.get(Calendar.DAY_OF_MONTH)).show()
-            }
-            R.id.rel_huifan_reason -> showPickerReasonView()
-        }
-    }
 
     private fun sendResult() {
 

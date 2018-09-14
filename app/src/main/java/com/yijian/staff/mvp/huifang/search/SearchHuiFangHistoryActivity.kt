@@ -30,8 +30,7 @@ import org.json.JSONObject
 
 import java.util.ArrayList
 
-import butterknife.OnClick
-import kotlinx.android.synthetic.main.fragment_work.*
+import kotlinx.android.synthetic.main.activity_search_hui_fang_history.*
 import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
 
 class SearchHuiFangHistoryActivity : MvcBaseActivity() {
@@ -50,7 +49,7 @@ class SearchHuiFangHistoryActivity : MvcBaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-      
+
 
         showKeyBoard(et_search)
 
@@ -71,6 +70,11 @@ class SearchHuiFangHistoryActivity : MvcBaseActivity() {
             true
         }
         initComponent()
+        tv_cancel.setOnClickListener { v ->
+            SystemUtil.hideKeyBoard(et_search, this)
+            finish()
+        }
+
     }
 
     fun initComponent() {
@@ -174,16 +178,6 @@ class SearchHuiFangHistoryActivity : MvcBaseActivity() {
                 showToast(msg)
             }
         })
-    }
-
-    @OnClick(R.id.tv_cancel)
-    fun onViewClicked(view: View) {
-        when (view.id) {
-            R.id.tv_cancel -> {
-                SystemUtil.hideKeyBoard(et_search, this)
-                finish()
-            }
-        }
     }
 
 

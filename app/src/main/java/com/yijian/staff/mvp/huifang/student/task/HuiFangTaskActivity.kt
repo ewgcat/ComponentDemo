@@ -50,6 +50,8 @@ class HuiFangTaskActivity : MvcBaseActivity() {
     private fun initView() {
         initNavigation()
         initData()
+        ll_hui_fang_ji_lu.setOnClickListener { v -> startActivity(Intent(this@HuiFangTaskActivity, com.yijian.staff.mvp.huifang.vip.history.HuiFangHistoryActivity::class.java)) }
+
     }
 
 
@@ -113,12 +115,7 @@ class HuiFangTaskActivity : MvcBaseActivity() {
     }
 
 
-    @OnClick(R.id.ll_hui_fang_ji_lu)
-    fun onViewClicked(view: View) {
-        when (view.id) {
-            R.id.ll_hui_fang_ji_lu -> startActivity(Intent(this@HuiFangTaskActivity, HuiFangHistoryActivity::class.java))
-        }
-    }
+
 
 }
 

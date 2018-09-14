@@ -58,7 +58,7 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
             startActivity(intent)
         }
         initComponent()
-        ll_hui_fang_ren_wu.setOnClickListener { v ->         finish() }
+        ll_hui_fang_ren_wu.setOnClickListener { _ ->         finish() }
 
     }
 

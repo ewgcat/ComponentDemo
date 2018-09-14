@@ -14,7 +14,7 @@ class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     init {
         this.views = SparseArray()
     }
-
+    @Suppress("UNCHECKED_CAST")
     fun <T : View> getView(viewId: Int): T? {
         var view: View? = views.get(viewId)
         if (view == null) {

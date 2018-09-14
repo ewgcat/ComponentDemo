@@ -50,7 +50,7 @@ class HuiFangTaskActivity : MvcBaseActivity() {
     private fun initView() {
         initNavigation()
         initData()
-        ll_hui_fang_ji_lu.setOnClickListener { v -> startActivity(Intent(this@HuiFangTaskActivity, HuiFangHistoryActivity::class.java)) }
+        ll_hui_fang_ji_lu.setOnClickListener { _ -> startActivity(Intent(this@HuiFangTaskActivity, HuiFangHistoryActivity::class.java)) }
 
     }
 

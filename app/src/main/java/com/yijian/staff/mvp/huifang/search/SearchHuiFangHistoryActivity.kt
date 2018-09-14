@@ -70,7 +70,7 @@ class SearchHuiFangHistoryActivity : MvcBaseActivity() {
             true
         }
         initComponent()
-        tv_cancel.setOnClickListener { v ->
+        tv_cancel.setOnClickListener { _ ->
             SystemUtil.hideKeyBoard(et_search, this)
             finish()
         }

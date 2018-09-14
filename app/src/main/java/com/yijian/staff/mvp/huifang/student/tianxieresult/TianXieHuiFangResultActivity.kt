@@ -104,7 +104,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
             }
         })
 
-        rel_huifan_time.setOnClickListener { v ->      val c = Calendar.getInstance()
+        rel_huifan_time.setOnClickListener { _ ->      val c = Calendar.getInstance()
             val dialog = DatePickerDialog(this,
                     DatePickerDialog.OnDateSetListener {_, year, month, dayOfMonth ->
                         var time = ""
@@ -133,7 +133,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                     c.get(Calendar.DAY_OF_MONTH))
             dialog.show()
         }
-        rel_laifan_time.setOnClickListener { v ->         val c1 = Calendar.getInstance()
+        rel_laifan_time.setOnClickListener { _ ->         val c1 = Calendar.getInstance()
             DatePickerDialog(this,
                     DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                         var time = ""
@@ -159,7 +159,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                         }
                     }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH),
                     c1.get(Calendar.DAY_OF_MONTH)).show() }
-        rel_huifan_reason.setOnClickListener { v ->      showPickerReasonView() }
+        rel_huifan_reason.setOnClickListener { _ ->      showPickerReasonView() }
 
 
     }

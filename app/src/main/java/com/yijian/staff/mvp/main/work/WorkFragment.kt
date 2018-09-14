@@ -29,13 +29,25 @@ import org.json.JSONObject
 
 import java.util.ArrayList
 
-import butterknife.BindView
-import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_work.*
 
 
 @SuppressLint("ValidFragment")
-class WorkFragment : MvcBaseFragment() {
+class WorkFragment : MvcBaseFragment(), View.OnClickListener {
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.et_search ->
+                // 此处为得到焦点时的处理内容
+                startActivity(Intent(context, HuiJiSearchActivity::class.java))
+            R.id.ll_jiedai -> {
+                ClearRedPointUtil.clearJieDaiNotice(this.getLifecycle())
+                showJieDaiView(1)
+                SharePreferenceUtil.setHasNewJiedaiPush(false)
+                startActivity(Intent(activity, ReceptionActivity::class.java))
+            }
+            R.id.iv_face -> startActivity(Intent(activity, FaceDetectorActivity::class.java))
+        }    }
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_work
     }
@@ -72,7 +84,9 @@ class WorkFragment : MvcBaseFragment() {
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush()
         initData()
         swipe_refresh_layout.setOnRefreshListener { initData() }
-
+        et_search.setOnClickListener(this)
+        ll_jiedai.setOnClickListener(this)
+        iv_face.setOnClickListener(this)
     }
 
     fun showJieDaiView(i: Int) {
@@ -188,21 +202,7 @@ class WorkFragment : MvcBaseFragment() {
     }
 
 
-    @OnClick(R.id.et_search, R.id.ll_jiedai, R.id.iv_face)
-    fun onViewClicked(view: View) {
-        when (view.id) {
-            R.id.et_search ->
-                // 此处为得到焦点时的处理内容
-                startActivity(Intent(context, HuiJiSearchActivity::class.java))
-            R.id.ll_jiedai -> {
-                ClearRedPointUtil.clearJieDaiNotice(this.getLifecycle())
-                showJieDaiView(1)
-                SharePreferenceUtil.setHasNewJiedaiPush(false)
-                startActivity(Intent(activity, ReceptionActivity::class.java))
-            }
-            R.id.iv_face -> startActivity(Intent(activity, FaceDetectorActivity::class.java))
-        }
-    }
+
 
     companion object {
         private val TAG = WorkFragment::class.java.simpleName

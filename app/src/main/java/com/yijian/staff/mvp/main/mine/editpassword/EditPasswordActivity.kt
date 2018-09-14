@@ -2,6 +2,7 @@ package com.yijian.staff.mvp.main.mine.editpassword
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 
@@ -16,12 +17,10 @@ import org.json.JSONObject
 
 import java.util.HashMap
 
-import butterknife.OnClick
 import kotlinx.android.synthetic.main.activity_edit_password.*
 import kotlinx.android.synthetic.main.view_navigation_bar.*
 
-class EditPasswordActivity : MvcBaseActivity() {
-
+class EditPasswordActivity : MvcBaseActivity(), View.OnClickListener {
 
 
     override fun getLayoutID(): Int {
@@ -38,11 +37,10 @@ class EditPasswordActivity : MvcBaseActivity() {
         if (!TextUtils.isEmpty(name)) {
             tv_user_name.text = name
         }
+        btn_send.setOnClickListener(this)
     }
 
-
-    @OnClick(R.id.btn_send)
-    fun onViewClicked() {
+    override fun onClick(v: View?) {
         val username = tv_user_name.text.toString()
         val password = et_password.text.toString()
         if (TextUtils.isEmpty(password)) {

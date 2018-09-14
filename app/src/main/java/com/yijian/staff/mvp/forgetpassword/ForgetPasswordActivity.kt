@@ -15,10 +15,11 @@ import com.yijian.staff.widget.NavigationBar
 
 import org.json.JSONObject
 
-import butterknife.OnClick
 import kotlinx.android.synthetic.main.activity_forget_password.*
 
-class ForgetPasswordActivity : MvcBaseActivity() {
+class ForgetPasswordActivity : MvcBaseActivity(), View.OnClickListener {
+
+
 
 
     override fun getLayoutID(): Int {
@@ -30,10 +31,11 @@ class ForgetPasswordActivity : MvcBaseActivity() {
         navigationBar.setTitle("忘记密码")
         navigationBar.hideLeftSecondIv()
         navigationBar.setBackClickListener(this)
+        tv_getcode.setOnClickListener(this)
+        btn_send.setOnClickListener(this)
     }
 
-    @OnClick(R.id.tv_getcode, R.id.btn_send)
-    fun onViewClicked(view: View) {
+    override fun onClick(view: View) {
 
         val account = et_account.text.toString()
         val telephone = et_phonenum.text.toString().trim { it <= ' ' }

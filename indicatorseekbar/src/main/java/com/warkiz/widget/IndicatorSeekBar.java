@@ -445,14 +445,8 @@ public class IndicatorSeekBar extends View {
      * calculate the thumb's centerX by the changing progress.
      */
     private void refreshThumbCenterXByProgress(float progress) {
-        //ThumbCenterX
-        if (mR2L) {
-            mBackgroundTrack.right = mPaddingLeft + mSeekLength * (1.0f - (progress - mMin) / (getAmplitude()));//ThumbCenterX
-            mProgressTrack.left = mBackgroundTrack.right;
-        } else {
-            mProgressTrack.right = (progress - mMin) * mSeekLength / (getAmplitude()) + mPaddingLeft;
-            mBackgroundTrack.left = mProgressTrack.right;
-        }
+        mProgressTrack.right = (progress - mMin) * mSeekLength / (getAmplitude()) + mPaddingLeft;
+        mBackgroundTrack.left = mProgressTrack.right;
     }
 
     @Override
@@ -475,7 +469,7 @@ public class IndicatorSeekBar extends View {
             canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
             drawTickMarks(canvas);
             //draw progress track
-        }else {
+        } else {
             mStockPaint.setColor(mBackgroundTrackColor);
             mStockPaint.setStrokeWidth(mBackgroundTrackSize);
             canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
@@ -1595,10 +1589,6 @@ public class IndicatorSeekBar extends View {
     public synchronized void setProgress(float progress) {
         lastProgress = mProgress;
         mProgress = progress < mMin ? mMin : (progress > mMax ? mMax : progress);
-        //adjust to the closest tick's progress
-        if (mTicksCount > 2) {
-            mProgress = mProgressArr[getClosestIndex()];
-        }
         setSeekListener(false);
         refreshThumbCenterXByProgress(mProgress);
         postInvalidate();
@@ -1631,276 +1621,6 @@ public class IndicatorSeekBar extends View {
         updateStayIndicator();
     }
 
-    /**
-     * compat app local change
-     *
-     * @param isR2L True if see form right to left on the screen.
-     */
-    public void setR2L(boolean isR2L) {
-        this.mR2L = isR2L;
-        requestLayout();
-        invalidate();
-        updateStayIndicator();
-    }
-
-    /**
-     * Set a new thumb drawable.
-     *
-     * @param drawable the drawable for thumb,selector drawable is ok.
-     *                 selector format:
-     */
-    //<?xml version="1.0" encoding="utf-8"?>
-    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    //<item android:drawable="@drawable/ic_launcher" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
-    //<item android:drawable="@drawable/ic_launcher_round" />  < !--for thumb when normal-->
-    //</selector>
-    public void setThumbDrawable(Drawable drawable) {
-        if (drawable == null) {
-            this.mThumbDrawable = null;
-            this.mThumbBitmap = null;
-            this.mPressedThumbBitmap = null;
-        } else {
-            this.mThumbDrawable = drawable;
-            this.mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
-            this.mThumbTouchRadius = mThumbRadius;
-            this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
-            initThumbBitmap();
-        }
-        requestLayout();
-        invalidate();
-    }
-
-    /**
-     * call this will do not draw thumb, true if hide.
-     */
-    public void hideThumb(boolean hide) {
-        mHideThumb = hide;
-        invalidate();
-    }
-
-    /**
-     * call this will do not draw the text which below thumb. true if hide.
-     */
-    public void hideThumbText(boolean hide) {
-        mShowThumbText = !hide;
-        invalidate();
-    }
-
-    /**
-     * set the seek bar's thumb's color.
-     *
-     * @param thumbColor colorInt
-     */
-    public void thumbColor(@ColorInt int thumbColor) {
-        this.mThumbColor = thumbColor;
-        this.mPressedThumbColor = thumbColor;
-        invalidate();
-    }
-
-    /**
-     * set the seek bar's thumb's selector color.
-     *
-     * @param thumbColorStateList color selector
-     *                            selector format like:
-     */
-    //<?xml version="1.0" encoding="utf-8"?>
-    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    //<item android:color="@color/colorAccent" android:state_pressed="true" />  <!--this color is for thumb which is at pressing status-->
-    //<item android:color="@color/color_blue" />                                <!--for thumb which is at normal status-->
-    //</selector>
-    public void thumbColorStateList(@NonNull ColorStateList thumbColorStateList) {
-        initThumbColor(thumbColorStateList, mThumbColor);
-        invalidate();
-    }
-
-    /**
-     * Set a new tick marks drawable.
-     *
-     * @param drawable the drawable for marks,selector drawable is ok.
-     *                 selector format:
-     */
-    //< ?xml version="1.0" encoding="utf-8"?>
-    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    //<item android:drawable="@drawable/ic_launcher" android:state_selected="true" />  < !--this drawable is for thickMarks which thumb swept-->
-    //<item android:drawable="@drawable/ic_launcher_round" />  < !--for thickMarks which thumb haven't reached-->
-    //</selector>
-    public void setTickMarksDrawable(Drawable drawable) {
-        if (drawable == null) {
-            this.mTickMarksDrawable = null;
-            this.mUnselectTickMarksBitmap = null;
-            this.mSelectTickMarksBitmap = null;
-        } else {
-            this.mTickMarksDrawable = drawable;
-            this.mTickRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mTickMarksSize) / 2.0f;
-            this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
-            initTickMarksBitmap();
-        }
-        invalidate();
-    }
-
-    /**
-     * set the seek bar's tick's color.
-     *
-     * @param tickMarksColor colorInt
-     */
-    public void tickMarksColor(@ColorInt int tickMarksColor) {
-        this.mSelectedTickMarksColor = tickMarksColor;
-        this.mUnSelectedTickMarksColor = tickMarksColor;
-        invalidate();
-    }
-
-    /**
-     * set the seek bar's tick's color.
-     *
-     * @param tickMarksColorStateList colorInt
-     *                                selector format like:
-     */
-    //<?xml version="1.0" encoding="utf-8"?>
-    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    //<item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for marks those are at left side of thumb-->
-    //<item android:color="@color/color_gray" />                                 <!--for marks those are at right side of thumb-->
-    //</selector>
-    public void tickMarksColor(@NonNull ColorStateList tickMarksColorStateList) {
-        initTickMarksColor(tickMarksColorStateList, mSelectedTickMarksColor);
-        invalidate();
-    }
-
-    /**
-     * set the color for text below/above seek bar's tickText.
-     *
-     * @param tickTextsColor ColorInt
-     */
-    public void tickTextsColor(@ColorInt int tickTextsColor) {
-        mUnselectedTextsColor = tickTextsColor;
-        mSelectedTextsColor = tickTextsColor;
-        mHoveredTextColor = tickTextsColor;
-        invalidate();
-    }
-
-    /**
-     * set the selector color for text below/above seek bar's tickText.
-     *
-     * @param tickTextsColorStateList ColorInt
-     *                                selector format like:
-     */
-    //<?xml version="1.0" encoding="utf-8"?>
-    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    //<item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for texts those are at left side of thumb-->
-    //<item android:color="@color/color_blue" android:state_hovered="true" />     <!--for thumb below text-->
-    //<item android:color="@color/color_gray" />                                 <!--for texts those are at right side of thumb-->
-    //</selector>
-    public void tickTextsColorStateList(@NonNull ColorStateList tickTextsColorStateList) {
-        initTickTextsColor(tickTextsColorStateList, mSelectedTextsColor);
-        invalidate();
-    }
-
-    /**
-     * The specified scale for the progress value,
-     * make sure you had chosen the float progress type
-     * <p>
-     * such as:
-     * scale = 3; progress: 1.78627347 to 1.786
-     * scale = 4; progress: 1.78627347 to 1.7863
-     * <p>
-     * make sure you have call the attr progress_value_float=true before, otherwise no change.
-     *
-     * @param scale scale for the float type progress value.
-     */
-    public void setDecimalScale(int scale) {
-        this.mScale = scale;
-    }
-
-    /**
-     * Set a format string with placeholder ${PROGRESS} or ${TICK_TEXT} to IndicatorSeekBar,
-     * the indicator's text would change.
-     * For example:
-     * seekBar.setIndicatorTextFormat("${PROGRESS} %");
-     * seekBar.setIndicatorTextFormat("${PROGRESS} miles");
-     * seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}%");
-     * <p>
-     * make sure you have custom and show the tick text before you
-     * use ${TICK_TEXT}% , otherwise will be shown a "" value.
-     * <p>
-     * Also, if the SeekBar type is Custom ,this method will be no work, see{@link IndicatorType}
-     *
-     * @param format the format for indicator text
-     */
-    public void setIndicatorTextFormat(String format) {
-        this.mIndicatorTextFormat = format;
-        initTextsArray();
-        updateStayIndicator();
-    }
-
-    /**
-     * Collect and custom the color for each of section track.
-     * <p>
-     * usage :
-     * <p>
-     * indicatorSeekBar.customSectionTrackColor(new ColorCollector() {
-     * <p>
-     * public boolean collectSectionTrackColor(int[] colorIntArr) {
-     * colorIntArr[0] = getResources().getColor(R.color.color_blue);
-     * colorIntArr[1] = getResources().getColor(R.color.color_gray);
-     * colorIntArr[2] = Color.parseColor("#FFFF00");
-     * ......
-     * return true; // True if apply color , otherwise no change.
-     * }
-     * });
-     *
-     * @param collector The container for section track's color
-     */
-    public void customSectionTrackColor(@NonNull ColorCollector collector) {
-        int[] colorArray = new int[mTicksCount - 1 > 0 ? mTicksCount - 1 : 1];
-        for (int i = 0; i < colorArray.length; i++) {
-            //set the default section color
-            colorArray[i] = mBackgroundTrackColor;
-        }
-        this.mCustomTrackSectionColorResult = collector.collectSectionTrackColor(colorArray);
-        this.mSectionTrackColorArray = colorArray;
-        invalidate();
-    }
-
-    /**
-     * Replace the number ticks' texts with your's by String[].
-     * Usually, the text array's length your set should equals seek bar's tickMarks' count.
-     *
-     * @param tickTextsArr The array contains the tick text
-     */
-    public void customTickTexts(@NonNull String[] tickTextsArr) {
-        this.mTickTextsCustomArray = tickTextsArr;
-        if (mTickTextsArr != null) {
-            for (int i = 0; i < mTickTextsArr.length; i++) {
-                String tickText;
-                if (i < tickTextsArr.length) {
-                    tickText = String.valueOf(tickTextsArr[i]);
-                } else {
-                    tickText = "";
-                }
-                int index = i;
-                if (mR2L) {
-                    index = mTicksCount - 1 - i;
-                }
-                mTickTextsArr[index] = tickText;
-                if (mTextPaint != null && mRect != null) {
-                    mTextPaint.getTextBounds(tickText, 0, tickText.length(), mRect);
-                    mTickTextsWidth[index] = mRect.width();
-                }
-            }
-            invalidate();
-        }
-    }
-
-    /**
-     * Set the custom tick texts' typeface you want.
-     *
-     * @param typeface The typeface for tickTexts.
-     */
-    public void customTickTextsTypeface(@NonNull Typeface typeface) {
-        this.mTextsTypeface = typeface;
-        measureTickTextsBonds();
-        requestLayout();
-        invalidate();
-    }
 
     /**
      * Set the listener to listen the seeking params changing.
@@ -1911,14 +1631,6 @@ public class IndicatorSeekBar extends View {
         this.mSeekChangeListener = listener;
     }
 
-    /**
-     * only show the tick texts on both of ends seek bar, make sure you hava called the attr:show tick text before.
-     *
-     * @param onlyShow true if only show the tick texts on both of ends seek bar
-     */
-    public void showBothEndsTickTextsOnly(boolean onlyShow) {
-        this.mShowBothTickTextsOnly = onlyShow;
-    }
 
     /**
      * prevent user from seeking
@@ -1928,8 +1640,6 @@ public class IndicatorSeekBar extends View {
     public void setUserSeekAble(boolean seekAble) {
         this.mUserSeekable = seekAble;
     }
-
-    /*------------------API END-------------------*/
 
 
 }

@@ -220,11 +220,13 @@ public class CoursePunchActivity extends MvcBaseActivity {
                         seekBar3.setUserSeekAble(false);
 
                         if (privateCourseCoachSummaryDTO != null) {
-                            float progress1 = privateCourseCoachSummaryDTO.getActionComplete() * 100;
-                            int progress2 = (int) (privateCourseCoachSummaryDTO.getActionEvaluate() * 100);
-                            int progress3 = (int) (privateCourseCoachSummaryDTO.getAdaptStrength() * 100);
+                            float progress1 = privateCourseCoachSummaryDTO.getActionComplete() * 100f;
+                            float progress2 = (privateCourseCoachSummaryDTO.getActionEvaluate() * 100f);
+                            float progress3 =  (privateCourseCoachSummaryDTO.getAdaptStrength() * 100f);
                             seekBar1.setProgress(progress1);
-                            seekBar2.setProgress(progress2);
+//                            seekBar2.setProgress(progress2);
+                            seekBar2.setProgress(39f);
+
                             seekBar3.setProgress(progress3);
                             showSeekBar2(progress2);
                             showSeekBar3(progress3);
@@ -373,7 +375,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
 
 
 
-    private void showSeekBar2(int progress) {
+    private void showSeekBar2(float progress) {
         if (progress < 20) {
             selectSeekBar2(0);
         } else if (progress >= 20 && progress < 40) {
@@ -414,7 +416,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
     }
 
 
-    private void showSeekBar3(int progress) {
+    private void showSeekBar3(float progress) {
         if (progress < 33) {
             selectSeekBar3(0);
         } else if (progress >= 33 && progress < 66) {

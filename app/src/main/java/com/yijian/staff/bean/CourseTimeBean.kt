@@ -8,7 +8,7 @@ package com.yijian.staff.bean
 class CourseTimeBean(val startTime: String,val endTime: String) : Comparable<CourseTimeBean>{
 
 
-    override fun compareTo(o: CourseTimeBean): Int {
-        return Integer.parseInt(this.startTime.replace(":".toRegex(), "")) - Integer.parseInt(o.startTime.replace(":".toRegex(), ""))
+    override fun compareTo(other: CourseTimeBean): Int {
+        return Integer.parseInt(this.startTime.replace(":".toRegex(), "")) - Integer.parseInt(other.startTime.replace(":".toRegex(), ""))
     }
 }

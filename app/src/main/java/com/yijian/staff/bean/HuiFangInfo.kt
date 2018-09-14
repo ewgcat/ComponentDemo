@@ -7,7 +7,7 @@ import java.io.Serializable
  * email：850716183@qq.com
  * time: 2018/3/5 16:22:37
  */
-class HuiFangInfo : Serializable {
+ class HuiFangInfo : Serializable {
 
 
     /**

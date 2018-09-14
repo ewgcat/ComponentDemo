@@ -18,9 +18,11 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.AppointCourseBean;
 import com.yijian.staff.bean.DateBean;
+import com.yijian.staff.bean.P2mToBCappVOSBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
+import com.yijian.staff.net.response.ResponseObserver;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
@@ -112,9 +114,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
             Date date = new Date(System.currentTimeMillis() + (i - 83) * 86400000);
             String s = transferDate(date);
             String weekOfDate = DateUtil.getWeekOfDate(date);
-            DateBean dateBean = new DateBean();
-            dateBean.setDate(s);
-            dateBean.setWeekDay(weekOfDate);
+            DateBean dateBean = new DateBean(weekOfDate,s);
             dateBeanList.add(dateBean);
         }
         DateListAdapter dateListAdapter = new DateListAdapter(this, dateBeanList);
@@ -146,19 +146,19 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("mmddmmdd", date);
-        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResultJSONObjectObserver(getLifecycle()) {
+        HttpManager.postHasHeaderHasParam(CourseUrls.PRIVATE_COURSE_DAY_TABLE_URL, map, new ResponseObserver<AppointCourseBean>(getLifecycle()) {
             @Override
-            public void onSuccess(JSONObject result) {
-                String p2mParentId = JsonUtil.getString(result, "p2mParentId");
-                JSONArray p2mToBappVOs = JsonUtil.getJsonArray(result, "p2mToBCappVOS");
+            public void onSuccess(AppointCourseBean appointCourseBean) {
+
+                String p2mParentId = appointCourseBean.getP2mParentId();
+                List<P2mToBCappVOSBean> list = appointCourseBean.getP2mToBCappVOS();
                if(TextUtils.isEmpty(p2mParentId)){
                    showToast(date+" 未生成约课表！");
                }else {
-                   List<AppointCourseBean.P2mToBCappVOSBean> list = com.alibaba.fastjson.JSONArray.parseArray(p2mToBappVOs.toString(), AppointCourseBean.P2mToBCappVOSBean.class);
-                   if (list!=null&&list.size()>0){
+                   if (list.size()>0){
                        for (int i = 0; i < list.size(); i++) {
-                           AppointCourseBean.P2mToBCappVOSBean appointCourseBean = list.get(i);
-                           courseView.addItem(appointCourseBean);
+                          P2mToBCappVOSBean p2mToBCappVOSBean = list.get(i);
+                           courseView.addItem(p2mToBCappVOSBean);
                        }
                    }
                }

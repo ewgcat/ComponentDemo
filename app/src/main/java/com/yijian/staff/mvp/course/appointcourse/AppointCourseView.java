@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.bean.AppointCourseBean;
+import com.yijian.staff.bean.P2mToBCappVOSBean;
 import com.yijian.staff.mvp.course.punch.CoursePunchActivity;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
@@ -119,7 +119,7 @@ public class AppointCourseView extends FrameLayout {
     }
 
 
-    public void addItem(AppointCourseBean.P2mToBCappVOSBean appointCourseBean) {
+    public void addItem(P2mToBCappVOSBean appointCourseBean) {
         int status = appointCourseBean.getStatus();
         if (status == 1 || status == 3 || status == 4 || status == 5) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.appoint_course_item_view, null, false);

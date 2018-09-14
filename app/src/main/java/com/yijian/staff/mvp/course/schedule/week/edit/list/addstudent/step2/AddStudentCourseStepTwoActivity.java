@@ -243,10 +243,8 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity {
                 endTime = endTime + i5;
             }
 
-            CourseTimeBean courseTimeBean = new CourseTimeBean();
-            courseTimeBean.setStartTime(startTime);
+            CourseTimeBean courseTimeBean = new CourseTimeBean(startTime,endTime);
 
-            courseTimeBean.setEndTime(endTime);
 
             if (coursePlanBeanList.size() == 0) {
                 CoursePlanBean coursePlanBean = new CoursePlanBean();

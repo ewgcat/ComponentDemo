@@ -31,6 +31,7 @@ import java.util.ArrayList
 
 import butterknife.BindView
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.fragment_work.*
 
 
 @SuppressLint("ValidFragment")
@@ -40,18 +41,6 @@ class WorkFragment : MvcBaseFragment() {
     }
 
 
-    @BindView(R.id.recyclerView)
-    lateinit var recyclerView: RecyclerView
-    @BindView(R.id.iv_face)
-    lateinit var ivFace: ImageView
-    @BindView(R.id.ll_jiedai_container)
-    lateinit var llJiedaiContainer: LinearLayout
-    @BindView(R.id.ll_jiedai)
-    lateinit var llJiedai: LinearLayout
-    @BindView(R.id.ll_jie_dai_container)
-    lateinit var llJieDaiContainer: LinearLayout
-    @BindView(R.id.swipe_refresh_layout)
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     lateinit var indexMenuAdapter: IndexMenuAdapter
     private val menuList = ArrayList<IndexDataInfo.MenuModelListBean.SubMeneModelListBean>()
@@ -73,33 +62,33 @@ class WorkFragment : MvcBaseFragment() {
         Logger.i(TAG, othermodelVo.toString())
         faceRecognition = othermodelVo.faceRecognition
         if (faceRecognition) {
-            ivFace.visibility = View.VISIBLE
+            iv_face.visibility = View.VISIBLE
         } else {
-            ivFace.visibility = View.GONE
+            iv_face.visibility = View.GONE
         }
         reception = othermodelVo.reception
 
         hasNewJiedaiPush = SharePreferenceUtil.hasNewJiedaiPush()
         hasNewYueKePush = SharePreferenceUtil.hasNewYueKePush()
         initData()
-        swipeRefreshLayout.setOnRefreshListener { initData() }
+        swipe_refresh_layout.setOnRefreshListener { initData() }
 
     }
 
     fun showJieDaiView(i: Int) {
         if (isAdded) {
             if (i == 0) {//没有接待权限
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_jd, null)
-                llJiedaiContainer.visibility = View.GONE
-                llJiedai.visibility = View.GONE
+                ll_jie_dai_container.background = resources.getDrawable(R.mipmap.home_no_jd, null)
+                ll_jiedai_container.visibility = View.GONE
+                ll_jiedai.visibility = View.GONE
             } else if (i == 1) {//有接待权限，没有新消息
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_no_new_jd, null)
-                llJiedaiContainer.visibility = View.VISIBLE
-                llJiedai.visibility = View.VISIBLE
+                ll_jie_dai_container.background = resources.getDrawable(R.mipmap.home_no_new_jd, null)
+                ll_jiedai_container.visibility = View.VISIBLE
+                ll_jiedai.visibility = View.VISIBLE
             } else if (i == 2) {//有接待权限，有新消息
-                llJieDaiContainer.background = resources.getDrawable(R.mipmap.home_new_jd, null)
-                llJiedaiContainer.visibility = View.VISIBLE
-                llJiedai.visibility = View.VISIBLE
+                ll_jie_dai_container.background = resources.getDrawable(R.mipmap.home_new_jd, null)
+                ll_jiedai_container.visibility = View.VISIBLE
+                ll_jiedai.visibility = View.VISIBLE
             }
         }
     }
@@ -184,12 +173,12 @@ class WorkFragment : MvcBaseFragment() {
                     }
                 }
                 setRedPoint()
-                swipeRefreshLayout.isRefreshing = false
+                swipe_refresh_layout.isRefreshing = false
 
             }
 
             override fun onFail(msg: String) {
-                swipeRefreshLayout.isRefreshing = false
+                swipe_refresh_layout.isRefreshing = false
                 hideLoading()
                 showToast(msg)
             }

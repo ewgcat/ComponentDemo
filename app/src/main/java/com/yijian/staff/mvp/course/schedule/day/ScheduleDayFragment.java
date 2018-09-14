@@ -169,7 +169,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
             Date date = new Date(System.currentTimeMillis() + i * 86400000);
             String s = transferDate(date);
             String weekOfDate = DateUtil.getWeekOfDate(date);
-            DateBean dateBean = new DateBean();
+            DateBean dateBean = new DateBean(weekOfDate,s);
             dateBean.setDate(s);
             dateBean.setWeekDay(weekOfDate);
             dateBeanList.add(dateBean);

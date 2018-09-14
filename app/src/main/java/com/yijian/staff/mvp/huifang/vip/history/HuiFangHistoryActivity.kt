@@ -29,7 +29,6 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.activity_hui_fang_history.*
-import kotlinx.android.synthetic.main.activity_hui_fang_task.*
 import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
 
 class HuiFangHistoryActivity : MvcBaseActivity() {

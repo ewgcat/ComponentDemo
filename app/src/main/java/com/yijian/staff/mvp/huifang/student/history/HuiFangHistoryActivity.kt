@@ -30,6 +30,7 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_hui_fang_history.*
 import kotlinx.android.synthetic.main.layout_base_smart_refresh_layout_recyclerview.*
 
 
@@ -60,6 +61,8 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
             startActivity(intent)
         }
         initComponent()
+        ll_hui_fang_ren_wu.setOnClickListener { v ->         finish() }
+
     }
 
 
@@ -153,8 +156,4 @@ class HuiFangHistoryActivity : MvcBaseActivity() {
         })
     }
 
-    @OnClick(R.id.ll_hui_fang_ren_wu)
-    fun onViewClicked() {
-        finish()
-    }
 }

@@ -401,7 +401,7 @@
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity"
+            android:name=".mvp.vipermanage.viper.edit.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
@@ -469,11 +469,7 @@
             android:launchMode="singleTask" />
         <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity" />
         <activity android:name=".TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

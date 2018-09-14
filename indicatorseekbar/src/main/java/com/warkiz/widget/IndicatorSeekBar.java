@@ -73,7 +73,6 @@ public class IndicatorSeekBar extends View {
     private boolean mUserSeekable;//true if the user can seek to change the progress,otherwise only can be changed by setProgress().
     private boolean mOnlyThumbDraggable;//only drag the seek bar's thumb can be change the progress
     private boolean mSeekSmoothly;//seek continuously
-    private float[] mProgressArr;//save the progress which at tickMark position.
     private boolean mR2L;//right to left,compat local problem.
     //tick texts
     private boolean mShowTickText;//the palace where the tick text show .
@@ -267,10 +266,7 @@ public class IndicatorSeekBar extends View {
                 mTextCenterX = new float[mTicksCount];
                 mTickTextsWidth = new float[mTicksCount];
             }
-            mProgressArr = new float[mTicksCount];
-            for (int i = 0; i < mProgressArr.length; i++) {
-                mProgressArr[i] = mMin + i * (mMax - mMin) / ((mTicksCount - 1) > 0 ? (mTicksCount - 1) : 1);
-            }
+
 
         }
 
@@ -377,28 +373,12 @@ public class IndicatorSeekBar extends View {
         if (mTickMarksX == null) {
             return;
         }
-        initTextsArray();
+        //adjust thumb auto,so find out the closest progress in the mProgressArr array and replace it.
+        //it is not necessary to adjust thumb while count is less than 3.
 
         refreshThumbCenterXByProgress(mProgress);
     }
 
-    private void initTextsArray() {
-        if (mTicksCount == 0) {
-            return;
-        }
-        for (int i = 0; i < mTickMarksX.length; i++) {
-            if (mShowTickText) {
-                if (mTickTextsArr == null) {
-                    mTickTextsArr = new String[mTicksCount];
-                }
-                mTickTextsArr[i] = getTickTextByPosition(i);
-                mTextPaint.getTextBounds(mTickTextsArr[i], 0, mTickTextsArr[i].length(), mRect);
-                mTickTextsWidth[i] = mRect.width();
-                mTextCenterX[i] = mPaddingLeft + mSeekBlockLength * i;
-            }
-            mTickMarksX[i] = mPaddingLeft + mSeekBlockLength * i;
-        }
-    }
 
     private void initTrackLocation() {
         if (mR2L) {
@@ -426,15 +406,7 @@ public class IndicatorSeekBar extends View {
         }
     }
 
-    private String getTickTextByPosition(int index) {
-        if (mTickTextsCustomArray == null) {
-            return getProgressString(mProgressArr[index]);
-        }
-        if (index < mTickTextsCustomArray.length) {
-            return String.valueOf(mTickTextsCustomArray[index]);
-        }
-        return "";
-    }
+
 
     /**
      * calculate the thumb's centerX by the changing progress.
@@ -1182,9 +1154,7 @@ public class IndicatorSeekBar extends View {
                 if (mSeekChangeListener != null) {
                     mSeekChangeListener.onStopTrackingTouch(this);
                 }
-                if (!autoAdjustThumb()) {
                     invalidate();
-                }
                 if (mIndicator != null) {
                     mIndicator.hide();
                 }
@@ -1322,35 +1292,6 @@ public class IndicatorSeekBar extends View {
         mIndicator.updateArrowViewLocation(arrowOffset);
     }
 
-    private boolean autoAdjustThumb() {
-        if (mTicksCount < 3 || !mSeekSmoothly) {//it is not necessary to adjust while count less than 3 .
-            return false;
-        }
-        final int closestIndex = getClosestIndex();
-        final float touchUpProgress = mProgress;
-        ValueAnimator animator = ValueAnimator.ofFloat(0, Math.abs(touchUpProgress - mProgressArr[closestIndex]));
-        animator.start();
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                lastProgress = mProgress;
-                if (touchUpProgress - mProgressArr[closestIndex] > 0) {
-                    mProgress = touchUpProgress - (Float) animation.getAnimatedValue();
-                } else {
-                    mProgress = touchUpProgress + (Float) animation.getAnimatedValue();
-                }
-                refreshThumbCenterXByProgress(mProgress);
-                //the auto adjust was happened after user touched up, so from user is false.
-                setSeekListener(false);
-                if (mIndicator != null && mIndicatorStayAlways) {
-                    mIndicator.refreshProgressText();
-                    updateStayIndicator();
-                }
-                invalidate();
-            }
-        });
-        return true;
-    }
 
     /**
      * transfer the progress value to string type
@@ -1366,18 +1307,7 @@ public class IndicatorSeekBar extends View {
         return progressString + "%";
     }
 
-    private int getClosestIndex() {
-        int closestIndex = 0;
-        float amplitude = Math.abs(mMax - mMin);
-        for (int i = 0; i < mProgressArr.length; i++) {
-            float amplitudeTemp = Math.abs(mProgressArr[i] - mProgress);
-            if (amplitudeTemp <= amplitude) {
-                amplitude = amplitudeTemp;
-                closestIndex = i;
-            }
-        }
-        return closestIndex;
-    }
+
 
     private float getAmplitude() {
         return (mMax - mMin) > 0 ? (mMax - mMin) : 1;

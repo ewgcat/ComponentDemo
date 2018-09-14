@@ -378,12 +378,7 @@ public class IndicatorSeekBar extends View {
             return;
         }
         initTextsArray();
-        //adjust thumb auto,so find out the closest progress in the mProgressArr array and replace it.
-        //it is not necessary to adjust thumb while count is less than 3.
-        if (mTicksCount > 2) {
-            mProgress = mProgressArr[getClosestIndex()];
-            lastProgress = mProgress;
-        }
+
         refreshThumbCenterXByProgress(mProgress);
     }
 

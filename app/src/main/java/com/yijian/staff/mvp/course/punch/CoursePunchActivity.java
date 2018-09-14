@@ -224,9 +224,7 @@ public class CoursePunchActivity extends MvcBaseActivity {
                             float progress2 = (privateCourseCoachSummaryDTO.getActionEvaluate() * 100f);
                             float progress3 =  (privateCourseCoachSummaryDTO.getAdaptStrength() * 100f);
                             seekBar1.setProgress(progress1);
-//                            seekBar2.setProgress(progress2);
-                            seekBar2.setProgress(39f);
-
+                            seekBar2.setProgress(progress2);
                             seekBar3.setProgress(progress3);
                             showSeekBar2(progress2);
                             showSeekBar3(progress3);

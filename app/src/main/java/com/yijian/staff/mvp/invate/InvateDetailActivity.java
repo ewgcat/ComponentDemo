@@ -11,7 +11,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.bean.InviteDetailBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResponseObserver;
+import com.yijan.commonlib.net.response.ResponseObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar;

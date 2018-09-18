@@ -17,7 +17,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
 import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.EmptyView;
 

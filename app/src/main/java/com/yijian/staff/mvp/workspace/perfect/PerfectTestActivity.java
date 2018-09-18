@@ -16,7 +16,7 @@ import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijan.commonlib.net.response.ResultStringObserver;
 import com.yijian.staff.widget.NavigationBar;
 
 import java.util.ArrayList;

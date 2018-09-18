@@ -3,7 +3,7 @@ package com.yijian.staff.jpush;
 import android.arch.lifecycle.Lifecycle;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResponseObserver;
+import com.yijan.commonlib.net.response.ResponseObserver;
 
 import org.json.JSONArray;
 

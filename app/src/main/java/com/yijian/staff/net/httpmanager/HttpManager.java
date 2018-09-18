@@ -3,6 +3,7 @@ package com.yijian.staff.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.yijan.commonlib.net.httpmanager.RetrofitClient;
 import com.yijian.staff.net.requestbody.AbortFuFangBody;
 import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
@@ -30,8 +31,6 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import org.json.JSONObject;
@@ -549,7 +548,7 @@ public class HttpManager {
 
 
     //重置密码
-    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd, ResultJSONObjectObserver observer) {
+    public static void resetPassword(String username, String telephone, String verificationCode, String newPwd, String confirmPwd,Observer observer) {
         Observable<JSONObject> getCodeObservable = apiService.resetPassword(SharePreferenceUtil.getHostUrl() + RESET_PASSWORD_URL, username, telephone, verificationCode, newPwd, confirmPwd);
         execute(getCodeObservable, observer);
     }
@@ -940,7 +939,7 @@ public class HttpManager {
     }
 
 
-    public static void postHuiFangType(HuiFangTypeRequestBody huifangTaskRequestBody, ResultJSONArrayObserver observer) {
+    public static void postHuiFangType(HuiFangTypeRequestBody huifangTaskRequestBody, Observer observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {

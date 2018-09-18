@@ -32,7 +32,7 @@ import com.yijian.staff.mvp.workspace.utils.AndroidAdjustResizeBugFix;
 import com.yijian.staff.mvp.workspace.widget.TableView;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;

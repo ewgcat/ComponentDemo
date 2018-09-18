@@ -22,7 +22,7 @@ import com.yijian.staff.bean.CoachViperBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.mvp.vipermanage.student.detail.CoachViperDetailActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.yijian.staff.util.ImageLoader;

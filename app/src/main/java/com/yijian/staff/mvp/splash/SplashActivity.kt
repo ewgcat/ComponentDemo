@@ -23,7 +23,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.mvp.login.LoginActivity
 import com.yijian.staff.mvp.main.MainActivity
 import com.yijian.staff.net.httpmanager.HttpManager
-import com.yijian.staff.net.response.ResultStringObserver
+import com.yijan.commonlib.net.response.ResultStringObserver
 import com.yijian.staff.rx.RxUtil
 import com.yijian.staff.util.NotificationsUtil
 

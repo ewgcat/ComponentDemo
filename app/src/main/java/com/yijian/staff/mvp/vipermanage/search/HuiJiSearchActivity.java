@@ -16,7 +16,7 @@ import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONArray;
 import org.json.JSONException;

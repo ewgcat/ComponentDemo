@@ -19,7 +19,7 @@ import com.yijian.staff.bean.InvitationRecordBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.HuiJiInviteListRequestBody;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.widget.NavigationBar;

@@ -18,7 +18,7 @@ import com.yijian.staff.mvp.huifang.search.SearchHuiFangHistoryActivity
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.net.httpmanager.HttpManager
-import com.yijian.staff.net.response.ResultJSONObjectObserver
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver
 import com.yijian.staff.util.ImageLoader
 import com.yijian.staff.util.JsonUtil
 import com.yijian.staff.widget.NavigationBar

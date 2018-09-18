@@ -30,7 +30,7 @@ import com.yijian.staff.mvp.price.courseprice.filter.CoachClassFilterBean;
 import com.yijian.staff.mvp.price.courseprice.filter.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;

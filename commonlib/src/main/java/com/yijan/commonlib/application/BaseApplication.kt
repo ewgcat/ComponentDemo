@@ -11,6 +11,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
 import java.util.HashMap
 
 import cn.jpush.android.api.JPushInterface
+import com.umeng.socialize.net.dplus.db.DBManager
 import com.yijan.commonlib.BuildConfig
 import com.yijan.commonlib.net.httpmanager.RetrofitClient
 import com.yijan.commonlib.umeng.UmengUtils

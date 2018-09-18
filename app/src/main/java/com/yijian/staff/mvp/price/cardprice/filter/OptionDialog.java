@@ -29,7 +29,7 @@ import com.yijian.staff.net.requestbody.CardRequestBody;
 import com.yijian.staff.bean.VenueBean;
 import com.yijian.staff.bean.VenueWrapBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.DensityUtil;
 
 import org.json.JSONObject;

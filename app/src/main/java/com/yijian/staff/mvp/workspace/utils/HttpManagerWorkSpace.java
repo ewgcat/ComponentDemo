@@ -2,13 +2,13 @@ package com.yijian.staff.mvp.workspace.utils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.yijan.commonlib.net.httpmanager.RetrofitClient;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
 import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
 import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.api.ApiService;
-import com.yijian.staff.net.httpmanager.RetrofitClient;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 
 import org.json.JSONObject;

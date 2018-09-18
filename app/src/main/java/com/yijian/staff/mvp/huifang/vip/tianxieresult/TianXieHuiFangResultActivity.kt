@@ -25,8 +25,8 @@ import com.yijian.staff.bean.HuiFangReasonBean
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijian.staff.net.requestbody.huifang.AddHuiFangResultBody
-import com.yijian.staff.net.response.ResultBooleanObserver
-import com.yijian.staff.net.response.ResultJSONArrayObserver
+import com.yijan.commonlib.net.response.ResultBooleanObserver
+import com.yijan.commonlib.net.response.ResultJSONArrayObserver
 import com.yijian.staff.util.DateUtil
 import com.yijian.staff.util.ImageLoader
 import com.yijian.staff.util.JsonUtil

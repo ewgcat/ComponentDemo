@@ -5,7 +5,6 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 
 import com.yijian.staff.db.DBManager
-import com.yijian.staff.net.httpmanager.RetrofitClient
 import com.yijian.staff.prefs.SharePreferenceUtil
 
 import com.yijan.commonlib.application.BaseApplication
@@ -15,15 +14,11 @@ class CustomApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
         instance = this
-
-        //初始化屏幕宽高
-        getScreenSize()
-
-        RetrofitClient.init(this)
         SharePreferenceUtil.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion())
         DBManager.init(this)
+        //初始化屏幕宽高
+        getScreenSize()
     }
 
 
@@ -43,12 +38,9 @@ class CustomApplication : BaseApplication() {
         }
     }
 
-
     companion object {
-
         @get:Synchronized
         lateinit var instance: CustomApplication
-
         var SCREEN_WIDTH = -1
         var SCREEN_HEIGHT = -1
         var DIMEN_RATE = -1.0f

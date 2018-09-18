@@ -3,6 +3,7 @@ package com.yijian.staff.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.yijan.commonlib.net.httpmanager.RetrofitClient;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;

@@ -29,7 +29,7 @@ import com.yijian.staff.bean.CardInfo;
 import com.yijian.staff.net.requestbody.CardRequestBody;
 import com.yijian.staff.mvp.price.cardprice.filter.OptionDialog;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.widget.EmptyView;

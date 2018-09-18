@@ -12,7 +12,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.resourceallocation.huijileader.selecthuiji.HuiJiInfo;
 import com.yijian.staff.mvp.resourceallocation.huijileader.selecthuiji.SelectHuiJiPopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.util.Logger;
 import com.yijian.staff.widget.NavigationBar;
 

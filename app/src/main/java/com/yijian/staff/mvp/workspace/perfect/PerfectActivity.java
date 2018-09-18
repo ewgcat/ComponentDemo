@@ -27,7 +27,7 @@ import com.yijian.staff.mvp.face.BitmapFaceUtils;
 import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.staff.mvp.workspace.utils.StreamUtils;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;

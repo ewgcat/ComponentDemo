@@ -235,7 +235,7 @@ public class RetrofitClient {
                 HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                     @Override
                     public void log(String message) {
-                        Log.e("http", message);
+                        Log.d("http", message);
                     }
                 });
                 loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -22,7 +22,7 @@ import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.GetJsonDataUtil;
 import com.yijian.staff.mvp.vipermanage.viper.detail.picker.JsonBean_Service;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar;
 
 import org.json.JSONArray;

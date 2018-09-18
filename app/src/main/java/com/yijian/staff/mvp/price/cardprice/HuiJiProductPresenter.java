@@ -10,7 +10,7 @@ import com.yijian.staff.bean.CardInfo;
 import com.yijian.staff.bean.RecptionCards;
 import com.yijian.staff.net.requestbody.CardRequestBody;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONObject;
 

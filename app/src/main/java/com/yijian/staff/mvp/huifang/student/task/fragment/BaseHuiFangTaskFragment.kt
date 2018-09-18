@@ -20,7 +20,7 @@ import com.yijian.staff.mvp.huifang.student.task.adapter.HuiFangTaskAdapter
 import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls
 import com.yijian.staff.net.requestbody.huifang.HuifangTaskRequestBody
-import com.yijian.staff.net.response.ResultJSONArrayObserver
+import com.yijan.commonlib.net.response.ResultJSONArrayObserver
 import kotlinx.android.synthetic.main.common_hui_fang_task.*
 
 import org.json.JSONArray

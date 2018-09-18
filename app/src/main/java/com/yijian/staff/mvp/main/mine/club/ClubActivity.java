@@ -52,6 +52,7 @@ public class ClubActivity extends BaseWebViewActivity {
     TextView tvDes;
     private SharePopupWindow sharePopupWindow;
     private String name;
+    private String des;
 
 
     @Override
@@ -115,7 +116,6 @@ public class ClubActivity extends BaseWebViewActivity {
             for (int i = 0; i < pics.size(); i++) {
                 ClubDetailBean.PicsBean picsBean = pics.get(i);
                 String path = SharePreferenceUtil.getImageUrl()+picsBean.getPath();
-                Logger.i(TAG,"path="+path);
                 imageList.add(path);
             }
             //设置banner样式
@@ -135,7 +135,8 @@ public class ClubActivity extends BaseWebViewActivity {
             banner.start();
 
         }
-        tvDes.setText("        "+clubDetailBean.getDes());
+        des = clubDetailBean.getDes();
+        tvDes.setText("        "+ des);
 
     }
 
@@ -155,7 +156,7 @@ public class ClubActivity extends BaseWebViewActivity {
         if (sharePopupWindow == null) {
             sharePopupWindow = new SharePopupWindow(this);
             User user = DBManager.getInstance().queryUser();
-            sharePopupWindow.setData(BuildConfig.WORKSPACE_H5_HOST+"#/bappclub?mc="+user.getMerchantId(), name, null, null);
+            sharePopupWindow.setData(BuildConfig.WORKSPACE_H5_HOST+"#/bappclub?mc="+user.getMerchantId(), name, null, des);
         }
         sharePopupWindow.show(getWindow().getDecorView());
     }

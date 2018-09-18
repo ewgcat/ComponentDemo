@@ -62,7 +62,7 @@ public class SharePopupWindow {
         this.url = url;
         this.title = title;
         this.thumbnaiUrl = thumbnaiUrl;
-        this.describe = "123";
+        this.describe = describe;
     }
 
     private void addItemData() {

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate;
+package com.yijian.staff.mvp.vipermanage.viper.edit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -104,7 +104,11 @@ public class SelectAddressActivity extends MvcBaseActivity {
     }
 
     private void initData() {
-        et_detail.setText(getIntent().getStringExtra("detail").toString());
+        String detail = getIntent().getStringExtra("detail");
+        if (!TextUtils.isEmpty(detail)){
+            et_detail.setText(detail);
+        }
+
         if (type == 0) { // 工作地址
             companyRegion = (ViperDetailBean.DetailBean.CompanyRegion) getIntent().getSerializableExtra("area");
             StringBuffer cAddress = new StringBuffer();
@@ -255,6 +259,7 @@ public class SelectAddressActivity extends MvcBaseActivity {
         String JsonData = new GetJsonDataUtil().getJsonFromSD(this, fileName);//获取assets目录下的json文件数据
 
         ArrayList<JsonBean_Service> jsonBean = parseData(JsonData);//用Gson 转成实体
+
 
         /**
          * 添加省份数据

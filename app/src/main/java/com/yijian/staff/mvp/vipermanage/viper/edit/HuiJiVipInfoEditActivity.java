@@ -16,7 +16,6 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.net.requestbody.EditHuiJiVipBody;
 import com.yijian.staff.bean.ViperDetailBean;
-import com.yijian.staff.mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.widget.NavigationBar;

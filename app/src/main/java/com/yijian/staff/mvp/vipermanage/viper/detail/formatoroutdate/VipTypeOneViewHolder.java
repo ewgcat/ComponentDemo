@@ -63,14 +63,20 @@ public class VipTypeOneViewHolder extends BaseVipperViewHolder {
                 if (huijiVipInterface != null) huijiVipInterface.visit();
             }
         });
-        int medalType = viperDetailBean.getMedalType();
-        if (medalType==0){
+        Integer  medalType = viperDetailBean.getMedalType();
+        if(medalType==null){
 
-        }else if (medalType==1){
-            ImageLoader.setImageResource(R.mipmap.member_gray, itemView.getContext(), iv_rank);
-        }else if (medalType==2){
-            ImageLoader.setImageResource(R.mipmap.member_gold, itemView.getContext(), iv_rank);
+        }else{
+            if (medalType==0){
+
+            }else if (medalType==1){
+                ImageLoader.setImageResource(R.mipmap.member_gray, itemView.getContext(), iv_rank);
+            }else if (medalType==2){
+                ImageLoader.setImageResource(R.mipmap.member_gold, itemView.getContext(), iv_rank);
+            }
         }
+
+
     }
 
 }

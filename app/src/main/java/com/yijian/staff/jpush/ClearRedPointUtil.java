@@ -17,34 +17,6 @@ import java.util.HashMap;
 public class ClearRedPointUtil {
 
 
-    public static void clearSellBusinessNotice(Lifecycle lifecycle) {
-        HashMap<String,String> map=new HashMap<>();
-        map.put("moduleCode","app_seller_business");
-        HttpManager.postHasHeaderHasParam(HttpManager.CLEAR_RED_POINT_URL,map, new ResponseObserver<JSONArray>(lifecycle) {
-            @Override
-            public void onSuccess(JSONArray result) {
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
-    }
-   public static void clearCourseBusinessNotice(Lifecycle lifecycle) {
-        HashMap<String,String> map=new HashMap<>();
-        map.put("moduleCode","app_course_business");
-        HttpManager.postHasHeaderHasParam(HttpManager.CLEAR_RED_POINT_URL,map, new ResponseObserver<JSONArray>(lifecycle) {
-            @Override
-            public void onSuccess(JSONArray result) {
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        });
-    }
    public static void clearBusinessNotice(Lifecycle lifecycle) {
         HashMap<String,String> map=new HashMap<>();
         map.put("moduleCode","app_business_message");

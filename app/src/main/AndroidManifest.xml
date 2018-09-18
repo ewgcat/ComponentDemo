@@ -51,7 +51,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:theme">
+        tools:replace="android:theme,android:name">
         <activity
             android:name=".mvp.splash.SplashActivity"
             android:screenOrientation="portrait"
@@ -401,7 +401,7 @@
             android:name=".mvp.face.FaceDetectorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.vipermanage.viper.detail.formatoroutdate.SelectAddressActivity"
+            android:name=".mvp.vipermanage.viper.edit.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.course.cunke.CunkeNewActivity"
@@ -458,11 +458,7 @@
         <activity android:name=".mvp.workspace.perfect.PerfectTestActivity" />
         <activity android:name=".mvp.workspace.commen.SearchOprationActivity" />
         <activity android:name=".mvp.workspace.commen.ShareTestActivity" />
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <activity android:name=".mvp.workspace.static_assessment.StaticPhotoActivity" />
         <activity
             android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--#0398db-->
+    <color name="colorPrimary">#1997f8</color>
+    <color name="colorPrimaryDark">#565656</color>
+    <color name="colorAccent">#1997f8</color>
+    <color name="gray">#eaeaea</color>
+    <color name="blue">#1997f8</color>
+    <color name="gray_background_color">#f1f2f6</color>
+
+    <color name="black_bg">#d0000000</color>
+    <color name="time_bar">#cccccc</color>
+    <color name="white">#ffffff</color>
+    <color name="red_50">#fed1d6</color>
+
+    <color name="activity_background">#eff0f4</color>
+    <color name="red">#FF0000</color>
+
+    <color name="gray_text_desc">#808080</color>
+    <color name="gray_switch_track">#66999999</color>
+    <color name="black_text_title">#222222</color>
+    <color name="gray_divide_line">#e5e5e5</color>
+    <color name="gray_bg">#f1f3f5</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black333333">#333333</color>
+    <color name="blue1997f8">#1997f8</color>
+    <color name="gray666666">#666666</color>
+
+    <color name="text_black1">#333333</color>
+    <color name="text_black2">#666666</color>
+    <color name="text_black3">#999999</color>
+    <color name="division">#eaeaea</color>
+    <color name="textColor999999">#999999</color>
+    <color name="theme_bg_color">#f4f4f4</color>
+
+
+</resources>

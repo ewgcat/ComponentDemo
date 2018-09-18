@@ -5,15 +5,17 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="C:/Program Files/gradle-4.4" />
+        <option name="gradleHome" value="/usr/local/gradle/gradle-4.4" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PhotoPicker" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/indicatorseekbar" />
             <option value="$PROJECT_DIR$/photoview" />
             <option value="$PROJECT_DIR$/retrofit2" />
+            <option value="$PROJECT_DIR$/workspace" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

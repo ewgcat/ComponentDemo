@@ -1,1 +1,1 @@
-include ':app', ':retrofit2', ':PhotoPicker', ':photoview',':indicatorseekbar'
+include ':app', ':retrofit2', ':PhotoPicker', ':photoview',':indicatorseekbar', ':commonlib', ':workspace'

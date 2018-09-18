@@ -201,7 +201,12 @@ public static java.lang.String TABLENAME;
 -keep public class io.io.reactivex.**{*;}
 #rxandroid
 -keep public class io.io.reactivex.android.**{*;}
-
+#微信
+-keep class com.tencent.mm.opensdk.** {
+   *;
+}
+#腾讯混淆
+-keep class com.tencent.* { *; }
 
 #保持R文件不被混淆，否则，你的反射是获取不到资源id的
 -keep class **.R$* { *; }
@@ -227,7 +232,7 @@ public static java.lang.String TABLENAME;
 -keepclassmembers class * {
   public <init> (org.json.JSONObject);
 }
--keep public class com.hengte.hyt.R$*{
+-keep public class com.yijian.staff.R$*{
   public static final int *;
 }
 -keepclassmembers enum * {
@@ -263,8 +268,7 @@ public static java.lang.String TABLENAME;
 -dontwarn net.sqlcipher.database.**
 -dontwarn org.greenrobot.greendao.**
 
-#router
--keep class com.github.mzule.activityrouter.router.** { *; }
+
 
 #时间选择器
 -keep class cn.qqtheme.framework.entity.** { *;}

@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
-import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
-import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.staff.jpush.bean.PushInfoBean;
+import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
+import com.yijian.staff.jpush.ClearRedPointUtil;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.main.message.MessageFragment;
 import com.yijian.staff.mvp.main.mine.MineFragment;
@@ -38,6 +38,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 import static com.yijian.staff.jpush.JPushTagAliasOperatorHelper.sequence;
+
 
 public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBottomButtonListener {
 

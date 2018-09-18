@@ -2,12 +2,8 @@ package com.yijian.staff.mvp.main.work
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 
 import com.yijian.staff.R
 import com.yijian.staff.bean.IndexDataInfo

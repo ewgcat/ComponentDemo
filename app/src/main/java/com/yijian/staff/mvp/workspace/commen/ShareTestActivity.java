@@ -10,6 +10,7 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.yijan.commonlib.umeng.SharePopupWindow;
 import com.yijian.staff.R;
 import com.yijian.staff.db.DBManager;
 import com.yijian.staff.db.bean.User;
@@ -24,7 +25,6 @@ import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
 import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
 import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.share.umeng.SharePopupWindow;
 import com.yijian.staff.widget.EmptyView;
 import com.yijian.staff.widget.NavigationBar;
 

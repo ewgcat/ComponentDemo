@@ -42,7 +42,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.yijian.staff.tab.tools.ContextUtil.getContext;
 
 /**
  * 会籍（客服）产品报价
@@ -130,7 +129,7 @@ public class CardPriceActivity extends MvcBaseActivity implements HuiJiProductCo
         });
 
 
-        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         goodsRcv.setLayoutManager(layoutmanager);
         goodsListAdapter = new CardsListAdapter(this);
@@ -344,12 +343,12 @@ public class CardPriceActivity extends MvcBaseActivity implements HuiJiProductCo
     public void showNoCards(boolean isRefresh, boolean isSucceed) {
 
         if (isRefresh) {
-            if (isSucceed) Toast.makeText(getContext(), "未查询到相关数据", Toast.LENGTH_SHORT).show();
+            if (isSucceed) Toast.makeText(this, "未查询到相关数据", Toast.LENGTH_SHORT).show();
             goodsListAdapter.resetData(new ArrayList<>());
             cardRefreshLayout.finishRefresh(1000);
             empty_view.setVisibility(View.VISIBLE);
         } else {
-            if (isSucceed) Toast.makeText(getContext(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+            if (isSucceed) Toast.makeText(this, "已经是最后一页了", Toast.LENGTH_SHORT).show();
             cardRefreshLayout.finishLoadMore(1000);
         }
 

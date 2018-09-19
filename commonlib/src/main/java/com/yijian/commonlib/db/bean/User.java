@@ -1,6 +1,5 @@
 package com.yijian.commonlib.db.bean;
 
-import com.yijian.commonlib.BuildConfig;
 import com.yijian.commonlib.util.JsonUtil;
 
 import org.greenrobot.greendao.annotation.Entity;

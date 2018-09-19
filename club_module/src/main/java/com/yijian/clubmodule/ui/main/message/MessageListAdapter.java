@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.MessageBean;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
@@ -54,7 +53,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
 
 
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl()+messageBean.getHeadPortrait(), context, holder.iv_member_head);
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl()+messageBean.getHeadPortrait(), context, holder.iv_member_head);
         holder.tv_member_name.setText(messageBean.getUserName());
         int resId = messageBean.getGender() == 2 ? R.mipmap.lg_women : R.mipmap.lg_man;
         ImageLoader.setImageResource(resId,context,holder.iv_sex);

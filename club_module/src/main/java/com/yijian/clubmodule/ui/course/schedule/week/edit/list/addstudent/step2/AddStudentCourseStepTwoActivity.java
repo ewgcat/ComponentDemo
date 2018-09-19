@@ -15,7 +15,6 @@ import com.yijian.commonlib.util.ImageLoader;
 import com.yijian.commonlib.util.VibratorUtil;
 import com.yijian.commonlib.widget.HorizontalWheelView;
 import com.yijian.commonlib.widget.NavigationBar;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.CoursePlanBean;
 import com.yijian.clubmodule.bean.CourseRecordBean;

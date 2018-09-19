@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.ImageLoader;

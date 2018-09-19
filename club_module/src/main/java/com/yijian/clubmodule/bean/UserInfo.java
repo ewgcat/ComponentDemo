@@ -42,7 +42,7 @@ public class UserInfo {
         this.name = JsonUtil.getString(jsonObject, "name");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.sex = JsonUtil.getString(jsonObject, "sex");
-        this.headImg = SharePreferenceUtil.getHostUrl() + JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = JsonUtil.getString(jsonObject, "headImg");
         this.jobNo = JsonUtil.getString(jsonObject, "jobNo");
         this.shop = JsonUtil.getString(jsonObject, "shop");
         this.department = JsonUtil.getString(jsonObject, "department");

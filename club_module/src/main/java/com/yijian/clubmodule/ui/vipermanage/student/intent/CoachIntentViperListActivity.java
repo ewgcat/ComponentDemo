@@ -15,8 +15,6 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.clubmodule.ui.vipermanage.search.HuiJiSearchActivity;
-import com.yijian.commonlib.util.SystemUtil;
 import com.yijian.commonlib.widget.EmptyView;
 import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.clubmodule.R;

@@ -2,23 +2,17 @@ package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.yijian.staff.R;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class DynamicCheckGroup extends RadioGroup implements View.OnClickListener {
 

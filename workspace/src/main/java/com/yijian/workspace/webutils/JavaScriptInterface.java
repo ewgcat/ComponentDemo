@@ -3,9 +3,6 @@ package com.yijian.workspace.webutils;
 import android.os.Handler;
 import android.webkit.JavascriptInterface;
 
-import com.yijian.clubmodule.db.DBManager;
-import com.yijian.clubmodule.db.bean.User;
-
 public final class JavaScriptInterface {
 
 	private CallBackListener callBackListener;

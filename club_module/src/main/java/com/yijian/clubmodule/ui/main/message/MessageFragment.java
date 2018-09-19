@@ -17,9 +17,7 @@ import com.yijian.clubmodule.bean.MessageBean;
 import com.yijian.commonlib.base.mvc.MvcBaseFragment;
 import com.yijian.clubmodule.net.httpmanager.HttpManager;
 import com.yijian.clubmodule.net.requestbody.message.BusinessMessageRequestBody;
-import com.yijian.commonlib.db.DBManager;
 import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijian.commonlib.util.DateUtil;
 import com.yijian.commonlib.util.JsonUtil;
 import com.yijian.commonlib.widget.EmptyView;
 import com.yijian.commonlib.widget.MyDividerItemDecoration;
@@ -28,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 

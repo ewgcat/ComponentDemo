@@ -7,13 +7,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 import com.yijian.workspace.observe.EditActionObservable;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class WorkSpaceSearchActivity extends MvcBaseActivity {
 

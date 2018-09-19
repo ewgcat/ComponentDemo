@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.CourseStudentBean;
 import com.yijian.clubmodule.db.ClubDBManager;

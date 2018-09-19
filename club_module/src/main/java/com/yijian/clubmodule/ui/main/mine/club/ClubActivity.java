@@ -18,7 +18,6 @@ import com.yijian.commonlib.db.bean.User;
 import com.yijian.commonlib.net.response.ResponseObserver;
 import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.commonlib.umeng.SharePopupWindow;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.clubmodule.bean.ClubDetailBean;

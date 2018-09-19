@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.widget.NavigationBar;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.commonlib.base.mvc.MvcBaseActivity;
 import com.yijian.clubmodule.net.httpmanager.HttpManager;

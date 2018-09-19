@@ -13,7 +13,6 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.widget.EmptyView;
 import com.yijian.workspace.bean.WorkSpaceRecordBean;
 import com.yijian.workspace.utils.ActivityUtils;
@@ -25,7 +24,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import butterknife.BindView;
 
 public class WorkSpaceRecordActivity extends MvcBaseActivity {
 

@@ -13,11 +13,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.yijian.staff.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class TableView extends LinearLayout {
 

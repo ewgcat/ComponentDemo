@@ -1,13 +1,11 @@
 package com.yijian.workspace.webutils;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 public class SafeWebChromeClient extends WebChromeClient {
 

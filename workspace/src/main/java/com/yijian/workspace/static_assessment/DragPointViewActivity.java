@@ -11,23 +11,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.workspace.bean.StaticRequestBody;
 import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.GlideApp;
 import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.workspace.widget.ControlView;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop {
 

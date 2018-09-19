@@ -2,7 +2,6 @@ package com.yijian.clubmodule.bean;
 
 import android.support.annotation.NonNull;
 
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.JsonUtil;
 

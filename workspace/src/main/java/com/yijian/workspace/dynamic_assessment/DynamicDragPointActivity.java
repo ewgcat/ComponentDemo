@@ -6,15 +6,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.workspace.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class DynamicDragPointActivity extends MvcBaseActivity {
 

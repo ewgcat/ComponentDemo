@@ -16,17 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yijian.commonlib.util.DensityUtil;
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.commen.ShareTestActivity;
 import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.GlideApp;
 import com.yijian.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.commonlib.widget.NavigationBar2;
 import com.yijian.workspace.R;
 import com.yijian.workspace.observe.EditActionObservable;
 
@@ -37,9 +31,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class DynamicAssessmentActivity extends MvcBaseActivity {
 

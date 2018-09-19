@@ -1,7 +1,6 @@
 package com.yijian.workspace.commen;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yijian.staff.R;
 import com.yijian.workspace.bean.WorkSpaceRecordBean;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.sport.SportTestActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 

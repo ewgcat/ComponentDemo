@@ -19,18 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.face.BitmapFaceUtils;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.commonlib.util.DensityUtil;
-import com.yijian.commonlib.widget.NavigationBar2;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class DynamicPhotoActivity extends MvcBaseActivity {
 

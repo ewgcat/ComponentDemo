@@ -21,7 +21,6 @@ import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.widget.selectphoto.ChoosePhotoView;
 import com.yijian.commonlib.widget.selectphoto.ImageBean;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.clubmodule.bean.CertificateBean;

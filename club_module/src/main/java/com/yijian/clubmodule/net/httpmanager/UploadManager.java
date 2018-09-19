@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.commonlib.db.DBManager;
 import com.yijian.commonlib.db.bean.User;
 import com.yijian.commonlib.net.retrofit.RetrofitClient;
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.net.api.ApiService;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 

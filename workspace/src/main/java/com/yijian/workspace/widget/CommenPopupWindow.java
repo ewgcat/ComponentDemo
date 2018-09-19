@@ -10,10 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.PopupWindow;
-
-import com.yijian.staff.R;
 
 public class CommenPopupWindow extends PopupWindow {
 

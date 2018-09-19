@@ -10,7 +10,6 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.umeng.SharePopupWindow;
 import com.yijian.commonlib.widget.EmptyView;
 import com.yijian.workspace.dynamic_assessment.DynamicAssessmentActivity;
@@ -27,7 +26,6 @@ import com.yijian.workspace.base.BaseWebView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import butterknife.BindView;
 
 public class ShareTestActivity extends MvcBaseActivity {
 

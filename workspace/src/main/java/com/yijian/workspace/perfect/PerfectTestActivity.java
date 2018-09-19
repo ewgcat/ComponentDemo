@@ -9,22 +9,12 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.commen.ShareTestActivity;
 import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class PerfectTestActivity extends MvcBaseActivity {
 

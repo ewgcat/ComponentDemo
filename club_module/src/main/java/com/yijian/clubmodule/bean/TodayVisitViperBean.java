@@ -1,6 +1,5 @@
 package com.yijian.clubmodule.bean;
 
-import com.yijian.clubmodule.BuildConfig;
 import com.yijian.clubmodule.R;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.JsonUtil;

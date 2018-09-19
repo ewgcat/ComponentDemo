@@ -2,17 +2,12 @@ package com.yijian.workspace;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.workspace.commen.WorkSpaceSearchActivity;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @Route(path = "/workspace/workspace")
 public class WorkSpaceActivity extends MvcBaseActivity {

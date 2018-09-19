@@ -3,7 +3,6 @@ package com.yijian.commonlib.prefs;
 import android.app.Application;
 import android.content.Context;
 
-import com.yijian.commonlib.BuildConfig;
 import com.yijian.commonlib.util.ApplicationHolder;
 
 

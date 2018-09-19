@@ -14,8 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.yijian.staff.BuildConfig;
-import com.yijian.staff.R;
 import com.yijian.commonlib.util.ImageLoader;
 
 import java.text.ParseException;

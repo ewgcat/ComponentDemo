@@ -21,15 +21,8 @@ import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.face.BitmapFaceUtils;
-import com.yijian.staff.mvp.face.FaceDetectorActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.commonlib.widget.NavigationBar2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +31,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class PerfectActivity extends MvcBaseActivity {
 

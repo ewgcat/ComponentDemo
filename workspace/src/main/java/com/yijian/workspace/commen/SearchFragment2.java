@@ -15,11 +15,8 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.staff.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.commonlib.util.JsonUtil;
 import com.yijian.commonlib.widget.EmptyView;
 

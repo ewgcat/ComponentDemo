@@ -4,28 +4,22 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
-import android.text.Layout;
-import android.text.StaticLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.yijian.staff.mvp.face.BitmapFaceUtils;
 import com.yijian.workspace.static_assessment.DragPointBean;
 import com.yijian.workspace.static_assessment.DragPointUtil;
 import com.yijian.workspace.static_assessment.PointEnum;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DynamicPointView extends View {
 

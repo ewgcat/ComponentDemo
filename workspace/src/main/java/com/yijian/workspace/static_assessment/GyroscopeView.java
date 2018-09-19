@@ -14,7 +14,6 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import com.yijian.staff.R;
 
 public class GyroscopeView extends View {
 

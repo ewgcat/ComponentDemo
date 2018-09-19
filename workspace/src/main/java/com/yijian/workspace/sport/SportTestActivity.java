@@ -8,23 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.commen.ShareTestActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class  SportTestActivity extends MvcBaseActivity {
 

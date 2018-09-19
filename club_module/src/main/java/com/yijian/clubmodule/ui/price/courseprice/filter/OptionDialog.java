@@ -1,6 +1,5 @@
 package com.yijian.clubmodule.ui.price.courseprice.filter;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Color;
